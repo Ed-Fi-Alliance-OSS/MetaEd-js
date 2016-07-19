@@ -9,11 +9,11 @@ export default class MetaEdTextBuilder {
         this.indentationLevel = 0;
     }
 
-    toString() {
+    toString(): string {
         return this.textLines.join('\r\n');
     }
 
-    private getIndentation() {
+    private getIndentation(): string {
         return ' '.repeat(this.indentationLevel * 2);
     }
 
@@ -25,11 +25,11 @@ export default class MetaEdTextBuilder {
         this.indentationLevel -= 1;
     }
 
-    private addLineWithoutIndentation(line, ...parameters: string[]) {
+    private addLineWithoutIndentation(line: string, ...parameters: string[]) {
         this.textLines.push(StringHelper.format(line, ...parameters));
     }
 
-    private addLine(line, ...parameters: string[]) {
+    private addLine(line: string, ...parameters: string[]) {
         const indention = this.getIndentation();
         this.textLines.push(indention + StringHelper.format(line, ...parameters));
     }
@@ -39,13 +39,13 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withTrailingText(text) {
+    withTrailingText(text: string) {
         const idx = this.textLines.length - 1;
         this.textLines[idx] = this.textLines[idx] + text;
         return this;
     }
 
-    withBeginNamespace(identifier, projectExtension = null) {
+    withBeginNamespace(identifier: string, projectExtension: string = null) {
         if (projectExtension == null) {
             this.addLine('Begin Namespace {0} core', identifier);
         } else {
@@ -61,30 +61,30 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withComment(comment) {
+    withComment(comment: string) {
         this.addLine('//{0}', comment);
         return this;
     }
 
-    withDocumentation(...documentationLines) {
+    withDocumentation(...documentationLines: string[]) {
         const documentation = 'documentation';
         this.addLine(documentation);
         return this.withDocumentationLines(documentationLines);
     }
 
-    withExtendedDocumentation(...documentationLines) {
+    withExtendedDocumentation(...documentationLines: string[]) {
         const extendedDocumentation = 'extended documentation';
         this.addLine(extendedDocumentation);
         return this.withDocumentationLines(documentationLines);
     }
 
-    withUseCaseDocumentation(...documentationLines) {
+    withUseCaseDocumentation(...documentationLines: string[]) {
         const useCaseDocumentation = 'use case documentation';
         this.addLine(useCaseDocumentation);
         return this.withDocumentationLines(documentationLines);
     }
 
-    private withDocumentationLines(...documentationLines) {
+    private withDocumentationLines(...documentationLines: string[]) {
         const documentationPrefix = '\'';
         for (const line of documentationLines) {
             this.addLine('{0}{1}', documentationPrefix, line);
@@ -92,7 +92,7 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withMetaEdId(metaEdId) {
+    withMetaEdId(metaEdId: string[]) {
         if (metaEdId == null) return this;
         if (this.textLines.length > 0) {
             const lastLine = this.textLines[this.textLines.length - 1];
@@ -104,13 +104,13 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withChildElement(elementType, identifier, metaEdId = null) {
+    private withChildElement(elementType: string, identifier: string, metaEdId: string = null) {
         this.addLine('{0} {1}', elementType, identifier);
         this.withMetaEdId(metaEdId);
         return this;
     }
 
-    withStartTopLevel(keyword, identifier, baseIdentifier = null) {
+    private withStartTopLevel(keyword: string, identifier: string, baseIdentifier: string = null) {
         if (baseIdentifier == null) {
             this.addLine('{0} {1}', keyword, identifier);
         } else {
@@ -120,13 +120,13 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withStartTopLevelExtension(keyword, identifier) {
+    private withStartTopLevelExtension(keyword: string, identifier: string) {
         this.addLine('{0} {1} additions', keyword, identifier);
         this.increaseIndentation();
         return this;
     }
 
-    withEndTopLevel() {
+    private withEndTopLevel() {
         this.decreaseIndentation();
         return this;
     }
@@ -136,7 +136,7 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withStartMapType(isRequired = true) {
+    withStartMapType(isRequired: boolean = true) {
         this.addLine(isRequired ? 'with map type' : 'with optional map type');
         this.increaseIndentation();
         return this;
@@ -147,7 +147,7 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withStartEnumeration(identifier) {
+    withStartEnumeration(identifier: string) {
         return this.withStartTopLevel('Enumeration', identifier);
     }
 
@@ -155,7 +155,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartDescriptor(identifier) {
+    withStartDescriptor(identifier: string) {
         return this.withStartTopLevel('Descriptor', identifier);
     }
 
@@ -163,7 +163,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartDomainEntity(identifier) {
+    withStartDomainEntity(identifier: string) {
         return this.withStartTopLevel('Domain Entity', identifier);
     }
 
@@ -171,7 +171,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartAssociationExtension(extensionName) {
+    withStartAssociationExtension(extensionName: string) {
         return this.withStartTopLevelExtension('Association', extensionName);
     }
 
@@ -179,7 +179,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartDomainEntityExtension(identifier) {
+    withStartDomainEntityExtension(identifier: string) {
         return this.withStartTopLevelExtension('Domain Entity', identifier);
     }
 
@@ -187,7 +187,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartAbstractEntity(identifier) {
+    withStartAbstractEntity(identifier: string) {
         return this.withStartTopLevel('Abstract Entity', identifier);
     }
 
@@ -195,7 +195,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartChoiceType(identifier) {
+    withStartChoiceType(identifier: string) {
         return this.withStartTopLevel('Choice Common Type', identifier);
     }
 
@@ -203,7 +203,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartCommonDecimal(identifier) {
+    withStartCommonDecimal(identifier: string) {
         return this.withStartTopLevel('Common Decimal', identifier);
     }
 
@@ -211,7 +211,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartCommonInteger(identifier) {
+    withStartCommonInteger(identifier: string) {
         return this.withStartTopLevel('Common Integer', identifier);
     }
 
@@ -219,7 +219,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartCommonShort(identifier) {
+    withStartCommonShort(identifier: string) {
         return this.withStartTopLevel('Common Short', identifier);
     }
 
@@ -227,7 +227,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartCommonString(identifier) {
+    withStartCommonString(identifier: string) {
         return this.withStartTopLevel('Common String', identifier);
     }
 
@@ -235,7 +235,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartCommonType(identifier) {
+    withStartCommonType(identifier: string) {
         return this.withStartTopLevel('Common Type', identifier);
     }
 
@@ -243,7 +243,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartCommonTypeExtension(identifier) {
+    withStartCommonTypeExtension(identifier: string) {
         return this.withStartTopLevelExtension('Common Type', identifier);
     }
 
@@ -251,7 +251,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartInlineCommonType(identifier) {
+    withStartInlineCommonType(identifier: string) {
         return this.withStartTopLevel('Inline Common Type', identifier);
     }
 
@@ -259,7 +259,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartAssociation(identifier) {
+    withStartAssociation(identifier: string) {
         return this.withStartTopLevel('Association', identifier);
     }
 
@@ -267,7 +267,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartAssociationSubclass(associationName, baseAssociationName) {
+    withStartAssociationSubclass(associationName: string, baseAssociationName: string) {
         return this.withStartTopLevel('Association', associationName, baseAssociationName);
     }
 
@@ -275,7 +275,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartDomainEntitySubclass(entityName, baseEntityName) {
+    withStartDomainEntitySubclass(entityName: string, baseEntityName: string) {
         return this.withStartTopLevel('Domain Entity', entityName, baseEntityName);
     }
 
@@ -283,7 +283,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartInterchange(interchangeName) {
+    withStartInterchange(interchangeName: string) {
         return this.withStartTopLevel('Interchange', interchangeName);
     }
 
@@ -291,7 +291,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartInterchangeExtension(identifier) {
+    withStartInterchangeExtension(identifier: string) {
         return this.withStartTopLevelExtension('Interchange', identifier);
     }
 
@@ -299,15 +299,15 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withElement(domainEntityName, metaEdId = null) {
+    withElement(domainEntityName: string, metaEdId: string = null) {
         return this.withChildElement('element', domainEntityName, metaEdId);
     }
 
-    withIdentityTemplate(identityTemplateName, metaEdId = null) {
+    withIdentityTemplate(identityTemplateName: string, metaEdId: string = null) {
         return this.withChildElement('identity template', identityTemplateName, metaEdId);
     }
 
-    withStartDomain(domainName) {
+    withStartDomain(domainName: string) {
         return this.withStartTopLevel('Domain', domainName);
     }
 
@@ -315,7 +315,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withStartSubdomain(subdomainName, parentDomainName) {
+    withStartSubdomain(subdomainName: string, parentDomainName: string) {
         this.addLine('Subdomain {0} of {1}', subdomainName, parentDomainName);
         this.increaseIndentation();
         return this;
@@ -325,7 +325,7 @@ export default class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
 
-    withDomainItem(domainItemName, metaEdId = null) {
+    withDomainItem(domainItemName: string, metaEdId: string = null) {
         return this.withChildElement('domain item', domainItemName, metaEdId);
     }
 
@@ -336,7 +336,7 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withIdentityRenameIndicator(basePropertyIdentifier) {
+    withIdentityRenameIndicator(basePropertyIdentifier: string) {
         const identityRename = 'renames identity property';
 
         this.addLine('{0} {1}', identityRename, basePropertyIdentifier);
@@ -371,7 +371,7 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withContext(context, shortenTo = null) {
+    withContext(context: string, shortenTo: string = null) {
         if (context == null) return this;
 
         const withContext = 'with context';
@@ -384,48 +384,48 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withMergePartOfReference(mergePropertyPath, targetPropertyPath) {
+    withMergePartOfReference(mergePropertyPath: string, targetPropertyPath: string) {
         this.addLine('merge {0} with {1}', mergePropertyPath, targetPropertyPath);
         return this;
     }
 
-    withStartProperty(propertyType, propertyIdentifier, metaEdId = null) {
+    private withStartProperty(propertyType: string, propertyIdentifier: string, metaEdId: string = null) {
         this.addLine('{0} {1}', propertyType, propertyIdentifier);
         this.withMetaEdId(metaEdId);
         this.increaseIndentation();
         return this;
     }
 
-    withStartSharedProperty(propertyType, propertyIdentifier, named, metaEdId = null) {
+    private withStartSharedProperty(propertyType: string, propertyIdentifier: string, named: string, metaEdId: string = null) {
         this.addLine('shared {0} {1} named {2}', propertyType, propertyIdentifier, named);
         this.withMetaEdId(metaEdId);
         this.increaseIndentation();
         return this;
     }
 
-    withEndProperty() {
+    private withEndProperty() {
         this.decreaseIndentation();
         return this;
     }
 
-    withProperty(propertyType, propertyIdentifier, documentation, isRequired, isCollection,
-                 context = null, metaEdId = null) {
+    private withProperty(propertyType: string, propertyIdentifier: string, documentation: string, isRequired: string, isCollection: string,
+                 context: string = null, metaEdId: string = null) {
         this.withStartProperty(propertyType, propertyIdentifier, metaEdId);
         this.withPropertyElements(documentation, isRequired, isCollection, context);
         this.withEndProperty();
         return this;
     }
 
-    withSharedProperty(propertyType, propertyIdentifier, named, documentation, isRequired,
-                       isCollection, context = null, metaEdId = null) {
+    private withSharedProperty(propertyType: string, propertyIdentifier: string, named: string, documentation: string, isRequired: string,
+                       isCollection: string, context: string = null, metaEdId: string = null) {
         this.withStartSharedProperty(propertyType, propertyIdentifier, named, metaEdId);
         this.withPropertyElements(documentation, isRequired, isCollection, context);
         this.withEndProperty();
         return this;
     }
 
-    withIdentityProperty(propertyType, propertyIdentifier, documentation,
-                         context = null, metaEdId = null) {
+    private withIdentityProperty(propertyType: string, propertyIdentifier: string, documentation: string,
+                         context: string = null, metaEdId: string = null) {
         this.withStartProperty(propertyType, propertyIdentifier, metaEdId);
 
         this.withDocumentation(documentation);
@@ -436,8 +436,8 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withIdentityRenameProperty(propertyType, propertyIdentifier, basePropertyIdentifier,
-                               documentation, context = null, metaEdId = null) {
+    private withIdentityRenameProperty(propertyType: string, propertyIdentifier: string, basePropertyIdentifier: string,
+                               documentation: string, context: string = null, metaEdId: string = null) {
         this.withStartProperty(propertyType, propertyIdentifier, metaEdId);
 
         this.withDocumentation(documentation);
@@ -448,7 +448,7 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withPropertyElements(documentation, isRequired, isCollection, context) {
+    private withPropertyElements(documentation: string, isRequired: string, isCollection: string, context: string) {
         this.withDocumentation(documentation);
 
         if (isRequired && isCollection) {
@@ -465,43 +465,43 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withBooleanProperty(propertyIdentifier, documentation, isRequired, isCollection,
-                        context = null, metaEdId = null) {
+    withBooleanProperty(propertyIdentifier: string, documentation: string, isRequired: string, isCollection: string,
+                        context: string = null, metaEdId: string = null) {
         return this.withProperty('bool', propertyIdentifier, documentation, isRequired,
             isCollection, context, metaEdId);
     }
 
-    withDateProperty(propertyIdentifier, documentation, isRequired, isCollection,
-                     context = null, metaEdId = null) {
+    withDateProperty(propertyIdentifier: string, documentation: string, isRequired: string, isCollection: string,
+                     context: string = null, metaEdId: string = null) {
         return this.withProperty('date', propertyIdentifier, documentation, isRequired,
             isCollection, context, metaEdId);
     }
 
-    withDurationProperty(propertyIdentifier, documentation, isRequired, isCollection,
-                         context = null, metaEdId = null) {
+    withDurationProperty(propertyIdentifier: string, documentation: string, isRequired: string, isCollection: string,
+                         context: string = null, metaEdId: string = null) {
         return this.withProperty('duration', propertyIdentifier, documentation, isRequired,
             isCollection, context, metaEdId);
     }
 
-    withPercentProperty(propertyIdentifier, documentation, isRequired, isCollection,
-                        context = null, metaEdId = null) {
+    withPercentProperty(propertyIdentifier: string, documentation: string, isRequired: string, isCollection: string,
+                        context: string = null, metaEdId: string = null) {
         return this.withProperty('percent', propertyIdentifier, documentation, isRequired,
             isCollection, context, metaEdId);
     }
 
-    withTimeProperty(propertyIdentifier, documentation, isRequired, isCollection,
-                     context = null, metaEdId = null) {
+    withTimeProperty(propertyIdentifier: string, documentation: string, isRequired: string, isCollection: string,
+                     context: string = null, metaEdId: string = null) {
         return this.withProperty('time', propertyIdentifier, documentation, isRequired,
             isCollection, context, metaEdId);
     }
 
-    withYearProperty(propertyIdentifier, documentation, isRequired, isCollection,
-                     context = null, metaEdId = null) {
+    withYearProperty(propertyIdentifier: string, documentation: string, isRequired: string, isCollection: string,
+                     context: string = null, metaEdId: string = null) {
         return this.withProperty('year', propertyIdentifier, documentation, isRequired, isCollection,
             context, metaEdId);
     }
 
-    withDomainEntityProperty(identifier, documentation, context = null, metaEdId = null) {
+    withDomainEntityProperty(identifier: string, documentation: string, context: string = null, metaEdId: string = null) {
         this.withStartProperty('domain entity', identifier, metaEdId);
         this.withDocumentation(documentation);
         this.withContext(context);
@@ -509,73 +509,73 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withDescriptorProperty(descriptorName, documentation, isRequired, isCollection,
-                           context = null, metaEdId = null) {
+    withDescriptorProperty(descriptorName: string, documentation: string, isRequired: string, isCollection: string,
+                           context: string = null, metaEdId: string = null) {
         return this.withProperty('descriptor', descriptorName, documentation, isRequired,
             isCollection, context, metaEdId);
     }
 
-    withEnumerationProperty(enumerationName, documentation, isRequired, isCollection,
-                            context = null, metaEdId = null) {
+    withEnumerationProperty(enumerationName: string, documentation: string, isRequired: string, isCollection: string,
+                            context: string = null, metaEdId: string = null) {
         return this.withProperty('enumeration', enumerationName, documentation, isRequired,
             isCollection, context, metaEdId);
     }
 
-    withIncludeProperty(commonTypeName, documentation, isRequired, isCollection,
-                        context = null, metaEdId = null) {
+    withIncludeProperty(commonTypeName: string, documentation: string, isRequired: string, isCollection: string,
+                        context: string = null, metaEdId: string = null) {
         return this.withProperty('include', commonTypeName, documentation, isRequired,
             isCollection, context, metaEdId);
     }
 
-    withIncludeExtensionOverrideProperty(commonTypeName, documentation, isRequired, isCollection,
-                                         context = null, metaEdId = null) {
+    withIncludeExtensionOverrideProperty(commonTypeName: string, documentation: string, isRequired: string, isCollection: string,
+                                         context: string = null, metaEdId: string = null) {
         return this.withProperty('include extension', commonTypeName, documentation, isRequired,
             isCollection, context, metaEdId);
     }
 
-    withMinLength(minLength) {
+    withMinLength(minLength: string) {
         if (minLength == null) return this;
         this.addLine('min length {0}', minLength);
         return this;
     }
 
-    withMaxLength(maxLength) {
+    withMaxLength(maxLength: string) {
         if (maxLength == null) return this;
         this.addLine('max length {0}', maxLength);
         return this;
     }
 
-    withMinValue(minValue) {
+    withMinValue(minValue: string) {
         if (minValue == null) return this;
         this.addLine('min value {0}', minValue);
         return this;
     }
 
-    withMaxValue(maxValue) {
+    withMaxValue(maxValue: string) {
         if (maxValue == null) return this;
         this.addLine('max value {0}', maxValue);
         return this;
     }
 
-    withTotalDigits(totalDigits) {
+    withTotalDigits(totalDigits: string) {
         if (totalDigits == null) return this;
         this.addLine('total digits {0}', totalDigits);
         return this;
     }
 
-    withDecimalPlaces(decimalPlaces) {
+    withDecimalPlaces(decimalPlaces: string) {
         if (decimalPlaces == null) return this;
         this.addLine('decimal places {0}', decimalPlaces);
         return this;
     }
 
-    withIsWeakReference(isWeak = false) {
+    withIsWeakReference(isWeak: boolean = false) {
         if (!isWeak) return this;
         this.addLine('is weak');
         return this;
     }
 
-    withStringRestrictions(minLength = null, maxLength = null) {
+    private withStringRestrictions(minLength: string = null, maxLength: string = null) {
         this.increaseIndentation();
 
         this.withMinLength(minLength);
@@ -586,7 +586,7 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withNumericRestrictions(minValue = null, maxValue = null) {
+    private withNumericRestrictions(minValue: string = null, maxValue: string = null) {
         this.increaseIndentation();
 
         this.withMinValue(minValue);
@@ -597,7 +597,7 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withDecimalRestrictions(totalDigits, decimalPlaces, minValue = null, maxValue = null) {
+    private withDecimalRestrictions(totalDigits: string, decimalPlaces: string, minValue: string = null, maxValue: string = null) {
         this.increaseIndentation();
         this.withTotalDigits(totalDigits);
         this.withDecimalPlaces(decimalPlaces);
@@ -608,7 +608,7 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withReferenceAdditions(isWeak = false) {
+    private withReferenceAdditions(isWeak: boolean = false) {
         this.increaseIndentation();
         this.withIsWeakReference(isWeak);
         this.decreaseIndentation();
@@ -616,8 +616,8 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withStringProperty(propertyIdentifier, documentation, isRequired, isCollection,
-                       maxLength, minLength = null, context = null, metaEdId = null) {
+    withStringProperty(propertyIdentifier: string, documentation: string, isRequired: string, isCollection: string,
+                       maxLength: string, minLength: string = null, context: string = null, metaEdId: string = null) {
         this.withProperty('string', propertyIdentifier, documentation, isRequired, isCollection,
             context, metaEdId);
         this.withStringRestrictions(minLength, maxLength);
@@ -625,150 +625,150 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withCurrencyProperty(propertyIdentifier, documentation, isRequired, isCollection,
-                         context = null, metaEdId = null) {
+    withCurrencyProperty(propertyIdentifier: string, documentation: string, isRequired: string, isCollection: string,
+                         context: string = null, metaEdId: string = null) {
         return this.withProperty('currency', propertyIdentifier, documentation, isRequired,
             isCollection, context, metaEdId);
     }
 
-    withIntegerProperty(propertyIdentifier, documentation, isRequired, isCollection,
-                        maxValue = null, minValue = null, context = null, metaEdId = null) {
+    withIntegerProperty(propertyIdentifier: string, documentation: string, isRequired: string, isCollection: string,
+                        maxValue: string = null, minValue: string = null, context: string = null, metaEdId: string = null) {
         this.withProperty('integer', propertyIdentifier, documentation, isRequired, isCollection,
             context, metaEdId);
         this.withNumericRestrictions(minValue, maxValue);
         return this;
     }
 
-    withShortProperty(propertyIdentifier, documentation, isRequired, isCollection,
-                      maxValue = null, minValue = null, context = null, metaEdId = null) {
+    withShortProperty(propertyIdentifier: string, documentation: string, isRequired: string, isCollection: string,
+                      maxValue: string = null, minValue: string = null, context: string = null, metaEdId: string = null) {
         this.withProperty('short', propertyIdentifier, documentation, isRequired, isCollection,
             context, metaEdId);
         this.withNumericRestrictions(minValue, maxValue);
         return this;
     }
 
-    withDecimalProperty(propertyIdentifier, documentation, isRequired, isCollection, totalDigits,
-                        decimalPlaces, minValue = null, maxValue = null,
-                        context = null, metaEdId = null) {
+    withDecimalProperty(propertyIdentifier: string, documentation: string, isRequired: string, isCollection: string, totalDigits: string,
+                        decimalPlaces: string, minValue: string = null, maxValue: string = null,
+                        context: string = null, metaEdId: string = null) {
         this.withProperty('decimal', propertyIdentifier, documentation, isRequired, isCollection,
             context, metaEdId);
         this.withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue);
         return this;
     }
 
-    withReferenceProperty(propertyIdentifier, documentation, isRequired, isCollection,
-                          isWeak = false, context = null, metaEdId = null) {
+    withReferenceProperty(propertyIdentifier: string, documentation: string, isRequired: string, isCollection: string,
+                          isWeak: boolean = false, context: string = null, metaEdId: string = null) {
         this.withProperty('reference', propertyIdentifier, documentation, isRequired,
             isCollection, context, metaEdId);
         this.withReferenceAdditions(isWeak);
         return this;
     }
 
-    withSharedDecimalProperty(propertyIdentifier, named, documentation, isRequired, isCollection,
-                              context = null, metaEdId = null) {
+    withSharedDecimalProperty(propertyIdentifier: string, named: string, documentation: string, isRequired: string, isCollection: string,
+                              context: string = null, metaEdId: string = null) {
         return this.withSharedProperty('decimal', propertyIdentifier, named, documentation,
             isRequired, isCollection, context, metaEdId);
     }
 
-    withSharedIntegerProperty(propertyIdentifier, named, documentation, isRequired, isCollection,
-                              context = null, metaEdId = null) {
+    withSharedIntegerProperty(propertyIdentifier: string, named: string, documentation: string, isRequired: string, isCollection: string,
+                              context: string = null, metaEdId: string = null) {
         return this.withSharedProperty('integer', propertyIdentifier, named, documentation,
             isRequired, isCollection, context, metaEdId);
     }
 
-    withSharedShortProperty(propertyIdentifier, named, documentation, isRequired, isCollection,
-                            context = null, metaEdId = null) {
+    withSharedShortProperty(propertyIdentifier: string, named: string, documentation: string, isRequired: string, isCollection: string,
+                            context: string = null, metaEdId: string = null) {
         return this.withSharedProperty('short', propertyIdentifier, named, documentation,
             isRequired, isCollection, context, metaEdId);
     }
 
-    withSharedStringProperty(propertyIdentifier, named, documentation, isRequired, isCollection,
-                             context = null, metaEdId = null) {
+    withSharedStringProperty(propertyIdentifier: string, named: string, documentation: string, isRequired: string, isCollection: string,
+                             context: string = null, metaEdId: string = null) {
         return this.withSharedProperty('string', propertyIdentifier, named, documentation,
             isRequired, isCollection, context, metaEdId);
     }
 
-    withBooleanIdentity(propertyIdentifier, documentation, context = null, metaEdId = null) {
+    withBooleanIdentity(propertyIdentifier: string, documentation: string, context: string = null, metaEdId: string = null) {
         return this.withIdentityProperty('bool', propertyIdentifier, documentation, context, metaEdId);
     }
 
-    withDateIdentity(propertyIdentifier, documentation, context = null, metaEdId = null) {
+    withDateIdentity(propertyIdentifier: string, documentation: string, context: string = null, metaEdId: string = null) {
         return this.withIdentityProperty('date', propertyIdentifier, documentation, context, metaEdId);
     }
 
-    withDurationIdentity(propertyIdentifier, documentation, context = null, metaEdId = null) {
+    withDurationIdentity(propertyIdentifier: string, documentation: string, context: string = null, metaEdId: string = null) {
         return this.withIdentityProperty('duration', propertyIdentifier, documentation,
             context, metaEdId);
     }
 
-    withTimeIdentity(propertyIdentifier, documentation, context = null, metaEdId = null) {
+    withTimeIdentity(propertyIdentifier: string, documentation: string, context: string = null, metaEdId: string = null) {
         return this.withIdentityProperty('time', propertyIdentifier, documentation, context, metaEdId);
     }
 
-    withYearIdentity(propertyIdentifier, documentation, context = null, metaEdId = null) {
+    withYearIdentity(propertyIdentifier: string, documentation: string, context: string = null, metaEdId: string = null) {
         return this.withIdentityProperty('year', propertyIdentifier, documentation, context, metaEdId);
     }
 
-    withStringIdentity(propertyIdentifier, documentation, maxLength, minLength = null,
-                       context = null, metaEdId = null) {
+    withStringIdentity(propertyIdentifier: string, documentation: string, maxLength: string, minLength: string = null,
+                       context: string = null, metaEdId: string = null) {
         this.withIdentityProperty('string', propertyIdentifier, documentation, context, metaEdId);
         this.withStringRestrictions(minLength, maxLength);
         return this;
     }
 
-    withIntegerIdentity(propertyIdentifier, documentation, maxValue = null, minValue = null,
+    withIntegerIdentity(propertyIdentifier: string, documentation: string, maxValue: string = null, minValue: string = null,
                         context = null, metaEdId = null) {
         this.withIdentityProperty('integer', propertyIdentifier, documentation, context, metaEdId);
         this.withNumericRestrictions(minValue, maxValue);
         return this;
     }
 
-    withShortIdentity(propertyIdentifier, documentation, maxValue = null, minValue = null,
-                      context = null, metaEdId = null) {
+    withShortIdentity(propertyIdentifier: string, documentation: string, maxValue: string = null, minValue: string = null,
+                      context: string = null, metaEdId: string = null) {
         this.withIdentityProperty('short', propertyIdentifier, documentation, context, metaEdId);
         this.withNumericRestrictions(minValue, maxValue);
         return this;
     }
 
-    withDecimalIdentity(propertyIdentifier, documentation, totalDigits, decimalPlaces,
-                        minValue = null, maxValue = null, context = null, metaEdId = null) {
+    withDecimalIdentity(propertyIdentifier: string, documentation: string, totalDigits: string, decimalPlaces: string,
+                        minValue: string = null, maxValue: string = null, context: string = null, metaEdId: string = null) {
         this.withIdentityProperty('decimal', propertyIdentifier, documentation, context, metaEdId);
         this.withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue);
         return this;
     }
 
-    withEnumerationIdentity(propertyIdentifier, documentation, context = null, metaEdId = null) {
+    withEnumerationIdentity(propertyIdentifier: string, documentation: string, context: string = null, metaEdId: string = null) {
         return this.withIdentityProperty('enumeration', propertyIdentifier, documentation,
             context, metaEdId);
     }
 
-    withReferenceIdentity(propertyIdentifier, documentation, context = null, metaEdId = null) {
+    withReferenceIdentity(propertyIdentifier: string, documentation: string, context: string = null, metaEdId: string = null) {
         return this.withIdentityProperty('reference', propertyIdentifier, documentation,
             context, metaEdId);
     }
 
-    withDescriptorIdentity(descriptorName, documentation, context = null, metaEdId = null) {
+    withDescriptorIdentity(descriptorName: string, documentation: string, context: string = null, metaEdId: string = null) {
         return this.withIdentityProperty('descriptor', descriptorName, documentation,
             context, metaEdId);
     }
 
-    withStringIdentityRename(propertyIdentifier, basePropertyIdentifier, documentation,
-                             maxLength, minLength = null, context = null, metaEdId = null) {
+    withStringIdentityRename(propertyIdentifier: string, basePropertyIdentifier: string, documentation: string,
+                             maxLength: string, minLength: string = null, context: string = null, metaEdId: string = null) {
         this.withIdentityRenameProperty('string', propertyIdentifier, basePropertyIdentifier,
             documentation, context, metaEdId);
         this.withStringRestrictions(minLength, maxLength);
         return this;
     }
 
-    withIntegerIdentityRename(propertyIdentifier, basePropertyIdentifier, documentation,
-                              maxValue = null, minValue = null, context = null, metaEdId = null) {
+    withIntegerIdentityRename(propertyIdentifier: string, basePropertyIdentifier: string, documentation: string,
+                              maxValue: string = null, minValue: string = null, context: string = null, metaEdId: string = null) {
         this.withIdentityRenameProperty('integer', propertyIdentifier, basePropertyIdentifier,
             documentation, context, metaEdId);
         this.withNumericRestrictions(minValue, maxValue);
         return this;
     }
 
-    withEnumerationItem(shortDescription, documentation = null, metaEdId = null) {
+    withEnumerationItem(shortDescription: string, documentation: string = null, metaEdId: string = null) {
         this.withStartProperty('item', shortDescription, metaEdId);
         if (documentation != null) {
             this.withDocumentation(documentation);
