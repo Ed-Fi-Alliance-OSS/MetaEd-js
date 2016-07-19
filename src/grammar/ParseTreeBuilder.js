@@ -1,34 +1,29 @@
+"use strict";
 /// <reference path="../../typings/globals/node/index.d.ts" />
 let antlr4 = require('antlr4');
 let BaseLexer = require('./gen/BaseLexer');
 let MetaEdGrammar = require('./gen/MetaEdGrammar');
-
-import MetaEdErrorListener from './MetaEdErrorListener';
-
-export default class ParseTreeBuilder {
-    private metaEdErrorListener: MetaEdErrorListener;
-
-    constructor(metaEdErrorListener: MetaEdErrorListener) {
+class ParseTreeBuilder {
+    constructor(metaEdErrorListener) {
         this.metaEdErrorListener = metaEdErrorListener;
     }
-
-    buildParseTree(metaEdContents: string) {
+    buildParseTree(metaEdContents) {
         try {
             return this.errorIgnoringParser(metaEdContents).metaEd();
-        } catch (parseCanceledException) {
+        }
+        catch (parseCanceledException) {
             return this.errorListeningParser(metaEdContents).metaEd();
         }
     }
-
-    buildTopLevelEntity(metaEdContents: string) {
+    buildTopLevelEntity(metaEdContents) {
         try {
             return this.errorIgnoringParser(metaEdContents).topLevelEntity();
-        } catch (parseCanceledException) {
+        }
+        catch (parseCanceledException) {
             return this.errorListeningParser(metaEdContents).topLevelEntity();
         }
     }
-
-    private errorListeningParser(metaEdContents: string) {
+    errorListeningParser(metaEdContents) {
         const lexer = new BaseLexer.BaseLexer(new antlr4.InputStream(metaEdContents));
         const tokens = new antlr4.CommonTokenStream(lexer, undefined);
         const parser = new MetaEdGrammar.MetaEdGrammar(tokens);
@@ -37,8 +32,7 @@ export default class ParseTreeBuilder {
         parser.addErrorListener(this.metaEdErrorListener);
         return parser;
     }
-
-    private errorIgnoringParser(metaEdContents: string) {
+    errorIgnoringParser(metaEdContents) {
         const lexer = new BaseLexer.BaseLexer(antlr4.InputStream(metaEdContents));
         const tokens = new antlr4.CommonTokenStream(lexer, undefined);
         const parser = new MetaEdGrammar.MetaEdGrammar(tokens);
@@ -48,3 +42,6 @@ export default class ParseTreeBuilder {
         return parser;
     }
 }
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = ParseTreeBuilder;
+//# sourceMappingURL=ParseTreeBuilder.js.map
