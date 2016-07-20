@@ -39,7 +39,7 @@ export default class ParseTreeBuilder {
     }
 
     private errorIgnoringParser(metaEdContents: string) {
-        const lexer = new BaseLexer.BaseLexer(antlr4.InputStream(metaEdContents));
+        const lexer = new BaseLexer.BaseLexer(new antlr4.InputStream(metaEdContents));
         const tokens = new antlr4.CommonTokenStream(lexer, undefined);
         const parser = new MetaEdGrammar.MetaEdGrammar(tokens);
         parser.Interpreter.PredictionMode = antlr4.atn.PredictionMode.SLL;
