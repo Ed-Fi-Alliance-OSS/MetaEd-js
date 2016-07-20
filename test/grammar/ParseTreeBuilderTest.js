@@ -41,8 +41,7 @@ describe('ParseTreeBuilder', () => {
         it('should parse correctly with valid MetaEd from MetaEdTextBuilder', () => {
             const builder = new MetaEdTextBuilder_1.default();
             const inputText = builder.withStartDomainEntity('TestEntity')
-                .withDocumentation(['This is the first line',
-                'This is more...'])
+                .withDocumentation('This is the first line', 'This is more...')
                 .withIntegerIdentity('MyProperty', 'Integer documentation')
                 .withEndDomainEntity()
                 .toString();

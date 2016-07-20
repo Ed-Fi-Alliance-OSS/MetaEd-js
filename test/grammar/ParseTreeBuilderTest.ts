@@ -48,8 +48,7 @@ describe('ParseTreeBuilder', () => {
             const builder = new MetaEdTextBuilder();
             const inputText =
                 builder.withStartDomainEntity('TestEntity')
-                    .withDocumentation(['This is the first line',
-                        'This is more...'])
+                    .withDocumentation('This is the first line', 'This is more...')
                     .withIntegerIdentity('MyProperty', 'Integer documentation')
                     .withEndDomainEntity()
                     .toString();
