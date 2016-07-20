@@ -7,20 +7,18 @@
   "license": "private",
   "dependencies": {
     "antlr4": "^4.5.3",
-    "handlebars": "^4.0.5",
-    "systemjs": "^0.19.31"
+    "handlebars": "^4.0.5"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "dirty-chai": "^1.2.2",
     "mocha": "^2.4.5",
     "ts-node": "^0.9.3",
     "typescript": "^2.0.0"
   },
   "scripts": {
     "prestart": "npm install",
-    "test": "mocha",
-    "typings": "./node_modules/.bin/typings",
-    "tsc": "./node_modules/.bin/tsc"
+    "test": "mocha --compilers ts:ts-node/register test/**/*Test.ts",
+    "typings": "typings",
+    "tsc": "tsc"
   }
 }
