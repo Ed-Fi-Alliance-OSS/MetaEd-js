@@ -55,17 +55,17 @@ class MetaEdTextBuilder {
     withDocumentation(...documentationLines) {
         const documentation = 'documentation';
         this.addLine(documentation);
-        return this.withDocumentationLines(documentationLines);
+        return this.withDocumentationLines(...documentationLines);
     }
     withExtendedDocumentation(...documentationLines) {
         const extendedDocumentation = 'extended documentation';
         this.addLine(extendedDocumentation);
-        return this.withDocumentationLines(documentationLines);
+        return this.withDocumentationLines(...documentationLines);
     }
     withUseCaseDocumentation(...documentationLines) {
         const useCaseDocumentation = 'use case documentation';
         this.addLine(useCaseDocumentation);
-        return this.withDocumentationLines(documentationLines);
+        return this.withDocumentationLines(...documentationLines);
     }
     withDocumentationLines(...documentationLines) {
         const documentationPrefix = '\'';

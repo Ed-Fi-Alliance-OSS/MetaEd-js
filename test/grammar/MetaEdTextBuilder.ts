@@ -69,19 +69,19 @@ export default class MetaEdTextBuilder {
     withDocumentation(...documentationLines: string[]) {
         const documentation = 'documentation';
         this.addLine(documentation);
-        return this.withDocumentationLines(documentationLines);
+        return this.withDocumentationLines(...documentationLines);
     }
 
     withExtendedDocumentation(...documentationLines: string[]) {
         const extendedDocumentation = 'extended documentation';
         this.addLine(extendedDocumentation);
-        return this.withDocumentationLines(documentationLines);
+        return this.withDocumentationLines(...documentationLines);
     }
 
     withUseCaseDocumentation(...documentationLines: string[]) {
         const useCaseDocumentation = 'use case documentation';
         this.addLine(useCaseDocumentation);
-        return this.withDocumentationLines(documentationLines);
+        return this.withDocumentationLines(...documentationLines);
     }
 
     private withDocumentationLines(...documentationLines: string[]) {
@@ -92,7 +92,7 @@ export default class MetaEdTextBuilder {
         return this;
     }
 
-    withMetaEdId(metaEdId: string[]) {
+    withMetaEdId(metaEdId: string) {
         if (metaEdId == null) return this;
         if (this.textLines.length > 0) {
             const lastLine = this.textLines[this.textLines.length - 1];
