@@ -1,10 +1,12 @@
 module.exports = function (w) {
   return {
     files: [
-      'src/**/*.ts'
+      'src/**/*.ts',
+      'src/**/*.js'
     ],
     tests: [
-      'test/**/*Test.ts'
+      'test/**/*.ts',
+      'test/**/*.js'
     ],
     env: {
       type: 'node'
