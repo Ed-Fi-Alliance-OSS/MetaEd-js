@@ -25,8 +25,7 @@ class ParseTreeBuilder {
     }
     errorListeningParser(metaEdContents) {
         const lexer = new BaseLexer.BaseLexer(new antlr4.InputStream(metaEdContents));
-        const tokens = new antlr4.CommonTokenStream(lexer, undefined);
-        const parser = new MetaEdGrammar.MetaEdGrammar(tokens);
+        const parser = new MetaEdGrammar.MetaEdGrammar(new antlr4.CommonTokenStream(lexer, undefined));
         lexer.addErrorListener(this.metaEdErrorListener);
         parser.removeErrorListeners();
         parser.addErrorListener(this.metaEdErrorListener);
@@ -34,8 +33,7 @@ class ParseTreeBuilder {
     }
     errorIgnoringParser(metaEdContents) {
         const lexer = new BaseLexer.BaseLexer(new antlr4.InputStream(metaEdContents));
-        const tokens = new antlr4.CommonTokenStream(lexer, undefined);
-        const parser = new MetaEdGrammar.MetaEdGrammar(tokens);
+        const parser = new MetaEdGrammar.MetaEdGrammar(new antlr4.CommonTokenStream(lexer, undefined));
         parser.Interpreter.PredictionMode = antlr4.atn.PredictionMode.SLL;
         parser.Interpreter.tail_call_preserves_sll = false;
         parser.ErrorHandler = new antlr4.error.ErrorStrategy();

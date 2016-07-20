@@ -17,7 +17,7 @@
   },
   "scripts": {
     "prestart": "npm install",
-    "test": "mocha --compilers ts:ts-node/register test/**/*Test.ts",
+    "test": "mocha --compilers ts:ts-node/register test/**/*Test.ts test/**/*Tests.ts",
     "typings": "typings",
     "tsc": "tsc"
   }

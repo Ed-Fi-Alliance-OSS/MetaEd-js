@@ -408,25 +408,25 @@ class MetaEdTextBuilder {
     withMinLength(minLength) {
         if (minLength == null)
             return this;
-        this.addLine('min length {0}', minLength);
+        this.addLine('min length {0}', minLength.toString());
         return this;
     }
     withMaxLength(maxLength) {
         if (maxLength == null)
             return this;
-        this.addLine('max length {0}', maxLength);
+        this.addLine('max length {0}', maxLength.toString());
         return this;
     }
     withMinValue(minValue) {
         if (minValue == null)
             return this;
-        this.addLine('min value {0}', minValue);
+        this.addLine('min value {0}', minValue.toString());
         return this;
     }
     withMaxValue(maxValue) {
         if (maxValue == null)
             return this;
-        this.addLine('max value {0}', maxValue);
+        this.addLine('max value {0}', maxValue.toString());
         return this;
     }
     withTotalDigits(totalDigits) {
