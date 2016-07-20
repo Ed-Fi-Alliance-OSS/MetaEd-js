@@ -14,7 +14,8 @@
     "chai": "^3.5.0",
     "dirty-chai": "^1.2.2",
     "mocha": "^2.4.5",
-    "ts-node": "^0.9.3"
+    "ts-node": "^0.9.3",
+    "typescript": "^2.0.0"
   },
   "scripts": {
     "prestart": "npm install",
