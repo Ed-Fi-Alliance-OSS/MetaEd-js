@@ -1,9 +1,9 @@
 {
   "name": "node-metaed",
   "private": true,
-  "version": "0.0.0",
-  "description": "MetaEd in Node",
-  "repository": "https://github.com/bradbanister/node-metaed",
+  "version": "0.8.0",
+  "description": "MetaEd implemented in TypeScript",
+  "repository": "https://github.com/bradbanister/metaed-ts",
   "license": "private",
   "dependencies": {
     "antlr4": "^4.5.3",
@@ -19,6 +19,8 @@
   },
   "scripts": {
     "prestart": "npm install",
-    "test": "mocha"
+    "test": "mocha",
+    "typings": "./node_modules/.bin/typings",
+    "tsc": "./node_modules/.bin/tsc"
   }
 }
