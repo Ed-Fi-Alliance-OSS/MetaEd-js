@@ -7,7 +7,8 @@
   "license": "private",
   "dependencies": {
     "antlr4": "^4.5.3",
-    "handlebars": "^4.0.5"
+    "handlebars": "^4.0.5",
+    "typescript-dotnet-commonjs": "^3.2.4"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -17,7 +18,7 @@
   },
   "scripts": {
     "prestart": "npm install",
-    "test": "mocha --compilers ts:ts-node/register test/**/*Test.ts test/**/*Tests.ts",
+    "test": "mocha --compilers ts:ts-node/register test/**/*Test.ts test/**/*Tests.ts --debug-brk",
     "typings": "typings",
     "tsc": "tsc"
   }

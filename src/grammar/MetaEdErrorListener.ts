@@ -3,7 +3,7 @@ let antlr4 = require('antlr4');
 
 export default class MetaEdErrorListener {
 
-    private errorMessageCollection : Array<any>;
+    private errorMessageCollection: Array<any>;
 
     constructor(errorMessageCollection: Array<any>) {
         antlr4.error.ErrorListener.call(this);
@@ -11,7 +11,7 @@ export default class MetaEdErrorListener {
     }
 
     syntaxError(recognizer, offendingSymbol, concatenatedLineNumber, characterPosition,
-              message /* , e */) {
+        message /* , e */) {
         this.errorMessageCollection.push({
             message,
             characterPosition,

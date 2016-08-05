@@ -5,7 +5,7 @@ let BaseLexer = require('./gen/BaseLexer');
 let MetaEdGrammar = require('./gen/MetaEdGrammar');
 class ParseTreeBuilder {
     constructor(metaEdErrorListener) {
-        this.metaEdErrorListener = metaEdErrorListener;
+        this._metaEdErrorListener = metaEdErrorListener;
     }
     buildParseTree(metaEdContents) {
         try {
@@ -26,9 +26,9 @@ class ParseTreeBuilder {
     errorListeningParser(metaEdContents) {
         const lexer = new BaseLexer.BaseLexer(new antlr4.InputStream(metaEdContents));
         const parser = new MetaEdGrammar.MetaEdGrammar(new antlr4.CommonTokenStream(lexer, undefined));
-        lexer.addErrorListener(this.metaEdErrorListener);
+        lexer.addErrorListener(this._metaEdErrorListener);
         parser.removeErrorListeners();
-        parser.addErrorListener(this.metaEdErrorListener);
+        parser.addErrorListener(this._metaEdErrorListener);
         return parser;
     }
     errorIgnoringParser(metaEdContents) {
