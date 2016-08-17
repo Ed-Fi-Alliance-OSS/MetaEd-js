@@ -18,7 +18,8 @@
   },
   "scripts": {
     "prestart": "npm install",
-    "test": "mocha --compilers ts:ts-node/register test/**/*Test.ts test/**/*Tests.ts --debug-brk",
+    "test": "mocha --compilers ts:ts-node/register test/**/*Test.ts test/**/*Tests.ts",
+    "test:debug": "mocha --compilers ts:ts-node/register test/**/*Test.ts test/**/*Tests.ts --debug-brk",
     "typings": "typings",
     "tsc": "tsc"
   }
