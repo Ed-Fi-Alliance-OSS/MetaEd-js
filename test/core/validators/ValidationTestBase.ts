@@ -1,47 +1,38 @@
 import List from 'typescript-dotnet-commonjs/System/Collections/List'
 import ValidationMessage from '../../../src/common/ValidationMessage'
 import { SymbolTable } from '../../../src/core/validators/SymbolTable'
-import { IMetaEdContext, MetaEdContext } from '../../../src/core/tasks/MetaEdContext'
+import { MetaEdContext } from '../../../src/core/tasks/MetaEdContext'
 import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex'
 import { SymbolTableBuilder } from  '../../../src/core/validators/SymbolTableBuilder'
 import NullSymbolTableBuilderListener from '../../common/NullSymbolTableBuilderListener'
 
-let antlr4 = require('antlr4/index')
+let antlr4 = require('antlr4/index');
 let MetaEdGrammar = require('../../../src/grammar/gen/MetaEdGrammar');
-let BaseLexer = require('../../../src/grammar/gen/BaseLexer')
+let BaseLexer = require('../../../src/grammar/gen/BaseLexer');
 
-declare type ParserRuleContext = any;
+export class ValidationTestBase {
+    public symbolTable: SymbolTable;
+    public warningMessageCollection: List<ValidationMessage>;
+    public errorMessageCollection: List<ValidationMessage>;
 
-export abstract class ValidationTestBase {
-    protected _symbolTable: SymbolTable;
-    protected _warningMessageCollection: List<ValidationMessage>;
-    protected _errorMessageCollection: List<ValidationMessage>;
-    protected _parserContext: ParserRuleContext;
-    protected _metaEdContext: IMetaEdContext;
-
-    protected abstract metaEdText(): string
-
-    public setup(): void {
-        let metaEdText = this.metaEdText();
+    public setup(metaEdText: string): void {
         console.log(metaEdText);
         let metaEdFileIndex = new SingleFileMetaEdFileIndex();
         metaEdFileIndex.addContents(metaEdText);
+
+        this.symbolTable = new SymbolTable();
+
         let antlrInputStream = new antlr4.InputStream(metaEdText);
         let lexer = new BaseLexer.BaseLexer(antlrInputStream);
         let tokens = new antlr4.CommonTokenStream(lexer);
         let parser = new MetaEdGrammar.MetaEdGrammar(tokens);
-        this._parserContext = parser.metaEd();
+        let parserContext = parser.metaEd();
+        let metaEdContext = new MetaEdContext(metaEdFileIndex, this.symbolTable);
 
-        this._symbolTable = new SymbolTable();
-        this._metaEdContext = new MetaEdContext(metaEdFileIndex, this._symbolTable);
-        this._warningMessageCollection = this._metaEdContext.WarningMessageCollection;
-        this._errorMessageCollection = this._metaEdContext.ErrorMessageCollection;
+        this.warningMessageCollection = metaEdContext.WarningMessageCollection;
+        this.errorMessageCollection = metaEdContext.ErrorMessageCollection;
         let builder = new SymbolTableBuilder(new NullSymbolTableBuilderListener());
-        builder.withContext(this._metaEdContext);
-        antlr4.tree.ParseTreeWalker.DEFAULT.walk(builder, this._parserContext);
-
-        this.setupPostBuilder();
+        builder.withContext(metaEdContext);
+        antlr4.tree.ParseTreeWalker.DEFAULT.walk(builder, parserContext);
     }
-
-    protected setupPostBuilder(): void {}
 }

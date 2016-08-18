@@ -1,55 +1,43 @@
-import { ValidationTestBase } from './ValidationTestBase'
-import MetaEdTextBuilder from '../../grammar/MetaEdTextBuilder'
-
+/// <reference path="../../../typings/index.d.ts" />
 import chai = require('chai');
-chai.should();
+import MetaEdTextBuilder from "../../grammar/MetaEdTextBuilder";
+import {ValidationTestBase} from "./ValidationTestBase";
 
-export abstract class BaseSymbolTableBuilderTest extends ValidationTestBase {
-    protected static entityName: string = "MyIdentifier";
-    protected static propertyName: string = "Property1";
-    protected static entityKey: string = "Domain Entity";
-}
+let should = chai.should();
 
-export class When_loading_entities_with_boolean_property extends BaseSymbolTableBuilderTest {
+describe('SymbolTableBuilderPropertyTests', () => {
+    describe('When_loading_entities_with_boolean_property', () => {
+        const entityName: string = "EntityName";
+        const propertyName: string = "PropertyName";
+        const entityKey: string  = "Domain Entity";
 
-    protected metaEdText(): string {
-        let metaEdTextBuilder = new MetaEdTextBuilder();
-        metaEdTextBuilder.withBeginNamespace("edfi")
-            .withStartDomainEntity(BaseSymbolTableBuilderTest.entityName)
-            .withDocumentation("here only because documentation is required")
-            .withBooleanProperty(BaseSymbolTableBuilderTest.propertyName, "doc", true, false)
-            .withEndDomainEntity()
-            .withEndNamespace();
-        return metaEdTextBuilder.toString();
-    }
+        let validationTestBase: ValidationTestBase;
 
-    public should_load_into_property_symbol_table(): void {
+        before( () => {
+            const metaEdTextBuilder: MetaEdTextBuilder = new MetaEdTextBuilder();
+            const metaEdText: string = metaEdTextBuilder
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity(entityName)
+                .withDocumentation("doc")
+                .withBooleanProperty(propertyName, "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace()
+                .toString();
 
-    //TODO: Do you go full Chai and lose strongly typed oo design with base classes and the general shape of the origin code or try out this code with tsUnit to see if it fits together well.
-    //TODO: If we remove chai what do we lose?
-    //TODO: What are the downsides of this current implementation which is a hybrid of original shape of code but with added chai boilerplate and the use of chai.
-
-        describe('SymbolTableBuilderPropertyTests', () => {
-            describe('When_loading_entities_with_boolean_property', () => {
-                this.setup();
-
-                it('should_load_into_property_symbol_table', () => {
-
-                    let entitySymbolTable = this._symbolTable.get(BaseSymbolTableBuilderTest.entityKey, BaseSymbolTableBuilderTest.entityName);
-                    entitySymbolTable.should.not.be.empty;
-                    let result = entitySymbolTable.propertySymbolTable.get(BaseSymbolTableBuilderTest.propertyName);
-
-                    result.should.not.be.empty;
-                });
-
-                this.setupPostBuilder();
-            });
+            validationTestBase = new ValidationTestBase();
+            validationTestBase.setup(metaEdText);
         });
 
-    }
-}
+        it('should_load_into_property_symbol_table', () => {
+            let entitySymbolTable = validationTestBase.symbolTable.get(entityKey, entityName);
+            entitySymbolTable.should.not.be.empty;
+            let result = entitySymbolTable.propertySymbolTable.get(propertyName);
+            result.should.not.be.empty;
+        });
+    });
+});
 
-//(new When_loading_entities_with_boolean_property).should_load_into_property_symbol_table();
+
 
 //    export module SymbolTableBuilderPropertyTests {
 //        /*[TestFixture]*/
