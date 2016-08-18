@@ -1,7 +1,7 @@
 /// <reference path="../../../typings/index.d.ts" />
 import chai = require('chai');
 import MetaEdTextBuilder from "../../grammar/MetaEdTextBuilder";
-import {ValidationTestBase} from "./ValidationTestBase";
+import {ValidationTestHelper} from "./ValidationTestHelper";
 
 let should = chai.should();
 
@@ -11,7 +11,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         const entityName : string = "EntityName";
         const propertyName : string = "PropertyName";
 
-        let validationTestBase: ValidationTestBase;
+        let helper: ValidationTestHelper;
 
         before( () => {
             const metaEdTextBuilder: MetaEdTextBuilder = new MetaEdTextBuilder();
@@ -25,12 +25,12 @@ describe('SymbolTableBuilderEntityTests', () => {
                 .withEndNamespace()
                 .toString();
 
-            validationTestBase = new ValidationTestBase();
-            validationTestBase.setup(metaEdText);
+            helper = new ValidationTestHelper();
+            helper.setup(metaEdText);
         });
 
         it('Should_load_into_symbol_table', () => {
-            const entityContext = validationTestBase.symbolTable.get(symbolTableKey, entityName);
+            const entityContext = helper.symbolTable.get(symbolTableKey, entityName);
             entityContext.should.not.be.empty;
             entityContext.name.should.equal(entityName);
             entityContext.context.should.not.be.empty;

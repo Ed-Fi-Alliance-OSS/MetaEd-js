@@ -2,14 +2,14 @@
 /// <reference path="../../../typings/index.d.ts" />
 const chai = require('chai');
 const MetaEdTextBuilder_1 = require("../../grammar/MetaEdTextBuilder");
-const ValidationTestBase_1 = require("./ValidationTestBase");
+const ValidationTestHelper_1 = require("./ValidationTestHelper");
 let should = chai.should();
 describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_boolean_property', () => {
         const entityName = "EntityName";
         const propertyName = "PropertyName";
         const entityKey = "Domain Entity";
-        let validationTestBase;
+        let helper;
         before(() => {
             const metaEdTextBuilder = new MetaEdTextBuilder_1.default();
             const metaEdText = metaEdTextBuilder
@@ -20,11 +20,11 @@ describe('SymbolTableBuilderPropertyTests', () => {
                 .withEndDomainEntity()
                 .withEndNamespace()
                 .toString();
-            validationTestBase = new ValidationTestBase_1.ValidationTestBase();
-            validationTestBase.setup(metaEdText);
+            helper = new ValidationTestHelper_1.ValidationTestHelper();
+            helper.setup(metaEdText);
         });
         it('should_load_into_property_symbol_table', () => {
-            let entitySymbolTable = validationTestBase.symbolTable.get(entityKey, entityName);
+            let entitySymbolTable = helper.symbolTable.get(entityKey, entityName);
             entitySymbolTable.should.not.be.empty;
             let result = entitySymbolTable.propertySymbolTable.get(propertyName);
             result.should.not.be.empty;

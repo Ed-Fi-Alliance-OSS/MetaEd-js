@@ -10,7 +10,7 @@ let antlr4 = require('antlr4/index');
 let MetaEdGrammar = require('../../../src/grammar/gen/MetaEdGrammar');
 let BaseLexer = require('../../../src/grammar/gen/BaseLexer');
 
-export class ValidationTestBase {
+export class ValidationTestHelper {
     public symbolTable: SymbolTable;
     public warningMessageCollection: List<ValidationMessage>;
     public errorMessageCollection: List<ValidationMessage>;

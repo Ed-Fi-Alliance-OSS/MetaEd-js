@@ -7,7 +7,7 @@ const NullSymbolTableBuilderListener_1 = require('../../common/NullSymbolTableBu
 let antlr4 = require('antlr4/index');
 let MetaEdGrammar = require('../../../src/grammar/gen/MetaEdGrammar');
 let BaseLexer = require('../../../src/grammar/gen/BaseLexer');
-class ValidationTestBase {
+class ValidationTestHelper {
     setup(metaEdText) {
         console.log(metaEdText);
         let metaEdFileIndex = new SingleFileMetaEdFileIndex_1.default();
@@ -26,5 +26,5 @@ class ValidationTestBase {
         antlr4.tree.ParseTreeWalker.DEFAULT.walk(builder, parserContext);
     }
 }
-exports.ValidationTestBase = ValidationTestBase;
-//# sourceMappingURL=ValidationTestBase.js.map
+exports.ValidationTestHelper = ValidationTestHelper;
+//# sourceMappingURL=ValidationTestHelper.js.map
