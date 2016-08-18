@@ -166,7 +166,7 @@ describe('SymbolTableBuilderEntityTests', () => {
             helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
         });
     });
-    describe('When_loading_duplicate_association_extension', () => {
+        // public class When_loading_duplicate_domain_entity : BaseSymbolTableBuilderTest
         let helper = new ValidationTestHelper_1.ValidationTestHelper();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
@@ -180,7 +180,7 @@ describe('SymbolTableBuilderEntityTests', () => {
                 .withEndNamespace()
                 .toString();
             helper.setup(metaEdText);
-        });
+        // {
         it('should_report_the_duplicate', () => {
             helper.errorMessageCollection.count.should.equal(1);
             let failure = helper.errorMessageCollection.get(0);
@@ -458,7 +458,6 @@ describe('SymbolTableBuilderEntityTests', () => {
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
-                .withStartCommonType(entityName)
                 .withDocumentation(doc)
                 .withBooleanProperty(propertyName, prop, true, false)
                 .withEndCommonType()
@@ -495,19 +494,17 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_descriptor', () => {
-        const symbolTableKey = "Descriptor";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
-                .withStartDescriptor(entityName)
+        // protected override string MetaEdText()
                 .withDocumentation(doc)
                 .withBooleanProperty(propertyName, prop, true, false)
                 .withEndDescriptor()
                 .withEndNamespace()
                 .toString();
             helper.setup(metaEdText);
-        });
+        //     {
         it('should_load_into_symbol_table', () => {
             helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
         });
@@ -515,8 +512,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     describe('When_loading_duplicate_descriptor', () => {
         let helper = new ValidationTestHelper_1.ValidationTestHelper();
         before(() => {
-            const metaEdText = MetaEdTextBuilder_1.default.buildIt
-                .withBeginNamespace(edfi)
+        //         var metaEdTextBuilder = new MetaEdTextBuilder();
+        //         metaEdTextBuilder.WithBeginNamespace("edfi")
                 .withStartDescriptor(entityName)
                 .withDocumentation(doc)
                 .withBooleanProperty(propertyName, prop, true, false)
@@ -542,10 +539,9 @@ describe('SymbolTableBuilderEntityTests', () => {
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
-                .withStartDomainEntityExtension(entityName)
+        //             .WithStartDomainEntity(_entity_name)
                 .withBooleanProperty(propertyName, prop, true, false)
                 .withEndDomainEntityExtension()
-                .withEndNamespace()
                 .toString();
             helper.setup(metaEdText);
         });
@@ -572,7 +568,7 @@ describe('SymbolTableBuilderEntityTests', () => {
             helper.errorMessageCollection.count.should.equal(1);
             let failure = helper.errorMessageCollection.get(0);
             failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
+        //             .WithDocumentation("because documentation is required")
         });
     });
     describe('When_loading_domain_entity_subclass', () => {
@@ -583,12 +579,12 @@ describe('SymbolTableBuilderEntityTests', () => {
                 .withBeginNamespace(edfi)
                 .withStartDomainEntitySubclass(entityName, "Original")
                 .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDomainEntitySubclass()
+        //             .WithBooleanProperty(_property_name, "because a property is required", true, false)
+        //             .WithEndDomainEntity();
                 .withEndNamespace()
                 .toString();
             helper.setup(metaEdText);
-        });
+        //
         it('should_load_into_symbol_table', () => {
             helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
         });
@@ -598,18 +594,17 @@ describe('SymbolTableBuilderEntityTests', () => {
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
-                .withStartDomainEntitySubclass(entityName, "Original")
-                .withDocumentation(doc)
+        //         metaEdTextBuilder.WithStartDomainEntity(_entity_name)
                 .withBooleanProperty(propertyName, prop, true, false)
                 .withEndDomainEntitySubclass()
-                .withStartDomainEntitySubclass(entityName, "Original")
+        //             .WithDocumentation("because documentation is required")
                 .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDomainEntitySubclass()
+        //             .WithBooleanProperty(_property_name, "because a property is required", true, false)
+        //             .WithEndDomainEntity()
                 .withEndNamespace()
                 .toString();
             helper.setup(metaEdText);
-        });
+        //
         it('should_report_the_duplicate', () => {
             helper.errorMessageCollection.count.should.equal(1);
             let failure = helper.errorMessageCollection.get(0);
@@ -619,7 +614,6 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_enumeration', () => {
         const symbolTableKey = "Enumeration";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -633,9 +627,9 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
         it('should_load_into_symbol_table', () => {
             helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
-    });
-    describe('When_loading_duplicate_enumeration', () => {
+        //
+        //     [Test]
+        // public void Should_report_the_duplicate()
         let helper = new ValidationTestHelper_1.ValidationTestHelper();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
@@ -651,15 +645,15 @@ describe('SymbolTableBuilderEntityTests', () => {
                 .withEndNamespace()
                 .toString();
             helper.setup(metaEdText);
-        });
+        //     {
         it('should_report_the_duplicate', () => {
             helper.errorMessageCollection.count.should.equal(1);
-            let failure = helper.errorMessageCollection.get(0);
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
+        //         var failure = _errorMessageCollection[0];
+        //         failure.Message.ShouldContain(_entity_name);
+        //         failure.Message.ShouldContain("Duplicate");
         });
-    });
-    describe('When_loading_inline_common_type', () => {
+        //
+        //     [Test]
         const symbolTableKey = "Inline Common Type";
         let helper = new ValidationTestHelper_1.ValidationTestHelper();
         before(() => {
@@ -694,13 +688,13 @@ describe('SymbolTableBuilderEntityTests', () => {
                 .toString();
             helper.setup(metaEdText);
         });
-        it('should_report_the_duplicate', () => {
+        // public void Should_report_position_of_error()
             helper.errorMessageCollection.count.should.equal(1);
-            let failure = helper.errorMessageCollection.get(0);
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
+        //         var failure = _errorMessageCollection[0];
+        //         failure.ConcatenatedLineNumber.ShouldEqual(9);
+        //         failure.CharacterPosition.ShouldEqual(16);
         });
-    });
+        // }
     describe('When_loading_interchange', () => {
         const symbolTableKey = "Interchange";
         let helper = new ValidationTestHelper_1.ValidationTestHelper();
