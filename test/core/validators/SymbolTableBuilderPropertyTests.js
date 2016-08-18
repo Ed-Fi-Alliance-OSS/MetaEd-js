@@ -1,9 +1,9 @@
 "use strict";
-const BaseValidationTest_1 = require('./BaseValidationTest');
+const ValidationTestBase_1 = require('./ValidationTestBase');
 const MetaEdTextBuilder_1 = require('../../grammar/MetaEdTextBuilder');
 const chai = require('chai');
 chai.should();
-class BaseSymbolTableBuilderTest extends BaseValidationTest_1.BaseValidationTest {
+class BaseSymbolTableBuilderTest extends ValidationTestBase_1.ValidationTestBase {
 }
 BaseSymbolTableBuilderTest.entityName = "MyIdentifier";
 BaseSymbolTableBuilderTest.propertyName = "Property1";
@@ -28,10 +28,10 @@ class When_loading_entities_with_boolean_property extends BaseSymbolTableBuilder
             describe('When_loading_entities_with_boolean_property', () => {
                 this.setup();
                 it('should_load_into_property_symbol_table', () => {
-                    let entitySymbolTable = this.symbolTable.getEntityContext(BaseSymbolTableBuilderTest.entityKey, BaseSymbolTableBuilderTest.entityName);
-                    entitySymbolTable.should.not.be(null);
+                    let entitySymbolTable = this._symbolTable.get(BaseSymbolTableBuilderTest.entityKey, BaseSymbolTableBuilderTest.entityName);
+                    entitySymbolTable.should.not.be.empty;
                     let result = entitySymbolTable.propertySymbolTable.get(BaseSymbolTableBuilderTest.propertyName);
-                    result.should.not.be(null);
+                    result.should.not.be.empty;
                 });
                 this.setupPostBuilder();
             });
@@ -39,7 +39,7 @@ class When_loading_entities_with_boolean_property extends BaseSymbolTableBuilder
     }
 }
 exports.When_loading_entities_with_boolean_property = When_loading_entities_with_boolean_property;
-(new When_loading_entities_with_boolean_property).should_load_into_property_symbol_table();
+//(new When_loading_entities_with_boolean_property).should_load_into_property_symbol_table();
 //    export module SymbolTableBuilderPropertyTests {
 //        /*[TestFixture]*/
 //        export class When_loading_entities_with_duplicated_boolean_property extends BaseSymbolTableBuilderTest {

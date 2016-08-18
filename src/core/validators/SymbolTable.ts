@@ -11,7 +11,7 @@ declare type ParserRuleContext = any;
 
 export interface ISymbolTable {
     tryAdd(entityType: string, name: string, context: ParserRuleContext): boolean
-    getEntityContext(entityType: string, name: string): EntityContext
+    get(entityType: string, name: string): EntityContext
     identifierExists(entityType: string, identifier: string): boolean
     identifiersForEntityType(entityType: string): IEnumerable<string>
     identifiersForEntityProperties(entityType: string, identifier: string): IEnumerable<string> 
@@ -42,7 +42,7 @@ export class SymbolTable implements ISymbolTable {
         return true;
     }
 
-    public getEntityContext(entityType: string, name: string): EntityContext {
+    public get(entityType: string, name: string): EntityContext {
         let entityDictionary: Dictionary<string, EntityContext> = this._symbolTable.getValue(entityType);
         if (!entityDictionary)
             return null;
@@ -63,7 +63,7 @@ export class SymbolTable implements ISymbolTable {
 
     // results are prefixed by a 'with context' value if one exists for property
     public identifiersForEntityProperties(entityType: string, identifier: string): IEnumerable<string> {
-        let entityContext = this.getEntityContext(entityType, identifier);
+        let entityContext = this.get(entityType, identifier);
 
         if (entityContext == null) 
             return Enumerable.empty<string>();
@@ -72,7 +72,7 @@ export class SymbolTable implements ISymbolTable {
 
     // candidate identifiers should be prefixed by a 'with context' value if one exists for property
     public contextsForMatchingPropertyIdentifiers(entityType: string, name: string, candidatePropertyIdentifiers: ICollection<string>): IEnumerable<IPropertyWithComponents> {
-        let entityContext = this.getEntityContext(entityType, name);
+        let entityContext = this.get(entityType, name);
 
         if (entityContext == null) return Enumerable.empty<IPropertyWithComponents>();
         return entityContext.propertySymbolTable.contextsForMatchingIdentifiers(candidatePropertyIdentifiers);

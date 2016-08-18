@@ -1,8 +1,7 @@
-declare module Gen {
+declare module Listener {
     export class MetaEdGrammarListener {
         constructor();
-        enterMetaEd(ctx: any): void;
     }
 }
 
-export = Gen;
+export = Listener;

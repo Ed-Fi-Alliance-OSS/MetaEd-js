@@ -19,7 +19,7 @@ class SymbolTable {
         entityDictionary.addByKeyValue(name, entityContext);
         return true;
     }
-    getEntityContext(entityType, name) {
+    get(entityType, name) {
         let entityDictionary = this._symbolTable.getValue(entityType);
         if (!entityDictionary)
             return null;
@@ -37,14 +37,14 @@ class SymbolTable {
     }
     // results are prefixed by a 'with context' value if one exists for property
     identifiersForEntityProperties(entityType, identifier) {
-        let entityContext = this.getEntityContext(entityType, identifier);
+        let entityContext = this.get(entityType, identifier);
         if (entityContext == null)
             return Linq_1.default.empty();
         return entityContext.propertySymbolTable.identifiers();
     }
     // candidate identifiers should be prefixed by a 'with context' value if one exists for property
     contextsForMatchingPropertyIdentifiers(entityType, name, candidatePropertyIdentifiers) {
-        let entityContext = this.getEntityContext(entityType, name);
+        let entityContext = this.get(entityType, name);
         if (entityContext == null)
             return Linq_1.default.empty();
         return entityContext.propertySymbolTable.contextsForMatchingIdentifiers(candidatePropertyIdentifiers);

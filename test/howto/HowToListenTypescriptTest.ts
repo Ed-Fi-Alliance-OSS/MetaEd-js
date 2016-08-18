@@ -1,7 +1,7 @@
 /// <reference path="../../src/grammar/gen/MetaEdGrammarListener.d.ts" />
-import Gen = require('../../src/grammar/gen/MetaEdGrammarListener');
+import Listener = require('../../src/grammar/gen/MetaEdGrammarListener');
 
-class TestGrammarListener extends Gen.MetaEdGrammarListener {
+class TestGrammarListener extends Listener.MetaEdGrammarListener {
     enterDomainEntity(context) {
         console.log("entered domain entity");
     }

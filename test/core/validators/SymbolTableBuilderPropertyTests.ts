@@ -1,10 +1,10 @@
-import { BaseValidationTest } from './BaseValidationTest'
+import { ValidationTestBase } from './ValidationTestBase'
 import MetaEdTextBuilder from '../../grammar/MetaEdTextBuilder'
 
 import chai = require('chai');
 chai.should();
 
-export abstract class BaseSymbolTableBuilderTest extends BaseValidationTest {
+export abstract class BaseSymbolTableBuilderTest extends ValidationTestBase {
     protected static entityName: string = "MyIdentifier";
     protected static propertyName: string = "Property1";
     protected static entityKey: string = "Domain Entity";
@@ -35,11 +35,11 @@ export class When_loading_entities_with_boolean_property extends BaseSymbolTable
 
                 it('should_load_into_property_symbol_table', () => {
 
-                    let entitySymbolTable = this.symbolTable.getEntityContext(BaseSymbolTableBuilderTest.entityKey, BaseSymbolTableBuilderTest.entityName);
-                    entitySymbolTable.should.not.be(null);
+                    let entitySymbolTable = this._symbolTable.get(BaseSymbolTableBuilderTest.entityKey, BaseSymbolTableBuilderTest.entityName);
+                    entitySymbolTable.should.not.be.empty;
                     let result = entitySymbolTable.propertySymbolTable.get(BaseSymbolTableBuilderTest.propertyName);
 
-                    result.should.not.be(null);
+                    result.should.not.be.empty;
                 });
 
                 this.setupPostBuilder();
@@ -49,7 +49,7 @@ export class When_loading_entities_with_boolean_property extends BaseSymbolTable
     }
 }
 
-(new When_loading_entities_with_boolean_property).should_load_into_property_symbol_table();
+//(new When_loading_entities_with_boolean_property).should_load_into_property_symbol_table();
 
 //    export module SymbolTableBuilderPropertyTests {
 //        /*[TestFixture]*/

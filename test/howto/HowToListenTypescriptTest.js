@@ -1,7 +1,7 @@
 "use strict";
 /// <reference path="../../src/grammar/gen/MetaEdGrammarListener.d.ts" />
-const Gen = require('../../src/grammar/gen/MetaEdGrammarListener');
-class TestGrammarListener extends Gen.MetaEdGrammarListener {
+const Listener = require('../../src/grammar/gen/MetaEdGrammarListener');
+class TestGrammarListener extends Listener.MetaEdGrammarListener {
     enterDomainEntity(context) {
         console.log("entered domain entity");
     }

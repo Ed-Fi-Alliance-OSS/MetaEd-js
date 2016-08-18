@@ -1,8 +1,12 @@
 "use strict";
-//TODO: extends MetaEdGrammarBaseListener
-class SymbolTableBuilder {
+/// <reference path="../../../src/grammar/gen/MetaEdGrammarListener.d.ts" />
+const Gen = require('../../../src/grammar/gen/MetaEdGrammarListener');
+const SymbolTableEntityType_1 = require("./SymbolTableEntityType");
+class SymbolTableBuilder extends Gen.MetaEdGrammarListener {
     constructor(builderListener) {
+        super();
         this._builderListener = builderListener;
+        this._symbolTableEntityType = new SymbolTableEntityType_1.default();
     }
     withContext(context) {
         this._metaEdFileIndex = context.MetaEdFileIndex;
@@ -13,15 +17,15 @@ class SymbolTableBuilder {
     addEntity(entityType, entityName, context) {
         if (!this._builderListener.beforeAddEntity(entityType, entityName, context))
             return;
-        if (this._symbolTable.tryAdd(entityType, entityName.GetText(), context)) {
-            this._currentPropertySymbolTable = this._symbolTable.getEntityContext(entityType, entityName.GetText()).propertySymbolTable;
+        if (this._symbolTable.tryAdd(entityType, entityName.getText(), context)) {
+            this._currentPropertySymbolTable = this._symbolTable.get(entityType, entityName.getText()).propertySymbolTable;
             return;
         }
-        let metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(entityName.Symbol.Line);
+        let metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(entityName.symbol.line);
         let failure = {
             message: "Duplicate " + entityType + " named " + entityName,
-            characterPosition: entityName.Symbol.Column,
-            concatenatedLineNumber: entityName.Symbol.Line,
+            characterPosition: entityName.symbol.column,
+            concatenatedLineNumber: entityName.symbol.line,
             fileName: metaEdFile.fileName,
             lineNumber: metaEdFile.lineNumber
         };
@@ -46,10 +50,9 @@ class SymbolTableBuilder {
         };
         this._errorMessageCollection.add(duplicateFailure);
     }
-    //TODO: These are called from Antlr but are undefined.
-    enterEveryRule(ctx /*ParserRuleContext*/) { }
-    exitEveryRule(ctx /*ParserRuleContext*/) { }
-    visitTerminal(ctx /*TerminalNode*/) { }
+    enterDomainEntity(context) {
+        this.addEntity(this._symbolTableEntityType.domainEntityEntityType(), context.entityName().ID(), context);
+    }
 }
 exports.SymbolTableBuilder = SymbolTableBuilder;
 //# sourceMappingURL=SymbolTableBuilder.js.map
