@@ -1,5 +1,5 @@
 /// <reference path="../../../src/grammar/gen/MetaEdGrammarListener.d.ts" />
-import Gen = require('../../../src/grammar/gen/MetaEdGrammarListener');
+import {MetaEdGrammarListener} from '../../../src/grammar/gen/MetaEdGrammarListener';
 
 import {IMetaEdContext} from '../tasks/MetaEdContext'
 import {ISymbolTable} from './SymbolTable'
@@ -17,7 +17,7 @@ export interface ISymbolTableBuilder {
     withContext(context: IMetaEdContext): void;
 }
 
-export class SymbolTableBuilder extends Gen.MetaEdGrammarListener implements ISymbolTableBuilder {
+export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbolTableBuilder {
     private _symbolTable: ISymbolTable;
     private _metaEdFileIndex: IMetaEdFileIndex;
     private _errorMessageCollection: List<ValidationMessage>;

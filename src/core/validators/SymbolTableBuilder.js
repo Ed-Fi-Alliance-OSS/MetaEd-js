@@ -1,8 +1,8 @@
 "use strict";
 /// <reference path="../../../src/grammar/gen/MetaEdGrammarListener.d.ts" />
-const Gen = require('../../../src/grammar/gen/MetaEdGrammarListener');
+const MetaEdGrammarListener_1 = require('../../../src/grammar/gen/MetaEdGrammarListener');
 const SymbolTableEntityType_1 = require('./SymbolTableEntityType');
-class SymbolTableBuilder extends Gen.MetaEdGrammarListener {
+class SymbolTableBuilder extends MetaEdGrammarListener_1.MetaEdGrammarListener {
     constructor(builderListener) {
         super();
         this._builderListener = builderListener;
