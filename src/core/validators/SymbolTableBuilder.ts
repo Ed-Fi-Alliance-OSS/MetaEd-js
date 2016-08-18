@@ -9,7 +9,7 @@ import PropertySymbolTable from './PropertySymbolTable'
 import {IPropertyWithComponents} from '../../grammar/IPropertyWithComponents'
 import {ISymbolTableBuilderListener} from './ISymbolTableBuilderListener'
 import List from 'typescript-dotnet-commonjs/System/Collections/List'
-import SymbolTableEntityType from "./SymbolTableEntityType";
+import SymbolTableEntityType from './SymbolTableEntityType';
 
 declare type ITerminalNode = any;
 export declare type ParserRuleContext = any;
@@ -54,20 +54,20 @@ export class SymbolTableBuilder extends Gen.MetaEdGrammarListener implements ISy
         };
         this._errorMessageCollection.add(failure);
     }
-    private addProperty(context: IPropertyWithComponents): void {
-        let propertyName = context.idNode();
+    private addProperty(context): void {
+        let propertyName = context.propertyName().ID();
         let withContextContext = context.propertyComponents().withContext();
-        let withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().GetText();
+        let withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().getText();
         if (this._currentPropertySymbolTable == null) {
             return;
         }
-        if (this._currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.GetText(), context))
+        if (this._currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.getText(), context))
             return;
-        let metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(propertyName.Symbol.Line);
+        let metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(propertyName.symbol.line);
         let duplicateFailure: ValidationMessage = {
             message: `Entity ${this._currentPropertySymbolTable.parent.name} has duplicate properties named ${propertyName.GetText()}`,
-            characterPosition: propertyName.Symbol.Column,
-            concatenatedLineNumber: propertyName.Symbol.Line,
+            characterPosition: propertyName.symbol.column,
+            concatenatedLineNumber: propertyName.symbol.line,
             fileName: metaEdFile.fileName,
             lineNumber: metaEdFile.lineNumber
         };
@@ -78,181 +78,239 @@ export class SymbolTableBuilder extends Gen.MetaEdGrammarListener implements ISy
         this.addEntity(this._symbolTableEntityType.domainEntityEntityType(), context.entityName().ID(), context);
     }
 
-    // public exitDomainEntity(context: MetaEdGrammar.DomainEntityContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterAbstractEntity(context: MetaEdGrammar.AbstractEntityContext): void {
-    //     addEntity(SymbolTableEntityType.AbstractEntityEntityType(), context.abstractEntityName().ID(), context);
-    // }
-    // public exitAbstractEntity(context: MetaEdGrammar.AbstractEntityContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterAssociation(context: MetaEdGrammar.AssociationContext): void {
-    //     addEntity(SymbolTableEntityType.AssociationEntityType(), context.associationName().ID(), context);
-    // }
-    // public exitAssociation(context: MetaEdGrammar.AssociationContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterAssociationExtension(context: MetaEdGrammar.AssociationExtensionContext): void {
-    //     addEntity(SymbolTableEntityType.AssociationExtensionEntityType(), context.extendeeName().ID(), context);
-    // }
-    // public exitAssociationExtension(context: MetaEdGrammar.AssociationExtensionContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterAssociationSubclass(context: MetaEdGrammar.AssociationSubclassContext): void {
-    //     addEntity(SymbolTableEntityType.AssociationSubclassEntityType(), context.associationName().ID(), context);
-    // }
-    // public exitAssociationSubclass(context: MetaEdGrammar.AssociationSubclassContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterChoiceType(context: MetaEdGrammar.ChoiceTypeContext): void {
-    //     addEntity(context.CHOICETYPE().GetText(), context.choiceName().ID(), context);
-    // }
-    // public exitChoiceType(context: MetaEdGrammar.ChoiceTypeContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterCommonDecimal(context: MetaEdGrammar.CommonDecimalContext): void {
-    //     addEntity(context.COMMONDECIMAL().GetText(), context.commonDecimalName().ID(), context);
-    // }
-    // public exitCommonDecimal(context: MetaEdGrammar.CommonDecimalContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterCommonInteger(context: MetaEdGrammar.CommonIntegerContext): void {
-    //     addEntity(context.COMMONINTEGER().GetText(), context.commonIntegerName().ID(), context);
-    // }
-    // public exitCommonInteger(context: MetaEdGrammar.CommonIntegerContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterCommonShort(context: MetaEdGrammar.CommonShortContext): void {
-    //     addEntity(context.COMMONSHORT().GetText(), context.commonShortName().ID(), context);
-    // }
-    // public exitCommonShort(context: MetaEdGrammar.CommonShortContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterCommonString(context: MetaEdGrammar.CommonStringContext): void {
-    //     addEntity(context.COMMONSTRING().GetText(), context.commonStringName().ID(), context);
-    // }
-    // public exitCommonString(context: MetaEdGrammar.CommonStringContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterCommonType(context: MetaEdGrammar.CommonTypeContext): void {
-    //     addEntity(SymbolTableEntityType.CommonTypeEntityType(), context.commonName().ID(), context);
-    // }
-    // public exitCommonType(context: MetaEdGrammar.CommonTypeContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterCommonTypeExtension(context: MetaEdGrammar.CommonTypeExtensionContext): void {
-    //     addEntity(SymbolTableEntityType.CommonTypeExtensionEntityType(), context.extendeeName().ID(), context);
-    // }
-    // public exitCommonTypeExtension(context: MetaEdGrammar.CommonTypeExtensionContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterDescriptor(context: MetaEdGrammar.DescriptorContext): void {
-    //     addEntity(context.DESCRIPTORENTITY().GetText(), context.descriptorName().ID(), context);
-    // }
-    // public exitDescriptor(context: MetaEdGrammar.DescriptorContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterDomain(context: MetaEdGrammar.DomainContext): void {
-    //     addEntity(context.DOMAIN().GetText(), context.domainName().ID(), context);
-    // }
-    // public exitDomain(context: MetaEdGrammar.DomainContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterDomainEntityExtension(context: MetaEdGrammar.DomainEntityExtensionContext): void {
-    //     addEntity(SymbolTableEntityType.DomainEntityExtensionEntityType(), context.extendeeName().ID(), context);
-    // }
-    // public exitDomainEntityExtension(context: MetaEdGrammar.DomainEntityExtensionContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterDomainEntitySubclass(context: MetaEdGrammar.DomainEntitySubclassContext): void {
-    //     addEntity(SymbolTableEntityType.DomainEntitySubclassEntityType(), context.entityName().ID(), context);
-    // }
-    // public exitDomainEntitySubclass(context: MetaEdGrammar.DomainEntitySubclassContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterEnumeration(context: MetaEdGrammar.EnumerationContext): void {
-    //     addEntity(SymbolTableEntityType.EnumerationEntityType(), context.enumerationName().ID(), context);
-    // }
-    // public exitEnumeration(context: MetaEdGrammar.EnumerationContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterInlineCommonType(context: MetaEdGrammar.InlineCommonTypeContext): void {
-    //     addEntity(SymbolTableEntityType.InlineCommonTypeEntityType(), context.inlineCommonName().ID(), context);
-    // }
-    // public exitInlineCommonType(context: MetaEdGrammar.InlineCommonTypeContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterInterchange(context: MetaEdGrammar.InterchangeContext): void {
-    //     addEntity(context.INTERCHANGE().GetText(), context.interchangeName().ID(), context);
-    // }
-    // public exitInterchange(context: MetaEdGrammar.InterchangeContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterInterchangeExtension(context: MetaEdGrammar.InterchangeExtensionContext): void {
-    //     addEntity(context.INTERCHANGE().GetText() + context.ADDITIONS().GetText(), context.extendeeName().ID(), context);
-    // }
-    // public exitInterchangeExtension(context: MetaEdGrammar.InterchangeExtensionContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterSubdomain(context: MetaEdGrammar.SubdomainContext): void {
-    //     addEntity(context.SUBDOMAIN().GetText(), context.subdomainName().ID(), context);
-    // }
-    // public exitSubdomain(context: MetaEdGrammar.SubdomainContext): void {
-    //     this._currentPropertySymbolTable = null;
-    // }
-    // public enterBooleanProperty(context: MetaEdGrammar.BooleanPropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterDateProperty(context: MetaEdGrammar.DatePropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterCurrencyProperty(context: MetaEdGrammar.CurrencyPropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterDecimalProperty(context: MetaEdGrammar.DecimalPropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterDescriptorProperty(context: MetaEdGrammar.DescriptorPropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterDurationProperty(context: MetaEdGrammar.DurationPropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterEnumerationProperty(context: MetaEdGrammar.EnumerationPropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterIncludeProperty(context: MetaEdGrammar.IncludePropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterIntegerProperty(context: MetaEdGrammar.IntegerPropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterReferenceProperty(context: MetaEdGrammar.ReferencePropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterSharedDecimalProperty(context: MetaEdGrammar.SharedDecimalPropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterSharedIntegerProperty(context: MetaEdGrammar.SharedIntegerPropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterSharedShortProperty(context: MetaEdGrammar.SharedShortPropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterSharedStringProperty(context: MetaEdGrammar.SharedStringPropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterShortProperty(context: MetaEdGrammar.ShortPropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterStringProperty(context: MetaEdGrammar.StringPropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterTimeProperty(context: MetaEdGrammar.TimePropertyContext): void {
-    //     AddProperty(context);
-    // }
-    // public enterYearProperty(context: MetaEdGrammar.YearPropertyContext): void {
-    //     AddProperty(context);
-    // }
+    public exitDomainEntity(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterAbstractEntity(context): void {
+        this.addEntity(this._symbolTableEntityType.abstractEntityEntityType(), context.abstractEntityName().ID(), context);
+    }
+
+    public exitAbstractEntity(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterAssociation(context): void {
+        this.addEntity(this._symbolTableEntityType.associationEntityType(), context.associationName().ID(), context);
+    }
+
+    public exitAssociation(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterAssociationExtension(context): void {
+        this.addEntity(this._symbolTableEntityType.associationExtensionEntityType(), context.extendeeName().ID(), context);
+    }
+
+    public exitAssociationExtension(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterAssociationSubclass(context): void {
+        this.addEntity(this._symbolTableEntityType.associationSubclassEntityType(), context.associationName().ID(), context);
+    }
+
+    public exitAssociationSubclass(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterChoiceType(context): void {
+        this.addEntity(context.CHOICETYPE().GetText(), context.choiceName().ID(), context);
+    }
+
+    public exitChoiceType(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterCommonDecimal(context): void {
+        this.addEntity(context.COMMONDECIMAL().GetText(), context.commonDecimalName().ID(), context);
+    }
+
+    public exitCommonDecimal(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterCommonInteger(context): void {
+        this.addEntity(context.COMMONINTEGER().GetText(), context.commonIntegerName().ID(), context);
+    }
+
+    public exitCommonInteger(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterCommonShort(context): void {
+        this.addEntity(context.COMMONSHORT().GetText(), context.commonShortName().ID(), context);
+    }
+
+    public exitCommonShort(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterCommonString(context): void {
+        this.addEntity(context.COMMONSTRING().GetText(), context.commonStringName().ID(), context);
+    }
+
+    public exitCommonString(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterCommonType(context): void {
+        this.addEntity(this._symbolTableEntityType.commonTypeEntityType(), context.commonName().ID(), context);
+    }
+
+    public exitCommonType(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterCommonTypeExtension(context): void {
+        this.addEntity(this._symbolTableEntityType.commonTypeExtensionEntityType(), context.extendeeName().ID(), context);
+    }
+
+    public exitCommonTypeExtension(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterDescriptor(context): void {
+        this.addEntity(context.DESCRIPTOR_ENTITY().GetText(), context.descriptorName().ID(), context);
+    }
+
+    public exitDescriptor(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterDomain(context): void {
+        this.addEntity(context.DOMAIN().GetText(), context.domainName().ID(), context);
+    }
+
+    public exitDomain(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterDomainEntityExtension(context): void {
+        this.addEntity(this._symbolTableEntityType.domainEntityExtensionEntityType(), context.extendeeName().ID(), context);
+    }
+
+    public exitDomainEntityExtension(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterDomainEntitySubclass(context): void {
+        this.addEntity(this._symbolTableEntityType.domainEntitySubclassEntityType(), context.entityName().ID(), context);
+    }
+
+    public exitDomainEntitySubclass(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterEnumeration(context): void {
+        this.addEntity(this._symbolTableEntityType.enumerationEntityType(), context.enumerationName().ID(), context);
+    }
+
+    public exitEnumeration(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterInlineCommonType(context): void {
+        this.addEntity(this._symbolTableEntityType.inlineCommonTypeEntityType(), context.inlineCommonName().ID(), context);
+    }
+
+    public exitInlineCommonType(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterInterchange(context): void {
+        this.addEntity(context.INTERCHANGE().GetText(), context.interchangeName().ID(), context);
+    }
+
+    public exitInterchange(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterInterchangeExtension(context): void {
+        this.addEntity(context.INTERCHANGE().GetText() + context.ADDITIONS().GetText(), context.extendeeName().ID(), context);
+    }
+
+    public exitInterchangeExtension(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterSubdomain(context): void {
+        this.addEntity(context.SUBDOMAIN().GetText(), context.subdomainName().ID(), context);
+    }
+
+    public exitSubdomain(context): void {
+        this._currentPropertySymbolTable = null;
+    }
+
+    public enterBooleanProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterDateProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterCurrencyProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterDecimalProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterDescriptorProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterDurationProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterEnumerationProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterIncludeProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterIntegerProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterReferenceProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterSharedDecimalProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterSharedIntegerProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterSharedShortProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterSharedStringProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterShortProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterStringProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterTimeProperty(context): void {
+         this.addProperty(context);
+    }
+
+    public enterYearProperty(context): void {
+         this.addProperty(context);
+    }
 }
