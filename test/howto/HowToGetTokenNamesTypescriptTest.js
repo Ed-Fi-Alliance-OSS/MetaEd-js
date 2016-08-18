@@ -9,10 +9,10 @@ describe('HowToGetTokenNames', () => {
             const grammar = MetaEdGrammar.MetaEdGrammar;
             const grammarInstance = new MetaEdGrammar.MetaEdGrammar(new antlr4.CommonTokenStream(new BaseLexer.BaseLexer(new antlr4.InputStream("")), undefined));
             const literalNames = grammarInstance.literalNames;
-            console.log(literalNames[grammar.ABSTRACT_ENTITY]);
-            console.log(literalNames[grammar.DOMAIN_ENTITY]);
+            //console.log(literalNames[grammar.ABSTRACT_ENTITY]);
+            //console.log(literalNames[grammar.DOMAIN_ENTITY]);
             const t = new SymbolTableEntityType_1.default();
-            console.log(t.domainEntityEntityType());
+            //console.log(t.domainEntityEntityType());
         });
     });
 });

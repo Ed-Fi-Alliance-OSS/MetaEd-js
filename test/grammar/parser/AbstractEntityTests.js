@@ -23,7 +23,6 @@ describe('AbstractEntityTests', () => {
         before(() => {
             const parser = ParserTestHelper_1.default.parse(inputText);
             context = parser.abstractEntity();
-            //console.log(MetaEdGrammarHelper.toStringTree(context, parser));
         });
         it('Should_successfully_parse', () => {
             should.exist(context);

@@ -42,7 +42,7 @@ class SymbolTableBuilder extends Gen.MetaEdGrammarListener {
             return;
         let metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(propertyName.symbol.line);
         let duplicateFailure = {
-            message: `Entity ${this._currentPropertySymbolTable.parent.name} has duplicate properties named ${propertyName.GetText()}`,
+            message: `Entity ${this._currentPropertySymbolTable.parent.name} has duplicate properties named ${propertyName.getText()}`,
             characterPosition: propertyName.symbol.column,
             concatenatedLineNumber: propertyName.symbol.line,
             fileName: metaEdFile.fileName,

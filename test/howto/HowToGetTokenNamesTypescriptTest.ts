@@ -12,12 +12,12 @@ describe('HowToGetTokenNames', () => {
 
             const literalNames = grammarInstance.literalNames;
 
-            console.log(literalNames[grammar.ABSTRACT_ENTITY]);
-            console.log(literalNames[grammar.DOMAIN_ENTITY]);
+            //console.log(literalNames[grammar.ABSTRACT_ENTITY]);
+            //console.log(literalNames[grammar.DOMAIN_ENTITY]);
 
 
             const t = new SymbolTableEntityType();
-            console.log(t.domainEntityEntityType());
+            //console.log(t.domainEntityEntityType());
         });
     });
 });

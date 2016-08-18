@@ -35,33 +35,47 @@ describe('SymbolTableBuilderPropertyTests', () => {
             result.should.not.be.empty;
         });
     });
+
+    describe('When_loading_entities_with_duplicated_boolean_property', () => {
+        const entityName: string = "EntityName";
+        const propertyName: string = "PropertyName";
+        const entityKey: string  = "Domain Entity";
+
+        let helper: ValidationTestHelper;
+
+        before( () => {
+            const metaEdTextBuilder: MetaEdTextBuilder = new MetaEdTextBuilder();
+            const metaEdText: string = metaEdTextBuilder
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity(entityName)
+                .withDocumentation("doc")
+                .withBooleanProperty(propertyName, "doc", true, false)
+                .withBooleanProperty(propertyName, "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace()
+                .toString();
+
+            helper = new ValidationTestHelper();
+            helper.setup(metaEdText);
+        });
+
+        it('should_report_duplicate_property_names', () => {
+            helper.errorMessageCollection.count.should.equal(1);
+            const failure = helper.errorMessageCollection.toArray()[0];
+            failure.message.should.include(propertyName);
+            failure.message.should.include(entityName);
+            failure.message.should.include("duplicate");
+        });
+
+        it('should_report_position_of_error', () => {
+            helper.errorMessageCollection.count.should.equal(1);
+            const failure = helper.errorMessageCollection.toArray()[0];
+            failure.concatenatedLineNumber.should.equal(9);
+            failure.characterPosition.should.equal(9);
+        });
+    });
 });
 
-
-
-//    export module SymbolTableBuilderPropertyTests {
-//        /*[TestFixture]*/
-//        export class When_loading_entities_with_duplicated_boolean_property extends BaseSymbolTableBuilderTest {
-//            protected metaEdText(): string {
-//                let metaEdTextBuilder = new MetaEdTextBuilder();
-//                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity(When_loading_entities_with_duplicated_boolean_property.entityName).WithDocumentation("here only because documentation is required").WithBooleanProperty//(When_loading_entities_with_duplicated_boolean_property.propertyName, "doc", true, false).WithBooleanProperty(When_loading_entities_with_duplicated_boolean_property.propertyName, "doc", true, false).WithEndDomainEntity().WithEndNamespace();
-//                return metaEdTextBuilder;
-//            }
-//            public should_report_duplicate_property_names(): void {
-//                errorMessageCollection.Count.ShouldEqual(1);
-//                let failure = errorMessageCollection[0];
-//                failure.Message.ShouldContain(When_loading_entities_with_duplicated_boolean_property.propertyName);
-//                failure.Message.ShouldContain(When_loading_entities_with_duplicated_boolean_property.entityName);
-//                failure.Message.ShouldContain("duplicate");
-//            }
-//            public should_report_position_of_error(): void {
-//                errorMessageCollection.Count.ShouldEqual(1);
-//                let failure = errorMessageCollection[0];
-//                failure.ConcatenatedLineNumber.ShouldEqual(9);
-//                failure.CharacterPosition.ShouldEqual(9);
-//            }
-//        }
-//    }
 //    export module SymbolTableBuilderPropertyTests {
 //        /*[TestFixture]*/
 //        export class When_loading_entities_with_currency_property extends BaseSymbolTableBuilderTest {

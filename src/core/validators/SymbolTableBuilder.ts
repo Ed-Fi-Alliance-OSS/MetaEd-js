@@ -6,7 +6,6 @@ import {ISymbolTable} from './SymbolTable'
 import {IMetaEdFileIndex} from '../../grammar/IMetaEdFileIndex'
 import ValidationMessage from '../../common/ValidationMessage'
 import PropertySymbolTable from './PropertySymbolTable'
-import {IPropertyWithComponents} from '../../grammar/IPropertyWithComponents'
 import {ISymbolTableBuilderListener} from './ISymbolTableBuilderListener'
 import List from 'typescript-dotnet-commonjs/System/Collections/List'
 import SymbolTableEntityType from './SymbolTableEntityType';
@@ -65,7 +64,7 @@ export class SymbolTableBuilder extends Gen.MetaEdGrammarListener implements ISy
             return;
         let metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(propertyName.symbol.line);
         let duplicateFailure: ValidationMessage = {
-            message: `Entity ${this._currentPropertySymbolTable.parent.name} has duplicate properties named ${propertyName.GetText()}`,
+            message: `Entity ${this._currentPropertySymbolTable.parent.name} has duplicate properties named ${propertyName.getText()}`,
             characterPosition: propertyName.symbol.column,
             concatenatedLineNumber: propertyName.symbol.line,
             fileName: metaEdFile.fileName,
