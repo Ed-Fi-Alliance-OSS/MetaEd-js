@@ -31,9 +31,9 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
         this._symbolTableEntityType = new SymbolTableEntityType();
     }
     public withContext(context: IMetaEdContext): void {
-        this._metaEdFileIndex = context.MetaEdFileIndex;
-        this._errorMessageCollection = context.ErrorMessageCollection;
-        this._symbolTable = context.SymbolTable;
+        this._metaEdFileIndex = context.metaEdFileIndex;
+        this._errorMessageCollection = context.errorMessageCollection;
+        this._symbolTable = context.symbolTable;
         this._builderListener.withContext(context);
     }
     private addEntity(entityType: string, entityName: ITerminalNode, context: ParserRuleContext): void {

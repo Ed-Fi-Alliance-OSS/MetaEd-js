@@ -11,11 +11,11 @@ export interface IMetaEdContext {
     //    string OutputDirectory { get; set; }
     //    ArtifactGeneration ArtifactGeneration { get; set; }
     //    IParseTree ParseTree { get; set; }
-    MetaEdFileIndex: IMetaEdFileIndex
-    ErrorMessageCollection: List<ValidationMessage>
-    WarningMessageCollection: List<ValidationMessage>
+    metaEdFileIndex: IMetaEdFileIndex;
+    errorMessageCollection: List<ValidationMessage>;
+    warningMessageCollection: List<ValidationMessage>;
     //    IList<Exception> ExceptionCollection { get; }
-    SymbolTable: ISymbolTable
+    symbolTable: ISymbolTable;
     //    List<GeneratedOutput> Output { get; }
     //    IList<FilesToLoad> FileNamesToLoad { get; }
     //    bool OnlySyntaxCheckFirstFileNameSet { get; set; }
@@ -74,20 +74,20 @@ export interface IMetaEdContext {
 }
 
 export class MetaEdContext implements IMetaEdContext{
-    private _metaEdFileIndex: IMetaEdFileIndex
-    private _errorMessageCollection: List<ValidationMessage>
-    private _warningMessageCollection: List<ValidationMessage>
-    private _symbolTable: ISymbolTable
+    private _metaEdFileIndex: IMetaEdFileIndex;
+    private _errorMessageCollection: List<ValidationMessage>;
+    private _warningMessageCollection: List<ValidationMessage>;
+    private _symbolTable: ISymbolTable;
 
-    public get MetaEdFileIndex(): IMetaEdFileIndex{return this._metaEdFileIndex}
-    public get ErrorMessageCollection(): List<ValidationMessage>{return this._errorMessageCollection}
-    public get WarningMessageCollection(): List<ValidationMessage>{return this._warningMessageCollection}
-    public get SymbolTable(): ISymbolTable{return this._symbolTable}
+    public get metaEdFileIndex(): IMetaEdFileIndex { return this._metaEdFileIndex; }
+    public get errorMessageCollection(): List<ValidationMessage> { return this._errorMessageCollection; };
+    public get warningMessageCollection(): List<ValidationMessage> { return this._warningMessageCollection; };
+    public get symbolTable(): ISymbolTable { return this._symbolTable; };
 
     constructor(metaEdFileIndex: IMetaEdFileIndex, symbolTable: ISymbolTable){
-        this._metaEdFileIndex = metaEdFileIndex
-        this._symbolTable = symbolTable
-        this._errorMessageCollection = new List<ValidationMessage>()
-        this._warningMessageCollection = new List<ValidationMessage>()
+        this._metaEdFileIndex = metaEdFileIndex;
+        this._symbolTable = symbolTable;
+        this._errorMessageCollection = new List<ValidationMessage>();
+        this._warningMessageCollection = new List<ValidationMessage>();
     }
 }

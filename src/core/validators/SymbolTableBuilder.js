@@ -9,9 +9,9 @@ class SymbolTableBuilder extends MetaEdGrammarListener_1.MetaEdGrammarListener {
         this._symbolTableEntityType = new SymbolTableEntityType_1.default();
     }
     withContext(context) {
-        this._metaEdFileIndex = context.MetaEdFileIndex;
-        this._errorMessageCollection = context.ErrorMessageCollection;
-        this._symbolTable = context.SymbolTable;
+        this._metaEdFileIndex = context.metaEdFileIndex;
+        this._errorMessageCollection = context.errorMessageCollection;
+        this._symbolTable = context.symbolTable;
         this._builderListener.withContext(context);
     }
     addEntity(entityType, entityName, context) {

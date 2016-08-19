@@ -27,10 +27,10 @@ export class ValidationTestHelper {
         let tokens = new antlr4.CommonTokenStream(lexer);
         let parser = new MetaEdGrammar.MetaEdGrammar(tokens);
         let parserContext = parser.metaEd();
-        let metaEdContext = new MetaEdContext(metaEdFileIndex, this.symbolTable);
+        let metaEdContext: MetaEdContext = new MetaEdContext(metaEdFileIndex, this.symbolTable);
 
-        this.warningMessageCollection = metaEdContext.WarningMessageCollection;
-        this.errorMessageCollection = metaEdContext.ErrorMessageCollection;
+        this.warningMessageCollection = metaEdContext.warningMessageCollection;
+        this.errorMessageCollection = metaEdContext.errorMessageCollection;
         let builder = new SymbolTableBuilder(new NullSymbolTableBuilderListener());
         builder.withContext(metaEdContext);
         antlr4.tree.ParseTreeWalker.DEFAULT.walk(builder, parserContext);

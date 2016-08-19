@@ -9,6 +9,8 @@ export default class MetaEdTextBuilder {
         this.indentationLevel = 0;
     }
 
+    public static get buildIt():MetaEdTextBuilder{return new MetaEdTextBuilder();};
+
     toString(): string {
         return this.textLines.join('\r\n');
     }

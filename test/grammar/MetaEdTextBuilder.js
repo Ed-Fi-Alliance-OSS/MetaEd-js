@@ -5,6 +5,8 @@ class MetaEdTextBuilder {
         this.textLines = [];
         this.indentationLevel = 0;
     }
+    static get buildIt() { return new MetaEdTextBuilder(); }
+    ;
     toString() {
         return this.textLines.join('\r\n');
     }

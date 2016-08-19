@@ -19,8 +19,8 @@ class ValidationTestHelper {
         let parser = new MetaEdGrammar.MetaEdGrammar(tokens);
         let parserContext = parser.metaEd();
         let metaEdContext = new MetaEdContext_1.MetaEdContext(metaEdFileIndex, this.symbolTable);
-        this.warningMessageCollection = metaEdContext.WarningMessageCollection;
-        this.errorMessageCollection = metaEdContext.ErrorMessageCollection;
+        this.warningMessageCollection = metaEdContext.warningMessageCollection;
+        this.errorMessageCollection = metaEdContext.errorMessageCollection;
         let builder = new SymbolTableBuilder_1.SymbolTableBuilder(new NullSymbolTableBuilderListener_1.default());
         builder.withContext(metaEdContext);
         antlr4.tree.ParseTreeWalker.DEFAULT.walk(builder, parserContext);
