@@ -8,7 +8,7 @@ let antlr4 = require('antlr4/index');
 let MetaEdGrammar = require('../../../src/grammar/gen/MetaEdGrammar');
 let BaseLexer = require('../../../src/grammar/gen/BaseLexer');
 class ValidationTestHelper {
-    setup(metaEdText) {
+    setup(metaEdText, listener = new SymbolTableBuilder_1.SymbolTableBuilder(new NullSymbolTableBuilderListener_1.default())) {
         console.log(metaEdText);
         let metaEdFileIndex = new SingleFileMetaEdFileIndex_1.default();
         metaEdFileIndex.addContents(metaEdText);
@@ -21,9 +21,8 @@ class ValidationTestHelper {
         let metaEdContext = new MetaEdContext_1.MetaEdContext(metaEdFileIndex, this.symbolTable);
         this.warningMessageCollection = metaEdContext.warningMessageCollection;
         this.errorMessageCollection = metaEdContext.errorMessageCollection;
-        let builder = new SymbolTableBuilder_1.SymbolTableBuilder(new NullSymbolTableBuilderListener_1.default());
-        builder.withContext(metaEdContext);
-        antlr4.tree.ParseTreeWalker.DEFAULT.walk(builder, parserContext);
+        listener.withContext(metaEdContext);
+        antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, parserContext);
     }
 }
 exports.ValidationTestHelper = ValidationTestHelper;

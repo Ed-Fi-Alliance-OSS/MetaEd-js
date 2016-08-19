@@ -1,8 +1,10 @@
 declare namespace MetaEdGrammar {
-    export type ParserRuleContext = any;
-    export type AbstractEntityContext = ParserRuleContext;
-    export type AbstractEntityNameContext = ParserRuleContext;
-    export type AssociationContext = ParserRuleContext;
+    export class ParserRuleContext {
+        start : any;
+    }
+    export class AbstractEntityContext extends ParserRuleContext {}
+    export class AbstractEntityNameContext extends ParserRuleContext {}
+    export class AssociationContext extends ParserRuleContext {}
 }
 
 declare module "MetaEdGrammar" {

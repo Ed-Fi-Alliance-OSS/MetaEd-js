@@ -1,8 +1,8 @@
 import {ValidationRuleBase} from "../ValidationRuleBase";
 
-export class AbstractEntityMustContainAnIdentity extends ValidationRuleBase {
+export class AbstractEntityMustContainAnIdentity extends ValidationRuleBase<MetaEdGrammar.AbstractEntityContext> {
     public isValid(context) : boolean {
-        return context.property().Any(x => x.GetProperty().propertyComponents().propertyAnnotation().identity() != null);
+        return context.property().some(x => this.getProperty(x).propertyComponents().propertyAnnotation().identity() != null);
     }
 
     public getFailureMessage(context) : string {

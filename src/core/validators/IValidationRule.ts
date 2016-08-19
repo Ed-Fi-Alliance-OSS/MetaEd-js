@@ -1,7 +1,7 @@
 import {ValidationLevel} from "./ValidationLevel";
 
-export interface IValidationRule {
+export interface IValidationRule<TContext> {
     level() : ValidationLevel;
-    isValid(context) : boolean;
-    getFailureMessage(context) : string;
+    isValid(context: TContext) : boolean;
+    getFailureMessage(context: TContext) : string;
 }

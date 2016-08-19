@@ -1,22 +1,28 @@
 /// <reference path="../../../src/grammar/gen/MetaEdGrammar.d.ts" />
+/// <reference path="../../../src/grammar/gen/MetaEdGrammarListener.d.ts" />
 "use strict";
-const AbstractEntityMustContainAnIdentity_1 = require("./AbstractEntity/AbstractEntityMustContainAnIdentity");
+const MetaEdGrammarListener_1 = require('../../../src/grammar/gen/MetaEdGrammarListener');
 const ValidationLevel_1 = require("./ValidationLevel");
-class ValidatorListener {
-    withContext(context) {
-        this._metaEdFileIndex = context.MetaEdFileIndex;
-        this._warningMessageCollection = context.WarningMessageCollection;
-        this._errorMessageCollection = context.ErrorMessageCollection;
-        this._symbolTable = context.SymbolTable;
+class ValidatorListener extends MetaEdGrammarListener_1.MetaEdGrammarListener {
+    constructor(ruleProvider) {
+        super();
+        this.ruleProvider = ruleProvider;
     }
-    validateContext(validationRules, context) {
+    withContext(context) {
+        this.metaEdFileIndex = context.metaEdFileIndex;
+        this.warningMessageCollection = context.warningMessageCollection;
+        this.errorMessageCollection = context.errorMessageCollection;
+        this.symbolTable = context.symbolTable;
+    }
+    validateContext(context) {
+        const validationRules = this.ruleProvider.getAll(this.symbolTable);
         validationRules.filter(x => x.level() == ValidationLevel_1.ValidationLevel.Error && !x.isValid(context))
-            .forEach(y => this._errorMessageCollection.add(this.buildValidationMessage(y, context)));
+            .forEach(y => this.errorMessageCollection.add(this.buildValidationMessage(y, context)));
         validationRules.filter(x => x.level() == ValidationLevel_1.ValidationLevel.Warning && !x.isValid(context))
-            .forEach(y => this._warningMessageCollection.add(this.buildValidationMessage(y, context)));
+            .forEach(y => this.warningMessageCollection.add(this.buildValidationMessage(y, context)));
     }
     buildValidationMessage(validationRule, context) {
-        const metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(context.start.line);
+        const metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(context.start.line);
         return {
             message: validationRule.getFailureMessage(context),
             characterPosition: context.start.column,
@@ -26,8 +32,7 @@ class ValidatorListener {
         };
     }
     enterAbstractEntity(context) {
-        var validationRules = [new AbstractEntityMustContainAnIdentity_1.AbstractEntityMustContainAnIdentity()];
-        this.validateContext(validationRules, context);
+        this.validateContext(context);
     }
 }
 exports.ValidatorListener = ValidatorListener;

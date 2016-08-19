@@ -1,5 +1,4 @@
 "use strict";
-//let ParserRuleContext = require('antlr4')
 class NullSymbolTableBuilderListener {
     withContext(context) {
     }

@@ -1,7 +1,7 @@
 import {IMetaEdContext} from '../tasks/MetaEdContext';
+import ParserRuleContext = MetaEdGrammar.ParserRuleContext;
 
 declare type ITerminalNode = any;
-declare type ParserRuleContext = any;
 
 export interface ISymbolTableBuilderListener
 {

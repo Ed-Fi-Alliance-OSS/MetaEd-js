@@ -3,11 +3,9 @@ import PropertySymbolTable from './PropertySymbolTable'
 import Dictionary from 'typescript-dotnet-commonjs/System/Collections/Dictionaries/Dictionary'
 
 import IEnumerable from 'typescript-dotnet-commonjs/System/Collections/Enumeration/IEnumerable'
-import IDictionary from 'typescript-dotnet-commonjs/System/Collections/Dictionaries/IDictionary'
 import ICollection from 'typescript-dotnet-commonjs/System/Collections/ICollection'
 import Enumerable from 'typescript-dotnet-commonjs/System.Linq/Linq'
-
-declare type ParserRuleContext = any;
+import ParserRuleContext = MetaEdGrammar.ParserRuleContext;
 
 export interface ISymbolTable {
     tryAdd(entityType: string, name: string, context: ParserRuleContext): boolean

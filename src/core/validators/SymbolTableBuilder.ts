@@ -9,11 +9,12 @@ import PropertySymbolTable from './PropertySymbolTable'
 import {ISymbolTableBuilderListener} from './ISymbolTableBuilderListener'
 import List from 'typescript-dotnet-commonjs/System/Collections/List'
 import SymbolTableEntityType from './SymbolTableEntityType';
+import {IListenerWithContext} from "./IListenerWithContext";
+import ParserRuleContext = MetaEdGrammar.ParserRuleContext;
 
 declare type ITerminalNode = any;
-export declare type ParserRuleContext = any;
 
-export interface ISymbolTableBuilder {
+export interface ISymbolTableBuilder extends IListenerWithContext {
     withContext(context: IMetaEdContext): void;
 }
 

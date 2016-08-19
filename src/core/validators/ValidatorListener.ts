@@ -1,7 +1,8 @@
 /// <reference path="../../../src/grammar/gen/MetaEdGrammar.d.ts" />
+/// <reference path="../../../src/grammar/gen/MetaEdGrammarListener.d.ts" />
 
+import {MetaEdGrammarListener} from '../../../src/grammar/gen/MetaEdGrammarListener';
 import List from 'typescript-dotnet-commonjs/System/Collections/List'
-import {AbstractEntityMustContainAnIdentity} from "./AbstractEntity/AbstractEntityMustContainAnIdentity";
 import {IValidationRule} from "./IValidationRule";
 import {IMetaEdContext} from "../tasks/MetaEdContext";
 import {IMetaEdFileIndex} from "../../grammar/IMetaEdFileIndex";
@@ -10,30 +11,39 @@ import ValidationMessage from "../../common/ValidationMessage";
 import {ValidationLevel} from "./ValidationLevel";
 
 import ParserRuleContext = MetaEdGrammar.ParserRuleContext;
+import {IListenerWithContext} from "./IListenerWithContext";
+import {IRuleProvider} from "./RuleProvider";
 
-export class ValidatorListener {
-    private _symbolTable: ISymbolTable;
-    private _metaEdFileIndex: IMetaEdFileIndex;
-    private _warningMessageCollection: List<ValidationMessage>;
-    private _errorMessageCollection: List<ValidationMessage>;
+export class ValidatorListener extends MetaEdGrammarListener implements IListenerWithContext {
+    private symbolTable: ISymbolTable;
+    private metaEdFileIndex: IMetaEdFileIndex;
+    private warningMessageCollection: List<ValidationMessage>;
+    private errorMessageCollection: List<ValidationMessage>;
+    private ruleProvider: IRuleProvider;
+
+    constructor(ruleProvider: IRuleProvider) {
+        super();
+        this.ruleProvider = ruleProvider;
+    }
 
     public withContext(context: IMetaEdContext): void {
-        this._metaEdFileIndex = context.MetaEdFileIndex;
-        this._warningMessageCollection = context.WarningMessageCollection;
-        this._errorMessageCollection = context.ErrorMessageCollection;
-        this._symbolTable = context.SymbolTable;
+        this.metaEdFileIndex = context.metaEdFileIndex;
+        this.warningMessageCollection = context.warningMessageCollection;
+        this.errorMessageCollection = context.errorMessageCollection;
+        this.symbolTable = context.symbolTable;
     }
 
-    private validateContext(validationRules: IValidationRule[], context: ParserRuleContext) {
-        validationRules.filter(x => x.level() == ValidationLevel.Error && !x.isValid(context))
-            .forEach(y => this._errorMessageCollection.add(this.buildValidationMessage(y, context)));
+     private validateContext<TContext extends ParserRuleContext>(context: TContext) {
+         const validationRules = this.ruleProvider.getAll(this.symbolTable);
+         validationRules.filter(x => x.level() == ValidationLevel.Error && !x.isValid(context))
+             .forEach(y => this.errorMessageCollection.add(this.buildValidationMessage(y, context)));
 
-        validationRules.filter(x => x.level() == ValidationLevel.Warning && !x.isValid(context))
-            .forEach(y => this._warningMessageCollection.add(this.buildValidationMessage(y, context)));
+         validationRules.filter(x => x.level() == ValidationLevel.Warning && !x.isValid(context))
+             .forEach(y => this.warningMessageCollection.add(this.buildValidationMessage(y, context)));
     }
 
-    private buildValidationMessage(validationRule: IValidationRule, context: ParserRuleContext) : ValidationMessage {
-        const metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(context.start.line);
+    private buildValidationMessage<TContext extends ParserRuleContext>(validationRule: IValidationRule<TContext>, context: TContext) : ValidationMessage {
+        const metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(context.start.line);
         return <ValidationMessage> {
             message: validationRule.getFailureMessage(context),
             characterPosition: context.start.column,
@@ -44,8 +54,7 @@ export class ValidatorListener {
     }
 
     public enterAbstractEntity(context: MetaEdGrammar.AbstractEntityContext) : void {
-        var validationRules = [ new AbstractEntityMustContainAnIdentity() ];
-        this.validateContext(validationRules, context);
+        this.validateContext(context);
     }
 
     // public enterAbstractEntityName(context: MetaEdGrammar.AbstractEntityNameContext) : void {
