@@ -13,6 +13,7 @@ const propertyName: string = "PropertyName";
 const entityKey: string = "Domain Entity";
 
 describe('SymbolTableBuilderPropertyTests', () => {
+
     describe('When_loading_entities_with_boolean_property', () => {
 
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -69,9 +70,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.characterPosition.should.equal(9);
         });
     });
-});
 
-describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_currency_property', () => {
 
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -92,8 +91,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_currency_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -116,8 +113,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_date_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -135,8 +130,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_date_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -159,8 +152,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_decimal_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -179,8 +170,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_decimal_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -203,8 +192,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_descriptor_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -223,8 +210,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_descriptor_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -247,8 +232,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duration_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -267,8 +250,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_duration_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -291,8 +272,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_enumeration_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -311,8 +290,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_enumeration_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -335,8 +312,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_include_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -355,8 +330,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_include_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -379,8 +352,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_integer_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -399,8 +370,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_integer_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -423,8 +392,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_reference_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -443,8 +410,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_reference_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -467,8 +432,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_short_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -486,8 +449,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_short_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -510,8 +471,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_shared_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -530,8 +489,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_shared_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -554,8 +511,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_string_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -574,8 +529,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_string_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -598,8 +551,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_time_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -617,8 +568,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_time_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -641,8 +590,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_year_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -660,8 +607,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             entitySymbolTable.propertySymbolTable.get(propertyName).should.not.be.null;
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_year_property', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
@@ -684,8 +629,6 @@ describe('SymbolTableBuilderPropertyTests', () => {
             failure.message.should.contain("duplicate");
         });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_same_identifier_but_different_with_contexts', () => {
         let withContext1: string = "WithContext1";
@@ -706,10 +649,9 @@ describe('SymbolTableBuilderPropertyTests', () => {
             let entitySymbolTable: EntityContext = helper.symbolTable.get(entityKey, entityName);
             entitySymbolTable.propertySymbolTable.get(withContext1 + propertyName).should.not.be.null;
             entitySymbolTable.propertySymbolTable.get(withContext2 + propertyName).should.not.be.null;
-    2});
+            2
+        });
     });
-});
-describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_same_identifier_and_same_with_contexts', () => {
         let withContext: string = "WithContext";

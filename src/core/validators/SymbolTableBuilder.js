@@ -81,31 +81,31 @@ class SymbolTableBuilder extends MetaEdGrammarListener_1.MetaEdGrammarListener {
         this._currentPropertySymbolTable = null;
     }
     enterChoiceType(context) {
-        this.addEntity(context.CHOICETYPE().GetText(), context.choiceName().ID(), context);
+        this.addEntity(context.CHOICE_TYPE().getText(), context.choiceName().ID(), context);
     }
     exitChoiceType(context) {
         this._currentPropertySymbolTable = null;
     }
     enterCommonDecimal(context) {
-        this.addEntity(context.COMMONDECIMAL().GetText(), context.commonDecimalName().ID(), context);
+        this.addEntity(context.COMMON_DECIMAL().getText(), context.commonDecimalName().ID(), context);
     }
     exitCommonDecimal(context) {
         this._currentPropertySymbolTable = null;
     }
     enterCommonInteger(context) {
-        this.addEntity(context.COMMONINTEGER().GetText(), context.commonIntegerName().ID(), context);
+        this.addEntity(context.COMMON_INTEGER().getText(), context.commonIntegerName().ID(), context);
     }
     exitCommonInteger(context) {
         this._currentPropertySymbolTable = null;
     }
     enterCommonShort(context) {
-        this.addEntity(context.COMMONSHORT().GetText(), context.commonShortName().ID(), context);
+        this.addEntity(context.COMMON_SHORT().getText(), context.commonShortName().ID(), context);
     }
     exitCommonShort(context) {
         this._currentPropertySymbolTable = null;
     }
     enterCommonString(context) {
-        this.addEntity(context.COMMONSTRING().GetText(), context.commonStringName().ID(), context);
+        this.addEntity(context.COMMON_STRING().getText(), context.commonStringName().ID(), context);
     }
     exitCommonString(context) {
         this._currentPropertySymbolTable = null;
@@ -123,13 +123,13 @@ class SymbolTableBuilder extends MetaEdGrammarListener_1.MetaEdGrammarListener {
         this._currentPropertySymbolTable = null;
     }
     enterDescriptor(context) {
-        this.addEntity(context.DESCRIPTOR_ENTITY().GetText(), context.descriptorName().ID(), context);
+        this.addEntity(context.DESCRIPTOR_ENTITY().getText(), context.descriptorName().ID(), context);
     }
     exitDescriptor(context) {
         this._currentPropertySymbolTable = null;
     }
     enterDomain(context) {
-        this.addEntity(context.DOMAIN().GetText(), context.domainName().ID(), context);
+        this.addEntity(context.DOMAIN().getText(), context.domainName().ID(), context);
     }
     exitDomain(context) {
         this._currentPropertySymbolTable = null;
@@ -159,19 +159,19 @@ class SymbolTableBuilder extends MetaEdGrammarListener_1.MetaEdGrammarListener {
         this._currentPropertySymbolTable = null;
     }
     enterInterchange(context) {
-        this.addEntity(context.INTERCHANGE().GetText(), context.interchangeName().ID(), context);
+        this.addEntity(context.INTERCHANGE().getText(), context.interchangeName().ID(), context);
     }
     exitInterchange(context) {
         this._currentPropertySymbolTable = null;
     }
     enterInterchangeExtension(context) {
-        this.addEntity(context.INTERCHANGE().GetText() + context.ADDITIONS().GetText(), context.extendeeName().ID(), context);
+        this.addEntity(context.INTERCHANGE().getText() + context.ADDITIONS().getText(), context.extendeeName().ID(), context);
     }
     exitInterchangeExtension(context) {
         this._currentPropertySymbolTable = null;
     }
     enterSubdomain(context) {
-        this.addEntity(context.SUBDOMAIN().GetText(), context.subdomainName().ID(), context);
+        this.addEntity(context.SUBDOMAIN().getText(), context.subdomainName().ID(), context);
     }
     exitSubdomain(context) {
         this._currentPropertySymbolTable = null;

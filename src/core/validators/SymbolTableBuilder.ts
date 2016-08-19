@@ -114,7 +114,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public enterChoiceType(context): void {
-        this.addEntity(context.CHOICETYPE().GetText(), context.choiceName().ID(), context);
+        this.addEntity(context.CHOICE_TYPE().getText(), context.choiceName().ID(), context);
     }
 
     public exitChoiceType(context): void {
@@ -122,7 +122,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public enterCommonDecimal(context): void {
-        this.addEntity(context.COMMONDECIMAL().GetText(), context.commonDecimalName().ID(), context);
+        this.addEntity(context.COMMON_DECIMAL().getText(), context.commonDecimalName().ID(), context);
     }
 
     public exitCommonDecimal(context): void {
@@ -130,7 +130,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public enterCommonInteger(context): void {
-        this.addEntity(context.COMMONINTEGER().GetText(), context.commonIntegerName().ID(), context);
+        this.addEntity(context.COMMON_INTEGER().getText(), context.commonIntegerName().ID(), context);
     }
 
     public exitCommonInteger(context): void {
@@ -138,7 +138,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public enterCommonShort(context): void {
-        this.addEntity(context.COMMONSHORT().GetText(), context.commonShortName().ID(), context);
+        this.addEntity(context.COMMON_SHORT().getText(), context.commonShortName().ID(), context);
     }
 
     public exitCommonShort(context): void {
@@ -146,7 +146,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public enterCommonString(context): void {
-        this.addEntity(context.COMMONSTRING().GetText(), context.commonStringName().ID(), context);
+        this.addEntity(context.COMMON_STRING().getText(), context.commonStringName().ID(), context);
     }
 
     public exitCommonString(context): void {
@@ -170,7 +170,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public enterDescriptor(context): void {
-        this.addEntity(context.DESCRIPTOR_ENTITY().GetText(), context.descriptorName().ID(), context);
+        this.addEntity(context.DESCRIPTOR_ENTITY().getText(), context.descriptorName().ID(), context);
     }
 
     public exitDescriptor(context): void {
@@ -178,7 +178,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public enterDomain(context): void {
-        this.addEntity(context.DOMAIN().GetText(), context.domainName().ID(), context);
+        this.addEntity(context.DOMAIN().getText(), context.domainName().ID(), context);
     }
 
     public exitDomain(context): void {
@@ -218,7 +218,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public enterInterchange(context): void {
-        this.addEntity(context.INTERCHANGE().GetText(), context.interchangeName().ID(), context);
+        this.addEntity(context.INTERCHANGE().getText(), context.interchangeName().ID(), context);
     }
 
     public exitInterchange(context): void {
@@ -226,7 +226,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public enterInterchangeExtension(context): void {
-        this.addEntity(context.INTERCHANGE().GetText() + context.ADDITIONS().GetText(), context.extendeeName().ID(), context);
+        this.addEntity(context.INTERCHANGE().getText() + context.ADDITIONS().getText(), context.extendeeName().ID(), context);
     }
 
     public exitInterchangeExtension(context): void {
@@ -234,7 +234,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public enterSubdomain(context): void {
-        this.addEntity(context.SUBDOMAIN().GetText(), context.subdomainName().ID(), context);
+        this.addEntity(context.SUBDOMAIN().getText(), context.subdomainName().ID(), context);
     }
 
     public exitSubdomain(context): void {
