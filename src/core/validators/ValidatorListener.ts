@@ -105,13 +105,13 @@ export class ValidatorListener extends MetaEdGrammarListener implements IListene
     //     this.validateContext(context);
     // }
     //
-    // public enterCommonDecimalName(MetaEdGrammar.CommonDecimalNameContext context) : void {
+    // public enterCommonDecimalName(context: MetaEdGrammar.CommonDecimalNameContext) : void {
     //     this.validateContext(context);
     // }
     //
-    // public enterCommonDecimal(MetaEdGrammar.CommonDecimalContext context) : void {
-    //     this.validateContext(context);
-    // }
+     public enterCommonDecimal(context:MetaEdGrammar.CommonDecimalContext) : void {
+         this.validateContext(context);
+     }
     //
     // public enterCommonIntegerName(MetaEdGrammar.CommonIntegerNameContext context) : void {
     //     this.validateContext(context);
