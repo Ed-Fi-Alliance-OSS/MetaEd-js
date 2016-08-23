@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.Interchange {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass extends ValidationRuleBase<MetaEdGrammar.InterchangeIdentityTemplateContext>
     {
         private _symbolTable: ISymbolTable;

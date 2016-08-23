@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.DescriptorProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class DescriptorPropertyMustMatchADescriptor extends ValidationRuleBase<MetaEdGrammar.DescriptorPropertyContext>
     {
         private _symbolTable: ISymbolTable;

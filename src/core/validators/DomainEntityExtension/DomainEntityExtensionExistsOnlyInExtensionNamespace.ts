@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.DomainEntityExtension {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class DomainEntityExtensionExistsOnlyInExtensionNamespace extends ValidationRuleBase<MetaEdGrammar.DomainEntityExtensionContext>
     {
         public isValid(context: MetaEdGrammar.DomainEntityExtensionContext): boolean {

@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class CrossEntityTypeNamingValidator implements ISymbolTableBuilderListener {
         private _trackedEntityNames: ISet<string> = new HashSet<string>();
         private _context: IMetaEdContext;

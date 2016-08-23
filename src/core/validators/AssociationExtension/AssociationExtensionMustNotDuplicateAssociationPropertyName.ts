@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.AssociationExtension {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class AssociationExtensionMustNotDuplicateAssociationPropertyName extends ValidationRuleBase<MetaEdGrammar.AssociationExtensionContext>
     {
         private _symbolTable: ISymbolTable;

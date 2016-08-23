@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.DomainEntityExtension {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName extends ValidationRuleBase<MetaEdGrammar.DomainEntityExtensionContext>
     {
         private _symbolTable: ISymbolTable;

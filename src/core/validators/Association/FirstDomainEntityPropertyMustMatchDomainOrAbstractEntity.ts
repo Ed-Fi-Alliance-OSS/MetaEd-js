@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.Association {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity extends ValidationRuleBase<MetaEdGrammar.FirstDomainEntityContext>
     {
         private _symbolTable: ISymbolTable;

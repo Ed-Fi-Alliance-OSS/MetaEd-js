@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.AssociationSubclass {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClass extends ValidationRuleBase<MetaEdGrammar.AssociationSubclassContext>
     {
         private _symbolTable: ISymbolTable;

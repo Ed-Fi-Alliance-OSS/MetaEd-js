@@ -1,4 +1,4 @@
-module MetaEd.Core.Validator.MergePartOfReference {
+import { ValidationRuleBase } from "../ValidationRuleBase";
     export class TargetPropertyPathMustExist extends ValidationRuleBase<MetaEdGrammar.TargetPropertyPathContext>
     {
         private _symbolTable: ISymbolTable;

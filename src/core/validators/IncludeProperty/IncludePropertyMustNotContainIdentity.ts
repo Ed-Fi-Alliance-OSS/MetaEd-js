@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.IncludeProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class IncludePropertyMustNotContainIdentity extends ValidationRuleBase<MetaEdGrammar.IncludePropertyContext>
     {
         public isValid(context: MetaEdGrammar.IncludePropertyContext): boolean {

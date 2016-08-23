@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.ShortProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class ShortPropertyMustNotMatchACommonSimpleType extends ValidationRuleBase<MetaEdGrammar.ShortPropertyContext>
     {
         private _symbolTable: ISymbolTable;

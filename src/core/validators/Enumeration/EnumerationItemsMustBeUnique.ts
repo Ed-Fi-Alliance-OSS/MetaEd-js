@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.Enumeration {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class EnumerationItemsMustBeUnique extends ValidationRuleBase<MetaEdGrammar.EnumerationContext>
     {
         private static duplicateShortDescriptions(context: MetaEdGrammar.EnumerationContext): string[] {

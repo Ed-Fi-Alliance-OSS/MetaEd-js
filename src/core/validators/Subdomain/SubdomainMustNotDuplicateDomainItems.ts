@@ -1,4 +1,5 @@
-﻿module MetaEd.Core.Validator.Subdomain {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+
     export class SubdomainMustNotDuplicateDomainItems extends ValidationRuleBase<MetaEdGrammar.SubdomainContext>
     {
         private static getDuplicateDomainItems(context: MetaEdGrammar.SubdomainContext): string[] {
@@ -14,4 +15,3 @@
             return string.Format("Subdomain '{0}' declares duplicate domain item{2} '{1}'.", identifier, string.Join("', '", duplicateDomainItems), duplicateDomainItems.Count() > 1 ? "s" : string.Empty);
         }
     }
-}

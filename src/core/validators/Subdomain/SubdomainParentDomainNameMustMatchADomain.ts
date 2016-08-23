@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.Subdomain {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class SubdomainParentDomainNameMustMatchADomain extends ValidationRuleBase<MetaEdGrammar.SubdomainContext>
     {
         private _symbolTable: ISymbolTable;

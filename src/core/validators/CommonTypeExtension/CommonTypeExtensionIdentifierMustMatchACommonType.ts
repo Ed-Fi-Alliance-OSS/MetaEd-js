@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.CommonTypeExtension {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class CommonTypeExtensionIdentifierMustMatchACommonType extends ValidationRuleBase<MetaEdGrammar.CommonTypeExtensionContext>
     {
         private _symbolTable: ISymbolTable;

@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.DomainEntitySubclass {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity extends ValidationRuleBase<MetaEdGrammar.DomainEntitySubclassContext>
     {
         private _symbolTable: ISymbolTable;

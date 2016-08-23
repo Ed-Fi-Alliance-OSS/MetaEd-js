@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.IntegerProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class IntegerPropertyMustNotMatchACommonSimpleType extends ValidationRuleBase<MetaEdGrammar.IntegerPropertyContext>
     {
         private _symbolTable: ISymbolTable;

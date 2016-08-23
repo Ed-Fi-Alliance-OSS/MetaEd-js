@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.StringProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class StringPropertyMinLengthMustNotBeGreaterThanMaxLength extends ValidationRuleBase<MetaEdGrammar.StringPropertyContext>
     {
         public isValid(context: MetaEdGrammar.StringPropertyContext): boolean {

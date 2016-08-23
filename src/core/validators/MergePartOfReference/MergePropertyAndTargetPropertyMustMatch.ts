@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.MergePartOfReference {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class MergePropertyAndTargetPropertyMustMatch extends ValidationRuleBase<MetaEdGrammar.MergePartOfReferenceContext>
     {
         private _symbolTable: ISymbolTable;

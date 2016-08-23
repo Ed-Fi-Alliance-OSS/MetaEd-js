@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.AssociationExtension {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class AssociationExtensionExistsOnlyInExtensionNamespace extends ValidationRuleBase<MetaEdGrammar.AssociationExtensionContext>
     {
         public isValid(context: MetaEdGrammar.AssociationExtensionContext): boolean {

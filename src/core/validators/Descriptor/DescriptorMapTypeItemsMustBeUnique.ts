@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.Descriptor {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class DescriptorMapTypeItemsMustBeUnique extends ValidationRuleBase<MetaEdGrammar.DescriptorContext>
     {
         private static duplicateShortDescriptions(context: MetaEdGrammar.DescriptorContext): string[] {

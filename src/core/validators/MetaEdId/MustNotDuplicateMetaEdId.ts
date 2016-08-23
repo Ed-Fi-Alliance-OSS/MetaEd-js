@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.MetaEdId {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class MustNotDuplicateMetaEdId extends ValidationRuleBase<MetaEdGrammar.MetaEdIdContext>
     {
         private _trackedMetaEdIds: ISet<string> = new HashSet<string>();

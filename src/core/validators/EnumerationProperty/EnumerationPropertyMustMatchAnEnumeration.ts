@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.EnumerationProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class EnumerationPropertyMustMatchAnEnumeration extends ValidationRuleBase<MetaEdGrammar.EnumerationPropertyContext>
     {
         private _symbolTable: ISymbolTable;

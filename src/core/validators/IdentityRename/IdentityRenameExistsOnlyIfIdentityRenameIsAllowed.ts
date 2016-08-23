@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.IdentityRename {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class IdentityRenameExistsOnlyIfIdentityRenameIsAllowed extends ValidationRuleBase<MetaEdGrammar.IdentityRenameContext>
     {
         private _validIdentityRenameParentRuleIndices: number[] = [MetaEdGrammar.RULE_domainEntitySubclass,

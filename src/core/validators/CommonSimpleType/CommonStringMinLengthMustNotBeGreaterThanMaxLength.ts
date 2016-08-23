@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.CommonSimpleType {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class CommonStringMinLengthMustNotBeGreaterThanMaxLength extends ValidationRuleBase<MetaEdGrammar.CommonStringContext>
     {
         public isValid(context: MetaEdGrammar.CommonStringContext): boolean {

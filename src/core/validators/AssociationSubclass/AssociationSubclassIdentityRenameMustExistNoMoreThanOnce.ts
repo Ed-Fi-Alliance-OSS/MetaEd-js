@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.AssociationSubclass {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class AssociationSubclassIdentityRenameMustExistNoMoreThanOnce extends ValidationRuleBase<MetaEdGrammar.AssociationSubclassContext>
     {
         public isValid(context: MetaEdGrammar.AssociationSubclassContext): boolean {

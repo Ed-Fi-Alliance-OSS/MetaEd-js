@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.CommonSimpleType {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class CommonDecimalMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase<MetaEdGrammar.CommonDecimalContext>
     {
         public isValid(context: MetaEdGrammar.CommonDecimalContext): boolean {

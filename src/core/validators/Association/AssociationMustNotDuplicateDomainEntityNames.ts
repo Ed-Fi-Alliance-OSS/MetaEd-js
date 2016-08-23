@@ -1,4 +1,4 @@
-module MetaEd.Core.Validator.Association {
+import { ValidationRuleBase } from "../ValidationRuleBase";
     export class AssociationMustNotDuplicateDomainEntityNames extends ValidationRuleBase<MetaEdGrammar.AssociationContext>
     {
         public isValid(context: MetaEdGrammar.AssociationContext): boolean {

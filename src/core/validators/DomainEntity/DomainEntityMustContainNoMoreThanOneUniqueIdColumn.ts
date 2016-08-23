@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.DomainEntity {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class DomainEntityMustContainNoMoreThanOneUniqueIdColumn extends ValidationRuleBase<MetaEdGrammar.DomainEntityContext>
     {
         public isValid(context: MetaEdGrammar.DomainEntityContext): boolean {

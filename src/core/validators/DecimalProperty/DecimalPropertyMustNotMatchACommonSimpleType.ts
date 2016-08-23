@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.DecimalProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class DecimalPropertyMustNotMatchACommonSimpleType extends ValidationRuleBase<MetaEdGrammar.DecimalPropertyContext>
     {
         private _symbolTable: ISymbolTable;

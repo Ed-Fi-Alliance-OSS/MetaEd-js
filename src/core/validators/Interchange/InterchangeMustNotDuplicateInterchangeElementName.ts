@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.Interchange {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class InterchangeMustNotDuplicateInterchangeElementName extends ValidationRuleBase<MetaEdGrammar.InterchangeContext>
     {
         private _symbolTable: ISymbolTable;

@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.DecimalProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits extends ValidationRuleBase<MetaEdGrammar.DecimalPropertyContext>
     {
         public isValid(context: MetaEdGrammar.DecimalPropertyContext): boolean {

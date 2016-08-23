@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.SharedProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class SharedStringPropertyTypeMustMatchACommonSimpleString extends ValidationRuleBase<MetaEdGrammar.SharedStringPropertyContext>
     {
         private _symbolTable: ISymbolTable;

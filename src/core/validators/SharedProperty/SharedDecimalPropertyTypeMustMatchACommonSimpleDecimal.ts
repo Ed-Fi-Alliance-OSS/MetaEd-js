@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.SharedProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal extends ValidationRuleBase<MetaEdGrammar.SharedDecimalPropertyContext>
     {
         private _symbolTable: ISymbolTable;

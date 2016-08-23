@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.Association {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class SecondDomainEntityPropertyMustNotCollideWithOtherProperty extends ValidationRuleBase<MetaEdGrammar.SecondDomainEntityContext>
     {
         private _symbolTable: ISymbolTable;

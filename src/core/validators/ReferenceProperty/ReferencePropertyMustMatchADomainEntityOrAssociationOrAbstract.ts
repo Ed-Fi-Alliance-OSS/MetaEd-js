@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.ReferenceProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract extends ValidationRuleBase<MetaEdGrammar.ReferencePropertyContext>
     {
         private _symbolTable: ISymbolTable;

@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.InlineCommonType {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class InlineCommonTypeExistsOnlyInCoreNamespace extends ValidationRuleBase<MetaEdGrammar.InlineCommonTypeContext>
     {
         public isValid(context: MetaEdGrammar.InlineCommonTypeContext): boolean {

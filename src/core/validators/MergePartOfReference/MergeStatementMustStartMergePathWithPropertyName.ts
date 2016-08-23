@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.MergePartOfReference {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class MergeStatementMustStartMergePathWithPropertyName extends ValidationRuleBase<MetaEdGrammar.MergePartOfReferenceContext>
     {
         public isValid(context: MetaEdGrammar.MergePartOfReferenceContext): boolean {

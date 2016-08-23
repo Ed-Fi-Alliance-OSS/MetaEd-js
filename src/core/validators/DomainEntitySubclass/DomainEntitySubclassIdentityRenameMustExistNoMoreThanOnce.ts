@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.DomainEntitySubclass {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class DomainEntitySubclassIdentityRenameMustExistNoMoreThanOnce extends ValidationRuleBase<MetaEdGrammar.DomainEntitySubclassContext>
     {
         public isValid(context: MetaEdGrammar.DomainEntitySubclassContext): boolean {

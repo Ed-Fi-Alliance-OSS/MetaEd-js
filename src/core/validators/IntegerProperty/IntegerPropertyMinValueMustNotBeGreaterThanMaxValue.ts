@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.IntegerProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class IntegerPropertyMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase<MetaEdGrammar.IntegerPropertyContext>
     {
         public isValid(context: MetaEdGrammar.IntegerPropertyContext): boolean {

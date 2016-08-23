@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.IncludeProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality extends ValidationRuleBase<MetaEdGrammar.IncludePropertyContext>
     {
         private _symbolTable: ISymbolTable;

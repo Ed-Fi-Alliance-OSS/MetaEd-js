@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.Identity {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class IdentityExistsOnlyIfIdentityIsAllowed extends ValidationRuleBase<MetaEdGrammar.IdentityContext>
     {
         private _validIdentityRuleIndices: number[] = [MetaEdGrammar.RULE_abstractEntity,

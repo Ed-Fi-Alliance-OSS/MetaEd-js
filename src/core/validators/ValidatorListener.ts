@@ -778,11 +778,10 @@ export class ValidatorListener extends MetaEdGrammarListener implements IListene
         public exitEveryRule(ctx: ParserRuleContext): void {
 
         }
-        public visitErrorNode(node: IErrorNode): void {
-
-        }
-        public visitTerminal(node: ITerminalNode): void {
-
-        }
+        //public visitErrorNode(node: IErrorNode): void {
+        //
+        //}
+        //public visitTerminal(node: ITerminalNode): void {
+        //
+        //}
     }
-}

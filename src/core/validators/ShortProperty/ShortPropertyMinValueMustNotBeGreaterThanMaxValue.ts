@@ -1,4 +1,4 @@
-﻿module MetaEd.Core.Validator.ShortProperty {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
     export class ShortPropertyMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase<MetaEdGrammar.ShortPropertyContext>
     {
         public isValid(context: MetaEdGrammar.ShortPropertyContext): boolean {
