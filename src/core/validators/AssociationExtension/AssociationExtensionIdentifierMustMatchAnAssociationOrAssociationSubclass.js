@@ -1,5 +1,3 @@
-using;
-MetaEd.Grammar.Antlr;
 var MetaEd;
 (function (MetaEd) {
     var Core;
@@ -8,23 +6,19 @@ var MetaEd;
         (function (Validator) {
             var AssociationExtension;
             (function (AssociationExtension) {
-                class AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass {
+                class AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass extends ValidationRuleBase {
+                    constructor(symbolTable) {
+                        this._symbolTable = symbolTable;
+                    }
+                    isValid(context) {
+                        var identifierToMatch = context.extendeeName().GetText();
+                        return this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch);
+                    }
+                    getFailureMessage(context) {
+                        return string.Format("Association additions '{0}' does not match any declared Association or subclass.", context.extendeeName().GetText());
+                    }
                 }
-                ValidationRuleBase < MetaEdGrammar.AssociationExtensionContext >
-                    {
-                        readonly: ISymbolTable, _symbolTable: ,
-                        AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass(ISymbolTable = symbolTable) {
-                            _symbolTable = symbolTable;
-                        },
-                        override: bool, IsValid(MetaEdGrammar, AssociationExtensionContext = context) {
-                            var identifierToMatch = context.extendeeName().GetText();
-                            return _symbolTable.IdentifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) ||
-                                _symbolTable.IdentifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch);
-                        },
-                        override: string, GetFailureMessage(MetaEdGrammar, AssociationExtensionContext = context) {
-                            return string.Format("Association additions '{0}' does not match any declared Association or subclass.", context.extendeeName().GetText());
-                        }
-                    };
+                AssociationExtension.AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass = AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass;
             })(AssociationExtension = Validator.AssociationExtension || (Validator.AssociationExtension = {}));
         })(Validator = Core.Validator || (Core.Validator = {}));
     })(Core = MetaEd.Core || (MetaEd.Core = {}));

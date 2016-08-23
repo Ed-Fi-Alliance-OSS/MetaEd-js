@@ -23,7 +23,7 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
                 .withBeginNamespace("edfi")
                 .withStartCommonDecimal("EntityForTest")
                 .withDocumentation("doc")
-                .withTotalDigits(totalDigits) 
+                .withTotalDigits(totalDigits)
                 .withDecimalPlaces(decimalPlaces)
                 .withEndCommonDecimal()
                 .withEndNamespace().toString();

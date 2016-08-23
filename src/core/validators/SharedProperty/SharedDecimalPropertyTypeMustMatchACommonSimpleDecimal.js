@@ -1,5 +1,3 @@
-using;
-MetaEd.Grammar.Antlr;
 var MetaEd;
 (function (MetaEd) {
     var Core;
@@ -8,23 +6,20 @@ var MetaEd;
         (function (Validator) {
             var SharedProperty;
             (function (SharedProperty) {
-                class SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal {
+                class SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal extends ValidationRuleBase {
+                    constructor(symbolTable) {
+                        this._symbolTable = symbolTable;
+                    }
+                    isValid(context) {
+                        var identifierToMatch = context.sharedPropertyType().GetText();
+                        var commonDecimalType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_DECIMAL);
+                        return this._symbolTable.IdentifierExists(commonDecimalType, identifierToMatch);
+                    }
+                    getFailureMessage(context) {
+                        return string.Format("Shared property '{0}' does not match any declared common decimal.", context.propertyName().GetText());
+                    }
                 }
-                ValidationRuleBase < MetaEdGrammar.SharedDecimalPropertyContext >
-                    {
-                        readonly: ISymbolTable, _symbolTable: ,
-                        SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal(ISymbolTable = symbolTable) {
-                            _symbolTable = symbolTable;
-                        },
-                        override: bool, IsValid(MetaEdGrammar, SharedDecimalPropertyContext = context) {
-                            var identifierToMatch = context.sharedPropertyType().GetText();
-                            var commonDecimalType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_DECIMAL);
-                            return _symbolTable.IdentifierExists(commonDecimalType, identifierToMatch);
-                        },
-                        override: string, GetFailureMessage(MetaEdGrammar, SharedDecimalPropertyContext = context) {
-                            return string.Format("Shared property '{0}' does not match any declared common decimal.", context.propertyName().GetText());
-                        }
-                    };
+                SharedProperty.SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal = SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal;
             })(SharedProperty = Validator.SharedProperty || (Validator.SharedProperty = {}));
         })(Validator = Core.Validator || (Core.Validator = {}));
     })(Core = MetaEd.Core || (MetaEd.Core = {}));

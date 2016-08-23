@@ -1,7 +1,3 @@
-using;
-System.Linq;
-using;
-MetaEd.Grammar.Antlr;
 var MetaEd;
 (function (MetaEd) {
     var Core;
@@ -10,28 +6,24 @@ var MetaEd;
         (function (Validator) {
             var InterchangeExtension;
             (function (InterchangeExtension) {
-                class InterchangeExtensionMustNotDuplicateInterchangeElementName {
+                class InterchangeExtensionMustNotDuplicateInterchangeElementName extends ValidationRuleBase {
+                    constructor(symbolTable) {
+                        this._symbolTable = symbolTable;
+                    }
+                    static duplicateInterchangeElements(context) {
+                        var interchangeElements = context.interchangeExtensionComponent().interchangeElement().Select(x => x.ID().GetText());
+                        return interchangeElements.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
+                    }
+                    isValid(context) {
+                        return !DuplicateInterchangeElements(context).Any();
+                    }
+                    getFailureMessage(context) {
+                        var identifier = context.extendeeName().GetText();
+                        var duplicateInterchangeElements = DuplicateInterchangeElements(context);
+                        return string.Format("Interchange additions '{0}' declares duplicate interchange element{2} '{1}'.", identifier, string.Join("', '", duplicateInterchangeElements), duplicateInterchangeElements.Count() > 1 ? "s" : string.Empty);
+                    }
                 }
-                ValidationRuleBase < MetaEdGrammar.InterchangeExtensionContext >
-                    {
-                        readonly: ISymbolTable, _symbolTable: ,
-                        InterchangeExtensionMustNotDuplicateInterchangeElementName(ISymbolTable = symbolTable) {
-                            _symbolTable = symbolTable;
-                        },
-                        string: [], DuplicateInterchangeElements(MetaEdGrammar, InterchangeExtensionContext = context) {
-                            var interchangeElements = context.interchangeExtensionComponent().interchangeElement().Select(x => x.ID().GetText());
-                            //group and filter duplicates
-                            return interchangeElements.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
-                        },
-                        override: bool, IsValid(MetaEdGrammar, InterchangeExtensionContext = context) {
-                            return !DuplicateInterchangeElements(context).Any();
-                        },
-                        override: string, GetFailureMessage(MetaEdGrammar, InterchangeExtensionContext = context) {
-                            var identifier = context.extendeeName().GetText();
-                            var duplicateInterchangeElements = DuplicateInterchangeElements(context);
-                            return string.Format("Interchange additions '{0}' declares duplicate interchange element{2} '{1}'.", identifier, string.Join("', '", duplicateInterchangeElements), duplicateInterchangeElements.Count() > 1 ? "s" : string.Empty);
-                        }
-                    };
+                InterchangeExtension.InterchangeExtensionMustNotDuplicateInterchangeElementName = InterchangeExtensionMustNotDuplicateInterchangeElementName;
             })(InterchangeExtension = Validator.InterchangeExtension || (Validator.InterchangeExtension = {}));
         })(Validator = Core.Validator || (Core.Validator = {}));
     })(Core = MetaEd.Core || (MetaEd.Core = {}));

@@ -1,7 +1,3 @@
-using;
-MetaEd.Grammar.Antlr;
-using;
-MetaEd.Grammar.Antlr.Extensions;
 var MetaEd;
 (function (MetaEd) {
     var Core;
@@ -10,19 +6,17 @@ var MetaEd;
         (function (Validator) {
             var InlineCommonType;
             (function (InlineCommonType) {
-                class InlineCommonTypeExistsOnlyInCoreNamespace {
+                class InlineCommonTypeExistsOnlyInCoreNamespace extends ValidationRuleBase {
+                    isValid(context) {
+                        var namespaceInfo = context.GetAncestorContext();
+                        return !namespaceInfo.IsExtension;
+                    }
+                    getFailureMessage(context) {
+                        var namespaceInfo = context.GetAncestorContext();
+                        return string.Format("Inline Common Type '{0}' is not valid in extension namespace '{1}'.", context.EntityName(), namespaceInfo.NamespaceName);
+                    }
                 }
-                ValidationRuleBase < MetaEdGrammar.InlineCommonTypeContext >
-                    {
-                        override: bool, IsValid(MetaEdGrammar, InlineCommonTypeContext = context) {
-                            var namespaceInfo = context.GetAncestorContext();
-                            return !namespaceInfo.IsExtension;
-                        },
-                        override: string, GetFailureMessage(MetaEdGrammar, InlineCommonTypeContext = context) {
-                            var namespaceInfo = context.GetAncestorContext();
-                            return string.Format("Inline Common Type '{0}' is not valid in extension namespace '{1}'.", context.EntityName(), namespaceInfo.NamespaceName);
-                        }
-                    };
+                InlineCommonType.InlineCommonTypeExistsOnlyInCoreNamespace = InlineCommonTypeExistsOnlyInCoreNamespace;
             })(InlineCommonType = Validator.InlineCommonType || (Validator.InlineCommonType = {}));
         })(Validator = Core.Validator || (Core.Validator = {}));
     })(Core = MetaEd.Core || (MetaEd.Core = {}));

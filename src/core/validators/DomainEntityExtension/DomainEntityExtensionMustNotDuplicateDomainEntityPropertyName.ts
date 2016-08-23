@@ -1,45 +1,29 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.DomainEntityExtension
-{
-    public class DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName : ValidationRuleBase<MetaEdGrammar.DomainEntityExtensionContext>
+﻿module MetaEd.Core.Validator.DomainEntityExtension {
+    export class DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName extends ValidationRuleBase<MetaEdGrammar.DomainEntityExtensionContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.DomainEntityExtensionContext context)
-        {
+        public isValid(context: MetaEdGrammar.DomainEntityExtensionContext): boolean {
             return !PropertyRuleContextsForDuplicates(context).Any();
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.DomainEntityExtensionContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DomainEntityExtensionContext): string {
             var duplicatePropertyIdentifierList = PropertyRuleContextsForDuplicates(context).Select(x => x.IdNode().GetText());
             return string.Format("Domain Entity additions '{0}' declares '{1}' already in property list of Domain Entity.", context.extendeeName().GetText(), string.Join(",", duplicatePropertyIdentifierList));
         }
-
-        // takes into account that include extensions are not considered duplicates
-        protected IEnumerable<IPropertyWithComponents> PropertyRuleContextsForDuplicates(MetaEdGrammar.DomainEntityExtensionContext context)
-        {
+        protected propertyRuleContextsForDuplicates(context: MetaEdGrammar.DomainEntityExtensionContext): IEnumerable<IPropertyWithComponents> {
             var entityType = context.DOMAIN_ENTITY().GetText();
             var extensionType = context.DOMAIN_ENTITY().GetText() + context.ADDITIONS();
             var identifier = context.extendeeName().GetText();
-
-            var domainEntityPropertyIdentifiers = _symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
-            var duplicates = _symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, domainEntityPropertyIdentifiers);
+            var domainEntityPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
+            var duplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, domainEntityPropertyIdentifiers);
             return duplicates.Where(IsNotIncludePropertyContextWithExtension);
         }
-
-        private static bool IsNotIncludePropertyContextWithExtension(IPropertyWithComponents context)
-        {
-            if (!(context is MetaEdGrammar.IncludePropertyContext)) return true;
-            return ((MetaEdGrammar.IncludePropertyContext)context).includeExtensionOverride() == null;
+        private static isNotIncludePropertyContextWithExtension(context: IPropertyWithComponents): boolean {
+            if (!(context instanceof MetaEdGrammar.IncludePropertyContext))
+                return true;
+            return (<MetaEdGrammar.IncludePropertyContext>context).includeExtensionOverride() == null;
         }
     }
 }

@@ -1,27 +1,16 @@
-﻿using System.Linq;
-using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.AssociationSubclass
-{
-    public class AssociationSubclassIdentifierMustMatchAnAssociation : ValidationRuleBase<MetaEdGrammar.AssociationSubclassContext>
+﻿module MetaEd.Core.Validator.AssociationSubclass {
+    export class AssociationSubclassIdentifierMustMatchAnAssociation extends ValidationRuleBase<MetaEdGrammar.AssociationSubclassContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public AssociationSubclassIdentifierMustMatchAnAssociation(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.AssociationSubclassContext context)
-        {
+        public isValid(context: MetaEdGrammar.AssociationSubclassContext): boolean {
             var associationEntityType = context.ASSOCIATION().GetText();
             var basedOnName = context.baseName().GetText();
-
-            return _symbolTable.IdentifiersForEntityType(associationEntityType).Any(x => x.Equals(basedOnName));
+            return this._symbolTable.IdentifiersForEntityType(associationEntityType).Any(x => x.Equals(basedOnName));
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.AssociationSubclassContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.AssociationSubclassContext): string {
             return string.Format("Association '{0}' based on '{1}' does not match any declared Association.", context.associationName().GetText(), context.baseName().GetText());
         }
     }

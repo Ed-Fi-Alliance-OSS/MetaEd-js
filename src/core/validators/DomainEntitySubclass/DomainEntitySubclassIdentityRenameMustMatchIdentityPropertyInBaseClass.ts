@@ -1,48 +1,30 @@
-﻿using System.Linq;
-using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.DomainEntitySubclass
-{
-    public class DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass : ValidationRuleBase<MetaEdGrammar.DomainEntitySubclassContext>
+﻿module MetaEd.Core.Validator.DomainEntitySubclass {
+    export class DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass extends ValidationRuleBase<MetaEdGrammar.DomainEntitySubclassContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.DomainEntitySubclassContext context)
-        {
-            var identityRenames = context.property().Where(x => x.GetProperty().propertyComponents().propertyAnnotation().identityRename() != null)
-                                                      .Select(y => y.GetProperty().propertyComponents().propertyAnnotation().identityRename());
+        public isValid(context: MetaEdGrammar.DomainEntitySubclassContext): boolean {
+            var identityRenames = context.property().Where(x => x.GetProperty().propertyComponents().propertyAnnotation().identityRename() != null).Select(y => y.GetProperty().propertyComponents().propertyAnnotation().identityRename());
             if (!identityRenames.Any())
                 return true;
-
             var entityType = context.DOMAIN_ENTITY().GetText();
             var baseIdentifier = context.baseName().GetText();
             var basePropertyIdentifier = identityRenames.First().baseKeyName().GetText();
-
-            var baseSymbolTable = _symbolTable.Get(entityType, baseIdentifier);
+            var baseSymbolTable = this._symbolTable.Get(entityType, baseIdentifier);
             if (baseSymbolTable == null)
-                return true; // this will cause a validation failure somewhere else
-
+                return true;
             var baseProperty = baseSymbolTable.PropertySymbolTable.Get(basePropertyIdentifier);
             if (baseProperty == null)
                 return false;
-
             return baseProperty.propertyComponents().propertyAnnotation().identity() != null;
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.DomainEntitySubclassContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DomainEntitySubclassContext): string {
             var identifier = context.entityName().GetText();
             var baseIdentifier = context.baseName().GetText();
-
-            var identityRenames = context.property().Where(x => x.GetProperty().propertyComponents().propertyAnnotation().identityRename() != null)
-                                                      .Select(y => y.GetProperty().propertyComponents().propertyAnnotation().identityRename());
+            var identityRenames = context.property().Where(x => x.GetProperty().propertyComponents().propertyAnnotation().identityRename() != null).Select(y => y.GetProperty().propertyComponents().propertyAnnotation().identityRename());
             var basePropertyIdentifier = identityRenames.First().baseKeyName().GetText();
-            
             return string.Format("DomainEntity '{0}' based on '{1}' tries to rename {2} which is not part of the identity.", identifier, baseIdentifier, basePropertyIdentifier);
         }
     }

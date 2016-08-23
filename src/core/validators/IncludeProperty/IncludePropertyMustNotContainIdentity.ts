@@ -1,17 +1,10 @@
-﻿using MetaEd.Grammar.Antlr;
-using MetaEd.Grammar.Antlr.Extensions;
-
-namespace MetaEd.Core.Validator.IncludeProperty
-{
-    public class IncludePropertyMustNotContainIdentity : ValidationRuleBase<MetaEdGrammar.IncludePropertyContext>
+﻿module MetaEd.Core.Validator.IncludeProperty {
+    export class IncludePropertyMustNotContainIdentity extends ValidationRuleBase<MetaEdGrammar.IncludePropertyContext>
     {
-        public override bool IsValid(MetaEdGrammar.IncludePropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.IncludePropertyContext): boolean {
             return context.propertyComponents().propertyAnnotation().identity() == null;
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.IncludePropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.IncludePropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return string.Format("Include property '{0}' is invalid to be used for the identity of {1} '{2}'", context.propertyName().GetText(), topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName());
         }

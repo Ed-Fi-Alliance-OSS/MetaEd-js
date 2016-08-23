@@ -1,42 +1,27 @@
-﻿using System.Linq;
-using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.DomainEntitySubclass
-{
-    public class DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName : ValidationRuleBase<MetaEdGrammar.DomainEntitySubclassContext>
+﻿module MetaEd.Core.Validator.DomainEntitySubclass {
+    export class DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName extends ValidationRuleBase<MetaEdGrammar.DomainEntitySubclassContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.DomainEntitySubclassContext context)
-        {
+        public isValid(context: MetaEdGrammar.DomainEntitySubclassContext): boolean {
             var entityType = context.DOMAIN_ENTITY().GetText();
             var extensionType = context.DOMAIN_ENTITY().GetText() + context.BASED_ON();
             var identifier = context.entityName().GetText();
             var baseIdentifier = context.baseName().GetText();
-
-            // compare on symbol table identifiers
-            var basePropertyIdentifiers = _symbolTable.IdentifiersForEntityProperties(entityType, baseIdentifier);
-            var subclassPropertyIdentifiers = _symbolTable.IdentifiersForEntityProperties(extensionType, identifier);
+            var basePropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, baseIdentifier);
+            var subclassPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(extensionType, identifier);
             return !basePropertyIdentifiers.Intersect(subclassPropertyIdentifiers).Any();
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.DomainEntitySubclassContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DomainEntitySubclassContext): string {
             var domainEntityType = context.DOMAIN_ENTITY().GetText();
             var extensionType = context.DOMAIN_ENTITY().GetText() + context.BASED_ON();
             var identifier = context.entityName().GetText();
             var baseIdentifier = context.baseName().GetText();
-
-            // get real names for error message
-            var associationPropertyIdentifiers = _symbolTable.IdentifiersForEntityProperties(domainEntityType, baseIdentifier).ToList();
-            var propertyRuleContextsForDuplicates = _symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
+            var associationPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(domainEntityType, baseIdentifier).ToList();
+            var propertyRuleContextsForDuplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
             var duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
-
             return string.Format("DomainEntity '{0}' based on '{1}' declares '{2}' already in property list of base DomainEntity.", identifier, baseIdentifier, string.Join(",", duplicatePropertyIdentifierList));
         }
     }

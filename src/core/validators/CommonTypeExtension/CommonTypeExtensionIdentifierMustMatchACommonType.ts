@@ -1,27 +1,16 @@
-﻿using System.Linq;
-using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.CommonTypeExtension
-{
-    public class CommonTypeExtensionIdentifierMustMatchACommonType : ValidationRuleBase<MetaEdGrammar.CommonTypeExtensionContext>
+﻿module MetaEd.Core.Validator.CommonTypeExtension {
+    export class CommonTypeExtensionIdentifierMustMatchACommonType extends ValidationRuleBase<MetaEdGrammar.CommonTypeExtensionContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public CommonTypeExtensionIdentifierMustMatchACommonType(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.CommonTypeExtensionContext context)
-        {
+        public isValid(context: MetaEdGrammar.CommonTypeExtensionContext): boolean {
             var entityType = context.COMMON_TYPE().GetText();
             var identifier = context.extendeeName().GetText();
-
-            return _symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
+            return this._symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.CommonTypeExtensionContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.CommonTypeExtensionContext): string {
             return string.Format("Common Type additions '{0}' does not match any declared Common Type.", context.extendeeName().GetText());
         }
     }

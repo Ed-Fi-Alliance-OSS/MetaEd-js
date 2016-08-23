@@ -1,27 +1,15 @@
-﻿using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.Association
-{
-    public class SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity : ValidationRuleBase<MetaEdGrammar.SecondDomainEntityContext>
+﻿module MetaEd.Core.Validator.Association {
+    export class SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity extends ValidationRuleBase<MetaEdGrammar.SecondDomainEntityContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.SecondDomainEntityContext context)
-        {
+        public isValid(context: MetaEdGrammar.SecondDomainEntityContext): boolean {
             var identifierToMatch = context.IdText();
-
-            return _symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntityEntityType(), identifierToMatch) ||
-                _symbolTable.IdentifierExists(SymbolTableEntityType.AbstractEntityEntityType(), identifierToMatch) ||
-                _symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntitySubclassEntityType(), identifierToMatch);
+            return this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntityEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AbstractEntityEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntitySubclassEntityType(), identifierToMatch);
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.SecondDomainEntityContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.SecondDomainEntityContext): string {
             return string.Format("Domain Entity property '{0}' does not match any declared domain or abstract entity.", context.IdText());
         }
     }

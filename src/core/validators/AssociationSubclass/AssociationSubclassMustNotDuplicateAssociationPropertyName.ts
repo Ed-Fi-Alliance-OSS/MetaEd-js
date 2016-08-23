@@ -1,42 +1,27 @@
-﻿using System.Linq;
-using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.AssociationSubclass
-{
-    public class AssociationSubclassMustNotDuplicateAssociationPropertyName : ValidationRuleBase<MetaEdGrammar.AssociationSubclassContext>
+﻿module MetaEd.Core.Validator.AssociationSubclass {
+    export class AssociationSubclassMustNotDuplicateAssociationPropertyName extends ValidationRuleBase<MetaEdGrammar.AssociationSubclassContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public AssociationSubclassMustNotDuplicateAssociationPropertyName(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.AssociationSubclassContext context)
-        {
+        public isValid(context: MetaEdGrammar.AssociationSubclassContext): boolean {
             var entityType = context.ASSOCIATION().GetText();
             var extensionType = context.ASSOCIATION().GetText() + context.BASED_ON();
             var identifier = context.associationName().GetText();
             var baseIdentifier = context.baseName().GetText();
-
-            // compare on symbol table identifiers
-            var basePropertyIdentifiers = _symbolTable.IdentifiersForEntityProperties(entityType, baseIdentifier);
-            var subclassPropertyIdentifiers = _symbolTable.IdentifiersForEntityProperties(extensionType, identifier);
+            var basePropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, baseIdentifier);
+            var subclassPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(extensionType, identifier);
             return !basePropertyIdentifiers.Intersect(subclassPropertyIdentifiers).Any();
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.AssociationSubclassContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.AssociationSubclassContext): string {
             var entityType = context.ASSOCIATION().GetText();
             var extensionType = context.ASSOCIATION().GetText() + context.BASED_ON();
             var identifier = context.associationName().GetText();
             var baseIdentifier = context.baseName().GetText();
-
-            // get real names for error message
-            var associationPropertyIdentifiers = _symbolTable.IdentifiersForEntityProperties(entityType, baseIdentifier).ToList();
-            var propertyRuleContextsForDuplicates = _symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
+            var associationPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, baseIdentifier).ToList();
+            var propertyRuleContextsForDuplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
             var duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
-
             return string.Format("Association '{0}' based on '{1}' declares '{2}' already in property list of base Association.", identifier, baseIdentifier, string.Join(",", duplicatePropertyIdentifierList));
         }
     }

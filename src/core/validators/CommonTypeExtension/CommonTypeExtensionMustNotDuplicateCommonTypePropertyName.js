@@ -1,7 +1,3 @@
-using;
-System.Linq;
-using;
-MetaEd.Grammar.Antlr;
 var MetaEd;
 (function (MetaEd) {
     var Core;
@@ -10,34 +6,29 @@ var MetaEd;
         (function (Validator) {
             var CommonTypeExtension;
             (function (CommonTypeExtension) {
-                class CommonTypeExtensionMustNotDuplicateCommonTypePropertyName {
+                class CommonTypeExtensionMustNotDuplicateCommonTypePropertyName extends ValidationRuleBase {
+                    constructor(symbolTable) {
+                        this._symbolTable = symbolTable;
+                    }
+                    isValid(context) {
+                        var entityType = context.COMMON_TYPE().GetText();
+                        var extensionType = context.COMMON_TYPE().GetText() + context.ADDITIONS();
+                        var identifier = context.extendeeName().GetText();
+                        var commonTypePropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, identifier);
+                        var extensionPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(extensionType, identifier);
+                        return !commonTypePropertyIdentifiers.Intersect(extensionPropertyIdentifiers).Any();
+                    }
+                    getFailureMessage(context) {
+                        var entityType = context.COMMON_TYPE().GetText();
+                        var extensionType = context.COMMON_TYPE().GetText() + context.ADDITIONS();
+                        var identifier = context.extendeeName().GetText();
+                        var commonTypePropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
+                        var propertyRuleContextsForDuplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, commonTypePropertyIdentifiers);
+                        var duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
+                        return string.Format("Common Type additions '{0}' declares '{1}' already in property list of Common Type.", identifier, string.Join(",", duplicatePropertyIdentifierList));
+                    }
                 }
-                ValidationRuleBase < MetaEdGrammar.CommonTypeExtensionContext >
-                    {
-                        readonly: ISymbolTable, _symbolTable: ,
-                        CommonTypeExtensionMustNotDuplicateCommonTypePropertyName(ISymbolTable = symbolTable) {
-                            _symbolTable = symbolTable;
-                        },
-                        override: bool, IsValid(MetaEdGrammar, CommonTypeExtensionContext = context) {
-                            var entityType = context.COMMON_TYPE().GetText();
-                            var extensionType = context.COMMON_TYPE().GetText() + context.ADDITIONS();
-                            var identifier = context.extendeeName().GetText();
-                            // compare on symbol table identifiers
-                            var commonTypePropertyIdentifiers = _symbolTable.IdentifiersForEntityProperties(entityType, identifier);
-                            var extensionPropertyIdentifiers = _symbolTable.IdentifiersForEntityProperties(extensionType, identifier);
-                            return !commonTypePropertyIdentifiers.Intersect(extensionPropertyIdentifiers).Any();
-                        },
-                        override: string, GetFailureMessage(MetaEdGrammar, CommonTypeExtensionContext = context) {
-                            var entityType = context.COMMON_TYPE().GetText();
-                            var extensionType = context.COMMON_TYPE().GetText() + context.ADDITIONS();
-                            var identifier = context.extendeeName().GetText();
-                            // get real names for error message
-                            var commonTypePropertyIdentifiers = _symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
-                            var propertyRuleContextsForDuplicates = _symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, commonTypePropertyIdentifiers);
-                            var duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
-                            return string.Format("Common Type additions '{0}' declares '{1}' already in property list of Common Type.", identifier, string.Join(",", duplicatePropertyIdentifierList));
-                        }
-                    };
+                CommonTypeExtension.CommonTypeExtensionMustNotDuplicateCommonTypePropertyName = CommonTypeExtensionMustNotDuplicateCommonTypePropertyName;
             })(CommonTypeExtension = Validator.CommonTypeExtension || (Validator.CommonTypeExtension = {}));
         })(Validator = Core.Validator || (Core.Validator = {}));
     })(Core = MetaEd.Core || (MetaEd.Core = {}));

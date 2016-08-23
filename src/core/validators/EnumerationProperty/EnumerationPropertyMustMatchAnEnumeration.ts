@@ -1,24 +1,15 @@
-﻿using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.EnumerationProperty
-{
-    public class EnumerationPropertyMustMatchAnEnumeration : ValidationRuleBase<MetaEdGrammar.EnumerationPropertyContext>
+﻿module MetaEd.Core.Validator.EnumerationProperty {
+    export class EnumerationPropertyMustMatchAnEnumeration extends ValidationRuleBase<MetaEdGrammar.EnumerationPropertyContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public EnumerationPropertyMustMatchAnEnumeration(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.EnumerationPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.EnumerationPropertyContext): boolean {
             var identifierToMatch = context.propertyName().GetText();
-            return _symbolTable.IdentifierExists(SymbolTableEntityType.EnumerationEntityType(), identifierToMatch);
+            return this._symbolTable.IdentifierExists(SymbolTableEntityType.EnumerationEntityType(), identifierToMatch);
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.EnumerationPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.EnumerationPropertyContext): string {
             return string.Format("Enumeration property '{0}' does not match any declared enumeration.", context.propertyName().GetText());
         }
     }

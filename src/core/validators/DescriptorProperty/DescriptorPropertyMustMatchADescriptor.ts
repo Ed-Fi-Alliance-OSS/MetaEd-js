@@ -1,26 +1,16 @@
-﻿using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.DescriptorProperty
-{
-    public class DescriptorPropertyMustMatchADescriptor : ValidationRuleBase<MetaEdGrammar.DescriptorPropertyContext>
+﻿module MetaEd.Core.Validator.DescriptorProperty {
+    export class DescriptorPropertyMustMatchADescriptor extends ValidationRuleBase<MetaEdGrammar.DescriptorPropertyContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public DescriptorPropertyMustMatchADescriptor(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.DescriptorPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.DescriptorPropertyContext): boolean {
             var identifierToMatch = context.propertyName().GetText();
             var descriptorType = MetaEdGrammar.TokenName(MetaEdGrammar.DESCRIPTOR_ENTITY);
-
-            return _symbolTable.IdentifierExists(descriptorType, identifierToMatch);
+            return this._symbolTable.IdentifierExists(descriptorType, identifierToMatch);
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.DescriptorPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DescriptorPropertyContext): string {
             return string.Format("Descriptor property '{0}' does not match any declared descriptor.", context.propertyName().GetText());
         }
     }

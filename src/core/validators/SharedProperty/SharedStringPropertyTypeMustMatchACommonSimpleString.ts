@@ -1,27 +1,16 @@
-﻿using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.SharedProperty
-{
-    public class SharedStringPropertyTypeMustMatchACommonSimpleString : ValidationRuleBase<MetaEdGrammar.SharedStringPropertyContext>
+﻿module MetaEd.Core.Validator.SharedProperty {
+    export class SharedStringPropertyTypeMustMatchACommonSimpleString extends ValidationRuleBase<MetaEdGrammar.SharedStringPropertyContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public SharedStringPropertyTypeMustMatchACommonSimpleString(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.SharedStringPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.SharedStringPropertyContext): boolean {
             var identifierToMatch = context.sharedPropertyType().GetText();
             var commonStringType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_STRING);
-
-
-            return _symbolTable.IdentifierExists(commonStringType, identifierToMatch);
+            return this._symbolTable.IdentifierExists(commonStringType, identifierToMatch);
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.SharedStringPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.SharedStringPropertyContext): string {
             return string.Format("Shared property '{0}' does not match any declared common string.", context.propertyName().GetText());
         }
     }

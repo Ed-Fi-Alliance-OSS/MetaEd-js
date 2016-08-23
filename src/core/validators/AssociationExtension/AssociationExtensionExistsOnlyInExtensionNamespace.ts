@@ -1,18 +1,11 @@
-﻿using MetaEd.Grammar.Antlr;
-using MetaEd.Grammar.Antlr.Extensions;
-
-namespace MetaEd.Core.Validator.AssociationExtension
-{
-    public class AssociationExtensionExistsOnlyInExtensionNamespace : ValidationRuleBase<MetaEdGrammar.AssociationExtensionContext>
+﻿module MetaEd.Core.Validator.AssociationExtension {
+    export class AssociationExtensionExistsOnlyInExtensionNamespace extends ValidationRuleBase<MetaEdGrammar.AssociationExtensionContext>
     {
-        public override bool IsValid(MetaEdGrammar.AssociationExtensionContext context)
-        {
+        public isValid(context: MetaEdGrammar.AssociationExtensionContext): boolean {
             var namespaceInfo = context.GetAncestorContext<INamespaceInfo>();
             return namespaceInfo.IsExtension;
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.AssociationExtensionContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.AssociationExtensionContext): string {
             var namespaceInfo = context.GetAncestorContext<INamespaceInfo>();
             return string.Format("Association additions '{0}' is not valid in core namespace '{1}'.", context.extendeeName().GetText(), namespaceInfo.NamespaceName);
         }

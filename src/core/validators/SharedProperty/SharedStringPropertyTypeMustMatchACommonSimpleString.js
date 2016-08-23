@@ -1,5 +1,3 @@
-using;
-MetaEd.Grammar.Antlr;
 var MetaEd;
 (function (MetaEd) {
     var Core;
@@ -8,23 +6,20 @@ var MetaEd;
         (function (Validator) {
             var SharedProperty;
             (function (SharedProperty) {
-                class SharedStringPropertyTypeMustMatchACommonSimpleString {
+                class SharedStringPropertyTypeMustMatchACommonSimpleString extends ValidationRuleBase {
+                    constructor(symbolTable) {
+                        this._symbolTable = symbolTable;
+                    }
+                    isValid(context) {
+                        var identifierToMatch = context.sharedPropertyType().GetText();
+                        var commonStringType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_STRING);
+                        return this._symbolTable.IdentifierExists(commonStringType, identifierToMatch);
+                    }
+                    getFailureMessage(context) {
+                        return string.Format("Shared property '{0}' does not match any declared common string.", context.propertyName().GetText());
+                    }
                 }
-                ValidationRuleBase < MetaEdGrammar.SharedStringPropertyContext >
-                    {
-                        readonly: ISymbolTable, _symbolTable: ,
-                        SharedStringPropertyTypeMustMatchACommonSimpleString(ISymbolTable = symbolTable) {
-                            _symbolTable = symbolTable;
-                        },
-                        override: bool, IsValid(MetaEdGrammar, SharedStringPropertyContext = context) {
-                            var identifierToMatch = context.sharedPropertyType().GetText();
-                            var commonStringType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_STRING);
-                            return _symbolTable.IdentifierExists(commonStringType, identifierToMatch);
-                        },
-                        override: string, GetFailureMessage(MetaEdGrammar, SharedStringPropertyContext = context) {
-                            return string.Format("Shared property '{0}' does not match any declared common string.", context.propertyName().GetText());
-                        }
-                    };
+                SharedProperty.SharedStringPropertyTypeMustMatchACommonSimpleString = SharedStringPropertyTypeMustMatchACommonSimpleString;
             })(SharedProperty = Validator.SharedProperty || (Validator.SharedProperty = {}));
         })(Validator = Core.Validator || (Core.Validator = {}));
     })(Core = MetaEd.Core || (MetaEd.Core = {}));

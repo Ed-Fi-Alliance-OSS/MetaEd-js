@@ -1,5 +1,3 @@
-using;
-MetaEd.Grammar.Antlr;
 var MetaEd;
 (function (MetaEd) {
     var Core;
@@ -8,23 +6,20 @@ var MetaEd;
         (function (Validator) {
             var SharedProperty;
             (function (SharedProperty) {
-                class SharedShortPropertyTypeMustMatchACommonSimpleShort {
+                class SharedShortPropertyTypeMustMatchACommonSimpleShort extends ValidationRuleBase {
+                    constructor(symbolTable) {
+                        this._symbolTable = symbolTable;
+                    }
+                    isValid(context) {
+                        var identifierToMatch = context.sharedPropertyType().GetText();
+                        var commonShortType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_SHORT);
+                        return this._symbolTable.IdentifierExists(commonShortType, identifierToMatch);
+                    }
+                    getFailureMessage(context) {
+                        return string.Format("Shared property '{0}' does not match any declared common short.", context.propertyName().GetText());
+                    }
                 }
-                ValidationRuleBase < MetaEdGrammar.SharedShortPropertyContext >
-                    {
-                        readonly: ISymbolTable, _symbolTable: ,
-                        SharedShortPropertyTypeMustMatchACommonSimpleShort(ISymbolTable = symbolTable) {
-                            _symbolTable = symbolTable;
-                        },
-                        override: bool, IsValid(MetaEdGrammar, SharedShortPropertyContext = context) {
-                            var identifierToMatch = context.sharedPropertyType().GetText();
-                            var commonShortType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_SHORT);
-                            return _symbolTable.IdentifierExists(commonShortType, identifierToMatch);
-                        },
-                        override: string, GetFailureMessage(MetaEdGrammar, SharedShortPropertyContext = context) {
-                            return string.Format("Shared property '{0}' does not match any declared common short.", context.propertyName().GetText());
-                        }
-                    };
+                SharedProperty.SharedShortPropertyTypeMustMatchACommonSimpleShort = SharedShortPropertyTypeMustMatchACommonSimpleShort;
             })(SharedProperty = Validator.SharedProperty || (Validator.SharedProperty = {}));
         })(Validator = Core.Validator || (Core.Validator = {}));
     })(Core = MetaEd.Core || (MetaEd.Core = {}));

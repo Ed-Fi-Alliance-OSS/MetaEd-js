@@ -1,25 +1,15 @@
-﻿using System.Collections.Generic;
-using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.MetaEdId
-{
-    public class MustNotDuplicateMetaEdId : ValidationRuleBase<MetaEdGrammar.MetaEdIdContext>
+﻿module MetaEd.Core.Validator.MetaEdId {
+    export class MustNotDuplicateMetaEdId extends ValidationRuleBase<MetaEdGrammar.MetaEdIdContext>
     {
-        private readonly ISet<string> _trackedMetaEdIds = new HashSet<string>();
-
-        public override bool IsValid(MetaEdGrammar.MetaEdIdContext context)
-        {
-            string metaEdId = context.GetValue();
-            return _trackedMetaEdIds.Add(metaEdId);
+        private _trackedMetaEdIds: ISet<string> = new HashSet<string>();
+        public isValid(context: MetaEdGrammar.MetaEdIdContext): boolean {
+            var metaEdId: string = context.GetValue();
+            return this._trackedMetaEdIds.Add(metaEdId);
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.MetaEdIdContext context)
-        {
-            string metaEdId = context.GetValue();
-            return
-                string.Format(
-                    "MetaEdId '{0}' exists on multiple entities.  All MetaEdIds must be globally unique.",
-                    metaEdId);
+        public getFailureMessage(context: MetaEdGrammar.MetaEdIdContext): string {
+            var metaEdId: string = context.GetValue();
+            return string.Format("MetaEdId '{0}' exists on multiple entities.  All MetaEdIds must be globally unique.",
+                metaEdId);
         }
     }
 }

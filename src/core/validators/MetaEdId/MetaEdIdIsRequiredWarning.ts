@@ -1,602 +1,349 @@
-﻿using MetaEd.Grammar.Antlr;
-using MetaEd.Grammar.Antlr.Extensions;
-
-namespace MetaEd.Core.Validator.MetaEdId
-{
-    public class MetaEdIdIsRequiredWarning :
-        IValidationRule<MetaEdGrammar.AbstractEntityContext>,
-        IValidationRule<MetaEdGrammar.AssociationContext>,
-        IValidationRule<MetaEdGrammar.AssociationExtensionContext>,
-        IValidationRule<MetaEdGrammar.AssociationSubclassContext>,
-        IValidationRule<MetaEdGrammar.BooleanPropertyContext>,
-        IValidationRule<MetaEdGrammar.ChoiceTypeContext>,
-        IValidationRule<MetaEdGrammar.CommonDecimalContext>,
-        IValidationRule<MetaEdGrammar.CommonIntegerContext>,
-        IValidationRule<MetaEdGrammar.CommonShortContext>,
-        IValidationRule<MetaEdGrammar.CommonStringContext>,
-        IValidationRule<MetaEdGrammar.CommonTypeContext>,
-        IValidationRule<MetaEdGrammar.CommonTypeExtensionContext>,
-        IValidationRule<MetaEdGrammar.CurrencyPropertyContext>,
-        IValidationRule<MetaEdGrammar.DatePropertyContext>,
-        IValidationRule<MetaEdGrammar.DecimalPropertyContext>,
-        IValidationRule<MetaEdGrammar.DescriptorContext>,
-        IValidationRule<MetaEdGrammar.DescriptorPropertyContext>,
-        IValidationRule<MetaEdGrammar.DomainContext>,
-        IValidationRule<MetaEdGrammar.DomainEntityContext>,
-        IValidationRule<MetaEdGrammar.DomainItemContext>,
-        IValidationRule<MetaEdGrammar.DomainEntityExtensionContext>,
-        IValidationRule<MetaEdGrammar.DomainEntitySubclassContext>,
-        IValidationRule<MetaEdGrammar.DurationPropertyContext>,
-        IValidationRule<MetaEdGrammar.EnumerationContext>,
-        IValidationRule<MetaEdGrammar.EnumerationItemContext>,
-        IValidationRule<MetaEdGrammar.EnumerationPropertyContext>,
-        IValidationRule<MetaEdGrammar.FirstDomainEntityContext>,
-        IValidationRule<MetaEdGrammar.IncludePropertyContext>,
-        IValidationRule<MetaEdGrammar.InlineCommonTypeContext>,
-        IValidationRule<MetaEdGrammar.IntegerPropertyContext>,
-        IValidationRule<MetaEdGrammar.InterchangeContext>,
-        IValidationRule<MetaEdGrammar.InterchangeElementContext>,
-        IValidationRule<MetaEdGrammar.InterchangeExtensionContext>,
-        IValidationRule<MetaEdGrammar.InterchangeIdentityTemplateContext>,
-        IValidationRule<MetaEdGrammar.PercentPropertyContext>,
-        IValidationRule<MetaEdGrammar.ReferencePropertyContext>,
-        IValidationRule<MetaEdGrammar.SecondDomainEntityContext>,
-        IValidationRule<MetaEdGrammar.SharedDecimalPropertyContext>,
-        IValidationRule<MetaEdGrammar.SharedIntegerPropertyContext>,
-        IValidationRule<MetaEdGrammar.SharedShortPropertyContext>,
-        IValidationRule<MetaEdGrammar.SharedStringPropertyContext>,
-        IValidationRule<MetaEdGrammar.ShortPropertyContext>,
-        IValidationRule<MetaEdGrammar.StringPropertyContext>,
-        IValidationRule<MetaEdGrammar.SubdomainContext>,
-        IValidationRule<MetaEdGrammar.TimePropertyContext>,
-        IValidationRule<MetaEdGrammar.YearPropertyContext>
+﻿module MetaEd.Core.Validator.MetaEdId {
+    export class MetaEdIdIsRequiredWarning implements IValidationRule<MetaEdGrammar.AbstractEntityContext>, IValidationRule<MetaEdGrammar.AssociationContext>, IValidationRule<MetaEdGrammar.AssociationExtensionContext>, IValidationRule<MetaEdGrammar.AssociationSubclassContext>, IValidationRule<MetaEdGrammar.BooleanPropertyContext>, IValidationRule<MetaEdGrammar.ChoiceTypeContext>, IValidationRule<MetaEdGrammar.CommonDecimalContext>, IValidationRule<MetaEdGrammar.CommonIntegerContext>, IValidationRule<MetaEdGrammar.CommonShortContext>, IValidationRule<MetaEdGrammar.CommonStringContext>, IValidationRule<MetaEdGrammar.CommonTypeContext>, IValidationRule<MetaEdGrammar.CommonTypeExtensionContext>, IValidationRule<MetaEdGrammar.CurrencyPropertyContext>, IValidationRule<MetaEdGrammar.DatePropertyContext>, IValidationRule<MetaEdGrammar.DecimalPropertyContext>, IValidationRule<MetaEdGrammar.DescriptorContext>, IValidationRule<MetaEdGrammar.DescriptorPropertyContext>, IValidationRule<MetaEdGrammar.DomainContext>, IValidationRule<MetaEdGrammar.DomainEntityContext>, IValidationRule<MetaEdGrammar.DomainItemContext>, IValidationRule<MetaEdGrammar.DomainEntityExtensionContext>, IValidationRule<MetaEdGrammar.DomainEntitySubclassContext>, IValidationRule<MetaEdGrammar.DurationPropertyContext>, IValidationRule<MetaEdGrammar.EnumerationContext>, IValidationRule<MetaEdGrammar.EnumerationItemContext>, IValidationRule<MetaEdGrammar.EnumerationPropertyContext>, IValidationRule<MetaEdGrammar.FirstDomainEntityContext>, IValidationRule<MetaEdGrammar.IncludePropertyContext>, IValidationRule<MetaEdGrammar.InlineCommonTypeContext>, IValidationRule<MetaEdGrammar.IntegerPropertyContext>, IValidationRule<MetaEdGrammar.InterchangeContext>, IValidationRule<MetaEdGrammar.InterchangeElementContext>, IValidationRule<MetaEdGrammar.InterchangeExtensionContext>, IValidationRule<MetaEdGrammar.InterchangeIdentityTemplateContext>, IValidationRule<MetaEdGrammar.PercentPropertyContext>, IValidationRule<MetaEdGrammar.ReferencePropertyContext>, IValidationRule<MetaEdGrammar.SecondDomainEntityContext>, IValidationRule<MetaEdGrammar.SharedDecimalPropertyContext>, IValidationRule<MetaEdGrammar.SharedIntegerPropertyContext>, IValidationRule<MetaEdGrammar.SharedShortPropertyContext>, IValidationRule<MetaEdGrammar.SharedStringPropertyContext>, IValidationRule<MetaEdGrammar.ShortPropertyContext>, IValidationRule<MetaEdGrammar.StringPropertyContext>, IValidationRule<MetaEdGrammar.SubdomainContext>, IValidationRule<MetaEdGrammar.TimePropertyContext>, IValidationRule<MetaEdGrammar.YearPropertyContext>
     {
-
-        public ValidationLevel Level { get { return ValidationLevel.Warning; } }
-
-        private bool IsValid(MetaEdGrammar.MetaEdIdContext context)
-        {
+        public get level(): ValidationLevel {
+            return ValidationLevel.Warning;
+        }
+        private isValid(context: MetaEdGrammar.MetaEdIdContext): boolean {
             return context != null && !string.IsNullOrWhiteSpace(context.GetValue());
         }
-
-        private string GetEntityFailureMessage(string entityIdentifier, string entityName)
-        {
-            return
-                string.Format(
-                    "{0} '{1}' is missing MetaEdId value.",
-                    entityIdentifier,
-                    entityName);
+        private getEntityFailureMessage(entityIdentifier: string, entityName: string): string {
+            return string.Format("{0} '{1}' is missing MetaEdId value.",
+                entityIdentifier,
+                entityName);
         }
-
-        private string GetPropertyFailureMessage(string entityIdentifier, string entityName, string propertyIdentifier, string propertyName)
-        {
-            return
-                string.Format(
-                    "{0} '{1}' on {2} '{3}' is missing MetaEdId value.",
-                    propertyIdentifier,
-                    propertyName,
-                    entityIdentifier,
-                    entityName);
+        private getPropertyFailureMessage(entityIdentifier: string, entityName: string, propertyIdentifier: string, propertyName: string): string {
+            return string.Format("{0} '{1}' on {2} '{3}' is missing MetaEdId value.",
+                propertyIdentifier,
+                propertyName,
+                entityIdentifier,
+                entityName);
         }
-
-        private string GetItemFailureMessage(string entityIdentifier, string entityName, string itemName)
-        {
-            return
-                string.Format(
-                    "Enumeration Item '{0}' on {1} '{2} is missing MetaEdId value.",
-                    itemName,
-                    entityIdentifier,
-                    entityName);
+        private getItemFailureMessage(entityIdentifier: string, entityName: string, itemName: string): string {
+            return string.Format("Enumeration Item '{0}' on {1} '{2} is missing MetaEdId value.",
+                itemName,
+                entityIdentifier,
+                entityName);
         }
-
-        #region IsValid Passthrough
-        public bool IsValid(MetaEdGrammar.YearPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.YearPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.TimePropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.TimePropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.SubdomainContext context)
-        {
+        public isValid(context: MetaEdGrammar.SubdomainContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.StringPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.StringPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.ShortPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.ShortPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.SharedStringPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.SharedStringPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.SharedShortPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.SharedShortPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.SharedIntegerPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.SharedIntegerPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.SharedDecimalPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.SharedDecimalPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.SecondDomainEntityContext context)
-        {
+        public isValid(context: MetaEdGrammar.SecondDomainEntityContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.ReferencePropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.ReferencePropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.PercentPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.PercentPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.EnumerationItemContext context)
-        {
+        public isValid(context: MetaEdGrammar.EnumerationItemContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.InterchangeIdentityTemplateContext context)
-        {
+        public isValid(context: MetaEdGrammar.InterchangeIdentityTemplateContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.InterchangeExtensionContext context)
-        {
+        public isValid(context: MetaEdGrammar.InterchangeExtensionContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.InterchangeElementContext context)
-        {
+        public isValid(context: MetaEdGrammar.InterchangeElementContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.InterchangeContext context)
-        {
+        public isValid(context: MetaEdGrammar.InterchangeContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.IntegerPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.IntegerPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.InlineCommonTypeContext context)
-        {
+        public isValid(context: MetaEdGrammar.InlineCommonTypeContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.IncludePropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.IncludePropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.FirstDomainEntityContext context)
-        {
+        public isValid(context: MetaEdGrammar.FirstDomainEntityContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.EnumerationPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.EnumerationPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.EnumerationContext context)
-        {
+        public isValid(context: MetaEdGrammar.EnumerationContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.DurationPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.DurationPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.DomainItemContext context)
-        {
+        public isValid(context: MetaEdGrammar.DomainItemContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.DomainEntitySubclassContext context)
-        {
+        public isValid(context: MetaEdGrammar.DomainEntitySubclassContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.DomainEntityExtensionContext context)
-        {
+        public isValid(context: MetaEdGrammar.DomainEntityExtensionContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.DomainEntityContext context)
-        {
+        public isValid(context: MetaEdGrammar.DomainEntityContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.DomainContext context)
-        {
+        public isValid(context: MetaEdGrammar.DomainContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.DescriptorPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.DescriptorPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.DescriptorContext context)
-        {
+        public isValid(context: MetaEdGrammar.DescriptorContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.DecimalPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.DecimalPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.DatePropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.DatePropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.CurrencyPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.CurrencyPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.CommonTypeExtensionContext context)
-        {
+        public isValid(context: MetaEdGrammar.CommonTypeExtensionContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.CommonTypeContext context)
-        {
+        public isValid(context: MetaEdGrammar.CommonTypeContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.CommonStringContext context)
-        {
+        public isValid(context: MetaEdGrammar.CommonStringContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.CommonShortContext context)
-        {
+        public isValid(context: MetaEdGrammar.CommonShortContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.CommonIntegerContext context)
-        {
+        public isValid(context: MetaEdGrammar.CommonIntegerContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.CommonDecimalContext context)
-        {
+        public isValid(context: MetaEdGrammar.CommonDecimalContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.ChoiceTypeContext context)
-        {
+        public isValid(context: MetaEdGrammar.ChoiceTypeContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.BooleanPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.BooleanPropertyContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.AssociationSubclassContext context)
-        {
+        public isValid(context: MetaEdGrammar.AssociationSubclassContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.AssociationExtensionContext context)
-        {
+        public isValid(context: MetaEdGrammar.AssociationExtensionContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.AssociationContext context)
-        {
+        public isValid(context: MetaEdGrammar.AssociationContext): boolean {
             return IsValid(context.metaEdId());
         }
-
-        public bool IsValid(MetaEdGrammar.AbstractEntityContext context)
-        {
+        public isValid(context: MetaEdGrammar.AbstractEntityContext): boolean {
             return IsValid(context.metaEdId());
         }
-        #endregion
-
-        #region Entity Failure Messages
-        public string GetFailureMessage(MetaEdGrammar.AbstractEntityContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.AbstractEntityContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.SubdomainContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.SubdomainContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.InterchangeExtensionContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.InterchangeExtensionContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.InterchangeContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.InterchangeContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.InlineCommonTypeContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.InlineCommonTypeContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.EnumerationContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.EnumerationContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.DomainEntitySubclassContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DomainEntitySubclassContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.DomainEntityExtensionContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DomainEntityExtensionContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.DomainEntityContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DomainEntityContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.DomainContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DomainContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.DescriptorContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DescriptorContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.CommonTypeExtensionContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.CommonTypeExtensionContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.CommonTypeContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.CommonTypeContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.CommonStringContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.CommonStringContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.CommonShortContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.CommonShortContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.CommonIntegerContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.CommonIntegerContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.CommonDecimalContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.CommonDecimalContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.ChoiceTypeContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.ChoiceTypeContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.AssociationSubclassContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.AssociationSubclassContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.AssociationExtensionContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.AssociationExtensionContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.AssociationContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.AssociationContext): string {
             return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
         }
-        #endregion
-
-        #region Property Failure Messages
-        public string GetFailureMessage(MetaEdGrammar.BooleanPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.BooleanPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.CurrencyPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.CurrencyPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.DatePropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DatePropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.DecimalPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DecimalPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.DescriptorPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DescriptorPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.DurationPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DurationPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.EnumerationPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.EnumerationPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.FirstDomainEntityContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.FirstDomainEntityContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.IncludePropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.IncludePropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.IntegerPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.IntegerPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.PercentPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.PercentPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.ReferencePropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.ReferencePropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.SecondDomainEntityContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.SecondDomainEntityContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.SharedDecimalPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.SharedDecimalPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.SharedIntegerPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.SharedIntegerPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.SharedShortPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.SharedShortPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.SharedStringPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.SharedStringPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.ShortPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.ShortPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.StringPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.StringPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.TimePropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.TimePropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.YearPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.YearPropertyContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
                 context.PropertyIdentifier(), context.PropertyName());
         }
-        #endregion
-
-        public string GetFailureMessage(MetaEdGrammar.EnumerationItemContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.EnumerationItemContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetItemFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.IdText());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.InterchangeElementContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.InterchangeElementContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetItemFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.IdText());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.InterchangeIdentityTemplateContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.InterchangeIdentityTemplateContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetItemFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.IdText());
         }
-
-        public string GetFailureMessage(MetaEdGrammar.DomainItemContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DomainItemContext): string {
             var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
             return GetItemFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.IdText());
         }

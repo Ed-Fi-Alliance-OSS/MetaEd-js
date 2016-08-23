@@ -1,26 +1,16 @@
-﻿using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.SharedProperty
-{
-    public class SharedShortPropertyTypeMustMatchACommonSimpleShort : ValidationRuleBase<MetaEdGrammar.SharedShortPropertyContext>
+﻿module MetaEd.Core.Validator.SharedProperty {
+    export class SharedShortPropertyTypeMustMatchACommonSimpleShort extends ValidationRuleBase<MetaEdGrammar.SharedShortPropertyContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public SharedShortPropertyTypeMustMatchACommonSimpleShort(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.SharedShortPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.SharedShortPropertyContext): boolean {
             var identifierToMatch = context.sharedPropertyType().GetText();
             var commonShortType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_SHORT);
-
-            return _symbolTable.IdentifierExists(commonShortType, identifierToMatch);
+            return this._symbolTable.IdentifierExists(commonShortType, identifierToMatch);
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.SharedShortPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.SharedShortPropertyContext): string {
             return string.Format("Shared property '{0}' does not match any declared common short.", context.propertyName().GetText());
         }
     }

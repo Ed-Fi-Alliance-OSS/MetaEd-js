@@ -1,85 +1,51 @@
-using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.MergePartOfReference
-{
-    public class TargetPropertyPathMustExist : ValidationRuleBase<MetaEdGrammar.TargetPropertyPathContext>
+module MetaEd.Core.Validator.MergePartOfReference {
+    export class TargetPropertyPathMustExist extends ValidationRuleBase<MetaEdGrammar.TargetPropertyPathContext>
     {
-        private readonly ISymbolTable _symbolTable;
-        private readonly IPropertyPathLookup _propertyPathLookup;
-
-        public TargetPropertyPathMustExist(ISymbolTable symbolTable, IPropertyPathLookup propertyPathLookup)
-        {
-            _symbolTable = symbolTable;
-            _propertyPathLookup = propertyPathLookup;
+        private _symbolTable: ISymbolTable;
+        private _propertyPathLookup: IPropertyPathLookup;
+        constructor(symbolTable: ISymbolTable, propertyPathLookup: IPropertyPathLookup) {
+            this._symbolTable = symbolTable;
+            this._propertyPathLookup = propertyPathLookup;
         }
-
-        public override bool IsValid(MetaEdGrammar.TargetPropertyPathContext context)
-        {
+        public isValid(context: MetaEdGrammar.TargetPropertyPathContext): boolean {
             var entityContext = LookupParentEntityContext(context);
             var propertyPathParts = context.propertyPath().PropertyPathParts();
-
-            return _propertyPathLookup.Validate(entityContext, propertyPathParts, PropertyPathLookup.MatchAllIdentityProperties());
+            return this._propertyPathLookup.Validate(entityContext, propertyPathParts, PropertyPathLookup.MatchAllIdentityProperties());
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.TargetPropertyPathContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.TargetPropertyPathContext): string {
             return string.Format("Path {0} is not valid or lists properties that are not part of the primary key.", context.GetText());
         }
-
-        private EntityContext LookupParentEntityContext(MetaEdGrammar.TargetPropertyPathContext context)
-        {
-            // first parent - mergePartOfReference
-            // second parent - referenceProperty
-            // third parent - property collection
-            // fourth parent - Association/Extension/Subclass or DomainEntity/Extension/Subclass
+        private lookupParentEntityContext(context: MetaEdGrammar.TargetPropertyPathContext): EntityContext {
             var definingEntityContext = context.parent.parent.parent.parent;
-
-            var domainEntityContext = definingEntityContext as MetaEdGrammar.DomainEntityContext;
-            if (domainEntityContext != null)
-            {
-                return _symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntityContext.entityName().IdText());
+            var domainEntityContext = __as__<MetaEdGrammar.DomainEntityContext>(definingEntityContext, MetaEdGrammar.DomainEntityContext);
+            if (domainEntityContext != null) {
+                return this._symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntityContext.entityName().IdText());
             }
-
-            var domainEntityExtensionContext = definingEntityContext as MetaEdGrammar.DomainEntityExtensionContext;
-            if (domainEntityExtensionContext != null)
-            {
-                // since the property has to be a PK, it must be defined on the base
-                return _symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntityExtensionContext.extendeeName().IdText());
+            var domainEntityExtensionContext = __as__<MetaEdGrammar.DomainEntityExtensionContext>(definingEntityContext, MetaEdGrammar.DomainEntityExtensionContext);
+            if (domainEntityExtensionContext != null) {
+                return this._symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntityExtensionContext.extendeeName().IdText());
             }
-
-            var domainEntitySubclassContext = definingEntityContext as MetaEdGrammar.DomainEntitySubclassContext;
-            if (domainEntitySubclassContext != null)
-            {
-                // since the property has to be a PK, it must be defined on the base
-                var domainEntity = _symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
-                return domainEntity ?? _symbolTable.Get(SymbolTableEntityType.AbstractEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
+            var domainEntitySubclassContext = __as__<MetaEdGrammar.DomainEntitySubclassContext>(definingEntityContext, MetaEdGrammar.DomainEntitySubclassContext);
+            if (domainEntitySubclassContext != null) {
+                var domainEntity = this._symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
+                return domainEntity != null ? domainEntity : this._symbolTable.Get(SymbolTableEntityType.AbstractEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
             }
-
-            var associationContext = definingEntityContext as MetaEdGrammar.AssociationContext;
-            if (associationContext != null)
-            {
-                return _symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationContext.associationName().IdText());
+            var associationContext = __as__<MetaEdGrammar.AssociationContext>(definingEntityContext, MetaEdGrammar.AssociationContext);
+            if (associationContext != null) {
+                return this._symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationContext.associationName().IdText());
             }
-
-            var associationExtensionContext = definingEntityContext as MetaEdGrammar.AssociationExtensionContext;
-            if (associationExtensionContext != null)
-            {
-                return _symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationExtensionContext.extendeeName().IdText());
+            var associationExtensionContext = __as__<MetaEdGrammar.AssociationExtensionContext>(definingEntityContext, MetaEdGrammar.AssociationExtensionContext);
+            if (associationExtensionContext != null) {
+                return this._symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationExtensionContext.extendeeName().IdText());
             }
-
-            var associationSubclassContext = definingEntityContext as MetaEdGrammar.AssociationSubclassContext;
-            if (associationSubclassContext != null)
-            {
-                // since the property has to be a PK, it must be defined on the base
-                return _symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationSubclassContext.baseName().IdText());
+            var associationSubclassContext = __as__<MetaEdGrammar.AssociationSubclassContext>(definingEntityContext, MetaEdGrammar.AssociationSubclassContext);
+            if (associationSubclassContext != null) {
+                return this._symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationSubclassContext.baseName().IdText());
             }
-
-            var abstractContext = definingEntityContext as MetaEdGrammar.AbstractEntityContext;
-            if (abstractContext != null)
-            {
-                return _symbolTable.Get(SymbolTableEntityType.AbstractEntityEntityType(), abstractContext.abstractEntityName().IdText());
+            var abstractContext = __as__<MetaEdGrammar.AbstractEntityContext>(definingEntityContext, MetaEdGrammar.AbstractEntityContext);
+            if (abstractContext != null) {
+                return this._symbolTable.Get(SymbolTableEntityType.AbstractEntityEntityType(), abstractContext.abstractEntityName().IdText());
             }
-
             return null;
         }
     }

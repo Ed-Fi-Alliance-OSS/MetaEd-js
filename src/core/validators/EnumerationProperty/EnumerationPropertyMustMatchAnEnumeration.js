@@ -1,5 +1,3 @@
-using;
-MetaEd.Grammar.Antlr;
 var MetaEd;
 (function (MetaEd) {
     var Core;
@@ -8,22 +6,19 @@ var MetaEd;
         (function (Validator) {
             var EnumerationProperty;
             (function (EnumerationProperty) {
-                class EnumerationPropertyMustMatchAnEnumeration {
+                class EnumerationPropertyMustMatchAnEnumeration extends ValidationRuleBase {
+                    constructor(symbolTable) {
+                        this._symbolTable = symbolTable;
+                    }
+                    isValid(context) {
+                        var identifierToMatch = context.propertyName().GetText();
+                        return this._symbolTable.IdentifierExists(SymbolTableEntityType.EnumerationEntityType(), identifierToMatch);
+                    }
+                    getFailureMessage(context) {
+                        return string.Format("Enumeration property '{0}' does not match any declared enumeration.", context.propertyName().GetText());
+                    }
                 }
-                ValidationRuleBase < MetaEdGrammar.EnumerationPropertyContext >
-                    {
-                        readonly: ISymbolTable, _symbolTable: ,
-                        EnumerationPropertyMustMatchAnEnumeration(ISymbolTable = symbolTable) {
-                            _symbolTable = symbolTable;
-                        },
-                        override: bool, IsValid(MetaEdGrammar, EnumerationPropertyContext = context) {
-                            var identifierToMatch = context.propertyName().GetText();
-                            return _symbolTable.IdentifierExists(SymbolTableEntityType.EnumerationEntityType(), identifierToMatch);
-                        },
-                        override: string, GetFailureMessage(MetaEdGrammar, EnumerationPropertyContext = context) {
-                            return string.Format("Enumeration property '{0}' does not match any declared enumeration.", context.propertyName().GetText());
-                        }
-                    };
+                EnumerationProperty.EnumerationPropertyMustMatchAnEnumeration = EnumerationPropertyMustMatchAnEnumeration;
             })(EnumerationProperty = Validator.EnumerationProperty || (Validator.EnumerationProperty = {}));
         })(Validator = Core.Validator || (Core.Validator = {}));
     })(Core = MetaEd.Core || (MetaEd.Core = {}));

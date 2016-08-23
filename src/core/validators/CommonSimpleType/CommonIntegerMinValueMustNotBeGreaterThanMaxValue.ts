@@ -1,23 +1,14 @@
-﻿using System;
-using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.CommonSimpleType
-{
-    public class CommonIntegerMinValueMustNotBeGreaterThanMaxValue : ValidationRuleBase<MetaEdGrammar.CommonIntegerContext>
+﻿module MetaEd.Core.Validator.CommonSimpleType {
+    export class CommonIntegerMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase<MetaEdGrammar.CommonIntegerContext>
     {
-        public override bool IsValid(MetaEdGrammar.CommonIntegerContext context)
-        {
-            if (context.minValue() == null || context.maxValue() == null) return true;
-            
-            // if there are convert exceptions, let it bomb out -- language parser should have handled
+        public isValid(context: MetaEdGrammar.CommonIntegerContext): boolean {
+            if (context.minValue() == null || context.maxValue() == null)
+                return true;
             var minValue = Convert.ToInt32(context.minValue().MinValue());
             var maxValue = Convert.ToInt32(context.maxValue().MaxValue());
-
             return minValue <= maxValue;
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.CommonIntegerContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.CommonIntegerContext): string {
             return string.Format("Common Integer '{0}' has min value greater than max value.", context.commonIntegerName().GetText());
         }
     }

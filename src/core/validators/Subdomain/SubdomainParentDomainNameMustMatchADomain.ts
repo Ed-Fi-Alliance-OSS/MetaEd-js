@@ -1,27 +1,16 @@
-﻿using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.Subdomain
-{
-    public class SubdomainParentDomainNameMustMatchADomain : ValidationRuleBase<MetaEdGrammar.SubdomainContext>
+﻿module MetaEd.Core.Validator.Subdomain {
+    export class SubdomainParentDomainNameMustMatchADomain extends ValidationRuleBase<MetaEdGrammar.SubdomainContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public SubdomainParentDomainNameMustMatchADomain(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.SubdomainContext context)
-        {
+        public isValid(context: MetaEdGrammar.SubdomainContext): boolean {
             var parentDomainName = context.parentDomainName().IdText();
-
             var domainType = MetaEdGrammar.TokenName(MetaEdGrammar.DOMAIN);
-
-            return _symbolTable.IdentifierExists(domainType, parentDomainName);
+            return this._symbolTable.IdentifierExists(domainType, parentDomainName);
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.SubdomainContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.SubdomainContext): string {
             return string.Format("Subdomain '{0}' is part of '{1}' which does not match any declared domain.", context.EntityName(), context.parentDomainName().IdText());
         }
     }

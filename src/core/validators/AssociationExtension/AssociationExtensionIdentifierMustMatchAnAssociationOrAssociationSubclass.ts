@@ -1,26 +1,15 @@
-﻿using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.AssociationExtension
-{
-    public class AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass : ValidationRuleBase<MetaEdGrammar.AssociationExtensionContext>
+﻿module MetaEd.Core.Validator.AssociationExtension {
+    export class AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass extends ValidationRuleBase<MetaEdGrammar.AssociationExtensionContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.AssociationExtensionContext context)
-        {
+        public isValid(context: MetaEdGrammar.AssociationExtensionContext): boolean {
             var identifierToMatch = context.extendeeName().GetText();
-
-            return _symbolTable.IdentifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) ||
-                _symbolTable.IdentifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch);
+            return this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch);
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.AssociationExtensionContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.AssociationExtensionContext): string {
             return string.Format("Association additions '{0}' does not match any declared Association or subclass.", context.extendeeName().GetText());
         }
     }

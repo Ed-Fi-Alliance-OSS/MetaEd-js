@@ -1,27 +1,15 @@
-﻿using System.Linq;
-using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.DomainEntitySubclass
-{
-    public class DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity : ValidationRuleBase<MetaEdGrammar.DomainEntitySubclassContext>
+﻿module MetaEd.Core.Validator.DomainEntitySubclass {
+    export class DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity extends ValidationRuleBase<MetaEdGrammar.DomainEntitySubclassContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.DomainEntitySubclassContext context)
-        {
+        public isValid(context: MetaEdGrammar.DomainEntitySubclassContext): boolean {
             var basedOnName = context.baseName().GetText();
-
-            return _symbolTable.IdentifiersForEntityType(SymbolTableEntityType.DomainEntityEntityType()).Any(x => x.Equals(basedOnName)) ||
-                   _symbolTable.IdentifiersForEntityType(SymbolTableEntityType.AbstractEntityEntityType()).Any(x => x.Equals(basedOnName));
+            return this._symbolTable.IdentifiersForEntityType(SymbolTableEntityType.DomainEntityEntityType()).Any(x => x.Equals(basedOnName)) || this._symbolTable.IdentifiersForEntityType(SymbolTableEntityType.AbstractEntityEntityType()).Any(x => x.Equals(basedOnName));
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.DomainEntitySubclassContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DomainEntitySubclassContext): string {
             return string.Format("Domain Entity '{0}' based on '{1}' does not match any declared domain or abstract entity.", context.entityName().GetText(), context.baseName().GetText());
         }
     }

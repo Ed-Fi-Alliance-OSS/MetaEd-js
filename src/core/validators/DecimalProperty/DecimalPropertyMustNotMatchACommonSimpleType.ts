@@ -1,32 +1,19 @@
-﻿using MetaEd.Grammar.Antlr;
-
-namespace MetaEd.Core.Validator.DecimalProperty
-{
-    public class DecimalPropertyMustNotMatchACommonSimpleType : ValidationRuleBase<MetaEdGrammar.DecimalPropertyContext>
+﻿module MetaEd.Core.Validator.DecimalProperty {
+    export class DecimalPropertyMustNotMatchACommonSimpleType extends ValidationRuleBase<MetaEdGrammar.DecimalPropertyContext>
     {
-        private readonly ISymbolTable _symbolTable;
-
-        public DecimalPropertyMustNotMatchACommonSimpleType(ISymbolTable symbolTable)
-        {
-            _symbolTable = symbolTable;
+        private _symbolTable: ISymbolTable;
+        constructor(symbolTable: ISymbolTable) {
+            this._symbolTable = symbolTable;
         }
-
-        public override bool IsValid(MetaEdGrammar.DecimalPropertyContext context)
-        {
+        public isValid(context: MetaEdGrammar.DecimalPropertyContext): boolean {
             var identifierToMatch = context.propertyName().GetText();
             var commonDecimalType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_DECIMAL);
             var commonIntegerType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_INTEGER);
             var commonShortType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_SHORT);
             var commonStringType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_STRING);
-
-            return !(_symbolTable.IdentifierExists(commonDecimalType, identifierToMatch) ||
-                     _symbolTable.IdentifierExists(commonIntegerType, identifierToMatch) ||
-                     _symbolTable.IdentifierExists(commonShortType, identifierToMatch) ||
-                     _symbolTable.IdentifierExists(commonStringType, identifierToMatch));
+            return !(this._symbolTable.IdentifierExists(commonDecimalType, identifierToMatch) || this._symbolTable.IdentifierExists(commonIntegerType, identifierToMatch) || this._symbolTable.IdentifierExists(commonShortType, identifierToMatch) || this._symbolTable.IdentifierExists(commonStringType, identifierToMatch));
         }
-
-        public override string GetFailureMessage(MetaEdGrammar.DecimalPropertyContext context)
-        {
+        public getFailureMessage(context: MetaEdGrammar.DecimalPropertyContext): string {
             return string.Format("Decimal property '{0}' has the same name as a common decimal, integer, short or string.  If intentional, use a shared property instead.", context.propertyName().GetText());
         }
     }

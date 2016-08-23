@@ -1,7 +1,3 @@
-using;
-MetaEd.Grammar.Antlr;
-using;
-MetaEd.Grammar.Antlr.Extensions;
 var MetaEd;
 (function (MetaEd) {
     var Core;
@@ -10,29 +6,20 @@ var MetaEd;
         (function (Validator) {
             var Domain;
             (function (Domain) {
-                class DomainItemMustMatchTopLevelEntity {
+                class DomainItemMustMatchTopLevelEntity extends ValidationRuleBase {
+                    constructor(symbolTable) {
+                        this._symbolTable = symbolTable;
+                    }
+                    isValid(context) {
+                        var identifierToMatch = context.IdText();
+                        return this._symbolTable.IdentifierExists(SymbolTableEntityType.AbstractEntityEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntityEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntitySubclassEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.CommonTypeEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.InlineCommonTypeEntityType(), identifierToMatch);
+                    }
+                    getFailureMessage(context) {
+                        var topLevelEntity = context.GetAncestorContext();
+                        return string.Format("Domain item '{0}' under {1} '{2}' does not match any declared abstract entity, domain entity or subclass, association or subclass, or common type.", context.IdText(), topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName());
+                    }
                 }
-                ValidationRuleBase < MetaEdGrammar.DomainItemContext >
-                    {
-                        readonly: ISymbolTable, _symbolTable: ,
-                        DomainItemMustMatchTopLevelEntity(ISymbolTable = symbolTable) {
-                            _symbolTable = symbolTable;
-                        },
-                        override: bool, IsValid(MetaEdGrammar, DomainItemContext = context) {
-                            var identifierToMatch = context.IdText();
-                            return _symbolTable.IdentifierExists(SymbolTableEntityType.AbstractEntityEntityType(), identifierToMatch) ||
-                                _symbolTable.IdentifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) ||
-                                _symbolTable.IdentifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch) ||
-                                _symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntityEntityType(), identifierToMatch) ||
-                                _symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntitySubclassEntityType(), identifierToMatch) ||
-                                _symbolTable.IdentifierExists(SymbolTableEntityType.CommonTypeEntityType(), identifierToMatch) ||
-                                _symbolTable.IdentifierExists(SymbolTableEntityType.InlineCommonTypeEntityType(), identifierToMatch);
-                        },
-                        override: string, GetFailureMessage(MetaEdGrammar, DomainItemContext = context) {
-                            var topLevelEntity = context.GetAncestorContext();
-                            return string.Format("Domain item '{0}' under {1} '{2}' does not match any declared abstract entity, domain entity or subclass, association or subclass, or common type.", context.IdText(), topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName());
-                        }
-                    };
+                Domain.DomainItemMustMatchTopLevelEntity = DomainItemMustMatchTopLevelEntity;
             })(Domain = Validator.Domain || (Validator.Domain = {}));
         })(Validator = Core.Validator || (Core.Validator = {}));
     })(Core = MetaEd.Core || (MetaEd.Core = {}));

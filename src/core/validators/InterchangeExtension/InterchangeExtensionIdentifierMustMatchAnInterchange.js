@@ -1,7 +1,3 @@
-using;
-System.Linq;
-using;
-MetaEd.Grammar.Antlr;
 var MetaEd;
 (function (MetaEd) {
     var Core;
@@ -10,23 +6,20 @@ var MetaEd;
         (function (Validator) {
             var InterchangeExtension;
             (function (InterchangeExtension) {
-                class InterchangeExtensionIdentifierMustMatchAnInterchange {
+                class InterchangeExtensionIdentifierMustMatchAnInterchange extends ValidationRuleBase {
+                    constructor(symbolTable) {
+                        this._symbolTable = symbolTable;
+                    }
+                    isValid(context) {
+                        var entityType = context.INTERCHANGE().GetText();
+                        var identifier = context.extendeeName().GetText();
+                        return this._symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
+                    }
+                    getFailureMessage(context) {
+                        return string.Format("Interchange additions '{0}' does not match any declared Interchange.", context.extendeeName().GetText());
+                    }
                 }
-                ValidationRuleBase < MetaEdGrammar.InterchangeExtensionContext >
-                    {
-                        readonly: ISymbolTable, _symbolTable: ,
-                        InterchangeExtensionIdentifierMustMatchAnInterchange(ISymbolTable = symbolTable) {
-                            _symbolTable = symbolTable;
-                        },
-                        override: bool, IsValid(MetaEdGrammar, InterchangeExtensionContext = context) {
-                            var entityType = context.INTERCHANGE().GetText();
-                            var identifier = context.extendeeName().GetText();
-                            return _symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
-                        },
-                        override: string, GetFailureMessage(MetaEdGrammar, InterchangeExtensionContext = context) {
-                            return string.Format("Interchange additions '{0}' does not match any declared Interchange.", context.extendeeName().GetText());
-                        }
-                    };
+                InterchangeExtension.InterchangeExtensionIdentifierMustMatchAnInterchange = InterchangeExtensionIdentifierMustMatchAnInterchange;
             })(InterchangeExtension = Validator.InterchangeExtension || (Validator.InterchangeExtension = {}));
         })(Validator = Core.Validator || (Core.Validator = {}));
     })(Core = MetaEd.Core || (MetaEd.Core = {}));
