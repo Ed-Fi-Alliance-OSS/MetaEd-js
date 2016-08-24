@@ -1,20 +1,20 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
-    export class InterchangeExtensionMustNotDuplicateInterchangeElementName extends ValidationRuleBase<MetaEdGrammar.InterchangeExtensionContext>
-    {
-        private _symbolTable: ISymbolTable;
-        constructor(symbolTable: ISymbolTable) {
-            this._symbolTable = symbolTable;
-        }
-        private static duplicateInterchangeElements(context: MetaEdGrammar.InterchangeExtensionContext): string[] {
-            var interchangeElements = context.interchangeExtensionComponent().interchangeElement().Select(x => x.ID().GetText());
-            return interchangeElements.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
-        }
-        public isValid(context: MetaEdGrammar.InterchangeExtensionContext): boolean {
-            return !DuplicateInterchangeElements(context).Any();
-        }
-        public getFailureMessage(context: MetaEdGrammar.InterchangeExtensionContext): string {
-            var identifier = context.extendeeName().GetText();
-            var duplicateInterchangeElements = DuplicateInterchangeElements(context);
-            return string.Format("Interchange additions '{0}' declares duplicate interchange element{2} '{1}'.", identifier, string.Join("', '", duplicateInterchangeElements), duplicateInterchangeElements.Count() > 1 ? "s" : string.Empty);
-        }
+export class InterchangeExtensionMustNotDuplicateInterchangeElementName extends ValidationRuleBase<MetaEdGrammar.InterchangeExtensionContext>
+{
+    private _symbolTable: ISymbolTable;
+    constructor(symbolTable: ISymbolTable) {
+        this._symbolTable = symbolTable;
     }
+    private static duplicateInterchangeElements(context: MetaEdGrammar.InterchangeExtensionContext): string[] {
+        var interchangeElements = context.interchangeExtensionComponent().interchangeElement().Select(x => x.ID().GetText());
+        return interchangeElements.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
+    }
+    public isValid(context: MetaEdGrammar.InterchangeExtensionContext): boolean {
+        return !DuplicateInterchangeElements(context).Any();
+    }
+    public getFailureMessage(context: MetaEdGrammar.InterchangeExtensionContext): string {
+        var identifier = context.extendeeName().GetText();
+        var duplicateInterchangeElements = DuplicateInterchangeElements(context);
+        return string.Format("Interchange additions '{0}' declares duplicate interchange element{2} '{1}'.", identifier, string.Join("', '", duplicateInterchangeElements), duplicateInterchangeElements.Count() > 1 ? "s" : string.Empty);
+    }
+}
