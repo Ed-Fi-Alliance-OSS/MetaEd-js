@@ -12,4 +12,3 @@
             return string.Format("Common Integer '{0}' has min value greater than max value.", context.commonIntegerName().GetText());
         }
     }
-}

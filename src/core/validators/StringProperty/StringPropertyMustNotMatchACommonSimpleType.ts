@@ -18,4 +18,3 @@ export class StringPropertyMustNotMatchACommonSimpleType extends ValidationRuleB
             return string.Format("String property '{0}' has the same name as a common decimal, integer, short or string.  If intentional, use a shared property instead.", context.propertyName().GetText());
         }
     }
-//}

@@ -14,4 +14,3 @@
             return string.Format("Association '{0}' based on '{1}' does not match any declared Association.", context.associationName().GetText(), context.baseName().GetText());
         }
     }
-}

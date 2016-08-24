@@ -348,4 +348,3 @@
             return GetItemFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.IdText());
         }
     }
-}

@@ -14,4 +14,3 @@
             return string.Format("Shared property '{0}' does not match any declared common string.", context.propertyName().GetText());
         }
     }
-}

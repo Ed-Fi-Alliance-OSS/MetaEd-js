@@ -12,4 +12,3 @@
             return "Merge statement must start first property path with the referenced entity name of the current property.";
         }
     }
-}

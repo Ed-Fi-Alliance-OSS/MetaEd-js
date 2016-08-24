@@ -13,4 +13,3 @@
             return string.Format("Domain Entity '{0}' based on '{1}' does not match any declared domain or abstract entity.", context.entityName().GetText(), context.baseName().GetText());
         }
     }
-}

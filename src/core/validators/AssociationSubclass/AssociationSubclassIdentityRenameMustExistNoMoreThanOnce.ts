@@ -13,4 +13,3 @@
             return string.Format("Association '{0}' based on '{1}' tries to rename columns {2}.  Only one identity rename is allowed for a given Association.", identifier, baseIdentifier, basePropertyIdentifier);
         }
     }
-}

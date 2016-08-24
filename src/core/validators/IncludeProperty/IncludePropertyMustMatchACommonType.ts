@@ -16,4 +16,3 @@
             return string.Format("Include property '{0}' does not match any declared common type.", context.propertyName().GetText());
         }
     }
-}

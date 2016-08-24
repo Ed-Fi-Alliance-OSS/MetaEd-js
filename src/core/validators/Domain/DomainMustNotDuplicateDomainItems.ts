@@ -14,4 +14,3 @@
             return string.Format("Domain '{0}' declares duplicate domain item{2} '{1}'.", identifier, string.Join("', '", duplicateDomainItems), duplicateDomainItems.Count() > 1 ? "s" : string.Empty);
         }
     }
-}

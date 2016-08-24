@@ -12,4 +12,3 @@
             return string.Format("Common String '{0}' has min length greater than max length.", context.commonStringName().GetText());
         }
     }
-}

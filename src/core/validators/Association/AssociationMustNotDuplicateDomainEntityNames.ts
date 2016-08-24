@@ -18,4 +18,3 @@ import { ValidationRuleBase } from "../ValidationRuleBase";
             return string.Format("Association '{0}' has duplicate declarations of Domain Entity '{1}'.", identifier, firstDomainEntityName);
         }
     }
-}

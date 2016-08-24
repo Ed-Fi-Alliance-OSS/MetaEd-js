@@ -13,4 +13,3 @@
             return string.Format("Domain Entity property '{0}' does not match any declared domain or abstract entity.", context.IdText());
         }
     }
-}

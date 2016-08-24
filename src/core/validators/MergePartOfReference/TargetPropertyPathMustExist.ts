@@ -49,4 +49,3 @@ import { ValidationRuleBase } from "../ValidationRuleBase";
             return null;
         }
     }
-}

@@ -13,4 +13,3 @@
                 context.propertyName().GetText(), context.ParentTypeName(), context.ParentIdentifier());
         }
     }
-}

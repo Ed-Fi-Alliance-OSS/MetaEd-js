@@ -13,4 +13,3 @@
             return string.Format("Association additions '{0}' does not match any declared Association or subclass.", context.extendeeName().GetText());
         }
     }
-}

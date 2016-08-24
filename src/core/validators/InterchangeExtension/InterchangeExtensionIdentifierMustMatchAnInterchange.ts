@@ -14,4 +14,3 @@
             return string.Format("Interchange additions '{0}' does not match any declared Interchange.", context.extendeeName().GetText());
         }
     }
-}

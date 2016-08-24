@@ -9,4 +9,3 @@
             return string.Format("Domain Entity {0} has multiple properties with a property name of 'UniqueId'.  Only one column in a core domain entity can be named 'UniqueId'.", context.entityName().ID().GetText());
         }
     }
-}

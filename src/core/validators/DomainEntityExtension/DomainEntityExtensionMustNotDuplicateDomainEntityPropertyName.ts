@@ -26,4 +26,3 @@
             return (<MetaEdGrammar.IncludePropertyContext>context).includeExtensionOverride() == null;
         }
     }
-}

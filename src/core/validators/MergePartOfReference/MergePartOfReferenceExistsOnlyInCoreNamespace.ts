@@ -16,4 +16,3 @@
                 namespaceInfo.NamespaceName);
         }
     }
-}

@@ -14,4 +14,3 @@
             return string.Format("Descriptor property '{0}' does not match any declared descriptor.", context.propertyName().GetText());
         }
     }
-}

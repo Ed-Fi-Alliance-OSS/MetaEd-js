@@ -13,4 +13,3 @@
             return string.Format("Domain Entity '{0}' based on '{1}' tries to rename columns {2}.  Only one identity rename is allowed for a given Domain Entity.", identifier, baseIdentifier, basePropertyIdentifier);
         }
     }
-}

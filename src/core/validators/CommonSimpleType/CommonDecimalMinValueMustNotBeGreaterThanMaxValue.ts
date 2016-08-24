@@ -12,4 +12,3 @@
             return string.Format("Common Decimal '{0}' has min value greater than max value.", context.commonDecimalName().GetText());
         }
     }
-}

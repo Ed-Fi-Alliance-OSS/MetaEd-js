@@ -127,4 +127,3 @@ public class PropertyPathLookup : IPropertyPathLookup
         return null;
     }
 }
-}

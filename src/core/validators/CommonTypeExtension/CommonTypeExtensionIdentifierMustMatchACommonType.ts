@@ -14,4 +14,3 @@
             return string.Format("Common Type additions '{0}' does not match any declared Common Type.", context.extendeeName().GetText());
         }
     }
-}

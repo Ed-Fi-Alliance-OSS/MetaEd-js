@@ -14,4 +14,3 @@
             return string.Format("Subdomain '{0}' is part of '{1}' which does not match any declared domain.", context.EntityName(), context.parentDomainName().IdText());
         }
     }
-}

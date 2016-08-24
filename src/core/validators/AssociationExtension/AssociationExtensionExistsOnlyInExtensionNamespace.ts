@@ -10,4 +10,3 @@
             return string.Format("Association additions '{0}' is not valid in core namespace '{1}'.", context.extendeeName().GetText(), namespaceInfo.NamespaceName);
         }
     }
-}

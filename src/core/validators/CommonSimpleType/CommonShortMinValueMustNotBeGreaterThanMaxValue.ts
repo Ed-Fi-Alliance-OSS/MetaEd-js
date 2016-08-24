@@ -12,4 +12,3 @@
             return string.Format("Common Short '{0}' has min value greater than max value.", context.commonShortName().GetText());
         }
     }
-}

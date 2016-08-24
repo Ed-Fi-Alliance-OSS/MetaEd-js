@@ -28,4 +28,3 @@
             return string.Format("Association '{0}' based on '{1}' tries to rename {2} which is not part of the identity.", identifier, baseIdentifier, basePropertyIdentifier);
         }
     }
-}

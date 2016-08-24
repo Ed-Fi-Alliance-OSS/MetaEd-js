@@ -13,4 +13,3 @@
             return string.Format("Domain Entity additions '{0}' does not match any declared Domain Entity or Domain Entity Subclass.", context.extendeeName().GetText());
         }
     }
-}

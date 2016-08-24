@@ -13,4 +13,3 @@
             return string.Format("Enumeration property '{0}' does not match any declared enumeration.", context.propertyName().GetText());
         }
     }
-}

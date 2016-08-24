@@ -23,4 +23,3 @@
             return string.Format("Common Type additions '{0}' declares '{1}' already in property list of Common Type.", identifier, string.Join(",", duplicatePropertyIdentifierList));
         }
     }
-}

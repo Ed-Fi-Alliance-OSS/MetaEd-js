@@ -19,4 +19,3 @@
             return string.Format("Entity {0} has duplicate properties named {1}", associationName, context.IdText());
         }
     }
-}

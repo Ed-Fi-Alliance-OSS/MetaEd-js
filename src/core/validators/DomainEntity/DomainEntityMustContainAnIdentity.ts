@@ -8,4 +8,3 @@
             return string.Format("Domain Entity {0} does not have an identity specified.", context.entityName().ID().GetText());
         }
     }
-}

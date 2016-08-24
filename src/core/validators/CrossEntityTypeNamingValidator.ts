@@ -29,4 +29,3 @@
             this._trackedEntityNames.Clear();
         }
     }
-}

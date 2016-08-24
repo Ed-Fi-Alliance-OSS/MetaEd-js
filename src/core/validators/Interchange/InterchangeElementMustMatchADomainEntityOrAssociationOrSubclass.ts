@@ -13,4 +13,3 @@
             return string.Format("Interchange element '{0}' does not match any declared domain entity or subclass, association or subclass.", context.IdText());
         }
     }
-}
