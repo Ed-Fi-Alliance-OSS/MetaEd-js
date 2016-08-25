@@ -21,7 +21,7 @@ class AssociationSubclassMustNotDuplicateAssociationPropertyName extends Validat
         var associationPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, baseIdentifier).ToList();
         var propertyRuleContextsForDuplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
         var duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
-        return string.Format("Association '{0}' based on '{1}' declares '{2}' already in property list of base Association.", identifier, baseIdentifier, string.Join(",", duplicatePropertyIdentifierList));
+        return `Association '${identifier}' based on '${baseIdentifier}' declares '${string.Join(",", duplicatePropertyIdentifierList)}' already in property list of base Association.`;
     }
 }
 exports.AssociationSubclassMustNotDuplicateAssociationPropertyName = AssociationSubclassMustNotDuplicateAssociationPropertyName;

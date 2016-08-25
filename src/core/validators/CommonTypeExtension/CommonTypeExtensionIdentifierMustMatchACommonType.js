@@ -10,7 +10,7 @@ class CommonTypeExtensionIdentifierMustMatchACommonType extends ValidationRuleBa
         return this._symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
     }
     getFailureMessage(context) {
-        return string.Format("Common Type additions '{0}' does not match any declared Common Type.", context.extendeeName().GetText());
+        return `Common Type additions '${context.extendeeName().GetText()}' does not match any declared Common Type.`;
     }
 }
 exports.CommonTypeExtensionIdentifierMustMatchACommonType = CommonTypeExtensionIdentifierMustMatchACommonType;

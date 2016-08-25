@@ -20,6 +20,7 @@ export class CommonTypeExtensionMustNotDuplicateCommonTypePropertyName extends V
         var commonTypePropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
         var propertyRuleContextsForDuplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, commonTypePropertyIdentifiers);
         var duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
-        return `Common Type additions '${identifier}' declares '${string.Join(",", duplicatePropertyIdentifierList)}' already in property list of Common Type.`);
+        let joinedString = duplicatePropertyIdentifierList.join(',');
+        return `Common Type additions '${identifier}' declares '${joinedString}' already in property list of Common Type.`;
     }
 }

@@ -9,7 +9,7 @@ class CommonShortMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase
         return minValue <= maxValue;
     }
     getFailureMessage(context) {
-        return string.Format("Common Short '{0}' has min value greater than max value.", context.commonShortName().GetText());
+        return `Common Short '${context.commonShortName().GetText()}' has min value greater than max value.`;
     }
 }
 exports.CommonShortMinValueMustNotBeGreaterThanMaxValue = CommonShortMinValueMustNotBeGreaterThanMaxValue;

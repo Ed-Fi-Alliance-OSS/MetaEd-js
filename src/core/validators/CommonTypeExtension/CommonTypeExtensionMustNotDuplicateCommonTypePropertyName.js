@@ -19,7 +19,8 @@ class CommonTypeExtensionMustNotDuplicateCommonTypePropertyName extends Validati
         var commonTypePropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
         var propertyRuleContextsForDuplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, commonTypePropertyIdentifiers);
         var duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
-        return string.Format("Common Type additions '{0}' declares '{1}' already in property list of Common Type.", identifier, string.Join(",", duplicatePropertyIdentifierList));
+        let joinedString = duplicatePropertyIdentifierList.join(',');
+        return `Common Type additions '${identifier}' declares '${joinedString}' already in property list of Common Type.`;
     }
 }
 exports.CommonTypeExtensionMustNotDuplicateCommonTypePropertyName = CommonTypeExtensionMustNotDuplicateCommonTypePropertyName;

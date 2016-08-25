@@ -9,7 +9,7 @@ class CommonIntegerMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBa
         return minValue <= maxValue;
     }
     getFailureMessage(context) {
-        return string.Format("Common Integer '{0}' has min value greater than max value.", context.commonIntegerName().GetText());
+        return `Common Integer '${context.commonIntegerName().GetText()}' has min value greater than max value.`;
     }
 }
 exports.CommonIntegerMinValueMustNotBeGreaterThanMaxValue = CommonIntegerMinValueMustNotBeGreaterThanMaxValue;

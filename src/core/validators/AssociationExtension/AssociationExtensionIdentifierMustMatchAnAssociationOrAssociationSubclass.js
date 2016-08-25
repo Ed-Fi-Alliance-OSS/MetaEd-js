@@ -9,7 +9,7 @@ class AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass 
         return this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch);
     }
     getFailureMessage(context) {
-        return string.Format("Association additions '{0}' does not match any declared Association or subclass.", context.extendeeName().GetText());
+        return `Association additions '${context.extendeeName().GetText()}' does not match any declared Association or subclass.`;
     }
 }
 exports.AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass = AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass;

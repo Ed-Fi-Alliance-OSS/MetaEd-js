@@ -1,4 +1,8 @@
+"use strict";
 //TODO: This file didn't auto convert
+class PropertyPathLookup {
+}
+exports.PropertyPathLookup = PropertyPathLookup;
 //using System;
 //using System.Linq;
 //using MetaEd.Grammar.Antlr;

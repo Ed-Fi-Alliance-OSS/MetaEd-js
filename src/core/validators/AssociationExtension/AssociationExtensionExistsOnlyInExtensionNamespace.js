@@ -7,7 +7,7 @@ class AssociationExtensionExistsOnlyInExtensionNamespace extends ValidationRuleB
     }
     getFailureMessage(context) {
         var namespaceInfo = context.GetAncestorContext();
-        return string.Format("Association additions '{0}' is not valid in core namespace '{1}'.", context.extendeeName().GetText(), namespaceInfo.NamespaceName);
+        return `Association additions '${context.extendeeName().GetText()}' is not valid in core namespace '${namespaceInfo.NamespaceName}`;
     }
 }
 exports.AssociationExtensionExistsOnlyInExtensionNamespace = AssociationExtensionExistsOnlyInExtensionNamespace;

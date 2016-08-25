@@ -5,7 +5,7 @@ class AbstractEntityMustContainAnIdentity extends ValidationRuleBase_1.Validatio
         return context.property().some(x => this.getProperty(x).propertyComponents().propertyAnnotation().identity() != null);
     }
     getFailureMessage(context) {
-        return `Abstract Entity {context.abstractEntityName().ID().getText()} does not have an identity specified.`;
+        return `Abstract Entity ${context.abstractEntityName().ID().getText()} does not have an identity specified.`;
     }
 }
 exports.AbstractEntityMustContainAnIdentity = AbstractEntityMustContainAnIdentity;

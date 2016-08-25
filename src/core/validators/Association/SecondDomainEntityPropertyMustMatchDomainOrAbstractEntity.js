@@ -9,7 +9,7 @@ class SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity extends Validati
         return this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntityEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AbstractEntityEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntitySubclassEntityType(), identifierToMatch);
     }
     getFailureMessage(context) {
-        return string.Format("Domain Entity property '{0}' does not match any declared domain or abstract entity.", context.IdText());
+        return `Domain Entity property '${context.IdText()}' does not match any declared domain or abstract entity.`;
     }
 }
 exports.SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity = SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity;

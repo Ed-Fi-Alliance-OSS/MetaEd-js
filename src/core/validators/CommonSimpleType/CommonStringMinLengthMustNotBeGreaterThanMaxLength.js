@@ -9,7 +9,7 @@ class CommonStringMinLengthMustNotBeGreaterThanMaxLength extends ValidationRuleB
         return minLength <= maxLength;
     }
     getFailureMessage(context) {
-        return string.Format("Common String '{0}' has min length greater than max length.", context.commonStringName().GetText());
+        return `Common String '${context.commonStringName().GetText()}' has min length greater than max length.`;
     }
 }
 exports.CommonStringMinLengthMustNotBeGreaterThanMaxLength = CommonStringMinLengthMustNotBeGreaterThanMaxLength;

@@ -10,7 +10,7 @@ class AssociationSubclassIdentifierMustMatchAnAssociation extends ValidationRule
         return this._symbolTable.IdentifiersForEntityType(associationEntityType).Any(x => x.Equals(basedOnName));
     }
     getFailureMessage(context) {
-        return string.Format("Association '{0}' based on '{1}' does not match any declared Association.", context.associationName().GetText(), context.baseName().GetText());
+        return `Association '${context.associationName().GetText()}' based on '${context.baseName().GetText()}' does not match any declared Association.`;
     }
 }
 exports.AssociationSubclassIdentifierMustMatchAnAssociation = AssociationSubclassIdentifierMustMatchAnAssociation;
