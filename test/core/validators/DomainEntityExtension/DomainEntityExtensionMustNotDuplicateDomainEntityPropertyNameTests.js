@@ -22,11 +22,11 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
                 .withStartDomainEntityExtension(entityName)
                 .withBooleanProperty("Property2", "because a property is required", true, false)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_domain_entity_extension_has_duplicate_property_name', () => {
@@ -43,7 +43,7 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
                 .withStartDomainEntityExtension(entityName)
                 .withBooleanProperty(duplicatePropertyName, "because a property is required", true, false)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
@@ -75,7 +75,7 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
                 .withBooleanProperty(duplicatePropertyName2, "because a property is required", true, false)
                 .withBooleanProperty(notDuplicatePropertyName, "because a property is required", true, false)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
@@ -104,7 +104,7 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
                 .withStartDomainEntityExtension(entityName)
                 .withIncludeProperty(duplicatePropertyName, "doc", true, false)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
@@ -125,7 +125,7 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
                 .withStartDomainEntityExtension(entityName)
                 .withIncludeExtensionOverrideProperty(duplicatePropertyName, "doc", true, false)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_not_have_validation_failure()', () => {

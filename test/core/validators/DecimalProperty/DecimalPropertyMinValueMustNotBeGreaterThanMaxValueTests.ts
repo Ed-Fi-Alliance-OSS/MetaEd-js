@@ -24,12 +24,12 @@ describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
                 .withDocumentation("doc")
                 .withDecimalIdentity("DecimalProperty", "doc2", "10", "2")
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -44,12 +44,12 @@ describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
                 .withDocumentation("doc")
                 .withDecimalIdentity("DecimalProperty", "doc2", "10", "2", null, 1000)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -64,12 +64,12 @@ describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
                 .withDocumentation("doc")
                 .withDecimalIdentity("DecimalProperty", "doc2", "10", "2", 1000)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -86,12 +86,12 @@ describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
                 .withDocumentation("doc")
                 .withDecimalIdentity("DecimalProperty", "doc2", "10", "2", minValue, maxValue)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -110,7 +110,7 @@ describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
                 .withDocumentation("doc")
                 .withDecimalIdentity(decimalPropertyName, "doc2", "10", "2", minValue, maxValue)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -141,12 +141,12 @@ describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
                 .withDocumentation("doc")
                 .withDecimalIdentity(decimalPropertyName, "doc2", minValue, maxValue)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 });

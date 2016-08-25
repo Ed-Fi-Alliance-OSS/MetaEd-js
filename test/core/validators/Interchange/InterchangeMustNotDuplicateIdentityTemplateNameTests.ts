@@ -26,12 +26,12 @@ describe('ReplaceMeWithFileName', () => {
                 .withIdentityTemplate("Template1")
                 .withIdentityTemplate("Template2")
                 .withEndInterchange()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -50,7 +50,7 @@ describe('ReplaceMeWithFileName', () => {
                 .withIdentityTemplate(duplicateTemplate)
                 .withIdentityTemplate(duplicateTemplate)
                 .withEndInterchange()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 

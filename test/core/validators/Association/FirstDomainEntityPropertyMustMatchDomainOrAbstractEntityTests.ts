@@ -35,11 +35,11 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withDomainEntityProperty("First", "doc1")
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -53,9 +53,9 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withStartAbstractEntity("First")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
-                .withEndAbstractEntity();
-                
-.withStartDomainEntity("Second")
+                .withEndAbstractEntity()
+
+                .withStartDomainEntity("Second")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
@@ -65,11 +65,11 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withDomainEntityProperty("First", "doc1")
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -83,9 +83,9 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withStartAbstractEntity("First")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
-                .withEndAbstractEntity();
-                
-.withStartDomainEntity("Second")
+                .withEndAbstractEntity()
+
+                .withStartDomainEntity("Second")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
@@ -100,11 +100,11 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withDomainEntityProperty("Third", "doc1")
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -126,11 +126,11 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withDomainEntityProperty(entityName, "doc1")
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.count.should.not.equal(0)
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");

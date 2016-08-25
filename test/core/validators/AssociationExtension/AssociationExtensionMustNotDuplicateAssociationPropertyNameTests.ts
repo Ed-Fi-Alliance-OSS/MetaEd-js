@@ -31,12 +31,12 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
 .withStartAssociationExtension(entityName)
 .withBooleanProperty("Property2", "because a property is required", true, false)
 .withEndAssociationExtension()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
     
@@ -59,7 +59,7 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
 .withStartAssociationExtension(entityName)
 .withBooleanProperty(duplicatePropertyName, "because a property is required", true, false)
 .withEndAssociationExtension()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
@@ -98,7 +98,7 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
 .withBooleanProperty(duplicatePropertyName2, "because a property is required", true, false)
 .withBooleanProperty(When_association_extension_has_multiple_association_names._not_duplicate_property_name, "because a property is required", true, false)
 .withEndAssociationExtension()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
@@ -134,7 +134,7 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
 .withStartAssociationExtension(entityName)
 .withIncludeProperty(duplicatePropertyName, "doc", true, false)
 .withEndAssociationExtension()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
@@ -162,7 +162,7 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
 .withStartAssociationExtension(entityName)
 .withIncludeExtensionOverrideProperty(duplicatePropertyName, "doc", true, false)
 .withEndAssociationExtension()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             

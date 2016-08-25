@@ -18,11 +18,11 @@ describe('IntegerPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDocumentation("doc")
                 .withIntegerIdentity("IntegerProperty", "doc2")
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_validating_integer_property_with_no_min_value', () => {
@@ -34,11 +34,11 @@ describe('IntegerPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDocumentation("doc")
                 .withIntegerIdentity("IntegerProperty", "doc2", 100)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_validating_integer_property_with_no_max_value', () => {
@@ -50,11 +50,11 @@ describe('IntegerPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDocumentation("doc")
                 .withIntegerIdentity("IntegerProperty", "doc2", null, 100)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_validating_integer_property_with_correct_min_max_value_order', () => {
@@ -68,11 +68,11 @@ describe('IntegerPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDocumentation("doc")
                 .withIntegerIdentity("IntegerProperty", "doc2", maxValue, minValue)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_validating_integer_property_with_min_max_values_out_of_order', () => {
@@ -88,7 +88,7 @@ describe('IntegerPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDocumentation("doc")
                 .withIntegerIdentity(integerPropertyName, "doc2", maxValue, minValue)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
@@ -115,11 +115,11 @@ describe('IntegerPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDocumentation("doc")
                 .withIntegerIdentity(integerPropertyName, "doc2", maxValue, minValue)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 });

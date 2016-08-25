@@ -29,12 +29,12 @@ describe('CommonTypeExtensionMustNotDuplicateCommonTypePropertyNameTests', () =>
 .withStartCommonTypeExtension(entityName)
 .withBooleanProperty("Property2", "doc", true, false)
 .withEndCommonTypeExtension()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
     
@@ -55,7 +55,7 @@ describe('CommonTypeExtensionMustNotDuplicateCommonTypePropertyNameTests', () =>
 .withStartCommonTypeExtension(entityName)
 .withBooleanProperty(duplicatePropertyName, "doc", true, false)
 .withEndCommonTypeExtension()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             

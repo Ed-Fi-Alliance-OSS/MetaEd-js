@@ -23,11 +23,11 @@ describe('DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity', () =>
                 .withDocumentation("doc")
                 .withBooleanProperty("Property2", "doc", true, false)
                 .withEndDomainEntitySubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_domain_entity_subclass_extends_abstract_entity', () => {
@@ -39,16 +39,16 @@ describe('DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity', () =>
                 .withStartAbstractEntity(entityName)
                 .withDocumentation("doc")
                 .withStringIdentity("Property1", "doc", 100)
-                .withEndAbstractEntity();
-            withStartDomainEntitySubclass("NewSubclassName", entityName)
+                .withEndAbstractEntity()
+                .withStartDomainEntitySubclass("NewSubclassName", entityName)
                 .withDocumentation("doc")
                 .withBooleanProperty("Property2", "doc", true, false)
                 .withEndDomainEntitySubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_domain_entity_subclass_has_invalid_extendee', () => {
@@ -62,11 +62,11 @@ describe('DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity', () =>
                 .withDocumentation("doc")
                 .withBooleanProperty("Property1", "doc", true, false)
                 .withEndDomainEntitySubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.count.should.not.equal(0);
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("DomainEntity");

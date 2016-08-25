@@ -24,19 +24,19 @@ describe('IncludePropertyMustMatchACommonType', () => {
                 .withStartCommonType(entityName)
                 .withDocumentation("doc")
                 .withStringProperty("StringProperty", "doc", true, false, 100)
-                .withEndCommonType();
+                .withEndCommonType()
                 
 .withStartDomainEntity("DomainEntity")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withIncludeProperty(entityName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -51,19 +51,19 @@ describe('IncludePropertyMustMatchACommonType', () => {
                 .withStartInlineCommonType(entityName)
                 .withDocumentation("doc")
                 .withStringProperty("StringProperty", "doc", true, false, 100)
-                .withEndInlineCommonType();
+                .withEndInlineCommonType()
                 
 .withStartDomainEntity("DomainEntity")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withIncludeProperty(entityName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -78,19 +78,19 @@ describe('IncludePropertyMustMatchACommonType', () => {
                 .withStartChoiceType(entityName)
                 .withDocumentation("doc")
                 .withStringProperty("StringProperty", "doc", true, false, 100)
-                .withEndChoiceType();
+                .withEndChoiceType()
                 
 .withStartDomainEntity("DomainEntity")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withIncludeProperty(entityName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -107,12 +107,12 @@ describe('IncludePropertyMustMatchACommonType', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withIncludeProperty(entityName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.count.should.not.equal(0);
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("Include");

@@ -1,3 +1,4 @@
+//TODO: This is an extension of BaseValidationTest which is a helper now so this needs to either become a separate helper and duplicate helper logic or something else.
 var MetaEd;
 (function (MetaEd) {
     var Tests;

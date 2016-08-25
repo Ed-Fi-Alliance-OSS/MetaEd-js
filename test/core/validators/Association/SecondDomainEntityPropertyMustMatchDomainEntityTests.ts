@@ -4,7 +4,7 @@ import chai = require('chai');
 import {ValidationTestHelper} from "../ValidationTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
-import {InsertClaSecondDomainEntityPropertyMustMatchDomainOrAbstractEntityssName}from "../../../../src/core/validators/Association/SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity"
+import {SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity}from "../../../../src/core/validators/Association/SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity"
 
 let should = chai.should();
 
@@ -35,11 +35,11 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withDomainEntityProperty("First", "doc1")
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -58,18 +58,18 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withStartAbstractEntity("Second")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
-                .withEndAbstractEntity();
+                .withEndAbstractEntity()
                 
 .withStartAssociation("Association1")
                 .withDocumentation("doc")
                 .withDomainEntityProperty("First", "doc1")
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -83,7 +83,7 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withStartAbstractEntity("First")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
-                .withEndAbstractEntity();
+                .withEndAbstractEntity()
                 
 .withStartDomainEntity("Second")
                 .withDocumentation("doc")
@@ -100,11 +100,11 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withDomainEntityProperty("Second", "doc1")
                 .withDomainEntityProperty("Third", "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -126,11 +126,11 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withDomainEntityProperty("First", "doc1")
                 .withDomainEntityProperty(entityName, "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.count.should.not.equal(0)
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");

@@ -25,12 +25,12 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withTotalDigits("10")
                 .withDecimalPlaces("2")
                 .withEndCommonDecimal()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -47,12 +47,12 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDecimalPlaces("2")
                 .withMaxValue(100)
                 .withEndCommonDecimal()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -69,12 +69,12 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDecimalPlaces("2")
                 .withMinValue(0)
                 .withEndCommonDecimal()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -92,12 +92,12 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withMinValue(0)
                 .withMaxValue(100)
                 .withEndCommonDecimal()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -116,7 +116,7 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withMinValue(100)
                 .withMaxValue(0)
                 .withEndCommonDecimal()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -144,12 +144,12 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withMinValue(100)
                 .withMaxValue(100)
                 .withEndCommonDecimal()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 });

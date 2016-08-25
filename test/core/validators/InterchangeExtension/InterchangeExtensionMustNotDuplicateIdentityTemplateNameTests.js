@@ -18,11 +18,11 @@ describe('InterchangeExtensionMustNotDuplicateIdentityTemplateName', () => {
                 .withIdentityTemplate("Template1")
                 .withIdentityTemplate("Template2")
                 .withEndInterchangeExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_identity_templates_have_duplicate_names', () => {
@@ -36,7 +36,7 @@ describe('InterchangeExtensionMustNotDuplicateIdentityTemplateName', () => {
                 .withIdentityTemplate(duplicateTemplate)
                 .withIdentityTemplate(duplicateTemplate)
                 .withEndInterchangeExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {

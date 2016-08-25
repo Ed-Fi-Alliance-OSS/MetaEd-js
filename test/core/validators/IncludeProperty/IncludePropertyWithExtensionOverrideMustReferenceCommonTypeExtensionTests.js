@@ -30,7 +30,7 @@ describe('IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension',
                 .withStartDomainEntityExtension(entityName)
                 .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
@@ -67,7 +67,7 @@ describe('IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension',
                 .withStartDomainEntityExtension(entityName)
                 .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_not_have_validation_failure()', () => {

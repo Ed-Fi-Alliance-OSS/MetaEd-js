@@ -36,11 +36,11 @@ describe('SecondDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
                 .withDomainEntityProperty("Second", "doc2")
                 .withIntegerProperty("Third", "doc3", false, false)
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -67,14 +67,14 @@ describe('SecondDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
                 .withDomainEntityProperty("Second", "doc2")
                 .withIntegerProperty("Second", "doc3", false, false)
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(1);
+            helper.errorMessageCollection.count.should.equal(1);
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldEqual("Entity Association1 has duplicate properties named Second");
+            helper.errorMessageCollection[0].Message.should.equal("Entity Association1 has duplicate properties named Second");
         });
     });
 });

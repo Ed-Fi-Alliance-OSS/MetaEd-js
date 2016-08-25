@@ -24,11 +24,11 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withReferenceProperty(entityName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_reference_property_has_identifier_of_domain_entity_subclass', () => {
@@ -50,11 +50,11 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withReferenceProperty(entityName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_reference_property_has_identifier_of_association', () => {
@@ -74,11 +74,11 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withReferenceProperty(entityName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_reference_property_has_identifier_of_association_subclass', () => {
@@ -102,11 +102,11 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withReferenceProperty(entityName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_reference_property_has_identifier_of_abstract_entity', () => {
@@ -124,11 +124,11 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withReferenceProperty(entityName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_reference_property_has_invalid_identifier', () => {
@@ -142,7 +142,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withReferenceProperty(entityName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {

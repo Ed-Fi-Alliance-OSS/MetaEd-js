@@ -19,11 +19,11 @@ describe('SubdomainMustNotDuplicateDomainItems', () => {
                 .withDomainItem("Item1")
                 .withDomainItem("Item2")
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_domain_items_have_duplicate_names', () => {
@@ -39,7 +39,7 @@ describe('SubdomainMustNotDuplicateDomainItems', () => {
                 .withDomainItem(duplicateTemplate)
                 .withDomainItem(duplicateTemplate)
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
@@ -70,7 +70,7 @@ describe('SubdomainMustNotDuplicateDomainItems', () => {
                 .withDomainItem(duplicateTemplate2)
                 .withDomainItem(duplicateTemplate2)
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {

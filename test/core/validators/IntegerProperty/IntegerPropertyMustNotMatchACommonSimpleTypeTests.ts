@@ -27,12 +27,12 @@ describe('IntegerPropertyMustNotMatchACommonSimpleType', () => {
 .withStringIdentity("RequirePrimaryKey", "doc", 100)
 .withIntegerProperty(propertyName, "doc", false, false, 10, 2)
 .withEndDomainEntity()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
     
@@ -55,7 +55,7 @@ describe('IntegerPropertyMustNotMatchACommonSimpleType', () => {
 .withStringIdentity("RequirePrimaryKey", "doc", 100)
 .withIntegerProperty(commonEntityName, "doc", false, false, 10, 2)
 .withEndDomainEntity()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
@@ -86,7 +86,7 @@ describe('IntegerPropertyMustNotMatchACommonSimpleType', () => {
 .withStringIdentity("RequirePrimaryKey", "doc", 100)
 .withIntegerProperty(commonEntityName, "doc", false, false, 10, 2)
 .withEndDomainEntity()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
@@ -117,7 +117,7 @@ describe('IntegerPropertyMustNotMatchACommonSimpleType', () => {
 .withStringIdentity("RequirePrimaryKey", "doc", 100)
 .withIntegerProperty(commonEntityName, "doc", false, false, 10, 2)
 .withEndDomainEntity()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
@@ -148,7 +148,7 @@ describe('IntegerPropertyMustNotMatchACommonSimpleType', () => {
 .withStringIdentity("RequirePrimaryKey", "doc", 100)
 .withIntegerProperty(commonEntityName, "doc", false, false, 10, 2)
 .withEndDomainEntity()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             

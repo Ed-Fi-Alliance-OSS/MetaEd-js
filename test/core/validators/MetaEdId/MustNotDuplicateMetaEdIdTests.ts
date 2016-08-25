@@ -36,12 +36,12 @@ describe('MustNotDuplicateMetaEdId', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(propertyName2, "doc", 100)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_not_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldBeEmpty();
+            helper.errorMessageCollection.should.be.empty;
         });
     });
 
@@ -67,12 +67,12 @@ describe('MustNotDuplicateMetaEdId', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(propertyName2, "doc", 100)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldNotBeEmpty();
+            helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("MetaEdId");
@@ -96,12 +96,12 @@ describe('MustNotDuplicateMetaEdId', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(propertyName, "doc", 100, null, null, metaEdId)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldNotBeEmpty();
+            helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("MetaEdId");
@@ -131,12 +131,12 @@ describe('MustNotDuplicateMetaEdId', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(propertyName2, "doc", 100, null, null, metaEdId)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldNotBeEmpty();
+            helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("MetaEdId");

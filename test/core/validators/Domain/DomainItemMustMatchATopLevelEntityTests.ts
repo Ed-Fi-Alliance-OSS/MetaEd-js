@@ -34,12 +34,12 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
                 .withDocumentation("doc")
                 .withDomainItem(entityName)
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -69,12 +69,12 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
                 .withDocumentation("doc")
                 .withDomainItem(entityName)
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -101,12 +101,12 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
                 .withDocumentation("doc")
                 .withDomainItem(entityName)
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -138,12 +138,12 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
                 .withDocumentation("doc")
                 .withDomainItem(entityName)
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -168,12 +168,12 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
                 .withDocumentation("doc")
                 .withDomainItem(entityName)
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -197,7 +197,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
                 .withDocumentation("doc")
                 .withDomainItem(entityName)
                 .withEndDomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -226,7 +226,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
                 .withDocumentation("doc")
                 .withDomainItem(entityName)
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -247,7 +247,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
                 .withDocumentation("doc")
                 .withDomainItem(entityName)
                 .withEndDomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -275,7 +275,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
                 .withDocumentation("doc")
                 .withDomainItem(entityName)
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 

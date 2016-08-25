@@ -24,12 +24,12 @@ describe('DomainEntityMustContainAnIdentityTests', () => {
                 .withDocumentation("doc1")
                 .withStringIdentity("Property1", "doc2", 100)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -45,7 +45,7 @@ describe('DomainEntityMustContainAnIdentityTests', () => {
                 .withDocumentation("doc1")
                 .withDateProperty("Property1", "doc2", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 

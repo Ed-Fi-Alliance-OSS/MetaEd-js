@@ -31,12 +31,12 @@ describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName', () => {
 .withDocumentation("because documentation is required")
 .withBooleanProperty("Property2", "because a property is required", true, false)
 .withEndDomainEntitySubclass()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
     
@@ -59,7 +59,7 @@ describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName', () => {
 .withDocumentation("because documentation is required")
 .withBooleanProperty(duplicatePropertyName, "because a property is required", true, false)
 .withEndDomainEntitySubclass()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
@@ -100,7 +100,7 @@ describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName', () => {
 .withBooleanProperty(duplicatePropertyName2, "because a property is required", true, false)
 .withBooleanProperty(notDuplicatePropertyName, "because a property is required", true, false)
 .withEndDomainEntitySubclass()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             

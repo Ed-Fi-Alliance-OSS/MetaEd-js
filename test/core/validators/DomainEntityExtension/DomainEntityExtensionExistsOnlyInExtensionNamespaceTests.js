@@ -25,11 +25,11 @@ describe('DomainEntityExtensionExistsOnlyInExtensionNamespaceTests', () => {
                 .withStartDomainEntityExtension(entityName)
                 .withBooleanProperty("Property2", "because a property is required", true, false)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_domain_entity_extension_exists_in_core', () => {
@@ -47,7 +47,7 @@ describe('DomainEntityExtensionExistsOnlyInExtensionNamespaceTests', () => {
                 .withStartDomainEntityExtension(entityName)
                 .withBooleanProperty("Property2", "because a property is required", true, false)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {

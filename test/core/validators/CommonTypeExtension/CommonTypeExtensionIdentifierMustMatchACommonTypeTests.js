@@ -23,11 +23,11 @@ describe('CommonTypeExtensionIdentifierMustMatchACommonTypeTests', () => {
                 .withStartCommonTypeExtension(entityName)
                 .withBooleanProperty("Property2", "doc", true, false)
                 .withEndCommonTypeExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_common_type_extension_has_invalid_extendee', () => {
@@ -39,7 +39,7 @@ describe('CommonTypeExtensionIdentifierMustMatchACommonTypeTests', () => {
                 .withStartCommonTypeExtension(entityName)
                 .withBooleanProperty("Property2", "doc", false, false)
                 .withEndCommonTypeExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {

@@ -21,11 +21,11 @@ describe('ShortPropertyMustNotMatchACommonSimpleType', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withShortProperty(propertyName, "doc", false, false, 10, 2)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_short_property_has_identifier_matching_common_decimal', () => {
@@ -44,7 +44,7 @@ describe('ShortPropertyMustNotMatchACommonSimpleType', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withShortProperty(commonEntityName, "doc", false, false, 10, 2)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
@@ -71,7 +71,7 @@ describe('ShortPropertyMustNotMatchACommonSimpleType', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withShortProperty(commonEntityName, "doc", false, false, 10, 2)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
@@ -98,7 +98,7 @@ describe('ShortPropertyMustNotMatchACommonSimpleType', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withShortProperty(commonEntityName, "doc", false, false, 10, 2)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
@@ -125,7 +125,7 @@ describe('ShortPropertyMustNotMatchACommonSimpleType', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withShortProperty(commonEntityName, "doc", false, false, 10, 2)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {

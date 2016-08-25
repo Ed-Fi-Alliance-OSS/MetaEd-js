@@ -1,4 +1,6 @@
-﻿module MetaEd.Tests.Validator {
+﻿//TODO: This is an extension of BaseValidationTest which is a helper now so this needs to either become a separate helper and duplicate helper logic or something else.
+
+module MetaEd.Tests.Validator {
     export class ValidationRuleTestBase extends BaseValidationTest {
         protected getRuleProvider(): IRuleProvider { throw new Error('not implemented'); }
         protected setupPostBuilder(): void {

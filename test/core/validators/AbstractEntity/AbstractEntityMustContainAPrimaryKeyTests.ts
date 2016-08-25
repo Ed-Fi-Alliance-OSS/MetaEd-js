@@ -24,12 +24,12 @@ describe('AbstractEntityMustContainAPrimaryKeyTests', () => {
 .withDocumentation("doc1")
 .withStringIdentity("Property1", "doc2", 100)
 .withEndAbstractEntity()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
                 });
 
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
     
@@ -45,7 +45,7 @@ describe('AbstractEntityMustContainAPrimaryKeyTests', () => {
 .withDocumentation("doc1")
 .withDateProperty("Property1", "doc2", true, false)
 .withEndAbstractEntity()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             it('should_have_validation_failure()', () => {

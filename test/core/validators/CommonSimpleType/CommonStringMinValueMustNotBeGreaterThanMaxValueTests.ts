@@ -24,12 +24,12 @@ describe('CommonStringMinLengthMustNotBeGreaterThanMaxLengthTests', () => {
 .withDocumentation("doc")
 .withMaxLength(100)
 .withEndCommonString()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
     
@@ -45,12 +45,12 @@ describe('CommonStringMinLengthMustNotBeGreaterThanMaxLengthTests', () => {
 .withMinLength(0)
 .withMaxLength(100)
 .withEndCommonString()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
     
@@ -67,7 +67,7 @@ describe('CommonStringMinLengthMustNotBeGreaterThanMaxLengthTests', () => {
 .withMinLength(100)
 .withMaxLength(0)
 .withEndCommonString()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
@@ -93,12 +93,12 @@ describe('CommonStringMinLengthMustNotBeGreaterThanMaxLengthTests', () => {
 .withMinLength(100)
 .withMaxLength(100)
 .withEndCommonString()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
 });

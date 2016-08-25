@@ -4,14 +4,14 @@ import chai = require('chai');
 import {ValidationTestHelper} from "../ValidationTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
-import {InsertClassName}from "../../../../src/core/validators/EnterFolderName/EnterClassName"
+import {DescriptorPropertyMustMatchADescriptor}from "../../../../src/core/validators/DescriptorProperty/DescriptorPropertyMustMatchADescriptor"
 
 let should = chai.should();
 
 describe('DescriptorPropertyContext', () => { 
 	let validatorListener = new ValidatorListener(
         new TestRuleProvider<MetaEdGrammar.DescriptorPropertyContext>(
-            new DescriptorPropertyContext()));
+            new DescriptorPropertyMustMatchADescriptor(symboltable)));
     
         
         describe('When_descriptor_property_has_valid_identifier', () => {
@@ -23,19 +23,19 @@ describe('DescriptorPropertyContext', () => {
 .withBeginNamespace("edfi")
 .withStartDescriptor(entityName)
 .withDocumentation("doc")
-.withEndDescriptor();
+.withEndDescriptor()
                 
 .withStartDomainEntity("DomainEntity")
 .withDocumentation("doc")
 .withStringIdentity("RequirePrimaryKey", "doc", 100)
 .withDescriptorProperty(entityName, "doc", true, false)
 .withEndDomainEntity()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
     
@@ -52,12 +52,12 @@ describe('DescriptorPropertyContext', () => {
 .withStringIdentity("RequirePrimaryKey", "doc", 100)
 .withDescriptorProperty(entityName, "doc", true, false)
 .withEndDomainEntity()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_validation_failure()', () => {
-                helper.errorMessageCollection.Any().ShouldBeTrue();
+                helper.errorMessageCollection.count.should.not.equal(0)
             });
             it('should_have_validation_failure_message()', () => {
                 helper.errorMessageCollection[0].Message.ShouldContain("Descriptor");

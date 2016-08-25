@@ -31,11 +31,11 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
                 .withDocumentation("because documentation is required")
                 .withStringIdentityRename("Property2", "Property1", "because a property is required", 100)
                 .withEndDomainEntitySubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.ShouldBeEmpty();
+            helper.errorMessageCollection.should.be.empty;
         });
     });
 
@@ -58,11 +58,11 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
                 .withDocumentation("because documentation is required")
                 .withStringProperty("Property3", "because a property is required", true, false, 100)
                 .withEndDomainEntitySubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.ShouldBeEmpty();
+            helper.errorMessageCollection.should.be.empty;
         });
     });
 
@@ -86,11 +86,11 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
                 .withStringIdentityRename("Property3", "Property1", "because a property is required", 100)
                 .withStringIdentityRename("Property4", "Property2", "because a property is required", 100)
                 .withEndDomainEntitySubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
-            helper.errorMessageCollection.ShouldNotBeEmpty();
+            helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");
@@ -115,11 +115,11 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
                 .withDocumentation("because documentation is required")
                 .withStringIdentityRename("Property2", "Property3", "because a property is required", 100)
                 .withEndDomainEntitySubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.ShouldBeEmpty();
+            helper.errorMessageCollection.should.be.empty;
         });
     });
 });

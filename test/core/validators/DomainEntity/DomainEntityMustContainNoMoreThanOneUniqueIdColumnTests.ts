@@ -24,12 +24,12 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
                 .withDocumentation("doc1")
                 .withStringIdentity("Property1", "doc2", 100)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.ShouldBeEmpty();
+            helper.errorMessageCollection.should.be.empty;
         });
     });
 
@@ -44,12 +44,12 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
                 .withDocumentation("doc1")
                 .withStringIdentity("UniqueId", "doc2", 100)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.ShouldBeEmpty();
+            helper.errorMessageCollection.should.be.empty;
         });
     });
 
@@ -66,12 +66,12 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
                 .withStringIdentity("UniqueId", "doc2", 100, null, null, "Student")
                 .withStringIdentity("UniqueId", "doc2", 100, null, null, "Staff")
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldNotBeEmpty();
+            helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");
@@ -93,12 +93,12 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
                 .withStringIdentity("UniqueId", "doc2", 100, null, null, "Student")
                 .withStringIdentity("UniqueId", "doc2", 100, null, null, "Staff")
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.ShouldBeEmpty();
+            helper.errorMessageCollection.should.be.empty;
         });
     });
 });

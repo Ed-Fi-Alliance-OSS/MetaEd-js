@@ -22,11 +22,11 @@ describe('DescriptorMapTypeItemsMustBeUniqueTests', () => {
                 .withEnumerationItem("this is short description 2", "doc2")
                 .withEndMapType()
                 .withEndDescriptor()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_map_type_items_have_duplicate_short_descriptions', () => {
@@ -44,14 +44,14 @@ describe('DescriptorMapTypeItemsMustBeUniqueTests', () => {
                 .withEnumerationItem(duplicateShortDescription, "doc2")
                 .withEndMapType()
                 .withEndDescriptor()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldEqual("Descriptor 'Descriptor1' declares duplicate item 'this is a duplicate short description'.");
+            helper.errorMessageCollection[0].Message.should.equal("Descriptor 'Descriptor1' declares duplicate item 'this is a duplicate short description'.");
         });
     });
     describe('When_map_type_items_have_multiple_duplicate_short_descriptions', () => {
@@ -72,14 +72,14 @@ describe('DescriptorMapTypeItemsMustBeUniqueTests', () => {
                 .withEnumerationItem(duplicateShortDescription2, "doc2 again")
                 .withEndMapType()
                 .withEndDescriptor()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldEqual("Descriptor 'Descriptor1' declares duplicate items 'this is duplicate short description 1', 'this is duplicate short description 2'.");
+            helper.errorMessageCollection[0].Message.should.equal("Descriptor 'Descriptor1' declares duplicate items 'this is duplicate short description 1', 'this is duplicate short description 2'.");
         });
     });
 });

@@ -26,12 +26,12 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
                 .withDocumentation("doc")
                 .withDecimalIdentity("DecimalProperty", "doc2", totalDigits, decimalPlaces)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -50,7 +50,7 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
                 .withDocumentation("doc")
                 .withDecimalIdentity(decimalPropertyName, "doc2", totalDigits, decimalPlaces)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -81,12 +81,12 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
                 .withDocumentation("doc")
                 .withDecimalIdentity(decimalPropertyName, "doc2", totalDigits, decimalPlaces)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 });

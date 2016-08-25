@@ -26,11 +26,11 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
                 .withDocumentation("because documentation is required")
                 .withBooleanProperty("Property2", "because a property is required", true, false)
                 .withEndAssociationSubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_association_subclass_has_duplicate_property_name', () => {
@@ -51,7 +51,7 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
                 .withDocumentation("because documentation is required")
                 .withBooleanProperty(duplicatePropertyName, "because a property is required", true, false)
                 .withEndAssociationSubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
@@ -89,7 +89,7 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
                 .withBooleanProperty(duplicatePropertyName2, "because a property is required", true, false)
                 .withBooleanProperty(When_association_subclass_has_multiple_duplicate_property_names._not_duplicate_property_name, "because a property is required", true, false)
                 .withEndAssociationSubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {

@@ -17,11 +17,11 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withStartCommonShort("EntityForTest")
                 .withDocumentation("doc")
                 .withEndCommonShort()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_validating_common_short_with_no_min_value', () => {
@@ -33,11 +33,11 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDocumentation("doc")
                 .withMaxValue(100)
                 .withEndCommonShort()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_validating_common_short_with_no_max_value', () => {
@@ -49,11 +49,11 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDocumentation("doc")
                 .withMinValue(0)
                 .withEndCommonShort()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_validating_common_short_with_correct_min_max_value_order', () => {
@@ -66,11 +66,11 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withMinValue(0)
                 .withMaxValue(100)
                 .withEndCommonShort()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_validating_common_short_with_min_max_values_out_of_order', () => {
@@ -84,7 +84,7 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withMinValue(100)
                 .withMaxValue(0)
                 .withEndCommonShort()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
@@ -106,11 +106,11 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withMinValue(100)
                 .withMaxValue(100)
                 .withEndCommonShort()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 });

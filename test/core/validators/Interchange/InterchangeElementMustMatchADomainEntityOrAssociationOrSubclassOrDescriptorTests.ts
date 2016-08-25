@@ -30,12 +30,12 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
                 .withDocumentation("doc")
                 .withElement(entityName)
                 .withEndInterchange()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -61,12 +61,12 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
                 .withDocumentation("doc")
                 .withElement(entityName)
                 .withEndInterchange()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -89,12 +89,12 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
                 .withDocumentation("doc")
                 .withElement(entityName)
                 .withEndInterchange()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -122,12 +122,12 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
                 .withDocumentation("doc")
                 .withElement(entityName)
                 .withEndInterchange()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -151,7 +151,7 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
                 .withDocumentation("doc")
                 .withElement(entityName)
                 .withEndInterchange()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -172,7 +172,7 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
                 .withDocumentation("doc")
                 .withElement(entityName)
                 .withEndInterchange()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 

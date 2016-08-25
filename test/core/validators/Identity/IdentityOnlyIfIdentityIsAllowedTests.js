@@ -20,11 +20,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(propertyName, "doc", 100)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_not_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldBeEmpty();
+            helper.errorMessageCollection.should.be.empty;
         });
     });
     describe('When_abstract_entity_has_valid_identity_property', () => {
@@ -38,11 +38,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(propertyName, "doc", 100)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_not_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldBeEmpty();
+            helper.errorMessageCollection.should.be.empty;
         });
     });
     describe('When_association_has_valid_identity_property', () => {
@@ -58,11 +58,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 .withDomainEntityProperty("DomainEntity2", "doc")
                 .withStringIdentity(propertyName, "doc", 100)
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_not_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldBeEmpty();
+            helper.errorMessageCollection.should.be.empty;
         });
     });
     describe('When_common_type_has_valid_identity_property', () => {
@@ -76,11 +76,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(propertyName, "doc", 100)
                 .withEndCommonType()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_not_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldBeEmpty();
+            helper.errorMessageCollection.should.be.empty;
         });
     });
     describe('When_inline_common_type_has_valid_identity_property', () => {
@@ -94,11 +94,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(propertyName, "doc", 100)
                 .withEndInlineCommonType()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_not_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldBeEmpty();
+            helper.errorMessageCollection.should.be.empty;
         });
     });
     describe('When_association_extension_has_invalid_identity_property', () => {
@@ -117,11 +117,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 .withStartAssociationExtension(entityName)
                 .withStringIdentity(propertyName, "doc", 100)
                 .withEndAssociationExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldNotBeEmpty();
+            helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("Association");
@@ -148,11 +148,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(propertyName, "doc", 100)
                 .withEndAssociationSubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldNotBeEmpty();
+            helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("Association");
@@ -178,11 +178,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 .withEnumerationItem("this is short description 2", "doc2")
                 .withEndMapType()
                 .withEndDescriptor()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldNotBeEmpty();
+            helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("Descriptor");
@@ -205,11 +205,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 .withStartDomainEntityExtension(entityName)
                 .withStringIdentity(propertyName, "doc", 100)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldNotBeEmpty();
+            helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");
@@ -235,11 +235,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(propertyName, "doc", 100)
                 .withEndDomainEntitySubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.ShouldNotBeEmpty();
+            helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");

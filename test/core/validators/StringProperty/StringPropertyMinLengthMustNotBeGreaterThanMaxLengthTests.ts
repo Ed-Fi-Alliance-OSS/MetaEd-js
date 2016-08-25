@@ -24,12 +24,12 @@ describe('ReplaceMeWithFileName', () => {
                 .withDocumentation("doc")
                 .withStringIdentity("StringProperty", "doc2", 100)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -46,12 +46,12 @@ describe('ReplaceMeWithFileName', () => {
                 .withDocumentation("doc")
                 .withStringIdentity("StringProperty", "doc2", maxLength, minLength)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -70,7 +70,7 @@ describe('ReplaceMeWithFileName', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(stringPropertyName, "doc2", maxLength, minLength)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -101,12 +101,12 @@ describe('ReplaceMeWithFileName', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(stringPropertyName, "doc2", maxLength, minLength)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 });

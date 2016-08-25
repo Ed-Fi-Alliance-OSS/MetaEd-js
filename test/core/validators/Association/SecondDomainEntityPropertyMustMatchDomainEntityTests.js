@@ -5,9 +5,10 @@ const chai = require('chai');
 const ValidationTestHelper_1 = require("../ValidationTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
+const SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity_1 = require("../../../../src/core/validators/Association/SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity");
 let should = chai.should();
 describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
-    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
+    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
     describe('When_domain_entity_property_has_domain_entity_identifier', () => {
         let helper = new ValidationTestHelper_1.ValidationTestHelper();
         before(() => {
@@ -26,11 +27,11 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withDomainEntityProperty("First", "doc1")
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_domain_entity_property_has_abstract_entity_identifier', () => {
@@ -45,17 +46,17 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withStartAbstractEntity("Second")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
-                .withEndAbstractEntity();
-            withStartAssociation("Association1")
+                .withEndAbstractEntity()
+                .withStartAssociation("Association1")
                 .withDocumentation("doc")
                 .withDomainEntityProperty("First", "doc1")
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_domain_entity_property_has_subclass_entity_identifier', () => {
@@ -66,8 +67,8 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withStartAbstractEntity("First")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
-                .withEndAbstractEntity();
-            withStartDomainEntity("Second")
+                .withEndAbstractEntity()
+                .withStartDomainEntity("Second")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
@@ -80,11 +81,11 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withDomainEntityProperty("Second", "doc1")
                 .withDomainEntityProperty("Third", "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_domain_entity_property_has_invalid_identifier', () => {
@@ -102,11 +103,11 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withDomainEntityProperty("First", "doc1")
                 .withDomainEntityProperty(entityName, "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.count.should.not.equal(0);
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");

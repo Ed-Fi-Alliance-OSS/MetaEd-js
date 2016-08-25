@@ -25,7 +25,7 @@ describe('IncludePropertyMustNotContainIdentity', () => {
                 .withDocumentation("doc")
                 .withIdentityProperty("include", propertyName, "doc")
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {

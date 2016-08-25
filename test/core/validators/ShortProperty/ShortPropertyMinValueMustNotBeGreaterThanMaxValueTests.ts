@@ -24,12 +24,12 @@ describe('ShortPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDocumentation("doc")
                 .withShortIdentity("ShortProperty", "doc2")
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -44,12 +44,12 @@ describe('ShortPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDocumentation("doc")
                 .withShortIdentity("ShortProperty", "doc2", 100)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -64,12 +64,12 @@ describe('ShortPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDocumentation("doc")
                 .withShortIdentity("ShortProperty", "doc2", null, 100)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -86,12 +86,12 @@ describe('ShortPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
                 .withDocumentation("doc")
                 .withShortIdentity("ShortProperty", "doc2", maxValue, minValue)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -110,7 +110,7 @@ describe('ShortPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
             .withDocumentation("doc")
             .withShortIdentity(integerPropertyName, "doc2", maxValue, minValue)
             .withEndAbstractEntity()
-            .withEndNamespace();
+            .withEndNamespace().toString();
         helper.setup(metaEdText, validatorListener);
     });
 
@@ -141,12 +141,12 @@ before(() => {
         .withDocumentation("doc")
         .withShortIdentity(integerPropertyName, "doc2", maxValue, minValue)
         .withEndAbstractEntity()
-        .withEndNamespace();
+        .withEndNamespace().toString();
     helper.setup(metaEdText, validatorListener);
 });
 
 it('should_have_no_validation_failures()', () => {
-    helper.errorMessageCollection.Count.ShouldEqual(0);
+    helper.errorMessageCollection.count.should.equal(0);
 });
 });
 });

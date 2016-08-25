@@ -20,11 +20,11 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
                 .withDocumentation("doc")
                 .withDecimalIdentity("DecimalProperty", "doc2", totalDigits, decimalPlaces)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order', () => {
@@ -40,7 +40,7 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
                 .withDocumentation("doc")
                 .withDecimalIdentity(decimalPropertyName, "doc2", totalDigits, decimalPlaces)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
@@ -67,11 +67,11 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
                 .withDocumentation("doc")
                 .withDecimalIdentity(decimalPropertyName, "doc2", totalDigits, decimalPlaces)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 });

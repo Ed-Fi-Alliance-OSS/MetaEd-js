@@ -33,12 +33,12 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withSharedDecimalProperty(entityName, propertyName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -62,12 +62,12 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withSharedDecimalProperty(entityName, propertyName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -91,12 +91,12 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withSharedDecimalProperty(entityName, propertyName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -119,12 +119,12 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withSharedDecimalProperty(entityName, propertyName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -142,7 +142,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withSharedDecimalProperty(entityName, propertyName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -170,7 +170,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withSharedIntegerProperty(entityName, propertyName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -198,7 +198,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withSharedShortProperty(entityName, propertyName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -226,7 +226,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withSharedStringProperty(entityName, propertyName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 

@@ -30,12 +30,12 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
                 .withDocumentation("doc")
                 .withDomainItem("DomainEntity")
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -52,7 +52,7 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
                 .withDocumentation("doc")
                 .withDomainItem("DomainEntity")
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 

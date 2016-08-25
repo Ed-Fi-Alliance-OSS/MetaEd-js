@@ -23,11 +23,11 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
                 .withDocumentation("doc")
                 .withDomainItem("DomainEntity")
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_subdomain_has_invalid_parent_domain_name', () => {
@@ -41,7 +41,7 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
                 .withDocumentation("doc")
                 .withDomainItem("DomainEntity")
                 .withEndSubdomain()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {

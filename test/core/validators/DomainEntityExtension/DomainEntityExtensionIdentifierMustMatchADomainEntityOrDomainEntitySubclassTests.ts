@@ -30,12 +30,12 @@ describe('DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySub
                 .withStartDomainEntityExtension(entityName)
                 .withBooleanProperty("Property2", "because a property is required", true, false)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -50,7 +50,7 @@ describe('DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySub
                 .withStartDomainEntityExtension(entityName)
                 .withBooleanProperty("Property2", "because a property is required", false, false)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -86,12 +86,12 @@ describe('DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySub
 .withStartDomainEntityExtension(subclassName)
                 .withBooleanProperty("Property3", "because a property is required", true, false)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
@@ -111,7 +111,7 @@ describe('DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySub
 .withStartDomainEntityExtension(entityName)
                 .withBooleanProperty("Property2", "because a property is required", true, false)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 

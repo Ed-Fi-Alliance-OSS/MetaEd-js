@@ -19,11 +19,11 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
                 .withDomainEntityProperty("DomainEntity1", "doc1")
                 .withDomainEntityProperty("DomainEntity2", "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('entityNames', () => {
@@ -38,7 +38,7 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
                 .withDomainEntityProperty(domainEntityName, "doc1")
                 .withDomainEntityProperty(domainEntityName, "doc2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
@@ -64,7 +64,7 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
                 .withDomainEntityProperty(domainEntityName, "doc1", contextName)
                 .withDomainEntityProperty(domainEntityName, "doc2", contextName)
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
@@ -88,11 +88,11 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
                 .withDomainEntityProperty(domainEntityName, "doc1", "Context1")
                 .withDomainEntityProperty(domainEntityName, "doc2", "Context2")
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('entityNames_and_same_contexts', () => {
@@ -106,11 +106,11 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
                 .withDomainEntityProperty("DomainEntity1", "doc1", contextName)
                 .withDomainEntityProperty("DomainEntity2", "doc2", contextName)
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 });

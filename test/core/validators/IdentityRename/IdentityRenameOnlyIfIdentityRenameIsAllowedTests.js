@@ -22,7 +22,7 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
                 .withDomainEntityProperty("DomainEntity2", "doc")
                 .withStringIdentityRename(propertyName, "BaseIdentifier", "Docs", 100)
                 .withEndAssociation()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
@@ -46,7 +46,7 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
                 .withDocumentation("doc")
                 .withStringIdentityRename(propertyName, "BaseIdentifier", "doc", 100)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
@@ -75,11 +75,11 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
                 .withDocumentation("doc")
                 .withStringIdentityRename("Identifier", "BaseIdentifier", "Docs", 100)
                 .withEndAssociationSubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_domain_entity_subclass_has_valid_identity_rename_property', () => {
@@ -96,11 +96,11 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
                 .withDocumentation("doc")
                 .withStringIdentityRename("Identifier", "BaseIdentifier", "Docs", 100)
                 .withEndDomainEntitySubclass()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 });

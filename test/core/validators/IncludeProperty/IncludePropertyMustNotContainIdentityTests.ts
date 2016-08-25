@@ -32,7 +32,7 @@ describe('IncludePropertyMustNotContainIdentity', () => {
                 .withDocumentation("doc")
                 .withIdentityProperty("include", propertyName, "doc")
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 

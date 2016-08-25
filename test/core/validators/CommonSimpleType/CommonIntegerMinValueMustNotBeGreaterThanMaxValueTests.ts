@@ -23,12 +23,12 @@ describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
 .withStartCommonInteger("EntityForTest")
 .withDocumentation("doc")
 .withEndCommonInteger()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
     
@@ -43,12 +43,12 @@ describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
 .withDocumentation("doc")
 .withMaxValue(100)
 .withEndCommonInteger()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
     
@@ -63,12 +63,12 @@ describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
 .withDocumentation("doc")
 .withMinValue(0)
 .withEndCommonInteger()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
     
@@ -84,12 +84,12 @@ describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
 .withMinValue(0)
 .withMaxValue(100)
 .withEndCommonInteger()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
     
@@ -106,7 +106,7 @@ describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
 .withMinValue(100)
 .withMaxValue(0)
 .withEndCommonInteger()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
@@ -132,12 +132,12 @@ describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
 .withMinValue(100)
 .withMaxValue(100)
 .withEndCommonInteger()
-.withEndNamespace();
+.withEndNamespace().toString();
                 helper.setup(metaEdText, validatorListener);
             });
             
             it('should_have_no_validation_failures()', () => {
-                helper.errorMessageCollection.Count.ShouldEqual(0);
+                helper.errorMessageCollection.count.should.equal(0);
             });
 });
 });

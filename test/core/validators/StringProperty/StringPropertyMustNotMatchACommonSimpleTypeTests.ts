@@ -27,18 +27,18 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withStringProperty(propertyName, "doc", false, false, 10, 2)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 
 
     describe('When_string_property_has_identifier_matching_common_decimal', () => {
-        const const commonEntityName: string = "CommonEntityName";
+        const commonEntityName: string = "CommonEntityName";
         let helper: ValidationTestHelper = new ValidationTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
@@ -55,12 +55,12 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withStringProperty(commonEntityName, "doc", false, false, 10, 2)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_validation_failures()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.count.should.not.equal(0);
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("String property");
@@ -70,7 +70,7 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
     });
 
     describe('When_string_property_has_identifier_matching_common_integer', () => {
-        const const commonEntityName: string = "CommonEntityName";
+        const commonEntityName: string = "CommonEntityName";
         let helper: ValidationTestHelper = new ValidationTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
@@ -86,12 +86,12 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withStringProperty(commonEntityName, "doc", false, false, 10, 2)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_validation_failures()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.count.should.not.equal(0);
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("String property");
@@ -101,7 +101,7 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
     });
 
     describe('When_string_property_has_identifier_matching_common_short', () => {
-        const const commonEntityName: string = "CommonEntityName";
+        const commonEntityName: string = "CommonEntityName";
         let helper: ValidationTestHelper = new ValidationTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
@@ -117,12 +117,12 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withStringProperty(commonEntityName, "doc", false, false, 10, 2)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_validation_failures()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.toArray().length.should.not.be("0");
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("String property");
@@ -132,7 +132,7 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
     });
 
     describe('When_string_property_has_identifier_matching_common_string', () => {
-        const const commonEntityName: string = "CommonEntityName";
+        const commonEntityName: string = "CommonEntityName";
         let helper: ValidationTestHelper = new ValidationTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
@@ -148,12 +148,12 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withStringProperty(commonEntityName, "doc", false, false, 10, 2)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
         it('should_have_validation_failures()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.count.should.not.equal(0);
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("String property");

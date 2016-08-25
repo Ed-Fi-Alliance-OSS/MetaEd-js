@@ -32,7 +32,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
                 .withDocumentation("doc")
                 .withIdentityProperty("include", propertyName, "doc")
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -60,7 +60,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
                 .withDocumentation("doc")
                 .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -99,7 +99,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
                 .withStartDomainEntityExtension(entityName)
                 .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -140,7 +140,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
                 .withStartAssociationExtension(entityName)
                 .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -180,7 +180,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
                 .withStartDomainEntityExtension(entityName)
                 .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -216,7 +216,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
                 .withStartAssociationExtension(entityName)
                 .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -250,7 +250,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
                 .withStartDomainEntityExtension(entityName)
                 .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -290,7 +290,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
                 .withStartDomainEntityExtension(entityName)
                 .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -332,7 +332,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
                 .withStartAssociationExtension(entityName)
                 .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 
@@ -374,7 +374,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
                 .withStartAssociationExtension(entityName)
                 .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
                 .withEndDomainEntityExtension()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
 

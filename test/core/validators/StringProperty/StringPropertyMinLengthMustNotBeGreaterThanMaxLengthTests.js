@@ -18,11 +18,11 @@ describe('ReplaceMeWithFileName', () => {
                 .withDocumentation("doc")
                 .withStringIdentity("StringProperty", "doc2", 100)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_validating_string_property_with_correct_min_max_length_order', () => {
@@ -36,11 +36,11 @@ describe('ReplaceMeWithFileName', () => {
                 .withDocumentation("doc")
                 .withStringIdentity("StringProperty", "doc2", maxLength, minLength)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_validating_string_property_with_min_max_length_out_of_order', () => {
@@ -56,7 +56,7 @@ describe('ReplaceMeWithFileName', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(stringPropertyName, "doc2", maxLength, minLength)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
@@ -83,11 +83,11 @@ describe('ReplaceMeWithFileName', () => {
                 .withDocumentation("doc")
                 .withStringIdentity(stringPropertyName, "doc2", maxLength, minLength)
                 .withEndAbstractEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
 });

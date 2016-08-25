@@ -24,11 +24,11 @@ describe('ReplaceMeWithFileName', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEnumerationProperty(entityName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_enumeration_property_has_invalid_identifier', () => {
@@ -42,7 +42,7 @@ describe('ReplaceMeWithFileName', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEnumerationProperty(entityName, "doc", true, false)
                 .withEndDomainEntity()
-                .withEndNamespace();
+                .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
