@@ -6,11 +6,11 @@ export class AssociationExtensionMustNotDuplicateAssociationPropertyName extends
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.AssociationExtensionContext): boolean {
-        return !PropertyRuleContextsForDuplicates(context).Any();
+        return this.propertyRuleContextsForDuplicates(context).length == 0;
     }
     public getFailureMessage(context: MetaEdGrammar.AssociationExtensionContext): string {
-        var duplicatePropertyIdentifierList = PropertyRuleContextsForDuplicates(context).Select(x => x.IdNode().GetText());
-        return `Association additions '${context.extendeeName().GetText()}' declares '${string.Join(",", duplicatePropertyIdentifierList)}' already in property list of Association.`;
+        var duplicatePropertyIdentifierList = this.propertyRuleContextsForDuplicates(context).Select(x => x.IdNode().GetText());
+        return `Association additions '${context.extendeeName().GetText()}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of Association.`;
     }
     protected propertyRuleContextsForDuplicates(context: MetaEdGrammar.AssociationExtensionContext): IEnumerable<IPropertyWithComponents> {
         var entityType = context.ASSOCIATION().GetText();
@@ -18,7 +18,7 @@ export class AssociationExtensionMustNotDuplicateAssociationPropertyName extends
         var identifier = context.extendeeName().GetText();
         var associationPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
         var duplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
-        return duplicates.Where(IsNotIncludePropertyContextWithExtension);
+        return duplicates.Where(AssociationExtensionMustNotDuplicateAssociationPropertyName.isNotIncludePropertyContextWithExtension);
     }
     private static isNotIncludePropertyContextWithExtension(context: IPropertyWithComponents): boolean {
         if (!(context instanceof MetaEdGrammar.IncludePropertyContext))

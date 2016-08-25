@@ -13,7 +13,7 @@ class IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension exten
     getFailureMessage(context) {
         var topLevelEntity = context.GetAncestorContext();
         var propertyWithComponents = context.GetAncestorContext();
-        return string.Format("'include extension' is invalid for property {0} on {1} '{2}'.  'include extension' is only valid for referencing common type extensions.", propertyWithComponents.IdNode().GetText(), topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName());
+        return `'include extension' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'include extension' is only valid for referencing common type extensions.`;
     }
 }
 exports.IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension = IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension;

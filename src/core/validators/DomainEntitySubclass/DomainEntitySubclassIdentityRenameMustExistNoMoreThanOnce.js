@@ -10,7 +10,7 @@ class DomainEntitySubclassIdentityRenameMustExistNoMoreThanOnce extends Validati
         var baseIdentifier = context.baseName().GetText();
         var identityRenames = context.property().Select(y => y.GetProperty().propertyComponents().propertyAnnotation().identityRename()).Where(x => x != null);
         var basePropertyIdentifier = string.Join(", ", identityRenames.Select(pkr => pkr.baseKeyName().GetText()));
-        return string.Format("Domain Entity '{0}' based on '{1}' tries to rename columns {2}.  Only one identity rename is allowed for a given Domain Entity.", identifier, baseIdentifier, basePropertyIdentifier);
+        return `Domain Entity '${identifier}' based on '${baseIdentifier}' tries to rename columns ${basePropertyIdentifier}.  Only one identity rename is allowed for a given Domain Entity.`;
     }
 }
 exports.DomainEntitySubclassIdentityRenameMustExistNoMoreThanOnce = DomainEntitySubclassIdentityRenameMustExistNoMoreThanOnce;

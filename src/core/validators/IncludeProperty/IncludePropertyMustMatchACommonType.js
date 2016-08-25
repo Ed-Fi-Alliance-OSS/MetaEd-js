@@ -12,7 +12,7 @@ class IncludePropertyMustMatchACommonType extends ValidationRuleBase_1.Validatio
         return this._symbolTable.IdentifierExists(commonTypeType, identifierToMatch) || this._symbolTable.IdentifierExists(inlineCommonTypeType, identifierToMatch) || this._symbolTable.IdentifierExists(choiceCommonType, identifierToMatch);
     }
     getFailureMessage(context) {
-        return string.Format("Include property '{0}' does not match any declared common type.", context.propertyName().GetText());
+        return `Include property '${context.propertyName().GetText()}' does not match any declared common type.`;
     }
 }
 exports.IncludePropertyMustMatchACommonType = IncludePropertyMustMatchACommonType;

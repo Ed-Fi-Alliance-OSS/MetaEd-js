@@ -6,11 +6,11 @@ export class DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName exten
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.DomainEntityExtensionContext): boolean {
-        return !PropertyRuleContextsForDuplicates(context).Any();
+        return propertyRuleContextsForDuplicates(context).length == 0;
     }
     public getFailureMessage(context: MetaEdGrammar.DomainEntityExtensionContext): string {
-        var duplicatePropertyIdentifierList = PropertyRuleContextsForDuplicates(context).Select(x => x.IdNode().GetText());
-        return string.Format("Domain Entity additions '{0}' declares '{1}' already in property list of Domain Entity.", context.extendeeName().GetText(), string.Join(",", duplicatePropertyIdentifierList));
+        var duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates(context).Select(x => x.IdNode().GetText());
+        return `Domain Entity additions '${context.extendeeName().GetText()}' declares '${duplicatePropertyIdentifierList.join(', ')}' already in property list of Domain Entity.`;
     }
     protected propertyRuleContextsForDuplicates(context: MetaEdGrammar.DomainEntityExtensionContext): IEnumerable<IPropertyWithComponents> {
         var entityType = context.DOMAIN_ENTITY().GetText();
@@ -18,7 +18,7 @@ export class DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName exten
         var identifier = context.extendeeName().GetText();
         var domainEntityPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
         var duplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, domainEntityPropertyIdentifiers);
-        return duplicates.Where(IsNotIncludePropertyContextWithExtension);
+        return duplicates.Where(isNotIncludePropertyContextWithExtension);
     }
     private static isNotIncludePropertyContextWithExtension(context: IPropertyWithComponents): boolean {
         if (!(context instanceof MetaEdGrammar.IncludePropertyContext))

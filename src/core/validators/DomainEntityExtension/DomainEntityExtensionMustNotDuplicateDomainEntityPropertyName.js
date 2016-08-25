@@ -5,11 +5,11 @@ class DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName extends Vali
         this._symbolTable = symbolTable;
     }
     isValid(context) {
-        return !PropertyRuleContextsForDuplicates(context).Any();
+        return propertyRuleContextsForDuplicates(context).length == 0;
     }
     getFailureMessage(context) {
-        var duplicatePropertyIdentifierList = PropertyRuleContextsForDuplicates(context).Select(x => x.IdNode().GetText());
-        return string.Format("Domain Entity additions '{0}' declares '{1}' already in property list of Domain Entity.", context.extendeeName().GetText(), string.Join(",", duplicatePropertyIdentifierList));
+        var duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates(context).Select(x => x.IdNode().GetText());
+        return `Domain Entity additions '${context.extendeeName().GetText()}' declares '${duplicatePropertyIdentifierList.join(', ')}' already in property list of Domain Entity.`;
     }
     propertyRuleContextsForDuplicates(context) {
         var entityType = context.DOMAIN_ENTITY().GetText();
@@ -17,7 +17,7 @@ class DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName extends Vali
         var identifier = context.extendeeName().GetText();
         var domainEntityPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
         var duplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, domainEntityPropertyIdentifiers);
-        return duplicates.Where(IsNotIncludePropertyContextWithExtension);
+        return duplicates.Where(isNotIncludePropertyContextWithExtension);
     }
     static isNotIncludePropertyContextWithExtension(context) {
         if (!(context instanceof MetaEdGrammar.IncludePropertyContext))

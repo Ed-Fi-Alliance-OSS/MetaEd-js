@@ -8,8 +8,8 @@ class AssociationMustNotDuplicateDomainEntityNames extends ValidationRuleBase_1.
             return true;
         var firstContext = context.firstDomainEntity().withContext();
         var secondContext = context.secondDomainEntity().withContext();
-        var firstContextName = firstContext == null ? string.Empty : firstContext.withContextName().ID().GetText();
-        var secondContextName = secondContext == null ? string.Empty : secondContext.withContextName().ID().GetText();
+        var firstContextName = firstContext == null ? "" : firstContext.withContextName().ID().GetText();
+        var secondContextName = secondContext == null ? "" : secondContext.withContextName().ID().GetText();
         return !firstContextName.Equals(secondContextName);
     }
     getFailureMessage(context) {

@@ -13,7 +13,7 @@ export class TargetPropertyPathMustExist extends ValidationRuleBase<MetaEdGramma
         return this._propertyPathLookup.Validate(entityContext, propertyPathParts, PropertyPathLookup.MatchAllIdentityProperties());
     }
     public getFailureMessage(context: MetaEdGrammar.TargetPropertyPathContext): string {
-        return string.Format("Path {0} is not valid or lists properties that are not part of the primary key.", context.GetText());
+        return `Path ${} is not valid or lists properties that are not part of the primary key.", context.GetText());
     }
     private lookupParentEntityContext(context: MetaEdGrammar.TargetPropertyPathContext): EntityContext {
         var definingEntityContext = context.parent.parent.parent.parent;

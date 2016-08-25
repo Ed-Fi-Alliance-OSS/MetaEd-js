@@ -10,7 +10,7 @@ class DomainItemMustMatchTopLevelEntity extends ValidationRuleBase_1.ValidationR
     }
     getFailureMessage(context) {
         var topLevelEntity = context.GetAncestorContext();
-        return string.Format("Domain item '{0}' under {1} '{2}' does not match any declared abstract entity, domain entity or subclass, association or subclass, or common type.", context.IdText(), topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName());
+        return `Domain item '${context.IdText()}' under ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}' does not match any declared abstract entity, domain entity or subclass, association or subclass, or common type.`;
     }
 }
 exports.DomainItemMustMatchTopLevelEntity = DomainItemMustMatchTopLevelEntity;

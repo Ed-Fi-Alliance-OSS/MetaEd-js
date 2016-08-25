@@ -10,6 +10,6 @@ export class EnumerationPropertyMustMatchAnEnumeration extends ValidationRuleBas
         return this._symbolTable.IdentifierExists(SymbolTableEntityType.EnumerationEntityType(), identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.EnumerationPropertyContext): string {
-        return string.Format("Enumeration property '{0}' does not match any declared enumeration.", context.propertyName().GetText());
+        return `Enumeration property '${context.propertyName().GetText()}' does not match any declared enumeration.`;
     }
 }

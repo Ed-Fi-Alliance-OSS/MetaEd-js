@@ -9,7 +9,7 @@ class DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity extends Val
         return this._symbolTable.IdentifiersForEntityType(SymbolTableEntityType.DomainEntityEntityType()).Any(x => x.Equals(basedOnName)) || this._symbolTable.IdentifiersForEntityType(SymbolTableEntityType.AbstractEntityEntityType()).Any(x => x.Equals(basedOnName));
     }
     getFailureMessage(context) {
-        return string.Format("Domain Entity '{0}' based on '{1}' does not match any declared domain or abstract entity.", context.entityName().GetText(), context.baseName().GetText());
+        return `Domain Entity '${context.entityName().GetText()}' based on '${context.baseName().GetText()}' does not match any declared domain or abstract entity.`;
     }
 }
 exports.DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity = DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity;

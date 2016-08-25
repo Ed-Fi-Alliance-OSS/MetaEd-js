@@ -13,7 +13,7 @@ class IdentityRenameExistsOnlyIfIdentityRenameIsAllowed extends ValidationRuleBa
     getFailureMessage(context) {
         var topLevelEntity = context.GetAncestorContext();
         var propertyWithComponents = context.GetAncestorContext();
-        return string.Format("'renames identity property' is invalid for property {0} on {1} '{2}'.  'renames identity property' is only valid for properties on types Domain Entity subclass and Association subclass.", propertyWithComponents.IdNode().GetText(), topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName());
+        return `'renames identity property' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'renames identity property' is only valid for properties on types Domain Entity subclass and Association subclass.`;
     }
 }
 exports.IdentityRenameExistsOnlyIfIdentityRenameIsAllowed = IdentityRenameExistsOnlyIfIdentityRenameIsAllowed;

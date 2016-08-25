@@ -22,6 +22,6 @@ export class DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName extend
         var associationPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(domainEntityType, baseIdentifier).ToList();
         var propertyRuleContextsForDuplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
         var duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
-        return string.Format("DomainEntity '{0}' based on '{1}' declares '{2}' already in property list of base DomainEntity.", identifier, baseIdentifier, string.Join(",", duplicatePropertyIdentifierList));
+        return `DomainEntity '${identifier}' based on '${baseIdentifier}' declares '${duplicatePropertyIdentifierList.join(", ")}' already in property list of base DomainEntity.`;
     }
 }

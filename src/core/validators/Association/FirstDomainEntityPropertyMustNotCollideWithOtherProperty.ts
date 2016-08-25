@@ -8,7 +8,7 @@ export class FirstDomainEntityPropertyMustNotCollideWithOtherProperty extends Va
     public isValid(context: MetaEdGrammar.FirstDomainEntityContext): boolean {
         var identifierToMatch = context.IdText();
         var withContextContext = context.withContext();
-        var withContextPrefix = withContextContext == null ? string.Empty : withContextContext.withContextName().ID().GetText();
+        var withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().GetText();
         var associationName = (<MetaEdGrammar.AssociationContext>context.parent).associationName().IdText();
         var associationType = MetaEdGrammar.TokenName(MetaEdGrammar.ASSOCIATION);
         var entitySymbolTable = this._symbolTable.Get(associationType, associationName);

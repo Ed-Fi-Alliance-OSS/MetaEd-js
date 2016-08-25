@@ -9,7 +9,7 @@ export class AssociationSubclassIdentityRenameMustExistNoMoreThanOnce extends Va
         var identifier = context.associationName().GetText();
         var baseIdentifier = context.baseName().GetText();
         var identityRenames = context.property().Select(y => y.GetProperty().propertyComponents().propertyAnnotation().identityRename()).Where(x => x != null);
-        var basePropertyIdentifier = string.Join(", ", identityRenames.Select(pkr => pkr.baseKeyName().GetText()));
+        var basePropertyIdentifier = identityRenames.Select(pkr => pkr.baseKeyName().GetText()).join(', ');
         return `Association '${identifier}' based on '${baseIdentifier}' tries to rename columns ${basePropertyIdentifier}.  Only one identity rename is allowed for a given Association.`;
     }
 }

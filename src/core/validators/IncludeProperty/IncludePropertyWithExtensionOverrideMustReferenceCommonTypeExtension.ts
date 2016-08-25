@@ -14,9 +14,6 @@ export class IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtensio
     public getFailureMessage(context: MetaEdGrammar.IncludePropertyContext): string {
         var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         var propertyWithComponents = context.GetAncestorContext<IPropertyWithComponents>();
-        return string.Format("'include extension' is invalid for property {0} on {1} '{2}'.  'include extension' is only valid for referencing common type extensions.",
-            propertyWithComponents.IdNode().GetText(),
-            topLevelEntity.EntityIdentifier(),
-            topLevelEntity.EntityName());
+        return `'include extension' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'include extension' is only valid for referencing common type extensions.`;
     }
 }

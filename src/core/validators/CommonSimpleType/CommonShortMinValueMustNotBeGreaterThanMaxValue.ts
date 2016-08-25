@@ -4,8 +4,8 @@ export class CommonShortMinValueMustNotBeGreaterThanMaxValue extends ValidationR
     public isValid(context: MetaEdGrammar.CommonShortContext): boolean {
         if (context.minValue() == null || context.maxValue() == null)
             return true;
-        var minValue = Convert.ToInt32(context.minValue().MinValue());
-        var maxValue = Convert.ToInt32(context.maxValue().MaxValue());
+        var minValue = Number(context.minValue().MinValue());
+        var maxValue = Number(context.maxValue().MaxValue());
         return minValue <= maxValue;
     }
     public getFailureMessage(context: MetaEdGrammar.CommonShortContext): string {

@@ -21,8 +21,8 @@ class IdentityExistsOnlyIfIdentityIsAllowed extends ValidationRuleBase_1.Validat
     getFailureMessage(context) {
         var topLevelEntity = context.GetAncestorContext();
         var propertyWithComponents = context.GetAncestorContext();
-        var validNames = string.Join(", ", this._validIdentityTokenNames);
-        return string.Format("'is part of identity' is invalid for property {0} on {1} '{2}'.  'is part of identity' is only valid for properties on types: {3}.", propertyWithComponents.IdNode().GetText(), topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), validNames);
+        var validNames = this._validIdentityTokenNames.join(", ");
+        return `'is part of identity' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'is part of identity' is only valid for properties on types: ${validNames}.`;
     }
 }
 exports.IdentityExistsOnlyIfIdentityIsAllowed = IdentityExistsOnlyIfIdentityIsAllowed;

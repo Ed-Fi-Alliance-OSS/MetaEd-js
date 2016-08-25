@@ -20,7 +20,7 @@ class IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociation
     getFailureMessage(context) {
         var topLevelEntity = context.GetAncestorContext();
         var propertyWithComponents = context.GetAncestorContext();
-        return string.Format("'include extension' is invalid for property {0} on {1} '{2}'.  'include extension' is only valid for properties on Domain Entity extension and Association extension, and must maintain original cardinality on extendee.", propertyWithComponents.IdNode().GetText(), topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName());
+        return `'include extension' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'include extension' is only valid for properties on Domain Entity extension and Association extension, and must maintain original cardinality on extendee.`;
     }
     maintainsCardinalityOnDomainEntity(overriddenIncludePropertyContext, extensionEntityContext) {
         var extendeeEntityContext = this._symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), extensionEntityContext.EntityName());

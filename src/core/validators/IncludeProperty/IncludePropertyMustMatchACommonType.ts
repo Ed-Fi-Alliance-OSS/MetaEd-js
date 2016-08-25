@@ -13,6 +13,6 @@ export class IncludePropertyMustMatchACommonType extends ValidationRuleBase<Meta
         return this._symbolTable.IdentifierExists(commonTypeType, identifierToMatch) || this._symbolTable.IdentifierExists(inlineCommonTypeType, identifierToMatch) || this._symbolTable.IdentifierExists(choiceCommonType, identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.IncludePropertyContext): string {
-        return string.Format("Include property '{0}' does not match any declared common type.", context.propertyName().GetText());
+        return `Include property '${context.propertyName().GetText()}' does not match any declared common type.`;
     }
 }

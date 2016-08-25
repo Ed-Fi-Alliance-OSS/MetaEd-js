@@ -4,10 +4,10 @@ class DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits extends Valida
     isValid(context) {
         var decimalPlaces = context.decimalPlaces().DecimalPlaces();
         var totalDigits = context.totalDigits().TotalDigits();
-        return Convert.ToInt32(decimalPlaces) <= Convert.ToInt32(totalDigits);
+        return Number(decimalPlaces) <= Number(totalDigits);
     }
     getFailureMessage(context) {
-        return string.Format("Decimal Property '{0}' in {1} '{2}' has decimal places greater than total digits.", context.propertyName().GetText(), context.ParentTypeName(), context.ParentIdentifier());
+        return `Decimal Property '${context.propertyName().GetText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has decimal places greater than total digits.`;
     }
 }
 exports.DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits = DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits;

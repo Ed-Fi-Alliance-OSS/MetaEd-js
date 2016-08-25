@@ -4,8 +4,8 @@ class CommonShortMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase
     isValid(context) {
         if (context.minValue() == null || context.maxValue() == null)
             return true;
-        var minValue = Convert.ToInt32(context.minValue().MinValue());
-        var maxValue = Convert.ToInt32(context.maxValue().MaxValue());
+        var minValue = Number(context.minValue().MinValue());
+        var maxValue = Number(context.maxValue().MaxValue());
         return minValue <= maxValue;
     }
     getFailureMessage(context) {

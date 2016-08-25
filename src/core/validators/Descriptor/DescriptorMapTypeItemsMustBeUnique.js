@@ -8,12 +8,12 @@ class DescriptorMapTypeItemsMustBeUnique extends ValidationRuleBase_1.Validation
         return shortDescriptions.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
     }
     isValid(context) {
-        return !DuplicateShortDescriptions(context).Any();
+        return DescriptorMapTypeItemsMustBeUnique.duplicateShortDescriptions(context).length == 0;
     }
     getFailureMessage(context) {
         var identifier = context.descriptorName().GetText();
-        var duplicateShortDescriptions = DuplicateShortDescriptions(context);
-        return string.Format("Descriptor '{0}' declares duplicate item{2} '{1}'.", identifier, string.Join("', '", duplicateShortDescriptions), duplicateShortDescriptions.Count() > 1 ? "s" : string.Empty);
+        var duplicateShortDescriptions = DescriptorMapTypeItemsMustBeUnique.duplicateShortDescriptions(context);
+        return `Descriptor '${identifier}' declares duplicate item${duplicateShortDescriptions.length > 1 ? "s" : ""} '${duplicateShortDescriptions.join(', ')}'.`;
     }
 }
 exports.DescriptorMapTypeItemsMustBeUnique = DescriptorMapTypeItemsMustBeUnique;

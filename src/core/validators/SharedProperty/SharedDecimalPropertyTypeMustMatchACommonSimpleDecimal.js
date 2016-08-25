@@ -10,7 +10,10 @@ class SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal extends ValidationR
         return this._symbolTable.IdentifierExists(commonDecimalType, identifierToMatch);
     }
     getFailureMessage(context) {
-        return string.Format("Shared property '{0}' does not match any declared common decimal.", context.propertyName().GetText());
+        return `Shared property '${}' does not match any declared common decimal.", context.propertyName().GetText());
+    }
+}
+;
     }
 }
 exports.SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal = SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal;

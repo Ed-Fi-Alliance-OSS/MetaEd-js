@@ -10,7 +10,7 @@ class DescriptorPropertyMustMatchADescriptor extends ValidationRuleBase_1.Valida
         return this._symbolTable.IdentifierExists(descriptorType, identifierToMatch);
     }
     getFailureMessage(context) {
-        return string.Format("Descriptor property '{0}' does not match any declared descriptor.", context.propertyName().GetText());
+        return `Descriptor property '${context.propertyName().GetText()}' does not match any declared descriptor.`;
     }
 }
 exports.DescriptorPropertyMustMatchADescriptor = DescriptorPropertyMustMatchADescriptor;

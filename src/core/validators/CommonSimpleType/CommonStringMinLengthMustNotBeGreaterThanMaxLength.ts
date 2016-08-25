@@ -4,8 +4,8 @@ export class CommonStringMinLengthMustNotBeGreaterThanMaxLength extends Validati
     public isValid(context: MetaEdGrammar.CommonStringContext): boolean {
         if (context.minLength() == null)
             return true;
-        var minLength = Convert.ToInt32(context.minLength().MinLength());
-        var maxLength = Convert.ToInt32(context.maxLength().MaxLength());
+        var minLength = Number(context.minLength().MinLength());
+        var maxLength = Number(context.maxLength().MaxLength());
         return minLength <= maxLength;
     }
     public getFailureMessage(context: MetaEdGrammar.CommonStringContext): string {

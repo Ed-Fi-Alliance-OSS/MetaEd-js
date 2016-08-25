@@ -6,11 +6,11 @@ export class EnumerationItemsMustBeUnique extends ValidationRuleBase<MetaEdGramm
         return shortDescriptions.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
     }
     public isValid(context: MetaEdGrammar.EnumerationContext): boolean {
-        return !DuplicateShortDescriptions(context).Any();
+        return EnumerationItemsMustBeUnique.duplicateShortDescriptions(context).length==0;
     }
     public getFailureMessage(context: MetaEdGrammar.EnumerationContext): string {
         var identifier = context.enumerationName().GetText();
-        var duplicateShortDescriptions = DuplicateShortDescriptions(context);
-        return string.Format("Enumeration '{0}' declares duplicate item{2} '{1}'.", identifier, string.Join("', '", duplicateShortDescriptions), duplicateShortDescriptions.Count() > 1 ? "s" : string.Empty);
+        var duplicateShortDescriptions = EnumerationItemsMustBeUnique.duplicateShortDescriptions(context);
+        return `Enumeration '${identifier}' declares duplicate item${duplicateShortDescriptions.length > 1 ? "s" : ""} '${duplicateShortDescriptions.join(', ')}'.`;
     }
 }

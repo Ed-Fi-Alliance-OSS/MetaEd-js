@@ -5,11 +5,11 @@ class AssociationExtensionMustNotDuplicateAssociationPropertyName extends Valida
         this._symbolTable = symbolTable;
     }
     isValid(context) {
-        return !PropertyRuleContextsForDuplicates(context).Any();
+        return this.propertyRuleContextsForDuplicates(context).length == 0;
     }
     getFailureMessage(context) {
-        var duplicatePropertyIdentifierList = PropertyRuleContextsForDuplicates(context).Select(x => x.IdNode().GetText());
-        return `Association additions '${context.extendeeName().GetText()}' declares '${string.Join(",", duplicatePropertyIdentifierList)}' already in property list of Association.`;
+        var duplicatePropertyIdentifierList = this.propertyRuleContextsForDuplicates(context).Select(x => x.IdNode().GetText());
+        return `Association additions '${context.extendeeName().GetText()}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of Association.`;
     }
     propertyRuleContextsForDuplicates(context) {
         var entityType = context.ASSOCIATION().GetText();
@@ -17,7 +17,7 @@ class AssociationExtensionMustNotDuplicateAssociationPropertyName extends Valida
         var identifier = context.extendeeName().GetText();
         var associationPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
         var duplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
-        return duplicates.Where(IsNotIncludePropertyContextWithExtension);
+        return duplicates.Where(AssociationExtensionMustNotDuplicateAssociationPropertyName.isNotIncludePropertyContextWithExtension);
     }
     static isNotIncludePropertyContextWithExtension(context) {
         if (!(context instanceof MetaEdGrammar.IncludePropertyContext))

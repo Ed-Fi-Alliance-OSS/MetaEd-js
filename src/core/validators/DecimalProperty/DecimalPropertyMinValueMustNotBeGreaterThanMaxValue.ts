@@ -6,10 +6,9 @@ export class DecimalPropertyMinValueMustNotBeGreaterThanMaxValue extends Validat
             return true;
         var minValue = context.minValueDecimal().MinValue();
         var maxValue = context.maxValueDecimal().MaxValue();
-        return Convert.ToDecimal(minValue) <= Convert.ToDecimal(maxValue);
+        return Number(minValue) <= Number(maxValue);
     }
     public getFailureMessage(context: MetaEdGrammar.DecimalPropertyContext): string {
-        return string.Format("Decimal Property '{0}' in {1} '{2}' has min value greater than max value.",
-            context.propertyName().GetText(), context.ParentTypeName(), context.ParentIdentifier());
+        return `Decimal Property '${context.propertyName().GetText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min value greater than max value.`
     }
 }

@@ -11,6 +11,6 @@ export class SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal extends Vali
         return this._symbolTable.IdentifierExists(commonDecimalType, identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.SharedDecimalPropertyContext): string {
-        return string.Format("Shared property '{0}' does not match any declared common decimal.", context.propertyName().GetText());
+        return `Shared property '${}' does not match any declared common decimal.", context.propertyName().GetText());
     }
 }

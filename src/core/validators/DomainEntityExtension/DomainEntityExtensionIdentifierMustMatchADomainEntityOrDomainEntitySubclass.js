@@ -9,7 +9,7 @@ class DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclas
         return this._symbolTable.IdentifiersForEntityType(SymbolTableEntityType.DomainEntityEntityType()).Any(x => x.Equals(identifier)) || this._symbolTable.IdentifiersForEntityType(SymbolTableEntityType.DomainEntitySubclassEntityType()).Any(x => x.Equals(identifier));
     }
     getFailureMessage(context) {
-        return string.Format("Domain Entity additions '{0}' does not match any declared Domain Entity or Domain Entity Subclass.", context.extendeeName().GetText());
+        return `Domain Entity additions '${context.extendeeName().GetText()}' does not match any declared Domain Entity or Domain Entity Subclass.`;
     }
 }
 exports.DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclass = DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclass;

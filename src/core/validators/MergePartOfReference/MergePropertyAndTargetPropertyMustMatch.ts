@@ -30,7 +30,7 @@ export class MergePropertyAndTargetPropertyMustMatch extends ValidationRuleBase<
         return true;
     }
     public getFailureMessage(context: MetaEdGrammar.MergePartOfReferenceContext): string {
-        return string.Format("The merge paths '{0}' and '{1}' do not correspond to the same entity type.", context.mergePropertyPath().GetText(), context.targetPropertyPath().GetText());
+        return `The merge paths '${}' and '${}' do not correspond to the same entity type.", context.mergePropertyPath().GetText(), context.targetPropertyPath().GetText());
     }
     private lookupParentEntityContext(context: MetaEdGrammar.MergePartOfReferenceContext): EntityContext {
         var definingEntityContext = context.parent.parent.parent;

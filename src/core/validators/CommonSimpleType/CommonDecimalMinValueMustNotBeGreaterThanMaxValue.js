@@ -6,7 +6,7 @@ class CommonDecimalMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBa
             return true;
         var minValue = context.minValueDecimal().MinValue();
         var maxValue = context.maxValueDecimal().MaxValue();
-        return Convert.ToDecimal(minValue) <= Convert.ToDecimal(maxValue);
+        return Number(minValue) <= Number(maxValue);
     }
     getFailureMessage(context) {
         return `Common Decimal '${context.commonDecimalName().GetText()}' has min value greater than max value.`;

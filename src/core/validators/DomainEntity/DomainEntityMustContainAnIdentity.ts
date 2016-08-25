@@ -5,6 +5,6 @@ export class DomainEntityMustContainAnIdentity extends ValidationRuleBase<MetaEd
         return context.property().Any(x => x.GetProperty().propertyComponents().propertyAnnotation().identity() != null);
     }
     public getFailureMessage(context: MetaEdGrammar.DomainEntityContext): string {
-        return string.Format("Domain Entity {0} does not have an identity specified.", context.entityName().ID().GetText());
+        return `Domain Entity ${context.entityName().ID().GetText()} does not have an identity specified.`;
     }
 }
