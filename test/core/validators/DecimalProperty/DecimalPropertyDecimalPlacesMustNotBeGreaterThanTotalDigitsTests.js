@@ -1,84 +1,78 @@
-var MetaEd;
-(function (MetaEd) {
-    var Tests;
-    (function (Tests) {
-        var Validator;
-        (function (Validator) {
-            var DecimalProperty;
-            (function (DecimalProperty) {
-                class DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests {
-                }
-                DecimalProperty.DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests = DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests;
-                (function (DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests) {
-                    /*[TestFixture]*/
-                    class When_validating_decimal_property_with_correct_total_digit_and_decimal_places_order extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var totalDigits = 10;
-                            var decimalPlaces = 2;
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAbstractEntity("EntityForTest").WithDocumentation("doc").WithDecimalIdentity("DecimalProperty", "doc2", totalDigits, decimalPlaces).WithEndAbstractEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits() });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests.When_validating_decimal_property_with_correct_total_digit_and_decimal_places_order = When_validating_decimal_property_with_correct_total_digit_and_decimal_places_order;
-                })(DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests = DecimalProperty.DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests || (DecimalProperty.DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests = {}));
-                (function (DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests) {
-                    /*[TestFixture]*/
-                    class When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var totalDigits = 2;
-                            var decimalPlaces = 10;
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAbstractEntity(When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order._entityName).WithDocumentation("doc").WithDecimalIdentity(When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order._decimalPropertyName, "doc2", totalDigits, decimalPlaces).WithEndAbstractEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits() });
-                        }
-                        should_have_validation_failures() {
-                            _errorMessageCollection.Any().ShouldBeTrue();
-                        }
-                        should_have_validation_failure_message() {
-                            _errorMessageCollection[0].Message.ShouldContain("Decimal Property");
-                            _errorMessageCollection[0].Message.ShouldContain("Abstract Entity");
-                            _errorMessageCollection[0].Message.ShouldContain(When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order._decimalPropertyName);
-                            _errorMessageCollection[0].Message.ShouldContain(When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order._entityName);
-                            _errorMessageCollection[0].Message.ShouldContain("decimal places greater than total digits");
-                        }
-                    }
-                    When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order._entityName = "EntityForTest";
-                    When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order._decimalPropertyName = "DecimalProperty";
-                    DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests.When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order = When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order;
-                })(DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests = DecimalProperty.DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests || (DecimalProperty.DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests = {}));
-                (function (DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests) {
-                    /*[TestFixture]*/
-                    class When_validating_decimal_property_with_same_total_digit_and_decimal_places extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var totalDigits = 10;
-                            var decimalPlaces = 2;
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAbstractEntity(When_validating_decimal_property_with_same_total_digit_and_decimal_places._entityName).WithDocumentation("doc").WithDecimalIdentity(When_validating_decimal_property_with_same_total_digit_and_decimal_places._decimalPropertyName, "doc2", totalDigits, decimalPlaces).WithEndAbstractEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits() });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    When_validating_decimal_property_with_same_total_digit_and_decimal_places._entityName = "EntityForTest";
-                    When_validating_decimal_property_with_same_total_digit_and_decimal_places._decimalPropertyName = "DecimalProperty";
-                    DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests.When_validating_decimal_property_with_same_total_digit_and_decimal_places = When_validating_decimal_property_with_same_total_digit_and_decimal_places;
-                })(DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests = DecimalProperty.DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests || (DecimalProperty.DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests = {}));
-            })(DecimalProperty = Validator.DecimalProperty || (Validator.DecimalProperty = {}));
-        })(Validator = Tests.Validator || (Tests.Validator = {}));
-    })(Tests = MetaEd.Tests || (MetaEd.Tests = {}));
-})(MetaEd || (MetaEd = {}));
+"use strict";
+/// <reference path="../../../../typings/index.d.ts" />
+const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
+const chai = require('chai');
+const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
+const TestRuleProvider_1 = require("../TestRuleProvider");
+const DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits_1 = require("../../../../src/core/validators/DecimalProperty/DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits");
+let should = chai.should();
+describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () => {
+    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits_1.DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits()));
+    describe('When_validating_decimal_property_with_correct_total_digit_and_decimal_places_order', () => {
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let totalDigits = "10";
+        let decimalPlaces = "2";
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAbstractEntity("EntityForTest")
+                .withDocumentation("doc")
+                .withDecimalIdentity("DecimalProperty", "doc2", totalDigits, decimalPlaces)
+                .withEndAbstractEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order', () => {
+        const entityName = "EntityForTest";
+        const decimalPropertyName = "DecimalProperty";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let totalDigits = "2";
+        let decimalPlaces = "10";
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAbstractEntity(entityName)
+                .withDocumentation("doc")
+                .withDecimalIdentity(decimalPropertyName, "doc2", totalDigits, decimalPlaces)
+                .withEndAbstractEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failures()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Decimal Property");
+            helper.errorMessageCollection[0].Message.ShouldContain("Abstract Entity");
+            helper.errorMessageCollection[0].Message.ShouldContain(decimalPropertyName);
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("decimal places greater than total digits");
+        });
+    });
+    describe('When_validating_decimal_property_with_same_total_digit_and_decimal_places', () => {
+        const entityName = "EntityForTest";
+        const decimalPropertyName = "DecimalProperty";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let totalDigits = "10";
+        let decimalPlaces = "2";
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAbstractEntity(entityName)
+                .withDocumentation("doc")
+                .withDecimalIdentity(decimalPropertyName, "doc2", totalDigits, decimalPlaces)
+                .withEndAbstractEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+});
 //# sourceMappingURL=DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests.js.map

@@ -1,71 +1,100 @@
-﻿module MetaEd.Tests.Validator.Domain {
-    export class DomainMustNotDuplicateDomainItemsTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {DomainMustNotDuplicateDomainItems}from "../../../../src/core/validators/Domain/DomainMustNotDuplicateDomainItems"
 
-    }
-    export module DomainMustNotDuplicateDomainItemsTests {
-        /*[TestFixture]*/
-        export class When_domain_items_have_different_names extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomain("Domain1").WithDocumentation("doc").WithDomainItem("Item1").WithDomainItem("Item2").WithEndDomain().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DomainContext>(), { SuppliedRule: new DomainMustNotDuplicateDomainItems() });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module DomainMustNotDuplicateDomainItemsTests {
-        /*[TestFixture]*/
-        export class When_domain_items_have_duplicate_names extends ValidationRuleTestBase {
-            protected static _entityName: string = "Domain1";
-            protected static _duplicateTemplate: string = "Item1";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomain(When_domain_items_have_duplicate_names._entityName).WithDocumentation("doc").WithDomainItem(When_domain_items_have_duplicate_names._duplicateTemplate).WithDomainItem(When_domain_items_have_duplicate_names._duplicateTemplate).WithEndDomain().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DomainContext>(), { SuppliedRule: new DomainMustNotDuplicateDomainItems() });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Domain");
-                _errorMessageCollection[0].Message.ShouldContain(When_domain_items_have_duplicate_names._entityName);
-                _errorMessageCollection[0].Message.ShouldContain("duplicate domain item");
-                _errorMessageCollection[0].Message.ShouldContain(When_domain_items_have_duplicate_names._duplicateTemplate);
-            }
-        }
-    }
-    export module DomainMustNotDuplicateDomainItemsTests {
-        /*[TestFixture]*/
-        export class When_domain_items_have_multiple_duplicate_names extends ValidationRuleTestBase {
-            protected static _entityName: string = "Domain1";
-            protected static _duplicateTemplate1: string = "Item1";
-            protected static _duplicateTemplate2: string = "Item2";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomain(When_domain_items_have_multiple_duplicate_names._entityName).WithDocumentation("doc").WithDomainItem(When_domain_items_have_multiple_duplicate_names._duplicateTemplate1).WithDomainItem(When_domain_items_have_multiple_duplicate_names._duplicateTemplate1).WithDomainItem(When_domain_items_have_multiple_duplicate_names._duplicateTemplate1).WithDomainItem(When_domain_items_have_multiple_duplicate_names._duplicateTemplate1).WithDomainItem(When_domain_items_have_multiple_duplicate_names._duplicateTemplate2).WithDomainItem(When_domain_items_have_multiple_duplicate_names._duplicateTemplate2).WithEndDomain().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DomainContext>(), { SuppliedRule: new DomainMustNotDuplicateDomainItems() });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Domain");
-                _errorMessageCollection[0].Message.ShouldContain(When_domain_items_have_multiple_duplicate_names._entityName);
-                _errorMessageCollection[0].Message.ShouldContain("duplicate domain items");
-                _errorMessageCollection[0].Message.ShouldContain(When_domain_items_have_multiple_duplicate_names._duplicateTemplate1);
-                _errorMessageCollection[0].Message.ShouldContain(When_domain_items_have_multiple_duplicate_names._duplicateTemplate2);
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('DomainMustNotDuplicateDomainItemsTests', () => {
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.DomainContext>(
+            new DomainMustNotDuplicateDomainItems()));
+
+
+    describe('When_domain_items_have_different_names', () => {
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomain("Domain1")
+                .withDocumentation("doc")
+                .withDomainItem("Item1")
+                .withDomainItem("Item2")
+                .withEndDomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+
+
+    describe('When_domain_items_have_duplicate_names', () => {
+        let entityName: string = "Domain1";
+        const duplicateTemplate: string = "Item1";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomain(entityName)
+                .withDocumentation("doc")
+                .withDomainItem(duplicateTemplate)
+                .withDomainItem(duplicateTemplate)
+                .withEndDomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Domain");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("duplicate domain item");
+            helper.errorMessageCollection[0].Message.ShouldContain(duplicateTemplate);
+        });
+    });
+
+
+    describe('When_domain_items_have_multiple_duplicate_names', () => {
+        let entityName: string = "Domain1";
+        const duplicateTemplate1: string = "Item1";
+        const duplicateTemplate2: string = "Item2";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomain(entityName)
+                .withDocumentation("doc")
+                .withDomainItem(duplicateTemplate1)
+                .withDomainItem(duplicateTemplate1)
+                .withDomainItem(duplicateTemplate1)
+                .withDomainItem(duplicateTemplate1)
+                .withDomainItem(duplicateTemplate2)
+                .withDomainItem(duplicateTemplate2)
+                .withEndDomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Domain");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("duplicate domain items");
+            helper.errorMessageCollection[0].Message.ShouldContain(duplicateTemplate1);
+            helper.errorMessageCollection[0].Message.ShouldContain(duplicateTemplate2);
+        });
+    });
+});

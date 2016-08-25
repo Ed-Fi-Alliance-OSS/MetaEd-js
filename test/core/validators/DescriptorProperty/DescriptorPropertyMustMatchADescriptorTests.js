@@ -1,58 +1,56 @@
-var MetaEd;
-(function (MetaEd) {
-    var Tests;
-    (function (Tests) {
-        var Validator;
-        (function (Validator) {
-            var DescriptorProperty;
-            (function (DescriptorProperty) {
-                class DescriptorPropertyMustMatchADescriptorTests {
-                }
-                DescriptorProperty.DescriptorPropertyMustMatchADescriptorTests = DescriptorPropertyMustMatchADescriptorTests;
-                (function (DescriptorPropertyMustMatchADescriptorTests) {
-                    /*[TestFixture]*/
-                    class When_descriptor_property_has_valid_identifier extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDescriptor(When_descriptor_property_has_valid_identifier._entityName).WithDocumentation("doc").WithEndDescriptor();
-                            metaEdTextBuilder.WithStartDomainEntity("DomainEntity").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithDescriptorProperty(When_descriptor_property_has_valid_identifier._entityName, "doc", true, false).WithEndDomainEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DescriptorPropertyMustMatchADescriptor(_symbolTable) });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    When_descriptor_property_has_valid_identifier._entityName = "MyIdentifier";
-                    DescriptorPropertyMustMatchADescriptorTests.When_descriptor_property_has_valid_identifier = When_descriptor_property_has_valid_identifier;
-                })(DescriptorPropertyMustMatchADescriptorTests = DescriptorProperty.DescriptorPropertyMustMatchADescriptorTests || (DescriptorProperty.DescriptorPropertyMustMatchADescriptorTests = {}));
-                (function (DescriptorPropertyMustMatchADescriptorTests) {
-                    /*[TestFixture]*/
-                    class When_descriptor_property_has_invalid_identifier extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("DomainEntity").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithDescriptorProperty(When_descriptor_property_has_invalid_identifier._entityName, "doc", true, false).WithEndDomainEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DescriptorPropertyMustMatchADescriptor(_symbolTable) });
-                        }
-                        should_have_validation_failure() {
-                            _errorMessageCollection.Any().ShouldBeTrue();
-                        }
-                        should_have_validation_failure_message() {
-                            _errorMessageCollection[0].Message.ShouldContain("Descriptor");
-                            _errorMessageCollection[0].Message.ShouldContain(When_descriptor_property_has_invalid_identifier._entityName);
-                            _errorMessageCollection[0].Message.ShouldContain("does not match");
-                        }
-                    }
-                    When_descriptor_property_has_invalid_identifier._entityName = "MyIdentifier";
-                    DescriptorPropertyMustMatchADescriptorTests.When_descriptor_property_has_invalid_identifier = When_descriptor_property_has_invalid_identifier;
-                })(DescriptorPropertyMustMatchADescriptorTests = DescriptorProperty.DescriptorPropertyMustMatchADescriptorTests || (DescriptorProperty.DescriptorPropertyMustMatchADescriptorTests = {}));
-            })(DescriptorProperty = Validator.DescriptorProperty || (Validator.DescriptorProperty = {}));
-        })(Validator = Tests.Validator || (Tests.Validator = {}));
-    })(Tests = MetaEd.Tests || (MetaEd.Tests = {}));
-})(MetaEd || (MetaEd = {}));
+"use strict";
+/// <reference path="../../../../typings/index.d.ts" />
+const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
+const chai = require('chai');
+const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
+const TestRuleProvider_1 = require("../TestRuleProvider");
+let should = chai.should();
+describe('DescriptorPropertyContext', () => {
+    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new DescriptorPropertyContext()));
+    describe('When_descriptor_property_has_valid_identifier', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartDescriptor(entityName)
+                .withDocumentation("doc")
+                .withEndDescriptor();
+            withStartDomainEntity("DomainEntity")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withDescriptorProperty(entityName, "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_descriptor_property_has_invalid_identifier', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity("DomainEntity")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withDescriptorProperty(entityName, "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Descriptor");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+        });
+    });
+});
 //# sourceMappingURL=DescriptorPropertyMustMatchADescriptorTests.js.map

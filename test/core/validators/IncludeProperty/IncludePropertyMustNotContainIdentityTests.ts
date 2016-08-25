@@ -1,30 +1,48 @@
-﻿module MetaEd.Tests.Validator.IncludeProperty {
-    export class IncludePropertyMustNotContainIdentityTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {IncludePropertyMustNotContainIdentity}from "../../../../src/core/validators/IncludeProperty/IncludePropertyMustNotContainIdentity"
 
-    }
-    export module IncludePropertyMustNotContainIdentityTests {
-        /*[TestFixture]*/
-        export class When_include_property_has_primary_key extends ValidationRuleTestBase {
-            protected static _commonTypeName: string = "CommonType";
-            protected static _entityName: string = "MyIdentifier";
-            protected static _propertyName: string = "Identifier";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonType(When_include_property_has_primary_key._commonTypeName).WithDocumentation("doc").WithStringProperty("StringProperty", "doc", true, false, 100).WithEndCommonType();
-                metaEdTextBuilder.WithStartDomainEntity(When_include_property_has_primary_key._entityName).WithDocumentation("doc").WithIdentityProperty("include", When_include_property_has_primary_key._propertyName, "doc").WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.IncludePropertyContext>(), { SuppliedRule: new IncludePropertyMustNotContainIdentity() });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Include");
-                _errorMessageCollection[0].Message.ShouldContain(When_include_property_has_primary_key._propertyName);
-                _errorMessageCollection[0].Message.ShouldContain("invalid");
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('IncludePropertyMustNotContainIdentity', () => {
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.IncludePropertyContext>(
+            new IncludePropertyMustNotContainIdentity()));
+
+
+    describe('When_include_property_has_primary_key', () => {
+        const commonTypeName: string = "CommonType";
+        let entityName: string = "MyIdentifier";
+        let propertyName: string = "Identifier";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartCommonType(commonTypeName)
+                .withDocumentation("doc")
+                .withStringProperty("StringProperty", "doc", true, false, 100)
+                .withEndCommonType()
+                
+.withStartDomainEntity(entityName)
+                .withDocumentation("doc")
+                .withIdentityProperty("include", propertyName, "doc")
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Include");
+            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
+            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+        });
+    });
+});

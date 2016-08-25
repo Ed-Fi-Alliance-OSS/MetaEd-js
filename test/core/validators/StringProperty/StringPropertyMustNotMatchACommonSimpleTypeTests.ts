@@ -1,112 +1,164 @@
-﻿module MetaEd.Tests.Validator.StringProperty {
-    export class StringPropertyMustNotMatchACommonSimpleTypeTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {StringPropertyMustNotMatchACommonSimpleType}from "../../../../src/core/validators/StringProperty/StringPropertyMustNotMatchACommonSimpleType"
 
-    }
-    export module StringPropertyMustNotMatchACommonSimpleTypeTests {
-        /*[TestFixture]*/
-        export class When_string_property_has_identifier_matching_no_common_simple_types extends ValidationRuleTestBase {
-            protected static _entityName: string = "EntityName";
-            protected static _propertyName: string = "PropertyName";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity(When_string_property_has_identifier_matching_no_common_simple_types._entityName).WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithStringProperty(When_string_property_has_identifier_matching_no_common_simple_types._propertyName, "doc", false, false, 10, 2).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.StringPropertyContext>(), { SuppliedRule: new StringPropertyMustNotMatchACommonSimpleType(_symbolTable) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module StringPropertyMustNotMatchACommonSimpleTypeTests {
-        /*[TestFixture]*/
-        export class When_string_property_has_identifier_matching_common_decimal extends ValidationRuleTestBase {
-            protected static _commonEntityName: string = "CommonEntityName";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonDecimal(When_string_property_has_identifier_matching_common_decimal._commonEntityName).WithDocumentation("doc").WithTotalDigits(10).WithDecimalPlaces(2).WithEndCommonDecimal();
-                metaEdTextBuilder.WithStartDomainEntity("EntityName").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithStringProperty(When_string_property_has_identifier_matching_common_decimal._commonEntityName, "doc", false, false, 10, 2).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.StringPropertyContext>(), { SuppliedRule: new StringPropertyMustNotMatchACommonSimpleType(_symbolTable) });
-            }
-            public should_have_validation_failures(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("String property");
-                _errorMessageCollection[0].Message.ShouldContain(When_string_property_has_identifier_matching_common_decimal._commonEntityName);
-                _errorMessageCollection[0].Message.ShouldContain("has the same name");
-            }
-        }
-    }
-    export module StringPropertyMustNotMatchACommonSimpleTypeTests {
-        export class When_string_property_has_identifier_matching_common_integer extends ValidationRuleTestBase {
-            protected static _commonEntityName: string = "CommonEntityName";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonInteger(When_string_property_has_identifier_matching_common_integer._commonEntityName).WithDocumentation("doc").WithMaxValue(100).WithEndCommonInteger();
-                metaEdTextBuilder.WithStartDomainEntity("EntityName").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithStringProperty(When_string_property_has_identifier_matching_common_integer._commonEntityName, "doc", false, false, 10, 2).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.StringPropertyContext>(), { SuppliedRule: new StringPropertyMustNotMatchACommonSimpleType(_symbolTable) });
-            }
-            public should_have_validation_failures(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("String property");
-                _errorMessageCollection[0].Message.ShouldContain(When_string_property_has_identifier_matching_common_integer._commonEntityName);
-                _errorMessageCollection[0].Message.ShouldContain("has the same name");
-            }
-        }
-    }
-    export module StringPropertyMustNotMatchACommonSimpleTypeTests {
-        export class When_string_property_has_identifier_matching_common_short extends ValidationRuleTestBase {
-            protected static _commonEntityName: string = "CommonEntityName";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonShort(When_string_property_has_identifier_matching_common_short._commonEntityName).WithDocumentation("doc").WithMaxValue(100).WithEndCommonShort();
-                metaEdTextBuilder.WithStartDomainEntity("EntityName").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithStringProperty(When_string_property_has_identifier_matching_common_short._commonEntityName, "doc", false, false, 10, 2).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.StringPropertyContext>(), { SuppliedRule: new StringPropertyMustNotMatchACommonSimpleType(_symbolTable) });
-            }
-            public should_have_validation_failures(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("String property");
-                _errorMessageCollection[0].Message.ShouldContain(When_string_property_has_identifier_matching_common_short._commonEntityName);
-                _errorMessageCollection[0].Message.ShouldContain("has the same name");
-            }
-        }
-    }
-    export module StringPropertyMustNotMatchACommonSimpleTypeTests {
-        export class When_string_property_has_identifier_matching_common_string extends ValidationRuleTestBase {
-            protected static _commonEntityName: string = "CommonEntityName";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonString(When_string_property_has_identifier_matching_common_string._commonEntityName).WithDocumentation("doc").WithMaxLength(100).WithEndCommonString();
-                metaEdTextBuilder.WithStartDomainEntity("EntityName").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithStringProperty(When_string_property_has_identifier_matching_common_string._commonEntityName, "doc", false, false, 10, 2).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.StringPropertyContext>(), { SuppliedRule: new StringPropertyMustNotMatchACommonSimpleType(_symbolTable) });
-            }
-            public should_have_validation_failures(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("String property");
-                _errorMessageCollection[0].Message.ShouldContain(When_string_property_has_identifier_matching_common_string._commonEntityName);
-                _errorMessageCollection[0].Message.ShouldContain("has the same name");
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('StringPropertyMustNotMatchACommonSimpleType', () => {
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.StringPropertyContext>(
+            new StringPropertyMustNotMatchACommonSimpleType(symbolTable)));
+
+
+    describe('When_string_property_has_identifier_matching_no_common_simple_types', () => {
+        let entityName: string = "EntityName";
+        let propertyName: string = "PropertyName";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity(entityName)
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withStringProperty(propertyName, "doc", false, false, 10, 2)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+
+
+    describe('When_string_property_has_identifier_matching_common_decimal', () => {
+        const const commonEntityName: string = "CommonEntityName";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartCommonDecimal(commonEntityName)
+                .withDocumentation("doc")
+                .withTotalDigits("10")
+                .withDecimalPlaces("2")
+                .withEndCommonDecimal()
+
+                .withStartDomainEntity("EntityName")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withStringProperty(commonEntityName, "doc", false, false, 10, 2)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failures()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("String property");
+            helper.errorMessageCollection[0].Message.ShouldContain(commonEntityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+        });
+    });
+
+    describe('When_string_property_has_identifier_matching_common_integer', () => {
+        const const commonEntityName: string = "CommonEntityName";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartCommonInteger(commonEntityName)
+                .withDocumentation("doc")
+                .withMaxValue(100)
+                .withEndCommonInteger()
+
+                .withStartDomainEntity("EntityName")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withStringProperty(commonEntityName, "doc", false, false, 10, 2)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failures()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("String property");
+            helper.errorMessageCollection[0].Message.ShouldContain(commonEntityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+        });
+    });
+
+    describe('When_string_property_has_identifier_matching_common_short', () => {
+        const const commonEntityName: string = "CommonEntityName";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartCommonShort(commonEntityName)
+                .withDocumentation("doc")
+                .withMaxValue(100)
+                .withEndCommonShort()
+
+                .withStartDomainEntity("EntityName")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withStringProperty(commonEntityName, "doc", false, false, 10, 2)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failures()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("String property");
+            helper.errorMessageCollection[0].Message.ShouldContain(commonEntityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+        });
+    });
+
+    describe('When_string_property_has_identifier_matching_common_string', () => {
+        const const commonEntityName: string = "CommonEntityName";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartCommonString(commonEntityName)
+                .withDocumentation("doc")
+                .withMaxLength(100)
+                .withEndCommonString()
+
+                .withStartDomainEntity("EntityName")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withStringProperty(commonEntityName, "doc", false, false, 10, 2)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failures()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("String property");
+            helper.errorMessageCollection[0].Message.ShouldContain(commonEntityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+        });
+    });
+});

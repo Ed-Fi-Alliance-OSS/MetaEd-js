@@ -1,83 +1,141 @@
-﻿module MetaEd.Tests.Validator.Association {
-    export class SecondDomainEntityPropertyMustMatchDomainOrAbstractEntityTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {InsertClaSecondDomainEntityPropertyMustMatchDomainOrAbstractEntityssName}from "../../../../src/core/validators/Association/SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity"
 
-    }
-    export module SecondDomainEntityPropertyMustMatchDomainOrAbstractEntityTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_property_has_domain_entity_identifier extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("First").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Second").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndDomainEntity();
-                metaEdTextBuilder.WithStartAssociation("Association1").WithDocumentation("doc").WithDomainEntityProperty("First", "doc1").WithDomainEntityProperty("Second", "doc2").WithEndAssociation().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.SecondDomainEntityContext>(), { SuppliedRule: new SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity(_symbolTable) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module SecondDomainEntityPropertyMustMatchDomainOrAbstractEntityTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_property_has_abstract_entity_identifier extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("First").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndDomainEntity();
-                metaEdTextBuilder.WithStartAbstractEntity("Second").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndAbstractEntity();
-                metaEdTextBuilder.WithStartAssociation("Association1").WithDocumentation("doc").WithDomainEntityProperty("First", "doc1").WithDomainEntityProperty("Second", "doc2").WithEndAssociation().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.SecondDomainEntityContext>(), { SuppliedRule: new SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity(_symbolTable) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module SecondDomainEntityPropertyMustMatchDomainOrAbstractEntityTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_property_has_subclass_entity_identifier extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAbstractEntity("First").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndAbstractEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Second").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntitySubclass("Third", "First").WithDocumentation("doc").WithStringProperty("RequirePrimaryKey", "doc", true, false, 100).WithEndDomainEntity();
-                metaEdTextBuilder.WithStartAssociation("Association1").WithDocumentation("doc").WithDomainEntityProperty("Second", "doc1").WithDomainEntityProperty("Third", "doc2").WithEndAssociation().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.SecondDomainEntityContext>(), { SuppliedRule: new SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity(_symbolTable) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module SecondDomainEntityPropertyMustMatchDomainOrAbstractEntityTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_property_has_invalid_identifier extends ValidationRuleTestBase {
-            protected static _entityName: string = "MyIdentifier";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("First").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndDomainEntity();
-                metaEdTextBuilder.WithStartAssociation("Association1").WithDocumentation("doc").WithDomainEntityProperty("First", "doc1").WithDomainEntityProperty(When_domain_entity_property_has_invalid_identifier._entityName, "doc2").WithEndAssociation().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.SecondDomainEntityContext>(), { SuppliedRule: new SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity(_symbolTable) });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Domain Entity");
-                _errorMessageCollection[0].Message.ShouldContain(When_domain_entity_property_has_invalid_identifier._entityName);
-                _errorMessageCollection[0].Message.ShouldContain("does not match");
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.SecondDomainEntityContext>(
+            new SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
+
+
+    describe('When_domain_entity_property_has_domain_entity_identifier', () => {
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity("First")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndDomainEntity()
+
+                .withStartDomainEntity("Second")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndDomainEntity()
+
+                .withStartAssociation("Association1")
+                .withDocumentation("doc")
+                .withDomainEntityProperty("First", "doc1")
+                .withDomainEntityProperty("Second", "doc2")
+                .withEndAssociation()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+
+
+    describe('When_domain_entity_property_has_abstract_entity_identifier', () => {
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity("First")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndDomainEntity()
+
+                .withStartAbstractEntity("Second")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndAbstractEntity();
+                
+.withStartAssociation("Association1")
+                .withDocumentation("doc")
+                .withDomainEntityProperty("First", "doc1")
+                .withDomainEntityProperty("Second", "doc2")
+                .withEndAssociation()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+
+
+    describe('When_domain_entity_property_has_subclass_entity_identifier', () => {
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartAbstractEntity("First")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndAbstractEntity();
+                
+.withStartDomainEntity("Second")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndDomainEntity()
+
+                .withStartDomainEntitySubclass("Third", "First")
+                .withDocumentation("doc")
+                .withStringProperty("RequirePrimaryKey", "doc", true, false, 100)
+                .withEndDomainEntity()
+
+                .withStartAssociation("Association1")
+                .withDocumentation("doc")
+                .withDomainEntityProperty("Second", "doc1")
+                .withDomainEntityProperty("Third", "doc2")
+                .withEndAssociation()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+
+
+    describe('When_domain_entity_property_has_invalid_identifier', () => {
+        let entityName: string = "MyIdentifier";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity("First")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndDomainEntity()
+
+                .withStartAssociation("Association1")
+                .withDocumentation("doc")
+                .withDomainEntityProperty("First", "doc1")
+                .withDomainEntityProperty(entityName, "doc2")
+                .withEndAssociation()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+        });
+    });
+});

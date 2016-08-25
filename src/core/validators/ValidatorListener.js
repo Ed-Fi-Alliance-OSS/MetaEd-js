@@ -634,10 +634,6 @@ class ValidatorListener extends MetaEdGrammarListener_1.MetaEdGrammarListener {
     }
     exitEveryRule(ctx) {
     }
-    visitErrorNode(node) {
-    }
-    visitTerminal(node) {
-    }
 }
 exports.ValidatorListener = ValidatorListener;
 //# sourceMappingURL=ValidatorListener.js.map

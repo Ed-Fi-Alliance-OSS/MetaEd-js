@@ -1,536 +1,339 @@
-using;
-System.Linq;
-using;
-MetaEd.Core.Validator.IncludeProperty;
-using;
-MetaEd.Grammar.Antlr;
-using;
-MetaEd.Tests.AntlrGrammar;
-using;
-NUnit.Framework;
-using;
-Should;
-var MetaEd;
-(function (MetaEd) {
-    var Tests;
-    (function (Tests) {
-        var Validator;
-        (function (Validator) {
-            var IncludeProperty;
-            (function (IncludeProperty) {
-                class IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinalityTests {
-                    constructor() {
-                        this.class = When_include_property_does_not_have_extension_override;
-                    }
-                }
-                {
-                    const string = _commonTypeName = "CommonType";
-                    const string = _entityName = "MyIdentifier";
-                    const string = _propertyName = "Identifier";
-                    override;
-                    string;
-                    MetaEdText();
-                    {
-                        var metaEdTextBuilder = new MetaEdTextBuilder();
-                        metaEdTextBuilder.WithBeginNamespace("edfi")
-                            .WithStartCommonType(_commonTypeName)
-                            .WithDocumentation("doc")
-                            .WithStringProperty("StringProperty", "doc", true, false, 100)
-                            .WithEndCommonType();
-                        metaEdTextBuilder.WithStartDomainEntity(_entityName)
-                            .WithDocumentation("doc")
-                            .WithIdentityProperty("include", _propertyName, "doc")
-                            .WithEndDomainEntity()
-                            .WithEndNamespace();
-                        return metaEdTextBuilder;
-                    }
-                    override;
-                    MetaEd.Core.Validator.IRuleProvider;
-                    GetRuleProvider();
-                    {
-                        return new TestRuleProvider < MetaEdGrammar.IncludePropertyContext >
-                            {
-                                SuppliedRule: SuppliedRule = new IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality(_symbolTable)
-                            };
-                    }
-                    [Test];
-                    void Should_not_have_validation_failure();
-                    {
-                        _errorMessageCollection.Any().ShouldBeFalse();
-                    }
-                }
-                [TestFixture];
-                class When_include_property_has_extension_override_on_non_domain_entity_or_association_extensions {
-                }
-                Validator.ValidationRuleTestBase;
-                {
-                    const string = _commonTypeName = "CommonType";
-                    const string = _entityName = "MyIdentifier";
-                    const string = _propertyName = "Identifier";
-                    override;
-                    string;
-                    MetaEdText();
-                    {
-                        var metaEdTextBuilder = new MetaEdTextBuilder();
-                        metaEdTextBuilder.WithBeginNamespace("edfi")
-                            .WithStartCommonType(_commonTypeName)
-                            .WithDocumentation("doc")
-                            .WithStringProperty("StringProperty", "doc", true, false, 100)
-                            .WithEndCommonType();
-                        metaEdTextBuilder.WithStartDomainEntity(_entityName)
-                            .WithDocumentation("doc")
-                            .WithIncludeExtensionOverrideProperty(_commonTypeName, "doc", true, true)
-                            .WithEndDomainEntity()
-                            .WithEndNamespace();
-                        return metaEdTextBuilder;
-                    }
-                    override;
-                    MetaEd.Core.Validator.IRuleProvider;
-                    GetRuleProvider();
-                    {
-                        return new TestRuleProvider < MetaEdGrammar.IncludePropertyContext >
-                            {
-                                SuppliedRule: SuppliedRule = new IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality(_symbolTable)
-                            };
-                    }
-                    [Test];
-                    void Should_have_validation_failure();
-                    {
-                        _errorMessageCollection.Any().ShouldBeTrue();
-                    }
-                    [Test];
-                    void Should_have_validation_failure_message();
-                    {
-                        _errorMessageCollection[0].Message.ShouldContain("include extension");
-                        _errorMessageCollection[0].Message.ShouldContain(_propertyName);
-                        _errorMessageCollection[0].Message.ShouldContain(_entityName);
-                        _errorMessageCollection[0].Message.ShouldContain("invalid");
-                    }
-                }
-                [TestFixture];
-                class When_include_property_has_extension_override_on_domain_entity_extension_without_include_on_extendee {
-                }
-                Validator.ValidationRuleTestBase;
-                {
-                    const string = _commonTypeName = "CommonType";
-                    const string = _entityName = "MyIdentifier";
-                    const string = _propertyName = "Identifier";
-                    override;
-                    string;
-                    MetaEdText();
-                    {
-                        var metaEdTextBuilder = new MetaEdTextBuilder();
-                        metaEdTextBuilder.WithBeginNamespace("edfi")
-                            .WithStartCommonType(_commonTypeName)
-                            .WithDocumentation("doc")
-                            .WithBooleanProperty("DummyProperty1", "doc", true, false)
-                            .WithEndCommonType();
-                        metaEdTextBuilder.WithStartDomainEntity(_entityName)
-                            .WithDocumentation("doc")
-                            .WithBooleanProperty("DummyProperty2", "doc", true, false)
-                            .WithEndDomainEntity()
-                            .WithEndNamespace();
-                        metaEdTextBuilder.WithBeginNamespace("extension", "EXTENSION")
-                            .WithStartDomainEntityExtension(_entityName)
-                            .WithIncludeExtensionOverrideProperty(_commonTypeName, "doc", true, true)
-                            .WithEndDomainEntityExtension()
-                            .WithEndNamespace();
-                        return metaEdTextBuilder;
-                    }
-                    override;
-                    MetaEd.Core.Validator.IRuleProvider;
-                    GetRuleProvider();
-                    {
-                        return new TestRuleProvider < MetaEdGrammar.IncludePropertyContext >
-                            {
-                                SuppliedRule: SuppliedRule = new IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality(_symbolTable)
-                            };
-                    }
-                    [Test];
-                    void Should_have_validation_failure();
-                    {
-                        _errorMessageCollection.Any().ShouldBeTrue();
-                    }
-                    [Test];
-                    void Should_have_validation_failure_message();
-                    {
-                        _errorMessageCollection[0].Message.ShouldContain("include extension");
-                        _errorMessageCollection[0].Message.ShouldContain(_propertyName);
-                        _errorMessageCollection[0].Message.ShouldContain(_entityName);
-                        _errorMessageCollection[0].Message.ShouldContain("invalid");
-                    }
-                }
-                [TestFixture];
-                class When_include_property_has_extension_override_on_association_extension_without_include_on_extendee {
-                }
-                Validator.ValidationRuleTestBase;
-                {
-                    const string = _commonTypeName = "CommonType";
-                    const string = _entityName = "MyIdentifier";
-                    const string = _propertyName = "Identifier";
-                    override;
-                    string;
-                    MetaEdText();
-                    {
-                        var metaEdTextBuilder = new MetaEdTextBuilder();
-                        metaEdTextBuilder.WithBeginNamespace("edfi")
-                            .WithStartCommonType(_commonTypeName)
-                            .WithDocumentation("doc")
-                            .WithBooleanProperty("DummyProperty1", "doc", true, false)
-                            .WithEndCommonType();
-                        metaEdTextBuilder.WithStartAssociation(_entityName)
-                            .WithDocumentation("doc")
-                            .WithDomainEntityProperty("DummyEntity1", "doc")
-                            .WithDomainEntityProperty("DummyEntity2", "doc")
-                            .WithBooleanProperty("DummyProperty2", "doc", true, false)
-                            .WithEndDomainEntity()
-                            .WithEndNamespace();
-                        metaEdTextBuilder.WithBeginNamespace("extension", "EXTENSION")
-                            .WithStartAssociationExtension(_entityName)
-                            .WithIncludeExtensionOverrideProperty(_commonTypeName, "doc", true, true)
-                            .WithEndDomainEntityExtension()
-                            .WithEndNamespace();
-                        return metaEdTextBuilder;
-                    }
-                    override;
-                    MetaEd.Core.Validator.IRuleProvider;
-                    GetRuleProvider();
-                    {
-                        return new TestRuleProvider < MetaEdGrammar.IncludePropertyContext >
-                            {
-                                SuppliedRule: SuppliedRule = new IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality(_symbolTable)
-                            };
-                    }
-                    [Test];
-                    void Should_have_validation_failure();
-                    {
-                        _errorMessageCollection.Any().ShouldBeTrue();
-                    }
-                    [Test];
-                    void Should_have_validation_failure_message();
-                    {
-                        _errorMessageCollection[0].Message.ShouldContain("include extension");
-                        _errorMessageCollection[0].Message.ShouldContain(_propertyName);
-                        _errorMessageCollection[0].Message.ShouldContain(_entityName);
-                        _errorMessageCollection[0].Message.ShouldContain("invalid");
-                    }
-                }
-                [TestFixture];
-                class When_include_property_has_extension_override_on_domain_entity_extension_with_include_on_extendee_matching_cardinality {
-                }
-                Validator.ValidationRuleTestBase;
-                {
-                    const string = _commonTypeName = "CommonType";
-                    const string = _entityName = "MyIdentifier";
-                    const string = _propertyName = "Identifier";
-                    override;
-                    string;
-                    MetaEdText();
-                    {
-                        var metaEdTextBuilder = new MetaEdTextBuilder();
-                        metaEdTextBuilder.WithBeginNamespace("edfi")
-                            .WithStartCommonType(_commonTypeName)
-                            .WithDocumentation("doc")
-                            .WithBooleanProperty("DummyProperty1", "doc", true, false)
-                            .WithEndCommonType();
-                        metaEdTextBuilder.WithStartDomainEntity(_entityName)
-                            .WithDocumentation("doc")
-                            .WithBooleanProperty("DummyProperty2", "doc", true, false)
-                            .WithIncludeProperty(_commonTypeName, "doc", true, true)
-                            .WithEndDomainEntity()
-                            .WithEndNamespace();
-                        metaEdTextBuilder.WithBeginNamespace("extension", "EXTENSION")
-                            .WithStartDomainEntityExtension(_entityName)
-                            .WithIncludeExtensionOverrideProperty(_commonTypeName, "doc", true, true)
-                            .WithEndDomainEntityExtension()
-                            .WithEndNamespace();
-                        return metaEdTextBuilder;
-                    }
-                    override;
-                    MetaEd.Core.Validator.IRuleProvider;
-                    GetRuleProvider();
-                    {
-                        return new TestRuleProvider < MetaEdGrammar.IncludePropertyContext >
-                            {
-                                SuppliedRule: SuppliedRule = new IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality(_symbolTable)
-                            };
-                    }
-                    [Test];
-                    void Should_not_have_validation_failure();
-                    {
-                        _errorMessageCollection.Any().ShouldBeFalse();
-                    }
-                }
-                [TestFixture];
-                class When_include_property_has_extension_override_on_association_extension_with_include_on_extendee_with_matching_cardinality {
-                }
-                Validator.ValidationRuleTestBase;
-                {
-                    const string = _commonTypeName = "CommonType";
-                    const string = _entityName = "MyIdentifier";
-                    const string = _propertyName = "Identifier";
-                    override;
-                    string;
-                    MetaEdText();
-                    {
-                        var metaEdTextBuilder = new MetaEdTextBuilder();
-                        metaEdTextBuilder.WithBeginNamespace("edfi")
-                            .WithStartCommonType(_commonTypeName)
-                            .WithDocumentation("doc")
-                            .WithBooleanProperty("DummyProperty1", "doc", true, false)
-                            .WithEndCommonType();
-                        metaEdTextBuilder.WithStartAssociation(_entityName)
-                            .WithDocumentation("doc")
-                            .WithDomainEntityProperty("DummyEntity1", "doc")
-                            .WithDomainEntityProperty("DummyEntity2", "doc")
-                            .WithIncludeProperty(_commonTypeName, "doc", true, true)
-                            .WithBooleanProperty("DummyProperty2", "doc", true, false)
-                            .WithEndDomainEntity()
-                            .WithEndNamespace();
-                        metaEdTextBuilder.WithBeginNamespace("extension", "EXTENSION")
-                            .WithStartAssociationExtension(_entityName)
-                            .WithIncludeExtensionOverrideProperty(_commonTypeName, "doc", true, true)
-                            .WithEndDomainEntityExtension()
-                            .WithEndNamespace();
-                        return metaEdTextBuilder;
-                    }
-                    override;
-                    MetaEd.Core.Validator.IRuleProvider;
-                    GetRuleProvider();
-                    {
-                        return new TestRuleProvider < MetaEdGrammar.IncludePropertyContext >
-                            {
-                                SuppliedRule: SuppliedRule = new IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality(_symbolTable)
-                            };
-                    }
-                    [Test];
-                    void Should_not_have_validation_failure();
-                    {
-                        _errorMessageCollection.Any().ShouldBeFalse();
-                    }
-                }
-                [TestFixture];
-                class When_include_property_has_extension_override_on_domain_entity_extension_with_include_on_extendee_not_matching_collection_cardinality {
-                }
-                Validator.ValidationRuleTestBase;
-                {
-                    const string = _commonTypeName = "CommonType";
-                    const string = _entityName = "MyIdentifier";
-                    const string = _propertyName = "Identifier";
-                    override;
-                    string;
-                    MetaEdText();
-                    {
-                        var metaEdTextBuilder = new MetaEdTextBuilder();
-                        metaEdTextBuilder.WithBeginNamespace("edfi")
-                            .WithStartCommonType(_commonTypeName)
-                            .WithDocumentation("doc")
-                            .WithBooleanProperty("DummyProperty1", "doc", true, false)
-                            .WithEndCommonType();
-                        metaEdTextBuilder.WithStartDomainEntity(_entityName)
-                            .WithDocumentation("doc")
-                            .WithBooleanProperty("DummyProperty2", "doc", true, false)
-                            .WithIncludeProperty(_commonTypeName, "doc", true, false)
-                            .WithEndDomainEntity()
-                            .WithEndNamespace();
-                        metaEdTextBuilder.WithBeginNamespace("extension", "EXTENSION")
-                            .WithStartDomainEntityExtension(_entityName)
-                            .WithIncludeExtensionOverrideProperty(_commonTypeName, "doc", true, true)
-                            .WithEndDomainEntityExtension()
-                            .WithEndNamespace();
-                        return metaEdTextBuilder;
-                    }
-                    override;
-                    MetaEd.Core.Validator.IRuleProvider;
-                    GetRuleProvider();
-                    {
-                        return new TestRuleProvider < MetaEdGrammar.IncludePropertyContext >
-                            {
-                                SuppliedRule: SuppliedRule = new IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality(_symbolTable)
-                            };
-                    }
-                    [Test];
-                    void Should_have_validation_failure();
-                    {
-                        _errorMessageCollection.Any().ShouldBeTrue();
-                    }
-                    [Test];
-                    void Should_have_validation_failure_message();
-                    {
-                        _errorMessageCollection[0].Message.ShouldContain("include extension");
-                        _errorMessageCollection[0].Message.ShouldContain(_propertyName);
-                        _errorMessageCollection[0].Message.ShouldContain(_entityName);
-                        _errorMessageCollection[0].Message.ShouldContain("invalid");
-                    }
-                }
-                [TestFixture];
-                class When_include_property_has_extension_override_on_domain_entity_extension_with_include_on_extendee_not_matching_nullability {
-                }
-                Validator.ValidationRuleTestBase;
-                {
-                    const string = _commonTypeName = "CommonType";
-                    const string = _entityName = "MyIdentifier";
-                    const string = _propertyName = "Identifier";
-                    override;
-                    string;
-                    MetaEdText();
-                    {
-                        var metaEdTextBuilder = new MetaEdTextBuilder();
-                        metaEdTextBuilder.WithBeginNamespace("edfi")
-                            .WithStartCommonType(_commonTypeName)
-                            .WithDocumentation("doc")
-                            .WithBooleanProperty("DummyProperty1", "doc", true, false)
-                            .WithEndCommonType();
-                        metaEdTextBuilder.WithStartDomainEntity(_entityName)
-                            .WithDocumentation("doc")
-                            .WithBooleanProperty("DummyProperty2", "doc", true, false)
-                            .WithIncludeProperty(_commonTypeName, "doc", false, true)
-                            .WithEndDomainEntity()
-                            .WithEndNamespace();
-                        metaEdTextBuilder.WithBeginNamespace("extension", "EXTENSION")
-                            .WithStartDomainEntityExtension(_entityName)
-                            .WithIncludeExtensionOverrideProperty(_commonTypeName, "doc", true, true)
-                            .WithEndDomainEntityExtension()
-                            .WithEndNamespace();
-                        return metaEdTextBuilder;
-                    }
-                    override;
-                    MetaEd.Core.Validator.IRuleProvider;
-                    GetRuleProvider();
-                    {
-                        return new TestRuleProvider < MetaEdGrammar.IncludePropertyContext >
-                            {
-                                SuppliedRule: SuppliedRule = new IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality(_symbolTable)
-                            };
-                    }
-                    [Test];
-                    void Should_have_validation_failure();
-                    {
-                        _errorMessageCollection.Any().ShouldBeTrue();
-                    }
-                    [Test];
-                    void Should_have_validation_failure_message();
-                    {
-                        _errorMessageCollection[0].Message.ShouldContain("include extension");
-                        _errorMessageCollection[0].Message.ShouldContain(_propertyName);
-                        _errorMessageCollection[0].Message.ShouldContain(_entityName);
-                        _errorMessageCollection[0].Message.ShouldContain("invalid");
-                    }
-                }
-                [TestFixture];
-                class When_include_property_has_extension_override_on_association_extension_with_include_on_extendee_not_matching_collection_cardinality {
-                }
-                Validator.ValidationRuleTestBase;
-                {
-                    const string = _commonTypeName = "CommonType";
-                    const string = _entityName = "MyIdentifier";
-                    const string = _propertyName = "Identifier";
-                    override;
-                    string;
-                    MetaEdText();
-                    {
-                        var metaEdTextBuilder = new MetaEdTextBuilder();
-                        metaEdTextBuilder.WithBeginNamespace("edfi")
-                            .WithStartCommonType(_commonTypeName)
-                            .WithDocumentation("doc")
-                            .WithBooleanProperty("DummyProperty1", "doc", true, false)
-                            .WithEndCommonType();
-                        metaEdTextBuilder.WithStartAssociation(_entityName)
-                            .WithDocumentation("doc")
-                            .WithDomainEntityProperty("DummyEntity1", "doc")
-                            .WithDomainEntityProperty("DummyEntity2", "doc")
-                            .WithIncludeProperty(_commonTypeName, "doc", true, false)
-                            .WithBooleanProperty("DummyProperty2", "doc", true, false)
-                            .WithEndDomainEntity()
-                            .WithEndNamespace();
-                        metaEdTextBuilder.WithBeginNamespace("extension", "EXTENSION")
-                            .WithStartAssociationExtension(_entityName)
-                            .WithIncludeExtensionOverrideProperty(_commonTypeName, "doc", true, true)
-                            .WithEndDomainEntityExtension()
-                            .WithEndNamespace();
-                        return metaEdTextBuilder;
-                    }
-                    override;
-                    MetaEd.Core.Validator.IRuleProvider;
-                    GetRuleProvider();
-                    {
-                        return new TestRuleProvider < MetaEdGrammar.IncludePropertyContext >
-                            {
-                                SuppliedRule: SuppliedRule = new IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality(_symbolTable)
-                            };
-                    }
-                    [Test];
-                    void Should_have_validation_failure();
-                    {
-                        _errorMessageCollection.Any().ShouldBeTrue();
-                    }
-                    [Test];
-                    void Should_have_validation_failure_message();
-                    {
-                        _errorMessageCollection[0].Message.ShouldContain("include extension");
-                        _errorMessageCollection[0].Message.ShouldContain(_propertyName);
-                        _errorMessageCollection[0].Message.ShouldContain(_entityName);
-                        _errorMessageCollection[0].Message.ShouldContain("invalid");
-                    }
-                }
-                [TestFixture];
-                class When_include_property_has_extension_override_on_association_extension_with_include_on_extendee_not_matching_nullability {
-                }
-                Validator.ValidationRuleTestBase;
-                {
-                    const string = _commonTypeName = "CommonType";
-                    const string = _entityName = "MyIdentifier";
-                    const string = _propertyName = "Identifier";
-                    override;
-                    string;
-                    MetaEdText();
-                    {
-                        var metaEdTextBuilder = new MetaEdTextBuilder();
-                        metaEdTextBuilder.WithBeginNamespace("edfi")
-                            .WithStartCommonType(_commonTypeName)
-                            .WithDocumentation("doc")
-                            .WithBooleanProperty("DummyProperty1", "doc", true, false)
-                            .WithEndCommonType();
-                        metaEdTextBuilder.WithStartAssociation(_entityName)
-                            .WithDocumentation("doc")
-                            .WithDomainEntityProperty("DummyEntity1", "doc")
-                            .WithDomainEntityProperty("DummyEntity2", "doc")
-                            .WithIncludeProperty(_commonTypeName, "doc", false, true)
-                            .WithBooleanProperty("DummyProperty2", "doc", true, false)
-                            .WithEndDomainEntity()
-                            .WithEndNamespace();
-                        metaEdTextBuilder.WithBeginNamespace("extension", "EXTENSION")
-                            .WithStartAssociationExtension(_entityName)
-                            .WithIncludeExtensionOverrideProperty(_commonTypeName, "doc", true, true)
-                            .WithEndDomainEntityExtension()
-                            .WithEndNamespace();
-                        return metaEdTextBuilder;
-                    }
-                    override;
-                    MetaEd.Core.Validator.IRuleProvider;
-                    GetRuleProvider();
-                    {
-                        return new TestRuleProvider < MetaEdGrammar.IncludePropertyContext >
-                            {
-                                SuppliedRule: SuppliedRule = new IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality(_symbolTable)
-                            };
-                    }
-                    [Test];
-                    void Should_have_validation_failure();
-                    {
-                        _errorMessageCollection.Any().ShouldBeTrue();
-                    }
-                    [Test];
-                    void Should_have_validation_failure_message();
-                    {
-                        _errorMessageCollection[0].Message.ShouldContain("include extension");
-                        _errorMessageCollection[0].Message.ShouldContain(_propertyName);
-                        _errorMessageCollection[0].Message.ShouldContain(_entityName);
-                        _errorMessageCollection[0].Message.ShouldContain("invalid");
-                    }
-                }
-            })(IncludeProperty = Validator.IncludeProperty || (Validator.IncludeProperty = {}));
-        })(Validator = Tests.Validator || (Tests.Validator = {}));
-    })(Tests = MetaEd.Tests || (MetaEd.Tests = {}));
-})(MetaEd || (MetaEd = {}));
+"use strict";
+/// <reference path="../../../../typings/index.d.ts" />
+const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
+const chai = require('chai');
+const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
+const TestRuleProvider_1 = require("../TestRuleProvider");
+const IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality_1 = require("../../../../src/core/validators/IncludeProperty/IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality");
+let should = chai.should();
+describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality', () => {
+    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality_1.IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality(helper.symbolTable)));
+    describe('When_include_property_does_not_have_extension_override', () => {
+        const commonTypeName = "CommonType";
+        let entityName = "MyIdentifier";
+        let propertyName = "Identifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartCommonType(commonTypeName)
+                .withDocumentation("doc")
+                .withStringProperty("StringProperty", "doc", true, false, 100)
+                .withEndCommonType()
+                .withStartDomainEntity(entityName)
+                .withDocumentation("doc")
+                .withIdentityProperty("include", propertyName, "doc")
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_not_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeFalse();
+        });
+    });
+    describe('When_include_property_has_extension_override_on_non_domain_entity_or_association_extensions', () => {
+        const commonTypeName = "CommonType";
+        let entityName = "MyIdentifier";
+        let propertyName = "Identifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartCommonType(commonTypeName)
+                .withDocumentation("doc")
+                .withStringProperty("StringProperty", "doc", true, false, 100)
+                .withEndCommonType()
+                .withStartDomainEntity(entityName)
+                .withDocumentation("doc")
+                .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
+            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+        });
+    });
+    describe('When_include_property_has_extension_override_on_domain_entity_extension_without_include_on_extendee', () => {
+        const commonTypeName = "CommonType";
+        let entityName = "MyIdentifier";
+        let propertyName = "Identifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartCommonType(commonTypeName)
+                .withDocumentation("doc")
+                .withBooleanProperty("DummyProperty1", "doc", true, false)
+                .withEndCommonType()
+                .withStartDomainEntity(entityName)
+                .withDocumentation("doc")
+                .withBooleanProperty("DummyProperty2", "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace()
+                .withBeginNamespace("extension", "EXTENSION")
+                .withStartDomainEntityExtension(entityName)
+                .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
+            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+        });
+    });
+    describe('When_include_property_has_extension_override_on_association_extension_without_include_on_extendee', () => {
+        const commonTypeName = "CommonType";
+        let entityName = "MyIdentifier";
+        let propertyName = "Identifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartCommonType(commonTypeName)
+                .withDocumentation("doc")
+                .withBooleanProperty("DummyProperty1", "doc", true, false)
+                .withEndCommonType()
+                .withStartAssociation(entityName)
+                .withDocumentation("doc")
+                .withDomainEntityProperty("DummyEntity1", "doc")
+                .withDomainEntityProperty("DummyEntity2", "doc")
+                .withBooleanProperty("DummyProperty2", "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace()
+                .withBeginNamespace("extension", "EXTENSION")
+                .withStartAssociationExtension(entityName)
+                .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
+            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+        });
+    });
+    describe('When_include_property_has_extension_override_on_domain_entity_extension_with_include_on_extendee_matching_cardinality', () => {
+        const commonTypeName = "CommonType";
+        let entityName = "MyIdentifier";
+        let propertyName = "Identifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartCommonType(commonTypeName)
+                .withDocumentation("doc")
+                .withBooleanProperty("DummyProperty1", "doc", true, false)
+                .withEndCommonType()
+                .withStartDomainEntity(entityName)
+                .withDocumentation("doc")
+                .withBooleanProperty("DummyProperty2", "doc", true, false)
+                .withIncludeProperty(commonTypeName, "doc", true, true)
+                .withEndDomainEntity()
+                .withEndNamespace()
+                .withBeginNamespace("extension", "EXTENSION")
+                .withStartDomainEntityExtension(entityName)
+                .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_not_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeFalse();
+        });
+    });
+    describe('When_include_property_has_extension_override_on_association_extension_with_include_on_extendee_with_matching_cardinality', () => {
+        const commonTypeName = "CommonType";
+        let entityName = "MyIdentifier";
+        let propertyName = "Identifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartCommonType(commonTypeName)
+                .withDocumentation("doc")
+                .withBooleanProperty("DummyProperty1", "doc", true, false)
+                .withEndCommonType()
+                .withStartAssociation(entityName)
+                .withDocumentation("doc")
+                .withDomainEntityProperty("DummyEntity1", "doc")
+                .withDomainEntityProperty("DummyEntity2", "doc")
+                .withIncludeProperty(commonTypeName, "doc", true, true)
+                .withBooleanProperty("DummyProperty2", "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace()
+                .withBeginNamespace("extension", "EXTENSION")
+                .withStartAssociationExtension(entityName)
+                .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_not_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeFalse();
+        });
+    });
+    describe('When_include_property_has_extension_override_on_domain_entity_extension_with_include_on_extendee_not_matching_collection_cardinality', () => {
+        const commonTypeName = "CommonType";
+        let entityName = "MyIdentifier";
+        let propertyName = "Identifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartCommonType(commonTypeName)
+                .withDocumentation("doc")
+                .withBooleanProperty("DummyProperty1", "doc", true, false)
+                .withEndCommonType()
+                .withStartDomainEntity(entityName)
+                .withDocumentation("doc")
+                .withBooleanProperty("DummyProperty2", "doc", true, false)
+                .withIncludeProperty(commonTypeName, "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace()
+                .withBeginNamespace("extension", "EXTENSION")
+                .withStartDomainEntityExtension(entityName)
+                .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
+            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+        });
+    });
+    describe('When_include_property_has_extension_override_on_domain_entity_extension_with_include_on_extendee_not_matching_nullability', () => {
+        const commonTypeName = "CommonType";
+        let entityName = "MyIdentifier";
+        let propertyName = "Identifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartCommonType(commonTypeName)
+                .withDocumentation("doc")
+                .withBooleanProperty("DummyProperty1", "doc", true, false)
+                .withEndCommonType()
+                .withStartDomainEntity(entityName)
+                .withDocumentation("doc")
+                .withBooleanProperty("DummyProperty2", "doc", true, false)
+                .withIncludeProperty(commonTypeName, "doc", false, true)
+                .withEndDomainEntity()
+                .withEndNamespace()
+                .withBeginNamespace("extension", "EXTENSION")
+                .withStartDomainEntityExtension(entityName)
+                .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
+            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+        });
+    });
+    describe('When_include_property_has_extension_override_on_association_extension_with_include_on_extendee_not_matching_collection_cardinality', () => {
+        const commonTypeName = "CommonType";
+        let entityName = "MyIdentifier";
+        let propertyName = "Identifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartCommonType(commonTypeName)
+                .withDocumentation("doc")
+                .withBooleanProperty("DummyProperty1", "doc", true, false)
+                .withEndCommonType()
+                .withStartAssociation(entityName)
+                .withDocumentation("doc")
+                .withDomainEntityProperty("DummyEntity1", "doc")
+                .withDomainEntityProperty("DummyEntity2", "doc")
+                .withIncludeProperty(commonTypeName, "doc", true, false)
+                .withBooleanProperty("DummyProperty2", "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace()
+                .withBeginNamespace("extension", "EXTENSION")
+                .withStartAssociationExtension(entityName)
+                .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
+            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+        });
+    });
+    describe('When_include_property_has_extension_override_on_association_extension_with_include_on_extendee_not_matching_nullability', () => {
+        const commonTypeName = "CommonType";
+        let entityName = "MyIdentifier";
+        let propertyName = "Identifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartCommonType(commonTypeName)
+                .withDocumentation("doc")
+                .withBooleanProperty("DummyProperty1", "doc", true, false)
+                .withEndCommonType()
+                .withStartAssociation(entityName)
+                .withDocumentation("doc")
+                .withDomainEntityProperty("DummyEntity1", "doc")
+                .withDomainEntityProperty("DummyEntity2", "doc")
+                .withIncludeProperty(commonTypeName, "doc", false, true)
+                .withBooleanProperty("DummyProperty2", "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace()
+                .withBeginNamespace("extension", "EXTENSION")
+                .withStartAssociationExtension(entityName)
+                .withIncludeExtensionOverrideProperty(commonTypeName, "doc", true, true)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
+            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+        });
+    });
+});
 //# sourceMappingURL=IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinalityTests.js.map

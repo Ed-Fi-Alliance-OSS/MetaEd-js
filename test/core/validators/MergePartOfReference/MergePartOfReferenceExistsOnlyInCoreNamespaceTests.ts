@@ -1,50 +1,85 @@
-﻿module MetaEd.Tests.Validator.MergePartOfReference {
-    export class MergePartOfReferenceExistsOnlyInCoreNamespaceTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {InsertClassName}from "../../../../src/core/validators/EnterFolderName/EnterClassName"
 
-    }
-    export module MergePartOfReferenceExistsOnlyInCoreNamespaceTests {
-        /*[TestFixture]*/
-        export class When_merge_exists_in_core extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("Entity1").WithDocumentation("doc").WithIntegerIdentity("Prop1", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Entity2").WithDocumentation("doc").WithIntegerIdentity("Prop1", "doc").WithReferenceProperty("Entity1", "doc", false, false).WithMergePartOfReference("Entity1.Prop1", "Prop1").WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
+let should = chai.should();
+//TODO: special case?
+
+describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.MergePartOfReferenceContext>(
+            new MergePartOfReferenceExistsOnlyInCoreNamespace()));
+
+
+    describe('When_merge_exists_in_core', () => {
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity("Entity1")
+                .withDocumentation("doc")
+                .withIntegerIdentity("Prop1", "doc")
+                .withEndDomainEntity()
+
+                .withStartDomainEntity("Entity2")
+                .withDocumentation("doc")
+                .withIntegerIdentity("Prop1", "doc")
+                .withReferenceProperty("Entity1", "doc", false, false)
+                .withMergePartOfReference("Entity1.Prop1", "Prop1")
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
             protected getRuleProvider(): IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.MergePartOfReferenceContext>(), { SuppliedRule: new MergePartOfReferenceExistsOnlyInCoreNamespace() });
-            }
-            public should_validate_successfully(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module MergePartOfReferenceExistsOnlyInCoreNamespaceTests {
-        /*[TestFixture]*/
-        export class When_merged_exists_in_extension extends ValidationRuleTestBase {
-            private static _entityName1: string = "Entity1";
-            private static _entityName2: string = "Entity2";
-            private static _propertyName: string = "Prop1";
+            return __init(new TestRuleProvider<MetaEdGrammar.MergePartOfReferenceContext>(), { SuppliedRule: new MergePartOfReferenceExistsOnlyInCoreNamespace() }););
+});
+it('should_validate_successfully()', () => {
+    helper.errorMessageCollection.Count.ShouldEqual(0);
+});
+});
+
+
+describe('When_merged_exists_in_extension', () => {
+    const entityName1: string = "Entity1";
+    const entityName2: string = "Entity2";
+            private propertyName: string = "Prop1";
             private static _extensionNamespace: string = "extension";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace(When_merged_exists_in_extension._extensionNamespace, "EXTENSION").WithStartDomainEntity(When_merged_exists_in_extension._entityName1).WithDocumentation("doc").WithDecimalIdentity("Prop1", "doc", 5, 3).WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity(When_merged_exists_in_extension._entityName2).WithDocumentation("doc").WithIntegerIdentity(When_merged_exists_in_extension._propertyName, "doc").WithReferenceProperty(When_merged_exists_in_extension._entityName1, "doc", false, false).WithMergePartOfReference(When_merged_exists_in_extension._entityName1 + "." + When_merged_exists_in_extension._propertyName, When_merged_exists_in_extension._propertyName).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
+let helper: ValidationTestHelper = new ValidationTestHelper();
+before(() => {
+    let metaEdText = MetaEdTextBuilder.buildIt
+
+        .withBeginNamespace(When_merged_exists_in_extension._extensionNamespace, "EXTENSION")
+        .withStartDomainEntity(entityName1)
+        .withDocumentation("doc")
+        .withDecimalIdentity("Prop1", "doc", 5, 3)
+        .withEndDomainEntity()
+
+        .withStartDomainEntity(entityName2)
+        .withDocumentation("doc")
+        .withIntegerIdentity(propertyName, "doc")
+        .withReferenceProperty(entityName1, "doc", false, false)
+        .withMergePartOfReference(entityName1 + "." + propertyName, propertyName)
+        .withEndDomainEntity()
+        .withEndNamespace();
+    helper.setup(metaEdText, validatorListener);
+});
             protected getRuleProvider(): IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.MergePartOfReferenceContext>(), { SuppliedRule: new MergePartOfReferenceExistsOnlyInCoreNamespace() });
-            }
-            public should_have_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(1);
-            }
-            public should_have_meaningful_validation_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("'merge' is invalid for property");
-                _errorMessageCollection[0].Message.ShouldContain(When_merged_exists_in_extension._entityName1);
-                _errorMessageCollection[0].Message.ShouldContain(When_merged_exists_in_extension._entityName2);
-                _errorMessageCollection[0].Message.ShouldContain(When_merged_exists_in_extension._extensionNamespace);
-                _errorMessageCollection[0].Message.ShouldContain("'merge' is only valid for properties on types in a core namespace.");
-            }
-        }
-    }
-}
+    return __init(new TestRuleProvider<MetaEdGrammar.MergePartOfReferenceContext>(), { SuppliedRule: new MergePartOfReferenceExistsOnlyInCoreNamespace() }););
+});
+it('should_have_validation_failures()', () => {
+    helper.errorMessageCollection.Count.ShouldEqual(1);
+});
+it('should_have_meaningful_validation_message()', () => {
+    helper.errorMessageCollection[0].Message.ShouldContain("'merge' is invalid for property");
+    helper.errorMessageCollection[0].Message.ShouldContain(entityName1);
+    helper.errorMessageCollection[0].Message.ShouldContain(entityName2);
+    helper.errorMessageCollection[0].Message.ShouldContain(When_merged_exists_in_extension._extensionNamespace);
+    helper.errorMessageCollection[0].Message.ShouldContain("'merge' is only valid for properties on types in a core namespace.");
+});
+});
+});

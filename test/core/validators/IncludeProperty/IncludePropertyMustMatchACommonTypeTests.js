@@ -1,96 +1,102 @@
-var MetaEd;
-(function (MetaEd) {
-    var Tests;
-    (function (Tests) {
-        var Validator;
-        (function (Validator) {
-            var IncludeProperty;
-            (function (IncludeProperty) {
-                class IncludePropertyMustMatchACommonTypeTests {
-                }
-                IncludeProperty.IncludePropertyMustMatchACommonTypeTests = IncludePropertyMustMatchACommonTypeTests;
-                (function (IncludePropertyMustMatchACommonTypeTests) {
-                    /*[TestFixture]*/
-                    class When_include_property_has_identifier_of_common_type extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonType(When_include_property_has_identifier_of_common_type._entityName).WithDocumentation("doc").WithStringProperty("StringProperty", "doc", true, false, 100).WithEndCommonType();
-                            metaEdTextBuilder.WithStartDomainEntity("DomainEntity").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithIncludeProperty(When_include_property_has_identifier_of_common_type._entityName, "doc", true, false).WithEndDomainEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new IncludePropertyMustMatchACommonType(_symbolTable) });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    When_include_property_has_identifier_of_common_type._entityName = "MyIdentifier";
-                    IncludePropertyMustMatchACommonTypeTests.When_include_property_has_identifier_of_common_type = When_include_property_has_identifier_of_common_type;
-                })(IncludePropertyMustMatchACommonTypeTests = IncludeProperty.IncludePropertyMustMatchACommonTypeTests || (IncludeProperty.IncludePropertyMustMatchACommonTypeTests = {}));
-                (function (IncludePropertyMustMatchACommonTypeTests) {
-                    /*[TestFixture]*/
-                    class When_include_property_has_identifier_of_inline_common_type extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartInlineCommonType(When_include_property_has_identifier_of_inline_common_type._entityName).WithDocumentation("doc").WithStringProperty("StringProperty", "doc", true, false, 100).WithEndInlineCommonType();
-                            metaEdTextBuilder.WithStartDomainEntity("DomainEntity").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithIncludeProperty(When_include_property_has_identifier_of_inline_common_type._entityName, "doc", true, false).WithEndDomainEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new IncludePropertyMustMatchACommonType(_symbolTable) });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    When_include_property_has_identifier_of_inline_common_type._entityName = "MyIdentifier";
-                    IncludePropertyMustMatchACommonTypeTests.When_include_property_has_identifier_of_inline_common_type = When_include_property_has_identifier_of_inline_common_type;
-                })(IncludePropertyMustMatchACommonTypeTests = IncludeProperty.IncludePropertyMustMatchACommonTypeTests || (IncludeProperty.IncludePropertyMustMatchACommonTypeTests = {}));
-                (function (IncludePropertyMustMatchACommonTypeTests) {
-                    /*[TestFixture]*/
-                    class When_include_property_has_identifier_of_choice_common_type extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartChoiceType(When_include_property_has_identifier_of_choice_common_type._entityName).WithDocumentation("doc").WithStringProperty("StringProperty", "doc", true, false, 100).WithEndChoiceType();
-                            metaEdTextBuilder.WithStartDomainEntity("DomainEntity").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithIncludeProperty(When_include_property_has_identifier_of_choice_common_type._entityName, "doc", true, false).WithEndDomainEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new IncludePropertyMustMatchACommonType(_symbolTable) });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    When_include_property_has_identifier_of_choice_common_type._entityName = "MyIdentifier";
-                    IncludePropertyMustMatchACommonTypeTests.When_include_property_has_identifier_of_choice_common_type = When_include_property_has_identifier_of_choice_common_type;
-                })(IncludePropertyMustMatchACommonTypeTests = IncludeProperty.IncludePropertyMustMatchACommonTypeTests || (IncludeProperty.IncludePropertyMustMatchACommonTypeTests = {}));
-                (function (IncludePropertyMustMatchACommonTypeTests) {
-                    /*[TestFixture]*/
-                    class When_include_property_has_invalid_identifier extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("DomainEntity").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithIncludeProperty(When_include_property_has_invalid_identifier._entityName, "doc", true, false).WithEndDomainEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new IncludePropertyMustMatchACommonType(_symbolTable) });
-                        }
-                        should_have_validation_failure() {
-                            _errorMessageCollection.Any().ShouldBeTrue();
-                        }
-                        should_have_validation_failure_message() {
-                            _errorMessageCollection[0].Message.ShouldContain("Include");
-                            _errorMessageCollection[0].Message.ShouldContain(When_include_property_has_invalid_identifier._entityName);
-                            _errorMessageCollection[0].Message.ShouldContain("does not match");
-                        }
-                    }
-                    When_include_property_has_invalid_identifier._entityName = "MyIdentifier";
-                    IncludePropertyMustMatchACommonTypeTests.When_include_property_has_invalid_identifier = When_include_property_has_invalid_identifier;
-                })(IncludePropertyMustMatchACommonTypeTests = IncludeProperty.IncludePropertyMustMatchACommonTypeTests || (IncludeProperty.IncludePropertyMustMatchACommonTypeTests = {}));
-            })(IncludeProperty = Validator.IncludeProperty || (Validator.IncludeProperty = {}));
-        })(Validator = Tests.Validator || (Tests.Validator = {}));
-    })(Tests = MetaEd.Tests || (MetaEd.Tests = {}));
-})(MetaEd || (MetaEd = {}));
+"use strict";
+/// <reference path="../../../../typings/index.d.ts" />
+const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
+const chai = require('chai');
+const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
+const TestRuleProvider_1 = require("../TestRuleProvider");
+const IncludePropertyMustMatchACommonType_1 = require("../../../../src/core/validators/IncludeProperty/IncludePropertyMustMatchACommonType");
+let should = chai.should();
+describe('IncludePropertyMustMatchACommonType', () => {
+    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new IncludePropertyMustMatchACommonType_1.IncludePropertyMustMatchACommonType(helper.symbolTable)));
+    describe('When_include_property_has_identifier_of_common_type', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartCommonType(entityName)
+                .withDocumentation("doc")
+                .withStringProperty("StringProperty", "doc", true, false, 100)
+                .withEndCommonType();
+            withStartDomainEntity("DomainEntity")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withIncludeProperty(entityName, "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_include_property_has_identifier_of_inline_common_type', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartInlineCommonType(entityName)
+                .withDocumentation("doc")
+                .withStringProperty("StringProperty", "doc", true, false, 100)
+                .withEndInlineCommonType();
+            withStartDomainEntity("DomainEntity")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withIncludeProperty(entityName, "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_include_property_has_identifier_of_choice_common_type', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartChoiceType(entityName)
+                .withDocumentation("doc")
+                .withStringProperty("StringProperty", "doc", true, false, 100)
+                .withEndChoiceType();
+            withStartDomainEntity("DomainEntity")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withIncludeProperty(entityName, "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_include_property_has_invalid_identifier', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity("DomainEntity")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withIncludeProperty(entityName, "doc", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Include");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+        });
+    });
+});
 //# sourceMappingURL=IncludePropertyMustMatchACommonTypeTests.js.map

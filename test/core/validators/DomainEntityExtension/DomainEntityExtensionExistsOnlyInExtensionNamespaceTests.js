@@ -1,63 +1,64 @@
-var MetaEd;
-(function (MetaEd) {
-    var Tests;
-    (function (Tests) {
-        var Validator;
-        (function (Validator) {
-            var DomainEntityExtension;
-            (function (DomainEntityExtension) {
-                class DomainEntityExtensionExistsOnlyInExtensionNamespaceTests {
-                }
-                DomainEntityExtension.DomainEntityExtensionExistsOnlyInExtensionNamespaceTests = DomainEntityExtensionExistsOnlyInExtensionNamespaceTests;
-                (function (DomainEntityExtensionExistsOnlyInExtensionNamespaceTests) {
-                    /*[TestFixture]*/
-                    class When_domain_entity_extension_exists_in_extension extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity(When_domain_entity_extension_exists_in_extension._entity_name).WithDocumentation("because documentation is required").WithBooleanProperty("Property1", "because a property is required", true, false).WithEndDomainEntity().WithEndNamespace();
-                            metaEdTextBuilder.WithBeginNamespace("extension", "projectExtension").WithStartDomainEntityExtension(When_domain_entity_extension_exists_in_extension._entity_name).WithBooleanProperty("Property2", "because a property is required", true, false).WithEndDomainEntityExtension().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DomainEntityExtensionExistsOnlyInExtensionNamespace() });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    When_domain_entity_extension_exists_in_extension._entity_name = "MyIdentifier";
-                    When_domain_entity_extension_exists_in_extension._property_name = "Property1";
-                    DomainEntityExtensionExistsOnlyInExtensionNamespaceTests.When_domain_entity_extension_exists_in_extension = When_domain_entity_extension_exists_in_extension;
-                })(DomainEntityExtensionExistsOnlyInExtensionNamespaceTests = DomainEntityExtension.DomainEntityExtensionExistsOnlyInExtensionNamespaceTests || (DomainEntityExtension.DomainEntityExtensionExistsOnlyInExtensionNamespaceTests = {}));
-                (function (DomainEntityExtensionExistsOnlyInExtensionNamespaceTests) {
-                    /*[TestFixture]*/
-                    class When_domain_entity_extension_exists_in_core extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace(When_domain_entity_extension_exists_in_core._coreNamespace).WithStartDomainEntity(When_domain_entity_extension_exists_in_core._entity_name).WithDocumentation("because documentation is required").WithBooleanProperty("Property1", "because a property is required", true, false).WithEndDomainEntity();
-                            metaEdTextBuilder.WithStartDomainEntityExtension(When_domain_entity_extension_exists_in_core._entity_name).WithBooleanProperty("Property2", "because a property is required", true, false).WithEndDomainEntityExtension().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DomainEntityExtensionExistsOnlyInExtensionNamespace() });
-                        }
-                        should_have_validation_failure() {
-                            _errorMessageCollection.Any().ShouldBeTrue();
-                        }
-                        should_have_validation_failure_message() {
-                            _errorMessageCollection[0].Message.ShouldContain("Domain Entity additions");
-                            _errorMessageCollection[0].Message.ShouldContain(When_domain_entity_extension_exists_in_core._entity_name);
-                            _errorMessageCollection[0].Message.ShouldContain("is not valid in core namespace");
-                            _errorMessageCollection[0].Message.ShouldContain(When_domain_entity_extension_exists_in_core._coreNamespace);
-                        }
-                    }
-                    When_domain_entity_extension_exists_in_core._coreNamespace = "edfi";
-                    When_domain_entity_extension_exists_in_core._entity_name = "MyIdentifier";
-                    When_domain_entity_extension_exists_in_core._property_name = "Property1";
-                    DomainEntityExtensionExistsOnlyInExtensionNamespaceTests.When_domain_entity_extension_exists_in_core = When_domain_entity_extension_exists_in_core;
-                })(DomainEntityExtensionExistsOnlyInExtensionNamespaceTests = DomainEntityExtension.DomainEntityExtensionExistsOnlyInExtensionNamespaceTests || (DomainEntityExtension.DomainEntityExtensionExistsOnlyInExtensionNamespaceTests = {}));
-            })(DomainEntityExtension = Validator.DomainEntityExtension || (Validator.DomainEntityExtension = {}));
-        })(Validator = Tests.Validator || (Tests.Validator = {}));
-    })(Tests = MetaEd.Tests || (MetaEd.Tests = {}));
-})(MetaEd || (MetaEd = {}));
+"use strict";
+/// <reference path="../../../../typings/index.d.ts" />
+const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
+const chai = require('chai');
+const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
+const TestRuleProvider_1 = require("../TestRuleProvider");
+const DomainEntityExtensionExistsOnlyInExtensionNamespace_1 = require("../../../../src/core/validators/DomainEntityExtension/DomainEntityExtensionExistsOnlyInExtensionNamespace");
+let should = chai.should();
+describe('DomainEntityExtensionExistsOnlyInExtensionNamespaceTests', () => {
+    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new DomainEntityExtensionExistsOnlyInExtensionNamespace_1.DomainEntityExtensionExistsOnlyInExtensionNamespace()));
+    describe('When_domain_entity_extension_exists_in_extension', () => {
+        let entityName = "MyIdentifier";
+        const _property_name = "Property1";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity(entityName)
+                .withDocumentation("because documentation is required")
+                .withBooleanProperty("Property1", "because a property is required", true, false)
+                .withEndDomainEntity()
+                .withEndNamespace()
+                .withBeginNamespace("extension", "projectExtension")
+                .withStartDomainEntityExtension(entityName)
+                .withBooleanProperty("Property2", "because a property is required", true, false)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_domain_entity_extension_exists_in_core', () => {
+        const coreNamespace = "edfi";
+        let entityName = "MyIdentifier";
+        const _property_name = "Property1";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace(coreNamespace)
+                .withStartDomainEntity(entityName)
+                .withDocumentation("because documentation is required")
+                .withBooleanProperty("Property1", "because a property is required", true, false)
+                .withEndDomainEntity()
+                .withStartDomainEntityExtension(entityName)
+                .withBooleanProperty("Property2", "because a property is required", true, false)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity additions");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("is not valid in core namespace");
+            helper.errorMessageCollection[0].Message.ShouldContain(coreNamespace);
+        });
+    });
+});
 //# sourceMappingURL=DomainEntityExtensionExistsOnlyInExtensionNamespaceTests.js.map

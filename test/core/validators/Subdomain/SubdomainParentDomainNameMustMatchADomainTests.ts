@@ -1,48 +1,70 @@
-﻿module MetaEd.Tests.Validator.DomainEntitySubclass {
-    export class SubdomainParentDomainNameMustMatchADomainTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {SubdomainParentDomainNameMustMatchADomain}from "../../../../src/core/validators/Subdomain/SubdomainParentDomainNameMustMatchADomain"
 
-    }
-    export module SubdomainParentDomainNameMustMatchADomainTests {
-        /*[TestFixture]*/
-        export class When_subdomain_has_valid_parent_domain_name extends ValidationRuleTestBase {
-            protected static _entityName: string = "MyIdentifier";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomain(When_subdomain_has_valid_parent_domain_name._entityName).WithDocumentation("doc").WithDomainItem("DomainEntity").WithEndDomain();
-                metaEdTextBuilder.WithStartSubdomain("NewSubclassName", When_subdomain_has_valid_parent_domain_name._entityName).WithDocumentation("doc").WithDomainItem("DomainEntity").WithEndSubdomain().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.SubdomainContext>(), { SuppliedRule: new SubdomainParentDomainNameMustMatchADomain(_symbolTable) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module SubdomainParentDomainNameMustMatchADomainTests {
-        /*[TestFixture]*/
-        export class When_subdomain_has_invalid_parent_domain_name extends ValidationRuleTestBase {
-            protected static _entityName: string = "MyIdentifier";
-            protected static _baseName: string = "NotAnDomainEntityIdentifier";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartSubdomain(When_subdomain_has_invalid_parent_domain_name._entityName, When_subdomain_has_invalid_parent_domain_name._baseName).WithDocumentation("doc").WithDomainItem("DomainEntity").WithEndSubdomain().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.SubdomainContext>(), { SuppliedRule: new SubdomainParentDomainNameMustMatchADomain(_symbolTable) });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Subdomain");
-                _errorMessageCollection[0].Message.ShouldContain(When_subdomain_has_invalid_parent_domain_name._entityName);
-                _errorMessageCollection[0].Message.ShouldContain("is part of");
-                _errorMessageCollection[0].Message.ShouldContain(When_subdomain_has_invalid_parent_domain_name._baseName);
-                _errorMessageCollection[0].Message.ShouldContain("does not match");
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('SubdomainParentDomainNameMustMatchADomain', () => {
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.SubdomainContext>(
+            new SubdomainParentDomainNameMustMatchADomain(helper.symbolTable)));
+
+
+    describe('When_subdomain_has_valid_parent_domain_name', () => {
+        let entityName: string = "MyIdentifier";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomain(entityName)
+                .withDocumentation("doc")
+                .withDomainItem("DomainEntity")
+                .withEndDomain()
+                
+.withStartSubdomain("NewSubclassName", entityName)
+                .withDocumentation("doc")
+                .withDomainItem("DomainEntity")
+                .withEndSubdomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+
+
+    describe('When_subdomain_has_invalid_parent_domain_name', () => {
+        let entityName: string = "MyIdentifier";
+        const baseName: string = "NotAnDomainEntityIdentifier";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartSubdomain(entityName, baseName)
+                .withDocumentation("doc")
+                .withDomainItem("DomainEntity")
+                .withEndSubdomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Subdomain");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("is part of");
+            helper.errorMessageCollection[0].Message.ShouldContain(baseName);
+            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+        });
+    });
+});

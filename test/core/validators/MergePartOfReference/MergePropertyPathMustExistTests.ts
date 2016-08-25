@@ -1,194 +1,342 @@
-﻿module MetaEd.Tests.Validator.MergePartOfReference {
-    export class MergePropertyPathMustExistTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {InsertClassName}from "../../../../src/core/validators/EnterFolderName/EnterClassName"
 
-    }
-    export module MergePropertyPathMustExistTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_has_merge_property_and_path_is_wrong extends ValidationRuleTestBase {
+let should = chai.should();
+//TODO: special case?
+
+describe('MergePropertyPathMustExist', () => {
+
+    describe('When_domain_entity_has_merge_property_and_path_is_wrong', () => {
             private _propertyPathLookup: IPropertyPathLookup;
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("Entity1").WithDocumentation("doc").WithIntegerIdentity("Prop1", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Entity2").WithDocumentation("doc").WithIntegerIdentity("Prop2", "doc").WithReferenceProperty("Entity1", "doc", false, false).WithMergePartOfReference("Entity1.Why", "Prop2").WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): IRuleProvider {
-                this._propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
-                this._propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity2"),
-                    Arg.Is(new Array("Entity1", "Why")),
-                    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(false);
-                return __init(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(), { SuppliedRule: new MergePropertyPathMustExist(_symbolTable, this._propertyPathLookup) });
-            }
-            public should_have_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(1);
-            }
-            public should_have_meaningful_validation_message(): void {
-                _errorMessageCollection[0].Message.ShouldEqual("Path Entity1.Why is not valid.");
-            }
-        }
-    }
-    export module MergePropertyPathMustExistTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_has_merge_property extends ValidationRuleTestBase {
+    let helper: ValidationTestHelper = new ValidationTestHelper();
+
+    before(() => {
+        let metaEdText = MetaEdTextBuilder.buildIt
+
+            .withBeginNamespace("edfi")
+            .withStartDomainEntity("Entity1")
+            .withDocumentation("doc")
+            .withIntegerIdentity("Prop1", "doc")
+            .withEndDomainEntity()
+
+            .withStartDomainEntity("Entity2")
+            .withDocumentation("doc")
+            .withIntegerIdentity("Prop2", "doc")
+            .withReferenceProperty("Entity1", "doc", false, false)
+            .withMergePartOfReference("Entity1.Why", "Prop2")
+            .withEndDomainEntity()
+            .withEndNamespace();
+        helper.setup(metaEdText, validatorListener);
+    });
+
+    let propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
+    propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity2"),
+        Arg.Is(new Array("Entity1", "Why")),
+        Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(false);
+    let validatorListener = new ValidatorListener(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(new MergePropertyPathMustExist(helper.symbolTable, this._propertyPathLookup)));
+
+    it('should_have_validation_failures()', () => {
+        helper.errorMessageCollection.Count.ShouldEqual(1);
+    });
+    it('should_have_meaningful_validation_message()', () => {
+        helper.errorMessageCollection[0].Message.ShouldEqual("Path Entity1.Why is not valid.");
+    });
+});
+
+
+describe('When_domain_entity_has_merge_property', () => {
             private _propertyPathLookup: IPropertyPathLookup;
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("Entity1").WithDocumentation("doc").WithIntegerIdentity("Prop1", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Entity2").WithDocumentation("doc").WithIntegerIdentity("Prop2", "doc").WithReferenceProperty("Entity1", "doc", false, false).WithMergePartOfReference("Entity1.Prop1", "Prop2").WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): IRuleProvider {
-                this._propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
-                this._propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity2"),
-                    Arg.Is(new Array("Entity1", "Prop1")),
-                    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
-                return __init(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(), { SuppliedRule: new MergePropertyPathMustExist(_symbolTable, this._propertyPathLookup) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module MergePropertyPathMustExistTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_extension_has_merge_property extends ValidationRuleTestBase {
+let helper: ValidationTestHelper = new ValidationTestHelper();
+before(() => {
+    let metaEdText = MetaEdTextBuilder.buildIt
+
+        .withBeginNamespace("edfi")
+        .withStartDomainEntity("Entity1")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop1", "doc")
+        .withEndDomainEntity()
+
+        .withStartDomainEntity("Entity2")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop2", "doc")
+        .withReferenceProperty("Entity1", "doc", false, false)
+        .withMergePartOfReference("Entity1.Prop1", "Prop2")
+        .withEndDomainEntity()
+        .withEndNamespace();
+    helper.setup(metaEdText, validatorListener);
+});
+
+let propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
+propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity2"),
+    Arg.Is(new Array("Entity1", "Prop1")),
+    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
+let validatorListener = new ValidatorListener(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(new MergePropertyPathMustExist(helper.symbolTable, this._propertyPathLookup)));
+
+
+it('should_have_no_validation_failures()', () => {
+    helper.errorMessageCollection.Count.ShouldEqual(0);
+});
+});
+
+
+describe('When_domain_entity_extension_has_merge_property', () => {
             private _propertyPathLookup: IPropertyPathLookup;
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("Entity1").WithDocumentation("doc").WithIntegerIdentity("Prop1", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Entity2").WithDocumentation("doc").WithIntegerIdentity("Prop2", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntityExtension("Entity2").WithReferenceProperty("Entity1", "doc", false, false).WithMergePartOfReference("Entity1.Prop1", "Prop2").WithEndDomainEntityExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): IRuleProvider {
-                this._propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
-                this._propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity2"),
-                    Arg.Is(new Array("Entity1", "Prop1")),
-                    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
-                return __init(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(), { SuppliedRule: new MergePropertyPathMustExist(_symbolTable, this._propertyPathLookup) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module MergePropertyPathMustExistTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_subclass_has_merge_property extends ValidationRuleTestBase {
+let helper: ValidationTestHelper = new ValidationTestHelper();
+before(() => {
+    let metaEdText = MetaEdTextBuilder.buildIt
+
+        .withBeginNamespace("edfi")
+        .withStartDomainEntity("Entity1")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop1", "doc")
+        .withEndDomainEntity()
+
+        .withStartDomainEntity("Entity2")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop2", "doc")
+        .withEndDomainEntity()
+
+        .withStartDomainEntityExtension("Entity2")
+        .withReferenceProperty("Entity1", "doc", false, false)
+        .withMergePartOfReference("Entity1.Prop1", "Prop2")
+        .withEndDomainEntityExtension()
+        .withEndNamespace();
+    helper.setup(metaEdText, validatorListener);
+});
+
+let propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
+propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity2"),
+    Arg.Is(new Array("Entity1", "Prop1")),
+    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
+let validatorListener = new ValidatorListener(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(new MergePropertyPathMustExist(helper.symbolTable, this._propertyPathLookup)));
+
+
+it('should_have_no_validation_failures()', () => {
+    helper.errorMessageCollection.Count.ShouldEqual(0);
+});
+});
+
+
+describe('When_domain_entity_subclass_has_merge_property', () => {
             private _propertyPathLookup: IPropertyPathLookup;
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("Entity1").WithDocumentation("doc").WithIntegerIdentity("Prop1", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Entity2").WithDocumentation("doc").WithIntegerIdentity("Prop2", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntitySubclass("Entity3", "Entity2").WithDocumentation("doc").WithReferenceProperty("Entity1", "doc", false, false).WithMergePartOfReference("Entity1.Prop1", "Prop2").WithEndDomainEntityExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): IRuleProvider {
-                this._propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
-                this._propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity3"),
-                    Arg.Is(new Array("Entity1", "Prop1")),
-                    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
-                return __init(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(), { SuppliedRule: new MergePropertyPathMustExist(_symbolTable, this._propertyPathLookup) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module MergePropertyPathMustExistTests {
-        /*[TestFixture]*/
-        export class When_association_has_merge_property extends ValidationRuleTestBase {
+let helper: ValidationTestHelper = new ValidationTestHelper();
+before(() => {
+    let metaEdText = MetaEdTextBuilder.buildIt
+
+        .withBeginNamespace("edfi")
+        .withStartDomainEntity("Entity1")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop1", "doc")
+        .withEndDomainEntity()
+
+        .withStartDomainEntity("Entity2")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop2", "doc")
+        .withEndDomainEntity()
+
+        .withStartDomainEntitySubclass("Entity3", "Entity2")
+        .withDocumentation("doc")
+        .withReferenceProperty("Entity1", "doc", false, false)
+        .withMergePartOfReference("Entity1.Prop1", "Prop2")
+        .withEndDomainEntityExtension()
+        .withEndNamespace();
+    helper.setup(metaEdText, validatorListener);
+});
+
+let propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
+propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity3"),
+    Arg.Is(new Array("Entity1", "Prop1")),
+    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
+let validatorListener = new ValidatorListener(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(new MergePropertyPathMustExist(helper.symbolTable, this._propertyPathLookup)));
+
+
+it('should_have_no_validation_failures()', () => {
+    helper.errorMessageCollection.Count.ShouldEqual(0);
+});
+});
+
+
+describe('When_association_has_merge_property', () => {
             private _propertyPathLookup: IPropertyPathLookup;
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("Entity1").WithDocumentation("doc").WithIntegerIdentity("Prop1", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Entity2").WithDocumentation("doc").WithIntegerIdentity("Prop2", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Entity3").WithDocumentation("doc").WithIntegerIdentity("Prop3", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartAssociation("Entity4").WithDocumentation("doc").WithDomainEntityProperty("Entity2", "doc").WithDomainEntityProperty("Entity3", "doc").WithIntegerIdentity("Prop4", "doc").WithReferenceProperty("Entity1", "doc", false, false).WithMergePartOfReference("Entity1.Prop1", "Prop4").WithEndAssociation().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): IRuleProvider {
-                this._propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
-                this._propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity4"),
-                    Arg.Is(new Array("Entity1", "Prop1")),
-                    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
-                return __init(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(), { SuppliedRule: new MergePropertyPathMustExist(_symbolTable, this._propertyPathLookup) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module MergePropertyPathMustExistTests {
-        /*[TestFixture]*/
-        export class When_association_extension_has_merge_property extends ValidationRuleTestBase {
+let helper: ValidationTestHelper = new ValidationTestHelper();
+before(() => {
+    let metaEdText = MetaEdTextBuilder.buildIt
+
+        .withBeginNamespace("edfi")
+        .withStartDomainEntity("Entity1")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop1", "doc")
+        .withEndDomainEntity()
+
+        .withStartDomainEntity("Entity2")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop2", "doc")
+        .withEndDomainEntity()
+
+        .withStartDomainEntity("Entity3")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop3", "doc")
+        .withEndDomainEntity()
+
+        .withStartAssociation("Entity4")
+        .withDocumentation("doc")
+        .withDomainEntityProperty("Entity2", "doc")
+        .withDomainEntityProperty("Entity3", "doc")
+        .withIntegerIdentity("Prop4", "doc")
+        .withReferenceProperty("Entity1", "doc", false, false)
+        .withMergePartOfReference("Entity1.Prop1", "Prop4")
+        .withEndAssociation()
+        .withEndNamespace();
+    helper.setup(metaEdText, validatorListener);
+});
+
+let propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
+propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity4"),
+    Arg.Is(new Array("Entity1", "Prop1")),
+    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
+let validatorListener = new ValidatorListener(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(new MergePropertyPathMustExist(helper.symbolTable, this._propertyPathLookup)));
+
+
+it('should_have_no_validation_failures()', () => {
+    helper.errorMessageCollection.Count.ShouldEqual(0);
+});
+});
+
+
+describe('When_association_extension_has_merge_property', () => {
             private _propertyPathLookup: IPropertyPathLookup;
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("Entity1").WithDocumentation("doc").WithIntegerIdentity("Prop1", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Entity2").WithDocumentation("doc").WithIntegerIdentity("Prop2", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Entity3").WithDocumentation("doc").WithIntegerIdentity("Prop3", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartAssociation("Entity4").WithDocumentation("doc").WithDomainEntityProperty("Entity2", "doc").WithDomainEntityProperty("Entity3", "doc").WithIntegerIdentity("Prop4", "doc").WithEndAssociation();
-                metaEdTextBuilder.WithStartAssociationExtension("Entity4").WithReferenceProperty("Entity1", "doc", false, false).WithMergePartOfReference("Entity1.Prop1", "Prop4").WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): IRuleProvider {
-                this._propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
-                this._propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity4"),
-                    Arg.Is(new Array("Entity1", "Prop1")),
-                    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
-                return __init(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(), { SuppliedRule: new MergePropertyPathMustExist(_symbolTable, this._propertyPathLookup) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module MergePropertyPathMustExistTests {
-        /*[TestFixture]*/
-        export class When_association_subclass_has_merge_property extends ValidationRuleTestBase {
+let helper: ValidationTestHelper = new ValidationTestHelper();
+before(() => {
+    let metaEdText = MetaEdTextBuilder.buildIt
+
+        .withBeginNamespace("edfi")
+        .withStartDomainEntity("Entity1")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop1", "doc")
+        .withEndDomainEntity()
+
+        .withStartDomainEntity("Entity2")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop2", "doc")
+        .withEndDomainEntity()
+
+        .withStartDomainEntity("Entity3")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop3", "doc")
+        .withEndDomainEntity()
+
+        .withStartAssociation("Entity4")
+        .withDocumentation("doc")
+        .withDomainEntityProperty("Entity2", "doc")
+        .withDomainEntityProperty("Entity3", "doc")
+        .withIntegerIdentity("Prop4", "doc")
+        .withEndAssociation()
+
+        .withStartAssociationExtension("Entity4")
+        .withReferenceProperty("Entity1", "doc", false, false)
+        .withMergePartOfReference("Entity1.Prop1", "Prop4")
+        .withEndNamespace();
+    helper.setup(metaEdText, validatorListener);
+});
+
+let propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
+propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity4"),
+    Arg.Is(new Array("Entity1", "Prop1")),
+    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
+let validatorListener = new ValidatorListener(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(new MergePropertyPathMustExist(helper.symbolTable, this._propertyPathLookup)));
+
+
+it('should_have_no_validation_failures()', () => {
+    helper.errorMessageCollection.Count.ShouldEqual(0);
+});
+});
+
+
+describe('When_association_subclass_has_merge_property', () => {
             private _propertyPathLookup: IPropertyPathLookup;
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("Entity1").WithDocumentation("doc").WithIntegerIdentity("Prop1", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Entity2").WithDocumentation("doc").WithIntegerIdentity("Prop2", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Entity3").WithDocumentation("doc").WithIntegerIdentity("Prop3", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartAssociation("Entity4").WithDocumentation("doc").WithDomainEntityProperty("Entity2", "doc").WithDomainEntityProperty("Entity3", "doc").WithIntegerIdentity("Prop4", "doc").WithEndAssociation();
-                metaEdTextBuilder.WithStartAssociationSubclass("Entity5", "Entity4").WithDocumentation("doc").WithReferenceProperty("Entity1", "doc", false, false).WithMergePartOfReference("Entity1.Prop1", "Prop4").WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): IRuleProvider {
-                this._propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
-                this._propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity5"),
-                    Arg.Is(new Array("Entity1", "Prop1")),
-                    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
-                return __init(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(), { SuppliedRule: new MergePropertyPathMustExist(_symbolTable, this._propertyPathLookup) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module MergePropertyPathMustExistTests {
-        /*[TestFixture]*/
-        export class When_abstract_entity_has_merge_property extends ValidationRuleTestBase {
+let helper: ValidationTestHelper = new ValidationTestHelper();
+before(() => {
+    let metaEdText = MetaEdTextBuilder.buildIt
+
+        .withBeginNamespace("edfi")
+        .withStartDomainEntity("Entity1")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop1", "doc")
+        .withEndDomainEntity()
+
+        .withStartDomainEntity("Entity2")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop2", "doc")
+        .withEndDomainEntity()
+
+        .withStartDomainEntity("Entity3")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop3", "doc")
+        .withEndDomainEntity()
+
+        .withStartAssociation("Entity4")
+        .withDocumentation("doc")
+        .withDomainEntityProperty("Entity2", "doc")
+        .withDomainEntityProperty("Entity3", "doc")
+        .withIntegerIdentity("Prop4", "doc")
+        .withEndAssociation()
+
+        .withStartAssociationSubclass("Entity5", "Entity4")
+        .withDocumentation("doc")
+        .withReferenceProperty("Entity1", "doc", false, false)
+        .withMergePartOfReference("Entity1.Prop1", "Prop4")
+        .withEndNamespace();
+    helper.setup(metaEdText, validatorListener);
+});
+
+let propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
+propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity5"),
+    Arg.Is(new Array("Entity1", "Prop1")),
+    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
+let validatorListener = new ValidatorListener(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(new MergePropertyPathMustExist(helper.symbolTable, this._propertyPathLookup)));
+
+
+it('should_have_no_validation_failures()', () => {
+    helper.errorMessageCollection.Count.ShouldEqual(0);
+});
+});
+
+
+describe('When_abstract_entity_has_merge_property', () => {
             private _propertyPathLookup: IPropertyPathLookup;
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("Entity1").WithDocumentation("doc").WithIntegerIdentity("Prop1", "doc").WithEndDomainEntity();
-                metaEdTextBuilder.WithStartAbstractEntity("Entity2").WithDocumentation("doc").WithIntegerIdentity("Prop2", "doc").WithReferenceProperty("Entity1", "doc", false, false).WithMergePartOfReference("Entity1.Prop1", "Prop2").WithEndAbstractEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): IRuleProvider {
-                this._propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
-                this._propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity2"),
-                    Arg.Is(new Array("Entity1", "Prop1")),
-                    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
-                return __init(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(), { SuppliedRule: new MergePropertyPathMustExist(_symbolTable, this._propertyPathLookup) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-}
+let helper: ValidationTestHelper = new ValidationTestHelper();
+before(() => {
+    let metaEdText = MetaEdTextBuilder.buildIt
+
+        .withBeginNamespace("edfi")
+        .withStartDomainEntity("Entity1")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop1", "doc")
+        .withEndDomainEntity()
+
+        .withStartAbstractEntity("Entity2")
+        .withDocumentation("doc")
+        .withIntegerIdentity("Prop2", "doc")
+        .withReferenceProperty("Entity1", "doc", false, false)
+        .withMergePartOfReference("Entity1.Prop1", "Prop2")
+        .withEndAbstractEntity()
+        .withEndNamespace();
+    helper.setup(metaEdText, validatorListener);
+});
+
+let propertyPathLookup = MockRepository.GenerateStub<IPropertyPathLookup>();
+propertyPathLookup.Stub(x => x.Validate(Arg<EntityContext> .Matches(y => y.Name == "Entity2"),
+    Arg.Is(new Array("Entity1", "Prop1")),
+    Arg<(_: IPropertyWithComponents) => boolean> .Is.NotNull)).Return(true);
+let validatorListener = new ValidatorListener(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(new MergePropertyPathMustExist(helper.symbolTable, this._propertyPathLookup)));
+
+it('should_have_no_validation_failures()', () => {
+    helper.errorMessageCollection.Count.ShouldEqual(0);
+});
+});
+});

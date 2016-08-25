@@ -1,135 +1,126 @@
-var MetaEd;
-(function (MetaEd) {
-    var Tests;
-    (function (Tests) {
-        var Validator;
-        (function (Validator) {
-            var DecimalProperty;
-            (function (DecimalProperty) {
-                class DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests {
-                }
-                DecimalProperty.DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests = DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests;
-                (function (DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests) {
-                    /*[TestFixture]*/
-                    class When_validating_decimal_property_with_no_min_or_max_value extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAbstractEntity("EntityForTest").WithDocumentation("doc").WithDecimalIdentity("DecimalProperty", "doc2", 10, 2).WithEndAbstractEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DecimalPropertyMinValueMustNotBeGreaterThanMaxValue() });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests.When_validating_decimal_property_with_no_min_or_max_value = When_validating_decimal_property_with_no_min_or_max_value;
-                })(DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests = DecimalProperty.DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests || (DecimalProperty.DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests = {}));
-                (function (DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests) {
-                    /*[TestFixture]*/
-                    class When_validating_decimal_property_with_no_min_value extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAbstractEntity("EntityForTest").WithDocumentation("doc").WithDecimalIdentity("DecimalProperty", "doc2", 10, 2, null, 1000).WithEndAbstractEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DecimalPropertyMinValueMustNotBeGreaterThanMaxValue() });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests.When_validating_decimal_property_with_no_min_value = When_validating_decimal_property_with_no_min_value;
-                })(DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests = DecimalProperty.DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests || (DecimalProperty.DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests = {}));
-                (function (DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests) {
-                    /*[TestFixture]*/
-                    class When_validating_decimal_property_with_no_max_value extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAbstractEntity("EntityForTest").WithDocumentation("doc").WithDecimalIdentity("DecimalProperty", "doc2", 10, 2, 1000).WithEndAbstractEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DecimalPropertyMinValueMustNotBeGreaterThanMaxValue() });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests.When_validating_decimal_property_with_no_max_value = When_validating_decimal_property_with_no_max_value;
-                })(DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests = DecimalProperty.DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests || (DecimalProperty.DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests = {}));
-                (function (DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests) {
-                    /*[TestFixture]*/
-                    class When_validating_decimal_property_with_correct_min_max_value_order extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var maxValue = 100;
-                            var minValue = 50;
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAbstractEntity("EntityForTest").WithDocumentation("doc").WithDecimalIdentity("DecimalProperty", "doc2", 10, 2, minValue, maxValue).WithEndAbstractEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DecimalPropertyMinValueMustNotBeGreaterThanMaxValue() });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests.When_validating_decimal_property_with_correct_min_max_value_order = When_validating_decimal_property_with_correct_min_max_value_order;
-                })(DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests = DecimalProperty.DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests || (DecimalProperty.DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests = {}));
-                (function (DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests) {
-                    /*[TestFixture]*/
-                    class When_validating_decimal_property_with_min_max_values_out_of_order extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var maxValue = 50;
-                            var minValue = 100;
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAbstractEntity(When_validating_decimal_property_with_min_max_values_out_of_order._entityName).WithDocumentation("doc").WithDecimalIdentity(When_validating_decimal_property_with_min_max_values_out_of_order._decimalPropertyName, "doc2", 10, 2, minValue, maxValue).WithEndAbstractEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DecimalPropertyMinValueMustNotBeGreaterThanMaxValue() });
-                        }
-                        should_have_validation_failures() {
-                            _errorMessageCollection.Any().ShouldBeTrue();
-                        }
-                        should_have_validation_failure_message() {
-                            _errorMessageCollection[0].Message.ShouldContain("Decimal Property");
-                            _errorMessageCollection[0].Message.ShouldContain("Abstract Entity");
-                            _errorMessageCollection[0].Message.ShouldContain(When_validating_decimal_property_with_min_max_values_out_of_order._decimalPropertyName);
-                            _errorMessageCollection[0].Message.ShouldContain(When_validating_decimal_property_with_min_max_values_out_of_order._entityName);
-                            _errorMessageCollection[0].Message.ShouldContain("min value greater than max value");
-                        }
-                    }
-                    When_validating_decimal_property_with_min_max_values_out_of_order._entityName = "EntityForTest";
-                    When_validating_decimal_property_with_min_max_values_out_of_order._decimalPropertyName = "DecimalProperty";
-                    DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests.When_validating_decimal_property_with_min_max_values_out_of_order = When_validating_decimal_property_with_min_max_values_out_of_order;
-                })(DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests = DecimalProperty.DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests || (DecimalProperty.DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests = {}));
-                (function (DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests) {
-                    /*[TestFixture]*/
-                    class When_validating_decimal_property_with_same_min_max_values extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var maxValue = 100;
-                            var minValue = 100;
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAbstractEntity(When_validating_decimal_property_with_same_min_max_values._entityName).WithDocumentation("doc").WithDecimalIdentity(When_validating_decimal_property_with_same_min_max_values._decimalPropertyName, "doc2", minValue, maxValue).WithEndAbstractEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DecimalPropertyMinValueMustNotBeGreaterThanMaxValue() });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    When_validating_decimal_property_with_same_min_max_values._entityName = "EntityForTest";
-                    When_validating_decimal_property_with_same_min_max_values._decimalPropertyName = "DecimalProperty";
-                    DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests.When_validating_decimal_property_with_same_min_max_values = When_validating_decimal_property_with_same_min_max_values;
-                })(DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests = DecimalProperty.DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests || (DecimalProperty.DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests = {}));
-            })(DecimalProperty = Validator.DecimalProperty || (Validator.DecimalProperty = {}));
-        })(Validator = Tests.Validator || (Tests.Validator = {}));
-    })(Tests = MetaEd.Tests || (MetaEd.Tests = {}));
-})(MetaEd || (MetaEd = {}));
+"use strict";
+/// <reference path="../../../../typings/index.d.ts" />
+const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
+const chai = require('chai');
+const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
+const TestRuleProvider_1 = require("../TestRuleProvider");
+const DecimalPropertyMinValueMustNotBeGreaterThanMaxValue_1 = require("../../../../src/core/validators/DecimalProperty/DecimalPropertyMinValueMustNotBeGreaterThanMaxValue");
+let should = chai.should();
+describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
+    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new DecimalPropertyMinValueMustNotBeGreaterThanMaxValue_1.DecimalPropertyMinValueMustNotBeGreaterThanMaxValue()));
+    describe('When_validating_decimal_property_with_no_min_or_max_value', () => {
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAbstractEntity("EntityForTest")
+                .withDocumentation("doc")
+                .withDecimalIdentity("DecimalProperty", "doc2", "10", "2")
+                .withEndAbstractEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_validating_decimal_property_with_no_min_value', () => {
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAbstractEntity("EntityForTest")
+                .withDocumentation("doc")
+                .withDecimalIdentity("DecimalProperty", "doc2", "10", "2", null, 1000)
+                .withEndAbstractEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_validating_decimal_property_with_no_max_value', () => {
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAbstractEntity("EntityForTest")
+                .withDocumentation("doc")
+                .withDecimalIdentity("DecimalProperty", "doc2", "10", "2", 1000)
+                .withEndAbstractEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_validating_decimal_property_with_correct_min_max_value_order', () => {
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let maxValue = 100;
+        let minValue = 50;
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAbstractEntity("EntityForTest")
+                .withDocumentation("doc")
+                .withDecimalIdentity("DecimalProperty", "doc2", "10", "2", minValue, maxValue)
+                .withEndAbstractEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_validating_decimal_property_with_min_max_values_out_of_order', () => {
+        const entityName = "EntityForTest";
+        const decimalPropertyName = "DecimalProperty";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let maxValue = 50;
+        let minValue = 100;
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAbstractEntity(entityName)
+                .withDocumentation("doc")
+                .withDecimalIdentity(decimalPropertyName, "doc2", "10", "2", minValue, maxValue)
+                .withEndAbstractEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failures()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Decimal Property");
+            helper.errorMessageCollection[0].Message.ShouldContain("Abstract Entity");
+            helper.errorMessageCollection[0].Message.ShouldContain(decimalPropertyName);
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("min value greater than max value");
+        });
+    });
+    describe('When_validating_decimal_property_with_same_min_max_values', () => {
+        const entityName = "EntityForTest";
+        const decimalPropertyName = "DecimalProperty";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let maxValue = "100";
+        let minValue = "100";
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAbstractEntity(entityName)
+                .withDocumentation("doc")
+                .withDecimalIdentity(decimalPropertyName, "doc2", minValue, maxValue)
+                .withEndAbstractEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+});
 //# sourceMappingURL=DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests.js.map

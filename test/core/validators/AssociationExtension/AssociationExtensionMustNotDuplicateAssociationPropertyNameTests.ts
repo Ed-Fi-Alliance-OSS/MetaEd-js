@@ -1,115 +1,173 @@
-﻿module MetaEd.Tests.Validator.AssociationExtension {
-    export class AssociationExtensionMustNotDuplicateAssociationPropertyNameTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {InsertClassName}from "../../../../src/core/validators/EnterFolderName/EnterClassName"
 
-    }
-    export module AssociationExtensionMustNotDuplicateAssociationPropertyNameTests {
-        /*[TestFixture]*/
-        export class When_association_extension_has_different_property_name extends ValidationRuleTestBase {
-            protected static _entity_name: string = "MyIdentifier";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAssociation(When_association_extension_has_different_property_name._entity_name).WithDocumentation("because documentation is required").WithDomainEntityProperty("DomainEntity1", "doc").WithDomainEntityProperty("DomainEntity2", "doc").WithBooleanProperty("Property1", "because a property is required", true, false).WithEndAssociation();
-                metaEdTextBuilder.WithStartAssociationExtension(When_association_extension_has_different_property_name._entity_name).WithBooleanProperty("Property2", "because a property is required", true, false).WithEndAssociationExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.AssociationExtensionContext>(), { SuppliedRule: new AssociationExtensionMustNotDuplicateAssociationPropertyName(_symbolTable) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module AssociationExtensionMustNotDuplicateAssociationPropertyNameTests {
-        /*[TestFixture]*/
-        export class When_association_extension_has_duplicate_property_name extends ValidationRuleTestBase {
-            protected static _entity_name: string = "MyIdentifier";
-            protected static _duplicate_property_name: string = "Property1";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAssociation(When_association_extension_has_duplicate_property_name._entity_name).WithDocumentation("because documentation is required").WithDomainEntityProperty("DomainEntity1", "doc").WithDomainEntityProperty("DomainEntity2", "doc").WithBooleanProperty(When_association_extension_has_duplicate_property_name._duplicate_property_name, "because a property is required", true, false).WithEndAssociation();
-                metaEdTextBuilder.WithStartAssociationExtension(When_association_extension_has_duplicate_property_name._entity_name).WithBooleanProperty(When_association_extension_has_duplicate_property_name._duplicate_property_name, "because a property is required", true, false).WithEndAssociationExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.AssociationExtensionContext>(), { SuppliedRule: new AssociationExtensionMustNotDuplicateAssociationPropertyName(_symbolTable) });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Association additions");
-                _errorMessageCollection[0].Message.ShouldContain(When_association_extension_has_duplicate_property_name._entity_name);
-                _errorMessageCollection[0].Message.ShouldContain(When_association_extension_has_duplicate_property_name._duplicate_property_name);
-                _errorMessageCollection[0].Message.ShouldContain("already in property list");
-            }
-        }
-    }
-    export module AssociationExtensionMustNotDuplicateAssociationPropertyNameTests {
-        /*[TestFixture]*/
-        export class When_association_extension_has_multiple_association_names extends ValidationRuleTestBase {
-            protected static _entity_name: string = "MyIdentifier";
-            protected static _not_duplicate_property_name: string = "NotADuplicate";
-            protected static _duplicate_property_name1: string = "Property1";
-            protected static _duplicate_property_name2: string = "Property2";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAssociation(When_association_extension_has_multiple_association_names._entity_name).WithDocumentation("because documentation is required").WithDomainEntityProperty("DomainEntity1", "doc").WithDomainEntityProperty("DomainEntity2", "doc").WithBooleanProperty(When_association_extension_has_multiple_association_names._duplicate_property_name1, "because a property is required", true, false).WithBooleanProperty(When_association_extension_has_multiple_association_names._duplicate_property_name2, "because a property is required", true, false).WithEndAssociation();
-                metaEdTextBuilder.WithStartAssociationExtension(When_association_extension_has_multiple_association_names._entity_name).WithBooleanProperty(When_association_extension_has_multiple_association_names._duplicate_property_name1, "because a property is required", true, false).WithBooleanProperty(When_association_extension_has_multiple_association_names._duplicate_property_name2, "because a property is required", true, false).WithBooleanProperty(When_association_extension_has_multiple_association_names._not_duplicate_property_name, "because a property is required", true, false).WithEndAssociationExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.AssociationExtensionContext>(), { SuppliedRule: new AssociationExtensionMustNotDuplicateAssociationPropertyName(_symbolTable) });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Association additions");
-                _errorMessageCollection[0].Message.ShouldContain(When_association_extension_has_multiple_association_names._entity_name);
-                _errorMessageCollection[0].Message.ShouldContain(When_association_extension_has_multiple_association_names._duplicate_property_name1);
-                _errorMessageCollection[0].Message.ShouldContain(When_association_extension_has_multiple_association_names._duplicate_property_name2);
-                _errorMessageCollection[0].Message.ShouldContain("already in property list");
-                _errorMessageCollection[0].Message.ShouldNotContain(When_association_extension_has_multiple_association_names._not_duplicate_property_name);
-            }
-        }
-    }
-    export module AssociationExtensionMustNotDuplicateAssociationPropertyNameTests {
-        /*[TestFixture]*/
-        export class When_association_extension_has_duplicate_include_property extends ValidationRuleTestBase {
-            protected static _entity_name: string = "MyIdentifier";
-            protected static _duplicate_property_name: string = "Property1";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAssociation(When_association_extension_has_duplicate_include_property._entity_name).WithDocumentation("doc").WithDomainEntityProperty("DomainEntity1", "doc").WithDomainEntityProperty("DomainEntity2", "doc").WithIncludeProperty(When_association_extension_has_duplicate_include_property._duplicate_property_name, "doc", true, false).WithEndAssociation();
-                metaEdTextBuilder.WithStartAssociationExtension(When_association_extension_has_duplicate_include_property._entity_name).WithIncludeProperty(When_association_extension_has_duplicate_include_property._duplicate_property_name, "doc", true, false).WithEndAssociationExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.AssociationExtensionContext>(), { SuppliedRule: new AssociationExtensionMustNotDuplicateAssociationPropertyName(_symbolTable) });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-        }
-    }
-    export module AssociationExtensionMustNotDuplicateAssociationPropertyNameTests {
-        /*[TestFixture]*/
-        export class When_association_extension_has_duplicate_include_extension_override_property extends ValidationRuleTestBase {
-            protected static _entity_name: string = "MyIdentifier";
-            protected static _duplicate_property_name: string = "Property1";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAssociation(When_association_extension_has_duplicate_include_extension_override_property._entity_name).WithDocumentation("doc").WithDomainEntityProperty("DomainEntity1", "doc").WithDomainEntityProperty("DomainEntity2", "doc").WithIncludeProperty(When_association_extension_has_duplicate_include_extension_override_property._duplicate_property_name, "doc", true, false).WithEndAssociation();
-                metaEdTextBuilder.WithStartAssociationExtension(When_association_extension_has_duplicate_include_extension_override_property._entity_name).WithIncludeExtensionOverrideProperty(When_association_extension_has_duplicate_include_extension_override_property._duplicate_property_name, "doc", true, false).WithEndAssociationExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.AssociationExtensionContext>(), { SuppliedRule: new AssociationExtensionMustNotDuplicateAssociationPropertyName(_symbolTable) });
-            }
-            public should_not_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeFalse();
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => { 
+	let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.AssociationExtensionContext>(
+            new AssociationExtensionMustNotDuplicateAssociationPropertyName()));
+    
+        
+        describe('When_association_extension_has_different_property_name', () => {
+            let entityName: string = "MyIdentifier";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartAssociation(entityName)
+.withDocumentation("because documentation is required")
+.withDomainEntityProperty("DomainEntity1", "doc")
+.withDomainEntityProperty("DomainEntity2", "doc")
+.withBooleanProperty("Property1", "because a property is required", true, false)
+.withEndAssociation()
+                
+.withStartAssociationExtension(entityName)
+.withBooleanProperty("Property2", "because a property is required", true, false)
+.withEndAssociationExtension()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.Count.ShouldEqual(0);
+            });
+});
+    
+        
+        describe('When_association_extension_has_duplicate_property_name', () => {
+            let entityName: string = "MyIdentifier";
+            const duplicatePropertyName: string = "Property1";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartAssociation(entityName)
+.withDocumentation("because documentation is required")
+.withDomainEntityProperty("DomainEntity1", "doc")
+.withDomainEntityProperty("DomainEntity2", "doc")
+.withBooleanProperty(duplicatePropertyName, "because a property is required", true, false)
+.withEndAssociation()
+                
+.withStartAssociationExtension(entityName)
+.withBooleanProperty(duplicatePropertyName, "because a property is required", true, false)
+.withEndAssociationExtension()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_validation_failure()', () => {
+                helper.errorMessageCollection.Any().ShouldBeTrue();
+            });
+            it('should_have_validation_failure_message()', () => {
+                helper.errorMessageCollection[0].Message.ShouldContain("Association additions");
+                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+                helper.errorMessageCollection[0].Message.ShouldContain(duplicatePropertyName);
+                helper.errorMessageCollection[0].Message.ShouldContain("already in property list");
+            });
+});
+    
+        
+        describe('When_association_extension_has_multiple_association_names', () => {
+            let entityName: string = "MyIdentifier";
+            const _not_duplicate_property_name: string = "NotADuplicate";
+            const duplicatePropertyName1: string = "Property1";
+            const duplicatePropertyName2: string = "Property2";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartAssociation(entityName)
+.withDocumentation("because documentation is required")
+.withDomainEntityProperty("DomainEntity1", "doc")
+.withDomainEntityProperty("DomainEntity2", "doc")
+.withBooleanProperty(duplicatePropertyName1, "because a property is required", true, false)
+.withBooleanProperty(duplicatePropertyName2, "because a property is required", true, false)
+.withEndAssociation()
+                
+.withStartAssociationExtension(entityName)
+.withBooleanProperty(duplicatePropertyName1, "because a property is required", true, false)
+.withBooleanProperty(duplicatePropertyName2, "because a property is required", true, false)
+.withBooleanProperty(When_association_extension_has_multiple_association_names._not_duplicate_property_name, "because a property is required", true, false)
+.withEndAssociationExtension()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_validation_failure()', () => {
+                helper.errorMessageCollection.Any().ShouldBeTrue();
+            });
+            it('should_have_validation_failure_message()', () => {
+                helper.errorMessageCollection[0].Message.ShouldContain("Association additions");
+                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+                helper.errorMessageCollection[0].Message.ShouldContain(duplicatePropertyName1);
+                helper.errorMessageCollection[0].Message.ShouldContain(duplicatePropertyName2);
+                helper.errorMessageCollection[0].Message.ShouldContain("already in property list");
+                helper.errorMessageCollection[0].Message.ShouldNotContain(When_association_extension_has_multiple_association_names._not_duplicate_property_name);
+            });
+});
+    
+        
+        describe('When_association_extension_has_duplicate_include_property', () => {
+            let entityName: string = "MyIdentifier";
+            const duplicatePropertyName: string = "Property1";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartAssociation(entityName)
+.withDocumentation("doc")
+.withDomainEntityProperty("DomainEntity1", "doc")
+.withDomainEntityProperty("DomainEntity2", "doc")
+.withIncludeProperty(duplicatePropertyName, "doc", true, false)
+.withEndAssociation()
+                
+.withStartAssociationExtension(entityName)
+.withIncludeProperty(duplicatePropertyName, "doc", true, false)
+.withEndAssociationExtension()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_validation_failure()', () => {
+                helper.errorMessageCollection.Any().ShouldBeTrue();
+            });
+});
+    
+        
+        describe('When_association_extension_has_duplicate_include_extension_override_property', () => {
+            let entityName: string = "MyIdentifier";
+            const duplicatePropertyName: string = "Property1";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartAssociation(entityName)
+.withDocumentation("doc")
+.withDomainEntityProperty("DomainEntity1", "doc")
+.withDomainEntityProperty("DomainEntity2", "doc")
+.withIncludeProperty(duplicatePropertyName, "doc", true, false)
+.withEndAssociation()
+                
+.withStartAssociationExtension(entityName)
+.withIncludeExtensionOverrideProperty(duplicatePropertyName, "doc", true, false)
+.withEndAssociationExtension()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_not_have_validation_failure()', () => {
+                helper.errorMessageCollection.Any().ShouldBeFalse();
+            });
+});
+});

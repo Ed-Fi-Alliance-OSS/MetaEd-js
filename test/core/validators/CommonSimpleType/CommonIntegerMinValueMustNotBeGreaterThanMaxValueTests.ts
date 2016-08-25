@@ -1,107 +1,143 @@
-﻿module MetaEd.Tests.Validator.CommonSimpleType {
-    export class CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {CommonIntegerMinValueMustNotBeGreaterThanMaxValue}from "../../../../src/core/validators/CommonSimpleType/CommonIntegerMinValueMustNotBeGreaterThanMaxValue"
 
-    }
-    export module CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests {
-        /*[TestFixture]*/
-        export class When_validating_common_integer_with_no_min_or_max_value extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonInteger("EntityForTest").WithDocumentation("doc").WithEndCommonInteger().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.CommonIntegerContext>(), { SuppliedRule: new CommonIntegerMinValueMustNotBeGreaterThanMaxValue() });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests {
-        /*[TestFixture]*/
-        export class When_validating_common_integer_with_no_min_value extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonInteger("EntityForTest").WithDocumentation("doc").WithMaxValue(100).WithEndCommonInteger().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.CommonIntegerContext>(), { SuppliedRule: new CommonIntegerMinValueMustNotBeGreaterThanMaxValue() });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests {
-        /*[TestFixture]*/
-        export class When_validating_common_integer_with_no_max_value extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonInteger("EntityForTest").WithDocumentation("doc").WithMinValue(0).WithEndCommonInteger().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.CommonIntegerContext>(), { SuppliedRule: new CommonIntegerMinValueMustNotBeGreaterThanMaxValue() });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests {
-        /*[TestFixture]*/
-        export class When_validating_common_integer_with_correct_min_max_value_order extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonInteger("EntityForTest").WithDocumentation("doc").WithMinValue(0).WithMaxValue(100).WithEndCommonInteger().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.CommonIntegerContext>(), { SuppliedRule: new CommonIntegerMinValueMustNotBeGreaterThanMaxValue() });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests {
-        /*[TestFixture]*/
-        export class When_validating_common_integer_with_min_max_values_out_of_order extends ValidationRuleTestBase {
-            private static _entityName: string = "EntityForTest";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonInteger(When_validating_common_integer_with_min_max_values_out_of_order._entityName).WithDocumentation("doc").WithMinValue(100).WithMaxValue(0).WithEndCommonInteger().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.CommonIntegerContext>(), { SuppliedRule: new CommonIntegerMinValueMustNotBeGreaterThanMaxValue() });
-            }
-            public should_have_validation_failures(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Common Integer");
-                _errorMessageCollection[0].Message.ShouldContain(When_validating_common_integer_with_min_max_values_out_of_order._entityName);
-                _errorMessageCollection[0].Message.ShouldContain("min value greater than max value");
-            }
-        }
-    }
-    export module CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests {
-        /*[TestFixture]*/
-        export class When_validating_common_integer_with_same_min_max_values extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonInteger("EntityForTest").WithDocumentation("doc").WithMinValue(100).WithMaxValue(100).WithEndCommonInteger().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.CommonIntegerContext>(), { SuppliedRule: new CommonIntegerMinValueMustNotBeGreaterThanMaxValue() });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => { 
+	let validatorListener = new CommonIntegerContext(
+        new TestRuleProvider<MetaEdGrammar.CommonIntegerContext>(
+            new CommonIntegerMinValueMustNotBeGreaterThanMaxValue()));
+    
+        
+        describe('When_validating_common_integer_with_no_min_or_max_value', () => {
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonInteger("EntityForTest")
+.withDocumentation("doc")
+.withEndCommonInteger()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.Count.ShouldEqual(0);
+            });
+});
+    
+        
+        describe('When_validating_common_integer_with_no_min_value', () => {
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonInteger("EntityForTest")
+.withDocumentation("doc")
+.withMaxValue(100)
+.withEndCommonInteger()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.Count.ShouldEqual(0);
+            });
+});
+    
+        
+        describe('When_validating_common_integer_with_no_max_value', () => {
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonInteger("EntityForTest")
+.withDocumentation("doc")
+.withMinValue(0)
+.withEndCommonInteger()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.Count.ShouldEqual(0);
+            });
+});
+    
+        
+        describe('When_validating_common_integer_with_correct_min_max_value_order', () => {
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonInteger("EntityForTest")
+.withDocumentation("doc")
+.withMinValue(0)
+.withMaxValue(100)
+.withEndCommonInteger()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.Count.ShouldEqual(0);
+            });
+});
+    
+        
+        describe('When_validating_common_integer_with_min_max_values_out_of_order', () => {
+            const entityName: string = "EntityForTest";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonInteger(entityName)
+.withDocumentation("doc")
+.withMinValue(100)
+.withMaxValue(0)
+.withEndCommonInteger()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_validation_failures()', () => {
+                helper.errorMessageCollection.Any().ShouldBeTrue();
+            });
+            it('should_have_validation_failure_message()', () => {
+                helper.errorMessageCollection[0].Message.ShouldContain("Common Integer");
+                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+                helper.errorMessageCollection[0].Message.ShouldContain("min value greater than max value");
+            });
+});
+    
+        
+        describe('When_validating_common_integer_with_same_min_max_values', () => {
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonInteger("EntityForTest")
+.withDocumentation("doc")
+.withMinValue(100)
+.withMaxValue(100)
+.withEndCommonInteger()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.Count.ShouldEqual(0);
+            });
+});
+});

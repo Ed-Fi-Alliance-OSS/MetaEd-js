@@ -1,61 +1,61 @@
-var MetaEd;
-(function (MetaEd) {
-    var Tests;
-    (function (Tests) {
-        var Validator;
-        (function (Validator) {
-            var AssociationSubclass;
-            (function (AssociationSubclass) {
-                class AssociationSubclassIdentifierMustMatchAnAssociationTests {
-                }
-                AssociationSubclass.AssociationSubclassIdentifierMustMatchAnAssociationTests = AssociationSubclassIdentifierMustMatchAnAssociationTests;
-                (function (AssociationSubclassIdentifierMustMatchAnAssociationTests) {
-                    /*[TestFixture]*/
-                    class When_association_subclass_has_valid_extendee extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAssociation(When_association_subclass_has_valid_extendee._entityName).WithDocumentation("doc").WithDomainEntityProperty("DomainEntity1", "doc").WithDomainEntityProperty("DomainEntity2", "doc").WithBooleanProperty("Property1", "doc", true, false).WithEndAssociation();
-                            metaEdTextBuilder.WithStartAssociationSubclass("NewSubclass", When_association_subclass_has_valid_extendee._entityName).WithDocumentation("doc").WithBooleanProperty("Property2", "doc", true, false).WithEndAssociationSubclass().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new AssociationSubclassIdentifierMustMatchAnAssociation(_symbolTable) });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    When_association_subclass_has_valid_extendee._entityName = "MyIdentifier";
-                    AssociationSubclassIdentifierMustMatchAnAssociationTests.When_association_subclass_has_valid_extendee = When_association_subclass_has_valid_extendee;
-                })(AssociationSubclassIdentifierMustMatchAnAssociationTests = AssociationSubclass.AssociationSubclassIdentifierMustMatchAnAssociationTests || (AssociationSubclass.AssociationSubclassIdentifierMustMatchAnAssociationTests = {}));
-                (function (AssociationSubclassIdentifierMustMatchAnAssociationTests) {
-                    /*[TestFixture]*/
-                    class When_association_subclass_has_invalid_extendee extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAssociationSubclass(When_association_subclass_has_invalid_extendee._entityName, When_association_subclass_has_invalid_extendee._baseName).WithDocumentation("doc").WithBooleanProperty("Property1", "doc", true, false).WithEndAssociationSubclass().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new AssociationSubclassIdentifierMustMatchAnAssociation(_symbolTable) });
-                        }
-                        should_have_validation_failure() {
-                            _errorMessageCollection.Any().ShouldBeTrue();
-                        }
-                        should_have_validation_failure_message() {
-                            _errorMessageCollection[0].Message.ShouldContain("Association");
-                            _errorMessageCollection[0].Message.ShouldContain(When_association_subclass_has_invalid_extendee._entityName);
-                            _errorMessageCollection[0].Message.ShouldContain("based on");
-                            _errorMessageCollection[0].Message.ShouldContain(When_association_subclass_has_invalid_extendee._baseName);
-                            _errorMessageCollection[0].Message.ShouldContain("does not match");
-                        }
-                    }
-                    When_association_subclass_has_invalid_extendee._entityName = "MyIdentifier";
-                    When_association_subclass_has_invalid_extendee._baseName = "NotAnAssociationIdentifier";
-                    AssociationSubclassIdentifierMustMatchAnAssociationTests.When_association_subclass_has_invalid_extendee = When_association_subclass_has_invalid_extendee;
-                })(AssociationSubclassIdentifierMustMatchAnAssociationTests = AssociationSubclass.AssociationSubclassIdentifierMustMatchAnAssociationTests || (AssociationSubclass.AssociationSubclassIdentifierMustMatchAnAssociationTests = {}));
-            })(AssociationSubclass = Validator.AssociationSubclass || (Validator.AssociationSubclass = {}));
-        })(Validator = Tests.Validator || (Tests.Validator = {}));
-    })(Tests = MetaEd.Tests || (MetaEd.Tests = {}));
-})(MetaEd || (MetaEd = {}));
+"use strict";
+/// <reference path="../../../../typings/index.d.ts" />
+const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
+const chai = require('chai');
+const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
+const TestRuleProvider_1 = require("../TestRuleProvider");
+const AssociationSubclassIdentifierMustMatchAnAssociation_1 = require("../../../../src/core/validators/AssociationSubclass/AssociationSubclassIdentifierMustMatchAnAssociation");
+let should = chai.should();
+describe('AssociationSubclassIdentifierMustMatchAnAssociationTests', () => {
+    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new AssociationSubclassIdentifierMustMatchAnAssociation_1.AssociationSubclassIdentifierMustMatchAnAssociation(symbolTable)));
+    describe('When_association_subclass_has_valid_extendee', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAssociation(entityName)
+                .withDocumentation("doc")
+                .withDomainEntityProperty("DomainEntity1", "doc")
+                .withDomainEntityProperty("DomainEntity2", "doc")
+                .withBooleanProperty("Property1", "doc", true, false)
+                .withEndAssociation()
+                .withStartAssociationSubclass("NewSubclass", entityName)
+                .withDocumentation("doc")
+                .withBooleanProperty("Property2", "doc", true, false)
+                .withEndAssociationSubclass()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_association_subclass_has_invalid_extendee', () => {
+        let entityName = "MyIdentifier";
+        const baseName = "NotAnAssociationIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAssociationSubclass(entityName, baseName)
+                .withDocumentation("doc")
+                .withBooleanProperty("Property1", "doc", true, false)
+                .withEndAssociationSubclass()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Association");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("based on");
+            helper.errorMessageCollection[0].Message.ShouldContain(baseName);
+            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+        });
+    });
+});
 //# sourceMappingURL=AssociationSubclassIdentifierMustMatchAnAssociationTests.js.map

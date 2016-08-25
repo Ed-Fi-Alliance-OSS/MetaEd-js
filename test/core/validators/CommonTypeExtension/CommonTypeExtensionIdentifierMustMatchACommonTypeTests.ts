@@ -1,46 +1,66 @@
-﻿module MetaEd.Tests.Validator.CommonTypeExtension {
-    export class CommonTypeExtensionIdentifierMustMatchACommonTypeTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {CommonTypeExtensionIdentifierMustMatchACommonType} from "../../../../src/core/validators/CommonTypeExtension/CommonTypeExtensionIdentifierMustMatchACommonType"
 
-    }
-    export module CommonTypeExtensionIdentifierMustMatchACommonTypeTests {
-        /*[TestFixture]*/
-        export class When_common_type_extension_has_valid_extendee extends ValidationRuleTestBase {
-            protected static _entity_name: string = "MyIdentifier";
-            protected static _property_name: string = "Property1";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonType(When_common_type_extension_has_valid_extendee._entity_name).WithDocumentation("doc").WithBooleanProperty("Property1", "doc", true, false).WithEndCommonType();
-                metaEdTextBuilder.WithStartCommonTypeExtension(When_common_type_extension_has_valid_extendee._entity_name).WithBooleanProperty("Property2", "doc", true, false).WithEndCommonTypeExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.CommonTypeExtensionContext>(), { SuppliedRule: new CommonTypeExtensionIdentifierMustMatchACommonType(_symbolTable) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module CommonTypeExtensionIdentifierMustMatchACommonTypeTests {
-        /*[TestFixture]*/
-        export class When_common_type_extension_has_invalid_extendee extends ValidationRuleTestBase {
-            protected static _entity_name: string = "NotACommonTypeIdentifier";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonTypeExtension(When_common_type_extension_has_invalid_extendee._entity_name).WithBooleanProperty("Property2", "doc", false, false).WithEndCommonTypeExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.CommonTypeExtensionContext>(), { SuppliedRule: new CommonTypeExtensionIdentifierMustMatchACommonType(_symbolTable) });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Common Type additions");
-                _errorMessageCollection[0].Message.ShouldContain(When_common_type_extension_has_invalid_extendee._entity_name);
-                _errorMessageCollection[0].Message.ShouldContain("does not match");
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('CommonTypeExtensionIdentifierMustMatchACommonTypeTests', () => { 
+	let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.CommonTypeExtensionContext>(
+            new CommonTypeExtensionIdentifierMustMatchACommonType()));
+    
+        
+        describe('When_common_type_extension_has_valid_extendee', () => {
+            let entityName: string = "MyIdentifier";
+            const _property_name: string = "Property1";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonType(entityName)
+.withDocumentation("doc")
+.withBooleanProperty("Property1", "doc", true, false)
+.withEndCommonType()
+                
+.withStartCommonTypeExtension(entityName)
+.withBooleanProperty("Property2", "doc", true, false)
+.withEndCommonTypeExtension()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.Count.ShouldEqual(0);
+            });
+});
+    
+        
+        describe('When_common_type_extension_has_invalid_extendee', () => {
+            let entityName: string = "NotACommonTypeIdentifier";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonTypeExtension(entityName)
+.withBooleanProperty("Property2", "doc", false, false)
+.withEndCommonTypeExtension()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_validation_failure()', () => {
+                helper.errorMessageCollection.Any().ShouldBeTrue();
+            });
+            it('should_have_validation_failure_message()', () => {
+                helper.errorMessageCollection[0].Message.ShouldContain("Common Type additions");
+                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+                helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+            });
+});
+});

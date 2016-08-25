@@ -1,56 +1,51 @@
-var MetaEd;
-(function (MetaEd) {
-    var Tests;
-    (function (Tests) {
-        var Validator;
-        (function (Validator) {
-            var AbstractEntity;
-            (function (AbstractEntity) {
-                class AbstractEntityMustContainAnIdentityTests {
-                }
-                AbstractEntity.AbstractEntityMustContainAnIdentityTests = AbstractEntityMustContainAnIdentityTests;
-                (function (AbstractEntityMustContainAnIdentityTests) {
-                    /*[TestFixture]*/
-                    class When_validating_domain_entity_with_identity_fields extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAbstractEntity("AbstractEntity1").WithDocumentation("doc1").WithStringIdentity("Property1", "doc2", 100).WithEndAbstractEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new AbstractEntityMustContainAnIdentity() });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    AbstractEntityMustContainAnIdentityTests.When_validating_domain_entity_with_identity_fields = When_validating_domain_entity_with_identity_fields;
-                })(AbstractEntityMustContainAnIdentityTests = AbstractEntity.AbstractEntityMustContainAnIdentityTests || (AbstractEntity.AbstractEntityMustContainAnIdentityTests = {}));
-                (function (AbstractEntityMustContainAnIdentityTests) {
-                    /*[TestFixture]*/
-                    class When_validating_domain_entity_with_no_identity_fields extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAbstractEntity(When_validating_domain_entity_with_no_identity_fields._entity_name).WithDocumentation("doc1").WithDateProperty("Property1", "doc2", true, false).WithEndAbstractEntity().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new AbstractEntityMustContainAnIdentity() });
-                        }
-                        should_have_validation_failure() {
-                            _errorMessageCollection.Any().ShouldBeTrue();
-                        }
-                        should_have_validation_failure_message() {
-                            _errorMessageCollection[0].Message.ShouldContain("Abstract Entity");
-                            _errorMessageCollection[0].Message.ShouldContain(When_validating_domain_entity_with_no_identity_fields._entity_name);
-                            _errorMessageCollection[0].Message.ShouldContain("does not have an identity");
-                        }
-                    }
-                    When_validating_domain_entity_with_no_identity_fields._entity_name = "MyIdentifier";
-                    AbstractEntityMustContainAnIdentityTests.When_validating_domain_entity_with_no_identity_fields = When_validating_domain_entity_with_no_identity_fields;
-                })(AbstractEntityMustContainAnIdentityTests = AbstractEntity.AbstractEntityMustContainAnIdentityTests || (AbstractEntity.AbstractEntityMustContainAnIdentityTests = {}));
-            })(AbstractEntity = Validator.AbstractEntity || (Validator.AbstractEntity = {}));
-        })(Validator = Tests.Validator || (Tests.Validator = {}));
-    })(Tests = MetaEd.Tests || (MetaEd.Tests = {}));
-})(MetaEd || (MetaEd = {}));
+"use strict";
+/// <reference path="../../../../typings/index.d.ts" />
+const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
+const chai = require('chai');
+const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
+const TestRuleProvider_1 = require("../TestRuleProvider");
+const AbstractEntityMustContainAPrimaryKey_1 = require("../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAPrimaryKey");
+let should = chai.should();
+describe('AbstractEntityMustContainAPrimaryKeyTests', () => {
+    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new AbstractEntityMustContainAPrimaryKey_1.AbstractEntityMustContainAPrimaryKey()));
+    describe('When_validating_domain_entity_with_identity_fields', () => {
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAbstractEntity("AbstractEntity1")
+                .withDocumentation("doc1")
+                .withStringIdentity("Property1", "doc2", 100)
+                .withEndAbstractEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_validating_domain_entity_with_no_identity_fields', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAbstractEntity(entityName)
+                .withDocumentation("doc1")
+                .withDateProperty("Property1", "doc2", true, false)
+                .withEndAbstractEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Abstract Entity");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("does not have an identity");
+        });
+    });
+});
 //# sourceMappingURL=AbstractEntityMustContainAPrimaryKeyTests.js.map

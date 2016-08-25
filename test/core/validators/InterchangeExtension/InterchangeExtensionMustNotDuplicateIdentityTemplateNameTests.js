@@ -1,58 +1,53 @@
-var MetaEd;
-(function (MetaEd) {
-    var Tests;
-    (function (Tests) {
-        var Validator;
-        (function (Validator) {
-            var InterchangeExtension;
-            (function (InterchangeExtension) {
-                class InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests {
-                }
-                InterchangeExtension.InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests = InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests;
-                (function (InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests) {
-                    /*[TestFixture]*/
-                    class When_identity_templates_have_different_names extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartInterchangeExtension("Interchange1").WithIdentityTemplate("Template1").WithIdentityTemplate("Template2").WithEndInterchangeExtension().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new InterchangeExtensionMustNotDuplicateIdentityTemplateName(_symbolTable) });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests.When_identity_templates_have_different_names = When_identity_templates_have_different_names;
-                })(InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests = InterchangeExtension.InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests || (InterchangeExtension.InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests = {}));
-                (function (InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests) {
-                    /*[TestFixture]*/
-                    class When_identity_templates_have_duplicate_names extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartInterchangeExtension("Interchange1").WithIdentityTemplate(When_identity_templates_have_duplicate_names._duplicateTemplate).WithIdentityTemplate(When_identity_templates_have_duplicate_names._duplicateTemplate).WithEndInterchangeExtension().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new InterchangeExtensionMustNotDuplicateIdentityTemplateName(_symbolTable) });
-                        }
-                        should_have_validation_failure() {
-                            _errorMessageCollection.Any().ShouldBeTrue();
-                        }
-                        should_have_validation_failure_message() {
-                            _errorMessageCollection[0].Message.ShouldContain("Interchange additions");
-                            _errorMessageCollection[0].Message.ShouldContain(When_identity_templates_have_duplicate_names._entityName);
-                            _errorMessageCollection[0].Message.ShouldContain("duplicate identity template");
-                            _errorMessageCollection[0].Message.ShouldContain(When_identity_templates_have_duplicate_names._duplicateTemplate);
-                        }
-                    }
-                    When_identity_templates_have_duplicate_names._entityName = "Interchange1";
-                    When_identity_templates_have_duplicate_names._duplicateTemplate = "Identity1";
-                    InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests.When_identity_templates_have_duplicate_names = When_identity_templates_have_duplicate_names;
-                })(InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests = InterchangeExtension.InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests || (InterchangeExtension.InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests = {}));
-            })(InterchangeExtension = Validator.InterchangeExtension || (Validator.InterchangeExtension = {}));
-        })(Validator = Tests.Validator || (Tests.Validator = {}));
-    })(Tests = MetaEd.Tests || (MetaEd.Tests = {}));
-})(MetaEd || (MetaEd = {}));
+"use strict";
+/// <reference path="../../../../typings/index.d.ts" />
+const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
+const chai = require('chai');
+const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
+const TestRuleProvider_1 = require("../TestRuleProvider");
+const InterchangeExtensionMustNotDuplicateIdentityTemplateName_1 = require("../../../../src/core/validators/InterchangeExtension/InterchangeExtensionMustNotDuplicateIdentityTemplateName");
+let should = chai.should();
+describe('InterchangeExtensionMustNotDuplicateIdentityTemplateName', () => {
+    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new InterchangeExtensionMustNotDuplicateIdentityTemplateName_1.InterchangeExtensionMustNotDuplicateIdentityTemplateName(helper.symbolTable)));
+    describe('When_identity_templates_have_different_names', () => {
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartInterchangeExtension("Interchange1")
+                .withIdentityTemplate("Template1")
+                .withIdentityTemplate("Template2")
+                .withEndInterchangeExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_identity_templates_have_duplicate_names', () => {
+        let entityName = "Interchange1";
+        const duplicateTemplate = "Identity1";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartInterchangeExtension("Interchange1")
+                .withIdentityTemplate(duplicateTemplate)
+                .withIdentityTemplate(duplicateTemplate)
+                .withEndInterchangeExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Interchange additions");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("duplicate identity template");
+            helper.errorMessageCollection[0].Message.ShouldContain(duplicateTemplate);
+        });
+    });
+});
 //# sourceMappingURL=InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests.js.map

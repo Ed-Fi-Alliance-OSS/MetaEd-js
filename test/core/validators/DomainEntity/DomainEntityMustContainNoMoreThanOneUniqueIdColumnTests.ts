@@ -1,76 +1,104 @@
-﻿module MetaEd.Tests.Validator.DomainEntity {
-    export class DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {DomainEntityMustContainNoMoreThanOneUniqueIdColumn}from "../../../../src/core/validators/DomainEntity/DomainEntityMustContainNoMoreThanOneUniqueIdColumn"
 
-    }
-    export module DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests {
-        /*[TestFixture]*/
-        export class When_validating_domain_entity_with_no_uniqueId_fields extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("DomainEntity1").WithDocumentation("doc1").WithStringIdentity("Property1", "doc2", 100).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DomainEntityContext>(), { SuppliedRule: new DomainEntityMustContainNoMoreThanOneUniqueIdColumn() });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.ShouldBeEmpty();
-            }
-        }
-    }
-    export module DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests {
-        /*[TestFixture]*/
-        export class When_validating_domain_entity_with_one_uniqueId_field extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("DomainEntity1").WithDocumentation("doc1").WithStringIdentity("UniqueId", "doc2", 100).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DomainEntityContext>(), { SuppliedRule: new DomainEntityMustContainNoMoreThanOneUniqueIdColumn() });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.ShouldBeEmpty();
-            }
-        }
-    }
-    export module DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests {
-        /*[TestFixture]*/
-        export class When_validating_domain_entity_with_multiple_uniqueId_fields extends ValidationRuleTestBase {
-            private static _entityName: string = "DomainEntity1";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity(When_validating_domain_entity_with_multiple_uniqueId_fields._entityName).WithDocumentation("doc1").WithStringIdentity("UniqueId", "doc2", 100,/*context:*/"Student").WithStringIdentity("UniqueId", "doc2", 100,/*context:*/"Staff").WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DomainEntityContext>(), { SuppliedRule: new DomainEntityMustContainNoMoreThanOneUniqueIdColumn() });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.ShouldNotBeEmpty();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Domain Entity");
-                _errorMessageCollection[0].Message.ShouldContain(When_validating_domain_entity_with_multiple_uniqueId_fields._entityName);
-                _errorMessageCollection[0].Message.ShouldContain("has multiple properties with a property name of 'UniqueId'");
-            }
-        }
-    }
-    export module DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests {
-        /*[TestFixture]*/
-        export class When_validating_domain_entity_with_multiple_uniqueId_fields_in_extension_namespace extends ValidationRuleTestBase {
-            private static _entityName: string = "DomainEntity1";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("extension", "projectExtension").WithStartDomainEntity(When_validating_domain_entity_with_multiple_uniqueId_fields_in_extension_namespace._entityName).WithDocumentation("doc1").WithStringIdentity("UniqueId", "doc2", 100,/*context:*/"Student").WithStringIdentity("UniqueId", "doc2", 100,/*context:*/"Staff").WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DomainEntityContext>(), { SuppliedRule: new DomainEntityMustContainNoMoreThanOneUniqueIdColumn() });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.ShouldBeEmpty();
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.DomainEntityContext>(
+            new DomainEntityMustContainNoMoreThanOneUniqueIdColumn()));
+
+
+    describe('When_validating_domain_entity_with_no_uniqueId_fields', () => {
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity("DomainEntity1")
+                .withDocumentation("doc1")
+                .withStringIdentity("Property1", "doc2", 100)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.ShouldBeEmpty();
+        });
+    });
+
+
+    describe('When_validating_domain_entity_with_one_uniqueId_field', () => {
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity("DomainEntity1")
+                .withDocumentation("doc1")
+                .withStringIdentity("UniqueId", "doc2", 100)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.ShouldBeEmpty();
+        });
+    });
+
+
+    describe('When_validating_domain_entity_with_multiple_uniqueId_fields', () => {
+        const entityName: string = "DomainEntity1";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity(entityName)
+                .withDocumentation("doc1")
+                .withStringIdentity("UniqueId", "doc2", 100, null, null, "Student")
+                .withStringIdentity("UniqueId", "doc2", 100, null, null, "Staff")
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.ShouldNotBeEmpty();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("has multiple properties with a property name of 'UniqueId'");
+        });
+    });
+
+
+    describe('When_validating_domain_entity_with_multiple_uniqueId_fields_in_extension_namespace', () => {
+        const entityName: string = "DomainEntity1";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("extension", "projectExtension")
+                .withStartDomainEntity(entityName)
+                .withDocumentation("doc1")
+                .withStringIdentity("UniqueId", "doc2", 100, null, null, "Student")
+                .withStringIdentity("UniqueId", "doc2", 100, null, null, "Staff")
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.ShouldBeEmpty();
+        });
+    });
+});

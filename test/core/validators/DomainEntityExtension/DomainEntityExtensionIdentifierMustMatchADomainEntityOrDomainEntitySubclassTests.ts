@@ -1,89 +1,127 @@
-﻿module MetaEd.Tests.Validator.DomainEntityExtension {
-    export class DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclassTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclass}from "../../../../src/core/validators/DomainEntityExtension/DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclass"
 
-    }
-    export module DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclassTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_extension_has_valid_extendee extends ValidationRuleTestBase {
-            protected static _entity_name: string = "MyIdentifier";
-            protected static _property_name: string = "Property1";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity(When_domain_entity_extension_has_valid_extendee._entity_name).WithDocumentation("because documentation is required").WithBooleanProperty("Property1", "because a property is required", true, false).WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntityExtension(When_domain_entity_extension_has_valid_extendee._entity_name).WithBooleanProperty("Property2", "because a property is required", true, false).WithEndDomainEntityExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DomainEntityExtensionContext>(), { SuppliedRule: new DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclass(_symbolTable) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclassTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_extension_has_invalid_extendee extends ValidationRuleTestBase {
-            protected static _entity_name: string = "NotADomainEntityIdentifier";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntityExtension(When_domain_entity_extension_has_invalid_extendee._entity_name).WithBooleanProperty("Property2", "because a property is required", false, false).WithEndDomainEntityExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DomainEntityExtensionContext>(), { SuppliedRule: new DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclass(_symbolTable) });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Domain Entity additions");
-                _errorMessageCollection[0].Message.ShouldContain(When_domain_entity_extension_has_invalid_extendee._entity_name);
-                _errorMessageCollection[0].Message.ShouldContain("does not match");
-            }
-        }
-    }
-    export module DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclassTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_extension_extends_domain_entity_subclass extends ValidationRuleTestBase {
-            protected static _entity_name: string = "MyIdentifier";
-            protected static _subclass_name: string = "MyIdentifierSubclass";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity(When_domain_entity_extension_extends_domain_entity_subclass._entity_name).WithDocumentation("because documentation is required").WithBooleanProperty("Property1", "because a property is required", true, false).WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntitySubclass(When_domain_entity_extension_extends_domain_entity_subclass._subclass_name, When_domain_entity_extension_extends_domain_entity_subclass._entity_name).WithDocumentation("because documentation is required").WithBooleanProperty("Property2", "because a property is required", true, false).WithEndDomainEntitySubclass();
-                metaEdTextBuilder.WithStartDomainEntityExtension(When_domain_entity_extension_extends_domain_entity_subclass._subclass_name).WithBooleanProperty("Property3", "because a property is required", true, false).WithEndDomainEntityExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DomainEntityExtensionContext>(), { SuppliedRule: new DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclass(_symbolTable) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclassTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_extension_extends_abstract_domain_entity extends ValidationRuleTestBase {
-            protected static _entity_name: string = "MyIdentifier";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAbstractEntity(When_domain_entity_extension_extends_abstract_domain_entity._entity_name).WithDocumentation("because documentation is required").WithBooleanProperty("Property1", "because a property is required", true, false).WithEndAbstractEntity();
-                metaEdTextBuilder.WithStartDomainEntityExtension(When_domain_entity_extension_extends_abstract_domain_entity._entity_name).WithBooleanProperty("Property2", "because a property is required", true, false).WithEndDomainEntityExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DomainEntityExtensionContext>(), { SuppliedRule: new DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclass(_symbolTable) });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Domain Entity additions");
-                _errorMessageCollection[0].Message.ShouldContain(When_domain_entity_extension_extends_abstract_domain_entity._entity_name);
-                _errorMessageCollection[0].Message.ShouldContain("does not match");
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclass', () => {
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.DomainEntityExtensionContext>(
+            new DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclass(helper.symbolTable)));
+
+
+    describe('When_domain_entity_extension_has_valid_extendee', () => {
+        let entityName: string = "MyIdentifier";
+        const _property_name: string = "Property1";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity(entityName)
+                .withDocumentation("because documentation is required")
+                .withBooleanProperty("Property1", "because a property is required", true, false)
+                .withEndDomainEntity()
+
+                .withStartDomainEntityExtension(entityName)
+                .withBooleanProperty("Property2", "because a property is required", true, false)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+
+
+    describe('When_domain_entity_extension_has_invalid_extendee', () => {
+        let entityName: string = "NotADomainEntityIdentifier";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntityExtension(entityName)
+                .withBooleanProperty("Property2", "because a property is required", false, false)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity additions");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+        });
+    });
+
+
+    describe('When_domain_entity_extension_extends_domain_entity_subclass', () => {
+        let entityName: string = "MyIdentifier";
+        const subclassName: string = "MyIdentifierSubclass";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity(entityName)
+                .withDocumentation("because documentation is required")
+                .withBooleanProperty("Property1", "because a property is required", true, false)
+                .withEndDomainEntity()
+
+                .withStartDomainEntitySubclass(subclassName, entityName)
+                .withDocumentation("because documentation is required")
+                .withBooleanProperty("Property2", "because a property is required", true, false)
+                .withEndDomainEntitySubclass()
+                
+.withStartDomainEntityExtension(subclassName)
+                .withBooleanProperty("Property3", "because a property is required", true, false)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+
+
+    describe('When_domain_entity_extension_extends_abstract_domain_entity', () => {
+        let entityName: string = "MyIdentifier";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartAbstractEntity(entityName)
+                .withDocumentation("because documentation is required")
+                .withBooleanProperty("Property1", "because a property is required", true, false)
+                .withEndAbstractEntity()
+                
+.withStartDomainEntityExtension(entityName)
+                .withBooleanProperty("Property2", "because a property is required", true, false)
+                .withEndDomainEntityExtension()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity additions");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+        });
+    });
+});

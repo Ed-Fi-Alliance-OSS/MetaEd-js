@@ -1,48 +1,72 @@
-﻿module MetaEd.Tests.Validator.CommonTypeExtension {
-    export class CommonTypeExtensionMustNotDuplicateCommonTypePropertyNameTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {CommonTypeExtensionMustNotDuplicateCommonTypePropertyName}from "../../../../src/core/validators/CommonTypeExtension/CommonTypeExtensionMustNotDuplicateCommonTypePropertyName"
 
-    }
-    export module CommonTypeExtensionMustNotDuplicateCommonTypePropertyNameTests {
-        /*[TestFixture]*/
-        export class When_common_type_extension_has_different_property_name extends ValidationRuleTestBase {
-            protected static _entity_name: string = "MyIdentifier";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonType(When_common_type_extension_has_different_property_name._entity_name).WithDocumentation("doc").WithBooleanProperty("Property1", "doc", true, false).WithEndAssociation();
-                metaEdTextBuilder.WithStartCommonTypeExtension(When_common_type_extension_has_different_property_name._entity_name).WithBooleanProperty("Property2", "doc", true, false).WithEndCommonTypeExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.CommonTypeExtensionContext>(), { SuppliedRule: new CommonTypeExtensionMustNotDuplicateCommonTypePropertyName(_symbolTable) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module CommonTypeExtensionMustNotDuplicateCommonTypePropertyNameTests {
-        /*[TestFixture]*/
-        export class When_common_type_extension_has_duplicate_property_name extends ValidationRuleTestBase {
-            protected static _entity_name: string = "MyIdentifier";
-            protected static _duplicate_property_name: string = "Property1";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonType(When_common_type_extension_has_duplicate_property_name._entity_name).WithDocumentation("doc").WithBooleanProperty(When_common_type_extension_has_duplicate_property_name._duplicate_property_name, "doc", true, false).WithEndCommonType();
-                metaEdTextBuilder.WithStartCommonTypeExtension(When_common_type_extension_has_duplicate_property_name._entity_name).WithBooleanProperty(When_common_type_extension_has_duplicate_property_name._duplicate_property_name, "doc", true, false).WithEndCommonTypeExtension().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.CommonTypeExtensionContext>(), { SuppliedRule: new CommonTypeExtensionMustNotDuplicateCommonTypePropertyName(_symbolTable) });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Common Type additions");
-                _errorMessageCollection[0].Message.ShouldContain(When_common_type_extension_has_duplicate_property_name._entity_name);
-                _errorMessageCollection[0].Message.ShouldContain(When_common_type_extension_has_duplicate_property_name._duplicate_property_name);
-                _errorMessageCollection[0].Message.ShouldContain("already in property list");
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('CommonTypeExtensionMustNotDuplicateCommonTypePropertyNameTests', () => { 
+	let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.CommonTypeExtensionContext>(
+            new CommonTypeExtensionMustNotDuplicateCommonTypePropertyName(entityType)));
+    
+        
+        describe('When_common_type_extension_has_different_property_name', () => {
+            let entityName: string = "MyIdentifier";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonType(entityName)
+.withDocumentation("doc")
+.withBooleanProperty("Property1", "doc", true, false)
+.withEndAssociation()
+                
+.withStartCommonTypeExtension(entityName)
+.withBooleanProperty("Property2", "doc", true, false)
+.withEndCommonTypeExtension()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.Count.ShouldEqual(0);
+            });
+});
+    
+        
+        describe('When_common_type_extension_has_duplicate_property_name', () => {
+            let entityName: string = "MyIdentifier";
+            const duplicatePropertyName: string = "Property1";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonType(entityName)
+.withDocumentation("doc")
+.withBooleanProperty(duplicatePropertyName, "doc", true, false)
+.withEndCommonType()
+                
+.withStartCommonTypeExtension(entityName)
+.withBooleanProperty(duplicatePropertyName, "doc", true, false)
+.withEndCommonTypeExtension()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_validation_failure()', () => {
+                helper.errorMessageCollection.Any().ShouldBeTrue();
+            });
+            it('should_have_validation_failure_message()', () => {
+                helper.errorMessageCollection[0].Message.ShouldContain("Common Type additions");
+                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+                helper.errorMessageCollection[0].Message.ShouldContain(duplicatePropertyName);
+                helper.errorMessageCollection[0].Message.ShouldContain("already in property list");
+            });
+});
+});

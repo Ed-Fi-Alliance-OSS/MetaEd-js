@@ -1,112 +1,164 @@
-﻿module MetaEd.Tests.Validator.DecimalProperty {
-    export class DecimalPropertyMustNotMatchACommonSimpleTypeTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {DecimalPropertyMustNotMatchACommonSimpleType}from "../../../../src/core/validators/DecimalProperty/DecimalPropertyMustNotMatchACommonSimpleType"
 
-    }
-    export module DecimalPropertyMustNotMatchACommonSimpleTypeTests {
-        /*[TestFixture]*/
-        export class When_decimal_property_has_identifier_matching_no_common_simple_types extends ValidationRuleTestBase {
-            protected static _entityName: string = "EntityName";
-            protected static _propertyName: string = "PropertyName";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity(When_decimal_property_has_identifier_matching_no_common_simple_types._entityName).WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithDecimalProperty(When_decimal_property_has_identifier_matching_no_common_simple_types._propertyName, "doc", false, false, 10, 2).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DecimalPropertyContext>(), { SuppliedRule: new DecimalPropertyMustNotMatchACommonSimpleType(_symbolTable) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module DecimalPropertyMustNotMatchACommonSimpleTypeTests {
-        /*[TestFixture]*/
-        export class When_decimal_property_has_identifier_matching_common_decimal extends ValidationRuleTestBase {
-            protected static _commonEntityName: string = "CommonEntityName";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonDecimal(When_decimal_property_has_identifier_matching_common_decimal._commonEntityName).WithDocumentation("doc").WithTotalDigits(10).WithDecimalPlaces(2).WithEndCommonDecimal();
-                metaEdTextBuilder.WithStartDomainEntity("EntityName").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithDecimalProperty(When_decimal_property_has_identifier_matching_common_decimal._commonEntityName, "doc", false, false, 10, 2).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DecimalPropertyContext>(), { SuppliedRule: new DecimalPropertyMustNotMatchACommonSimpleType(_symbolTable) });
-            }
-            public should_have_validation_failures(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Decimal property");
-                _errorMessageCollection[0].Message.ShouldContain(When_decimal_property_has_identifier_matching_common_decimal._commonEntityName);
-                _errorMessageCollection[0].Message.ShouldContain("has the same name");
-            }
-        }
-    }
-    export module DecimalPropertyMustNotMatchACommonSimpleTypeTests {
-        export class When_decimal_property_has_identifier_matching_common_integer extends ValidationRuleTestBase {
-            protected static _commonEntityName: string = "CommonEntityName";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonInteger(When_decimal_property_has_identifier_matching_common_integer._commonEntityName).WithDocumentation("doc").WithMaxValue(100).WithEndCommonInteger();
-                metaEdTextBuilder.WithStartDomainEntity("EntityName").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithDecimalProperty(When_decimal_property_has_identifier_matching_common_integer._commonEntityName, "doc", false, false, 10, 2).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DecimalPropertyContext>(), { SuppliedRule: new DecimalPropertyMustNotMatchACommonSimpleType(_symbolTable) });
-            }
-            public should_have_validation_failures(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Decimal property");
-                _errorMessageCollection[0].Message.ShouldContain(When_decimal_property_has_identifier_matching_common_integer._commonEntityName);
-                _errorMessageCollection[0].Message.ShouldContain("has the same name");
-            }
-        }
-    }
-    export module DecimalPropertyMustNotMatchACommonSimpleTypeTests {
-        export class When_decimal_property_has_identifier_matching_common_short extends ValidationRuleTestBase {
-            protected static _commonEntityName: string = "CommonEntityName";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonShort(When_decimal_property_has_identifier_matching_common_short._commonEntityName).WithDocumentation("doc").WithMaxValue(100).WithEndCommonShort();
-                metaEdTextBuilder.WithStartDomainEntity("EntityName").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithDecimalProperty(When_decimal_property_has_identifier_matching_common_short._commonEntityName, "doc", false, false, 10, 2).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DecimalPropertyContext>(), { SuppliedRule: new DecimalPropertyMustNotMatchACommonSimpleType(_symbolTable) });
-            }
-            public should_have_validation_failures(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Decimal property");
-                _errorMessageCollection[0].Message.ShouldContain(When_decimal_property_has_identifier_matching_common_short._commonEntityName);
-                _errorMessageCollection[0].Message.ShouldContain("has the same name");
-            }
-        }
-    }
-    export module DecimalPropertyMustNotMatchACommonSimpleTypeTests {
-        export class When_decimal_property_has_identifier_matching_common_string extends ValidationRuleTestBase {
-            protected static _commonEntityName: string = "CommonEntityName";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonString(When_decimal_property_has_identifier_matching_common_string._commonEntityName).WithDocumentation("doc").WithMaxLength(100).WithEndCommonString();
-                metaEdTextBuilder.WithStartDomainEntity("EntityName").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithDecimalProperty(When_decimal_property_has_identifier_matching_common_string._commonEntityName, "doc", false, false, 10, 2).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.DecimalPropertyContext>(), { SuppliedRule: new DecimalPropertyMustNotMatchACommonSimpleType(_symbolTable) });
-            }
-            public should_have_validation_failures(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Decimal property");
-                _errorMessageCollection[0].Message.ShouldContain(When_decimal_property_has_identifier_matching_common_string._commonEntityName);
-                _errorMessageCollection[0].Message.ShouldContain("has the same name");
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('DecimalPropertyMustNotMatchACommonSimpleTypeTests', () => { 
+	let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.DecimalPropertyContext>(
+            new DecimalPropertyMustNotMatchACommonSimpleType(symbolTable)));
+    
+        
+        describe('When_decimal_property_has_identifier_matching_no_common_simple_types', () => {
+            let entityName: string = "EntityName";
+            let propertyName: string = "PropertyName";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartDomainEntity(entityName)
+.withDocumentation("doc")
+.withStringIdentity("RequirePrimaryKey", "doc", 100)
+.withDecimalProperty(propertyName, "doc", false, false, "10", "2")
+.withEndDomainEntity()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.Count.ShouldEqual(0);
+            });
+});
+    
+        
+        describe('When_decimal_property_has_identifier_matching_common_decimal', () => {
+            const entityName: string = "CommonEntityName";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonDecimal(entityName)
+.withDocumentation("doc")
+.withTotalDigits("10")
+.withDecimalPlaces("2")
+.withEndCommonDecimal()
+                
+.withStartDomainEntity("EntityName")
+.withDocumentation("doc")
+.withStringIdentity("RequirePrimaryKey", "doc", 100)
+.withDecimalProperty(entityName, "doc", false, false, "10", "2")
+.withEndDomainEntity()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_validation_failures()', () => {
+                helper.errorMessageCollection.Any().ShouldBeTrue();
+            });
+            it('should_have_validation_failure_message()', () => {
+                helper.errorMessageCollection[0].Message.ShouldContain("Decimal property");
+                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+                helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+            });
+});
+    
+        describe('When_decimal_property_has_identifier_matching_common_integer', () => {
+            const entityName: string = "CommonEntityName";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonInteger(entityName)
+.withDocumentation("doc")
+.withMaxValue(100)
+.withEndCommonInteger()
+                
+.withStartDomainEntity("EntityName")
+.withDocumentation("doc")
+.withStringIdentity("RequirePrimaryKey", "doc", 100)
+.withDecimalProperty(entityName, "doc", false, false, "10", "2")
+.withEndDomainEntity()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_validation_failures()', () => {
+                helper.errorMessageCollection.Any().ShouldBeTrue();
+            });
+            it('should_have_validation_failure_message()', () => {
+                helper.errorMessageCollection[0].Message.ShouldContain("Decimal property");
+                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+                helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+            });
+});
+    
+        describe('When_decimal_property_has_identifier_matching_common_short', () => {
+            const entityName: string = "CommonEntityName";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonShort(entityName)
+.withDocumentation("doc")
+.withMaxValue(100)
+.withEndCommonShort()
+                
+.withStartDomainEntity("EntityName")
+.withDocumentation("doc")
+.withStringIdentity("RequirePrimaryKey", "doc", 100)
+.withDecimalProperty(entityName, "doc", false, false, "10", "2")
+.withEndDomainEntity()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_validation_failures()', () => {
+                helper.errorMessageCollection.Any().ShouldBeTrue();
+            });
+            it('should_have_validation_failure_message()', () => {
+                helper.errorMessageCollection[0].Message.ShouldContain("Decimal property");
+                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+                helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+            });
+});
+    
+        describe('When_decimal_property_has_identifier_matching_common_string', () => {
+            const entityName: string = "CommonEntityName";
+            let helper: ValidationTestHelper = new ValidationTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.buildIt
+                
+.withBeginNamespace("edfi")
+.withStartCommonString(entityName)
+.withDocumentation("doc")
+.withMaxLength(100)
+.withEndCommonString()
+                
+.withStartDomainEntity("EntityName")
+.withDocumentation("doc")
+.withStringIdentity("RequirePrimaryKey", "doc", 100)
+.withDecimalProperty(entityName, "doc", false, false, "10", "2")
+.withEndDomainEntity()
+.withEndNamespace();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_validation_failures()', () => {
+                helper.errorMessageCollection.Any().ShouldBeTrue();
+            });
+            it('should_have_validation_failure_message()', () => {
+                helper.errorMessageCollection[0].Message.ShouldContain("Decimal property");
+                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+                helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+            });
+});
+});

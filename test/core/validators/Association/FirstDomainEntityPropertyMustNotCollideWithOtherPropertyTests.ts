@@ -1,44 +1,80 @@
-﻿module MetaEd.Tests.Validator.Association {
-    export class FirstDomainEntityPropertyMustNotCollideWithOtherPropertyTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {FirstDomainEntityPropertyMustNotCollideWithOtherProperty}from "../../../../src/core/validators/Association/FirstDomainEntityPropertyMustNotCollideWithOtherProperty"
 
-    }
-    export module FirstDomainEntityPropertyMustNotCollideWithOtherPropertyTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_property_does_not_collide extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("First").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Second").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndDomainEntity();
-                metaEdTextBuilder.WithStartAssociation("Association1").WithDocumentation("doc").WithDomainEntityProperty("First", "doc1").WithDomainEntityProperty("Second", "doc2").WithIntegerProperty("Third", "doc3", false, false).WithEndAssociation().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.FirstDomainEntityContext>(), { SuppliedRule: new FirstDomainEntityPropertyMustNotCollideWithOtherProperty(_symbolTable) });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module FirstDomainEntityPropertyMustNotCollideWithOtherPropertyTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_property_does_collide extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("First").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndDomainEntity();
-                metaEdTextBuilder.WithStartDomainEntity("Second").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndDomainEntity();
-                metaEdTextBuilder.WithStartAssociation("Association1").WithDocumentation("doc").WithDomainEntityProperty("First", "doc1").WithDomainEntityProperty("Second", "doc2").WithIntegerProperty("First", "doc3", false, false).WithEndAssociation().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.FirstDomainEntityContext>(), { SuppliedRule: new FirstDomainEntityPropertyMustNotCollideWithOtherProperty(_symbolTable) });
-            }
-            public should_have_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(1);
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldEqual("Entity Association1 has duplicate properties named First");
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('FirstDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.FirstDomainEntityContext>(
+            new FirstDomainEntityPropertyMustNotCollideWithOtherProperty(symbolTable)));
+
+
+    describe('When_domain_entity_property_does_not_collide', () => {
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity("First")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndDomainEntity()
+
+                .withStartDomainEntity("Second")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndDomainEntity()
+
+                .withStartAssociation("Association1")
+                .withDocumentation("doc")
+                .withDomainEntityProperty("First", "doc1")
+                .withDomainEntityProperty("Second", "doc2")
+                .withIntegerProperty("Third", "doc3", false, false)
+                .withEndAssociation()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+
+
+    describe('When_domain_entity_property_does_collide', () => {
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity("First")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndDomainEntity()
+
+                .withStartDomainEntity("Second")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndDomainEntity()
+
+                .withStartAssociation("Association1")
+                .withDocumentation("doc")
+                .withDomainEntityProperty("First", "doc1")
+                .withDomainEntityProperty("Second", "doc2")
+                .withIntegerProperty("First", "doc3", false, false)
+                .withEndAssociation()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(1);
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldEqual("Entity Association1 has duplicate properties named First");
+        });
+    });
+});

@@ -1,64 +1,91 @@
-﻿module MetaEd.Tests.Validator.Enumeration {
-    export class EnumerationItemsMustBeUniqueTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {EnumerationItemsMustBeUnique}from "../../../../src/core/validators/Enumeration/EnumerationItemsMustBeUnique"
 
-    }
-    export module EnumerationItemsMustBeUniqueTests {
-        /*[TestFixture]*/
-        export class When_enumeration_items_have_different_short_descriptions extends ValidationRuleTestBase {
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartEnumeration("Enumeration1").WithDocumentation("doc").WithEnumerationItem("this is short description 1", "doc1").WithEnumerationItem("this is short description 2", "doc2").WithEndEnumeration().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.EnumerationContext>(), { SuppliedRule: new EnumerationItemsMustBeUnique() });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module EnumerationItemsMustBeUniqueTests {
-        /*[TestFixture]*/
-        export class When_enumeration_items_have_duplicate_short_descriptions extends ValidationRuleTestBase {
-            protected static _entityName: string = "Enumeration1";
-            protected static _duplicateShortDescription: string = "this is a duplicate short description";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartEnumeration("Enumeration1").WithDocumentation("doc").WithEnumerationItem(When_enumeration_items_have_duplicate_short_descriptions._duplicateShortDescription, "doc1").WithEnumerationItem(When_enumeration_items_have_duplicate_short_descriptions._duplicateShortDescription, "doc2").WithEndEnumeration().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.EnumerationContext>(), { SuppliedRule: new EnumerationItemsMustBeUnique() });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldEqual("Enumeration 'Enumeration1' declares duplicate item 'this is a duplicate short description'.");
-            }
-        }
-    }
-    export module EnumerationItemsMustBeUniqueTests {
-        /*[TestFixture]*/
-        export class When_enumeration_items_have_multiple_duplicate_short_descriptions extends ValidationRuleTestBase {
-            protected static _entityName: string = "Enumeration1";
-            protected static _duplicateShortDescription1: string = "this is duplicate short description 1";
-            protected static _duplicateShortDescription2: string = "this is duplicate short description 2";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartEnumeration("Enumeration1").WithDocumentation("doc").WithEnumerationItem(When_enumeration_items_have_multiple_duplicate_short_descriptions._duplicateShortDescription1, "doc1").WithEnumerationItem(When_enumeration_items_have_multiple_duplicate_short_descriptions._duplicateShortDescription1, "doc1 again").WithEnumerationItem(When_enumeration_items_have_multiple_duplicate_short_descriptions._duplicateShortDescription2, "doc2").WithEnumerationItem(When_enumeration_items_have_multiple_duplicate_short_descriptions._duplicateShortDescription2, "doc2 again").WithEndEnumeration().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.EnumerationContext>(), { SuppliedRule: new EnumerationItemsMustBeUnique() });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldEqual("Enumeration 'Enumeration1' declares duplicate items 'this is duplicate short description 1', 'this is duplicate short description 2'.");
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('EnumerationItemsMustBeUnique', () => {
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.EnumerationContext>(
+            new EnumerationItemsMustBeUnique()));
+
+
+    describe('When_enumeration_items_have_different_short_descriptions', () => {
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartEnumeration("Enumeration1")
+                .withDocumentation("doc")
+                .withEnumerationItem("this is short description 1", "doc1")
+                .withEnumerationItem("this is short description 2", "doc2")
+                .withEndEnumeration()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+
+
+    describe('When_enumeration_items_have_duplicate_short_descriptions', () => {
+        let entityName: string = "Enumeration1";
+        const duplicateShortDescription: string = "this is a duplicate short description";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartEnumeration("Enumeration1")
+                .withDocumentation("doc")
+                .withEnumerationItem(duplicateShortDescription, "doc1")
+                .withEnumerationItem(duplicateShortDescription, "doc2")
+                .withEndEnumeration()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldEqual("Enumeration 'Enumeration1' declares duplicate item 'this is a duplicate short description'.");
+        });
+    });
+
+
+    describe('When_enumeration_items_have_multiple_duplicate_short_descriptions', () => {
+        let entityName: string = "Enumeration1";
+        const duplicateShortDescription1: string = "this is duplicate short description 1";
+        const duplicateShortDescription2: string = "this is duplicate short description 2";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartEnumeration("Enumeration1")
+                .withDocumentation("doc")
+                .withEnumerationItem(duplicateShortDescription1, "doc1")
+                .withEnumerationItem(duplicateShortDescription1, "doc1 again")
+                .withEnumerationItem(duplicateShortDescription2, "doc2")
+                .withEnumerationItem(duplicateShortDescription2, "doc2 again")
+                .withEndEnumeration()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldEqual("Enumeration 'Enumeration1' declares duplicate items 'this is duplicate short description 1', 'this is duplicate short description 2'.");
+        });
+    });
+});

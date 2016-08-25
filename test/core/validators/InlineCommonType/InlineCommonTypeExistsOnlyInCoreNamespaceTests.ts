@@ -1,48 +1,66 @@
-﻿module MetaEd.Tests.Validator.InlineCommonType {
-    export class InlineCommonTypeExistsOnlyInCoreNamespaceTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {InlineCommonTypeExistsOnlyInCoreNamespace}from "../../../../src/core/validators/InlineCommonType/InlineCommonTypeExistsOnlyInCoreNamespace"
 
-    }
-    export module InlineCommonTypeExistsOnlyInCoreNamespaceTests {
-        /*[TestFixture]*/
-        export class When_inline_common_type_exists_in_core extends ValidationRuleTestBase {
-            protected static _entity_name: string = "MyIdentifier";
-            protected static _property_name: string = "Property1";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartInlineCommonType(When_inline_common_type_exists_in_core._entity_name).WithDocumentation("because documentation is required").WithBooleanProperty("Property1", "because a property is required", true, false).WithEndInlineCommonType().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.InlineCommonTypeContext>(), { SuppliedRule: new InlineCommonTypeExistsOnlyInCoreNamespace() });
-            }
-            public should_have_no_validation_failures(): void {
-                _errorMessageCollection.Count.ShouldEqual(0);
-            }
-        }
-    }
-    export module InlineCommonTypeExistsOnlyInCoreNamespaceTests {
-        /*[TestFixture]*/
-        export class When_inline_common_type_exists_in_extension extends ValidationRuleTestBase {
-            protected static _extensionNamespace: string = "edfi";
-            protected static _entity_name: string = "MyIdentifier";
-            protected static _property_name: string = "Property1";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace(When_inline_common_type_exists_in_extension._extensionNamespace, "projectExtension").WithStartInlineCommonType(When_inline_common_type_exists_in_extension._entity_name).WithDocumentation("because documentation is required").WithBooleanProperty("Property2", "because a property is required", true, false).WithEndInlineCommonType().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.InlineCommonTypeContext>(), { SuppliedRule: new InlineCommonTypeExistsOnlyInCoreNamespace() });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.Any().ShouldBeTrue();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("Inline Common Type");
-                _errorMessageCollection[0].Message.ShouldContain(When_inline_common_type_exists_in_extension._entity_name);
-                _errorMessageCollection[0].Message.ShouldContain("is not valid in extension namespace");
-                _errorMessageCollection[0].Message.ShouldContain(When_inline_common_type_exists_in_extension._extensionNamespace);
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('InlineCommonTypeExistsOnlyInCoreNamespace', () => {
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.InlineCommonTypeContext>(
+            new InlineCommonTypeExistsOnlyInCoreNamespace()));
+
+
+    describe('When_inline_common_type_exists_in_core', () => {
+        let entityName: string = "MyIdentifier";
+        const _property_name: string = "Property1";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartInlineCommonType(entityName)
+                .withDocumentation("because documentation is required")
+                .withBooleanProperty("Property1", "because a property is required", true, false)
+                .withEndInlineCommonType()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+
+
+    describe('When_inline_common_type_exists_in_extension', () => {
+        const extensionNamespace: string = "edfi";
+        let entityName: string = "MyIdentifier";
+        const propertyName: string = "Property1";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace(extensionNamespace, "projectExtension")
+                .withStartInlineCommonType(entityName)
+                .withDocumentation("because documentation is required")
+                .withBooleanProperty("Property2", "because a property is required", true, false)
+                .withEndInlineCommonType()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Inline Common Type");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("is not valid in extension namespace");
+            helper.errorMessageCollection[0].Message.ShouldContain(extensionNamespace);
+        });
+    });
+});

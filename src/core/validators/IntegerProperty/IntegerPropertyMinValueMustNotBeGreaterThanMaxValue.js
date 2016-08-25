@@ -1,26 +1,16 @@
-var MetaEd;
-(function (MetaEd) {
-    var Core;
-    (function (Core) {
-        var Validator;
-        (function (Validator) {
-            var IntegerProperty;
-            (function (IntegerProperty) {
-                class IntegerPropertyMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase {
-                    isValid(context) {
-                        if (context.minValue() == null || context.maxValue() == null)
-                            return true;
-                        var minValue = Convert.ToInt32(context.minValue().MinValue());
-                        var maxValue = Convert.ToInt32(context.maxValue().MaxValue());
-                        return minValue <= maxValue;
-                    }
-                    getFailureMessage(context) {
-                        return string.Format("Integer Property '{0}' in {1} '{2}' has min value greater than max value.", context.propertyName().GetText(), context.ParentTypeName(), context.ParentIdentifier());
-                    }
-                }
-                IntegerProperty.IntegerPropertyMinValueMustNotBeGreaterThanMaxValue = IntegerPropertyMinValueMustNotBeGreaterThanMaxValue;
-            })(IntegerProperty = Validator.IntegerProperty || (Validator.IntegerProperty = {}));
-        })(Validator = Core.Validator || (Core.Validator = {}));
-    })(Core = MetaEd.Core || (MetaEd.Core = {}));
-})(MetaEd || (MetaEd = {}));
+"use strict";
+const ValidationRuleBase_1 = require("../ValidationRuleBase");
+class IntegerPropertyMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase_1.ValidationRuleBase {
+    isValid(context) {
+        if (context.minValue() == null || context.maxValue() == null)
+            return true;
+        var minValue = Convert.ToInt32(context.minValue().MinValue());
+        var maxValue = Convert.ToInt32(context.maxValue().MaxValue());
+        return minValue <= maxValue;
+    }
+    getFailureMessage(context) {
+        return string.Format("Integer Property '{0}' in {1} '{2}' has min value greater than max value.", context.propertyName().GetText(), context.ParentTypeName(), context.ParentIdentifier());
+    }
+}
+exports.IntegerPropertyMinValueMustNotBeGreaterThanMaxValue = IntegerPropertyMinValueMustNotBeGreaterThanMaxValue;
 //# sourceMappingURL=IntegerPropertyMinValueMustNotBeGreaterThanMaxValue.js.map

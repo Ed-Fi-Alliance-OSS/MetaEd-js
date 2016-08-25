@@ -1,103 +1,147 @@
-﻿module MetaEd.Tests.Validator.MetaEdId {
-    export class MustNotDuplicateMetaEdIdTests {
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai = require('chai');
+import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {MustNotDuplicateMetaEdId}from "../../../../src/core/validators/MetaEdId/MustNotDuplicateMetaEdId"
 
-    }
-    export module MustNotDuplicateMetaEdIdTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_has_valid_metaEdId extends ValidationRuleTestBase {
-            protected static _metaEdId1: string = "100";
-            protected static _metaEdId2: string = "101";
-            protected static _entityName1: string = "MyIdentifier1";
-            protected static _propertyName1: string = "Identifier1";
-            protected static _entityName2: string = "MyIdentifier2";
-            protected static _propertyName2: string = "Identifier2";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity(When_domain_entity_has_valid_metaEdId._entityName1).WithMetaEdId(When_domain_entity_has_valid_metaEdId._metaEdId1).WithDocumentation("doc").WithStringIdentity(When_domain_entity_has_valid_metaEdId._propertyName1, "doc", 100).WithEndDomainEntity().WithStartDomainEntity(When_domain_entity_has_valid_metaEdId._entityName2).WithMetaEdId(When_domain_entity_has_valid_metaEdId._metaEdId2).WithDocumentation("doc").WithStringIdentity(When_domain_entity_has_valid_metaEdId._propertyName2, "doc", 100).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.MetaEdIdContext>(), { SuppliedRule: new MustNotDuplicateMetaEdId() });
-            }
-            public should_not_have_validation_failure(): void {
-                _errorMessageCollection.ShouldBeEmpty();
-            }
-        }
-    }
-    export module MustNotDuplicateMetaEdIdTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_has_duplicate_metaEdId extends ValidationRuleTestBase {
-            protected static _metaEdId: string = "100";
-            protected static _entityName1: string = "MyIdentifier1";
-            protected static _propertyName1: string = "Identifier1";
-            protected static _entityName2: string = "MyIdentifier2";
-            protected static _propertyName2: string = "Identifier2";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity(When_domain_entity_has_duplicate_metaEdId._entityName1).WithMetaEdId(When_domain_entity_has_duplicate_metaEdId._metaEdId).WithDocumentation("doc").WithStringIdentity(When_domain_entity_has_duplicate_metaEdId._propertyName1, "doc", 100).WithEndDomainEntity().WithStartDomainEntity(When_domain_entity_has_duplicate_metaEdId._entityName2).WithMetaEdId(When_domain_entity_has_duplicate_metaEdId._metaEdId).WithDocumentation("doc").WithStringIdentity(When_domain_entity_has_duplicate_metaEdId._propertyName2, "doc", 100).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.MetaEdIdContext>(), { SuppliedRule: new MustNotDuplicateMetaEdId() });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.ShouldNotBeEmpty();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("MetaEdId");
-                _errorMessageCollection[0].Message.ShouldContain(When_domain_entity_has_duplicate_metaEdId._metaEdId);
-                _errorMessageCollection[0].Message.ShouldContain("All MetaEdIds must be globally unique.");
-            }
-        }
-    }
-    export module MustNotDuplicateMetaEdIdTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_has_duplicate_metaEdId_with_property extends ValidationRuleTestBase {
-            protected static _metaEdId: string = "100";
-            protected static _entityName: string = "MyIdentifier";
-            protected static _propertyName: string = "Identifier";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity(When_domain_entity_has_duplicate_metaEdId_with_property._entityName).WithMetaEdId(When_domain_entity_has_duplicate_metaEdId_with_property._metaEdId).WithDocumentation("doc").WithStringIdentity(When_domain_entity_has_duplicate_metaEdId_with_property._propertyName, "doc", 100,/*metaEdId:*/When_domain_entity_has_duplicate_metaEdId_with_property._metaEdId).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.MetaEdIdContext>(), { SuppliedRule: new MustNotDuplicateMetaEdId() });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.ShouldNotBeEmpty();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("MetaEdId");
-                _errorMessageCollection[0].Message.ShouldContain(When_domain_entity_has_duplicate_metaEdId_with_property._metaEdId);
-                _errorMessageCollection[0].Message.ShouldContain("All MetaEdIds must be globally unique.");
-            }
-        }
-    }
-    export module MustNotDuplicateMetaEdIdTests {
-        /*[TestFixture]*/
-        export class When_domain_entity_has_duplicate_metaEdId_with_property_on_different_entity extends ValidationRuleTestBase {
-            protected static _metaEdId: string = "100";
-            protected static _entityName1: string = "MyIdentifier1";
-            protected static _propertyName1: string = "Identifier1";
-            protected static _entityName2: string = "MyIdentifier2";
-            protected static _propertyName2: string = "Identifier2";
-            protected metaEdText(): string {
-                var metaEdTextBuilder = new MetaEdTextBuilder();
-                metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity(When_domain_entity_has_duplicate_metaEdId_with_property_on_different_entity._entityName1).WithMetaEdId(When_domain_entity_has_duplicate_metaEdId_with_property_on_different_entity._metaEdId).WithDocumentation("doc").WithStringIdentity(When_domain_entity_has_duplicate_metaEdId_with_property_on_different_entity._propertyName1, "doc", 100).WithEndDomainEntity().WithStartDomainEntity(When_domain_entity_has_duplicate_metaEdId_with_property_on_different_entity._entityName2).WithDocumentation("doc").WithStringIdentity(When_domain_entity_has_duplicate_metaEdId_with_property_on_different_entity._propertyName2, "doc", 100,/*metaEdId:*/When_domain_entity_has_duplicate_metaEdId_with_property_on_different_entity._metaEdId).WithEndDomainEntity().WithEndNamespace();
-                return metaEdTextBuilder;
-            }
-            protected getRuleProvider(): MetaEd.Core.Validator.IRuleProvider {
-                return __init(new TestRuleProvider<MetaEdGrammar.MetaEdIdContext>(), { SuppliedRule: new MustNotDuplicateMetaEdId() });
-            }
-            public should_have_validation_failure(): void {
-                _errorMessageCollection.ShouldNotBeEmpty();
-            }
-            public should_have_validation_failure_message(): void {
-                _errorMessageCollection[0].Message.ShouldContain("MetaEdId");
-                _errorMessageCollection[0].Message.ShouldContain(When_domain_entity_has_duplicate_metaEdId_with_property_on_different_entity._metaEdId);
-                _errorMessageCollection[0].Message.ShouldContain("All MetaEdIds must be globally unique.");
-            }
-        }
-    }
-}
+let should = chai.should();
+
+describe('MustNotDuplicateMetaEdId', () => {
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.MetaEdIdContext>(
+            new MustNotDuplicateMetaEdId()));
+
+
+    describe('When_domain_entity_has_valid_metaEdId', () => {
+        const metaEdId1: string = "100";
+        const metaEdId2: string = "101";
+        const entityName1: string = "MyIdentifier1";
+        let propertyName1: string = "Identifier1";
+        const entityName2: string = "MyIdentifier2";
+        let propertyName2: string = "Identifier2";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity(entityName1)
+                .withMetaEdId(metaEdId1)
+                .withDocumentation("doc")
+                .withStringIdentity(propertyName1, "doc", 100)
+                .withEndDomainEntity()
+                .withStartDomainEntity(entityName2)
+                .withMetaEdId(metaEdId2)
+                .withDocumentation("doc")
+                .withStringIdentity(propertyName2, "doc", 100)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_not_have_validation_failure()', () => {
+            helper.errorMessageCollection.ShouldBeEmpty();
+        });
+    });
+
+
+    describe('When_domain_entity_has_duplicate_metaEdId', () => {
+        const metaEdId: string = "100";
+        const entityName1: string = "MyIdentifier1";
+        let propertyName1: string = "Identifier1";
+        const entityName2: string = "MyIdentifier2";
+        let propertyName2: string = "Identifier2";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity(entityName1)
+                .withMetaEdId(metaEdId)
+                .withDocumentation("doc")
+                .withStringIdentity(propertyName1, "doc", 100)
+                .withEndDomainEntity()
+                .withStartDomainEntity(entityName2)
+                .withMetaEdId(metaEdId)
+                .withDocumentation("doc")
+                .withStringIdentity(propertyName2, "doc", 100)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.ShouldNotBeEmpty();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("MetaEdId");
+            helper.errorMessageCollection[0].Message.ShouldContain(metaEdId);
+            helper.errorMessageCollection[0].Message.ShouldContain("All MetaEdIds must be globally unique.");
+        });
+    });
+
+
+    describe('When_domain_entity_has_duplicate_metaEdId_with_property', () => {
+        const metaEdId: string = "100";
+        let entityName: string = "MyIdentifier";
+        let propertyName: string = "Identifier";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity(entityName)
+                .withMetaEdId(metaEdId)
+                .withDocumentation("doc")
+                .withStringIdentity(propertyName, "doc", 100, null, null, metaEdId)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.ShouldNotBeEmpty();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("MetaEdId");
+            helper.errorMessageCollection[0].Message.ShouldContain(metaEdId);
+            helper.errorMessageCollection[0].Message.ShouldContain("All MetaEdIds must be globally unique.");
+        });
+    });
+
+
+    describe('When_domain_entity_has_duplicate_metaEdId_with_property_on_different_entity', () => {
+        const metaEdId: string = "100";
+        const entityName1: string = "MyIdentifier1";
+        let propertyName1: string = "Identifier1";
+        const entityName2: string = "MyIdentifier2";
+        let propertyName2: string = "Identifier2";
+        let helper: ValidationTestHelper = new ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder.buildIt
+
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity(entityName1)
+                .withMetaEdId(metaEdId)
+                .withDocumentation("doc")
+                .withStringIdentity(propertyName1, "doc", 100)
+                .withEndDomainEntity()
+                .withStartDomainEntity(entityName2)
+                .withDocumentation("doc")
+                .withStringIdentity(propertyName2, "doc", 100, null, null, metaEdId)
+                .withEndDomainEntity()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.ShouldNotBeEmpty();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("MetaEdId");
+            helper.errorMessageCollection[0].Message.ShouldContain(metaEdId);
+            helper.errorMessageCollection[0].Message.ShouldContain("All MetaEdIds must be globally unique.");
+        });
+    });
+});

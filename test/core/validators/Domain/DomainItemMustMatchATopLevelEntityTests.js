@@ -1,201 +1,246 @@
-var MetaEd;
-(function (MetaEd) {
-    var Tests;
-    (function (Tests) {
-        var Validator;
-        (function (Validator) {
-            var Domain;
-            (function (Domain) {
-                class DomainItemMustMatchTopLevelEntityTests {
-                }
-                Domain.DomainItemMustMatchTopLevelEntityTests = DomainItemMustMatchTopLevelEntityTests;
-                (function (DomainItemMustMatchTopLevelEntityTests) {
-                    /*[TestFixture]*/
-                    class When_domain_item_is_domain_entity extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity(When_domain_item_is_domain_entity._entityName).WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndDomainEntity();
-                            metaEdTextBuilder.WithStartDomain("DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_is_domain_entity._entityName).WithEndDomain().WithStartSubdomain("SubdomainName", "DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_is_domain_entity._entityName).WithEndSubdomain().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DomainItemMustMatchTopLevelEntity(_symbolTable) });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    When_domain_item_is_domain_entity._entityName = "EntityName";
-                    DomainItemMustMatchTopLevelEntityTests.When_domain_item_is_domain_entity = When_domain_item_is_domain_entity;
-                })(DomainItemMustMatchTopLevelEntityTests = Domain.DomainItemMustMatchTopLevelEntityTests || (Domain.DomainItemMustMatchTopLevelEntityTests = {}));
-                (function (DomainItemMustMatchTopLevelEntityTests) {
-                    /*[TestFixture]*/
-                    class When_domain_item_is_domain_entity_subclass extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomainEntity("DomainEntityBase").WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndDomainEntity();
-                            metaEdTextBuilder.WithStartDomainEntitySubclass(When_domain_item_is_domain_entity_subclass._entityName, "DomainEntityBase").WithDocumentation("doc").WithDateProperty("BeginDate", "doc", true, false).WithEndDomainEntitySubclass();
-                            metaEdTextBuilder.WithStartDomain("DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_is_domain_entity_subclass._entityName).WithEndDomain().WithStartSubdomain("SubdomainName", "DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_is_domain_entity_subclass._entityName).WithEndSubdomain().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DomainItemMustMatchTopLevelEntity(_symbolTable) });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    When_domain_item_is_domain_entity_subclass._entityName = "EntityName";
-                    DomainItemMustMatchTopLevelEntityTests.When_domain_item_is_domain_entity_subclass = When_domain_item_is_domain_entity_subclass;
-                })(DomainItemMustMatchTopLevelEntityTests = Domain.DomainItemMustMatchTopLevelEntityTests || (Domain.DomainItemMustMatchTopLevelEntityTests = {}));
-                (function (DomainItemMustMatchTopLevelEntityTests) {
-                    /*[TestFixture]*/
-                    class When_domain_item_is_association extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAssociation(When_domain_item_is_association._entityName).WithDocumentation("doc").WithDomainEntityProperty("DomainEntity1", "doc").WithDomainEntityProperty("DomainEntity2", "doc").WithBooleanProperty("Property1", "because a property is required", true, false).WithEndAssociation();
-                            metaEdTextBuilder.WithStartDomain("DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_is_association._entityName).WithEndDomain().WithStartSubdomain("SubdomainName", "DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_is_association._entityName).WithEndSubdomain().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DomainItemMustMatchTopLevelEntity(_symbolTable) });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    When_domain_item_is_association._entityName = "MyIdentifier";
-                    DomainItemMustMatchTopLevelEntityTests.When_domain_item_is_association = When_domain_item_is_association;
-                })(DomainItemMustMatchTopLevelEntityTests = Domain.DomainItemMustMatchTopLevelEntityTests || (Domain.DomainItemMustMatchTopLevelEntityTests = {}));
-                (function (DomainItemMustMatchTopLevelEntityTests) {
-                    /*[TestFixture]*/
-                    class When_domain_item_is_association_subclass extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartAssociation("BaseName").WithDocumentation("doc").WithDomainEntityProperty("DomainEntity1", "doc").WithDomainEntityProperty("DomainEntity2", "doc").WithBooleanProperty("Property1", "doc", true, false).WithEndAssociation();
-                            metaEdTextBuilder.WithStartAssociationSubclass(When_domain_item_is_association_subclass._entityName, "BaseName").WithDocumentation("doc").WithBooleanProperty("Property2", "doc", true, false).WithEndAssociationSubclass();
-                            metaEdTextBuilder.WithStartDomain("DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_is_association_subclass._entityName).WithEndDomain().WithStartSubdomain("SubdomainName", "DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_is_association_subclass._entityName).WithEndSubdomain().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DomainItemMustMatchTopLevelEntity(_symbolTable) });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    When_domain_item_is_association_subclass._entityName = "MyIdentifier";
-                    DomainItemMustMatchTopLevelEntityTests.When_domain_item_is_association_subclass = When_domain_item_is_association_subclass;
-                })(DomainItemMustMatchTopLevelEntityTests = Domain.DomainItemMustMatchTopLevelEntityTests || (Domain.DomainItemMustMatchTopLevelEntityTests = {}));
-                (function (DomainItemMustMatchTopLevelEntityTests) {
-                    /*[TestFixture]*/
-                    class When_domain_item_is_common_type extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartCommonType(When_domain_item_is_common_type._entityName).WithDocumentation("doc").WithStringIdentity("RequirePrimaryKey", "doc", 100).WithEndDescriptor();
-                            metaEdTextBuilder.WithStartDomain("DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_is_common_type._entityName).WithEndDomain().WithStartSubdomain("SubdomainName", "DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_is_common_type._entityName).WithEndSubdomain().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DomainItemMustMatchTopLevelEntity(_symbolTable) });
-                        }
-                        should_have_no_validation_failures() {
-                            _errorMessageCollection.Count.ShouldEqual(0);
-                        }
-                    }
-                    When_domain_item_is_common_type._entityName = "MyIdentifier";
-                    DomainItemMustMatchTopLevelEntityTests.When_domain_item_is_common_type = When_domain_item_is_common_type;
-                })(DomainItemMustMatchTopLevelEntityTests = Domain.DomainItemMustMatchTopLevelEntityTests || (Domain.DomainItemMustMatchTopLevelEntityTests = {}));
-                (function (DomainItemMustMatchTopLevelEntityTests) {
-                    /*[TestFixture]*/
-                    class When_domain_item_under_domain_is_descriptor extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDescriptor(When_domain_item_under_domain_is_descriptor._entityName).WithDocumentation("doc").WithStartMapType().WithDocumentation("map type doc").WithEnumerationItem("this is short description 1", "doc1").WithEndMapType().WithEndDescriptor();
-                            metaEdTextBuilder.WithStartDomain("DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_under_domain_is_descriptor._entityName).WithEndDomain().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DomainItemMustMatchTopLevelEntity(_symbolTable) });
-                        }
-                        should_not_validate() {
-                            _errorMessageCollection.Any().ShouldBeTrue();
-                        }
-                    }
-                    When_domain_item_under_domain_is_descriptor._entityName = "MyIdentifier";
-                    DomainItemMustMatchTopLevelEntityTests.When_domain_item_under_domain_is_descriptor = When_domain_item_under_domain_is_descriptor;
-                })(DomainItemMustMatchTopLevelEntityTests = Domain.DomainItemMustMatchTopLevelEntityTests || (Domain.DomainItemMustMatchTopLevelEntityTests = {}));
-                (function (DomainItemMustMatchTopLevelEntityTests) {
-                    /*[TestFixture]*/
-                    class When_domain_item_under_subdomain_is_descriptor extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDescriptor(When_domain_item_under_subdomain_is_descriptor._entityName).WithDocumentation("doc").WithStartMapType().WithDocumentation("map type doc").WithEnumerationItem("this is short description 1", "doc1").WithEndMapType().WithEndDescriptor();
-                            metaEdTextBuilder.WithStartSubdomain("SubdomainName", "DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_under_subdomain_is_descriptor._entityName).WithEndSubdomain().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DomainItemMustMatchTopLevelEntity(_symbolTable) });
-                        }
-                        should_not_validate() {
-                            _errorMessageCollection.Any().ShouldBeTrue();
-                        }
-                    }
-                    When_domain_item_under_subdomain_is_descriptor._entityName = "MyIdentifier";
-                    DomainItemMustMatchTopLevelEntityTests.When_domain_item_under_subdomain_is_descriptor = When_domain_item_under_subdomain_is_descriptor;
-                })(DomainItemMustMatchTopLevelEntityTests = Domain.DomainItemMustMatchTopLevelEntityTests || (Domain.DomainItemMustMatchTopLevelEntityTests = {}));
-                (function (DomainItemMustMatchTopLevelEntityTests) {
-                    /*[TestFixture]*/
-                    class When_domain_item_under_domain_has_invalid_identifier extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartDomain("DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_under_domain_has_invalid_identifier._entityName).WithEndDomain().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DomainItemMustMatchTopLevelEntity(_symbolTable) });
-                        }
-                        should_have_validation_failure() {
-                            _errorMessageCollection.Any().ShouldBeTrue();
-                        }
-                        should_have_validation_failure_message() {
-                            _errorMessageCollection[0].Message.ShouldContain("Domain item");
-                            _errorMessageCollection[0].Message.ShouldContain(When_domain_item_under_domain_has_invalid_identifier._entityName);
-                            _errorMessageCollection[0].Message.ShouldContain("Domain");
-                            _errorMessageCollection[0].Message.ShouldContain("DomainName");
-                            _errorMessageCollection[0].Message.ShouldContain("does not match");
-                        }
-                    }
-                    When_domain_item_under_domain_has_invalid_identifier._entityName = "MyIdentifier";
-                    DomainItemMustMatchTopLevelEntityTests.When_domain_item_under_domain_has_invalid_identifier = When_domain_item_under_domain_has_invalid_identifier;
-                })(DomainItemMustMatchTopLevelEntityTests = Domain.DomainItemMustMatchTopLevelEntityTests || (Domain.DomainItemMustMatchTopLevelEntityTests = {}));
-                (function (DomainItemMustMatchTopLevelEntityTests) {
-                    /*[TestFixture]*/
-                    class When_domain_item_under_subdomain_has_invalid_identifier extends Validator.ValidationRuleTestBase {
-                        metaEdText() {
-                            var metaEdTextBuilder = new MetaEdTextBuilder();
-                            metaEdTextBuilder.WithBeginNamespace("edfi").WithStartSubdomain("SubdomainName", "DomainName").WithDocumentation("doc").WithDomainItem(When_domain_item_under_subdomain_has_invalid_identifier._entityName).WithEndSubdomain().WithEndNamespace();
-                            return metaEdTextBuilder;
-                        }
-                        getRuleProvider() {
-                            return __init(new TestRuleProvider(), { SuppliedRule: new DomainItemMustMatchTopLevelEntity(_symbolTable) });
-                        }
-                        should_have_validation_failure() {
-                            _errorMessageCollection.Any().ShouldBeTrue();
-                        }
-                        should_have_validation_failure_message() {
-                            _errorMessageCollection[0].Message.ShouldContain("Domain item");
-                            _errorMessageCollection[0].Message.ShouldContain(When_domain_item_under_subdomain_has_invalid_identifier._entityName);
-                            _errorMessageCollection[0].Message.ShouldContain("Subdomain");
-                            _errorMessageCollection[0].Message.ShouldContain("SubdomainName");
-                            _errorMessageCollection[0].Message.ShouldContain("does not match");
-                        }
-                    }
-                    When_domain_item_under_subdomain_has_invalid_identifier._entityName = "MyIdentifier";
-                    DomainItemMustMatchTopLevelEntityTests.When_domain_item_under_subdomain_has_invalid_identifier = When_domain_item_under_subdomain_has_invalid_identifier;
-                })(DomainItemMustMatchTopLevelEntityTests = Domain.DomainItemMustMatchTopLevelEntityTests || (Domain.DomainItemMustMatchTopLevelEntityTests = {}));
-            })(Domain = Validator.Domain || (Validator.Domain = {}));
-        })(Validator = Tests.Validator || (Tests.Validator = {}));
-    })(Tests = MetaEd.Tests || (MetaEd.Tests = {}));
-})(MetaEd || (MetaEd = {}));
+"use strict";
+/// <reference path="../../../../typings/index.d.ts" />
+const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
+const chai = require('chai');
+const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
+const TestRuleProvider_1 = require("../TestRuleProvider");
+const DomainItemMustMatchTopLevelEntity_1 = require("../../../../src/core/validators/Domain/DomainItemMustMatchTopLevelEntity");
+let should = chai.should();
+describe('DomainItemMustMatchTopLevelEntityTests', () => {
+    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new DomainItemMustMatchTopLevelEntity_1.DomainItemMustMatchTopLevelEntity(asdf)));
+    describe('When_domain_item_is_domain_entity', () => {
+        let entityName = "EntityName";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity(entityName)
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndDomainEntity()
+                .withStartDomain("DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndDomain()
+                .withStartSubdomain("SubdomainName", "DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndSubdomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_domain_item_is_domain_entity_subclass', () => {
+        let entityName = "EntityName";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartDomainEntity("DomainEntityBase")
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndDomainEntity()
+                .withStartDomainEntitySubclass(entityName, "DomainEntityBase")
+                .withDocumentation("doc")
+                .withDateProperty("BeginDate", "doc", true, false)
+                .withEndDomainEntitySubclass()
+                .withStartDomain("DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndDomain()
+                .withStartSubdomain("SubdomainName", "DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndSubdomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_domain_item_is_association', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAssociation(entityName)
+                .withDocumentation("doc")
+                .withDomainEntityProperty("DomainEntity1", "doc")
+                .withDomainEntityProperty("DomainEntity2", "doc")
+                .withBooleanProperty("Property1", "because a property is required", true, false)
+                .withEndAssociation()
+                .withStartDomain("DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndDomain()
+                .withStartSubdomain("SubdomainName", "DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndSubdomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_domain_item_is_association_subclass', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartAssociation("BaseName")
+                .withDocumentation("doc")
+                .withDomainEntityProperty("DomainEntity1", "doc")
+                .withDomainEntityProperty("DomainEntity2", "doc")
+                .withBooleanProperty("Property1", "doc", true, false)
+                .withEndAssociation()
+                .withStartAssociationSubclass(entityName, "BaseName")
+                .withDocumentation("doc")
+                .withBooleanProperty("Property2", "doc", true, false)
+                .withEndAssociationSubclass()
+                .withStartDomain("DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndDomain()
+                .withStartSubdomain("SubdomainName", "DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndSubdomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_domain_item_is_common_type', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartCommonType(entityName)
+                .withDocumentation("doc")
+                .withStringIdentity("RequirePrimaryKey", "doc", 100)
+                .withEndDescriptor()
+                .withStartDomain("DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndDomain()
+                .withStartSubdomain("SubdomainName", "DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndSubdomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_no_validation_failures()', () => {
+            helper.errorMessageCollection.Count.ShouldEqual(0);
+        });
+    });
+    describe('When_domain_item_under_domain_is_descriptor', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartDescriptor(entityName)
+                .withDocumentation("doc")
+                .withStartMapType()
+                .withDocumentation("map type doc")
+                .withEnumerationItem("this is short description 1", "doc1")
+                .withEndMapType()
+                .withEndDescriptor()
+                .withStartDomain("DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndDomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_not_validate()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+    });
+    describe('When_domain_item_under_subdomain_is_descriptor', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartDescriptor(entityName)
+                .withDocumentation("doc")
+                .withStartMapType()
+                .withDocumentation("map type doc")
+                .withEnumerationItem("this is short description 1", "doc1")
+                .withEndMapType()
+                .withEndDescriptor()
+                .withStartSubdomain("SubdomainName", "DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndSubdomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_not_validate()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+    });
+    describe('When_domain_item_under_domain_has_invalid_identifier', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartDomain("DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndDomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Domain item");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("Domain");
+            helper.errorMessageCollection[0].Message.ShouldContain("DomainName");
+            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+        });
+    });
+    describe('When_domain_item_under_subdomain_has_invalid_identifier', () => {
+        let entityName = "MyIdentifier";
+        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        before(() => {
+            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+                .withBeginNamespace("edfi")
+                .withStartSubdomain("SubdomainName", "DomainName")
+                .withDocumentation("doc")
+                .withDomainItem(entityName)
+                .withEndSubdomain()
+                .withEndNamespace();
+            helper.setup(metaEdText, validatorListener);
+        });
+        it('should_have_validation_failure()', () => {
+            helper.errorMessageCollection.Any().ShouldBeTrue();
+        });
+        it('should_have_validation_failure_message()', () => {
+            helper.errorMessageCollection[0].Message.ShouldContain("Domain item");
+            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+            helper.errorMessageCollection[0].Message.ShouldContain("Subdomain");
+            helper.errorMessageCollection[0].Message.ShouldContain("SubdomainName");
+            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+        });
+    });
+});
 //# sourceMappingURL=DomainItemMustMatchATopLevelEntityTests.js.map
