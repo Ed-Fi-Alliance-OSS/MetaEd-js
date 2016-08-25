@@ -7,6 +7,6 @@ export class AssociationExtensionExistsOnlyInExtensionNamespace extends Validati
     }
     public getFailureMessage(context: MetaEdGrammar.AssociationExtensionContext): string {
         var namespaceInfo = context.GetAncestorContext<INamespaceInfo>();
-        return string.Format("Association additions '{0}' is not valid in core namespace '{1}'.", context.extendeeName().GetText(), namespaceInfo.NamespaceName);
+        return `Association additions '${context.extendeeName().GetText()}' is not valid in core namespace '${namespaceInfo.NamespaceName}`;
     }
 }

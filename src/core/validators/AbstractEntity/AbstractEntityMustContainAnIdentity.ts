@@ -6,6 +6,6 @@ export class AbstractEntityMustContainAnIdentity extends ValidationRuleBase<Meta
     }
 
     public getFailureMessage(context) : string {
-        return `Abstract Entity {context.abstractEntityName().ID().getText()} does not have an identity specified.`;
+        return `Abstract Entity ${context.abstractEntityName().ID().getText()} does not have an identity specified.`;
     }
 }

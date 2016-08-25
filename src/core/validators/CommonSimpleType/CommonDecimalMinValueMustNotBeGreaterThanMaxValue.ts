@@ -9,6 +9,6 @@ export class CommonDecimalMinValueMustNotBeGreaterThanMaxValue extends Validatio
         return Convert.ToDecimal(minValue) <= Convert.ToDecimal(maxValue);
     }
     public getFailureMessage(context: MetaEdGrammar.CommonDecimalContext): string {
-        return string.Format("Common Decimal '{0}' has min value greater than max value.", context.commonDecimalName().GetText());
+        return `Common Decimal '${context.commonDecimalName().GetText()}' has min value greater than max value.`;
     }
 }

@@ -15,7 +15,7 @@ class AssociationMustNotDuplicateDomainEntityNames extends ValidationRuleBase_1.
     getFailureMessage(context) {
         var identifier = context.associationName().GetText();
         var firstDomainEntityName = context.firstDomainEntity().IdText();
-        return string.Format("Association '{0}' has duplicate declarations of Domain Entity '{1}'.", identifier, firstDomainEntityName);
+        return `Association '${identifier}' has duplicate declarations of Domain Entity '${firstDomainEntityName}'`;
     }
 }
 exports.AssociationMustNotDuplicateDomainEntityNames = AssociationMustNotDuplicateDomainEntityNames;

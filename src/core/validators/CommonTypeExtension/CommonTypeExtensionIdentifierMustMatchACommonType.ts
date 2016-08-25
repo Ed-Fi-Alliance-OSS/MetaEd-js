@@ -11,6 +11,6 @@ export class CommonTypeExtensionIdentifierMustMatchACommonType extends Validatio
         return this._symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
     }
     public getFailureMessage(context: MetaEdGrammar.CommonTypeExtensionContext): string {
-        return string.Format("Common Type additions '{0}' does not match any declared Common Type.", context.extendeeName().GetText());
+        return `Common Type additions '${context.extendeeName().GetText()}' does not match any declared Common Type.`;
     }
 }

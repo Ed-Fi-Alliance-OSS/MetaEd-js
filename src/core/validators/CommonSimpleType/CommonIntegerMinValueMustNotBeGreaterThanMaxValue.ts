@@ -9,6 +9,6 @@ export class CommonIntegerMinValueMustNotBeGreaterThanMaxValue extends Validatio
         return minValue <= maxValue;
     }
     public getFailureMessage(context: MetaEdGrammar.CommonIntegerContext): string {
-        return string.Format("Common Integer '{0}' has min value greater than max value.", context.commonIntegerName().GetText());
+        return `Common Integer '${context.commonIntegerName().GetText()}' has min value greater than max value.`;
     }
 }

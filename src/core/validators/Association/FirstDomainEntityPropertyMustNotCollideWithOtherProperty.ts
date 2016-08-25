@@ -16,6 +16,6 @@ export class FirstDomainEntityPropertyMustNotCollideWithOtherProperty extends Va
     }
     public getFailureMessage(context: MetaEdGrammar.FirstDomainEntityContext): string {
         var associationName = (<MetaEdGrammar.AssociationContext>context.parent).associationName().IdText();
-        return string.Format("Entity {0} has duplicate properties named {1}", associationName, context.IdText());
+        return `Entity ${associationName} has duplicate properties named ${context.IdText()}`;
     }
 }

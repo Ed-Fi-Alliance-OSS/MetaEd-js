@@ -10,6 +10,6 @@ export class AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSu
         return this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.AssociationExtensionContext): string {
-        return string.Format("Association additions '{0}' does not match any declared Association or subclass.", context.extendeeName().GetText());
+        return `Association additions '${context.extendeeName().GetText()}' does not match any declared Association or subclass.`;
     }
 }

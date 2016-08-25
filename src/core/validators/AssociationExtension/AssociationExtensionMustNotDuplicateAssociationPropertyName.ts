@@ -10,7 +10,7 @@ export class AssociationExtensionMustNotDuplicateAssociationPropertyName extends
     }
     public getFailureMessage(context: MetaEdGrammar.AssociationExtensionContext): string {
         var duplicatePropertyIdentifierList = PropertyRuleContextsForDuplicates(context).Select(x => x.IdNode().GetText());
-        return string.Format("Association additions '{0}' declares '{1}' already in property list of Association.", context.extendeeName().GetText(), string.Join(",", duplicatePropertyIdentifierList));
+        return `Association additions '${context.extendeeName().GetText()}' declares '${string.Join(",", duplicatePropertyIdentifierList)}' already in property list of Association.`;
     }
     protected propertyRuleContextsForDuplicates(context: MetaEdGrammar.AssociationExtensionContext): IEnumerable<IPropertyWithComponents> {
         var entityType = context.ASSOCIATION().GetText();

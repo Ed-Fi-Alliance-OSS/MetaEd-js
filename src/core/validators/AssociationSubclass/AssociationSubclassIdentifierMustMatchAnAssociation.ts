@@ -11,6 +11,6 @@ export class AssociationSubclassIdentifierMustMatchAnAssociation extends Validat
         return this._symbolTable.IdentifiersForEntityType(associationEntityType).Any(x => x.Equals(basedOnName));
     }
     public getFailureMessage(context: MetaEdGrammar.AssociationSubclassContext): string {
-        return string.Format("Association '{0}' based on '{1}' does not match any declared Association.", context.associationName().GetText(), context.baseName().GetText());
+        return `Association '${context.associationName().GetText()}' based on '${context.baseName().GetText()}' does not match any declared Association.`;
     }
 }

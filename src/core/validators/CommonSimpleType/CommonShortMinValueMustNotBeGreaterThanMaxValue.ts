@@ -9,6 +9,6 @@ export class CommonShortMinValueMustNotBeGreaterThanMaxValue extends ValidationR
         return minValue <= maxValue;
     }
     public getFailureMessage(context: MetaEdGrammar.CommonShortContext): string {
-        return string.Format("Common Short '{0}' has min value greater than max value.", context.commonShortName().GetText());
+        return `Common Short '${context.commonShortName().GetText()}' has min value greater than max value.`;
     }
 }

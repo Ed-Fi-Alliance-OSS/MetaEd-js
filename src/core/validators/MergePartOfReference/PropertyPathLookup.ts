@@ -1,5 +1,5 @@
 //TODO: This file didn't auto convert
-
+export class PropertyPathLookup {}
 //using System;
 //using System.Linq;
 //using MetaEd.Grammar.Antlr;

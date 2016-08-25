@@ -25,6 +25,6 @@ export class AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseCla
         var baseIdentifier = context.baseName().GetText();
         var identityRenames = context.property().Where(x => x.GetProperty().propertyComponents().propertyAnnotation().identityRename() != null).Select(y => y.GetProperty().propertyComponents().propertyAnnotation().identityRename());
         var basePropertyIdentifier = identityRenames.First().baseKeyName().GetText();
-        return string.Format("Association '{0}' based on '{1}' tries to rename {2} which is not part of the identity.", identifier, baseIdentifier, basePropertyIdentifier);
+        return `Association '${identifier}' based on '${baseIdentifier}' tries to rename ${basePropertyIdentifier} which is not part of the identity.`;
     }
 }
