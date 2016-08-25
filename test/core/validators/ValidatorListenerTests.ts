@@ -1,16 +1,16 @@
-﻿/// <reference path="../../../../typings/index.d.ts" />
+﻿/// <reference path="../../../typings/index.d.ts" />
 import chai = require('chai');
 import {ValidationTestHelper} from "./ValidationTestHelper";
 import {ValidatorListener} from "../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "./TestRuleProvider";
-import NullSymbolTableBuilderListener from "../../common/NullSymbolTableBuilderListener"
+import {TestDomainEntityContextValidation} from "./TestDomainEntityContextValidation"
 
 let should = chai.should();
 
 //TODO: this needs to be revisited.
 
 describe('ValidatorListenerTests', () => {
-    let validatorListener = new NullSymbolTableBuilderListener();
+    let validatorListener = new ValidatorListener(new TestRuleProvider<MetaEdGrammar.PropertyContext>(new TestDomainEntityContextValidation()));
 
     describe('When_validating_meta_ed_grammar', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();

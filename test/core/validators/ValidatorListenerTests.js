@@ -1,10 +1,14 @@
 "use strict";
-/// <reference path="../../../../typings/index.d.ts" />
+/// <reference path="../../../typings/index.d.ts" />
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidationTestHelper_1 = require("./ValidationTestHelper");
+const ValidatorListener_1 = require("../../../src/core/validators/ValidatorListener");
+const TestRuleProvider_1 = require("./TestRuleProvider");
+const TestDomainEntityContextValidation_1 = require("./TestDomainEntityContextValidation");
 let should = chai.should();
+//TODO: this needs to be revisited.
 describe('ValidatorListenerTests', () => {
-    let validatorListener = new ValidatorListener(new TestRuleProvider(new TestDomainEntityContextValidation()));
+    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new TestDomainEntityContextValidation_1.TestDomainEntityContextValidation()));
     describe('When_validating_meta_ed_grammar', () => {
         let helper = new ValidationTestHelper_1.ValidationTestHelper();
         before(() => {
@@ -12,7 +16,7 @@ describe('ValidatorListenerTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_fail_for_each_domain_entity', () => {
-            helper.errorMessageCollection.Count.ShouldEqual(4);
+            helper.errorMessageCollection.count.ShouldEqual(4);
         });
         it('should_set_line_numbers_for_each_validation', () => {
             helper.errorMessageCollection[0].ConcatenatedLineNumber.ShouldEqual(4);
@@ -27,13 +31,5 @@ describe('ValidatorListenerTests', () => {
             helper.errorMessageCollection[3].CharacterPosition.ShouldEqual(4);
         });
     });
-    describe('TestDomainEntityContextValidation extends ValidationRuleBase<MetaEdGrammar.PropertyContext>, {
-        it() { }, 'isValid(context: MetaEdGrammar.PropertyContext): boolean {: ,
-        return: false
-    });
-    it('getFailureMessage(context: MetaEdGrammar.PropertyContext): string {);
-    return "Property is a validation.";
 });
-;
-;
 //# sourceMappingURL=ValidatorListenerTests.js.map
