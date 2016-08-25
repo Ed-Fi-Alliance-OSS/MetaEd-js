@@ -7,6 +7,6 @@ export class InlineCommonTypeExistsOnlyInCoreNamespace extends ValidationRuleBas
     }
     public getFailureMessage(context: MetaEdGrammar.InlineCommonTypeContext): string {
         var namespaceInfo = context.GetAncestorContext<INamespaceInfo>();
-        return string.Format("Inline Common Type '{0}' is not valid in extension namespace '{1}'.", context.EntityName(), namespaceInfo.NamespaceName);
+        return `Inline Common Type '${ context.EntityName()}' is not valid in extension namespace '${namespaceInfo.NamespaceName}'.", );
     }
 }

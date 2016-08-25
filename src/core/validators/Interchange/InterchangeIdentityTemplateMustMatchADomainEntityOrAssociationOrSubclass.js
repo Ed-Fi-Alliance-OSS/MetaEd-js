@@ -9,7 +9,7 @@ class InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass e
         return this._symbolTable.IdentifierExists(SymbolTableEntityType.AbstractEntityEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntityEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntitySubclassEntityType(), identifierToMatch);
     }
     getFailureMessage(context) {
-        return string.Format("Interchange identity template '{0}' does not match any declared domain entity or subclass, association or subclass, or abstract entity.", context.IdText());
+        return `Interchange identity template '${context.IdText()}' does not match any declared domain entity or subclass, association or subclass, or abstract entity.`;
     }
 }
 exports.InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass = InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass;

@@ -9,12 +9,12 @@ class InterchangeExtensionMustNotDuplicateIdentityTemplateName extends Validatio
         return identityTemplates.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
     }
     isValid(context) {
-        return !DuplicateIdentityTemplates(context).Any();
+        return InterchangeExtensionMustNotDuplicateIdentityTemplateName.duplicateIdentityTemplates(context).length == 0;
     }
     getFailureMessage(context) {
         var identifier = context.extendeeName().GetText();
-        var duplicateIdentityTemplates = DuplicateIdentityTemplates(context);
-        return string.Format("Interchange additions '{0}' declares duplicate identity template{2} '{1}'.", identifier, string.Join("', '", duplicateIdentityTemplates), duplicateIdentityTemplates.Count() > 1 ? "s" : string.Empty);
+        var duplicateIdentityTemplates = InterchangeExtensionMustNotDuplicateIdentityTemplateName.duplicateIdentityTemplates(context);
+        return `Interchange additions '${identifier}' declares duplicate identity template${duplicateIdentityTemplates.length > 1 ? "s" : ""} '${duplicateIdentityTemplates.join(', ')}'`;
     }
 }
 exports.InterchangeExtensionMustNotDuplicateIdentityTemplateName = InterchangeExtensionMustNotDuplicateIdentityTemplateName;

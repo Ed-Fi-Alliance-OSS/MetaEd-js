@@ -6,12 +6,12 @@ class SubdomainMustNotDuplicateDomainItems extends ValidationRuleBase_1.Validati
         return domainItemNames.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
     }
     isValid(context) {
-        return !GetDuplicateDomainItems(context).Any();
+        return SubdomainMustNotDuplicateDomainItems.getDuplicateDomainItems(context).length == 0;
     }
     getFailureMessage(context) {
         var identifier = context.EntityName();
-        var duplicateDomainItems = GetDuplicateDomainItems(context);
-        return string.Format("Subdomain '{0}' declares duplicate domain item{2} '{1}'.", identifier, string.Join("', '", duplicateDomainItems), duplicateDomainItems.Count() > 1 ? "s" : string.Empty);
+        var duplicateDomainItems = SubdomainMustNotDuplicateDomainItems.getDuplicateDomainItems(context);
+        return `Subdomain '${identifier}' declares duplicate domain item${duplicateDomainItems.length > 1 ? "s" : ""} '${duplicateDomainItems.join(', ')}'.`;
     }
 }
 exports.SubdomainMustNotDuplicateDomainItems = SubdomainMustNotDuplicateDomainItems;

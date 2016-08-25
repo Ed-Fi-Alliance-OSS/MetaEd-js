@@ -10,11 +10,11 @@ export class InterchangeMustNotDuplicateIdentityTemplateName extends ValidationR
         return identityTemplates.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
     }
     public isValid(context: MetaEdGrammar.InterchangeContext): boolean {
-        return !DuplicateIdentityTemplates(context).Any();
+        return InterchangeMustNotDuplicateIdentityTemplateName.duplicateIdentityTemplates(context).length == 0;
     }
     public getFailureMessage(context: MetaEdGrammar.InterchangeContext): string {
         var identifier = context.interchangeName().GetText();
-        var duplicateIdentityTemplates = DuplicateIdentityTemplates(context);
-        return string.Format("Interchange '{0}' declares duplicate identity template{2} '{1}'.", identifier, string.Join("', '", duplicateIdentityTemplates), duplicateIdentityTemplates.Count() > 1 ? "s" : string.Empty);
+        var duplicateIdentityTemplates = InterchangeMustNotDuplicateIdentityTemplateName.duplicateIdentityTemplates(context);
+        return `Interchange '${identifier}' declares duplicate identity template${duplicateIdentityTemplates.length > 1 ? "s" : ""} '${duplicateIdentityTemplates.join(', ')}'.`; 
     }
 }

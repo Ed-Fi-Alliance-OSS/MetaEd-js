@@ -10,7 +10,10 @@ class SharedIntegerPropertyTypeMustMatchACommonSimpleInteger extends ValidationR
         return this._symbolTable.IdentifierExists(commonIntegerType, identifierToMatch);
     }
     getFailureMessage(context) {
-        return string.Format("Shared property '{0}' does not match any declared common integer.", context.propertyName().GetText());
+        return `Shared property '${context.propertyName().GetText()}' does not match any declared common integer.", );
+    }
+}
+;
     }
 }
 exports.SharedIntegerPropertyTypeMustMatchACommonSimpleInteger = SharedIntegerPropertyTypeMustMatchACommonSimpleInteger;

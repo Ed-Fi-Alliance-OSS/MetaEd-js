@@ -13,7 +13,7 @@ export class MergePropertyPathMustExist extends ValidationRuleBase<MetaEdGrammar
         return this._propertyPathLookup.Validate(entityContext, propertyPathParts, PropertyPathLookup.MatchAllButFirstAsIdentityProperties());
     }
     public getFailureMessage(context: MetaEdGrammar.MergePropertyPathContext): string {
-        return string.Format("Path {0} is not valid.", context.GetText());
+        return `Path ${context.GetText()} is not valid.`;
     }
     private lookupParentEntityContext(context: MetaEdGrammar.MergePropertyPathContext): EntityContext {
         var definingEntityContext = context.parent.parent.parent.parent;

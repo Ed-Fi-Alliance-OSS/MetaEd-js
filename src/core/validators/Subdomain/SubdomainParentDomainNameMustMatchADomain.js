@@ -10,7 +10,7 @@ class SubdomainParentDomainNameMustMatchADomain extends ValidationRuleBase_1.Val
         return this._symbolTable.IdentifierExists(domainType, parentDomainName);
     }
     getFailureMessage(context) {
-        return string.Format("Subdomain '{0}' is part of '{1}' which does not match any declared domain.", context.EntityName(), context.parentDomainName().IdText());
+        return `Subdomain '${context.EntityName()}' is part of '${context.parentDomainName().IdText()}' which does not match any declared domain.`;
     }
 }
 exports.SubdomainParentDomainNameMustMatchADomain = SubdomainParentDomainNameMustMatchADomain;

@@ -10,11 +10,11 @@ export class InterchangeMustNotDuplicateInterchangeElementName extends Validatio
         return interchangeElements.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
     }
     public isValid(context: MetaEdGrammar.InterchangeContext): boolean {
-        return !DuplicateInterchangeElements(context).Any();
+        return InterchangeMustNotDuplicateInterchangeElementName.duplicateInterchangeElements(context).length == 0;
     }
     public getFailureMessage(context: MetaEdGrammar.InterchangeContext): string {
         var identifier = context.interchangeName().GetText();
-        var duplicateInterchangeElements = DuplicateInterchangeElements(context);
-        return string.Format("Interchange '{0}' declares duplicate interchange element{2} '{1}'.", identifier, string.Join("', '", duplicateInterchangeElements), duplicateInterchangeElements.Count() > 1 ? "s" : string.Empty);
+        var duplicateInterchangeElements = InterchangeMustNotDuplicateInterchangeElementName.duplicateInterchangeElements(context);
+        return `Interchange '${identifier}' declares duplicate interchange element${duplicateInterchangeElements.length > 1 ? "s" : ""} '${duplicateInterchangeElements.join(', ')}'.`;
     }
 }

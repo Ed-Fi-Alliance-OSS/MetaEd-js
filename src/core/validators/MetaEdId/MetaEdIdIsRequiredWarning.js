@@ -4,16 +4,16 @@ class MetaEdIdIsRequiredWarning {
         return ValidationLevel.Warning;
     }
     isValid(context) {
-        return context != null && !string.IsNullOrWhiteSpace(context.GetValue());
+        return context != null && context.GetValue() != "";
     }
     getEntityFailureMessage(entityIdentifier, entityName) {
-        return string.Format("{0} '{1}' is missing MetaEdId value.", entityIdentifier, entityName);
+        return `${entityIdentifier} '${entityName}' is missing MetaEdId value.`;
     }
     getPropertyFailureMessage(entityIdentifier, entityName, propertyIdentifier, propertyName) {
-        return string.Format("{0} '{1}' on {2} '{3}' is missing MetaEdId value.", propertyIdentifier, propertyName, entityIdentifier, entityName);
+        return `${propertyIdentifier} '${propertyName}' on ${entityIdentifier} '${entityName}' is missing MetaEdId value.`;
     }
     getItemFailureMessage(entityIdentifier, entityName, itemName) {
-        return string.Format("Enumeration Item '{0}' on {1} '{2} is missing MetaEdId value.", itemName, entityIdentifier, entityName);
+        return `Enumeration Item '${itemName}' on ${entityIdentifier} '${entityName} is missing MetaEdId value.`;
     }
     isValid(context) {
         return IsValid(context.metaEdId());

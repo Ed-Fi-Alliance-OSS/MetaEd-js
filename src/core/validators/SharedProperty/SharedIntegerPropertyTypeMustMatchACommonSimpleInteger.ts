@@ -11,6 +11,6 @@ export class SharedIntegerPropertyTypeMustMatchACommonSimpleInteger extends Vali
         return this._symbolTable.IdentifierExists(commonIntegerType, identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.SharedIntegerPropertyContext): string {
-        return string.Format("Shared property '{0}' does not match any declared common integer.", context.propertyName().GetText());
+        return `Shared property '${context.propertyName().GetText()}' does not match any declared common integer.", );
     }
 }

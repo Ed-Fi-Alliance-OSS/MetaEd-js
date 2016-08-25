@@ -10,7 +10,7 @@ class SharedShortPropertyTypeMustMatchACommonSimpleShort extends ValidationRuleB
         return this._symbolTable.IdentifierExists(commonShortType, identifierToMatch);
     }
     getFailureMessage(context) {
-        return string.Format("Shared property '{0}' does not match any declared common short.", context.propertyName().GetText());
+        return `Shared property '${context.propertyName().GetText()}' does not match any declared common short.`;
     }
 }
 exports.SharedShortPropertyTypeMustMatchACommonSimpleShort = SharedShortPropertyTypeMustMatchACommonSimpleShort;

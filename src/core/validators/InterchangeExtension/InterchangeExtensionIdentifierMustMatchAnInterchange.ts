@@ -11,6 +11,6 @@ export class InterchangeExtensionIdentifierMustMatchAnInterchange extends Valida
         return this._symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
     }
     public getFailureMessage(context: MetaEdGrammar.InterchangeExtensionContext): string {
-        return string.Format("Interchange additions '{0}' does not match any declared Interchange.", context.extendeeName().GetText());
+        return `Interchange additions '${context.extendeeName().GetText()}' does not match any declared Interchange.`;
     }
 }

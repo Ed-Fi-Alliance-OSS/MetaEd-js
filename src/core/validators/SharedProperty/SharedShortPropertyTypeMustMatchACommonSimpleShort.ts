@@ -11,6 +11,6 @@ export class SharedShortPropertyTypeMustMatchACommonSimpleShort extends Validati
         return this._symbolTable.IdentifierExists(commonShortType, identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.SharedShortPropertyContext): string {
-        return string.Format("Shared property '{0}' does not match any declared common short.", context.propertyName().GetText());
+        return `Shared property '${context.propertyName().GetText()}' does not match any declared common short.`;
     }
 }

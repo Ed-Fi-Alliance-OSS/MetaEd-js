@@ -11,7 +11,7 @@ class MergePropertyPathMustExist extends ValidationRuleBase_1.ValidationRuleBase
         return this._propertyPathLookup.Validate(entityContext, propertyPathParts, PropertyPathLookup.MatchAllButFirstAsIdentityProperties());
     }
     getFailureMessage(context) {
-        return string.Format("Path {0} is not valid.", context.GetText());
+        return `Path ${context.GetText()} is not valid.`;
     }
     lookupParentEntityContext(context) {
         var definingEntityContext = context.parent.parent.parent.parent;

@@ -7,7 +7,10 @@ class InlineCommonTypeExistsOnlyInCoreNamespace extends ValidationRuleBase_1.Val
     }
     getFailureMessage(context) {
         var namespaceInfo = context.GetAncestorContext();
-        return string.Format("Inline Common Type '{0}' is not valid in extension namespace '{1}'.", context.EntityName(), namespaceInfo.NamespaceName);
+        return `Inline Common Type '${context.EntityName()}' is not valid in extension namespace '${namespaceInfo.NamespaceName}'.", );
+    }
+}
+;
     }
 }
 exports.InlineCommonTypeExistsOnlyInCoreNamespace = InlineCommonTypeExistsOnlyInCoreNamespace;

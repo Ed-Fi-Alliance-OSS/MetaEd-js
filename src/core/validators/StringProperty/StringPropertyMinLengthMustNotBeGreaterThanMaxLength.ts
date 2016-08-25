@@ -4,12 +4,11 @@ export class StringPropertyMinLengthMustNotBeGreaterThanMaxLength extends Valida
     public isValid(context: MetaEdGrammar.StringPropertyContext): boolean {
         if (context.minLength() == null)
             return true;
-        var minLength = Convert.ToInt32(context.minLength().MinLength());
-        var maxLength = Convert.ToInt32(context.maxLength().MaxLength());
+        var minLength = Number(context.minLength().MinLength());
+        var maxLength = Number(context.maxLength().MaxLength());
         return minLength <= maxLength;
     }
     public getFailureMessage(context: MetaEdGrammar.StringPropertyContext): string {
-        return string.Format("String Property '{0}' in {1} '{2}' has min length greater than max length.",
-            context.propertyName().GetText(), context.ParentTypeName(), context.ParentIdentifier());
+        return `String Property '${context.propertyName().GetText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min length greater than max length.`
     }
 }

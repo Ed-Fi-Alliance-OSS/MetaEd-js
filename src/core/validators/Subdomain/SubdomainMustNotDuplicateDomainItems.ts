@@ -7,11 +7,11 @@ export class SubdomainMustNotDuplicateDomainItems extends ValidationRuleBase<Met
         return domainItemNames.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
     }
     public isValid(context: MetaEdGrammar.SubdomainContext): boolean {
-        return !GetDuplicateDomainItems(context).Any();
+        return SubdomainMustNotDuplicateDomainItems.getDuplicateDomainItems(context).length == 0;
     }
     public getFailureMessage(context: MetaEdGrammar.SubdomainContext): string {
         var identifier = context.EntityName();
-        var duplicateDomainItems = GetDuplicateDomainItems(context);
-        return string.Format("Subdomain '{0}' declares duplicate domain item{2} '{1}'.", identifier, string.Join("', '", duplicateDomainItems), duplicateDomainItems.Count() > 1 ? "s" : string.Empty);
+        var duplicateDomainItems = SubdomainMustNotDuplicateDomainItems.getDuplicateDomainItems(context);
+        return `Subdomain '${identifier}' declares duplicate domain item${duplicateDomainItems.length > 1 ? "s" : ""} '${duplicateDomainItems.join(', ')}'.`;
     }
 }

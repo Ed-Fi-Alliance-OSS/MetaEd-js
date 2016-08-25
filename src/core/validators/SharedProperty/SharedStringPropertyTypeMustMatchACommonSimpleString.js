@@ -10,7 +10,7 @@ class SharedStringPropertyTypeMustMatchACommonSimpleString extends ValidationRul
         return this._symbolTable.IdentifierExists(commonStringType, identifierToMatch);
     }
     getFailureMessage(context) {
-        return string.Format("Shared property '{0}' does not match any declared common string.", context.propertyName().GetText());
+        return `Shared property '${context.propertyName().GetText()}' does not match any declared common string.`;
     }
 }
 exports.SharedStringPropertyTypeMustMatchACommonSimpleString = SharedStringPropertyTypeMustMatchACommonSimpleString;

@@ -11,6 +11,6 @@ export class SharedStringPropertyTypeMustMatchACommonSimpleString extends Valida
         return this._symbolTable.IdentifierExists(commonStringType, identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.SharedStringPropertyContext): string {
-        return string.Format("Shared property '{0}' does not match any declared common string.", context.propertyName().GetText());
+        return `Shared property '${context.propertyName().GetText()}' does not match any declared common string.`;
     }
 }

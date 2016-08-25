@@ -4,12 +4,12 @@ class IntegerPropertyMinValueMustNotBeGreaterThanMaxValue extends ValidationRule
     isValid(context) {
         if (context.minValue() == null || context.maxValue() == null)
             return true;
-        var minValue = Convert.ToInt32(context.minValue().MinValue());
-        var maxValue = Convert.ToInt32(context.maxValue().MaxValue());
+        var minValue = Number(context.minValue().MinValue());
+        var maxValue = Number(context.maxValue().MaxValue());
         return minValue <= maxValue;
     }
     getFailureMessage(context) {
-        return string.Format("Integer Property '{0}' in {1} '{2}' has min value greater than max value.", context.propertyName().GetText(), context.ParentTypeName(), context.ParentIdentifier());
+        return `Integer Property '${context.propertyName().GetText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min value greater than max value.`;
     }
 }
 exports.IntegerPropertyMinValueMustNotBeGreaterThanMaxValue = IntegerPropertyMinValueMustNotBeGreaterThanMaxValue;

@@ -59,23 +59,53 @@ declare namespace MetaEdGrammar {
     export class IncludePropertyContext extends ParserRuleContext { }
     export class IncludeExtensionOverrideContext extends ParserRuleContext { }
     export class InlineCommonNameContext extends ParserRuleContext { }
-    export class InlineCommonTypeContext extends ParserRuleContext { }
+    export class InlineCommonTypeContext extends ParserRuleContext {
+        EntityName()
+        GetAncestorContext<T>()
+     }
     export class Signed_intContext extends ParserRuleContext { }
-    export class IntegerPropertyContext extends ParserRuleContext { }
-    export class InterchangeContext extends ParserRuleContext { }
+    export class IntegerPropertyContext extends ParserRuleContext {
+        propertyName()
+        ParentTypeName()
+        ParentIdentifier()
+        maxValue()
+        minValue()
+     }
+    export class InterchangeContext extends ParserRuleContext { 
+        interchangeName()
+        interchangeComponent()
+    }
     export class InterchangeComponentContext extends ParserRuleContext { }
-    export class InterchangeElementContext extends ParserRuleContext { }
-    export class InterchangeExtensionContext extends ParserRuleContext { }
+    export class InterchangeElementContext extends ParserRuleContext {
+        IdText()
+     }
+    export class InterchangeExtensionContext extends ParserRuleContext {
+        interchangeExtensionComponent()
+        extendeeName()
+        INTERCHANGE()
+     }
     export class InterchangeExtensionComponentContext extends ParserRuleContext { }
-    export class InterchangeIdentityTemplateContext extends ParserRuleContext { }
+    export class InterchangeIdentityTemplateContext extends ParserRuleContext { 
+        IdText()
+    }
     export class InterchangeNameContext extends ParserRuleContext { }
     export class EnumerationItemContext extends ParserRuleContext { }
     export class MaxLengthContext extends ParserRuleContext { }
     export class MaxValueContext extends ParserRuleContext { }
     export class MaxValueDecimalContext extends ParserRuleContext { }
     export class IsWeakReferenceContext extends ParserRuleContext { }
-    export class MergePartOfReferenceContext extends ParserRuleContext { }
-    export class MergePropertyPathContext extends ParserRuleContext { }
+    export class MergePartOfReferenceContext extends ParserRuleContext { 
+        Parent
+        mergePropertyPath():any
+        targetPropertyPath()
+        parent
+        GetAncestorContext<T>()
+    }
+    export class MergePropertyPathContext extends ParserRuleContext {
+        parent
+        propertyPath():any
+        GetText():any
+     }
     export class MetaEdContext extends ParserRuleContext { }
     export class MinLengthContext extends ParserRuleContext { }
     export class MinValueContext extends ParserRuleContext { }
@@ -90,31 +120,66 @@ declare namespace MetaEdGrammar {
     export class PercentPropertyContext extends ParserRuleContext { }
     export class IdentityContext extends ParserRuleContext { }
     export class IdentityRenameContext extends ParserRuleContext { }
-    export class MetaEdIdContext extends ParserRuleContext { }
+    export class MetaEdIdContext extends ParserRuleContext {
+        GetValue():any
+     }
     export class PropertyContext extends ParserRuleContext { }
     export class PropertyAnnotationContext extends ParserRuleContext { }
     export class PropertyComponentsContext extends ParserRuleContext { }
     export class PropertyNameContext extends ParserRuleContext { }
     export class PropertyPathContext extends ParserRuleContext { }
-    export class ReferencePropertyContext extends ParserRuleContext { }
+    export class ReferencePropertyContext extends ParserRuleContext {
+        propertyName():any
+     }
     export class RequiredContext extends ParserRuleContext { }
     export class RequiredCollectionContext extends ParserRuleContext { }
     export class RequiredMapTypeContext extends ParserRuleContext { }
     export class SecondDomainEntityContext extends ParserRuleContext { }
     export class ShortDescriptionContext extends ParserRuleContext { }
-    export class SharedDecimalPropertyContext extends ParserRuleContext { }
-    export class SharedIntegerPropertyContext extends ParserRuleContext { }
-    export class SharedShortPropertyContext extends ParserRuleContext { }
-    export class SharedStringPropertyContext extends ParserRuleContext { }
+    export class SharedDecimalPropertyContext extends ParserRuleContext {
+        sharedPropertyType():any
+        propertyName():any
+     }
+    export class SharedIntegerPropertyContext extends ParserRuleContext { 
+        sharedPropertyType():any
+        propertyName():any
+    }
+    export class SharedShortPropertyContext extends ParserRuleContext { 
+        propertyName():any
+        sharedPropertyType():any
+    }
+    export class SharedStringPropertyContext extends ParserRuleContext { 
+        propertyName():any
+        sharedPropertyType():any
+    }
     export class SharedPropertyTypeContext extends ParserRuleContext { }
     export class ShortenToNameContext extends ParserRuleContext { }
-    export class ShortPropertyContext extends ParserRuleContext { }
-    export class StringPropertyContext extends ParserRuleContext { }
-    export class SubdomainContext extends ParserRuleContext { }
+    export class ShortPropertyContext extends ParserRuleContext {
+        propertyName():any
+        ParentTypeName():any
+        ParentIdentifier():any
+        minValue():any
+        maxValue():any
+     }
+    export class StringPropertyContext extends ParserRuleContext {
+        propertyName():any
+        minLength():any
+        maxLength():any
+        ParentTypeName():any
+        ParentIdentifier():any
+     }
+    export class SubdomainContext extends ParserRuleContext { 
+        parentDomainName():any
+        EntityName():any
+        domainItem():any
+    }
     export class ParentDomainNameContext extends ParserRuleContext { }
     export class SubdomainNameContext extends ParserRuleContext { }
     export class SubdomainPositionContext extends ParserRuleContext { }
-    export class TargetPropertyPathContext extends ParserRuleContext { }
+    export class TargetPropertyPathContext extends ParserRuleContext {
+        propertyPath():any
+        GetText():any
+     }
     export class TimePropertyContext extends ParserRuleContext { }
     export class TopLevelEntityContext extends ParserRuleContext { }
     export class TotalDigitsContext extends ParserRuleContext { }

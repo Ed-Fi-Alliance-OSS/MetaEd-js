@@ -5,25 +5,16 @@ export class MetaEdIdIsRequiredWarning implements IValidationRule<MetaEdGrammar.
         return ValidationLevel.Warning;
     }
     private isValid(context: MetaEdGrammar.MetaEdIdContext): boolean {
-        return context != null && !string.IsNullOrWhiteSpace(context.GetValue());
+        return context != null && context.GetValue()!="";
     }
     private getEntityFailureMessage(entityIdentifier: string, entityName: string): string {
-        return string.Format("{0} '{1}' is missing MetaEdId value.",
-            entityIdentifier,
-            entityName);
+        return `${entityIdentifier} '${entityName}' is missing MetaEdId value.`;
     }
     private getPropertyFailureMessage(entityIdentifier: string, entityName: string, propertyIdentifier: string, propertyName: string): string {
-        return string.Format("{0} '{1}' on {2} '{3}' is missing MetaEdId value.",
-            propertyIdentifier,
-            propertyName,
-            entityIdentifier,
-            entityName);
+        return `${propertyIdentifier} '${propertyName}' on ${entityIdentifier} '${entityName}' is missing MetaEdId value.`;
     }
     private getItemFailureMessage(entityIdentifier: string, entityName: string, itemName: string): string {
-        return string.Format("Enumeration Item '{0}' on {1} '{2} is missing MetaEdId value.",
-            itemName,
-            entityIdentifier,
-            entityName);
+        return `Enumeration Item '${itemName}' on ${entityIdentifier} '${entityName} is missing MetaEdId value.`;
     }
     public isValid(context: MetaEdGrammar.YearPropertyContext): boolean {
         return IsValid(context.metaEdId());

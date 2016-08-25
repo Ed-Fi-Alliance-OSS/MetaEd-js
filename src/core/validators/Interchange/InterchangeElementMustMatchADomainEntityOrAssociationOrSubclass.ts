@@ -10,6 +10,6 @@ export class InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass ext
         return this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntityEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntitySubclassEntityType(), identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.InterchangeElementContext): string {
-        return string.Format("Interchange element '{0}' does not match any declared domain entity or subclass, association or subclass.", context.IdText());
+        return `Interchange element '${context.IdText()}' does not match any declared domain entity or subclass, association or subclass.`;
     }
 }

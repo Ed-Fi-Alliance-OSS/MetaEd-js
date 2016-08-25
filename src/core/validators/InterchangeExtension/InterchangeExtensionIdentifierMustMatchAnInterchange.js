@@ -10,7 +10,7 @@ class InterchangeExtensionIdentifierMustMatchAnInterchange extends ValidationRul
         return this._symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
     }
     getFailureMessage(context) {
-        return string.Format("Interchange additions '{0}' does not match any declared Interchange.", context.extendeeName().GetText());
+        return `Interchange additions '${context.extendeeName().GetText()}' does not match any declared Interchange.`;
     }
 }
 exports.InterchangeExtensionIdentifierMustMatchAnInterchange = InterchangeExtensionIdentifierMustMatchAnInterchange;

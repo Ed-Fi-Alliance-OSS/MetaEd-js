@@ -11,7 +11,10 @@ class MustNotDuplicateMetaEdId extends ValidationRuleBase_1.ValidationRuleBase {
     }
     getFailureMessage(context) {
         var metaEdId = context.GetValue();
-        return string.Format("MetaEdId '{0}' exists on multiple entities.  All MetaEdIds must be globally unique.", metaEdId);
+        return `MetaEdId '${metaEdId}' exists on multiple entities.  All MetaEdIds must be globally unique.';
+    }
+}
+;
     }
 }
 exports.MustNotDuplicateMetaEdId = MustNotDuplicateMetaEdId;

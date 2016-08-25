@@ -8,7 +8,6 @@ export class MustNotDuplicateMetaEdId extends ValidationRuleBase<MetaEdGrammar.M
     }
     public getFailureMessage(context: MetaEdGrammar.MetaEdIdContext): string {
         var metaEdId: string = context.GetValue();
-        return string.Format("MetaEdId '{0}' exists on multiple entities.  All MetaEdIds must be globally unique.",
-            metaEdId);
+        return `MetaEdId '${metaEdId}' exists on multiple entities.  All MetaEdIds must be globally unique.';
     }
 }

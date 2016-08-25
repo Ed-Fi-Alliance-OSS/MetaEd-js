@@ -13,7 +13,7 @@ class StringPropertyMustNotMatchACommonSimpleType extends ValidationRuleBase_1.V
         return !(this._symbolTable.IdentifierExists(commonDecimalType, identifierToMatch) || this._symbolTable.IdentifierExists(commonIntegerType, identifierToMatch) || this._symbolTable.IdentifierExists(commonShortType, identifierToMatch) || this._symbolTable.IdentifierExists(commonStringType, identifierToMatch));
     }
     getFailureMessage(context) {
-        return string.Format("String property '{0}' has the same name as a common decimal, integer, short or string.  If intentional, use a shared property instead.", context.propertyName().GetText());
+        return `String property '${context.propertyName().GetText()}' has the same name as a common decimal, integer, short or string.  If intentional, use a shared property instead.`;
     }
 }
 exports.StringPropertyMustNotMatchACommonSimpleType = StringPropertyMustNotMatchACommonSimpleType;
