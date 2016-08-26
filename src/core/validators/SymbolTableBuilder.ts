@@ -21,7 +21,7 @@ export interface ISymbolTableBuilder extends IListenerWithContext {
 export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbolTableBuilder {
     private _symbolTable: ISymbolTable;
     private _metaEdFileIndex: IMetaEdFileIndex;
-    private _errorMessageCollection: List<ValidationMessage>;
+    private _errorMessageCollection: ValidationMessage[];
     private _builderListener: ISymbolTableBuilderListener;
     private _currentPropertySymbolTable: PropertySymbolTable;
     private _symbolTableEntityType : SymbolTableEntityType;

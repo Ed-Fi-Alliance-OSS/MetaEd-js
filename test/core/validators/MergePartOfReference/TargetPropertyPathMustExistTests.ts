@@ -44,7 +44,7 @@
 //        return __init(new TestRuleProvider<MetaEdGrammar.TargetPropertyPathContext>(), { SuppliedRule: new TargetPropertyPathMustExist() }););
 //            });
 //it('should_have_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(1);
+//    helper.errorMessageCollection.length.should.equal(1);
 //});
 //it('should_have_meaningful_validation_message()', () => {
 //    helper.errorMessageCollection[0].Message.should.equal("Path This.Is.A.Test is not valid or lists properties that are not part of the primary key.");
@@ -76,7 +76,7 @@
 //    return __init(new TestRuleProvider<MetaEdGrammar.TargetPropertyPathContext>(), { SuppliedRule: new TargetPropertyPathMustExist(helper.symbolTable, this._propertyPathLookup) }););
 //});
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //
@@ -113,7 +113,7 @@
 //    return __init(new TestRuleProvider<MetaEdGrammar.TargetPropertyPathContext>(), { SuppliedRule: new TargetPropertyPathMustExist(helper.symbolTable, this._propertyPathLookup) }););
 //});
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //
@@ -151,7 +151,7 @@
 //    return __init(new TestRuleProvider<MetaEdGrammar.TargetPropertyPathContext>(), { SuppliedRule: new TargetPropertyPathMustExist(helper.symbolTable, this._propertyPathLookup) }););
 //});
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //
@@ -197,7 +197,7 @@
 //    return __init(new TestRuleProvider<MetaEdGrammar.TargetPropertyPathContext>(), { SuppliedRule: new TargetPropertyPathMustExist(helper.symbolTable, this._propertyPathLookup) }););
 //});
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //
@@ -245,7 +245,7 @@
 //    return __init(new TestRuleProvider<MetaEdGrammar.TargetPropertyPathContext>(), { SuppliedRule: new TargetPropertyPathMustExist(helper.symbolTable, this._propertyPathLookup) }););
 //});
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //
@@ -294,7 +294,7 @@
 //    return __init(new TestRuleProvider<MetaEdGrammar.TargetPropertyPathContext>(), { SuppliedRule: new TargetPropertyPathMustExist(helper.symbolTable, this._propertyPathLookup) }););
 //});
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //
@@ -323,7 +323,7 @@
 //    return __init(new TestRuleProvider<MetaEdGrammar.TargetPropertyPathContext>(), { SuppliedRule: new TargetPropertyPathMustExist(helper.symbolTable, this._propertyPathLookup) }););
 //});
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //});

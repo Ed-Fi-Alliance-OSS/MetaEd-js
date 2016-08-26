@@ -36,7 +36,7 @@ describe('AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubcl
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
 
@@ -92,7 +92,7 @@ describe('AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubcl
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
 });

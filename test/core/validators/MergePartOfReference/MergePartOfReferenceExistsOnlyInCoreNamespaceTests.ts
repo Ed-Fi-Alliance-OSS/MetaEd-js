@@ -35,7 +35,7 @@ describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_validate_successfully()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
 
@@ -65,7 +65,7 @@ before(() => {
     helper.setup(metaEdText, validatorListener);
 });
 it('should_have_validation_failures()', () => {
-    helper.errorMessageCollection.count.should.equal(1);
+    helper.errorMessageCollection.length.should.equal(1);
 });
 it('should_have_meaningful_validation_message()', () => {
     helper.errorMessageCollection[0].Message.ShouldContain("'merge' is invalid for property");

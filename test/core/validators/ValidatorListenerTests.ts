@@ -20,19 +20,19 @@ describe('ValidatorListenerTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_fail_for_each_domain_entity', () => {
-            helper.errorMessageCollection.count.should.equal(4);
+            helper.errorMessageCollection.length.should.equal(4);
         });
         it('should_set_line_numbers_for_each_validation', () => {
-            helper.errorMessageCollection[0].ConcatenatedLineNumber.should.equal(4);
-            helper.errorMessageCollection[1].ConcatenatedLineNumber.should.equal(10);
-            helper.errorMessageCollection[2].ConcatenatedLineNumber.should.equal(15);
-            helper.errorMessageCollection[3].ConcatenatedLineNumber.should.equal(22);
+            helper.errorMessageCollection[0].concatenatedLineNumber.should.equal(4);
+            helper.errorMessageCollection[1].concatenatedLineNumber.should.equal(10);
+            helper.errorMessageCollection[2].concatenatedLineNumber.should.equal(15);
+            helper.errorMessageCollection[3].concatenatedLineNumber.should.equal(22);
         });
         it('should_set_character_position_for_each_validation', () => {
-            helper.errorMessageCollection[0].CharacterPosition.should.equal(4);
-            helper.errorMessageCollection[1].CharacterPosition.should.equal(6);
-            helper.errorMessageCollection[2].CharacterPosition.should.equal(2);
-            helper.errorMessageCollection[3].CharacterPosition.should.equal(4);
+            helper.errorMessageCollection[0].characterPosition.should.equal(4);
+            helper.errorMessageCollection[1].characterPosition.should.equal(6);
+            helper.errorMessageCollection[2].characterPosition.should.equal(2);
+            helper.errorMessageCollection[3].characterPosition.should.equal(4);
         });
     });
 });

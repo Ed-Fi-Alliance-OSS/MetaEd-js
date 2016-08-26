@@ -17,8 +17,8 @@ import {IRuleProvider} from "./RuleProvider";
 export class ValidatorListener extends MetaEdGrammarListener implements IListenerWithContext {
     private symbolTable: ISymbolTable;
     private metaEdFileIndex: IMetaEdFileIndex;
-    private warningMessageCollection: List<ValidationMessage>;
-    private errorMessageCollection: List<ValidationMessage>;
+    private warningMessageCollection: ValidationMessage[];
+    private errorMessageCollection: ValidationMessage[];
     private ruleProvider: IRuleProvider;
 
     constructor(ruleProvider: IRuleProvider) {
@@ -44,7 +44,7 @@ export class ValidatorListener extends MetaEdGrammarListener implements IListene
 
     private buildValidationMessage<TContext extends ParserRuleContext>(validationRule: IValidationRule<TContext>, context: TContext): ValidationMessage {
         const metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(context.start.line);
-        return <ValidationMessage>{
+        return <ValidationMessage[]{
             message: validationRule.getFailureMessage(context),
             characterPosition: context.start.column,
             concatenatedLineNumber: context.start.line,

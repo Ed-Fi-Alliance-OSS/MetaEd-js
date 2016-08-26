@@ -32,7 +32,7 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
         });
 
         it('Should_have_no_validation_failures', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
 
@@ -54,7 +54,7 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
 
@@ -79,13 +79,13 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
         });
 
         it('should_have_validation_failures', () => {
-            helper.errorMessageCollection.toArray()[0].should.not.be.null;
+            helper.errorMessageCollection[0].should.not.be.null;
         });
 
         it('should_have_validation_failure_message', () => {
-            helper.errorMessageCollection.toArray()[0].message.should.contain("Common Decimal");
-            helper.errorMessageCollection.toArray()[0].message.should.contain(entityName);
-            helper.errorMessageCollection.toArray()[0].message.should.contain("decimal places greater than total digits");
+            helper.errorMessageCollection[0].message.should.contain("Common Decimal");
+            helper.errorMessageCollection[0].message.should.contain(entityName);
+            helper.errorMessageCollection[0].message.should.contain("decimal places greater than total digits");
         });
     });
 
@@ -108,7 +108,7 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
 });

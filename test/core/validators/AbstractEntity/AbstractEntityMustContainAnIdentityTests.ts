@@ -30,7 +30,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
         });
 
         it('Should_have_no_validation_failures', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
             helper.warningMessageCollection.count.should.equal(0);
         });
     });
@@ -60,7 +60,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
         });
 
         it('Should_have_validation_failure_message', () => {
-            const failure = helper.errorMessageCollection.toArray()[0];
+            const failure = helper.errorMessageCollection[0];
             failure.message.should.include("Abstract Entity");
             failure.message.should.include(entityName);
             failure.message.should.include("does not have an identity");
