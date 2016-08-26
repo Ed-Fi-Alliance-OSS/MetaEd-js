@@ -1,8 +1,10 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
 import {ISymbolTable} from '../SymbolTable'
+import SymbolTableEntityType from '../SymbolTableEntityType'
 export class IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension extends ValidationRuleBase<MetaEdGrammar.IncludePropertyContext>
 {
     private symbolTable: ISymbolTable;
+    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
     constructor(symbolTable: ISymbolTable) {
         super();
         this.symbolTable = symbolTable;
@@ -11,7 +13,7 @@ export class IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtensio
         if (context.includeExtensionOverride() == null)
             return true;
         let identifierToMatch = context.propertyName().GetText();
-        return this.symbolTable.identifierExists(SymbolTableEntityType.CommonTypeExtensionEntityType(), identifierToMatch);
+        return this.symbolTable.identifierExists(this.symbolTableEntityType.commonTypeExtensionEntityType(), identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.IncludePropertyContext): string {
         let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();

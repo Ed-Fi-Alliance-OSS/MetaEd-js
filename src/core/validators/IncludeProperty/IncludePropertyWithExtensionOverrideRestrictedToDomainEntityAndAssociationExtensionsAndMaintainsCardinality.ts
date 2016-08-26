@@ -1,8 +1,10 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
 import {ISymbolTable} from '../SymbolTable'
+import SymbolTableEntityType from '../SymbolTableEntityType'
 export class IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality extends ValidationRuleBase<MetaEdGrammar.IncludePropertyContext>
 {
     private symbolTable: ISymbolTable;
+    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
     constructor(symbolTable: ISymbolTable) {
         super();
         this.symbolTable = symbolTable;
@@ -26,11 +28,11 @@ export class IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAsso
         return `'include extension' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'include extension' is only valid for properties on Domain Entity extension and Association extension, and must maintain original cardinality on extendee.`;
     }
     private maintainsCardinalityOnDomainEntity(overriddenIncludePropertyContext: MetaEdGrammar.IncludePropertyContext, extensionEntityContext: MetaEdGrammar.DomainEntityExtensionContext): boolean {
-        let extendeeEntityContext = this.symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), extensionEntityContext.EntityName());
+        let extendeeEntityContext = this.symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), extensionEntityContext.EntityName());
         return MaintainsCardinality(overriddenIncludePropertyContext, extendeeEntityContext);
     }
     private maintainsCardinalityOnAssociation(overriddenIncludePropertyContext: MetaEdGrammar.IncludePropertyContext, extensionEntityContext: MetaEdGrammar.AssociationExtensionContext): boolean {
-        let extendeeEntityContext = this.symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), extensionEntityContext.EntityName());
+        let extendeeEntityContext = this.symbolTable.Get(this.symbolTableEntityType.associationEntityType(), extensionEntityContext.EntityName());
         return MaintainsCardinality(overriddenIncludePropertyContext, extendeeEntityContext);
     }
     private static maintainsCardinality(overriddenIncludePropertyContext: MetaEdGrammar.IncludePropertyContext, extendeeEntityContext: EntityContext): boolean {

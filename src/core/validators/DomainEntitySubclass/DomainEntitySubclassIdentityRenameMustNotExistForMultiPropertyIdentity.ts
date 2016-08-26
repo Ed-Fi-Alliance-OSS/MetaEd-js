@@ -1,8 +1,10 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
 import {ISymbolTable} from '../SymbolTable'
+import SymbolTableEntityType from '../SymbolTableEntityType'
 export class DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity extends ValidationRuleBase<MetaEdGrammar.DomainEntitySubclassContext>
 {
     private symbolTable: ISymbolTable;
+    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
     constructor(symbolTable: ISymbolTable) {
         super();
         this.symbolTable = symbolTable;
@@ -12,7 +14,7 @@ export class DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdent
         if (!anyIdentityRenames)
             return true;
         let baseIdentifier = context.baseName().GetText();
-        let baseSymbolTable = this.symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), baseIdentifier);
+        let baseSymbolTable = this.symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), baseIdentifier);
         if (baseSymbolTable == null)
             return true;
         return baseSymbolTable.PropertySymbolTable.Values().Count(v => v.propertyComponents().propertyAnnotation().identity() != null) <= 1;

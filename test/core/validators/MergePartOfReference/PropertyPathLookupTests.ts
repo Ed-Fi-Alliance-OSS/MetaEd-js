@@ -42,7 +42,7 @@
 //    return new Array("Prop1");
 //});
 //            protected getEntityContextToTest(): EntityContext {
-//    return _symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), "Entity1");
+//    return _symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), "Entity1");
 //});
 //            protected getFilterToTest(): (_: IPropertyWithComponents) => boolean {
 //    return PropertyPathLookup.MatchAllIdentityProperties();
@@ -82,7 +82,7 @@
 //    return new Array("Entity1");
 //});
 //            protected getEntityContextToTest(): EntityContext {
-//    return _symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), "Entity3");
+//    return _symbolTable.Get(this.symbolTableEntityType.associationEntityType(), "Entity3");
 //});
 //            protected getFilterToTest(): (_: IPropertyWithComponents) => boolean {
 //    return PropertyPathLookup.MatchAllIdentityProperties();
@@ -122,7 +122,7 @@
 //    return new Array("Entity2");
 //});
 //            protected getEntityContextToTest(): EntityContext {
-//    return _symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), "Entity3");
+//    return _symbolTable.Get(this.symbolTableEntityType.associationEntityType(), "Entity3");
 //});
 //            protected getFilterToTest(): (_: IPropertyWithComponents) => boolean {
 //    return PropertyPathLookup.MatchAllIdentityProperties();
@@ -152,7 +152,7 @@
 //    return new Array("Prop2");
 //});
 //            protected getEntityContextToTest(): EntityContext {
-//    return _symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), "Entity1");
+//    return _symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), "Entity1");
 //});
 //            protected getFilterToTest(): (_: IPropertyWithComponents) => boolean {
 //    return PropertyPathLookup.MatchAllIdentityProperties();
@@ -181,7 +181,7 @@
 //    return new Array("Prop3");
 //});
 //            protected getEntityContextToTest(): EntityContext {
-//    return _symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), "Entity1");
+//    return _symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), "Entity1");
 //});
 //            protected getFilterToTest(): (_: IPropertyWithComponents) => boolean {
 //    return PropertyPathLookup.MatchAllIdentityProperties();
@@ -216,7 +216,7 @@
 //    return new Array("Entity1");
 //});
 //            protected getEntityContextToTest(): EntityContext {
-//    return _symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), "Entity2");
+//    return _symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), "Entity2");
 //});
 //            protected getFilterToTest(): (_: IPropertyWithComponents) => boolean {
 //    return PropertyPathLookup.MatchAllIdentityProperties();
@@ -250,7 +250,7 @@
 //    return new Array("Entity1", "Prop1");
 //});
 //            protected getEntityContextToTest(): EntityContext {
-//    return _symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), "Entity2");
+//    return _symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), "Entity2");
 //});
 //            protected getFilterToTest(): (_: IPropertyWithComponents) => boolean {
 //    return PropertyPathLookup.MatchAllIdentityProperties();
@@ -262,6 +262,8 @@
 //});
 //
 //
+import SymbolTableEntityType from '../SymbolTableEntityType'
+
 //describe('When_looking_for_non_pk_property extends PropertyPathLookupTestBase {
 //            let helper: ValidationTestHelper = new ValidationTestHelper();
 //before(() => {
@@ -286,7 +288,7 @@
 //    return new Array("Entity1", "Prop1");
 //});
 //            protected getEntityContextToTest(): EntityContext {
-//    return _symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), "Entity2");
+//    return _symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), "Entity2");
 //});
 //            protected getFilterToTest(): (_: IPropertyWithComponents) => boolean {
 //    return PropertyPathLookup.MatchAllButFirstAsIdentityProperties();

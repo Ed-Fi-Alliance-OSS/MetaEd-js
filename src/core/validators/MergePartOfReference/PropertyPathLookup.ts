@@ -1,4 +1,5 @@
 //TODO: This file didn't auto convert
+import SymbolTableEntityType from '../SymbolTableEntityType'
 export class PropertyPathLookup {}
 //using System;
 //using System.Linq;
@@ -111,15 +112,15 @@ export class PropertyPathLookup {}
 //        
 //        private string GetEntityType(string identifierToMatch)
 //    {
-//        let domainEntityType = SymbolTableEntityType.DomainEntityEntityType();
+//        let domainEntityType = this.symbolTableEntityType.domainEntityEntityType();
 //        if (_symbolTable.IdentifierExists(domainEntityType, identifierToMatch))
 //            return domainEntityType;
 //
-//        let associationType = SymbolTableEntityType.AssociationEntityType();
+//        let associationType = this.symbolTableEntityType.associationEntityType();
 //        if (_symbolTable.IdentifierExists(associationType, identifierToMatch))
 //            return associationType;
 //
-//        let abstractEntityType = SymbolTableEntityType.AbstractEntityEntityType();
+//        let abstractEntityType = this.symbolTableEntityType.abstractEntityEntityType();
 //        if (_symbolTable.IdentifierExists(abstractEntityType, identifierToMatch))
 //            return abstractEntityType;
 //

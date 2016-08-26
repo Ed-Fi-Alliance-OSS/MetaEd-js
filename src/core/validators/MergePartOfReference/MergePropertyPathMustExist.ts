@@ -1,9 +1,11 @@
 import { ValidationRuleBase } from "../ValidationRuleBase";
 import {ISymbolTable} from '../SymbolTable'
+import SymbolTableEntityType from '../SymbolTableEntityType'
 export class MergePropertyPathMustExist extends ValidationRuleBase<MetaEdGrammar.MergePropertyPathContext>
 {
     private symbolTable: ISymbolTable;
     private _propertyPathLookup: IPropertyPathLookup;
+    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
     constructor(symbolTable: ISymbolTable, propertyPathLookup: IPropertyPathLookup) {
         this._propertyPathLookup = propertyPathLookup;
         super();
@@ -21,31 +23,31 @@ export class MergePropertyPathMustExist extends ValidationRuleBase<MetaEdGrammar
         let definingEntityContext = context.parent.parent.parent.parent;
         let domainEntityContext = __as__<MetaEdGrammar.DomainEntityContext>(definingEntityContext, MetaEdGrammar.DomainEntityContext);
         if (domainEntityContext != null) {
-            return this.symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntityContext.entityName().IdText());
+            return this.symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), domainEntityContext.entityName().IdText());
         }
         let domainEntityExtensionContext = __as__<MetaEdGrammar.DomainEntityExtensionContext>(definingEntityContext, MetaEdGrammar.DomainEntityExtensionContext);
         if (domainEntityExtensionContext != null) {
-            return this.symbolTable.Get(SymbolTableEntityType.DomainEntityExtensionEntityType(), domainEntityExtensionContext.extendeeName().IdText());
+            return this.symbolTable.Get(this.symbolTableEntityType.domainEntityExtensionEntityType(), domainEntityExtensionContext.extendeeName().IdText());
         }
         let domainEntitySubclassContext = __as__<MetaEdGrammar.DomainEntitySubclassContext>(definingEntityContext, MetaEdGrammar.DomainEntitySubclassContext);
         if (domainEntitySubclassContext != null) {
-            return this.symbolTable.Get(SymbolTableEntityType.DomainEntitySubclassEntityType(), domainEntitySubclassContext.entityName().IdText());
+            return this.symbolTable.Get(this.symbolTableEntityType.domainEntitySubclassEntityType(), domainEntitySubclassContext.entityName().IdText());
         }
         let associationContext = __as__<MetaEdGrammar.AssociationContext>(definingEntityContext, MetaEdGrammar.AssociationContext);
         if (associationContext != null) {
-            return this.symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationContext.associationName().IdText());
+            return this.symbolTable.Get(this.symbolTableEntityType.associationEntityType(), associationContext.associationName().IdText());
         }
         let associationExtensionContext = __as__<MetaEdGrammar.AssociationExtensionContext>(definingEntityContext, MetaEdGrammar.AssociationExtensionContext);
         if (associationExtensionContext != null) {
-            return this.symbolTable.Get(SymbolTableEntityType.AssociationExtensionEntityType(), associationExtensionContext.extendeeName().IdText());
+            return this.symbolTable.Get(this.symbolTableEntityType.associationExtensionEntityType(), associationExtensionContext.extendeeName().IdText());
         }
         let associationSubclassContext = __as__<MetaEdGrammar.AssociationSubclassContext>(definingEntityContext, MetaEdGrammar.AssociationSubclassContext);
         if (associationSubclassContext != null) {
-            return this.symbolTable.Get(SymbolTableEntityType.AssociationSubclassEntityType(), associationSubclassContext.associationName().IdText());
+            return this.symbolTable.Get(this.symbolTableEntityType.associationSubclassEntityType(), associationSubclassContext.associationName().IdText());
         }
         let abstractContext = __as__<MetaEdGrammar.AbstractEntityContext>(definingEntityContext, MetaEdGrammar.AbstractEntityContext);
         if (abstractContext != null) {
-            return this.symbolTable.Get(SymbolTableEntityType.AbstractEntityEntityType(), abstractContext.abstractEntityName().IdText());
+            return this.symbolTable.Get(this.symbolTableEntityType.abstractEntityEntityType(), abstractContext.abstractEntityName().IdText());
         }
         return null;
     }
