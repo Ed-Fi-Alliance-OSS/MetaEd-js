@@ -11,16 +11,16 @@ export class CommonTypeExtensionMustNotDuplicateCommonTypePropertyName extends V
         let entityType = context.COMMON_TYPE().GetText();
         let extensionType = context.COMMON_TYPE().GetText() + context.ADDITIONS();
         let identifier = context.extendeeName().GetText();
-        let commonTypePropertyIdentifiers = this.symbolTable.IdentifiersForEntityProperties(entityType, identifier);
-        let extensionPropertyIdentifiers = this.symbolTable.IdentifiersForEntityProperties(extensionType, identifier);
+        let commonTypePropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(entityType, identifier);
+        let extensionPropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(extensionType, identifier);
         return !commonTypePropertyIdentifiers.Intersect(extensionPropertyIdentifiers).Any();
     }
     public getFailureMessage(context: MetaEdGrammar.CommonTypeExtensionContext): string {
         let entityType = context.COMMON_TYPE().GetText();
         let extensionType = context.COMMON_TYPE().GetText() + context.ADDITIONS();
         let identifier = context.extendeeName().GetText();
-        let commonTypePropertyIdentifiers = this.symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
-        let propertyRuleContextsForDuplicates = this.symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, commonTypePropertyIdentifiers);
+        let commonTypePropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(entityType, identifier).ToList();
+        let propertyRuleContextsForDuplicates = this.symbolTable.contextsForMatchingPropertyIdentifiers(extensionType, identifier, commonTypePropertyIdentifiers);
         let duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
         let joinedString = duplicatePropertyIdentifierList;
         return `Common Type additions '${identifier}' declares '${joinedString}' already in property list of Common Type.`;

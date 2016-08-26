@@ -11,7 +11,8 @@ export class AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSu
     }
     public isValid(context: MetaEdGrammar.AssociationExtensionContext): boolean {
         let identifierToMatch = context.extendeeName().GetText();
-        return this.symbolTable.identifierExists(this.symbolTableEntityType.associationEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.associationSubclassEntityType(), identifierToMatch);
+        return this.symbolTable.identifierExists(this.symbolTableEntityType.associationEntityType(), identifierToMatch) 
+        || this.symbolTable.identifierExists(this.symbolTableEntityType.associationSubclassEntityType(), identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.AssociationExtensionContext): string {
         return `Association additions '${context.extendeeName().GetText()}' does not match any declared Association or subclass.`;

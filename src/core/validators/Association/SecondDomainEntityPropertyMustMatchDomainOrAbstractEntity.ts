@@ -11,7 +11,9 @@ export class SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity extends V
     }
     public isValid(context: MetaEdGrammar.SecondDomainEntityContext): boolean {
         let identifierToMatch = context.IdText();
-        return this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntityEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.abstractEntityEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntitySubclassEntityType(), identifierToMatch);
+        return this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntityEntityType(), identifierToMatch) 
+        || this.symbolTable.identifierExists(this.symbolTableEntityType.abstractEntityEntityType(), identifierToMatch) 
+        || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntitySubclassEntityType(), identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.SecondDomainEntityContext): string {
         return `Domain Entity property '${context.IdText()}' does not match any declared domain or abstract entity.`;

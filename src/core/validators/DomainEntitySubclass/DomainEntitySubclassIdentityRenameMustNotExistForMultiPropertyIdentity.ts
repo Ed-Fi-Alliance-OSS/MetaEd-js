@@ -14,10 +14,10 @@ export class DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdent
         if (!anyIdentityRenames)
             return true;
         let baseIdentifier = context.baseName().GetText();
-        let baseSymbolTable = this.symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), baseIdentifier);
+        let baseSymbolTable = this.symbolTable.get(this.symbolTableEntityType.domainEntityEntityType(), baseIdentifier);
         if (baseSymbolTable == null)
             return true;
-        return baseSymbolTable.PropertySymbolTable.Values().Count(v => v.propertyComponents().propertyAnnotation().identity() != null) <= 1;
+        return baseSymbolTable.propertySymbolTable.values().Count(v => v.propertyComponents().propertyAnnotation().identity() != null) <= 1;
     }
     public getFailureMessage(context: MetaEdGrammar.DomainEntitySubclassContext): string {
         let identifier = context.entityName().GetText();

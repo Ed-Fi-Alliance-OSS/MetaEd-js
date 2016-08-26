@@ -11,7 +11,7 @@ export class DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity exte
     }
     public isValid(context: MetaEdGrammar.DomainEntitySubclassContext): boolean {
         let basedOnName = context.baseName().GetText();
-        return this.symbolTable.IdentifiersForEntityType(this.symbolTableEntityType.domainEntityEntityType()).Any(x => x.Equals(basedOnName)) || this.symbolTable.IdentifiersForEntityType(this.symbolTableEntityType.abstractEntityEntityType()).Any(x => x.Equals(basedOnName));
+        return this.symbolTable.identifiersForEntityType(this.symbolTableEntityType.domainEntityEntityType()).Any(x => x.Equals(basedOnName)) || this.symbolTable.identifiersForEntityType(this.symbolTableEntityType.abstractEntityEntityType()).Any(x => x.Equals(basedOnName));
     }
     public getFailureMessage(context: MetaEdGrammar.DomainEntitySubclassContext): string {
         return `Domain Entity '${context.entityName().GetText()}' based on '${context.baseName().GetText()}' does not match any declared domain or abstract entity.`;

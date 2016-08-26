@@ -14,10 +14,10 @@ export class AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseCla
         let entityType = context.ASSOCIATION().GetText();
         let baseIdentifier = context.baseName().GetText();
         let basePropertyIdentifier = identityRenames.First().baseKeyName().GetText();
-        let baseSymbolTable = this.symbolTable.Get(entityType, baseIdentifier);
+        let baseSymbolTable = this.symbolTable.get(entityType, baseIdentifier);
         if (baseSymbolTable == null)
             return true;
-        let baseProperty = baseSymbolTable.PropertySymbolTable.Get(basePropertyIdentifier);
+        let baseProperty = baseSymbolTable.propertySymbolTable.get(basePropertyIdentifier);
         if (baseProperty == null)
             return false;
         return baseProperty.propertyComponents().propertyAnnotation().identity() != null;

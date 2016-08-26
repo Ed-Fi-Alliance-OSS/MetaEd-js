@@ -10,7 +10,7 @@ export class InterchangeExtensionIdentifierMustMatchAnInterchange extends Valida
     public isValid(context: MetaEdGrammar.InterchangeExtensionContext): boolean {
         let entityType = context.INTERCHANGE().GetText();
         let identifier = context.extendeeName().GetText();
-        return this.symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
+        return this.symbolTable.identifiersForEntityType(entityType).Any(x => x.Equals(identifier));
     }
     public getFailureMessage(context: MetaEdGrammar.InterchangeExtensionContext): string {
         return `Interchange additions '${context.extendeeName().GetText()}' does not match any declared Interchange.`;

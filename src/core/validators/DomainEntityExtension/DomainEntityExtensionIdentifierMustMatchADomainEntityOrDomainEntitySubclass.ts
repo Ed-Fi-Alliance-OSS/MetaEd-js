@@ -11,7 +11,7 @@ export class DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntity
     }
     public isValid(context: MetaEdGrammar.DomainEntityExtensionContext): boolean {
         let identifier = context.extendeeName().GetText();
-        return this.symbolTable.IdentifiersForEntityType(this.symbolTableEntityType.domainEntityEntityType()).Any(x => x.Equals(identifier)) || this.symbolTable.IdentifiersForEntityType(this.symbolTableEntityType.domainEntitySubclassEntityType()).Any(x => x.Equals(identifier));
+        return this.symbolTable.identifiersForEntityType(this.symbolTableEntityType.domainEntityEntityType()).Any(x => x.Equals(identifier)) || this.symbolTable.identifiersForEntityType(this.symbolTableEntityType.domainEntitySubclassEntityType()).Any(x => x.Equals(identifier));
     }
     public getFailureMessage(context: MetaEdGrammar.DomainEntityExtensionContext): string {
         return `Domain Entity additions '${context.extendeeName().GetText()}' does not match any declared Domain Entity or Domain Entity Subclass.`;

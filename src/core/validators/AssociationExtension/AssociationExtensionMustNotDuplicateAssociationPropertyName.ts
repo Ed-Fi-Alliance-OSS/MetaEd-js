@@ -18,9 +18,9 @@ export class AssociationExtensionMustNotDuplicateAssociationPropertyName extends
         let entityType = context.ASSOCIATION().GetText();
         let extensionType = context.ASSOCIATION().GetText() + context.ADDITIONS();
         let identifier = context.extendeeName().GetText();
-        let associationPropertyIdentifiers = this.symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
-        let duplicates = this.symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
-        return duplicates.Where(AssociationExtensionMustNotDuplicateAssociationPropertyName.isNotIncludePropertyContextWithExtension);
+        let associationPropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(entityType, identifier).toList();
+        let duplicates = this.symbolTable.contextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
+        return duplicates.where(AssociationExtensionMustNotDuplicateAssociationPropertyName.isNotIncludePropertyContextWithExtension);
     }
     private static isNotIncludePropertyContextWithExtension(context: IPropertyWithComponents): boolean {
         if (!(context instanceof MetaEdGrammar.IncludePropertyContext))

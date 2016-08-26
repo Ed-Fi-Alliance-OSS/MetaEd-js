@@ -13,8 +13,8 @@ export class SecondDomainEntityPropertyMustNotCollideWithOtherProperty extends V
         let withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().GetText();
         let associationName = (<MetaEdGrammar.AssociationContext>context.parent).associationName().IdText();
         let associationType = MetaEdGrammar.TokenName(MetaEdGrammar.ASSOCIATION);
-        let entitySymbolTable = this.symbolTable.Get(associationType, associationName);
-        return entitySymbolTable.PropertySymbolTable.Get(withContextPrefix + identifierToMatch) == null;
+        let entitySymbolTable = this.symbolTable.get(associationType, associationName);
+        return entitySymbolTable.propertySymbolTable.get(withContextPrefix + identifierToMatch) == null;
     }
     public getFailureMessage(context: MetaEdGrammar.SecondDomainEntityContext): string {
         let associationName = (<MetaEdGrammar.AssociationContext>context.parent).associationName().IdText();

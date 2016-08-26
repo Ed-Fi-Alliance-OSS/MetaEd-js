@@ -10,7 +10,7 @@ export class CommonTypeExtensionIdentifierMustMatchACommonType extends Validatio
     public isValid(context: MetaEdGrammar.CommonTypeExtensionContext): boolean {
         let entityType = context.COMMON_TYPE().GetText();
         let identifier = context.extendeeName().GetText();
-        return this.symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
+        return this.symbolTable.identifiersForEntityType(entityType).Any(x => x.Equals(identifier));
     }
     public getFailureMessage(context: MetaEdGrammar.CommonTypeExtensionContext): string {
         return `Common Type additions '${context.extendeeName().GetText()}' does not match any declared Common Type.`;
