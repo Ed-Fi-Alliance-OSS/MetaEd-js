@@ -12,12 +12,12 @@ export interface ISymbolTable {
     get(entityType: string, name: string): EntityContext
     identifierExists(entityType: string, identifier: string): boolean
     identifiersForEntityType(entityType: string): IEnumerable<string>
-    identifiersForEntityProperties(entityType: string, identifier: string): IEnumerable<string> 
+    identifiersForEntityProperties(entityType: string, identifier: string): IEnumerable<string>
     contextsForMatchingPropertyIdentifiers(entityType: string, name: string, candidatePropertyIdentifiers: ICollection<string>): IEnumerable<IPropertyWithComponents>
 }
 
 export class SymbolTable implements ISymbolTable {
-   
+
     private _symbolTable: Dictionary<string, Dictionary<string, EntityContext>> = new Dictionary<string, Dictionary<string, EntityContext>>();
 
     public tryAdd(entityType: string, name: string, context: ParserRuleContext): boolean {
@@ -32,7 +32,7 @@ export class SymbolTable implements ISymbolTable {
         if (entityDictionary.containsKey(name))
             return false;
 
-        let entityContext = new EntityContext (name, context);
+        let entityContext = new EntityContext(name, context);
 
         entityContext.propertySymbolTable = new PropertySymbolTable(entityContext);
         entityDictionary.addByKeyValue(name, entityContext);
@@ -63,7 +63,7 @@ export class SymbolTable implements ISymbolTable {
     public identifiersForEntityProperties(entityType: string, identifier: string): IEnumerable<string> {
         let entityContext = this.get(entityType, identifier);
 
-        if (entityContext == null) 
+        if (entityContext == null)
             return Enumerable.empty<string>();
         return entityContext.propertySymbolTable.identifiers();
     }
@@ -81,8 +81,8 @@ export class EntityContext {
     public propertySymbolTable: PropertySymbolTable;
     public name: string;
     public context: ParserRuleContext;
-    public constructor (name: string, context: ParserRuleContext) {
-        this.name = name; 
+    public constructor(name: string, context: ParserRuleContext) {
+        this.name = name;
         this.context = context;
-    } 
+    }
 }

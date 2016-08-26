@@ -9,55 +9,58 @@ export default class SymbolTableEntityType {
     constructor() {
         this.metaEdGrammar = MetaEdGrammar.MetaEdGrammar;
         // must instantiate dummy MetaEdGrammar to get at literal name string array
-        this.literalNames = new MetaEdGrammar.MetaEdGrammar(new antlr4.CommonTokenStream(new BaseLexer.BaseLexer(new antlr4.InputStream("")), undefined)).literalNames;
+        this.literalNames = new MetaEdGrammar.MetaEdGrammar(
+            new antlr4.CommonTokenStream(
+                new BaseLexer.BaseLexer(
+                    new antlr4.InputStream("")), undefined)).literalNames;
     }
 
-    private literal(name) : string {
+    private literal(name): string {
         const s = this.literalNames[name];
         return s.slice(1, s.length - 1);
     }
 
-    domainEntityEntityType() : string {
+    domainEntityEntityType(): string {
         return this.literal(this.metaEdGrammar.DOMAIN_ENTITY);
     }
 
-    domainEntityExtensionEntityType() : string {
+    domainEntityExtensionEntityType(): string {
         return this.literal(this.metaEdGrammar.DOMAIN_ENTITY) + this.literal(this.metaEdGrammar.ADDITIONS);
     }
 
-    domainEntitySubclassEntityType() : string {
+    domainEntitySubclassEntityType(): string {
         return this.literal(this.metaEdGrammar.DOMAIN_ENTITY) + this.literal(this.metaEdGrammar.BASED_ON);
     }
 
-    associationEntityType() : string {
+    associationEntityType(): string {
         return this.literal(this.metaEdGrammar.ASSOCIATION);
     }
 
-    associationExtensionEntityType() : string {
+    associationExtensionEntityType(): string {
         return this.literal(this.metaEdGrammar.ASSOCIATION) + this.literal(this.metaEdGrammar.ADDITIONS);
     }
 
-    associationSubclassEntityType() : string {
+    associationSubclassEntityType(): string {
         return this.literal(this.metaEdGrammar.ASSOCIATION) + this.literal(this.metaEdGrammar.BASED_ON);
     }
 
-    abstractEntityEntityType() : string {
+    abstractEntityEntityType(): string {
         return this.literal(this.metaEdGrammar.ABSTRACT_ENTITY);
     }
 
-    commonTypeEntityType() : string {
+    commonTypeEntityType(): string {
         return this.literal(this.metaEdGrammar.COMMON_TYPE);
     }
 
-    commonTypeExtensionEntityType() : string {
+    commonTypeExtensionEntityType(): string {
         return this.literal(this.metaEdGrammar.COMMON_TYPE) + this.literal(this.metaEdGrammar.ADDITIONS);
     }
 
-    enumerationEntityType() : string {
+    enumerationEntityType(): string {
         return this.literal(this.metaEdGrammar.ENUMERATION_ENTITY);
     }
 
-    inlineCommonTypeEntityType() : string {
+    inlineCommonTypeEntityType(): string {
         return this.literal(this.metaEdGrammar.INLINE_COMMON_TYPE);
     }
 }
