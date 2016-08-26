@@ -1,10 +1,12 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
 export class MergePropertyAndTargetPropertyMustMatch extends ValidationRuleBase<MetaEdGrammar.MergePartOfReferenceContext>
 {
-    private _symbolTable: ISymbolTable;
+    private symbolTable: ISymbolTable;
     private _propertyPathLookup: IPropertyPathLookup;
     constructor(symbolTable: ISymbolTable, propertyPathLookup: IPropertyPathLookup) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
         this._propertyPathLookup = propertyPathLookup;
     }
     public isValid(context: MetaEdGrammar.MergePartOfReferenceContext): boolean {
@@ -36,32 +38,32 @@ export class MergePropertyAndTargetPropertyMustMatch extends ValidationRuleBase<
         let definingEntityContext = context.parent.parent.parent;
         let domainEntityContext = __as__<MetaEdGrammar.DomainEntityContext>(definingEntityContext, MetaEdGrammar.DomainEntityContext);
         if (domainEntityContext != null) {
-            return this._symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntityContext.entityName().IdText());
+            return this.symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntityContext.entityName().IdText());
         }
         let domainEntityExtensionContext = __as__<MetaEdGrammar.DomainEntityExtensionContext>(definingEntityContext, MetaEdGrammar.DomainEntityExtensionContext);
         if (domainEntityExtensionContext != null) {
-            return this._symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntityExtensionContext.extendeeName().IdText());
+            return this.symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntityExtensionContext.extendeeName().IdText());
         }
         let domainEntitySubclassContext = __as__<MetaEdGrammar.DomainEntitySubclassContext>(definingEntityContext, MetaEdGrammar.DomainEntitySubclassContext);
         if (domainEntitySubclassContext != null) {
-            let domainEntity = this._symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
-            return domainEntity != null ? domainEntity : this._symbolTable.Get(SymbolTableEntityType.AbstractEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
+            let domainEntity = this.symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
+            return domainEntity != null ? domainEntity : this.symbolTable.Get(SymbolTableEntityType.AbstractEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
         }
         let associationContext = __as__<MetaEdGrammar.AssociationContext>(definingEntityContext, MetaEdGrammar.AssociationContext);
         if (associationContext != null) {
-            return this._symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationContext.associationName().IdText());
+            return this.symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationContext.associationName().IdText());
         }
         let associationExtensionContext = __as__<MetaEdGrammar.AssociationExtensionContext>(definingEntityContext, MetaEdGrammar.AssociationExtensionContext);
         if (associationExtensionContext != null) {
-            return this._symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationExtensionContext.extendeeName().IdText());
+            return this.symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationExtensionContext.extendeeName().IdText());
         }
         let associationSubclassContext = __as__<MetaEdGrammar.AssociationSubclassContext>(definingEntityContext, MetaEdGrammar.AssociationSubclassContext);
         if (associationSubclassContext != null) {
-            return this._symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationSubclassContext.baseName().IdText());
+            return this.symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationSubclassContext.baseName().IdText());
         }
         let abstractContext = __as__<MetaEdGrammar.AbstractEntityContext>(definingEntityContext, MetaEdGrammar.AbstractEntityContext);
         if (abstractContext != null) {
-            return this._symbolTable.Get(SymbolTableEntityType.AbstractEntityEntityType(), abstractContext.abstractEntityName().IdText());
+            return this.symbolTable.Get(SymbolTableEntityType.AbstractEntityEntityType(), abstractContext.abstractEntityName().IdText());
         }
         return null;
     }
@@ -71,12 +73,12 @@ export class MergePropertyAndTargetPropertyMustMatch extends ValidationRuleBase<
     private matchBaseType(referencingProperty: IContextWithIdentifier, baseTypeName: string): boolean {
         let entityName = referencingProperty.IdNode().GetText();
         let entityContext: EntityContext = null;
-        entityContext = this._symbolTable.Get(SymbolTableEntityType.DomainEntitySubclassEntityType(), entityName);
+        entityContext = this.symbolTable.Get(SymbolTableEntityType.DomainEntitySubclassEntityType(), entityName);
         if (entityContext != null) {
             let subclass = __as__<MetaEdGrammar.DomainEntitySubclassContext>(entityContext.Context, MetaEdGrammar.DomainEntitySubclassContext);
             return subclass.baseName().IdText() == baseTypeName;
         }
-        entityContext = this._symbolTable.Get(SymbolTableEntityType.AssociationSubclassEntityType(), entityName);
+        entityContext = this.symbolTable.Get(SymbolTableEntityType.AssociationSubclassEntityType(), entityName);
         if (entityContext != null) {
             let subclass = __as__<MetaEdGrammar.AssociationSubclassContext>(entityContext.Context, MetaEdGrammar.AssociationSubclassContext);
             return subclass.baseName().IdText() == baseTypeName;

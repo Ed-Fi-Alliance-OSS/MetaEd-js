@@ -36,15 +36,15 @@ export class ValidatorListener extends MetaEdGrammarListener implements IListene
     private validateContext<TContext extends ParserRuleContext>(context: TContext) {
         const validationRules = this.ruleProvider.getAll(this.symbolTable);
         validationRules.filter(x => x.level() == ValidationLevel.Error && !x.isValid(context))
-            .forEach(y => this.errorMessageCollection.add(this.buildValidationMessage(y, context)));
+            .forEach(y => this.errorMessageCollection.push(this.buildValidationMessage(y, context)));
 
         validationRules.filter(x => x.level() == ValidationLevel.Warning && !x.isValid(context))
-            .forEach(y => this.warningMessageCollection.add(this.buildValidationMessage(y, context)));
+            .forEach(y => this.warningMessageCollection.push(this.buildValidationMessage(y, context)));
     }
 
     private buildValidationMessage<TContext extends ParserRuleContext>(validationRule: IValidationRule<TContext>, context: TContext): ValidationMessage {
         const metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(context.start.line);
-        return <ValidationMessage[]{
+        return <ValidationMessage>{
             message: validationRule.getFailureMessage(context),
             characterPosition: context.start.column,
             concatenatedLineNumber: context.start.line,

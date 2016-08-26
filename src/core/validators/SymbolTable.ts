@@ -22,11 +22,11 @@ export class SymbolTable implements ISymbolTable {
 
     public tryAdd(entityType: string, name: string, context: ParserRuleContext): boolean {
 
-        let entityDictionary: Dictionary<string, EntityContext> = this._symbolTable.getValue(entityType);
+        let entityDictionary: Dictionary<string, EntityContext> = this.symbolTable.getValue(entityType);
 
         if (!entityDictionary) {
             entityDictionary = new Dictionary<string, EntityContext>();
-            this._symbolTable.addByKeyValue(entityType, entityDictionary);
+            this.symbolTable.addByKeyValue(entityType, entityDictionary);
         }
 
         if (entityDictionary.containsKey(name))
@@ -41,7 +41,7 @@ export class SymbolTable implements ISymbolTable {
     }
 
     public get(entityType: string, name: string): EntityContext {
-        let entityDictionary: Dictionary<string, EntityContext> = this._symbolTable.getValue(entityType);
+        let entityDictionary: Dictionary<string, EntityContext> = this.symbolTable.getValue(entityType);
         if (!entityDictionary)
             return null;
 
@@ -51,11 +51,11 @@ export class SymbolTable implements ISymbolTable {
     }
 
     public identifierExists(entityType: string, identifier: string): boolean {
-        if (!this._symbolTable.containsKey(entityType)) return false;
+        if (!this.symbolTable.containsKey(entityType)) return false;
         return this._symbolTable[entityType].containsKey(identifier);
     }
     public identifiersForEntityType(entityType: string): IEnumerable<string> {
-        let entityDictionary: Dictionary<string, EntityContext> = this._symbolTable.getValue(entityType);
+        let entityDictionary: Dictionary<string, EntityContext> = this.symbolTable.getValue(entityType);
         return entityDictionary ? Enumerable.from(entityDictionary.keys) : Enumerable.empty<string>();
     }
 

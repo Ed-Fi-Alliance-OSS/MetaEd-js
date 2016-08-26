@@ -29,7 +29,7 @@ export class CrossEntityTypeNamingValidator implements ISymbolTableBuilderListen
                 fileName: metaEdFile.fileName,
                 lineNumber: metaEdFile.lineNumber
             };
-            this._context.errorMessageCollection.add(failure);
+            this._context.errorMessageCollection.push(failure);
             return false;
         }
         this._trackedEntityNames.Add(candidateEntityName.ToString());

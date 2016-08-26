@@ -1,15 +1,17 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
 export class IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension extends ValidationRuleBase<MetaEdGrammar.IncludePropertyContext>
 {
-    private _symbolTable: ISymbolTable;
+    private symbolTable: ISymbolTable;
     constructor(symbolTable: ISymbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.IncludePropertyContext): boolean {
         if (context.includeExtensionOverride() == null)
             return true;
         let identifierToMatch = context.propertyName().GetText();
-        return this._symbolTable.IdentifierExists(SymbolTableEntityType.CommonTypeExtensionEntityType(), identifierToMatch);
+        return this.symbolTable.identifierExists(SymbolTableEntityType.CommonTypeExtensionEntityType(), identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.IncludePropertyContext): string {
         let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();

@@ -1,13 +1,15 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
 export class DomainItemMustMatchTopLevelEntity extends ValidationRuleBase<MetaEdGrammar.DomainItemContext>
 {
-    private _symbolTable: ISymbolTable;
+    private symbolTable: ISymbolTable;
     constructor(symbolTable: ISymbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.DomainItemContext): boolean {
         let identifierToMatch = context.IdText();
-        return this._symbolTable.IdentifierExists(SymbolTableEntityType.AbstractEntityEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntityEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntitySubclassEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.CommonTypeEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.InlineCommonTypeEntityType(), identifierToMatch);
+        return this.symbolTable.identifierExists(SymbolTableEntityType.AbstractEntityEntityType(), identifierToMatch) || this.symbolTable.identifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) || this.symbolTable.identifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch) || this.symbolTable.identifierExists(SymbolTableEntityType.DomainEntityEntityType(), identifierToMatch) || this.symbolTable.identifierExists(SymbolTableEntityType.DomainEntitySubclassEntityType(), identifierToMatch) || this.symbolTable.identifierExists(SymbolTableEntityType.CommonTypeEntityType(), identifierToMatch) || this.symbolTable.identifierExists(SymbolTableEntityType.InlineCommonTypeEntityType(), identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.DomainItemContext): string {
         let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();

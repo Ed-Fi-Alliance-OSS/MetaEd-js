@@ -1,9 +1,11 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
 export class InterchangeMustNotDuplicateInterchangeElementName extends ValidationRuleBase<MetaEdGrammar.InterchangeContext>
 {
-    private _symbolTable: ISymbolTable;
+    private symbolTable: ISymbolTable;
     constructor(symbolTable: ISymbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
     }
     private static duplicateInterchangeElements(context: MetaEdGrammar.InterchangeContext): string[] {
         let interchangeElements = context.interchangeComponent().interchangeElement().Select(x => x.ID().GetText());

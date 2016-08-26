@@ -1,14 +1,16 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
 export class SharedIntegerPropertyTypeMustMatchACommonSimpleInteger extends ValidationRuleBase<MetaEdGrammar.SharedIntegerPropertyContext>
 {
-    private _symbolTable: ISymbolTable;
+    private symbolTable: ISymbolTable;
     constructor(symbolTable: ISymbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.SharedIntegerPropertyContext): boolean {
         let identifierToMatch = context.sharedPropertyType().GetText();
         let commonIntegerType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_INTEGER);
-        return this._symbolTable.IdentifierExists(commonIntegerType, identifierToMatch);
+        return this.symbolTable.identifierExists(commonIntegerType, identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.SharedIntegerPropertyContext): string {
         return `Shared property '${context.propertyName().GetText()}' does not match any declared common integer.", );

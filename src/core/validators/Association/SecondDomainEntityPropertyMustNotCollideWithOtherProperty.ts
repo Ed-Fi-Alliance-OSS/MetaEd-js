@@ -1,9 +1,11 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
 export class SecondDomainEntityPropertyMustNotCollideWithOtherProperty extends ValidationRuleBase<MetaEdGrammar.SecondDomainEntityContext>
 {
-    private _symbolTable: ISymbolTable;
+    private symbolTable: ISymbolTable;
     constructor(symbolTable: ISymbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.SecondDomainEntityContext): boolean {
         let identifierToMatch = context.IdText();
@@ -11,7 +13,7 @@ export class SecondDomainEntityPropertyMustNotCollideWithOtherProperty extends V
         let withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().GetText();
         let associationName = (<MetaEdGrammar.AssociationContext>context.parent).associationName().IdText();
         let associationType = MetaEdGrammar.TokenName(MetaEdGrammar.ASSOCIATION);
-        let entitySymbolTable = this._symbolTable.Get(associationType, associationName);
+        let entitySymbolTable = this.symbolTable.Get(associationType, associationName);
         return entitySymbolTable.PropertySymbolTable.Get(withContextPrefix + identifierToMatch) == null;
     }
     public getFailureMessage(context: MetaEdGrammar.SecondDomainEntityContext): string {

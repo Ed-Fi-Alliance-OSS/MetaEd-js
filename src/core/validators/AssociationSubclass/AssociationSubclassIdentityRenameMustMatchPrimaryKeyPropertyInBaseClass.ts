@@ -1,9 +1,11 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
 export class AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClass extends ValidationRuleBase<MetaEdGrammar.AssociationSubclassContext>
 {
-    private _symbolTable: ISymbolTable;
+    private symbolTable: ISymbolTable;
     constructor(symbolTable: ISymbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.AssociationSubclassContext): boolean {
         let identityRenames = context.property().Where(x => x.GetProperty().propertyComponents().propertyAnnotation().identityRename() != null).Select(y => y.GetProperty().propertyComponents().propertyAnnotation().identityRename());
@@ -12,7 +14,7 @@ export class AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseCla
         let entityType = context.ASSOCIATION().GetText();
         let baseIdentifier = context.baseName().GetText();
         let basePropertyIdentifier = identityRenames.First().baseKeyName().GetText();
-        let baseSymbolTable = this._symbolTable.Get(entityType, baseIdentifier);
+        let baseSymbolTable = this.symbolTable.Get(entityType, baseIdentifier);
         if (baseSymbolTable == null)
             return true;
         let baseProperty = baseSymbolTable.PropertySymbolTable.Get(basePropertyIdentifier);

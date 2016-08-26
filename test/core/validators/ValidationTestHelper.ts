@@ -15,10 +15,12 @@ let antlr4 = require('antlr4/index');
 let MetaEdGrammar = require('../../../src/grammar/gen/MetaEdGrammar');
 let BaseLexer = require('../../../src/grammar/gen/BaseLexer');
 
-export class ValidationTestHelper {
+export default class ValidationTestHelper {
     public symbolTable: SymbolTable;
     public warningMessageCollection: ValidationMessage[];
     public errorMessageCollection: ValidationMessage[];
+    public metaEdContext: MetaEdContext;
+    public parserContext: any;
 
     public setup(metaEdText: string, listener: IListenerWithContext = new SymbolTableBuilder(new NullSymbolTableBuilderListener())): void {
         console.log(metaEdText);
@@ -31,12 +33,12 @@ export class ValidationTestHelper {
         let lexer = new BaseLexer.BaseLexer(antlrInputStream);
         let tokens = new antlr4.CommonTokenStream(lexer);
         let parser = new MetaEdGrammar.MetaEdGrammar(tokens);
-        let parserContext = parser.metaEd();
-        let metaEdContext: MetaEdContext = new MetaEdContext(metaEdFileIndex, this.symbolTable);
+        this.parserContext = parser.metaEd();
+        this.metaEdContext = new MetaEdContext(metaEdFileIndex, this.symbolTable);
 
-        this.warningMessageCollection = metaEdContext.warningMessageCollection;
-        this.errorMessageCollection = metaEdContext.errorMessageCollection;
-        listener.withContext(metaEdContext);
-        antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, parserContext);
+        this.warningMessageCollection = this.metaEdContext.warningMessageCollection;
+        this.errorMessageCollection = this.metaEdContext.errorMessageCollection;
+        listener.withContext(this.metaEdContext);
+        antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, this.parserContext);
     }
 }

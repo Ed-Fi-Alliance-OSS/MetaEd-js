@@ -1,14 +1,16 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
 export class CommonTypeExtensionIdentifierMustMatchACommonType extends ValidationRuleBase<MetaEdGrammar.CommonTypeExtensionContext>
 {
-    private _symbolTable: ISymbolTable;
+    private symbolTable: ISymbolTable;
     constructor(symbolTable: ISymbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.CommonTypeExtensionContext): boolean {
         let entityType = context.COMMON_TYPE().GetText();
         let identifier = context.extendeeName().GetText();
-        return this._symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
+        return this.symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
     }
     public getFailureMessage(context: MetaEdGrammar.CommonTypeExtensionContext): string {
         return `Common Type additions '${context.extendeeName().GetText()}' does not match any declared Common Type.`;

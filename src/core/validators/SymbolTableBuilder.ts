@@ -19,7 +19,7 @@ export interface ISymbolTableBuilder extends IListenerWithContext {
 }
 
 export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbolTableBuilder {
-    private _symbolTable: ISymbolTable;
+    private symbolTable: ISymbolTable;
     private _metaEdFileIndex: IMetaEdFileIndex;
     private _errorMessageCollection: ValidationMessage[];
     private _builderListener: ISymbolTableBuilderListener;
@@ -40,8 +40,8 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     private addEntity(entityType: string, entityName: ITerminalNode, context: ParserRuleContext): void {
         if (!this._builderListener.beforeAddEntity(entityType, entityName, context))
             return;
-        if (this._symbolTable.tryAdd(entityType, entityName.getText(), context)) {
-            this._currentPropertySymbolTable = this._symbolTable.get(entityType, entityName.getText()).propertySymbolTable;
+        if (this.symbolTable.tryAdd(entityType, entityName.getText(), context)) {
+            this._currentPropertySymbolTable = this.symbolTable.get(entityType, entityName.getText()).propertySymbolTable;
             return;
         }
         let metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(entityName.symbol.line);
@@ -52,7 +52,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
             fileName: metaEdFile.fileName,
             lineNumber: metaEdFile.lineNumber
         };
-        this._errorMessageCollection.add(failure);
+        this._errorMessageCollection.push(failure);
     }
     private addProperty(context): void {
         let propertyName = context.propertyName().ID();
@@ -71,7 +71,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
             fileName: metaEdFile.fileName,
             lineNumber: metaEdFile.lineNumber
         };
-        this._errorMessageCollection.add(duplicateFailure);
+        this._errorMessageCollection.push(duplicateFailure);
     }
 
     public enterDomainEntity(context): void {

@@ -1,9 +1,11 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
 export class AssociationExtensionMustNotDuplicateAssociationPropertyName extends ValidationRuleBase<MetaEdGrammar.AssociationExtensionContext>
 {
-    private _symbolTable: ISymbolTable;
+    private symbolTable: ISymbolTable;
     constructor(symbolTable: ISymbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.AssociationExtensionContext): boolean {
         return this.propertyRuleContextsForDuplicates(context).length == 0;
@@ -16,8 +18,8 @@ export class AssociationExtensionMustNotDuplicateAssociationPropertyName extends
         let entityType = context.ASSOCIATION().GetText();
         let extensionType = context.ASSOCIATION().GetText() + context.ADDITIONS();
         let identifier = context.extendeeName().GetText();
-        let associationPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
-        let duplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
+        let associationPropertyIdentifiers = this.symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
+        let duplicates = this.symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
         return duplicates.Where(AssociationExtensionMustNotDuplicateAssociationPropertyName.isNotIncludePropertyContextWithExtension);
     }
     private static isNotIncludePropertyContextWithExtension(context: IPropertyWithComponents): boolean {

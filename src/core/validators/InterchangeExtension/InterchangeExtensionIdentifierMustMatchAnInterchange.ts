@@ -1,14 +1,16 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
 export class InterchangeExtensionIdentifierMustMatchAnInterchange extends ValidationRuleBase<MetaEdGrammar.InterchangeExtensionContext>
 {
-    private _symbolTable: ISymbolTable;
+    private symbolTable: ISymbolTable;
     constructor(symbolTable: ISymbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.InterchangeExtensionContext): boolean {
         let entityType = context.INTERCHANGE().GetText();
         let identifier = context.extendeeName().GetText();
-        return this._symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
+        return this.symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
     }
     public getFailureMessage(context: MetaEdGrammar.InterchangeExtensionContext): string {
         return `Interchange additions '${context.extendeeName().GetText()}' does not match any declared Interchange.`;

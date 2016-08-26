@@ -1,9 +1,11 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
 export class DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName extends ValidationRuleBase<MetaEdGrammar.DomainEntityExtensionContext>
 {
-    private _symbolTable: ISymbolTable;
+    private symbolTable: ISymbolTable;
     constructor(symbolTable: ISymbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.DomainEntityExtensionContext): boolean {
         return propertyRuleContextsForDuplicates(context).length == 0;
@@ -16,8 +18,8 @@ export class DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName exten
         let entityType = context.DOMAIN_ENTITY().GetText();
         let extensionType = context.DOMAIN_ENTITY().GetText() + context.ADDITIONS();
         let identifier = context.extendeeName().GetText();
-        let domainEntityPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
-        let duplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, domainEntityPropertyIdentifiers);
+        let domainEntityPropertyIdentifiers = this.symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
+        let duplicates = this.symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, domainEntityPropertyIdentifiers);
         return duplicates.Where(isNotIncludePropertyContextWithExtension);
     }
     private static isNotIncludePropertyContextWithExtension(context: IPropertyWithComponents): boolean {
