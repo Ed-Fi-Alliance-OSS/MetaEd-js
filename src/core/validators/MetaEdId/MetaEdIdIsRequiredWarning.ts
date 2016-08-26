@@ -218,124 +218,124 @@ export class MetaEdIdIsRequiredWarning implements IValidationRule<MetaEdGrammar.
         return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
     }
     public getFailureMessage(context: MetaEdGrammar.BooleanPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.CurrencyPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.DatePropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.DecimalPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.DescriptorPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.DurationPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.EnumerationPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.FirstDomainEntityContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.IncludePropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.IntegerPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.PercentPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.ReferencePropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.SecondDomainEntityContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.SharedDecimalPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.SharedIntegerPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.SharedShortPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.SharedStringPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.ShortPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.StringPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.TimePropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.YearPropertyContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(),
             context.PropertyIdentifier(), context.PropertyName());
     }
     public getFailureMessage(context: MetaEdGrammar.EnumerationItemContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetItemFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.IdText());
     }
     public getFailureMessage(context: MetaEdGrammar.InterchangeElementContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetItemFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.IdText());
     }
     public getFailureMessage(context: MetaEdGrammar.InterchangeIdentityTemplateContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetItemFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.IdText());
     }
     public getFailureMessage(context: MetaEdGrammar.DomainItemContext): string {
-        var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return GetItemFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.IdText());
     }
 }

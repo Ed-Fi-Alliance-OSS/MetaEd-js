@@ -6,8 +6,8 @@ export class SharedShortPropertyTypeMustMatchACommonSimpleShort extends Validati
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.SharedShortPropertyContext): boolean {
-        var identifierToMatch = context.sharedPropertyType().GetText();
-        var commonShortType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_SHORT);
+        let identifierToMatch = context.sharedPropertyType().GetText();
+        let commonShortType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_SHORT);
         return this._symbolTable.IdentifierExists(commonShortType, identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.SharedShortPropertyContext): string {

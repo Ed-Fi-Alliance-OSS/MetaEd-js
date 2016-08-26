@@ -6,16 +6,16 @@ export class FirstDomainEntityPropertyMustNotCollideWithOtherProperty extends Va
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.FirstDomainEntityContext): boolean {
-        var identifierToMatch = context.IdText();
-        var withContextContext = context.withContext();
-        var withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().GetText();
-        var associationName = (<MetaEdGrammar.AssociationContext>context.parent).associationName().IdText();
-        var associationType = MetaEdGrammar.TokenName(MetaEdGrammar.ASSOCIATION);
-        var entitySymbolTable = this._symbolTable.Get(associationType, associationName);
+        let identifierToMatch = context.IdText();
+        let withContextContext = context.withContext();
+        let withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().GetText();
+        let associationName = (<MetaEdGrammar.AssociationContext>context.parent).associationName().IdText();
+        let associationType = MetaEdGrammar.TokenName(MetaEdGrammar.ASSOCIATION);
+        let entitySymbolTable = this._symbolTable.Get(associationType, associationName);
         return entitySymbolTable.PropertySymbolTable.Get(withContextPrefix + identifierToMatch) == null;
     }
     public getFailureMessage(context: MetaEdGrammar.FirstDomainEntityContext): string {
-        var associationName = (<MetaEdGrammar.AssociationContext>context.parent).associationName().IdText();
+        let associationName = (<MetaEdGrammar.AssociationContext>context.parent).associationName().IdText();
         return `Entity ${associationName} has duplicate properties named ${context.IdText()}`;
     }
 }

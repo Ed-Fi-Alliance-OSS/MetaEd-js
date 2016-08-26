@@ -4,8 +4,8 @@ export class ShortPropertyMinValueMustNotBeGreaterThanMaxValue extends Validatio
     public isValid(context: MetaEdGrammar.ShortPropertyContext): boolean {
         if (context.minValue() == null || context.maxValue() == null)
             return true;
-        var minValue = Number(context.minValue().MinValue());
-        var maxValue = Number(context.maxValue().MaxValue());
+        let minValue = Number(context.minValue().MinValue());
+        let maxValue = Number(context.maxValue().MaxValue());
         return minValue <= maxValue;
     }
     public getFailureMessage(context: MetaEdGrammar.ShortPropertyContext): string {

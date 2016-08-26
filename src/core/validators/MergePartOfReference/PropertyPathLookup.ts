@@ -27,7 +27,7 @@ export class PropertyPathLookup {}
 //
 //        public static Func < IPropertyWithComponents, bool > MatchAllButFirstAsIdentityProperties()
 //    {
-//        var first = true;
+//        let first = true;
 //        IPropertyWithComponents firstComponent = null;
 //
 //        return delegate(IPropertyWithComponents components) { 
@@ -51,21 +51,21 @@ export class PropertyPathLookup {}
 //
 //        public IContextWithIdentifier FindReferencedProperty(EntityContext startingEntityContext, string[] propertyPath, Func < IPropertyWithComponents, bool > filter)
 //    {
-//        var entityContext = startingEntityContext;
+//        let entityContext = startingEntityContext;
 //        string entityName = null;
 //        IContextWithIdentifier propertyContext = null;
 //
-//        foreach(var propertyPathPart in propertyPath)
+//        foreach(let propertyPathPart in propertyPath)
 //        {
 //            if (entityContext == null) {
-//                var entityType = GetEntityType(entityName);
+//                let entityType = GetEntityType(entityName);
 //                if (entityType == null)
 //                    return null;
 //
 //                entityContext = _symbolTable.Get(entityType, entityName);
 //            }
 //
-//            var matchingProperties = entityContext.PropertySymbolTable.GetWithoutContext(propertyPathPart).Where(filter);
+//            let matchingProperties = entityContext.PropertySymbolTable.GetWithoutContext(propertyPathPart).Where(filter);
 //            if (!matchingProperties.Any()) {
 //                if (!FindAssociationDomainEntityProperty(entityContext, propertyPathPart, out propertyContext))
 //                    return null;
@@ -93,7 +93,7 @@ export class PropertyPathLookup {}
 //        private bool FindAssociationDomainEntityProperty(EntityContext entityContext, string propertyNameToMatch, out IContextWithIdentifier property)
 //    {
 //        property = null;
-//        var associationContext = entityContext.Context as MetaEdGrammar.AssociationContext;
+//        let associationContext = entityContext.Context as MetaEdGrammar.AssociationContext;
 //        if (associationContext == null)
 //            return false;
 //
@@ -111,15 +111,15 @@ export class PropertyPathLookup {}
 //        
 //        private string GetEntityType(string identifierToMatch)
 //    {
-//        var domainEntityType = SymbolTableEntityType.DomainEntityEntityType();
+//        let domainEntityType = SymbolTableEntityType.DomainEntityEntityType();
 //        if (_symbolTable.IdentifierExists(domainEntityType, identifierToMatch))
 //            return domainEntityType;
 //
-//        var associationType = SymbolTableEntityType.AssociationEntityType();
+//        let associationType = SymbolTableEntityType.AssociationEntityType();
 //        if (_symbolTable.IdentifierExists(associationType, identifierToMatch))
 //            return associationType;
 //
-//        var abstractEntityType = SymbolTableEntityType.AbstractEntityEntityType();
+//        let abstractEntityType = SymbolTableEntityType.AbstractEntityEntityType();
 //        if (_symbolTable.IdentifierExists(abstractEntityType, identifierToMatch))
 //            return abstractEntityType;
 //

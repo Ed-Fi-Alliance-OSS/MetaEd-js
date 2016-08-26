@@ -6,7 +6,7 @@ export class AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSu
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.AssociationExtensionContext): boolean {
-        var identifierToMatch = context.extendeeName().GetText();
+        let identifierToMatch = context.extendeeName().GetText();
         return this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.AssociationExtensionContext): string {

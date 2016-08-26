@@ -6,7 +6,7 @@ export class DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity exte
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.DomainEntitySubclassContext): boolean {
-        var basedOnName = context.baseName().GetText();
+        let basedOnName = context.baseName().GetText();
         return this._symbolTable.IdentifiersForEntityType(SymbolTableEntityType.DomainEntityEntityType()).Any(x => x.Equals(basedOnName)) || this._symbolTable.IdentifiersForEntityType(SymbolTableEntityType.AbstractEntityEntityType()).Any(x => x.Equals(basedOnName));
     }
     public getFailureMessage(context: MetaEdGrammar.DomainEntitySubclassContext): string {

@@ -2,19 +2,19 @@ import { ValidationRuleBase } from "../ValidationRuleBase";
 export class AssociationMustNotDuplicateDomainEntityNames extends ValidationRuleBase<MetaEdGrammar.AssociationContext>
 {
     public isValid(context: MetaEdGrammar.AssociationContext): boolean {
-        var firstDomainEntityName = context.firstDomainEntity().IdText();
-        var secondDomainEntityName = context.secondDomainEntity().IdText();
+        let firstDomainEntityName = context.firstDomainEntity().IdText();
+        let secondDomainEntityName = context.secondDomainEntity().IdText();
         if (!firstDomainEntityName.Equals(secondDomainEntityName))
             return true;
-        var firstContext = context.firstDomainEntity().withContext();
-        var secondContext = context.secondDomainEntity().withContext();
-        var firstContextName = firstContext == null ? "" : firstContext.withContextName().ID().GetText();
-        var secondContextName = secondContext == null ? "" : secondContext.withContextName().ID().GetText();
+        let firstContext = context.firstDomainEntity().withContext();
+        let secondContext = context.secondDomainEntity().withContext();
+        let firstContextName = firstContext == null ? "" : firstContext.withContextName().ID().GetText();
+        let secondContextName = secondContext == null ? "" : secondContext.withContextName().ID().GetText();
         return !firstContextName.Equals(secondContextName);
     }
     public getFailureMessage(context: MetaEdGrammar.AssociationContext): string {
-        var identifier = context.associationName().GetText();
-        var firstDomainEntityName = context.firstDomainEntity().IdText();
+        let identifier = context.associationName().GetText();
+        let firstDomainEntityName = context.firstDomainEntity().IdText();
         return `Association '${identifier}' has duplicate declarations of Domain Entity '${firstDomainEntityName}'`;
     }
 }

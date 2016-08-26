@@ -21,8 +21,8 @@ export class CrossEntityTypeNamingValidator implements ISymbolTableBuilderListen
             return true;
 
         if (this._trackedEntityNames.Contains(candidateEntityName.ToString())) {
-            var metaEdFile = this._context.metaEdFileIndex.getFileAndLineNumber(candidateEntityName.Symbol.Line);
-            var failure: ValidationMessage = {
+            let metaEdFile = this._context.metaEdFileIndex.getFileAndLineNumber(candidateEntityName.Symbol.Line);
+            let failure: ValidationMessage = {
                 message: `${candidateEntityType} named ${candidateEntityName} is a duplicate declaration of that name.`,
                 characterPosition: candidateEntityName.Symbol.Column,
                 concatenatedLineNumber: candidateEntityName.Symbol.Line,

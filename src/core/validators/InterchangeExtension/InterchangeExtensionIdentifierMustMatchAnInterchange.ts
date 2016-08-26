@@ -6,8 +6,8 @@ export class InterchangeExtensionIdentifierMustMatchAnInterchange extends Valida
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.InterchangeExtensionContext): boolean {
-        var entityType = context.INTERCHANGE().GetText();
-        var identifier = context.extendeeName().GetText();
+        let entityType = context.INTERCHANGE().GetText();
+        let identifier = context.extendeeName().GetText();
         return this._symbolTable.IdentifiersForEntityType(entityType).Any(x => x.Equals(identifier));
     }
     public getFailureMessage(context: MetaEdGrammar.InterchangeExtensionContext): string {

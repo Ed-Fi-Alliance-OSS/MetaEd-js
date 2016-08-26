@@ -6,8 +6,8 @@ export class SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal extends Vali
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.SharedDecimalPropertyContext): boolean {
-        var identifierToMatch = context.sharedPropertyType().GetText();
-        var commonDecimalType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_DECIMAL);
+        let identifierToMatch = context.sharedPropertyType().GetText();
+        let commonDecimalType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_DECIMAL);
         return this._symbolTable.IdentifierExists(commonDecimalType, identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.SharedDecimalPropertyContext): string {

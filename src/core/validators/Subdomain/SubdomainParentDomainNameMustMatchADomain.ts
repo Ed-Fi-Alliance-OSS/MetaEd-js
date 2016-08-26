@@ -6,8 +6,8 @@ export class SubdomainParentDomainNameMustMatchADomain extends ValidationRuleBas
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.SubdomainContext): boolean {
-        var parentDomainName = context.parentDomainName().IdText();
-        var domainType = MetaEdGrammar.TokenName(MetaEdGrammar.DOMAIN);
+        let parentDomainName = context.parentDomainName().IdText();
+        let domainType = MetaEdGrammar.TokenName(MetaEdGrammar.DOMAIN);
         return this._symbolTable.IdentifierExists(domainType, parentDomainName);
     }
     public getFailureMessage(context: MetaEdGrammar.SubdomainContext): string {

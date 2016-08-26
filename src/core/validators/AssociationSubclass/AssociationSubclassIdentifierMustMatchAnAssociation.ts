@@ -6,8 +6,8 @@ export class AssociationSubclassIdentifierMustMatchAnAssociation extends Validat
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.AssociationSubclassContext): boolean {
-        var associationEntityType = context.ASSOCIATION().GetText();
-        var basedOnName = context.baseName().GetText();
+        let associationEntityType = context.ASSOCIATION().GetText();
+        let basedOnName = context.baseName().GetText();
         return this._symbolTable.IdentifiersForEntityType(associationEntityType).Any(x => x.Equals(basedOnName));
     }
     public getFailureMessage(context: MetaEdGrammar.AssociationSubclassContext): string {

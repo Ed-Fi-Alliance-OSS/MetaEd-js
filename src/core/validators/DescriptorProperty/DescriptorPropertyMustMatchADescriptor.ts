@@ -6,8 +6,8 @@ export class DescriptorPropertyMustMatchADescriptor extends ValidationRuleBase<M
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.DescriptorPropertyContext): boolean {
-        var identifierToMatch = context.propertyName().GetText();
-        var descriptorType = MetaEdGrammar.TokenName(MetaEdGrammar.DESCRIPTOR_ENTITY);
+        let identifierToMatch = context.propertyName().GetText();
+        let descriptorType = MetaEdGrammar.TokenName(MetaEdGrammar.DESCRIPTOR_ENTITY);
         return this._symbolTable.IdentifierExists(descriptorType, identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.DescriptorPropertyContext): string {

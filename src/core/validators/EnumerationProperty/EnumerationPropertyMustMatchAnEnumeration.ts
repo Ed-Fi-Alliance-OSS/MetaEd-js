@@ -6,7 +6,7 @@ export class EnumerationPropertyMustMatchAnEnumeration extends ValidationRuleBas
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.EnumerationPropertyContext): boolean {
-        var identifierToMatch = context.propertyName().GetText();
+        let identifierToMatch = context.propertyName().GetText();
         return this._symbolTable.IdentifierExists(SymbolTableEntityType.EnumerationEntityType(), identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.EnumerationPropertyContext): string {

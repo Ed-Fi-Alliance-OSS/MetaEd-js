@@ -6,7 +6,7 @@ export class DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntity
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.DomainEntityExtensionContext): boolean {
-        var identifier = context.extendeeName().GetText();
+        let identifier = context.extendeeName().GetText();
         return this._symbolTable.IdentifiersForEntityType(SymbolTableEntityType.DomainEntityEntityType()).Any(x => x.Equals(identifier)) || this._symbolTable.IdentifiersForEntityType(SymbolTableEntityType.DomainEntitySubclassEntityType()).Any(x => x.Equals(identifier));
     }
     public getFailureMessage(context: MetaEdGrammar.DomainEntityExtensionContext): string {

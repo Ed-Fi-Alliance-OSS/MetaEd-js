@@ -6,8 +6,8 @@ export class SharedIntegerPropertyTypeMustMatchACommonSimpleInteger extends Vali
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.SharedIntegerPropertyContext): boolean {
-        var identifierToMatch = context.sharedPropertyType().GetText();
-        var commonIntegerType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_INTEGER);
+        let identifierToMatch = context.sharedPropertyType().GetText();
+        let commonIntegerType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_INTEGER);
         return this._symbolTable.IdentifierExists(commonIntegerType, identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.SharedIntegerPropertyContext): string {

@@ -6,7 +6,7 @@ export class ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract exte
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.ReferencePropertyContext): boolean {
-        var identifierToMatch = context.propertyName().GetText();
+        let identifierToMatch = context.propertyName().GetText();
         return this._symbolTable.IdentifierExists(SymbolTableEntityType.AbstractEntityEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.AssociationSubclassEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntityEntityType(), identifierToMatch) || this._symbolTable.IdentifierExists(SymbolTableEntityType.DomainEntitySubclassEntityType(), identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.ReferencePropertyContext): string {

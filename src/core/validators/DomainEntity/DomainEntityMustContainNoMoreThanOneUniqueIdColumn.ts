@@ -2,7 +2,7 @@
 export class DomainEntityMustContainNoMoreThanOneUniqueIdColumn extends ValidationRuleBase<MetaEdGrammar.DomainEntityContext>
 {
     public isValid(context: MetaEdGrammar.DomainEntityContext): boolean {
-        var namespaceInfo = context.GetAncestorContext<INamespaceInfo>();
+        let namespaceInfo = context.GetAncestorContext<INamespaceInfo>();
         return namespaceInfo.IsExtension || context.property().Count(x => x.GetProperty().PropertyName() == "UniqueId") <= 1;
     }
     public getFailureMessage(context: MetaEdGrammar.DomainEntityContext): string {

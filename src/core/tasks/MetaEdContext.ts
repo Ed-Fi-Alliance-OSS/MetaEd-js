@@ -1,93 +1,98 @@
 import {IMetaEdFileIndex} from '../../grammar/IMetaEdFileIndex';
-import ValidationMessage from '../../common/ValidationMessage';
 import {ISymbolTable} from '../validators/SymbolTable';
 
-import List from 'typescript-dotnet-commonjs/System/Collections/List'
+declare type ArtifactGeneration = any;
+declare type IParseTree = any;
+declare type ValidationMessage = any;
+declare type IVersion = any;
+declare type Exception = any;
+declare type GeneratedOutput = any;
+declare type FilesToLoad = any;
+declare type Version = any;
 
-export interface IMetaEdContext {
-    //      FileExtension: string
-    //    InputDirectories: IList<InputDirectory>
-    //    string ProjectFile { get; set; }
-    //    string OutputDirectory { get; set; }
-    //    ArtifactGeneration ArtifactGeneration { get; set; }
-    //    IParseTree ParseTree { get; set; }
-    metaEdFileIndex: IMetaEdFileIndex;
-    errorMessageCollection: List<ValidationMessage>;
-    warningMessageCollection: List<ValidationMessage>;
-    //    IList<Exception> ExceptionCollection { get; }
-    symbolTable: ISymbolTable;
-    //    List<GeneratedOutput> Output { get; }
-    //    IList<FilesToLoad> FileNamesToLoad { get; }
-    //    bool OnlySyntaxCheckFirstFileNameSet { get; set; }
-    //    IVersion Version { get; }
-    //    string CopyrightYear { get; set; }
-    //    DateTimeOffset GenerationDateTime { get; set; }
-    //    bool DisableDiminishers { get; set; }
-    //}
+module MetaEd.Core.Tasks {
+    export interface IMetaEdContext {
+        fileExtension: string;
+        inputDirectories: InputDirectory[];
+        projectFile: string;
+        outputDirectory: string;
+        artifactGeneration: ArtifactGeneration;
+        parseTree: IParseTree;
+        metaEdFileIndex: IMetaEdFileIndex;
+        warningMessageCollection: ValidationMessage[];
+        errorMessageCollection: ValidationMessage[];
+        exceptionCollection: Exception[];
+        symbolTable: ISymbolTable;
+        output: GeneratedOutput[];
+        fileNamesToLoad: FilesToLoad[];
+        onlySyntaxCheckFirstFileNameSet: boolean;
+        version: IVersion;
+        copyrightYear: string;
+        generationDateTime: Date;
+        disableDiminishers: boolean;
+    }
+    export class InputDirectory {
+        public path: string;
+        public namespace: string;
+        public projectExtension: string;
+        public isExtension: boolean;
+    }
+    export class MetaEdContext implements IMetaEdContext {
+        private _metaEdFileIndex: IMetaEdFileIndex;
+        private _warningMessageCollection: ValidationMessage[];
+        private _errorMessageCollection: ValidationMessage[];
+        private _symbolTable: ISymbolTable;
+        private _generatedOutput: GeneratedOutput[] = [];
+        private _inputDirectories: InputDirectory[] = [];
+        private _fileNamesToLoad: FilesToLoad[] = [];
+        private _version: Version = new Version();
+        private _exceptionCollection: Exception[] = new Exception[]();
+        constructor(metaEdFileIndex: IMetaEdFileIndex, symbolTable: ISymbolTable) {
+            this._warningMessageCollection = new ValidationMessage[]();
+            this._errorMessageCollection = new ValidationMessage[]();
+            this._metaEdFileIndex = metaEdFileIndex;
+            this._symbolTable = symbolTable;
+        }
+        public get fileExtension(): string {
+            return ".metaed";
+        }
+        public set fileExtension(value: string) {
 
-    //public class InputDirectory
-    //{
-    //    public string Path { get; set; }
-    //    public string Namespace { get; set; }
-    //    public string ProjectExtension { get; set; }
-    //    public bool IsExtension { get; set; }
-    //}
-
-    //public class MetaEdContext : IMetaEdContext
-    //{
-    //    private readonly IMetaEdFileIndex _metaEdFileIndex;
-    //    private readonly List<ValidationMessage> _warningMessageCollection;
-    //    private readonly List<ValidationMessage> _errorMessageCollection;
-    //    private readonly ISymbolTable _symbolTable;
-    //    private readonly List<GeneratedOutput> _generatedOutput = new List<GeneratedOutput>();
-    //    private readonly List<InputDirectory> _inputDirectories = new List<InputDirectory>();
-    //    private readonly List<FilesToLoad> _fileNamesToLoad = new List<FilesToLoad>();
-    //    private readonly Version _version = new Version();
-    //    private readonly List<Exception> _exceptionCollection = new List<Exception>();
-
-    //    public MetaEdContext(IMetaEdFileIndex metaEdFileIndex, ISymbolTable symbolTable)
-    //    {
-    //        _warningMessageCollection = new List<ValidationMessage>();
-    //        _errorMessageCollection = new List<ValidationMessage>();
-    //        _metaEdFileIndex = metaEdFileIndex;
-    //        _symbolTable = symbolTable;
-    //    }
-
-    //    public string FileExtension { get { return ".metaed"; } set {} }
-    //    public IList<InputDirectory> InputDirectories { get { return _inputDirectories; } }
-    //    public string ProjectFile { get; set; }
-    //    public string OutputDirectory { get; set; }
-    //    public ArtifactGeneration ArtifactGeneration { get; set; }
-    //    public IParseTree ParseTree { get; set; }
-    //    public IMetaEdFileIndex MetaEdFileIndex { get { return _metaEdFileIndex; } }
-    //    public List<ValidationMessage> WarningMessageCollection { get { return _warningMessageCollection; } }
-    //    public List<ValidationMessage> ErrorMessageCollection { get { return _errorMessageCollection; } }
-    //    public IList<Exception> ExceptionCollection { get { return _exceptionCollection; } }
-    //    public ISymbolTable SymbolTable { get { return _symbolTable; } }
-    //    public List<GeneratedOutput> Output { get { return _generatedOutput; } }
-    //    public IList<FilesToLoad> FileNamesToLoad { get { return _fileNamesToLoad; } }
-    //    public bool OnlySyntaxCheckFirstFileNameSet { get; set; }
-    //    public IVersion Version { get { return _version; } }
-    //    public string CopyrightYear { get; set; }
-    //    public DateTimeOffset GenerationDateTime { get; set; }
-    //    public bool DisableDiminishers { get; set; }
-}
-
-export class MetaEdContext implements IMetaEdContext{
-    private _metaEdFileIndex: IMetaEdFileIndex;
-    private _errorMessageCollection: List<ValidationMessage>;
-    private _warningMessageCollection: List<ValidationMessage>;
-    private _symbolTable: ISymbolTable;
-
-    public get metaEdFileIndex(): IMetaEdFileIndex { return this._metaEdFileIndex; }
-    public get errorMessageCollection(): List<ValidationMessage> { return this._errorMessageCollection; };
-    public get warningMessageCollection(): List<ValidationMessage> { return this._warningMessageCollection; };
-    public get symbolTable(): ISymbolTable { return this._symbolTable; };
-
-    constructor(metaEdFileIndex: IMetaEdFileIndex, symbolTable: ISymbolTable){
-        this._metaEdFileIndex = metaEdFileIndex;
-        this._symbolTable = symbolTable;
-        this._errorMessageCollection = new List<ValidationMessage>();
-        this._warningMessageCollection = new List<ValidationMessage>();
+        }
+        public get inputDirectories(): InputDirectory[] {
+            return this._inputDirectories;
+        }
+        public projectFile: string;
+        public outputDirectory: string;
+        public artifactGeneration: ArtifactGeneration;
+        public parseTree: IParseTree;
+        public get metaEdFileIndex(): IMetaEdFileIndex {
+            return this._metaEdFileIndex;
+        }
+        public get warningMessageCollection(): ValidationMessage[] {
+            return this._warningMessageCollection;
+        }
+        public get errorMessageCollection(): ValidationMessage[] {
+            return this._errorMessageCollection;
+        }
+        public get exceptionCollection(): Exception[] {
+            return this._exceptionCollection;
+        }
+        public get symbolTable(): ISymbolTable {
+            return this._symbolTable;
+        }
+        public get output(): GeneratedOutput[] {
+            return this._generatedOutput;
+        }
+        public get fileNamesToLoad(): FilesToLoad[] {
+            return this._fileNamesToLoad;
+        }
+        public onlySyntaxCheckFirstFileNameSet: boolean;
+        public get version(): IVersion {
+            return this._version;
+        }
+        public copyrightYear: string;
+        public generationDateTime: Date;
+        public disableDiminishers: boolean;
     }
 }

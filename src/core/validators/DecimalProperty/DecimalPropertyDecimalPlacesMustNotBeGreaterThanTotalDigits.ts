@@ -2,8 +2,8 @@
 export class DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits extends ValidationRuleBase<MetaEdGrammar.DecimalPropertyContext>
 {
     public isValid(context: MetaEdGrammar.DecimalPropertyContext): boolean {
-        var decimalPlaces = context.decimalPlaces().DecimalPlaces();
-        var totalDigits = context.totalDigits().TotalDigits();
+        let decimalPlaces = context.decimalPlaces().DecimalPlaces();
+        let totalDigits = context.totalDigits().TotalDigits();
         return Number(decimalPlaces) <= Number(totalDigits);
     }
     public getFailureMessage(context: MetaEdGrammar.DecimalPropertyContext): string {

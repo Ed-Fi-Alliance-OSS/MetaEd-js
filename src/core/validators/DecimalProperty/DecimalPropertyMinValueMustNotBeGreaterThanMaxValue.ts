@@ -4,8 +4,8 @@ export class DecimalPropertyMinValueMustNotBeGreaterThanMaxValue extends Validat
     public isValid(context: MetaEdGrammar.DecimalPropertyContext): boolean {
         if (context.minValueDecimal() == null || context.maxValueDecimal() == null)
             return true;
-        var minValue = context.minValueDecimal().MinValue();
-        var maxValue = context.maxValueDecimal().MaxValue();
+        let minValue = context.minValueDecimal().MinValue();
+        let maxValue = context.maxValueDecimal().MaxValue();
         return Number(minValue) <= Number(maxValue);
     }
     public getFailureMessage(context: MetaEdGrammar.DecimalPropertyContext): string {

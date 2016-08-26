@@ -6,8 +6,8 @@ export class SharedStringPropertyTypeMustMatchACommonSimpleString extends Valida
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.SharedStringPropertyContext): boolean {
-        var identifierToMatch = context.sharedPropertyType().GetText();
-        var commonStringType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_STRING);
+        let identifierToMatch = context.sharedPropertyType().GetText();
+        let commonStringType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_STRING);
         return this._symbolTable.IdentifierExists(commonStringType, identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.SharedStringPropertyContext): string {

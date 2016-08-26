@@ -6,22 +6,22 @@ export class DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName extend
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.DomainEntitySubclassContext): boolean {
-        var entityType = context.DOMAIN_ENTITY().GetText();
-        var extensionType = context.DOMAIN_ENTITY().GetText() + context.BASED_ON();
-        var identifier = context.entityName().GetText();
-        var baseIdentifier = context.baseName().GetText();
-        var basePropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, baseIdentifier);
-        var subclassPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(extensionType, identifier);
+        let entityType = context.DOMAIN_ENTITY().GetText();
+        let extensionType = context.DOMAIN_ENTITY().GetText() + context.BASED_ON();
+        let identifier = context.entityName().GetText();
+        let baseIdentifier = context.baseName().GetText();
+        let basePropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, baseIdentifier);
+        let subclassPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(extensionType, identifier);
         return !basePropertyIdentifiers.Intersect(subclassPropertyIdentifiers).Any();
     }
     public getFailureMessage(context: MetaEdGrammar.DomainEntitySubclassContext): string {
-        var domainEntityType = context.DOMAIN_ENTITY().GetText();
-        var extensionType = context.DOMAIN_ENTITY().GetText() + context.BASED_ON();
-        var identifier = context.entityName().GetText();
-        var baseIdentifier = context.baseName().GetText();
-        var associationPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(domainEntityType, baseIdentifier).ToList();
-        var propertyRuleContextsForDuplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
-        var duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
+        let domainEntityType = context.DOMAIN_ENTITY().GetText();
+        let extensionType = context.DOMAIN_ENTITY().GetText() + context.BASED_ON();
+        let identifier = context.entityName().GetText();
+        let baseIdentifier = context.baseName().GetText();
+        let associationPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(domainEntityType, baseIdentifier).ToList();
+        let propertyRuleContextsForDuplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
+        let duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
         return `DomainEntity '${identifier}' based on '${baseIdentifier}' declares '${duplicatePropertyIdentifierList.join(", ")}' already in property list of base DomainEntity.`;
     }
 }

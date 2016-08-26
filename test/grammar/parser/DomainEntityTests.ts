@@ -39,25 +39,25 @@ describe('DomainEntityTests', () => {
         });
 
         it('Should_parse_entity_name', () => {
-            var entityName = context.entityName();
+            let entityName = context.entityName();
             entityName.should.exist;
             should.not.exist(entityName.exception);
             entityName.ID().symbol.text.should.equal(entity_name);
         });
 
         it('Should_parse_documentation', () => {
-            var documentation = context.documentation();
+            let documentation = context.documentation();
             documentation.should.exist;
             should.not.exist(documentation.exception);
 
-            var documentationLine = documentation.documentationLine();
+            let documentationLine = documentation.documentationLine();
             documentationLine.length.should.equal(2);
             should.exist(documentationLine[0]);
             should.exist(documentationLine[1]);
         });
 
         it('Should_parse_properties_collection', () => {
-            var properties = context.property();
+            let properties = context.property();
             properties.should.exist;
             properties.length.should.equal(1);
             should.not.exist(properties[0].exception);

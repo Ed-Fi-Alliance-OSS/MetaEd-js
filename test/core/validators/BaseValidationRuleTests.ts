@@ -4,8 +4,8 @@ module MetaEd.Tests.Validator {
     export class ValidationRuleTestBase extends BaseValidationTest {
         protected getRuleProvider(): IRuleProvider { throw new Error('not implemented'); }
         protected setupPostBuilder(): void {
-            var ruleProvider = GetRuleProvider();
-            var validator = new ValidatorListener(ruleProvider);
+            let ruleProvider = GetRuleProvider();
+            let validator = new ValidatorListener(ruleProvider);
             validator.WithContext(_metaEdContext);
             ParseTreeWalker.Default.Walk(validator, _parserContext);
         }

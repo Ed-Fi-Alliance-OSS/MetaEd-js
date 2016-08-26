@@ -6,11 +6,11 @@ export class ShortPropertyMustNotMatchACommonSimpleType extends ValidationRuleBa
         this._symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.ShortPropertyContext): boolean {
-        var identifierToMatch = context.propertyName().GetText();
-        var commonDecimalType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_DECIMAL);
-        var commonIntegerType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_INTEGER);
-        var commonShortType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_SHORT);
-        var commonStringType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_STRING);
+        let identifierToMatch = context.propertyName().GetText();
+        let commonDecimalType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_DECIMAL);
+        let commonIntegerType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_INTEGER);
+        let commonShortType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_SHORT);
+        let commonStringType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_STRING);
         return !(this._symbolTable.IdentifierExists(commonDecimalType, identifierToMatch) || this._symbolTable.IdentifierExists(commonIntegerType, identifierToMatch) || this._symbolTable.IdentifierExists(commonShortType, identifierToMatch) || this._symbolTable.IdentifierExists(commonStringType, identifierToMatch));
     }
     public getFailureMessage(context: MetaEdGrammar.ShortPropertyContext): string {
