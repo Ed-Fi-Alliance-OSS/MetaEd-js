@@ -1,77 +1,74 @@
 import {IPropertyWithComponents} from '../../grammar/IPropertyWithComponents';
 import PropertySymbolTable from './PropertySymbolTable'
-import Dictionary from 'typescript-dotnet-commonjs/System/Collections/Dictionaries/Dictionary'
-
-import IEnumerable from 'typescript-dotnet-commonjs/System/Collections/Enumeration/IEnumerable'
-import ICollection from 'typescript-dotnet-commonjs/System/Collections/ICollection'
-import Enumerable from 'typescript-dotnet-commonjs/System.Linq/Linq'
 
 export interface ISymbolTable {
-    tryAdd(entityType: string, name: string, context: any): boolean
-    get(entityType: string, name: string): EntityContext
-    identifierExists(entityType: string, identifier: string): boolean
-    identifiersForEntityType(entityType: string): IEnumerable<string>
-    identifiersForEntityProperties(entityType: string, identifier: string): IEnumerable<string>
-    contextsForMatchingPropertyIdentifiers(entityType: string, name: string, candidatePropertyIdentifiers: ICollection<string>): IEnumerable<IPropertyWithComponents>
+    tryAdd(entityType: string, name: string, context: any): boolean;
+    get(entityType: string, name: string): EntityContext;
+    identifierExists(entityType: string, identifier: string): boolean;
+    identifiersForEntityType(entityType: string): IterableIterator<string>;
+    identifiersForEntityProperties(entityType: string, identifier: string): IterableIterator<string>;
+    contextsForMatchingPropertyIdentifiers(entityType: string, name: string, candidatePropertyIdentifiers: Array<string>): Array<any>;
 }
 
-export class SymbolTable implements ISymbolTable {
+export default class SymbolTable implements ISymbolTable {
 
-    private symbolTable: Dictionary<string, Dictionary<string, EntityContext>> = new Dictionary<string, Dictionary<string, EntityContext>>();
+    private symbolTable: Map<string, Map<string, EntityContext>> = new Map<string, Map<string, EntityContext>>();
 
     public tryAdd(entityType: string, name: string, context: any): boolean {
 
-        let entityDictionary: Dictionary<string, EntityContext> = this.symbolTable.getValue(entityType);
+        let entityDictionary: Map<string, EntityContext> = this.symbolTable.get(entityType);
 
         if (!entityDictionary) {
-            entityDictionary = new Dictionary<string, EntityContext>();
-            this.symbolTable.addByKeyValue(entityType, entityDictionary);
+            entityDictionary = new Map<string, EntityContext>();
+            this.symbolTable.set(entityType, entityDictionary);
         }
 
-        if (entityDictionary.containsKey(name))
+        if (entityDictionary.has(name))
             return false;
 
         let entityContext = new EntityContext(name, context);
 
         entityContext.propertySymbolTable = new PropertySymbolTable(entityContext);
-        entityDictionary.addByKeyValue(name, entityContext);
+        entityDictionary.set(name, entityContext);
 
         return true;
     }
 
     public get(entityType: string, name: string): EntityContext {
-        let entityDictionary: Dictionary<string, EntityContext> = this.symbolTable.getValue(entityType);
+        let entityDictionary: Map<string, EntityContext> = this.symbolTable.get(entityType);
         if (!entityDictionary)
             return null;
 
-        let entityContext: EntityContext = entityDictionary.getValue(name);
+        let entityContext: EntityContext = entityDictionary.get(name);
 
         return entityContext;
     }
 
     public identifierExists(entityType: string, identifier: string): boolean {
-        if (!this.symbolTable.containsKey(entityType)) return false;
+        if (!this.symbolTable.has(entityType)) return false;
         return this.symbolTable[entityType].containsKey(identifier);
     }
-    public identifiersForEntityType(entityType: string): IEnumerable<string> {
-        let entityDictionary: Dictionary<string, EntityContext> = this.symbolTable.getValue(entityType);
-        return entityDictionary ? Enumerable.from(entityDictionary.keys) : Enumerable.empty<string>();
+
+    public identifiersForEntityType(entityType: string): IterableIterator<string> {
+        let entityDictionary: Map<string, EntityContext> = this.symbolTable.get(entityType);
+        if (entityDictionary) return entityDictionary.keys();
+        return new Array<string>().values();
     }
 
     // results are prefixed by a 'with context' value if one exists for property
-    public identifiersForEntityProperties(entityType: string, identifier: string): IEnumerable<string> {
+    public identifiersForEntityProperties(entityType: string, identifier: string): IterableIterator<string> {
         let entityContext = this.get(entityType, identifier);
 
         if (entityContext == null)
-            return Enumerable.empty<string>();
+            return [];
         return entityContext.propertySymbolTable.identifiers();
     }
 
     // candidate identifiers should be prefixed by a 'with context' value if one exists for property
-    public contextsForMatchingPropertyIdentifiers(entityType: string, name: string, candidatePropertyIdentifiers: ICollection<string>): IEnumerable<IPropertyWithComponents> {
+    public contextsForMatchingPropertyIdentifiers(entityType: string, name: string, candidatePropertyIdentifiers: Array<string>): Array<IPropertyWithComponents> {
         let entityContext = this.get(entityType, name);
 
-        if (entityContext == null) return Enumerable.empty<IPropertyWithComponents>();
+        if (entityContext == null) return [];
         return entityContext.propertySymbolTable.contextsForMatchingIdentifiers(candidatePropertyIdentifiers);
     }
 }

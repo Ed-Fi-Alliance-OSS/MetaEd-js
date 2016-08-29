@@ -1,5 +1,5 @@
 import ValidationMessage from '../../../src/common/ValidationMessage'
-import { SymbolTable } from '../../../src/core/validators/SymbolTable'
+import SymbolTable from '../../../src/core/validators/SymbolTable'
 import { MetaEdContext } from '../../../src/core/tasks/MetaEdContext'
 import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex'
 import { SymbolTableBuilder } from  '../../../src/core/validators/SymbolTableBuilder'
@@ -17,12 +17,12 @@ export default class ValidationTestHelper {
     public metaEdContext: MetaEdContext;
     public parserContext: any;
 
-    public setup(metaEdText: string, listener: IListenerWithContext = new SymbolTableBuilder(new NullSymbolTableBuilderListener())): void {
+    public setup(metaEdText: string, listener: IListenerWithContext = new SymbolTableBuilder(new NullSymbolTableBuilderListener()), symbolTable = new SymbolTable()): void {
         console.log(metaEdText);
         let metaEdFileIndex = new SingleFileMetaEdFileIndex();
         metaEdFileIndex.addContents(metaEdText);
 
-        this.symbolTable = new SymbolTable();
+        this.symbolTable = symbolTable;
 
         let antlrInputStream = new antlr4.InputStream(metaEdText);
         let lexer = new BaseLexer.BaseLexer(antlrInputStream);

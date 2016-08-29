@@ -8,11 +8,11 @@ let antlr4 = require('antlr4/index');
 let MetaEdGrammar = require('../../../src/grammar/gen/MetaEdGrammar');
 let BaseLexer = require('../../../src/grammar/gen/BaseLexer');
 class ValidationTestHelper {
-    setup(metaEdText, listener = new SymbolTableBuilder_1.SymbolTableBuilder(new NullSymbolTableBuilderListener_1.default())) {
+    setup(metaEdText, listener = new SymbolTableBuilder_1.SymbolTableBuilder(new NullSymbolTableBuilderListener_1.default()), symbolTable = new SymbolTable_1.default()) {
         console.log(metaEdText);
         let metaEdFileIndex = new SingleFileMetaEdFileIndex_1.default();
         metaEdFileIndex.addContents(metaEdText);
-        this.symbolTable = new SymbolTable_1.SymbolTable();
+        this.symbolTable = symbolTable;
         let antlrInputStream = new antlr4.InputStream(metaEdText);
         let lexer = new BaseLexer.BaseLexer(antlrInputStream);
         let tokens = new antlr4.CommonTokenStream(lexer);

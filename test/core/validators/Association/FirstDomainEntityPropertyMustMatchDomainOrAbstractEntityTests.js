@@ -6,10 +6,12 @@ const ValidationTestHelper_1 = require("../ValidationTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1 = require("../../../../src/core/validators/Association/FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity");
+const SymbolTable_1 = require("../../../../src/core/validators/SymbolTable");
 let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
 let should = chai.should();
 describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => {
-    let validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntityContext, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
+    const symbolTable = new SymbolTable_1.default();
+    let validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
     describe('When_domain_entity_property_has_domain_entity_identifier', () => {
         let helper = new ValidationTestHelper_1.default();
         before(() => {
@@ -29,7 +31,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
                 .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
+            helper.setup(metaEdText, validatorListener, symbolTable);
         });
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
@@ -54,7 +56,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
                 .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
+            helper.setup(metaEdText, validatorListener, symbolTable);
         });
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
@@ -83,7 +85,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
                 .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
+            helper.setup(metaEdText, validatorListener, symbolTable);
         });
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
@@ -105,15 +107,15 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
                 .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
+            helper.setup(metaEdText, validatorListener, symbolTable);
         });
         it('should_have_validation_failure()', () => {
             helper.errorMessageCollection.length.should.not.equal(0);
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+            helper.errorMessageCollection[0].message.should.include("Domain Entity");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("does not match");
         });
     });
 });

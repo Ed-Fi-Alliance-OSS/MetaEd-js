@@ -19,13 +19,13 @@ export class FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity extends Va
     }
 
     public isValid(context: any): boolean {
-        let identifierToMatch = context.IdText();
+        let identifierToMatch = context.propertyName().ID().getText();
         return this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntityEntityType(), identifierToMatch) 
         || this.symbolTable.identifierExists(this.symbolTableEntityType.abstractEntityEntityType(), identifierToMatch) 
         || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntitySubclassEntityType(), identifierToMatch);
     }
 
     public getFailureMessage(context: any): string {
-        return `Domain Entity property '${context.IdText()}' does not match any declared domain or abstract entity.`
+        return `Domain Entity property '${context.propertyName().ID().getText()}' does not match any declared domain or abstract entity.`
     }
 }
