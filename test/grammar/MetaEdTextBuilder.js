@@ -37,10 +37,10 @@ class MetaEdTextBuilder {
     }
     withBeginNamespace(identifier, projectExtension = null) {
         if (projectExtension == null) {
-            this.addLine('Begin Namespace ${} core', identifier);
+            this.addLine('Begin Namespace {0} core', identifier);
         }
         else {
-            this.addLine('Begin Namespace ${} ${}', identifier, projectExtension);
+            this.addLine('Begin Namespace {0} {1}', identifier, projectExtension);
         }
         this.increaseIndentation();
         return this;
@@ -51,7 +51,7 @@ class MetaEdTextBuilder {
         return this;
     }
     withComment(comment) {
-        this.addLine('//${}', comment);
+        this.addLine('//{0}', comment);
         return this;
     }
     withDocumentation(...documentationLines) {
@@ -72,7 +72,7 @@ class MetaEdTextBuilder {
     withDocumentationLines(...documentationLines) {
         const documentationPrefix = '\'';
         for (const line of documentationLines) {
-            this.addLine('${}${}', documentationPrefix, line);
+            this.addLine('{0}{1}', documentationPrefix, line);
         }
         return this;
     }
@@ -82,30 +82,30 @@ class MetaEdTextBuilder {
         if (this.textLines.length > 0) {
             const lastLine = this.textLines[this.textLines.length - 1];
             this.textLines[this.textLines.length - 1] =
-                StringHelper_1.default.format('${} [${}]', lastLine, metaEdId);
+                StringHelper_1.default.format('{0} [{1}]', lastLine, metaEdId);
         }
         else {
-            this.addLine('[${}]', metaEdId);
+            this.addLine('[{0}]', metaEdId);
         }
         return this;
     }
     withChildElement(elementType, identifier, metaEdId = null) {
-        this.addLine('${} ${}', elementType, identifier);
+        this.addLine('{0} {1}', elementType, identifier);
         this.withMetaEdId(metaEdId);
         return this;
     }
     withStartTopLevel(keyword, identifier, baseIdentifier = null) {
         if (baseIdentifier == null) {
-            this.addLine('${} ${}', keyword, identifier);
+            this.addLine('{0} {1}', keyword, identifier);
         }
         else {
-            this.addLine('${} ${} based on ${}', keyword, identifier, baseIdentifier);
+            this.addLine('{0} {1} based on {2}', keyword, identifier, baseIdentifier);
         }
         this.increaseIndentation();
         return this;
     }
     withStartTopLevelExtension(keyword, identifier) {
-        this.addLine('${} ${} additions', keyword, identifier);
+        this.addLine('{0} {1} additions', keyword, identifier);
         this.increaseIndentation();
         return this;
     }
@@ -253,7 +253,7 @@ class MetaEdTextBuilder {
         return this.withEndTopLevel();
     }
     withStartSubdomain(subdomainName, parentDomainName) {
-        this.addLine('Subdomain ${} of ${}', subdomainName, parentDomainName);
+        this.addLine('Subdomain {0} of {1}', subdomainName, parentDomainName);
         this.increaseIndentation();
         return this;
     }
@@ -270,7 +270,7 @@ class MetaEdTextBuilder {
     }
     withIdentityRenameIndicator(basePropertyIdentifier) {
         const identityRename = 'renames identity property';
-        this.addLine('${} ${}', identityRename, basePropertyIdentifier);
+        this.addLine('{0} {1}', identityRename, basePropertyIdentifier);
         return this;
     }
     withOptionalCollectionIndicator() {
@@ -298,25 +298,25 @@ class MetaEdTextBuilder {
             return this;
         const withContext = 'with context';
         if (shortenTo == null) {
-            this.addLine('${} ${}', withContext, context);
+            this.addLine('{0} {1}', withContext, context);
         }
         else {
-            this.addLine('${} ${} shorten to ${}', withContext, context, shortenTo);
+            this.addLine('{0} {1} shorten to {2}', withContext, context, shortenTo);
         }
         return this;
     }
     withMergePartOfReference(mergePropertyPath, targetPropertyPath) {
-        this.addLine('merge ${} with ${}', mergePropertyPath, targetPropertyPath);
+        this.addLine('merge {0} with {1}', mergePropertyPath, targetPropertyPath);
         return this;
     }
     withStartProperty(propertyType, propertyIdentifier, metaEdId = null) {
-        this.addLine('${} ${}', propertyType, propertyIdentifier);
+        this.addLine('{0} {1}', propertyType, propertyIdentifier);
         this.withMetaEdId(metaEdId);
         this.increaseIndentation();
         return this;
     }
     withStartSharedProperty(propertyType, propertyIdentifier, named, metaEdId = null) {
-        this.addLine('shared ${} ${} named ${}', propertyType, propertyIdentifier, named);
+        this.addLine('shared {0} {1} named {2}', propertyType, propertyIdentifier, named);
         this.withMetaEdId(metaEdId);
         this.increaseIndentation();
         return this;
@@ -410,37 +410,37 @@ class MetaEdTextBuilder {
     withMinLength(minLength) {
         if (minLength == null)
             return this;
-        this.addLine('min length ${}', minLength.toString());
+        this.addLine('min length {0}', minLength.toString());
         return this;
     }
     withMaxLength(maxLength) {
         if (maxLength == null)
             return this;
-        this.addLine('max length ${}', maxLength.toString());
+        this.addLine('max length {0}', maxLength.toString());
         return this;
     }
     withMinValue(minValue) {
         if (minValue == null)
             return this;
-        this.addLine('min value ${}', minValue.toString());
+        this.addLine('min value {0}', minValue.toString());
         return this;
     }
     withMaxValue(maxValue) {
         if (maxValue == null)
             return this;
-        this.addLine('max value ${}', maxValue.toString());
+        this.addLine('max value {0}', maxValue.toString());
         return this;
     }
     withTotalDigits(totalDigits) {
         if (totalDigits == null)
             return this;
-        this.addLine('total digits ${}', totalDigits);
+        this.addLine('total digits {0}', totalDigits);
         return this;
     }
     withDecimalPlaces(decimalPlaces) {
         if (decimalPlaces == null)
             return this;
-        this.addLine('decimal places ${}', decimalPlaces);
+        this.addLine('decimal places {0}', decimalPlaces);
         return this;
     }
     withIsWeakReference(isWeak = false) {

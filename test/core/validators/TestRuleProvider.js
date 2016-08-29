@@ -1,6 +1,8 @@
 "use strict";
 class TestRuleProvider {
     constructor(ruleIndex, validationRule) {
+        if (ruleIndex === undefined)
+            throw new Error("undefined rule index in test");
         this.ruleIndex = ruleIndex;
         this.validationRule = validationRule;
     }

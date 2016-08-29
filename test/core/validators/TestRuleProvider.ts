@@ -7,6 +7,7 @@ export default class TestRuleProvider implements IRuleProvider {
     private ruleIndex : Number;
 
     constructor(ruleIndex : number, validationRule : IValidationRule) {
+        if (ruleIndex === undefined) throw new Error("undefined rule index in test");
         this.ruleIndex = ruleIndex;
         this.validationRule = validationRule;
     }

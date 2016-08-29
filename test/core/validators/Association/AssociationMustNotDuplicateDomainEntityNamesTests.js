@@ -9,8 +9,8 @@ const AssociationMustNotDuplicateDomainEntityNames_1 = require("../../../../src/
 let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
 let should = chai.should();
 describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
-    let validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_Association, new AssociationMustNotDuplicateDomainEntityNames_1.AssociationMustNotDuplicateDomainEntityNames()));
-    describe('entityNames', () => {
+    let validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_association, new AssociationMustNotDuplicateDomainEntityNames_1.AssociationMustNotDuplicateDomainEntityNames()));
+    describe('entityNames no duplicates', () => {
         let helper = new ValidationTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
@@ -27,7 +27,7 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
-    describe('entityNames', () => {
+    describe('entity names with duplicates', () => {
         const associationName = "Association1";
         const domainEntityName = "DomainEntity1";
         let helper = new ValidationTestHelper_1.default();

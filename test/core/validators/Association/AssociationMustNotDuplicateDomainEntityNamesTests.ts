@@ -10,10 +10,9 @@ let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdG
 let should = chai.should();
 
 describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
-    let validatorListener = new ValidatorListener(new TestRuleProvider(MetaEdGrammar.RULE_Association, new AssociationMustNotDuplicateDomainEntityNames()));
+    let validatorListener = new ValidatorListener(new TestRuleProvider(MetaEdGrammar.RULE_association, new AssociationMustNotDuplicateDomainEntityNames()));
 
-
-    describe('entityNames', () => {
+    describe('entityNames no duplicates', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
@@ -33,13 +32,12 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
     });
 
 
-    describe('entityNames', () => {
+    describe('entity names with duplicates', () => {
         const associationName: string = "Association1";
         const domainEntityName: string = "DomainEntity1";
         let helper: ValidationTestHelper = new ValidationTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
-
                 .withBeginNamespace("edfi")
                 .withStartAssociation(associationName)
                 .withDocumentation("doc")
@@ -49,9 +47,11 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_validation_failures()', () => {
             helper.errorMessageCollection.should.not.be.empty;
         });
+
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].message.should.include("Association");
             helper.errorMessageCollection[0].message.should.include(associationName);
