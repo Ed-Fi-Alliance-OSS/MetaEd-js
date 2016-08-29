@@ -217,103 +217,103 @@ class MetaEdIdIsRequiredWarning {
         return GetEntityFailureMessage(context.EntityIdentifier(), context.EntityName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetPropertyFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.PropertyIdentifier(), context.PropertyName());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetItemFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.IdText());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetItemFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.IdText());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetItemFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.IdText());
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return GetItemFailureMessage(topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName(), context.IdText());
     }
 }

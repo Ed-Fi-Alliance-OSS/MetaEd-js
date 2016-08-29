@@ -1,17 +1,16 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
-import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
-import {TestRuleProvider} from "../TestRuleProvider";
+import ValidationTestHelper from "../ValidationTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import TestRuleProvider from "../TestRuleProvider";
 import {AssociationMustNotDuplicateDomainEntityNames}from "../../../../src/core/validators/Association/AssociationMustNotDuplicateDomainEntityNames"
+let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
 
 let should = chai.should();
 
 describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
-    let validatorListener = new ValidatorListener(
-        new TestRuleProvider<MetaEdGrammar.AssociationContext>(
-            new AssociationMustNotDuplicateDomainEntityNames()));
+    let validatorListener = new ValidatorListener(new TestRuleProvider(MetaEdGrammar.RULE_Association, new AssociationMustNotDuplicateDomainEntityNames()));
 
 
     describe('entityNames', () => {
@@ -51,13 +50,13 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Association");
-            helper.errorMessageCollection[0].Message.ShouldContain(associationName);
-            helper.errorMessageCollection[0].Message.ShouldContain(domainEntityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("duplicate declarations");
+            helper.errorMessageCollection[0].message.should.include("Association");
+            helper.errorMessageCollection[0].message.should.include(associationName);
+            helper.errorMessageCollection[0].message.should.include(domainEntityName);
+            helper.errorMessageCollection[0].message.should.include("duplicate declarations");
         });
     });
 
@@ -80,13 +79,13 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Association");
-            helper.errorMessageCollection[0].Message.ShouldContain(associationName);
-            helper.errorMessageCollection[0].Message.ShouldContain(domainEntityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("duplicate declarations");
+            helper.errorMessageCollection[0].message.should.include("Association");
+            helper.errorMessageCollection[0].message.should.include(associationName);
+            helper.errorMessageCollection[0].message.should.include(domainEntityName);
+            helper.errorMessageCollection[0].message.should.include("duplicate declarations");
         });
     });
 

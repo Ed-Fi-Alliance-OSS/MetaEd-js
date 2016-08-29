@@ -22,8 +22,8 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
                 .withEndAbstractEntity()
                 .withEndNamespace()
                 .toString();
-            helper = new ValidationTestHelper_1.ValidationTestHelper();
-            helper.setup(metaEdText, new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(MetaEdGrammar.RULE_abstractEntity, new AbstractEntityMustContainAnIdentity_1.AbstractEntityMustContainAnIdentity())));
+            helper = new ValidationTestHelper_1.default();
+            helper.setup(metaEdText, new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_abstractEntity, new AbstractEntityMustContainAnIdentity_1.AbstractEntityMustContainAnIdentity())));
         });
         it('Should_have_no_validation_failures', () => {
             helper.errorMessageCollection.length.should.equal(0);
@@ -43,8 +43,8 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
                 .withEndAbstractEntity()
                 .withEndNamespace()
                 .toString();
-            helper = new ValidationTestHelper_1.ValidationTestHelper();
-            helper.setup(metaEdText, new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(MetaEdGrammar.RULE_abstractEntity, new AbstractEntityMustContainAnIdentity_1.AbstractEntityMustContainAnIdentity())));
+            helper = new ValidationTestHelper_1.default();
+            helper.setup(metaEdText, new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_abstractEntity, new AbstractEntityMustContainAnIdentity_1.AbstractEntityMustContainAnIdentity())));
         });
         it('Should_have_validation_failure', () => {
             helper.errorMessageCollection.should.not.be.empty;

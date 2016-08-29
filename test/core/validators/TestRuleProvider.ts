@@ -2,7 +2,7 @@ import {IRuleProvider} from "../../../src/core/validators/RuleProvider";
 import {IValidationRule} from "../../../src/core/validators/IValidationRule";
 import {ISymbolTable} from "../../../src/core/validators/SymbolTable";
 
-export class TestRuleProvider implements IRuleProvider {
+export default class TestRuleProvider implements IRuleProvider {
     private validationRule : IValidationRule;
     private ruleIndex : Number;
 

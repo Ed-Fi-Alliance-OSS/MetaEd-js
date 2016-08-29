@@ -17,13 +17,14 @@ class ValidationTestHelper {
         let lexer = new BaseLexer.BaseLexer(antlrInputStream);
         let tokens = new antlr4.CommonTokenStream(lexer);
         let parser = new MetaEdGrammar.MetaEdGrammar(tokens);
-        let parserContext = parser.metaEd();
-        let metaEdContext = new MetaEdContext_1.MetaEdContext(metaEdFileIndex, this.symbolTable);
-        this.warningMessageCollection = metaEdContext.warningMessageCollection;
-        this.errorMessageCollection = metaEdContext.errorMessageCollection;
-        listener.withContext(metaEdContext);
-        antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, parserContext);
+        this.parserContext = parser.metaEd();
+        this.metaEdContext = new MetaEdContext_1.MetaEdContext(metaEdFileIndex, this.symbolTable);
+        this.warningMessageCollection = this.metaEdContext.warningMessageCollection;
+        this.errorMessageCollection = this.metaEdContext.errorMessageCollection;
+        listener.withContext(this.metaEdContext);
+        antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, this.parserContext);
     }
 }
-exports.ValidationTestHelper = ValidationTestHelper;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = ValidationTestHelper;
 //# sourceMappingURL=ValidationTestHelper.js.map

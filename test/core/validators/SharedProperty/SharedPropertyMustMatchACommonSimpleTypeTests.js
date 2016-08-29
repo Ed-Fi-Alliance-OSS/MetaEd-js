@@ -30,7 +30,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_shared_property_has_identifier_of_common_simple_integer', () => {
@@ -54,7 +54,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_shared_property_has_identifier_of_common_simple_short', () => {
@@ -78,7 +78,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_shared_property_has_identifier_of_common_simple_string', () => {
@@ -101,7 +101,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_shared_decimal_property_has_invalid_identifier', () => {

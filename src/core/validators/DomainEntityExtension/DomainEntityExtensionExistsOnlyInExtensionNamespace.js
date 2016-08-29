@@ -2,11 +2,11 @@
 const ValidationRuleBase_1 = require("../ValidationRuleBase");
 class DomainEntityExtensionExistsOnlyInExtensionNamespace extends ValidationRuleBase_1.ValidationRuleBase {
     isValid(context) {
-        var namespaceInfo = context.GetAncestorContext();
+        let namespaceInfo = context.GetAncestorContext();
         return namespaceInfo.IsExtension;
     }
     getFailureMessage(context) {
-        var namespaceInfo = context.GetAncestorContext();
+        let namespaceInfo = context.GetAncestorContext();
         return `Domain Entity additions '${context.extendeeName().GetText()}' is not valid in core namespace '${namespaceInfo.NamespaceName}`;
     }
 }

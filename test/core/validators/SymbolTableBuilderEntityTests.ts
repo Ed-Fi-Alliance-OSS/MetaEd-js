@@ -1,7 +1,7 @@
 /// <reference path="../../../typings/index.d.ts" />
 import chai = require('chai');
 import MetaEdTextBuilder from "../../grammar/MetaEdTextBuilder";
-import {ValidationTestHelper} from "./ValidationTestHelper";
+import ValidationTestHelper from "./ValidationTestHelper";
 import ValidationMessage from "../../../src/common/ValidationMessage"
 
 let should = chai.should();

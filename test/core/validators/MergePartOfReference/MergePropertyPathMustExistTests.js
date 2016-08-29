@@ -42,7 +42,7 @@
 //    let validatorListener = new ValidatorListener(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(new MergePropertyPathMustExist(helper.symbolTable, this._propertyPathLookup)));
 //
 //    it('should_have_validation_failures()', () => {
-//        helper.errorMessageCollection.count.should.equal(1);
+//        helper.errorMessageCollection.length.should.equal(1);
 //    });
 //    it('should_have_meaningful_validation_message()', () => {
 //        helper.errorMessageCollection[0].Message.should.equal("Path Entity1.Why is not valid.");
@@ -80,7 +80,7 @@
 //
 //
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //
@@ -118,7 +118,7 @@
 //
 //
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //
@@ -157,7 +157,7 @@
 //
 //
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //
@@ -204,7 +204,7 @@
 //
 //
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //
@@ -253,7 +253,7 @@
 //
 //
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //
@@ -303,7 +303,7 @@
 //
 //
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //
@@ -337,7 +337,7 @@
 //let validatorListener = new ValidatorListener(new TestRuleProvider<MetaEdGrammar.MergePropertyPathContext>(new MergePropertyPathMustExist(helper.symbolTable, this._propertyPathLookup)));
 //
 //it('should_have_no_validation_failures()', () => {
-//    helper.errorMessageCollection.count.should.equal(0);
+//    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
 //}); 

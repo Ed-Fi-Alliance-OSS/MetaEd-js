@@ -9,18 +9,22 @@ class CrossEntityTypeNamingValidator {
     beforeAddEntity(candidateEntityType, candidateEntityName, candidateContext) {
         if (candidateContext.IsExtensionContext())
             return true;
-        if (candidateContext instanceof MetaEdGrammar.DomainContext || candidateContext instanceof MetaEdGrammar.SubdomainContext || candidateContext instanceof MetaEdGrammar.InterchangeContext || candidateContext instanceof MetaEdGrammar.EnumerationContext || candidateContext instanceof MetaEdGrammar.DescriptorContext)
+        if (candidateContext instanceof MetaEdGrammar.DomainContext
+            || candidateContext instanceof MetaEdGrammar.SubdomainContext
+            || candidateContext instanceof MetaEdGrammar.InterchangeContext
+            || candidateContext instanceof MetaEdGrammar.EnumerationContext
+            || candidateContext instanceof MetaEdGrammar.DescriptorContext)
             return true;
         if (this._trackedEntityNames.Contains(candidateEntityName.ToString())) {
-            var metaEdFile = this._context.MetaEdFileIndex.GetFileAndLineNumber(candidateEntityName.Symbol.Line);
-            var failure = __init(new ValidationMessage(), {
-                Message: `${candidateEntityType} named ${candidateEntityName} is a duplicate declaration of that name.`,
-                CharacterPosition: candidateEntityName.Symbol.Column,
-                ConcatenatedLineNumber: candidateEntityName.Symbol.Line,
-                FileName: metaEdFile.FileName,
-                LineNumber: metaEdFile.LineNumber
-            });
-            this._context.ErrorMessageCollection.Add(failure);
+            let metaEdFile = this._context.metaEdFileIndex.getFileAndLineNumber(candidateEntityName.Symbol.Line);
+            let failure = {
+                message: `${candidateEntityType} named ${candidateEntityName} is a duplicate declaration of that name.`,
+                characterPosition: candidateEntityName.Symbol.Column,
+                concatenatedLineNumber: candidateEntityName.Symbol.Line,
+                fileName: metaEdFile.fileName,
+                lineNumber: metaEdFile.lineNumber
+            };
+            this._context.errorMessageCollection.push(failure);
             return false;
         }
         this._trackedEntityNames.Add(candidateEntityName.ToString());

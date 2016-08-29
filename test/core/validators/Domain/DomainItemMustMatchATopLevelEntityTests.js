@@ -31,7 +31,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_domain_item_is_domain_entity_subclass', () => {
@@ -60,7 +60,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_domain_item_is_association', () => {
@@ -87,7 +87,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_domain_item_is_association_subclass', () => {
@@ -118,7 +118,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_domain_item_is_common_type', () => {
@@ -143,7 +143,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_domain_item_under_domain_is_descriptor', () => {

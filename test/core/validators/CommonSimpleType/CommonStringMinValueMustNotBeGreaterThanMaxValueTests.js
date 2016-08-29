@@ -22,7 +22,7 @@ describe('CommonStringMinLengthMustNotBeGreaterThanMaxLengthTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_validating_common_string_with_correct_min_max_value_order', () => {
@@ -39,7 +39,7 @@ describe('CommonStringMinLengthMustNotBeGreaterThanMaxLengthTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_validating_common_string_with_min_max_values_out_of_order', () => {
@@ -79,7 +79,7 @@ describe('CommonStringMinLengthMustNotBeGreaterThanMaxLengthTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
 });

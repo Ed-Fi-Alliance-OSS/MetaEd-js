@@ -5,7 +5,7 @@ class IncludePropertyMustNotContainIdentity extends ValidationRuleBase_1.Validat
         return context.propertyComponents().propertyAnnotation().identity() == null;
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return `Include property '${context.propertyName().GetText()}' is invalid to be used for the identity of ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'`;
     }
 }

@@ -4,8 +4,8 @@ class CommonStringMinLengthMustNotBeGreaterThanMaxLength extends ValidationRuleB
     isValid(context) {
         if (context.minLength() == null)
             return true;
-        var minLength = Number(context.minLength().MinLength());
-        var maxLength = Number(context.maxLength().MaxLength());
+        let minLength = Number(context.minLength().MinLength());
+        let maxLength = Number(context.maxLength().MaxLength());
         return minLength <= maxLength;
     }
     getFailureMessage(context) {

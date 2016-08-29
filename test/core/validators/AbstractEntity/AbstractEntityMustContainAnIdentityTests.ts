@@ -1,9 +1,9 @@
 /// <reference path="../../../../typings/index.d.ts" />
 import chai = require('chai');
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import {ValidationTestHelper} from "./../ValidationTestHelper";
-import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
-import {TestRuleProvider} from "../TestRuleProvider";
+import ValidationTestHelper from "./../ValidationTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import TestRuleProvider from "../TestRuleProvider";
 import {AbstractEntityMustContainAnIdentity} from "../../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAnIdentity";
 
 let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;

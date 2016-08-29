@@ -1,5 +1,4 @@
 import {ValidationRuleBase} from "../ValidationRuleBase";
-
 let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
 
 export class AbstractEntityMustContainAnIdentity extends ValidationRuleBase {

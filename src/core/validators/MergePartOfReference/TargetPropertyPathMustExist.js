@@ -1,53 +1,53 @@
 "use strict";
 const ValidationRuleBase_1 = require("../ValidationRuleBase");
+const SymbolTableEntityType_1 = require('../SymbolTableEntityType');
 class TargetPropertyPathMustExist extends ValidationRuleBase_1.ValidationRuleBase {
     constructor(symbolTable, propertyPathLookup) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTableEntityType = new SymbolTableEntityType_1.default();
+        this.symbolTable = symbolTable;
         this._propertyPathLookup = propertyPathLookup;
     }
     isValid(context) {
-        var entityContext = LookupParentEntityContext(context);
-        var propertyPathParts = context.propertyPath().PropertyPathParts();
+        let entityContext = LookupParentEntityContext(context);
+        let propertyPathParts = context.propertyPath().PropertyPathParts();
         return this._propertyPathLookup.Validate(entityContext, propertyPathParts, PropertyPathLookup.MatchAllIdentityProperties());
     }
     getFailureMessage(context) {
-        return `Path ${} is not valid or lists properties that are not part of the primary key.", context.GetText());
+        return `Path ${context.GetText()} is not valid or lists properties that are not part of the primary key.`;
     }
-    private lookupParentEntityContext(context: MetaEdGrammar.TargetPropertyPathContext): EntityContext {
-        var definingEntityContext = context.parent.parent.parent.parent;
-        var domainEntityContext = __as__<MetaEdGrammar.DomainEntityContext>(definingEntityContext, MetaEdGrammar.DomainEntityContext);
+    lookupParentEntityContext(context) {
+        let definingEntityContext = context.parent.parent.parent.parent;
+        let domainEntityContext = __as__(definingEntityContext, MetaEdGrammar.DomainEntityContext);
         if (domainEntityContext != null) {
-            return this._symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntityContext.entityName().IdText());
+            return this.symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), domainEntityContext.entityName().IdText());
         }
-        var domainEntityExtensionContext = __as__<MetaEdGrammar.DomainEntityExtensionContext>(definingEntityContext, MetaEdGrammar.DomainEntityExtensionContext);
+        let domainEntityExtensionContext = __as__(definingEntityContext, MetaEdGrammar.DomainEntityExtensionContext);
         if (domainEntityExtensionContext != null) {
-            return this._symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntityExtensionContext.extendeeName().IdText());
+            return this.symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), domainEntityExtensionContext.extendeeName().IdText());
         }
-        var domainEntitySubclassContext = __as__<MetaEdGrammar.DomainEntitySubclassContext>(definingEntityContext, MetaEdGrammar.DomainEntitySubclassContext);
+        let domainEntitySubclassContext = __as__(definingEntityContext, MetaEdGrammar.DomainEntitySubclassContext);
         if (domainEntitySubclassContext != null) {
-            var domainEntity = this._symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
-            return domainEntity != null ? domainEntity : this._symbolTable.Get(SymbolTableEntityType.AbstractEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
+            let domainEntity = this.symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
+            return domainEntity != null ? domainEntity : this.symbolTable.Get(this.symbolTableEntityType.abstractEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
         }
-        var associationContext = __as__<MetaEdGrammar.AssociationContext>(definingEntityContext, MetaEdGrammar.AssociationContext);
+        let associationContext = __as__(definingEntityContext, MetaEdGrammar.AssociationContext);
         if (associationContext != null) {
-            return this._symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationContext.associationName().IdText());
+            return this.symbolTable.Get(this.symbolTableEntityType.associationEntityType(), associationContext.associationName().IdText());
         }
-        var associationExtensionContext = __as__<MetaEdGrammar.AssociationExtensionContext>(definingEntityContext, MetaEdGrammar.AssociationExtensionContext);
+        let associationExtensionContext = __as__(definingEntityContext, MetaEdGrammar.AssociationExtensionContext);
         if (associationExtensionContext != null) {
-            return this._symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationExtensionContext.extendeeName().IdText());
+            return this.symbolTable.Get(this.symbolTableEntityType.associationEntityType(), associationExtensionContext.extendeeName().IdText());
         }
-        var associationSubclassContext = __as__<MetaEdGrammar.AssociationSubclassContext>(definingEntityContext, MetaEdGrammar.AssociationSubclassContext);
+        let associationSubclassContext = __as__(definingEntityContext, MetaEdGrammar.AssociationSubclassContext);
         if (associationSubclassContext != null) {
-            return this._symbolTable.Get(SymbolTableEntityType.AssociationEntityType(), associationSubclassContext.baseName().IdText());
+            return this.symbolTable.Get(this.symbolTableEntityType.associationEntityType(), associationSubclassContext.baseName().IdText());
         }
-        var abstractContext = __as__<MetaEdGrammar.AbstractEntityContext>(definingEntityContext, MetaEdGrammar.AbstractEntityContext);
+        let abstractContext = __as__(definingEntityContext, MetaEdGrammar.AbstractEntityContext);
         if (abstractContext != null) {
-            return this._symbolTable.Get(SymbolTableEntityType.AbstractEntityEntityType(), abstractContext.abstractEntityName().IdText());
+            return this.symbolTable.Get(this.symbolTableEntityType.abstractEntityEntityType(), abstractContext.abstractEntityName().IdText());
         }
         return null;
-    }
-}
-;
     }
 }
 exports.TargetPropertyPathMustExist = TargetPropertyPathMustExist;

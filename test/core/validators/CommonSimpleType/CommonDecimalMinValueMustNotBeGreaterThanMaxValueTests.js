@@ -23,7 +23,7 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_validating_common_decimal_with_no_min_value', () => {
@@ -41,7 +41,7 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_validating_common_decimal_with_no_max_value', () => {
@@ -59,7 +59,7 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_validating_common_decimal_with_correct_min_max_value_order', () => {
@@ -78,7 +78,7 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_validating_common_decimal_with_min_max_values_out_of_order', () => {
@@ -122,7 +122,7 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
 });

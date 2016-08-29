@@ -1,9 +1,8 @@
 /// <reference path="../../../typings/index.d.ts" />
 import chai = require('chai');
 import MetaEdTextBuilder from "../../grammar/MetaEdTextBuilder";
-import {ValidationTestHelper} from "./ValidationTestHelper";
+import ValidationTestHelper from "./ValidationTestHelper";
 import ValidationMessage from "../../../src/common/ValidationMessage"
-import List from 'typescript-dotnet-commonjs/System/Collections/List'
 import { EntityContext } from '../../../src/core/validators/SymbolTable'
 
 let should = chai.should();

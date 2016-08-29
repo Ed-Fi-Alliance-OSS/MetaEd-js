@@ -30,7 +30,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_validate_successfully()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_merged_property_types_are_different', () => {
@@ -52,7 +52,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(1);
+            helper.errorMessageCollection.length.should.equal(1);
         });
         it('should_have_meaningful_validation_message()', () => {
             helper.errorMessageCollection[0].Message.should.equal("The merge paths 'Entity1.Prop1' and 'Prop1' do not correspond to the same entity type.");
@@ -77,7 +77,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(1);
+            helper.errorMessageCollection.length.should.equal(1);
         });
     });
     describe('When_merging_properties_of_a_base_and_sub_domain_entity', () => {
@@ -103,7 +103,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_validate_successfully()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_merging_domain_entity_property_of_an_association', () => {
@@ -135,7 +135,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_validate_successfully()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
 });

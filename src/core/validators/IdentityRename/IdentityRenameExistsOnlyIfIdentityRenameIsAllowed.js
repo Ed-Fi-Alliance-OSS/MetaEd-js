@@ -7,12 +7,12 @@ class IdentityRenameExistsOnlyIfIdentityRenameIsAllowed extends ValidationRuleBa
             MetaEdGrammar.RULE_associationSubclass];
     }
     isValid(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return this._validIdentityRenameParentRuleIndices.Contains(topLevelEntity.RuleIndex);
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
-        var propertyWithComponents = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
+        let propertyWithComponents = context.GetAncestorContext();
         return `'renames identity property' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'renames identity property' is only valid for properties on types Domain Entity subclass and Association subclass.`;
     }
 }

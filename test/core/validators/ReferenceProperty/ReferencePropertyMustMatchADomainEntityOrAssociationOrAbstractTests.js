@@ -28,7 +28,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_reference_property_has_identifier_of_domain_entity_subclass', () => {
@@ -54,7 +54,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_reference_property_has_identifier_of_association', () => {
@@ -78,7 +78,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_reference_property_has_identifier_of_association_subclass', () => {
@@ -106,7 +106,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_reference_property_has_identifier_of_abstract_entity', () => {
@@ -128,7 +128,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_reference_property_has_invalid_identifier', () => {

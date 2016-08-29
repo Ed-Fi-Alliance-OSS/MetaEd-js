@@ -25,7 +25,7 @@ describe('MergeStatementMustStartMergePathWithPropertyName', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_reference_property_has_merge_statement_with_incorrect_path', () => {
@@ -44,7 +44,7 @@ describe('MergeStatementMustStartMergePathWithPropertyName', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(1);
+            helper.errorMessageCollection.length.should.equal(1);
             helper.errorMessageCollection[0].Message.should.equal("Merge statement must start first property path with the referenced entity name of the current property.");
         });
     });

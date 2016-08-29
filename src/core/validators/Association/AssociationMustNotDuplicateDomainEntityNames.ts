@@ -1,7 +1,13 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-export class AssociationMustNotDuplicateDomainEntityNames extends ValidationRuleBase<MetaEdGrammar.AssociationContext>
+import {ValidationRuleBase} from "../ValidationRuleBase";
+let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
+
+export class AssociationMustNotDuplicateDomainEntityNames extends ValidationRuleBase
 {
-    public isValid(context: MetaEdGrammar.AssociationContext): boolean {
+    public handlesContext(context: any) : boolean {
+        return context.ruleIndex === MetaEdGrammar.RULE_association;
+    }
+
+    public isValid(context: any): boolean {
         let firstDomainEntityName = context.firstDomainEntity().IdText();
         let secondDomainEntityName = context.secondDomainEntity().IdText();
         if (!firstDomainEntityName.Equals(secondDomainEntityName))
@@ -12,7 +18,8 @@ export class AssociationMustNotDuplicateDomainEntityNames extends ValidationRule
         let secondContextName = secondContext == null ? "" : secondContext.withContextName().ID().GetText();
         return !firstContextName.Equals(secondContextName);
     }
-    public getFailureMessage(context: MetaEdGrammar.AssociationContext): string {
+
+    public getFailureMessage(context: any): string {
         let identifier = context.associationName().GetText();
         let firstDomainEntityName = context.firstDomainEntity().IdText();
         return `Association '${identifier}' has duplicate declarations of Domain Entity '${firstDomainEntityName}'`;

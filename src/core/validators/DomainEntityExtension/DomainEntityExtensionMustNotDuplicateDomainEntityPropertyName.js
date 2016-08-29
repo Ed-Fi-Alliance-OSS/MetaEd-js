@@ -2,21 +2,22 @@
 const ValidationRuleBase_1 = require("../ValidationRuleBase");
 class DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName extends ValidationRuleBase_1.ValidationRuleBase {
     constructor(symbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
     }
     isValid(context) {
-        return propertyRuleContextsForDuplicates(context).length == 0;
+        return this.propertyRuleContextsForDuplicates(context).length == 0;
     }
     getFailureMessage(context) {
-        var duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates(context).Select(x => x.IdNode().GetText());
+        let duplicatePropertyIdentifierList = this.propertyRuleContextsForDuplicates(context).Select(x => x.IdNode().GetText());
         return `Domain Entity additions '${context.extendeeName().GetText()}' declares '${duplicatePropertyIdentifierList.join(', ')}' already in property list of Domain Entity.`;
     }
     propertyRuleContextsForDuplicates(context) {
-        var entityType = context.DOMAIN_ENTITY().GetText();
-        var extensionType = context.DOMAIN_ENTITY().GetText() + context.ADDITIONS();
-        var identifier = context.extendeeName().GetText();
-        var domainEntityPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, identifier).ToList();
-        var duplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, domainEntityPropertyIdentifiers);
+        let entityType = context.DOMAIN_ENTITY().GetText();
+        let extensionType = context.DOMAIN_ENTITY().GetText() + context.ADDITIONS();
+        let identifier = context.extendeeName().GetText();
+        let domainEntityPropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(entityType, identifier).ToList();
+        let duplicates = this.symbolTable.contextsForMatchingPropertyIdentifiers(extensionType, identifier, domainEntityPropertyIdentifiers);
         return duplicates.Where(isNotIncludePropertyContextWithExtension);
     }
     static isNotIncludePropertyContextWithExtension(context) {

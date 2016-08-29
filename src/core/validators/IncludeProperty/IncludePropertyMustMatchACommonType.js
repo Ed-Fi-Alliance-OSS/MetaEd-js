@@ -2,14 +2,15 @@
 const ValidationRuleBase_1 = require("../ValidationRuleBase");
 class IncludePropertyMustMatchACommonType extends ValidationRuleBase_1.ValidationRuleBase {
     constructor(symbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
     }
     isValid(context) {
-        var identifierToMatch = context.propertyName().GetText();
-        var commonTypeType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_TYPE);
-        var inlineCommonTypeType = MetaEdGrammar.TokenName(MetaEdGrammar.INLINE_COMMON_TYPE);
-        var choiceCommonType = MetaEdGrammar.TokenName(MetaEdGrammar.CHOICE_TYPE);
-        return this._symbolTable.IdentifierExists(commonTypeType, identifierToMatch) || this._symbolTable.IdentifierExists(inlineCommonTypeType, identifierToMatch) || this._symbolTable.IdentifierExists(choiceCommonType, identifierToMatch);
+        let identifierToMatch = context.propertyName().GetText();
+        let commonTypeType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_TYPE);
+        let inlineCommonTypeType = MetaEdGrammar.TokenName(MetaEdGrammar.INLINE_COMMON_TYPE);
+        let choiceCommonType = MetaEdGrammar.TokenName(MetaEdGrammar.CHOICE_TYPE);
+        return this.symbolTable.identifierExists(commonTypeType, identifierToMatch) || this.symbolTable.identifierExists(inlineCommonTypeType, identifierToMatch) || this.symbolTable.identifierExists(choiceCommonType, identifierToMatch);
     }
     getFailureMessage(context) {
         return `Include property '${context.propertyName().GetText()}' does not match any declared common type.`;

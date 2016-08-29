@@ -7,10 +7,10 @@ class SymbolTable {
         this._symbolTable = new Dictionary_1.default();
     }
     tryAdd(entityType, name, context) {
-        let entityDictionary = this._symbolTable.getValue(entityType);
+        let entityDictionary = this.symbolTable.getValue(entityType);
         if (!entityDictionary) {
             entityDictionary = new Dictionary_1.default();
-            this._symbolTable.addByKeyValue(entityType, entityDictionary);
+            this.symbolTable.addByKeyValue(entityType, entityDictionary);
         }
         if (entityDictionary.containsKey(name))
             return false;
@@ -20,19 +20,19 @@ class SymbolTable {
         return true;
     }
     get(entityType, name) {
-        let entityDictionary = this._symbolTable.getValue(entityType);
+        let entityDictionary = this.symbolTable.getValue(entityType);
         if (!entityDictionary)
             return null;
         let entityContext = entityDictionary.getValue(name);
         return entityContext;
     }
     identifierExists(entityType, identifier) {
-        if (!this._symbolTable.containsKey(entityType))
+        if (!this.symbolTable.containsKey(entityType))
             return false;
         return this._symbolTable[entityType].containsKey(identifier);
     }
     identifiersForEntityType(entityType) {
-        let entityDictionary = this._symbolTable.getValue(entityType);
+        let entityDictionary = this.symbolTable.getValue(entityType);
         return entityDictionary ? Linq_1.default.from(entityDictionary.keys) : Linq_1.default.empty();
     }
     // results are prefixed by a 'with context' value if one exists for property

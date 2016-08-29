@@ -1,22 +1,25 @@
 "use strict";
 const ValidationRuleBase_1 = require("../ValidationRuleBase");
+const SymbolTableEntityType_1 = require('../SymbolTableEntityType');
 class DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity extends ValidationRuleBase_1.ValidationRuleBase {
     constructor(symbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTableEntityType = new SymbolTableEntityType_1.default();
+        this.symbolTable = symbolTable;
     }
     isValid(context) {
-        var anyIdentityRenames = context.property().Any(x => x.GetProperty().propertyComponents().propertyAnnotation().identityRename() != null);
+        let anyIdentityRenames = context.property().Any(x => x.GetProperty().propertyComponents().propertyAnnotation().identityRename() != null);
         if (!anyIdentityRenames)
             return true;
-        var baseIdentifier = context.baseName().GetText();
-        var baseSymbolTable = this._symbolTable.Get(SymbolTableEntityType.DomainEntityEntityType(), baseIdentifier);
+        let baseIdentifier = context.baseName().GetText();
+        let baseSymbolTable = this.symbolTable.get(this.symbolTableEntityType.domainEntityEntityType(), baseIdentifier);
         if (baseSymbolTable == null)
             return true;
-        return baseSymbolTable.PropertySymbolTable.Values().Count(v => v.propertyComponents().propertyAnnotation().identity() != null) <= 1;
+        return baseSymbolTable.propertySymbolTable.values().Count(v => v.propertyComponents().propertyAnnotation().identity() != null) <= 1;
     }
     getFailureMessage(context) {
-        var identifier = context.entityName().GetText();
-        var baseIdentifier = context.baseName().GetText();
+        let identifier = context.entityName().GetText();
+        let baseIdentifier = context.baseName().GetText();
         return `Domain Entity '${identifier}' based on '${baseIdentifier}' is invalid for identity rename because parent entity '${baseIdentifier}' has more than one identity property.`;
     }
 }

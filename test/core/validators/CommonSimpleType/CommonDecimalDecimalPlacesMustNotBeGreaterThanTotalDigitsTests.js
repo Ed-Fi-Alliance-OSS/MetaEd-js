@@ -26,6 +26,7 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
         });
         it('Should_have_no_validation_failures', () => {
             helper.errorMessageCollection.length.should.equal(0);
+            helper.errorMessageCollection.count.should.equal(0);
         });
     });
     describe('When_validating_common_decimal_with_total_digit_and_decimal_places_out_of_order', () => {

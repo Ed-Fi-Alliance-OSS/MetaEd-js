@@ -15,13 +15,13 @@ class IdentityExistsOnlyIfIdentityIsAllowed extends ValidationRuleBase_1.Validat
             MetaEdGrammar.TokenName(MetaEdGrammar.INLINE_COMMON_TYPE)];
     }
     isValid(context) {
-        var topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext();
         return this._validIdentityRuleIndices.Contains(topLevelEntity.RuleIndex);
     }
     getFailureMessage(context) {
-        var topLevelEntity = context.GetAncestorContext();
-        var propertyWithComponents = context.GetAncestorContext();
-        var validNames = this._validIdentityTokenNames.join(", ");
+        let topLevelEntity = context.GetAncestorContext();
+        let propertyWithComponents = context.GetAncestorContext();
+        let validNames = this._validIdentityTokenNames.join(", ");
         return `'is part of identity' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'is part of identity' is only valid for properties on types: ${validNames}.`;
     }
 }

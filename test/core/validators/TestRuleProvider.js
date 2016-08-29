@@ -8,5 +8,6 @@ class TestRuleProvider {
         return this.ruleIndex === ruleIndex ? [this.validationRule] : [];
     }
 }
-exports.TestRuleProvider = TestRuleProvider;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = TestRuleProvider;
 //# sourceMappingURL=TestRuleProvider.js.map

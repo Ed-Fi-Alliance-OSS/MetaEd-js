@@ -27,7 +27,7 @@ describe('DescriptorPropertyContext', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_descriptor_property_has_invalid_identifier', () => {
@@ -45,7 +45,7 @@ describe('DescriptorPropertyContext', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.count.should.not.equal(0);
+            helper.errorMessageCollection.length.should.not.equal(0);
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.ShouldContain("Descriptor");

@@ -1,12 +1,15 @@
 "use strict";
 const ValidationRuleBase_1 = require("../ValidationRuleBase");
+const SymbolTableEntityType_1 = require('../SymbolTableEntityType');
 class EnumerationPropertyMustMatchAnEnumeration extends ValidationRuleBase_1.ValidationRuleBase {
     constructor(symbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTableEntityType = new SymbolTableEntityType_1.default();
+        this.symbolTable = symbolTable;
     }
     isValid(context) {
-        var identifierToMatch = context.propertyName().GetText();
-        return this._symbolTable.IdentifierExists(SymbolTableEntityType.EnumerationEntityType(), identifierToMatch);
+        let identifierToMatch = context.propertyName().GetText();
+        return this.symbolTable.identifierExists(this.symbolTableEntityType.enumerationEntityType(), identifierToMatch);
     }
     getFailureMessage(context) {
         return `Enumeration property '${context.propertyName().GetText()}' does not match any declared enumeration.`;

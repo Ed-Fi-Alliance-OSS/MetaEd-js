@@ -1,7 +1,3 @@
-/// <reference path="../../../src/grammar/gen/MetaEdGrammarListener.d.ts" />
-import {MetaEdGrammarListener} from '../../../src/grammar/gen/MetaEdGrammarListener';
-
-import List from 'typescript-dotnet-commonjs/System/Collections/List'
 import ValidationMessage from '../../../src/common/ValidationMessage'
 import { SymbolTable } from '../../../src/core/validators/SymbolTable'
 import { MetaEdContext } from '../../../src/core/tasks/MetaEdContext'
@@ -9,7 +5,6 @@ import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdF
 import { SymbolTableBuilder } from  '../../../src/core/validators/SymbolTableBuilder'
 import NullSymbolTableBuilderListener from '../../common/NullSymbolTableBuilderListener'
 import {IListenerWithContext} from "../../../src/core/validators/IListenerWithContext";
-import {ValidatorListener} from "../../../src/core/validators/ValidatorListener";
 
 let antlr4 = require('antlr4/index');
 let MetaEdGrammar = require('../../../src/grammar/gen/MetaEdGrammar');

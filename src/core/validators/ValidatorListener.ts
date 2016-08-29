@@ -13,7 +13,7 @@ import {ValidationLevel} from "./ValidationLevel";
 import {IListenerWithContext} from "./IListenerWithContext";
 import {IRuleProvider} from "./RuleProvider";
 
-export class ValidatorListener extends MetaEdGrammarListener implements IListenerWithContext {
+export default class ValidatorListener extends MetaEdGrammarListener implements IListenerWithContext {
     private symbolTable: ISymbolTable;
     private metaEdFileIndex: IMetaEdFileIndex;
     private warningMessageCollection: ValidationMessage[];
@@ -32,16 +32,16 @@ export class ValidatorListener extends MetaEdGrammarListener implements IListene
         this.symbolTable = context.symbolTable;
     }
 
-     private validateContext(context, ruleIndex : number) {
-         const validationRules = this.ruleProvider.getAll(ruleIndex, this.symbolTable);
+    private validateContext(context, ruleIndex: number) {
+        const validationRules = this.ruleProvider.getAll(ruleIndex, this.symbolTable);
         validationRules.filter(x => x.level() == ValidationLevel.Error && !x.isValid(context))
-             .forEach(y => this.errorMessageCollection.push(this.buildValidationMessage(y, context)));
+            .forEach(y => this.errorMessageCollection.push(this.buildValidationMessage(y, context)));
 
         validationRules.filter(x => x.level() == ValidationLevel.Warning && !x.isValid(context))
-             .forEach(y => this.warningMessageCollection.push(this.buildValidationMessage(y, context)));
+            .forEach(y => this.warningMessageCollection.push(this.buildValidationMessage(y, context)));
     }
 
-    private buildValidationMessage(validationRule: IValidationRule, context) : ValidationMessage {
+    private buildValidationMessage(validationRule: IValidationRule, context): ValidationMessage {
         const metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(context.start.line);
         return <ValidationMessage>{
             message: validationRule.getFailureMessage(context),
@@ -51,727 +51,844 @@ export class ValidatorListener extends MetaEdGrammarListener implements IListene
             lineNumber: metaEdFile.lineNumber
         };
     }
-    public enterAbstractEntity(context) : void {
+
+    public enterAbstractEntity(context: any): void {
         this.validateContext(context, MetaEdGrammar.RULE_abstractEntity);
     }
 
-    public enterMetaEd(context) : void {
+    public enterAbstractEntityName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_abstractEntityName);
+    }
+
+    public enterAssociation(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_association);
+    }
+
+    public enterAssociationExtension(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_associationExtension);
+    }
+
+    public enterAssociationName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_associationName);
+    }
+
+    public enterAssociationSubclass(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_associationSubclass);
+    }
+
+    public enterBaseKeyName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_baseKeyName);
+    }
+
+    public enterBaseName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_baseName);
+    }
+
+    public enterBooleanProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_booleanProperty);
+    }
+
+    public enterCascadeUpdate(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_cascadeUpdate);
+    }
+
+    public enterChoiceName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_choiceName);
+    }
+
+    public enterChoiceType(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_choiceType);
+    }
+
+    public enterCollection(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_collection);
+    }
+
+    public enterCommonDecimalName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_commonDecimalName);
+    }
+
+    public enterCommonDecimal(context): void {
+        this.validateContext(context, MetaEdGrammar.RULE_commonDecimal);
+    }
+
+    public enterCommonIntegerName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_commonIntegerName);
+    }
+
+    public enterCommonInteger(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_commonInteger);
+    }
+
+    public enterCommonShortName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_commonShortName);
+    }
+
+    public enterCommonShort(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_commonShort);
+    }
+
+    public enterCommonStringName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_commonStringName);
+    }
+
+    public enterCommonString(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_commonString);
+    }
+
+    public enterCommonName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_commonName);
+    }
+
+    public enterCommonType(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_commonType);
+    }
+
+    public enterCommonTypeExtension(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_commonTypeExtension);
+    }
+
+    public enterCurrencyProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_currencyProperty);
+    }
+
+    public enterDateProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_dateProperty);
+    }
+
+    public enterDecimalPlaces(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_decimalPlaces);
+    }
+
+    public enterDecimalProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_decimalProperty);
+    }
+
+    public enterDecimalValue(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_decimalValue);
+    }
+
+    public enterDescriptor(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_descriptor);
+    }
+
+    public enterDescriptorName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_descriptorName);
+    }
+
+    public enterDescriptorProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_descriptorProperty);
+    }
+
+    public enterDocumentation(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_documentation);
+    }
+
+    public enterFooterDocumentation(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_footerDocumentation);
+    }
+
+    public enterExtendedDocumentation(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_extendedDocumentation);
+    }
+
+    public enterUseCaseDocumentation(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_useCaseDocumentation);
+    }
+
+    public enterDocumentationLine(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_documentationLine);
+    }
+
+    public enterDomain(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_domain);
+    }
+
+    public enterDomainItem(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_domainItem);
+    }
+
+    public enterDomainName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_domainName);
+    }
+
+    public enterDomainEntity(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_domainEntity);
+    }
+
+    public enterDomainEntityExtension(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_domainEntityExtension);
+    }
+
+    public enterDomainEntitySubclass(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_domainEntitySubclass);
+    }
+
+    public enterDurationProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_durationProperty);
+    }
+
+    public enterEntityConfiguration(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_entityConfiguration);
+    }
+
+    public enterEntityName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_entityName);
+    }
+
+    public enterEnumeration(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_enumeration);
+    }
+
+    public enterEnumerationName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_enumerationName);
+    }
+
+    public enterEnumerationProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_enumerationProperty);
+    }
+
+    public enterExtendeeName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_extendeeName);
+    }
+
+    public enterFirstDomainEntity(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_firstDomainEntity);
+    }
+
+    public enterIncludeProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_includeProperty);
+    }
+
+    public enterIncludeExtensionOverride(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_includeExtensionOverride);
+    }
+
+    public enterInlineCommonName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_inlineCommonName);
+    }
+
+    public enterInlineCommonType(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_inlineCommonType);
+    }
+
+    public enterSigned_int(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_signed_int);
+    }
+
+    public enterIntegerProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_integerProperty);
+    }
+
+    public enterInterchange(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_interchange);
+    }
+
+    public enterInterchangeComponent(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_interchangeComponent);
+    }
+
+    public enterInterchangeElement(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_interchangeElement);
+    }
+
+    public enterInterchangeExtension(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_interchangeExtension);
+    }
+
+    public enterInterchangeExtensionComponent(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_interchangeExtensionComponent);
+    }
+
+    public enterInterchangeIdentityTemplate(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_interchangeIdentityTemplate);
+    }
+
+    public enterInterchangeName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_interchangeName);
+    }
+
+    public enterEnumerationItem(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_enumerationItem);
+    }
+
+    public enterMaxLength(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_maxLength);
+    }
+
+    public enterMaxValue(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_maxValue);
+    }
+
+    public enterMaxValueDecimal(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_maxValueDecimal);
+    }
+
+    public enterIsWeakReference(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_isWeakReference);
+    }
+
+    public enterMergePartOfReference(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_mergePartOfReference);
+    }
+
+    public enterMergePropertyPath(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_mergePropertyPath);
+    }
+
+    public enterMetaEd(context: any): void {
         this.validateContext(context, MetaEdGrammar.RULE_metaEd);
     }
-    public enterAbstractEntityName(context: MetaEdGrammar.AbstractEntityNameContext): void {
-        this.validateContext(context);
-    }
-    public enterAssociation(context: MetaEdGrammar.AssociationContext): void {
-        this.validateContext(context);
-    }
-    public enterAssociationExtension(context: MetaEdGrammar.AssociationExtensionContext): void {
-        this.validateContext(context);
-    }
-    public enterAssociationName(context: MetaEdGrammar.AssociationNameContext): void {
-        this.validateContext(context);
-    }
-    public enterAssociationSubclass(context: MetaEdGrammar.AssociationSubclassContext): void {
-        this.validateContext(context);
-    }
-    public enterBaseKeyName(context: MetaEdGrammar.BaseKeyNameContext): void {
-        this.validateContext(context);
-    }
-    public enterBaseName(context: MetaEdGrammar.BaseNameContext): void {
-        this.validateContext(context);
-    }
-    public enterBooleanProperty(context: MetaEdGrammar.BooleanPropertyContext): void {
-        this.validateContext(context);
-    }
-    public enterCascadeUpdate(context: MetaEdGrammar.CascadeUpdateContext): void {
-        this.validateContext(context);
-    }
-    public enterChoiceName(context: MetaEdGrammar.ChoiceNameContext): void {
-        this.validateContext(context);
-    }
-    public enterChoiceType(context: MetaEdGrammar.ChoiceTypeContext): void {
-        this.validateContext(context);
-    }
-    public enterCollection(context: MetaEdGrammar.CollectionContext): void {
-        this.validateContext(context);
-    }
-    public enterCommonDecimalName(context: MetaEdGrammar.CommonDecimalNameContext): void {
-        this.validateContext(context);
-    }
-     public enterCommonDecimal(context) : void {
-         this.validateContext(context, MetaEdGrammar.RULE_commonDecimal);
-    }
-    public enterCommonIntegerName(context: MetaEdGrammar.CommonIntegerNameContext): void {
-        this.validateContext(context);
-    }
-    public enterCommonInteger(context: MetaEdGrammar.CommonIntegerContext): void {
-        this.validateContext(context);
-    }
-    public enterCommonShortName(context: MetaEdGrammar.CommonShortNameContext): void {
-        this.validateContext(context);
-    }
-    public enterCommonShort(context: MetaEdGrammar.CommonShortContext): void {
-        this.validateContext(context);
-    }
-    public enterCommonStringName(context: MetaEdGrammar.CommonStringNameContext): void {
-        this.validateContext(context);
-    }
-    public enterCommonString(context: MetaEdGrammar.CommonStringContext): void {
-        this.validateContext(context);
-    }
-    public enterCommonName(context: MetaEdGrammar.CommonNameContext): void {
-        this.validateContext(context);
-    }
-    public enterCommonType(context: MetaEdGrammar.CommonTypeContext): void {
-        this.validateContext(context);
-    }
-    public enterCommonTypeExtension(context: MetaEdGrammar.CommonTypeExtensionContext): void {
-        this.validateContext(context);
-    }
-    public enterCurrencyProperty(context: MetaEdGrammar.CurrencyPropertyContext): void {
-        this.validateContext(context);
-    }
-    public enterDateProperty(context: MetaEdGrammar.DatePropertyContext): void {
-        this.validateContext(context);
-    }
-    public enterDecimalPlaces(context: MetaEdGrammar.DecimalPlacesContext): void {
-        this.validateContext(context);
-    }
-    public enterDecimalProperty(context: MetaEdGrammar.DecimalPropertyContext): void {
-        this.validateContext(context);
-    }
-    public enterDecimalValue(context: MetaEdGrammar.DecimalValueContext): void {
-        this.validateContext(context);
-    }
-    public enterDescriptor(context: MetaEdGrammar.DescriptorContext): void {
-        this.validateContext(context);
-    }
-    public enterDescriptorName(context: MetaEdGrammar.DescriptorNameContext): void {
-        this.validateContext(context);
-    }
-    public enterDescriptorProperty(context: MetaEdGrammar.DescriptorPropertyContext): void {
-        this.validateContext(context);
-    }
-    public enterDocumentation(context: MetaEdGrammar.DocumentationContext): void {
-        this.validateContext(context);
-    }
-    public enterFooterDocumentation(context: MetaEdGrammar.FooterDocumentationContext): void {
-        this.validateContext(context);
-    }
-    public enterExtendedDocumentation(context: MetaEdGrammar.ExtendedDocumentationContext): void {
-        this.validateContext(context);
-    }
-    public enterUseCaseDocumentation(context: MetaEdGrammar.UseCaseDocumentationContext): void {
-        this.validateContext(context);
-    }
-    public enterDocumentationLine(context: MetaEdGrammar.DocumentationLineContext): void {
-        this.validateContext(context);
-    }
-    public enterDomain(context: MetaEdGrammar.DomainContext): void {
-        this.validateContext(context);
-    }
-    public enterDomainItem(context: MetaEdGrammar.DomainItemContext): void {
-        this.validateContext(context);
-    }
-    public enterDomainName(context: MetaEdGrammar.DomainNameContext): void {
-        this.validateContext(context);
-    }
-    public enterDomainEntity(context: MetaEdGrammar.DomainEntityContext): void {
-        this.validateContext(context);
-    }
-    public enterDomainEntityExtension(context: MetaEdGrammar.DomainEntityExtensionContext): void {
-        this.validateContext(context);
-    }
-    public enterDomainEntitySubclass(context: MetaEdGrammar.DomainEntitySubclassContext): void {
-        this.validateContext(context);
-    }
-    public enterDurationProperty(context: MetaEdGrammar.DurationPropertyContext): void {
-        this.validateContext(context);
-    }
-    public enterEntityConfiguration(context: MetaEdGrammar.EntityConfigurationContext): void {
-        this.validateContext(context);
-    }
-    public enterEntityName(context: MetaEdGrammar.EntityNameContext): void {
-        this.validateContext(context);
-    }
-    public enterEnumeration(context: MetaEdGrammar.EnumerationContext): void {
-        this.validateContext(context);
-    }
-    public enterEnumerationName(context: MetaEdGrammar.EnumerationNameContext): void {
-        this.validateContext(context);
-    }
-    public enterEnumerationProperty(context: MetaEdGrammar.EnumerationPropertyContext): void {
-        this.validateContext(context);
-    }
-    public enterExtendeeName(context: MetaEdGrammar.ExtendeeNameContext): void {
-        this.validateContext(context);
-    }
-    public enterFirstDomainEntity(context: MetaEdGrammar.FirstDomainEntityContext): void {
-        this.validateContext(context);
-    }
-    public enterIncludeProperty(context: MetaEdGrammar.IncludePropertyContext): void {
-        this.validateContext(context);
-    }
-    public enterIncludeExtensionOverride(context: MetaEdGrammar.IncludeExtensionOverrideContext): void {
 
-    }
-    public enterInlineCommonName(context: MetaEdGrammar.InlineCommonNameContext): void {
-        this.validateContext(context);
-    }
-    public enterInlineCommonType(context: MetaEdGrammar.InlineCommonTypeContext): void {
-        this.validateContext(context);
-    }
-    public enterSigned_int(context: MetaEdGrammar.Signed_intContext): void {
-        this.validateContext(context);
-    }
-    public enterIntegerProperty(context: MetaEdGrammar.IntegerPropertyContext): void {
-        this.validateContext(context);
-    }
-    public enterInterchange(context: MetaEdGrammar.InterchangeContext): void {
-        this.validateContext(context);
-    }
-    public enterInterchangeComponent(context: MetaEdGrammar.InterchangeComponentContext): void {
-        this.validateContext(context);
-    }
-    public enterInterchangeElement(context: MetaEdGrammar.InterchangeElementContext): void {
-        this.validateContext(context);
-    }
-    public enterInterchangeExtension(context: MetaEdGrammar.InterchangeExtensionContext): void {
-        this.validateContext(context);
+    public enterMinLength(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_minLength);
     }
-    public enterInterchangeExtensionComponent(context: MetaEdGrammar.InterchangeExtensionComponentContext): void {
-        this.validateContext(context);
-    }
-    public enterInterchangeIdentityTemplate(context: MetaEdGrammar.InterchangeIdentityTemplateContext): void {
-        this.validateContext(context);
-    }
-    public enterInterchangeName(context: MetaEdGrammar.InterchangeNameContext): void {
-        this.validateContext(context);
-    }
-    public enterEnumerationItem(context: MetaEdGrammar.EnumerationItemContext): void {
-        this.validateContext(context);
-    }
-    public enterMaxLength(context: MetaEdGrammar.MaxLengthContext): void {
-        this.validateContext(context);
-    }
-    public enterMaxValue(context: MetaEdGrammar.MaxValueContext): void {
-        this.validateContext(context);
-    }
-    public enterMaxValueDecimal(context: MetaEdGrammar.MaxValueDecimalContext): void {
-        this.validateContext(context);
-    }
-    public enterIsWeakReference(context: MetaEdGrammar.IsWeakReferenceContext): void {
-        this.validateContext(context);
-    }
-    public enterMergePartOfReference(context: MetaEdGrammar.MergePartOfReferenceContext): void {
-        this.validateContext(context);
-    }
-    public enterMergePropertyPath(context: MetaEdGrammar.MergePropertyPathContext): void {
-        this.validateContext(context);
-    }
-    public enterMetaEd(MetaEdGrammar.MetaEdContext context) : void {
-        this.validateContext(context);
-    }
-    public enterMinLength(context: MetaEdGrammar.MinLengthContext): void {
-        this.validateContext(context);
-    }
-    public enterMinValue(context: MetaEdGrammar.MinValueContext): void {
-        this.validateContext(context);
+
+    public enterMinValue(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_minValue);
     }
-    public enterMinValueDecimal(context: MetaEdGrammar.MinValueDecimalContext): void {
-        this.validateContext(context);
+
+    public enterMinValueDecimal(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_minValueDecimal);
     }
-    public enterNamespace(context: MetaEdGrammar.NamespaceContext): void {
-        this.validateContext(context);
+
+    public enterNamespace(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_namespace);
     }
-    public enterNamespaceName(context: MetaEdGrammar.NamespaceNameContext): void {
-        this.validateContext(context);
+
+    public enterNamespaceName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_namespaceName);
     }
-    public enterNamespaceType(context: MetaEdGrammar.NamespaceTypeContext): void {
-        this.validateContext(context);
+
+    public enterNamespaceType(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_namespaceType);
     }
-    public enterNamespaceProjectExtension(context: MetaEdGrammar.NamespaceProjectExtensionContext): void {
-        this.validateContext(context);
+
+    public enterNamespaceProjectExtension(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_namespaceProjectExtension);
     }
-    public enterOptional(context: MetaEdGrammar.OptionalContext): void {
-        this.validateContext(context);
+
+    public enterOptional(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_optional);
     }
-    public enterOptionalCollection(context: MetaEdGrammar.OptionalCollectionContext): void {
-        this.validateContext(context);
+
+    public enterOptionalCollection(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_optionalCollection);
     }
-    public enterOptionalMapType(context: MetaEdGrammar.OptionalMapTypeContext): void {
-        this.validateContext(context);
+
+    public enterOptionalMapType(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_optionalMapType);
     }
-    public enterPercentProperty(context: MetaEdGrammar.PercentPropertyContext): void {
-        this.validateContext(context);
+
+    public enterPercentProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_percentProperty);
     }
-    public enterIdentity(context: MetaEdGrammar.IdentityContext): void {
-        this.validateContext(context);
+
+    public enterIdentity(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_identity);
     }
-    public enterIdentityRename(context: MetaEdGrammar.IdentityRenameContext): void {
-        this.validateContext(context);
+
+    public enterIdentityRename(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_identityRename);
     }
-    public enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext): void {
-        this.validateContext(context);
+
+    public enterMetaEdId(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_metaEdId);
     }
-    public enterProperty(context: MetaEdGrammar.PropertyContext): void {
-        this.validateContext(context);
+
+    public enterProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_property);
     }
-    public enterPropertyAnnotation(context: MetaEdGrammar.PropertyAnnotationContext): void {
-        this.validateContext(context);
+
+    public enterPropertyAnnotation(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_propertyAnnotation);
     }
-    public enterPropertyComponents(context: MetaEdGrammar.PropertyComponentsContext): void {
-        this.validateContext(context);
+
+    public enterPropertyComponents(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_propertyComponents);
     }
-    public enterPropertyName(context: MetaEdGrammar.PropertyNameContext): void {
-        this.validateContext(context);
+
+    public enterPropertyName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_propertyName);
     }
-    public enterPropertyPath(context: MetaEdGrammar.PropertyPathContext): void {
-        this.validateContext(context);
+
+    public enterPropertyPath(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_propertyPath);
     }
-    public enterReferenceProperty(context: MetaEdGrammar.ReferencePropertyContext): void {
-        this.validateContext(context);
+
+    public enterReferenceProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_referenceProperty);
     }
-    public enterRequired(context: MetaEdGrammar.RequiredContext): void {
-        this.validateContext(context);
+
+    public enterRequired(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_required);
     }
-    public enterRequiredCollection(context: MetaEdGrammar.RequiredCollectionContext): void {
-        this.validateContext(context);
+
+    public enterRequiredCollection(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_requiredCollection);
     }
-    public enterRequiredMapType(context: MetaEdGrammar.RequiredMapTypeContext): void {
-        this.validateContext(context);
+
+    public enterRequiredMapType(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_requiredMapType);
     }
-    public enterSecondDomainEntity(context: MetaEdGrammar.SecondDomainEntityContext): void {
-        this.validateContext(context);
+
+    public enterSecondDomainEntity(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_secondDomainEntity);
     }
-    public enterShortDescription(context: MetaEdGrammar.ShortDescriptionContext): void {
-        this.validateContext(context);
+
+    public enterShortDescription(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_shortDescription);
     }
-    public enterSharedDecimalProperty(context: MetaEdGrammar.SharedDecimalPropertyContext): void {
-        this.validateContext(context);
+
+    public enterSharedDecimalProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_sharedDecimalProperty);
     }
-    public enterSharedIntegerProperty(context: MetaEdGrammar.SharedIntegerPropertyContext): void {
-        this.validateContext(context);
+
+    public enterSharedIntegerProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_sharedIntegerProperty);
     }
-    public enterSharedShortProperty(context: MetaEdGrammar.SharedShortPropertyContext): void {
-        this.validateContext(context);
+
+    public enterSharedShortProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_sharedShortProperty);
     }
-    public enterSharedStringProperty(context: MetaEdGrammar.SharedStringPropertyContext): void {
-        this.validateContext(context);
+
+    public enterSharedStringProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_sharedStringProperty);
     }
-    public enterSharedPropertyType(context: MetaEdGrammar.SharedPropertyTypeContext): void {
-        this.validateContext(context);
+
+    public enterSharedPropertyType(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_sharedPropertyType);
     }
-    public enterShortenToName(context: MetaEdGrammar.ShortenToNameContext): void {
-        this.validateContext(context);
+
+    public enterShortenToName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_shortenToName);
     }
-    public enterShortProperty(context: MetaEdGrammar.ShortPropertyContext): void {
-        this.validateContext(context);
+
+    public enterShortProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_shortProperty);
     }
-    public enterStringProperty(context: MetaEdGrammar.StringPropertyContext): void {
-        this.validateContext(context);
+
+    public enterStringProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_stringProperty);
     }
-    public enterSubdomain(context: MetaEdGrammar.SubdomainContext): void {
-        this.validateContext(context);
+
+    public enterSubdomain(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_subdomain);
     }
-    public enterParentDomainName(context: MetaEdGrammar.ParentDomainNameContext): void {
-        this.validateContext(context);
+
+    public enterParentDomainName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_parentDomainName);
     }
-    public enterSubdomainName(context: MetaEdGrammar.SubdomainNameContext): void {
-        this.validateContext(context);
+
+    public enterSubdomainName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_subdomainName);
     }
-    public enterSubdomainPosition(context: MetaEdGrammar.SubdomainPositionContext): void {
-        this.validateContext(context);
+
+    public enterSubdomainPosition(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_subdomainPosition);
     }
-    public enterTargetPropertyPath(context: MetaEdGrammar.TargetPropertyPathContext): void {
-        this.validateContext(context);
+
+    public enterTargetPropertyPath(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_targetPropertyPath);
     }
-    public enterTimeProperty(context: MetaEdGrammar.TimePropertyContext): void {
-        this.validateContext(context);
+
+    public enterTimeProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_timeProperty);
     }
-    public enterTopLevelEntity(context: MetaEdGrammar.TopLevelEntityContext): void {
-        this.validateContext(context);
+
+    public enterTopLevelEntity(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_topLevelEntity);
     }
-    public enterTotalDigits(context: MetaEdGrammar.TotalDigitsContext): void {
-        this.validateContext(context);
+
+    public enterTotalDigits(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_totalDigits);
     }
-    public enterUnaryOperator(context: MetaEdGrammar.UnaryOperatorContext): void {
-        this.validateContext(context);
+
+    public enterUnaryOperator(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_unaryOperator);
     }
-    public enterIsQueryableField(context: MetaEdGrammar.IsQueryableFieldContext): void {
-        this.validateContext(context);
+
+    public enterIsQueryableField(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_isQueryableField);
     }
-    public enterIsQueryableOnly(context: MetaEdGrammar.IsQueryableOnlyContext): void {
-        this.validateContext(context);
+
+    public enterIsQueryableOnly(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_isQueryableOnly);
     }
-    public enterWithContext(context: MetaEdGrammar.WithContextContext): void {
-        this.validateContext(context);
+
+    public enterWithContext(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_withContext);
     }
-    public enterWithContextName(context: MetaEdGrammar.WithContextNameContext): void {
-        this.validateContext(context);
+
+    public enterWithContextName(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_withContextName);
     }
-    public enterWithMapType(context: MetaEdGrammar.WithMapTypeContext): void {
-        this.validateContext(context);
+
+    public enterWithMapType(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_withMapType);
     }
-    public enterYearProperty(context: MetaEdGrammar.YearPropertyContext): void {
-        this.validateContext(context);
+
+    public enterYearProperty(context: any): void {
+        this.validateContext(context, MetaEdGrammar.RULE_YearProperty);
     }
-    public exitAbstractEntity(context: MetaEdGrammar.AbstractEntityContext): void {
 
+    public exitAbstractEntity(context: any): void {
     }
-    public exitAbstractEntityName(context: MetaEdGrammar.AbstractEntityNameContext): void {
 
+    public exitAbstractEntityName(context: any): void {
     }
-    public exitAssociation(context: MetaEdGrammar.AssociationContext): void {
 
+    public exitAssociation(context: any): void {
     }
-    public exitAssociationExtension(context: MetaEdGrammar.AssociationExtensionContext): void {
 
+    public exitAssociationExtension(context: any): void {
     }
-    public exitAssociationName(context: MetaEdGrammar.AssociationNameContext): void {
 
+    public exitAssociationName(context: any): void {
     }
-    public exitAssociationSubclass(context: MetaEdGrammar.AssociationSubclassContext): void {
 
+    public exitAssociationSubclass(context: any): void {
     }
-    public exitBaseKeyName(context: MetaEdGrammar.BaseKeyNameContext): void {
 
+    public exitBaseKeyName(context: any): void {
     }
-    public exitBaseName(context: MetaEdGrammar.BaseNameContext): void {
 
+    public exitBaseName(context: any): void {
     }
-    public exitBooleanProperty(context: MetaEdGrammar.BooleanPropertyContext): void {
 
+    public exitBooleanProperty(context: any): void {
     }
-    public exitCascadeUpdate(context: MetaEdGrammar.CascadeUpdateContext): void {
 
+    public exitCascadeUpdate(context: any): void {
     }
-    public exitChoiceName(context: MetaEdGrammar.ChoiceNameContext): void {
 
+    public exitChoiceName(context: any): void {
     }
-    public exitChoiceType(context: MetaEdGrammar.ChoiceTypeContext): void {
 
+    public exitChoiceType(context: any): void {
     }
-    public exitCollection(context: MetaEdGrammar.CollectionContext): void {
 
+    public exitCollection(context: any): void {
     }
-    public exitCommonDecimalName(context: MetaEdGrammar.CommonDecimalNameContext): void {
 
+    public exitCommonDecimalName(context: any): void {
     }
-    public exitCommonDecimal(context: MetaEdGrammar.CommonDecimalContext): void {
 
+    public exitCommonDecimal(context: any): void {
     }
-    public exitCommonIntegerName(context: MetaEdGrammar.CommonIntegerNameContext): void {
 
+    public exitCommonIntegerName(context: any): void {
     }
-    public exitCommonInteger(context: MetaEdGrammar.CommonIntegerContext): void {
 
+    public exitCommonInteger(context: any): void {
     }
-    public exitCommonShortName(context: MetaEdGrammar.CommonShortNameContext): void {
 
+    public exitCommonShortName(context: any): void {
     }
-    public exitCommonShort(context: MetaEdGrammar.CommonShortContext): void {
 
+    public exitCommonShort(context: any): void {
     }
-    public exitCommonStringName(context: MetaEdGrammar.CommonStringNameContext): void {
 
+    public exitCommonStringName(context: any): void {
     }
-    public exitCommonString(context: MetaEdGrammar.CommonStringContext): void {
 
+    public exitCommonString(context: any): void {
     }
-    public exitCommonName(context: MetaEdGrammar.CommonNameContext): void {
 
+    public exitCommonName(context: any): void {
     }
-    public exitCommonType(context: MetaEdGrammar.CommonTypeContext): void {
 
+    public exitCommonType(context: any): void {
     }
-    public exitCommonTypeExtension(context: MetaEdGrammar.CommonTypeExtensionContext): void {
 
+    public exitCommonTypeExtension(context: any): void {
     }
-    public exitCurrencyProperty(context: MetaEdGrammar.CurrencyPropertyContext): void {
 
+    public exitCurrencyProperty(context: any): void {
     }
-    public exitDateProperty(context: MetaEdGrammar.DatePropertyContext): void {
 
+    public exitDateProperty(context: any): void {
     }
-    public exitDecimalPlaces(context: MetaEdGrammar.DecimalPlacesContext): void {
 
+    public exitDecimalPlaces(context: any): void {
     }
-    public exitDecimalProperty(context: MetaEdGrammar.DecimalPropertyContext): void {
 
+    public exitDecimalProperty(context: any): void {
     }
-    public exitDecimalValue(context: MetaEdGrammar.DecimalValueContext): void {
 
+    public exitDecimalValue(context: any): void {
     }
-    public exitDescriptor(context: MetaEdGrammar.DescriptorContext): void {
 
+    public exitDescriptor(context: any): void {
     }
-    public exitDescriptorName(context: MetaEdGrammar.DescriptorNameContext): void {
 
+    public exitDescriptorName(context: any): void {
     }
-    public exitDescriptorProperty(context: MetaEdGrammar.DescriptorPropertyContext): void {
 
+    public exitDescriptorProperty(context: any): void {
     }
-    public exitDocumentation(context: MetaEdGrammar.DocumentationContext): void {
 
+    public exitDocumentation(context: any): void {
     }
-    public exitFooterDocumentation(context: MetaEdGrammar.FooterDocumentationContext): void {
 
+    public exitFooterDocumentation(context: any): void {
     }
-    public exitExtendedDocumentation(context: MetaEdGrammar.ExtendedDocumentationContext): void {
 
+    public exitExtendedDocumentation(context: any): void {
     }
-    public exitUseCaseDocumentation(context: MetaEdGrammar.UseCaseDocumentationContext): void {
 
+    public exitUseCaseDocumentation(context: any): void {
     }
-    public exitDocumentationLine(context: MetaEdGrammar.DocumentationLineContext): void {
 
+    public exitDocumentationLine(context: any): void {
     }
-    public exitDomain(context: MetaEdGrammar.DomainContext): void {
 
+    public exitDomain(context: any): void {
     }
-    public exitDomainItem(context: MetaEdGrammar.DomainItemContext): void {
 
+    public exitDomainItem(context: any): void {
     }
-    public exitDomainName(context: MetaEdGrammar.DomainNameContext): void {
 
+    public exitDomainName(context: any): void {
     }
-    public exitDomainEntity(context: MetaEdGrammar.DomainEntityContext): void {
 
+    public exitDomainEntity(context: any): void {
     }
-    public exitDomainEntityExtension(context: MetaEdGrammar.DomainEntityExtensionContext): void {
 
+    public exitDomainEntityExtension(context: any): void {
     }
-    public exitDomainEntitySubclass(context: MetaEdGrammar.DomainEntitySubclassContext): void {
 
+    public exitDomainEntitySubclass(context: any): void {
     }
-    public exitDurationProperty(context: MetaEdGrammar.DurationPropertyContext): void {
 
+    public exitDurationProperty(context: any): void {
     }
-    public exitEntityConfiguration(context: MetaEdGrammar.EntityConfigurationContext): void {
 
+    public exitEntityConfiguration(context: any): void {
     }
-    public exitEntityName(context: MetaEdGrammar.EntityNameContext): void {
 
+    public exitEntityName(context: any): void {
     }
-    public exitEnumeration(context: MetaEdGrammar.EnumerationContext): void {
 
+    public exitEnumeration(context: any): void {
     }
-    public exitEnumerationName(context: MetaEdGrammar.EnumerationNameContext): void {
 
+    public exitEnumerationName(context: any): void {
     }
-    public exitEnumerationProperty(context: MetaEdGrammar.EnumerationPropertyContext): void {
 
+    public exitEnumerationProperty(context: any): void {
     }
-    public exitExtendeeName(context: MetaEdGrammar.ExtendeeNameContext): void {
 
+    public exitExtendeeName(context: any): void {
     }
-    public exitFirstDomainEntity(context: MetaEdGrammar.FirstDomainEntityContext): void {
 
+    public exitFirstDomainEntity(context: any): void {
     }
-    public exitIncludeProperty(context: MetaEdGrammar.IncludePropertyContext): void {
 
+    public exitIncludeProperty(context: any): void {
     }
-    public exitIncludeExtensionOverride(context: MetaEdGrammar.IncludeExtensionOverrideContext): void {
 
+    public exitIncludeExtensionOverride(context: any): void {
     }
-    public exitInlineCommonName(context: MetaEdGrammar.InlineCommonNameContext): void {
 
+    public exitInlineCommonName(context: any): void {
     }
-    public exitInlineCommonType(context: MetaEdGrammar.InlineCommonTypeContext): void {
 
+    public exitInlineCommonType(context: any): void {
     }
-    public exitSigned_int(context: MetaEdGrammar.Signed_intContext): void {
 
+    public exitSigned_int(context: any): void {
     }
-    public exitIntegerProperty(context: MetaEdGrammar.IntegerPropertyContext): void {
 
+    public exitIntegerProperty(context: any): void {
     }
-    public exitInterchange(context: MetaEdGrammar.InterchangeContext): void {
 
+    public exitInterchange(context: any): void {
     }
-    public exitInterchangeComponent(context: MetaEdGrammar.InterchangeComponentContext): void {
 
+    public exitInterchangeComponent(context: any): void {
     }
-    public exitInterchangeElement(context: MetaEdGrammar.InterchangeElementContext): void {
 
+    public exitInterchangeElement(context: any): void {
     }
-    public exitInterchangeExtension(context: MetaEdGrammar.InterchangeExtensionContext): void {
 
+    public exitInterchangeExtension(context: any): void {
     }
-    public exitInterchangeExtensionComponent(context: MetaEdGrammar.InterchangeExtensionComponentContext): void {
 
+    public exitInterchangeExtensionComponent(context: any): void {
     }
-    public exitInterchangeIdentityTemplate(context: MetaEdGrammar.InterchangeIdentityTemplateContext): void {
 
+    public exitInterchangeIdentityTemplate(context: any): void {
     }
-    public exitInterchangeName(context: MetaEdGrammar.InterchangeNameContext): void {
 
+    public exitInterchangeName(context: any): void {
     }
-    public exitEnumerationItem(context: MetaEdGrammar.EnumerationItemContext): void {
 
+    public exitEnumerationItem(context: any): void {
     }
-    public exitMaxLength(context: MetaEdGrammar.MaxLengthContext): void {
 
+    public exitMaxLength(context: any): void {
     }
-    public exitMaxValue(context: MetaEdGrammar.MaxValueContext): void {
 
+    public exitMaxValue(context: any): void {
     }
-    public exitMaxValueDecimal(context: MetaEdGrammar.MaxValueDecimalContext): void {
 
+    public exitMaxValueDecimal(context: any): void {
     }
-    public exitIsWeakReference(context: MetaEdGrammar.IsWeakReferenceContext): void {
 
+    public exitIsWeakReference(context: any): void {
     }
-    public exitMergePartOfReference(context: MetaEdGrammar.MergePartOfReferenceContext): void {
 
+    public exitMergePartOfReference(context: any): void {
     }
-    public exitMergePropertyPath(context: MetaEdGrammar.MergePropertyPathContext): void {
 
+    public exitMergePropertyPath(context: any): void {
     }
-    public exitMetaEd(context: MetaEdGrammar.MetaEdContext): void {
 
+    public exitMetaEd(context: any): void {
     }
-    public exitMinLength(context: MetaEdGrammar.MinLengthContext): void {
 
+    public exitMinLength(context: any): void {
     }
-    public exitMinValue(context: MetaEdGrammar.MinValueContext): void {
 
+    public exitMinValue(context: any): void {
     }
-    public exitMinValueDecimal(context: MetaEdGrammar.MinValueDecimalContext): void {
 
+    public exitMinValueDecimal(context: any): void {
     }
-    public exitNamespace(context: MetaEdGrammar.NamespaceContext): void {
 
+    public exitNamespace(context: any): void {
     }
-    public exitNamespaceName(context: MetaEdGrammar.NamespaceNameContext): void {
 
+    public exitNamespaceName(context: any): void {
     }
-    public exitNamespaceType(context: MetaEdGrammar.NamespaceTypeContext): void {
 
+    public exitNamespaceType(context: any): void {
     }
-    public exitNamespaceProjectExtension(context: MetaEdGrammar.NamespaceProjectExtensionContext): void {
 
+    public exitNamespaceProjectExtension(context: any): void {
     }
-    public exitOptional(context: MetaEdGrammar.OptionalContext): void {
 
+    public exitOptional(context: any): void {
     }
-    public exitOptionalCollection(context: MetaEdGrammar.OptionalCollectionContext): void {
 
+    public exitOptionalCollection(context: any): void {
     }
-    public exitOptionalMapType(context: MetaEdGrammar.OptionalMapTypeContext): void {
 
+    public exitOptionalMapType(context: any): void {
     }
-    public exitPercentProperty(context: MetaEdGrammar.PercentPropertyContext): void {
 
+    public exitPercentProperty(context: any): void {
     }
-    public exitIdentity(context: MetaEdGrammar.IdentityContext): void {
 
+    public exitIdentity(context: any): void {
     }
-    public exitIdentityRename(context: MetaEdGrammar.IdentityRenameContext): void {
 
+    public exitIdentityRename(context: any): void {
     }
-    public exitMetaEdId(context: MetaEdGrammar.MetaEdIdContext): void {
 
+    public exitMetaEdId(context: any): void {
     }
-    public exitProperty(context: MetaEdGrammar.PropertyContext): void {
 
+    public exitProperty(context: any): void {
     }
-    public exitPropertyAnnotation(context: MetaEdGrammar.PropertyAnnotationContext): void {
 
+    public exitPropertyAnnotation(context: any): void {
     }
-    public exitPropertyComponents(context: MetaEdGrammar.PropertyComponentsContext): void {
 
+    public exitPropertyComponents(context: any): void {
     }
-    public exitPropertyName(context: MetaEdGrammar.PropertyNameContext): void {
 
+    public exitPropertyName(context: any): void {
     }
-    public exitPropertyPath(context: MetaEdGrammar.PropertyPathContext): void {
 
+    public exitPropertyPath(context: any): void {
     }
-    public exitReferenceProperty(context: MetaEdGrammar.ReferencePropertyContext): void {
 
+    public exitReferenceProperty(context: any): void {
     }
-    public exitRequired(context: MetaEdGrammar.RequiredContext): void {
 
+    public exitRequired(context: any): void {
     }
-    public exitRequiredCollection(context: MetaEdGrammar.RequiredCollectionContext): void {
 
+    public exitRequiredCollection(context: any): void {
     }
-    public exitRequiredMapType(context: MetaEdGrammar.RequiredMapTypeContext): void {
 
+    public exitRequiredMapType(context: any): void {
     }
-    public exitSecondDomainEntity(context: MetaEdGrammar.SecondDomainEntityContext): void {
 
+    public exitSecondDomainEntity(context: any): void {
     }
-    public exitSharedDecimalProperty(context: MetaEdGrammar.SharedDecimalPropertyContext): void {
 
+    public exitSharedDecimalProperty(context: any): void {
     }
-    public exitSharedIntegerProperty(context: MetaEdGrammar.SharedIntegerPropertyContext): void {
 
+    public exitSharedIntegerProperty(context: any): void {
     }
-    public exitSharedShortProperty(context: MetaEdGrammar.SharedShortPropertyContext): void {
 
+    public exitSharedShortProperty(context: any): void {
     }
-    public exitSharedStringProperty(context: MetaEdGrammar.SharedStringPropertyContext): void {
 
+    public exitSharedStringProperty(context: any): void {
     }
-    public exitSharedPropertyType(context: MetaEdGrammar.SharedPropertyTypeContext): void {
 
+    public exitSharedPropertyType(context: any): void {
     }
-    public exitShortDescription(context: MetaEdGrammar.ShortDescriptionContext): void {
 
+    public exitShortDescription(context: any): void {
     }
-    public exitShortenToName(context: MetaEdGrammar.ShortenToNameContext): void {
 
+    public exitShortenToName(context: any): void {
     }
-    public exitShortProperty(context: MetaEdGrammar.ShortPropertyContext): void {
 
+    public exitShortProperty(context: any): void {
     }
-    public exitStringProperty(context: MetaEdGrammar.StringPropertyContext): void {
 
+    public exitStringProperty(context: any): void {
     }
-    public exitSubdomain(context: MetaEdGrammar.SubdomainContext): void {
 
+    public exitSubdomain(context: any): void {
     }
-    public exitParentDomainName(context: MetaEdGrammar.ParentDomainNameContext): void {
 
+    public exitParentDomainName(context: any): void {
     }
-    public exitSubdomainName(context: MetaEdGrammar.SubdomainNameContext): void {
 
+    public exitSubdomainName(context: any): void {
     }
-    public exitSubdomainPosition(context: MetaEdGrammar.SubdomainPositionContext): void {
 
+    public exitSubdomainPosition(context: any): void {
     }
-    public exitTargetPropertyPath(context: MetaEdGrammar.TargetPropertyPathContext): void {
 
+    public exitTargetPropertyPath(context: any): void {
     }
-    public exitTimeProperty(context: MetaEdGrammar.TimePropertyContext): void {
 
+    public exitTimeProperty(context: any): void {
     }
-    public exitTopLevelEntity(context: MetaEdGrammar.TopLevelEntityContext): void {
 
+    public exitTopLevelEntity(context: any): void {
     }
-    public exitTotalDigits(context: MetaEdGrammar.TotalDigitsContext): void {
 
+    public exitTotalDigits(context: any): void {
     }
-    public exitUnaryOperator(context: MetaEdGrammar.UnaryOperatorContext): void {
 
+    public exitUnaryOperator(context: any): void {
     }
-    public exitIsQueryableField(context: MetaEdGrammar.IsQueryableFieldContext): void {
 
+    public exitIsQueryableField(context: any): void {
     }
-    public exitIsQueryableOnly(context: MetaEdGrammar.IsQueryableOnlyContext): void {
 
+    public exitIsQueryableOnly(context: any): void {
     }
-    public exitWithContext(context: MetaEdGrammar.WithContextContext): void {
 
+    public exitWithContext(context: any): void {
     }
-    public exitWithContextName(context: MetaEdGrammar.WithContextNameContext): void {
 
+    public exitWithContextName(context: any): void {
     }
-    public exitWithMapType(context: MetaEdGrammar.WithMapTypeContext): void {
 
+    public exitWithMapType(context: any): void {
     }
-    public exitYearProperty(context: MetaEdGrammar.YearPropertyContext): void {
 
+    public exitYearProperty(context: any): void {
     }
+}

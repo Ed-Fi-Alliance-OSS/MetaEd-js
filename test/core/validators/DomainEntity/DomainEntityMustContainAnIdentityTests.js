@@ -22,7 +22,7 @@ describe('DomainEntityMustContainAnIdentityTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_validating_domain_entity_with_no_identity_fields', () => {

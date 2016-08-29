@@ -4,8 +4,8 @@ class DecimalPropertyMinValueMustNotBeGreaterThanMaxValue extends ValidationRule
     isValid(context) {
         if (context.minValueDecimal() == null || context.maxValueDecimal() == null)
             return true;
-        var minValue = context.minValueDecimal().MinValue();
-        var maxValue = context.maxValueDecimal().MaxValue();
+        let minValue = context.minValueDecimal().MinValue();
+        let maxValue = context.maxValueDecimal().MaxValue();
         return Number(minValue) <= Number(maxValue);
     }
     getFailureMessage(context) {

@@ -27,7 +27,7 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_element_is_domain_entity_subclass', () => {
@@ -52,7 +52,7 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_element_is_association', () => {
@@ -75,7 +75,7 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_element_is_association_subclass', () => {
@@ -102,7 +102,7 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_element_is_descriptor', () => {

@@ -14,8 +14,8 @@
 //    const _entityName: string = "MyIdentifier";
 //    let propertyName: string = "Property1";
 //            protected _symbolTable: SymbolTable;
-//            protected _warningMessageCollection: List<ValidationMessage>;
-//            protected _errorMessageCollection: List<ValidationMessage>;
+//            protected _warningMessageCollection: ValidationMessage[];
+//            protected _errorMessageCollection: ValidationMessage[];
 //            protected _metaEdContext: MetaEdGrammar.MetaEdContext;
 //            public getSource(): string { throw new Error('not implemented'); });
 //            public setup(): void {
@@ -62,7 +62,7 @@
 //        helper.setup(metaEdText, validatorListener);
 //    });
 //            public should_not_report_error(): void {
-//        this._errorMessageCollection.count.should.equal(0);
+//        this._errorMessageCollection.length.should.equal(0);
 //    });
 //});
 //    
@@ -86,13 +86,13 @@
 //        helper.setup(metaEdText, validatorListener);
 //    });
 //            public should_report_the_duplicate(): void {
-//        this._errorMessageCollection.count.should.equal(1);
+//        this._errorMessageCollection.length.should.equal(1);
 //        let failure = this._errorMessageCollection[0];
 //        failure.Message.ShouldContain(When_entities_have_same_name._entityName);
 //        failure.Message.ShouldContain("duplicate");
 //    });
 //            public should_report_position_of_error(): void {
-//        this._errorMessageCollection.count.should.equal(1);
+//        this._errorMessageCollection.length.should.equal(1);
 //        let failure = this._errorMessageCollection[0];
 //        failure.ConcatenatedLineNumber.should.equal(9);
 //        failure.CharacterPosition.should.equal(18);
@@ -118,7 +118,7 @@
 //        helper.setup(metaEdText, validatorListener);
 //    });
 //            public should_not_report_error(): void {
-//        this._errorMessageCollection.count.should.equal(0);
+//        this._errorMessageCollection.length.should.equal(0);
 //    });
 //});
 //    
@@ -143,7 +143,7 @@
 //        helper.setup(metaEdText, validatorListener);
 //    });
 //            public should_not_report_error(): void {
-//        this._errorMessageCollection.count.should.equal(0);
+//        this._errorMessageCollection.length.should.equal(0);
 //    });
 //});
 //    
@@ -167,13 +167,13 @@
 //        helper.setup(metaEdText, validatorListener);
 //    });
 //            public should_report_the_duplicate(): void {
-//        this._errorMessageCollection.count.should.equal(1);
+//        this._errorMessageCollection.length.should.equal(1);
 //        let failure = this._errorMessageCollection[0];
 //        failure.Message.ShouldContain(When_domain_entity_has_same_name_as_common_simple_type._entityName);
 //        failure.Message.ShouldContain("duplicate");
 //    });
 //            public should_report_position_of_error(): void {
-//        this._errorMessageCollection.count.should.equal(1);
+//        this._errorMessageCollection.length.should.equal(1);
 //        let failure = this._errorMessageCollection[0];
 //        failure.ConcatenatedLineNumber.should.equal(9);
 //        failure.CharacterPosition.should.equal(17);
@@ -200,7 +200,7 @@
 //        helper.setup(metaEdText, validatorListener);
 //    });
 //            public should_not_report_error_on_duplication_of_descriptor_name(): void {
-//        this._errorMessageCollection.count.should.equal(0);
+//        this._errorMessageCollection.length.should.equal(0);
 //    });
 //});
 //    
@@ -224,7 +224,7 @@
 //        helper.setup(metaEdText, validatorListener);
 //    });
 //            public should_not_report_error_on_duplication_of_enumeration_name(): void {
-//        this._errorMessageCollection.count.should.equal(0);
+//        this._errorMessageCollection.length.should.equal(0);
 //    });
 //});
 //    
@@ -247,7 +247,7 @@
 //        helper.setup(metaEdText, validatorListener);
 //    });
 //            public should_not_report_error_on_duplication_of_interchange_name(): void {
-//        this._errorMessageCollection.count.should.equal(0);
+//        this._errorMessageCollection.length.should.equal(0);
 //    });
 //});
 //}); 

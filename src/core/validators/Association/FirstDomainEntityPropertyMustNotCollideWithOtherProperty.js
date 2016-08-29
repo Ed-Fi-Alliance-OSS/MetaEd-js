@@ -1,20 +1,25 @@
 "use strict";
 const ValidationRuleBase_1 = require("../ValidationRuleBase");
+let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
 class FirstDomainEntityPropertyMustNotCollideWithOtherProperty extends ValidationRuleBase_1.ValidationRuleBase {
     constructor(symbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
+    }
+    handlesContext(context) {
+        return context.ruleIndex === MetaEdGrammar.RULE_firstDomainEntity;
     }
     isValid(context) {
-        var identifierToMatch = context.IdText();
-        var withContextContext = context.withContext();
-        var withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().GetText();
-        var associationName = context.parent.associationName().IdText();
-        var associationType = MetaEdGrammar.TokenName(MetaEdGrammar.ASSOCIATION);
-        var entitySymbolTable = this._symbolTable.Get(associationType, associationName);
-        return entitySymbolTable.PropertySymbolTable.Get(withContextPrefix + identifierToMatch) == null;
+        let identifierToMatch = context.IdText();
+        let withContextContext = context.withContext();
+        let withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().GetText();
+        let associationName = context.parent.associationName().IdText();
+        let associationType = MetaEdGrammar.TokenName(MetaEdGrammar.ASSOCIATION);
+        let entitySymbolTable = this.symbolTable.get(associationType, associationName);
+        return entitySymbolTable.propertySymbolTable.get(withContextPrefix + identifierToMatch) == null;
     }
     getFailureMessage(context) {
-        var associationName = context.parent.associationName().IdText();
+        let associationName = context.parent.associationName().IdText();
         return `Entity ${associationName} has duplicate properties named ${context.IdText()}`;
     }
 }

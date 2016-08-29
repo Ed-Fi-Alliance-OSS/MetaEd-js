@@ -2,10 +2,10 @@
 const ValidationRuleBase_1 = require("../ValidationRuleBase");
 class MergeStatementMustStartMergePathWithPropertyName extends ValidationRuleBase_1.ValidationRuleBase {
     isValid(context) {
-        var parent = __as__(context.Parent, MetaEdGrammar.ReferencePropertyContext);
+        let parent = __as__(context.Parent, MetaEdGrammar.ReferencePropertyContext);
         if (parent == null)
             return false;
-        var referenceName = parent.propertyName().IdText();
+        let referenceName = parent.propertyName().IdText();
         return context.mergePropertyPath().propertyPath().PropertyPathParts()[0] == referenceName;
     }
     getFailureMessage(context) {

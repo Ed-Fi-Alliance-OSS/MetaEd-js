@@ -20,7 +20,7 @@ describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_validating_common_integer_with_no_min_value', () => {
@@ -36,7 +36,7 @@ describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_validating_common_integer_with_no_max_value', () => {
@@ -52,7 +52,7 @@ describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_validating_common_integer_with_correct_min_max_value_order', () => {
@@ -69,7 +69,7 @@ describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_validating_common_integer_with_min_max_values_out_of_order', () => {
@@ -109,7 +109,7 @@ describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
             helper.setup(metaEdText, validatorListener);
         });
         it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
         });
     });
 });

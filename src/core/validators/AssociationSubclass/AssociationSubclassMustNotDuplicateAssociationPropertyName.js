@@ -2,26 +2,27 @@
 const ValidationRuleBase_1 = require("../ValidationRuleBase");
 class AssociationSubclassMustNotDuplicateAssociationPropertyName extends ValidationRuleBase_1.ValidationRuleBase {
     constructor(symbolTable) {
-        this._symbolTable = symbolTable;
+        super();
+        this.symbolTable = symbolTable;
     }
     isValid(context) {
-        var entityType = context.ASSOCIATION().GetText();
-        var extensionType = context.ASSOCIATION().GetText() + context.BASED_ON();
-        var identifier = context.associationName().GetText();
-        var baseIdentifier = context.baseName().GetText();
-        var basePropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, baseIdentifier);
-        var subclassPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(extensionType, identifier);
+        let entityType = context.ASSOCIATION().GetText();
+        let extensionType = context.ASSOCIATION().GetText() + context.BASED_ON();
+        let identifier = context.associationName().GetText();
+        let baseIdentifier = context.baseName().GetText();
+        let basePropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(entityType, baseIdentifier);
+        let subclassPropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(extensionType, identifier);
         return !basePropertyIdentifiers.Intersect(subclassPropertyIdentifiers).Any();
     }
     getFailureMessage(context) {
-        var entityType = context.ASSOCIATION().GetText();
-        var extensionType = context.ASSOCIATION().GetText() + context.BASED_ON();
-        var identifier = context.associationName().GetText();
-        var baseIdentifier = context.baseName().GetText();
-        var associationPropertyIdentifiers = this._symbolTable.IdentifiersForEntityProperties(entityType, baseIdentifier).ToList();
-        var propertyRuleContextsForDuplicates = this._symbolTable.ContextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
-        var duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
-        return `Association '${identifier}' based on '${baseIdentifier}' declares '${duplicatePropertyIdentifierList.join(',');
+        let entityType = context.ASSOCIATION().GetText();
+        let extensionType = context.ASSOCIATION().GetText() + context.BASED_ON();
+        let identifier = context.associationName().GetText();
+        let baseIdentifier = context.baseName().GetText();
+        let associationPropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(entityType, baseIdentifier).ToList();
+        let propertyRuleContextsForDuplicates = this.symbolTable.contextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
+        let duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
+        return `Association '${identifier}' based on '${baseIdentifier}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of base Association.`;
     }
 }
 exports.AssociationSubclassMustNotDuplicateAssociationPropertyName = AssociationSubclassMustNotDuplicateAssociationPropertyName;

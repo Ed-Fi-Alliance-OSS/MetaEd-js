@@ -51,7 +51,7 @@ export class MetaEdContext implements IMetaEdContext {
         this._warningMessageCollection = [];
         this._errorMessageCollection = [];
         this._metaEdFileIndex = metaEdFileIndex;
-         this.symbolTable = symbolTable;
+        this._symbolTable = symbolTable;
     }
     public get fileExtension(): string {
         return ".metaed";

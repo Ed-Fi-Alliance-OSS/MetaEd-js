@@ -17,8 +17,8 @@ class SymbolTableBuilder extends MetaEdGrammarListener_1.MetaEdGrammarListener {
     addEntity(entityType, entityName, context) {
         if (!this._builderListener.beforeAddEntity(entityType, entityName, context))
             return;
-        if (this._symbolTable.tryAdd(entityType, entityName.getText(), context)) {
-            this._currentPropertySymbolTable = this._symbolTable.get(entityType, entityName.getText()).propertySymbolTable;
+        if (this.symbolTable.tryAdd(entityType, entityName.getText(), context)) {
+            this._currentPropertySymbolTable = this.symbolTable.get(entityType, entityName.getText()).propertySymbolTable;
             return;
         }
         let metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(entityName.symbol.line);

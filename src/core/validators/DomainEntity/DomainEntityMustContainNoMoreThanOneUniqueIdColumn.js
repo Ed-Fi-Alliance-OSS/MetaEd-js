@@ -2,7 +2,7 @@
 const ValidationRuleBase_1 = require("../ValidationRuleBase");
 class DomainEntityMustContainNoMoreThanOneUniqueIdColumn extends ValidationRuleBase_1.ValidationRuleBase {
     isValid(context) {
-        var namespaceInfo = context.GetAncestorContext();
+        let namespaceInfo = context.GetAncestorContext();
         return namespaceInfo.IsExtension || context.property().Count(x => x.GetProperty().PropertyName() == "UniqueId") <= 1;
     }
     getFailureMessage(context) {
