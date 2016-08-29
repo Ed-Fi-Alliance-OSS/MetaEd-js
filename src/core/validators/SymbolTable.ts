@@ -5,10 +5,9 @@ import Dictionary from 'typescript-dotnet-commonjs/System/Collections/Dictionari
 import IEnumerable from 'typescript-dotnet-commonjs/System/Collections/Enumeration/IEnumerable'
 import ICollection from 'typescript-dotnet-commonjs/System/Collections/ICollection'
 import Enumerable from 'typescript-dotnet-commonjs/System.Linq/Linq'
-import ParserRuleContext = MetaEdGrammar.ParserRuleContext;
 
 export interface ISymbolTable {
-    tryAdd(entityType: string, name: string, context: ParserRuleContext): boolean
+    tryAdd(entityType: string, name: string, context: any): boolean
     get(entityType: string, name: string): EntityContext
     identifierExists(entityType: string, identifier: string): boolean
     identifiersForEntityType(entityType: string): IEnumerable<string>
@@ -20,7 +19,7 @@ export class SymbolTable implements ISymbolTable {
    
     private _symbolTable: Dictionary<string, Dictionary<string, EntityContext>> = new Dictionary<string, Dictionary<string, EntityContext>>();
 
-    public tryAdd(entityType: string, name: string, context: ParserRuleContext): boolean {
+    public tryAdd(entityType: string, name: string, context: any): boolean {
 
         let entityDictionary: Dictionary<string, EntityContext> = this._symbolTable.getValue(entityType);
 
@@ -80,8 +79,8 @@ export class SymbolTable implements ISymbolTable {
 export class EntityContext {
     public propertySymbolTable: PropertySymbolTable;
     public name: string;
-    public context: ParserRuleContext;
-    public constructor (name: string, context: ParserRuleContext) {
+    public context: any;
+    public constructor (name: string, context: any) {
         this.name = name; 
         this.context = context;
     } 

@@ -29,7 +29,7 @@ class SymbolTableBuilder extends MetaEdGrammarListener_1.MetaEdGrammarListener {
             fileName: metaEdFile.fileName,
             lineNumber: metaEdFile.lineNumber
         };
-        this._errorMessageCollection.add(failure);
+        this._errorMessageCollection.push(failure);
     }
     addProperty(context) {
         let propertyName = context.propertyName().ID();
@@ -48,7 +48,7 @@ class SymbolTableBuilder extends MetaEdGrammarListener_1.MetaEdGrammarListener {
             fileName: metaEdFile.fileName,
             lineNumber: metaEdFile.lineNumber
         };
-        this._errorMessageCollection.add(duplicateFailure);
+        this._errorMessageCollection.push(duplicateFailure);
     }
     enterDomainEntity(context) {
         this.addEntity(this._symbolTableEntityType.domainEntityEntityType(), context.entityName().ID(), context);

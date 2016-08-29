@@ -8,9 +8,9 @@ class MetaEdErrorListener {
     }
     syntaxError(recognizer, offendingSymbol, concatenatedLineNumber, characterPosition, message /* , e */) {
         this.errorMessageCollection.push({
-            message: message,
-            characterPosition: characterPosition,
-            concatenatedLineNumber: concatenatedLineNumber,
+            message,
+            characterPosition,
+            concatenatedLineNumber,
             fileName: 'metaEdFile.fileName',
             lineNumber: 'metaEdFile.lineNumber',
         });

@@ -1,8 +1,8 @@
-/// <reference path="../../../src/grammar/gen/MetaEdGrammar.d.ts" />
 /// <reference path="../../../src/grammar/gen/MetaEdGrammarListener.d.ts" />
 
+let MetaEdGrammar = require("../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
+
 import {MetaEdGrammarListener} from '../../../src/grammar/gen/MetaEdGrammarListener';
-import List from 'typescript-dotnet-commonjs/System/Collections/List'
 import {IValidationRule} from "./IValidationRule";
 import {IMetaEdContext} from "../tasks/MetaEdContext";
 import {IMetaEdFileIndex} from "../../grammar/IMetaEdFileIndex";
@@ -10,15 +10,14 @@ import {ISymbolTable} from "./SymbolTable";
 import ValidationMessage from "../../common/ValidationMessage";
 import {ValidationLevel} from "./ValidationLevel";
 
-import ParserRuleContext = MetaEdGrammar.ParserRuleContext;
 import {IListenerWithContext} from "./IListenerWithContext";
 import {IRuleProvider} from "./RuleProvider";
 
 export class ValidatorListener extends MetaEdGrammarListener implements IListenerWithContext {
     private symbolTable: ISymbolTable;
     private metaEdFileIndex: IMetaEdFileIndex;
-    private warningMessageCollection: List<ValidationMessage>;
-    private errorMessageCollection: List<ValidationMessage>;
+    private warningMessageCollection: ValidationMessage[];
+    private errorMessageCollection: ValidationMessage[];
     private ruleProvider: IRuleProvider;
 
     constructor(ruleProvider: IRuleProvider) {
@@ -33,16 +32,16 @@ export class ValidatorListener extends MetaEdGrammarListener implements IListene
         this.symbolTable = context.symbolTable;
     }
 
-     private validateContext<TContext extends ParserRuleContext>(context: TContext) {
-         const validationRules = this.ruleProvider.getAll(this.symbolTable);
+     private validateContext(context, ruleIndex : number) {
+         const validationRules = this.ruleProvider.getAll(ruleIndex, this.symbolTable);
          validationRules.filter(x => x.level() == ValidationLevel.Error && !x.isValid(context))
-             .forEach(y => this.errorMessageCollection.add(this.buildValidationMessage(y, context)));
+             .forEach(y => this.errorMessageCollection.push(this.buildValidationMessage(y, context)));
 
          validationRules.filter(x => x.level() == ValidationLevel.Warning && !x.isValid(context))
-             .forEach(y => this.warningMessageCollection.add(this.buildValidationMessage(y, context)));
+             .forEach(y => this.warningMessageCollection.push(this.buildValidationMessage(y, context)));
     }
 
-    private buildValidationMessage<TContext extends ParserRuleContext>(validationRule: IValidationRule<TContext>, context: TContext) : ValidationMessage {
+    private buildValidationMessage(validationRule: IValidationRule, context) : ValidationMessage {
         const metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(context.start.line);
         return <ValidationMessage> {
             message: validationRule.getFailureMessage(context),
@@ -53,8 +52,12 @@ export class ValidatorListener extends MetaEdGrammarListener implements IListene
         };
     }
 
-    public enterAbstractEntity(context: MetaEdGrammar.AbstractEntityContext) : void {
-        this.validateContext(context);
+    public enterAbstractEntity(context) : void {
+        this.validateContext(context, MetaEdGrammar.RULE_abstractEntity);
+    }
+
+    public enterMetaEd(context) : void {
+        this.validateContext(context, MetaEdGrammar.RULE_metaEd);
     }
 
     // public enterAbstractEntityName(context: MetaEdGrammar.AbstractEntityNameContext) : void {
@@ -109,8 +112,8 @@ export class ValidatorListener extends MetaEdGrammarListener implements IListene
     //     this.validateContext(context);
     // }
     //
-     public enterCommonDecimal(context:MetaEdGrammar.CommonDecimalContext) : void {
-         this.validateContext(context);
+     public enterCommonDecimal(context) : void {
+         this.validateContext(context, MetaEdGrammar.RULE_commonDecimal);
      }
     //
     // public enterCommonIntegerName(MetaEdGrammar.CommonIntegerNameContext context) : void {
@@ -337,9 +340,7 @@ export class ValidatorListener extends MetaEdGrammarListener implements IListene
     //     this.validateContext(context);
     // }
     //
-    // public enterMetaEd(MetaEdGrammar.MetaEdContext context) : void {
-    //     this.validateContext(context);
-    // }
+
     //
     // public enterMinLength(MetaEdGrammar.MinLengthContext context) : void {
     //     this.validateContext(context);

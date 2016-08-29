@@ -1,11 +1,10 @@
 "use strict";
-const List_1 = require('typescript-dotnet-commonjs/System/Collections/List');
 class MetaEdContext {
     constructor(metaEdFileIndex, symbolTable) {
         this._metaEdFileIndex = metaEdFileIndex;
         this._symbolTable = symbolTable;
-        this._errorMessageCollection = new List_1.default();
-        this._warningMessageCollection = new List_1.default();
+        this._errorMessageCollection = new Array();
+        this._warningMessageCollection = new Array();
     }
     get metaEdFileIndex() { return this._metaEdFileIndex; }
     get errorMessageCollection() { return this._errorMessageCollection; }

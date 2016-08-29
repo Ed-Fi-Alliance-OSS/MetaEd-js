@@ -6,6 +6,8 @@ import {ValidatorListener} from "../../../../src/core/validators/ValidatorListen
 import {TestRuleProvider} from "../TestRuleProvider";
 import {AbstractEntityMustContainAnIdentity} from "../../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAnIdentity";
 
+let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
+
 let should = chai.should();
 
 describe('AbstractEntityMustContainAnIdentityTests', () => {
@@ -26,12 +28,12 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
                 .toString();
 
             helper = new ValidationTestHelper();
-            helper.setup(metaEdText, new ValidatorListener(new TestRuleProvider<MetaEdGrammar.AbstractEntityContext>(new AbstractEntityMustContainAnIdentity())));
+            helper.setup(metaEdText, new ValidatorListener(new TestRuleProvider(MetaEdGrammar.RULE_abstractEntity, new AbstractEntityMustContainAnIdentity())));
         });
 
         it('Should_have_no_validation_failures', () => {
-            helper.errorMessageCollection.count.should.equal(0);
-            helper.warningMessageCollection.count.should.equal(0);
+            helper.errorMessageCollection.length.should.equal(0);
+            helper.warningMessageCollection.length.should.equal(0);
         });
     });
 
@@ -52,7 +54,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
                 .toString();
 
             helper = new ValidationTestHelper();
-            helper.setup(metaEdText, new ValidatorListener(new TestRuleProvider<MetaEdGrammar.AbstractEntityContext>(new AbstractEntityMustContainAnIdentity())));
+            helper.setup(metaEdText, new ValidatorListener(new TestRuleProvider(MetaEdGrammar.RULE_abstractEntity, new AbstractEntityMustContainAnIdentity())));
         });
 
         it('Should_have_validation_failure', () => {
@@ -60,7 +62,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
         });
 
         it('Should_have_validation_failure_message', () => {
-            const failure = helper.errorMessageCollection.toArray()[0];
+            const failure = helper.errorMessageCollection[0];
             failure.message.should.include("Abstract Entity");
             failure.message.should.include(entityName);
             failure.message.should.include("does not have an identity");

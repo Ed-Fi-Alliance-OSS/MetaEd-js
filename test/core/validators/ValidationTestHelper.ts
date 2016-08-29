@@ -17,8 +17,8 @@ let BaseLexer = require('../../../src/grammar/gen/BaseLexer');
 
 export class ValidationTestHelper {
     public symbolTable: SymbolTable;
-    public warningMessageCollection: List<ValidationMessage>;
-    public errorMessageCollection: List<ValidationMessage>;
+    public warningMessageCollection: ValidationMessage[];
+    public errorMessageCollection: ValidationMessage[];
 
     public setup(metaEdText: string, listener: IListenerWithContext = new SymbolTableBuilder(new NullSymbolTableBuilderListener())): void {
         console.log(metaEdText);

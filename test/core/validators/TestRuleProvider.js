@@ -1,10 +1,11 @@
 "use strict";
 class TestRuleProvider {
-    constructor(validationRule) {
+    constructor(ruleIndex, validationRule) {
+        this.ruleIndex = ruleIndex;
         this.validationRule = validationRule;
     }
-    getAll(symbolTable) {
-        return [this.validationRule];
+    getAll(ruleIndex, symbolTable) {
+        return this.ruleIndex === ruleIndex ? [this.validationRule] : [];
     }
 }
 exports.TestRuleProvider = TestRuleProvider;

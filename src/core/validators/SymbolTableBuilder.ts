@@ -7,10 +7,8 @@ import {IMetaEdFileIndex} from '../../grammar/IMetaEdFileIndex'
 import ValidationMessage from '../../common/ValidationMessage'
 import PropertySymbolTable from './PropertySymbolTable'
 import {ISymbolTableBuilderListener} from './ISymbolTableBuilderListener'
-import List from 'typescript-dotnet-commonjs/System/Collections/List'
 import SymbolTableEntityType from './SymbolTableEntityType';
 import {IListenerWithContext} from "./IListenerWithContext";
-import ParserRuleContext = MetaEdGrammar.ParserRuleContext;
 
 declare type ITerminalNode = any;
 
@@ -21,7 +19,7 @@ export interface ISymbolTableBuilder extends IListenerWithContext {
 export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbolTableBuilder {
     private _symbolTable: ISymbolTable;
     private _metaEdFileIndex: IMetaEdFileIndex;
-    private _errorMessageCollection: List<ValidationMessage>;
+    private _errorMessageCollection: ValidationMessage[];
     private _builderListener: ISymbolTableBuilderListener;
     private _currentPropertySymbolTable: PropertySymbolTable;
     private _symbolTableEntityType : SymbolTableEntityType;
@@ -37,7 +35,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
         this._symbolTable = context.symbolTable;
         this._builderListener.withContext(context);
     }
-    private addEntity(entityType: string, entityName: ITerminalNode, context: ParserRuleContext): void {
+    private addEntity(entityType: string, entityName: ITerminalNode, context: any): void {
         if (!this._builderListener.beforeAddEntity(entityType, entityName, context))
             return;
         if (this._symbolTable.tryAdd(entityType, entityName.getText(), context)) {
@@ -52,7 +50,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
             fileName: metaEdFile.fileName,
             lineNumber: metaEdFile.lineNumber
         };
-        this._errorMessageCollection.add(failure);
+        this._errorMessageCollection.push(failure);
     }
     private addProperty(context): void {
         let propertyName = context.propertyName().ID();
@@ -71,7 +69,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
             fileName: metaEdFile.fileName,
             lineNumber: metaEdFile.lineNumber
         };
-        this._errorMessageCollection.add(duplicateFailure);
+        this._errorMessageCollection.push(duplicateFailure);
     }
 
     public enterDomainEntity(context): void {

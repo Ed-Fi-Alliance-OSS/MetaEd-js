@@ -1,6 +1,6 @@
-/// <reference path="../../../src/grammar/gen/MetaEdGrammar.d.ts" />
 /// <reference path="../../../src/grammar/gen/MetaEdGrammarListener.d.ts" />
 "use strict";
+let MetaEdGrammar = require("../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
 const MetaEdGrammarListener_1 = require('../../../src/grammar/gen/MetaEdGrammarListener');
 const ValidationLevel_1 = require("./ValidationLevel");
 class ValidatorListener extends MetaEdGrammarListener_1.MetaEdGrammarListener {
@@ -14,12 +14,12 @@ class ValidatorListener extends MetaEdGrammarListener_1.MetaEdGrammarListener {
         this.errorMessageCollection = context.errorMessageCollection;
         this.symbolTable = context.symbolTable;
     }
-    validateContext(context) {
-        const validationRules = this.ruleProvider.getAll(this.symbolTable);
+    validateContext(context, ruleIndex) {
+        const validationRules = this.ruleProvider.getAll(ruleIndex, this.symbolTable);
         validationRules.filter(x => x.level() == ValidationLevel_1.ValidationLevel.Error && !x.isValid(context))
-            .forEach(y => this.errorMessageCollection.add(this.buildValidationMessage(y, context)));
+            .forEach(y => this.errorMessageCollection.push(this.buildValidationMessage(y, context)));
         validationRules.filter(x => x.level() == ValidationLevel_1.ValidationLevel.Warning && !x.isValid(context))
-            .forEach(y => this.warningMessageCollection.add(this.buildValidationMessage(y, context)));
+            .forEach(y => this.warningMessageCollection.push(this.buildValidationMessage(y, context)));
     }
     buildValidationMessage(validationRule, context) {
         const metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(context.start.line);
@@ -32,7 +32,10 @@ class ValidatorListener extends MetaEdGrammarListener_1.MetaEdGrammarListener {
         };
     }
     enterAbstractEntity(context) {
-        this.validateContext(context);
+        this.validateContext(context, MetaEdGrammar.RULE_abstractEntity);
+    }
+    enterMetaEd(context) {
+        this.validateContext(context, MetaEdGrammar.RULE_metaEd);
     }
     // public enterAbstractEntityName(context: MetaEdGrammar.AbstractEntityNameContext) : void {
     //     this.validateContext(context);
@@ -86,7 +89,7 @@ class ValidatorListener extends MetaEdGrammarListener_1.MetaEdGrammarListener {
     // }
     //
     enterCommonDecimal(context) {
-        this.validateContext(context);
+        this.validateContext(context, MetaEdGrammar.RULE_commonDecimal);
     }
 }
 exports.ValidatorListener = ValidatorListener;
