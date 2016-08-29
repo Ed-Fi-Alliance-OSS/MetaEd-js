@@ -17,7 +17,7 @@ export interface ISymbolTable {
 
 export class SymbolTable implements ISymbolTable {
 
-    private _symbolTable: Dictionary<string, Dictionary<string, EntityContext>> = new Dictionary<string, Dictionary<string, EntityContext>>();
+    private symbolTable: Dictionary<string, Dictionary<string, EntityContext>> = new Dictionary<string, Dictionary<string, EntityContext>>();
 
     public tryAdd(entityType: string, name: string, context: any): boolean {
 
@@ -51,7 +51,7 @@ export class SymbolTable implements ISymbolTable {
 
     public identifierExists(entityType: string, identifier: string): boolean {
         if (!this.symbolTable.containsKey(entityType)) return false;
-        return this._symbolTable[entityType].containsKey(identifier);
+        return this.symbolTable[entityType].containsKey(identifier);
     }
     public identifiersForEntityType(entityType: string): IEnumerable<string> {
         let entityDictionary: Dictionary<string, EntityContext> = this.symbolTable.getValue(entityType);

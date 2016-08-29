@@ -5,23 +5,23 @@ const SymbolTableEntityType_1 = require('./SymbolTableEntityType');
 class SymbolTableBuilder extends MetaEdGrammarListener_1.MetaEdGrammarListener {
     constructor(builderListener) {
         super();
-        this._builderListener = builderListener;
-        this._symbolTableEntityType = new SymbolTableEntityType_1.default();
+        this.builderListener = builderListener;
+        this.symbolTableEntityType = new SymbolTableEntityType_1.default();
     }
     withContext(context) {
-        this._metaEdFileIndex = context.metaEdFileIndex;
-        this._errorMessageCollection = context.errorMessageCollection;
-        this._symbolTable = context.symbolTable;
-        this._builderListener.withContext(context);
+        this.metaEdFileIndex = context.metaEdFileIndex;
+        this.errorMessageCollection = context.errorMessageCollection;
+        this.symbolTable = context.symbolTable;
+        this.builderListener.withContext(context);
     }
     addEntity(entityType, entityName, context) {
-        if (!this._builderListener.beforeAddEntity(entityType, entityName, context))
+        if (!this.builderListener.beforeAddEntity(entityType, entityName, context))
             return;
         if (this.symbolTable.tryAdd(entityType, entityName.getText(), context)) {
-            this._currentPropertySymbolTable = this.symbolTable.get(entityType, entityName.getText()).propertySymbolTable;
+            this.currentPropertySymbolTable = this.symbolTable.get(entityType, entityName.getText()).propertySymbolTable;
             return;
         }
-        let metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(entityName.symbol.line);
+        let metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(entityName.symbol.line);
         let failure = {
             message: "Duplicate " + entityType + " named " + entityName,
             characterPosition: entityName.symbol.column,
@@ -29,152 +29,152 @@ class SymbolTableBuilder extends MetaEdGrammarListener_1.MetaEdGrammarListener {
             fileName: metaEdFile.fileName,
             lineNumber: metaEdFile.lineNumber
         };
-        this._errorMessageCollection.push(failure);
+        this.errorMessageCollection.push(failure);
     }
     addProperty(context) {
         let propertyName = context.propertyName().ID();
         let withContextContext = context.propertyComponents().withContext();
         let withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().getText();
-        if (this._currentPropertySymbolTable == null) {
+        if (this.currentPropertySymbolTable == null) {
             return;
         }
-        if (this._currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.getText(), context))
+        if (this.currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.getText(), context))
             return;
-        let metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(propertyName.symbol.line);
+        let metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(propertyName.symbol.line);
         let duplicateFailure = {
-            message: `Entity ${this._currentPropertySymbolTable.parent.name} has duplicate properties named ${propertyName.getText()}`,
+            message: `Entity ${this.currentPropertySymbolTable.parent.name} has duplicate properties named ${propertyName.getText()}`,
             characterPosition: propertyName.symbol.column,
             concatenatedLineNumber: propertyName.symbol.line,
             fileName: metaEdFile.fileName,
             lineNumber: metaEdFile.lineNumber
         };
-        this._errorMessageCollection.push(duplicateFailure);
+        this.errorMessageCollection.push(duplicateFailure);
     }
     enterDomainEntity(context) {
-        this.addEntity(this._symbolTableEntityType.domainEntityEntityType(), context.entityName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.domainEntityEntityType(), context.entityName().ID(), context);
     }
     exitDomainEntity(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterAbstractEntity(context) {
-        this.addEntity(this._symbolTableEntityType.abstractEntityEntityType(), context.abstractEntityName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.abstractEntityEntityType(), context.abstractEntityName().ID(), context);
     }
     exitAbstractEntity(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterAssociation(context) {
-        this.addEntity(this._symbolTableEntityType.associationEntityType(), context.associationName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.associationEntityType(), context.associationName().ID(), context);
     }
     exitAssociation(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterAssociationExtension(context) {
-        this.addEntity(this._symbolTableEntityType.associationExtensionEntityType(), context.extendeeName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.associationExtensionEntityType(), context.extendeeName().ID(), context);
     }
     exitAssociationExtension(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterAssociationSubclass(context) {
-        this.addEntity(this._symbolTableEntityType.associationSubclassEntityType(), context.associationName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.associationSubclassEntityType(), context.associationName().ID(), context);
     }
     exitAssociationSubclass(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterChoiceType(context) {
         this.addEntity(context.CHOICE_TYPE().getText(), context.choiceName().ID(), context);
     }
     exitChoiceType(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterCommonDecimal(context) {
         this.addEntity(context.COMMON_DECIMAL().getText(), context.commonDecimalName().ID(), context);
     }
     exitCommonDecimal(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterCommonInteger(context) {
         this.addEntity(context.COMMON_INTEGER().getText(), context.commonIntegerName().ID(), context);
     }
     exitCommonInteger(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterCommonShort(context) {
         this.addEntity(context.COMMON_SHORT().getText(), context.commonShortName().ID(), context);
     }
     exitCommonShort(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterCommonString(context) {
         this.addEntity(context.COMMON_STRING().getText(), context.commonStringName().ID(), context);
     }
     exitCommonString(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterCommonType(context) {
-        this.addEntity(this._symbolTableEntityType.commonTypeEntityType(), context.commonName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.commonTypeEntityType(), context.commonName().ID(), context);
     }
     exitCommonType(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterCommonTypeExtension(context) {
-        this.addEntity(this._symbolTableEntityType.commonTypeExtensionEntityType(), context.extendeeName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.commonTypeExtensionEntityType(), context.extendeeName().ID(), context);
     }
     exitCommonTypeExtension(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterDescriptor(context) {
         this.addEntity(context.DESCRIPTOR_ENTITY().getText(), context.descriptorName().ID(), context);
     }
     exitDescriptor(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterDomain(context) {
         this.addEntity(context.DOMAIN().getText(), context.domainName().ID(), context);
     }
     exitDomain(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterDomainEntityExtension(context) {
-        this.addEntity(this._symbolTableEntityType.domainEntityExtensionEntityType(), context.extendeeName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.domainEntityExtensionEntityType(), context.extendeeName().ID(), context);
     }
     exitDomainEntityExtension(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterDomainEntitySubclass(context) {
-        this.addEntity(this._symbolTableEntityType.domainEntitySubclassEntityType(), context.entityName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.domainEntitySubclassEntityType(), context.entityName().ID(), context);
     }
     exitDomainEntitySubclass(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterEnumeration(context) {
-        this.addEntity(this._symbolTableEntityType.enumerationEntityType(), context.enumerationName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.enumerationEntityType(), context.enumerationName().ID(), context);
     }
     exitEnumeration(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterInlineCommonType(context) {
-        this.addEntity(this._symbolTableEntityType.inlineCommonTypeEntityType(), context.inlineCommonName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.inlineCommonTypeEntityType(), context.inlineCommonName().ID(), context);
     }
     exitInlineCommonType(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterInterchange(context) {
         this.addEntity(context.INTERCHANGE().getText(), context.interchangeName().ID(), context);
     }
     exitInterchange(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterInterchangeExtension(context) {
         this.addEntity(context.INTERCHANGE().getText() + context.ADDITIONS().getText(), context.extendeeName().ID(), context);
     }
     exitInterchangeExtension(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterSubdomain(context) {
         this.addEntity(context.SUBDOMAIN().getText(), context.subdomainName().ID(), context);
     }
     exitSubdomain(context) {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
     enterBooleanProperty(context) {
         this.addProperty(context);

@@ -18,31 +18,31 @@ export interface ISymbolTableBuilder extends IListenerWithContext {
 
 export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbolTableBuilder {
     private symbolTable: ISymbolTable;
-    private _metaEdFileIndex: IMetaEdFileIndex;
-    private _errorMessageCollection: ValidationMessage[];
-    private _builderListener: ISymbolTableBuilderListener;
-    private _currentPropertySymbolTable: PropertySymbolTable;
-    private _symbolTableEntityType : SymbolTableEntityType;
+    private metaEdFileIndex: IMetaEdFileIndex;
+    private errorMessageCollection: ValidationMessage[];
+    private builderListener: ISymbolTableBuilderListener;
+    private currentPropertySymbolTable: PropertySymbolTable;
+    private symbolTableEntityType : SymbolTableEntityType;
 
     constructor(builderListener: ISymbolTableBuilderListener) {
         super();
-        this._builderListener = builderListener;
-        this._symbolTableEntityType = new SymbolTableEntityType();
+        this.builderListener = builderListener;
+        this.symbolTableEntityType = new SymbolTableEntityType();
     }
     public withContext(context: IMetaEdContext): void {
-        this._metaEdFileIndex = context.metaEdFileIndex;
-        this._errorMessageCollection = context.errorMessageCollection;
-        this._symbolTable = context.symbolTable;
-        this._builderListener.withContext(context);
+        this.metaEdFileIndex = context.metaEdFileIndex;
+        this.errorMessageCollection = context.errorMessageCollection;
+        this.symbolTable = context.symbolTable;
+        this.builderListener.withContext(context);
     }
     private addEntity(entityType: string, entityName: ITerminalNode, context: any): void {
-        if (!this._builderListener.beforeAddEntity(entityType, entityName, context))
+        if (!this.builderListener.beforeAddEntity(entityType, entityName, context))
             return;
         if (this.symbolTable.tryAdd(entityType, entityName.getText(), context)) {
-            this._currentPropertySymbolTable = this.symbolTable.get(entityType, entityName.getText()).propertySymbolTable;
+            this.currentPropertySymbolTable = this.symbolTable.get(entityType, entityName.getText()).propertySymbolTable;
             return;
         }
-        let metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(entityName.symbol.line);
+        let metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(entityName.symbol.line);
         let failure: ValidationMessage = {
             message: "Duplicate " + entityType + " named " + entityName,
             characterPosition: entityName.symbol.column,
@@ -50,66 +50,66 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
             fileName: metaEdFile.fileName,
             lineNumber: metaEdFile.lineNumber
         };
-        this._errorMessageCollection.push(failure);
+        this.errorMessageCollection.push(failure);
     }
     private addProperty(context): void {
         let propertyName = context.propertyName().ID();
         let withContextContext = context.propertyComponents().withContext();
         let withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().getText();
-        if (this._currentPropertySymbolTable == null) {
+        if (this.currentPropertySymbolTable == null) {
             return;
         }
-        if (this._currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.getText(), context))
+        if (this.currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.getText(), context))
             return;
-        let metaEdFile = this._metaEdFileIndex.getFileAndLineNumber(propertyName.symbol.line);
+        let metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(propertyName.symbol.line);
         let duplicateFailure: ValidationMessage = {
-            message: `Entity ${this._currentPropertySymbolTable.parent.name} has duplicate properties named ${propertyName.getText()}`,
+            message: `Entity ${this.currentPropertySymbolTable.parent.name} has duplicate properties named ${propertyName.getText()}`,
             characterPosition: propertyName.symbol.column,
             concatenatedLineNumber: propertyName.symbol.line,
             fileName: metaEdFile.fileName,
             lineNumber: metaEdFile.lineNumber
         };
-        this._errorMessageCollection.push(duplicateFailure);
+        this.errorMessageCollection.push(duplicateFailure);
     }
 
     public enterDomainEntity(context): void {
-        this.addEntity(this._symbolTableEntityType.domainEntityEntityType(), context.entityName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.domainEntityEntityType(), context.entityName().ID(), context);
     }
 
     public exitDomainEntity(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterAbstractEntity(context): void {
-        this.addEntity(this._symbolTableEntityType.abstractEntityEntityType(), context.abstractEntityName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.abstractEntityEntityType(), context.abstractEntityName().ID(), context);
     }
 
     public exitAbstractEntity(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterAssociation(context): void {
-        this.addEntity(this._symbolTableEntityType.associationEntityType(), context.associationName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.associationEntityType(), context.associationName().ID(), context);
     }
 
     public exitAssociation(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterAssociationExtension(context): void {
-        this.addEntity(this._symbolTableEntityType.associationExtensionEntityType(), context.extendeeName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.associationExtensionEntityType(), context.extendeeName().ID(), context);
     }
 
     public exitAssociationExtension(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterAssociationSubclass(context): void {
-        this.addEntity(this._symbolTableEntityType.associationSubclassEntityType(), context.associationName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.associationSubclassEntityType(), context.associationName().ID(), context);
     }
 
     public exitAssociationSubclass(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterChoiceType(context): void {
@@ -117,7 +117,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public exitChoiceType(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterCommonDecimal(context): void {
@@ -125,7 +125,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public exitCommonDecimal(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterCommonInteger(context): void {
@@ -133,7 +133,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public exitCommonInteger(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterCommonShort(context): void {
@@ -141,7 +141,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public exitCommonShort(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterCommonString(context): void {
@@ -149,23 +149,23 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public exitCommonString(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterCommonType(context): void {
-        this.addEntity(this._symbolTableEntityType.commonTypeEntityType(), context.commonName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.commonTypeEntityType(), context.commonName().ID(), context);
     }
 
     public exitCommonType(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterCommonTypeExtension(context): void {
-        this.addEntity(this._symbolTableEntityType.commonTypeExtensionEntityType(), context.extendeeName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.commonTypeExtensionEntityType(), context.extendeeName().ID(), context);
     }
 
     public exitCommonTypeExtension(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterDescriptor(context): void {
@@ -173,7 +173,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public exitDescriptor(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterDomain(context): void {
@@ -181,39 +181,39 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public exitDomain(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterDomainEntityExtension(context): void {
-        this.addEntity(this._symbolTableEntityType.domainEntityExtensionEntityType(), context.extendeeName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.domainEntityExtensionEntityType(), context.extendeeName().ID(), context);
     }
 
     public exitDomainEntityExtension(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterDomainEntitySubclass(context): void {
-        this.addEntity(this._symbolTableEntityType.domainEntitySubclassEntityType(), context.entityName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.domainEntitySubclassEntityType(), context.entityName().ID(), context);
     }
 
     public exitDomainEntitySubclass(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterEnumeration(context): void {
-        this.addEntity(this._symbolTableEntityType.enumerationEntityType(), context.enumerationName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.enumerationEntityType(), context.enumerationName().ID(), context);
     }
 
     public exitEnumeration(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterInlineCommonType(context): void {
-        this.addEntity(this._symbolTableEntityType.inlineCommonTypeEntityType(), context.inlineCommonName().ID(), context);
+        this.addEntity(this.symbolTableEntityType.inlineCommonTypeEntityType(), context.inlineCommonName().ID(), context);
     }
 
     public exitInlineCommonType(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterInterchange(context): void {
@@ -221,7 +221,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public exitInterchange(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterInterchangeExtension(context): void {
@@ -229,7 +229,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public exitInterchangeExtension(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterSubdomain(context): void {
@@ -237,7 +237,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
     }
 
     public exitSubdomain(context): void {
-        this._currentPropertySymbolTable = null;
+        this.currentPropertySymbolTable = null;
     }
 
     public enterBooleanProperty(context): void {

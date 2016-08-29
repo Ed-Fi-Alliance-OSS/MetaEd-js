@@ -4,7 +4,7 @@ const Dictionary_1 = require('typescript-dotnet-commonjs/System/Collections/Dict
 const Linq_1 = require('typescript-dotnet-commonjs/System.Linq/Linq');
 class SymbolTable {
     constructor() {
-        this._symbolTable = new Dictionary_1.default();
+        this.symbolTable = new Dictionary_1.default();
     }
     tryAdd(entityType, name, context) {
         let entityDictionary = this.symbolTable.getValue(entityType);
@@ -29,7 +29,7 @@ class SymbolTable {
     identifierExists(entityType, identifier) {
         if (!this.symbolTable.containsKey(entityType))
             return false;
-        return this._symbolTable[entityType].containsKey(identifier);
+        return this.symbolTable[entityType].containsKey(identifier);
     }
     identifiersForEntityType(entityType) {
         let entityDictionary = this.symbolTable.getValue(entityType);

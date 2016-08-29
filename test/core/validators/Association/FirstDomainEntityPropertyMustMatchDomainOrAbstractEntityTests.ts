@@ -1,18 +1,18 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
-import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
-import {TestRuleProvider} from "../TestRuleProvider";
+import ValidationTestHelper from "../ValidationTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import TestRuleProvider from "../TestRuleProvider";
 import {FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity}from "../../../../src/core/validators/Association/FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity"
+
+let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
 
 let should = chai.should();
 
 describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => {
     let validatorListener = new ValidatorListener(
-        new TestRuleProvider<MetaEdGrammar.FirstDomainEntityContext>(
-            new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
-
+        new TestRuleProvider(MetaEdGrammar.RULE_firstDomainEntityContext, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
 
     describe('When_domain_entity_property_has_domain_entity_identifier', () => {
         let helper: ValidationTestHelper = new ValidationTestHelper();
