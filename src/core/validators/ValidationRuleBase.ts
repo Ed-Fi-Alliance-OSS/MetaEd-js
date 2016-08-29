@@ -1,14 +1,15 @@
 import {ValidationLevel} from "./ValidationLevel";
 import {IValidationRule} from "./IValidationRule";
 
-export abstract class ValidationRuleBase<TContext> implements IValidationRule<TContext>
+export abstract class ValidationRuleBase implements IValidationRule
 {
     public level() : ValidationLevel {
         return ValidationLevel.Error;
     }
 
-    public abstract isValid(context: TContext) : boolean;
-    public abstract getFailureMessage(context: TContext) : string;
+    public abstract handlesContext(context: any) : boolean;
+    public abstract isValid(context: any) : boolean;
+    public abstract getFailureMessage(context: any) : string;
 
     protected getProperty(propertyContext: any) : any {
         if (propertyContext.booleanProperty()) return propertyContext.booleanProperty();

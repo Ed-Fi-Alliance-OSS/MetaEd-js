@@ -7,10 +7,8 @@ import {IMetaEdFileIndex} from '../../grammar/IMetaEdFileIndex'
 import ValidationMessage from '../../common/ValidationMessage'
 import PropertySymbolTable from './PropertySymbolTable'
 import {ISymbolTableBuilderListener} from './ISymbolTableBuilderListener'
-import List from 'typescript-dotnet-commonjs/System/Collections/List'
 import SymbolTableEntityType from './SymbolTableEntityType';
 import {IListenerWithContext} from "./IListenerWithContext";
-import ParserRuleContext = MetaEdGrammar.ParserRuleContext;
 
 declare type ITerminalNode = any;
 
@@ -37,7 +35,7 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
         this._symbolTable = context.symbolTable;
         this._builderListener.withContext(context);
     }
-    private addEntity(entityType: string, entityName: ITerminalNode, context: ParserRuleContext): void {
+    private addEntity(entityType: string, entityName: ITerminalNode, context: any): void {
         if (!this._builderListener.beforeAddEntity(entityType, entityName, context))
             return;
         if (this.symbolTable.tryAdd(entityType, entityName.getText(), context)) {

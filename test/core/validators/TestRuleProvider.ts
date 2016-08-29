@@ -1,16 +1,17 @@
 import {IRuleProvider} from "../../../src/core/validators/RuleProvider";
 import {IValidationRule} from "../../../src/core/validators/IValidationRule";
 import {ISymbolTable} from "../../../src/core/validators/SymbolTable";
-import ParserRuleContext = MetaEdGrammar.ParserRuleContext;
 
-export class TestRuleProvider<TTestContext extends ParserRuleContext> implements IRuleProvider {
-    private validationRule : IValidationRule<TTestContext>;
+export class TestRuleProvider implements IRuleProvider {
+    private validationRule : IValidationRule;
+    private ruleIndex : Number;
 
-    constructor(validationRule : IValidationRule<TTestContext>) {
+    constructor(ruleIndex : number, validationRule : IValidationRule) {
+        this.ruleIndex = ruleIndex;
         this.validationRule = validationRule;
     }
 
-    public getAll<TContext extends ParserRuleContext>(symbolTable: ISymbolTable) : IValidationRule<TContext>[] {
-        return [this.validationRule as any as IValidationRule<TContext>];
+    public getAll(ruleIndex: number, symbolTable: ISymbolTable) : IValidationRule[] {
+        return this.ruleIndex === ruleIndex ? [this.validationRule] : [];
     }
 }
