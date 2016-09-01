@@ -1,21 +1,21 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
-import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
-import {TestRuleProvider} from "../TestRuleProvider";
-import {SecondDomainEntityPropertyMustNotCollideWithOtherProperty}from "../../../../src/core/validators/Associations/SecondDomainEntityPropertyMustNotCollideWithOtherProperty"
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import TestRuleProvider from "../TestRuleProvider";
+import {SecondDomainEntityPropertyMustNotCollideWithOtherProperty}from "../../../../src/core/validators/Association/SecondDomainEntityPropertyMustNotCollideWithOtherProperty"
+import SymbolTable from "../../../../src/core/validators/SymbolTable";
+let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
 
 let should = chai.should();
 
 describe('SecondDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
-    let validatorListener = new ValidatorListener(
-        new TestRuleProvider<MetaEdGrammar.SecondDomainEntityContext>(
-            new SecondDomainEntityPropertyMustNotCollideWithOtherProperty(symbolTable)));
-
-
     describe('When_domain_entity_property_does_not_collide', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        const symbolTable = new SymbolTable();
+        const validatorListener = new ValidatorListener(
+            new TestRuleProvider(MetaEdGrammar.RULE_secondDomainEntity, new SecondDomainEntityPropertyMustNotCollideWithOtherProperty(symbolTable)));
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -37,7 +37,7 @@ describe('SecondDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
                 .withIntegerProperty("Third", "doc3", false, false)
                 .withEndAssociation()
                 .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
+            helper.setup(metaEdText, validatorListener, symbolTable);
         });
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
@@ -46,7 +46,13 @@ describe('SecondDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
 
 
     describe('When_domain_entity_property_does_collide', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        const symbolTable = new SymbolTable();
+        const validatorListener = new ValidatorListener(
+            new TestRuleProvider(MetaEdGrammar.RULE_secondDomainEntity, new SecondDomainEntityPropertyMustNotCollideWithOtherProperty(symbolTable)));
+        const associationName = "Association1";
+        const secondName = "Second";
+
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -61,20 +67,23 @@ describe('SecondDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
 
-                .withStartAssociation("Association1")
+                .withStartAssociation(associationName)
                 .withDocumentation("doc")
-                .withDomainEntityProperty("First", "doc1")
-                .withDomainEntityProperty("Second", "doc2")
-                .withIntegerProperty("Second", "doc3", false, false)
+                .withDomainEntityProperty("First", "doc")
+                .withDomainEntityProperty(secondName, "doc")
+                .withIntegerProperty(secondName, "doc", false, false)
                 .withEndAssociation()
                 .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
+            helper.setup(metaEdText, validatorListener, symbolTable);
         });
         it('should_have_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(1);
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.should.equal("Entity Association1 has duplicate properties named Second");
+            helper.errorMessageCollection[0].message.should.include("Entity");
+            helper.errorMessageCollection[0].message.should.include(associationName);
+            helper.errorMessageCollection[0].message.should.include("has duplicate");
+            helper.errorMessageCollection[0].message.should.include(secondName);
         });
     });
 });

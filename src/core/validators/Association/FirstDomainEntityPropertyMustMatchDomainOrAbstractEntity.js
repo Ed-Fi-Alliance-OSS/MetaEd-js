@@ -5,8 +5,8 @@ let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdG
 class FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity extends ValidationRuleBase_1.ValidationRuleBase {
     constructor(symbolTable) {
         super();
-        this.symbolTable = symbolTable;
         this.symbolTableEntityType = new SymbolTableEntityType_1.default();
+        this.symbolTable = symbolTable;
     }
     handlesContext(context) {
         return context.ruleIndex === MetaEdGrammar.RULE_firstDomainEntity;

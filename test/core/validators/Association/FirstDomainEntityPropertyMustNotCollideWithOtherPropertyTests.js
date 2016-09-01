@@ -47,7 +47,7 @@ describe('FirstDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
-                .withStartDomainEntity("First")
+                .withStartDomainEntity(firstName)
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
@@ -55,7 +55,7 @@ describe('FirstDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
-                .withStartAssociation("Association1")
+                .withStartAssociation(associationName)
                 .withDocumentation("doc")
                 .withDomainEntityProperty("First", "doc1")
                 .withDomainEntityProperty("Second", "doc2")

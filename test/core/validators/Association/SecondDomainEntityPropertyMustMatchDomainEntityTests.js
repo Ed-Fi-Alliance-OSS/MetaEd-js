@@ -2,15 +2,18 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity_1 = require("../../../../src/core/validators/Association/SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity");
+const SymbolTable_1 = require("../../../../src/core/validators/SymbolTable");
+let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
 let should = chai.should();
 describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
-    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
     describe('When_domain_entity_property_has_domain_entity_identifier', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        const symbolTable = new SymbolTable_1.default();
+        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_secondDomainEntity, new SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -28,14 +31,16 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
                 .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
+            helper.setup(metaEdText, validatorListener, symbolTable);
         });
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_domain_entity_property_has_abstract_entity_identifier', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        const symbolTable = new SymbolTable_1.default();
+        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_secondDomainEntity, new SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -53,14 +58,16 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withDomainEntityProperty("Second", "doc2")
                 .withEndAssociation()
                 .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
+            helper.setup(metaEdText, validatorListener, symbolTable);
         });
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_domain_entity_property_has_subclass_entity_identifier', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        const symbolTable = new SymbolTable_1.default();
+        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_secondDomainEntity, new SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -82,15 +89,17 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withDomainEntityProperty("Third", "doc2")
                 .withEndAssociation()
                 .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
+            helper.setup(metaEdText, validatorListener, symbolTable);
         });
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_domain_entity_property_has_invalid_identifier', () => {
+        const symbolTable = new SymbolTable_1.default();
+        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_secondDomainEntity, new SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -104,15 +113,15 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
                 .withDomainEntityProperty(entityName, "doc2")
                 .withEndAssociation()
                 .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
+            helper.setup(metaEdText, validatorListener, symbolTable);
         });
         it('should_have_validation_failure()', () => {
             helper.errorMessageCollection.length.should.not.equal(0);
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+            helper.errorMessageCollection[0].message.should.include("Domain Entity");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("does not match");
         });
     });
 });

@@ -7,11 +7,10 @@ let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdG
 export class FirstDomainEntityPropertyMustNotCollideWithOtherProperty extends ValidationRuleBase
 {
     private symbolTable: ISymbolTable;
-    private symbolTableEntityType: SymbolTableEntityType;
+    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
     constructor(symbolTable: ISymbolTable) {
         super();
         this.symbolTable = symbolTable;
-        this.symbolTableEntityType = new SymbolTableEntityType();
     }
 
     public handlesContext(context: any) : boolean {

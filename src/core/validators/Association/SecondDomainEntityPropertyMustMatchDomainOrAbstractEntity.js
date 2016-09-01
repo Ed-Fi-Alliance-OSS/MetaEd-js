@@ -12,13 +12,13 @@ class SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity extends Validati
         return context.ruleIndex === MetaEdGrammar.RULE_secondDomainEntity;
     }
     isValid(context) {
-        let identifierToMatch = context.IdText();
+        let identifierToMatch = context.propertyName().ID().getText();
         return this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntityEntityType(), identifierToMatch)
             || this.symbolTable.identifierExists(this.symbolTableEntityType.abstractEntityEntityType(), identifierToMatch)
             || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntitySubclassEntityType(), identifierToMatch);
     }
     getFailureMessage(context) {
-        return `Domain Entity property '${context.IdText()}' does not match any declared domain or abstract entity.`;
+        return `Domain Entity property '${context.propertyName().ID().getText()}' does not match any declared domain or abstract entity.`;
     }
 }
 exports.SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity = SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity;
