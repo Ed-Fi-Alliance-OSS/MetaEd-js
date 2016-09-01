@@ -1,14 +1,17 @@
 ﻿import {ValidationRuleBase} from "../ValidationRuleBase";
 import {ISymbolTable} from '../SymbolTable'
+import SymbolTableEntityType from '../SymbolTableEntityType'
 
 let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
 
 export class FirstDomainEntityPropertyMustNotCollideWithOtherProperty extends ValidationRuleBase
 {
     private symbolTable: ISymbolTable;
+    private symbolTableEntityType: SymbolTableEntityType;
     constructor(symbolTable: ISymbolTable) {
         super();
         this.symbolTable = symbolTable;
+        this.symbolTableEntityType = new SymbolTableEntityType();
     }
 
     public handlesContext(context: any) : boolean {
@@ -16,17 +19,16 @@ export class FirstDomainEntityPropertyMustNotCollideWithOtherProperty extends Va
     }
 
     public isValid(context: any): boolean {
-        let identifierToMatch = context.IdText();
+        let identifierToMatch = context.propertyName().ID().getText();
         let withContextContext = context.withContext();
-        let withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().GetText();
-        let associationName = context.parent.associationName().IdText();
-        let associationType = MetaEdGrammar.TokenName(MetaEdGrammar.ASSOCIATION);
-        let entitySymbolTable = this.symbolTable.get(associationType, associationName);
+        let withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().getText();
+        let associationName = context.parentCtx.associationName().ID().getText();
+        let entitySymbolTable = this.symbolTable.get(this.symbolTableEntityType.associationEntityType(), associationName);
         return entitySymbolTable.propertySymbolTable.get(withContextPrefix + identifierToMatch) == null;
     }
 
     public getFailureMessage(context: any): string {
-        let associationName = context.parent.associationName().IdText();
-        return `Entity ${associationName} has duplicate properties named ${context.IdText()}`;
+        let associationName = context.parentCtx.associationName().ID().getText();
+        return `Entity ${associationName} has duplicate properties named ${context.propertyName().ID().getText()}`;
     }
 }
