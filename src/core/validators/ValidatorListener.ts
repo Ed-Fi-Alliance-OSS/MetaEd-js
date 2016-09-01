@@ -34,6 +34,8 @@ export default class ValidatorListener extends MetaEdGrammarListener implements 
 
     private validateContext(context, ruleIndex: number) {
         const validationRules = this.ruleProvider.getAll(ruleIndex, this.symbolTable);
+        if (validationRules.length === 0) return;
+
         validationRules.filter(x => x.level() == ValidationLevel.Error && !x.isValid(context))
             .forEach(y => this.errorMessageCollection.push(this.buildValidationMessage(y, context)));
 

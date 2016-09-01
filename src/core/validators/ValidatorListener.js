@@ -16,6 +16,8 @@ class ValidatorListener extends MetaEdGrammarListener_1.MetaEdGrammarListener {
     }
     validateContext(context, ruleIndex) {
         const validationRules = this.ruleProvider.getAll(ruleIndex, this.symbolTable);
+        if (validationRules.length === 0)
+            return;
         validationRules.filter(x => x.level() == ValidationLevel_1.ValidationLevel.Error && !x.isValid(context))
             .forEach(y => this.errorMessageCollection.push(this.buildValidationMessage(y, context)));
         validationRules.filter(x => x.level() == ValidationLevel_1.ValidationLevel.Warning && !x.isValid(context))

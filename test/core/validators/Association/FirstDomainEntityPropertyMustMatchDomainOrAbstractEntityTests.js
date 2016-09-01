@@ -10,9 +10,9 @@ const SymbolTable_1 = require("../../../../src/core/validators/SymbolTable");
 let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
 let should = chai.should();
 describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => {
-    const symbolTable = new SymbolTable_1.default();
-    let validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
     describe('When_domain_entity_property_has_domain_entity_identifier', () => {
+        const symbolTable = new SymbolTable_1.default();
+        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
         let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
@@ -38,6 +38,8 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
         });
     });
     describe('When_domain_entity_property_has_abstract_entity_identifier', () => {
+        const symbolTable = new SymbolTable_1.default();
+        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
         let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
@@ -63,6 +65,8 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
         });
     });
     describe('When_domain_entity_property_has_subclass_entity_identifier', () => {
+        const symbolTable = new SymbolTable_1.default();
+        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
         let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
@@ -92,6 +96,8 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
         });
     });
     describe('When_domain_entity_property_has_invalid_identifier', () => {
+        const symbolTable = new SymbolTable_1.default();
+        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
         let entityName = "MyIdentifier";
         let helper = new ValidatorTestHelper_1.default();
         before(() => {
