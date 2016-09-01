@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const chai = require('chai');
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const ValidationTestHelper_1 = require("./../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("./../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const AbstractEntityMustContainAnIdentity_1 = require("../../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAnIdentity");
@@ -22,7 +22,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
                 .withEndAbstractEntity()
                 .withEndNamespace()
                 .toString();
-            helper = new ValidationTestHelper_1.default();
+            helper = new ValidatorTestHelper_1.default();
             helper.setup(metaEdText, new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_abstractEntity, new AbstractEntityMustContainAnIdentity_1.AbstractEntityMustContainAnIdentity())));
         });
         it('Should_have_no_validation_failures', () => {
@@ -43,7 +43,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
                 .withEndAbstractEntity()
                 .withEndNamespace()
                 .toString();
-            helper = new ValidationTestHelper_1.default();
+            helper = new ValidatorTestHelper_1.default();
             helper.setup(metaEdText, new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_abstractEntity, new AbstractEntityMustContainAnIdentity_1.AbstractEntityMustContainAnIdentity())));
         });
         it('Should_have_validation_failure', () => {

@@ -36,8 +36,7 @@ export default class SymbolTable implements ISymbolTable {
 
     public get(entityType: string, name: string): EntityContext {
         let entityDictionary: Map<string, EntityContext> = this.symbolTable.get(entityType);
-        if (!entityDictionary)
-            return null;
+        if (!entityDictionary) return null;
 
         let entityContext: EntityContext = entityDictionary.get(name);
 
@@ -46,7 +45,7 @@ export default class SymbolTable implements ISymbolTable {
 
     public identifierExists(entityType: string, identifier: string): boolean {
         if (!this.symbolTable.has(entityType)) return false;
-        return this.symbolTable[entityType].containsKey(identifier);
+        return this.symbolTable.get(entityType).has(identifier);
     }
 
     public identifiersForEntityType(entityType: string): IterableIterator<string> {
@@ -59,8 +58,7 @@ export default class SymbolTable implements ISymbolTable {
     public identifiersForEntityProperties(entityType: string, identifier: string): IterableIterator<string> {
         let entityContext = this.get(entityType, identifier);
 
-        if (entityContext == null)
-            return [];
+        if (entityContext == null) return new Array<string>().values();
         return entityContext.propertySymbolTable.identifiers();
     }
 

@@ -27,7 +27,7 @@ class SymbolTable {
     identifierExists(entityType, identifier) {
         if (!this.symbolTable.has(entityType))
             return false;
-        return this.symbolTable[entityType].containsKey(identifier);
+        return this.symbolTable.get(entityType).has(identifier);
     }
     identifiersForEntityType(entityType) {
         let entityDictionary = this.symbolTable.get(entityType);
@@ -39,7 +39,7 @@ class SymbolTable {
     identifiersForEntityProperties(entityType, identifier) {
         let entityContext = this.get(entityType, identifier);
         if (entityContext == null)
-            return [];
+            return new Array().values();
         return entityContext.propertySymbolTable.identifiers();
     }
     // candidate identifiers should be prefixed by a 'with context' value if one exists for property

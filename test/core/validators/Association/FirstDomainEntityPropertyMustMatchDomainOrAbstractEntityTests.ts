@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import ValidationTestHelper from "../ValidationTestHelper";
+import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import TestRuleProvider from "../TestRuleProvider";
 import {FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity}from "../../../../src/core/validators/Association/FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity";
@@ -18,7 +18,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
         new TestRuleProvider(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
 
     describe('When_domain_entity_property_has_domain_entity_identifier', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -48,7 +48,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
 
 
     describe('When_domain_entity_property_has_abstract_entity_identifier', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -78,7 +78,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
 
 
     describe('When_domain_entity_property_has_subclass_entity_identifier', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -114,7 +114,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
 
     describe('When_domain_entity_property_has_invalid_identifier', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

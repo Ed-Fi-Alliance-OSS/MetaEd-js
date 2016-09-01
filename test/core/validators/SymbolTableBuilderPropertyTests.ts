@@ -1,7 +1,7 @@
 /// <reference path="../../../typings/index.d.ts" />
 import chai = require('chai');
 import MetaEdTextBuilder from "../../grammar/MetaEdTextBuilder";
-import ValidationTestHelper from "./ValidationTestHelper";
+import SymbolTableTestHelper from "./SymbolTableTestHelper";
 import ValidationMessage from "../../../src/common/ValidationMessage"
 import { EntityContext } from '../../../src/core/validators/SymbolTable'
 
@@ -15,7 +15,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_boolean_property', () => {
 
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             const metaEdText: string = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -39,7 +39,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_duplicated_boolean_property', () => {
 
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             const metaEdText: string = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -72,7 +72,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_currency_property', () => {
 
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -92,7 +92,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_currency_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -114,7 +114,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_date_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -131,7 +131,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_date_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -153,7 +153,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_decimal_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -171,7 +171,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_decimal_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -193,7 +193,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_descriptor_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -211,7 +211,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_descriptor_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -233,7 +233,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duration_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -251,7 +251,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_duration_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -273,7 +273,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_enumeration_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -291,7 +291,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_enumeration_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -313,7 +313,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_include_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -331,7 +331,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_include_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -353,7 +353,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_integer_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -371,7 +371,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_integer_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -393,7 +393,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_reference_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -411,7 +411,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_reference_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -433,7 +433,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_short_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -450,7 +450,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_short_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -472,7 +472,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_shared_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -490,7 +490,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_shared_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -512,7 +512,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_string_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -530,7 +530,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_string_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -552,7 +552,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_time_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -569,7 +569,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_time_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -591,7 +591,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_year_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -608,7 +608,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     describe('When_loading_entities_with_duplicated_year_property', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -632,7 +632,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_same_identifier_but_different_with_contexts', () => {
         let withContext1: string = "WithContext1";
         let withContext2: string = "WithContext2";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")
@@ -654,7 +654,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
 
     describe('When_loading_entities_with_same_identifier_and_same_with_contexts', () => {
         let withContext: string = "WithContext";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
                 .withBeginNamespace("edfi")

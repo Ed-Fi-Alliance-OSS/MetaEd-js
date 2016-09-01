@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1 = require("../../../../src/core/validators/Association/FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity");
@@ -13,7 +13,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
     const symbolTable = new SymbolTable_1.default();
     let validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
     describe('When_domain_entity_property_has_domain_entity_identifier', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -38,7 +38,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
         });
     });
     describe('When_domain_entity_property_has_abstract_entity_identifier', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -63,7 +63,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
         });
     });
     describe('When_domain_entity_property_has_subclass_entity_identifier', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -93,7 +93,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
     });
     describe('When_domain_entity_property_has_invalid_identifier', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

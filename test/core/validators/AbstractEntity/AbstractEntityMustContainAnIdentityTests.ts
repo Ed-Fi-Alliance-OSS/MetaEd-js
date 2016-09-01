@@ -1,7 +1,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 import chai = require('chai');
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import ValidationTestHelper from "./../ValidationTestHelper";
+import ValidatorTestHelper from "./../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import TestRuleProvider from "../TestRuleProvider";
 import {AbstractEntityMustContainAnIdentity} from "../../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAnIdentity";
@@ -14,7 +14,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
     describe('When_validating_abstract_entity_with_identity_fields', () => {
         const entityName: string = "EntityName";
 
-        let helper: ValidationTestHelper;
+        let helper: ValidatorTestHelper;
 
         before(() => {
             const metaEdTextBuilder: MetaEdTextBuilder = new MetaEdTextBuilder();
@@ -27,7 +27,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
                 .withEndNamespace()
                 .toString();
 
-            helper = new ValidationTestHelper();
+            helper = new ValidatorTestHelper();
             helper.setup(metaEdText, new ValidatorListener(new TestRuleProvider(MetaEdGrammar.RULE_abstractEntity, new AbstractEntityMustContainAnIdentity())));
         });
 
@@ -40,7 +40,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
     describe('When_validating_abstract_entity_with_no_identity_fields', () => {
         const entityName: string = "EntityName";
 
-        let helper: ValidationTestHelper;
+        let helper: ValidatorTestHelper;
 
         before(() => {
             const metaEdTextBuilder: MetaEdTextBuilder = new MetaEdTextBuilder();
@@ -53,7 +53,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
                 .withEndNamespace()
                 .toString();
 
-            helper = new ValidationTestHelper();
+            helper = new ValidatorTestHelper();
             helper.setup(metaEdText, new ValidatorListener(new TestRuleProvider(MetaEdGrammar.RULE_abstractEntity, new AbstractEntityMustContainAnIdentity())));
         });
 

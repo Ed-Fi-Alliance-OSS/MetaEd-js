@@ -1,4 +1,4 @@
-// Generated from C:/work/metaed/node-metaed/src/grammar/language\MetaEdGrammar.g4 by ANTLR 4.5.3
+// Generated from C:/work/metaed/MetaEd/src/MetaEd/Grammar/Antlr/Language/MetaEdGrammar.g4 by ANTLR 4.5.3
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 var MetaEdGrammarListener = require('./MetaEdGrammarListener').MetaEdGrammarListener;
@@ -647,101 +647,101 @@ var serializedATN = ["\u0003\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd",
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
 
-var decisionsToDFA = atn.decisionToState.map(function (ds, index) { return new antlr4.dfa.DFA(ds, index); });
+var decisionsToDFA = atn.decisionToState.map( function(ds, index) { return new antlr4.dfa.DFA(ds, index); });
 
 var sharedContextCache = new antlr4.PredictionContextCache();
 
-var literalNames = [null, "'Abstract Entity'", "'Association'", "'Begin Namespace'",
-    "'End Namespace'", "'Choice Common Type'", "'Common Type'",
-    "'Common Decimal'", "'Common Integer'", "'Common Short'",
-    "'Common String'", "'Descriptor'", "'Domain'", "'Domain Entity'",
-    "'Enumeration'", "'Inline'", "'Interchange'", "'Inline Common Type'",
-    "'Subdomain'", "'Type'", "'core'", "'domain entity'",
-    "'bool'", "'currency'", "'date'", "'decimal'", "'descriptor'",
-    "'domain item'", "'duration'", "'element'", "'enumeration'",
-    "'item'", "'identity template'", "'include'", "'include extension'",
-    "'integer'", "'percent'", "'reference'", "'shared decimal'",
-    "'shared integer'", "'shared short'", "'shared string'",
-    "'named'", "'short'", "'string'", "'time'", "'year'",
-    "'additions'", "'based on'", "'allow primary key updates'",
-    "'decimal places'", "'is part of identity'", "'renames identity property'",
-    "'is queryable field'", "'is queryable only'", "'is weak'",
-    "'merge'", "'min length'", "'max length'", "'min value'",
-    "'max value'", "'is optional'", "'is optional collection'",
-    "'is required'", "'is required collection'", "'shorten to'",
-    "'of'", "'position'", "'total digits'", "'with'", "'with context'",
-    "'with optional map type'", "'with map type'", "'documentation'",
-    "'extended documentation'", "'use case documentation'",
-    "'footer documentation'", null, null, null, null, null,
-    null, null, "'+'", "'-'", "'.'"];
+var literalNames = [ null, "'Abstract Entity'", "'Association'", "'Begin Namespace'", 
+                     "'End Namespace'", "'Choice Common Type'", "'Common Type'", 
+                     "'Common Decimal'", "'Common Integer'", "'Common Short'", 
+                     "'Common String'", "'Descriptor'", "'Domain'", "'Domain Entity'", 
+                     "'Enumeration'", "'Inline'", "'Interchange'", "'Inline Common Type'", 
+                     "'Subdomain'", "'Type'", "'core'", "'domain entity'", 
+                     "'bool'", "'currency'", "'date'", "'decimal'", "'descriptor'", 
+                     "'domain item'", "'duration'", "'element'", "'enumeration'", 
+                     "'item'", "'identity template'", "'include'", "'include extension'", 
+                     "'integer'", "'percent'", "'reference'", "'shared decimal'", 
+                     "'shared integer'", "'shared short'", "'shared string'", 
+                     "'named'", "'short'", "'string'", "'time'", "'year'", 
+                     "'additions'", "'based on'", "'allow primary key updates'", 
+                     "'decimal places'", "'is part of identity'", "'renames identity property'", 
+                     "'is queryable field'", "'is queryable only'", "'is weak'", 
+                     "'merge'", "'min length'", "'max length'", "'min value'", 
+                     "'max value'", "'is optional'", "'is optional collection'", 
+                     "'is required'", "'is required collection'", "'shorten to'", 
+                     "'of'", "'position'", "'total digits'", "'with'", "'with context'", 
+                     "'with optional map type'", "'with map type'", "'documentation'", 
+                     "'extended documentation'", "'use case documentation'", 
+                     "'footer documentation'", null, null, null, null, null, 
+                     null, null, "'+'", "'-'", "'.'" ];
 
-var symbolicNames = [null, "ABSTRACT_ENTITY", "ASSOCIATION", "BEGIN_NAMESPACE",
-    "END_NAMESPACE", "CHOICE_TYPE", "COMMON_TYPE", "COMMON_DECIMAL",
-    "COMMON_INTEGER", "COMMON_SHORT", "COMMON_STRING",
-    "DESCRIPTOR_ENTITY", "DOMAIN", "DOMAIN_ENTITY", "ENUMERATION_ENTITY",
-    "INLINE", "INTERCHANGE", "INLINE_COMMON_TYPE", "SUBDOMAIN",
-    "TYPE", "CORE", "ASSOCIATION_DOMAIN_ENTITY", "BOOLEAN",
-    "CURRENCY", "DATE", "DECIMAL", "DESCRIPTOR", "DOMAIN_ITEM",
-    "DURATION", "ELEMENT", "ENUMERATION", "ENUMERATION_ITEM",
-    "IDENTITY_TEMPLATE", "INCLUDE", "INCLUDE_EXTENSION",
-    "INTEGER", "PERCENT", "REFERENCE", "SHARED_DECIMAL",
-    "SHARED_INTEGER", "SHARED_SHORT", "SHARED_STRING",
-    "SHARED_NAMED", "SHORT", "STRING", "TIME", "YEAR",
-    "ADDITIONS", "BASED_ON", "CASCADE_UPDATE", "DECIMAL_PLACES",
-    "IDENTITY", "IDENTITY_RENAME", "IS_QUERYABLE_FIELD",
-    "IS_QUERYABLE_ONLY", "IS_WEAK_REFERENCE", "MERGE_REFERENCE",
-    "MIN_LENGTH", "MAX_LENGTH", "MIN_VALUE", "MAX_VALUE",
-    "OPTIONAL", "OPTIONAL_COLLECTION", "REQUIRED", "REQUIRED_COLLECTION",
-    "SHORTEN_TO", "SUBDOMAIN_OF", "SUBDOMAIN_POSITION",
-    "TOTAL_DIGITS", "WITH", "WITH_CONTEXT", "WITH_OPTIONAL_MAP_TYPE",
-    "WITH_MAP_TYPE", "DOCUMENTATION", "EXTENDED_DOCUMENTATION",
-    "USE_CASE_DOCUMENTATION", "FOOTER_DOCUMENTATION",
-    "DOCUMENTATION_START", "ID", "NAMESPACE_ID", "NAMESPACE_EXTENSION",
-    "UNSIGNED_INT", "DECIMAL_VALUE", "METAED_ID", "POS_SIGN",
-    "NEG_SIGN", "PERIOD", "LINE_COMMENT", "WS", "DOCUMENTATION_LINE",
-    "DOCUMENTATION_EOL", "ENUMERATION_ITEM_VALUE", "ENUMERATION_ITEM_WS",
-    "ENUMERATION_ERROR_CHARACTER"];
+var symbolicNames = [ null, "ABSTRACT_ENTITY", "ASSOCIATION", "BEGIN_NAMESPACE", 
+                      "END_NAMESPACE", "CHOICE_TYPE", "COMMON_TYPE", "COMMON_DECIMAL", 
+                      "COMMON_INTEGER", "COMMON_SHORT", "COMMON_STRING", 
+                      "DESCRIPTOR_ENTITY", "DOMAIN", "DOMAIN_ENTITY", "ENUMERATION_ENTITY", 
+                      "INLINE", "INTERCHANGE", "INLINE_COMMON_TYPE", "SUBDOMAIN", 
+                      "TYPE", "CORE", "ASSOCIATION_DOMAIN_ENTITY", "BOOLEAN", 
+                      "CURRENCY", "DATE", "DECIMAL", "DESCRIPTOR", "DOMAIN_ITEM", 
+                      "DURATION", "ELEMENT", "ENUMERATION", "ENUMERATION_ITEM", 
+                      "IDENTITY_TEMPLATE", "INCLUDE", "INCLUDE_EXTENSION", 
+                      "INTEGER", "PERCENT", "REFERENCE", "SHARED_DECIMAL", 
+                      "SHARED_INTEGER", "SHARED_SHORT", "SHARED_STRING", 
+                      "SHARED_NAMED", "SHORT", "STRING", "TIME", "YEAR", 
+                      "ADDITIONS", "BASED_ON", "CASCADE_UPDATE", "DECIMAL_PLACES", 
+                      "IDENTITY", "IDENTITY_RENAME", "IS_QUERYABLE_FIELD", 
+                      "IS_QUERYABLE_ONLY", "IS_WEAK_REFERENCE", "MERGE_REFERENCE", 
+                      "MIN_LENGTH", "MAX_LENGTH", "MIN_VALUE", "MAX_VALUE", 
+                      "OPTIONAL", "OPTIONAL_COLLECTION", "REQUIRED", "REQUIRED_COLLECTION", 
+                      "SHORTEN_TO", "SUBDOMAIN_OF", "SUBDOMAIN_POSITION", 
+                      "TOTAL_DIGITS", "WITH", "WITH_CONTEXT", "WITH_OPTIONAL_MAP_TYPE", 
+                      "WITH_MAP_TYPE", "DOCUMENTATION", "EXTENDED_DOCUMENTATION", 
+                      "USE_CASE_DOCUMENTATION", "FOOTER_DOCUMENTATION", 
+                      "DOCUMENTATION_START", "ID", "NAMESPACE_ID", "NAMESPACE_EXTENSION", 
+                      "UNSIGNED_INT", "DECIMAL_VALUE", "METAED_ID", "POS_SIGN", 
+                      "NEG_SIGN", "PERIOD", "LINE_COMMENT", "WS", "DOCUMENTATION_LINE", 
+                      "DOCUMENTATION_EOL", "ENUMERATION_ITEM_VALUE", "ENUMERATION_ITEM_WS", 
+                      "ENUMERATION_ERROR_CHARACTER" ];
 
-var ruleNames = ["metaEd", "namespace", "namespaceType", "namespaceProjectExtension",
-    "topLevelEntity", "documentation", "documentationLine",
-    "abstractEntity", "entityConfiguration", "cascadeUpdate",
-    "association", "firstDomainEntity", "secondDomainEntity",
-    "associationExtension", "associationSubclass", "choiceType",
-    "commonDecimal", "commonInteger", "commonShort", "commonString",
-    "commonType", "commonTypeExtension", "descriptor", "withMapType",
-    "requiredMapType", "optionalMapType", "domain", "domainItem",
-    "footerDocumentation", "domainEntity", "domainEntityExtension",
-    "domainEntitySubclass", "enumeration", "enumerationItem",
-    "shortDescription", "inlineCommonType", "interchange",
-    "extendedDocumentation", "useCaseDocumentation", "interchangeComponent",
-    "interchangeElement", "interchangeIdentityTemplate",
-    "interchangeExtension", "interchangeExtensionComponent",
-    "subdomain", "subdomainPosition", "minValue", "maxValue",
-    "minValueDecimal", "maxValueDecimal", "decimalValue",
-    "totalDigits", "decimalPlaces", "includeExtensionOverride",
-    "propertyAnnotation", "identity", "identityRename", "required",
-    "optional", "collection", "requiredCollection", "optionalCollection",
-    "isQueryableOnly", "propertyComponents", "isQueryableField",
-    "withContext", "minLength", "maxLength", "property",
-    "booleanProperty", "currencyProperty", "dateProperty",
-    "decimalProperty", "descriptorProperty", "durationProperty",
-    "enumerationProperty", "includeProperty", "integerProperty",
-    "percentProperty", "referenceProperty", "sharedDecimalProperty",
-    "sharedIntegerProperty", "sharedShortProperty", "sharedStringProperty",
-    "shortProperty", "stringProperty", "timeProperty", "yearProperty",
-    "isWeakReference", "mergePartOfReference", "mergePropertyPath",
-    "targetPropertyPath", "propertyPath", "signed_int", "unaryOperator",
-    "abstractEntityName", "associationName", "baseKeyName",
-    "baseName", "choiceName", "commonDecimalName", "commonIntegerName",
-    "commonName", "commonShortName", "commonStringName",
-    "descriptorName", "domainName", "entityName", "enumerationName",
-    "extendeeName", "inlineCommonName", "interchangeName",
-    "parentDomainName", "propertyName", "sharedPropertyType",
-    "shortenToName", "subdomainName", "withContextName",
-    "namespaceName", "metaEdId"];
+var ruleNames =  [ "metaEd", "namespace", "namespaceType", "namespaceProjectExtension", 
+                   "topLevelEntity", "documentation", "documentationLine", 
+                   "abstractEntity", "entityConfiguration", "cascadeUpdate", 
+                   "association", "firstDomainEntity", "secondDomainEntity", 
+                   "associationExtension", "associationSubclass", "choiceType", 
+                   "commonDecimal", "commonInteger", "commonShort", "commonString", 
+                   "commonType", "commonTypeExtension", "descriptor", "withMapType", 
+                   "requiredMapType", "optionalMapType", "domain", "domainItem", 
+                   "footerDocumentation", "domainEntity", "domainEntityExtension", 
+                   "domainEntitySubclass", "enumeration", "enumerationItem", 
+                   "shortDescription", "inlineCommonType", "interchange", 
+                   "extendedDocumentation", "useCaseDocumentation", "interchangeComponent", 
+                   "interchangeElement", "interchangeIdentityTemplate", 
+                   "interchangeExtension", "interchangeExtensionComponent", 
+                   "subdomain", "subdomainPosition", "minValue", "maxValue", 
+                   "minValueDecimal", "maxValueDecimal", "decimalValue", 
+                   "totalDigits", "decimalPlaces", "includeExtensionOverride", 
+                   "propertyAnnotation", "identity", "identityRename", "required", 
+                   "optional", "collection", "requiredCollection", "optionalCollection", 
+                   "isQueryableOnly", "propertyComponents", "isQueryableField", 
+                   "withContext", "minLength", "maxLength", "property", 
+                   "booleanProperty", "currencyProperty", "dateProperty", 
+                   "decimalProperty", "descriptorProperty", "durationProperty", 
+                   "enumerationProperty", "includeProperty", "integerProperty", 
+                   "percentProperty", "referenceProperty", "sharedDecimalProperty", 
+                   "sharedIntegerProperty", "sharedShortProperty", "sharedStringProperty", 
+                   "shortProperty", "stringProperty", "timeProperty", "yearProperty", 
+                   "isWeakReference", "mergePartOfReference", "mergePropertyPath", 
+                   "targetPropertyPath", "propertyPath", "signed_int", "unaryOperator", 
+                   "abstractEntityName", "associationName", "baseKeyName", 
+                   "baseName", "choiceName", "commonDecimalName", "commonIntegerName", 
+                   "commonName", "commonShortName", "commonStringName", 
+                   "descriptorName", "domainName", "entityName", "enumerationName", 
+                   "extendeeName", "inlineCommonName", "interchangeName", 
+                   "parentDomainName", "propertyName", "sharedPropertyType", 
+                   "shortenToName", "subdomainName", "withContextName", 
+                   "namespaceName", "metaEdId" ];
 
-function MetaEdGrammar(input) {
-    antlr4.Parser.call(this, input);
+function MetaEdGrammar (input) {
+	antlr4.Parser.call(this, input);
     this._interp = new antlr4.atn.ParserATNSimulator(this, atn, decisionsToDFA, sharedContextCache);
     this.ruleNames = ruleNames;
     this.literalNames = literalNames;
@@ -753,9 +753,9 @@ MetaEdGrammar.prototype = Object.create(antlr4.Parser.prototype);
 MetaEdGrammar.prototype.constructor = MetaEdGrammar;
 
 Object.defineProperty(MetaEdGrammar.prototype, "atn", {
-    get: function () {
-        return atn;
-    }
+	get : function() {
+		return atn;
+	}
 });
 
 MetaEdGrammar.EOF = antlr4.Token.EOF;
@@ -975,13 +975,13 @@ MetaEdGrammar.RULE_namespaceName = 118;
 MetaEdGrammar.RULE_metaEdId = 119;
 
 function MetaEdContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_metaEd;
     return this;
@@ -990,27 +990,27 @@ function MetaEdContext(parser, parent, invokingState) {
 MetaEdContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 MetaEdContext.prototype.constructor = MetaEdContext;
 
-MetaEdContext.prototype.namespace = function (i) {
-    if (i === undefined) {
+MetaEdContext.prototype.namespace = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(NamespaceContext);
     } else {
-        return this.getTypedRuleContext(NamespaceContext, i);
+        return this.getTypedRuleContext(NamespaceContext,i);
     }
 };
 
-MetaEdContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MetaEdContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterMetaEd(this);
-    }
+	}
 };
 
-MetaEdContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MetaEdContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitMetaEd(this);
-    }
+	}
 };
 
 
@@ -1018,31 +1018,31 @@ MetaEdContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.MetaEdContext = MetaEdContext;
 
-MetaEdGrammar.prototype.metaEd = function () {
+MetaEdGrammar.prototype.metaEd = function() {
 
     var localctx = new MetaEdContext(this, this._ctx, this.state);
     this.enterRule(localctx, 0, MetaEdGrammar.RULE_metaEd);
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 241;
+        this.state = 241; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 240;
             this.namespace();
-            this.state = 243;
+            this.state = 243; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (_la === MetaEdGrammar.BEGIN_NAMESPACE);
+        } while(_la===MetaEdGrammar.BEGIN_NAMESPACE);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -1050,13 +1050,13 @@ MetaEdGrammar.prototype.metaEd = function () {
 };
 
 function NamespaceContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_namespace;
     return this;
@@ -1065,43 +1065,43 @@ function NamespaceContext(parser, parent, invokingState) {
 NamespaceContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 NamespaceContext.prototype.constructor = NamespaceContext;
 
-NamespaceContext.prototype.BEGIN_NAMESPACE = function () {
+NamespaceContext.prototype.BEGIN_NAMESPACE = function() {
     return this.getToken(MetaEdGrammar.BEGIN_NAMESPACE, 0);
 };
 
-NamespaceContext.prototype.namespaceName = function () {
-    return this.getTypedRuleContext(NamespaceNameContext, 0);
+NamespaceContext.prototype.namespaceName = function() {
+    return this.getTypedRuleContext(NamespaceNameContext,0);
 };
 
-NamespaceContext.prototype.namespaceType = function () {
-    return this.getTypedRuleContext(NamespaceTypeContext, 0);
+NamespaceContext.prototype.namespaceType = function() {
+    return this.getTypedRuleContext(NamespaceTypeContext,0);
 };
 
-NamespaceContext.prototype.END_NAMESPACE = function () {
+NamespaceContext.prototype.END_NAMESPACE = function() {
     return this.getToken(MetaEdGrammar.END_NAMESPACE, 0);
 };
 
-NamespaceContext.prototype.topLevelEntity = function (i) {
-    if (i === undefined) {
+NamespaceContext.prototype.topLevelEntity = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(TopLevelEntityContext);
     } else {
-        return this.getTypedRuleContext(TopLevelEntityContext, i);
+        return this.getTypedRuleContext(TopLevelEntityContext,i);
     }
 };
 
-NamespaceContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+NamespaceContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterNamespace(this);
-    }
+	}
 };
 
-NamespaceContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+NamespaceContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitNamespace(this);
-    }
+	}
 };
 
 
@@ -1109,7 +1109,7 @@ NamespaceContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.NamespaceContext = NamespaceContext;
 
-MetaEdGrammar.prototype.namespace = function () {
+MetaEdGrammar.prototype.namespace = function() {
 
     var localctx = new NamespaceContext(this, this._ctx, this.state);
     this.enterRule(localctx, 2, MetaEdGrammar.RULE_namespace);
@@ -1122,26 +1122,26 @@ MetaEdGrammar.prototype.namespace = function () {
         this.namespaceName();
         this.state = 247;
         this.namespaceType();
-        this.state = 249;
+        this.state = 249; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 248;
             this.topLevelEntity();
-            this.state = 251;
+            this.state = 251; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while ((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << MetaEdGrammar.ABSTRACT_ENTITY) | (1 << MetaEdGrammar.ASSOCIATION) | (1 << MetaEdGrammar.CHOICE_TYPE) | (1 << MetaEdGrammar.COMMON_TYPE) | (1 << MetaEdGrammar.COMMON_DECIMAL) | (1 << MetaEdGrammar.COMMON_INTEGER) | (1 << MetaEdGrammar.COMMON_SHORT) | (1 << MetaEdGrammar.COMMON_STRING) | (1 << MetaEdGrammar.DESCRIPTOR_ENTITY) | (1 << MetaEdGrammar.DOMAIN) | (1 << MetaEdGrammar.DOMAIN_ENTITY) | (1 << MetaEdGrammar.ENUMERATION_ENTITY) | (1 << MetaEdGrammar.INTERCHANGE) | (1 << MetaEdGrammar.INLINE_COMMON_TYPE) | (1 << MetaEdGrammar.SUBDOMAIN))) !== 0));
+        } while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << MetaEdGrammar.ABSTRACT_ENTITY) | (1 << MetaEdGrammar.ASSOCIATION) | (1 << MetaEdGrammar.CHOICE_TYPE) | (1 << MetaEdGrammar.COMMON_TYPE) | (1 << MetaEdGrammar.COMMON_DECIMAL) | (1 << MetaEdGrammar.COMMON_INTEGER) | (1 << MetaEdGrammar.COMMON_SHORT) | (1 << MetaEdGrammar.COMMON_STRING) | (1 << MetaEdGrammar.DESCRIPTOR_ENTITY) | (1 << MetaEdGrammar.DOMAIN) | (1 << MetaEdGrammar.DOMAIN_ENTITY) | (1 << MetaEdGrammar.ENUMERATION_ENTITY) | (1 << MetaEdGrammar.INTERCHANGE) | (1 << MetaEdGrammar.INLINE_COMMON_TYPE) | (1 << MetaEdGrammar.SUBDOMAIN))) !== 0));
         this.state = 253;
         this.match(MetaEdGrammar.END_NAMESPACE);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -1149,13 +1149,13 @@ MetaEdGrammar.prototype.namespace = function () {
 };
 
 function NamespaceTypeContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_namespaceType;
     return this;
@@ -1164,24 +1164,24 @@ function NamespaceTypeContext(parser, parent, invokingState) {
 NamespaceTypeContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 NamespaceTypeContext.prototype.constructor = NamespaceTypeContext;
 
-NamespaceTypeContext.prototype.CORE = function () {
+NamespaceTypeContext.prototype.CORE = function() {
     return this.getToken(MetaEdGrammar.CORE, 0);
 };
 
-NamespaceTypeContext.prototype.namespaceProjectExtension = function () {
-    return this.getTypedRuleContext(NamespaceProjectExtensionContext, 0);
+NamespaceTypeContext.prototype.namespaceProjectExtension = function() {
+    return this.getTypedRuleContext(NamespaceProjectExtensionContext,0);
 };
 
-NamespaceTypeContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+NamespaceTypeContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterNamespaceType(this);
-    }
+	}
 };
 
-NamespaceTypeContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+NamespaceTypeContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitNamespaceType(this);
-    }
+	}
 };
 
 
@@ -1189,35 +1189,35 @@ NamespaceTypeContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.NamespaceTypeContext = NamespaceTypeContext;
 
-MetaEdGrammar.prototype.namespaceType = function () {
+MetaEdGrammar.prototype.namespaceType = function() {
 
     var localctx = new NamespaceTypeContext(this, this._ctx, this.state);
     this.enterRule(localctx, 4, MetaEdGrammar.RULE_namespaceType);
     try {
         this.state = 257;
-        switch (this._input.LA(1)) {
-            case MetaEdGrammar.CORE:
-                this.enterOuterAlt(localctx, 1);
-                this.state = 255;
-                this.match(MetaEdGrammar.CORE);
-                break;
-            case MetaEdGrammar.ID:
-            case MetaEdGrammar.NAMESPACE_EXTENSION:
-                this.enterOuterAlt(localctx, 2);
-                this.state = 256;
-                this.namespaceProjectExtension();
-                break;
-            default:
-                throw new antlr4.error.NoViableAltException(this);
+        switch(this._input.LA(1)) {
+        case MetaEdGrammar.CORE:
+            this.enterOuterAlt(localctx, 1);
+            this.state = 255;
+            this.match(MetaEdGrammar.CORE);
+            break;
+        case MetaEdGrammar.ID:
+        case MetaEdGrammar.NAMESPACE_EXTENSION:
+            this.enterOuterAlt(localctx, 2);
+            this.state = 256;
+            this.namespaceProjectExtension();
+            break;
+        default:
+            throw new antlr4.error.NoViableAltException(this);
         }
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -1225,13 +1225,13 @@ MetaEdGrammar.prototype.namespaceType = function () {
 };
 
 function NamespaceProjectExtensionContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_namespaceProjectExtension;
     return this;
@@ -1240,24 +1240,24 @@ function NamespaceProjectExtensionContext(parser, parent, invokingState) {
 NamespaceProjectExtensionContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 NamespaceProjectExtensionContext.prototype.constructor = NamespaceProjectExtensionContext;
 
-NamespaceProjectExtensionContext.prototype.ID = function () {
+NamespaceProjectExtensionContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-NamespaceProjectExtensionContext.prototype.NAMESPACE_EXTENSION = function () {
+NamespaceProjectExtensionContext.prototype.NAMESPACE_EXTENSION = function() {
     return this.getToken(MetaEdGrammar.NAMESPACE_EXTENSION, 0);
 };
 
-NamespaceProjectExtensionContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+NamespaceProjectExtensionContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterNamespaceProjectExtension(this);
-    }
+	}
 };
 
-NamespaceProjectExtensionContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+NamespaceProjectExtensionContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitNamespaceProjectExtension(this);
-    }
+	}
 };
 
 
@@ -1265,7 +1265,7 @@ NamespaceProjectExtensionContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.NamespaceProjectExtensionContext = NamespaceProjectExtensionContext;
 
-MetaEdGrammar.prototype.namespaceProjectExtension = function () {
+MetaEdGrammar.prototype.namespaceProjectExtension = function() {
 
     var localctx = new NamespaceProjectExtensionContext(this, this._ctx, this.state);
     this.enterRule(localctx, 6, MetaEdGrammar.RULE_namespaceProjectExtension);
@@ -1274,20 +1274,20 @@ MetaEdGrammar.prototype.namespaceProjectExtension = function () {
         this.enterOuterAlt(localctx, 1);
         this.state = 259;
         _la = this._input.LA(1);
-        if (!(_la === MetaEdGrammar.ID || _la === MetaEdGrammar.NAMESPACE_EXTENSION)) {
-            this._errHandler.recoverInline(this);
+        if(!(_la===MetaEdGrammar.ID || _la===MetaEdGrammar.NAMESPACE_EXTENSION)) {
+        this._errHandler.recoverInline(this);
         }
         else {
             this.consume();
         }
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -1295,13 +1295,13 @@ MetaEdGrammar.prototype.namespaceProjectExtension = function () {
 };
 
 function TopLevelEntityContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_topLevelEntity;
     return this;
@@ -1310,100 +1310,100 @@ function TopLevelEntityContext(parser, parent, invokingState) {
 TopLevelEntityContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 TopLevelEntityContext.prototype.constructor = TopLevelEntityContext;
 
-TopLevelEntityContext.prototype.abstractEntity = function () {
-    return this.getTypedRuleContext(AbstractEntityContext, 0);
+TopLevelEntityContext.prototype.abstractEntity = function() {
+    return this.getTypedRuleContext(AbstractEntityContext,0);
 };
 
-TopLevelEntityContext.prototype.association = function () {
-    return this.getTypedRuleContext(AssociationContext, 0);
+TopLevelEntityContext.prototype.association = function() {
+    return this.getTypedRuleContext(AssociationContext,0);
 };
 
-TopLevelEntityContext.prototype.associationExtension = function () {
-    return this.getTypedRuleContext(AssociationExtensionContext, 0);
+TopLevelEntityContext.prototype.associationExtension = function() {
+    return this.getTypedRuleContext(AssociationExtensionContext,0);
 };
 
-TopLevelEntityContext.prototype.associationSubclass = function () {
-    return this.getTypedRuleContext(AssociationSubclassContext, 0);
+TopLevelEntityContext.prototype.associationSubclass = function() {
+    return this.getTypedRuleContext(AssociationSubclassContext,0);
 };
 
-TopLevelEntityContext.prototype.choiceType = function () {
-    return this.getTypedRuleContext(ChoiceTypeContext, 0);
+TopLevelEntityContext.prototype.choiceType = function() {
+    return this.getTypedRuleContext(ChoiceTypeContext,0);
 };
 
-TopLevelEntityContext.prototype.commonDecimal = function () {
-    return this.getTypedRuleContext(CommonDecimalContext, 0);
+TopLevelEntityContext.prototype.commonDecimal = function() {
+    return this.getTypedRuleContext(CommonDecimalContext,0);
 };
 
-TopLevelEntityContext.prototype.commonInteger = function () {
-    return this.getTypedRuleContext(CommonIntegerContext, 0);
+TopLevelEntityContext.prototype.commonInteger = function() {
+    return this.getTypedRuleContext(CommonIntegerContext,0);
 };
 
-TopLevelEntityContext.prototype.commonShort = function () {
-    return this.getTypedRuleContext(CommonShortContext, 0);
+TopLevelEntityContext.prototype.commonShort = function() {
+    return this.getTypedRuleContext(CommonShortContext,0);
 };
 
-TopLevelEntityContext.prototype.commonString = function () {
-    return this.getTypedRuleContext(CommonStringContext, 0);
+TopLevelEntityContext.prototype.commonString = function() {
+    return this.getTypedRuleContext(CommonStringContext,0);
 };
 
-TopLevelEntityContext.prototype.commonType = function () {
-    return this.getTypedRuleContext(CommonTypeContext, 0);
+TopLevelEntityContext.prototype.commonType = function() {
+    return this.getTypedRuleContext(CommonTypeContext,0);
 };
 
-TopLevelEntityContext.prototype.commonTypeExtension = function () {
-    return this.getTypedRuleContext(CommonTypeExtensionContext, 0);
+TopLevelEntityContext.prototype.commonTypeExtension = function() {
+    return this.getTypedRuleContext(CommonTypeExtensionContext,0);
 };
 
-TopLevelEntityContext.prototype.descriptor = function () {
-    return this.getTypedRuleContext(DescriptorContext, 0);
+TopLevelEntityContext.prototype.descriptor = function() {
+    return this.getTypedRuleContext(DescriptorContext,0);
 };
 
-TopLevelEntityContext.prototype.domainEntity = function () {
-    return this.getTypedRuleContext(DomainEntityContext, 0);
+TopLevelEntityContext.prototype.domainEntity = function() {
+    return this.getTypedRuleContext(DomainEntityContext,0);
 };
 
-TopLevelEntityContext.prototype.domainEntityExtension = function () {
-    return this.getTypedRuleContext(DomainEntityExtensionContext, 0);
+TopLevelEntityContext.prototype.domainEntityExtension = function() {
+    return this.getTypedRuleContext(DomainEntityExtensionContext,0);
 };
 
-TopLevelEntityContext.prototype.domainEntitySubclass = function () {
-    return this.getTypedRuleContext(DomainEntitySubclassContext, 0);
+TopLevelEntityContext.prototype.domainEntitySubclass = function() {
+    return this.getTypedRuleContext(DomainEntitySubclassContext,0);
 };
 
-TopLevelEntityContext.prototype.enumeration = function () {
-    return this.getTypedRuleContext(EnumerationContext, 0);
+TopLevelEntityContext.prototype.enumeration = function() {
+    return this.getTypedRuleContext(EnumerationContext,0);
 };
 
-TopLevelEntityContext.prototype.inlineCommonType = function () {
-    return this.getTypedRuleContext(InlineCommonTypeContext, 0);
+TopLevelEntityContext.prototype.inlineCommonType = function() {
+    return this.getTypedRuleContext(InlineCommonTypeContext,0);
 };
 
-TopLevelEntityContext.prototype.interchange = function () {
-    return this.getTypedRuleContext(InterchangeContext, 0);
+TopLevelEntityContext.prototype.interchange = function() {
+    return this.getTypedRuleContext(InterchangeContext,0);
 };
 
-TopLevelEntityContext.prototype.interchangeExtension = function () {
-    return this.getTypedRuleContext(InterchangeExtensionContext, 0);
+TopLevelEntityContext.prototype.interchangeExtension = function() {
+    return this.getTypedRuleContext(InterchangeExtensionContext,0);
 };
 
-TopLevelEntityContext.prototype.domain = function () {
-    return this.getTypedRuleContext(DomainContext, 0);
+TopLevelEntityContext.prototype.domain = function() {
+    return this.getTypedRuleContext(DomainContext,0);
 };
 
-TopLevelEntityContext.prototype.subdomain = function () {
-    return this.getTypedRuleContext(SubdomainContext, 0);
+TopLevelEntityContext.prototype.subdomain = function() {
+    return this.getTypedRuleContext(SubdomainContext,0);
 };
 
-TopLevelEntityContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+TopLevelEntityContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterTopLevelEntity(this);
-    }
+	}
 };
 
-TopLevelEntityContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+TopLevelEntityContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitTopLevelEntity(this);
-    }
+	}
 };
 
 
@@ -1411,150 +1411,150 @@ TopLevelEntityContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.TopLevelEntityContext = TopLevelEntityContext;
 
-MetaEdGrammar.prototype.topLevelEntity = function () {
+MetaEdGrammar.prototype.topLevelEntity = function() {
 
     var localctx = new TopLevelEntityContext(this, this._ctx, this.state);
     this.enterRule(localctx, 8, MetaEdGrammar.RULE_topLevelEntity);
     try {
         this.state = 282;
         this._errHandler.sync(this);
-        var la_ = this._interp.adaptivePredict(this._input, 3, this._ctx);
-        switch (la_) {
-            case 1:
-                this.enterOuterAlt(localctx, 1);
-                this.state = 261;
-                this.abstractEntity();
-                break;
+        var la_ = this._interp.adaptivePredict(this._input,3,this._ctx);
+        switch(la_) {
+        case 1:
+            this.enterOuterAlt(localctx, 1);
+            this.state = 261;
+            this.abstractEntity();
+            break;
 
-            case 2:
-                this.enterOuterAlt(localctx, 2);
-                this.state = 262;
-                this.association();
-                break;
+        case 2:
+            this.enterOuterAlt(localctx, 2);
+            this.state = 262;
+            this.association();
+            break;
 
-            case 3:
-                this.enterOuterAlt(localctx, 3);
-                this.state = 263;
-                this.associationExtension();
-                break;
+        case 3:
+            this.enterOuterAlt(localctx, 3);
+            this.state = 263;
+            this.associationExtension();
+            break;
 
-            case 4:
-                this.enterOuterAlt(localctx, 4);
-                this.state = 264;
-                this.associationSubclass();
-                break;
+        case 4:
+            this.enterOuterAlt(localctx, 4);
+            this.state = 264;
+            this.associationSubclass();
+            break;
 
-            case 5:
-                this.enterOuterAlt(localctx, 5);
-                this.state = 265;
-                this.choiceType();
-                break;
+        case 5:
+            this.enterOuterAlt(localctx, 5);
+            this.state = 265;
+            this.choiceType();
+            break;
 
-            case 6:
-                this.enterOuterAlt(localctx, 6);
-                this.state = 266;
-                this.commonDecimal();
-                break;
+        case 6:
+            this.enterOuterAlt(localctx, 6);
+            this.state = 266;
+            this.commonDecimal();
+            break;
 
-            case 7:
-                this.enterOuterAlt(localctx, 7);
-                this.state = 267;
-                this.commonInteger();
-                break;
+        case 7:
+            this.enterOuterAlt(localctx, 7);
+            this.state = 267;
+            this.commonInteger();
+            break;
 
-            case 8:
-                this.enterOuterAlt(localctx, 8);
-                this.state = 268;
-                this.commonShort();
-                break;
+        case 8:
+            this.enterOuterAlt(localctx, 8);
+            this.state = 268;
+            this.commonShort();
+            break;
 
-            case 9:
-                this.enterOuterAlt(localctx, 9);
-                this.state = 269;
-                this.commonString();
-                break;
+        case 9:
+            this.enterOuterAlt(localctx, 9);
+            this.state = 269;
+            this.commonString();
+            break;
 
-            case 10:
-                this.enterOuterAlt(localctx, 10);
-                this.state = 270;
-                this.commonType();
-                break;
+        case 10:
+            this.enterOuterAlt(localctx, 10);
+            this.state = 270;
+            this.commonType();
+            break;
 
-            case 11:
-                this.enterOuterAlt(localctx, 11);
-                this.state = 271;
-                this.commonTypeExtension();
-                break;
+        case 11:
+            this.enterOuterAlt(localctx, 11);
+            this.state = 271;
+            this.commonTypeExtension();
+            break;
 
-            case 12:
-                this.enterOuterAlt(localctx, 12);
-                this.state = 272;
-                this.descriptor();
-                break;
+        case 12:
+            this.enterOuterAlt(localctx, 12);
+            this.state = 272;
+            this.descriptor();
+            break;
 
-            case 13:
-                this.enterOuterAlt(localctx, 13);
-                this.state = 273;
-                this.domainEntity();
-                break;
+        case 13:
+            this.enterOuterAlt(localctx, 13);
+            this.state = 273;
+            this.domainEntity();
+            break;
 
-            case 14:
-                this.enterOuterAlt(localctx, 14);
-                this.state = 274;
-                this.domainEntityExtension();
-                break;
+        case 14:
+            this.enterOuterAlt(localctx, 14);
+            this.state = 274;
+            this.domainEntityExtension();
+            break;
 
-            case 15:
-                this.enterOuterAlt(localctx, 15);
-                this.state = 275;
-                this.domainEntitySubclass();
-                break;
+        case 15:
+            this.enterOuterAlt(localctx, 15);
+            this.state = 275;
+            this.domainEntitySubclass();
+            break;
 
-            case 16:
-                this.enterOuterAlt(localctx, 16);
-                this.state = 276;
-                this.enumeration();
-                break;
+        case 16:
+            this.enterOuterAlt(localctx, 16);
+            this.state = 276;
+            this.enumeration();
+            break;
 
-            case 17:
-                this.enterOuterAlt(localctx, 17);
-                this.state = 277;
-                this.inlineCommonType();
-                break;
+        case 17:
+            this.enterOuterAlt(localctx, 17);
+            this.state = 277;
+            this.inlineCommonType();
+            break;
 
-            case 18:
-                this.enterOuterAlt(localctx, 18);
-                this.state = 278;
-                this.interchange();
-                break;
+        case 18:
+            this.enterOuterAlt(localctx, 18);
+            this.state = 278;
+            this.interchange();
+            break;
 
-            case 19:
-                this.enterOuterAlt(localctx, 19);
-                this.state = 279;
-                this.interchangeExtension();
-                break;
+        case 19:
+            this.enterOuterAlt(localctx, 19);
+            this.state = 279;
+            this.interchangeExtension();
+            break;
 
-            case 20:
-                this.enterOuterAlt(localctx, 20);
-                this.state = 280;
-                this.domain();
-                break;
+        case 20:
+            this.enterOuterAlt(localctx, 20);
+            this.state = 280;
+            this.domain();
+            break;
 
-            case 21:
-                this.enterOuterAlt(localctx, 21);
-                this.state = 281;
-                this.subdomain();
-                break;
+        case 21:
+            this.enterOuterAlt(localctx, 21);
+            this.state = 281;
+            this.subdomain();
+            break;
 
         }
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -1562,13 +1562,13 @@ MetaEdGrammar.prototype.topLevelEntity = function () {
 };
 
 function DocumentationContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_documentation;
     return this;
@@ -1577,15 +1577,15 @@ function DocumentationContext(parser, parent, invokingState) {
 DocumentationContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DocumentationContext.prototype.constructor = DocumentationContext;
 
-DocumentationContext.prototype.DOCUMENTATION = function () {
+DocumentationContext.prototype.DOCUMENTATION = function() {
     return this.getToken(MetaEdGrammar.DOCUMENTATION, 0);
 };
 
-DocumentationContext.prototype.DOCUMENTATION_START = function (i) {
-    if (i === undefined) {
-        i = null;
-    }
-    if (i === null) {
+DocumentationContext.prototype.DOCUMENTATION_START = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
         return this.getTokens(MetaEdGrammar.DOCUMENTATION_START);
     } else {
         return this.getToken(MetaEdGrammar.DOCUMENTATION_START, i);
@@ -1593,27 +1593,27 @@ DocumentationContext.prototype.DOCUMENTATION_START = function (i) {
 };
 
 
-DocumentationContext.prototype.documentationLine = function (i) {
-    if (i === undefined) {
+DocumentationContext.prototype.documentationLine = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(DocumentationLineContext);
     } else {
-        return this.getTypedRuleContext(DocumentationLineContext, i);
+        return this.getTypedRuleContext(DocumentationLineContext,i);
     }
 };
 
-DocumentationContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DocumentationContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDocumentation(this);
-    }
+	}
 };
 
-DocumentationContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DocumentationContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDocumentation(this);
-    }
+	}
 };
 
 
@@ -1621,7 +1621,7 @@ DocumentationContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DocumentationContext = DocumentationContext;
 
-MetaEdGrammar.prototype.documentation = function () {
+MetaEdGrammar.prototype.documentation = function() {
 
     var localctx = new DocumentationContext(this, this._ctx, this.state);
     this.enterRule(localctx, 10, MetaEdGrammar.RULE_documentation);
@@ -1630,7 +1630,7 @@ MetaEdGrammar.prototype.documentation = function () {
         this.enterOuterAlt(localctx, 1);
         this.state = 284;
         this.match(MetaEdGrammar.DOCUMENTATION);
-        this.state = 287;
+        this.state = 287; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
@@ -1638,18 +1638,18 @@ MetaEdGrammar.prototype.documentation = function () {
             this.match(MetaEdGrammar.DOCUMENTATION_START);
             this.state = 286;
             this.documentationLine();
-            this.state = 289;
+            this.state = 289; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (_la === MetaEdGrammar.DOCUMENTATION_START);
+        } while(_la===MetaEdGrammar.DOCUMENTATION_START);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -1657,13 +1657,13 @@ MetaEdGrammar.prototype.documentation = function () {
 };
 
 function DocumentationLineContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_documentationLine;
     return this;
@@ -1672,24 +1672,24 @@ function DocumentationLineContext(parser, parent, invokingState) {
 DocumentationLineContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DocumentationLineContext.prototype.constructor = DocumentationLineContext;
 
-DocumentationLineContext.prototype.DOCUMENTATION_LINE = function () {
+DocumentationLineContext.prototype.DOCUMENTATION_LINE = function() {
     return this.getToken(MetaEdGrammar.DOCUMENTATION_LINE, 0);
 };
 
-DocumentationLineContext.prototype.DOCUMENTATION_EOL = function () {
+DocumentationLineContext.prototype.DOCUMENTATION_EOL = function() {
     return this.getToken(MetaEdGrammar.DOCUMENTATION_EOL, 0);
 };
 
-DocumentationLineContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DocumentationLineContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDocumentationLine(this);
-    }
+	}
 };
 
-DocumentationLineContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DocumentationLineContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDocumentationLine(this);
-    }
+	}
 };
 
 
@@ -1697,7 +1697,7 @@ DocumentationLineContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DocumentationLineContext = DocumentationLineContext;
 
-MetaEdGrammar.prototype.documentationLine = function () {
+MetaEdGrammar.prototype.documentationLine = function() {
 
     var localctx = new DocumentationLineContext(this, this._ctx, this.state);
     this.enterRule(localctx, 12, MetaEdGrammar.RULE_documentationLine);
@@ -1706,20 +1706,20 @@ MetaEdGrammar.prototype.documentationLine = function () {
         this.enterOuterAlt(localctx, 1);
         this.state = 291;
         _la = this._input.LA(1);
-        if (!(_la === MetaEdGrammar.DOCUMENTATION_LINE || _la === MetaEdGrammar.DOCUMENTATION_EOL)) {
-            this._errHandler.recoverInline(this);
+        if(!(_la===MetaEdGrammar.DOCUMENTATION_LINE || _la===MetaEdGrammar.DOCUMENTATION_EOL)) {
+        this._errHandler.recoverInline(this);
         }
         else {
             this.consume();
         }
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -1727,13 +1727,13 @@ MetaEdGrammar.prototype.documentationLine = function () {
 };
 
 function AbstractEntityContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_abstractEntity;
     return this;
@@ -1742,43 +1742,43 @@ function AbstractEntityContext(parser, parent, invokingState) {
 AbstractEntityContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 AbstractEntityContext.prototype.constructor = AbstractEntityContext;
 
-AbstractEntityContext.prototype.ABSTRACT_ENTITY = function () {
+AbstractEntityContext.prototype.ABSTRACT_ENTITY = function() {
     return this.getToken(MetaEdGrammar.ABSTRACT_ENTITY, 0);
 };
 
-AbstractEntityContext.prototype.abstractEntityName = function () {
-    return this.getTypedRuleContext(AbstractEntityNameContext, 0);
+AbstractEntityContext.prototype.abstractEntityName = function() {
+    return this.getTypedRuleContext(AbstractEntityNameContext,0);
 };
 
-AbstractEntityContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+AbstractEntityContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-AbstractEntityContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+AbstractEntityContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-AbstractEntityContext.prototype.property = function (i) {
-    if (i === undefined) {
+AbstractEntityContext.prototype.property = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(PropertyContext);
     } else {
-        return this.getTypedRuleContext(PropertyContext, i);
+        return this.getTypedRuleContext(PropertyContext,i);
     }
 };
 
-AbstractEntityContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+AbstractEntityContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterAbstractEntity(this);
-    }
+	}
 };
 
-AbstractEntityContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+AbstractEntityContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitAbstractEntity(this);
-    }
+	}
 };
 
 
@@ -1786,7 +1786,7 @@ AbstractEntityContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.AbstractEntityContext = AbstractEntityContext;
 
-MetaEdGrammar.prototype.abstractEntity = function () {
+MetaEdGrammar.prototype.abstractEntity = function() {
 
     var localctx = new AbstractEntityContext(this, this._ctx, this.state);
     this.enterRule(localctx, 14, MetaEdGrammar.RULE_abstractEntity);
@@ -1799,31 +1799,31 @@ MetaEdGrammar.prototype.abstractEntity = function () {
         this.abstractEntityName();
         this.state = 296;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 295;
             this.metaEdId();
         }
 
         this.state = 298;
         this.documentation();
-        this.state = 300;
+        this.state = 300; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 299;
             this.property();
-            this.state = 302;
+            this.state = 302; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
+        } while(((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -1831,13 +1831,13 @@ MetaEdGrammar.prototype.abstractEntity = function () {
 };
 
 function EntityConfigurationContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_entityConfiguration;
     return this;
@@ -1846,20 +1846,20 @@ function EntityConfigurationContext(parser, parent, invokingState) {
 EntityConfigurationContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 EntityConfigurationContext.prototype.constructor = EntityConfigurationContext;
 
-EntityConfigurationContext.prototype.cascadeUpdate = function () {
-    return this.getTypedRuleContext(CascadeUpdateContext, 0);
+EntityConfigurationContext.prototype.cascadeUpdate = function() {
+    return this.getTypedRuleContext(CascadeUpdateContext,0);
 };
 
-EntityConfigurationContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+EntityConfigurationContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterEntityConfiguration(this);
-    }
+	}
 };
 
-EntityConfigurationContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+EntityConfigurationContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitEntityConfiguration(this);
-    }
+	}
 };
 
 
@@ -1867,7 +1867,7 @@ EntityConfigurationContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.EntityConfigurationContext = EntityConfigurationContext;
 
-MetaEdGrammar.prototype.entityConfiguration = function () {
+MetaEdGrammar.prototype.entityConfiguration = function() {
 
     var localctx = new EntityConfigurationContext(this, this._ctx, this.state);
     this.enterRule(localctx, 16, MetaEdGrammar.RULE_entityConfiguration);
@@ -1876,13 +1876,13 @@ MetaEdGrammar.prototype.entityConfiguration = function () {
         this.state = 304;
         this.cascadeUpdate();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -1890,13 +1890,13 @@ MetaEdGrammar.prototype.entityConfiguration = function () {
 };
 
 function CascadeUpdateContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_cascadeUpdate;
     return this;
@@ -1905,20 +1905,20 @@ function CascadeUpdateContext(parser, parent, invokingState) {
 CascadeUpdateContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CascadeUpdateContext.prototype.constructor = CascadeUpdateContext;
 
-CascadeUpdateContext.prototype.CASCADE_UPDATE = function () {
+CascadeUpdateContext.prototype.CASCADE_UPDATE = function() {
     return this.getToken(MetaEdGrammar.CASCADE_UPDATE, 0);
 };
 
-CascadeUpdateContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CascadeUpdateContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCascadeUpdate(this);
-    }
+	}
 };
 
-CascadeUpdateContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CascadeUpdateContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCascadeUpdate(this);
-    }
+	}
 };
 
 
@@ -1926,7 +1926,7 @@ CascadeUpdateContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CascadeUpdateContext = CascadeUpdateContext;
 
-MetaEdGrammar.prototype.cascadeUpdate = function () {
+MetaEdGrammar.prototype.cascadeUpdate = function() {
 
     var localctx = new CascadeUpdateContext(this, this._ctx, this.state);
     this.enterRule(localctx, 18, MetaEdGrammar.RULE_cascadeUpdate);
@@ -1935,13 +1935,13 @@ MetaEdGrammar.prototype.cascadeUpdate = function () {
         this.state = 306;
         this.match(MetaEdGrammar.CASCADE_UPDATE);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -1949,13 +1949,13 @@ MetaEdGrammar.prototype.cascadeUpdate = function () {
 };
 
 function AssociationContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_association;
     return this;
@@ -1964,55 +1964,55 @@ function AssociationContext(parser, parent, invokingState) {
 AssociationContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 AssociationContext.prototype.constructor = AssociationContext;
 
-AssociationContext.prototype.ASSOCIATION = function () {
+AssociationContext.prototype.ASSOCIATION = function() {
     return this.getToken(MetaEdGrammar.ASSOCIATION, 0);
 };
 
-AssociationContext.prototype.associationName = function () {
-    return this.getTypedRuleContext(AssociationNameContext, 0);
+AssociationContext.prototype.associationName = function() {
+    return this.getTypedRuleContext(AssociationNameContext,0);
 };
 
-AssociationContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+AssociationContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-AssociationContext.prototype.firstDomainEntity = function () {
-    return this.getTypedRuleContext(FirstDomainEntityContext, 0);
+AssociationContext.prototype.firstDomainEntity = function() {
+    return this.getTypedRuleContext(FirstDomainEntityContext,0);
 };
 
-AssociationContext.prototype.secondDomainEntity = function () {
-    return this.getTypedRuleContext(SecondDomainEntityContext, 0);
+AssociationContext.prototype.secondDomainEntity = function() {
+    return this.getTypedRuleContext(SecondDomainEntityContext,0);
 };
 
-AssociationContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+AssociationContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-AssociationContext.prototype.entityConfiguration = function () {
-    return this.getTypedRuleContext(EntityConfigurationContext, 0);
+AssociationContext.prototype.entityConfiguration = function() {
+    return this.getTypedRuleContext(EntityConfigurationContext,0);
 };
 
-AssociationContext.prototype.property = function (i) {
-    if (i === undefined) {
+AssociationContext.prototype.property = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(PropertyContext);
     } else {
-        return this.getTypedRuleContext(PropertyContext, i);
+        return this.getTypedRuleContext(PropertyContext,i);
     }
 };
 
-AssociationContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+AssociationContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterAssociation(this);
-    }
+	}
 };
 
-AssociationContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+AssociationContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitAssociation(this);
-    }
+	}
 };
 
 
@@ -2020,7 +2020,7 @@ AssociationContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.AssociationContext = AssociationContext;
 
-MetaEdGrammar.prototype.association = function () {
+MetaEdGrammar.prototype.association = function() {
 
     var localctx = new AssociationContext(this, this._ctx, this.state);
     this.enterRule(localctx, 20, MetaEdGrammar.RULE_association);
@@ -2033,7 +2033,7 @@ MetaEdGrammar.prototype.association = function () {
         this.associationName();
         this.state = 311;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 310;
             this.metaEdId();
         }
@@ -2042,7 +2042,7 @@ MetaEdGrammar.prototype.association = function () {
         this.documentation();
         this.state = 315;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.CASCADE_UPDATE) {
+        if(_la===MetaEdGrammar.CASCADE_UPDATE) {
             this.state = 314;
             this.entityConfiguration();
         }
@@ -2054,7 +2054,7 @@ MetaEdGrammar.prototype.association = function () {
         this.state = 322;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        while (((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0)) {
+        while(((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0)) {
             this.state = 319;
             this.property();
             this.state = 324;
@@ -2062,13 +2062,13 @@ MetaEdGrammar.prototype.association = function () {
             _la = this._input.LA(1);
         }
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -2076,13 +2076,13 @@ MetaEdGrammar.prototype.association = function () {
 };
 
 function FirstDomainEntityContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_firstDomainEntity;
     return this;
@@ -2091,36 +2091,36 @@ function FirstDomainEntityContext(parser, parent, invokingState) {
 FirstDomainEntityContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 FirstDomainEntityContext.prototype.constructor = FirstDomainEntityContext;
 
-FirstDomainEntityContext.prototype.ASSOCIATION_DOMAIN_ENTITY = function () {
+FirstDomainEntityContext.prototype.ASSOCIATION_DOMAIN_ENTITY = function() {
     return this.getToken(MetaEdGrammar.ASSOCIATION_DOMAIN_ENTITY, 0);
 };
 
-FirstDomainEntityContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+FirstDomainEntityContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-FirstDomainEntityContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+FirstDomainEntityContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-FirstDomainEntityContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+FirstDomainEntityContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-FirstDomainEntityContext.prototype.withContext = function () {
-    return this.getTypedRuleContext(WithContextContext, 0);
+FirstDomainEntityContext.prototype.withContext = function() {
+    return this.getTypedRuleContext(WithContextContext,0);
 };
 
-FirstDomainEntityContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+FirstDomainEntityContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterFirstDomainEntity(this);
-    }
+	}
 };
 
-FirstDomainEntityContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+FirstDomainEntityContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitFirstDomainEntity(this);
-    }
+	}
 };
 
 
@@ -2128,7 +2128,7 @@ FirstDomainEntityContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.FirstDomainEntityContext = FirstDomainEntityContext;
 
-MetaEdGrammar.prototype.firstDomainEntity = function () {
+MetaEdGrammar.prototype.firstDomainEntity = function() {
 
     var localctx = new FirstDomainEntityContext(this, this._ctx, this.state);
     this.enterRule(localctx, 22, MetaEdGrammar.RULE_firstDomainEntity);
@@ -2141,7 +2141,7 @@ MetaEdGrammar.prototype.firstDomainEntity = function () {
         this.propertyName();
         this.state = 328;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 327;
             this.metaEdId();
         }
@@ -2150,19 +2150,19 @@ MetaEdGrammar.prototype.firstDomainEntity = function () {
         this.documentation();
         this.state = 332;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.WITH_CONTEXT) {
+        if(_la===MetaEdGrammar.WITH_CONTEXT) {
             this.state = 331;
             this.withContext();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -2170,13 +2170,13 @@ MetaEdGrammar.prototype.firstDomainEntity = function () {
 };
 
 function SecondDomainEntityContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_secondDomainEntity;
     return this;
@@ -2185,36 +2185,36 @@ function SecondDomainEntityContext(parser, parent, invokingState) {
 SecondDomainEntityContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 SecondDomainEntityContext.prototype.constructor = SecondDomainEntityContext;
 
-SecondDomainEntityContext.prototype.ASSOCIATION_DOMAIN_ENTITY = function () {
+SecondDomainEntityContext.prototype.ASSOCIATION_DOMAIN_ENTITY = function() {
     return this.getToken(MetaEdGrammar.ASSOCIATION_DOMAIN_ENTITY, 0);
 };
 
-SecondDomainEntityContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+SecondDomainEntityContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-SecondDomainEntityContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+SecondDomainEntityContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-SecondDomainEntityContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+SecondDomainEntityContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-SecondDomainEntityContext.prototype.withContext = function () {
-    return this.getTypedRuleContext(WithContextContext, 0);
+SecondDomainEntityContext.prototype.withContext = function() {
+    return this.getTypedRuleContext(WithContextContext,0);
 };
 
-SecondDomainEntityContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SecondDomainEntityContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterSecondDomainEntity(this);
-    }
+	}
 };
 
-SecondDomainEntityContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SecondDomainEntityContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitSecondDomainEntity(this);
-    }
+	}
 };
 
 
@@ -2222,7 +2222,7 @@ SecondDomainEntityContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.SecondDomainEntityContext = SecondDomainEntityContext;
 
-MetaEdGrammar.prototype.secondDomainEntity = function () {
+MetaEdGrammar.prototype.secondDomainEntity = function() {
 
     var localctx = new SecondDomainEntityContext(this, this._ctx, this.state);
     this.enterRule(localctx, 24, MetaEdGrammar.RULE_secondDomainEntity);
@@ -2235,7 +2235,7 @@ MetaEdGrammar.prototype.secondDomainEntity = function () {
         this.propertyName();
         this.state = 337;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 336;
             this.metaEdId();
         }
@@ -2244,19 +2244,19 @@ MetaEdGrammar.prototype.secondDomainEntity = function () {
         this.documentation();
         this.state = 341;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.WITH_CONTEXT) {
+        if(_la===MetaEdGrammar.WITH_CONTEXT) {
             this.state = 340;
             this.withContext();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -2264,13 +2264,13 @@ MetaEdGrammar.prototype.secondDomainEntity = function () {
 };
 
 function AssociationExtensionContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_associationExtension;
     return this;
@@ -2279,43 +2279,43 @@ function AssociationExtensionContext(parser, parent, invokingState) {
 AssociationExtensionContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 AssociationExtensionContext.prototype.constructor = AssociationExtensionContext;
 
-AssociationExtensionContext.prototype.ASSOCIATION = function () {
+AssociationExtensionContext.prototype.ASSOCIATION = function() {
     return this.getToken(MetaEdGrammar.ASSOCIATION, 0);
 };
 
-AssociationExtensionContext.prototype.extendeeName = function () {
-    return this.getTypedRuleContext(ExtendeeNameContext, 0);
+AssociationExtensionContext.prototype.extendeeName = function() {
+    return this.getTypedRuleContext(ExtendeeNameContext,0);
 };
 
-AssociationExtensionContext.prototype.ADDITIONS = function () {
+AssociationExtensionContext.prototype.ADDITIONS = function() {
     return this.getToken(MetaEdGrammar.ADDITIONS, 0);
 };
 
-AssociationExtensionContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+AssociationExtensionContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-AssociationExtensionContext.prototype.property = function (i) {
-    if (i === undefined) {
+AssociationExtensionContext.prototype.property = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(PropertyContext);
     } else {
-        return this.getTypedRuleContext(PropertyContext, i);
+        return this.getTypedRuleContext(PropertyContext,i);
     }
 };
 
-AssociationExtensionContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+AssociationExtensionContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterAssociationExtension(this);
-    }
+	}
 };
 
-AssociationExtensionContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+AssociationExtensionContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitAssociationExtension(this);
-    }
+	}
 };
 
 
@@ -2323,7 +2323,7 @@ AssociationExtensionContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.AssociationExtensionContext = AssociationExtensionContext;
 
-MetaEdGrammar.prototype.associationExtension = function () {
+MetaEdGrammar.prototype.associationExtension = function() {
 
     var localctx = new AssociationExtensionContext(this, this._ctx, this.state);
     this.enterRule(localctx, 26, MetaEdGrammar.RULE_associationExtension);
@@ -2338,29 +2338,29 @@ MetaEdGrammar.prototype.associationExtension = function () {
         this.match(MetaEdGrammar.ADDITIONS);
         this.state = 347;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 346;
             this.metaEdId();
         }
 
-        this.state = 350;
+        this.state = 350; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 349;
             this.property();
-            this.state = 352;
+            this.state = 352; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
+        } while(((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -2368,13 +2368,13 @@ MetaEdGrammar.prototype.associationExtension = function () {
 };
 
 function AssociationSubclassContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_associationSubclass;
     return this;
@@ -2383,51 +2383,51 @@ function AssociationSubclassContext(parser, parent, invokingState) {
 AssociationSubclassContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 AssociationSubclassContext.prototype.constructor = AssociationSubclassContext;
 
-AssociationSubclassContext.prototype.ASSOCIATION = function () {
+AssociationSubclassContext.prototype.ASSOCIATION = function() {
     return this.getToken(MetaEdGrammar.ASSOCIATION, 0);
 };
 
-AssociationSubclassContext.prototype.associationName = function () {
-    return this.getTypedRuleContext(AssociationNameContext, 0);
+AssociationSubclassContext.prototype.associationName = function() {
+    return this.getTypedRuleContext(AssociationNameContext,0);
 };
 
-AssociationSubclassContext.prototype.BASED_ON = function () {
+AssociationSubclassContext.prototype.BASED_ON = function() {
     return this.getToken(MetaEdGrammar.BASED_ON, 0);
 };
 
-AssociationSubclassContext.prototype.baseName = function () {
-    return this.getTypedRuleContext(BaseNameContext, 0);
+AssociationSubclassContext.prototype.baseName = function() {
+    return this.getTypedRuleContext(BaseNameContext,0);
 };
 
-AssociationSubclassContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+AssociationSubclassContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-AssociationSubclassContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+AssociationSubclassContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-AssociationSubclassContext.prototype.property = function (i) {
-    if (i === undefined) {
+AssociationSubclassContext.prototype.property = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(PropertyContext);
     } else {
-        return this.getTypedRuleContext(PropertyContext, i);
+        return this.getTypedRuleContext(PropertyContext,i);
     }
 };
 
-AssociationSubclassContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+AssociationSubclassContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterAssociationSubclass(this);
-    }
+	}
 };
 
-AssociationSubclassContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+AssociationSubclassContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitAssociationSubclass(this);
-    }
+	}
 };
 
 
@@ -2435,7 +2435,7 @@ AssociationSubclassContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.AssociationSubclassContext = AssociationSubclassContext;
 
-MetaEdGrammar.prototype.associationSubclass = function () {
+MetaEdGrammar.prototype.associationSubclass = function() {
 
     var localctx = new AssociationSubclassContext(this, this._ctx, this.state);
     this.enterRule(localctx, 28, MetaEdGrammar.RULE_associationSubclass);
@@ -2452,31 +2452,31 @@ MetaEdGrammar.prototype.associationSubclass = function () {
         this.baseName();
         this.state = 359;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 358;
             this.metaEdId();
         }
 
         this.state = 361;
         this.documentation();
-        this.state = 363;
+        this.state = 363; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 362;
             this.property();
-            this.state = 365;
+            this.state = 365; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
+        } while(((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -2484,13 +2484,13 @@ MetaEdGrammar.prototype.associationSubclass = function () {
 };
 
 function ChoiceTypeContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_choiceType;
     return this;
@@ -2499,43 +2499,43 @@ function ChoiceTypeContext(parser, parent, invokingState) {
 ChoiceTypeContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 ChoiceTypeContext.prototype.constructor = ChoiceTypeContext;
 
-ChoiceTypeContext.prototype.CHOICE_TYPE = function () {
+ChoiceTypeContext.prototype.CHOICE_TYPE = function() {
     return this.getToken(MetaEdGrammar.CHOICE_TYPE, 0);
 };
 
-ChoiceTypeContext.prototype.choiceName = function () {
-    return this.getTypedRuleContext(ChoiceNameContext, 0);
+ChoiceTypeContext.prototype.choiceName = function() {
+    return this.getTypedRuleContext(ChoiceNameContext,0);
 };
 
-ChoiceTypeContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+ChoiceTypeContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-ChoiceTypeContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+ChoiceTypeContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-ChoiceTypeContext.prototype.property = function (i) {
-    if (i === undefined) {
+ChoiceTypeContext.prototype.property = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(PropertyContext);
     } else {
-        return this.getTypedRuleContext(PropertyContext, i);
+        return this.getTypedRuleContext(PropertyContext,i);
     }
 };
 
-ChoiceTypeContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ChoiceTypeContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterChoiceType(this);
-    }
+	}
 };
 
-ChoiceTypeContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ChoiceTypeContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitChoiceType(this);
-    }
+	}
 };
 
 
@@ -2543,7 +2543,7 @@ ChoiceTypeContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.ChoiceTypeContext = ChoiceTypeContext;
 
-MetaEdGrammar.prototype.choiceType = function () {
+MetaEdGrammar.prototype.choiceType = function() {
 
     var localctx = new ChoiceTypeContext(this, this._ctx, this.state);
     this.enterRule(localctx, 30, MetaEdGrammar.RULE_choiceType);
@@ -2556,31 +2556,31 @@ MetaEdGrammar.prototype.choiceType = function () {
         this.choiceName();
         this.state = 370;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 369;
             this.metaEdId();
         }
 
         this.state = 372;
         this.documentation();
-        this.state = 374;
+        this.state = 374; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 373;
             this.property();
-            this.state = 376;
+            this.state = 376; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
+        } while(((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -2588,13 +2588,13 @@ MetaEdGrammar.prototype.choiceType = function () {
 };
 
 function CommonDecimalContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_commonDecimal;
     return this;
@@ -2603,48 +2603,48 @@ function CommonDecimalContext(parser, parent, invokingState) {
 CommonDecimalContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CommonDecimalContext.prototype.constructor = CommonDecimalContext;
 
-CommonDecimalContext.prototype.COMMON_DECIMAL = function () {
+CommonDecimalContext.prototype.COMMON_DECIMAL = function() {
     return this.getToken(MetaEdGrammar.COMMON_DECIMAL, 0);
 };
 
-CommonDecimalContext.prototype.commonDecimalName = function () {
-    return this.getTypedRuleContext(CommonDecimalNameContext, 0);
+CommonDecimalContext.prototype.commonDecimalName = function() {
+    return this.getTypedRuleContext(CommonDecimalNameContext,0);
 };
 
-CommonDecimalContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+CommonDecimalContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-CommonDecimalContext.prototype.totalDigits = function () {
-    return this.getTypedRuleContext(TotalDigitsContext, 0);
+CommonDecimalContext.prototype.totalDigits = function() {
+    return this.getTypedRuleContext(TotalDigitsContext,0);
 };
 
-CommonDecimalContext.prototype.decimalPlaces = function () {
-    return this.getTypedRuleContext(DecimalPlacesContext, 0);
+CommonDecimalContext.prototype.decimalPlaces = function() {
+    return this.getTypedRuleContext(DecimalPlacesContext,0);
 };
 
-CommonDecimalContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+CommonDecimalContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-CommonDecimalContext.prototype.minValueDecimal = function () {
-    return this.getTypedRuleContext(MinValueDecimalContext, 0);
+CommonDecimalContext.prototype.minValueDecimal = function() {
+    return this.getTypedRuleContext(MinValueDecimalContext,0);
 };
 
-CommonDecimalContext.prototype.maxValueDecimal = function () {
-    return this.getTypedRuleContext(MaxValueDecimalContext, 0);
+CommonDecimalContext.prototype.maxValueDecimal = function() {
+    return this.getTypedRuleContext(MaxValueDecimalContext,0);
 };
 
-CommonDecimalContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonDecimalContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCommonDecimal(this);
-    }
+	}
 };
 
-CommonDecimalContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonDecimalContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCommonDecimal(this);
-    }
+	}
 };
 
 
@@ -2652,7 +2652,7 @@ CommonDecimalContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CommonDecimalContext = CommonDecimalContext;
 
-MetaEdGrammar.prototype.commonDecimal = function () {
+MetaEdGrammar.prototype.commonDecimal = function() {
 
     var localctx = new CommonDecimalContext(this, this._ctx, this.state);
     this.enterRule(localctx, 32, MetaEdGrammar.RULE_commonDecimal);
@@ -2665,7 +2665,7 @@ MetaEdGrammar.prototype.commonDecimal = function () {
         this.commonDecimalName();
         this.state = 381;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 380;
             this.metaEdId();
         }
@@ -2678,26 +2678,26 @@ MetaEdGrammar.prototype.commonDecimal = function () {
         this.decimalPlaces();
         this.state = 387;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MIN_VALUE) {
+        if(_la===MetaEdGrammar.MIN_VALUE) {
             this.state = 386;
             this.minValueDecimal();
         }
 
         this.state = 390;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MAX_VALUE) {
+        if(_la===MetaEdGrammar.MAX_VALUE) {
             this.state = 389;
             this.maxValueDecimal();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -2705,13 +2705,13 @@ MetaEdGrammar.prototype.commonDecimal = function () {
 };
 
 function CommonIntegerContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_commonInteger;
     return this;
@@ -2720,40 +2720,40 @@ function CommonIntegerContext(parser, parent, invokingState) {
 CommonIntegerContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CommonIntegerContext.prototype.constructor = CommonIntegerContext;
 
-CommonIntegerContext.prototype.COMMON_INTEGER = function () {
+CommonIntegerContext.prototype.COMMON_INTEGER = function() {
     return this.getToken(MetaEdGrammar.COMMON_INTEGER, 0);
 };
 
-CommonIntegerContext.prototype.commonIntegerName = function () {
-    return this.getTypedRuleContext(CommonIntegerNameContext, 0);
+CommonIntegerContext.prototype.commonIntegerName = function() {
+    return this.getTypedRuleContext(CommonIntegerNameContext,0);
 };
 
-CommonIntegerContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+CommonIntegerContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-CommonIntegerContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+CommonIntegerContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-CommonIntegerContext.prototype.minValue = function () {
-    return this.getTypedRuleContext(MinValueContext, 0);
+CommonIntegerContext.prototype.minValue = function() {
+    return this.getTypedRuleContext(MinValueContext,0);
 };
 
-CommonIntegerContext.prototype.maxValue = function () {
-    return this.getTypedRuleContext(MaxValueContext, 0);
+CommonIntegerContext.prototype.maxValue = function() {
+    return this.getTypedRuleContext(MaxValueContext,0);
 };
 
-CommonIntegerContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonIntegerContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCommonInteger(this);
-    }
+	}
 };
 
-CommonIntegerContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonIntegerContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCommonInteger(this);
-    }
+	}
 };
 
 
@@ -2761,7 +2761,7 @@ CommonIntegerContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CommonIntegerContext = CommonIntegerContext;
 
-MetaEdGrammar.prototype.commonInteger = function () {
+MetaEdGrammar.prototype.commonInteger = function() {
 
     var localctx = new CommonIntegerContext(this, this._ctx, this.state);
     this.enterRule(localctx, 34, MetaEdGrammar.RULE_commonInteger);
@@ -2774,7 +2774,7 @@ MetaEdGrammar.prototype.commonInteger = function () {
         this.commonIntegerName();
         this.state = 395;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 394;
             this.metaEdId();
         }
@@ -2783,26 +2783,26 @@ MetaEdGrammar.prototype.commonInteger = function () {
         this.documentation();
         this.state = 399;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MIN_VALUE) {
+        if(_la===MetaEdGrammar.MIN_VALUE) {
             this.state = 398;
             this.minValue();
         }
 
         this.state = 402;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MAX_VALUE) {
+        if(_la===MetaEdGrammar.MAX_VALUE) {
             this.state = 401;
             this.maxValue();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -2810,13 +2810,13 @@ MetaEdGrammar.prototype.commonInteger = function () {
 };
 
 function CommonShortContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_commonShort;
     return this;
@@ -2825,40 +2825,40 @@ function CommonShortContext(parser, parent, invokingState) {
 CommonShortContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CommonShortContext.prototype.constructor = CommonShortContext;
 
-CommonShortContext.prototype.COMMON_SHORT = function () {
+CommonShortContext.prototype.COMMON_SHORT = function() {
     return this.getToken(MetaEdGrammar.COMMON_SHORT, 0);
 };
 
-CommonShortContext.prototype.commonShortName = function () {
-    return this.getTypedRuleContext(CommonShortNameContext, 0);
+CommonShortContext.prototype.commonShortName = function() {
+    return this.getTypedRuleContext(CommonShortNameContext,0);
 };
 
-CommonShortContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+CommonShortContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-CommonShortContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+CommonShortContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-CommonShortContext.prototype.minValue = function () {
-    return this.getTypedRuleContext(MinValueContext, 0);
+CommonShortContext.prototype.minValue = function() {
+    return this.getTypedRuleContext(MinValueContext,0);
 };
 
-CommonShortContext.prototype.maxValue = function () {
-    return this.getTypedRuleContext(MaxValueContext, 0);
+CommonShortContext.prototype.maxValue = function() {
+    return this.getTypedRuleContext(MaxValueContext,0);
 };
 
-CommonShortContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonShortContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCommonShort(this);
-    }
+	}
 };
 
-CommonShortContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonShortContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCommonShort(this);
-    }
+	}
 };
 
 
@@ -2866,7 +2866,7 @@ CommonShortContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CommonShortContext = CommonShortContext;
 
-MetaEdGrammar.prototype.commonShort = function () {
+MetaEdGrammar.prototype.commonShort = function() {
 
     var localctx = new CommonShortContext(this, this._ctx, this.state);
     this.enterRule(localctx, 36, MetaEdGrammar.RULE_commonShort);
@@ -2879,7 +2879,7 @@ MetaEdGrammar.prototype.commonShort = function () {
         this.commonShortName();
         this.state = 407;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 406;
             this.metaEdId();
         }
@@ -2888,26 +2888,26 @@ MetaEdGrammar.prototype.commonShort = function () {
         this.documentation();
         this.state = 411;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MIN_VALUE) {
+        if(_la===MetaEdGrammar.MIN_VALUE) {
             this.state = 410;
             this.minValue();
         }
 
         this.state = 414;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MAX_VALUE) {
+        if(_la===MetaEdGrammar.MAX_VALUE) {
             this.state = 413;
             this.maxValue();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -2915,13 +2915,13 @@ MetaEdGrammar.prototype.commonShort = function () {
 };
 
 function CommonStringContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_commonString;
     return this;
@@ -2930,40 +2930,40 @@ function CommonStringContext(parser, parent, invokingState) {
 CommonStringContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CommonStringContext.prototype.constructor = CommonStringContext;
 
-CommonStringContext.prototype.COMMON_STRING = function () {
+CommonStringContext.prototype.COMMON_STRING = function() {
     return this.getToken(MetaEdGrammar.COMMON_STRING, 0);
 };
 
-CommonStringContext.prototype.commonStringName = function () {
-    return this.getTypedRuleContext(CommonStringNameContext, 0);
+CommonStringContext.prototype.commonStringName = function() {
+    return this.getTypedRuleContext(CommonStringNameContext,0);
 };
 
-CommonStringContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+CommonStringContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-CommonStringContext.prototype.maxLength = function () {
-    return this.getTypedRuleContext(MaxLengthContext, 0);
+CommonStringContext.prototype.maxLength = function() {
+    return this.getTypedRuleContext(MaxLengthContext,0);
 };
 
-CommonStringContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+CommonStringContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-CommonStringContext.prototype.minLength = function () {
-    return this.getTypedRuleContext(MinLengthContext, 0);
+CommonStringContext.prototype.minLength = function() {
+    return this.getTypedRuleContext(MinLengthContext,0);
 };
 
-CommonStringContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonStringContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCommonString(this);
-    }
+	}
 };
 
-CommonStringContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonStringContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCommonString(this);
-    }
+	}
 };
 
 
@@ -2971,7 +2971,7 @@ CommonStringContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CommonStringContext = CommonStringContext;
 
-MetaEdGrammar.prototype.commonString = function () {
+MetaEdGrammar.prototype.commonString = function() {
 
     var localctx = new CommonStringContext(this, this._ctx, this.state);
     this.enterRule(localctx, 38, MetaEdGrammar.RULE_commonString);
@@ -2984,7 +2984,7 @@ MetaEdGrammar.prototype.commonString = function () {
         this.commonStringName();
         this.state = 419;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 418;
             this.metaEdId();
         }
@@ -2993,7 +2993,7 @@ MetaEdGrammar.prototype.commonString = function () {
         this.documentation();
         this.state = 423;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MIN_LENGTH) {
+        if(_la===MetaEdGrammar.MIN_LENGTH) {
             this.state = 422;
             this.minLength();
         }
@@ -3001,13 +3001,13 @@ MetaEdGrammar.prototype.commonString = function () {
         this.state = 425;
         this.maxLength();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -3015,13 +3015,13 @@ MetaEdGrammar.prototype.commonString = function () {
 };
 
 function CommonTypeContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_commonType;
     return this;
@@ -3030,43 +3030,43 @@ function CommonTypeContext(parser, parent, invokingState) {
 CommonTypeContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CommonTypeContext.prototype.constructor = CommonTypeContext;
 
-CommonTypeContext.prototype.COMMON_TYPE = function () {
+CommonTypeContext.prototype.COMMON_TYPE = function() {
     return this.getToken(MetaEdGrammar.COMMON_TYPE, 0);
 };
 
-CommonTypeContext.prototype.commonName = function () {
-    return this.getTypedRuleContext(CommonNameContext, 0);
+CommonTypeContext.prototype.commonName = function() {
+    return this.getTypedRuleContext(CommonNameContext,0);
 };
 
-CommonTypeContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+CommonTypeContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-CommonTypeContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+CommonTypeContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-CommonTypeContext.prototype.property = function (i) {
-    if (i === undefined) {
+CommonTypeContext.prototype.property = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(PropertyContext);
     } else {
-        return this.getTypedRuleContext(PropertyContext, i);
+        return this.getTypedRuleContext(PropertyContext,i);
     }
 };
 
-CommonTypeContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonTypeContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCommonType(this);
-    }
+	}
 };
 
-CommonTypeContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonTypeContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCommonType(this);
-    }
+	}
 };
 
 
@@ -3074,7 +3074,7 @@ CommonTypeContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CommonTypeContext = CommonTypeContext;
 
-MetaEdGrammar.prototype.commonType = function () {
+MetaEdGrammar.prototype.commonType = function() {
 
     var localctx = new CommonTypeContext(this, this._ctx, this.state);
     this.enterRule(localctx, 40, MetaEdGrammar.RULE_commonType);
@@ -3087,31 +3087,31 @@ MetaEdGrammar.prototype.commonType = function () {
         this.commonName();
         this.state = 430;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 429;
             this.metaEdId();
         }
 
         this.state = 432;
         this.documentation();
-        this.state = 434;
+        this.state = 434; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 433;
             this.property();
-            this.state = 436;
+            this.state = 436; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
+        } while(((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -3119,13 +3119,13 @@ MetaEdGrammar.prototype.commonType = function () {
 };
 
 function CommonTypeExtensionContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_commonTypeExtension;
     return this;
@@ -3134,43 +3134,43 @@ function CommonTypeExtensionContext(parser, parent, invokingState) {
 CommonTypeExtensionContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CommonTypeExtensionContext.prototype.constructor = CommonTypeExtensionContext;
 
-CommonTypeExtensionContext.prototype.COMMON_TYPE = function () {
+CommonTypeExtensionContext.prototype.COMMON_TYPE = function() {
     return this.getToken(MetaEdGrammar.COMMON_TYPE, 0);
 };
 
-CommonTypeExtensionContext.prototype.extendeeName = function () {
-    return this.getTypedRuleContext(ExtendeeNameContext, 0);
+CommonTypeExtensionContext.prototype.extendeeName = function() {
+    return this.getTypedRuleContext(ExtendeeNameContext,0);
 };
 
-CommonTypeExtensionContext.prototype.ADDITIONS = function () {
+CommonTypeExtensionContext.prototype.ADDITIONS = function() {
     return this.getToken(MetaEdGrammar.ADDITIONS, 0);
 };
 
-CommonTypeExtensionContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+CommonTypeExtensionContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-CommonTypeExtensionContext.prototype.property = function (i) {
-    if (i === undefined) {
+CommonTypeExtensionContext.prototype.property = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(PropertyContext);
     } else {
-        return this.getTypedRuleContext(PropertyContext, i);
+        return this.getTypedRuleContext(PropertyContext,i);
     }
 };
 
-CommonTypeExtensionContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonTypeExtensionContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCommonTypeExtension(this);
-    }
+	}
 };
 
-CommonTypeExtensionContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonTypeExtensionContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCommonTypeExtension(this);
-    }
+	}
 };
 
 
@@ -3178,7 +3178,7 @@ CommonTypeExtensionContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CommonTypeExtensionContext = CommonTypeExtensionContext;
 
-MetaEdGrammar.prototype.commonTypeExtension = function () {
+MetaEdGrammar.prototype.commonTypeExtension = function() {
 
     var localctx = new CommonTypeExtensionContext(this, this._ctx, this.state);
     this.enterRule(localctx, 42, MetaEdGrammar.RULE_commonTypeExtension);
@@ -3193,29 +3193,29 @@ MetaEdGrammar.prototype.commonTypeExtension = function () {
         this.match(MetaEdGrammar.ADDITIONS);
         this.state = 442;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 441;
             this.metaEdId();
         }
 
-        this.state = 445;
+        this.state = 445; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 444;
             this.property();
-            this.state = 447;
+            this.state = 447; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
+        } while(((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -3223,13 +3223,13 @@ MetaEdGrammar.prototype.commonTypeExtension = function () {
 };
 
 function DescriptorContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_descriptor;
     return this;
@@ -3238,47 +3238,47 @@ function DescriptorContext(parser, parent, invokingState) {
 DescriptorContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DescriptorContext.prototype.constructor = DescriptorContext;
 
-DescriptorContext.prototype.DESCRIPTOR_ENTITY = function () {
+DescriptorContext.prototype.DESCRIPTOR_ENTITY = function() {
     return this.getToken(MetaEdGrammar.DESCRIPTOR_ENTITY, 0);
 };
 
-DescriptorContext.prototype.descriptorName = function () {
-    return this.getTypedRuleContext(DescriptorNameContext, 0);
+DescriptorContext.prototype.descriptorName = function() {
+    return this.getTypedRuleContext(DescriptorNameContext,0);
 };
 
-DescriptorContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+DescriptorContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-DescriptorContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+DescriptorContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-DescriptorContext.prototype.property = function (i) {
-    if (i === undefined) {
+DescriptorContext.prototype.property = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(PropertyContext);
     } else {
-        return this.getTypedRuleContext(PropertyContext, i);
+        return this.getTypedRuleContext(PropertyContext,i);
     }
 };
 
-DescriptorContext.prototype.withMapType = function () {
-    return this.getTypedRuleContext(WithMapTypeContext, 0);
+DescriptorContext.prototype.withMapType = function() {
+    return this.getTypedRuleContext(WithMapTypeContext,0);
 };
 
-DescriptorContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DescriptorContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDescriptor(this);
-    }
+	}
 };
 
-DescriptorContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DescriptorContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDescriptor(this);
-    }
+	}
 };
 
 
@@ -3286,7 +3286,7 @@ DescriptorContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DescriptorContext = DescriptorContext;
 
-MetaEdGrammar.prototype.descriptor = function () {
+MetaEdGrammar.prototype.descriptor = function() {
 
     var localctx = new DescriptorContext(this, this._ctx, this.state);
     this.enterRule(localctx, 44, MetaEdGrammar.RULE_descriptor);
@@ -3299,7 +3299,7 @@ MetaEdGrammar.prototype.descriptor = function () {
         this.descriptorName();
         this.state = 452;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 451;
             this.metaEdId();
         }
@@ -3309,7 +3309,7 @@ MetaEdGrammar.prototype.descriptor = function () {
         this.state = 458;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        while (((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0)) {
+        while(((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0)) {
             this.state = 455;
             this.property();
             this.state = 460;
@@ -3318,19 +3318,19 @@ MetaEdGrammar.prototype.descriptor = function () {
         }
         this.state = 462;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.WITH_OPTIONAL_MAP_TYPE || _la === MetaEdGrammar.WITH_MAP_TYPE) {
+        if(_la===MetaEdGrammar.WITH_OPTIONAL_MAP_TYPE || _la===MetaEdGrammar.WITH_MAP_TYPE) {
             this.state = 461;
             this.withMapType();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -3338,13 +3338,13 @@ MetaEdGrammar.prototype.descriptor = function () {
 };
 
 function WithMapTypeContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_withMapType;
     return this;
@@ -3353,39 +3353,39 @@ function WithMapTypeContext(parser, parent, invokingState) {
 WithMapTypeContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 WithMapTypeContext.prototype.constructor = WithMapTypeContext;
 
-WithMapTypeContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+WithMapTypeContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-WithMapTypeContext.prototype.requiredMapType = function () {
-    return this.getTypedRuleContext(RequiredMapTypeContext, 0);
+WithMapTypeContext.prototype.requiredMapType = function() {
+    return this.getTypedRuleContext(RequiredMapTypeContext,0);
 };
 
-WithMapTypeContext.prototype.optionalMapType = function () {
-    return this.getTypedRuleContext(OptionalMapTypeContext, 0);
+WithMapTypeContext.prototype.optionalMapType = function() {
+    return this.getTypedRuleContext(OptionalMapTypeContext,0);
 };
 
-WithMapTypeContext.prototype.enumerationItem = function (i) {
-    if (i === undefined) {
+WithMapTypeContext.prototype.enumerationItem = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(EnumerationItemContext);
     } else {
-        return this.getTypedRuleContext(EnumerationItemContext, i);
+        return this.getTypedRuleContext(EnumerationItemContext,i);
     }
 };
 
-WithMapTypeContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+WithMapTypeContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterWithMapType(this);
-    }
+	}
 };
 
-WithMapTypeContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+WithMapTypeContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitWithMapType(this);
-    }
+	}
 };
 
 
@@ -3393,7 +3393,7 @@ WithMapTypeContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.WithMapTypeContext = WithMapTypeContext;
 
-MetaEdGrammar.prototype.withMapType = function () {
+MetaEdGrammar.prototype.withMapType = function() {
 
     var localctx = new WithMapTypeContext(this, this._ctx, this.state);
     this.enterRule(localctx, 46, MetaEdGrammar.RULE_withMapType);
@@ -3401,38 +3401,38 @@ MetaEdGrammar.prototype.withMapType = function () {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 466;
-        switch (this._input.LA(1)) {
-            case MetaEdGrammar.WITH_MAP_TYPE:
-                this.state = 464;
-                this.requiredMapType();
-                break;
-            case MetaEdGrammar.WITH_OPTIONAL_MAP_TYPE:
-                this.state = 465;
-                this.optionalMapType();
-                break;
-            default:
-                throw new antlr4.error.NoViableAltException(this);
+        switch(this._input.LA(1)) {
+        case MetaEdGrammar.WITH_MAP_TYPE:
+            this.state = 464;
+            this.requiredMapType();
+            break;
+        case MetaEdGrammar.WITH_OPTIONAL_MAP_TYPE:
+            this.state = 465;
+            this.optionalMapType();
+            break;
+        default:
+            throw new antlr4.error.NoViableAltException(this);
         }
         this.state = 468;
         this.documentation();
-        this.state = 470;
+        this.state = 470; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 469;
             this.enumerationItem();
-            this.state = 472;
+            this.state = 472; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (_la === MetaEdGrammar.ENUMERATION_ITEM);
+        } while(_la===MetaEdGrammar.ENUMERATION_ITEM);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -3440,13 +3440,13 @@ MetaEdGrammar.prototype.withMapType = function () {
 };
 
 function RequiredMapTypeContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_requiredMapType;
     return this;
@@ -3455,20 +3455,20 @@ function RequiredMapTypeContext(parser, parent, invokingState) {
 RequiredMapTypeContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 RequiredMapTypeContext.prototype.constructor = RequiredMapTypeContext;
 
-RequiredMapTypeContext.prototype.WITH_MAP_TYPE = function () {
+RequiredMapTypeContext.prototype.WITH_MAP_TYPE = function() {
     return this.getToken(MetaEdGrammar.WITH_MAP_TYPE, 0);
 };
 
-RequiredMapTypeContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+RequiredMapTypeContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterRequiredMapType(this);
-    }
+	}
 };
 
-RequiredMapTypeContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+RequiredMapTypeContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitRequiredMapType(this);
-    }
+	}
 };
 
 
@@ -3476,7 +3476,7 @@ RequiredMapTypeContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.RequiredMapTypeContext = RequiredMapTypeContext;
 
-MetaEdGrammar.prototype.requiredMapType = function () {
+MetaEdGrammar.prototype.requiredMapType = function() {
 
     var localctx = new RequiredMapTypeContext(this, this._ctx, this.state);
     this.enterRule(localctx, 48, MetaEdGrammar.RULE_requiredMapType);
@@ -3485,13 +3485,13 @@ MetaEdGrammar.prototype.requiredMapType = function () {
         this.state = 474;
         this.match(MetaEdGrammar.WITH_MAP_TYPE);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -3499,13 +3499,13 @@ MetaEdGrammar.prototype.requiredMapType = function () {
 };
 
 function OptionalMapTypeContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_optionalMapType;
     return this;
@@ -3514,20 +3514,20 @@ function OptionalMapTypeContext(parser, parent, invokingState) {
 OptionalMapTypeContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 OptionalMapTypeContext.prototype.constructor = OptionalMapTypeContext;
 
-OptionalMapTypeContext.prototype.WITH_OPTIONAL_MAP_TYPE = function () {
+OptionalMapTypeContext.prototype.WITH_OPTIONAL_MAP_TYPE = function() {
     return this.getToken(MetaEdGrammar.WITH_OPTIONAL_MAP_TYPE, 0);
 };
 
-OptionalMapTypeContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+OptionalMapTypeContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterOptionalMapType(this);
-    }
+	}
 };
 
-OptionalMapTypeContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+OptionalMapTypeContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitOptionalMapType(this);
-    }
+	}
 };
 
 
@@ -3535,7 +3535,7 @@ OptionalMapTypeContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.OptionalMapTypeContext = OptionalMapTypeContext;
 
-MetaEdGrammar.prototype.optionalMapType = function () {
+MetaEdGrammar.prototype.optionalMapType = function() {
 
     var localctx = new OptionalMapTypeContext(this, this._ctx, this.state);
     this.enterRule(localctx, 50, MetaEdGrammar.RULE_optionalMapType);
@@ -3544,13 +3544,13 @@ MetaEdGrammar.prototype.optionalMapType = function () {
         this.state = 476;
         this.match(MetaEdGrammar.WITH_OPTIONAL_MAP_TYPE);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -3558,13 +3558,13 @@ MetaEdGrammar.prototype.optionalMapType = function () {
 };
 
 function DomainContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_domain;
     return this;
@@ -3573,47 +3573,47 @@ function DomainContext(parser, parent, invokingState) {
 DomainContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DomainContext.prototype.constructor = DomainContext;
 
-DomainContext.prototype.DOMAIN = function () {
+DomainContext.prototype.DOMAIN = function() {
     return this.getToken(MetaEdGrammar.DOMAIN, 0);
 };
 
-DomainContext.prototype.domainName = function () {
-    return this.getTypedRuleContext(DomainNameContext, 0);
+DomainContext.prototype.domainName = function() {
+    return this.getTypedRuleContext(DomainNameContext,0);
 };
 
-DomainContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+DomainContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-DomainContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+DomainContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-DomainContext.prototype.domainItem = function (i) {
-    if (i === undefined) {
+DomainContext.prototype.domainItem = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(DomainItemContext);
     } else {
-        return this.getTypedRuleContext(DomainItemContext, i);
+        return this.getTypedRuleContext(DomainItemContext,i);
     }
 };
 
-DomainContext.prototype.footerDocumentation = function () {
-    return this.getTypedRuleContext(FooterDocumentationContext, 0);
+DomainContext.prototype.footerDocumentation = function() {
+    return this.getTypedRuleContext(FooterDocumentationContext,0);
 };
 
-DomainContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DomainContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDomain(this);
-    }
+	}
 };
 
-DomainContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DomainContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDomain(this);
-    }
+	}
 };
 
 
@@ -3621,7 +3621,7 @@ DomainContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DomainContext = DomainContext;
 
-MetaEdGrammar.prototype.domain = function () {
+MetaEdGrammar.prototype.domain = function() {
 
     var localctx = new DomainContext(this, this._ctx, this.state);
     this.enterRule(localctx, 52, MetaEdGrammar.RULE_domain);
@@ -3634,38 +3634,38 @@ MetaEdGrammar.prototype.domain = function () {
         this.domainName();
         this.state = 481;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 480;
             this.metaEdId();
         }
 
         this.state = 483;
         this.documentation();
-        this.state = 485;
+        this.state = 485; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 484;
             this.domainItem();
-            this.state = 487;
+            this.state = 487; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (_la === MetaEdGrammar.DOMAIN_ITEM);
+        } while(_la===MetaEdGrammar.DOMAIN_ITEM);
         this.state = 490;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.FOOTER_DOCUMENTATION) {
+        if(_la===MetaEdGrammar.FOOTER_DOCUMENTATION) {
             this.state = 489;
             this.footerDocumentation();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -3673,13 +3673,13 @@ MetaEdGrammar.prototype.domain = function () {
 };
 
 function DomainItemContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_domainItem;
     return this;
@@ -3688,28 +3688,28 @@ function DomainItemContext(parser, parent, invokingState) {
 DomainItemContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DomainItemContext.prototype.constructor = DomainItemContext;
 
-DomainItemContext.prototype.DOMAIN_ITEM = function () {
+DomainItemContext.prototype.DOMAIN_ITEM = function() {
     return this.getToken(MetaEdGrammar.DOMAIN_ITEM, 0);
 };
 
-DomainItemContext.prototype.ID = function () {
+DomainItemContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-DomainItemContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+DomainItemContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-DomainItemContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DomainItemContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDomainItem(this);
-    }
+	}
 };
 
-DomainItemContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DomainItemContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDomainItem(this);
-    }
+	}
 };
 
 
@@ -3717,7 +3717,7 @@ DomainItemContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DomainItemContext = DomainItemContext;
 
-MetaEdGrammar.prototype.domainItem = function () {
+MetaEdGrammar.prototype.domainItem = function() {
 
     var localctx = new DomainItemContext(this, this._ctx, this.state);
     this.enterRule(localctx, 54, MetaEdGrammar.RULE_domainItem);
@@ -3730,19 +3730,19 @@ MetaEdGrammar.prototype.domainItem = function () {
         this.match(MetaEdGrammar.ID);
         this.state = 495;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 494;
             this.metaEdId();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -3750,13 +3750,13 @@ MetaEdGrammar.prototype.domainItem = function () {
 };
 
 function FooterDocumentationContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_footerDocumentation;
     return this;
@@ -3765,15 +3765,15 @@ function FooterDocumentationContext(parser, parent, invokingState) {
 FooterDocumentationContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 FooterDocumentationContext.prototype.constructor = FooterDocumentationContext;
 
-FooterDocumentationContext.prototype.FOOTER_DOCUMENTATION = function () {
+FooterDocumentationContext.prototype.FOOTER_DOCUMENTATION = function() {
     return this.getToken(MetaEdGrammar.FOOTER_DOCUMENTATION, 0);
 };
 
-FooterDocumentationContext.prototype.DOCUMENTATION_START = function (i) {
-    if (i === undefined) {
-        i = null;
-    }
-    if (i === null) {
+FooterDocumentationContext.prototype.DOCUMENTATION_START = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
         return this.getTokens(MetaEdGrammar.DOCUMENTATION_START);
     } else {
         return this.getToken(MetaEdGrammar.DOCUMENTATION_START, i);
@@ -3781,27 +3781,27 @@ FooterDocumentationContext.prototype.DOCUMENTATION_START = function (i) {
 };
 
 
-FooterDocumentationContext.prototype.documentationLine = function (i) {
-    if (i === undefined) {
+FooterDocumentationContext.prototype.documentationLine = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(DocumentationLineContext);
     } else {
-        return this.getTypedRuleContext(DocumentationLineContext, i);
+        return this.getTypedRuleContext(DocumentationLineContext,i);
     }
 };
 
-FooterDocumentationContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+FooterDocumentationContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterFooterDocumentation(this);
-    }
+	}
 };
 
-FooterDocumentationContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+FooterDocumentationContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitFooterDocumentation(this);
-    }
+	}
 };
 
 
@@ -3809,7 +3809,7 @@ FooterDocumentationContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.FooterDocumentationContext = FooterDocumentationContext;
 
-MetaEdGrammar.prototype.footerDocumentation = function () {
+MetaEdGrammar.prototype.footerDocumentation = function() {
 
     var localctx = new FooterDocumentationContext(this, this._ctx, this.state);
     this.enterRule(localctx, 56, MetaEdGrammar.RULE_footerDocumentation);
@@ -3818,7 +3818,7 @@ MetaEdGrammar.prototype.footerDocumentation = function () {
         this.enterOuterAlt(localctx, 1);
         this.state = 497;
         this.match(MetaEdGrammar.FOOTER_DOCUMENTATION);
-        this.state = 500;
+        this.state = 500; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
@@ -3826,18 +3826,18 @@ MetaEdGrammar.prototype.footerDocumentation = function () {
             this.match(MetaEdGrammar.DOCUMENTATION_START);
             this.state = 499;
             this.documentationLine();
-            this.state = 502;
+            this.state = 502; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (_la === MetaEdGrammar.DOCUMENTATION_START);
+        } while(_la===MetaEdGrammar.DOCUMENTATION_START);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -3845,13 +3845,13 @@ MetaEdGrammar.prototype.footerDocumentation = function () {
 };
 
 function DomainEntityContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_domainEntity;
     return this;
@@ -3860,47 +3860,47 @@ function DomainEntityContext(parser, parent, invokingState) {
 DomainEntityContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DomainEntityContext.prototype.constructor = DomainEntityContext;
 
-DomainEntityContext.prototype.DOMAIN_ENTITY = function () {
+DomainEntityContext.prototype.DOMAIN_ENTITY = function() {
     return this.getToken(MetaEdGrammar.DOMAIN_ENTITY, 0);
 };
 
-DomainEntityContext.prototype.entityName = function () {
-    return this.getTypedRuleContext(EntityNameContext, 0);
+DomainEntityContext.prototype.entityName = function() {
+    return this.getTypedRuleContext(EntityNameContext,0);
 };
 
-DomainEntityContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+DomainEntityContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-DomainEntityContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+DomainEntityContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-DomainEntityContext.prototype.entityConfiguration = function () {
-    return this.getTypedRuleContext(EntityConfigurationContext, 0);
+DomainEntityContext.prototype.entityConfiguration = function() {
+    return this.getTypedRuleContext(EntityConfigurationContext,0);
 };
 
-DomainEntityContext.prototype.property = function (i) {
-    if (i === undefined) {
+DomainEntityContext.prototype.property = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(PropertyContext);
     } else {
-        return this.getTypedRuleContext(PropertyContext, i);
+        return this.getTypedRuleContext(PropertyContext,i);
     }
 };
 
-DomainEntityContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DomainEntityContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDomainEntity(this);
-    }
+	}
 };
 
-DomainEntityContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DomainEntityContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDomainEntity(this);
-    }
+	}
 };
 
 
@@ -3908,7 +3908,7 @@ DomainEntityContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DomainEntityContext = DomainEntityContext;
 
-MetaEdGrammar.prototype.domainEntity = function () {
+MetaEdGrammar.prototype.domainEntity = function() {
 
     var localctx = new DomainEntityContext(this, this._ctx, this.state);
     this.enterRule(localctx, 58, MetaEdGrammar.RULE_domainEntity);
@@ -3921,7 +3921,7 @@ MetaEdGrammar.prototype.domainEntity = function () {
         this.entityName();
         this.state = 507;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 506;
             this.metaEdId();
         }
@@ -3930,29 +3930,29 @@ MetaEdGrammar.prototype.domainEntity = function () {
         this.documentation();
         this.state = 511;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.CASCADE_UPDATE) {
+        if(_la===MetaEdGrammar.CASCADE_UPDATE) {
             this.state = 510;
             this.entityConfiguration();
         }
 
-        this.state = 514;
+        this.state = 514; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 513;
             this.property();
-            this.state = 516;
+            this.state = 516; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
+        } while(((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -3960,13 +3960,13 @@ MetaEdGrammar.prototype.domainEntity = function () {
 };
 
 function DomainEntityExtensionContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_domainEntityExtension;
     return this;
@@ -3975,43 +3975,43 @@ function DomainEntityExtensionContext(parser, parent, invokingState) {
 DomainEntityExtensionContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DomainEntityExtensionContext.prototype.constructor = DomainEntityExtensionContext;
 
-DomainEntityExtensionContext.prototype.DOMAIN_ENTITY = function () {
+DomainEntityExtensionContext.prototype.DOMAIN_ENTITY = function() {
     return this.getToken(MetaEdGrammar.DOMAIN_ENTITY, 0);
 };
 
-DomainEntityExtensionContext.prototype.extendeeName = function () {
-    return this.getTypedRuleContext(ExtendeeNameContext, 0);
+DomainEntityExtensionContext.prototype.extendeeName = function() {
+    return this.getTypedRuleContext(ExtendeeNameContext,0);
 };
 
-DomainEntityExtensionContext.prototype.ADDITIONS = function () {
+DomainEntityExtensionContext.prototype.ADDITIONS = function() {
     return this.getToken(MetaEdGrammar.ADDITIONS, 0);
 };
 
-DomainEntityExtensionContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+DomainEntityExtensionContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-DomainEntityExtensionContext.prototype.property = function (i) {
-    if (i === undefined) {
+DomainEntityExtensionContext.prototype.property = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(PropertyContext);
     } else {
-        return this.getTypedRuleContext(PropertyContext, i);
+        return this.getTypedRuleContext(PropertyContext,i);
     }
 };
 
-DomainEntityExtensionContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DomainEntityExtensionContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDomainEntityExtension(this);
-    }
+	}
 };
 
-DomainEntityExtensionContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DomainEntityExtensionContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDomainEntityExtension(this);
-    }
+	}
 };
 
 
@@ -4019,7 +4019,7 @@ DomainEntityExtensionContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DomainEntityExtensionContext = DomainEntityExtensionContext;
 
-MetaEdGrammar.prototype.domainEntityExtension = function () {
+MetaEdGrammar.prototype.domainEntityExtension = function() {
 
     var localctx = new DomainEntityExtensionContext(this, this._ctx, this.state);
     this.enterRule(localctx, 60, MetaEdGrammar.RULE_domainEntityExtension);
@@ -4034,29 +4034,29 @@ MetaEdGrammar.prototype.domainEntityExtension = function () {
         this.match(MetaEdGrammar.ADDITIONS);
         this.state = 522;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 521;
             this.metaEdId();
         }
 
-        this.state = 525;
+        this.state = 525; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 524;
             this.property();
-            this.state = 527;
+            this.state = 527; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
+        } while(((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -4064,13 +4064,13 @@ MetaEdGrammar.prototype.domainEntityExtension = function () {
 };
 
 function DomainEntitySubclassContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_domainEntitySubclass;
     return this;
@@ -4079,51 +4079,51 @@ function DomainEntitySubclassContext(parser, parent, invokingState) {
 DomainEntitySubclassContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DomainEntitySubclassContext.prototype.constructor = DomainEntitySubclassContext;
 
-DomainEntitySubclassContext.prototype.DOMAIN_ENTITY = function () {
+DomainEntitySubclassContext.prototype.DOMAIN_ENTITY = function() {
     return this.getToken(MetaEdGrammar.DOMAIN_ENTITY, 0);
 };
 
-DomainEntitySubclassContext.prototype.entityName = function () {
-    return this.getTypedRuleContext(EntityNameContext, 0);
+DomainEntitySubclassContext.prototype.entityName = function() {
+    return this.getTypedRuleContext(EntityNameContext,0);
 };
 
-DomainEntitySubclassContext.prototype.BASED_ON = function () {
+DomainEntitySubclassContext.prototype.BASED_ON = function() {
     return this.getToken(MetaEdGrammar.BASED_ON, 0);
 };
 
-DomainEntitySubclassContext.prototype.baseName = function () {
-    return this.getTypedRuleContext(BaseNameContext, 0);
+DomainEntitySubclassContext.prototype.baseName = function() {
+    return this.getTypedRuleContext(BaseNameContext,0);
 };
 
-DomainEntitySubclassContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+DomainEntitySubclassContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-DomainEntitySubclassContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+DomainEntitySubclassContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-DomainEntitySubclassContext.prototype.property = function (i) {
-    if (i === undefined) {
+DomainEntitySubclassContext.prototype.property = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(PropertyContext);
     } else {
-        return this.getTypedRuleContext(PropertyContext, i);
+        return this.getTypedRuleContext(PropertyContext,i);
     }
 };
 
-DomainEntitySubclassContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DomainEntitySubclassContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDomainEntitySubclass(this);
-    }
+	}
 };
 
-DomainEntitySubclassContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DomainEntitySubclassContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDomainEntitySubclass(this);
-    }
+	}
 };
 
 
@@ -4131,7 +4131,7 @@ DomainEntitySubclassContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DomainEntitySubclassContext = DomainEntitySubclassContext;
 
-MetaEdGrammar.prototype.domainEntitySubclass = function () {
+MetaEdGrammar.prototype.domainEntitySubclass = function() {
 
     var localctx = new DomainEntitySubclassContext(this, this._ctx, this.state);
     this.enterRule(localctx, 62, MetaEdGrammar.RULE_domainEntitySubclass);
@@ -4148,31 +4148,31 @@ MetaEdGrammar.prototype.domainEntitySubclass = function () {
         this.baseName();
         this.state = 534;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 533;
             this.metaEdId();
         }
 
         this.state = 536;
         this.documentation();
-        this.state = 538;
+        this.state = 538; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 537;
             this.property();
-            this.state = 540;
+            this.state = 540; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
+        } while(((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -4180,13 +4180,13 @@ MetaEdGrammar.prototype.domainEntitySubclass = function () {
 };
 
 function EnumerationContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_enumeration;
     return this;
@@ -4195,43 +4195,43 @@ function EnumerationContext(parser, parent, invokingState) {
 EnumerationContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 EnumerationContext.prototype.constructor = EnumerationContext;
 
-EnumerationContext.prototype.ENUMERATION_ENTITY = function () {
+EnumerationContext.prototype.ENUMERATION_ENTITY = function() {
     return this.getToken(MetaEdGrammar.ENUMERATION_ENTITY, 0);
 };
 
-EnumerationContext.prototype.enumerationName = function () {
-    return this.getTypedRuleContext(EnumerationNameContext, 0);
+EnumerationContext.prototype.enumerationName = function() {
+    return this.getTypedRuleContext(EnumerationNameContext,0);
 };
 
-EnumerationContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+EnumerationContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-EnumerationContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+EnumerationContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-EnumerationContext.prototype.enumerationItem = function (i) {
-    if (i === undefined) {
+EnumerationContext.prototype.enumerationItem = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(EnumerationItemContext);
     } else {
-        return this.getTypedRuleContext(EnumerationItemContext, i);
+        return this.getTypedRuleContext(EnumerationItemContext,i);
     }
 };
 
-EnumerationContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+EnumerationContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterEnumeration(this);
-    }
+	}
 };
 
-EnumerationContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+EnumerationContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitEnumeration(this);
-    }
+	}
 };
 
 
@@ -4239,7 +4239,7 @@ EnumerationContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.EnumerationContext = EnumerationContext;
 
-MetaEdGrammar.prototype.enumeration = function () {
+MetaEdGrammar.prototype.enumeration = function() {
 
     var localctx = new EnumerationContext(this, this._ctx, this.state);
     this.enterRule(localctx, 64, MetaEdGrammar.RULE_enumeration);
@@ -4252,31 +4252,31 @@ MetaEdGrammar.prototype.enumeration = function () {
         this.enumerationName();
         this.state = 545;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 544;
             this.metaEdId();
         }
 
         this.state = 547;
         this.documentation();
-        this.state = 549;
+        this.state = 549; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 548;
             this.enumerationItem();
-            this.state = 551;
+            this.state = 551; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (_la === MetaEdGrammar.ENUMERATION_ITEM);
+        } while(_la===MetaEdGrammar.ENUMERATION_ITEM);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -4284,13 +4284,13 @@ MetaEdGrammar.prototype.enumeration = function () {
 };
 
 function EnumerationItemContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_enumerationItem;
     return this;
@@ -4299,32 +4299,32 @@ function EnumerationItemContext(parser, parent, invokingState) {
 EnumerationItemContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 EnumerationItemContext.prototype.constructor = EnumerationItemContext;
 
-EnumerationItemContext.prototype.ENUMERATION_ITEM = function () {
+EnumerationItemContext.prototype.ENUMERATION_ITEM = function() {
     return this.getToken(MetaEdGrammar.ENUMERATION_ITEM, 0);
 };
 
-EnumerationItemContext.prototype.shortDescription = function () {
-    return this.getTypedRuleContext(ShortDescriptionContext, 0);
+EnumerationItemContext.prototype.shortDescription = function() {
+    return this.getTypedRuleContext(ShortDescriptionContext,0);
 };
 
-EnumerationItemContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+EnumerationItemContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-EnumerationItemContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+EnumerationItemContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-EnumerationItemContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+EnumerationItemContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterEnumerationItem(this);
-    }
+	}
 };
 
-EnumerationItemContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+EnumerationItemContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitEnumerationItem(this);
-    }
+	}
 };
 
 
@@ -4332,7 +4332,7 @@ EnumerationItemContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.EnumerationItemContext = EnumerationItemContext;
 
-MetaEdGrammar.prototype.enumerationItem = function () {
+MetaEdGrammar.prototype.enumerationItem = function() {
 
     var localctx = new EnumerationItemContext(this, this._ctx, this.state);
     this.enterRule(localctx, 66, MetaEdGrammar.RULE_enumerationItem);
@@ -4345,26 +4345,26 @@ MetaEdGrammar.prototype.enumerationItem = function () {
         this.shortDescription();
         this.state = 556;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 555;
             this.metaEdId();
         }
 
         this.state = 559;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.DOCUMENTATION) {
+        if(_la===MetaEdGrammar.DOCUMENTATION) {
             this.state = 558;
             this.documentation();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -4372,13 +4372,13 @@ MetaEdGrammar.prototype.enumerationItem = function () {
 };
 
 function ShortDescriptionContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_shortDescription;
     return this;
@@ -4387,20 +4387,20 @@ function ShortDescriptionContext(parser, parent, invokingState) {
 ShortDescriptionContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 ShortDescriptionContext.prototype.constructor = ShortDescriptionContext;
 
-ShortDescriptionContext.prototype.ENUMERATION_ITEM_VALUE = function () {
+ShortDescriptionContext.prototype.ENUMERATION_ITEM_VALUE = function() {
     return this.getToken(MetaEdGrammar.ENUMERATION_ITEM_VALUE, 0);
 };
 
-ShortDescriptionContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ShortDescriptionContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterShortDescription(this);
-    }
+	}
 };
 
-ShortDescriptionContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ShortDescriptionContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitShortDescription(this);
-    }
+	}
 };
 
 
@@ -4408,7 +4408,7 @@ ShortDescriptionContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.ShortDescriptionContext = ShortDescriptionContext;
 
-MetaEdGrammar.prototype.shortDescription = function () {
+MetaEdGrammar.prototype.shortDescription = function() {
 
     var localctx = new ShortDescriptionContext(this, this._ctx, this.state);
     this.enterRule(localctx, 68, MetaEdGrammar.RULE_shortDescription);
@@ -4417,13 +4417,13 @@ MetaEdGrammar.prototype.shortDescription = function () {
         this.state = 561;
         this.match(MetaEdGrammar.ENUMERATION_ITEM_VALUE);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -4431,13 +4431,13 @@ MetaEdGrammar.prototype.shortDescription = function () {
 };
 
 function InlineCommonTypeContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_inlineCommonType;
     return this;
@@ -4446,43 +4446,43 @@ function InlineCommonTypeContext(parser, parent, invokingState) {
 InlineCommonTypeContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 InlineCommonTypeContext.prototype.constructor = InlineCommonTypeContext;
 
-InlineCommonTypeContext.prototype.INLINE_COMMON_TYPE = function () {
+InlineCommonTypeContext.prototype.INLINE_COMMON_TYPE = function() {
     return this.getToken(MetaEdGrammar.INLINE_COMMON_TYPE, 0);
 };
 
-InlineCommonTypeContext.prototype.inlineCommonName = function () {
-    return this.getTypedRuleContext(InlineCommonNameContext, 0);
+InlineCommonTypeContext.prototype.inlineCommonName = function() {
+    return this.getTypedRuleContext(InlineCommonNameContext,0);
 };
 
-InlineCommonTypeContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+InlineCommonTypeContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-InlineCommonTypeContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+InlineCommonTypeContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-InlineCommonTypeContext.prototype.property = function (i) {
-    if (i === undefined) {
+InlineCommonTypeContext.prototype.property = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(PropertyContext);
     } else {
-        return this.getTypedRuleContext(PropertyContext, i);
+        return this.getTypedRuleContext(PropertyContext,i);
     }
 };
 
-InlineCommonTypeContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InlineCommonTypeContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterInlineCommonType(this);
-    }
+	}
 };
 
-InlineCommonTypeContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InlineCommonTypeContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitInlineCommonType(this);
-    }
+	}
 };
 
 
@@ -4490,7 +4490,7 @@ InlineCommonTypeContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.InlineCommonTypeContext = InlineCommonTypeContext;
 
-MetaEdGrammar.prototype.inlineCommonType = function () {
+MetaEdGrammar.prototype.inlineCommonType = function() {
 
     var localctx = new InlineCommonTypeContext(this, this._ctx, this.state);
     this.enterRule(localctx, 70, MetaEdGrammar.RULE_inlineCommonType);
@@ -4503,31 +4503,31 @@ MetaEdGrammar.prototype.inlineCommonType = function () {
         this.inlineCommonName();
         this.state = 566;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 565;
             this.metaEdId();
         }
 
         this.state = 568;
         this.documentation();
-        this.state = 570;
+        this.state = 570; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 569;
             this.property();
-            this.state = 572;
+            this.state = 572; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
+        } while(((((_la - 22)) & ~0x1f) == 0 && ((1 << (_la - 22)) & ((1 << (MetaEdGrammar.BOOLEAN - 22)) | (1 << (MetaEdGrammar.CURRENCY - 22)) | (1 << (MetaEdGrammar.DATE - 22)) | (1 << (MetaEdGrammar.DECIMAL - 22)) | (1 << (MetaEdGrammar.DESCRIPTOR - 22)) | (1 << (MetaEdGrammar.DURATION - 22)) | (1 << (MetaEdGrammar.ENUMERATION - 22)) | (1 << (MetaEdGrammar.INCLUDE - 22)) | (1 << (MetaEdGrammar.INCLUDE_EXTENSION - 22)) | (1 << (MetaEdGrammar.INTEGER - 22)) | (1 << (MetaEdGrammar.PERCENT - 22)) | (1 << (MetaEdGrammar.REFERENCE - 22)) | (1 << (MetaEdGrammar.SHARED_DECIMAL - 22)) | (1 << (MetaEdGrammar.SHARED_INTEGER - 22)) | (1 << (MetaEdGrammar.SHARED_SHORT - 22)) | (1 << (MetaEdGrammar.SHARED_STRING - 22)) | (1 << (MetaEdGrammar.SHORT - 22)) | (1 << (MetaEdGrammar.STRING - 22)) | (1 << (MetaEdGrammar.TIME - 22)) | (1 << (MetaEdGrammar.YEAR - 22)))) !== 0));
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -4535,13 +4535,13 @@ MetaEdGrammar.prototype.inlineCommonType = function () {
 };
 
 function InterchangeContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_interchange;
     return this;
@@ -4550,44 +4550,44 @@ function InterchangeContext(parser, parent, invokingState) {
 InterchangeContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 InterchangeContext.prototype.constructor = InterchangeContext;
 
-InterchangeContext.prototype.INTERCHANGE = function () {
+InterchangeContext.prototype.INTERCHANGE = function() {
     return this.getToken(MetaEdGrammar.INTERCHANGE, 0);
 };
 
-InterchangeContext.prototype.interchangeName = function () {
-    return this.getTypedRuleContext(InterchangeNameContext, 0);
+InterchangeContext.prototype.interchangeName = function() {
+    return this.getTypedRuleContext(InterchangeNameContext,0);
 };
 
-InterchangeContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+InterchangeContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-InterchangeContext.prototype.interchangeComponent = function () {
-    return this.getTypedRuleContext(InterchangeComponentContext, 0);
+InterchangeContext.prototype.interchangeComponent = function() {
+    return this.getTypedRuleContext(InterchangeComponentContext,0);
 };
 
-InterchangeContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+InterchangeContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-InterchangeContext.prototype.extendedDocumentation = function () {
-    return this.getTypedRuleContext(ExtendedDocumentationContext, 0);
+InterchangeContext.prototype.extendedDocumentation = function() {
+    return this.getTypedRuleContext(ExtendedDocumentationContext,0);
 };
 
-InterchangeContext.prototype.useCaseDocumentation = function () {
-    return this.getTypedRuleContext(UseCaseDocumentationContext, 0);
+InterchangeContext.prototype.useCaseDocumentation = function() {
+    return this.getTypedRuleContext(UseCaseDocumentationContext,0);
 };
 
-InterchangeContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterInterchange(this);
-    }
+	}
 };
 
-InterchangeContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitInterchange(this);
-    }
+	}
 };
 
 
@@ -4595,7 +4595,7 @@ InterchangeContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.InterchangeContext = InterchangeContext;
 
-MetaEdGrammar.prototype.interchange = function () {
+MetaEdGrammar.prototype.interchange = function() {
 
     var localctx = new InterchangeContext(this, this._ctx, this.state);
     this.enterRule(localctx, 72, MetaEdGrammar.RULE_interchange);
@@ -4608,7 +4608,7 @@ MetaEdGrammar.prototype.interchange = function () {
         this.interchangeName();
         this.state = 577;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 576;
             this.metaEdId();
         }
@@ -4617,14 +4617,14 @@ MetaEdGrammar.prototype.interchange = function () {
         this.documentation();
         this.state = 581;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.EXTENDED_DOCUMENTATION) {
+        if(_la===MetaEdGrammar.EXTENDED_DOCUMENTATION) {
             this.state = 580;
             this.extendedDocumentation();
         }
 
         this.state = 584;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.USE_CASE_DOCUMENTATION) {
+        if(_la===MetaEdGrammar.USE_CASE_DOCUMENTATION) {
             this.state = 583;
             this.useCaseDocumentation();
         }
@@ -4632,13 +4632,13 @@ MetaEdGrammar.prototype.interchange = function () {
         this.state = 586;
         this.interchangeComponent();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -4646,13 +4646,13 @@ MetaEdGrammar.prototype.interchange = function () {
 };
 
 function ExtendedDocumentationContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_extendedDocumentation;
     return this;
@@ -4661,15 +4661,15 @@ function ExtendedDocumentationContext(parser, parent, invokingState) {
 ExtendedDocumentationContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 ExtendedDocumentationContext.prototype.constructor = ExtendedDocumentationContext;
 
-ExtendedDocumentationContext.prototype.EXTENDED_DOCUMENTATION = function () {
+ExtendedDocumentationContext.prototype.EXTENDED_DOCUMENTATION = function() {
     return this.getToken(MetaEdGrammar.EXTENDED_DOCUMENTATION, 0);
 };
 
-ExtendedDocumentationContext.prototype.DOCUMENTATION_START = function (i) {
-    if (i === undefined) {
-        i = null;
-    }
-    if (i === null) {
+ExtendedDocumentationContext.prototype.DOCUMENTATION_START = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
         return this.getTokens(MetaEdGrammar.DOCUMENTATION_START);
     } else {
         return this.getToken(MetaEdGrammar.DOCUMENTATION_START, i);
@@ -4677,27 +4677,27 @@ ExtendedDocumentationContext.prototype.DOCUMENTATION_START = function (i) {
 };
 
 
-ExtendedDocumentationContext.prototype.documentationLine = function (i) {
-    if (i === undefined) {
+ExtendedDocumentationContext.prototype.documentationLine = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(DocumentationLineContext);
     } else {
-        return this.getTypedRuleContext(DocumentationLineContext, i);
+        return this.getTypedRuleContext(DocumentationLineContext,i);
     }
 };
 
-ExtendedDocumentationContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ExtendedDocumentationContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterExtendedDocumentation(this);
-    }
+	}
 };
 
-ExtendedDocumentationContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ExtendedDocumentationContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitExtendedDocumentation(this);
-    }
+	}
 };
 
 
@@ -4705,7 +4705,7 @@ ExtendedDocumentationContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.ExtendedDocumentationContext = ExtendedDocumentationContext;
 
-MetaEdGrammar.prototype.extendedDocumentation = function () {
+MetaEdGrammar.prototype.extendedDocumentation = function() {
 
     var localctx = new ExtendedDocumentationContext(this, this._ctx, this.state);
     this.enterRule(localctx, 74, MetaEdGrammar.RULE_extendedDocumentation);
@@ -4714,7 +4714,7 @@ MetaEdGrammar.prototype.extendedDocumentation = function () {
         this.enterOuterAlt(localctx, 1);
         this.state = 588;
         this.match(MetaEdGrammar.EXTENDED_DOCUMENTATION);
-        this.state = 591;
+        this.state = 591; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
@@ -4722,18 +4722,18 @@ MetaEdGrammar.prototype.extendedDocumentation = function () {
             this.match(MetaEdGrammar.DOCUMENTATION_START);
             this.state = 590;
             this.documentationLine();
-            this.state = 593;
+            this.state = 593; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (_la === MetaEdGrammar.DOCUMENTATION_START);
+        } while(_la===MetaEdGrammar.DOCUMENTATION_START);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -4741,13 +4741,13 @@ MetaEdGrammar.prototype.extendedDocumentation = function () {
 };
 
 function UseCaseDocumentationContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_useCaseDocumentation;
     return this;
@@ -4756,15 +4756,15 @@ function UseCaseDocumentationContext(parser, parent, invokingState) {
 UseCaseDocumentationContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 UseCaseDocumentationContext.prototype.constructor = UseCaseDocumentationContext;
 
-UseCaseDocumentationContext.prototype.USE_CASE_DOCUMENTATION = function () {
+UseCaseDocumentationContext.prototype.USE_CASE_DOCUMENTATION = function() {
     return this.getToken(MetaEdGrammar.USE_CASE_DOCUMENTATION, 0);
 };
 
-UseCaseDocumentationContext.prototype.DOCUMENTATION_START = function (i) {
-    if (i === undefined) {
-        i = null;
-    }
-    if (i === null) {
+UseCaseDocumentationContext.prototype.DOCUMENTATION_START = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
         return this.getTokens(MetaEdGrammar.DOCUMENTATION_START);
     } else {
         return this.getToken(MetaEdGrammar.DOCUMENTATION_START, i);
@@ -4772,27 +4772,27 @@ UseCaseDocumentationContext.prototype.DOCUMENTATION_START = function (i) {
 };
 
 
-UseCaseDocumentationContext.prototype.documentationLine = function (i) {
-    if (i === undefined) {
+UseCaseDocumentationContext.prototype.documentationLine = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(DocumentationLineContext);
     } else {
-        return this.getTypedRuleContext(DocumentationLineContext, i);
+        return this.getTypedRuleContext(DocumentationLineContext,i);
     }
 };
 
-UseCaseDocumentationContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+UseCaseDocumentationContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterUseCaseDocumentation(this);
-    }
+	}
 };
 
-UseCaseDocumentationContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+UseCaseDocumentationContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitUseCaseDocumentation(this);
-    }
+	}
 };
 
 
@@ -4800,7 +4800,7 @@ UseCaseDocumentationContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.UseCaseDocumentationContext = UseCaseDocumentationContext;
 
-MetaEdGrammar.prototype.useCaseDocumentation = function () {
+MetaEdGrammar.prototype.useCaseDocumentation = function() {
 
     var localctx = new UseCaseDocumentationContext(this, this._ctx, this.state);
     this.enterRule(localctx, 76, MetaEdGrammar.RULE_useCaseDocumentation);
@@ -4809,7 +4809,7 @@ MetaEdGrammar.prototype.useCaseDocumentation = function () {
         this.enterOuterAlt(localctx, 1);
         this.state = 595;
         this.match(MetaEdGrammar.USE_CASE_DOCUMENTATION);
-        this.state = 598;
+        this.state = 598; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
@@ -4817,18 +4817,18 @@ MetaEdGrammar.prototype.useCaseDocumentation = function () {
             this.match(MetaEdGrammar.DOCUMENTATION_START);
             this.state = 597;
             this.documentationLine();
-            this.state = 600;
+            this.state = 600; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (_la === MetaEdGrammar.DOCUMENTATION_START);
+        } while(_la===MetaEdGrammar.DOCUMENTATION_START);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -4836,13 +4836,13 @@ MetaEdGrammar.prototype.useCaseDocumentation = function () {
 };
 
 function InterchangeComponentContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_interchangeComponent;
     return this;
@@ -4851,38 +4851,38 @@ function InterchangeComponentContext(parser, parent, invokingState) {
 InterchangeComponentContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 InterchangeComponentContext.prototype.constructor = InterchangeComponentContext;
 
-InterchangeComponentContext.prototype.interchangeElement = function (i) {
-    if (i === undefined) {
+InterchangeComponentContext.prototype.interchangeElement = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(InterchangeElementContext);
     } else {
-        return this.getTypedRuleContext(InterchangeElementContext, i);
+        return this.getTypedRuleContext(InterchangeElementContext,i);
     }
 };
 
-InterchangeComponentContext.prototype.interchangeIdentityTemplate = function (i) {
-    if (i === undefined) {
+InterchangeComponentContext.prototype.interchangeIdentityTemplate = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(InterchangeIdentityTemplateContext);
     } else {
-        return this.getTypedRuleContext(InterchangeIdentityTemplateContext, i);
+        return this.getTypedRuleContext(InterchangeIdentityTemplateContext,i);
     }
 };
 
-InterchangeComponentContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeComponentContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterInterchangeComponent(this);
-    }
+	}
 };
 
-InterchangeComponentContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeComponentContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitInterchangeComponent(this);
-    }
+	}
 };
 
 
@@ -4890,7 +4890,7 @@ InterchangeComponentContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.InterchangeComponentContext = InterchangeComponentContext;
 
-MetaEdGrammar.prototype.interchangeComponent = function () {
+MetaEdGrammar.prototype.interchangeComponent = function() {
 
     var localctx = new InterchangeComponentContext(this, this._ctx, this.state);
     this.enterRule(localctx, 78, MetaEdGrammar.RULE_interchangeComponent);
@@ -4900,7 +4900,7 @@ MetaEdGrammar.prototype.interchangeComponent = function () {
         this.state = 605;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        while (_la === MetaEdGrammar.IDENTITY_TEMPLATE) {
+        while(_la===MetaEdGrammar.IDENTITY_TEMPLATE) {
             this.state = 602;
             this.interchangeIdentityTemplate();
             this.state = 607;
@@ -4912,32 +4912,32 @@ MetaEdGrammar.prototype.interchangeComponent = function () {
         this.state = 613;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        while (_la === MetaEdGrammar.ELEMENT || _la === MetaEdGrammar.IDENTITY_TEMPLATE) {
+        while(_la===MetaEdGrammar.ELEMENT || _la===MetaEdGrammar.IDENTITY_TEMPLATE) {
             this.state = 611;
-            switch (this._input.LA(1)) {
-                case MetaEdGrammar.ELEMENT:
-                    this.state = 609;
-                    this.interchangeElement();
-                    break;
-                case MetaEdGrammar.IDENTITY_TEMPLATE:
-                    this.state = 610;
-                    this.interchangeIdentityTemplate();
-                    break;
-                default:
-                    throw new antlr4.error.NoViableAltException(this);
+            switch(this._input.LA(1)) {
+            case MetaEdGrammar.ELEMENT:
+                this.state = 609;
+                this.interchangeElement();
+                break;
+            case MetaEdGrammar.IDENTITY_TEMPLATE:
+                this.state = 610;
+                this.interchangeIdentityTemplate();
+                break;
+            default:
+                throw new antlr4.error.NoViableAltException(this);
             }
             this.state = 615;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
         }
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -4945,13 +4945,13 @@ MetaEdGrammar.prototype.interchangeComponent = function () {
 };
 
 function InterchangeElementContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_interchangeElement;
     return this;
@@ -4960,28 +4960,28 @@ function InterchangeElementContext(parser, parent, invokingState) {
 InterchangeElementContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 InterchangeElementContext.prototype.constructor = InterchangeElementContext;
 
-InterchangeElementContext.prototype.ELEMENT = function () {
+InterchangeElementContext.prototype.ELEMENT = function() {
     return this.getToken(MetaEdGrammar.ELEMENT, 0);
 };
 
-InterchangeElementContext.prototype.ID = function () {
+InterchangeElementContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-InterchangeElementContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+InterchangeElementContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-InterchangeElementContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeElementContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterInterchangeElement(this);
-    }
+	}
 };
 
-InterchangeElementContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeElementContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitInterchangeElement(this);
-    }
+	}
 };
 
 
@@ -4989,7 +4989,7 @@ InterchangeElementContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.InterchangeElementContext = InterchangeElementContext;
 
-MetaEdGrammar.prototype.interchangeElement = function () {
+MetaEdGrammar.prototype.interchangeElement = function() {
 
     var localctx = new InterchangeElementContext(this, this._ctx, this.state);
     this.enterRule(localctx, 80, MetaEdGrammar.RULE_interchangeElement);
@@ -5002,19 +5002,19 @@ MetaEdGrammar.prototype.interchangeElement = function () {
         this.match(MetaEdGrammar.ID);
         this.state = 619;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 618;
             this.metaEdId();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -5022,13 +5022,13 @@ MetaEdGrammar.prototype.interchangeElement = function () {
 };
 
 function InterchangeIdentityTemplateContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_interchangeIdentityTemplate;
     return this;
@@ -5037,28 +5037,28 @@ function InterchangeIdentityTemplateContext(parser, parent, invokingState) {
 InterchangeIdentityTemplateContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 InterchangeIdentityTemplateContext.prototype.constructor = InterchangeIdentityTemplateContext;
 
-InterchangeIdentityTemplateContext.prototype.IDENTITY_TEMPLATE = function () {
+InterchangeIdentityTemplateContext.prototype.IDENTITY_TEMPLATE = function() {
     return this.getToken(MetaEdGrammar.IDENTITY_TEMPLATE, 0);
 };
 
-InterchangeIdentityTemplateContext.prototype.ID = function () {
+InterchangeIdentityTemplateContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-InterchangeIdentityTemplateContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+InterchangeIdentityTemplateContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-InterchangeIdentityTemplateContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeIdentityTemplateContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterInterchangeIdentityTemplate(this);
-    }
+	}
 };
 
-InterchangeIdentityTemplateContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeIdentityTemplateContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitInterchangeIdentityTemplate(this);
-    }
+	}
 };
 
 
@@ -5066,7 +5066,7 @@ InterchangeIdentityTemplateContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.InterchangeIdentityTemplateContext = InterchangeIdentityTemplateContext;
 
-MetaEdGrammar.prototype.interchangeIdentityTemplate = function () {
+MetaEdGrammar.prototype.interchangeIdentityTemplate = function() {
 
     var localctx = new InterchangeIdentityTemplateContext(this, this._ctx, this.state);
     this.enterRule(localctx, 82, MetaEdGrammar.RULE_interchangeIdentityTemplate);
@@ -5079,19 +5079,19 @@ MetaEdGrammar.prototype.interchangeIdentityTemplate = function () {
         this.match(MetaEdGrammar.ID);
         this.state = 624;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 623;
             this.metaEdId();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -5099,13 +5099,13 @@ MetaEdGrammar.prototype.interchangeIdentityTemplate = function () {
 };
 
 function InterchangeExtensionContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_interchangeExtension;
     return this;
@@ -5114,36 +5114,36 @@ function InterchangeExtensionContext(parser, parent, invokingState) {
 InterchangeExtensionContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 InterchangeExtensionContext.prototype.constructor = InterchangeExtensionContext;
 
-InterchangeExtensionContext.prototype.INTERCHANGE = function () {
+InterchangeExtensionContext.prototype.INTERCHANGE = function() {
     return this.getToken(MetaEdGrammar.INTERCHANGE, 0);
 };
 
-InterchangeExtensionContext.prototype.extendeeName = function () {
-    return this.getTypedRuleContext(ExtendeeNameContext, 0);
+InterchangeExtensionContext.prototype.extendeeName = function() {
+    return this.getTypedRuleContext(ExtendeeNameContext,0);
 };
 
-InterchangeExtensionContext.prototype.ADDITIONS = function () {
+InterchangeExtensionContext.prototype.ADDITIONS = function() {
     return this.getToken(MetaEdGrammar.ADDITIONS, 0);
 };
 
-InterchangeExtensionContext.prototype.interchangeExtensionComponent = function () {
-    return this.getTypedRuleContext(InterchangeExtensionComponentContext, 0);
+InterchangeExtensionContext.prototype.interchangeExtensionComponent = function() {
+    return this.getTypedRuleContext(InterchangeExtensionComponentContext,0);
 };
 
-InterchangeExtensionContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+InterchangeExtensionContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-InterchangeExtensionContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeExtensionContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterInterchangeExtension(this);
-    }
+	}
 };
 
-InterchangeExtensionContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeExtensionContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitInterchangeExtension(this);
-    }
+	}
 };
 
 
@@ -5151,7 +5151,7 @@ InterchangeExtensionContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.InterchangeExtensionContext = InterchangeExtensionContext;
 
-MetaEdGrammar.prototype.interchangeExtension = function () {
+MetaEdGrammar.prototype.interchangeExtension = function() {
 
     var localctx = new InterchangeExtensionContext(this, this._ctx, this.state);
     this.enterRule(localctx, 84, MetaEdGrammar.RULE_interchangeExtension);
@@ -5166,7 +5166,7 @@ MetaEdGrammar.prototype.interchangeExtension = function () {
         this.match(MetaEdGrammar.ADDITIONS);
         this.state = 630;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 629;
             this.metaEdId();
         }
@@ -5174,13 +5174,13 @@ MetaEdGrammar.prototype.interchangeExtension = function () {
         this.state = 632;
         this.interchangeExtensionComponent();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -5188,13 +5188,13 @@ MetaEdGrammar.prototype.interchangeExtension = function () {
 };
 
 function InterchangeExtensionComponentContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_interchangeExtensionComponent;
     return this;
@@ -5203,38 +5203,38 @@ function InterchangeExtensionComponentContext(parser, parent, invokingState) {
 InterchangeExtensionComponentContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 InterchangeExtensionComponentContext.prototype.constructor = InterchangeExtensionComponentContext;
 
-InterchangeExtensionComponentContext.prototype.interchangeElement = function (i) {
-    if (i === undefined) {
+InterchangeExtensionComponentContext.prototype.interchangeElement = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(InterchangeElementContext);
     } else {
-        return this.getTypedRuleContext(InterchangeElementContext, i);
+        return this.getTypedRuleContext(InterchangeElementContext,i);
     }
 };
 
-InterchangeExtensionComponentContext.prototype.interchangeIdentityTemplate = function (i) {
-    if (i === undefined) {
+InterchangeExtensionComponentContext.prototype.interchangeIdentityTemplate = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(InterchangeIdentityTemplateContext);
     } else {
-        return this.getTypedRuleContext(InterchangeIdentityTemplateContext, i);
+        return this.getTypedRuleContext(InterchangeIdentityTemplateContext,i);
     }
 };
 
-InterchangeExtensionComponentContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeExtensionComponentContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterInterchangeExtensionComponent(this);
-    }
+	}
 };
 
-InterchangeExtensionComponentContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeExtensionComponentContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitInterchangeExtensionComponent(this);
-    }
+	}
 };
 
 
@@ -5242,42 +5242,42 @@ InterchangeExtensionComponentContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.InterchangeExtensionComponentContext = InterchangeExtensionComponentContext;
 
-MetaEdGrammar.prototype.interchangeExtensionComponent = function () {
+MetaEdGrammar.prototype.interchangeExtensionComponent = function() {
 
     var localctx = new InterchangeExtensionComponentContext(this, this._ctx, this.state);
     this.enterRule(localctx, 86, MetaEdGrammar.RULE_interchangeExtensionComponent);
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 636;
+        this.state = 636; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 636;
-            switch (this._input.LA(1)) {
-                case MetaEdGrammar.ELEMENT:
-                    this.state = 634;
-                    this.interchangeElement();
-                    break;
-                case MetaEdGrammar.IDENTITY_TEMPLATE:
-                    this.state = 635;
-                    this.interchangeIdentityTemplate();
-                    break;
-                default:
-                    throw new antlr4.error.NoViableAltException(this);
+            switch(this._input.LA(1)) {
+            case MetaEdGrammar.ELEMENT:
+                this.state = 634;
+                this.interchangeElement();
+                break;
+            case MetaEdGrammar.IDENTITY_TEMPLATE:
+                this.state = 635;
+                this.interchangeIdentityTemplate();
+                break;
+            default:
+                throw new antlr4.error.NoViableAltException(this);
             }
-            this.state = 638;
+            this.state = 638; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (_la === MetaEdGrammar.ELEMENT || _la === MetaEdGrammar.IDENTITY_TEMPLATE);
+        } while(_la===MetaEdGrammar.ELEMENT || _la===MetaEdGrammar.IDENTITY_TEMPLATE);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -5285,13 +5285,13 @@ MetaEdGrammar.prototype.interchangeExtensionComponent = function () {
 };
 
 function SubdomainContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_subdomain;
     return this;
@@ -5300,59 +5300,59 @@ function SubdomainContext(parser, parent, invokingState) {
 SubdomainContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 SubdomainContext.prototype.constructor = SubdomainContext;
 
-SubdomainContext.prototype.SUBDOMAIN = function () {
+SubdomainContext.prototype.SUBDOMAIN = function() {
     return this.getToken(MetaEdGrammar.SUBDOMAIN, 0);
 };
 
-SubdomainContext.prototype.subdomainName = function () {
-    return this.getTypedRuleContext(SubdomainNameContext, 0);
+SubdomainContext.prototype.subdomainName = function() {
+    return this.getTypedRuleContext(SubdomainNameContext,0);
 };
 
-SubdomainContext.prototype.SUBDOMAIN_OF = function () {
+SubdomainContext.prototype.SUBDOMAIN_OF = function() {
     return this.getToken(MetaEdGrammar.SUBDOMAIN_OF, 0);
 };
 
-SubdomainContext.prototype.parentDomainName = function () {
-    return this.getTypedRuleContext(ParentDomainNameContext, 0);
+SubdomainContext.prototype.parentDomainName = function() {
+    return this.getTypedRuleContext(ParentDomainNameContext,0);
 };
 
-SubdomainContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+SubdomainContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-SubdomainContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+SubdomainContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-SubdomainContext.prototype.domainItem = function (i) {
-    if (i === undefined) {
+SubdomainContext.prototype.domainItem = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(DomainItemContext);
     } else {
-        return this.getTypedRuleContext(DomainItemContext, i);
+        return this.getTypedRuleContext(DomainItemContext,i);
     }
 };
 
-SubdomainContext.prototype.SUBDOMAIN_POSITION = function () {
+SubdomainContext.prototype.SUBDOMAIN_POSITION = function() {
     return this.getToken(MetaEdGrammar.SUBDOMAIN_POSITION, 0);
 };
 
-SubdomainContext.prototype.subdomainPosition = function () {
-    return this.getTypedRuleContext(SubdomainPositionContext, 0);
+SubdomainContext.prototype.subdomainPosition = function() {
+    return this.getTypedRuleContext(SubdomainPositionContext,0);
 };
 
-SubdomainContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SubdomainContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterSubdomain(this);
-    }
+	}
 };
 
-SubdomainContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SubdomainContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitSubdomain(this);
-    }
+	}
 };
 
 
@@ -5360,7 +5360,7 @@ SubdomainContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.SubdomainContext = SubdomainContext;
 
-MetaEdGrammar.prototype.subdomain = function () {
+MetaEdGrammar.prototype.subdomain = function() {
 
     var localctx = new SubdomainContext(this, this._ctx, this.state);
     this.enterRule(localctx, 88, MetaEdGrammar.RULE_subdomain);
@@ -5377,26 +5377,26 @@ MetaEdGrammar.prototype.subdomain = function () {
         this.parentDomainName();
         this.state = 645;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 644;
             this.metaEdId();
         }
 
         this.state = 647;
         this.documentation();
-        this.state = 649;
+        this.state = 649; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
             this.state = 648;
             this.domainItem();
-            this.state = 651;
+            this.state = 651; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while (_la === MetaEdGrammar.DOMAIN_ITEM);
+        } while(_la===MetaEdGrammar.DOMAIN_ITEM);
         this.state = 655;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.SUBDOMAIN_POSITION) {
+        if(_la===MetaEdGrammar.SUBDOMAIN_POSITION) {
             this.state = 653;
             this.match(MetaEdGrammar.SUBDOMAIN_POSITION);
             this.state = 654;
@@ -5404,13 +5404,13 @@ MetaEdGrammar.prototype.subdomain = function () {
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -5418,13 +5418,13 @@ MetaEdGrammar.prototype.subdomain = function () {
 };
 
 function SubdomainPositionContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_subdomainPosition;
     return this;
@@ -5433,20 +5433,20 @@ function SubdomainPositionContext(parser, parent, invokingState) {
 SubdomainPositionContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 SubdomainPositionContext.prototype.constructor = SubdomainPositionContext;
 
-SubdomainPositionContext.prototype.UNSIGNED_INT = function () {
+SubdomainPositionContext.prototype.UNSIGNED_INT = function() {
     return this.getToken(MetaEdGrammar.UNSIGNED_INT, 0);
 };
 
-SubdomainPositionContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SubdomainPositionContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterSubdomainPosition(this);
-    }
+	}
 };
 
-SubdomainPositionContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SubdomainPositionContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitSubdomainPosition(this);
-    }
+	}
 };
 
 
@@ -5454,7 +5454,7 @@ SubdomainPositionContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.SubdomainPositionContext = SubdomainPositionContext;
 
-MetaEdGrammar.prototype.subdomainPosition = function () {
+MetaEdGrammar.prototype.subdomainPosition = function() {
 
     var localctx = new SubdomainPositionContext(this, this._ctx, this.state);
     this.enterRule(localctx, 90, MetaEdGrammar.RULE_subdomainPosition);
@@ -5463,13 +5463,13 @@ MetaEdGrammar.prototype.subdomainPosition = function () {
         this.state = 657;
         this.match(MetaEdGrammar.UNSIGNED_INT);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -5477,13 +5477,13 @@ MetaEdGrammar.prototype.subdomainPosition = function () {
 };
 
 function MinValueContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_minValue;
     return this;
@@ -5492,24 +5492,24 @@ function MinValueContext(parser, parent, invokingState) {
 MinValueContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 MinValueContext.prototype.constructor = MinValueContext;
 
-MinValueContext.prototype.MIN_VALUE = function () {
+MinValueContext.prototype.MIN_VALUE = function() {
     return this.getToken(MetaEdGrammar.MIN_VALUE, 0);
 };
 
-MinValueContext.prototype.signed_int = function () {
-    return this.getTypedRuleContext(Signed_intContext, 0);
+MinValueContext.prototype.signed_int = function() {
+    return this.getTypedRuleContext(Signed_intContext,0);
 };
 
-MinValueContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MinValueContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterMinValue(this);
-    }
+	}
 };
 
-MinValueContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MinValueContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitMinValue(this);
-    }
+	}
 };
 
 
@@ -5517,7 +5517,7 @@ MinValueContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.MinValueContext = MinValueContext;
 
-MetaEdGrammar.prototype.minValue = function () {
+MetaEdGrammar.prototype.minValue = function() {
 
     var localctx = new MinValueContext(this, this._ctx, this.state);
     this.enterRule(localctx, 92, MetaEdGrammar.RULE_minValue);
@@ -5528,13 +5528,13 @@ MetaEdGrammar.prototype.minValue = function () {
         this.state = 660;
         this.signed_int();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -5542,13 +5542,13 @@ MetaEdGrammar.prototype.minValue = function () {
 };
 
 function MaxValueContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_maxValue;
     return this;
@@ -5557,24 +5557,24 @@ function MaxValueContext(parser, parent, invokingState) {
 MaxValueContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 MaxValueContext.prototype.constructor = MaxValueContext;
 
-MaxValueContext.prototype.MAX_VALUE = function () {
+MaxValueContext.prototype.MAX_VALUE = function() {
     return this.getToken(MetaEdGrammar.MAX_VALUE, 0);
 };
 
-MaxValueContext.prototype.signed_int = function () {
-    return this.getTypedRuleContext(Signed_intContext, 0);
+MaxValueContext.prototype.signed_int = function() {
+    return this.getTypedRuleContext(Signed_intContext,0);
 };
 
-MaxValueContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MaxValueContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterMaxValue(this);
-    }
+	}
 };
 
-MaxValueContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MaxValueContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitMaxValue(this);
-    }
+	}
 };
 
 
@@ -5582,7 +5582,7 @@ MaxValueContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.MaxValueContext = MaxValueContext;
 
-MetaEdGrammar.prototype.maxValue = function () {
+MetaEdGrammar.prototype.maxValue = function() {
 
     var localctx = new MaxValueContext(this, this._ctx, this.state);
     this.enterRule(localctx, 94, MetaEdGrammar.RULE_maxValue);
@@ -5593,13 +5593,13 @@ MetaEdGrammar.prototype.maxValue = function () {
         this.state = 663;
         this.signed_int();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -5607,13 +5607,13 @@ MetaEdGrammar.prototype.maxValue = function () {
 };
 
 function MinValueDecimalContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_minValueDecimal;
     return this;
@@ -5622,24 +5622,24 @@ function MinValueDecimalContext(parser, parent, invokingState) {
 MinValueDecimalContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 MinValueDecimalContext.prototype.constructor = MinValueDecimalContext;
 
-MinValueDecimalContext.prototype.MIN_VALUE = function () {
+MinValueDecimalContext.prototype.MIN_VALUE = function() {
     return this.getToken(MetaEdGrammar.MIN_VALUE, 0);
 };
 
-MinValueDecimalContext.prototype.decimalValue = function () {
-    return this.getTypedRuleContext(DecimalValueContext, 0);
+MinValueDecimalContext.prototype.decimalValue = function() {
+    return this.getTypedRuleContext(DecimalValueContext,0);
 };
 
-MinValueDecimalContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MinValueDecimalContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterMinValueDecimal(this);
-    }
+	}
 };
 
-MinValueDecimalContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MinValueDecimalContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitMinValueDecimal(this);
-    }
+	}
 };
 
 
@@ -5647,7 +5647,7 @@ MinValueDecimalContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.MinValueDecimalContext = MinValueDecimalContext;
 
-MetaEdGrammar.prototype.minValueDecimal = function () {
+MetaEdGrammar.prototype.minValueDecimal = function() {
 
     var localctx = new MinValueDecimalContext(this, this._ctx, this.state);
     this.enterRule(localctx, 96, MetaEdGrammar.RULE_minValueDecimal);
@@ -5658,13 +5658,13 @@ MetaEdGrammar.prototype.minValueDecimal = function () {
         this.state = 666;
         this.decimalValue();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -5672,13 +5672,13 @@ MetaEdGrammar.prototype.minValueDecimal = function () {
 };
 
 function MaxValueDecimalContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_maxValueDecimal;
     return this;
@@ -5687,24 +5687,24 @@ function MaxValueDecimalContext(parser, parent, invokingState) {
 MaxValueDecimalContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 MaxValueDecimalContext.prototype.constructor = MaxValueDecimalContext;
 
-MaxValueDecimalContext.prototype.MAX_VALUE = function () {
+MaxValueDecimalContext.prototype.MAX_VALUE = function() {
     return this.getToken(MetaEdGrammar.MAX_VALUE, 0);
 };
 
-MaxValueDecimalContext.prototype.decimalValue = function () {
-    return this.getTypedRuleContext(DecimalValueContext, 0);
+MaxValueDecimalContext.prototype.decimalValue = function() {
+    return this.getTypedRuleContext(DecimalValueContext,0);
 };
 
-MaxValueDecimalContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MaxValueDecimalContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterMaxValueDecimal(this);
-    }
+	}
 };
 
-MaxValueDecimalContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MaxValueDecimalContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitMaxValueDecimal(this);
-    }
+	}
 };
 
 
@@ -5712,7 +5712,7 @@ MaxValueDecimalContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.MaxValueDecimalContext = MaxValueDecimalContext;
 
-MetaEdGrammar.prototype.maxValueDecimal = function () {
+MetaEdGrammar.prototype.maxValueDecimal = function() {
 
     var localctx = new MaxValueDecimalContext(this, this._ctx, this.state);
     this.enterRule(localctx, 98, MetaEdGrammar.RULE_maxValueDecimal);
@@ -5723,13 +5723,13 @@ MetaEdGrammar.prototype.maxValueDecimal = function () {
         this.state = 669;
         this.decimalValue();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -5737,13 +5737,13 @@ MetaEdGrammar.prototype.maxValueDecimal = function () {
 };
 
 function DecimalValueContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_decimalValue;
     return this;
@@ -5752,24 +5752,24 @@ function DecimalValueContext(parser, parent, invokingState) {
 DecimalValueContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DecimalValueContext.prototype.constructor = DecimalValueContext;
 
-DecimalValueContext.prototype.DECIMAL_VALUE = function () {
+DecimalValueContext.prototype.DECIMAL_VALUE = function() {
     return this.getToken(MetaEdGrammar.DECIMAL_VALUE, 0);
 };
 
-DecimalValueContext.prototype.signed_int = function () {
-    return this.getTypedRuleContext(Signed_intContext, 0);
+DecimalValueContext.prototype.signed_int = function() {
+    return this.getTypedRuleContext(Signed_intContext,0);
 };
 
-DecimalValueContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DecimalValueContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDecimalValue(this);
-    }
+	}
 };
 
-DecimalValueContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DecimalValueContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDecimalValue(this);
-    }
+	}
 };
 
 
@@ -5777,36 +5777,36 @@ DecimalValueContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DecimalValueContext = DecimalValueContext;
 
-MetaEdGrammar.prototype.decimalValue = function () {
+MetaEdGrammar.prototype.decimalValue = function() {
 
     var localctx = new DecimalValueContext(this, this._ctx, this.state);
     this.enterRule(localctx, 100, MetaEdGrammar.RULE_decimalValue);
     try {
         this.state = 673;
-        switch (this._input.LA(1)) {
-            case MetaEdGrammar.DECIMAL_VALUE:
-                this.enterOuterAlt(localctx, 1);
-                this.state = 671;
-                this.match(MetaEdGrammar.DECIMAL_VALUE);
-                break;
-            case MetaEdGrammar.UNSIGNED_INT:
-            case MetaEdGrammar.POS_SIGN:
-            case MetaEdGrammar.NEG_SIGN:
-                this.enterOuterAlt(localctx, 2);
-                this.state = 672;
-                this.signed_int();
-                break;
-            default:
-                throw new antlr4.error.NoViableAltException(this);
+        switch(this._input.LA(1)) {
+        case MetaEdGrammar.DECIMAL_VALUE:
+            this.enterOuterAlt(localctx, 1);
+            this.state = 671;
+            this.match(MetaEdGrammar.DECIMAL_VALUE);
+            break;
+        case MetaEdGrammar.UNSIGNED_INT:
+        case MetaEdGrammar.POS_SIGN:
+        case MetaEdGrammar.NEG_SIGN:
+            this.enterOuterAlt(localctx, 2);
+            this.state = 672;
+            this.signed_int();
+            break;
+        default:
+            throw new antlr4.error.NoViableAltException(this);
         }
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -5814,13 +5814,13 @@ MetaEdGrammar.prototype.decimalValue = function () {
 };
 
 function TotalDigitsContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_totalDigits;
     return this;
@@ -5829,24 +5829,24 @@ function TotalDigitsContext(parser, parent, invokingState) {
 TotalDigitsContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 TotalDigitsContext.prototype.constructor = TotalDigitsContext;
 
-TotalDigitsContext.prototype.TOTAL_DIGITS = function () {
+TotalDigitsContext.prototype.TOTAL_DIGITS = function() {
     return this.getToken(MetaEdGrammar.TOTAL_DIGITS, 0);
 };
 
-TotalDigitsContext.prototype.UNSIGNED_INT = function () {
+TotalDigitsContext.prototype.UNSIGNED_INT = function() {
     return this.getToken(MetaEdGrammar.UNSIGNED_INT, 0);
 };
 
-TotalDigitsContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+TotalDigitsContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterTotalDigits(this);
-    }
+	}
 };
 
-TotalDigitsContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+TotalDigitsContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitTotalDigits(this);
-    }
+	}
 };
 
 
@@ -5854,7 +5854,7 @@ TotalDigitsContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.TotalDigitsContext = TotalDigitsContext;
 
-MetaEdGrammar.prototype.totalDigits = function () {
+MetaEdGrammar.prototype.totalDigits = function() {
 
     var localctx = new TotalDigitsContext(this, this._ctx, this.state);
     this.enterRule(localctx, 102, MetaEdGrammar.RULE_totalDigits);
@@ -5865,13 +5865,13 @@ MetaEdGrammar.prototype.totalDigits = function () {
         this.state = 676;
         this.match(MetaEdGrammar.UNSIGNED_INT);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -5879,13 +5879,13 @@ MetaEdGrammar.prototype.totalDigits = function () {
 };
 
 function DecimalPlacesContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_decimalPlaces;
     return this;
@@ -5894,24 +5894,24 @@ function DecimalPlacesContext(parser, parent, invokingState) {
 DecimalPlacesContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DecimalPlacesContext.prototype.constructor = DecimalPlacesContext;
 
-DecimalPlacesContext.prototype.DECIMAL_PLACES = function () {
+DecimalPlacesContext.prototype.DECIMAL_PLACES = function() {
     return this.getToken(MetaEdGrammar.DECIMAL_PLACES, 0);
 };
 
-DecimalPlacesContext.prototype.UNSIGNED_INT = function () {
+DecimalPlacesContext.prototype.UNSIGNED_INT = function() {
     return this.getToken(MetaEdGrammar.UNSIGNED_INT, 0);
 };
 
-DecimalPlacesContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DecimalPlacesContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDecimalPlaces(this);
-    }
+	}
 };
 
-DecimalPlacesContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DecimalPlacesContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDecimalPlaces(this);
-    }
+	}
 };
 
 
@@ -5919,7 +5919,7 @@ DecimalPlacesContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DecimalPlacesContext = DecimalPlacesContext;
 
-MetaEdGrammar.prototype.decimalPlaces = function () {
+MetaEdGrammar.prototype.decimalPlaces = function() {
 
     var localctx = new DecimalPlacesContext(this, this._ctx, this.state);
     this.enterRule(localctx, 104, MetaEdGrammar.RULE_decimalPlaces);
@@ -5930,13 +5930,13 @@ MetaEdGrammar.prototype.decimalPlaces = function () {
         this.state = 679;
         this.match(MetaEdGrammar.UNSIGNED_INT);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -5944,13 +5944,13 @@ MetaEdGrammar.prototype.decimalPlaces = function () {
 };
 
 function IncludeExtensionOverrideContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_includeExtensionOverride;
     return this;
@@ -5959,20 +5959,20 @@ function IncludeExtensionOverrideContext(parser, parent, invokingState) {
 IncludeExtensionOverrideContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 IncludeExtensionOverrideContext.prototype.constructor = IncludeExtensionOverrideContext;
 
-IncludeExtensionOverrideContext.prototype.INCLUDE_EXTENSION = function () {
+IncludeExtensionOverrideContext.prototype.INCLUDE_EXTENSION = function() {
     return this.getToken(MetaEdGrammar.INCLUDE_EXTENSION, 0);
 };
 
-IncludeExtensionOverrideContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IncludeExtensionOverrideContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterIncludeExtensionOverride(this);
-    }
+	}
 };
 
-IncludeExtensionOverrideContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IncludeExtensionOverrideContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitIncludeExtensionOverride(this);
-    }
+	}
 };
 
 
@@ -5980,7 +5980,7 @@ IncludeExtensionOverrideContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.IncludeExtensionOverrideContext = IncludeExtensionOverrideContext;
 
-MetaEdGrammar.prototype.includeExtensionOverride = function () {
+MetaEdGrammar.prototype.includeExtensionOverride = function() {
 
     var localctx = new IncludeExtensionOverrideContext(this, this._ctx, this.state);
     this.enterRule(localctx, 106, MetaEdGrammar.RULE_includeExtensionOverride);
@@ -5989,13 +5989,13 @@ MetaEdGrammar.prototype.includeExtensionOverride = function () {
         this.state = 681;
         this.match(MetaEdGrammar.INCLUDE_EXTENSION);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6003,13 +6003,13 @@ MetaEdGrammar.prototype.includeExtensionOverride = function () {
 };
 
 function PropertyAnnotationContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_propertyAnnotation;
     return this;
@@ -6018,40 +6018,40 @@ function PropertyAnnotationContext(parser, parent, invokingState) {
 PropertyAnnotationContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 PropertyAnnotationContext.prototype.constructor = PropertyAnnotationContext;
 
-PropertyAnnotationContext.prototype.identity = function () {
-    return this.getTypedRuleContext(IdentityContext, 0);
+PropertyAnnotationContext.prototype.identity = function() {
+    return this.getTypedRuleContext(IdentityContext,0);
 };
 
-PropertyAnnotationContext.prototype.identityRename = function () {
-    return this.getTypedRuleContext(IdentityRenameContext, 0);
+PropertyAnnotationContext.prototype.identityRename = function() {
+    return this.getTypedRuleContext(IdentityRenameContext,0);
 };
 
-PropertyAnnotationContext.prototype.required = function () {
-    return this.getTypedRuleContext(RequiredContext, 0);
+PropertyAnnotationContext.prototype.required = function() {
+    return this.getTypedRuleContext(RequiredContext,0);
 };
 
-PropertyAnnotationContext.prototype.optional = function () {
-    return this.getTypedRuleContext(OptionalContext, 0);
+PropertyAnnotationContext.prototype.optional = function() {
+    return this.getTypedRuleContext(OptionalContext,0);
 };
 
-PropertyAnnotationContext.prototype.collection = function () {
-    return this.getTypedRuleContext(CollectionContext, 0);
+PropertyAnnotationContext.prototype.collection = function() {
+    return this.getTypedRuleContext(CollectionContext,0);
 };
 
-PropertyAnnotationContext.prototype.isQueryableOnly = function () {
-    return this.getTypedRuleContext(IsQueryableOnlyContext, 0);
+PropertyAnnotationContext.prototype.isQueryableOnly = function() {
+    return this.getTypedRuleContext(IsQueryableOnlyContext,0);
 };
 
-PropertyAnnotationContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+PropertyAnnotationContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterPropertyAnnotation(this);
-    }
+	}
 };
 
-PropertyAnnotationContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+PropertyAnnotationContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitPropertyAnnotation(this);
-    }
+	}
 };
 
 
@@ -6059,50 +6059,50 @@ PropertyAnnotationContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.PropertyAnnotationContext = PropertyAnnotationContext;
 
-MetaEdGrammar.prototype.propertyAnnotation = function () {
+MetaEdGrammar.prototype.propertyAnnotation = function() {
 
     var localctx = new PropertyAnnotationContext(this, this._ctx, this.state);
     this.enterRule(localctx, 108, MetaEdGrammar.RULE_propertyAnnotation);
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 689;
-        switch (this._input.LA(1)) {
-            case MetaEdGrammar.IDENTITY:
-                this.state = 683;
-                this.identity();
-                break;
-            case MetaEdGrammar.IDENTITY_RENAME:
-                this.state = 684;
-                this.identityRename();
-                break;
-            case MetaEdGrammar.REQUIRED:
-                this.state = 685;
-                this.required();
-                break;
-            case MetaEdGrammar.OPTIONAL:
-                this.state = 686;
-                this.optional();
-                break;
-            case MetaEdGrammar.OPTIONAL_COLLECTION:
-            case MetaEdGrammar.REQUIRED_COLLECTION:
-                this.state = 687;
-                this.collection();
-                break;
-            case MetaEdGrammar.IS_QUERYABLE_ONLY:
-                this.state = 688;
-                this.isQueryableOnly();
-                break;
-            default:
-                throw new antlr4.error.NoViableAltException(this);
+        switch(this._input.LA(1)) {
+        case MetaEdGrammar.IDENTITY:
+            this.state = 683;
+            this.identity();
+            break;
+        case MetaEdGrammar.IDENTITY_RENAME:
+            this.state = 684;
+            this.identityRename();
+            break;
+        case MetaEdGrammar.REQUIRED:
+            this.state = 685;
+            this.required();
+            break;
+        case MetaEdGrammar.OPTIONAL:
+            this.state = 686;
+            this.optional();
+            break;
+        case MetaEdGrammar.OPTIONAL_COLLECTION:
+        case MetaEdGrammar.REQUIRED_COLLECTION:
+            this.state = 687;
+            this.collection();
+            break;
+        case MetaEdGrammar.IS_QUERYABLE_ONLY:
+            this.state = 688;
+            this.isQueryableOnly();
+            break;
+        default:
+            throw new antlr4.error.NoViableAltException(this);
         }
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6110,13 +6110,13 @@ MetaEdGrammar.prototype.propertyAnnotation = function () {
 };
 
 function IdentityContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_identity;
     return this;
@@ -6125,20 +6125,20 @@ function IdentityContext(parser, parent, invokingState) {
 IdentityContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 IdentityContext.prototype.constructor = IdentityContext;
 
-IdentityContext.prototype.IDENTITY = function () {
+IdentityContext.prototype.IDENTITY = function() {
     return this.getToken(MetaEdGrammar.IDENTITY, 0);
 };
 
-IdentityContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IdentityContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterIdentity(this);
-    }
+	}
 };
 
-IdentityContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IdentityContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitIdentity(this);
-    }
+	}
 };
 
 
@@ -6146,7 +6146,7 @@ IdentityContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.IdentityContext = IdentityContext;
 
-MetaEdGrammar.prototype.identity = function () {
+MetaEdGrammar.prototype.identity = function() {
 
     var localctx = new IdentityContext(this, this._ctx, this.state);
     this.enterRule(localctx, 110, MetaEdGrammar.RULE_identity);
@@ -6155,13 +6155,13 @@ MetaEdGrammar.prototype.identity = function () {
         this.state = 691;
         this.match(MetaEdGrammar.IDENTITY);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6169,13 +6169,13 @@ MetaEdGrammar.prototype.identity = function () {
 };
 
 function IdentityRenameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_identityRename;
     return this;
@@ -6184,24 +6184,24 @@ function IdentityRenameContext(parser, parent, invokingState) {
 IdentityRenameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 IdentityRenameContext.prototype.constructor = IdentityRenameContext;
 
-IdentityRenameContext.prototype.IDENTITY_RENAME = function () {
+IdentityRenameContext.prototype.IDENTITY_RENAME = function() {
     return this.getToken(MetaEdGrammar.IDENTITY_RENAME, 0);
 };
 
-IdentityRenameContext.prototype.baseKeyName = function () {
-    return this.getTypedRuleContext(BaseKeyNameContext, 0);
+IdentityRenameContext.prototype.baseKeyName = function() {
+    return this.getTypedRuleContext(BaseKeyNameContext,0);
 };
 
-IdentityRenameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IdentityRenameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterIdentityRename(this);
-    }
+	}
 };
 
-IdentityRenameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IdentityRenameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitIdentityRename(this);
-    }
+	}
 };
 
 
@@ -6209,7 +6209,7 @@ IdentityRenameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.IdentityRenameContext = IdentityRenameContext;
 
-MetaEdGrammar.prototype.identityRename = function () {
+MetaEdGrammar.prototype.identityRename = function() {
 
     var localctx = new IdentityRenameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 112, MetaEdGrammar.RULE_identityRename);
@@ -6220,13 +6220,13 @@ MetaEdGrammar.prototype.identityRename = function () {
         this.state = 694;
         this.baseKeyName();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6234,13 +6234,13 @@ MetaEdGrammar.prototype.identityRename = function () {
 };
 
 function RequiredContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_required;
     return this;
@@ -6249,20 +6249,20 @@ function RequiredContext(parser, parent, invokingState) {
 RequiredContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 RequiredContext.prototype.constructor = RequiredContext;
 
-RequiredContext.prototype.REQUIRED = function () {
+RequiredContext.prototype.REQUIRED = function() {
     return this.getToken(MetaEdGrammar.REQUIRED, 0);
 };
 
-RequiredContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+RequiredContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterRequired(this);
-    }
+	}
 };
 
-RequiredContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+RequiredContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitRequired(this);
-    }
+	}
 };
 
 
@@ -6270,7 +6270,7 @@ RequiredContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.RequiredContext = RequiredContext;
 
-MetaEdGrammar.prototype.required = function () {
+MetaEdGrammar.prototype.required = function() {
 
     var localctx = new RequiredContext(this, this._ctx, this.state);
     this.enterRule(localctx, 114, MetaEdGrammar.RULE_required);
@@ -6279,13 +6279,13 @@ MetaEdGrammar.prototype.required = function () {
         this.state = 696;
         this.match(MetaEdGrammar.REQUIRED);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6293,13 +6293,13 @@ MetaEdGrammar.prototype.required = function () {
 };
 
 function OptionalContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_optional;
     return this;
@@ -6308,20 +6308,20 @@ function OptionalContext(parser, parent, invokingState) {
 OptionalContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 OptionalContext.prototype.constructor = OptionalContext;
 
-OptionalContext.prototype.OPTIONAL = function () {
+OptionalContext.prototype.OPTIONAL = function() {
     return this.getToken(MetaEdGrammar.OPTIONAL, 0);
 };
 
-OptionalContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+OptionalContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterOptional(this);
-    }
+	}
 };
 
-OptionalContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+OptionalContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitOptional(this);
-    }
+	}
 };
 
 
@@ -6329,7 +6329,7 @@ OptionalContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.OptionalContext = OptionalContext;
 
-MetaEdGrammar.prototype.optional = function () {
+MetaEdGrammar.prototype.optional = function() {
 
     var localctx = new OptionalContext(this, this._ctx, this.state);
     this.enterRule(localctx, 116, MetaEdGrammar.RULE_optional);
@@ -6338,13 +6338,13 @@ MetaEdGrammar.prototype.optional = function () {
         this.state = 698;
         this.match(MetaEdGrammar.OPTIONAL);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6352,13 +6352,13 @@ MetaEdGrammar.prototype.optional = function () {
 };
 
 function CollectionContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_collection;
     return this;
@@ -6367,24 +6367,24 @@ function CollectionContext(parser, parent, invokingState) {
 CollectionContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CollectionContext.prototype.constructor = CollectionContext;
 
-CollectionContext.prototype.requiredCollection = function () {
-    return this.getTypedRuleContext(RequiredCollectionContext, 0);
+CollectionContext.prototype.requiredCollection = function() {
+    return this.getTypedRuleContext(RequiredCollectionContext,0);
 };
 
-CollectionContext.prototype.optionalCollection = function () {
-    return this.getTypedRuleContext(OptionalCollectionContext, 0);
+CollectionContext.prototype.optionalCollection = function() {
+    return this.getTypedRuleContext(OptionalCollectionContext,0);
 };
 
-CollectionContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CollectionContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCollection(this);
-    }
+	}
 };
 
-CollectionContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CollectionContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCollection(this);
-    }
+	}
 };
 
 
@@ -6392,33 +6392,33 @@ CollectionContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CollectionContext = CollectionContext;
 
-MetaEdGrammar.prototype.collection = function () {
+MetaEdGrammar.prototype.collection = function() {
 
     var localctx = new CollectionContext(this, this._ctx, this.state);
     this.enterRule(localctx, 118, MetaEdGrammar.RULE_collection);
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 702;
-        switch (this._input.LA(1)) {
-            case MetaEdGrammar.REQUIRED_COLLECTION:
-                this.state = 700;
-                this.requiredCollection();
-                break;
-            case MetaEdGrammar.OPTIONAL_COLLECTION:
-                this.state = 701;
-                this.optionalCollection();
-                break;
-            default:
-                throw new antlr4.error.NoViableAltException(this);
+        switch(this._input.LA(1)) {
+        case MetaEdGrammar.REQUIRED_COLLECTION:
+            this.state = 700;
+            this.requiredCollection();
+            break;
+        case MetaEdGrammar.OPTIONAL_COLLECTION:
+            this.state = 701;
+            this.optionalCollection();
+            break;
+        default:
+            throw new antlr4.error.NoViableAltException(this);
         }
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6426,13 +6426,13 @@ MetaEdGrammar.prototype.collection = function () {
 };
 
 function RequiredCollectionContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_requiredCollection;
     return this;
@@ -6441,20 +6441,20 @@ function RequiredCollectionContext(parser, parent, invokingState) {
 RequiredCollectionContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 RequiredCollectionContext.prototype.constructor = RequiredCollectionContext;
 
-RequiredCollectionContext.prototype.REQUIRED_COLLECTION = function () {
+RequiredCollectionContext.prototype.REQUIRED_COLLECTION = function() {
     return this.getToken(MetaEdGrammar.REQUIRED_COLLECTION, 0);
 };
 
-RequiredCollectionContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+RequiredCollectionContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterRequiredCollection(this);
-    }
+	}
 };
 
-RequiredCollectionContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+RequiredCollectionContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitRequiredCollection(this);
-    }
+	}
 };
 
 
@@ -6462,7 +6462,7 @@ RequiredCollectionContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.RequiredCollectionContext = RequiredCollectionContext;
 
-MetaEdGrammar.prototype.requiredCollection = function () {
+MetaEdGrammar.prototype.requiredCollection = function() {
 
     var localctx = new RequiredCollectionContext(this, this._ctx, this.state);
     this.enterRule(localctx, 120, MetaEdGrammar.RULE_requiredCollection);
@@ -6471,13 +6471,13 @@ MetaEdGrammar.prototype.requiredCollection = function () {
         this.state = 704;
         this.match(MetaEdGrammar.REQUIRED_COLLECTION);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6485,13 +6485,13 @@ MetaEdGrammar.prototype.requiredCollection = function () {
 };
 
 function OptionalCollectionContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_optionalCollection;
     return this;
@@ -6500,20 +6500,20 @@ function OptionalCollectionContext(parser, parent, invokingState) {
 OptionalCollectionContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 OptionalCollectionContext.prototype.constructor = OptionalCollectionContext;
 
-OptionalCollectionContext.prototype.OPTIONAL_COLLECTION = function () {
+OptionalCollectionContext.prototype.OPTIONAL_COLLECTION = function() {
     return this.getToken(MetaEdGrammar.OPTIONAL_COLLECTION, 0);
 };
 
-OptionalCollectionContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+OptionalCollectionContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterOptionalCollection(this);
-    }
+	}
 };
 
-OptionalCollectionContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+OptionalCollectionContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitOptionalCollection(this);
-    }
+	}
 };
 
 
@@ -6521,7 +6521,7 @@ OptionalCollectionContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.OptionalCollectionContext = OptionalCollectionContext;
 
-MetaEdGrammar.prototype.optionalCollection = function () {
+MetaEdGrammar.prototype.optionalCollection = function() {
 
     var localctx = new OptionalCollectionContext(this, this._ctx, this.state);
     this.enterRule(localctx, 122, MetaEdGrammar.RULE_optionalCollection);
@@ -6530,13 +6530,13 @@ MetaEdGrammar.prototype.optionalCollection = function () {
         this.state = 706;
         this.match(MetaEdGrammar.OPTIONAL_COLLECTION);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6544,13 +6544,13 @@ MetaEdGrammar.prototype.optionalCollection = function () {
 };
 
 function IsQueryableOnlyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_isQueryableOnly;
     return this;
@@ -6559,20 +6559,20 @@ function IsQueryableOnlyContext(parser, parent, invokingState) {
 IsQueryableOnlyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 IsQueryableOnlyContext.prototype.constructor = IsQueryableOnlyContext;
 
-IsQueryableOnlyContext.prototype.IS_QUERYABLE_ONLY = function () {
+IsQueryableOnlyContext.prototype.IS_QUERYABLE_ONLY = function() {
     return this.getToken(MetaEdGrammar.IS_QUERYABLE_ONLY, 0);
 };
 
-IsQueryableOnlyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IsQueryableOnlyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterIsQueryableOnly(this);
-    }
+	}
 };
 
-IsQueryableOnlyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IsQueryableOnlyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitIsQueryableOnly(this);
-    }
+	}
 };
 
 
@@ -6580,7 +6580,7 @@ IsQueryableOnlyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.IsQueryableOnlyContext = IsQueryableOnlyContext;
 
-MetaEdGrammar.prototype.isQueryableOnly = function () {
+MetaEdGrammar.prototype.isQueryableOnly = function() {
 
     var localctx = new IsQueryableOnlyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 124, MetaEdGrammar.RULE_isQueryableOnly);
@@ -6589,13 +6589,13 @@ MetaEdGrammar.prototype.isQueryableOnly = function () {
         this.state = 708;
         this.match(MetaEdGrammar.IS_QUERYABLE_ONLY);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6603,13 +6603,13 @@ MetaEdGrammar.prototype.isQueryableOnly = function () {
 };
 
 function PropertyComponentsContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_propertyComponents;
     return this;
@@ -6618,32 +6618,32 @@ function PropertyComponentsContext(parser, parent, invokingState) {
 PropertyComponentsContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 PropertyComponentsContext.prototype.constructor = PropertyComponentsContext;
 
-PropertyComponentsContext.prototype.documentation = function () {
-    return this.getTypedRuleContext(DocumentationContext, 0);
+PropertyComponentsContext.prototype.documentation = function() {
+    return this.getTypedRuleContext(DocumentationContext,0);
 };
 
-PropertyComponentsContext.prototype.propertyAnnotation = function () {
-    return this.getTypedRuleContext(PropertyAnnotationContext, 0);
+PropertyComponentsContext.prototype.propertyAnnotation = function() {
+    return this.getTypedRuleContext(PropertyAnnotationContext,0);
 };
 
-PropertyComponentsContext.prototype.withContext = function () {
-    return this.getTypedRuleContext(WithContextContext, 0);
+PropertyComponentsContext.prototype.withContext = function() {
+    return this.getTypedRuleContext(WithContextContext,0);
 };
 
-PropertyComponentsContext.prototype.isQueryableField = function () {
-    return this.getTypedRuleContext(IsQueryableFieldContext, 0);
+PropertyComponentsContext.prototype.isQueryableField = function() {
+    return this.getTypedRuleContext(IsQueryableFieldContext,0);
 };
 
-PropertyComponentsContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+PropertyComponentsContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterPropertyComponents(this);
-    }
+	}
 };
 
-PropertyComponentsContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+PropertyComponentsContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitPropertyComponents(this);
-    }
+	}
 };
 
 
@@ -6651,7 +6651,7 @@ PropertyComponentsContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.PropertyComponentsContext = PropertyComponentsContext;
 
-MetaEdGrammar.prototype.propertyComponents = function () {
+MetaEdGrammar.prototype.propertyComponents = function() {
 
     var localctx = new PropertyComponentsContext(this, this._ctx, this.state);
     this.enterRule(localctx, 126, MetaEdGrammar.RULE_propertyComponents);
@@ -6664,26 +6664,26 @@ MetaEdGrammar.prototype.propertyComponents = function () {
         this.propertyAnnotation();
         this.state = 713;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.WITH_CONTEXT) {
+        if(_la===MetaEdGrammar.WITH_CONTEXT) {
             this.state = 712;
             this.withContext();
         }
 
         this.state = 716;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.IS_QUERYABLE_FIELD) {
+        if(_la===MetaEdGrammar.IS_QUERYABLE_FIELD) {
             this.state = 715;
             this.isQueryableField();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6691,13 +6691,13 @@ MetaEdGrammar.prototype.propertyComponents = function () {
 };
 
 function IsQueryableFieldContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_isQueryableField;
     return this;
@@ -6706,20 +6706,20 @@ function IsQueryableFieldContext(parser, parent, invokingState) {
 IsQueryableFieldContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 IsQueryableFieldContext.prototype.constructor = IsQueryableFieldContext;
 
-IsQueryableFieldContext.prototype.IS_QUERYABLE_FIELD = function () {
+IsQueryableFieldContext.prototype.IS_QUERYABLE_FIELD = function() {
     return this.getToken(MetaEdGrammar.IS_QUERYABLE_FIELD, 0);
 };
 
-IsQueryableFieldContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IsQueryableFieldContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterIsQueryableField(this);
-    }
+	}
 };
 
-IsQueryableFieldContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IsQueryableFieldContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitIsQueryableField(this);
-    }
+	}
 };
 
 
@@ -6727,7 +6727,7 @@ IsQueryableFieldContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.IsQueryableFieldContext = IsQueryableFieldContext;
 
-MetaEdGrammar.prototype.isQueryableField = function () {
+MetaEdGrammar.prototype.isQueryableField = function() {
 
     var localctx = new IsQueryableFieldContext(this, this._ctx, this.state);
     this.enterRule(localctx, 128, MetaEdGrammar.RULE_isQueryableField);
@@ -6736,13 +6736,13 @@ MetaEdGrammar.prototype.isQueryableField = function () {
         this.state = 718;
         this.match(MetaEdGrammar.IS_QUERYABLE_FIELD);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6750,13 +6750,13 @@ MetaEdGrammar.prototype.isQueryableField = function () {
 };
 
 function WithContextContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_withContext;
     return this;
@@ -6765,32 +6765,32 @@ function WithContextContext(parser, parent, invokingState) {
 WithContextContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 WithContextContext.prototype.constructor = WithContextContext;
 
-WithContextContext.prototype.WITH_CONTEXT = function () {
+WithContextContext.prototype.WITH_CONTEXT = function() {
     return this.getToken(MetaEdGrammar.WITH_CONTEXT, 0);
 };
 
-WithContextContext.prototype.withContextName = function () {
-    return this.getTypedRuleContext(WithContextNameContext, 0);
+WithContextContext.prototype.withContextName = function() {
+    return this.getTypedRuleContext(WithContextNameContext,0);
 };
 
-WithContextContext.prototype.SHORTEN_TO = function () {
+WithContextContext.prototype.SHORTEN_TO = function() {
     return this.getToken(MetaEdGrammar.SHORTEN_TO, 0);
 };
 
-WithContextContext.prototype.shortenToName = function () {
-    return this.getTypedRuleContext(ShortenToNameContext, 0);
+WithContextContext.prototype.shortenToName = function() {
+    return this.getTypedRuleContext(ShortenToNameContext,0);
 };
 
-WithContextContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+WithContextContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterWithContext(this);
-    }
+	}
 };
 
-WithContextContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+WithContextContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitWithContext(this);
-    }
+	}
 };
 
 
@@ -6798,7 +6798,7 @@ WithContextContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.WithContextContext = WithContextContext;
 
-MetaEdGrammar.prototype.withContext = function () {
+MetaEdGrammar.prototype.withContext = function() {
 
     var localctx = new WithContextContext(this, this._ctx, this.state);
     this.enterRule(localctx, 130, MetaEdGrammar.RULE_withContext);
@@ -6811,7 +6811,7 @@ MetaEdGrammar.prototype.withContext = function () {
         this.withContextName();
         this.state = 724;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.SHORTEN_TO) {
+        if(_la===MetaEdGrammar.SHORTEN_TO) {
             this.state = 722;
             this.match(MetaEdGrammar.SHORTEN_TO);
             this.state = 723;
@@ -6819,13 +6819,13 @@ MetaEdGrammar.prototype.withContext = function () {
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6833,13 +6833,13 @@ MetaEdGrammar.prototype.withContext = function () {
 };
 
 function MinLengthContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_minLength;
     return this;
@@ -6848,24 +6848,24 @@ function MinLengthContext(parser, parent, invokingState) {
 MinLengthContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 MinLengthContext.prototype.constructor = MinLengthContext;
 
-MinLengthContext.prototype.MIN_LENGTH = function () {
+MinLengthContext.prototype.MIN_LENGTH = function() {
     return this.getToken(MetaEdGrammar.MIN_LENGTH, 0);
 };
 
-MinLengthContext.prototype.UNSIGNED_INT = function () {
+MinLengthContext.prototype.UNSIGNED_INT = function() {
     return this.getToken(MetaEdGrammar.UNSIGNED_INT, 0);
 };
 
-MinLengthContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MinLengthContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterMinLength(this);
-    }
+	}
 };
 
-MinLengthContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MinLengthContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitMinLength(this);
-    }
+	}
 };
 
 
@@ -6873,7 +6873,7 @@ MinLengthContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.MinLengthContext = MinLengthContext;
 
-MetaEdGrammar.prototype.minLength = function () {
+MetaEdGrammar.prototype.minLength = function() {
 
     var localctx = new MinLengthContext(this, this._ctx, this.state);
     this.enterRule(localctx, 132, MetaEdGrammar.RULE_minLength);
@@ -6884,13 +6884,13 @@ MetaEdGrammar.prototype.minLength = function () {
         this.state = 727;
         this.match(MetaEdGrammar.UNSIGNED_INT);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6898,13 +6898,13 @@ MetaEdGrammar.prototype.minLength = function () {
 };
 
 function MaxLengthContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_maxLength;
     return this;
@@ -6913,24 +6913,24 @@ function MaxLengthContext(parser, parent, invokingState) {
 MaxLengthContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 MaxLengthContext.prototype.constructor = MaxLengthContext;
 
-MaxLengthContext.prototype.MAX_LENGTH = function () {
+MaxLengthContext.prototype.MAX_LENGTH = function() {
     return this.getToken(MetaEdGrammar.MAX_LENGTH, 0);
 };
 
-MaxLengthContext.prototype.UNSIGNED_INT = function () {
+MaxLengthContext.prototype.UNSIGNED_INT = function() {
     return this.getToken(MetaEdGrammar.UNSIGNED_INT, 0);
 };
 
-MaxLengthContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MaxLengthContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterMaxLength(this);
-    }
+	}
 };
 
-MaxLengthContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MaxLengthContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitMaxLength(this);
-    }
+	}
 };
 
 
@@ -6938,7 +6938,7 @@ MaxLengthContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.MaxLengthContext = MaxLengthContext;
 
-MetaEdGrammar.prototype.maxLength = function () {
+MetaEdGrammar.prototype.maxLength = function() {
 
     var localctx = new MaxLengthContext(this, this._ctx, this.state);
     this.enterRule(localctx, 134, MetaEdGrammar.RULE_maxLength);
@@ -6949,13 +6949,13 @@ MetaEdGrammar.prototype.maxLength = function () {
         this.state = 730;
         this.match(MetaEdGrammar.UNSIGNED_INT);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -6963,13 +6963,13 @@ MetaEdGrammar.prototype.maxLength = function () {
 };
 
 function PropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_property;
     return this;
@@ -6978,92 +6978,92 @@ function PropertyContext(parser, parent, invokingState) {
 PropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 PropertyContext.prototype.constructor = PropertyContext;
 
-PropertyContext.prototype.booleanProperty = function () {
-    return this.getTypedRuleContext(BooleanPropertyContext, 0);
+PropertyContext.prototype.booleanProperty = function() {
+    return this.getTypedRuleContext(BooleanPropertyContext,0);
 };
 
-PropertyContext.prototype.currencyProperty = function () {
-    return this.getTypedRuleContext(CurrencyPropertyContext, 0);
+PropertyContext.prototype.currencyProperty = function() {
+    return this.getTypedRuleContext(CurrencyPropertyContext,0);
 };
 
-PropertyContext.prototype.dateProperty = function () {
-    return this.getTypedRuleContext(DatePropertyContext, 0);
+PropertyContext.prototype.dateProperty = function() {
+    return this.getTypedRuleContext(DatePropertyContext,0);
 };
 
-PropertyContext.prototype.decimalProperty = function () {
-    return this.getTypedRuleContext(DecimalPropertyContext, 0);
+PropertyContext.prototype.decimalProperty = function() {
+    return this.getTypedRuleContext(DecimalPropertyContext,0);
 };
 
-PropertyContext.prototype.descriptorProperty = function () {
-    return this.getTypedRuleContext(DescriptorPropertyContext, 0);
+PropertyContext.prototype.descriptorProperty = function() {
+    return this.getTypedRuleContext(DescriptorPropertyContext,0);
 };
 
-PropertyContext.prototype.durationProperty = function () {
-    return this.getTypedRuleContext(DurationPropertyContext, 0);
+PropertyContext.prototype.durationProperty = function() {
+    return this.getTypedRuleContext(DurationPropertyContext,0);
 };
 
-PropertyContext.prototype.enumerationProperty = function () {
-    return this.getTypedRuleContext(EnumerationPropertyContext, 0);
+PropertyContext.prototype.enumerationProperty = function() {
+    return this.getTypedRuleContext(EnumerationPropertyContext,0);
 };
 
-PropertyContext.prototype.includeProperty = function () {
-    return this.getTypedRuleContext(IncludePropertyContext, 0);
+PropertyContext.prototype.includeProperty = function() {
+    return this.getTypedRuleContext(IncludePropertyContext,0);
 };
 
-PropertyContext.prototype.integerProperty = function () {
-    return this.getTypedRuleContext(IntegerPropertyContext, 0);
+PropertyContext.prototype.integerProperty = function() {
+    return this.getTypedRuleContext(IntegerPropertyContext,0);
 };
 
-PropertyContext.prototype.percentProperty = function () {
-    return this.getTypedRuleContext(PercentPropertyContext, 0);
+PropertyContext.prototype.percentProperty = function() {
+    return this.getTypedRuleContext(PercentPropertyContext,0);
 };
 
-PropertyContext.prototype.referenceProperty = function () {
-    return this.getTypedRuleContext(ReferencePropertyContext, 0);
+PropertyContext.prototype.referenceProperty = function() {
+    return this.getTypedRuleContext(ReferencePropertyContext,0);
 };
 
-PropertyContext.prototype.sharedDecimalProperty = function () {
-    return this.getTypedRuleContext(SharedDecimalPropertyContext, 0);
+PropertyContext.prototype.sharedDecimalProperty = function() {
+    return this.getTypedRuleContext(SharedDecimalPropertyContext,0);
 };
 
-PropertyContext.prototype.sharedIntegerProperty = function () {
-    return this.getTypedRuleContext(SharedIntegerPropertyContext, 0);
+PropertyContext.prototype.sharedIntegerProperty = function() {
+    return this.getTypedRuleContext(SharedIntegerPropertyContext,0);
 };
 
-PropertyContext.prototype.sharedShortProperty = function () {
-    return this.getTypedRuleContext(SharedShortPropertyContext, 0);
+PropertyContext.prototype.sharedShortProperty = function() {
+    return this.getTypedRuleContext(SharedShortPropertyContext,0);
 };
 
-PropertyContext.prototype.sharedStringProperty = function () {
-    return this.getTypedRuleContext(SharedStringPropertyContext, 0);
+PropertyContext.prototype.sharedStringProperty = function() {
+    return this.getTypedRuleContext(SharedStringPropertyContext,0);
 };
 
-PropertyContext.prototype.shortProperty = function () {
-    return this.getTypedRuleContext(ShortPropertyContext, 0);
+PropertyContext.prototype.shortProperty = function() {
+    return this.getTypedRuleContext(ShortPropertyContext,0);
 };
 
-PropertyContext.prototype.stringProperty = function () {
-    return this.getTypedRuleContext(StringPropertyContext, 0);
+PropertyContext.prototype.stringProperty = function() {
+    return this.getTypedRuleContext(StringPropertyContext,0);
 };
 
-PropertyContext.prototype.timeProperty = function () {
-    return this.getTypedRuleContext(TimePropertyContext, 0);
+PropertyContext.prototype.timeProperty = function() {
+    return this.getTypedRuleContext(TimePropertyContext,0);
 };
 
-PropertyContext.prototype.yearProperty = function () {
-    return this.getTypedRuleContext(YearPropertyContext, 0);
+PropertyContext.prototype.yearProperty = function() {
+    return this.getTypedRuleContext(YearPropertyContext,0);
 };
 
-PropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+PropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterProperty(this);
-    }
+	}
 };
 
-PropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+PropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitProperty(this);
-    }
+	}
 };
 
 
@@ -7071,120 +7071,120 @@ PropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.PropertyContext = PropertyContext;
 
-MetaEdGrammar.prototype.property = function () {
+MetaEdGrammar.prototype.property = function() {
 
     var localctx = new PropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 136, MetaEdGrammar.RULE_property);
     try {
         this.state = 751;
-        switch (this._input.LA(1)) {
-            case MetaEdGrammar.BOOLEAN:
-                this.enterOuterAlt(localctx, 1);
-                this.state = 732;
-                this.booleanProperty();
-                break;
-            case MetaEdGrammar.CURRENCY:
-                this.enterOuterAlt(localctx, 2);
-                this.state = 733;
-                this.currencyProperty();
-                break;
-            case MetaEdGrammar.DATE:
-                this.enterOuterAlt(localctx, 3);
-                this.state = 734;
-                this.dateProperty();
-                break;
-            case MetaEdGrammar.DECIMAL:
-                this.enterOuterAlt(localctx, 4);
-                this.state = 735;
-                this.decimalProperty();
-                break;
-            case MetaEdGrammar.DESCRIPTOR:
-                this.enterOuterAlt(localctx, 5);
-                this.state = 736;
-                this.descriptorProperty();
-                break;
-            case MetaEdGrammar.DURATION:
-                this.enterOuterAlt(localctx, 6);
-                this.state = 737;
-                this.durationProperty();
-                break;
-            case MetaEdGrammar.ENUMERATION:
-                this.enterOuterAlt(localctx, 7);
-                this.state = 738;
-                this.enumerationProperty();
-                break;
-            case MetaEdGrammar.INCLUDE:
-            case MetaEdGrammar.INCLUDE_EXTENSION:
-                this.enterOuterAlt(localctx, 8);
-                this.state = 739;
-                this.includeProperty();
-                break;
-            case MetaEdGrammar.INTEGER:
-                this.enterOuterAlt(localctx, 9);
-                this.state = 740;
-                this.integerProperty();
-                break;
-            case MetaEdGrammar.PERCENT:
-                this.enterOuterAlt(localctx, 10);
-                this.state = 741;
-                this.percentProperty();
-                break;
-            case MetaEdGrammar.REFERENCE:
-                this.enterOuterAlt(localctx, 11);
-                this.state = 742;
-                this.referenceProperty();
-                break;
-            case MetaEdGrammar.SHARED_DECIMAL:
-                this.enterOuterAlt(localctx, 12);
-                this.state = 743;
-                this.sharedDecimalProperty();
-                break;
-            case MetaEdGrammar.SHARED_INTEGER:
-                this.enterOuterAlt(localctx, 13);
-                this.state = 744;
-                this.sharedIntegerProperty();
-                break;
-            case MetaEdGrammar.SHARED_SHORT:
-                this.enterOuterAlt(localctx, 14);
-                this.state = 745;
-                this.sharedShortProperty();
-                break;
-            case MetaEdGrammar.SHARED_STRING:
-                this.enterOuterAlt(localctx, 15);
-                this.state = 746;
-                this.sharedStringProperty();
-                break;
-            case MetaEdGrammar.SHORT:
-                this.enterOuterAlt(localctx, 16);
-                this.state = 747;
-                this.shortProperty();
-                break;
-            case MetaEdGrammar.STRING:
-                this.enterOuterAlt(localctx, 17);
-                this.state = 748;
-                this.stringProperty();
-                break;
-            case MetaEdGrammar.TIME:
-                this.enterOuterAlt(localctx, 18);
-                this.state = 749;
-                this.timeProperty();
-                break;
-            case MetaEdGrammar.YEAR:
-                this.enterOuterAlt(localctx, 19);
-                this.state = 750;
-                this.yearProperty();
-                break;
-            default:
-                throw new antlr4.error.NoViableAltException(this);
+        switch(this._input.LA(1)) {
+        case MetaEdGrammar.BOOLEAN:
+            this.enterOuterAlt(localctx, 1);
+            this.state = 732;
+            this.booleanProperty();
+            break;
+        case MetaEdGrammar.CURRENCY:
+            this.enterOuterAlt(localctx, 2);
+            this.state = 733;
+            this.currencyProperty();
+            break;
+        case MetaEdGrammar.DATE:
+            this.enterOuterAlt(localctx, 3);
+            this.state = 734;
+            this.dateProperty();
+            break;
+        case MetaEdGrammar.DECIMAL:
+            this.enterOuterAlt(localctx, 4);
+            this.state = 735;
+            this.decimalProperty();
+            break;
+        case MetaEdGrammar.DESCRIPTOR:
+            this.enterOuterAlt(localctx, 5);
+            this.state = 736;
+            this.descriptorProperty();
+            break;
+        case MetaEdGrammar.DURATION:
+            this.enterOuterAlt(localctx, 6);
+            this.state = 737;
+            this.durationProperty();
+            break;
+        case MetaEdGrammar.ENUMERATION:
+            this.enterOuterAlt(localctx, 7);
+            this.state = 738;
+            this.enumerationProperty();
+            break;
+        case MetaEdGrammar.INCLUDE:
+        case MetaEdGrammar.INCLUDE_EXTENSION:
+            this.enterOuterAlt(localctx, 8);
+            this.state = 739;
+            this.includeProperty();
+            break;
+        case MetaEdGrammar.INTEGER:
+            this.enterOuterAlt(localctx, 9);
+            this.state = 740;
+            this.integerProperty();
+            break;
+        case MetaEdGrammar.PERCENT:
+            this.enterOuterAlt(localctx, 10);
+            this.state = 741;
+            this.percentProperty();
+            break;
+        case MetaEdGrammar.REFERENCE:
+            this.enterOuterAlt(localctx, 11);
+            this.state = 742;
+            this.referenceProperty();
+            break;
+        case MetaEdGrammar.SHARED_DECIMAL:
+            this.enterOuterAlt(localctx, 12);
+            this.state = 743;
+            this.sharedDecimalProperty();
+            break;
+        case MetaEdGrammar.SHARED_INTEGER:
+            this.enterOuterAlt(localctx, 13);
+            this.state = 744;
+            this.sharedIntegerProperty();
+            break;
+        case MetaEdGrammar.SHARED_SHORT:
+            this.enterOuterAlt(localctx, 14);
+            this.state = 745;
+            this.sharedShortProperty();
+            break;
+        case MetaEdGrammar.SHARED_STRING:
+            this.enterOuterAlt(localctx, 15);
+            this.state = 746;
+            this.sharedStringProperty();
+            break;
+        case MetaEdGrammar.SHORT:
+            this.enterOuterAlt(localctx, 16);
+            this.state = 747;
+            this.shortProperty();
+            break;
+        case MetaEdGrammar.STRING:
+            this.enterOuterAlt(localctx, 17);
+            this.state = 748;
+            this.stringProperty();
+            break;
+        case MetaEdGrammar.TIME:
+            this.enterOuterAlt(localctx, 18);
+            this.state = 749;
+            this.timeProperty();
+            break;
+        case MetaEdGrammar.YEAR:
+            this.enterOuterAlt(localctx, 19);
+            this.state = 750;
+            this.yearProperty();
+            break;
+        default:
+            throw new antlr4.error.NoViableAltException(this);
         }
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -7192,13 +7192,13 @@ MetaEdGrammar.prototype.property = function () {
 };
 
 function BooleanPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_booleanProperty;
     return this;
@@ -7207,32 +7207,32 @@ function BooleanPropertyContext(parser, parent, invokingState) {
 BooleanPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 BooleanPropertyContext.prototype.constructor = BooleanPropertyContext;
 
-BooleanPropertyContext.prototype.BOOLEAN = function () {
+BooleanPropertyContext.prototype.BOOLEAN = function() {
     return this.getToken(MetaEdGrammar.BOOLEAN, 0);
 };
 
-BooleanPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+BooleanPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-BooleanPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+BooleanPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-BooleanPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+BooleanPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-BooleanPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+BooleanPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterBooleanProperty(this);
-    }
+	}
 };
 
-BooleanPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+BooleanPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitBooleanProperty(this);
-    }
+	}
 };
 
 
@@ -7240,7 +7240,7 @@ BooleanPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.BooleanPropertyContext = BooleanPropertyContext;
 
-MetaEdGrammar.prototype.booleanProperty = function () {
+MetaEdGrammar.prototype.booleanProperty = function() {
 
     var localctx = new BooleanPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 138, MetaEdGrammar.RULE_booleanProperty);
@@ -7253,7 +7253,7 @@ MetaEdGrammar.prototype.booleanProperty = function () {
         this.propertyName();
         this.state = 756;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 755;
             this.metaEdId();
         }
@@ -7261,13 +7261,13 @@ MetaEdGrammar.prototype.booleanProperty = function () {
         this.state = 758;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -7275,13 +7275,13 @@ MetaEdGrammar.prototype.booleanProperty = function () {
 };
 
 function CurrencyPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_currencyProperty;
     return this;
@@ -7290,32 +7290,32 @@ function CurrencyPropertyContext(parser, parent, invokingState) {
 CurrencyPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CurrencyPropertyContext.prototype.constructor = CurrencyPropertyContext;
 
-CurrencyPropertyContext.prototype.CURRENCY = function () {
+CurrencyPropertyContext.prototype.CURRENCY = function() {
     return this.getToken(MetaEdGrammar.CURRENCY, 0);
 };
 
-CurrencyPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+CurrencyPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-CurrencyPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+CurrencyPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-CurrencyPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+CurrencyPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-CurrencyPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CurrencyPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCurrencyProperty(this);
-    }
+	}
 };
 
-CurrencyPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CurrencyPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCurrencyProperty(this);
-    }
+	}
 };
 
 
@@ -7323,7 +7323,7 @@ CurrencyPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CurrencyPropertyContext = CurrencyPropertyContext;
 
-MetaEdGrammar.prototype.currencyProperty = function () {
+MetaEdGrammar.prototype.currencyProperty = function() {
 
     var localctx = new CurrencyPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 140, MetaEdGrammar.RULE_currencyProperty);
@@ -7336,7 +7336,7 @@ MetaEdGrammar.prototype.currencyProperty = function () {
         this.propertyName();
         this.state = 763;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 762;
             this.metaEdId();
         }
@@ -7344,13 +7344,13 @@ MetaEdGrammar.prototype.currencyProperty = function () {
         this.state = 765;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -7358,13 +7358,13 @@ MetaEdGrammar.prototype.currencyProperty = function () {
 };
 
 function DatePropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_dateProperty;
     return this;
@@ -7373,32 +7373,32 @@ function DatePropertyContext(parser, parent, invokingState) {
 DatePropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DatePropertyContext.prototype.constructor = DatePropertyContext;
 
-DatePropertyContext.prototype.DATE = function () {
+DatePropertyContext.prototype.DATE = function() {
     return this.getToken(MetaEdGrammar.DATE, 0);
 };
 
-DatePropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+DatePropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-DatePropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+DatePropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-DatePropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+DatePropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-DatePropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DatePropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDateProperty(this);
-    }
+	}
 };
 
-DatePropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DatePropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDateProperty(this);
-    }
+	}
 };
 
 
@@ -7406,7 +7406,7 @@ DatePropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DatePropertyContext = DatePropertyContext;
 
-MetaEdGrammar.prototype.dateProperty = function () {
+MetaEdGrammar.prototype.dateProperty = function() {
 
     var localctx = new DatePropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 142, MetaEdGrammar.RULE_dateProperty);
@@ -7419,7 +7419,7 @@ MetaEdGrammar.prototype.dateProperty = function () {
         this.propertyName();
         this.state = 770;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 769;
             this.metaEdId();
         }
@@ -7427,13 +7427,13 @@ MetaEdGrammar.prototype.dateProperty = function () {
         this.state = 772;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -7441,13 +7441,13 @@ MetaEdGrammar.prototype.dateProperty = function () {
 };
 
 function DecimalPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_decimalProperty;
     return this;
@@ -7456,48 +7456,48 @@ function DecimalPropertyContext(parser, parent, invokingState) {
 DecimalPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DecimalPropertyContext.prototype.constructor = DecimalPropertyContext;
 
-DecimalPropertyContext.prototype.DECIMAL = function () {
+DecimalPropertyContext.prototype.DECIMAL = function() {
     return this.getToken(MetaEdGrammar.DECIMAL, 0);
 };
 
-DecimalPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+DecimalPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-DecimalPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+DecimalPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-DecimalPropertyContext.prototype.totalDigits = function () {
-    return this.getTypedRuleContext(TotalDigitsContext, 0);
+DecimalPropertyContext.prototype.totalDigits = function() {
+    return this.getTypedRuleContext(TotalDigitsContext,0);
 };
 
-DecimalPropertyContext.prototype.decimalPlaces = function () {
-    return this.getTypedRuleContext(DecimalPlacesContext, 0);
+DecimalPropertyContext.prototype.decimalPlaces = function() {
+    return this.getTypedRuleContext(DecimalPlacesContext,0);
 };
 
-DecimalPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+DecimalPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-DecimalPropertyContext.prototype.minValueDecimal = function () {
-    return this.getTypedRuleContext(MinValueDecimalContext, 0);
+DecimalPropertyContext.prototype.minValueDecimal = function() {
+    return this.getTypedRuleContext(MinValueDecimalContext,0);
 };
 
-DecimalPropertyContext.prototype.maxValueDecimal = function () {
-    return this.getTypedRuleContext(MaxValueDecimalContext, 0);
+DecimalPropertyContext.prototype.maxValueDecimal = function() {
+    return this.getTypedRuleContext(MaxValueDecimalContext,0);
 };
 
-DecimalPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DecimalPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDecimalProperty(this);
-    }
+	}
 };
 
-DecimalPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DecimalPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDecimalProperty(this);
-    }
+	}
 };
 
 
@@ -7505,7 +7505,7 @@ DecimalPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DecimalPropertyContext = DecimalPropertyContext;
 
-MetaEdGrammar.prototype.decimalProperty = function () {
+MetaEdGrammar.prototype.decimalProperty = function() {
 
     var localctx = new DecimalPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 144, MetaEdGrammar.RULE_decimalProperty);
@@ -7518,7 +7518,7 @@ MetaEdGrammar.prototype.decimalProperty = function () {
         this.propertyName();
         this.state = 777;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 776;
             this.metaEdId();
         }
@@ -7531,26 +7531,26 @@ MetaEdGrammar.prototype.decimalProperty = function () {
         this.decimalPlaces();
         this.state = 783;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MIN_VALUE) {
+        if(_la===MetaEdGrammar.MIN_VALUE) {
             this.state = 782;
             this.minValueDecimal();
         }
 
         this.state = 786;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MAX_VALUE) {
+        if(_la===MetaEdGrammar.MAX_VALUE) {
             this.state = 785;
             this.maxValueDecimal();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -7558,13 +7558,13 @@ MetaEdGrammar.prototype.decimalProperty = function () {
 };
 
 function DescriptorPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_descriptorProperty;
     return this;
@@ -7573,32 +7573,32 @@ function DescriptorPropertyContext(parser, parent, invokingState) {
 DescriptorPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DescriptorPropertyContext.prototype.constructor = DescriptorPropertyContext;
 
-DescriptorPropertyContext.prototype.DESCRIPTOR = function () {
+DescriptorPropertyContext.prototype.DESCRIPTOR = function() {
     return this.getToken(MetaEdGrammar.DESCRIPTOR, 0);
 };
 
-DescriptorPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+DescriptorPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-DescriptorPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+DescriptorPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-DescriptorPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+DescriptorPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-DescriptorPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DescriptorPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDescriptorProperty(this);
-    }
+	}
 };
 
-DescriptorPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DescriptorPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDescriptorProperty(this);
-    }
+	}
 };
 
 
@@ -7606,7 +7606,7 @@ DescriptorPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DescriptorPropertyContext = DescriptorPropertyContext;
 
-MetaEdGrammar.prototype.descriptorProperty = function () {
+MetaEdGrammar.prototype.descriptorProperty = function() {
 
     var localctx = new DescriptorPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 146, MetaEdGrammar.RULE_descriptorProperty);
@@ -7619,7 +7619,7 @@ MetaEdGrammar.prototype.descriptorProperty = function () {
         this.propertyName();
         this.state = 791;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 790;
             this.metaEdId();
         }
@@ -7627,13 +7627,13 @@ MetaEdGrammar.prototype.descriptorProperty = function () {
         this.state = 793;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -7641,13 +7641,13 @@ MetaEdGrammar.prototype.descriptorProperty = function () {
 };
 
 function DurationPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_durationProperty;
     return this;
@@ -7656,32 +7656,32 @@ function DurationPropertyContext(parser, parent, invokingState) {
 DurationPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DurationPropertyContext.prototype.constructor = DurationPropertyContext;
 
-DurationPropertyContext.prototype.DURATION = function () {
+DurationPropertyContext.prototype.DURATION = function() {
     return this.getToken(MetaEdGrammar.DURATION, 0);
 };
 
-DurationPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+DurationPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-DurationPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+DurationPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-DurationPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+DurationPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-DurationPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DurationPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDurationProperty(this);
-    }
+	}
 };
 
-DurationPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DurationPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDurationProperty(this);
-    }
+	}
 };
 
 
@@ -7689,7 +7689,7 @@ DurationPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DurationPropertyContext = DurationPropertyContext;
 
-MetaEdGrammar.prototype.durationProperty = function () {
+MetaEdGrammar.prototype.durationProperty = function() {
 
     var localctx = new DurationPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 148, MetaEdGrammar.RULE_durationProperty);
@@ -7702,7 +7702,7 @@ MetaEdGrammar.prototype.durationProperty = function () {
         this.propertyName();
         this.state = 798;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 797;
             this.metaEdId();
         }
@@ -7710,13 +7710,13 @@ MetaEdGrammar.prototype.durationProperty = function () {
         this.state = 800;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -7724,13 +7724,13 @@ MetaEdGrammar.prototype.durationProperty = function () {
 };
 
 function EnumerationPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_enumerationProperty;
     return this;
@@ -7739,32 +7739,32 @@ function EnumerationPropertyContext(parser, parent, invokingState) {
 EnumerationPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 EnumerationPropertyContext.prototype.constructor = EnumerationPropertyContext;
 
-EnumerationPropertyContext.prototype.ENUMERATION = function () {
+EnumerationPropertyContext.prototype.ENUMERATION = function() {
     return this.getToken(MetaEdGrammar.ENUMERATION, 0);
 };
 
-EnumerationPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+EnumerationPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-EnumerationPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+EnumerationPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-EnumerationPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+EnumerationPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-EnumerationPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+EnumerationPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterEnumerationProperty(this);
-    }
+	}
 };
 
-EnumerationPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+EnumerationPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitEnumerationProperty(this);
-    }
+	}
 };
 
 
@@ -7772,7 +7772,7 @@ EnumerationPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.EnumerationPropertyContext = EnumerationPropertyContext;
 
-MetaEdGrammar.prototype.enumerationProperty = function () {
+MetaEdGrammar.prototype.enumerationProperty = function() {
 
     var localctx = new EnumerationPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 150, MetaEdGrammar.RULE_enumerationProperty);
@@ -7785,7 +7785,7 @@ MetaEdGrammar.prototype.enumerationProperty = function () {
         this.propertyName();
         this.state = 805;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 804;
             this.metaEdId();
         }
@@ -7793,13 +7793,13 @@ MetaEdGrammar.prototype.enumerationProperty = function () {
         this.state = 807;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -7807,13 +7807,13 @@ MetaEdGrammar.prototype.enumerationProperty = function () {
 };
 
 function IncludePropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_includeProperty;
     return this;
@@ -7822,36 +7822,36 @@ function IncludePropertyContext(parser, parent, invokingState) {
 IncludePropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 IncludePropertyContext.prototype.constructor = IncludePropertyContext;
 
-IncludePropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+IncludePropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-IncludePropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+IncludePropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-IncludePropertyContext.prototype.INCLUDE = function () {
+IncludePropertyContext.prototype.INCLUDE = function() {
     return this.getToken(MetaEdGrammar.INCLUDE, 0);
 };
 
-IncludePropertyContext.prototype.includeExtensionOverride = function () {
-    return this.getTypedRuleContext(IncludeExtensionOverrideContext, 0);
+IncludePropertyContext.prototype.includeExtensionOverride = function() {
+    return this.getTypedRuleContext(IncludeExtensionOverrideContext,0);
 };
 
-IncludePropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+IncludePropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-IncludePropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IncludePropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterIncludeProperty(this);
-    }
+	}
 };
 
-IncludePropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IncludePropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitIncludeProperty(this);
-    }
+	}
 };
 
 
@@ -7859,7 +7859,7 @@ IncludePropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.IncludePropertyContext = IncludePropertyContext;
 
-MetaEdGrammar.prototype.includeProperty = function () {
+MetaEdGrammar.prototype.includeProperty = function() {
 
     var localctx = new IncludePropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 152, MetaEdGrammar.RULE_includeProperty);
@@ -7867,23 +7867,23 @@ MetaEdGrammar.prototype.includeProperty = function () {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 811;
-        switch (this._input.LA(1)) {
-            case MetaEdGrammar.INCLUDE:
-                this.state = 809;
-                this.match(MetaEdGrammar.INCLUDE);
-                break;
-            case MetaEdGrammar.INCLUDE_EXTENSION:
-                this.state = 810;
-                this.includeExtensionOverride();
-                break;
-            default:
-                throw new antlr4.error.NoViableAltException(this);
+        switch(this._input.LA(1)) {
+        case MetaEdGrammar.INCLUDE:
+            this.state = 809;
+            this.match(MetaEdGrammar.INCLUDE);
+            break;
+        case MetaEdGrammar.INCLUDE_EXTENSION:
+            this.state = 810;
+            this.includeExtensionOverride();
+            break;
+        default:
+            throw new antlr4.error.NoViableAltException(this);
         }
         this.state = 813;
         this.propertyName();
         this.state = 815;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 814;
             this.metaEdId();
         }
@@ -7891,13 +7891,13 @@ MetaEdGrammar.prototype.includeProperty = function () {
         this.state = 817;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -7905,13 +7905,13 @@ MetaEdGrammar.prototype.includeProperty = function () {
 };
 
 function IntegerPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_integerProperty;
     return this;
@@ -7920,40 +7920,40 @@ function IntegerPropertyContext(parser, parent, invokingState) {
 IntegerPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 IntegerPropertyContext.prototype.constructor = IntegerPropertyContext;
 
-IntegerPropertyContext.prototype.INTEGER = function () {
+IntegerPropertyContext.prototype.INTEGER = function() {
     return this.getToken(MetaEdGrammar.INTEGER, 0);
 };
 
-IntegerPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+IntegerPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-IntegerPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+IntegerPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-IntegerPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+IntegerPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-IntegerPropertyContext.prototype.minValue = function () {
-    return this.getTypedRuleContext(MinValueContext, 0);
+IntegerPropertyContext.prototype.minValue = function() {
+    return this.getTypedRuleContext(MinValueContext,0);
 };
 
-IntegerPropertyContext.prototype.maxValue = function () {
-    return this.getTypedRuleContext(MaxValueContext, 0);
+IntegerPropertyContext.prototype.maxValue = function() {
+    return this.getTypedRuleContext(MaxValueContext,0);
 };
 
-IntegerPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IntegerPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterIntegerProperty(this);
-    }
+	}
 };
 
-IntegerPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IntegerPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitIntegerProperty(this);
-    }
+	}
 };
 
 
@@ -7961,7 +7961,7 @@ IntegerPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.IntegerPropertyContext = IntegerPropertyContext;
 
-MetaEdGrammar.prototype.integerProperty = function () {
+MetaEdGrammar.prototype.integerProperty = function() {
 
     var localctx = new IntegerPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 154, MetaEdGrammar.RULE_integerProperty);
@@ -7974,7 +7974,7 @@ MetaEdGrammar.prototype.integerProperty = function () {
         this.propertyName();
         this.state = 822;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 821;
             this.metaEdId();
         }
@@ -7983,26 +7983,26 @@ MetaEdGrammar.prototype.integerProperty = function () {
         this.propertyComponents();
         this.state = 826;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MIN_VALUE) {
+        if(_la===MetaEdGrammar.MIN_VALUE) {
             this.state = 825;
             this.minValue();
         }
 
         this.state = 829;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MAX_VALUE) {
+        if(_la===MetaEdGrammar.MAX_VALUE) {
             this.state = 828;
             this.maxValue();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -8010,13 +8010,13 @@ MetaEdGrammar.prototype.integerProperty = function () {
 };
 
 function PercentPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_percentProperty;
     return this;
@@ -8025,32 +8025,32 @@ function PercentPropertyContext(parser, parent, invokingState) {
 PercentPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 PercentPropertyContext.prototype.constructor = PercentPropertyContext;
 
-PercentPropertyContext.prototype.PERCENT = function () {
+PercentPropertyContext.prototype.PERCENT = function() {
     return this.getToken(MetaEdGrammar.PERCENT, 0);
 };
 
-PercentPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+PercentPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-PercentPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+PercentPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-PercentPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+PercentPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-PercentPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+PercentPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterPercentProperty(this);
-    }
+	}
 };
 
-PercentPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+PercentPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitPercentProperty(this);
-    }
+	}
 };
 
 
@@ -8058,7 +8058,7 @@ PercentPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.PercentPropertyContext = PercentPropertyContext;
 
-MetaEdGrammar.prototype.percentProperty = function () {
+MetaEdGrammar.prototype.percentProperty = function() {
 
     var localctx = new PercentPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 156, MetaEdGrammar.RULE_percentProperty);
@@ -8071,7 +8071,7 @@ MetaEdGrammar.prototype.percentProperty = function () {
         this.propertyName();
         this.state = 834;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 833;
             this.metaEdId();
         }
@@ -8079,13 +8079,13 @@ MetaEdGrammar.prototype.percentProperty = function () {
         this.state = 836;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -8093,13 +8093,13 @@ MetaEdGrammar.prototype.percentProperty = function () {
 };
 
 function ReferencePropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_referenceProperty;
     return this;
@@ -8108,47 +8108,47 @@ function ReferencePropertyContext(parser, parent, invokingState) {
 ReferencePropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 ReferencePropertyContext.prototype.constructor = ReferencePropertyContext;
 
-ReferencePropertyContext.prototype.REFERENCE = function () {
+ReferencePropertyContext.prototype.REFERENCE = function() {
     return this.getToken(MetaEdGrammar.REFERENCE, 0);
 };
 
-ReferencePropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+ReferencePropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-ReferencePropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+ReferencePropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-ReferencePropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+ReferencePropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-ReferencePropertyContext.prototype.isWeakReference = function () {
-    return this.getTypedRuleContext(IsWeakReferenceContext, 0);
+ReferencePropertyContext.prototype.isWeakReference = function() {
+    return this.getTypedRuleContext(IsWeakReferenceContext,0);
 };
 
-ReferencePropertyContext.prototype.mergePartOfReference = function (i) {
-    if (i === undefined) {
+ReferencePropertyContext.prototype.mergePartOfReference = function(i) {
+    if(i===undefined) {
         i = null;
     }
-    if (i === null) {
+    if(i===null) {
         return this.getTypedRuleContexts(MergePartOfReferenceContext);
     } else {
-        return this.getTypedRuleContext(MergePartOfReferenceContext, i);
+        return this.getTypedRuleContext(MergePartOfReferenceContext,i);
     }
 };
 
-ReferencePropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ReferencePropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterReferenceProperty(this);
-    }
+	}
 };
 
-ReferencePropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ReferencePropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitReferenceProperty(this);
-    }
+	}
 };
 
 
@@ -8156,7 +8156,7 @@ ReferencePropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.ReferencePropertyContext = ReferencePropertyContext;
 
-MetaEdGrammar.prototype.referenceProperty = function () {
+MetaEdGrammar.prototype.referenceProperty = function() {
 
     var localctx = new ReferencePropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 158, MetaEdGrammar.RULE_referenceProperty);
@@ -8169,7 +8169,7 @@ MetaEdGrammar.prototype.referenceProperty = function () {
         this.propertyName();
         this.state = 841;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 840;
             this.metaEdId();
         }
@@ -8178,7 +8178,7 @@ MetaEdGrammar.prototype.referenceProperty = function () {
         this.propertyComponents();
         this.state = 845;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.IS_WEAK_REFERENCE) {
+        if(_la===MetaEdGrammar.IS_WEAK_REFERENCE) {
             this.state = 844;
             this.isWeakReference();
         }
@@ -8186,7 +8186,7 @@ MetaEdGrammar.prototype.referenceProperty = function () {
         this.state = 850;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        while (_la === MetaEdGrammar.MERGE_REFERENCE) {
+        while(_la===MetaEdGrammar.MERGE_REFERENCE) {
             this.state = 847;
             this.mergePartOfReference();
             this.state = 852;
@@ -8194,13 +8194,13 @@ MetaEdGrammar.prototype.referenceProperty = function () {
             _la = this._input.LA(1);
         }
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -8208,13 +8208,13 @@ MetaEdGrammar.prototype.referenceProperty = function () {
 };
 
 function SharedDecimalPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_sharedDecimalProperty;
     return this;
@@ -8223,40 +8223,40 @@ function SharedDecimalPropertyContext(parser, parent, invokingState) {
 SharedDecimalPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 SharedDecimalPropertyContext.prototype.constructor = SharedDecimalPropertyContext;
 
-SharedDecimalPropertyContext.prototype.SHARED_DECIMAL = function () {
+SharedDecimalPropertyContext.prototype.SHARED_DECIMAL = function() {
     return this.getToken(MetaEdGrammar.SHARED_DECIMAL, 0);
 };
 
-SharedDecimalPropertyContext.prototype.sharedPropertyType = function () {
-    return this.getTypedRuleContext(SharedPropertyTypeContext, 0);
+SharedDecimalPropertyContext.prototype.sharedPropertyType = function() {
+    return this.getTypedRuleContext(SharedPropertyTypeContext,0);
 };
 
-SharedDecimalPropertyContext.prototype.SHARED_NAMED = function () {
+SharedDecimalPropertyContext.prototype.SHARED_NAMED = function() {
     return this.getToken(MetaEdGrammar.SHARED_NAMED, 0);
 };
 
-SharedDecimalPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+SharedDecimalPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-SharedDecimalPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+SharedDecimalPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-SharedDecimalPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+SharedDecimalPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-SharedDecimalPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SharedDecimalPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterSharedDecimalProperty(this);
-    }
+	}
 };
 
-SharedDecimalPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SharedDecimalPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitSharedDecimalProperty(this);
-    }
+	}
 };
 
 
@@ -8264,7 +8264,7 @@ SharedDecimalPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.SharedDecimalPropertyContext = SharedDecimalPropertyContext;
 
-MetaEdGrammar.prototype.sharedDecimalProperty = function () {
+MetaEdGrammar.prototype.sharedDecimalProperty = function() {
 
     var localctx = new SharedDecimalPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 160, MetaEdGrammar.RULE_sharedDecimalProperty);
@@ -8281,7 +8281,7 @@ MetaEdGrammar.prototype.sharedDecimalProperty = function () {
         this.propertyName();
         this.state = 858;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 857;
             this.metaEdId();
         }
@@ -8289,13 +8289,13 @@ MetaEdGrammar.prototype.sharedDecimalProperty = function () {
         this.state = 860;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -8303,13 +8303,13 @@ MetaEdGrammar.prototype.sharedDecimalProperty = function () {
 };
 
 function SharedIntegerPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_sharedIntegerProperty;
     return this;
@@ -8318,40 +8318,40 @@ function SharedIntegerPropertyContext(parser, parent, invokingState) {
 SharedIntegerPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 SharedIntegerPropertyContext.prototype.constructor = SharedIntegerPropertyContext;
 
-SharedIntegerPropertyContext.prototype.SHARED_INTEGER = function () {
+SharedIntegerPropertyContext.prototype.SHARED_INTEGER = function() {
     return this.getToken(MetaEdGrammar.SHARED_INTEGER, 0);
 };
 
-SharedIntegerPropertyContext.prototype.sharedPropertyType = function () {
-    return this.getTypedRuleContext(SharedPropertyTypeContext, 0);
+SharedIntegerPropertyContext.prototype.sharedPropertyType = function() {
+    return this.getTypedRuleContext(SharedPropertyTypeContext,0);
 };
 
-SharedIntegerPropertyContext.prototype.SHARED_NAMED = function () {
+SharedIntegerPropertyContext.prototype.SHARED_NAMED = function() {
     return this.getToken(MetaEdGrammar.SHARED_NAMED, 0);
 };
 
-SharedIntegerPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+SharedIntegerPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-SharedIntegerPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+SharedIntegerPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-SharedIntegerPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+SharedIntegerPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-SharedIntegerPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SharedIntegerPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterSharedIntegerProperty(this);
-    }
+	}
 };
 
-SharedIntegerPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SharedIntegerPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitSharedIntegerProperty(this);
-    }
+	}
 };
 
 
@@ -8359,7 +8359,7 @@ SharedIntegerPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.SharedIntegerPropertyContext = SharedIntegerPropertyContext;
 
-MetaEdGrammar.prototype.sharedIntegerProperty = function () {
+MetaEdGrammar.prototype.sharedIntegerProperty = function() {
 
     var localctx = new SharedIntegerPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 162, MetaEdGrammar.RULE_sharedIntegerProperty);
@@ -8376,7 +8376,7 @@ MetaEdGrammar.prototype.sharedIntegerProperty = function () {
         this.propertyName();
         this.state = 867;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 866;
             this.metaEdId();
         }
@@ -8384,13 +8384,13 @@ MetaEdGrammar.prototype.sharedIntegerProperty = function () {
         this.state = 869;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -8398,13 +8398,13 @@ MetaEdGrammar.prototype.sharedIntegerProperty = function () {
 };
 
 function SharedShortPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_sharedShortProperty;
     return this;
@@ -8413,40 +8413,40 @@ function SharedShortPropertyContext(parser, parent, invokingState) {
 SharedShortPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 SharedShortPropertyContext.prototype.constructor = SharedShortPropertyContext;
 
-SharedShortPropertyContext.prototype.SHARED_SHORT = function () {
+SharedShortPropertyContext.prototype.SHARED_SHORT = function() {
     return this.getToken(MetaEdGrammar.SHARED_SHORT, 0);
 };
 
-SharedShortPropertyContext.prototype.sharedPropertyType = function () {
-    return this.getTypedRuleContext(SharedPropertyTypeContext, 0);
+SharedShortPropertyContext.prototype.sharedPropertyType = function() {
+    return this.getTypedRuleContext(SharedPropertyTypeContext,0);
 };
 
-SharedShortPropertyContext.prototype.SHARED_NAMED = function () {
+SharedShortPropertyContext.prototype.SHARED_NAMED = function() {
     return this.getToken(MetaEdGrammar.SHARED_NAMED, 0);
 };
 
-SharedShortPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+SharedShortPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-SharedShortPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+SharedShortPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-SharedShortPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+SharedShortPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-SharedShortPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SharedShortPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterSharedShortProperty(this);
-    }
+	}
 };
 
-SharedShortPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SharedShortPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitSharedShortProperty(this);
-    }
+	}
 };
 
 
@@ -8454,7 +8454,7 @@ SharedShortPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.SharedShortPropertyContext = SharedShortPropertyContext;
 
-MetaEdGrammar.prototype.sharedShortProperty = function () {
+MetaEdGrammar.prototype.sharedShortProperty = function() {
 
     var localctx = new SharedShortPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 164, MetaEdGrammar.RULE_sharedShortProperty);
@@ -8471,7 +8471,7 @@ MetaEdGrammar.prototype.sharedShortProperty = function () {
         this.propertyName();
         this.state = 876;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 875;
             this.metaEdId();
         }
@@ -8479,13 +8479,13 @@ MetaEdGrammar.prototype.sharedShortProperty = function () {
         this.state = 878;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -8493,13 +8493,13 @@ MetaEdGrammar.prototype.sharedShortProperty = function () {
 };
 
 function SharedStringPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_sharedStringProperty;
     return this;
@@ -8508,40 +8508,40 @@ function SharedStringPropertyContext(parser, parent, invokingState) {
 SharedStringPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 SharedStringPropertyContext.prototype.constructor = SharedStringPropertyContext;
 
-SharedStringPropertyContext.prototype.SHARED_STRING = function () {
+SharedStringPropertyContext.prototype.SHARED_STRING = function() {
     return this.getToken(MetaEdGrammar.SHARED_STRING, 0);
 };
 
-SharedStringPropertyContext.prototype.sharedPropertyType = function () {
-    return this.getTypedRuleContext(SharedPropertyTypeContext, 0);
+SharedStringPropertyContext.prototype.sharedPropertyType = function() {
+    return this.getTypedRuleContext(SharedPropertyTypeContext,0);
 };
 
-SharedStringPropertyContext.prototype.SHARED_NAMED = function () {
+SharedStringPropertyContext.prototype.SHARED_NAMED = function() {
     return this.getToken(MetaEdGrammar.SHARED_NAMED, 0);
 };
 
-SharedStringPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+SharedStringPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-SharedStringPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+SharedStringPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-SharedStringPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+SharedStringPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-SharedStringPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SharedStringPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterSharedStringProperty(this);
-    }
+	}
 };
 
-SharedStringPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SharedStringPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitSharedStringProperty(this);
-    }
+	}
 };
 
 
@@ -8549,7 +8549,7 @@ SharedStringPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.SharedStringPropertyContext = SharedStringPropertyContext;
 
-MetaEdGrammar.prototype.sharedStringProperty = function () {
+MetaEdGrammar.prototype.sharedStringProperty = function() {
 
     var localctx = new SharedStringPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 166, MetaEdGrammar.RULE_sharedStringProperty);
@@ -8566,7 +8566,7 @@ MetaEdGrammar.prototype.sharedStringProperty = function () {
         this.propertyName();
         this.state = 885;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 884;
             this.metaEdId();
         }
@@ -8574,13 +8574,13 @@ MetaEdGrammar.prototype.sharedStringProperty = function () {
         this.state = 887;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -8588,13 +8588,13 @@ MetaEdGrammar.prototype.sharedStringProperty = function () {
 };
 
 function ShortPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_shortProperty;
     return this;
@@ -8603,40 +8603,40 @@ function ShortPropertyContext(parser, parent, invokingState) {
 ShortPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 ShortPropertyContext.prototype.constructor = ShortPropertyContext;
 
-ShortPropertyContext.prototype.SHORT = function () {
+ShortPropertyContext.prototype.SHORT = function() {
     return this.getToken(MetaEdGrammar.SHORT, 0);
 };
 
-ShortPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+ShortPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-ShortPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+ShortPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-ShortPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+ShortPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-ShortPropertyContext.prototype.minValue = function () {
-    return this.getTypedRuleContext(MinValueContext, 0);
+ShortPropertyContext.prototype.minValue = function() {
+    return this.getTypedRuleContext(MinValueContext,0);
 };
 
-ShortPropertyContext.prototype.maxValue = function () {
-    return this.getTypedRuleContext(MaxValueContext, 0);
+ShortPropertyContext.prototype.maxValue = function() {
+    return this.getTypedRuleContext(MaxValueContext,0);
 };
 
-ShortPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ShortPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterShortProperty(this);
-    }
+	}
 };
 
-ShortPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ShortPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitShortProperty(this);
-    }
+	}
 };
 
 
@@ -8644,7 +8644,7 @@ ShortPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.ShortPropertyContext = ShortPropertyContext;
 
-MetaEdGrammar.prototype.shortProperty = function () {
+MetaEdGrammar.prototype.shortProperty = function() {
 
     var localctx = new ShortPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 168, MetaEdGrammar.RULE_shortProperty);
@@ -8657,7 +8657,7 @@ MetaEdGrammar.prototype.shortProperty = function () {
         this.propertyName();
         this.state = 892;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 891;
             this.metaEdId();
         }
@@ -8666,26 +8666,26 @@ MetaEdGrammar.prototype.shortProperty = function () {
         this.propertyComponents();
         this.state = 896;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MIN_VALUE) {
+        if(_la===MetaEdGrammar.MIN_VALUE) {
             this.state = 895;
             this.minValue();
         }
 
         this.state = 899;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MAX_VALUE) {
+        if(_la===MetaEdGrammar.MAX_VALUE) {
             this.state = 898;
             this.maxValue();
         }
 
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -8693,13 +8693,13 @@ MetaEdGrammar.prototype.shortProperty = function () {
 };
 
 function StringPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_stringProperty;
     return this;
@@ -8708,40 +8708,40 @@ function StringPropertyContext(parser, parent, invokingState) {
 StringPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 StringPropertyContext.prototype.constructor = StringPropertyContext;
 
-StringPropertyContext.prototype.STRING = function () {
+StringPropertyContext.prototype.STRING = function() {
     return this.getToken(MetaEdGrammar.STRING, 0);
 };
 
-StringPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+StringPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-StringPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+StringPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-StringPropertyContext.prototype.maxLength = function () {
-    return this.getTypedRuleContext(MaxLengthContext, 0);
+StringPropertyContext.prototype.maxLength = function() {
+    return this.getTypedRuleContext(MaxLengthContext,0);
 };
 
-StringPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+StringPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-StringPropertyContext.prototype.minLength = function () {
-    return this.getTypedRuleContext(MinLengthContext, 0);
+StringPropertyContext.prototype.minLength = function() {
+    return this.getTypedRuleContext(MinLengthContext,0);
 };
 
-StringPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+StringPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterStringProperty(this);
-    }
+	}
 };
 
-StringPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+StringPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitStringProperty(this);
-    }
+	}
 };
 
 
@@ -8749,7 +8749,7 @@ StringPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.StringPropertyContext = StringPropertyContext;
 
-MetaEdGrammar.prototype.stringProperty = function () {
+MetaEdGrammar.prototype.stringProperty = function() {
 
     var localctx = new StringPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 170, MetaEdGrammar.RULE_stringProperty);
@@ -8762,7 +8762,7 @@ MetaEdGrammar.prototype.stringProperty = function () {
         this.propertyName();
         this.state = 904;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 903;
             this.metaEdId();
         }
@@ -8771,7 +8771,7 @@ MetaEdGrammar.prototype.stringProperty = function () {
         this.propertyComponents();
         this.state = 908;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.MIN_LENGTH) {
+        if(_la===MetaEdGrammar.MIN_LENGTH) {
             this.state = 907;
             this.minLength();
         }
@@ -8779,13 +8779,13 @@ MetaEdGrammar.prototype.stringProperty = function () {
         this.state = 910;
         this.maxLength();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -8793,13 +8793,13 @@ MetaEdGrammar.prototype.stringProperty = function () {
 };
 
 function TimePropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_timeProperty;
     return this;
@@ -8808,32 +8808,32 @@ function TimePropertyContext(parser, parent, invokingState) {
 TimePropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 TimePropertyContext.prototype.constructor = TimePropertyContext;
 
-TimePropertyContext.prototype.TIME = function () {
+TimePropertyContext.prototype.TIME = function() {
     return this.getToken(MetaEdGrammar.TIME, 0);
 };
 
-TimePropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+TimePropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-TimePropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+TimePropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-TimePropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+TimePropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-TimePropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+TimePropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterTimeProperty(this);
-    }
+	}
 };
 
-TimePropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+TimePropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitTimeProperty(this);
-    }
+	}
 };
 
 
@@ -8841,7 +8841,7 @@ TimePropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.TimePropertyContext = TimePropertyContext;
 
-MetaEdGrammar.prototype.timeProperty = function () {
+MetaEdGrammar.prototype.timeProperty = function() {
 
     var localctx = new TimePropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 172, MetaEdGrammar.RULE_timeProperty);
@@ -8854,7 +8854,7 @@ MetaEdGrammar.prototype.timeProperty = function () {
         this.propertyName();
         this.state = 915;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 914;
             this.metaEdId();
         }
@@ -8862,13 +8862,13 @@ MetaEdGrammar.prototype.timeProperty = function () {
         this.state = 917;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -8876,13 +8876,13 @@ MetaEdGrammar.prototype.timeProperty = function () {
 };
 
 function YearPropertyContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_yearProperty;
     return this;
@@ -8891,32 +8891,32 @@ function YearPropertyContext(parser, parent, invokingState) {
 YearPropertyContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 YearPropertyContext.prototype.constructor = YearPropertyContext;
 
-YearPropertyContext.prototype.YEAR = function () {
+YearPropertyContext.prototype.YEAR = function() {
     return this.getToken(MetaEdGrammar.YEAR, 0);
 };
 
-YearPropertyContext.prototype.propertyName = function () {
-    return this.getTypedRuleContext(PropertyNameContext, 0);
+YearPropertyContext.prototype.propertyName = function() {
+    return this.getTypedRuleContext(PropertyNameContext,0);
 };
 
-YearPropertyContext.prototype.propertyComponents = function () {
-    return this.getTypedRuleContext(PropertyComponentsContext, 0);
+YearPropertyContext.prototype.propertyComponents = function() {
+    return this.getTypedRuleContext(PropertyComponentsContext,0);
 };
 
-YearPropertyContext.prototype.metaEdId = function () {
-    return this.getTypedRuleContext(MetaEdIdContext, 0);
+YearPropertyContext.prototype.metaEdId = function() {
+    return this.getTypedRuleContext(MetaEdIdContext,0);
 };
 
-YearPropertyContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+YearPropertyContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterYearProperty(this);
-    }
+	}
 };
 
-YearPropertyContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+YearPropertyContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitYearProperty(this);
-    }
+	}
 };
 
 
@@ -8924,7 +8924,7 @@ YearPropertyContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.YearPropertyContext = YearPropertyContext;
 
-MetaEdGrammar.prototype.yearProperty = function () {
+MetaEdGrammar.prototype.yearProperty = function() {
 
     var localctx = new YearPropertyContext(this, this._ctx, this.state);
     this.enterRule(localctx, 174, MetaEdGrammar.RULE_yearProperty);
@@ -8937,7 +8937,7 @@ MetaEdGrammar.prototype.yearProperty = function () {
         this.propertyName();
         this.state = 922;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.METAED_ID) {
+        if(_la===MetaEdGrammar.METAED_ID) {
             this.state = 921;
             this.metaEdId();
         }
@@ -8945,13 +8945,13 @@ MetaEdGrammar.prototype.yearProperty = function () {
         this.state = 924;
         this.propertyComponents();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -8959,13 +8959,13 @@ MetaEdGrammar.prototype.yearProperty = function () {
 };
 
 function IsWeakReferenceContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_isWeakReference;
     return this;
@@ -8974,20 +8974,20 @@ function IsWeakReferenceContext(parser, parent, invokingState) {
 IsWeakReferenceContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 IsWeakReferenceContext.prototype.constructor = IsWeakReferenceContext;
 
-IsWeakReferenceContext.prototype.IS_WEAK_REFERENCE = function () {
+IsWeakReferenceContext.prototype.IS_WEAK_REFERENCE = function() {
     return this.getToken(MetaEdGrammar.IS_WEAK_REFERENCE, 0);
 };
 
-IsWeakReferenceContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IsWeakReferenceContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterIsWeakReference(this);
-    }
+	}
 };
 
-IsWeakReferenceContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+IsWeakReferenceContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitIsWeakReference(this);
-    }
+	}
 };
 
 
@@ -8995,7 +8995,7 @@ IsWeakReferenceContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.IsWeakReferenceContext = IsWeakReferenceContext;
 
-MetaEdGrammar.prototype.isWeakReference = function () {
+MetaEdGrammar.prototype.isWeakReference = function() {
 
     var localctx = new IsWeakReferenceContext(this, this._ctx, this.state);
     this.enterRule(localctx, 176, MetaEdGrammar.RULE_isWeakReference);
@@ -9004,13 +9004,13 @@ MetaEdGrammar.prototype.isWeakReference = function () {
         this.state = 926;
         this.match(MetaEdGrammar.IS_WEAK_REFERENCE);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9018,13 +9018,13 @@ MetaEdGrammar.prototype.isWeakReference = function () {
 };
 
 function MergePartOfReferenceContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_mergePartOfReference;
     return this;
@@ -9033,32 +9033,32 @@ function MergePartOfReferenceContext(parser, parent, invokingState) {
 MergePartOfReferenceContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 MergePartOfReferenceContext.prototype.constructor = MergePartOfReferenceContext;
 
-MergePartOfReferenceContext.prototype.MERGE_REFERENCE = function () {
+MergePartOfReferenceContext.prototype.MERGE_REFERENCE = function() {
     return this.getToken(MetaEdGrammar.MERGE_REFERENCE, 0);
 };
 
-MergePartOfReferenceContext.prototype.mergePropertyPath = function () {
-    return this.getTypedRuleContext(MergePropertyPathContext, 0);
+MergePartOfReferenceContext.prototype.mergePropertyPath = function() {
+    return this.getTypedRuleContext(MergePropertyPathContext,0);
 };
 
-MergePartOfReferenceContext.prototype.WITH = function () {
+MergePartOfReferenceContext.prototype.WITH = function() {
     return this.getToken(MetaEdGrammar.WITH, 0);
 };
 
-MergePartOfReferenceContext.prototype.targetPropertyPath = function () {
-    return this.getTypedRuleContext(TargetPropertyPathContext, 0);
+MergePartOfReferenceContext.prototype.targetPropertyPath = function() {
+    return this.getTypedRuleContext(TargetPropertyPathContext,0);
 };
 
-MergePartOfReferenceContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MergePartOfReferenceContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterMergePartOfReference(this);
-    }
+	}
 };
 
-MergePartOfReferenceContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MergePartOfReferenceContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitMergePartOfReference(this);
-    }
+	}
 };
 
 
@@ -9066,7 +9066,7 @@ MergePartOfReferenceContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.MergePartOfReferenceContext = MergePartOfReferenceContext;
 
-MetaEdGrammar.prototype.mergePartOfReference = function () {
+MetaEdGrammar.prototype.mergePartOfReference = function() {
 
     var localctx = new MergePartOfReferenceContext(this, this._ctx, this.state);
     this.enterRule(localctx, 178, MetaEdGrammar.RULE_mergePartOfReference);
@@ -9081,13 +9081,13 @@ MetaEdGrammar.prototype.mergePartOfReference = function () {
         this.state = 931;
         this.targetPropertyPath();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9095,13 +9095,13 @@ MetaEdGrammar.prototype.mergePartOfReference = function () {
 };
 
 function MergePropertyPathContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_mergePropertyPath;
     return this;
@@ -9110,20 +9110,20 @@ function MergePropertyPathContext(parser, parent, invokingState) {
 MergePropertyPathContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 MergePropertyPathContext.prototype.constructor = MergePropertyPathContext;
 
-MergePropertyPathContext.prototype.propertyPath = function () {
-    return this.getTypedRuleContext(PropertyPathContext, 0);
+MergePropertyPathContext.prototype.propertyPath = function() {
+    return this.getTypedRuleContext(PropertyPathContext,0);
 };
 
-MergePropertyPathContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MergePropertyPathContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterMergePropertyPath(this);
-    }
+	}
 };
 
-MergePropertyPathContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MergePropertyPathContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitMergePropertyPath(this);
-    }
+	}
 };
 
 
@@ -9131,7 +9131,7 @@ MergePropertyPathContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.MergePropertyPathContext = MergePropertyPathContext;
 
-MetaEdGrammar.prototype.mergePropertyPath = function () {
+MetaEdGrammar.prototype.mergePropertyPath = function() {
 
     var localctx = new MergePropertyPathContext(this, this._ctx, this.state);
     this.enterRule(localctx, 180, MetaEdGrammar.RULE_mergePropertyPath);
@@ -9140,13 +9140,13 @@ MetaEdGrammar.prototype.mergePropertyPath = function () {
         this.state = 933;
         this.propertyPath();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9154,13 +9154,13 @@ MetaEdGrammar.prototype.mergePropertyPath = function () {
 };
 
 function TargetPropertyPathContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_targetPropertyPath;
     return this;
@@ -9169,20 +9169,20 @@ function TargetPropertyPathContext(parser, parent, invokingState) {
 TargetPropertyPathContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 TargetPropertyPathContext.prototype.constructor = TargetPropertyPathContext;
 
-TargetPropertyPathContext.prototype.propertyPath = function () {
-    return this.getTypedRuleContext(PropertyPathContext, 0);
+TargetPropertyPathContext.prototype.propertyPath = function() {
+    return this.getTypedRuleContext(PropertyPathContext,0);
 };
 
-TargetPropertyPathContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+TargetPropertyPathContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterTargetPropertyPath(this);
-    }
+	}
 };
 
-TargetPropertyPathContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+TargetPropertyPathContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitTargetPropertyPath(this);
-    }
+	}
 };
 
 
@@ -9190,7 +9190,7 @@ TargetPropertyPathContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.TargetPropertyPathContext = TargetPropertyPathContext;
 
-MetaEdGrammar.prototype.targetPropertyPath = function () {
+MetaEdGrammar.prototype.targetPropertyPath = function() {
 
     var localctx = new TargetPropertyPathContext(this, this._ctx, this.state);
     this.enterRule(localctx, 182, MetaEdGrammar.RULE_targetPropertyPath);
@@ -9199,13 +9199,13 @@ MetaEdGrammar.prototype.targetPropertyPath = function () {
         this.state = 935;
         this.propertyPath();
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9213,13 +9213,13 @@ MetaEdGrammar.prototype.targetPropertyPath = function () {
 };
 
 function PropertyPathContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_propertyPath;
     return this;
@@ -9228,11 +9228,11 @@ function PropertyPathContext(parser, parent, invokingState) {
 PropertyPathContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 PropertyPathContext.prototype.constructor = PropertyPathContext;
 
-PropertyPathContext.prototype.ID = function (i) {
-    if (i === undefined) {
-        i = null;
-    }
-    if (i === null) {
+PropertyPathContext.prototype.ID = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
         return this.getTokens(MetaEdGrammar.ID);
     } else {
         return this.getToken(MetaEdGrammar.ID, i);
@@ -9240,11 +9240,11 @@ PropertyPathContext.prototype.ID = function (i) {
 };
 
 
-PropertyPathContext.prototype.PERIOD = function (i) {
-    if (i === undefined) {
-        i = null;
-    }
-    if (i === null) {
+PropertyPathContext.prototype.PERIOD = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
         return this.getTokens(MetaEdGrammar.PERIOD);
     } else {
         return this.getToken(MetaEdGrammar.PERIOD, i);
@@ -9252,16 +9252,16 @@ PropertyPathContext.prototype.PERIOD = function (i) {
 };
 
 
-PropertyPathContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+PropertyPathContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterPropertyPath(this);
-    }
+	}
 };
 
-PropertyPathContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+PropertyPathContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitPropertyPath(this);
-    }
+	}
 };
 
 
@@ -9269,7 +9269,7 @@ PropertyPathContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.PropertyPathContext = PropertyPathContext;
 
-MetaEdGrammar.prototype.propertyPath = function () {
+MetaEdGrammar.prototype.propertyPath = function() {
 
     var localctx = new PropertyPathContext(this, this._ctx, this.state);
     this.enterRule(localctx, 184, MetaEdGrammar.RULE_propertyPath);
@@ -9281,7 +9281,7 @@ MetaEdGrammar.prototype.propertyPath = function () {
         this.state = 942;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        while (_la === MetaEdGrammar.PERIOD) {
+        while(_la===MetaEdGrammar.PERIOD) {
             this.state = 938;
             this.match(MetaEdGrammar.PERIOD);
             this.state = 939;
@@ -9291,13 +9291,13 @@ MetaEdGrammar.prototype.propertyPath = function () {
             _la = this._input.LA(1);
         }
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9305,13 +9305,13 @@ MetaEdGrammar.prototype.propertyPath = function () {
 };
 
 function Signed_intContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_signed_int;
     return this;
@@ -9320,24 +9320,24 @@ function Signed_intContext(parser, parent, invokingState) {
 Signed_intContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 Signed_intContext.prototype.constructor = Signed_intContext;
 
-Signed_intContext.prototype.UNSIGNED_INT = function () {
+Signed_intContext.prototype.UNSIGNED_INT = function() {
     return this.getToken(MetaEdGrammar.UNSIGNED_INT, 0);
 };
 
-Signed_intContext.prototype.unaryOperator = function () {
-    return this.getTypedRuleContext(UnaryOperatorContext, 0);
+Signed_intContext.prototype.unaryOperator = function() {
+    return this.getTypedRuleContext(UnaryOperatorContext,0);
 };
 
-Signed_intContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+Signed_intContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterSigned_int(this);
-    }
+	}
 };
 
-Signed_intContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+Signed_intContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitSigned_int(this);
-    }
+	}
 };
 
 
@@ -9345,7 +9345,7 @@ Signed_intContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.Signed_intContext = Signed_intContext;
 
-MetaEdGrammar.prototype.signed_int = function () {
+MetaEdGrammar.prototype.signed_int = function() {
 
     var localctx = new Signed_intContext(this, this._ctx, this.state);
     this.enterRule(localctx, 186, MetaEdGrammar.RULE_signed_int);
@@ -9354,7 +9354,7 @@ MetaEdGrammar.prototype.signed_int = function () {
         this.enterOuterAlt(localctx, 1);
         this.state = 946;
         _la = this._input.LA(1);
-        if (_la === MetaEdGrammar.POS_SIGN || _la === MetaEdGrammar.NEG_SIGN) {
+        if(_la===MetaEdGrammar.POS_SIGN || _la===MetaEdGrammar.NEG_SIGN) {
             this.state = 945;
             this.unaryOperator();
         }
@@ -9362,13 +9362,13 @@ MetaEdGrammar.prototype.signed_int = function () {
         this.state = 948;
         this.match(MetaEdGrammar.UNSIGNED_INT);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9376,13 +9376,13 @@ MetaEdGrammar.prototype.signed_int = function () {
 };
 
 function UnaryOperatorContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_unaryOperator;
     return this;
@@ -9391,24 +9391,24 @@ function UnaryOperatorContext(parser, parent, invokingState) {
 UnaryOperatorContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 UnaryOperatorContext.prototype.constructor = UnaryOperatorContext;
 
-UnaryOperatorContext.prototype.POS_SIGN = function () {
+UnaryOperatorContext.prototype.POS_SIGN = function() {
     return this.getToken(MetaEdGrammar.POS_SIGN, 0);
 };
 
-UnaryOperatorContext.prototype.NEG_SIGN = function () {
+UnaryOperatorContext.prototype.NEG_SIGN = function() {
     return this.getToken(MetaEdGrammar.NEG_SIGN, 0);
 };
 
-UnaryOperatorContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+UnaryOperatorContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterUnaryOperator(this);
-    }
+	}
 };
 
-UnaryOperatorContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+UnaryOperatorContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitUnaryOperator(this);
-    }
+	}
 };
 
 
@@ -9416,7 +9416,7 @@ UnaryOperatorContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.UnaryOperatorContext = UnaryOperatorContext;
 
-MetaEdGrammar.prototype.unaryOperator = function () {
+MetaEdGrammar.prototype.unaryOperator = function() {
 
     var localctx = new UnaryOperatorContext(this, this._ctx, this.state);
     this.enterRule(localctx, 188, MetaEdGrammar.RULE_unaryOperator);
@@ -9425,20 +9425,20 @@ MetaEdGrammar.prototype.unaryOperator = function () {
         this.enterOuterAlt(localctx, 1);
         this.state = 950;
         _la = this._input.LA(1);
-        if (!(_la === MetaEdGrammar.POS_SIGN || _la === MetaEdGrammar.NEG_SIGN)) {
-            this._errHandler.recoverInline(this);
+        if(!(_la===MetaEdGrammar.POS_SIGN || _la===MetaEdGrammar.NEG_SIGN)) {
+        this._errHandler.recoverInline(this);
         }
         else {
             this.consume();
         }
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9446,13 +9446,13 @@ MetaEdGrammar.prototype.unaryOperator = function () {
 };
 
 function AbstractEntityNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_abstractEntityName;
     return this;
@@ -9461,20 +9461,20 @@ function AbstractEntityNameContext(parser, parent, invokingState) {
 AbstractEntityNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 AbstractEntityNameContext.prototype.constructor = AbstractEntityNameContext;
 
-AbstractEntityNameContext.prototype.ID = function () {
+AbstractEntityNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-AbstractEntityNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+AbstractEntityNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterAbstractEntityName(this);
-    }
+	}
 };
 
-AbstractEntityNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+AbstractEntityNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitAbstractEntityName(this);
-    }
+	}
 };
 
 
@@ -9482,7 +9482,7 @@ AbstractEntityNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.AbstractEntityNameContext = AbstractEntityNameContext;
 
-MetaEdGrammar.prototype.abstractEntityName = function () {
+MetaEdGrammar.prototype.abstractEntityName = function() {
 
     var localctx = new AbstractEntityNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 190, MetaEdGrammar.RULE_abstractEntityName);
@@ -9491,13 +9491,13 @@ MetaEdGrammar.prototype.abstractEntityName = function () {
         this.state = 952;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9505,13 +9505,13 @@ MetaEdGrammar.prototype.abstractEntityName = function () {
 };
 
 function AssociationNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_associationName;
     return this;
@@ -9520,20 +9520,20 @@ function AssociationNameContext(parser, parent, invokingState) {
 AssociationNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 AssociationNameContext.prototype.constructor = AssociationNameContext;
 
-AssociationNameContext.prototype.ID = function () {
+AssociationNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-AssociationNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+AssociationNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterAssociationName(this);
-    }
+	}
 };
 
-AssociationNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+AssociationNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitAssociationName(this);
-    }
+	}
 };
 
 
@@ -9541,7 +9541,7 @@ AssociationNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.AssociationNameContext = AssociationNameContext;
 
-MetaEdGrammar.prototype.associationName = function () {
+MetaEdGrammar.prototype.associationName = function() {
 
     var localctx = new AssociationNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 192, MetaEdGrammar.RULE_associationName);
@@ -9550,13 +9550,13 @@ MetaEdGrammar.prototype.associationName = function () {
         this.state = 954;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9564,13 +9564,13 @@ MetaEdGrammar.prototype.associationName = function () {
 };
 
 function BaseKeyNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_baseKeyName;
     return this;
@@ -9579,20 +9579,20 @@ function BaseKeyNameContext(parser, parent, invokingState) {
 BaseKeyNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 BaseKeyNameContext.prototype.constructor = BaseKeyNameContext;
 
-BaseKeyNameContext.prototype.ID = function () {
+BaseKeyNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-BaseKeyNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+BaseKeyNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterBaseKeyName(this);
-    }
+	}
 };
 
-BaseKeyNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+BaseKeyNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitBaseKeyName(this);
-    }
+	}
 };
 
 
@@ -9600,7 +9600,7 @@ BaseKeyNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.BaseKeyNameContext = BaseKeyNameContext;
 
-MetaEdGrammar.prototype.baseKeyName = function () {
+MetaEdGrammar.prototype.baseKeyName = function() {
 
     var localctx = new BaseKeyNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 194, MetaEdGrammar.RULE_baseKeyName);
@@ -9609,13 +9609,13 @@ MetaEdGrammar.prototype.baseKeyName = function () {
         this.state = 956;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9623,13 +9623,13 @@ MetaEdGrammar.prototype.baseKeyName = function () {
 };
 
 function BaseNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_baseName;
     return this;
@@ -9638,20 +9638,20 @@ function BaseNameContext(parser, parent, invokingState) {
 BaseNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 BaseNameContext.prototype.constructor = BaseNameContext;
 
-BaseNameContext.prototype.ID = function () {
+BaseNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-BaseNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+BaseNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterBaseName(this);
-    }
+	}
 };
 
-BaseNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+BaseNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitBaseName(this);
-    }
+	}
 };
 
 
@@ -9659,7 +9659,7 @@ BaseNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.BaseNameContext = BaseNameContext;
 
-MetaEdGrammar.prototype.baseName = function () {
+MetaEdGrammar.prototype.baseName = function() {
 
     var localctx = new BaseNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 196, MetaEdGrammar.RULE_baseName);
@@ -9668,13 +9668,13 @@ MetaEdGrammar.prototype.baseName = function () {
         this.state = 958;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9682,13 +9682,13 @@ MetaEdGrammar.prototype.baseName = function () {
 };
 
 function ChoiceNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_choiceName;
     return this;
@@ -9697,20 +9697,20 @@ function ChoiceNameContext(parser, parent, invokingState) {
 ChoiceNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 ChoiceNameContext.prototype.constructor = ChoiceNameContext;
 
-ChoiceNameContext.prototype.ID = function () {
+ChoiceNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-ChoiceNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ChoiceNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterChoiceName(this);
-    }
+	}
 };
 
-ChoiceNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ChoiceNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitChoiceName(this);
-    }
+	}
 };
 
 
@@ -9718,7 +9718,7 @@ ChoiceNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.ChoiceNameContext = ChoiceNameContext;
 
-MetaEdGrammar.prototype.choiceName = function () {
+MetaEdGrammar.prototype.choiceName = function() {
 
     var localctx = new ChoiceNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 198, MetaEdGrammar.RULE_choiceName);
@@ -9727,13 +9727,13 @@ MetaEdGrammar.prototype.choiceName = function () {
         this.state = 960;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9741,13 +9741,13 @@ MetaEdGrammar.prototype.choiceName = function () {
 };
 
 function CommonDecimalNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_commonDecimalName;
     return this;
@@ -9756,20 +9756,20 @@ function CommonDecimalNameContext(parser, parent, invokingState) {
 CommonDecimalNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CommonDecimalNameContext.prototype.constructor = CommonDecimalNameContext;
 
-CommonDecimalNameContext.prototype.ID = function () {
+CommonDecimalNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-CommonDecimalNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonDecimalNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCommonDecimalName(this);
-    }
+	}
 };
 
-CommonDecimalNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonDecimalNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCommonDecimalName(this);
-    }
+	}
 };
 
 
@@ -9777,7 +9777,7 @@ CommonDecimalNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CommonDecimalNameContext = CommonDecimalNameContext;
 
-MetaEdGrammar.prototype.commonDecimalName = function () {
+MetaEdGrammar.prototype.commonDecimalName = function() {
 
     var localctx = new CommonDecimalNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 200, MetaEdGrammar.RULE_commonDecimalName);
@@ -9786,13 +9786,13 @@ MetaEdGrammar.prototype.commonDecimalName = function () {
         this.state = 962;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9800,13 +9800,13 @@ MetaEdGrammar.prototype.commonDecimalName = function () {
 };
 
 function CommonIntegerNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_commonIntegerName;
     return this;
@@ -9815,20 +9815,20 @@ function CommonIntegerNameContext(parser, parent, invokingState) {
 CommonIntegerNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CommonIntegerNameContext.prototype.constructor = CommonIntegerNameContext;
 
-CommonIntegerNameContext.prototype.ID = function () {
+CommonIntegerNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-CommonIntegerNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonIntegerNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCommonIntegerName(this);
-    }
+	}
 };
 
-CommonIntegerNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonIntegerNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCommonIntegerName(this);
-    }
+	}
 };
 
 
@@ -9836,7 +9836,7 @@ CommonIntegerNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CommonIntegerNameContext = CommonIntegerNameContext;
 
-MetaEdGrammar.prototype.commonIntegerName = function () {
+MetaEdGrammar.prototype.commonIntegerName = function() {
 
     var localctx = new CommonIntegerNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 202, MetaEdGrammar.RULE_commonIntegerName);
@@ -9845,13 +9845,13 @@ MetaEdGrammar.prototype.commonIntegerName = function () {
         this.state = 964;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9859,13 +9859,13 @@ MetaEdGrammar.prototype.commonIntegerName = function () {
 };
 
 function CommonNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_commonName;
     return this;
@@ -9874,20 +9874,20 @@ function CommonNameContext(parser, parent, invokingState) {
 CommonNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CommonNameContext.prototype.constructor = CommonNameContext;
 
-CommonNameContext.prototype.ID = function () {
+CommonNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-CommonNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCommonName(this);
-    }
+	}
 };
 
-CommonNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCommonName(this);
-    }
+	}
 };
 
 
@@ -9895,7 +9895,7 @@ CommonNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CommonNameContext = CommonNameContext;
 
-MetaEdGrammar.prototype.commonName = function () {
+MetaEdGrammar.prototype.commonName = function() {
 
     var localctx = new CommonNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 204, MetaEdGrammar.RULE_commonName);
@@ -9904,13 +9904,13 @@ MetaEdGrammar.prototype.commonName = function () {
         this.state = 966;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9918,13 +9918,13 @@ MetaEdGrammar.prototype.commonName = function () {
 };
 
 function CommonShortNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_commonShortName;
     return this;
@@ -9933,20 +9933,20 @@ function CommonShortNameContext(parser, parent, invokingState) {
 CommonShortNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CommonShortNameContext.prototype.constructor = CommonShortNameContext;
 
-CommonShortNameContext.prototype.ID = function () {
+CommonShortNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-CommonShortNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonShortNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCommonShortName(this);
-    }
+	}
 };
 
-CommonShortNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonShortNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCommonShortName(this);
-    }
+	}
 };
 
 
@@ -9954,7 +9954,7 @@ CommonShortNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CommonShortNameContext = CommonShortNameContext;
 
-MetaEdGrammar.prototype.commonShortName = function () {
+MetaEdGrammar.prototype.commonShortName = function() {
 
     var localctx = new CommonShortNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 206, MetaEdGrammar.RULE_commonShortName);
@@ -9963,13 +9963,13 @@ MetaEdGrammar.prototype.commonShortName = function () {
         this.state = 968;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -9977,13 +9977,13 @@ MetaEdGrammar.prototype.commonShortName = function () {
 };
 
 function CommonStringNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_commonStringName;
     return this;
@@ -9992,20 +9992,20 @@ function CommonStringNameContext(parser, parent, invokingState) {
 CommonStringNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 CommonStringNameContext.prototype.constructor = CommonStringNameContext;
 
-CommonStringNameContext.prototype.ID = function () {
+CommonStringNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-CommonStringNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonStringNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterCommonStringName(this);
-    }
+	}
 };
 
-CommonStringNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+CommonStringNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitCommonStringName(this);
-    }
+	}
 };
 
 
@@ -10013,7 +10013,7 @@ CommonStringNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.CommonStringNameContext = CommonStringNameContext;
 
-MetaEdGrammar.prototype.commonStringName = function () {
+MetaEdGrammar.prototype.commonStringName = function() {
 
     var localctx = new CommonStringNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 208, MetaEdGrammar.RULE_commonStringName);
@@ -10022,13 +10022,13 @@ MetaEdGrammar.prototype.commonStringName = function () {
         this.state = 970;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10036,13 +10036,13 @@ MetaEdGrammar.prototype.commonStringName = function () {
 };
 
 function DescriptorNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_descriptorName;
     return this;
@@ -10051,20 +10051,20 @@ function DescriptorNameContext(parser, parent, invokingState) {
 DescriptorNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DescriptorNameContext.prototype.constructor = DescriptorNameContext;
 
-DescriptorNameContext.prototype.ID = function () {
+DescriptorNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-DescriptorNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DescriptorNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDescriptorName(this);
-    }
+	}
 };
 
-DescriptorNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DescriptorNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDescriptorName(this);
-    }
+	}
 };
 
 
@@ -10072,7 +10072,7 @@ DescriptorNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DescriptorNameContext = DescriptorNameContext;
 
-MetaEdGrammar.prototype.descriptorName = function () {
+MetaEdGrammar.prototype.descriptorName = function() {
 
     var localctx = new DescriptorNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 210, MetaEdGrammar.RULE_descriptorName);
@@ -10081,13 +10081,13 @@ MetaEdGrammar.prototype.descriptorName = function () {
         this.state = 972;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10095,13 +10095,13 @@ MetaEdGrammar.prototype.descriptorName = function () {
 };
 
 function DomainNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_domainName;
     return this;
@@ -10110,20 +10110,20 @@ function DomainNameContext(parser, parent, invokingState) {
 DomainNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 DomainNameContext.prototype.constructor = DomainNameContext;
 
-DomainNameContext.prototype.ID = function () {
+DomainNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-DomainNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DomainNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterDomainName(this);
-    }
+	}
 };
 
-DomainNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+DomainNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitDomainName(this);
-    }
+	}
 };
 
 
@@ -10131,7 +10131,7 @@ DomainNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.DomainNameContext = DomainNameContext;
 
-MetaEdGrammar.prototype.domainName = function () {
+MetaEdGrammar.prototype.domainName = function() {
 
     var localctx = new DomainNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 212, MetaEdGrammar.RULE_domainName);
@@ -10140,13 +10140,13 @@ MetaEdGrammar.prototype.domainName = function () {
         this.state = 974;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10154,13 +10154,13 @@ MetaEdGrammar.prototype.domainName = function () {
 };
 
 function EntityNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_entityName;
     return this;
@@ -10169,20 +10169,20 @@ function EntityNameContext(parser, parent, invokingState) {
 EntityNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 EntityNameContext.prototype.constructor = EntityNameContext;
 
-EntityNameContext.prototype.ID = function () {
+EntityNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-EntityNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+EntityNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterEntityName(this);
-    }
+	}
 };
 
-EntityNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+EntityNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitEntityName(this);
-    }
+	}
 };
 
 
@@ -10190,7 +10190,7 @@ EntityNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.EntityNameContext = EntityNameContext;
 
-MetaEdGrammar.prototype.entityName = function () {
+MetaEdGrammar.prototype.entityName = function() {
 
     var localctx = new EntityNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 214, MetaEdGrammar.RULE_entityName);
@@ -10199,13 +10199,13 @@ MetaEdGrammar.prototype.entityName = function () {
         this.state = 976;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10213,13 +10213,13 @@ MetaEdGrammar.prototype.entityName = function () {
 };
 
 function EnumerationNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_enumerationName;
     return this;
@@ -10228,20 +10228,20 @@ function EnumerationNameContext(parser, parent, invokingState) {
 EnumerationNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 EnumerationNameContext.prototype.constructor = EnumerationNameContext;
 
-EnumerationNameContext.prototype.ID = function () {
+EnumerationNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-EnumerationNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+EnumerationNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterEnumerationName(this);
-    }
+	}
 };
 
-EnumerationNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+EnumerationNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitEnumerationName(this);
-    }
+	}
 };
 
 
@@ -10249,7 +10249,7 @@ EnumerationNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.EnumerationNameContext = EnumerationNameContext;
 
-MetaEdGrammar.prototype.enumerationName = function () {
+MetaEdGrammar.prototype.enumerationName = function() {
 
     var localctx = new EnumerationNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 216, MetaEdGrammar.RULE_enumerationName);
@@ -10258,13 +10258,13 @@ MetaEdGrammar.prototype.enumerationName = function () {
         this.state = 978;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10272,13 +10272,13 @@ MetaEdGrammar.prototype.enumerationName = function () {
 };
 
 function ExtendeeNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_extendeeName;
     return this;
@@ -10287,20 +10287,20 @@ function ExtendeeNameContext(parser, parent, invokingState) {
 ExtendeeNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 ExtendeeNameContext.prototype.constructor = ExtendeeNameContext;
 
-ExtendeeNameContext.prototype.ID = function () {
+ExtendeeNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-ExtendeeNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ExtendeeNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterExtendeeName(this);
-    }
+	}
 };
 
-ExtendeeNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ExtendeeNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitExtendeeName(this);
-    }
+	}
 };
 
 
@@ -10308,7 +10308,7 @@ ExtendeeNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.ExtendeeNameContext = ExtendeeNameContext;
 
-MetaEdGrammar.prototype.extendeeName = function () {
+MetaEdGrammar.prototype.extendeeName = function() {
 
     var localctx = new ExtendeeNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 218, MetaEdGrammar.RULE_extendeeName);
@@ -10317,13 +10317,13 @@ MetaEdGrammar.prototype.extendeeName = function () {
         this.state = 980;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10331,13 +10331,13 @@ MetaEdGrammar.prototype.extendeeName = function () {
 };
 
 function InlineCommonNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_inlineCommonName;
     return this;
@@ -10346,20 +10346,20 @@ function InlineCommonNameContext(parser, parent, invokingState) {
 InlineCommonNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 InlineCommonNameContext.prototype.constructor = InlineCommonNameContext;
 
-InlineCommonNameContext.prototype.ID = function () {
+InlineCommonNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-InlineCommonNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InlineCommonNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterInlineCommonName(this);
-    }
+	}
 };
 
-InlineCommonNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InlineCommonNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitInlineCommonName(this);
-    }
+	}
 };
 
 
@@ -10367,7 +10367,7 @@ InlineCommonNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.InlineCommonNameContext = InlineCommonNameContext;
 
-MetaEdGrammar.prototype.inlineCommonName = function () {
+MetaEdGrammar.prototype.inlineCommonName = function() {
 
     var localctx = new InlineCommonNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 220, MetaEdGrammar.RULE_inlineCommonName);
@@ -10376,13 +10376,13 @@ MetaEdGrammar.prototype.inlineCommonName = function () {
         this.state = 982;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10390,13 +10390,13 @@ MetaEdGrammar.prototype.inlineCommonName = function () {
 };
 
 function InterchangeNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_interchangeName;
     return this;
@@ -10405,20 +10405,20 @@ function InterchangeNameContext(parser, parent, invokingState) {
 InterchangeNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 InterchangeNameContext.prototype.constructor = InterchangeNameContext;
 
-InterchangeNameContext.prototype.ID = function () {
+InterchangeNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-InterchangeNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterInterchangeName(this);
-    }
+	}
 };
 
-InterchangeNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+InterchangeNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitInterchangeName(this);
-    }
+	}
 };
 
 
@@ -10426,7 +10426,7 @@ InterchangeNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.InterchangeNameContext = InterchangeNameContext;
 
-MetaEdGrammar.prototype.interchangeName = function () {
+MetaEdGrammar.prototype.interchangeName = function() {
 
     var localctx = new InterchangeNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 222, MetaEdGrammar.RULE_interchangeName);
@@ -10435,13 +10435,13 @@ MetaEdGrammar.prototype.interchangeName = function () {
         this.state = 984;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10449,13 +10449,13 @@ MetaEdGrammar.prototype.interchangeName = function () {
 };
 
 function ParentDomainNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_parentDomainName;
     return this;
@@ -10464,20 +10464,20 @@ function ParentDomainNameContext(parser, parent, invokingState) {
 ParentDomainNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 ParentDomainNameContext.prototype.constructor = ParentDomainNameContext;
 
-ParentDomainNameContext.prototype.ID = function () {
+ParentDomainNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-ParentDomainNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ParentDomainNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterParentDomainName(this);
-    }
+	}
 };
 
-ParentDomainNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ParentDomainNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitParentDomainName(this);
-    }
+	}
 };
 
 
@@ -10485,7 +10485,7 @@ ParentDomainNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.ParentDomainNameContext = ParentDomainNameContext;
 
-MetaEdGrammar.prototype.parentDomainName = function () {
+MetaEdGrammar.prototype.parentDomainName = function() {
 
     var localctx = new ParentDomainNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 224, MetaEdGrammar.RULE_parentDomainName);
@@ -10494,13 +10494,13 @@ MetaEdGrammar.prototype.parentDomainName = function () {
         this.state = 986;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10508,13 +10508,13 @@ MetaEdGrammar.prototype.parentDomainName = function () {
 };
 
 function PropertyNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_propertyName;
     return this;
@@ -10523,20 +10523,20 @@ function PropertyNameContext(parser, parent, invokingState) {
 PropertyNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 PropertyNameContext.prototype.constructor = PropertyNameContext;
 
-PropertyNameContext.prototype.ID = function () {
+PropertyNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-PropertyNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+PropertyNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterPropertyName(this);
-    }
+	}
 };
 
-PropertyNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+PropertyNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitPropertyName(this);
-    }
+	}
 };
 
 
@@ -10544,7 +10544,7 @@ PropertyNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.PropertyNameContext = PropertyNameContext;
 
-MetaEdGrammar.prototype.propertyName = function () {
+MetaEdGrammar.prototype.propertyName = function() {
 
     var localctx = new PropertyNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 226, MetaEdGrammar.RULE_propertyName);
@@ -10553,13 +10553,13 @@ MetaEdGrammar.prototype.propertyName = function () {
         this.state = 988;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10567,13 +10567,13 @@ MetaEdGrammar.prototype.propertyName = function () {
 };
 
 function SharedPropertyTypeContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_sharedPropertyType;
     return this;
@@ -10582,20 +10582,20 @@ function SharedPropertyTypeContext(parser, parent, invokingState) {
 SharedPropertyTypeContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 SharedPropertyTypeContext.prototype.constructor = SharedPropertyTypeContext;
 
-SharedPropertyTypeContext.prototype.ID = function () {
+SharedPropertyTypeContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-SharedPropertyTypeContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SharedPropertyTypeContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterSharedPropertyType(this);
-    }
+	}
 };
 
-SharedPropertyTypeContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SharedPropertyTypeContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitSharedPropertyType(this);
-    }
+	}
 };
 
 
@@ -10603,7 +10603,7 @@ SharedPropertyTypeContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.SharedPropertyTypeContext = SharedPropertyTypeContext;
 
-MetaEdGrammar.prototype.sharedPropertyType = function () {
+MetaEdGrammar.prototype.sharedPropertyType = function() {
 
     var localctx = new SharedPropertyTypeContext(this, this._ctx, this.state);
     this.enterRule(localctx, 228, MetaEdGrammar.RULE_sharedPropertyType);
@@ -10612,13 +10612,13 @@ MetaEdGrammar.prototype.sharedPropertyType = function () {
         this.state = 990;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10626,13 +10626,13 @@ MetaEdGrammar.prototype.sharedPropertyType = function () {
 };
 
 function ShortenToNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_shortenToName;
     return this;
@@ -10641,20 +10641,20 @@ function ShortenToNameContext(parser, parent, invokingState) {
 ShortenToNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 ShortenToNameContext.prototype.constructor = ShortenToNameContext;
 
-ShortenToNameContext.prototype.ID = function () {
+ShortenToNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-ShortenToNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ShortenToNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterShortenToName(this);
-    }
+	}
 };
 
-ShortenToNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+ShortenToNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitShortenToName(this);
-    }
+	}
 };
 
 
@@ -10662,7 +10662,7 @@ ShortenToNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.ShortenToNameContext = ShortenToNameContext;
 
-MetaEdGrammar.prototype.shortenToName = function () {
+MetaEdGrammar.prototype.shortenToName = function() {
 
     var localctx = new ShortenToNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 230, MetaEdGrammar.RULE_shortenToName);
@@ -10671,13 +10671,13 @@ MetaEdGrammar.prototype.shortenToName = function () {
         this.state = 992;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10685,13 +10685,13 @@ MetaEdGrammar.prototype.shortenToName = function () {
 };
 
 function SubdomainNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_subdomainName;
     return this;
@@ -10700,20 +10700,20 @@ function SubdomainNameContext(parser, parent, invokingState) {
 SubdomainNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 SubdomainNameContext.prototype.constructor = SubdomainNameContext;
 
-SubdomainNameContext.prototype.ID = function () {
+SubdomainNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-SubdomainNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SubdomainNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterSubdomainName(this);
-    }
+	}
 };
 
-SubdomainNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+SubdomainNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitSubdomainName(this);
-    }
+	}
 };
 
 
@@ -10721,7 +10721,7 @@ SubdomainNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.SubdomainNameContext = SubdomainNameContext;
 
-MetaEdGrammar.prototype.subdomainName = function () {
+MetaEdGrammar.prototype.subdomainName = function() {
 
     var localctx = new SubdomainNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 232, MetaEdGrammar.RULE_subdomainName);
@@ -10730,13 +10730,13 @@ MetaEdGrammar.prototype.subdomainName = function () {
         this.state = 994;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10744,13 +10744,13 @@ MetaEdGrammar.prototype.subdomainName = function () {
 };
 
 function WithContextNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_withContextName;
     return this;
@@ -10759,20 +10759,20 @@ function WithContextNameContext(parser, parent, invokingState) {
 WithContextNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 WithContextNameContext.prototype.constructor = WithContextNameContext;
 
-WithContextNameContext.prototype.ID = function () {
+WithContextNameContext.prototype.ID = function() {
     return this.getToken(MetaEdGrammar.ID, 0);
 };
 
-WithContextNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+WithContextNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterWithContextName(this);
-    }
+	}
 };
 
-WithContextNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+WithContextNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitWithContextName(this);
-    }
+	}
 };
 
 
@@ -10780,7 +10780,7 @@ WithContextNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.WithContextNameContext = WithContextNameContext;
 
-MetaEdGrammar.prototype.withContextName = function () {
+MetaEdGrammar.prototype.withContextName = function() {
 
     var localctx = new WithContextNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 234, MetaEdGrammar.RULE_withContextName);
@@ -10789,13 +10789,13 @@ MetaEdGrammar.prototype.withContextName = function () {
         this.state = 996;
         this.match(MetaEdGrammar.ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10803,13 +10803,13 @@ MetaEdGrammar.prototype.withContextName = function () {
 };
 
 function NamespaceNameContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_namespaceName;
     return this;
@@ -10818,20 +10818,20 @@ function NamespaceNameContext(parser, parent, invokingState) {
 NamespaceNameContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 NamespaceNameContext.prototype.constructor = NamespaceNameContext;
 
-NamespaceNameContext.prototype.NAMESPACE_ID = function () {
+NamespaceNameContext.prototype.NAMESPACE_ID = function() {
     return this.getToken(MetaEdGrammar.NAMESPACE_ID, 0);
 };
 
-NamespaceNameContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+NamespaceNameContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterNamespaceName(this);
-    }
+	}
 };
 
-NamespaceNameContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+NamespaceNameContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitNamespaceName(this);
-    }
+	}
 };
 
 
@@ -10839,7 +10839,7 @@ NamespaceNameContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.NamespaceNameContext = NamespaceNameContext;
 
-MetaEdGrammar.prototype.namespaceName = function () {
+MetaEdGrammar.prototype.namespaceName = function() {
 
     var localctx = new NamespaceNameContext(this, this._ctx, this.state);
     this.enterRule(localctx, 236, MetaEdGrammar.RULE_namespaceName);
@@ -10848,13 +10848,13 @@ MetaEdGrammar.prototype.namespaceName = function () {
         this.state = 998;
         this.match(MetaEdGrammar.NAMESPACE_ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }
@@ -10862,13 +10862,13 @@ MetaEdGrammar.prototype.namespaceName = function () {
 };
 
 function MetaEdIdContext(parser, parent, invokingState) {
-    if (parent === undefined) {
-        parent = null;
-    }
-    if (invokingState === undefined || invokingState === null) {
-        invokingState = -1;
-    }
-    antlr4.ParserRuleContext.call(this, parent, invokingState);
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
     this.parser = parser;
     this.ruleIndex = MetaEdGrammar.RULE_metaEdId;
     return this;
@@ -10877,20 +10877,20 @@ function MetaEdIdContext(parser, parent, invokingState) {
 MetaEdIdContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 MetaEdIdContext.prototype.constructor = MetaEdIdContext;
 
-MetaEdIdContext.prototype.METAED_ID = function () {
+MetaEdIdContext.prototype.METAED_ID = function() {
     return this.getToken(MetaEdGrammar.METAED_ID, 0);
 };
 
-MetaEdIdContext.prototype.enterRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MetaEdIdContext.prototype.enterRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.enterMetaEdId(this);
-    }
+	}
 };
 
-MetaEdIdContext.prototype.exitRule = function (listener) {
-    if (listener instanceof MetaEdGrammarListener) {
+MetaEdIdContext.prototype.exitRule = function(listener) {
+    if(listener instanceof MetaEdGrammarListener ) {
         listener.exitMetaEdId(this);
-    }
+	}
 };
 
 
@@ -10898,7 +10898,7 @@ MetaEdIdContext.prototype.exitRule = function (listener) {
 
 MetaEdGrammar.MetaEdIdContext = MetaEdIdContext;
 
-MetaEdGrammar.prototype.metaEdId = function () {
+MetaEdGrammar.prototype.metaEdId = function() {
 
     var localctx = new MetaEdIdContext(this, this._ctx, this.state);
     this.enterRule(localctx, 238, MetaEdGrammar.RULE_metaEdId);
@@ -10907,13 +10907,13 @@ MetaEdGrammar.prototype.metaEdId = function () {
         this.state = 1000;
         this.match(MetaEdGrammar.METAED_ID);
     } catch (re) {
-        if (re instanceof antlr4.error.RecognitionException) {
-            localctx.exception = re;
-            this._errHandler.reportError(this, re);
-            this._errHandler.recover(this, re);
-        } else {
-            throw re;
-        }
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
     } finally {
         this.exitRule();
     }

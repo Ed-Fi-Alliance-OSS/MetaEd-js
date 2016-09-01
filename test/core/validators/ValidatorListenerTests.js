@@ -1,7 +1,7 @@
 "use strict";
 /// <reference path="../../../typings/index.d.ts" />
 const chai = require('chai');
-const ValidationTestHelper_1 = require("./ValidationTestHelper");
+const ValidatorTestHelper_1 = require("./ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("./TestRuleProvider");
 const TestDomainEntityContextValidation_1 = require("./TestDomainEntityContextValidation");
@@ -10,7 +10,7 @@ let should = chai.should();
 describe('ValidatorListenerTests', () => {
     let validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(new TestDomainEntityContextValidation_1.TestDomainEntityContextValidation()));
     describe('When_validating_meta_ed_grammar', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = "Begin Namespace edfi core \n Domain Entity Test1 \n     documentation 'some documentation \n     string Property1 \n         documentation 'Property documentation starts here \n         is part of identity \n         max length 50 \n Domain Entity Test2 \n     documentation 'duck documentation \n       integer Property1 \n         documentation 'Property documentation starts here \n         is part of identity \n Domain Entity Test3 \n     documentation 'elephant documentation \n   date Property1 \n         documentation 'Property documentation starts here \n         is part of identity \n Domain Entity Test4 \n     documentation 'raccoon documentation \n     'raccoon documentation \n     'raccoon documentation \n     bool Property1 \n         documentation 'Property documentation starts here \n         is part of identity \n End Namespace \n";
             helper.setup(metaEdText, validatorListener);

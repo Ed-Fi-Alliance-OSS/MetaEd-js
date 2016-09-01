@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const AssociationMustNotDuplicateDomainEntityNames_1 = require("../../../../src/core/validators/Association/AssociationMustNotDuplicateDomainEntityNames");
@@ -11,7 +11,7 @@ let should = chai.should();
 describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
     let validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_association, new AssociationMustNotDuplicateDomainEntityNames_1.AssociationMustNotDuplicateDomainEntityNames()));
     describe('entityNames no duplicates', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -30,7 +30,7 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
     describe('entity names with duplicates', () => {
         const associationName = "Association1";
         const domainEntityName = "DomainEntity1";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -56,7 +56,7 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
         const associationName = "Association1";
         const domainEntityName = "DomainEntity1";
         const contextName = "Context1";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -80,7 +80,7 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
     });
     describe('entityNames_and_different_contexts', () => {
         const domainEntityName = "DomainEntity1";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -98,7 +98,7 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
     });
     describe('entityNames_and_same_contexts', () => {
         const contextName = "Context1";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

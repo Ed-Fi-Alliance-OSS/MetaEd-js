@@ -1,7 +1,7 @@
 /// <reference path="../../../typings/index.d.ts" />
 import chai = require('chai');
 import MetaEdTextBuilder from "../../grammar/MetaEdTextBuilder";
-import ValidationTestHelper from "./ValidationTestHelper";
+import SymbolTableTestHelper from "./SymbolTableTestHelper";
 import ValidationMessage from "../../../src/common/ValidationMessage"
 
 let should = chai.should();
@@ -17,7 +17,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     describe('When_loading_domain_entity', () => {
         const symbolTableKey: string = "Domain Entity";
 
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
             const metaEdText: string = MetaEdTextBuilder.buildIt
                 .withBeginNamespace(edfi)
@@ -42,7 +42,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_domain_entity', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -80,7 +80,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_abstract_entity', () => {
         const symbolTableKey: string = "Abstract Entity";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -101,7 +101,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_abstract_entity', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -131,7 +131,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_association', () => {
         const symbolTableKey: string = "Association";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -153,7 +153,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_association', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -185,7 +185,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_association_extension', () => {
         const symbolTableKey: string = "Associationadditions";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -205,7 +205,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_association_extension', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -233,7 +233,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_association_subclass', () => {
         const symbolTableKey: string = "Associationbased on";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -254,7 +254,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_association_subclass', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -284,7 +284,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_choice_type', () => {
         const symbolTableKey: string = "Choice Common Type";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -305,7 +305,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_choice_type', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -335,7 +335,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_common_decimal', () => {
         const symbolTableKey: string = "Common Decimal";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -357,7 +357,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_common_decimal', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -389,7 +389,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_common_integer', () => {
         const symbolTableKey: string = "Common Integer";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -411,7 +411,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_common_integer', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -443,7 +443,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_common_short', () => {
         const symbolTableKey: string = "Common Short";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -465,7 +465,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_common_short', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -497,7 +497,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_common_string', () => {
         const symbolTableKey: string = "Common String";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -519,7 +519,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_common_string', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -551,7 +551,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_common_type', () => {
         const symbolTableKey: string = "Common Type";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -572,7 +572,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_common_type', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -602,7 +602,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_descriptor', () => {
         const symbolTableKey: string = "Descriptor";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -623,7 +623,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_descriptor', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -653,7 +653,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_domain_entity_extension', () => {
         const symbolTableKey: string = "Domain Entityadditions";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -673,7 +673,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_domain_entity_extension', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -701,7 +701,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_domain_entity_subclass', () => {
         const symbolTableKey: string = "Domain Entitybased on";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -722,7 +722,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_domain_entity_subclass', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -752,7 +752,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_enumeration', () => {
         const symbolTableKey: string = "Enumeration";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -773,7 +773,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_enumeration', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -803,7 +803,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_inline_common_type', () => {
         const symbolTableKey: string = "Inline Common Type";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -824,7 +824,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_inline_common_type', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -854,7 +854,7 @@ describe('SymbolTableBuilderEntityTests', () => {
 
     describe('When_loading_interchange', () => {
         const symbolTableKey: string = "Interchange";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt
@@ -875,7 +875,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     describe('When_loading_duplicate_interchange', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
 
             const metaEdText: string = MetaEdTextBuilder.buildIt

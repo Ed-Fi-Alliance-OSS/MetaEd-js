@@ -1,36 +1,28 @@
-/// <reference path="../../../src/grammar/gen/MetaEdGrammarListener.d.ts" />
-import {MetaEdGrammarListener} from '../../../src/grammar/gen/MetaEdGrammarListener';
-
-import List from 'typescript-dotnet-commonjs/System/Collections/List'
 import ValidationMessage from '../../../src/common/ValidationMessage'
-import { SymbolTable } from '../../../src/core/validators/SymbolTable'
+import SymbolTable from '../../../src/core/validators/SymbolTable'
 import { MetaEdContext } from '../../../src/core/tasks/MetaEdContext'
 import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex'
 import { SymbolTableBuilder } from  '../../../src/core/validators/SymbolTableBuilder'
 import NullSymbolTableBuilderListener from '../../common/NullSymbolTableBuilderListener'
-import {IListenerWithContext} from "../../../src/core/validators/IListenerWithContext";
-import {ValidatorListener} from "../../../src/core/validators/ValidatorListener";
 
 let antlr4 = require('antlr4/index');
 let MetaEdGrammar = require('../../../src/grammar/gen/MetaEdGrammar');
 let BaseLexer = require('../../../src/grammar/gen/BaseLexer');
 
-export default class ValidationTestHelper {
-    public symbolTable: SymbolTable;
+export default class SymbolTableTestHelper {
     public warningMessageCollection: ValidationMessage[];
     public errorMessageCollection: ValidationMessage[];
-<<<<<<< HEAD
     public metaEdContext: MetaEdContext;
     public parserContext: any;
-=======
->>>>>>> master
+    public symbolTable: SymbolTable;
 
-    public setup(metaEdText: string, listener: IListenerWithContext = new SymbolTableBuilder(new NullSymbolTableBuilderListener())): void {
+    public setup(metaEdText: string): void {
         console.log(metaEdText);
         let metaEdFileIndex = new SingleFileMetaEdFileIndex();
         metaEdFileIndex.addContents(metaEdText);
 
         this.symbolTable = new SymbolTable();
+        let listener = new SymbolTableBuilder(new NullSymbolTableBuilderListener());
 
         let antlrInputStream = new antlr4.InputStream(metaEdText);
         let lexer = new BaseLexer.BaseLexer(antlrInputStream);

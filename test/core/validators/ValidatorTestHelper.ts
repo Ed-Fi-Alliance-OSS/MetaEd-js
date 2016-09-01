@@ -10,14 +10,14 @@ let antlr4 = require('antlr4/index');
 let MetaEdGrammar = require('../../../src/grammar/gen/MetaEdGrammar');
 let BaseLexer = require('../../../src/grammar/gen/BaseLexer');
 
-export default class ValidationTestHelper {
+export default class ValidatorTestHelper {
     public symbolTable: SymbolTable;
     public warningMessageCollection: ValidationMessage[];
     public errorMessageCollection: ValidationMessage[];
     public metaEdContext: MetaEdContext;
     public parserContext: any;
 
-    public setup(metaEdText: string, listener: IListenerWithContext = new SymbolTableBuilder(new NullSymbolTableBuilderListener()), symbolTable = new SymbolTable()): void {
+    public setup(metaEdText: string, validatorListener: IListenerWithContext, symbolTable): void {
         console.log(metaEdText);
         let metaEdFileIndex = new SingleFileMetaEdFileIndex();
         metaEdFileIndex.addContents(metaEdText);
@@ -29,11 +29,16 @@ export default class ValidationTestHelper {
         let tokens = new antlr4.CommonTokenStream(lexer);
         let parser = new MetaEdGrammar.MetaEdGrammar(tokens);
         this.parserContext = parser.metaEd();
-        this.metaEdContext = new MetaEdContext(metaEdFileIndex, this.symbolTable);
 
+        this.metaEdContext = new MetaEdContext(metaEdFileIndex, this.symbolTable);
         this.warningMessageCollection = this.metaEdContext.warningMessageCollection;
         this.errorMessageCollection = this.metaEdContext.errorMessageCollection;
-        listener.withContext(this.metaEdContext);
-        antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, this.parserContext);
+
+        let symbolTableBuilder = new SymbolTableBuilder(new NullSymbolTableBuilderListener());
+        symbolTableBuilder.withContext(this.metaEdContext);
+        antlr4.tree.ParseTreeWalker.DEFAULT.walk(symbolTableBuilder, this.parserContext);
+
+        validatorListener.withContext(this.metaEdContext);
+        antlr4.tree.ParseTreeWalker.DEFAULT.walk(validatorListener, this.parserContext);
     }
 }

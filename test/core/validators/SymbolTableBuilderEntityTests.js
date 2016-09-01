@@ -2,7 +2,7 @@
 /// <reference path="../../../typings/index.d.ts" />
 const chai = require('chai');
 const MetaEdTextBuilder_1 = require("../../grammar/MetaEdTextBuilder");
-const ValidationTestHelper_1 = require("./ValidationTestHelper");
+const SymbolTableTestHelper_1 = require("./SymbolTableTestHelper");
 let should = chai.should();
 const entityName = "EntityName";
 const propertyName = "PropertyName";
@@ -12,7 +12,7 @@ const edfi = "edfi";
 describe('SymbolTableBuilderEntityTests', () => {
     describe('When_loading_domain_entity', () => {
         const symbolTableKey = "Domain Entity";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -33,7 +33,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_domain_entity', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -64,7 +64,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_abstract_entity', () => {
         const symbolTableKey = "Abstract Entity";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -81,7 +81,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_abstract_entity', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -106,7 +106,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_association', () => {
         const symbolTableKey = "Association";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -124,7 +124,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_association', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -151,7 +151,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_association_extension', () => {
         const symbolTableKey = "Associationadditions";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -167,7 +167,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_association_extension', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -190,7 +190,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_association_subclass', () => {
         const symbolTableKey = "Associationbased on";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -207,7 +207,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_association_subclass', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -232,7 +232,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_choice_type', () => {
         const symbolTableKey = "Choice Common Type";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -249,7 +249,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_choice_type', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -274,7 +274,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_common_decimal', () => {
         const symbolTableKey = "Common Decimal";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -292,7 +292,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_common_decimal', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -319,7 +319,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_common_integer', () => {
         const symbolTableKey = "Common Integer";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -337,7 +337,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_common_integer', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -364,7 +364,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_common_short', () => {
         const symbolTableKey = "Common Short";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -382,7 +382,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_common_short', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -409,7 +409,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_common_string', () => {
         const symbolTableKey = "Common String";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -427,7 +427,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_common_string', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -454,7 +454,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_common_type', () => {
         const symbolTableKey = "Common Type";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -471,7 +471,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_common_type', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -496,7 +496,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_descriptor', () => {
         const symbolTableKey = "Descriptor";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -513,7 +513,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_descriptor', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -538,7 +538,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_domain_entity_extension', () => {
         const symbolTableKey = "Domain Entityadditions";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -554,7 +554,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_domain_entity_extension', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -577,7 +577,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_domain_entity_subclass', () => {
         const symbolTableKey = "Domain Entitybased on";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -594,7 +594,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_domain_entity_subclass', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -619,7 +619,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_enumeration', () => {
         const symbolTableKey = "Enumeration";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -636,7 +636,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_enumeration', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -661,7 +661,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_inline_common_type', () => {
         const symbolTableKey = "Inline Common Type";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -678,7 +678,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_inline_common_type', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -703,7 +703,7 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
     describe('When_loading_interchange', () => {
         const symbolTableKey = "Interchange";
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)
@@ -720,7 +720,7 @@ describe('SymbolTableBuilderEntityTests', () => {
         });
     });
     describe('When_loading_duplicate_interchange', () => {
-        let helper = new ValidationTestHelper_1.default();
+        let helper = new SymbolTableTestHelper_1.default();
         before(() => {
             const metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(edfi)

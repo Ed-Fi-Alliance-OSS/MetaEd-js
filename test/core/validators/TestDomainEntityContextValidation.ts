@@ -1,9 +1,9 @@
 export class TestDomainEntityContextValidation 
 {
-    public isValid(context: MetaEdGrammar.PropertyContext): boolean {
+    public isValid(context: any): boolean {
         return false;
     }
-    public getFailureMessage(context: MetaEdGrammar.PropertyContext): string {
+    public getFailureMessage(context: any): string {
         return "Property is a validation.";
     }
 }
