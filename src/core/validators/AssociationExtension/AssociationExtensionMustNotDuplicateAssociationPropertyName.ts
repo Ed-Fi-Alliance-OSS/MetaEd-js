@@ -1,30 +1,39 @@
-﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+﻿import {ValidationRuleBase} from "../ValidationRuleBase";
 import {ISymbolTable} from '../SymbolTable'
-export class AssociationExtensionMustNotDuplicateAssociationPropertyName extends ValidationRuleBase<MetaEdGrammar.AssociationExtensionContext>
+import SymbolTableEntityType from "../SymbolTableEntityType";
+let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
+
+export class AssociationExtensionMustNotDuplicateAssociationPropertyName extends ValidationRuleBase
 {
     private symbolTable: ISymbolTable;
+    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
     constructor(symbolTable: ISymbolTable) {
         super();
         this.symbolTable = symbolTable;
     }
-    public isValid(context: MetaEdGrammar.AssociationExtensionContext): boolean {
+
+    public handlesContext(context: any) : boolean {
+        return context.ruleIndex === MetaEdGrammar.RULE_associationExtension;
+    }
+
+    public isValid(context: any): boolean {
         return this.propertyRuleContextsForDuplicates(context).length == 0;
     }
-    public getFailureMessage(context: MetaEdGrammar.AssociationExtensionContext): string {
-        let duplicatePropertyIdentifierList = this.propertyRuleContextsForDuplicates(context).Select(x => x.IdNode().GetText());
-        return `Association additions '${context.extendeeName().GetText()}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of Association.`;
+    public getFailureMessage(context: any): string {
+        let duplicatePropertyIdentifierList = this.propertyRuleContextsForDuplicates(context).map(x => x.propertyName().ID().getText());
+        return `Association additions '${context.extendeeName().getText()}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of Association.`;
     }
-    protected propertyRuleContextsForDuplicates(context: MetaEdGrammar.AssociationExtensionContext): IEnumerable<IPropertyWithComponents> {
-        let entityType = context.ASSOCIATION().GetText();
-        let extensionType = context.ASSOCIATION().GetText() + context.ADDITIONS();
-        let identifier = context.extendeeName().GetText();
-        let associationPropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(entityType, identifier).toList();
-        let duplicates = this.symbolTable.contextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
-        return duplicates.where(AssociationExtensionMustNotDuplicateAssociationPropertyName.isNotIncludePropertyContextWithExtension);
+    protected propertyRuleContextsForDuplicates(context: any): Array<any> {
+        let entityType = context.ASSOCIATION().getText();
+        let extensionType = context.ASSOCIATION().getText() + context.ADDITIONS().getText();
+        let identifier = context.extendeeName().getText();
+        let associationPropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(entityType, identifier);
+        let duplicates = this.symbolTable.contextsForMatchingPropertyIdentifiers(extensionType, identifier, Array.from(associationPropertyIdentifiers));
+        return duplicates.filter(x => this.isNotIncludePropertyContextWithExtension(x));
     }
-    private static isNotIncludePropertyContextWithExtension(context: IPropertyWithComponents): boolean {
-        if (!(context instanceof MetaEdGrammar.IncludePropertyContext))
-            return true;
-        return (<MetaEdGrammar.IncludePropertyContext>context).includeExtensionOverride() == null;
+
+    private isNotIncludePropertyContextWithExtension(context: any): boolean {
+        if (context.ruleIndex !== MetaEdGrammar.RULE_includeProperty) return true;
+        return context.includeExtensionOverride() === null;
     }
 }

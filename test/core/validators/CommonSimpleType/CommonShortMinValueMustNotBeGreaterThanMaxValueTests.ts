@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {CommonShortMinValueMustNotBeGreaterThanMaxValue}from "../../../../src/core/validators/CommonSimpleType/CommonShortMinValueMustNotBeGreaterThanMaxValue"
@@ -15,7 +15,7 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     
         
         describe('When_validating_common_short_with_no_min_or_max_value', () => {
-            let helper: ValidationTestHelper = new ValidationTestHelper();
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
  let metaEdText = MetaEdTextBuilder.buildIt
                 
@@ -34,7 +34,7 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     
         
         describe('When_validating_common_short_with_no_min_value', () => {
-            let helper: ValidationTestHelper = new ValidationTestHelper();
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
  let metaEdText = MetaEdTextBuilder.buildIt
                 
@@ -54,7 +54,7 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     
         
         describe('When_validating_common_short_with_no_max_value', () => {
-            let helper: ValidationTestHelper = new ValidationTestHelper();
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
  let metaEdText = MetaEdTextBuilder.buildIt
                 
@@ -74,7 +74,7 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     
         
         describe('When_validating_common_short_with_correct_min_max_value_order', () => {
-            let helper: ValidationTestHelper = new ValidationTestHelper();
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
  let metaEdText = MetaEdTextBuilder.buildIt
                 
@@ -96,7 +96,7 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
         
         describe('When_validating_common_short_with_min_max_values_out_of_order', () => {
             const entityName: string = "EntityForTest";
-            let helper: ValidationTestHelper = new ValidationTestHelper();
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
  let metaEdText = MetaEdTextBuilder.buildIt
                 
@@ -122,7 +122,7 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     
         
         describe('When_validating_common_short_with_same_min_max_values', () => {
-            let helper: ValidationTestHelper = new ValidationTestHelper();
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
  let metaEdText = MetaEdTextBuilder.buildIt
                 

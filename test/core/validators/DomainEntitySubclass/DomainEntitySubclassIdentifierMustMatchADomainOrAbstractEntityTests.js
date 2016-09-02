@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity_1 = require("../../../../src/core/validators/DomainEntitySubclass/DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity");
@@ -11,7 +11,7 @@ describe('DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity', () =>
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity_1.DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity(helper.symbolTable)));
     describe('When_domain_entity_subclass_extends_domain_entity', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -32,7 +32,7 @@ describe('DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity', () =>
     });
     describe('When_domain_entity_subclass_extends_abstract_entity', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -54,7 +54,7 @@ describe('DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity', () =>
     describe('When_domain_entity_subclass_has_invalid_extendee', () => {
         let entityName = "MyIdentifier";
         const baseName = "NotAnDomainEntityIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

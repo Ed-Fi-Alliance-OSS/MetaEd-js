@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract_1 = require("../../../../src/core/validators/ReferenceProperty/ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract");
@@ -11,7 +11,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract_1.ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract(helper.symbolTable)));
     describe('When_reference_property_has_identifier_of_domain_entity', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -33,7 +33,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
     });
     describe('When_reference_property_has_identifier_of_domain_entity_subclass', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -59,7 +59,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
     });
     describe('When_reference_property_has_identifier_of_association', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -83,7 +83,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
     });
     describe('When_reference_property_has_identifier_of_association_subclass', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -111,7 +111,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
     });
     describe('When_reference_property_has_identifier_of_abstract_entity', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -133,7 +133,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
     });
     describe('When_reference_property_has_invalid_identifier', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

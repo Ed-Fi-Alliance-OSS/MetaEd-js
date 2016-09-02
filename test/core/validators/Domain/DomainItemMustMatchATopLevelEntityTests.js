@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const DomainItemMustMatchTopLevelEntity_1 = require("../../../../src/core/validators/Domain/DomainItemMustMatchTopLevelEntity");
@@ -11,7 +11,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new DomainItemMustMatchTopLevelEntity_1.DomainItemMustMatchTopLevelEntity(asdf)));
     describe('When_domain_item_is_domain_entity', () => {
         let entityName = "EntityName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -36,7 +36,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
     });
     describe('When_domain_item_is_domain_entity_subclass', () => {
         let entityName = "EntityName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -65,7 +65,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
     });
     describe('When_domain_item_is_association', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -92,7 +92,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
     });
     describe('When_domain_item_is_association_subclass', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -123,7 +123,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
     });
     describe('When_domain_item_is_common_type', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -148,7 +148,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
     });
     describe('When_domain_item_under_domain_is_descriptor', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -172,7 +172,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
     });
     describe('When_domain_item_under_subdomain_is_descriptor', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -196,7 +196,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
     });
     describe('When_domain_item_under_domain_has_invalid_identifier', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -220,7 +220,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
     });
     describe('When_domain_item_under_subdomain_has_invalid_identifier', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const IncludePropertyMustMatchACommonType_1 = require("../../../../src/core/validators/IncludeProperty/IncludePropertyMustMatchACommonType");
@@ -11,7 +11,7 @@ describe('IncludePropertyMustMatchACommonType', () => {
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new IncludePropertyMustMatchACommonType_1.IncludePropertyMustMatchACommonType(helper.symbolTable)));
     describe('When_include_property_has_identifier_of_common_type', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -33,7 +33,7 @@ describe('IncludePropertyMustMatchACommonType', () => {
     });
     describe('When_include_property_has_identifier_of_inline_common_type', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -55,7 +55,7 @@ describe('IncludePropertyMustMatchACommonType', () => {
     });
     describe('When_include_property_has_identifier_of_choice_common_type', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -77,7 +77,7 @@ describe('IncludePropertyMustMatchACommonType', () => {
     });
     describe('When_include_property_has_invalid_identifier', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

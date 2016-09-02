@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const InlineCommonTypeExistsOnlyInCoreNamespace_1 = require("../../../../src/core/validators/InlineCommonType/InlineCommonTypeExistsOnlyInCoreNamespace");
@@ -12,7 +12,7 @@ describe('InlineCommonTypeExistsOnlyInCoreNamespace', () => {
     describe('When_inline_common_type_exists_in_core', () => {
         let entityName = "MyIdentifier";
         const _property_name = "Property1";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -31,7 +31,7 @@ describe('InlineCommonTypeExistsOnlyInCoreNamespace', () => {
         const extensionNamespace = "edfi";
         let entityName = "MyIdentifier";
         const propertyName = "Property1";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace(extensionNamespace, "projectExtension")

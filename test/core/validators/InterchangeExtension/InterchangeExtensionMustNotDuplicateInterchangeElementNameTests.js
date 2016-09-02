@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const InterchangeExtensionMustNotDuplicateInterchangeElementName_1 = require("../../../../src/core/validators/InterchangeExtension/InterchangeExtensionMustNotDuplicateInterchangeElementName");
@@ -10,7 +10,7 @@ let should = chai.should();
 describe('InterchangeExtensionMustNotDuplicateInterchangeElementName', () => {
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new InterchangeExtensionMustNotDuplicateInterchangeElementName_1.InterchangeExtensionMustNotDuplicateInterchangeElementName(helper.symbolTable)));
     describe('When_elements_have_different_names', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -28,7 +28,7 @@ describe('InterchangeExtensionMustNotDuplicateInterchangeElementName', () => {
     describe('When_elements_have_duplicate_names', () => {
         let entityName = "Interchange1";
         const duplicateTemplate = "Identity1";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

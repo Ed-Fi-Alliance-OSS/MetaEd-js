@@ -1,12 +1,20 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
-export class AssociationExtensionExistsOnlyInExtensionNamespace extends ValidationRuleBase<MetaEdGrammar.AssociationExtensionContext>
+import ValidationHelper from "../../../common/ValidationHelper";
+let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
+
+export class AssociationExtensionExistsOnlyInExtensionNamespace extends ValidationRuleBase
 {
-    public isValid(context: MetaEdGrammar.AssociationExtensionContext): boolean {
-        let namespaceInfo = context.GetAncestorContext<INamespaceInfo>();
-        return namespaceInfo.IsExtension;
+    public handlesContext(context: any) : boolean {
+        return context.ruleIndex === MetaEdGrammar.RULE_associationExtension;
     }
-    public getFailureMessage(context: MetaEdGrammar.AssociationExtensionContext): string {
-        let namespaceInfo = context.GetAncestorContext<INamespaceInfo>();
-        return `Association additions '${context.extendeeName().GetText()}' is not valid in core namespace '${namespaceInfo.NamespaceName}`;
+
+    public isValid(context: any): boolean {
+        let parentNamespaceContext = ValidationHelper.getAncestorContext(context, MetaEdGrammar.RULE_namespace);
+        return ValidationHelper.isExtensionNamespace(parentNamespaceContext);
+    }
+
+    public getFailureMessage(context: any): string {
+        let parentNamespaceContext = ValidationHelper.getAncestorContext(context, MetaEdGrammar.RULE_namespace);
+        return `Association additions '${context.extendeeName().getText()}' is not valid in core namespace '${ValidationHelper.namespaceNameFor(parentNamespaceContext)}`;
     }
 }

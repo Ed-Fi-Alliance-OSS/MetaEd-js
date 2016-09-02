@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {SubdomainMustNotDuplicateDomainItems}from "../../../../src/core/validators/Subdomain/SubdomainMustNotDuplicateDomainItems"
@@ -15,7 +15,7 @@ describe('SubdomainMustNotDuplicateDomainItems', () => {
 
 
     describe('When_domain_items_have_different_names', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -39,7 +39,7 @@ describe('SubdomainMustNotDuplicateDomainItems', () => {
         const parentDomainName: string = "Domain1";
         let entityName: string = "Subdomain1";
         const duplicateTemplate: string = "Item1";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -70,7 +70,7 @@ describe('SubdomainMustNotDuplicateDomainItems', () => {
         let entityName: string = "Domain1";
         const duplicateTemplate1: string = "Item1";
         const duplicateTemplate2: string = "Item2";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

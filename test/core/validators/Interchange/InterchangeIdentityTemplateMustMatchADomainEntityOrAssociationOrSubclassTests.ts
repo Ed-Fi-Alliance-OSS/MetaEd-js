@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass}from "../../../../src/core/validators/Interchange/InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass"
@@ -16,7 +16,7 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
     describe('When_identity_template_is_domain_entity', () => {
         let entityName: string = "EntityName";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -43,7 +43,7 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
     describe('When_identity_template_is_domain_entity_subclass', () => {
         let entityName: string = "EntityName";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -75,7 +75,7 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
     describe('When_identity_template_is_association', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -104,7 +104,7 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
     describe('When_identity_template_is_association_subclass', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -138,7 +138,7 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
     describe('When_identity_template_is_abstract_entity', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -165,7 +165,7 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
     describe('When_identity_template_has_invalid_identifier', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

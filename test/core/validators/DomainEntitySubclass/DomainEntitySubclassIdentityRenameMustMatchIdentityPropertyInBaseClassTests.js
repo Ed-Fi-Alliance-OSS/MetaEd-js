@@ -2,7 +2,7 @@
 ///// <reference path="../../../../typings/index.d.ts" />
 //import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 //import chai = require('chai');
-//import {ValidationTestHelper} from "../ValidationTestHelper";
+//import {ValidatorTestHelper} from "../ValidatorTestHelper";
 //import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 //import {TestRuleProvider} from "../TestRuleProvider";
 //import {DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass}from "../../../../src/core/validators/DomainEntitySubclass/DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass"
@@ -18,7 +18,7 @@
 //    describe('When_domain_entity_subclass_renames_base_identity', () => {
 //        let entityName: string = "SubclassIdentifier";
 //        const baseName: string = "BaseDomainEntityIdentifier";
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //            let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -47,7 +47,7 @@
 //describe('When_domain_entity_subclass_does_not_rename_identity', () => {
 //    let entityName: string = "SubclassIdentifier";
 //    const baseName: string = "BaseDomainEntityIdentifier";
-//    let helper: ValidationTestHelper = new ValidationTestHelper();
+//    let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //    before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -76,7 +76,7 @@
 //describe('When_domain_entity_subclass_renames_base_identity_more_than_once', () => {
 //    let entityName: string = "SubclassIdentifier";
 //    const baseName: string = "BaseDomainEntityIdentifier";
-//    let helper: ValidationTestHelper = new ValidationTestHelper();
+//    let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //    before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -110,7 +110,7 @@
 //describe('When_domain_entity_subclass_renames_base_identity_that_does_not_exist', () => {
 //    let entityName: string = "SubclassIdentifier";
 //    const baseName: string = "BaseDomainEntityIdentifier";
-//    let helper: ValidationTestHelper = new ValidationTestHelper();
+//    let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //    before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -142,7 +142,7 @@
 //describe('When_domain_entity_subclass_renames_base_property_that_is_not_identity', () => {
 //    let entityName: string = "SubclassIdentifier";
 //    const baseName: string = "BaseDomainEntityIdentifier";
-//    let helper: ValidationTestHelper = new ValidationTestHelper();
+//    let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //    before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -175,7 +175,7 @@
 //describe('When_domain_entity_subclass_extends_non_existant_entity', () => {
 //    let entityName: string = "SubclassIdentifier";
 //    const baseName: string = "BaseDomainEntityIdentifier";
-//    let helper: ValidationTestHelper = new ValidationTestHelper();
+//    let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //    before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //

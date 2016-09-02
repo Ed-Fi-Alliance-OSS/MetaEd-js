@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {MergePropertyAndTargetPropertyMustMatch}from "../../../../src/core/validators/MergePartOfReference/MergePropertyAndTargetPropertyMustMatch"
@@ -15,7 +15,7 @@ let validatorListener = new ValidatorListener(
 
 describe('MergePropertyAndTargetPropertyMustMatch', () => {
     describe('When_merged_property_names_and_types_match', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -41,7 +41,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
 
 
     describe('When_merged_property_types_are_different', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -70,7 +70,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
 
 
     describe('When_merged_property_names_are_different', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -96,7 +96,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
 
 
     describe('When_merging_properties_of_a_base_and_sub_domain_entity', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -127,7 +127,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
 
 
     describe('When_merging_domain_entity_property_of_an_association', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

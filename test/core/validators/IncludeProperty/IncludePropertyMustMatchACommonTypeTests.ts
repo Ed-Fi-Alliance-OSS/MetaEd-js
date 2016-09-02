@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {IncludePropertyMustMatchACommonType}from "../../../../src/core/validators/IncludeProperty/IncludePropertyMustMatchACommonType"
@@ -16,7 +16,7 @@ describe('IncludePropertyMustMatchACommonType', () => {
 
     describe('When_include_property_has_identifier_of_common_type', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -43,7 +43,7 @@ describe('IncludePropertyMustMatchACommonType', () => {
 
     describe('When_include_property_has_identifier_of_inline_common_type', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -70,7 +70,7 @@ describe('IncludePropertyMustMatchACommonType', () => {
 
     describe('When_include_property_has_identifier_of_choice_common_type', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -97,7 +97,7 @@ describe('IncludePropertyMustMatchACommonType', () => {
 
     describe('When_include_property_has_invalid_identifier', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

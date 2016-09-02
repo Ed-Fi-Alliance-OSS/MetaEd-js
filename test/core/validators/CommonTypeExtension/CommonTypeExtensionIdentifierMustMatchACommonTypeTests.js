@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const CommonTypeExtensionIdentifierMustMatchACommonType_1 = require("../../../../src/core/validators/CommonTypeExtension/CommonTypeExtensionIdentifierMustMatchACommonType");
@@ -12,7 +12,7 @@ describe('CommonTypeExtensionIdentifierMustMatchACommonTypeTests', () => {
     describe('When_common_type_extension_has_valid_extendee', () => {
         let entityName = "MyIdentifier";
         const _property_name = "Property1";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -32,7 +32,7 @@ describe('CommonTypeExtensionIdentifierMustMatchACommonTypeTests', () => {
     });
     describe('When_common_type_extension_has_invalid_extendee', () => {
         let entityName = "NotACommonTypeIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

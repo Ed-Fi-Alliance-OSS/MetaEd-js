@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {ShortPropertyMustNotMatchACommonSimpleType}from "../../../../src/core/validators/ShortProperty/ShortPropertyMustNotMatchACommonSimpleType"
@@ -17,7 +17,7 @@ describe('ShortPropertyMustNotMatchACommonSimpleType', () => {
     describe('When_short_property_has_identifier_matching_no_common_simple_types', () => {
         let entityName: string = "EntityName";
         let propertyName: string = "PropertyName";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -39,7 +39,7 @@ describe('ShortPropertyMustNotMatchACommonSimpleType', () => {
 
     describe('When_short_property_has_identifier_matching_common_decimal', () => {
         const commonEntityName: string = "CommonEntityName";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -71,7 +71,7 @@ describe('ShortPropertyMustNotMatchACommonSimpleType', () => {
 
     describe('When_short_property_has_identifier_matching_common_integer', () => {
         const commonEntityName: string = "CommonEntityName";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -102,7 +102,7 @@ describe('ShortPropertyMustNotMatchACommonSimpleType', () => {
 
     describe('When_short_property_has_identifier_matching_common_short', () => {
         const commonEntityName: string = "CommonEntityName";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -133,7 +133,7 @@ describe('ShortPropertyMustNotMatchACommonSimpleType', () => {
 
     describe('When_short_property_has_identifier_matching_common_string', () => {
         const commonEntityName: string = "CommonEntityName";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

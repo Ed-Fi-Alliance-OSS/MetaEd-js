@@ -1,7 +1,7 @@
 //TODO: Part of property path unique pattern
 "use strict";
 //describe('When_looking_for_non_pk_property extends PropertyPathLookupTestBase {
-//            let helper: ValidationTestHelper = new ValidationTestHelper();
+//            let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
 //    let metaEdText = MetaEdTextBuilder.buildIt
 //

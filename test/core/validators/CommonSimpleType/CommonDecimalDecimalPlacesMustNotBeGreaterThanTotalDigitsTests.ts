@@ -1,5 +1,5 @@
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import {ValidationTestHelper} from "./../ValidationTestHelper";
+import {ValidatorTestHelper} from "./../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits} from "../../../../src/core/validators/CommonSimpleType/CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits";
@@ -14,7 +14,7 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
     let validatorListener = new ValidatorListener(new TestRuleProvider(MetaEdGrammar.RULE_commonDecimal, new CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits()));
 
     describe('When_validating_common_decimal_with_correct_total_digit_and_decimal_places_order', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             const totalDigits = "10";
             const decimalPlaces = "2";
@@ -39,7 +39,7 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
 
     describe('When_validating_common_decimal_with_total_digit_and_decimal_places_out_of_order', () => {
         const entityName: string = "EntityForTest";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 
         before(() => {
             let totalDigits = "2";
@@ -70,7 +70,7 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
 
     describe('When_validating_common_decimal_with_same_total_digit_and_decimal_places', () => {
         const _entityName: string = "EntityForTest";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let totalDigits = "10";
             let decimalPlaces = "10";

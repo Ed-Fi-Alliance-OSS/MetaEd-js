@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const MergeStatementMustStartMergePathWithPropertyName_1 = require("../../../../src/core/validators/MergePartOfReference/MergeStatementMustStartMergePathWithPropertyName");
@@ -11,7 +11,7 @@ describe('MergeStatementMustStartMergePathWithPropertyName', () => {
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new MergeStatementMustStartMergePathWithPropertyName_1.MergeStatementMustStartMergePathWithPropertyName()));
     describe('When_reference_property_has_merge_statement_with_correct_path', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -30,7 +30,7 @@ describe('MergeStatementMustStartMergePathWithPropertyName', () => {
     });
     describe('When_reference_property_has_merge_statement_with_incorrect_path', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

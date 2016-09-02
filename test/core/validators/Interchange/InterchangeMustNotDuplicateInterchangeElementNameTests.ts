@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {InterchangeMustNotDuplicateInterchangeElementName}from "../../../../src/core/validators/Interchange/InterchangeMustNotDuplicateInterchangeElementName"
@@ -15,7 +15,7 @@ describe('InterchangeMustNotDuplicateInterchangeElementName', () => {
 
 
     describe('When_elements_have_different_names', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -38,7 +38,7 @@ describe('InterchangeMustNotDuplicateInterchangeElementName', () => {
     describe('When_elements_have_duplicate_names', () => {
         let entityName: string = "Interchange1";
         const duplicateTemplate: string = "Identity1";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

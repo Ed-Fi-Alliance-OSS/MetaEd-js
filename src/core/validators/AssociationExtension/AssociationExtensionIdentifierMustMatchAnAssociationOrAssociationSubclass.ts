@@ -1,7 +1,9 @@
 ﻿import { ValidationRuleBase } from "../ValidationRuleBase";
 import {ISymbolTable} from '../SymbolTable'
 import SymbolTableEntityType from '../SymbolTableEntityType'
-export class AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass extends ValidationRuleBase<MetaEdGrammar.AssociationExtensionContext>
+let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
+
+export class AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass extends ValidationRuleBase
 {
     private symbolTable: ISymbolTable;
     private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
@@ -9,12 +11,18 @@ export class AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSu
         super();
         this.symbolTable = symbolTable;
     }
-    public isValid(context: MetaEdGrammar.AssociationExtensionContext): boolean {
-        let identifierToMatch = context.extendeeName().GetText();
+
+    public handlesContext(context: any) : boolean {
+        return context.ruleIndex === MetaEdGrammar.RULE_associationExtension;
+    }
+
+    public isValid(context: any): boolean {
+        let identifierToMatch = context.extendeeName().getText();
         return this.symbolTable.identifierExists(this.symbolTableEntityType.associationEntityType(), identifierToMatch) 
         || this.symbolTable.identifierExists(this.symbolTableEntityType.associationSubclassEntityType(), identifierToMatch);
     }
-    public getFailureMessage(context: MetaEdGrammar.AssociationExtensionContext): string {
-        return `Association additions '${context.extendeeName().GetText()}' does not match any declared Association or subclass.`;
+
+    public getFailureMessage(context: any): string {
+        return `Association additions '${context.extendeeName().getText()}' does not match any declared Association or subclass.`;
     }
 }

@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality_1 = require("../../../../src/core/validators/IncludeProperty/IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality");
@@ -13,7 +13,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName = "CommonType";
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -36,7 +36,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName = "CommonType";
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -65,7 +65,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName = "CommonType";
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -99,7 +99,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName = "CommonType";
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -135,7 +135,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName = "CommonType";
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -164,7 +164,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName = "CommonType";
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -195,7 +195,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName = "CommonType";
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -230,7 +230,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName = "CommonType";
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -265,7 +265,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName = "CommonType";
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -302,7 +302,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName = "CommonType";
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

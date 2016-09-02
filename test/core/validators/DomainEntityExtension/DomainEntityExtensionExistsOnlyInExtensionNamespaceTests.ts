@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {DomainEntityExtensionExistsOnlyInExtensionNamespace}from "../../../../src/core/validators/DomainEntityExtension/DomainEntityExtensionExistsOnlyInExtensionNamespace"
@@ -17,7 +17,7 @@ describe('DomainEntityExtensionExistsOnlyInExtensionNamespaceTests', () => {
     describe('When_domain_entity_extension_exists_in_extension', () => {
         let entityName: string = "MyIdentifier";
         const _property_name: string = "Property1";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -45,7 +45,7 @@ describe('DomainEntityExtensionExistsOnlyInExtensionNamespaceTests', () => {
         const coreNamespace: string = "edfi";
         let entityName: string = "MyIdentifier";
         const _property_name: string = "Property1";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

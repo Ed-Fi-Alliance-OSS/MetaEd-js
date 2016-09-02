@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const DecimalPropertyMinValueMustNotBeGreaterThanMaxValue_1 = require("../../../../src/core/validators/DecimalProperty/DecimalPropertyMinValueMustNotBeGreaterThanMaxValue");
@@ -10,7 +10,7 @@ let should = chai.should();
 describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new DecimalPropertyMinValueMustNotBeGreaterThanMaxValue_1.DecimalPropertyMinValueMustNotBeGreaterThanMaxValue()));
     describe('When_validating_decimal_property_with_no_min_or_max_value', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -26,7 +26,7 @@ describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
         });
     });
     describe('When_validating_decimal_property_with_no_min_value', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -42,7 +42,7 @@ describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
         });
     });
     describe('When_validating_decimal_property_with_no_max_value', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -58,7 +58,7 @@ describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
         });
     });
     describe('When_validating_decimal_property_with_correct_min_max_value_order', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         let maxValue = 100;
         let minValue = 50;
         before(() => {
@@ -78,7 +78,7 @@ describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
     describe('When_validating_decimal_property_with_min_max_values_out_of_order', () => {
         const entityName = "EntityForTest";
         const decimalPropertyName = "DecimalProperty";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         let maxValue = 50;
         let minValue = 100;
         before(() => {
@@ -105,7 +105,7 @@ describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
     describe('When_validating_decimal_property_with_same_min_max_values', () => {
         const entityName = "EntityForTest";
         const decimalPropertyName = "DecimalProperty";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         let maxValue = "100";
         let minValue = "100";
         before(() => {

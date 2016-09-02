@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {StringPropertyMinLengthMustNotBeGreaterThanMaxLength}from "../../../../src/core/validators/StringProperty/StringPropertyMinLengthMustNotBeGreaterThanMaxLength"
@@ -15,7 +15,7 @@ describe('ReplaceMeWithFileName', () => {
 
 
     describe('When_validating_string_property_with_no_min_length', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -35,7 +35,7 @@ describe('ReplaceMeWithFileName', () => {
 
 
     describe('When_validating_string_property_with_correct_min_max_length_order', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         let maxLength: string = 100;
         let minLength: string = 50;
         before(() => {
@@ -59,7 +59,7 @@ describe('ReplaceMeWithFileName', () => {
     describe('When_validating_string_property_with_min_max_length_out_of_order', () => {
         let entityName: string = "EntityForTest";
         const stringPropertyName: string = "StringProperty";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         let maxLength: string = 50;
         let minLength: string = 100;
         before(() => {
@@ -90,7 +90,7 @@ describe('ReplaceMeWithFileName', () => {
     describe('When_validating_string_property_with_same_min_max_length', () => {
         let entityName: string = "EntityForTest";
         const stringPropertyName: string = "StringProperty";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         let maxLength: string = 100;
         let minLength: string = 100;
         before(() => {

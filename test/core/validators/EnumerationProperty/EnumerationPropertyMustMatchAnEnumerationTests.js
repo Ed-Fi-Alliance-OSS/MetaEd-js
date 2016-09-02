@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const EnumerationPropertyMustMatchAnEnumeration_1 = require("../../../../src/core/validators/EnumerationProperty/EnumerationPropertyMustMatchAnEnumeration");
@@ -11,7 +11,7 @@ describe('ReplaceMeWithFileName', () => {
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new EnumerationPropertyMustMatchAnEnumeration_1.EnumerationPropertyMustMatchAnEnumeration(helper.symbolTable)));
     describe('When_enumeration_property_has_valid_identifier', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -33,7 +33,7 @@ describe('ReplaceMeWithFileName', () => {
     });
     describe('When_enumeration_property_has_invalid_identifier', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

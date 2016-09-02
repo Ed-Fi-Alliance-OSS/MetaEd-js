@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits}from "../../../../src/core/validators/DecimalProperty/DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits"
@@ -15,7 +15,7 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
 
 
     describe('When_validating_decimal_property_with_correct_total_digit_and_decimal_places_order', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         let totalDigits: string = "10";
         let decimalPlaces: string = "2";
         before(() => {
@@ -39,7 +39,7 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
     describe('When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order', () => {
         const entityName: string = "EntityForTest";
         const decimalPropertyName: string = "DecimalProperty";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         let totalDigits: string = "2";
         let decimalPlaces: string = "10";
         before(() => {
@@ -70,7 +70,7 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
     describe('When_validating_decimal_property_with_same_total_digit_and_decimal_places', () => {
         const entityName: string = "EntityForTest";
         const decimalPropertyName: string = "DecimalProperty";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         let totalDigits: string = "10";
         let decimalPlaces: string = "2";
         before(() => {

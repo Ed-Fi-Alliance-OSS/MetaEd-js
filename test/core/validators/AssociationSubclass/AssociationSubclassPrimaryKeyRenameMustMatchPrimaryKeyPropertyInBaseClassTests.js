@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const AssociationSubclassIdentityRenameMustMatchPrimaryKeyPropertyInBaseClass_1 = require("../../../../src/core/validators/AssociationSubclass/AssociationSubclassIdentityRenameMustMatchPrimaryKeyPropertyInBaseClass");
@@ -13,7 +13,7 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
     describe('When_association_subclass_renames_base_identity', () => {
         let entityName = "SubclassIdentifier";
         const baseName = "BaseAssociationIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -37,7 +37,7 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
     describe('When_association_subclass_does_not_rename_identity', () => {
         let entityName = "SubclassIdentifier";
         const baseName = "BaseAssociationIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -61,7 +61,7 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
     describe('When_association_subclass_renames_base_identity_more_than_once', () => {
         let entityName = "SubclassIdentifier";
         const baseName = "BaseAssociationIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -90,7 +90,7 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
     describe('When_association_subclass_renames_base_identity_that_does_not_exist', () => {
         let entityName = "SubclassIdentifier";
         const baseName = "BaseAssociationIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -117,7 +117,7 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
     describe('When_association_subclass_renames_base_property_that_is_not_identity', () => {
         let entityName = "SubclassIdentifier";
         const baseName = "BaseAssociationIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -144,7 +144,7 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
     describe('When_association_subclass_extends_non_existent_entity', () => {
         let entityName = "SubclassIdentifier";
         const baseName = "BaseAssociationIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

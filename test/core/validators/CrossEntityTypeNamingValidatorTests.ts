@@ -3,7 +3,7 @@
 
 ///// <reference path="../../../../typings/index.d.ts" />
 //import chai = require('chai');
-//import {ValidationTestHelper} from "../ValidationTestHelper";
+//import {ValidatorTestHelper} from "../ValidatorTestHelper";
 //
 //let should = chai.should();
 //

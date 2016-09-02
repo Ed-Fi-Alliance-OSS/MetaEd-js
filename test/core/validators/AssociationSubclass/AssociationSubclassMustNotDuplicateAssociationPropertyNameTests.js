@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const AssociationSubclassMustNotDuplicateAssociationPropertyName_1 = require("../../../../src/core/validators/AssociationSubclass/AssociationSubclassMustNotDuplicateAssociationPropertyName");
@@ -12,7 +12,7 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
     describe('When_association_subclass_has_different_property_name', () => {
         let entityName = "SubclassIdentifier";
         baseName: string = "BaseAssociationIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -37,7 +37,7 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
         let entityName = "MyIdentifier";
         baseName: string = "BaseIdentifier";
         const duplicatePropertyName = "Property1";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -72,7 +72,7 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
         const _not_duplicate_property_name = "NotADuplicate";
         const duplicatePropertyName1 = "Property1";
         const duplicatePropertyName2 = "Property2";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

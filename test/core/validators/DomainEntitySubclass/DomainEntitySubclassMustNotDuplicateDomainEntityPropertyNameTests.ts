@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName}from "../../../../src/core/validators/DomainEntitySubclass/DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName"
@@ -17,7 +17,7 @@ describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName', () => {
         describe('When_domain_entity_subclass_has_different_property_name', () => {
             let entityName: string = "SubclassIdentifier";
             let baseName: string = "BaseDomainEntityIdentifier";
-            let helper: ValidationTestHelper = new ValidationTestHelper();
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
  let metaEdText = MetaEdTextBuilder.buildIt
                 
@@ -45,7 +45,7 @@ describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName', () => {
             let entityName: string = "MyIdentifier";
             let baseName: string = "BaseIdentifier";
             const duplicatePropertyName: string = "Property1";
-            let helper: ValidationTestHelper = new ValidationTestHelper();
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
  let metaEdText = MetaEdTextBuilder.buildIt
                 
@@ -83,7 +83,7 @@ describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName', () => {
             const notDuplicatePropertyName: string = "NotADuplicate";
             const duplicatePropertyName1: string = "Property1";
             const duplicatePropertyName2: string = "Property2";
-            let helper: ValidationTestHelper = new ValidationTestHelper();
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
  let metaEdText = MetaEdTextBuilder.buildIt
                 

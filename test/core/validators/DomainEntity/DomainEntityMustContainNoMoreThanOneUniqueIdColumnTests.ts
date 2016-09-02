@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {DomainEntityMustContainNoMoreThanOneUniqueIdColumn}from "../../../../src/core/validators/DomainEntity/DomainEntityMustContainNoMoreThanOneUniqueIdColumn"
@@ -15,7 +15,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
 
 
     describe('When_validating_domain_entity_with_no_uniqueId_fields', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -35,7 +35,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
 
 
     describe('When_validating_domain_entity_with_one_uniqueId_field', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -56,7 +56,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
 
     describe('When_validating_domain_entity_with_multiple_uniqueId_fields', () => {
         const entityName: string = "DomainEntity1";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -83,7 +83,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
 
     describe('When_validating_domain_entity_with_multiple_uniqueId_fields_in_extension_namespace', () => {
         const entityName: string = "DomainEntity1";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

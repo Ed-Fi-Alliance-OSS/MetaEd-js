@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal_1 = require("../../../../src/core/validators/SharedProperty/SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal");
@@ -12,7 +12,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
     describe('When_shared_property_has_identifier_of_common_simple_decimal', () => {
         let entityName = "EntityName";
         let propertyName = "PropertyName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -36,7 +36,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
     describe('When_shared_property_has_identifier_of_common_simple_integer', () => {
         let entityName = "EntityName";
         let propertyName = "PropertyName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -60,7 +60,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
     describe('When_shared_property_has_identifier_of_common_simple_short', () => {
         let entityName = "EntityName";
         let propertyName = "PropertyName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -84,7 +84,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
     describe('When_shared_property_has_identifier_of_common_simple_string', () => {
         let entityName = "EntityName";
         let propertyName = "PropertyName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -107,7 +107,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
     describe('When_shared_decimal_property_has_invalid_identifier', () => {
         let entityName = "DoesNotExist";
         let propertyName = "PropertyName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -131,7 +131,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
     describe('When_shared_integer_property_has_invalid_identifier', () => {
         let entityName = "DoesNotExist";
         let propertyName = "PropertyName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -155,7 +155,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
     describe('When_shared_short_property_has_invalid_identifier', () => {
         let entityName = "DoesNotExist";
         let propertyName = "PropertyName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -179,7 +179,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
     describe('When_shared_string_property_has_invalid_identifier', () => {
         let entityName = "DoesNotExist";
         let propertyName = "PropertyName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

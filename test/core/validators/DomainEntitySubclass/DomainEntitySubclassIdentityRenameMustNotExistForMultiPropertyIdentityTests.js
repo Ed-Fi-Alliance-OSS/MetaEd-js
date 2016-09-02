@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity_1 = require("../../../../src/core/validators/DomainEntitySubclass/DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity");
@@ -12,7 +12,7 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
     describe('When_domain_entity_subclass_renames_base_identity', () => {
         let entityName = "SubclassIdentifier";
         const baseName = "BaseDomainEntityIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -34,7 +34,7 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
     describe('When_domain_entity_subclass_does_not_rename_identity', () => {
         let entityName = "SubclassIdentifier";
         const baseName = "BaseDomainEntityIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -57,7 +57,7 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
     describe('When_domain_entity_subclass_renames_base_identity_more_than_once', () => {
         let entityName = "SubclassIdentifier";
         const baseName = "BaseDomainEntityIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -89,7 +89,7 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
     describe('When_domain_entity_subclass_extends_non_existant_entity', () => {
         let entityName = "SubclassIdentifier";
         const baseName = "BaseDomainEntityIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

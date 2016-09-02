@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const DomainEntityMustContainNoMoreThanOneUniqueIdColumn_1 = require("../../../../src/core/validators/DomainEntity/DomainEntityMustContainNoMoreThanOneUniqueIdColumn");
@@ -10,7 +10,7 @@ let should = chai.should();
 describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new DomainEntityMustContainNoMoreThanOneUniqueIdColumn_1.DomainEntityMustContainNoMoreThanOneUniqueIdColumn()));
     describe('When_validating_domain_entity_with_no_uniqueId_fields', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -26,7 +26,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
         });
     });
     describe('When_validating_domain_entity_with_one_uniqueId_field', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -43,7 +43,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
     });
     describe('When_validating_domain_entity_with_multiple_uniqueId_fields', () => {
         const entityName = "DomainEntity1";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -66,7 +66,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
     });
     describe('When_validating_domain_entity_with_multiple_uniqueId_fields_in_extension_namespace', () => {
         const entityName = "DomainEntity1";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("extension", "projectExtension")

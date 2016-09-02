@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const CommonTypeExtensionMustNotDuplicateCommonTypePropertyName_1 = require("../../../../src/core/validators/CommonTypeExtension/CommonTypeExtensionMustNotDuplicateCommonTypePropertyName");
@@ -11,7 +11,7 @@ describe('CommonTypeExtensionMustNotDuplicateCommonTypePropertyNameTests', () =>
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new CommonTypeExtensionMustNotDuplicateCommonTypePropertyName_1.CommonTypeExtensionMustNotDuplicateCommonTypePropertyName(entityType)));
     describe('When_common_type_extension_has_different_property_name', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -32,7 +32,7 @@ describe('CommonTypeExtensionMustNotDuplicateCommonTypePropertyNameTests', () =>
     describe('When_common_type_extension_has_duplicate_property_name', () => {
         let entityName = "MyIdentifier";
         const duplicatePropertyName = "Property1";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

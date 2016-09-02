@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const MustNotDuplicateMetaEdId_1 = require("../../../../src/core/validators/MetaEdId/MustNotDuplicateMetaEdId");
@@ -16,7 +16,7 @@ describe('MustNotDuplicateMetaEdId', () => {
         let propertyName1 = "Identifier1";
         const entityName2 = "MyIdentifier2";
         let propertyName2 = "Identifier2";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -43,7 +43,7 @@ describe('MustNotDuplicateMetaEdId', () => {
         let propertyName1 = "Identifier1";
         const entityName2 = "MyIdentifier2";
         let propertyName2 = "Identifier2";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -73,7 +73,7 @@ describe('MustNotDuplicateMetaEdId', () => {
         const metaEdId = "100";
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -100,7 +100,7 @@ describe('MustNotDuplicateMetaEdId', () => {
         let propertyName1 = "Identifier1";
         const entityName2 = "MyIdentifier2";
         let propertyName2 = "Identifier2";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

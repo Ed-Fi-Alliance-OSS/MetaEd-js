@@ -1,6 +1,6 @@
 "use strict";
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const ValidationTestHelper_1 = require("./../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("./../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits_1 = require("../../../../src/core/validators/CommonSimpleType/CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits");
@@ -10,7 +10,7 @@ let should = chai.should();
 describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () => {
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(MetaEdGrammar.RULE_commonDecimal, new CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits_1.CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits()));
     describe('When_validating_common_decimal_with_correct_total_digit_and_decimal_places_order', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             const totalDigits = "10";
             const decimalPlaces = "2";
@@ -31,7 +31,7 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
     });
     describe('When_validating_common_decimal_with_total_digit_and_decimal_places_out_of_order', () => {
         const entityName = "EntityForTest";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let totalDigits = "2";
             let decimalPlaces = "10";
@@ -56,7 +56,7 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
     });
     describe('When_validating_common_decimal_with_same_total_digit_and_decimal_places', () => {
         const _entityName = "EntityForTest";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let totalDigits = "10";
             let decimalPlaces = "10";

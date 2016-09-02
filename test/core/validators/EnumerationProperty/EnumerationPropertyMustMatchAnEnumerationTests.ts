@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {EnumerationPropertyMustMatchAnEnumeration}from "../../../../src/core/validators/EnumerationProperty/EnumerationPropertyMustMatchAnEnumeration"
@@ -16,7 +16,7 @@ describe('ReplaceMeWithFileName', () => {
 
     describe('When_enumeration_property_has_valid_identifier', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -43,7 +43,7 @@ describe('ReplaceMeWithFileName', () => {
 
     describe('When_enumeration_property_has_invalid_identifier', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

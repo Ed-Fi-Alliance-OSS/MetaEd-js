@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const MergePropertyAndTargetPropertyMustMatch_1 = require("../../../../src/core/validators/MergePartOfReference/MergePropertyAndTargetPropertyMustMatch");
@@ -12,7 +12,7 @@ let should = chai.should();
 let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new MergePropertyAndTargetPropertyMustMatch_1.MergePropertyAndTargetPropertyMustMatch(helper.symbolTable, new PropertyPathLookup_1.PropertyPathLookup(helper.symbolTable))));
 describe('MergePropertyAndTargetPropertyMustMatch', () => {
     describe('When_merged_property_names_and_types_match', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -34,7 +34,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
         });
     });
     describe('When_merged_property_types_are_different', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -59,7 +59,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
         });
     });
     describe('When_merged_property_names_are_different', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -81,7 +81,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
         });
     });
     describe('When_merging_properties_of_a_base_and_sub_domain_entity', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -107,7 +107,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
         });
     });
     describe('When_merging_domain_entity_property_of_an_association', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

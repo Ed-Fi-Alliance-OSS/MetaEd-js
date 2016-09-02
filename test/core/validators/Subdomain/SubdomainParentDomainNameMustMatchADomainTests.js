@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const SubdomainParentDomainNameMustMatchADomain_1 = require("../../../../src/core/validators/Subdomain/SubdomainParentDomainNameMustMatchADomain");
@@ -11,7 +11,7 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new SubdomainParentDomainNameMustMatchADomain_1.SubdomainParentDomainNameMustMatchADomain(helper.symbolTable)));
     describe('When_subdomain_has_valid_parent_domain_name', () => {
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -33,7 +33,7 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
     describe('When_subdomain_has_invalid_parent_domain_name', () => {
         let entityName = "MyIdentifier";
         const baseName = "NotAnDomainEntityIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

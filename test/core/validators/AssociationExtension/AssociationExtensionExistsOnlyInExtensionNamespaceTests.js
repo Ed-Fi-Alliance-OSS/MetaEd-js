@@ -2,17 +2,20 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const AssociationExtensionExistsOnlyInExtensionNamespace_1 = require("../../../../src/core/validators/AssociationExtension/AssociationExtensionExistsOnlyInExtensionNamespace");
+const SymbolTable_1 = require("../../../../src/core/validators/SymbolTable");
+let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
 let should = chai.should();
 describe('AssociationExtensionExistsOnlyInExtensionNamespaceTests', () => {
-    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new AssociationExtensionExistsOnlyInExtensionNamespace_1.AssociationExtensionExistsOnlyInExtensionNamespace()));
     describe('When_association_extension_exists_in_extension', () => {
+        const symbolTable = new SymbolTable_1.default();
+        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_associationExtension, new AssociationExtensionExistsOnlyInExtensionNamespace_1.AssociationExtensionExistsOnlyInExtensionNamespace()));
         let entityName = "MyIdentifier";
         const _property_name = "Property1";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -28,16 +31,18 @@ describe('AssociationExtensionExistsOnlyInExtensionNamespaceTests', () => {
                 .withBooleanProperty("Property2", "because a property is required", true, false)
                 .withEndAssociationExtension()
                 .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
+            helper.setup(metaEdText, validatorListener, symbolTable);
         });
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
     describe('When_association_extension_has_invalid_extendee', () => {
+        const symbolTable = new SymbolTable_1.default();
+        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_associationExtension, new AssociationExtensionExistsOnlyInExtensionNamespace_1.AssociationExtensionExistsOnlyInExtensionNamespace()));
         const coreNamespace = "edfi";
         let entityName = "MyIdentifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.default();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -51,16 +56,16 @@ describe('AssociationExtensionExistsOnlyInExtensionNamespaceTests', () => {
                 .withBooleanProperty("Property2", "because a property is required", true, false)
                 .withEndAssociationExtension()
                 .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
+            helper.setup(metaEdText, validatorListener, symbolTable);
         });
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.length.should.equal(1);
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Association additions");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("is not valid in core namespace");
-            helper.errorMessageCollection[0].Message.ShouldContain(coreNamespace);
+            helper.errorMessageCollection[0].message.should.include("Association additions");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("is not valid in core namespace");
+            helper.errorMessageCollection[0].message.should.include(coreNamespace);
         });
     });
 });

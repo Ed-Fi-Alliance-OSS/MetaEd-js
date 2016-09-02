@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {AssociationSubclassIdentifierMustMatchAnAssociation}from "../../../../src/core/validators/AssociationSubclass/AssociationSubclassIdentifierMustMatchAnAssociation"
@@ -16,7 +16,7 @@ describe('AssociationSubclassIdentifierMustMatchAnAssociationTests', () => {
 
     describe('When_association_subclass_has_valid_extendee', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -44,7 +44,7 @@ describe('AssociationSubclassIdentifierMustMatchAnAssociationTests', () => {
     describe('When_association_subclass_has_invalid_extendee', () => {
         let entityName: string = "MyIdentifier";
         const baseName: string = "NotAnAssociationIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 let should = chai.should();
@@ -11,7 +11,7 @@ describe('IntegerPropertyMustNotMatchACommonSimpleType', () => {
     describe('When_integer_property_has_identifier_matching_no_common_simple_types', () => {
         let entityName = "EntityName";
         let propertyName = "PropertyName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -29,7 +29,7 @@ describe('IntegerPropertyMustNotMatchACommonSimpleType', () => {
     });
     describe('When_integer_property_has_identifier_matching_common_decimal', () => {
         const commonEntityName = "CommonEntityName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -57,7 +57,7 @@ describe('IntegerPropertyMustNotMatchACommonSimpleType', () => {
     });
     describe('When_integer_property_has_identifier_matching_common_integer', () => {
         const commonEntityName = "CommonEntityName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -84,7 +84,7 @@ describe('IntegerPropertyMustNotMatchACommonSimpleType', () => {
     });
     describe('When_integer_property_has_identifier_matching_common_short', () => {
         const commonEntityName = "CommonEntityName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -111,7 +111,7 @@ describe('IntegerPropertyMustNotMatchACommonSimpleType', () => {
     });
     describe('When_integer_property_has_identifier_matching_common_string', () => {
         const commonEntityName = "CommonEntityName";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

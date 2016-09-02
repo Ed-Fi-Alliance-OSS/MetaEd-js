@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits_1 = require("../../../../src/core/validators/DecimalProperty/DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits");
@@ -10,7 +10,7 @@ let should = chai.should();
 describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () => {
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits_1.DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits()));
     describe('When_validating_decimal_property_with_correct_total_digit_and_decimal_places_order', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         let totalDigits = "10";
         let decimalPlaces = "2";
         before(() => {
@@ -30,7 +30,7 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
     describe('When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order', () => {
         const entityName = "EntityForTest";
         const decimalPropertyName = "DecimalProperty";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         let totalDigits = "2";
         let decimalPlaces = "10";
         before(() => {
@@ -57,7 +57,7 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
     describe('When_validating_decimal_property_with_same_total_digit_and_decimal_places', () => {
         const entityName = "EntityForTest";
         const decimalPropertyName = "DecimalProperty";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         let totalDigits = "10";
         let decimalPlaces = "2";
         before(() => {

@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {SubdomainParentDomainNameMustMatchADomain}from "../../../../src/core/validators/Subdomain/SubdomainParentDomainNameMustMatchADomain"
@@ -16,7 +16,7 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
 
     describe('When_subdomain_has_valid_parent_domain_name', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -43,7 +43,7 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
     describe('When_subdomain_has_invalid_parent_domain_name', () => {
         let entityName: string = "MyIdentifier";
         const baseName: string = "NotAnDomainEntityIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

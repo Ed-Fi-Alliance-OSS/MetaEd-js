@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {MergePartOfReferenceExistsOnlyInCoreNamespace}from "../../../../src/core/validators/MergePartOfReference/MergePartOfReferenceExistsOnlyInCoreNamespace"
@@ -16,7 +16,7 @@ describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {
 
 
     describe('When_merge_exists_in_core', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -45,7 +45,7 @@ describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {
         const entityName2: string = "Entity2";
             const propertyName: string = "Prop1";
             const extensionNamespace: string = "extension";
-let helper: ValidationTestHelper = new ValidationTestHelper();
+let helper: ValidatorTestHelper = new ValidatorTestHelper();
 before(() => {
     let metaEdText = MetaEdTextBuilder.buildIt
 

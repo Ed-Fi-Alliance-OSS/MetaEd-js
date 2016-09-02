@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {IdentityRenameExistsOnlyIfIdentityRenameIsAllowed}from "../../../../src/core/validators/IdentityRename/IdentityRenameExistsOnlyIfIdentityRenameIsAllowed"
@@ -16,7 +16,7 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
     describe('When_association_subclass_has_invalid_identity_rename_property', () => {
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -45,7 +45,7 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
     describe('When_domain_entity_has_invalid_identity_rename_property', () => {
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -71,7 +71,7 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
 
     describe('When_association_subclass_has_valid_identity_rename_property', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -99,7 +99,7 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
 
     describe('When_domain_entity_subclass_has_valid_identity_rename_property', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

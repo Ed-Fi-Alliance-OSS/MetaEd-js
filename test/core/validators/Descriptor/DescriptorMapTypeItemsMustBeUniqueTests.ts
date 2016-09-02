@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {DescriptorMapTypeItemsMustBeUnique}from "../../../../src/core/validators/Descriptor/DescriptorMapTypeItemsMustBeUnique"
@@ -15,7 +15,7 @@ describe('DescriptorMapTypeItemsMustBeUniqueTests', () => {
 
 
     describe('When_map_type_items_have_different_short_descriptions', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -41,7 +41,7 @@ describe('DescriptorMapTypeItemsMustBeUniqueTests', () => {
     describe('When_map_type_items_have_duplicate_short_descriptions', () => {
         let entityName: string = "Descriptor1";
         const duplicateShortDescription: string = "this is a duplicate short description";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -71,7 +71,7 @@ describe('DescriptorMapTypeItemsMustBeUniqueTests', () => {
         let entityName: string = "Descriptor1";
         const duplicateShortDescription1: string = "this is duplicate short description 1";
         const duplicateShortDescription2: string = "this is duplicate short description 2";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

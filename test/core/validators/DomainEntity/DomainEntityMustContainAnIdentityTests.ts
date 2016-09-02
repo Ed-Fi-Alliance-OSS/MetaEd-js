@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {DomainEntityMustContainAnIdentity}from "../../../../src/core/validators/DomainEntity/DomainEntityMustContainAnIdentity"
@@ -15,7 +15,7 @@ describe('DomainEntityMustContainAnIdentityTests', () => {
 
 
     describe('When_validating_domain_entity_with_identity_fields', () => {
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -36,7 +36,7 @@ describe('DomainEntityMustContainAnIdentityTests', () => {
 
     describe('When_validating_domain_entity_with_no_identity_fields', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

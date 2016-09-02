@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const IdentityExistsOnlyIfIdentityIsAllowed_1 = require("../../../../src/core/validators/Identity/IdentityExistsOnlyIfIdentityIsAllowed");
@@ -12,7 +12,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
     describe('When_domain_entity_has_valid_identity_property', () => {
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -30,7 +30,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
     describe('When_abstract_entity_has_valid_identity_property', () => {
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -48,7 +48,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
     describe('When_association_has_valid_identity_property', () => {
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -68,7 +68,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
     describe('When_common_type_has_valid_identity_property', () => {
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -86,7 +86,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
     describe('When_inline_common_type_has_valid_identity_property', () => {
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -104,7 +104,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
     describe('When_association_extension_has_invalid_identity_property', () => {
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -135,7 +135,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
         let entityName = "MyIdentifier";
         const subClassName = "NewSubclass";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -165,7 +165,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
     describe('When_descriptor_has_invalid_identity_property', () => {
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -194,7 +194,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
     describe('When_domain_entity_extension_has_invalid_identity_property', () => {
         let entityName = "MyIdentifier";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -223,7 +223,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
         let entityName = "MyIdentifier";
         const subClassName = "NewSubclass";
         let propertyName = "Identifier";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

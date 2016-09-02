@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {DomainItemMustMatchTopLevelEntity}from "../../../../src/core/validators/Domain/DomainItemMustMatchTopLevelEntity"
@@ -16,7 +16,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
     describe('When_domain_item_is_domain_entity', () => {
         let entityName: string = "EntityName";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -46,7 +46,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
     describe('When_domain_item_is_domain_entity_subclass', () => {
         let entityName: string = "EntityName";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -81,7 +81,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
     describe('When_domain_item_is_association', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -113,7 +113,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
     describe('When_domain_item_is_association_subclass', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -150,7 +150,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
     describe('When_domain_item_is_common_type', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -180,7 +180,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
     describe('When_domain_item_under_domain_is_descriptor', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -209,7 +209,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
     describe('When_domain_item_under_subdomain_is_descriptor', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -238,7 +238,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
     describe('When_domain_item_under_domain_has_invalid_identifier', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -266,7 +266,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
     describe('When_domain_item_under_subdomain_has_invalid_identifier', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 

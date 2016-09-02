@@ -2,7 +2,7 @@
 /// <reference path="../../../../typings/index.d.ts" />
 const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
 const chai = require('chai');
-const ValidationTestHelper_1 = require("../ValidationTestHelper");
+const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
 const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
 const TestRuleProvider_1 = require("../TestRuleProvider");
 const EnumerationItemsMustBeUnique_1 = require("../../../../src/core/validators/Enumeration/EnumerationItemsMustBeUnique");
@@ -10,7 +10,7 @@ let should = chai.should();
 describe('EnumerationItemsMustBeUnique', () => {
     let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new EnumerationItemsMustBeUnique_1.EnumerationItemsMustBeUnique()));
     describe('When_enumeration_items_have_different_short_descriptions', () => {
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -29,7 +29,7 @@ describe('EnumerationItemsMustBeUnique', () => {
     describe('When_enumeration_items_have_duplicate_short_descriptions', () => {
         let entityName = "Enumeration1";
         const duplicateShortDescription = "this is a duplicate short description";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")
@@ -52,7 +52,7 @@ describe('EnumerationItemsMustBeUnique', () => {
         let entityName = "Enumeration1";
         const duplicateShortDescription1 = "this is duplicate short description 1";
         const duplicateShortDescription2 = "this is duplicate short description 2";
-        let helper = new ValidationTestHelper_1.ValidationTestHelper();
+        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder_1.default.buildIt
                 .withBeginNamespace("edfi")

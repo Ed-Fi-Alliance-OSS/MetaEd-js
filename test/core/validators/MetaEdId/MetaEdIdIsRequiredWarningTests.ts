@@ -3,7 +3,7 @@
 ///// <reference path="../../../../typings/index.d.ts" />
 //import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 //import chai = require('chai');
-//import {ValidationTestHelper} from "../ValidationTestHelper";
+//import {ValidatorTestHelper} from "../ValidatorTestHelper";
 //import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 //import {TestRuleProvider} from "../TestRuleProvider";
 //import {MetaEdIdIsRequiredWarning}from "../../../../src/core/validators/MetaEdId/MetaEdIdIsRequiredWarning"
@@ -49,7 +49,7 @@
 //
 //describe('When_abstractEntity_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.AbstractEntityContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -66,7 +66,7 @@
 //
 //describe('When_association_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.AssociationContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -84,7 +84,7 @@
 //
 //describe('When_associationExtension_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.AssociationExtensionContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -100,7 +100,7 @@
 //
 //describe('When_associationSubclass_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.AssociationSubclassContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -117,7 +117,7 @@
 //
 //describe('When_booleanProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.BooleanPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -134,7 +134,7 @@
 //
 //describe('When_choiceType_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.ChoiceTypeContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -151,7 +151,7 @@
 //
 //describe('When_commonDecimal_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.CommonDecimalContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -169,7 +169,7 @@
 //
 //describe('When_commonInteger_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.CommonIntegerContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -185,7 +185,7 @@
 //
 //describe('When_commonShort_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.CommonShortContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -201,7 +201,7 @@
 //
 //describe('When_commonString_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.CommonStringContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -218,7 +218,7 @@
 //
 //describe('When_commonType_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.CommonTypeContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -235,7 +235,7 @@
 //
 //describe('When_commonTypeExtension_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.CommonTypeExtensionContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -251,7 +251,7 @@
 //
 //describe('When_currencyProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.CurrencyPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -268,7 +268,7 @@
 //
 //describe('When_dateProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.DatePropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -285,7 +285,7 @@
 //
 //describe('When_decimalProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.DecimalPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -302,7 +302,7 @@
 //
 //describe('When_descriptor_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.DescriptorContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -323,7 +323,7 @@
 //
 //describe('When_descriptorProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.DescriptorPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -340,7 +340,7 @@
 //
 //describe('When_domain_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.DomainContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -357,7 +357,7 @@
 //
 //describe('When_domainEntity_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.DomainEntityContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -374,7 +374,7 @@
 //
 //describe('When_domainEntityExtension_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.DomainEntityExtensionContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -390,7 +390,7 @@
 //
 //describe('When_domainEntitySubclass_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.DomainEntitySubclassContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -407,7 +407,7 @@
 //
 //describe('When_domainItem_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.DomainItemContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -424,7 +424,7 @@
 //
 //describe('When_durationProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.DurationPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -441,7 +441,7 @@
 //
 //describe('When_enumeration_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.EnumerationContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -464,7 +464,7 @@
 //        _warningMessageCollection[0].Message.ShouldContain(entityName);
 //        _warningMessageCollection[0].Message.ShouldContain("missing MetaEdId");
 //    });
-//let helper: ValidationTestHelper = new ValidationTestHelper();
+//let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
 //    let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -481,7 +481,7 @@
 //
 //describe('When_enumerationProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.EnumerationPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -498,7 +498,7 @@
 //
 //describe('When_firstDomainEntity_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.FirstDomainEntityContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -516,7 +516,7 @@
 //
 //describe('When_includeProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.IncludePropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -533,7 +533,7 @@
 //
 //describe('When_inlineCommonType_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.InlineCommonTypeContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -550,7 +550,7 @@
 //
 //describe('When_integerProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.IntegerPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -567,7 +567,7 @@
 //
 //describe('When_interchange_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.InterchangeContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -590,7 +590,7 @@
 //        _warningMessageCollection[0].Message.ShouldContain(entityName);
 //        _warningMessageCollection[0].Message.ShouldContain("missing MetaEdId");
 //    });
-//let helper: ValidationTestHelper = new ValidationTestHelper();
+//let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
 //    let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -607,7 +607,7 @@
 //
 //describe('When_interchangeExtension_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.InterchangeExtensionContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -629,7 +629,7 @@
 //        _warningMessageCollection[0].Message.ShouldContain(entityName);
 //        _warningMessageCollection[0].Message.ShouldContain("missing MetaEdId");
 //    });
-//let helper: ValidationTestHelper = new ValidationTestHelper();
+//let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
 //    let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -647,7 +647,7 @@
 //
 //describe('When_percentProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.PercentPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -664,7 +664,7 @@
 //
 //describe('When_referenceProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.ReferencePropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -681,7 +681,7 @@
 //
 //describe('When_secondDomainEntity_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.SecondDomainEntityContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -699,7 +699,7 @@
 //
 //describe('When_sharedDecimalProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.SharedDecimalPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -716,7 +716,7 @@
 //
 //describe('When_sharedIntegerProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.SharedIntegerPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -733,7 +733,7 @@
 //
 //describe('When_sharedShortProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.SharedShortPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -750,7 +750,7 @@
 //
 //describe('When_sharedStringProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.SharedStringPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -767,7 +767,7 @@
 //
 //describe('When_shortProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.ShortPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -784,7 +784,7 @@
 //
 //describe('When_stringProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.StringPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -801,7 +801,7 @@
 //
 //describe('When_subdomain_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.SubdomainContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -818,7 +818,7 @@
 //
 //describe('When_timeProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.TimePropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //
@@ -835,7 +835,7 @@
 //
 //describe('When_yearProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.YearPropertyContext>
 //        {
-//        let helper: ValidationTestHelper = new ValidationTestHelper();
+//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
 //        let metaEdText = MetaEdTextBuilder.buildIt
 //

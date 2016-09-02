@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai = require('chai');
-import {ValidationTestHelper} from "../ValidationTestHelper";
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
 import {InlineCommonTypeExistsOnlyInCoreNamespace}from "../../../../src/core/validators/InlineCommonType/InlineCommonTypeExistsOnlyInCoreNamespace"
@@ -17,7 +17,7 @@ describe('InlineCommonTypeExistsOnlyInCoreNamespace', () => {
     describe('When_inline_common_type_exists_in_core', () => {
         let entityName: string = "MyIdentifier";
         const _property_name: string = "Property1";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
@@ -40,7 +40,7 @@ describe('InlineCommonTypeExistsOnlyInCoreNamespace', () => {
         const extensionNamespace: string = "edfi";
         let entityName: string = "MyIdentifier";
         const propertyName: string = "Property1";
-        let helper: ValidationTestHelper = new ValidationTestHelper();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.buildIt
 
