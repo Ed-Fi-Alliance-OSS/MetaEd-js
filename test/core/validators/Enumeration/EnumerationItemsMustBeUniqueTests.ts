@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import chai = require('chai');
+import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
@@ -17,7 +17,7 @@ describe('EnumerationItemsMustBeUnique', () => {
     describe('When_enumeration_items_have_different_short_descriptions', () => {
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartEnumeration("Enumeration1")
@@ -40,7 +40,7 @@ describe('EnumerationItemsMustBeUnique', () => {
         const duplicateShortDescription: string = "this is a duplicate short description";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartEnumeration("Enumeration1")
@@ -67,7 +67,7 @@ describe('EnumerationItemsMustBeUnique', () => {
         const duplicateShortDescription2: string = "this is duplicate short description 2";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartEnumeration("Enumeration1")

@@ -1,30 +1,31 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const FirstDomainEntityPropertyMustNotCollideWithOtherProperty_1 = require("../../../../src/core/validators/Association/FirstDomainEntityPropertyMustNotCollideWithOtherProperty");
-const SymbolTable_1 = require("../../../../src/core/validators/SymbolTable");
-let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
+﻿import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai from 'chai'
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import firstDomainEntityPropertyMustNotCollideWithOtherProperty from '../../../../src/core/validators/Association/FirstDomainEntityPropertyMustNotCollideWithOtherProperty';
+import SymbolTable from "../../../../src/core/validators/SymbolTable";
+
 let should = chai.should();
+
 describe('FirstDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
     describe('When_domain_entity_property_does_not_collide', () => {
-        const symbolTable = new SymbolTable_1.default();
-        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustNotCollideWithOtherProperty_1.FirstDomainEntityPropertyMustNotCollideWithOtherProperty(symbolTable)));
-        let helper = new ValidatorTestHelper_1.default();
+        const symbolTable = new SymbolTable();
+        const validatorListener = new ValidatorListener([firstDomainEntityPropertyMustNotCollideWithOtherProperty]);
+
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("First")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
+
                 .withStartDomainEntity("Second")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
+
                 .withStartAssociation("Association1")
                 .withDocumentation("doc")
                 .withDomainEntityProperty("First", "doc1")
@@ -38,23 +39,27 @@ describe('FirstDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
+
     describe('When_domain_entity_property_does_collide', () => {
-        const symbolTable = new SymbolTable_1.default();
-        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustNotCollideWithOtherProperty_1.FirstDomainEntityPropertyMustNotCollideWithOtherProperty(symbolTable)));
+        const symbolTable = new SymbolTable();
+        const validatorListener = new ValidatorListener([firstDomainEntityPropertyMustNotCollideWithOtherProperty]);
         const associationName = "Association1";
         const firstName = "First";
-        let helper = new ValidatorTestHelper_1.default();
+
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(firstName)
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
+
                 .withStartDomainEntity("Second")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
+
                 .withStartAssociation(associationName)
                 .withDocumentation("doc")
                 .withDomainEntityProperty("First", "doc1")
@@ -75,4 +80,3 @@ describe('FirstDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
         });
     });
 });
-//# sourceMappingURL=FirstDomainEntityPropertyMustNotCollideWithOtherPropertyTests.js.map

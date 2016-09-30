@@ -1,116 +1,143 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const CommonIntegerMinValueMustNotBeGreaterThanMaxValue_1 = require("../../../../src/core/validators/CommonSimpleType/CommonIntegerMinValueMustNotBeGreaterThanMaxValue");
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai from 'chai'
+import {ValidatorTestHelper} from "../ValidatorTestHelper";
+import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import {TestRuleProvider} from "../TestRuleProvider";
+import {CommonIntegerMinValueMustNotBeGreaterThanMaxValue}from "../../../../src/core/validators/CommonSimpleType/CommonIntegerMinValueMustNotBeGreaterThanMaxValue"
+
 let should = chai.should();
-describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
-    let validatorListener = new CommonIntegerContext(new TestRuleProvider_1.TestRuleProvider(new CommonIntegerMinValueMustNotBeGreaterThanMaxValue_1.CommonIntegerMinValueMustNotBeGreaterThanMaxValue()));
-    describe('When_validating_common_integer_with_no_min_or_max_value', () => {
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
-        before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
-                .withBeginNamespace("edfi")
-                .withStartCommonInteger("EntityForTest")
-                .withDocumentation("doc")
-                .withEndCommonInteger()
-                .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
-        });
-        it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.length.should.equal(0);
-        });
-    });
-    describe('When_validating_common_integer_with_no_min_value', () => {
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
-        before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
-                .withBeginNamespace("edfi")
-                .withStartCommonInteger("EntityForTest")
-                .withDocumentation("doc")
-                .withMaxValue(100)
-                .withEndCommonInteger()
-                .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
-        });
-        it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.length.should.equal(0);
-        });
-    });
-    describe('When_validating_common_integer_with_no_max_value', () => {
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
-        before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
-                .withBeginNamespace("edfi")
-                .withStartCommonInteger("EntityForTest")
-                .withDocumentation("doc")
-                .withMinValue(0)
-                .withEndCommonInteger()
-                .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
-        });
-        it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.length.should.equal(0);
-        });
-    });
-    describe('When_validating_common_integer_with_correct_min_max_value_order', () => {
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
-        before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
-                .withBeginNamespace("edfi")
-                .withStartCommonInteger("EntityForTest")
-                .withDocumentation("doc")
-                .withMinValue(0)
-                .withMaxValue(100)
-                .withEndCommonInteger()
-                .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
-        });
-        it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.length.should.equal(0);
-        });
-    });
-    describe('When_validating_common_integer_with_min_max_values_out_of_order', () => {
-        const entityName = "EntityForTest";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
-        before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
-                .withBeginNamespace("edfi")
-                .withStartCommonInteger(entityName)
-                .withDocumentation("doc")
-                .withMinValue(100)
-                .withMaxValue(0)
-                .withEndCommonInteger()
-                .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
-        });
-        it('should_have_validation_failures()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
-        });
-        it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Common Integer");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("min value greater than max value");
-        });
-    });
-    describe('When_validating_common_integer_with_same_min_max_values', () => {
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
-        before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
-                .withBeginNamespace("edfi")
-                .withStartCommonInteger("EntityForTest")
-                .withDocumentation("doc")
-                .withMinValue(100)
-                .withMaxValue(100)
-                .withEndCommonInteger()
-                .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
-        });
-        it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.length.should.equal(0);
-        });
-    });
+
+describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => { 
+	let validatorListener = new CommonIntegerContext(
+        new TestRuleProvider<MetaEdGrammar.CommonIntegerContext>(
+            new CommonIntegerMinValueMustNotBeGreaterThanMaxValue()));
+    
+        
+        describe('When_validating_common_integer_with_no_min_or_max_value', () => {
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.build()
+                
+.withBeginNamespace("edfi")
+.withStartCommonInteger("EntityForTest")
+.withDocumentation("doc")
+.withEndCommonInteger()
+.withEndNamespace().toString();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.length.should.equal(0);
+            });
 });
-//# sourceMappingURL=CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests.js.map
+    
+        
+        describe('When_validating_common_integer_with_no_min_value', () => {
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.build()
+                
+.withBeginNamespace("edfi")
+.withStartCommonInteger("EntityForTest")
+.withDocumentation("doc")
+.withMaxValue(100)
+.withEndCommonInteger()
+.withEndNamespace().toString();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.length.should.equal(0);
+            });
+});
+    
+        
+        describe('When_validating_common_integer_with_no_max_value', () => {
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.build()
+                
+.withBeginNamespace("edfi")
+.withStartCommonInteger("EntityForTest")
+.withDocumentation("doc")
+.withMinValue(0)
+.withEndCommonInteger()
+.withEndNamespace().toString();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.length.should.equal(0);
+            });
+});
+    
+        
+        describe('When_validating_common_integer_with_correct_min_max_value_order', () => {
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.build()
+                
+.withBeginNamespace("edfi")
+.withStartCommonInteger("EntityForTest")
+.withDocumentation("doc")
+.withMinValue(0)
+.withMaxValue(100)
+.withEndCommonInteger()
+.withEndNamespace().toString();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.length.should.equal(0);
+            });
+});
+    
+        
+        describe('When_validating_common_integer_with_min_max_values_out_of_order', () => {
+            const entityName: string = "EntityForTest";
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.build()
+                
+.withBeginNamespace("edfi")
+.withStartCommonInteger(entityName)
+.withDocumentation("doc")
+.withMinValue(100)
+.withMaxValue(0)
+.withEndCommonInteger()
+.withEndNamespace().toString();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_validation_failures()', () => {
+                helper.errorMessageCollection.Any().ShouldBeTrue();
+            });
+            it('should_have_validation_failure_message()', () => {
+                helper.errorMessageCollection[0].Message.ShouldContain("Common Integer");
+                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
+                helper.errorMessageCollection[0].Message.ShouldContain("min value greater than max value");
+            });
+});
+    
+        
+        describe('When_validating_common_integer_with_same_min_max_values', () => {
+            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+                before(() => { 
+ let metaEdText = MetaEdTextBuilder.build()
+                
+.withBeginNamespace("edfi")
+.withStartCommonInteger("EntityForTest")
+.withDocumentation("doc")
+.withMinValue(100)
+.withMaxValue(100)
+.withEndCommonInteger()
+.withEndNamespace().toString();
+                helper.setup(metaEdText, validatorListener);
+            });
+            
+            it('should_have_no_validation_failures()', () => {
+                helper.errorMessageCollection.length.should.equal(0);
+            });
+});
+});

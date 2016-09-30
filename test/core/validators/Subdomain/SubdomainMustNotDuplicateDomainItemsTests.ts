@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import chai = require('chai');
+import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
@@ -17,7 +17,7 @@ describe('SubdomainMustNotDuplicateDomainItems', () => {
     describe('When_domain_items_have_different_names', () => {
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartSubdomain("Subdomain1", "Domain1")
@@ -41,7 +41,7 @@ describe('SubdomainMustNotDuplicateDomainItems', () => {
         const duplicateTemplate: string = "Item1";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartSubdomain(entityName, parentDomainName)
@@ -72,7 +72,7 @@ describe('SubdomainMustNotDuplicateDomainItems', () => {
         const duplicateTemplate2: string = "Item2";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartSubdomain(entityName, parentDomainName)

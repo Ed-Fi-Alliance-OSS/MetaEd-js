@@ -1,51 +1,58 @@
-"use strict";
-let antlr4 = require('antlr4');
-let BaseLexer = require('../../../src/grammar/gen/BaseLexer');
-let MetaEdGrammar = require('../../../src/grammar/gen/MetaEdGrammar');
-class SymbolTableEntityType {
-    constructor() {
-        this.metaEdGrammar = MetaEdGrammar.MetaEdGrammar;
-        // must instantiate dummy MetaEdGrammar to get at literal name string array
-        this.literalNames = new MetaEdGrammar.MetaEdGrammar(new antlr4.CommonTokenStream(new BaseLexer.BaseLexer(new antlr4.InputStream("")), undefined)).literalNames;
+// @flow
+import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
+import grammarInstance from '../../../src/grammar/MetaEdGrammarInstance';
+
+// Static strings for top level entity types, taken from generated grammar, used for hashtable keys
+
+function literal(name: string) {
+    const s = grammarInstance.literalNames[name];
+    // generated static strings are surrounded by single quotes, so remove
+    return s.slice(1, s.length - 1);
+}
+
+export default class SymbolTableEntityType {
+    static domainEntityEntityType() : string {
+        return literal(MetaEdGrammar.DOMAIN_ENTITY);
     }
-    literal(name) {
-        const s = this.literalNames[name];
-        return s.slice(1, s.length - 1);
+
+    static domainEntityExtensionEntityType() : string {
+        return literal(MetaEdGrammar.DOMAIN_ENTITY) + literal(MetaEdGrammar.ADDITIONS);
     }
-    domainEntityEntityType() {
-        return this.literal(this.metaEdGrammar.DOMAIN_ENTITY);
+
+    static domainEntitySubclassEntityType() : string {
+        return literal(MetaEdGrammar.DOMAIN_ENTITY) + literal(MetaEdGrammar.BASED_ON);
     }
-    domainEntityExtensionEntityType() {
-        return this.literal(this.metaEdGrammar.DOMAIN_ENTITY) + this.literal(this.metaEdGrammar.ADDITIONS);
+
+    static associationEntityType() : string {
+        return literal(MetaEdGrammar.ASSOCIATION);
     }
-    domainEntitySubclassEntityType() {
-        return this.literal(this.metaEdGrammar.DOMAIN_ENTITY) + this.literal(this.metaEdGrammar.BASED_ON);
+
+    static associationExtensionEntityType() : string {
+        return literal(MetaEdGrammar.ASSOCIATION) + literal(MetaEdGrammar.ADDITIONS);
     }
-    associationEntityType() {
-        return this.literal(this.metaEdGrammar.ASSOCIATION);
+
+    static associationSubclassEntityType() : string {
+        return literal(MetaEdGrammar.ASSOCIATION) + literal(MetaEdGrammar.BASED_ON);
     }
-    associationExtensionEntityType() {
-        return this.literal(this.metaEdGrammar.ASSOCIATION) + this.literal(this.metaEdGrammar.ADDITIONS);
+
+    static abstractEntityEntityType() : string {
+        return literal(MetaEdGrammar.ABSTRACT_ENTITY);
     }
-    associationSubclassEntityType() {
-        return this.literal(this.metaEdGrammar.ASSOCIATION) + this.literal(this.metaEdGrammar.BASED_ON);
+
+    static commonTypeEntityType() : string {
+        return literal(MetaEdGrammar.COMMON_TYPE);
     }
-    abstractEntityEntityType() {
-        return this.literal(this.metaEdGrammar.ABSTRACT_ENTITY);
+
+    static commonTypeExtensionEntityType() : string {
+        return literal(MetaEdGrammar.COMMON_TYPE) + literal(MetaEdGrammar.ADDITIONS);
     }
-    commonTypeEntityType() {
-        return this.literal(this.metaEdGrammar.COMMON_TYPE);
+
+    static enumerationEntityType() : string {
+        return literal(MetaEdGrammar.ENUMERATION_ENTITY);
     }
-    commonTypeExtensionEntityType() {
-        return this.literal(this.metaEdGrammar.COMMON_TYPE) + this.literal(this.metaEdGrammar.ADDITIONS);
-    }
-    enumerationEntityType() {
-        return this.literal(this.metaEdGrammar.ENUMERATION_ENTITY);
-    }
-    inlineCommonTypeEntityType() {
-        return this.literal(this.metaEdGrammar.INLINE_COMMON_TYPE);
+
+    static inlineCommonTypeEntityType() : string {
+        return literal(MetaEdGrammar.INLINE_COMMON_TYPE);
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = SymbolTableEntityType;
-//# sourceMappingURL=SymbolTableEntityType.js.map
+

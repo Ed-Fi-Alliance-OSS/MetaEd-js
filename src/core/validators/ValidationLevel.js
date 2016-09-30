@@ -1,7 +1,12 @@
-"use strict";
-(function (ValidationLevel) {
-    ValidationLevel[ValidationLevel["Warning"] = 0] = "Warning";
-    ValidationLevel[ValidationLevel["Error"] = 1] = "Error";
-})(exports.ValidationLevel || (exports.ValidationLevel = {}));
-var ValidationLevel = exports.ValidationLevel;
-//# sourceMappingURL=ValidationLevel.js.map
+export default class ValidationLevel {
+    static get Warning() : Symbol {
+        return _Warning;
+    }
+
+    static get Error() : Symbol {
+      return _Error;
+    }
+}
+
+const _Warning = Symbol('Warning');
+const _Error = Symbol('Error');

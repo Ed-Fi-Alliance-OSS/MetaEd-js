@@ -1,24 +1,28 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-const SymbolTableEntityType_1 = require('../SymbolTableEntityType');
-let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
-class AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
+import SymbolTableEntityType from '../SymbolTableEntityType'
+import {MetaEdGrammar} from '../../../../src/grammar/gen/MetaEdGrammar';
+
+export class AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass extends ValidationRuleBase
+{
+    private symbolTable: ISymbolTable;
+    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
+    constructor(symbolTable: ISymbolTable) {
         super();
-        this.symbolTableEntityType = new SymbolTableEntityType_1.default();
         this.symbolTable = symbolTable;
     }
-    handlesContext(context) {
+
+    public handlesContext(context: any) : boolean {
         return context.ruleIndex === MetaEdGrammar.RULE_associationExtension;
     }
-    isValid(context) {
+
+    public isValid(context: any): boolean {
         let identifierToMatch = context.extendeeName().getText();
-        return this.symbolTable.identifierExists(this.symbolTableEntityType.associationEntityType(), identifierToMatch)
-            || this.symbolTable.identifierExists(this.symbolTableEntityType.associationSubclassEntityType(), identifierToMatch);
+        return this.symbolTable.identifierExists(this.symbolTableEntityType.associationEntityType(), identifierToMatch) 
+        || this.symbolTable.identifierExists(this.symbolTableEntityType.associationSubclassEntityType(), identifierToMatch);
     }
-    getFailureMessage(context) {
+
+    public getFailureMessage(context: any): string {
         return `Association additions '${context.extendeeName().getText()}' does not match any declared Association or subclass.`;
     }
 }
-exports.AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass = AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass;
-//# sourceMappingURL=AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass.js.map

@@ -1,16 +1,14 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class CommonShortMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase_1.ValidationRuleBase {
-    isValid(context) {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+export class CommonShortMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase<MetaEdGrammar.CommonShortContext>
+{
+    public isValid(context: MetaEdGrammar.CommonShortContext): boolean {
         if (context.minValue() == null || context.maxValue() == null)
             return true;
         let minValue = Number(context.minValue().MinValue());
         let maxValue = Number(context.maxValue().MaxValue());
         return minValue <= maxValue;
     }
-    getFailureMessage(context) {
+    public getFailureMessage(context: MetaEdGrammar.CommonShortContext): string {
         return `Common Short '${context.commonShortName().GetText()}' has min value greater than max value.`;
     }
 }
-exports.CommonShortMinValueMustNotBeGreaterThanMaxValue = CommonShortMinValueMustNotBeGreaterThanMaxValue;
-//# sourceMappingURL=CommonShortMinValueMustNotBeGreaterThanMaxValue.js.map

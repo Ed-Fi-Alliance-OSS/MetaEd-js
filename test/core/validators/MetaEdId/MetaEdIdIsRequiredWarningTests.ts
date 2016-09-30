@@ -2,7 +2,7 @@
 
 ///// <reference path="../../../../typings/index.d.ts" />
 //import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-//import chai = require('chai');
+//import chai from 'chai'
 //import {ValidatorTestHelper} from "../ValidatorTestHelper";
 //import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 //import {TestRuleProvider} from "../TestRuleProvider";
@@ -51,7 +51,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAbstractEntity(entityName)
@@ -68,7 +68,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAssociation(entityName)
@@ -86,7 +86,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAssociationExtension(entityName)
@@ -102,7 +102,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAssociationSubclass(entityName, "BaseClass")
@@ -119,7 +119,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -136,7 +136,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartChoiceType(entityName)
@@ -153,7 +153,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartCommonDecimal(entityName)
@@ -171,7 +171,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartCommonInteger(entityName)
@@ -187,7 +187,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartCommonShort(entityName)
@@ -203,7 +203,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartCommonString(entityName)
@@ -220,7 +220,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartCommonType(entityName)
@@ -237,7 +237,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartCommonTypeExtension(entityName)
@@ -253,7 +253,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -270,7 +270,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -287,7 +287,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -304,7 +304,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDescriptor(entityName)
@@ -325,7 +325,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -342,7 +342,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomain(entityName)
@@ -359,7 +359,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -376,7 +376,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntityExtension(entityName)
@@ -392,7 +392,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntitySubclass(entityName, "BaseClass")
@@ -409,7 +409,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomain(entityName)
@@ -426,7 +426,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -443,7 +443,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartEnumeration(entityName)
@@ -466,7 +466,7 @@
 //    });
 //let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartEnumeration(entityName)
@@ -483,7 +483,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -500,7 +500,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAssociation(entityName)
@@ -518,7 +518,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -535,7 +535,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartInlineCommonType(entityName)
@@ -552,7 +552,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -569,7 +569,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartInterchange(entityName)
@@ -592,7 +592,7 @@
 //    });
 //let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartInterchange(entityName)
@@ -609,7 +609,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartInterchangeExtension(entityName)
@@ -631,7 +631,7 @@
 //    });
 //let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartInterchange(entityName)
@@ -649,7 +649,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -666,7 +666,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -683,7 +683,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAssociation(entityName)
@@ -701,7 +701,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -718,7 +718,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -735,7 +735,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -752,7 +752,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -769,7 +769,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -786,7 +786,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -803,7 +803,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartSubdomain(entityName, "ParentDomain")
@@ -820,7 +820,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -837,7 +837,7 @@
 //        {
 //        let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)

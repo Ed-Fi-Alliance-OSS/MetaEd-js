@@ -1,6 +1,8 @@
-//TODO: This looks like a different testing pattern
+﻿//TODO: This looks like a different testing pattern
+
+
 ///// <reference path="../../../../typings/index.d.ts" />
-//import chai = require('chai');
+//import chai from 'chai'
 //import {ValidatorTestHelper} from "../ValidatorTestHelper";
 //
 //let should = chai.should();
@@ -46,7 +48,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_entities_have_different_names._entityName)
@@ -70,7 +72,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_entities_have_same_name._entityName)
@@ -103,7 +105,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_domain_entity_has_same_name_as_extension._entityName)
@@ -126,7 +128,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAssociation(When_association_has_same_name_as_extension._entityName)
@@ -151,7 +153,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_domain_entity_has_same_name_as_common_simple_type._entityName)
@@ -184,7 +186,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_domain_entity_has_same_name_as_descriptor._entityName)
@@ -208,7 +210,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_domain_entity_has_same_name_as_enumeration._entityName)
@@ -232,7 +234,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_domain_entity_has_same_name_as_interchange._entityName)
@@ -250,5 +252,4 @@
 //        this._errorMessageCollection.length.should.equal(0);
 //    });
 //});
-//}); 
-//# sourceMappingURL=CrossEntityTypeNamingValidatorTests.js.map
+//});

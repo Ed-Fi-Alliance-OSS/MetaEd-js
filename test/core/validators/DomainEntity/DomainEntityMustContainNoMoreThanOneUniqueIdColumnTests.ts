@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import chai = require('chai');
+import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
@@ -17,7 +17,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
     describe('When_validating_domain_entity_with_no_uniqueId_fields', () => {
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntity1")
@@ -37,7 +37,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
     describe('When_validating_domain_entity_with_one_uniqueId_field', () => {
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntity1")
@@ -58,7 +58,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
         const entityName: string = "DomainEntity1";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -85,7 +85,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
         const entityName: string = "DomainEntity1";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("extension", "projectExtension")
                 .withStartDomainEntity(entityName)

@@ -1,5 +1,8 @@
-"use strict";
-class GeneratedOutput {
+declare type MemoryStream = any;
+
+export class GeneratedOutput {
+    public name: string;
+    public fileName: string;
+    public stream: MemoryStream;
+    public string: string;
 }
-exports.GeneratedOutput = GeneratedOutput;
-//# sourceMappingURL=GeneratedOutput.js.map

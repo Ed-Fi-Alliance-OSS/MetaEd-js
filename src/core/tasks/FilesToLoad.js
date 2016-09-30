@@ -1,11 +1,16 @@
-"use strict";
-class FilesToLoad {
+import {MetaEdFile} from '../../grammar/MetaEdFile'
+
+export class FilesToLoad {
+    private _files: MetaEdFile[];
+    public namespace: string;
+    public projectExtension: string;
+    public isExtension: boolean;
+    
+    public get files(): MetaEdFile[] {
+        return this._files;
+    }
+
     constructor() {
         this._files = [];
     }
-    get files() {
-        return this._files;
-    }
 }
-exports.FilesToLoad = FilesToLoad;
-//# sourceMappingURL=FilesToLoad.js.map

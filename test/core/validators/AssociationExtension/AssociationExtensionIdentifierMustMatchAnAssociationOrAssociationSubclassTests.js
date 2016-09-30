@@ -1,23 +1,27 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass_1 = require("../../../../src/core/validators/AssociationExtension/AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass");
-const SymbolTable_1 = require("../../../../src/core/validators/SymbolTable");
-let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai from 'chai'
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import TestRuleProvider from "../TestRuleProvider";
+import {AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass}from "../../../../src/core/validators/AssociationExtension/AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass"
+import SymbolTable from "../../../../src/core/validators/SymbolTable";
+
+import {MetaEdGrammar} from '../../../../src/grammar/gen/MetaEdGrammar';
 let should = chai.should();
+
 describe('AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass', () => {
     describe('When_association_extension_has_valid_extendee', () => {
-        const symbolTable = new SymbolTable_1.default();
-        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_associationExtension, new AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass_1.AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass(symbolTable)));
-        let entityName = "MyIdentifier";
-        const _property_name = "Property1";
-        let helper = new ValidatorTestHelper_1.default();
+        const symbolTable = new SymbolTable();
+        const validatorListener = new ValidatorListener(
+            new TestRuleProvider(MetaEdGrammar.RULE_associationExtension, new AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass(symbolTable)));
+
+        let entityName: string = "MyIdentifier";
+        const _property_name: string = "Property1";
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartAssociation(entityName)
                 .withDocumentation("because documentation is required")
@@ -25,6 +29,7 @@ describe('AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubcl
                 .withDomainEntityProperty("DomainEntity2", "doc")
                 .withBooleanProperty("Property1", "because a property is required", true, false)
                 .withEndAssociation()
+
                 .withStartAssociationExtension(entityName)
                 .withBooleanProperty("Property2", "because a property is required", true, false)
                 .withEndAssociationExtension()
@@ -35,13 +40,18 @@ describe('AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubcl
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
+
+
     describe('When_association_extension_has_invalid_extendee', () => {
-        const symbolTable = new SymbolTable_1.default();
-        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_associationExtension, new AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass_1.AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass(symbolTable)));
-        let entityName = "NotAnAssociationIdentifier";
-        let helper = new ValidatorTestHelper_1.default();
+        const symbolTable = new SymbolTable();
+        const validatorListener = new ValidatorListener(
+            new TestRuleProvider(MetaEdGrammar.RULE_associationExtension, new AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass(symbolTable)));
+
+        let entityName: string = "NotAnAssociationIdentifier";
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartAssociationExtension(entityName)
                 .withBooleanProperty("Property2", "because a property is required", false, false)
@@ -58,14 +68,19 @@ describe('AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubcl
             helper.errorMessageCollection[0].message.should.include("does not match");
         });
     });
+
+
     describe('When_association_extension_extends_association_subclass', () => {
-        const symbolTable = new SymbolTable_1.default();
-        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_associationExtension, new AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass_1.AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass(symbolTable)));
-        let entityName = "MyIdentifier";
-        const subclassName = "MyIdentifierSubclass";
-        let helper = new ValidatorTestHelper_1.default();
+        const symbolTable = new SymbolTable();
+        const validatorListener = new ValidatorListener(
+            new TestRuleProvider(MetaEdGrammar.RULE_associationExtension, new AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass(symbolTable)));
+
+        let entityName: string = "MyIdentifier";
+        const subclassName: string = "MyIdentifierSubclass";
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartAssociation(entityName)
                 .withDocumentation("because documentation is required")
@@ -73,10 +88,12 @@ describe('AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubcl
                 .withDomainEntityProperty("DomainEntity2", "doc")
                 .withBooleanProperty("Property1", "because a property is required", true, false)
                 .withEndAssociation()
+
                 .withStartAssociationSubclass(subclassName, entityName)
                 .withDocumentation("because documentation is required")
                 .withBooleanProperty("Property1", "because a property is required", true, false)
                 .withEndAssociationSubclass()
+
                 .withStartAssociationExtension(subclassName)
                 .withBooleanProperty("Property2", "because a property is required", true, false)
                 .withEndAssociationExtension()
@@ -88,4 +105,3 @@ describe('AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubcl
         });
     });
 });
-//# sourceMappingURL=AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclassTests.js.map

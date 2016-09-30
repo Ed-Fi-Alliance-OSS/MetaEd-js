@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import chai = require('chai');
+import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
@@ -19,7 +19,7 @@ describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName', () => {
             let baseName: string = "BaseDomainEntityIdentifier";
             let helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.buildIt
+ let metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartDomainEntity(baseName)
@@ -47,7 +47,7 @@ describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName', () => {
             const duplicatePropertyName: string = "Property1";
             let helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.buildIt
+ let metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartDomainEntity(baseName)
@@ -85,7 +85,7 @@ describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName', () => {
             const duplicatePropertyName2: string = "Property2";
             let helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.buildIt
+ let metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartDomainEntity(baseName)

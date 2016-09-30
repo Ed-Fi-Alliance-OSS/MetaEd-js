@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import chai = require('chai');
+import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
@@ -19,7 +19,7 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
         let totalDigits: string = "10";
         let decimalPlaces: string = "2";
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity("EntityForTest")
@@ -43,7 +43,7 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
         let totalDigits: string = "2";
         let decimalPlaces: string = "10";
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity(entityName)
@@ -74,7 +74,7 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
         let totalDigits: string = "10";
         let decimalPlaces: string = "2";
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity(entityName)

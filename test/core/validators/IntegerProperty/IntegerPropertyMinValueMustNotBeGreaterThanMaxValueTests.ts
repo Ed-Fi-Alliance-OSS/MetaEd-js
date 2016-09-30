@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import chai = require('chai');
+import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
@@ -17,7 +17,7 @@ describe('IntegerPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
     describe('When_validating_integer_property_with_no_min_or_max_value', () => {
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity("EntityForTest")
@@ -37,7 +37,7 @@ describe('IntegerPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
     describe('When_validating_integer_property_with_no_min_value', () => {
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity("EntityForTest")
@@ -57,7 +57,7 @@ describe('IntegerPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
     describe('When_validating_integer_property_with_no_max_value', () => {
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity("EntityForTest")
@@ -79,7 +79,7 @@ describe('IntegerPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
         let maxValue: number = 100;
         let minValue: number = 50;
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity("EntityForTest")
@@ -103,7 +103,7 @@ describe('IntegerPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
     let maxValue: number = 50;
     let minValue: number = 100;
     before(() => {
-        let metaEdText = MetaEdTextBuilder.buildIt
+        let metaEdText = MetaEdTextBuilder.build()
 
             .withBeginNamespace("edfi")
             .withStartAbstractEntity(entityName)
@@ -134,7 +134,7 @@ let helper: ValidatorTestHelper = new ValidatorTestHelper();
 let maxValue: number = 100;
 let minValue: number = 100;
 before(() => {
-    let metaEdText = MetaEdTextBuilder.buildIt
+    let metaEdText = MetaEdTextBuilder.build()
 
         .withBeginNamespace("edfi")
         .withStartAbstractEntity(entityName)

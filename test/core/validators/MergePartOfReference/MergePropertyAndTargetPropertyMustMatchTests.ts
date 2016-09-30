@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import chai = require('chai');
+import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
@@ -17,7 +17,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
     describe('When_merged_property_names_and_types_match', () => {
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("Entity1")
@@ -43,7 +43,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
     describe('When_merged_property_types_are_different', () => {
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("Entity1")
@@ -72,7 +72,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
     describe('When_merged_property_names_are_different', () => {
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("Entity1")
@@ -98,7 +98,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
     describe('When_merging_properties_of_a_base_and_sub_domain_entity', () => {
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("Entity1")
@@ -129,7 +129,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
     describe('When_merging_domain_entity_property_of_an_association', () => {
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("Entity1")

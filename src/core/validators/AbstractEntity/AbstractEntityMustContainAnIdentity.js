@@ -1,16 +1,24 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
-class AbstractEntityMustContainAnIdentity extends ValidationRuleBase_1.ValidationRuleBase {
-    handlesContext(context) {
-        return context.ruleIndex === MetaEdGrammar.RULE_abstractEntity;
-    }
-    isValid(context) {
-        return context.property().some(x => this.getProperty(x).propertyComponents().propertyAnnotation().identity() != null);
-    }
-    getFailureMessage(context) {
-        return `Abstract Entity ${context.abstractEntityName().ID().getText()} does not have an identity specified.`;
-    }
+// @flow
+import R from 'ramda';
+
+import ValidationLevel from '../ValidationLevel';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import validationRuleBase, { getProperty } from '../ValidationRuleBase';
+import SymbolTable from '../SymbolTable';
+
+const level = ValidationLevel.Error;
+
+function handled(ruleContext: any) : boolean {
+    return ruleContext.ruleIndex === MetaEdGrammar.RULE_abstractEntity;
 }
-exports.AbstractEntityMustContainAnIdentity = AbstractEntityMustContainAnIdentity;
-//# sourceMappingURL=AbstractEntityMustContainAnIdentity.js.map
+
+function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
+    return ruleContext.property().some(x => getProperty(x).propertyComponents().propertyAnnotation().identity() != null);
+}
+
+function failureMessage(ruleContext: any, symbolTable: SymbolTable) : string {
+    return `Abstract Entity ${ruleContext.abstractEntityName().ID().getText()} does not have an identity specified.`;
+}
+
+const validationRule = R.partial(validationRuleBase, [level, handled, valid, failureMessage]);
+export { validationRule as default };

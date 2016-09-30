@@ -1,6 +1,9 @@
-"use strict";
-class ValidationMessage {
+// @flow
+export interface ValidationMessage {
+    message: string;
+    fileName: string;
+    lineNumber: number;
+    characterPosition: number;
+    concatenatedLineNumber: number;
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = ValidationMessage;
-//# sourceMappingURL=ValidationMessage.js.map
+

@@ -1,16 +1,18 @@
-"use strict";
 /// <reference path="../../typings/index.d.ts" />
-const StringHelper_1 = require('../../src/common/StringHelper');
-const chai = require('chai');
-chai.should();
+import StringHelper from '../../src/common/StringHelper';
+
+import chai from 'chai'
+let should = chai.should();
+
 describe('StringHelperParseTest', () => {
     it('should substitute correctly', () => {
-        const result1 = StringHelper_1.default.format('${}', 'Hello');
+        const result1 = StringHelper.format('${}', 'Hello');
         result1.should.equal('Hello');
-        const result2 = StringHelper_1.default.format('${} ${}', 'Hello', 'World');
+
+        const result2 = StringHelper.format('${} ${}', 'Hello', 'World');
         result2.should.equal('Hello World');
-        const result3 = StringHelper_1.default.format('${} ${} ${}', 'Hello', 'World', 'Person');
+
+        const result3 = StringHelper.format('${} ${} ${}', 'Hello', 'World', 'Person');
         result3.should.equal('Hello World Person');
     });
 });
-//# sourceMappingURL=StringHelperTest.js.map

@@ -1,19 +1,20 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const AssociationMustNotDuplicateDomainEntityNames_1 = require("../../../../src/core/validators/Association/AssociationMustNotDuplicateDomainEntityNames");
-let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
+﻿/// <reference path="../../../../typings/index.d.ts" />
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai from 'chai'
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import associationMustNotDuplicateDomainEntityNames from '../../../../src/core/validators/Association/AssociationMustNotDuplicateDomainEntityNames';
+import {MetaEdGrammar} from '../../../../src/grammar/gen/MetaEdGrammar';
+
 let should = chai.should();
+
 describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
-    let validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_association, new AssociationMustNotDuplicateDomainEntityNames_1.AssociationMustNotDuplicateDomainEntityNames()));
+    let validatorListener = new ValidatorListener([associationMustNotDuplicateDomainEntityNames]);
+
     describe('entityNames no duplicates', () => {
-        let helper = new ValidatorTestHelper_1.default();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartAssociation("Association1")
                 .withDocumentation("doc")
@@ -27,12 +28,14 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
+
+
     describe('entity names with duplicates', () => {
-        const associationName = "Association1";
-        const domainEntityName = "DomainEntity1";
-        let helper = new ValidatorTestHelper_1.default();
+        const associationName: string = "Association1";
+        const domainEntityName: string = "DomainEntity1";
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartAssociation(associationName)
                 .withDocumentation("doc")
@@ -42,9 +45,11 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_validation_failures()', () => {
             helper.errorMessageCollection.should.not.be.empty;
         });
+
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].message.should.include("Association");
             helper.errorMessageCollection[0].message.should.include(associationName);
@@ -52,13 +57,15 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
             helper.errorMessageCollection[0].message.should.include("duplicate declarations");
         });
     });
+
+
     describe('entityNames_and_same_contexts', () => {
-        const associationName = "Association1";
-        const domainEntityName = "DomainEntity1";
-        const contextName = "Context1";
-        let helper = new ValidatorTestHelper_1.default();
+        const associationName: string = "Association1";
+        const domainEntityName: string = "DomainEntity1";
+        const contextName: string = "Context1";
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartAssociation(associationName)
                 .withDocumentation("doc")
@@ -78,11 +85,13 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
             helper.errorMessageCollection[0].message.should.include("duplicate declarations");
         });
     });
+
+
     describe('entityNames_and_different_contexts', () => {
-        const domainEntityName = "DomainEntity1";
-        let helper = new ValidatorTestHelper_1.default();
+        const domainEntityName: string = "DomainEntity1";
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartAssociation("Association1")
                 .withDocumentation("doc")
@@ -96,11 +105,13 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
+
+
     describe('entityNames_and_same_contexts', () => {
-        const contextName = "Context1";
-        let helper = new ValidatorTestHelper_1.default();
+        const contextName: string = "Context1";
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartAssociation("Association1")
                 .withDocumentation("doc")
@@ -115,4 +126,3 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
         });
     });
 });
-//# sourceMappingURL=AssociationMustNotDuplicateDomainEntityNamesTests.js.map

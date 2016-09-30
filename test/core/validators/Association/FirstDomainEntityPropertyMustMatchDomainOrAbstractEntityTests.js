@@ -1,30 +1,30 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1 = require("../../../../src/core/validators/Association/FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity");
-const SymbolTable_1 = require("../../../../src/core/validators/SymbolTable");
-let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
+﻿import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai from 'chai'
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import firstDomainEntityPropertyMustMatchDomainOrAbstractEntity from "../../../../src/core/validators/Association/FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity";
+import SymbolTable from "../../../../src/core/validators/SymbolTable";
+
 let should = chai.should();
+
 describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => {
     describe('When_domain_entity_property_has_domain_entity_identifier', () => {
-        const symbolTable = new SymbolTable_1.default();
-        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
-        let helper = new ValidatorTestHelper_1.default();
+        const symbolTable = new SymbolTable();
+        const validatorListener = new ValidatorListener([firstDomainEntityPropertyMustMatchDomainOrAbstractEntity]);
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("First")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
+
                 .withStartDomainEntity("Second")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
+
                 .withStartAssociation("Association1")
                 .withDocumentation("doc")
                 .withDomainEntityProperty("First", "doc1")
@@ -37,21 +37,24 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
+
     describe('When_domain_entity_property_has_abstract_entity_identifier', () => {
-        const symbolTable = new SymbolTable_1.default();
-        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
-        let helper = new ValidatorTestHelper_1.default();
+        const symbolTable = new SymbolTable();
+        const validatorListener = new ValidatorListener([firstDomainEntityPropertyMustMatchDomainOrAbstractEntity]);
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity("First")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndAbstractEntity()
+
                 .withStartDomainEntity("Second")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
+
                 .withStartAssociation("Association1")
                 .withDocumentation("doc")
                 .withDomainEntityProperty("First", "doc1")
@@ -64,25 +67,29 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
+
     describe('When_domain_entity_property_has_subclass_entity_identifier', () => {
-        const symbolTable = new SymbolTable_1.default();
-        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
-        let helper = new ValidatorTestHelper_1.default();
+        const symbolTable = new SymbolTable();
+        const validatorListener = new ValidatorListener([firstDomainEntityPropertyMustMatchDomainOrAbstractEntity]);
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity("First")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndAbstractEntity()
+
                 .withStartDomainEntity("Second")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
+
                 .withStartDomainEntitySubclass("Third", "First")
                 .withDocumentation("doc")
                 .withStringProperty("RequirePrimaryKey", "doc", true, false, 100)
                 .withEndDomainEntity()
+
                 .withStartAssociation("Association1")
                 .withDocumentation("doc")
                 .withDomainEntityProperty("Third", "doc1")
@@ -95,18 +102,20 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
+
     describe('When_domain_entity_property_has_invalid_identifier', () => {
-        const symbolTable = new SymbolTable_1.default();
-        const validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_firstDomainEntity, new FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity_1.FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity(symbolTable)));
-        let entityName = "MyIdentifier";
-        let helper = new ValidatorTestHelper_1.default();
+        const symbolTable = new SymbolTable();
+        const validatorListener = new ValidatorListener([firstDomainEntityPropertyMustMatchDomainOrAbstractEntity]);
+        const entityName: string = "MyIdentifier";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("Second")
                 .withDocumentation("doc")
                 .withStringIdentity("RequirePrimaryKey", "doc", 100)
                 .withEndDomainEntity()
+
                 .withStartAssociation("Association1")
                 .withDocumentation("doc")
                 .withDomainEntityProperty(entityName, "doc1")
@@ -116,7 +125,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
             helper.setup(metaEdText, validatorListener, symbolTable);
         });
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.length.should.not.equal(0);
+            helper.errorMessageCollection.length.should.not.equal(0)
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].message.should.include("Domain Entity");
@@ -125,4 +134,3 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
         });
     });
 });
-//# sourceMappingURL=FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests.js.map

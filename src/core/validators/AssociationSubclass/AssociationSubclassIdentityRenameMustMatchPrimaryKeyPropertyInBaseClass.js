@@ -1,11 +1,13 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClass extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
+export class AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClass extends ValidationRuleBase<MetaEdGrammar.AssociationSubclassContext>
+{
+    private symbolTable: ISymbolTable;
+    constructor(symbolTable: ISymbolTable) {
         super();
         this.symbolTable = symbolTable;
     }
-    isValid(context) {
+    public isValid(context: MetaEdGrammar.AssociationSubclassContext): boolean {
         let identityRenames = context.property().Where(x => x.GetProperty().propertyComponents().propertyAnnotation().identityRename() != null).Select(y => y.GetProperty().propertyComponents().propertyAnnotation().identityRename());
         if (!identityRenames.Any())
             return true;
@@ -20,7 +22,7 @@ class AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClass exte
             return false;
         return baseProperty.propertyComponents().propertyAnnotation().identity() != null;
     }
-    getFailureMessage(context) {
+    public getFailureMessage(context: MetaEdGrammar.AssociationSubclassContext): string {
         let identifier = context.associationName().GetText();
         let baseIdentifier = context.baseName().GetText();
         let identityRenames = context.property().Where(x => x.GetProperty().propertyComponents().propertyAnnotation().identityRename() != null).Select(y => y.GetProperty().propertyComponents().propertyAnnotation().identityRename());
@@ -28,5 +30,3 @@ class AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClass exte
         return `Association '${identifier}' based on '${baseIdentifier}' tries to rename ${basePropertyIdentifier} which is not part of the identity.`;
     }
 }
-exports.AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClass = AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClass;
-//# sourceMappingURL=AssociationSubclassIdentityRenameMustMatchPrimaryKeyPropertyInBaseClass.js.map

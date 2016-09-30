@@ -1,11 +1,10 @@
-"use strict";
-class TestDomainEntityContextValidation {
-    isValid(context) {
+export class TestDomainEntityContextValidation 
+{
+    public isValid(context: any): boolean {
         return false;
     }
-    getFailureMessage(context) {
+    public getFailureMessage(context: any): string {
         return "Property is a validation.";
     }
 }
-exports.TestDomainEntityContextValidation = TestDomainEntityContextValidation;
-//# sourceMappingURL=TestDomainEntityContextValidation.js.map
+  

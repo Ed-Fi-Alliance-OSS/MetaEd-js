@@ -1,2 +1,3 @@
-"use strict";
-//# sourceMappingURL=IContextWithIdentifier.js.map
+export interface IContextWithIdentifier {
+    idNode(): any //Antlr4.Runtime.Tree.ITerminalNode
+}

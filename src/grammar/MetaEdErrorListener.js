@@ -1,13 +1,18 @@
-"use strict";
 /// <reference path="../../typings/globals/node/index.d.ts" />
-let antlr4 = require('antlr4');
-class MetaEdErrorListener {
-    constructor(errorMessageCollection) {
+import antlr4 from 'antlr4';
+
+export default class MetaEdErrorListener {
+
+    _errorMessageCollection: Array<any>;
+
+    constructor(errorMessageCollection: Array<any>) {
         antlr4.error.ErrorListener.call(this);
-        this.errorMessageCollection = errorMessageCollection;
+        this._errorMessageCollection = errorMessageCollection;
     }
-    syntaxError(recognizer, offendingSymbol, concatenatedLineNumber, characterPosition, message /* , e */) {
-        this.errorMessageCollection.push({
+
+    syntaxError(recognizer, offendingSymbol, concatenatedLineNumber, characterPosition,
+        message /* , e */) {
+        this._errorMessageCollection.push({
             message,
             characterPosition,
             concatenatedLineNumber,
@@ -16,6 +21,3 @@ class MetaEdErrorListener {
         });
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = MetaEdErrorListener;
-//# sourceMappingURL=MetaEdErrorListener.js.map

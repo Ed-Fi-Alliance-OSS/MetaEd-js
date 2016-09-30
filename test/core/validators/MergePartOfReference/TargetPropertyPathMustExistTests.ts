@@ -2,7 +2,7 @@
 
 ///// <reference path="../../../../typings/index.d.ts" />
 //import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-//import chai = require('chai');
+//import chai from 'chai'
 //import {ValidatorTestHelper} from "../ValidatorTestHelper";
 //import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 //import {TestRuleProvider} from "../TestRuleProvider";
@@ -24,7 +24,7 @@
 //            private _propertyPathLookup: IPropertyPathLookup;
 //    let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        let metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity("Entity2")
@@ -56,7 +56,7 @@
 //            private _propertyPathLookup: IPropertyPathLookup;
 //let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity2")
@@ -85,7 +85,7 @@
 //            private _propertyPathLookup: IPropertyPathLookup;
 //let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -122,7 +122,7 @@
 //            private _propertyPathLookup: IPropertyPathLookup;
 //let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -160,7 +160,7 @@
 //            private _propertyPathLookup: IPropertyPathLookup;
 //let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -206,7 +206,7 @@
 //            private _propertyPathLookup: IPropertyPathLookup;
 //let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -254,7 +254,7 @@
 //            private _propertyPathLookup: IPropertyPathLookup;
 //let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -303,7 +303,7 @@
 //            private _propertyPathLookup: IPropertyPathLookup;
 //let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartAbstractEntity("Entity2")

@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import chai = require('chai');
+import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
@@ -18,7 +18,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
         let entityName: string = "EntityName";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -48,7 +48,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
         let entityName: string = "EntityName";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntityBase")
@@ -83,7 +83,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAssociation(entityName)
@@ -115,7 +115,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAssociation("BaseName")
@@ -152,7 +152,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonType(entityName)
@@ -182,7 +182,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDescriptor(entityName)
@@ -211,7 +211,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDescriptor(entityName)
@@ -240,7 +240,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomain("DomainName")
@@ -268,7 +268,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartSubdomain("SubdomainName", "DomainName")

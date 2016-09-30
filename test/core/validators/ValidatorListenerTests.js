@@ -1,18 +1,22 @@
-"use strict";
-/// <reference path="../../../typings/index.d.ts" />
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("./ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("./TestRuleProvider");
-const TestDomainEntityContextValidation_1 = require("./TestDomainEntityContextValidation");
+﻿/// <reference path="../../../typings/index.d.ts" />
+import chai from 'chai'
+import ValidatorTestHelper from "./ValidatorTestHelper";
+import ValidatorListener from "../../../src/core/validators/ValidatorListener";
+import TestRuleProvider from "./TestRuleProvider";
+import {TestDomainEntityContextValidation} from "./TestDomainEntityContextValidation"
+
 let should = chai.should();
+
 //TODO: this needs to be revisited.
+
 describe('ValidatorListenerTests', () => {
-    let validatorListener = new ValidatorListener_1.default(new TestRuleProvider_1.default(new TestDomainEntityContextValidation_1.TestDomainEntityContextValidation()));
+    let validatorListener = new ValidatorListener(new TestRuleProvider<MetaEdGrammar.PropertyContext>(new TestDomainEntityContextValidation()));
+
     describe('When_validating_meta_ed_grammar', () => {
-        let helper = new ValidatorTestHelper_1.default();
+        let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = "Begin Namespace edfi core \n Domain Entity Test1 \n     documentation 'some documentation \n     string Property1 \n         documentation 'Property documentation starts here \n         is part of identity \n         max length 50 \n Domain Entity Test2 \n     documentation 'duck documentation \n       integer Property1 \n         documentation 'Property documentation starts here \n         is part of identity \n Domain Entity Test3 \n     documentation 'elephant documentation \n   date Property1 \n         documentation 'Property documentation starts here \n         is part of identity \n Domain Entity Test4 \n     documentation 'raccoon documentation \n     'raccoon documentation \n     'raccoon documentation \n     bool Property1 \n         documentation 'Property documentation starts here \n         is part of identity \n End Namespace \n";
+            let metaEdText: string = "Begin Namespace edfi core \n Domain Entity Test1 \n     documentation 'some documentation \n     string Property1 \n         documentation 'Property documentation starts here \n         is part of identity \n         max length 50 \n Domain Entity Test2 \n     documentation 'duck documentation \n       integer Property1 \n         documentation 'Property documentation starts here \n         is part of identity \n Domain Entity Test3 \n     documentation 'elephant documentation \n   date Property1 \n         documentation 'Property documentation starts here \n         is part of identity \n Domain Entity Test4 \n     documentation 'raccoon documentation \n     'raccoon documentation \n     'raccoon documentation \n     bool Property1 \n         documentation 'Property documentation starts here \n         is part of identity \n End Namespace \n";
+
             helper.setup(metaEdText, validatorListener);
         });
         it('should_fail_for_each_domain_entity', () => {
@@ -32,4 +36,3 @@ describe('ValidatorListenerTests', () => {
         });
     });
 });
-//# sourceMappingURL=ValidatorListenerTests.js.map

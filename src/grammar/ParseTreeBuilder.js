@@ -1,37 +1,42 @@
-"use strict";
-/// <reference path="../../typings/globals/node/index.d.ts" />
-let antlr4 = require('antlr4');
-let BaseLexer = require('./gen/BaseLexer');
-let MetaEdGrammar = require('./gen/MetaEdGrammar');
-class ParseTreeBuilder {
+import antlr4 from 'antlr4/index';
+import BaseLexer from './gen/BaseLexer';
+import MetaEdGrammar from './gen/MetaEdGrammar';
+
+import MetaEdErrorListener from './MetaEdErrorListener';
+
+export default class ParseTreeBuilder {
+    private metaEdErrorListener;
+
     constructor(metaEdErrorListener) {
-        this._metaEdErrorListener = metaEdErrorListener;
+        this.metaEdErrorListener = metaEdErrorListener;
     }
+
     buildParseTree(metaEdContents) {
         try {
             return this.errorIgnoringParser(metaEdContents).metaEd();
-        }
-        catch (parseCanceledException) {
+        } catch (parseCanceledException) {
             return this.errorListeningParser(metaEdContents).metaEd();
         }
     }
+
     buildTopLevelEntity(metaEdContents) {
         try {
             return this.errorIgnoringParser(metaEdContents).topLevelEntity();
-        }
-        catch (parseCanceledException) {
+        } catch (parseCanceledException) {
             return this.errorListeningParser(metaEdContents).topLevelEntity();
         }
     }
-    errorListeningParser(metaEdContents) {
+
+    private errorListeningParser(metaEdContents) {
         const lexer = new BaseLexer.BaseLexer(new antlr4.InputStream(metaEdContents));
         const parser = new MetaEdGrammar.MetaEdGrammar(new antlr4.CommonTokenStream(lexer, undefined));
-        lexer.addErrorListener(this._metaEdErrorListener);
+        lexer.addErrorListener(this.metaEdErrorListener);
         parser.removeErrorListeners();
-        parser.addErrorListener(this._metaEdErrorListener);
+        parser.addErrorListener(this.metaEdErrorListener);
         return parser;
     }
-    errorIgnoringParser(metaEdContents) {
+
+    private errorIgnoringParser(metaEdContents) {
         const lexer = new BaseLexer.BaseLexer(new antlr4.InputStream(metaEdContents));
         const parser = new MetaEdGrammar.MetaEdGrammar(new antlr4.CommonTokenStream(lexer, undefined));
         parser.Interpreter.PredictionMode = antlr4.atn.PredictionMode.SLL;
@@ -40,6 +45,3 @@ class ParseTreeBuilder {
         return parser;
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = ParseTreeBuilder;
-//# sourceMappingURL=ParseTreeBuilder.js.map

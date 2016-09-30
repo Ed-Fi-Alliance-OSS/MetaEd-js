@@ -1,639 +1,892 @@
-/// <reference path="../../../src/grammar/gen/MetaEdGrammarListener.d.ts" />
-"use strict";
-let MetaEdGrammar = require("../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
-const MetaEdGrammarListener_1 = require('../../../src/grammar/gen/MetaEdGrammarListener');
-const ValidationLevel_1 = require("./ValidationLevel");
-class ValidatorListener extends MetaEdGrammarListener_1.MetaEdGrammarListener {
-    constructor(ruleProvider) {
+// @flow
+import {MetaEdGrammar} from '../../../src/grammar/gen/MetaEdGrammar';
+
+import {MetaEdGrammarListener} from '../../../src/grammar/gen/MetaEdGrammarListener';
+import {MetaEdContext} from "../tasks/MetaEdContext";
+import {MetaEdFileIndex} from "../../grammar/IMetaEdFileIndex";
+import {SymbolTable} from "./SymbolTable";
+import {ValidationMessage} from "../../common/ValidationMessage";
+import type {ValidationRule} from "./ValidationRuleBase";
+import ValidationLevel from "./ValidationLevel";
+
+
+export default class ValidatorListener extends MetaEdGrammarListener {
+    validationRules: ValidationRule[];
+    symbolTable: SymbolTable;
+    warningMessageCollection: ValidationMessage[];
+    errorMessageCollection: ValidationMessage[];
+    metaEdFileIndex: MetaEdFileIndex;
+
+    constructor(validationRules: ValidationRule[]) {
         super();
-        this.ruleProvider = ruleProvider;
+        this.validationRules = validationRules;
     }
-    withContext(context) {
-        this.metaEdFileIndex = context.metaEdFileIndex;
-        this.warningMessageCollection = context.warningMessageCollection;
-        this.errorMessageCollection = context.errorMessageCollection;
-        this.symbolTable = context.symbolTable;
+
+    withContext(metaEdContext: MetaEdContext) {
+        this.metaEdFileIndex = metaEdContext.metaEdFileIndex;
+        this.warningMessageCollection = metaEdContext.warningMessageCollection;
+        this.errorMessageCollection = metaEdContext.errorMessageCollection;
+        this.symbolTable = metaEdContext.symbolTable;
     }
-    validateContext(context, ruleIndex) {
-        const validationRules = this.ruleProvider.getAll(ruleIndex, this.symbolTable);
-        if (validationRules.length === 0)
-            return;
-        validationRules.filter(x => x.level() == ValidationLevel_1.ValidationLevel.Error && !x.isValid(context))
-            .forEach(y => this.errorMessageCollection.push(this.buildValidationMessage(y, context)));
-        validationRules.filter(x => x.level() == ValidationLevel_1.ValidationLevel.Warning && !x.isValid(context))
-            .forEach(y => this.warningMessageCollection.push(this.buildValidationMessage(y, context)));
+
+    _validateContext(ruleContext: any, ruleIndex: number) {
+        const validationResults = this.validationRules.map(validationRule => validationRule(ruleContext, this.symbolTable));
+
+        validationResults.filter(x => x.errorLevel == ValidationLevel.Error && !x.valid)
+            .forEach(y => this.errorMessageCollection.push(this._buildValidationMessage(y.failureMessage, ruleContext)));
+
+        validationResults.filter(x => x.errorLevel == ValidationLevel.Warning && !x.valid)
+            .forEach(y => this.warningMessageCollection.push(this._buildValidationMessage(y.failureMessage, ruleContext)));
     }
-    buildValidationMessage(validationRule, context) {
+
+    _buildValidationMessage(failureMessage: ?string, context: any): ValidationMessage {
         const metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(context.start.line);
         return {
-            message: validationRule.getFailureMessage(context),
+            message: failureMessage == null ? "ERROR: Failure, but no failure message provided" : failureMessage,
             characterPosition: context.start.column,
             concatenatedLineNumber: context.start.line,
             fileName: metaEdFile.fileName,
             lineNumber: metaEdFile.lineNumber
         };
     }
-    enterAbstractEntity(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_abstractEntity);
+
+    enterAbstractEntity(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_abstractEntity);
+    }
+
+    enterAbstractEntityName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_abstractEntityName);
+    }
+
+    enterAssociation(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_association);
+    }
+
+    enterAssociationExtension(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_associationExtension);
+    }
+
+    enterAssociationName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_associationName);
+    }
+
+    enterAssociationSubclass(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_associationSubclass);
+    }
+
+    enterBaseKeyName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_baseKeyName);
+    }
+
+    enterBaseName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_baseName);
+    }
+
+    enterBooleanProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_booleanProperty);
+    }
+
+    enterCascadeUpdate(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_cascadeUpdate);
+    }
+
+    enterChoiceName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_choiceName);
+    }
+
+    enterChoiceType(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_choiceType);
+    }
+
+    enterCollection(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_collection);
+    }
+
+    enterCommonDecimalName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_commonDecimalName);
+    }
+
+    enterCommonDecimal(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_commonDecimal);
+    }
+
+    enterCommonIntegerName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_commonIntegerName);
+    }
+
+    enterCommonInteger(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_commonInteger);
+    }
+
+    enterCommonShortName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_commonShortName);
+    }
+
+    enterCommonShort(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_commonShort);
+    }
+
+    enterCommonStringName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_commonStringName);
+    }
+
+    enterCommonString(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_commonString);
+    }
+
+    enterCommonName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_commonName);
+    }
+
+    enterCommonType(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_commonType);
+    }
+
+    enterCommonTypeExtension(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_commonTypeExtension);
+    }
+
+    enterCurrencyProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_currencyProperty);
+    }
+
+    enterDateProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_dateProperty);
+    }
+
+    enterDecimalPlaces(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_decimalPlaces);
+    }
+
+    enterDecimalProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_decimalProperty);
+    }
+
+    enterDecimalValue(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_decimalValue);
+    }
+
+    enterDescriptor(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_descriptor);
+    }
+
+    enterDescriptorName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_descriptorName);
+    }
+
+    enterDescriptorProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_descriptorProperty);
+    }
+
+    enterDocumentation(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_documentation);
+    }
+
+    enterFooterDocumentation(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_footerDocumentation);
+    }
+
+    enterExtendedDocumentation(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_extendedDocumentation);
+    }
+
+    enterUseCaseDocumentation(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_useCaseDocumentation);
+    }
+
+    enterDocumentationLine(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_documentationLine);
+    }
+
+    enterDomain(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_domain);
+    }
+
+    enterDomainItem(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_domainItem);
+    }
+
+    enterDomainName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_domainName);
+    }
+
+    enterDomainEntity(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_domainEntity);
+    }
+
+    enterDomainEntityExtension(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_domainEntityExtension);
+    }
+
+    enterDomainEntitySubclass(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_domainEntitySubclass);
+    }
+
+    enterDurationProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_durationProperty);
+    }
+
+    enterEntityConfiguration(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_entityConfiguration);
+    }
+
+    enterEntityName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_entityName);
+    }
+
+    enterEnumeration(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_enumeration);
+    }
+
+    enterEnumerationName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_enumerationName);
+    }
+
+    enterEnumerationProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_enumerationProperty);
+    }
+
+    enterExtendeeName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_extendeeName);
+    }
+
+    enterFirstDomainEntity(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_firstDomainEntity);
+    }
+
+    enterIncludeProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_includeProperty);
+    }
+
+    enterIncludeExtensionOverride(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_includeExtensionOverride);
+    }
+
+    enterInlineCommonName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_inlineCommonName);
+    }
+
+    enterInlineCommonType(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_inlineCommonType);
+    }
+
+    enterSigned_int(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_signed_int);
+    }
+
+    enterIntegerProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_integerProperty);
+    }
+
+    enterInterchange(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_interchange);
+    }
+
+    enterInterchangeComponent(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_interchangeComponent);
+    }
+
+    enterInterchangeElement(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_interchangeElement);
+    }
+
+    enterInterchangeExtension(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_interchangeExtension);
+    }
+
+    enterInterchangeExtensionComponent(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_interchangeExtensionComponent);
+    }
+
+    enterInterchangeIdentityTemplate(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_interchangeIdentityTemplate);
+    }
+
+    enterInterchangeName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_interchangeName);
+    }
+
+    enterEnumerationItem(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_enumerationItem);
+    }
+
+    enterMaxLength(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_maxLength);
+    }
+
+    enterMaxValue(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_maxValue);
+    }
+
+    enterMaxValueDecimal(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_maxValueDecimal);
+    }
+
+    enterIsWeakReference(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_isWeakReference);
+    }
+
+    enterMergePartOfReference(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_mergePartOfReference);
+    }
+
+    enterMergePropertyPath(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_mergePropertyPath);
+    }
+
+    enterMetaEd(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_metaEd);
+    }
+
+    enterMinLength(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_minLength);
+    }
+
+    enterMinValue(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_minValue);
+    }
+
+    enterMinValueDecimal(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_minValueDecimal);
+    }
+
+    enterNamespace(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_namespace);
+    }
+
+    enterNamespaceName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_namespaceName);
+    }
+
+    enterNamespaceType(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_namespaceType);
+    }
+
+    enterNamespaceProjectExtension(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_namespaceProjectExtension);
+    }
+
+    enterOptional(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_optional);
+    }
+
+    enterOptionalCollection(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_optionalCollection);
+    }
+
+    enterOptionalMapType(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_optionalMapType);
+    }
+
+    enterPercentProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_percentProperty);
+    }
+
+    enterIdentity(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_identity);
+    }
+
+    enterIdentityRename(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_identityRename);
+    }
+
+    enterMetaEdId(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_metaEdId);
+    }
+
+    enterProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_property);
+    }
+
+    enterPropertyAnnotation(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_propertyAnnotation);
+    }
+
+    enterPropertyComponents(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_propertyComponents);
+    }
+
+    enterPropertyName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_propertyName);
+    }
+
+    enterPropertyPath(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_propertyPath);
+    }
+
+    enterReferenceProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_referenceProperty);
+    }
+
+    enterRequired(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_required);
+    }
+
+    enterRequiredCollection(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_requiredCollection);
+    }
+
+    enterRequiredMapType(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_requiredMapType);
+    }
+
+    enterSecondDomainEntity(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_secondDomainEntity);
     }
-    enterAbstractEntityName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_abstractEntityName);
+
+    enterShortDescription(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_shortDescription);
     }
-    enterAssociation(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_association);
+
+    enterSharedDecimalProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_sharedDecimalProperty);
     }
-    enterAssociationExtension(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_associationExtension);
+
+    enterSharedIntegerProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_sharedIntegerProperty);
     }
-    enterAssociationName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_associationName);
+
+    enterSharedShortProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_sharedShortProperty);
     }
-    enterAssociationSubclass(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_associationSubclass);
+
+    enterSharedStringProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_sharedStringProperty);
     }
-    enterBaseKeyName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_baseKeyName);
+
+    enterSharedPropertyType(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_sharedPropertyType);
     }
-    enterBaseName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_baseName);
+
+    enterShortenToName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_shortenToName);
     }
-    enterBooleanProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_booleanProperty);
+
+    enterShortProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_shortProperty);
     }
-    enterCascadeUpdate(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_cascadeUpdate);
+
+    enterStringProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_stringProperty);
     }
-    enterChoiceName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_choiceName);
+
+    enterSubdomain(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_subdomain);
     }
-    enterChoiceType(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_choiceType);
+
+    enterParentDomainName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_parentDomainName);
     }
-    enterCollection(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_collection);
+
+    enterSubdomainName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_subdomainName);
     }
-    enterCommonDecimalName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_commonDecimalName);
+
+    enterSubdomainPosition(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_subdomainPosition);
     }
-    enterCommonDecimal(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_commonDecimal);
+
+    enterTargetPropertyPath(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_targetPropertyPath);
     }
-    enterCommonIntegerName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_commonIntegerName);
+
+    enterTimeProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_timeProperty);
     }
-    enterCommonInteger(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_commonInteger);
+
+    enterTopLevelEntity(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_topLevelEntity);
     }
-    enterCommonShortName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_commonShortName);
+
+    enterTotalDigits(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_totalDigits);
     }
-    enterCommonShort(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_commonShort);
+
+    enterUnaryOperator(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_unaryOperator);
     }
-    enterCommonStringName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_commonStringName);
+
+    enterIsQueryableField(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_isQueryableField);
     }
-    enterCommonString(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_commonString);
+
+    enterIsQueryableOnly(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_isQueryableOnly);
     }
-    enterCommonName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_commonName);
+
+    enterWithContext(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_withContext);
     }
-    enterCommonType(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_commonType);
+
+    enterWithContextName(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_withContextName);
     }
-    enterCommonTypeExtension(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_commonTypeExtension);
+
+    enterWithMapType(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_withMapType);
     }
-    enterCurrencyProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_currencyProperty);
+
+    enterYearProperty(context: any) {
+        this._validateContext(context, MetaEdGrammar.RULE_yearProperty);
     }
-    enterDateProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_dateProperty);
+
+    exitAbstractEntity(context: any) {
     }
-    enterDecimalPlaces(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_decimalPlaces);
+
+    exitAbstractEntityName(context: any) {
     }
-    enterDecimalProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_decimalProperty);
+
+    exitAssociation(context: any) {
     }
-    enterDecimalValue(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_decimalValue);
+
+    exitAssociationExtension(context: any) {
     }
-    enterDescriptor(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_descriptor);
+
+    exitAssociationName(context: any) {
     }
-    enterDescriptorName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_descriptorName);
+
+    exitAssociationSubclass(context: any) {
     }
-    enterDescriptorProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_descriptorProperty);
+
+    exitBaseKeyName(context: any) {
     }
-    enterDocumentation(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_documentation);
+
+    exitBaseName(context: any) {
     }
-    enterFooterDocumentation(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_footerDocumentation);
+
+    exitBooleanProperty(context: any) {
     }
-    enterExtendedDocumentation(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_extendedDocumentation);
+
+    exitCascadeUpdate(context: any) {
     }
-    enterUseCaseDocumentation(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_useCaseDocumentation);
+
+    exitChoiceName(context: any) {
     }
-    enterDocumentationLine(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_documentationLine);
+
+    exitChoiceType(context: any) {
     }
-    enterDomain(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_domain);
+
+    exitCollection(context: any) {
     }
-    enterDomainItem(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_domainItem);
+
+    exitCommonDecimalName(context: any) {
     }
-    enterDomainName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_domainName);
+
+    exitCommonDecimal(context: any) {
     }
-    enterDomainEntity(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_domainEntity);
+
+    exitCommonIntegerName(context: any) {
     }
-    enterDomainEntityExtension(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_domainEntityExtension);
+
+    exitCommonInteger(context: any) {
     }
-    enterDomainEntitySubclass(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_domainEntitySubclass);
+
+    exitCommonShortName(context: any) {
     }
-    enterDurationProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_durationProperty);
+
+    exitCommonShort(context: any) {
     }
-    enterEntityConfiguration(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_entityConfiguration);
+
+    exitCommonStringName(context: any) {
     }
-    enterEntityName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_entityName);
+
+    exitCommonString(context: any) {
     }
-    enterEnumeration(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_enumeration);
+
+    exitCommonName(context: any) {
     }
-    enterEnumerationName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_enumerationName);
+
+    exitCommonType(context: any) {
     }
-    enterEnumerationProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_enumerationProperty);
+
+    exitCommonTypeExtension(context: any) {
     }
-    enterExtendeeName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_extendeeName);
+
+    exitCurrencyProperty(context: any) {
     }
-    enterFirstDomainEntity(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_firstDomainEntity);
+
+    exitDateProperty(context: any) {
     }
-    enterIncludeProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_includeProperty);
+
+    exitDecimalPlaces(context: any) {
     }
-    enterIncludeExtensionOverride(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_includeExtensionOverride);
+
+    exitDecimalProperty(context: any) {
     }
-    enterInlineCommonName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_inlineCommonName);
+
+    exitDecimalValue(context: any) {
     }
-    enterInlineCommonType(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_inlineCommonType);
+
+    exitDescriptor(context: any) {
     }
-    enterSigned_int(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_signed_int);
+
+    exitDescriptorName(context: any) {
     }
-    enterIntegerProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_integerProperty);
+
+    exitDescriptorProperty(context: any) {
     }
-    enterInterchange(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_interchange);
+
+    exitDocumentation(context: any) {
     }
-    enterInterchangeComponent(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_interchangeComponent);
+
+    exitFooterDocumentation(context: any) {
     }
-    enterInterchangeElement(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_interchangeElement);
+
+    exitExtendedDocumentation(context: any) {
     }
-    enterInterchangeExtension(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_interchangeExtension);
+
+    exitUseCaseDocumentation(context: any) {
     }
-    enterInterchangeExtensionComponent(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_interchangeExtensionComponent);
+
+    exitDocumentationLine(context: any) {
     }
-    enterInterchangeIdentityTemplate(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_interchangeIdentityTemplate);
+
+    exitDomain(context: any) {
     }
-    enterInterchangeName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_interchangeName);
+
+    exitDomainItem(context: any) {
     }
-    enterEnumerationItem(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_enumerationItem);
+
+    exitDomainName(context: any) {
     }
-    enterMaxLength(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_maxLength);
+
+    exitDomainEntity(context: any) {
     }
-    enterMaxValue(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_maxValue);
+
+    exitDomainEntityExtension(context: any) {
     }
-    enterMaxValueDecimal(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_maxValueDecimal);
+
+    exitDomainEntitySubclass(context: any) {
     }
-    enterIsWeakReference(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_isWeakReference);
+
+    exitDurationProperty(context: any) {
     }
-    enterMergePartOfReference(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_mergePartOfReference);
+
+    exitEntityConfiguration(context: any) {
     }
-    enterMergePropertyPath(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_mergePropertyPath);
+
+    exitEntityName(context: any) {
     }
-    enterMetaEd(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_metaEd);
+
+    exitEnumeration(context: any) {
     }
-    enterMinLength(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_minLength);
+
+    exitEnumerationName(context: any) {
     }
-    enterMinValue(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_minValue);
+
+    exitEnumerationProperty(context: any) {
     }
-    enterMinValueDecimal(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_minValueDecimal);
+
+    exitExtendeeName(context: any) {
     }
-    enterNamespace(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_namespace);
+
+    exitFirstDomainEntity(context: any) {
     }
-    enterNamespaceName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_namespaceName);
+
+    exitIncludeProperty(context: any) {
     }
-    enterNamespaceType(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_namespaceType);
+
+    exitIncludeExtensionOverride(context: any) {
     }
-    enterNamespaceProjectExtension(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_namespaceProjectExtension);
+
+    exitInlineCommonName(context: any) {
     }
-    enterOptional(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_optional);
+
+    exitInlineCommonType(context: any) {
     }
-    enterOptionalCollection(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_optionalCollection);
+
+    exitSigned_int(context: any) {
     }
-    enterOptionalMapType(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_optionalMapType);
+
+    exitIntegerProperty(context: any) {
     }
-    enterPercentProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_percentProperty);
+
+    exitInterchange(context: any) {
     }
-    enterIdentity(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_identity);
+
+    exitInterchangeComponent(context: any) {
     }
-    enterIdentityRename(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_identityRename);
+
+    exitInterchangeElement(context: any) {
     }
-    enterMetaEdId(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_metaEdId);
+
+    exitInterchangeExtension(context: any) {
     }
-    enterProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_property);
+
+    exitInterchangeExtensionComponent(context: any) {
     }
-    enterPropertyAnnotation(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_propertyAnnotation);
+
+    exitInterchangeIdentityTemplate(context: any) {
     }
-    enterPropertyComponents(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_propertyComponents);
+
+    exitInterchangeName(context: any) {
     }
-    enterPropertyName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_propertyName);
+
+    exitEnumerationItem(context: any) {
     }
-    enterPropertyPath(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_propertyPath);
+
+    exitMaxLength(context: any) {
     }
-    enterReferenceProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_referenceProperty);
+
+    exitMaxValue(context: any) {
     }
-    enterRequired(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_required);
+
+    exitMaxValueDecimal(context: any) {
     }
-    enterRequiredCollection(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_requiredCollection);
+
+    exitIsWeakReference(context: any) {
     }
-    enterRequiredMapType(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_requiredMapType);
+
+    exitMergePartOfReference(context: any) {
     }
-    enterSecondDomainEntity(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_secondDomainEntity);
+
+    exitMergePropertyPath(context: any) {
     }
-    enterShortDescription(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_shortDescription);
+
+    exitMetaEd(context: any) {
     }
-    enterSharedDecimalProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_sharedDecimalProperty);
+
+    exitMinLength(context: any) {
     }
-    enterSharedIntegerProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_sharedIntegerProperty);
+
+    exitMinValue(context: any) {
     }
-    enterSharedShortProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_sharedShortProperty);
+
+    exitMinValueDecimal(context: any) {
     }
-    enterSharedStringProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_sharedStringProperty);
+
+    exitNamespace(context: any) {
     }
-    enterSharedPropertyType(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_sharedPropertyType);
+
+    exitNamespaceName(context: any) {
     }
-    enterShortenToName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_shortenToName);
+
+    exitNamespaceType(context: any) {
     }
-    enterShortProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_shortProperty);
+
+    exitNamespaceProjectExtension(context: any) {
     }
-    enterStringProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_stringProperty);
+
+    exitOptional(context: any) {
     }
-    enterSubdomain(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_subdomain);
+
+    exitOptionalCollection(context: any) {
     }
-    enterParentDomainName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_parentDomainName);
+
+    exitOptionalMapType(context: any) {
     }
-    enterSubdomainName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_subdomainName);
+
+    exitPercentProperty(context: any) {
     }
-    enterSubdomainPosition(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_subdomainPosition);
+
+    exitIdentity(context: any) {
     }
-    enterTargetPropertyPath(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_targetPropertyPath);
+
+    exitIdentityRename(context: any) {
     }
-    enterTimeProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_timeProperty);
+
+    exitMetaEdId(context: any) {
     }
-    enterTopLevelEntity(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_topLevelEntity);
+
+    exitProperty(context: any) {
     }
-    enterTotalDigits(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_totalDigits);
+
+    exitPropertyAnnotation(context: any) {
     }
-    enterUnaryOperator(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_unaryOperator);
+
+    exitPropertyComponents(context: any) {
     }
-    enterIsQueryableField(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_isQueryableField);
+
+    exitPropertyName(context: any) {
     }
-    enterIsQueryableOnly(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_isQueryableOnly);
+
+    exitPropertyPath(context: any) {
     }
-    enterWithContext(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_withContext);
+
+    exitReferenceProperty(context: any) {
     }
-    enterWithContextName(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_withContextName);
+
+    exitRequired(context: any) {
     }
-    enterWithMapType(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_withMapType);
+
+    exitRequiredCollection(context: any) {
     }
-    enterYearProperty(context) {
-        this.validateContext(context, MetaEdGrammar.RULE_YearProperty);
+
+    exitRequiredMapType(context: any) {
     }
-    exitAbstractEntity(context) {
+
+    exitSecondDomainEntity(context: any) {
     }
-    exitAbstractEntityName(context) {
+
+    exitSharedDecimalProperty(context: any) {
     }
-    exitAssociation(context) {
+
+    exitSharedIntegerProperty(context: any) {
     }
-    exitAssociationExtension(context) {
+
+    exitSharedShortProperty(context: any) {
     }
-    exitAssociationName(context) {
+
+    exitSharedStringProperty(context: any) {
     }
-    exitAssociationSubclass(context) {
+
+    exitSharedPropertyType(context: any) {
     }
-    exitBaseKeyName(context) {
+
+    exitShortDescription(context: any) {
     }
-    exitBaseName(context) {
+
+    exitShortenToName(context: any) {
     }
-    exitBooleanProperty(context) {
+
+    exitShortProperty(context: any) {
     }
-    exitCascadeUpdate(context) {
+
+    exitStringProperty(context: any) {
     }
-    exitChoiceName(context) {
+
+    exitSubdomain(context: any) {
     }
-    exitChoiceType(context) {
+
+    exitParentDomainName(context: any) {
     }
-    exitCollection(context) {
+
+    exitSubdomainName(context: any) {
     }
-    exitCommonDecimalName(context) {
+
+    exitSubdomainPosition(context: any) {
     }
-    exitCommonDecimal(context) {
+
+    exitTargetPropertyPath(context: any) {
     }
-    exitCommonIntegerName(context) {
+
+    exitTimeProperty(context: any) {
     }
-    exitCommonInteger(context) {
+
+    exitTopLevelEntity(context: any) {
     }
-    exitCommonShortName(context) {
+
+    exitTotalDigits(context: any) {
     }
-    exitCommonShort(context) {
+
+    exitUnaryOperator(context: any) {
     }
-    exitCommonStringName(context) {
+
+    exitIsQueryableField(context: any) {
     }
-    exitCommonString(context) {
+
+    exitIsQueryableOnly(context: any) {
     }
-    exitCommonName(context) {
+
+    exitWithContext(context: any) {
     }
-    exitCommonType(context) {
+
+    exitWithContextName(context: any) {
     }
-    exitCommonTypeExtension(context) {
+
+    exitWithMapType(context: any) {
     }
-    exitCurrencyProperty(context) {
-    }
-    exitDateProperty(context) {
-    }
-    exitDecimalPlaces(context) {
-    }
-    exitDecimalProperty(context) {
-    }
-    exitDecimalValue(context) {
-    }
-    exitDescriptor(context) {
-    }
-    exitDescriptorName(context) {
-    }
-    exitDescriptorProperty(context) {
-    }
-    exitDocumentation(context) {
-    }
-    exitFooterDocumentation(context) {
-    }
-    exitExtendedDocumentation(context) {
-    }
-    exitUseCaseDocumentation(context) {
-    }
-    exitDocumentationLine(context) {
-    }
-    exitDomain(context) {
-    }
-    exitDomainItem(context) {
-    }
-    exitDomainName(context) {
-    }
-    exitDomainEntity(context) {
-    }
-    exitDomainEntityExtension(context) {
-    }
-    exitDomainEntitySubclass(context) {
-    }
-    exitDurationProperty(context) {
-    }
-    exitEntityConfiguration(context) {
-    }
-    exitEntityName(context) {
-    }
-    exitEnumeration(context) {
-    }
-    exitEnumerationName(context) {
-    }
-    exitEnumerationProperty(context) {
-    }
-    exitExtendeeName(context) {
-    }
-    exitFirstDomainEntity(context) {
-    }
-    exitIncludeProperty(context) {
-    }
-    exitIncludeExtensionOverride(context) {
-    }
-    exitInlineCommonName(context) {
-    }
-    exitInlineCommonType(context) {
-    }
-    exitSigned_int(context) {
-    }
-    exitIntegerProperty(context) {
-    }
-    exitInterchange(context) {
-    }
-    exitInterchangeComponent(context) {
-    }
-    exitInterchangeElement(context) {
-    }
-    exitInterchangeExtension(context) {
-    }
-    exitInterchangeExtensionComponent(context) {
-    }
-    exitInterchangeIdentityTemplate(context) {
-    }
-    exitInterchangeName(context) {
-    }
-    exitEnumerationItem(context) {
-    }
-    exitMaxLength(context) {
-    }
-    exitMaxValue(context) {
-    }
-    exitMaxValueDecimal(context) {
-    }
-    exitIsWeakReference(context) {
-    }
-    exitMergePartOfReference(context) {
-    }
-    exitMergePropertyPath(context) {
-    }
-    exitMetaEd(context) {
-    }
-    exitMinLength(context) {
-    }
-    exitMinValue(context) {
-    }
-    exitMinValueDecimal(context) {
-    }
-    exitNamespace(context) {
-    }
-    exitNamespaceName(context) {
-    }
-    exitNamespaceType(context) {
-    }
-    exitNamespaceProjectExtension(context) {
-    }
-    exitOptional(context) {
-    }
-    exitOptionalCollection(context) {
-    }
-    exitOptionalMapType(context) {
-    }
-    exitPercentProperty(context) {
-    }
-    exitIdentity(context) {
-    }
-    exitIdentityRename(context) {
-    }
-    exitMetaEdId(context) {
-    }
-    exitProperty(context) {
-    }
-    exitPropertyAnnotation(context) {
-    }
-    exitPropertyComponents(context) {
-    }
-    exitPropertyName(context) {
-    }
-    exitPropertyPath(context) {
-    }
-    exitReferenceProperty(context) {
-    }
-    exitRequired(context) {
-    }
-    exitRequiredCollection(context) {
-    }
-    exitRequiredMapType(context) {
-    }
-    exitSecondDomainEntity(context) {
-    }
-    exitSharedDecimalProperty(context) {
-    }
-    exitSharedIntegerProperty(context) {
-    }
-    exitSharedShortProperty(context) {
-    }
-    exitSharedStringProperty(context) {
-    }
-    exitSharedPropertyType(context) {
-    }
-    exitShortDescription(context) {
-    }
-    exitShortenToName(context) {
-    }
-    exitShortProperty(context) {
-    }
-    exitStringProperty(context) {
-    }
-    exitSubdomain(context) {
-    }
-    exitParentDomainName(context) {
-    }
-    exitSubdomainName(context) {
-    }
-    exitSubdomainPosition(context) {
-    }
-    exitTargetPropertyPath(context) {
-    }
-    exitTimeProperty(context) {
-    }
-    exitTopLevelEntity(context) {
-    }
-    exitTotalDigits(context) {
-    }
-    exitUnaryOperator(context) {
-    }
-    exitIsQueryableField(context) {
-    }
-    exitIsQueryableOnly(context) {
-    }
-    exitWithContext(context) {
-    }
-    exitWithContextName(context) {
-    }
-    exitWithMapType(context) {
-    }
-    exitYearProperty(context) {
+
+    exitYearProperty(context: any) {
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = ValidatorListener;
-//# sourceMappingURL=ValidatorListener.js.map

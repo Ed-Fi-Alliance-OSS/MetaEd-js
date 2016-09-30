@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import chai = require('chai');
+import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
@@ -18,7 +18,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -45,7 +45,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntityBase")
@@ -77,7 +77,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAssociation(entityName)
@@ -106,7 +106,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAssociation("BaseName")
@@ -140,7 +140,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity(entityName)
@@ -167,7 +167,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntity")

@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import chai = require('chai');
+import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
@@ -18,7 +18,7 @@ describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {
     describe('When_merge_exists_in_core', () => {
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("Entity1")
@@ -47,7 +47,7 @@ describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {
             const extensionNamespace: string = "extension";
 let helper: ValidatorTestHelper = new ValidatorTestHelper();
 before(() => {
-    let metaEdText = MetaEdTextBuilder.buildIt
+    let metaEdText = MetaEdTextBuilder.build()
 
         .withBeginNamespace(extensionNamespace, "EXTENSION")
         .withStartDomainEntity(entityName1)

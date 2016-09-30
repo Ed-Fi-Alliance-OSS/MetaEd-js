@@ -1,20 +1,20 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const chai = require('chai');
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const ValidatorTestHelper_1 = require("./../ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const AbstractEntityMustContainAnIdentity_1 = require("../../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAnIdentity");
-let MetaEdGrammar = require("../../../../src/grammar/gen/MetaEdGrammar").MetaEdGrammar;
+import chai from 'chai'
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import ValidatorTestHelper from "./../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import abstractEntityMustContainAnIdentity from "../../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAnIdentity";
+
 let should = chai.should();
+
 describe('AbstractEntityMustContainAnIdentityTests', () => {
     describe('When_validating_abstract_entity_with_identity_fields', () => {
-        const entityName = "EntityName";
-        let helper;
+        const entityName: string = "EntityName";
+
+        let helper: ValidatorTestHelper;
+
         before(() => {
-            const metaEdTextBuilder = new MetaEdTextBuilder_1.default();
-            const metaEdText = metaEdTextBuilder
+            const metaEdTextBuilder: MetaEdTextBuilder = new MetaEdTextBuilder();
+            const metaEdText: string = metaEdTextBuilder
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity(entityName)
                 .withDocumentation("doc")
@@ -22,20 +22,25 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
                 .withEndAbstractEntity()
                 .withEndNamespace()
                 .toString();
-            helper = new ValidatorTestHelper_1.default();
-            helper.setup(metaEdText, new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_abstractEntity, new AbstractEntityMustContainAnIdentity_1.AbstractEntityMustContainAnIdentity())));
+
+            helper = new ValidatorTestHelper();
+            helper.setup(metaEdText, new ValidatorListener([abstractEntityMustContainAnIdentity]));
         });
+
         it('Should_have_no_validation_failures', () => {
             helper.errorMessageCollection.length.should.equal(0);
             helper.warningMessageCollection.length.should.equal(0);
         });
     });
+
     describe('When_validating_abstract_entity_with_no_identity_fields', () => {
-        const entityName = "EntityName";
-        let helper;
+        const entityName: string = "EntityName";
+
+        let helper: ValidatorTestHelper;
+
         before(() => {
-            const metaEdTextBuilder = new MetaEdTextBuilder_1.default();
-            const metaEdText = metaEdTextBuilder
+            const metaEdTextBuilder: MetaEdTextBuilder = new MetaEdTextBuilder();
+            const metaEdText: string = metaEdTextBuilder
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity(entityName)
                 .withDocumentation("doc")
@@ -43,12 +48,15 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
                 .withEndAbstractEntity()
                 .withEndNamespace()
                 .toString();
-            helper = new ValidatorTestHelper_1.default();
-            helper.setup(metaEdText, new ValidatorListener_1.default(new TestRuleProvider_1.default(MetaEdGrammar.RULE_abstractEntity, new AbstractEntityMustContainAnIdentity_1.AbstractEntityMustContainAnIdentity())));
+
+            helper = new ValidatorTestHelper();
+          helper.setup(metaEdText, new ValidatorListener([abstractEntityMustContainAnIdentity]));
         });
+
         it('Should_have_validation_failure', () => {
             helper.errorMessageCollection.should.not.be.empty;
         });
+
         it('Should_have_validation_failure_message', () => {
             const failure = helper.errorMessageCollection[0];
             failure.message.should.include("Abstract Entity");
@@ -57,4 +65,3 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
         });
     });
 });
-//# sourceMappingURL=AbstractEntityMustContainAnIdentityTests.js.map

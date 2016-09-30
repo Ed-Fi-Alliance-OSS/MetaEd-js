@@ -1,31 +1,33 @@
-"use strict";
-const SymbolTable_1 = require('../../../src/core/validators/SymbolTable');
-const MetaEdContext_1 = require('../../../src/core/tasks/MetaEdContext');
-const SingleFileMetaEdFileIndex_1 = require('../../../src/core/tasks/SingleFileMetaEdFileIndex');
-const SymbolTableBuilder_1 = require('../../../src/core/validators/SymbolTableBuilder');
-const NullSymbolTableBuilderListener_1 = require('../../common/NullSymbolTableBuilderListener');
-let antlr4 = require('antlr4/index');
-let MetaEdGrammar = require('../../../src/grammar/gen/MetaEdGrammar');
-let BaseLexer = require('../../../src/grammar/gen/BaseLexer');
-class SymbolTableTestHelper {
+import ValidationMessage from '../../../src/common/ValidationMessage'
+import SymbolTable from '../../../src/core/validators/SymbolTable'
+import { MetaEdContext } from '../../../src/core/tasks/MetaEdContext'
+import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex'
+import { SymbolTableBuilder } from  '../../../src/core/validators/SymbolTableBuilder'
+import NullSymbolTableBuilderListener from '../../common/NullSymbolTableBuilderListener'
+
+import antlr4 from 'antlr4/index';
+import MetaEdGrammar from '../../../src/grammar/gen/MetaEdGrammar';
+import BaseLexer from '../../../src/grammar/gen/BaseLexer';
+
+export default class SymbolTableTestHelper {
     setup(metaEdText) {
         console.log(metaEdText);
-        let metaEdFileIndex = new SingleFileMetaEdFileIndex_1.default();
+        let metaEdFileIndex = new SingleFileMetaEdFileIndex();
         metaEdFileIndex.addContents(metaEdText);
-        this.symbolTable = new SymbolTable_1.default();
-        let listener = new SymbolTableBuilder_1.SymbolTableBuilder(new NullSymbolTableBuilderListener_1.default());
+
+        this.symbolTable = new SymbolTable();
+        let listener = new SymbolTableBuilder(new NullSymbolTableBuilderListener());
+
         let antlrInputStream = new antlr4.InputStream(metaEdText);
         let lexer = new BaseLexer.BaseLexer(antlrInputStream);
         let tokens = new antlr4.CommonTokenStream(lexer);
         let parser = new MetaEdGrammar.MetaEdGrammar(tokens);
         this.parserContext = parser.metaEd();
-        this.metaEdContext = new MetaEdContext_1.MetaEdContext(metaEdFileIndex, this.symbolTable);
+        this.metaEdContext = new MetaEdContext(metaEdFileIndex, this.symbolTable);
+
         this.warningMessageCollection = this.metaEdContext.warningMessageCollection;
         this.errorMessageCollection = this.metaEdContext.errorMessageCollection;
         listener.withContext(this.metaEdContext);
         antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, this.parserContext);
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = SymbolTableTestHelper;
-//# sourceMappingURL=SymbolTableTestHelper.js.map

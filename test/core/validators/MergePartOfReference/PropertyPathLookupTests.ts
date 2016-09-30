@@ -1,7 +1,7 @@
 ﻿//TODO: Part of property path unique pattern
 
 ///// <reference path="../../../../typings/index.d.ts" />
-//import chai = require('chai');
+//import chai from 'chai'
 //import {ValidatorTestHelper} from "../ValidatorTestHelper";
 //
 //let should = chai.should();
@@ -28,7 +28,7 @@
 //describe('When_looking_for_property_on_current_entity extends PropertyPathLookupTestBase {
 //            let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -57,7 +57,7 @@
 //describe('When_looking_for_first_domain_entity_on_association extends PropertyPathLookupTestBase {
 //            let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -97,7 +97,7 @@
 //describe('When_looking_for_second_domain_entity_on_association extends PropertyPathLookupTestBase {
 //            let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -137,7 +137,7 @@
 //describe('When_looking_for_non_identity_property_on_current_entity extends PropertyPathLookupTestBase {
 //            let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -166,7 +166,7 @@
 //describe('When_looking_for_property_that_does_not_exist extends PropertyPathLookupTestBase {
 //            let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -195,7 +195,7 @@
 //describe('When_looking_for_duplicated_property extends PropertyPathLookupTestBase {
 //            let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -230,7 +230,7 @@
 //describe('When_looking_for_deep_property extends PropertyPathLookupTestBase {
 //            let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -267,7 +267,7 @@ import SymbolTableEntityType from '../SymbolTableEntityType'
 //describe('When_looking_for_non_pk_property extends PropertyPathLookupTestBase {
 //            let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    let metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")

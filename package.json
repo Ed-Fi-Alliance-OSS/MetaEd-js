@@ -1,26 +1,27 @@
 {
-  "name": "node-metaed",
+  "name": "metaed-js",
   "private": true,
   "version": "0.8.0",
-  "description": "MetaEd implemented in TypeScript",
+  "description": "MetaEd implemented in JavaScript",
   "repository": "https://github.com/bradbanister/metaed-ts",
   "license": "private",
   "dependencies": {
     "antlr4": "^4.5.3",
     "handlebars": "^4.0.5",
-    "typescript-dotnet-commonjs": "^3.2.4"
+    "ramda": "^0.22.1"
   },
   "devDependencies": {
+    "babel-plugin-transform-flow-strip-types": "^6.14.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-register": "^6.16.3",
     "chai": "^3.5.0",
-    "mocha": "^2.4.5",
-    "ts-node": "^0.9.3",
-    "typescript": "^2.0.0"
+    "flow-bin": "^0.33.0",
+    "flow-typed": "^2.0.0",
+    "mocha": "^2.4.5"
   },
   "scripts": {
     "prestart": "npm install",
-    "test": "mocha --compilers ts:ts-node/register test/**/*AbstractEntityMustContainAnIdentityTests.ts test/**/*AbstractEntityMustContainAnIdentityTests.ts",
-    "test:debug": "mocha --compilers ts:ts-node/register test/**/*Test.ts test/**/*Tests.ts --debug-brk",
-    "typings": "typings",
-    "tsc": "tsc"
+    "test": "mocha --compilers js:babel-register test/**/*Test.js test/**/*Tests.js",
+    "test:debug": "mocha --compilers js:babel-register test/**/*Test.js test/**/*Tests.js --debug-brk"
   }
 }

@@ -1,16 +1,14 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class CommonStringMinLengthMustNotBeGreaterThanMaxLength extends ValidationRuleBase_1.ValidationRuleBase {
-    isValid(context) {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+export class CommonStringMinLengthMustNotBeGreaterThanMaxLength extends ValidationRuleBase<MetaEdGrammar.CommonStringContext>
+{
+    public isValid(context: MetaEdGrammar.CommonStringContext): boolean {
         if (context.minLength() == null)
             return true;
         let minLength = Number(context.minLength().MinLength());
         let maxLength = Number(context.maxLength().MaxLength());
         return minLength <= maxLength;
     }
-    getFailureMessage(context) {
+    public getFailureMessage(context: MetaEdGrammar.CommonStringContext): string {
         return `Common String '${context.commonStringName().GetText()}' has min length greater than max length.`;
     }
 }
-exports.CommonStringMinLengthMustNotBeGreaterThanMaxLength = CommonStringMinLengthMustNotBeGreaterThanMaxLength;
-//# sourceMappingURL=CommonStringMinLengthMustNotBeGreaterThanMaxLength.js.map

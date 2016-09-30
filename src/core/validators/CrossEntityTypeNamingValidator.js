@@ -1,12 +1,16 @@
-"use strict";
-class CrossEntityTypeNamingValidator {
-    constructor() {
-        this._trackedEntityNames = new HashSet();
-    }
-    withContext(context) {
+﻿import { ValidationRuleBase } from "./ValidationRuleBase";
+import ValidationMessage from "../../common/ValidationMessage"
+import {ISymbolTableBuilderListener, ITerminalNode} from "./ISymbolTableBuilderListener"
+import {IMetaEdContext} from "../tasks/MetaEdContext"
+import ParserRuleContext = MetaEdGrammar.ParserRuleContext;
+
+export class CrossEntityTypeNamingValidator implements ISymbolTableBuilderListener {
+    private _trackedEntityNames: ISet<string> = new HashSet<string>();
+    private _context: IMetaEdContext;
+    public withContext(context: IMetaEdContext): void {
         this._context = context;
     }
-    beforeAddEntity(candidateEntityType, candidateEntityName, candidateContext) {
+    public beforeAddEntity(candidateEntityType: string, candidateEntityNameIdNode: ITerminalNode, candidateContext: ParserRuleContext): boolean {
         if (candidateContext.IsExtensionContext())
             return true;
         if (candidateContext instanceof MetaEdGrammar.DomainContext
@@ -15,24 +19,23 @@ class CrossEntityTypeNamingValidator {
             || candidateContext instanceof MetaEdGrammar.EnumerationContext
             || candidateContext instanceof MetaEdGrammar.DescriptorContext)
             return true;
-        if (this._trackedEntityNames.Contains(candidateEntityName.ToString())) {
-            let metaEdFile = this._context.metaEdFileIndex.getFileAndLineNumber(candidateEntityName.Symbol.Line);
-            let failure = {
-                message: `${candidateEntityType} named ${candidateEntityName} is a duplicate declaration of that name.`,
-                characterPosition: candidateEntityName.Symbol.Column,
-                concatenatedLineNumber: candidateEntityName.Symbol.Line,
+
+        if (this._trackedEntityNames.Contains(candidateEntityNameIdNode.getText())) {
+            let metaEdFile = this._context.metaEdFileIndex.getFileAndLineNumber(candidateEntityNameIdNode.Symbol.Line);
+            let failure: ValidationMessage = {
+                message: `${candidateEntityType} named ${candidateEntityNameIdNode.getText()} is a duplicate declaration of that name.`,
+                characterPosition: candidateEntityNameIdNode.Symbol.Column,
+                concatenatedLineNumber: candidateEntityNameIdNode.Symbol.Line,
                 fileName: metaEdFile.fileName,
                 lineNumber: metaEdFile.lineNumber
             };
             this._context.errorMessageCollection.push(failure);
             return false;
         }
-        this._trackedEntityNames.Add(candidateEntityName.ToString());
+        this._trackedEntityNames.Add(candidateEntityNameIdNode.ToString());
         return true;
     }
-    reset() {
+    public reset(): void {
         this._trackedEntityNames.Clear();
     }
 }
-exports.CrossEntityTypeNamingValidator = CrossEntityTypeNamingValidator;
-//# sourceMappingURL=CrossEntityTypeNamingValidator.js.map

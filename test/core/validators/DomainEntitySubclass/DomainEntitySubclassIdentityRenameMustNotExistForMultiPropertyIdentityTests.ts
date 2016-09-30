@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../../typings/index.d.ts" />
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import chai = require('chai');
+import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
 import {TestRuleProvider} from "../TestRuleProvider";
@@ -19,7 +19,7 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
         const baseName: string = "BaseDomainEntityIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(baseName)
@@ -45,7 +45,7 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
         const baseName: string = "BaseDomainEntityIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(baseName)
@@ -72,7 +72,7 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
         const baseName: string = "BaseDomainEntityIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(baseName)
@@ -108,7 +108,7 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
         const baseName: string = "BaseDomainEntityIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.buildIt
+            let metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntitySubclass(entityName, baseName)

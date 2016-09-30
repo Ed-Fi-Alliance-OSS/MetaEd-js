@@ -1,11 +1,13 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class AssociationSubclassMustNotDuplicateAssociationPropertyName extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
+﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
+export class AssociationSubclassMustNotDuplicateAssociationPropertyName extends ValidationRuleBase<MetaEdGrammar.AssociationSubclassContext>
+{
+    private symbolTable: ISymbolTable;
+    constructor(symbolTable: ISymbolTable) {
         super();
         this.symbolTable = symbolTable;
     }
-    isValid(context) {
+    public isValid(context: MetaEdGrammar.AssociationSubclassContext): boolean {
         let entityType = context.ASSOCIATION().GetText();
         let extensionType = context.ASSOCIATION().GetText() + context.BASED_ON();
         let identifier = context.associationName().GetText();
@@ -14,7 +16,7 @@ class AssociationSubclassMustNotDuplicateAssociationPropertyName extends Validat
         let subclassPropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(extensionType, identifier);
         return !basePropertyIdentifiers.Intersect(subclassPropertyIdentifiers).Any();
     }
-    getFailureMessage(context) {
+    public getFailureMessage(context: MetaEdGrammar.AssociationSubclassContext): string {
         let entityType = context.ASSOCIATION().GetText();
         let extensionType = context.ASSOCIATION().GetText() + context.BASED_ON();
         let identifier = context.associationName().GetText();
@@ -25,5 +27,3 @@ class AssociationSubclassMustNotDuplicateAssociationPropertyName extends Validat
         return `Association '${identifier}' based on '${baseIdentifier}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of base Association.`;
     }
 }
-exports.AssociationSubclassMustNotDuplicateAssociationPropertyName = AssociationSubclassMustNotDuplicateAssociationPropertyName;
-//# sourceMappingURL=AssociationSubclassMustNotDuplicateAssociationPropertyName.js.map
