@@ -1,17 +1,8 @@
 ﻿// @flow
-import R from 'ramda';
-
-import ValidationLevel from '../ValidationLevel';
+import { associationExtensionErrorRule, includeAssociationExtensionRule } from './AssociationExtensionValidationRule';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
-import validationRuleBase from '../ValidationRuleBase';
 import SymbolTable from '../SymbolTable';
 import { getAncestorContext, isExtensionNamespace, namespaceNameFor } from "../ValidationHelper";
-
-const level = ValidationLevel.Error;
-
-function handled(ruleContext: any) : boolean {
-    return ruleContext.ruleIndex === MetaEdGrammar.RULE_associationExtension;
-}
 
 function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
     const parentNamespaceContext = getAncestorContext(ruleContext, MetaEdGrammar.RULE_namespace);
@@ -23,5 +14,7 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable) : string {
     return `Association additions '${ruleContext.extendeeName().getText()}' is not valid in core namespace '${namespaceNameFor(parentNamespaceContext)}`;
 }
 
-const validationRule = R.partial(validationRuleBase, [level, handled, valid, failureMessage]);
+const validationRule = associationExtensionErrorRule(valid, failureMessage);
 export { validationRule as default };
+
+export const includeRule = includeAssociationExtensionRule(validationRule);

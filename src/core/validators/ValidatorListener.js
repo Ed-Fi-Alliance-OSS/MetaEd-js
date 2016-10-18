@@ -1,25 +1,23 @@
 // @flow
 import {MetaEdGrammar} from '../../../src/grammar/gen/MetaEdGrammar';
-
 import {MetaEdGrammarListener} from '../../../src/grammar/gen/MetaEdGrammarListener';
-import {MetaEdContext} from "../tasks/MetaEdContext";
-import {MetaEdFileIndex} from "../../grammar/IMetaEdFileIndex";
-import {SymbolTable} from "./SymbolTable";
-import {ValidationMessage} from "../../common/ValidationMessage";
-import type {ValidationRule} from "./ValidationRuleBase";
+import {MetaEdContext} from '../tasks/MetaEdContext';
+import {MetaEdFileIndex} from '../../grammar/IMetaEdFileIndex';
+import {SymbolTable} from './SymbolTable';
+import {ValidationMessage} from '../../common/ValidationMessage';
+import type { ValidationRuleRepository } from './ValidationRuleRepository';
 import ValidationLevel from "./ValidationLevel";
 
-
 export default class ValidatorListener extends MetaEdGrammarListener {
-    validationRules: ValidationRule[];
+    validationRuleRepository: ValidationRuleRepository;
     symbolTable: SymbolTable;
     warningMessageCollection: ValidationMessage[];
     errorMessageCollection: ValidationMessage[];
     metaEdFileIndex: MetaEdFileIndex;
 
-    constructor(validationRules: ValidationRule[]) {
+    constructor(validationRuleRepository: ValidationRuleRepository) {
         super();
-        this.validationRules = validationRules;
+        this.validationRuleRepository = validationRuleRepository;
     }
 
     withContext(metaEdContext: MetaEdContext) {
@@ -30,7 +28,10 @@ export default class ValidatorListener extends MetaEdGrammarListener {
     }
 
     _validateContext(ruleContext: any, ruleIndex: number) {
-        const validationResults = this.validationRules.map(validationRule => validationRule(ruleContext, this.symbolTable));
+        const relevantRules = this.validationRuleRepository.get(ruleIndex);
+        if (relevantRules == null) return;
+        
+        const validationResults = relevantRules.map(validationRule => validationRule(ruleContext, this.symbolTable));
 
         validationResults.filter(x => x.errorLevel == ValidationLevel.Error && !x.valid)
             .forEach(y => this.errorMessageCollection.push(this._buildValidationMessage(y.failureMessage, ruleContext)));

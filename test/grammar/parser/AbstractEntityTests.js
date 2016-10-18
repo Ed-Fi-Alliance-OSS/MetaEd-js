@@ -1,5 +1,5 @@
 ﻿import MetaEdTextBuilder from '../MetaEdTextBuilder';
-import MetaEdGrammarHelper from "./ParserTestHelper";
+import ParserTestHelper from "./ParserTestHelper";
 
 import chai from 'chai'
 let should = chai.should();
@@ -25,14 +25,14 @@ describe('AbstractEntityTests', () => {
         let context;
 
         before( () => {
-            const parser = MetaEdGrammarHelper.parse(inputText);
+            const parser = ParserTestHelper.parse(inputText);
             context = parser.abstractEntity();
         });
 
         it('Should_successfully_parse', () => {
             should.exist(context);
             should.not.exist(context.exception);
-            MetaEdGrammarHelper.hasErrors(context).should.be.false;
+            ParserTestHelper.hasErrors(context).should.be.false;
         });
 
         it('Should_parse_entity_name', () => {

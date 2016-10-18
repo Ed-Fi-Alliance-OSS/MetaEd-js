@@ -2,15 +2,18 @@
 import chai from 'chai'
 import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
-import firstDomainEntityPropertyMustMatchDomainOrAbstractEntity from "../../../../src/core/validators/Association/FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity";
+import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
+import { includeRule } from "../../../../src/core/validators/Association/FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity";
 import SymbolTable from "../../../../src/core/validators/SymbolTable";
 
 let should = chai.should();
 
 describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => {
+    const repository = includeRule(newRepository());
+    const validatorListener = new ValidatorListener(repository);
+    
     describe('When_domain_entity_property_has_domain_entity_identifier', () => {
         const symbolTable = new SymbolTable();
-        const validatorListener = new ValidatorListener([firstDomainEntityPropertyMustMatchDomainOrAbstractEntity]);
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.build()
@@ -33,6 +36,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener, symbolTable);
         });
+        
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
@@ -40,7 +44,6 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
 
     describe('When_domain_entity_property_has_abstract_entity_identifier', () => {
         const symbolTable = new SymbolTable();
-        const validatorListener = new ValidatorListener([firstDomainEntityPropertyMustMatchDomainOrAbstractEntity]);
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.build()
@@ -63,6 +66,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener, symbolTable);
         });
+        
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
@@ -70,7 +74,6 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
 
     describe('When_domain_entity_property_has_subclass_entity_identifier', () => {
         const symbolTable = new SymbolTable();
-        const validatorListener = new ValidatorListener([firstDomainEntityPropertyMustMatchDomainOrAbstractEntity]);
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.build()
@@ -98,6 +101,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener, symbolTable);
         });
+        
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
@@ -105,7 +109,6 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
 
     describe('When_domain_entity_property_has_invalid_identifier', () => {
         const symbolTable = new SymbolTable();
-        const validatorListener = new ValidatorListener([firstDomainEntityPropertyMustMatchDomainOrAbstractEntity]);
         const entityName: string = "MyIdentifier";
         const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
@@ -124,9 +127,11 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener, symbolTable);
         });
+        
         it('should_have_validation_failure()', () => {
             helper.errorMessageCollection.length.should.not.equal(0)
         });
+        
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].message.should.include("Domain Entity");
             helper.errorMessageCollection[0].message.should.include(entityName);

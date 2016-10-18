@@ -2,15 +2,18 @@
 import chai from 'chai'
 import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
-import secondDomainEntityPropertyMustMatchDomainOrAbstractEntity from '../../../../src/core/validators/Association/SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity';
+import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
+import { includeRule } from '../../../../src/core/validators/Association/SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity';
 import SymbolTable from "../../../../src/core/validators/SymbolTable";
 
 let should = chai.should();
 
 describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
+    const repository = includeRule(newRepository());
+    const validatorListener = new ValidatorListener(repository);
+    
     describe('When_domain_entity_property_has_domain_entity_identifier', () => {
         const symbolTable = new SymbolTable();
-        const validatorListener = new ValidatorListener([secondDomainEntityPropertyMustMatchDomainOrAbstractEntity]);
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.build()
@@ -41,7 +44,6 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
 
     describe('When_domain_entity_property_has_abstract_entity_identifier', () => {
         const symbolTable = new SymbolTable();
-        const validatorListener = new ValidatorListener([secondDomainEntityPropertyMustMatchDomainOrAbstractEntity]);
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.build()
@@ -72,7 +74,6 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
 
     describe('When_domain_entity_property_has_subclass_entity_identifier', () => {
         const symbolTable = new SymbolTable();
-        const validatorListener = new ValidatorListener([secondDomainEntityPropertyMustMatchDomainOrAbstractEntity]);
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.build()
@@ -107,7 +108,6 @@ describe('SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity', () => {
 
     describe('When_domain_entity_property_has_invalid_identifier', () => {
         const symbolTable = new SymbolTable();
-        const validatorListener = new ValidatorListener([secondDomainEntityPropertyMustMatchDomainOrAbstractEntity]);
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {

@@ -1,4 +1,3 @@
-/// <reference path="../../typings/index.d.ts" />
 import antlr4 from 'antlr4';
 import BaseLexer from '../../src/grammar/gen/BaseLexer';
 import MetaEdGrammar from '../../src/grammar/gen/MetaEdGrammar';

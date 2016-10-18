@@ -2,16 +2,18 @@
 import chai from 'chai'
 import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
-import firstDomainEntityPropertyMustNotCollideWithOtherProperty from '../../../../src/core/validators/Association/FirstDomainEntityPropertyMustNotCollideWithOtherProperty';
+import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
+import { includeRule } from '../../../../src/core/validators/Association/FirstDomainEntityPropertyMustNotCollideWithOtherProperty';
 import SymbolTable from "../../../../src/core/validators/SymbolTable";
 
 let should = chai.should();
 
 describe('FirstDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
+    const repository = includeRule(newRepository());
+    const validatorListener = new ValidatorListener(repository);
+    
     describe('When_domain_entity_property_does_not_collide', () => {
         const symbolTable = new SymbolTable();
-        const validatorListener = new ValidatorListener([firstDomainEntityPropertyMustNotCollideWithOtherProperty]);
-
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
             let metaEdText = MetaEdTextBuilder.build()
@@ -42,7 +44,6 @@ describe('FirstDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
 
     describe('When_domain_entity_property_does_collide', () => {
         const symbolTable = new SymbolTable();
-        const validatorListener = new ValidatorListener([firstDomainEntityPropertyMustNotCollideWithOtherProperty]);
         const associationName = "Association1";
         const firstName = "First";
 

@@ -1,8 +1,7 @@
-﻿/// <reference path="../../../typings/index.d.ts" />
-import chai from 'chai'
+﻿import chai from 'chai'
 import ValidatorTestHelper from "./ValidatorTestHelper";
 import ValidatorListener from "../../../src/core/validators/ValidatorListener";
-import TestRuleProvider from "./TestRuleProvider";
+
 import {TestDomainEntityContextValidation} from "./TestDomainEntityContextValidation"
 
 let should = chai.should();

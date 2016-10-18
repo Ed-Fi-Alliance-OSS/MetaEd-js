@@ -1,16 +1,6 @@
 // @flow
-import R from 'ramda';
-
-import ValidationLevel from '../ValidationLevel';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
-import validationRuleBase from '../ValidationRuleBase';
+import { associationErrorRule, includeAssociationRule } from './AssociationValidationRule';
 import SymbolTable from '../SymbolTable';
-
-const level = ValidationLevel.Error;
-
-function handled(ruleContext: any) : boolean {
-    return ruleContext.ruleIndex === MetaEdGrammar.RULE_association;
-}
 
 function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
     const firstDomainEntityName = ruleContext.firstDomainEntity().propertyName().ID().getText();
@@ -29,5 +19,7 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable) : string {
     return `Association '${identifier}' has duplicate declarations of Domain Entity '${firstDomainEntityName}'`;
 }
 
-const validationRule = R.partial(validationRuleBase, [level, handled, valid, failureMessage]);
+const validationRule = associationErrorRule(valid, failureMessage);
 export { validationRule as default };
+
+export const includeRule = includeAssociationRule(validationRule);

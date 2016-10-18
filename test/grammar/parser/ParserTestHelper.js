@@ -1,11 +1,10 @@
-/// <reference path="../../../typings/globals/node/index.d.ts" />
 import antlr4 from 'antlr4';
-import {Trees} from 'antlr4/tree/Trees';
+import { Trees } from 'antlr4/tree/Trees';
 import BaseLexer from './../../../src/grammar/gen/BaseLexer';
 import MetaEdGrammar from './../../../src/grammar/gen/MetaEdGrammar';
 
 export default class ParserTestHelper {
-    static parse (inputText: string) {
+    static parse(inputText: string) {
         const inputStream = new antlr4.InputStream(inputText);
         const lexer = new BaseLexer.BaseLexer(inputStream);
         const tokens = new antlr4.CommonTokenStream(lexer, undefined);
@@ -19,13 +18,13 @@ export default class ParserTestHelper {
 
         for (let childContext of ruleContext.children)
         {
-            if (this.isErrorNode(childContext)) return true;
+            if (this._isErrorNode(childContext)) return true;
             if (this.hasErrors(childContext)) return true;
         }
         return false;
     }
 
-    private static isErrorNode(ruleContext) {
+    static _isErrorNode(ruleContext) {
         return ruleContext.isErrorNode !== undefined && ruleContext.isErrorNode();
     }
 

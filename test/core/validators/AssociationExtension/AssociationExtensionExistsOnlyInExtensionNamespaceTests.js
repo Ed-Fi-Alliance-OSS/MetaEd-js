@@ -2,15 +2,18 @@
 import chai from 'chai'
 import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
-import associationExtensionExistsOnlyInExtensionNamespace from '../../../../src/core/validators/AssociationExtension/AssociationExtensionExistsOnlyInExtensionNamespace';
+import { includeRule } from '../../../../src/core/validators/AssociationExtension/AssociationExtensionExistsOnlyInExtensionNamespace';
+import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 import SymbolTable from "../../../../src/core/validators/SymbolTable";
 
 let should = chai.should();
 
 describe('AssociationExtensionExistsOnlyInExtensionNamespaceTests', () => {
+    const repository = includeRule(newRepository());
+    const validatorListener = new ValidatorListener(repository);
+    
     describe('When_association_extension_exists_in_extension', () => {
         const symbolTable = new SymbolTable();
-        const validatorListener = new ValidatorListener([associationExtensionExistsOnlyInExtensionNamespace]);
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
@@ -36,10 +39,8 @@ describe('AssociationExtensionExistsOnlyInExtensionNamespaceTests', () => {
         });
     });
 
-
     describe('When_association_extension_has_invalid_extendee', () => {
         const symbolTable = new SymbolTable();
-        const validatorListener = new ValidatorListener([associationExtensionExistsOnlyInExtensionNamespace]);
         const coreNamespace: string = "edfi";
         let entityName: string = "MyIdentifier";
         let helper: ValidatorTestHelper = new ValidatorTestHelper();
@@ -63,6 +64,7 @@ describe('AssociationExtensionExistsOnlyInExtensionNamespaceTests', () => {
         it('should_have_validation_failure()', () => {
             helper.errorMessageCollection.length.should.equal(1);
         });
+        
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].message.should.include("Association additions");
             helper.errorMessageCollection[0].message.should.include(entityName);

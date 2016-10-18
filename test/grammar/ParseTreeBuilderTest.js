@@ -1,5 +1,3 @@
-/// <reference path="../../typings/index.d.ts" />
-
 import MetaEdErrorListener from '../../src/grammar/MetaEdErrorListener';
 import ParseTreeBuilder from '../../src/grammar/ParseTreeBuilder';
 import MetaEdTextBuilder from './MetaEdTextBuilder';

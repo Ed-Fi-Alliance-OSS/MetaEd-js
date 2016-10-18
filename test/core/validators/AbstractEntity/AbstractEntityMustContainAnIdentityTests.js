@@ -1,12 +1,16 @@
-import chai from 'chai'
+import chai from 'chai';
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import ValidatorTestHelper from "./../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
-import abstractEntityMustContainAnIdentity from "../../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAnIdentity";
+import { includeRule } from "../../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAnIdentity";
+import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 let should = chai.should();
 
 describe('AbstractEntityMustContainAnIdentityTests', () => {
+    const repository = includeRule(newRepository());
+    const validatorListener = new ValidatorListener(repository);
+    
     describe('When_validating_abstract_entity_with_identity_fields', () => {
         const entityName: string = "EntityName";
 
@@ -24,7 +28,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
                 .toString();
 
             helper = new ValidatorTestHelper();
-            helper.setup(metaEdText, new ValidatorListener([abstractEntityMustContainAnIdentity]));
+            helper.setup(metaEdText, validatorListener);
         });
 
         it('Should_have_no_validation_failures', () => {
@@ -50,7 +54,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
                 .toString();
 
             helper = new ValidatorTestHelper();
-          helper.setup(metaEdText, new ValidatorListener([abstractEntityMustContainAnIdentity]));
+            helper.setup(metaEdText, validatorListener);
         });
 
         it('Should_have_validation_failure', () => {
