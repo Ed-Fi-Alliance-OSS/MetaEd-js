@@ -1,7 +1,7 @@
 ﻿// @flow
 import { associationExtensionErrorRule, includeAssociationExtensionRule } from './AssociationExtensionValidationRule';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
-import SymbolTable from '../SymbolTable';
+import type SymbolTable from '../SymbolTable';
 import { getAncestorContext, isExtensionNamespace, namespaceNameFor } from "../ValidationHelper";
 
 function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {

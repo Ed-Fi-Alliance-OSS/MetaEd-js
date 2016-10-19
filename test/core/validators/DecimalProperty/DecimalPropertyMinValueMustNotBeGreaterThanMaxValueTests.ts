@@ -2,7 +2,6 @@
 import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
-import {TestRuleProvider} from "../TestRuleProvider";
 import {DecimalPropertyMinValueMustNotBeGreaterThanMaxValue}from "../../../../src/core/validators/DecimalProperty/DecimalPropertyMinValueMustNotBeGreaterThanMaxValue"
 
 let should = chai.should();

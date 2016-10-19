@@ -4,7 +4,6 @@
 //import chai from 'chai'
 //import {ValidatorTestHelper} from "../ValidatorTestHelper";
 //import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
-//import {TestRuleProvider} from "../TestRuleProvider";
 //import {InsertClassName}from "../../../../src/core/validators/EnterFolderName/EnterClassName"
 //
 //let should = chai.should();

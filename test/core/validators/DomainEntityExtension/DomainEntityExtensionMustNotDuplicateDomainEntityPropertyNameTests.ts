@@ -2,7 +2,6 @@
 import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
-import {TestRuleProvider} from "../TestRuleProvider";
 import {DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName}from "../../../../src/core/validators/DomainEntityExtension/DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName"
 
 let should = chai.should();

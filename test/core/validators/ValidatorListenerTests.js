@@ -6,8 +6,6 @@ import {TestDomainEntityContextValidation} from "./TestDomainEntityContextValida
 
 let should = chai.should();
 
-
-
 describe('ValidatorListenerTests', () => {
     let validatorListener = new ValidatorListener(new TestRuleProvider<MetaEdGrammar.PropertyContext>(new TestDomainEntityContextValidation()));
 

@@ -4,7 +4,6 @@
 //import chai from 'chai'
 //import {ValidatorTestHelper} from "../ValidatorTestHelper";
 //import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
-//import {TestRuleProvider} from "../TestRuleProvider";
 //import {DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass}from "../../../../src/core/validators/DomainEntitySubclass/DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass"
 //
 //let should = chai.should();

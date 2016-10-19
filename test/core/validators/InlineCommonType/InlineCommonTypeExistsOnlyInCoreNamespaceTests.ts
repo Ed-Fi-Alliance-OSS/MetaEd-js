@@ -2,7 +2,6 @@
 import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
-import {TestRuleProvider} from "../TestRuleProvider";
 import {InlineCommonTypeExistsOnlyInCoreNamespace}from "../../../../src/core/validators/InlineCommonType/InlineCommonTypeExistsOnlyInCoreNamespace"
 
 let should = chai.should();

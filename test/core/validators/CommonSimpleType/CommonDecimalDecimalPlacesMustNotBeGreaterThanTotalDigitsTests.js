@@ -1,7 +1,6 @@
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import {ValidatorTestHelper} from "./../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
-import {TestRuleProvider} from "../TestRuleProvider";
 import {CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits} from "../../../../src/core/validators/CommonSimpleType/CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits";
 
 import {MetaEdGrammar} from '../../../../src/grammar/gen/MetaEdGrammar';

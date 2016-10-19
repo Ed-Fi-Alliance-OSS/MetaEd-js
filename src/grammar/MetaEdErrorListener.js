@@ -1,3 +1,4 @@
+// @flow
 import antlr4 from 'antlr4';
 
 export default class MetaEdErrorListener {
@@ -9,8 +10,8 @@ export default class MetaEdErrorListener {
         this._errorMessageCollection = errorMessageCollection;
     }
 
-    syntaxError(recognizer, offendingSymbol, concatenatedLineNumber, characterPosition,
-        message /* , e */) {
+    syntaxError(recognizer: any, offendingSymbol: any, concatenatedLineNumber: number, characterPosition: number,
+        message: string /* , e */) {
         this._errorMessageCollection.push({
             message,
             characterPosition,

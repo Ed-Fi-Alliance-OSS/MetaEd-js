@@ -2,7 +2,6 @@
 import chai from 'chai'
 import {ValidatorTestHelper} from "../ValidatorTestHelper";
 import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
-import {TestRuleProvider} from "../TestRuleProvider";
 import {EnumerationPropertyMustMatchAnEnumeration}from "../../../../src/core/validators/EnumerationProperty/EnumerationPropertyMustMatchAnEnumeration"
 
 let should = chai.should();
