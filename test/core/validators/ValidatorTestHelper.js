@@ -3,7 +3,7 @@ import {ValidationMessage} from '../../../src/common/ValidationMessage'
 import SymbolTable from '../../../src/core/validators/SymbolTable'
 import { MetaEdContext } from '../../../src/core/tasks/MetaEdContext'
 import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex'
-import { SymbolTableBuilder } from  '../../../src/core/validators/SymbolTableBuilder'
+import SymbolTableBuilder from  '../../../src/core/validators/SymbolTableBuilder'
 import NullSymbolTableBuilderListener from '../../common/NullSymbolTableBuilderListener'
 //import {IListenerWithContext} from "../../../src/core/validators/IListenerWithContext";
 

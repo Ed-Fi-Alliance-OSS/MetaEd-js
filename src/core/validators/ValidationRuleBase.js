@@ -1,8 +1,18 @@
 // @flow
 import R from 'ramda';
-
 import ValidationLevel from './ValidationLevel';
 import SymbolTable from './SymbolTable';
+
+// flow types for validation rules
+export type ValidationResult = {
+  handled: boolean,
+  errorLevel?: ValidationLevel,
+  valid?: boolean,
+  failureMessage?: string
+};
+
+export type ValidationRule = (ruleContext: any, symbolTable: SymbolTable) => ValidationResult;
+
 
 // base of all validation rules
 function validationRuleBase(errorLevel: ValidationLevel,
@@ -12,7 +22,7 @@ function validationRuleBase(errorLevel: ValidationLevel,
                            ruleContext: any,
                            symbolTable: SymbolTable) : ValidationResult {
   const result : ValidationResult = {
-    handled: handled(ruleContext)
+    handled: handled(ruleContext),
   };
 
   if (!result.handled) return result;
@@ -30,15 +40,3 @@ function validationRuleBase(errorLevel: ValidationLevel,
 const curriedValidationRuleBase = R.curry(validationRuleBase);
 export const errorValidationRuleBase = curriedValidationRuleBase(ValidationLevel.Error);
 export const warningValidationRuleBase = curriedValidationRuleBase(ValidationLevel.Warning);
-
-
-// flow types for validation rules
-export type ValidationRule = (ruleContext: any, symbolTable: SymbolTable) => ValidationResult;
-
-export type ValidationResult = {
-    handled: boolean,
-    errorLevel?: ValidationLevel,
-    valid?: boolean,
-    failureMessage?: string
-};
-
