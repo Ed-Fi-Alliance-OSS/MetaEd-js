@@ -1,37 +1,40 @@
+// @flow
 import {MetaEdGrammarListener} from '../../../src/grammar/gen/MetaEdGrammarListener';
 
 import {IMetaEdContext} from '../tasks/MetaEdContext'
-import {SymbolTable} from './SymbolTable'
+import type SymbolTable from './SymbolTable'
 import {IMetaEdFileIndex} from '../../grammar/IMetaEdFileIndex'
 import ValidationMessage from '../../common/ValidationMessage'
 import PropertySymbolTable from './PropertySymbolTable'
 import SymbolTableEntityType from './SymbolTableEntityType';
 
 
-export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbolTableBuilder {
-    symbolTable: any;
+export class SymbolTableBuilder extends MetaEdGrammarListener {
+    symbolTable: SymbolTable;
     metaEdFileIndex: any;
     errorMessageCollection: any;
     builderListener: any;
     currentPropertySymbolTable: any;
 
-    constructor(builderListener) {
+    constructor(builderListener: any) {
         super();
         this.builderListener = builderListener;
     }
 
-    withContext(metaEdContext) {
+    withContext(metaEdContext: any) {
         this.metaEdFileIndex = metaEdContext.metaEdFileIndex;
         this.errorMessageCollection = metaEdContext.errorMessageCollection;
         this.symbolTable = metaEdContext.symbolTable;
         this.builderListener.withContext(metaEdContext);
     }
 
-    _addEntity(entityType, entityNameIdNode, context) {
-        if (!this.builderListener.beforeAddEntity(entityType, entityNameIdNode, context))
+    _addEntity(entityType: string, entityNameIdNode: any, ruleContext: any) {
+        if (!this.builderListener.beforeAddEntity(entityType, entityNameIdNode, ruleContext))
             return;
-        if (this.symbolTable.tryAdd(entityType, entityNameIdNode.getText(), context)) {
-            this.currentPropertySymbolTable = this.symbolTable.get(entityType, entityNameIdNode.getText()).propertySymbolTable;
+        if (this.symbolTable.tryAdd(entityType, entityNameIdNode.getText(), ruleContext)) {
+            const entityContext = this.symbolTable.get(entityType, entityNameIdNode.getText());
+            if (entityContext == null) throw new Error("SymbolTableBuilder._addEntity() error should never happen");
+            this.currentPropertySymbolTable = entityContext.propertySymbolTable;
             return;
         }
         let metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(entityNameIdNode.symbol.line);
@@ -45,18 +48,18 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
         this.errorMessageCollection.push(failure);
     }
 
-    _addProperty(context) {
-        let propertyName = context.propertyName().ID();
-        let withContextContext = context.propertyComponents().withContext();
+    _addProperty(ruleContext: any) {
+        let propertyName = ruleContext.propertyName().ID();
+        let withContextContext = ruleContext.propertyComponents().withContext();
         let withContextPrefix = withContextContext == null ? "" : withContextContext.withContextName().ID().getText();
         if (this.currentPropertySymbolTable == null) {
             return;
         }
-        if (this.currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.getText(), context))
+        if (this.currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.getText(), ruleContext))
             return;
         let metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(propertyName.symbol.line);
         let duplicateFailure = {
-            message: `Entity ${this.currentPropertySymbolTable.parent.name} has duplicate properties named ${propertyName.getText()}`,
+            message: `Entity ${this.currentPropertySymbolTable.parentName()} has duplicate properties named ${propertyName.getText()}`,
             characterPosition: propertyName.symbol.column,
             concatenatedLineNumber: propertyName.symbol.line,
             fileName: metaEdFile.fileName,
@@ -65,243 +68,243 @@ export class SymbolTableBuilder extends MetaEdGrammarListener implements ISymbol
         this.errorMessageCollection.push(duplicateFailure);
     }
 
-    enterDomainEntity(context) {
-        this._addEntity(SymbolTableEntityType.domainEntityEntityType(), context.entityName().ID(), context);
+    enterDomainEntity(ruleContext: any) {
+        this._addEntity(SymbolTableEntityType.domainEntityEntityType(), ruleContext.entityName().ID(), ruleContext);
     }
 
-    exitDomainEntity(context) {
+    exitDomainEntity(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterAbstractEntity(context) {
-        this._addEntity(SymbolTableEntityType.abstractEntityEntityType(), context.abstractEntityName().ID(), context);
+    enterAbstractEntity(ruleContext: any) {
+        this._addEntity(SymbolTableEntityType.abstractEntityEntityType(), ruleContext.abstractEntityName().ID(), ruleContext);
     }
 
-    exitAbstractEntity(context) {
+    exitAbstractEntity(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterAssociation(context) {
-        this._addEntity(SymbolTableEntityType.associationEntityType(), context.associationName().ID(), context);
+    enterAssociation(ruleContext: any) {
+        this._addEntity(SymbolTableEntityType.associationEntityType(), ruleContext.associationName().ID(), ruleContext);
     }
 
-    exitAssociation(context) {
+    exitAssociation(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterAssociationExtension(context) {
-        this._addEntity(SymbolTableEntityType.associationExtensionEntityType(), context.extendeeName().ID(), context);
+    enterAssociationExtension(ruleContext: any) {
+        this._addEntity(SymbolTableEntityType.associationExtensionEntityType(), ruleContext.extendeeName().ID(), ruleContext);
     }
 
-    exitAssociationExtension(context) {
+    exitAssociationExtension(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterAssociationSubclass(context) {
-        this._addEntity(SymbolTableEntityType.associationSubclassEntityType(), context.associationName().ID(), context);
+    enterAssociationSubclass(ruleContext: any) {
+        this._addEntity(SymbolTableEntityType.associationSubclassEntityType(), ruleContext.associationName().ID(), ruleContext);
     }
 
-    exitAssociationSubclass(context) {
+    exitAssociationSubclass(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterChoiceType(context) {
-        this._addEntity(context.CHOICE_TYPE().getText(), context.choiceName().ID(), context);
+    enterChoiceType(ruleContext: any) {
+        this._addEntity(ruleContext.CHOICE_TYPE().getText(), ruleContext.choiceName().ID(), ruleContext);
     }
 
-    exitChoiceType(context) {
+    exitChoiceType(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterCommonDecimal(context) {
-        this._addEntity(context.COMMON_DECIMAL().getText(), context.commonDecimalName().ID(), context);
+    enterCommonDecimal(ruleContext: any) {
+        this._addEntity(ruleContext.COMMON_DECIMAL().getText(), ruleContext.commonDecimalName().ID(), ruleContext);
     }
 
-    exitCommonDecimal(context) {
+    exitCommonDecimal(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterCommonInteger(context) {
-        this._addEntity(context.COMMON_INTEGER().getText(), context.commonIntegerName().ID(), context);
+    enterCommonInteger(ruleContext: any) {
+        this._addEntity(ruleContext.COMMON_INTEGER().getText(), ruleContext.commonIntegerName().ID(), ruleContext);
     }
 
-    exitCommonInteger(context) {
+    exitCommonInteger(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterCommonShort(context) {
-        this._addEntity(context.COMMON_SHORT().getText(), context.commonShortName().ID(), context);
+    enterCommonShort(ruleContext: any) {
+        this._addEntity(ruleContext.COMMON_SHORT().getText(), ruleContext.commonShortName().ID(), ruleContext);
     }
 
-    exitCommonShort(context) {
+    exitCommonShort(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterCommonString(context) {
-        this._addEntity(context.COMMON_STRING().getText(), context.commonStringName().ID(), context);
+    enterCommonString(ruleContext: any) {
+        this._addEntity(ruleContext.COMMON_STRING().getText(), ruleContext.commonStringName().ID(), ruleContext);
     }
 
-    exitCommonString(context) {
+    exitCommonString(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterCommonType(context) {
-        this._addEntity(SymbolTableEntityType.commonTypeEntityType(), context.commonName().ID(), context);
+    enterCommonType(ruleContext: any) {
+        this._addEntity(SymbolTableEntityType.commonTypeEntityType(), ruleContext.commonName().ID(), ruleContext);
     }
 
-    exitCommonType(context) {
+    exitCommonType(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterCommonTypeExtension(context) {
-        this._addEntity(SymbolTableEntityType.commonTypeExtensionEntityType(), context.extendeeName().ID(), context);
+    enterCommonTypeExtension(ruleContext: any) {
+        this._addEntity(SymbolTableEntityType.commonTypeExtensionEntityType(), ruleContext.extendeeName().ID(), ruleContext);
     }
 
-    exitCommonTypeExtension(context) {
+    exitCommonTypeExtension(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterDescriptor(context) {
-        this._addEntity(context.DESCRIPTOR_ENTITY().getText(), context.descriptorName().ID(), context);
+    enterDescriptor(ruleContext: any) {
+        this._addEntity(ruleContext.DESCRIPTOR_ENTITY().getText(), ruleContext.descriptorName().ID(), ruleContext);
     }
 
-    exitDescriptor(context) {
+    exitDescriptor(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterDomain(context) {
-        this._addEntity(context.DOMAIN().getText(), context.domainName().ID(), context);
+    enterDomain(ruleContext: any) {
+        this._addEntity(ruleContext.DOMAIN().getText(), ruleContext.domainName().ID(), ruleContext);
     }
 
-    exitDomain(context) {
+    exitDomain(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterDomainEntityExtension(context) {
-        this._addEntity(SymbolTableEntityType.domainEntityExtensionEntityType(), context.extendeeName().ID(), context);
+    enterDomainEntityExtension(ruleContext: any) {
+        this._addEntity(SymbolTableEntityType.domainEntityExtensionEntityType(), ruleContext.extendeeName().ID(), ruleContext);
     }
 
-    exitDomainEntityExtension(context) {
+    exitDomainEntityExtension(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterDomainEntitySubclass(context) {
-        this._addEntity(SymbolTableEntityType.domainEntitySubclassEntityType(), context.entityName().ID(), context);
+    enterDomainEntitySubclass(ruleContext: any) {
+        this._addEntity(SymbolTableEntityType.domainEntitySubclassEntityType(), ruleContext.entityName().ID(), ruleContext);
     }
 
-    exitDomainEntitySubclass(context) {
+    exitDomainEntitySubclass(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterEnumeration(context) {
-        this._addEntity(SymbolTableEntityType.enumerationEntityType(), context.enumerationName().ID(), context);
+    enterEnumeration(ruleContext: any) {
+        this._addEntity(SymbolTableEntityType.enumerationEntityType(), ruleContext.enumerationName().ID(), ruleContext);
     }
 
-    exitEnumeration(context) {
+    exitEnumeration(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterInlineCommonType(context) {
-        this._addEntity(SymbolTableEntityType.inlineCommonTypeEntityType(), context.inlineCommonName().ID(), context);
+    enterInlineCommonType(ruleContext: any) {
+        this._addEntity(SymbolTableEntityType.inlineCommonTypeEntityType(), ruleContext.inlineCommonName().ID(), ruleContext);
     }
 
-    exitInlineCommonType(context) {
+    exitInlineCommonType(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterInterchange(context) {
-        this._addEntity(context.INTERCHANGE().getText(), context.interchangeName().ID(), context);
+    enterInterchange(ruleContext: any) {
+        this._addEntity(ruleContext.INTERCHANGE().getText(), ruleContext.interchangeName().ID(), ruleContext);
     }
 
-    exitInterchange(context) {
+    exitInterchange(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterInterchangeExtension(context) {
-        this._addEntity(context.INTERCHANGE().getText() + context.ADDITIONS().getText(), context.extendeeName().ID(), context);
+    enterInterchangeExtension(ruleContext: any) {
+        this._addEntity(ruleContext.INTERCHANGE().getText() + ruleContext.ADDITIONS().getText(), ruleContext.extendeeName().ID(), ruleContext);
     }
 
-    exitInterchangeExtension(context) {
+    exitInterchangeExtension(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterSubdomain(context) {
-        this._addEntity(context.SUBDOMAIN().getText(), context.subdomainName().ID(), context);
+    enterSubdomain(ruleContext: any) {
+        this._addEntity(ruleContext.SUBDOMAIN().getText(), ruleContext.subdomainName().ID(), ruleContext);
     }
 
-    exitSubdomain(context) {
+    exitSubdomain(ruleContext: any) {
         this.currentPropertySymbolTable = null;
     }
 
-    enterBooleanProperty(context) {
-         this._addProperty(context);
+    enterBooleanProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterDateProperty(context) {
-         this._addProperty(context);
+    enterDateProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterCurrencyProperty(context) {
-         this._addProperty(context);
+    enterCurrencyProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterDecimalProperty(context) {
-         this._addProperty(context);
+    enterDecimalProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterDescriptorProperty(context) {
-         this._addProperty(context);
+    enterDescriptorProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterDurationProperty(context) {
-         this._addProperty(context);
+    enterDurationProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterEnumerationProperty(context) {
-         this._addProperty(context);
+    enterEnumerationProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterIncludeProperty(context) {
-         this._addProperty(context);
+    enterIncludeProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterIntegerProperty(context) {
-         this._addProperty(context);
+    enterIntegerProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterReferenceProperty(context) {
-         this._addProperty(context);
+    enterReferenceProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterSharedDecimalProperty(context) {
-         this._addProperty(context);
+    enterSharedDecimalProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterSharedIntegerProperty(context) {
-         this._addProperty(context);
+    enterSharedIntegerProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterSharedShortProperty(context) {
-         this._addProperty(context);
+    enterSharedShortProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterSharedStringProperty(context) {
-         this._addProperty(context);
+    enterSharedStringProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterShortProperty(context) {
-         this._addProperty(context);
+    enterShortProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterStringProperty(context) {
-         this._addProperty(context);
+    enterStringProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterTimeProperty(context) {
-         this._addProperty(context);
+    enterTimeProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 
-    enterYearProperty(context) {
-         this._addProperty(context);
+    enterYearProperty(ruleContext: any) {
+         this._addProperty(ruleContext);
     }
 }

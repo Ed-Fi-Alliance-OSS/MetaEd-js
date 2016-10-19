@@ -1,62 +1,73 @@
+// @flow
 import PropertySymbolTable from './PropertySymbolTable'
 
-export default class SymbolTable {
+declare type ParserRuleContext = any;
 
+export default class SymbolTable {
+    symbolTable: Map<string, Map<string, EntityContext>>;
+    
     constructor() {
         this.symbolTable = new Map();
     }
 
-    tryAdd(entityType, name, ruleContext) {
+    tryAdd(entityType: string, name: string, ruleContext: ParserRuleContext) {
+        let entityDictionary: ?Map<string, EntityContext> = this.symbolTable.get(entityType);
 
-        let entityDictionary = this.symbolTable.get(entityType);
-
-        if (!entityDictionary) {
+        if (entityDictionary == null) {
             entityDictionary = new Map();
             this.symbolTable.set(entityType, entityDictionary);
         }
 
-        if (entityDictionary.has(name))
-            return false;
+        if (entityDictionary.has(name)) return false;
 
-        let entityContext = {name: name, context: ruleContext};
+        const entityContext: EntityContext = {
+            name: name,
+            context: ruleContext,
+            propertySymbolTable: new PropertySymbolTable(name)
+        };
 
-        entityContext.propertySymbolTable = new PropertySymbolTable(entityContext);
         entityDictionary.set(name, entityContext);
-
         return true;
     }
 
-    get(entityType, name) {
+    get(entityType: string, name: string) {
         let entityDictionary = this.symbolTable.get(entityType);
         if (!entityDictionary) return null;
 
         return entityDictionary.get(name);
     }
 
-    identifierExists(entityType, identifier) {
-        if (!this.symbolTable.has(entityType)) return false;
-        return this.symbolTable.get(entityType).has(identifier);
+    identifierExists(entityType: string, identifier: string) {
+        const propertySymbolTable = this.symbolTable.get(entityType);
+        if (propertySymbolTable == null) return false;
+        return propertySymbolTable.has(identifier);
     }
 
-    identifiersForEntityType(entityType) {
+    identifiersForEntityType(entityType: string) {
         let entityDictionary = this.symbolTable.get(entityType);
         if (entityDictionary) return entityDictionary.keys();
-        return new Array().values();
+        return [].values();
     }
 
     // results are prefixed by a 'with context' value if one exists for property
-    identifiersForEntityProperties(entityType, identifier) {
-        let entityContext = this.get(entityType, identifier);
+    identifiersForEntityProperties(entityType: string, identifier: string): Iterator<string> {
+        let entityContext: ?EntityContext = this.get(entityType, identifier);
 
-        if (entityContext == null) return new Array().values();
+        if (entityContext == null) return [].values();
         return entityContext.propertySymbolTable.identifiers();
     }
 
     // candidate identifiers should be prefixed by a 'with context' value if one exists for property
-    contextsForMatchingPropertyIdentifiers(entityType, name, candidatePropertyIdentifiers) {
-        let entityContext = this.get(entityType, name);
+    contextsForMatchingPropertyIdentifiers(entityType: string, name: string, candidatePropertyIdentifiers: Array<string>): Array<any> {
+        let entityContext: ?EntityContext = this.get(entityType, name);
 
         if (entityContext == null) return [];
         return entityContext.propertySymbolTable.contextsForMatchingIdentifiers(candidatePropertyIdentifiers);
     }
 }
+
+export type EntityContext = {
+    name: string,
+    context: ParserRuleContext,
+    propertySymbolTable: PropertySymbolTable
+};

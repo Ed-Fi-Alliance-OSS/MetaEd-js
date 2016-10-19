@@ -1,37 +1,46 @@
+// @flow
+import type SymbolTable, { EntityContext } from './SymbolTable';
+
 export default class PropertySymbolTable {
-    constructor(parent) {
-        this.parent = parent;
-        this.symbolTable = new Map();
+    _symbolTable: Map<string, EntityContext>;
+    _parentName: string;
+    
+    constructor(parentName: string) {
+        this._parentName = parentName;
+        this._symbolTable = new Map();
+    }
+    
+    parentName(): string {
+        return this._parentName;
     }
 
     // name should be prefixed by a 'with context' value if one exists for property
-    tryAdd(name, entityContext) {
-        if (this.symbolTable.has(name))
-            return false;
-        this.symbolTable.set(name, entityContext);
+    tryAdd(name: string, entityContext: EntityContext): boolean {
+        if (this._symbolTable.has(name)) return false;
+        this._symbolTable.set(name, entityContext);
         return true;
     }
 
     // name should be prefixed by a 'with context' value if one exists for property
-    get(name) {
-        return this.symbolTable.get(name);
+    get(name: string): ?EntityContext {
+        return this._symbolTable.get(name);
     }
 
     // results are prefixed by a 'with context' value if one exists for property
-    identifiers() {
-        return this.symbolTable.keys();
+    identifiers(): Iterator<string> {
+        return this._symbolTable.keys();
     }
 
-    values() {
-        return this.symbolTable.values();
+    values(): Iterator<EntityContext> {
+        return this._symbolTable.values();
     }
 
     // candidate identifiers should be prefixed by a 'with context' value if one exists for property
-    contextsForMatchingIdentifiers(candidateIdentifiers) {
-        return Array.from(this.symbolTable.entries()).filter(x => candidateIdentifiers.some(e => e === x[0])).map(y => y[1]);
+    contextsForMatchingIdentifiers(candidateIdentifiers: Array<string>): Array<any> {
+        return Array.from(this._symbolTable.entries()).filter(x => candidateIdentifiers.some(e => e === x[0])).map(y => y[1]);
     }
 
-    getWithoutContext(name) {
-        return Array.from(this.symbolTable.entries()).filter(x => x[1].propertyName().ID().getText() === name).map(x => x[1]);
+    getWithoutContext(name: string): Array<any> {
+        return Array.from(this._symbolTable.entries()).filter(x => x[1].propertyName().ID().getText() === name).map(x => x[1]);
     }
 }

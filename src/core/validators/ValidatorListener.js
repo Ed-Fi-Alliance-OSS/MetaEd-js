@@ -3,7 +3,7 @@ import {MetaEdGrammar} from '../../../src/grammar/gen/MetaEdGrammar';
 import {MetaEdGrammarListener} from '../../../src/grammar/gen/MetaEdGrammarListener';
 import {MetaEdContext} from '../tasks/MetaEdContext';
 import {MetaEdFileIndex} from '../../grammar/IMetaEdFileIndex';
-import {SymbolTable} from './SymbolTable';
+import type SymbolTable from './SymbolTable';
 import {ValidationMessage} from '../../common/ValidationMessage';
 import type { ValidationRuleRepository } from './ValidationRuleRepository';
 import ValidationLevel from "./ValidationLevel";

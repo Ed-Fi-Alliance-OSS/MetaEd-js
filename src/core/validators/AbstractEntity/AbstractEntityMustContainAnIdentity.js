@@ -1,6 +1,6 @@
 // @flow
 import { getProperty } from '../ValidationHelper';
-import SymbolTable from '../SymbolTable';
+import type SymbolTable from '../SymbolTable';
 import { abstractEntityErrorRule, includeAbstractEntityRule } from './AbstractEntityValidationRule';
 
 function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
