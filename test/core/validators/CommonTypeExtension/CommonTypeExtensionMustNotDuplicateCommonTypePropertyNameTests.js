@@ -61,10 +61,10 @@ describe('CommonTypeExtensionMustNotDuplicateCommonTypePropertyNameTests', () =>
                 helper.errorMessageCollection.Any().ShouldBeTrue();
             });
             it('should_have_validation_failure_message()', () => {
-                helper.errorMessageCollection[0].Message.ShouldContain("Common Type additions");
-                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-                helper.errorMessageCollection[0].Message.ShouldContain(duplicatePropertyName);
-                helper.errorMessageCollection[0].Message.ShouldContain("already in property list");
+                helper.errorMessageCollection[0].message.should.include("Common Type additions");
+                helper.errorMessageCollection[0].message.should.include(entityName);
+                helper.errorMessageCollection[0].message.should.include(duplicatePropertyName);
+                helper.errorMessageCollection[0].message.should.include("already in property list");
             });
 });
 });

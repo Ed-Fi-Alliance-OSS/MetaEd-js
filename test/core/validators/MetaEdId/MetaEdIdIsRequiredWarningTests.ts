@@ -30,17 +30,17 @@
 //    describe('MetaEdIdIsRequiredWarningTestBaseForEntity<TTestContext extends ParserRuleContext> extends MetaEdIdIsRequiredWarningTestBase<TTestContext>
 //        {
 //            it('should_have_validation_warning_message()', () => {
-//            _warningMessageCollection[0].Message.ShouldContain(entityName);
-//            _warningMessageCollection[0].Message.ShouldContain("missing MetaEdId");
+//            _warningMessageCollection[0].message.should.include(entityName);
+//            _warningMessageCollection[0].message.should.include("missing MetaEdId");
 //        });
 //});
 //
 //describe('MetaEdIdIsRequiredWarningTestBaseForProperty<TTestContext extends ParserRuleContext> extends MetaEdIdIsRequiredWarningTestBase<TTestContext>
 //        {
 //        it('should_have_validation_warning_message()', () => {
-//        _warningMessageCollection[0].Message.ShouldContain(propertyName);
-//        _warningMessageCollection[0].Message.ShouldContain(entityName);
-//        _warningMessageCollection[0].Message.ShouldContain("missing MetaEdId");
+//        _warningMessageCollection[0].message.should.include(propertyName);
+//        _warningMessageCollection[0].message.should.include(entityName);
+//        _warningMessageCollection[0].message.should.include("missing MetaEdId");
 //    });
 //});
 //
@@ -457,10 +457,10 @@
 //describe('When_enumerationItem_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBase<MetaEdGrammar.EnumerationItemContext>
 //        {
 //        it('should_have_validation_warning_message()', () => {
-//        _warningMessageCollection[0].Message.ShouldContain("Item");
-//        _warningMessageCollection[0].Message.ShouldContain(propertyName);
-//        _warningMessageCollection[0].Message.ShouldContain(entityName);
-//        _warningMessageCollection[0].Message.ShouldContain("missing MetaEdId");
+//        _warningMessageCollection[0].message.should.include("Item");
+//        _warningMessageCollection[0].message.should.include(propertyName);
+//        _warningMessageCollection[0].message.should.include(entityName);
+//        _warningMessageCollection[0].message.should.include("missing MetaEdId");
 //    });
 //let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
@@ -583,10 +583,10 @@
 //describe('When_interchangeElement_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBase<MetaEdGrammar.InterchangeElementContext>
 //        {
 //        it('should_have_validation_warning_message()', () => {
-//        _warningMessageCollection[0].Message.ShouldContain("Item");
-//        _warningMessageCollection[0].Message.ShouldContain(propertyName);
-//        _warningMessageCollection[0].Message.ShouldContain(entityName);
-//        _warningMessageCollection[0].Message.ShouldContain("missing MetaEdId");
+//        _warningMessageCollection[0].message.should.include("Item");
+//        _warningMessageCollection[0].message.should.include(propertyName);
+//        _warningMessageCollection[0].message.should.include(entityName);
+//        _warningMessageCollection[0].message.should.include("missing MetaEdId");
 //    });
 //let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
@@ -622,10 +622,10 @@
 //describe('When_interchangeIdentityTemplate_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBase<MetaEdGrammar.InterchangeIdentityTemplateContext>
 //        {
 //        it('should_have_validation_warning_message()', () => {
-//        _warningMessageCollection[0].Message.ShouldContain("Item");
-//        _warningMessageCollection[0].Message.ShouldContain(propertyName);
-//        _warningMessageCollection[0].Message.ShouldContain(entityName);
-//        _warningMessageCollection[0].Message.ShouldContain("missing MetaEdId");
+//        _warningMessageCollection[0].message.should.include("Item");
+//        _warningMessageCollection[0].message.should.include(propertyName);
+//        _warningMessageCollection[0].message.should.include(entityName);
+//        _warningMessageCollection[0].message.should.include("missing MetaEdId");
 //    });
 //let helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {

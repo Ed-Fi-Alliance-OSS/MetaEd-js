@@ -116,11 +116,11 @@ describe('IntegerPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
         helper.errorMessageCollection.Any().ShouldBeTrue();
     });
     it('should_have_validation_failure_message()', () => {
-        helper.errorMessageCollection[0].Message.ShouldContain("Integer Property");
-        helper.errorMessageCollection[0].Message.ShouldContain("Abstract Entity");
-        helper.errorMessageCollection[0].Message.ShouldContain(integerPropertyName);
-        helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-        helper.errorMessageCollection[0].Message.ShouldContain("min value greater than max value");
+        helper.errorMessageCollection[0].message.should.include("Integer Property");
+        helper.errorMessageCollection[0].message.should.include("Abstract Entity");
+        helper.errorMessageCollection[0].message.should.include(integerPropertyName);
+        helper.errorMessageCollection[0].message.should.include(entityName);
+        helper.errorMessageCollection[0].message.should.include("min value greater than max value");
     });
 });
 

@@ -112,9 +112,9 @@ describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
                 helper.errorMessageCollection.Any().ShouldBeTrue();
             });
             it('should_have_validation_failure_message()', () => {
-                helper.errorMessageCollection[0].Message.ShouldContain("Common Integer");
-                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-                helper.errorMessageCollection[0].Message.ShouldContain("min value greater than max value");
+                helper.errorMessageCollection[0].message.should.include("Common Integer");
+                helper.errorMessageCollection[0].message.should.include(entityName);
+                helper.errorMessageCollection[0].message.should.include("min value greater than max value");
             });
 });
     

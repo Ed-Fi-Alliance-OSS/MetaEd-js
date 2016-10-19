@@ -253,11 +253,11 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Domain item");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("Domain");
-            helper.errorMessageCollection[0].Message.ShouldContain("DomainName");
-            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+            helper.errorMessageCollection[0].message.should.include("Domain item");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("Domain");
+            helper.errorMessageCollection[0].message.should.include("DomainName");
+            helper.errorMessageCollection[0].message.should.include("does not match");
         });
     });
 
@@ -281,11 +281,11 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Domain item");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("Subdomain");
-            helper.errorMessageCollection[0].Message.ShouldContain("SubdomainName");
-            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+            helper.errorMessageCollection[0].message.should.include("Domain item");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("Subdomain");
+            helper.errorMessageCollection[0].message.should.include("SubdomainName");
+            helper.errorMessageCollection[0].message.should.include("does not match");
         });
     });
 });

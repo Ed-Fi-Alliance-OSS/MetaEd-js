@@ -66,10 +66,10 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+            helper.errorMessageCollection[0].message.should.include("include extension");
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("invalid");
         });
     });
 
@@ -105,10 +105,10 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+            helper.errorMessageCollection[0].message.should.include("include extension");
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("invalid");
         });
     });
 
@@ -146,10 +146,10 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+            helper.errorMessageCollection[0].message.should.include("include extension");
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("invalid");
         });
     });
 
@@ -256,10 +256,10 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+            helper.errorMessageCollection[0].message.should.include("include extension");
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("invalid");
         });
     });
 
@@ -296,10 +296,10 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+            helper.errorMessageCollection[0].message.should.include("include extension");
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("invalid");
         });
     });
 
@@ -338,10 +338,10 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+            helper.errorMessageCollection[0].message.should.include("include extension");
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("invalid");
         });
     });
 
@@ -380,10 +380,10 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+            helper.errorMessageCollection[0].message.should.include("include extension");
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("invalid");
         });
     });
 });

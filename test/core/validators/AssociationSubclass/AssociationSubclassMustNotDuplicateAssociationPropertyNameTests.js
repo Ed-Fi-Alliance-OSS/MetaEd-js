@@ -69,12 +69,12 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
                 helper.errorMessageCollection.Any().ShouldBeTrue();
             });
             it('should_have_validation_failure_message()', () => {
-                helper.errorMessageCollection[0].Message.ShouldContain("Association");
-                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-                helper.errorMessageCollection[0].Message.ShouldContain("based on");
-                helper.errorMessageCollection[0].Message.ShouldContain(baseName);
-                helper.errorMessageCollection[0].Message.ShouldContain(duplicatePropertyName);
-                helper.errorMessageCollection[0].Message.ShouldContain("already in property list");
+                helper.errorMessageCollection[0].message.should.include("Association");
+                helper.errorMessageCollection[0].message.should.include(entityName);
+                helper.errorMessageCollection[0].message.should.include("based on");
+                helper.errorMessageCollection[0].message.should.include(baseName);
+                helper.errorMessageCollection[0].message.should.include(duplicatePropertyName);
+                helper.errorMessageCollection[0].message.should.include("already in property list");
             });
 });
     
@@ -112,14 +112,14 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
                 helper.errorMessageCollection.Any().ShouldBeTrue();
             });
             it('should_have_validation_failure_message()', () => {
-                helper.errorMessageCollection[0].Message.ShouldContain("Association");
-                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-                helper.errorMessageCollection[0].Message.ShouldContain("based on");
-                helper.errorMessageCollection[0].Message.ShouldContain(baseName);
-                helper.errorMessageCollection[0].Message.ShouldContain(duplicatePropertyName1);
-                helper.errorMessageCollection[0].Message.ShouldContain(duplicatePropertyName2);
-                helper.errorMessageCollection[0].Message.ShouldContain("already in property list");
-                helper.errorMessageCollection[0].Message.ShouldNotContain(When_association_subclass_has_multiple_duplicate_property_names._not_duplicate_property_name);
+                helper.errorMessageCollection[0].message.should.include("Association");
+                helper.errorMessageCollection[0].message.should.include(entityName);
+                helper.errorMessageCollection[0].message.should.include("based on");
+                helper.errorMessageCollection[0].message.should.include(baseName);
+                helper.errorMessageCollection[0].message.should.include(duplicatePropertyName1);
+                helper.errorMessageCollection[0].message.should.include(duplicatePropertyName2);
+                helper.errorMessageCollection[0].message.should.include("already in property list");
+                helper.errorMessageCollection[0].message.should.not.include(When_association_subclass_has_multiple_duplicate_property_names._not_duplicate_property_name);
             });
 });
 });

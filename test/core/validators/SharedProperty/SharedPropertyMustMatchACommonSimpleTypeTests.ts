@@ -148,9 +148,9 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Shared property");
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+            helper.errorMessageCollection[0].message.should.include("Shared property");
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include("does not match");
         });
     });
 
@@ -176,9 +176,9 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Shared property");
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+            helper.errorMessageCollection[0].message.should.include("Shared property");
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include("does not match");
         });
     });
 
@@ -204,9 +204,9 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Shared property");
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+            helper.errorMessageCollection[0].message.should.include("Shared property");
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include("does not match");
         });
     });
 
@@ -232,9 +232,9 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Shared property");
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+            helper.errorMessageCollection[0].message.should.include("Shared property");
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include("does not match");
         });
     });
 });

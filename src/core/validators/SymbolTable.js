@@ -16,7 +16,7 @@ export default class SymbolTable {
     this.symbolTable = new Map();
   }
 
-  tryAdd(entityType: string, name: string, ruleContext: ParserRuleContext) {
+  tryAdd(entityType: string, name: string, ruleContext: ParserRuleContext): boolean {
     let entityDictionary: ?Map<string, EntityContext> = this.symbolTable.get(entityType);
 
     if (entityDictionary == null) {
@@ -36,30 +36,29 @@ export default class SymbolTable {
     return true;
   }
 
-  get(entityType: string, name: string) {
+  get(entityType: string, name: string): ?EntityContext {
     const entityDictionary = this.symbolTable.get(entityType);
-    if (!entityDictionary) return null;
-
+    if (entityDictionary == null) return null;
     return entityDictionary.get(name);
   }
 
-  identifierExists(entityType: string, identifier: string) {
+  identifierExists(entityType: string, identifier: string): boolean {
     const propertySymbolTable = this.symbolTable.get(entityType);
     if (propertySymbolTable == null) return false;
     return propertySymbolTable.has(identifier);
   }
 
-  identifiersForEntityType(entityType: string) {
+  identifiersForEntityType(entityType: string): Iterator<string> {
     const entityDictionary = this.symbolTable.get(entityType);
     if (entityDictionary) return entityDictionary.keys();
-    return [].values();
+    return [].entries();
   }
 
   // results are prefixed by a 'with context' value if one exists for property
   identifiersForEntityProperties(entityType: string, identifier: string): Iterator<string> {
     const entityContext: ?EntityContext = this.get(entityType, identifier);
 
-    if (entityContext == null) return [].values();
+    if (entityContext == null) return [].entries();
     return entityContext.propertySymbolTable.identifiers();
   }
 

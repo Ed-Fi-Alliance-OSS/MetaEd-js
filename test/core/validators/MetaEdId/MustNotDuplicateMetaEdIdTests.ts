@@ -73,9 +73,9 @@ describe('MustNotDuplicateMetaEdId', () => {
             helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("MetaEdId");
-            helper.errorMessageCollection[0].Message.ShouldContain(metaEdId);
-            helper.errorMessageCollection[0].Message.ShouldContain("All MetaEdIds must be globally unique.");
+            helper.errorMessageCollection[0].message.should.include("MetaEdId");
+            helper.errorMessageCollection[0].message.should.include(metaEdId);
+            helper.errorMessageCollection[0].message.should.include("All MetaEdIds must be globally unique.");
         });
     });
 
@@ -102,9 +102,9 @@ describe('MustNotDuplicateMetaEdId', () => {
             helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("MetaEdId");
-            helper.errorMessageCollection[0].Message.ShouldContain(metaEdId);
-            helper.errorMessageCollection[0].Message.ShouldContain("All MetaEdIds must be globally unique.");
+            helper.errorMessageCollection[0].message.should.include("MetaEdId");
+            helper.errorMessageCollection[0].message.should.include(metaEdId);
+            helper.errorMessageCollection[0].message.should.include("All MetaEdIds must be globally unique.");
         });
     });
 
@@ -137,9 +137,9 @@ describe('MustNotDuplicateMetaEdId', () => {
             helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("MetaEdId");
-            helper.errorMessageCollection[0].Message.ShouldContain(metaEdId);
-            helper.errorMessageCollection[0].Message.ShouldContain("All MetaEdIds must be globally unique.");
+            helper.errorMessageCollection[0].message.should.include("MetaEdId");
+            helper.errorMessageCollection[0].message.should.include(metaEdId);
+            helper.errorMessageCollection[0].message.should.include("All MetaEdIds must be globally unique.");
         });
     });
 });

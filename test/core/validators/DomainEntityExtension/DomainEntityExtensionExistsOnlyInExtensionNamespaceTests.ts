@@ -64,10 +64,10 @@ describe('DomainEntityExtensionExistsOnlyInExtensionNamespaceTests', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity additions");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("is not valid in core namespace");
-            helper.errorMessageCollection[0].Message.ShouldContain(coreNamespace);
+            helper.errorMessageCollection[0].message.should.include("Domain Entity additions");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("is not valid in core namespace");
+            helper.errorMessageCollection[0].message.should.include(coreNamespace);
         });
     });
 });

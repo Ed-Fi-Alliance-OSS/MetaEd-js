@@ -55,10 +55,10 @@ describe('InlineCommonTypeExistsOnlyInCoreNamespace', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Inline Common Type");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("is not valid in extension namespace");
-            helper.errorMessageCollection[0].Message.ShouldContain(extensionNamespace);
+            helper.errorMessageCollection[0].message.should.include("Inline Common Type");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("is not valid in extension namespace");
+            helper.errorMessageCollection[0].message.should.include(extensionNamespace);
         });
     });
 });

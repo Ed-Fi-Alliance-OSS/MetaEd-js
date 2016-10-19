@@ -33,10 +33,10 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Association");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+            helper.errorMessageCollection[0].message.should.include("Association");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include("invalid");
         });
     });
 
@@ -60,10 +60,10 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+            helper.errorMessageCollection[0].message.should.include("Domain Entity");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include("invalid");
         });
     });
 

@@ -52,10 +52,10 @@ describe('InterchangeExtensionMustNotDuplicateInterchangeElementName', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Interchange additions");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("duplicate interchange element");
-            helper.errorMessageCollection[0].Message.ShouldContain(duplicateTemplate);
+            helper.errorMessageCollection[0].message.should.include("Interchange additions");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("duplicate interchange element");
+            helper.errorMessageCollection[0].message.should.include(duplicateTemplate);
         });
     });
 });

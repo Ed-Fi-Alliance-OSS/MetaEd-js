@@ -150,11 +150,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 helper.errorMessageCollection.should.not.be.empty;
             });
             it('should_have_validation_failure_message()', () => {
-                helper.errorMessageCollection[0].Message.ShouldContain("Association");
-                helper.errorMessageCollection[0].Message.ShouldContain("additions");
-                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-                helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-                helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+                helper.errorMessageCollection[0].message.should.include("Association");
+                helper.errorMessageCollection[0].message.should.include("additions");
+                helper.errorMessageCollection[0].message.should.include(entityName);
+                helper.errorMessageCollection[0].message.should.include(propertyName);
+                helper.errorMessageCollection[0].message.should.include("invalid");
             });
 });
     
@@ -186,11 +186,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 helper.errorMessageCollection.should.not.be.empty;
             });
             it('should_have_validation_failure_message()', () => {
-                helper.errorMessageCollection[0].Message.ShouldContain("Association");
-                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-                helper.errorMessageCollection[0].Message.ShouldContain(subClassName);
-                helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-                helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+                helper.errorMessageCollection[0].message.should.include("Association");
+                helper.errorMessageCollection[0].message.should.include(entityName);
+                helper.errorMessageCollection[0].message.should.include(subClassName);
+                helper.errorMessageCollection[0].message.should.include(propertyName);
+                helper.errorMessageCollection[0].message.should.include("invalid");
             });
 });
     
@@ -220,10 +220,10 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 helper.errorMessageCollection.should.not.be.empty;
             });
             it('should_have_validation_failure_message()', () => {
-                helper.errorMessageCollection[0].Message.ShouldContain("Descriptor");
-                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-                helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-                helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+                helper.errorMessageCollection[0].message.should.include("Descriptor");
+                helper.errorMessageCollection[0].message.should.include(entityName);
+                helper.errorMessageCollection[0].message.should.include(propertyName);
+                helper.errorMessageCollection[0].message.should.include("invalid");
             });
 });
     
@@ -252,11 +252,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 helper.errorMessageCollection.should.not.be.empty;
             });
             it('should_have_validation_failure_message()', () => {
-                helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");
-                helper.errorMessageCollection[0].Message.ShouldContain("additions");
-                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-                helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-                helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+                helper.errorMessageCollection[0].message.should.include("Domain Entity");
+                helper.errorMessageCollection[0].message.should.include("additions");
+                helper.errorMessageCollection[0].message.should.include(entityName);
+                helper.errorMessageCollection[0].message.should.include(propertyName);
+                helper.errorMessageCollection[0].message.should.include("invalid");
             });
 });
     
@@ -287,11 +287,11 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
                 helper.errorMessageCollection.should.not.be.empty;
             });
             it('should_have_validation_failure_message()', () => {
-                helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");
-                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-                helper.errorMessageCollection[0].Message.ShouldContain(subClassName);
-                helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-                helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+                helper.errorMessageCollection[0].message.should.include("Domain Entity");
+                helper.errorMessageCollection[0].message.should.include(entityName);
+                helper.errorMessageCollection[0].message.should.include(subClassName);
+                helper.errorMessageCollection[0].message.should.include(propertyName);
+                helper.errorMessageCollection[0].message.should.include("invalid");
             });
 });
 });

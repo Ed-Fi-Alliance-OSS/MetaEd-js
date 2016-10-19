@@ -1,68 +1,69 @@
-import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-import chai from 'chai'
-import {ValidatorTestHelper} from "../ValidatorTestHelper";
-import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
-import {AssociationSubclassIdentifierMustMatchAnAssociation}from "../../../../src/core/validators/AssociationSubclass/AssociationSubclassIdentifierMustMatchAnAssociation"
+import chai from 'chai';
+import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
+import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
+import { includeRule } from '../../../../src/core/validators/AssociationSubclass/AssociationSubclassIdentifierMustMatchAnAssociation';
+import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
-let should = chai.should();
+chai.should();
 
 describe('AssociationSubclassIdentifierMustMatchAnAssociationTests', () => {
-    let validatorListener = new ValidatorListener(
-        new TestRuleProvider<MetaEdGrammar.AssociationSubclassContext>(
-            new AssociationSubclassIdentifierMustMatchAnAssociation(symbolTable)));
+  const repository = includeRule(newRepository());
+  const validatorListener = new ValidatorListener(repository);
 
+  describe('When_association_subclass_has_valid_extendee', () => {
+    const entityName: string = 'MyIdentifier';
+    const helper: ValidatorTestHelper = new ValidatorTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace('edfi')
+      .withStartAssociation(entityName)
+      .withDocumentation('doc')
+      .withDomainEntityProperty('DomainEntity1', 'doc')
+      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withBooleanProperty('Property1', 'doc', true, false)
+      .withEndAssociation()
 
-    describe('When_association_subclass_has_valid_extendee', () => {
-        let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
-        before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
-
-                .withBeginNamespace("edfi")
-                .withStartAssociation(entityName)
-                .withDocumentation("doc")
-                .withDomainEntityProperty("DomainEntity1", "doc")
-                .withDomainEntityProperty("DomainEntity2", "doc")
-                .withBooleanProperty("Property1", "doc", true, false)
-                .withEndAssociation()
-
-                .withStartAssociationSubclass("NewSubclass", entityName)
-                .withDocumentation("doc")
-                .withBooleanProperty("Property2", "doc", true, false)
-                .withEndAssociationSubclass()
-                .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
-        });
-        it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.length.should.equal(0);
-        });
+      .withStartAssociationSubclass('NewSubclass', entityName)
+      .withDocumentation('doc')
+      .withBooleanProperty('Property2', 'doc', true, false)
+      .withEndAssociationSubclass()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText, validatorListener);
     });
 
-
-    describe('When_association_subclass_has_invalid_extendee', () => {
-        let entityName: string = "MyIdentifier";
-        const baseName: string = "NotAnAssociationIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
-        before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
-
-                .withBeginNamespace("edfi")
-                .withStartAssociationSubclass(entityName, baseName)
-                .withDocumentation("doc")
-                .withBooleanProperty("Property1", "doc", true, false)
-                .withEndAssociationSubclass()
-                .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
-        });
-        it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
-        });
-        it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Association");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("based on");
-            helper.errorMessageCollection[0].Message.ShouldContain(baseName);
-            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
-        });
+    it('should_have_no_validation_failures()', () => {
+      helper.errorMessageCollection.length.should.equal(0);
     });
+  });
+
+  describe('When_association_subclass_has_invalid_extendee', () => {
+    const entityName: string = 'MyIdentifier';
+    const baseName: string = 'NotAnAssociationIdentifier';
+    const helper: ValidatorTestHelper = new ValidatorTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace('edfi')
+      .withStartAssociationSubclass(entityName, baseName)
+      .withDocumentation('doc')
+      .withBooleanProperty('Property1', 'doc', true, false)
+      .withEndAssociationSubclass()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText, validatorListener);
+    });
+
+    it('should_have_validation_failure()', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+    });
+
+    it('should_have_validation_failure_message()', () => {
+      helper.errorMessageCollection[0].message.should.include('Association');
+      helper.errorMessageCollection[0].message.should.include(entityName);
+      helper.errorMessageCollection[0].message.should.include('based on');
+      helper.errorMessageCollection[0].message.should.include(baseName);
+      helper.errorMessageCollection[0].message.should.include('does not match');
+    });
+  });
 });

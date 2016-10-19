@@ -84,11 +84,11 @@ describe('DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity', () =>
             helper.errorMessageCollection.length.should.not.equal(0)
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("DomainEntity");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("based on");
-            helper.errorMessageCollection[0].Message.ShouldContain(baseName);
-            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+            helper.errorMessageCollection[0].message.should.include("DomainEntity");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("based on");
+            helper.errorMessageCollection[0].message.should.include(baseName);
+            helper.errorMessageCollection[0].message.should.include("does not match");
         });
     });
 });

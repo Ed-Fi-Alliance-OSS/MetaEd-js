@@ -61,9 +61,9 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
             helper.errorMessageCollection.length.should.not.equal(0);
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("String property");
-            helper.errorMessageCollection[0].Message.ShouldContain(commonEntityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+            helper.errorMessageCollection[0].message.should.include("String property");
+            helper.errorMessageCollection[0].message.should.include(commonEntityName);
+            helper.errorMessageCollection[0].message.should.include("has the same name");
         });
     });
 
@@ -92,9 +92,9 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
             helper.errorMessageCollection.length.should.not.equal(0);
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("String property");
-            helper.errorMessageCollection[0].Message.ShouldContain(commonEntityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+            helper.errorMessageCollection[0].message.should.include("String property");
+            helper.errorMessageCollection[0].message.should.include(commonEntityName);
+            helper.errorMessageCollection[0].message.should.include("has the same name");
         });
     });
 
@@ -123,9 +123,9 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
             helper.errorMessageCollection.length.should.not.be("0");
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("String property");
-            helper.errorMessageCollection[0].Message.ShouldContain(commonEntityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+            helper.errorMessageCollection[0].message.should.include("String property");
+            helper.errorMessageCollection[0].message.should.include(commonEntityName);
+            helper.errorMessageCollection[0].message.should.include("has the same name");
         });
     });
 
@@ -154,9 +154,9 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
             helper.errorMessageCollection.length.should.not.equal(0);
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("String property");
-            helper.errorMessageCollection[0].Message.ShouldContain(commonEntityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+            helper.errorMessageCollection[0].message.should.include("String property");
+            helper.errorMessageCollection[0].message.should.include(commonEntityName);
+            helper.errorMessageCollection[0].message.should.include("has the same name");
         });
     });
 });

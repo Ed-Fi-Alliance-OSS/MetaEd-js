@@ -61,9 +61,9 @@ describe('DecimalPropertyMustNotMatchACommonSimpleTypeTests', () => {
                 helper.errorMessageCollection.Any().ShouldBeTrue();
             });
             it('should_have_validation_failure_message()', () => {
-                helper.errorMessageCollection[0].Message.ShouldContain("Decimal property");
-                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-                helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+                helper.errorMessageCollection[0].message.should.include("Decimal property");
+                helper.errorMessageCollection[0].message.should.include(entityName);
+                helper.errorMessageCollection[0].message.should.include("has the same name");
             });
 });
     
@@ -92,9 +92,9 @@ describe('DecimalPropertyMustNotMatchACommonSimpleTypeTests', () => {
                 helper.errorMessageCollection.Any().ShouldBeTrue();
             });
             it('should_have_validation_failure_message()', () => {
-                helper.errorMessageCollection[0].Message.ShouldContain("Decimal property");
-                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-                helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+                helper.errorMessageCollection[0].message.should.include("Decimal property");
+                helper.errorMessageCollection[0].message.should.include(entityName);
+                helper.errorMessageCollection[0].message.should.include("has the same name");
             });
 });
     
@@ -123,9 +123,9 @@ describe('DecimalPropertyMustNotMatchACommonSimpleTypeTests', () => {
                 helper.errorMessageCollection.Any().ShouldBeTrue();
             });
             it('should_have_validation_failure_message()', () => {
-                helper.errorMessageCollection[0].Message.ShouldContain("Decimal property");
-                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-                helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+                helper.errorMessageCollection[0].message.should.include("Decimal property");
+                helper.errorMessageCollection[0].message.should.include(entityName);
+                helper.errorMessageCollection[0].message.should.include("has the same name");
             });
 });
     
@@ -154,9 +154,9 @@ describe('DecimalPropertyMustNotMatchACommonSimpleTypeTests', () => {
                 helper.errorMessageCollection.Any().ShouldBeTrue();
             });
             it('should_have_validation_failure_message()', () => {
-                helper.errorMessageCollection[0].Message.ShouldContain("Decimal property");
-                helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-                helper.errorMessageCollection[0].Message.ShouldContain("has the same name");
+                helper.errorMessageCollection[0].message.should.include("Decimal property");
+                helper.errorMessageCollection[0].message.should.include(entityName);
+                helper.errorMessageCollection[0].message.should.include("has the same name");
             });
 });
 });

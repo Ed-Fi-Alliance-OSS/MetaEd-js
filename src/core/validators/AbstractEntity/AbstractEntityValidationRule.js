@@ -5,8 +5,5 @@ import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
 export const includeAbstractEntityRule = includeRule(MetaEdGrammar.RULE_abstractEntity);
 
-function handled(ruleContext: any): boolean {
-  return ruleContext.ruleIndex === MetaEdGrammar.RULE_abstractEntity;
-}
-
-export const abstractEntityErrorRule = errorValidationRuleBase(handled);
+export const abstractEntityErrorRule =
+  errorValidationRuleBase((ruleContext: any): boolean => ruleContext.ruleIndex === MetaEdGrammar.RULE_abstractEntity);

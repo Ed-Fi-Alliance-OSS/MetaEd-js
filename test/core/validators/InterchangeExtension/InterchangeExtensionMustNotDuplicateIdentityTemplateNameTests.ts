@@ -52,10 +52,10 @@ describe('InterchangeExtensionMustNotDuplicateIdentityTemplateName', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Interchange additions");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("duplicate identity template");
-            helper.errorMessageCollection[0].Message.ShouldContain(duplicateTemplate);
+            helper.errorMessageCollection[0].message.should.include("Interchange additions");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("duplicate identity template");
+            helper.errorMessageCollection[0].message.should.include(duplicateTemplate);
         });
     });
 });

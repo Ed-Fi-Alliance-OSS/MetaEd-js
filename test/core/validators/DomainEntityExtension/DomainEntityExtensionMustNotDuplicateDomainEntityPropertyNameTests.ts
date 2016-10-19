@@ -61,10 +61,10 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity additions");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain(duplicatePropertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain("already in property list");
+            helper.errorMessageCollection[0].message.should.include("Domain Entity additions");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include(duplicatePropertyName);
+            helper.errorMessageCollection[0].message.should.include("already in property list");
         });
     });
 
@@ -98,12 +98,12 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity additions");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain(duplicatePropertyName1);
-            helper.errorMessageCollection[0].Message.ShouldContain(duplicatePropertyName2);
-            helper.errorMessageCollection[0].Message.ShouldContain("already in property list");
-            helper.errorMessageCollection[0].Message.ShouldNotContain(notDuplicatePropertyName);
+            helper.errorMessageCollection[0].message.should.include("Domain Entity additions");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include(duplicatePropertyName1);
+            helper.errorMessageCollection[0].message.should.include(duplicatePropertyName2);
+            helper.errorMessageCollection[0].message.should.include("already in property list");
+            helper.errorMessageCollection[0].message.should.not.include(notDuplicatePropertyName);
         });
     });
 

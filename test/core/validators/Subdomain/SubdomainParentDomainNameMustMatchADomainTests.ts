@@ -58,11 +58,11 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Subdomain");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("is part of");
-            helper.errorMessageCollection[0].Message.ShouldContain(baseName);
-            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+            helper.errorMessageCollection[0].message.should.include("Subdomain");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("is part of");
+            helper.errorMessageCollection[0].message.should.include(baseName);
+            helper.errorMessageCollection[0].message.should.include("does not match");
         });
     });
 });

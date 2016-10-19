@@ -66,11 +66,11 @@ it('should_have_validation_failures()', () => {
     helper.errorMessageCollection.length.should.equal(1);
 });
 it('should_have_meaningful_validation_message()', () => {
-    helper.errorMessageCollection[0].Message.ShouldContain("'merge' is invalid for property");
-    helper.errorMessageCollection[0].Message.ShouldContain(entityName1);
-    helper.errorMessageCollection[0].Message.ShouldContain(entityName2);
-    helper.errorMessageCollection[0].Message.ShouldContain(extensionNamespace);
-    helper.errorMessageCollection[0].Message.ShouldContain("'merge' is only valid for properties on types in a core namespace.");
+    helper.errorMessageCollection[0].message.should.include("'merge' is invalid for property");
+    helper.errorMessageCollection[0].message.should.include(entityName1);
+    helper.errorMessageCollection[0].message.should.include(entityName2);
+    helper.errorMessageCollection[0].message.should.include(extensionNamespace);
+    helper.errorMessageCollection[0].message.should.include("'merge' is only valid for properties on types in a core namespace.");
 });
 });
 });

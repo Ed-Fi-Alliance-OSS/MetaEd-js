@@ -38,9 +38,9 @@ describe('IncludePropertyMustNotContainIdentity', () => {
             helper.errorMessageCollection.Any().ShouldBeTrue();
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Include");
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+            helper.errorMessageCollection[0].message.should.include("Include");
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include("invalid");
         });
     });
 });

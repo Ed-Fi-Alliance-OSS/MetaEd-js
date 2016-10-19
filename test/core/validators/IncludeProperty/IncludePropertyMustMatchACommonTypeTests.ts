@@ -113,9 +113,9 @@ describe('IncludePropertyMustMatchACommonType', () => {
             helper.errorMessageCollection.length.should.not.equal(0);
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Include");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("does not match");
+            helper.errorMessageCollection[0].message.should.include("Include");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("does not match");
         });
     });
 });

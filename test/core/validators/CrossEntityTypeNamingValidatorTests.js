@@ -89,8 +89,8 @@
 //            public should_report_the_duplicate(): void {
 //        this._errorMessageCollection.length.should.equal(1);
 //        let failure = this._errorMessageCollection[0];
-//        failure.Message.ShouldContain(When_entities_have_same_name._entityName);
-//        failure.Message.ShouldContain("duplicate");
+//        failure.message.should.include(When_entities_have_same_name._entityName);
+//        failure.message.should.include("duplicate");
 //    });
 //            public should_report_position_of_error(): void {
 //        this._errorMessageCollection.length.should.equal(1);
@@ -170,8 +170,8 @@
 //            public should_report_the_duplicate(): void {
 //        this._errorMessageCollection.length.should.equal(1);
 //        let failure = this._errorMessageCollection[0];
-//        failure.Message.ShouldContain(When_domain_entity_has_same_name_as_common_simple_type._entityName);
-//        failure.Message.ShouldContain("duplicate");
+//        failure.message.should.include(When_domain_entity_has_same_name_as_common_simple_type._entityName);
+//        failure.message.should.include("duplicate");
 //    });
 //            public should_report_position_of_error(): void {
 //        this._errorMessageCollection.length.should.equal(1);
