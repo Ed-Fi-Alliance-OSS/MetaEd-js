@@ -1,4 +1,4 @@
-﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import { ValidationRuleBase } from "../ValidationRuleBase";
 export class IntegerPropertyMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase<MetaEdGrammar.IntegerPropertyContext>
 {
     public isValid(context: MetaEdGrammar.IntegerPropertyContext): boolean {

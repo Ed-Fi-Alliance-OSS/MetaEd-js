@@ -1,4 +1,4 @@
-﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import { ValidationRuleBase } from "../ValidationRuleBase";
 export class DomainEntitySubclassIdentityRenameMustExistNoMoreThanOnce extends ValidationRuleBase<MetaEdGrammar.DomainEntitySubclassContext>
 {
     public isValid(context: MetaEdGrammar.DomainEntitySubclassContext): boolean {

@@ -1,4 +1,4 @@
-﻿// @flow
+// @flow
 import { associationExtensionErrorRule, includeAssociationExtensionRule } from './AssociationExtensionValidationRule';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import type SymbolTable from '../SymbolTable';

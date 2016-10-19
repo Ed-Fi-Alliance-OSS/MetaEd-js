@@ -1,4 +1,4 @@
-﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import { ValidationRuleBase } from "../ValidationRuleBase";
 import {ISymbolTable} from '../SymbolTable'
 import SymbolTableEntityType from '../SymbolTableEntityType'
 export class InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass extends ValidationRuleBase<MetaEdGrammar.InterchangeIdentityTemplateContext>

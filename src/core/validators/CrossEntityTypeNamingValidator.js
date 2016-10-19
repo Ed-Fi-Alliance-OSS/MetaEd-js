@@ -1,4 +1,4 @@
-﻿import { ValidationRuleBase } from "./ValidationRuleBase";
+import { ValidationRuleBase } from "./ValidationRuleBase";
 import ValidationMessage from "../../common/ValidationMessage"
 import {ISymbolTableBuilderListener, ITerminalNode} from "./ISymbolTableBuilderListener"
 import {IMetaEdContext} from "../tasks/MetaEdContext"

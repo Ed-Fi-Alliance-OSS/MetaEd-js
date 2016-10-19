@@ -1,4 +1,4 @@
-﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import { ValidationRuleBase } from "../ValidationRuleBase";
 export class CommonShortMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase<MetaEdGrammar.CommonShortContext>
 {
     public isValid(context: MetaEdGrammar.CommonShortContext): boolean {

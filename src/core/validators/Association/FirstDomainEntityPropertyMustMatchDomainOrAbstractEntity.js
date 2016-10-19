@@ -1,4 +1,4 @@
-﻿// @flow
+// @flow
 import { firstDomainEntityErrorRule, includeFirstDomainEntityRule } from './AssociationValidationRule';
 import SymbolTable from '../SymbolTable';
 import SymbolTableEntityType from '../SymbolTableEntityType';

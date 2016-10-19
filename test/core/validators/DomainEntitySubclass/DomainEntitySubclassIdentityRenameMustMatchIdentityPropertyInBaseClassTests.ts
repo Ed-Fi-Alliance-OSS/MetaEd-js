@@ -1,4 +1,4 @@
-﻿////TODO: Different TestRuleProvider parameters!
+////TODO: Different TestRuleProvider parameters!
 
 ////import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 //import chai from 'chai'

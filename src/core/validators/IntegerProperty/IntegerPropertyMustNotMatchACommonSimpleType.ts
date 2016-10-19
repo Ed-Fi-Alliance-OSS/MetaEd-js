@@ -1,4 +1,4 @@
-﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import { ValidationRuleBase } from "../ValidationRuleBase";
 import {ISymbolTable} from '../SymbolTable'
 export class IntegerPropertyMustNotMatchACommonSimpleType extends ValidationRuleBase<MetaEdGrammar.IntegerPropertyContext>
 {

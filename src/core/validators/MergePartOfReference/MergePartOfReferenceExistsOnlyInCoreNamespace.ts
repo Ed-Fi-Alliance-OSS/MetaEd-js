@@ -1,4 +1,4 @@
-﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import { ValidationRuleBase } from "../ValidationRuleBase";
 export class MergePartOfReferenceExistsOnlyInCoreNamespace extends ValidationRuleBase<MetaEdGrammar.MergePartOfReferenceContext>
 {
     public isValid(context: MetaEdGrammar.MergePartOfReferenceContext): boolean {

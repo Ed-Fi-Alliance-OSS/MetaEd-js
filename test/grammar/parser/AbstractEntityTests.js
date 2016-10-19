@@ -1,4 +1,4 @@
-﻿import MetaEdTextBuilder from '../MetaEdTextBuilder';
+import MetaEdTextBuilder from '../MetaEdTextBuilder';
 import ParserTestHelper from "./ParserTestHelper";
 
 import chai from 'chai'

@@ -1,4 +1,4 @@
-﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import { ValidationRuleBase } from "../ValidationRuleBase";
 export class DomainEntityMustContainAnIdentity extends ValidationRuleBase<MetaEdGrammar.DomainEntityContext>
 {
     public isValid(context: MetaEdGrammar.DomainEntityContext): boolean {

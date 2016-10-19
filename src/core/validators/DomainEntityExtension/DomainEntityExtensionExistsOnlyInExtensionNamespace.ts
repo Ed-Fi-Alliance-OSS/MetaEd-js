@@ -1,4 +1,4 @@
-﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import { ValidationRuleBase } from "../ValidationRuleBase";
 export class DomainEntityExtensionExistsOnlyInExtensionNamespace extends ValidationRuleBase<MetaEdGrammar.DomainEntityExtensionContext>
 {
     public isValid(context: MetaEdGrammar.DomainEntityExtensionContext): boolean {

@@ -1,4 +1,4 @@
-﻿// @flow
+// @flow
 import { associationExtensionErrorRule, includeAssociationExtensionRule } from './AssociationExtensionValidationRule';
 import type SymbolTable from '../SymbolTable';
 import SymbolTableEntityType from '../SymbolTableEntityType';

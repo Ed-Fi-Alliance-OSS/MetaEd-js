@@ -1,4 +1,4 @@
-﻿import chai from 'chai'
+import chai from 'chai'
 import ValidatorTestHelper from "./ValidatorTestHelper";
 import ValidatorListener from "../../../src/core/validators/ValidatorListener";
 

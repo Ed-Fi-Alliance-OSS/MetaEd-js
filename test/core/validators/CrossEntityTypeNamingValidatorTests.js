@@ -1,4 +1,4 @@
-﻿//TODO: This looks like a different testing pattern
+//TODO: This looks like a different testing pattern
 
 
 ////import chai from 'chai'

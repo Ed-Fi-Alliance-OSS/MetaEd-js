@@ -1,4 +1,4 @@
-﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import { ValidationRuleBase } from "../ValidationRuleBase";
 
 export class SubdomainMustNotDuplicateDomainItems extends ValidationRuleBase<MetaEdGrammar.SubdomainContext>
 {

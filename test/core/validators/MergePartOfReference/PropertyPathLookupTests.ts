@@ -1,4 +1,4 @@
-﻿//TODO: Part of property path unique pattern
+//TODO: Part of property path unique pattern
 
 ////import chai from 'chai'
 //import {ValidatorTestHelper} from "../ValidatorTestHelper";

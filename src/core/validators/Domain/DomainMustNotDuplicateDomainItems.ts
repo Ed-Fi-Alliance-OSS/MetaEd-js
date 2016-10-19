@@ -1,4 +1,4 @@
-﻿import { ValidationRuleBase } from "../ValidationRuleBase";
+import { ValidationRuleBase } from "../ValidationRuleBase";
 export class DomainMustNotDuplicateDomainItems extends ValidationRuleBase<MetaEdGrammar.DomainContext>
 {
     private static getDuplicateDomainItems(context: MetaEdGrammar.DomainContext): string[] {
