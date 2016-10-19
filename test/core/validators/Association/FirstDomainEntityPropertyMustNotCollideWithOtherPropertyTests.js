@@ -51,7 +51,7 @@ describe('FirstDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
 
     const helper: ValidatorTestHelper = new ValidatorTestHelper();
     before(() => {
-      let metaEdText = MetaEdTextBuilder.build()
+      const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
       .withStartDomainEntity(firstName)
       .withDocumentation('doc')
@@ -69,7 +69,8 @@ describe('FirstDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
       .withDomainEntityProperty('Second', 'doc2')
       .withIntegerProperty('First', 'doc3', false, false)
       .withEndAssociation()
-      .withEndNamespace().toString();
+      .withEndNamespace()
+      .toString();
       helper.setup(metaEdText, validatorListener, symbolTable);
     });
     it('should_have_validation_failures()', () => {
