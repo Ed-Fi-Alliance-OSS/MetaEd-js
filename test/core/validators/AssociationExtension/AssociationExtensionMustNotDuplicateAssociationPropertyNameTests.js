@@ -1,5 +1,4 @@
-﻿/// <reference path="../../../../typings/index.d.ts" />
-import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+﻿import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai from 'chai'
 import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";

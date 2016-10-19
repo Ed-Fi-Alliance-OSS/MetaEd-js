@@ -1,7 +1,6 @@
 ﻿//TODO: Part of property path unique pattern
 
-///// <reference path="../../../../typings/index.d.ts" />
-//import chai from 'chai'
+////import chai from 'chai'
 //import {ValidatorTestHelper} from "../ValidatorTestHelper";
 //
 //let should = chai.should();

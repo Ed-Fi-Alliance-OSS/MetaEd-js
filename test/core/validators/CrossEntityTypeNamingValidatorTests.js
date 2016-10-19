@@ -1,8 +1,7 @@
 ﻿//TODO: This looks like a different testing pattern
 
 
-///// <reference path="../../../../typings/index.d.ts" />
-//import chai from 'chai'
+////import chai from 'chai'
 //import {ValidatorTestHelper} from "../ValidatorTestHelper";
 //
 //let should = chai.should();

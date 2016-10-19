@@ -1,4 +1,3 @@
-/// <reference path="../../typings/index.d.ts" />
 import StringHelper from '../../src/common/StringHelper';
 
 import chai from 'chai'

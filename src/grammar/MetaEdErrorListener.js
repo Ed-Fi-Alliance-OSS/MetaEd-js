@@ -1,4 +1,3 @@
-/// <reference path="../../typings/globals/node/index.d.ts" />
 import antlr4 from 'antlr4';
 
 export default class MetaEdErrorListener {
