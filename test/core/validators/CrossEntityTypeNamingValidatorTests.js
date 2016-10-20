@@ -2,7 +2,7 @@
 
 
 ////import chai from 'chai'
-//import {ValidatorTestHelper} from "../ValidatorTestHelper";
+//import ValidatorTestHelper from "../ValidatorTestHelper";
 //
 //let should = chai.should();
 //

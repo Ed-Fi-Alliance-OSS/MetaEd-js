@@ -9,6 +9,6 @@ export class ShortPropertyMinValueMustNotBeGreaterThanMaxValue extends Validatio
         return minValue <= maxValue;
     }
     public getFailureMessage(context: MetaEdGrammar.ShortPropertyContext): string {
-        return `Short Property '${context.propertyName().GetText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min value greater than max value.`;
+        return `Short Property '${context.propertyName().getText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min value greater than max value.`;
     }
 }

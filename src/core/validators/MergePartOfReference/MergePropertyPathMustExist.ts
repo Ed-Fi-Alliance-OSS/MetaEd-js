@@ -17,7 +17,7 @@ export class MergePropertyPathMustExist extends ValidationRuleBase<MetaEdGrammar
         return this._propertyPathLookup.Validate(entityContext, propertyPathParts, PropertyPathLookup.MatchAllButFirstAsIdentityProperties());
     }
     public getFailureMessage(context: MetaEdGrammar.MergePropertyPathContext): string {
-        return `Path ${context.GetText()} is not valid.`;
+        return `Path ${context.getText()} is not valid.`;
     }
     private lookupParentEntityContext(context: MetaEdGrammar.MergePropertyPathContext): EntityContext {
         let definingEntityContext = context.parent.parent.parent.parent;

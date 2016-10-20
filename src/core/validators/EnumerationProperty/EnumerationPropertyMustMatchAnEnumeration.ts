@@ -10,10 +10,10 @@ export class EnumerationPropertyMustMatchAnEnumeration extends ValidationRuleBas
         this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.EnumerationPropertyContext): boolean {
-        let identifierToMatch = context.propertyName().GetText();
+        let identifierToMatch = context.propertyName().getText();
         return this.symbolTable.identifierExists(this.symbolTableEntityType.enumerationEntityType(), identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.EnumerationPropertyContext): string {
-        return `Enumeration property '${context.propertyName().GetText()}' does not match any declared enumeration.`;
+        return `Enumeration property '${context.propertyName().getText()}' does not match any declared enumeration.`;
     }
 }

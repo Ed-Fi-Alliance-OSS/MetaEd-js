@@ -19,6 +19,6 @@ export class IdentityExistsOnlyIfIdentityIsAllowed extends ValidationRuleBase<Me
         let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         let propertyWithComponents = context.GetAncestorContext<IPropertyWithComponents>();
         let validNames = this._validIdentityTokenNames.join(", ");
-        return `'is part of identity' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'is part of identity' is only valid for properties on types: ${validNames}.`;
+        return `'is part of identity' is invalid for property ${propertyWithComponents.IdNode().getText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'is part of identity' is only valid for properties on types: ${validNames}.`;
     }
 }

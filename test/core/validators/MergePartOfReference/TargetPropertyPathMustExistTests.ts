@@ -2,8 +2,8 @@
 
 ////import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 //import chai from 'chai'
-//import {ValidatorTestHelper} from "../ValidatorTestHelper";
-//import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+//import ValidatorTestHelper from "../ValidatorTestHelper";
+//import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 //import {TargetPropertyPathMustExist}from "../../../../src/core/validators/MergePartOfReference/TargetPropertyPathMustExist"
 //
 ////TODO: special case ?

@@ -10,10 +10,10 @@ export class DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity exte
         this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.DomainEntitySubclassContext): boolean {
-        let basedOnName = context.baseName().GetText();
+        let basedOnName = context.baseName().getText();
         return this.symbolTable.identifiersForEntityType(this.symbolTableEntityType.domainEntityEntityType()).Any(x => x.Equals(basedOnName)) || this.symbolTable.identifiersForEntityType(this.symbolTableEntityType.abstractEntityEntityType()).Any(x => x.Equals(basedOnName));
     }
     public getFailureMessage(context: MetaEdGrammar.DomainEntitySubclassContext): string {
-        return `Domain Entity '${context.entityName().GetText()}' based on '${context.baseName().GetText()}' does not match any declared domain or abstract entity.`;
+        return `Domain Entity '${context.entityName().getText()}' based on '${context.baseName().getText()}' does not match any declared domain or abstract entity.`;
     }
 }

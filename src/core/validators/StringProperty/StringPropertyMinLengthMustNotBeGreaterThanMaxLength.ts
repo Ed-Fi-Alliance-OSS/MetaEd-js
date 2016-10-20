@@ -9,6 +9,6 @@ export class StringPropertyMinLengthMustNotBeGreaterThanMaxLength extends Valida
         return minLength <= maxLength;
     }
     public getFailureMessage(context: MetaEdGrammar.StringPropertyContext): string {
-        return `String Property '${context.propertyName().GetText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min length greater than max length.`
+        return `String Property '${context.propertyName().getText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min length greater than max length.`
     }
 }

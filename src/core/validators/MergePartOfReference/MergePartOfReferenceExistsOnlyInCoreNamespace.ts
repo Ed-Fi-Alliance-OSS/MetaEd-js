@@ -9,6 +9,6 @@ export class MergePartOfReferenceExistsOnlyInCoreNamespace extends ValidationRul
         let namespaceInfo = context.GetAncestorContext<INamespaceInfo>();
         let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         let propertyWithComponents = context.GetAncestorContext<IPropertyWithComponents>();
-        return `'merge' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}' in extension namespace ${namespaceInfo.NamespaceName}.  'merge' is only valid for properties on types in a core namespace.`
+        return `'merge' is invalid for property ${propertyWithComponents.IdNode().getText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}' in extension namespace ${namespaceInfo.NamespaceName}.  'merge' is only valid for properties on types in a core namespace.`
     }
 }

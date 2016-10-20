@@ -25,7 +25,7 @@ export class IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAsso
     public getFailureMessage(context: MetaEdGrammar.IncludePropertyContext): string {
         let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         let propertyWithComponents = context.GetAncestorContext<IPropertyWithComponents>();
-        return `'include extension' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'include extension' is only valid for properties on Domain Entity extension and Association extension, and must maintain original cardinality on extendee.`;
+        return `'include extension' is invalid for property ${propertyWithComponents.IdNode().getText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'include extension' is only valid for properties on Domain Entity extension and Association extension, and must maintain original cardinality on extendee.`;
     }
     private maintainsCardinalityOnDomainEntity(overriddenIncludePropertyContext: MetaEdGrammar.IncludePropertyContext, extensionEntityContext: MetaEdGrammar.DomainEntityExtensionContext): boolean {
         let extendeeEntityContext = this.symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), extensionEntityContext.EntityName());

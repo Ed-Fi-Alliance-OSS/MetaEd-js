@@ -271,7 +271,7 @@ export default class ValidatorListener extends MetaEdGrammarListener {
     this._validateContext(context, MetaEdGrammar.RULE_inlineCommonType);
   }
 
-  // eslint-disable-next-line
+  // eslint-disable-next-line camelcase
   enterSigned_int(context: any) {
     this._validateContext(context, MetaEdGrammar.RULE_signed_int);
   }

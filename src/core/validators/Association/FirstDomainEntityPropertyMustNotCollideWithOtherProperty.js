@@ -13,6 +13,7 @@ export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   return entitySymbolTable.propertySymbolTable.get(withContextPrefix + identifierToMatch) == null;
 }
 
+// eslint-disable-next-line no-unused-vars
 export function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   const associationName = ruleContext.parentCtx.associationName().ID().getText();
   return `Entity ${associationName} has duplicate properties named ${ruleContext.propertyName().ID().getText()}`;

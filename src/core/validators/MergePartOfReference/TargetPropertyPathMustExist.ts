@@ -17,7 +17,7 @@ export class TargetPropertyPathMustExist extends ValidationRuleBase<MetaEdGramma
         return this._propertyPathLookup.Validate(entityContext, propertyPathParts, PropertyPathLookup.MatchAllIdentityProperties());
     }
     public getFailureMessage(context: MetaEdGrammar.TargetPropertyPathContext): string {
-        return `Path ${context.GetText()} is not valid or lists properties that are not part of the primary key.`;
+        return `Path ${context.getText()} is not valid or lists properties that are not part of the primary key.`;
     }
     private lookupParentEntityContext(context: MetaEdGrammar.TargetPropertyPathContext): EntityContext {
         let definingEntityContext = context.parent.parent.parent.parent;

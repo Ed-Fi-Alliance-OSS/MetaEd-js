@@ -1,7 +1,7 @@
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai from 'chai'
-import {ValidatorTestHelper} from "../ValidatorTestHelper";
-import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {IdentityRenameExistsOnlyIfIdentityRenameIsAllowed}from "../../../../src/core/validators/IdentityRename/IdentityRenameExistsOnlyIfIdentityRenameIsAllowed"
 
 let should = chai.should();

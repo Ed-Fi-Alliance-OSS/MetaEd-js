@@ -1,7 +1,7 @@
 //TODO: Part of property path unique pattern
 
 ////import chai from 'chai'
-//import {ValidatorTestHelper} from "../ValidatorTestHelper";
+//import ValidatorTestHelper from "../ValidatorTestHelper";
 //
 //let should = chai.should();
 //
@@ -48,7 +48,7 @@
 //});
 //it('should_return_expected_property(): void {
 //                this._result.ShouldNotBeNull();
-//this._result.IdNode().GetText().should.equal("Prop1");
+//this._result.IdNode().getText().should.equal("Prop1");
 //            });
 //});
 //
@@ -88,7 +88,7 @@
 //});
 //it('should_return_expected_property(): void {
 //                this._result.ShouldNotBeNull();
-//this._result.IdNode().GetText().should.equal("Entity1");
+//this._result.IdNode().getText().should.equal("Entity1");
 //            });
 //});
 //
@@ -128,7 +128,7 @@
 //});
 //it('should_return_expected_property(): void {
 //                this._result.ShouldNotBeNull();
-//this._result.IdNode().GetText().should.equal("Entity2");
+//this._result.IdNode().getText().should.equal("Entity2");
 //            });
 //});
 //
@@ -256,7 +256,7 @@
 //});
 //it('should_return_expected_property(): void {
 //                this._result.ShouldNotBeNull();
-//this._result.IdNode().GetText().should.equal("Prop1");
+//this._result.IdNode().getText().should.equal("Prop1");
 //            });
 //});
 //
@@ -294,7 +294,7 @@ import SymbolTableEntityType from '../SymbolTableEntityType'
 //});
 //it('should_return_expected_property(): void {
 //                this._result.ShouldNotBeNull();
-//this._result.IdNode().GetText().should.equal("Prop1");
+//this._result.IdNode().getText().should.equal("Prop1");
 //            });
 //});
 //});

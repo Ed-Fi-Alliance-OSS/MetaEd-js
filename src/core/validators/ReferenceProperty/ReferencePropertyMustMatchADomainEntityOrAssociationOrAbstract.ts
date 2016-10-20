@@ -12,10 +12,10 @@ export class ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract exte
         
     }
     public isValid(context: MetaEdGrammar.ReferencePropertyContext): boolean {
-        let identifierToMatch = context.propertyName().GetText();
+        let identifierToMatch = context.propertyName().getText();
         return this.symbolTable.identifierExists(this.symbolTableEntityType.abstractEntityEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.associationEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.associationSubclassEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntityEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntitySubclassEntityType(), identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.ReferencePropertyContext): string {
-        return `Reference property '${context.propertyName().GetText()}' does not match any declared domain entity or subclass, association or subclass, or abstract entity.`;
+        return `Reference property '${context.propertyName().getText()}' does not match any declared domain entity or subclass, association or subclass, or abstract entity.`;
     }
 }

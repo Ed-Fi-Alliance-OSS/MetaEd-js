@@ -1,7 +1,7 @@
 import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
 import chai from 'chai'
-import {ValidatorTestHelper} from "../ValidatorTestHelper";
-import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {ShortPropertyMustNotMatchACommonSimpleType}from "../../../../src/core/validators/ShortProperty/ShortPropertyMustNotMatchACommonSimpleType"
 
 let should = chai.should();

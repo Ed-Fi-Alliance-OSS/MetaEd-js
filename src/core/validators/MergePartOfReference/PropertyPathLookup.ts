@@ -34,7 +34,7 @@ export class PropertyPathLookup implements IPropertyPathLookup {
                 entityContext = this.symbolTable.get(entityType, entityName);
             }
 
-            let matchingProperties = entityContext.propertySymbolTable.getWithoutContext(propertyPathPart).Where(filter);
+            let matchingProperties = entityContext.propertySymbolTable.getWithoutContext(propertyPathPart).filter(filter);
             if (!matchingProperties.Any()) {
                 if (!this.findAssociationDomainEntityProperty(entityContext, propertyPathPart, /*out*/ propertyContext))
                     return null;
@@ -49,7 +49,7 @@ export class PropertyPathLookup implements IPropertyPathLookup {
             //   if ((propertyContext is MetaEdGrammar.ReferencePropertyContext)
             //         || (propertyContext is MetaEdGrammar.FirstDomainEntityContext)
             //         || (propertyContext is MetaEdGrammar.SecondDomainEntityContext))
-            //   entityName = propertyContext.idNode().GetText();
+            //   entityName = propertyContext.idNode().getText();
             //     else
             entityName = null;
 

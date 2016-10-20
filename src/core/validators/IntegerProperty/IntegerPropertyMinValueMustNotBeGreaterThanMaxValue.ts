@@ -9,6 +9,6 @@ export class IntegerPropertyMinValueMustNotBeGreaterThanMaxValue extends Validat
         return minValue <= maxValue;
     }
     public getFailureMessage(context: MetaEdGrammar.IntegerPropertyContext): string {
-        return `Integer Property '${context.propertyName().GetText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min value greater than max value.`;
+        return `Integer Property '${context.propertyName().getText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min value greater than max value.`;
     }
 }

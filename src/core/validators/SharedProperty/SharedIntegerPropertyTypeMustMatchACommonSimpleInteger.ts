@@ -8,11 +8,11 @@ export class SharedIntegerPropertyTypeMustMatchACommonSimpleInteger extends Vali
         this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.SharedIntegerPropertyContext): boolean {
-        let identifierToMatch = context.sharedPropertyType().GetText();
+        let identifierToMatch = context.sharedPropertyType().getText();
         let commonIntegerType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_INTEGER);
         return this.symbolTable.identifierExists(commonIntegerType, identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.SharedIntegerPropertyContext): string {
-        return `Shared property '${context.propertyName().GetText()}' does not match any declared common integer.", );
+        return `Shared property '${context.propertyName().getText()}' does not match any declared common integer.", );
     }
 }

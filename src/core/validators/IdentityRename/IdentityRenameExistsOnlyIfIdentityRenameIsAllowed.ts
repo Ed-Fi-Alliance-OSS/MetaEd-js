@@ -10,6 +10,6 @@ export class IdentityRenameExistsOnlyIfIdentityRenameIsAllowed extends Validatio
     public getFailureMessage(context: MetaEdGrammar.IdentityRenameContext): string {
         let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         let propertyWithComponents = context.GetAncestorContext<IPropertyWithComponents>();
-        return `'renames identity property' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'renames identity property' is only valid for properties on types Domain Entity subclass and Association subclass.`;
+        return `'renames identity property' is invalid for property ${propertyWithComponents.IdNode().getText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'renames identity property' is only valid for properties on types Domain Entity subclass and Association subclass.`;
     }
 }

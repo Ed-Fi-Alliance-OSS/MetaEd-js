@@ -23,16 +23,16 @@ export class MergePropertyAndTargetPropertyMustMatch extends ValidationRuleBase<
             if (!IsReferenceProperty(mergePropertyType) || !IsReferenceProperty(targetPropertyType))
                 return false;
         }
-        if (mergeProperty.IdNode().GetText() != targetProperty.IdNode().GetText()) {
+        if (mergeProperty.IdNode().getText() != targetProperty.IdNode().getText()) {
             if (!IsReferenceProperty(mergePropertyType) || !IsReferenceProperty(targetPropertyType))
                 return false;
-            if (!MatchBaseType(mergeProperty, targetProperty.IdNode().GetText()) && !MatchBaseType(targetProperty, mergeProperty.IdNode().GetText()))
+            if (!MatchBaseType(mergeProperty, targetProperty.IdNode().getText()) && !MatchBaseType(targetProperty, mergeProperty.IdNode().getText()))
                 return false;
         }
         return true;
     }
     public getFailureMessage(context: MetaEdGrammar.MergePartOfReferenceContext): string {
-        return `The merge paths '${}' and '${}' do not correspond to the same entity type.", context.mergePropertyPath().GetText(), context.targetPropertyPath().GetText());
+        return `The merge paths '${}' and '${}' do not correspond to the same entity type.", context.mergePropertyPath().getText(), context.targetPropertyPath().getText());
     }
     private lookupParentEntityContext(context: MetaEdGrammar.MergePartOfReferenceContext): EntityContext {
         let definingEntityContext = context.parent.parent.parent;
@@ -71,7 +71,7 @@ export class MergePropertyAndTargetPropertyMustMatch extends ValidationRuleBase<
         return ((type == /*typeof*/MetaEdGrammar.ReferencePropertyContext) || (type == /*typeof*/MetaEdGrammar.FirstDomainEntityContext) || (type == /*typeof*/MetaEdGrammar.SecondDomainEntityContext));
     }
     private matchBaseType(referencingProperty: IContextWithIdentifier, baseTypeName: string): boolean {
-        let entityName = referencingProperty.IdNode().GetText();
+        let entityName = referencingProperty.IdNode().getText();
         let entityContext: EntityContext = null;
         entityContext = this.symbolTable.Get(this.symbolTableEntityType.domainEntitySubclassEntityType(), entityName);
         if (entityContext != null) {

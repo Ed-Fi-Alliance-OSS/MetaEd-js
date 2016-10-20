@@ -7,6 +7,6 @@ export class DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits extends
         return Number(decimalPlaces) <= Number(totalDigits);
     }
     public getFailureMessage(context: MetaEdGrammar.DecimalPropertyContext): string {
-        return `Decimal Property '${context.propertyName().GetText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has decimal places greater than total digits.`;
+        return `Decimal Property '${context.propertyName().getText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has decimal places greater than total digits.`;
     }
 }

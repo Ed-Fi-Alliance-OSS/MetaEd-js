@@ -8,7 +8,7 @@ export class DecimalPropertyMustNotMatchACommonSimpleType extends ValidationRule
         this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.DecimalPropertyContext): boolean {
-        let identifierToMatch = context.propertyName().GetText();
+        let identifierToMatch = context.propertyName().getText();
         let commonDecimalType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_DECIMAL);
         let commonIntegerType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_INTEGER);
         let commonShortType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_SHORT);
@@ -16,6 +16,6 @@ export class DecimalPropertyMustNotMatchACommonSimpleType extends ValidationRule
         return !(this.symbolTable.identifierExists(commonDecimalType, identifierToMatch) || this.symbolTable.identifierExists(commonIntegerType, identifierToMatch) || this.symbolTable.identifierExists(commonShortType, identifierToMatch) || this.symbolTable.identifierExists(commonStringType, identifierToMatch));
     }
     public getFailureMessage(context: MetaEdGrammar.DecimalPropertyContext): string {
-        return `Decimal property '${context.propertyName().GetText()}' has the same name as a common decimal, integer, short or string.  If intentional, use a shared property instead.`;
+        return `Decimal property '${context.propertyName().getText()}' has the same name as a common decimal, integer, short or string.  If intentional, use a shared property instead.`;
     }
 }

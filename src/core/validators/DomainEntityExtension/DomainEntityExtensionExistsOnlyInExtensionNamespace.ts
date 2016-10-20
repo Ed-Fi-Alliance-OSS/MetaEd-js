@@ -7,6 +7,6 @@ export class DomainEntityExtensionExistsOnlyInExtensionNamespace extends Validat
     }
     public getFailureMessage(context: MetaEdGrammar.DomainEntityExtensionContext): string {
         let namespaceInfo = context.GetAncestorContext<INamespaceInfo>();
-        return `Domain Entity additions '${context.extendeeName().GetText()}' is not valid in core namespace '${namespaceInfo.NamespaceName}`;
+        return `Domain Entity additions '${context.extendeeName().getText()}' is not valid in core namespace '${namespaceInfo.NamespaceName}`;
     }
 }

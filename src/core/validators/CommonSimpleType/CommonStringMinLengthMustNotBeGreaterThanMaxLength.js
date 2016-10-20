@@ -9,6 +9,6 @@ export class CommonStringMinLengthMustNotBeGreaterThanMaxLength extends Validati
         return minLength <= maxLength;
     }
     public getFailureMessage(context: MetaEdGrammar.CommonStringContext): string {
-        return `Common String '${context.commonStringName().GetText()}' has min length greater than max length.`;
+        return `Common String '${context.commonStringName().getText()}' has min length greater than max length.`;
     }
 }

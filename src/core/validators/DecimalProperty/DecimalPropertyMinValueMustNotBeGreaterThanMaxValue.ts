@@ -9,6 +9,6 @@ export class DecimalPropertyMinValueMustNotBeGreaterThanMaxValue extends Validat
         return Number(minValue) <= Number(maxValue);
     }
     public getFailureMessage(context: MetaEdGrammar.DecimalPropertyContext): string {
-        return `Decimal Property '${context.propertyName().GetText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min value greater than max value.`
+        return `Decimal Property '${context.propertyName().getText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min value greater than max value.`
     }
 }

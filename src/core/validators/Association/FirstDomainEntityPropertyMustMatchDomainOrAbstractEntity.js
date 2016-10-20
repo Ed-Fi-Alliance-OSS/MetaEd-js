@@ -10,6 +10,7 @@ export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
     || symbolTable.identifierExists(SymbolTableEntityType.domainEntitySubclassEntityType(), identifierToMatch);
 }
 
+// eslint-disable-next-line no-unused-vars
 export function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Domain Entity property '${ruleContext.propertyName().ID().getText()}' does not match any declared domain or abstract entity.`;
 }

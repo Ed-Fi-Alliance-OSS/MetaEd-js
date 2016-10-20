@@ -8,11 +8,11 @@ export class InterchangeExtensionIdentifierMustMatchAnInterchange extends Valida
         this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.InterchangeExtensionContext): boolean {
-        let entityType = context.INTERCHANGE().GetText();
-        let identifier = context.extendeeName().GetText();
+        let entityType = context.INTERCHANGE().getText();
+        let identifier = context.extendeeName().getText();
         return this.symbolTable.identifiersForEntityType(entityType).Any(x => x.Equals(identifier));
     }
     public getFailureMessage(context: MetaEdGrammar.InterchangeExtensionContext): string {
-        return `Interchange additions '${context.extendeeName().GetText()}' does not match any declared Interchange.`;
+        return `Interchange additions '${context.extendeeName().getText()}' does not match any declared Interchange.`;
     }
 }

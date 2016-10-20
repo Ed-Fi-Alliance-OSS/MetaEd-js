@@ -10,10 +10,10 @@ export class DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntity
         this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.DomainEntityExtensionContext): boolean {
-        let identifier = context.extendeeName().GetText();
+        let identifier = context.extendeeName().getText();
         return this.symbolTable.identifiersForEntityType(this.symbolTableEntityType.domainEntityEntityType()).Any(x => x.Equals(identifier)) || this.symbolTable.identifiersForEntityType(this.symbolTableEntityType.domainEntitySubclassEntityType()).Any(x => x.Equals(identifier));
     }
     public getFailureMessage(context: MetaEdGrammar.DomainEntityExtensionContext): string {
-        return `Domain Entity additions '${context.extendeeName().GetText()}' does not match any declared Domain Entity or Domain Entity Subclass.`;
+        return `Domain Entity additions '${context.extendeeName().getText()}' does not match any declared Domain Entity or Domain Entity Subclass.`;
     }
 }

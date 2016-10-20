@@ -9,6 +9,7 @@ function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
         || symbolTable.identifierExists(SymbolTableEntityType.associationSubclassEntityType(), identifierToMatch);
 }
 
+// eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable) : string {
   return `Association additions '${ruleContext.extendeeName().getText()}' does not match any declared Association or subclass.`;
 }

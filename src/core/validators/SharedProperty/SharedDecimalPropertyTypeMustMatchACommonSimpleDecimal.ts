@@ -8,11 +8,11 @@ export class SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal extends Vali
         this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.SharedDecimalPropertyContext): boolean {
-        let identifierToMatch = context.sharedPropertyType().GetText();
+        let identifierToMatch = context.sharedPropertyType().getText();
         let commonDecimalType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_DECIMAL);
         return this.symbolTable.identifierExists(commonDecimalType, identifierToMatch);
     }
     public getFailureMessage(context: MetaEdGrammar.SharedDecimalPropertyContext): string {
-        return `Shared property '${}' does not match any declared common decimal.", context.propertyName().GetText());
+        return `Shared property '${}' does not match any declared common decimal.", context.propertyName().getText());
     }
 }

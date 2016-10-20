@@ -8,11 +8,11 @@ export class CommonTypeExtensionIdentifierMustMatchACommonType extends Validatio
         this.symbolTable = symbolTable;
     }
     public isValid(context: MetaEdGrammar.CommonTypeExtensionContext): boolean {
-        let entityType = context.COMMON_TYPE().GetText();
-        let identifier = context.extendeeName().GetText();
+        let entityType = context.COMMON_TYPE().getText();
+        let identifier = context.extendeeName().getText();
         return this.symbolTable.identifiersForEntityType(entityType).Any(x => x.Equals(identifier));
     }
     public getFailureMessage(context: MetaEdGrammar.CommonTypeExtensionContext): string {
-        return `Common Type additions '${context.extendeeName().GetText()}' does not match any declared Common Type.`;
+        return `Common Type additions '${context.extendeeName().getText()}' does not match any declared Common Type.`;
     }
 }

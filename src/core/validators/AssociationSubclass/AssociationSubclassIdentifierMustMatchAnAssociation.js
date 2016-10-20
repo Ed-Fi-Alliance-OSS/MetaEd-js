@@ -8,6 +8,7 @@ function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
   return Array.from(symbolTable.identifiersForEntityType(associationEntityType)).some(x => x === basedOnName);
 }
 
+// eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable) : string {
   return `Association '${ruleContext.associationName().getText()}' based on '${ruleContext.baseName().getText()}' does not match any declared Association.`;
 }
