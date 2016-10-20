@@ -1,8 +1,8 @@
 // @flow
-import type { EntityContext } from './SymbolTable';
+declare type PropertyRuleContext = any;
 
 export default class PropertySymbolTable {
-  _symbolTable: Map<string, EntityContext>;
+  _symbolTable: Map<string, PropertyRuleContext>;
   _parentName: string;
 
   constructor(parentName: string) {
@@ -15,14 +15,14 @@ export default class PropertySymbolTable {
   }
 
   // name should be prefixed by a 'with context' value if one exists for property
-  tryAdd(name: string, entityContext: EntityContext): boolean {
+  tryAdd(name: string, propertyRuleContext: PropertyRuleContext): boolean {
     if (this._symbolTable.has(name)) return false;
-    this._symbolTable.set(name, entityContext);
+    this._symbolTable.set(name, propertyRuleContext);
     return true;
   }
 
   // name should be prefixed by a 'with context' value if one exists for property
-  get(name: string): ?EntityContext {
+  get(name: string): ?PropertyRuleContext {
     return this._symbolTable.get(name);
   }
 
@@ -31,16 +31,16 @@ export default class PropertySymbolTable {
     return this._symbolTable.keys();
   }
 
-  values(): Iterator<EntityContext> {
+  values(): Iterator<PropertyRuleContext> {
     return this._symbolTable.values();
   }
 
   // candidate identifiers should be prefixed by a 'with context' value if one exists for property
-  contextsForMatchingIdentifiers(candidateIdentifiers: Array<string>): Array<any> {
+  contextsForMatchingIdentifiers(candidateIdentifiers: Array<string>): Array<PropertyRuleContext> {
     return Array.from(this._symbolTable.entries()).filter(x => candidateIdentifiers.some(e => e === x[0])).map(y => y[1]);
   }
 
-  getWithoutContext(name: string): Array<any> {
+  getWithoutContext(name: string): Array<PropertyRuleContext> {
     return Array.from(this._symbolTable.entries()).filter(x => x[1].propertyName().ID().getText() === name).map(x => x[1]);
   }
 }

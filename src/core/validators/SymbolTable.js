@@ -3,11 +3,9 @@ import PropertySymbolTable from './PropertySymbolTable';
 
 declare type ParserRuleContext = any;
 
-function nullIterator() : Iterator<string> {
+function emptyIterator() : any {
   return {
-    next() {
-      return { done: true };
-    },
+    next() { return { done: true }; },
   };
 }
 
@@ -56,17 +54,17 @@ export default class SymbolTable {
     return propertySymbolTable.has(identifier);
   }
 
-  identifiersForEntityType(entityType: string): Iterator<string> {
+  identifiersForEntityType(entityType: string): any {
     const entityDictionary = this.symbolTable.get(entityType);
     if (entityDictionary) return entityDictionary.keys();
-    return nullIterator();
+    return emptyIterator();
   }
 
   // results are prefixed by a 'with context' value if one exists for property
-  identifiersForEntityProperties(entityType: string, identifier: string): Iterator<string> {
+  identifiersForEntityProperties(entityType: string, identifier: string): any {
     const entityContext: ?EntityContext = this.get(entityType, identifier);
 
-    if (entityContext == null) return nullIterator();
+    if (entityContext == null) return emptyIterator();
     return entityContext.propertySymbolTable.identifiers();
   }
 
