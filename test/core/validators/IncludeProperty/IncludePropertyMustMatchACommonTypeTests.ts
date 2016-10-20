@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {IncludePropertyMustMatchACommonType}from "../../../../src/core/validators/IncludeProperty/IncludePropertyMustMatchACommonType"
 
-let should = chai.should();
+chai.should();
 
 describe('IncludePropertyMustMatchACommonType', () => {
     let validatorListener = new ValidatorListener(

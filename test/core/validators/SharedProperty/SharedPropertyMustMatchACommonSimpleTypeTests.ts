@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal}from "../../../../src/core/validators/SharedProperty/SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal"
 
-let should = chai.should();
+chai.should();
 
 describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
     let validatorListener = new ValidatorListener(

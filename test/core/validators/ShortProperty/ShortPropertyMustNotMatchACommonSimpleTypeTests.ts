@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {ShortPropertyMustNotMatchACommonSimpleType}from "../../../../src/core/validators/ShortProperty/ShortPropertyMustNotMatchACommonSimpleType"
 
-let should = chai.should();
+chai.should();
 
 describe('ShortPropertyMustNotMatchACommonSimpleType', () => {
     let validatorListener = new ValidatorListener(

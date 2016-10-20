@@ -1,14 +1,21 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-export class CommonDecimalMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase<MetaEdGrammar.CommonDecimalContext>
-{
-    public isValid(context: MetaEdGrammar.CommonDecimalContext): boolean {
-        if (context.minValueDecimal() == null || context.maxValueDecimal() == null)
-            return true;
-        let minValue = context.minValueDecimal().MinValue();
-        let maxValue = context.maxValueDecimal().MaxValue();
-        return Number(minValue) <= Number(maxValue);
-    }
-    public getFailureMessage(context: MetaEdGrammar.CommonDecimalContext): string {
-        return `Common Decimal '${context.commonDecimalName().getText()}' has min value greater than max value.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { commonDecimalErrorRule, includeCommonDecimalRule } from './CommonSimpleTypeValidationRule';
+
+// eslint-disable-next-line no-unused-vars
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  if (ruleContext.minValueDecimal() == null || ruleContext.maxValueDecimal() == null) return true;
+  const minValue = Number.parseInt(ruleContext.minValueDecimal().MinValue(), 10);
+  const maxValue = Number.parseInt(ruleContext.maxValueDecimal().MaxValue(), 10);
+  return minValue <= maxValue;
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Common Decimal '${ruleContext.commonDecimalName().getText()}' has min value greater than max value.`;
+}
+
+const validationRule = commonDecimalErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeCommonDecimalRule(validationRule);

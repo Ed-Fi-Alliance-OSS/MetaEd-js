@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension}from "../../../../src/core/validators/IncludeProperty/IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension"
 
-let should = chai.should();
+chai.should();
 
 describe('IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension', () => {
     let validatorListener = new ValidatorListener(

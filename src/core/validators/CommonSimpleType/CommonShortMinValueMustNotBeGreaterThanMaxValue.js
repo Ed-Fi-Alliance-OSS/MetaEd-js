@@ -1,14 +1,21 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-export class CommonShortMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase<MetaEdGrammar.CommonShortContext>
-{
-    public isValid(context: MetaEdGrammar.CommonShortContext): boolean {
-        if (context.minValue() == null || context.maxValue() == null)
-            return true;
-        let minValue = Number(context.minValue().MinValue());
-        let maxValue = Number(context.maxValue().MaxValue());
-        return minValue <= maxValue;
-    }
-    public getFailureMessage(context: MetaEdGrammar.CommonShortContext): string {
-        return `Common Short '${context.commonShortName().getText()}' has min value greater than max value.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { commonShortErrorRule, includeCommonShortRule } from './CommonSimpleTypeValidationRule';
+
+// eslint-disable-next-line no-unused-vars
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  if (ruleContext.minValue() == null || ruleContext.maxValue() == null) return true;
+  const minValue = Number.parseInt(ruleContext.minValue().MinValue(), 10);
+  const maxValue = Number.parseInt(ruleContext.maxValue().MaxValue(), 10);
+  return minValue <= maxValue;
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Common Short '${ruleContext.commonShortName().getText()}' has min value greater than max value.`;
+}
+
+const validationRule = commonShortErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeCommonShortRule(validationRule);

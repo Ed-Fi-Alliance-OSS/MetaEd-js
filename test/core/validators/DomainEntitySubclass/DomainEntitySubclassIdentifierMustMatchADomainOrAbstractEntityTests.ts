@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity}from "../../../../src/core/validators/DomainEntitySubclass/DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity"
 
-let should = chai.should();
+chai.should();
 
 describe('DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity', () => {
     let validatorListener = new ValidatorListener(

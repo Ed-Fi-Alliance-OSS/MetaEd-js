@@ -4,7 +4,7 @@
 ////import chai from 'chai'
 //import ValidatorTestHelper from "../ValidatorTestHelper";
 //
-//let should = chai.should();
+//chai.should();
 //
 //describe('ReplaceMeWithFileName', () => {
 //    let validatorListener = new ValidatorListener(

@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass}from "../../../../src/core/validators/Interchange/InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass"
 
-let should = chai.should();
+chai.should();
 
 describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass', () => {
     let validatorListener = new ValidatorListener(

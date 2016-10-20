@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {DomainEntityExtensionExistsOnlyInExtensionNamespace}from "../../../../src/core/validators/DomainEntityExtension/DomainEntityExtensionExistsOnlyInExtensionNamespace"
 
-let should = chai.should();
+chai.should();
 
 describe('DomainEntityExtensionExistsOnlyInExtensionNamespaceTests', () => {
     let validatorListener = new ValidatorListener(

@@ -8,7 +8,7 @@
 //
 ////TOOD: special case ?
 //
-//let should = chai.should();
+//chai.should();
 //
 //describe('MetaEdIdIsRequiredWarning', () => {
 //    let validatorListener = new ValidatorListener(

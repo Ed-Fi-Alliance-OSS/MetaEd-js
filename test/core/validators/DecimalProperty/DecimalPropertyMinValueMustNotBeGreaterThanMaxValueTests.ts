@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {DecimalPropertyMinValueMustNotBeGreaterThanMaxValue}from "../../../../src/core/validators/DecimalProperty/DecimalPropertyMinValueMustNotBeGreaterThanMaxValue"
 
-let should = chai.should();
+chai.should();
 
 describe('DecimalPropertyMinValueMustNotBeGreaterThanMaxValueTests', () => {
     let validatorListener = new ValidatorListener(

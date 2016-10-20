@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {InterchangeExtensionMustNotDuplicateInterchangeElementName}from "../../../../src/core/validators/InterchangeExtension/InterchangeExtensionMustNotDuplicateInterchangeElementName"
 
-let should = chai.should();
+chai.should();
 
 describe('InterchangeExtensionMustNotDuplicateInterchangeElementName', () => {
     let validatorListener = new ValidatorListener(

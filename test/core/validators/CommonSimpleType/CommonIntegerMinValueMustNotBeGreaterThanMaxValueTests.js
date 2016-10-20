@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {CommonIntegerMinValueMustNotBeGreaterThanMaxValue}from "../../../../src/core/validators/CommonSimpleType/CommonIntegerMinValueMustNotBeGreaterThanMaxValue"
 
-let should = chai.should();
+chai.should();
 
 describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => { 
 	let validatorListener = new CommonIntegerContext(

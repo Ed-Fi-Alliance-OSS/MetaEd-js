@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract}from "../../../../src/core/validators/ReferenceProperty/ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract"
 
-let should = chai.should();
+chai.should();
 
 describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () => {
     let validatorListener = new ValidatorListener(

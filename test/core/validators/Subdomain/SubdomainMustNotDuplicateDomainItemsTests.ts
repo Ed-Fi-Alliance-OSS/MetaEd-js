@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {SubdomainMustNotDuplicateDomainItems}from "../../../../src/core/validators/Subdomain/SubdomainMustNotDuplicateDomainItems"
 
-let should = chai.should();
+chai.should();
 
 describe('SubdomainMustNotDuplicateDomainItems', () => {
     let validatorListener = new ValidatorListener(

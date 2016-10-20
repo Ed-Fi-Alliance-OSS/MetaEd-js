@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {DomainEntityMustContainAnIdentity}from "../../../../src/core/validators/DomainEntity/DomainEntityMustContainAnIdentity"
 
-let should = chai.should();
+chai.should();
 
 describe('DomainEntityMustContainAnIdentityTests', () => {
     let validatorListener = new ValidatorListener(

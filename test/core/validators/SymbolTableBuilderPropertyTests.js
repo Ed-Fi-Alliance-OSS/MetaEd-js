@@ -4,7 +4,7 @@ import SymbolTableTestHelper from "./SymbolTableTestHelper";
 import ValidationMessage from "../../../src/common/ValidationMessage"
 import { EntityContext } from '../../../src/core/validators/SymbolTable'
 
-let should = chai.should();
+chai.should();
 
 const entityName: string = "EntityName";
 const propertyName: string = "PropertyName";

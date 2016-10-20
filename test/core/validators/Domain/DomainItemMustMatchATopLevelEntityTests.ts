@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {DomainItemMustMatchTopLevelEntity}from "../../../../src/core/validators/Domain/DomainItemMustMatchTopLevelEntity"
 
-let should = chai.should();
+chai.should();
 
 describe('DomainItemMustMatchTopLevelEntityTests', () => {
     let validatorListener = new ValidatorListener(

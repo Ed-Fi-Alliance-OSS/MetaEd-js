@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {InterchangeMustNotDuplicateIdentityTemplateName}from "../../../../src/core/validators/Interchange/InterchangeMustNotDuplicateIdentityTemplateName"
 
-let should = chai.should();
+chai.should();
 
 describe('ReplaceMeWithFileName', () => {
     let validatorListener = new ValidatorListener(

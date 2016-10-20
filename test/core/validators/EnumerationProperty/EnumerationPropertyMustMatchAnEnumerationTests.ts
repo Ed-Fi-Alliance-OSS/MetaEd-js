@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {EnumerationPropertyMustMatchAnEnumeration}from "../../../../src/core/validators/EnumerationProperty/EnumerationPropertyMustMatchAnEnumeration"
 
-let should = chai.should();
+chai.should();
 
 describe('ReplaceMeWithFileName', () => {
     let validatorListener = new ValidatorListener(

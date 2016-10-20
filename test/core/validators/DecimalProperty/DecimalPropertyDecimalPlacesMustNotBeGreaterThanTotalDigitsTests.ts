@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits}from "../../../../src/core/validators/DecimalProperty/DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits"
 
-let should = chai.should();
+chai.should();
 
 describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () => {
     let validatorListener = new ValidatorListener(

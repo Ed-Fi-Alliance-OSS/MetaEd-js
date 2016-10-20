@@ -6,7 +6,7 @@
 //import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 //import {DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass}from "../../../../src/core/validators/DomainEntitySubclass/DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass"
 //
-//let should = chai.should();
+//chai.should();
 //
 //describe('DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass', () => {
 //    let validatorListener = new ValidatorListener(

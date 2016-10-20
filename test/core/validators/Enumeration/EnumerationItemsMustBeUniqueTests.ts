@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {EnumerationItemsMustBeUnique}from "../../../../src/core/validators/Enumeration/EnumerationItemsMustBeUnique"
 
-let should = chai.should();
+chai.should();
 
 describe('EnumerationItemsMustBeUnique', () => {
     let validatorListener = new ValidatorListener(

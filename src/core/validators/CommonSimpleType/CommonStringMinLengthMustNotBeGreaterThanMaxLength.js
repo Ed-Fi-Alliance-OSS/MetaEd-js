@@ -1,14 +1,21 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-export class CommonStringMinLengthMustNotBeGreaterThanMaxLength extends ValidationRuleBase<MetaEdGrammar.CommonStringContext>
-{
-    public isValid(context: MetaEdGrammar.CommonStringContext): boolean {
-        if (context.minLength() == null)
-            return true;
-        let minLength = Number(context.minLength().MinLength());
-        let maxLength = Number(context.maxLength().MaxLength());
-        return minLength <= maxLength;
-    }
-    public getFailureMessage(context: MetaEdGrammar.CommonStringContext): string {
-        return `Common String '${context.commonStringName().getText()}' has min length greater than max length.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { commonStringErrorRule, includeCommonStringRule } from './CommonSimpleTypeValidationRule';
+
+// eslint-disable-next-line no-unused-vars
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  if (ruleContext.minLength() == null) return true;
+  const minLength = Number.parseInt(ruleContext.minLength().MinLength(), 10);
+  const maxLength = Number.parseInt(ruleContext.maxLength().MaxLength(), 10);
+  return minLength <= maxLength;
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Common String '${ruleContext.commonStringName().getText()}' has min length greater than max length.`;
+}
+
+const validationRule = commonStringErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeCommonStringRule(validationRule);

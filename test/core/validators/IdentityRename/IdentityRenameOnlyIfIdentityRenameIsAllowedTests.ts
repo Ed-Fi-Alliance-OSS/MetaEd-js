@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {IdentityRenameExistsOnlyIfIdentityRenameIsAllowed}from "../../../../src/core/validators/IdentityRename/IdentityRenameExistsOnlyIfIdentityRenameIsAllowed"
 
-let should = chai.should();
+chai.should();
 
 describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
     let validatorListener = new ValidatorListener(

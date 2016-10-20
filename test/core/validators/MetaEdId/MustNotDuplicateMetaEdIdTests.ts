@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {MustNotDuplicateMetaEdId}from "../../../../src/core/validators/MetaEdId/MustNotDuplicateMetaEdId"
 
-let should = chai.should();
+chai.should();
 
 describe('MustNotDuplicateMetaEdId', () => {
     let validatorListener = new ValidatorListener(

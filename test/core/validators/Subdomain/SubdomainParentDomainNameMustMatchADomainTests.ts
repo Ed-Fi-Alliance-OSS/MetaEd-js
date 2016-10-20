@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {SubdomainParentDomainNameMustMatchADomain}from "../../../../src/core/validators/Subdomain/SubdomainParentDomainNameMustMatchADomain"
 
-let should = chai.should();
+chai.should();
 
 describe('SubdomainParentDomainNameMustMatchADomain', () => {
     let validatorListener = new ValidatorListener(

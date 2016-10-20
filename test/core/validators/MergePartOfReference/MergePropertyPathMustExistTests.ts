@@ -6,7 +6,7 @@
 //import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 //import {InsertClassName}from "../../../../src/core/validators/EnterFolderName/EnterClassName"
 //
-//let should = chai.should();
+//chai.should();
 ////TODO: special case?
 //
 //describe('MergePropertyPathMustExist', () => {

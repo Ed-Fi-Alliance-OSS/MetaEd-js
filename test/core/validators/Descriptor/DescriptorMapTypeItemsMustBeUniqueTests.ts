@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {DescriptorMapTypeItemsMustBeUnique}from "../../../../src/core/validators/Descriptor/DescriptorMapTypeItemsMustBeUnique"
 
-let should = chai.should();
+chai.should();
 
 describe('DescriptorMapTypeItemsMustBeUniqueTests', () => {
     let validatorListener = new ValidatorListener(

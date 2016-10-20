@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {MergeStatementMustStartMergePathWithPropertyName}from "../../../../src/core/validators/MergePartOfReference/MergeStatementMustStartMergePathWithPropertyName"
 
-let should = chai.should();
+chai.should();
 
 describe('MergeStatementMustStartMergePathWithPropertyName', () => {
     let validatorListener = new ValidatorListener(

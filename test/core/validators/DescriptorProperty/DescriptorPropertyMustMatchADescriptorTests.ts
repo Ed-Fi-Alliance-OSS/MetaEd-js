@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {DescriptorPropertyMustMatchADescriptor}from "../../../../src/core/validators/DescriptorProperty/DescriptorPropertyMustMatchADescriptor"
 
-let should = chai.should();
+chai.should();
 
 describe('DescriptorPropertyContext', () => { 
 	let validatorListener = new ValidatorListener(

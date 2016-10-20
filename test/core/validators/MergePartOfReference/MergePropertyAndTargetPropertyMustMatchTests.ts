@@ -5,7 +5,7 @@ import ValidatorListener from "../../../../src/core/validators/ValidatorListener
 import {MergePropertyAndTargetPropertyMustMatch}from "../../../../src/core/validators/MergePartOfReference/MergePropertyAndTargetPropertyMustMatch"
 import {PropertyPathLookup}from "../../../../src/core/validators/MergePartOfReference/PropertyPathLookup"
 
-let should = chai.should();
+chai.should();
 //TODO: special case?
 let validatorListener = new ValidatorListener(
     new TestRuleProvider<MetaEdGrammar.MergePartOfReferenceContext>(

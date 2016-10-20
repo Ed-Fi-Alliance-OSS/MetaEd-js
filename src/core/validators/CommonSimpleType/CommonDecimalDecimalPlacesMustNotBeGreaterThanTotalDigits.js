@@ -1,19 +1,20 @@
-import {ValidationRuleBase} from '../ValidationRuleBase';
-import {MetaEdGrammar} from '../../../../src/grammar/gen/MetaEdGrammar';
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { commonDecimalErrorRule, includeCommonDecimalRule } from './CommonSimpleTypeValidationRule';
 
-export class CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits extends ValidationRuleBase
-{
-    public handlesContext(context: any) : boolean {
-        return context.ruleIndex === MetaEdGrammar.RULE_commonDecimal;
-    }
-
-    public isValid(context: any): boolean {
-        let decimalPlaces = context.decimalPlaces().UNSIGNED_INT().getText();
-        let totalDigits = context.totalDigits().UNSIGNED_INT().getText();
-        return Number(decimalPlaces) <= Number(totalDigits);
-    }
-
-    public getFailureMessage(context: any): string {
-        return `Common Decimal '${context.commonDecimalName().getText()} has decimal places greater than total digits.`;
-    }
+// eslint-disable-next-line no-unused-vars
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  const decimalPlaces: number = Number.parseInt(ruleContext.decimalPlaces().UNSIGNED_INT().getText(), 10);
+  const totalDigits: number = Number.parseInt(ruleContext.totalDigits().UNSIGNED_INT().getText(), 10);
+  return decimalPlaces <= totalDigits;
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Common Decimal '${ruleContext.commonDecimalName().getText()} has decimal places greater than total digits.`;
+}
+
+const validationRule = commonDecimalErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeCommonDecimalRule(validationRule);

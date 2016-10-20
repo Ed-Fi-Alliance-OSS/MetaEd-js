@@ -9,7 +9,7 @@
 ////TODO: special case ?
 //
 //
-//let should = chai.should();
+//chai.should();
 //
 //describe('TargetPropertyPathMustExistTests', () => {
 //    let ruleProvider: IRuleProvider = helper.propertyPathLookup

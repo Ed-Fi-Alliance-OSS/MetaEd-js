@@ -3,7 +3,7 @@ import MetaEdTextBuilder from "../../grammar/MetaEdTextBuilder";
 import SymbolTableTestHelper from "./SymbolTableTestHelper";
 import ValidationMessage from "../../../src/common/ValidationMessage"
 
-let should = chai.should();
+chai.should();
 
 const entityName = "EntityName";
 const propertyName = "PropertyName";

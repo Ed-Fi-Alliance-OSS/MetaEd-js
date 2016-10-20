@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {MergePartOfReferenceExistsOnlyInCoreNamespace}from "../../../../src/core/validators/MergePartOfReference/MergePartOfReferenceExistsOnlyInCoreNamespace"
 
-let should = chai.should();
+chai.should();
 //TODO: special case?
 
 describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {

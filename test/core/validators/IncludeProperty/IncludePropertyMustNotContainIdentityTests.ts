@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {IncludePropertyMustNotContainIdentity}from "../../../../src/core/validators/IncludeProperty/IncludePropertyMustNotContainIdentity"
 
-let should = chai.should();
+chai.should();
 
 describe('IncludePropertyMustNotContainIdentity', () => {
     let validatorListener = new ValidatorListener(

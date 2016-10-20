@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {StringPropertyMinLengthMustNotBeGreaterThanMaxLength}from "../../../../src/core/validators/StringProperty/StringPropertyMinLengthMustNotBeGreaterThanMaxLength"
 
-let should = chai.should();
+chai.should();
 
 describe('ReplaceMeWithFileName', () => {
     let validatorListener = new ValidatorListener(

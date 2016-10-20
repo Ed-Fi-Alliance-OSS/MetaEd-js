@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity}from "../../../../src/core/validators/DomainEntitySubclass/DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity"
 
-let should = chai.should();
+chai.should();
 
 describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity', () => {
     let validatorListener = new ValidatorListener(

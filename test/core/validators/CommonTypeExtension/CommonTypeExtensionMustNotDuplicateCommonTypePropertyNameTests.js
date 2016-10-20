@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {CommonTypeExtensionMustNotDuplicateCommonTypePropertyName}from "../../../../src/core/validators/CommonTypeExtension/CommonTypeExtensionMustNotDuplicateCommonTypePropertyName"
 
-let should = chai.should();
+chai.should();
 
 describe('CommonTypeExtensionMustNotDuplicateCommonTypePropertyNameTests', () => { 
 	let validatorListener = new ValidatorListener(

@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {CommonDecimalMinValueMustNotBeGreaterThanMaxValue}from "../../../../src/core/validators/CommonSympleType/CommonDecimalMinValueMustNotBeGreaterThanMaxValue";
 
-let should = chai.should();
+chai.should();
 
 describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
     let validatorListener = new ValidatorListener(

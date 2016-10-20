@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {IdentityExistsOnlyIfIdentityIsAllowed}from "../../../../src/core/validators/Identity/IdentityExistsOnlyIfIdentityIsAllowed"
 
-let should = chai.should();
+chai.should();
 
 describe('IdentityExistsOnlyIfIdentityIsAllowed', () => { 
 	let validatorListener = new ValidatorListener(

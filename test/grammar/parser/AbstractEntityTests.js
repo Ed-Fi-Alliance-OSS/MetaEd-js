@@ -2,7 +2,7 @@ import MetaEdTextBuilder from '../MetaEdTextBuilder';
 import ParserTestHelper from "./ParserTestHelper";
 
 import chai from 'chai'
-let should = chai.should();
+chai.should();
 
 describe('AbstractEntityTests', () => {
     describe('When_parsing_abstract_entity_with_name_documentation_and_property', () => {

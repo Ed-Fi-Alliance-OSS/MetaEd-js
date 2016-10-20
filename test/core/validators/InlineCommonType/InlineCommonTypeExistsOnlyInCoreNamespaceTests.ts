@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {InlineCommonTypeExistsOnlyInCoreNamespace}from "../../../../src/core/validators/InlineCommonType/InlineCommonTypeExistsOnlyInCoreNamespace"
 
-let should = chai.should();
+chai.should();
 
 describe('InlineCommonTypeExistsOnlyInCoreNamespace', () => {
     let validatorListener = new ValidatorListener(

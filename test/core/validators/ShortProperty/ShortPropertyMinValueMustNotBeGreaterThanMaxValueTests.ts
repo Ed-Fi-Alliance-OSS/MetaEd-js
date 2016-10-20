@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {ShortPropertyMinValueMustNotBeGreaterThanMaxValue}from "../../../../src/core/validators/ShortProperty/ShortPropertyMinValueMustNotBeGreaterThanMaxValue"
 
-let should = chai.should();
+chai.should();
 
 describe('ShortPropertyMinValueMustNotBeGreaterThanMaxValue', () => {
     let validatorListener = new ValidatorListener(

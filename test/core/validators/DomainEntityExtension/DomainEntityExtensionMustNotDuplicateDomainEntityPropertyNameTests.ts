@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName}from "../../../../src/core/validators/DomainEntityExtension/DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName"
 
-let should = chai.should();
+chai.should();
 
 describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => {
     let validatorListener = new ValidatorListener(

@@ -4,7 +4,7 @@ import ValidatorTestHelper from "../ValidatorTestHelper";
 import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 import {DecimalPropertyMustNotMatchACommonSimpleType}from "../../../../src/core/validators/DecimalProperty/DecimalPropertyMustNotMatchACommonSimpleType"
 
-let should = chai.should();
+chai.should();
 
 describe('DecimalPropertyMustNotMatchACommonSimpleTypeTests', () => { 
 	let validatorListener = new ValidatorListener(
