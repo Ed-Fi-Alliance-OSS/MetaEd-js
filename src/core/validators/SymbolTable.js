@@ -51,14 +51,14 @@ export default class SymbolTable {
   identifiersForEntityType(entityType: string): Iterator<string> {
     const entityDictionary = this.symbolTable.get(entityType);
     if (entityDictionary) return entityDictionary.keys();
-    return [].entries();
+    return [].values();
   }
 
   // results are prefixed by a 'with context' value if one exists for property
   identifiersForEntityProperties(entityType: string, identifier: string): Iterator<string> {
     const entityContext: ?EntityContext = this.get(entityType, identifier);
 
-    if (entityContext == null) return [].entries();
+    if (entityContext == null) return [].values();
     return entityContext.propertySymbolTable.identifiers();
   }
 
