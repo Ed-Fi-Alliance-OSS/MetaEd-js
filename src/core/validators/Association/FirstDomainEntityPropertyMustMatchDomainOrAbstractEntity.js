@@ -5,9 +5,9 @@ import SymbolTableEntityType from '../SymbolTableEntityType';
 
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const identifierToMatch = ruleContext.propertyName().ID().getText();
-  return symbolTable.identifierExists(SymbolTableEntityType.domainEntityEntityType(), identifierToMatch)
-    || symbolTable.identifierExists(SymbolTableEntityType.abstractEntityEntityType(), identifierToMatch)
-    || symbolTable.identifierExists(SymbolTableEntityType.domainEntitySubclassEntityType(), identifierToMatch);
+  return symbolTable.identifierExists(SymbolTableEntityType.domainEntity(), identifierToMatch)
+    || symbolTable.identifierExists(SymbolTableEntityType.abstractEntity(), identifierToMatch)
+    || symbolTable.identifierExists(SymbolTableEntityType.domainEntitySubclass(), identifierToMatch);
 }
 
 // eslint-disable-next-line no-unused-vars

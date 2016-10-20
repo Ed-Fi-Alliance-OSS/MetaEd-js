@@ -1,29 +1,30 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-import {ISymbolTable} from '../SymbolTable'
-export class AssociationSubclassMustNotDuplicateAssociationPropertyName extends ValidationRuleBase<MetaEdGrammar.AssociationSubclassContext>
-{
-    private symbolTable: ISymbolTable;
-    constructor(symbolTable: ISymbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    public isValid(context: MetaEdGrammar.AssociationSubclassContext): boolean {
-        let entityType = context.ASSOCIATION().getText();
-        let extensionType = context.ASSOCIATION().getText() + context.BASED_ON();
-        let identifier = context.associationName().getText();
-        let baseIdentifier = context.baseName().getText();
-        let basePropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(entityType, baseIdentifier);
-        let subclassPropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(extensionType, identifier);
-        return !basePropertyIdentifiers.Intersect(subclassPropertyIdentifiers).Any();
-    }
-    public getFailureMessage(context: MetaEdGrammar.AssociationSubclassContext): string {
-        let entityType = context.ASSOCIATION().getText();
-        let extensionType = context.ASSOCIATION().getText() + context.BASED_ON();
-        let identifier = context.associationName().getText();
-        let baseIdentifier = context.baseName().getText();
-        let associationPropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(entityType, baseIdentifier).ToList();
-        let propertyRuleContextsForDuplicates = this.symbolTable.contextsForMatchingPropertyIdentifiers(extensionType, identifier, associationPropertyIdentifiers);
-        let duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.map(x => x.IdNode().getText());
-        return `Association '${identifier}' based on '${baseIdentifier}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of base Association.`;
-    }
+// @flow
+import R from 'ramda';
+import { associationSubclassErrorRule, includeAssociationSubclassRule } from './AssociationSubclassValidationRule';
+import type SymbolTable from '../SymbolTable';
+import SymbolTableEntityType from '../SymbolTableEntityType';
+
+// eslint-disable-next-line no-unused-vars
+function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
+  const identifier = ruleContext.associationName().getText();
+  const baseIdentifier = ruleContext.baseName().getText();
+  const basePropertyIdentifiers = symbolTable.identifiersForEntityProperties(SymbolTableEntityType.association(), baseIdentifier);
+  const subclassPropertyIdentifiers = symbolTable.identifiersForEntityProperties(SymbolTableEntityType.associationSubclass(), identifier);
+  return R.intersection(Array.from(basePropertyIdentifiers), Array.from(subclassPropertyIdentifiers)).length === 0;
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable) : string {
+  const identifier = ruleContext.associationName().getText();
+  const baseIdentifier = ruleContext.baseName().getText();
+  const associationPropertyIdentifiers = Array.from(symbolTable.identifiersForEntityProperties(SymbolTableEntityType.association(), baseIdentifier));
+  const propertyRuleContextsForDuplicates =
+    symbolTable.contextsForMatchingPropertyIdentifiers(SymbolTableEntityType.associationSubclass(), identifier, associationPropertyIdentifiers);
+  const duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.map(x => x.propertyName().ID().getText());
+  return `Association '${identifier}' based on '${baseIdentifier}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of base Association.`;
+}
+
+const validationRule = associationSubclassErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeAssociationSubclassRule(validationRule);

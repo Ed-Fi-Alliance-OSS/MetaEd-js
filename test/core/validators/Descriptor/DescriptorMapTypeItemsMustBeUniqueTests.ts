@@ -57,7 +57,7 @@ describe('DescriptorMapTypeItemsMustBeUniqueTests', () => {
         });
 
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.should.equal("Descriptor 'Descriptor1' declares duplicate item 'this is a duplicate short description'.");
@@ -89,7 +89,7 @@ describe('DescriptorMapTypeItemsMustBeUniqueTests', () => {
         });
 
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.should.equal("Descriptor 'Descriptor1' declares duplicate items 'this is duplicate short description 1', 'this is duplicate short description 2'.");

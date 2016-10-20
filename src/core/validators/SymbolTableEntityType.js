@@ -11,47 +11,47 @@ function literal(name: string) {
 }
 
 export default class SymbolTableEntityType {
-  static domainEntityEntityType(): string {
-    return literal(MetaEdGrammar.DOMAIN_ENTITY);
-  }
-
-  static domainEntityExtensionEntityType(): string {
-    return literal(MetaEdGrammar.DOMAIN_ENTITY) + literal(MetaEdGrammar.ADDITIONS);
-  }
-
-  static domainEntitySubclassEntityType(): string {
-    return literal(MetaEdGrammar.DOMAIN_ENTITY) + literal(MetaEdGrammar.BASED_ON);
-  }
-
-  static associationEntityType(): string {
-    return literal(MetaEdGrammar.ASSOCIATION);
-  }
-
-  static associationExtensionEntityType(): string {
-    return literal(MetaEdGrammar.ASSOCIATION) + literal(MetaEdGrammar.ADDITIONS);
-  }
-
-  static associationSubclassEntityType(): string {
-    return literal(MetaEdGrammar.ASSOCIATION) + literal(MetaEdGrammar.BASED_ON);
-  }
-
-  static abstractEntityEntityType(): string {
+  static abstractEntity(): string {
     return literal(MetaEdGrammar.ABSTRACT_ENTITY);
   }
 
-  static commonTypeEntityType(): string {
+  static association(): string {
+    return literal(MetaEdGrammar.ASSOCIATION);
+  }
+
+  static associationExtension(): string {
+    return literal(MetaEdGrammar.ASSOCIATION) + literal(MetaEdGrammar.ADDITIONS);
+  }
+
+  static associationSubclass(): string {
+    return literal(MetaEdGrammar.ASSOCIATION) + literal(MetaEdGrammar.BASED_ON);
+  }
+
+  static commonType(): string {
     return literal(MetaEdGrammar.COMMON_TYPE);
   }
 
-  static commonTypeExtensionEntityType(): string {
+  static commonTypeExtension(): string {
     return literal(MetaEdGrammar.COMMON_TYPE) + literal(MetaEdGrammar.ADDITIONS);
   }
 
-  static enumerationEntityType(): string {
+  static domainEntity(): string {
+    return literal(MetaEdGrammar.DOMAIN_ENTITY);
+  }
+
+  static domainEntityExtension(): string {
+    return literal(MetaEdGrammar.DOMAIN_ENTITY) + literal(MetaEdGrammar.ADDITIONS);
+  }
+
+  static domainEntitySubclass(): string {
+    return literal(MetaEdGrammar.DOMAIN_ENTITY) + literal(MetaEdGrammar.BASED_ON);
+  }
+
+  static enumeration(): string {
     return literal(MetaEdGrammar.ENUMERATION_ENTITY);
   }
 
-  static inlineCommonTypeEntityType(): string {
+  static inlineCommonType(): string {
     return literal(MetaEdGrammar.INLINE_COMMON_TYPE);
   }
 }

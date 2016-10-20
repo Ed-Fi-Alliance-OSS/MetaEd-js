@@ -1,24 +1,22 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import { ValidatorTestHelper } from '../ValidatorTestHelper';
-import { ValidatorListener } from '../../../../src/core/validators/ValidatorListener';
+import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { includeRule } from '../../../../src/core/validators/AssociationSubclass/AssociationSubclassMustNotDuplicateAssociationPropertyName';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
 
 describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
-  let validatorListener = new ValidatorListener(
-    new TestRuleProvider < MetaEdGrammar.AssociationSubclassContext > (
-      new AssociationSubclassMustNotDuplicateAssociationPropertyName(symbolTable)));
+  const repository = includeRule(newRepository());
+  const validatorListener = new ValidatorListener(repository);
 
   describe('When_association_subclass_has_different_property_name', () => {
-    let entityName: string = 'SubclassIdentifier';
-    baseName: string = 'BaseAssociationIdentifier';
-    let helper: ValidatorTestHelper = new ValidatorTestHelper();
+    const entityName: string = 'SubclassIdentifier';
+    const baseName: string = 'BaseAssociationIdentifier';
+    const helper: ValidatorTestHelper = new ValidatorTestHelper();
     before(() => {
-      let metaEdText = MetaEdTextBuilder.build()
-
+      const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
       .withStartAssociation(baseName)
       .withDocumentation('because documentation is required')
@@ -31,7 +29,8 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
       .withDocumentation('because documentation is required')
       .withBooleanProperty('Property2', 'because a property is required', true, false)
       .withEndAssociationSubclass()
-      .withEndNamespace().toString();
+      .withEndNamespace()
+      .toString();
       helper.setup(metaEdText, validatorListener);
     });
 
@@ -41,13 +40,12 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
   });
 
   describe('When_association_subclass_has_duplicate_property_name', () => {
-    let entityName: string = 'MyIdentifier';
-    baseName: string = 'BaseIdentifier';
+    const entityName: string = 'MyIdentifier';
+    const baseName: string = 'BaseIdentifier';
     const duplicatePropertyName: string = 'Property1';
-    let helper: ValidatorTestHelper = new ValidatorTestHelper();
+    const helper: ValidatorTestHelper = new ValidatorTestHelper();
     before(() => {
-      let metaEdText = MetaEdTextBuilder.build()
-
+      const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
       .withStartAssociation(baseName)
       .withDocumentation('because documentation is required')
@@ -60,13 +58,15 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
       .withDocumentation('because documentation is required')
       .withBooleanProperty(duplicatePropertyName, 'because a property is required', true, false)
       .withEndAssociationSubclass()
-      .withEndNamespace().toString();
+      .withEndNamespace()
+      .toString();
       helper.setup(metaEdText, validatorListener);
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection.Any().ShouldBeTrue();
+      helper.errorMessageCollection.should.not.be.empty;
     });
+
     it('should_have_validation_failure_message()', () => {
       helper.errorMessageCollection[0].message.should.include('Association');
       helper.errorMessageCollection[0].message.should.include(entityName);
@@ -78,15 +78,14 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
   });
 
   describe('When_association_subclass_has_multiple_duplicate_property_names', () => {
-    let entityName: string = 'MyIdentifier';
-    baseName: string = 'BaseIdentifier';
-    const _not_duplicate_property_name: string = 'NotADuplicate';
+    const entityName: string = 'MyIdentifier';
+    const baseName: string = 'BaseIdentifier';
+    const notDuplicatePropertyName: string = 'NotADuplicate';
     const duplicatePropertyName1: string = 'Property1';
     const duplicatePropertyName2: string = 'Property2';
-    let helper: ValidatorTestHelper = new ValidatorTestHelper();
+    const helper: ValidatorTestHelper = new ValidatorTestHelper();
     before(() => {
-      let metaEdText = MetaEdTextBuilder.build()
-
+      const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
       .withStartAssociation(baseName)
       .withDocumentation('because documentation is required')
@@ -100,15 +99,17 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
       .withDocumentation('because documentation is required')
       .withBooleanProperty(duplicatePropertyName1, 'because a property is required', true, false)
       .withBooleanProperty(duplicatePropertyName2, 'because a property is required', true, false)
-      .withBooleanProperty(When_association_subclass_has_multiple_duplicate_property_names._not_duplicate_property_name, 'because a property is required', true, false)
+      .withBooleanProperty(notDuplicatePropertyName, 'because a property is required', true, false)
       .withEndAssociationSubclass()
-      .withEndNamespace().toString();
+      .withEndNamespace()
+      .toString();
       helper.setup(metaEdText, validatorListener);
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection.Any().ShouldBeTrue();
+      helper.errorMessageCollection.should.not.be.empty;
     });
+
     it('should_have_validation_failure_message()', () => {
       helper.errorMessageCollection[0].message.should.include('Association');
       helper.errorMessageCollection[0].message.should.include(entityName);
@@ -117,7 +118,7 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
       helper.errorMessageCollection[0].message.should.include(duplicatePropertyName1);
       helper.errorMessageCollection[0].message.should.include(duplicatePropertyName2);
       helper.errorMessageCollection[0].message.should.include('already in property list');
-      helper.errorMessageCollection[0].message.should.not.include(When_association_subclass_has_multiple_duplicate_property_names._not_duplicate_property_name);
+      helper.errorMessageCollection[0].message.should.not.include(notDuplicatePropertyName);
     });
   });
 });

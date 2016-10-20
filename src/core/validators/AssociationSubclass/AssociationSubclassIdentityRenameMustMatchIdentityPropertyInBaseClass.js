@@ -3,6 +3,7 @@ import R from 'ramda';
 import { getProperty } from '../ValidationHelper';
 import { associationSubclassErrorRule, includeAssociationSubclassRule } from './AssociationSubclassValidationRule';
 import type SymbolTable from '../SymbolTable';
+import SymbolTableEntityType from '../SymbolTableEntityType';
 
 function getIdentityRenames(ruleContext: any): Array<any> {
   return ruleContext.property().filter(x => getProperty(x).propertyComponents().propertyAnnotation().identityRename() != null)
@@ -19,7 +20,7 @@ function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
   if (identityRenames.length === 0) return true;
 
   const baseIdentifier = ruleContext.baseName().getText();
-  const baseSymbolTable = symbolTable.get(ruleContext.ASSOCIATION().getText(), baseIdentifier);
+  const baseSymbolTable = symbolTable.get(SymbolTableEntityType.association(), baseIdentifier);
   if (baseSymbolTable == null) return true;
 
   const baseProperty = baseSymbolTable.propertySymbolTable.get(getBasePropertyIdentifierFor(identityRenames));

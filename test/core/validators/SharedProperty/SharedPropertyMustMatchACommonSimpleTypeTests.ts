@@ -145,7 +145,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
         });
 
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].message.should.include("Shared property");
@@ -173,7 +173,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
         });
 
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].message.should.include("Shared property");
@@ -201,7 +201,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
         });
 
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].message.should.include("Shared property");
@@ -229,7 +229,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal', () => {
         });
 
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].message.should.include("Shared property");

@@ -62,7 +62,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   }
 
   enterDomainEntity(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.domainEntityEntityType(), ruleContext.entityName().ID(), ruleContext);
+    this._addEntity(SymbolTableEntityType.domainEntity(), ruleContext.entityName().ID(), ruleContext);
   }
 
   exitDomainEntity(ruleContext: any) {
@@ -70,7 +70,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   }
 
   enterAbstractEntity(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.abstractEntityEntityType(), ruleContext.abstractEntityName().ID(), ruleContext);
+    this._addEntity(SymbolTableEntityType.abstractEntity(), ruleContext.abstractEntityName().ID(), ruleContext);
   }
 
   exitAbstractEntity(ruleContext: any) {
@@ -78,7 +78,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   }
 
   enterAssociation(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.associationEntityType(), ruleContext.associationName().ID(), ruleContext);
+    this._addEntity(SymbolTableEntityType.association(), ruleContext.associationName().ID(), ruleContext);
   }
 
   exitAssociation(ruleContext: any) {
@@ -86,7 +86,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   }
 
   enterAssociationExtension(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.associationExtensionEntityType(), ruleContext.extendeeName().ID(), ruleContext);
+    this._addEntity(SymbolTableEntityType.associationExtension(), ruleContext.extendeeName().ID(), ruleContext);
   }
 
   exitAssociationExtension(ruleContext: any) {
@@ -94,7 +94,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   }
 
   enterAssociationSubclass(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.associationSubclassEntityType(), ruleContext.associationName().ID(), ruleContext);
+    this._addEntity(SymbolTableEntityType.associationSubclass(), ruleContext.associationName().ID(), ruleContext);
   }
 
   exitAssociationSubclass(ruleContext: any) {
@@ -142,7 +142,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   }
 
   enterCommonType(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.commonTypeEntityType(), ruleContext.commonName().ID(), ruleContext);
+    this._addEntity(SymbolTableEntityType.commonType(), ruleContext.commonName().ID(), ruleContext);
   }
 
   exitCommonType(ruleContext: any) {
@@ -150,7 +150,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   }
 
   enterCommonTypeExtension(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.commonTypeExtensionEntityType(), ruleContext.extendeeName().ID(), ruleContext);
+    this._addEntity(SymbolTableEntityType.commonTypeExtension(), ruleContext.extendeeName().ID(), ruleContext);
   }
 
   exitCommonTypeExtension(ruleContext: any) {
@@ -174,7 +174,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   }
 
   enterDomainEntityExtension(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.domainEntityExtensionEntityType(), ruleContext.extendeeName().ID(), ruleContext);
+    this._addEntity(SymbolTableEntityType.domainEntityExtension(), ruleContext.extendeeName().ID(), ruleContext);
   }
 
   exitDomainEntityExtension(ruleContext: any) {
@@ -182,7 +182,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   }
 
   enterDomainEntitySubclass(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.domainEntitySubclassEntityType(), ruleContext.entityName().ID(), ruleContext);
+    this._addEntity(SymbolTableEntityType.domainEntitySubclass(), ruleContext.entityName().ID(), ruleContext);
   }
 
   exitDomainEntitySubclass(ruleContext: any) {
@@ -190,7 +190,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   }
 
   enterEnumeration(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.enumerationEntityType(), ruleContext.enumerationName().ID(), ruleContext);
+    this._addEntity(SymbolTableEntityType.enumeration(), ruleContext.enumerationName().ID(), ruleContext);
   }
 
   exitEnumeration(ruleContext: any) {
@@ -198,7 +198,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   }
 
   enterInlineCommonType(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.inlineCommonTypeEntityType(), ruleContext.inlineCommonName().ID(), ruleContext);
+    this._addEntity(SymbolTableEntityType.inlineCommonType(), ruleContext.inlineCommonName().ID(), ruleContext);
   }
 
   exitInlineCommonType(ruleContext: any) {

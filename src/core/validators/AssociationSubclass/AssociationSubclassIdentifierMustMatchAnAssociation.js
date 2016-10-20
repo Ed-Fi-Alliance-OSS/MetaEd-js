@@ -1,11 +1,11 @@
 // @flow
 import { associationSubclassErrorRule, includeAssociationSubclassRule } from './AssociationSubclassValidationRule';
 import type SymbolTable from '../SymbolTable';
+import SymbolTableEntityType from '../SymbolTableEntityType';
 
 function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
-  const associationEntityType = ruleContext.ASSOCIATION().getText();
   const basedOnName = ruleContext.baseName().getText();
-  return Array.from(symbolTable.identifiersForEntityType(associationEntityType)).some(x => x === basedOnName);
+  return Array.from(symbolTable.identifiersForEntityType(SymbolTableEntityType.association())).some(x => x === basedOnName);
 }
 
 // eslint-disable-next-line no-unused-vars

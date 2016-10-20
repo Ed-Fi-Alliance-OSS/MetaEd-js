@@ -8,7 +8,7 @@ export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const withContextContext = ruleContext.withContext();
   const withContextPrefix = withContextContext == null ? '' : withContextContext.withContextName().ID().getText();
   const associationName = ruleContext.parentCtx.associationName().ID().getText();
-  const entitySymbolTable = symbolTable.get(SymbolTableEntityType.associationEntityType(), associationName);
+  const entitySymbolTable = symbolTable.get(SymbolTableEntityType.association(), associationName);
   if (entitySymbolTable == null) throw new Error('FirstDomainEntityPropertyMustNotCollideWithOtherProperty.valid(): Symbol table entry not found');
   return entitySymbolTable.propertySymbolTable.get(withContextPrefix + identifierToMatch) == null;
 }

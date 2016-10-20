@@ -5,8 +5,8 @@ import SymbolTableEntityType from '../SymbolTableEntityType';
 
 function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
   const identifierToMatch = ruleContext.extendeeName().getText();
-  return symbolTable.identifierExists(SymbolTableEntityType.associationEntityType(), identifierToMatch)
-        || symbolTable.identifierExists(SymbolTableEntityType.associationSubclassEntityType(), identifierToMatch);
+  return symbolTable.identifierExists(SymbolTableEntityType.association(), identifierToMatch)
+        || symbolTable.identifierExists(SymbolTableEntityType.associationSubclass(), identifierToMatch);
 }
 
 // eslint-disable-next-line no-unused-vars

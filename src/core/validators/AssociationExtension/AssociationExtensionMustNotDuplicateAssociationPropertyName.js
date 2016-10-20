@@ -2,6 +2,7 @@
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { associationExtensionErrorRule, includeAssociationExtensionRule } from './AssociationExtensionValidationRule';
 import type SymbolTable from '../SymbolTable';
+import SymbolTableEntityType from '../SymbolTableEntityType';
 
 function isNotIncludePropertyContextWithExtension(context: any): boolean {
   if (context.ruleIndex !== MetaEdGrammar.RULE_includeProperty) return true;
@@ -9,11 +10,10 @@ function isNotIncludePropertyContextWithExtension(context: any): boolean {
 }
 
 function propertyRuleContextsForDuplicates(context: any, symbolTable: SymbolTable): Array<any> {
-  const entityType = context.ASSOCIATION().getText();
-  const extensionType = context.ASSOCIATION().getText() + context.ADDITIONS().getText();
   const identifier = context.extendeeName().getText();
-  const associationPropertyIdentifiers = symbolTable.identifiersForEntityProperties(entityType, identifier);
-  const duplicates = symbolTable.contextsForMatchingPropertyIdentifiers(extensionType, identifier, Array.from(associationPropertyIdentifiers));
+  const associationPropertyIdentifiers = symbolTable.identifiersForEntityProperties(SymbolTableEntityType.association(), identifier);
+  const duplicates =
+    symbolTable.contextsForMatchingPropertyIdentifiers(SymbolTableEntityType.associationExtension(), identifier, Array.from(associationPropertyIdentifiers));
   return duplicates.filter(x => isNotIncludePropertyContextWithExtension(x));
 }
 
