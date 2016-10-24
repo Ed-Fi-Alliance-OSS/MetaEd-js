@@ -1,14 +1,16 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits extends ValidationRuleBase_1.ValidationRuleBase {
-    isValid(context) {
-        let decimalPlaces = context.decimalPlaces().DecimalPlaces();
-        let totalDigits = context.totalDigits().TotalDigits();
-        return Number(decimalPlaces) <= Number(totalDigits);
-    }
-    getFailureMessage(context) {
-        return `Decimal Property '${context.propertyName().GetText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has decimal places greater than total digits.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { parentIdentifierForPropertyContext, parentTypeNameForPropertyContext } from '../../../grammar/ParserRuleContextExtensions';
+import { decimalPropertyErrorRule, includeDecimalPropertyRule } from './DecimalPropertyValidationRule';
+import { valid } from '../CommonSimpleType/CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits';
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Decimal Property '${ruleContext.propertyName().getText()}' in ${parentTypeNameForPropertyContext(ruleContext)}` +
+    ` '${parentIdentifierForPropertyContext(ruleContext)}' has decimal places greater than total digits.`;
 }
-exports.DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits = DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits;
-//# sourceMappingURL=DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits.js.map
+
+const validationRule = decimalPropertyErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeDecimalPropertyRule(validationRule);

@@ -27,6 +27,22 @@ export default class SymbolTableEntityType {
     return literal(MetaEdGrammar.ASSOCIATION) + literal(MetaEdGrammar.BASED_ON);
   }
 
+  static commonDecimalType(): string {
+    return literal(MetaEdGrammar.COMMON_DECIMAL);
+  }
+
+  static commonIntegerType(): string {
+    return literal(MetaEdGrammar.COMMON_INTEGER);
+  }
+
+  static commonShortType(): string {
+    return literal(MetaEdGrammar.COMMON_SHORT);
+  }
+
+  static commonStringType(): string {
+    return literal(MetaEdGrammar.COMMON_STRING);
+  }
+  
   static commonType(): string {
     return literal(MetaEdGrammar.COMMON_TYPE);
   }

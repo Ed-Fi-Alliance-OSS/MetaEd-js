@@ -3,7 +3,7 @@ import type SymbolTable from '../SymbolTable';
 import { commonDecimalErrorRule, includeCommonDecimalRule } from './CommonSimpleTypeValidationRule';
 
 // eslint-disable-next-line no-unused-vars
-function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const decimalPlaces: number = Number.parseInt(ruleContext.decimalPlaces().UNSIGNED_INT().getText(), 10);
   const totalDigits: number = Number.parseInt(ruleContext.totalDigits().UNSIGNED_INT().getText(), 10);
   return decimalPlaces <= totalDigits;

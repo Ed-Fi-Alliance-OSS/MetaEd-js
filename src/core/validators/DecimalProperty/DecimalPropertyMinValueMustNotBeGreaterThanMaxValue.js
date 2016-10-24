@@ -1,16 +1,16 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class DecimalPropertyMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase_1.ValidationRuleBase {
-    isValid(context) {
-        if (context.minValueDecimal() == null || context.maxValueDecimal() == null)
-            return true;
-        let minValue = context.minValueDecimal().MinValue();
-        let maxValue = context.maxValueDecimal().MaxValue();
-        return Number(minValue) <= Number(maxValue);
-    }
-    getFailureMessage(context) {
-        return `Decimal Property '${context.propertyName().GetText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min value greater than max value.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { parentIdentifierForPropertyContext, parentTypeNameForPropertyContext } from '../../../grammar/ParserRuleContextExtensions';
+import { decimalPropertyErrorRule, includeDecimalPropertyRule } from './DecimalPropertyValidationRule';
+import { valid } from '../CommonSimpleType/CommonDecimalMinValueMustNotBeGreaterThanMaxValue';
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Decimal Property '${ruleContext.propertyName().getText()}' in ${parentTypeNameForPropertyContext(ruleContext)}` +
+    ` '${parentIdentifierForPropertyContext(ruleContext)}' has min value greater than max value.`;
 }
-exports.DecimalPropertyMinValueMustNotBeGreaterThanMaxValue = DecimalPropertyMinValueMustNotBeGreaterThanMaxValue;
-//# sourceMappingURL=DecimalPropertyMinValueMustNotBeGreaterThanMaxValue.js.map
+
+const validationRule = decimalPropertyErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeDecimalPropertyRule(validationRule);
