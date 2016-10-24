@@ -14,9 +14,9 @@ describe('MergeStatementMustStartMergePathWithPropertyName', () => {
 
     describe('When_reference_property_has_merge_statement_with_correct_path', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntity2")
@@ -37,9 +37,9 @@ describe('MergeStatementMustStartMergePathWithPropertyName', () => {
 
     describe('When_reference_property_has_merge_statement_with_incorrect_path', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntity2")

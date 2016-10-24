@@ -14,9 +14,9 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
 
     describe('When_subdomain_has_valid_parent_domain_name', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomain(entityName)
@@ -41,9 +41,9 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
     describe('When_subdomain_has_invalid_parent_domain_name', () => {
         let entityName: string = "MyIdentifier";
         const baseName: string = "NotAnDomainEntityIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartSubdomain(entityName, baseName)

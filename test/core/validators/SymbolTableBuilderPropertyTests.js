@@ -73,7 +73,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
 
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -93,7 +93,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_currency_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -115,7 +115,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_date_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -132,7 +132,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_date_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -154,7 +154,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_decimal_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -172,7 +172,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_decimal_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -194,7 +194,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_descriptor_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -212,7 +212,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_descriptor_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -234,7 +234,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duration_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -252,7 +252,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_duration_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -274,7 +274,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_enumeration_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -292,7 +292,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_enumeration_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -314,7 +314,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_include_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -332,7 +332,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_include_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -354,7 +354,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_integer_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -372,7 +372,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_integer_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -394,7 +394,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_reference_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -412,7 +412,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_reference_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -434,7 +434,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_short_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -451,7 +451,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_short_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -473,7 +473,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_shared_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -491,7 +491,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_shared_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -513,7 +513,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_string_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -531,7 +531,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_string_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -553,7 +553,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_time_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -570,7 +570,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_time_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -592,7 +592,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_year_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -609,7 +609,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     describe('When_loading_entities_with_duplicated_year_property', () => {
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -633,7 +633,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
         let withContext2: string = "WithContext2";
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")
@@ -655,7 +655,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
         let withContext: string = "WithContext";
         let helper: SymbolTableTestHelper = new SymbolTableTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc")

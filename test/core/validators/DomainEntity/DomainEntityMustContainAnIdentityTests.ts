@@ -13,9 +13,9 @@ describe('DomainEntityMustContainAnIdentityTests', () => {
 
 
     describe('When_validating_domain_entity_with_identity_fields', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntity1")
@@ -34,9 +34,9 @@ describe('DomainEntityMustContainAnIdentityTests', () => {
 
     describe('When_validating_domain_entity_with_no_identity_fields', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)

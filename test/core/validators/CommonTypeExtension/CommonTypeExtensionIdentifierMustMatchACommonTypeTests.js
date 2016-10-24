@@ -15,9 +15,9 @@ describe('CommonTypeExtensionIdentifierMustMatchACommonTypeTests', () => {
         describe('When_common_type_extension_has_valid_extendee', () => {
             let entityName: string = "MyIdentifier";
             const _property_name: string = "Property1";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartCommonType(entityName)
@@ -40,9 +40,9 @@ describe('CommonTypeExtensionIdentifierMustMatchACommonTypeTests', () => {
         
         describe('When_common_type_extension_has_invalid_extendee', () => {
             let entityName: string = "NotACommonTypeIdentifier";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartCommonTypeExtension(entityName)

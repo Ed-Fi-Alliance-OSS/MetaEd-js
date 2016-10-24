@@ -47,9 +47,9 @@
 //
 //describe('When_abstractEntity_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.AbstractEntityContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAbstractEntity(entityName)
@@ -64,9 +64,9 @@
 //
 //describe('When_association_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.AssociationContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAssociation(entityName)
@@ -82,9 +82,9 @@
 //
 //describe('When_associationExtension_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.AssociationExtensionContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAssociationExtension(entityName)
@@ -98,9 +98,9 @@
 //
 //describe('When_associationSubclass_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.AssociationSubclassContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAssociationSubclass(entityName, "BaseClass")
@@ -115,9 +115,9 @@
 //
 //describe('When_booleanProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.BooleanPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -132,9 +132,9 @@
 //
 //describe('When_choiceType_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.ChoiceTypeContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartChoiceType(entityName)
@@ -149,9 +149,9 @@
 //
 //describe('When_commonDecimal_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.CommonDecimalContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartCommonDecimal(entityName)
@@ -167,9 +167,9 @@
 //
 //describe('When_commonInteger_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.CommonIntegerContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartCommonInteger(entityName)
@@ -183,9 +183,9 @@
 //
 //describe('When_commonShort_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.CommonShortContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartCommonShort(entityName)
@@ -199,9 +199,9 @@
 //
 //describe('When_commonString_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.CommonStringContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartCommonString(entityName)
@@ -216,9 +216,9 @@
 //
 //describe('When_commonType_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.CommonTypeContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartCommonType(entityName)
@@ -233,9 +233,9 @@
 //
 //describe('When_commonTypeExtension_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.CommonTypeExtensionContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartCommonTypeExtension(entityName)
@@ -249,9 +249,9 @@
 //
 //describe('When_currencyProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.CurrencyPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -266,9 +266,9 @@
 //
 //describe('When_dateProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.DatePropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -283,9 +283,9 @@
 //
 //describe('When_decimalProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.DecimalPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -300,9 +300,9 @@
 //
 //describe('When_descriptor_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.DescriptorContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDescriptor(entityName)
@@ -321,9 +321,9 @@
 //
 //describe('When_descriptorProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.DescriptorPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -338,9 +338,9 @@
 //
 //describe('When_domain_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.DomainContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomain(entityName)
@@ -355,9 +355,9 @@
 //
 //describe('When_domainEntity_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.DomainEntityContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -372,9 +372,9 @@
 //
 //describe('When_domainEntityExtension_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.DomainEntityExtensionContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntityExtension(entityName)
@@ -388,9 +388,9 @@
 //
 //describe('When_domainEntitySubclass_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.DomainEntitySubclassContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntitySubclass(entityName, "BaseClass")
@@ -405,9 +405,9 @@
 //
 //describe('When_domainItem_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.DomainItemContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomain(entityName)
@@ -422,9 +422,9 @@
 //
 //describe('When_durationProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.DurationPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -439,9 +439,9 @@
 //
 //describe('When_enumeration_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.EnumerationContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartEnumeration(entityName)
@@ -462,9 +462,9 @@
 //        _warningMessageCollection[0].message.should.include(entityName);
 //        _warningMessageCollection[0].message.should.include("missing MetaEdId");
 //    });
-//let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.build()
+//    const metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartEnumeration(entityName)
@@ -479,9 +479,9 @@
 //
 //describe('When_enumerationProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.EnumerationPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -496,9 +496,9 @@
 //
 //describe('When_firstDomainEntity_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.FirstDomainEntityContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAssociation(entityName)
@@ -514,9 +514,9 @@
 //
 //describe('When_includeProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.IncludePropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -531,9 +531,9 @@
 //
 //describe('When_inlineCommonType_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.InlineCommonTypeContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartInlineCommonType(entityName)
@@ -548,9 +548,9 @@
 //
 //describe('When_integerProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.IntegerPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -565,9 +565,9 @@
 //
 //describe('When_interchange_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.InterchangeContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartInterchange(entityName)
@@ -588,9 +588,9 @@
 //        _warningMessageCollection[0].message.should.include(entityName);
 //        _warningMessageCollection[0].message.should.include("missing MetaEdId");
 //    });
-//let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.build()
+//    const metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartInterchange(entityName)
@@ -605,9 +605,9 @@
 //
 //describe('When_interchangeExtension_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.InterchangeExtensionContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartInterchangeExtension(entityName)
@@ -627,9 +627,9 @@
 //        _warningMessageCollection[0].message.should.include(entityName);
 //        _warningMessageCollection[0].message.should.include("missing MetaEdId");
 //    });
-//let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.build()
+//    const metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartInterchange(entityName)
@@ -645,9 +645,9 @@
 //
 //describe('When_percentProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.PercentPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -662,9 +662,9 @@
 //
 //describe('When_referenceProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.ReferencePropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -679,9 +679,9 @@
 //
 //describe('When_secondDomainEntity_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.SecondDomainEntityContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAssociation(entityName)
@@ -697,9 +697,9 @@
 //
 //describe('When_sharedDecimalProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.SharedDecimalPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -714,9 +714,9 @@
 //
 //describe('When_sharedIntegerProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.SharedIntegerPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -731,9 +731,9 @@
 //
 //describe('When_sharedShortProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.SharedShortPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -748,9 +748,9 @@
 //
 //describe('When_sharedStringProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.SharedStringPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -765,9 +765,9 @@
 //
 //describe('When_shortProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.ShortPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -782,9 +782,9 @@
 //
 //describe('When_stringProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.StringPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -799,9 +799,9 @@
 //
 //describe('When_subdomain_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForEntity<MetaEdGrammar.SubdomainContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartSubdomain(entityName, "ParentDomain")
@@ -816,9 +816,9 @@
 //
 //describe('When_timeProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.TimePropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)
@@ -833,9 +833,9 @@
 //
 //describe('When_yearProperty_is_missing_metaEdId extends MetaEdIdIsRequiredWarningTestBaseForProperty<MetaEdGrammar.YearPropertyContext>
 //        {
-//        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//        const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //        before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(entityName)

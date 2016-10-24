@@ -47,7 +47,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_entities_have_different_names._entityName)
@@ -71,7 +71,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_entities_have_same_name._entityName)
@@ -104,7 +104,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_domain_entity_has_same_name_as_extension._entityName)
@@ -127,7 +127,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartAssociation(When_association_has_same_name_as_extension._entityName)
@@ -152,7 +152,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_domain_entity_has_same_name_as_common_simple_type._entityName)
@@ -185,7 +185,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_domain_entity_has_same_name_as_descriptor._entityName)
@@ -209,7 +209,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_domain_entity_has_same_name_as_enumeration._entityName)
@@ -233,7 +233,7 @@
 //        
 //            public getSource(): string {
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.build()
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity(When_domain_entity_has_same_name_as_interchange._entityName)

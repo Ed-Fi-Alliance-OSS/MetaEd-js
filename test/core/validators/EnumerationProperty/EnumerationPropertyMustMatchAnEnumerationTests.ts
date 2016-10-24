@@ -14,9 +14,9 @@ describe('ReplaceMeWithFileName', () => {
 
     describe('When_enumeration_property_has_valid_identifier', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartEnumeration(entityName)
@@ -41,9 +41,9 @@ describe('ReplaceMeWithFileName', () => {
 
     describe('When_enumeration_property_has_invalid_identifier', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntity")

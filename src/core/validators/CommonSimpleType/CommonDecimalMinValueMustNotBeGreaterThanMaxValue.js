@@ -5,8 +5,8 @@ import { commonDecimalErrorRule, includeCommonDecimalRule } from './CommonSimple
 // eslint-disable-next-line no-unused-vars
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   if (ruleContext.minValueDecimal() == null || ruleContext.maxValueDecimal() == null) return true;
-  const minValue = Number.parseInt(ruleContext.minValueDecimal().MinValue(), 10);
-  const maxValue = Number.parseInt(ruleContext.maxValueDecimal().MaxValue(), 10);
+  const minValue = Number.parseInt(ruleContext.minValueDecimal().decimalValue().signed_int().getText(), 10);
+  const maxValue = Number.parseInt(ruleContext.maxValueDecimal().decimalValue().signed_int().getText(), 10);
   return minValue <= maxValue;
 }
 

@@ -13,9 +13,9 @@ describe('InterchangeExtensionMustNotDuplicateIdentityTemplateName', () => {
 
 
     describe('When_identity_templates_have_different_names', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartInterchangeExtension("Interchange1")
@@ -35,9 +35,9 @@ describe('InterchangeExtensionMustNotDuplicateIdentityTemplateName', () => {
     describe('When_identity_templates_have_duplicate_names', () => {
         let entityName: string = "Interchange1";
         const duplicateTemplate: string = "Identity1";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartInterchangeExtension("Interchange1")

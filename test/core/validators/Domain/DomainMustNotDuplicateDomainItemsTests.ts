@@ -13,9 +13,9 @@ describe('DomainMustNotDuplicateDomainItemsTests', () => {
 
 
     describe('When_domain_items_have_different_names', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomain("Domain1")
@@ -36,9 +36,9 @@ describe('DomainMustNotDuplicateDomainItemsTests', () => {
     describe('When_domain_items_have_duplicate_names', () => {
         let entityName: string = "Domain1";
         const duplicateTemplate: string = "Item1";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomain(entityName)
@@ -66,9 +66,9 @@ describe('DomainMustNotDuplicateDomainItemsTests', () => {
         let entityName: string = "Domain1";
         const duplicateTemplate1: string = "Item1";
         const duplicateTemplate2: string = "Item2";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomain(entityName)

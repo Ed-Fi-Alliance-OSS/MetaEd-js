@@ -14,9 +14,9 @@ describe('DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity', () =>
 
     describe('When_domain_entity_subclass_extends_domain_entity', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -40,9 +40,9 @@ describe('DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity', () =>
 
     describe('When_domain_entity_subclass_extends_abstract_entity', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity(entityName)
@@ -67,9 +67,9 @@ describe('DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity', () =>
     describe('When_domain_entity_subclass_has_invalid_extendee', () => {
         let entityName: string = "MyIdentifier";
         const baseName: string = "NotAnDomainEntityIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntitySubclass(entityName, baseName)

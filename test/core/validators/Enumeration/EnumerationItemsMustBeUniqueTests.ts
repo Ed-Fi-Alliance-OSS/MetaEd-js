@@ -13,9 +13,9 @@ describe('EnumerationItemsMustBeUnique', () => {
 
 
     describe('When_enumeration_items_have_different_short_descriptions', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartEnumeration("Enumeration1")
@@ -36,9 +36,9 @@ describe('EnumerationItemsMustBeUnique', () => {
     describe('When_enumeration_items_have_duplicate_short_descriptions', () => {
         let entityName: string = "Enumeration1";
         const duplicateShortDescription: string = "this is a duplicate short description";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartEnumeration("Enumeration1")
@@ -63,9 +63,9 @@ describe('EnumerationItemsMustBeUnique', () => {
         let entityName: string = "Enumeration1";
         const duplicateShortDescription1: string = "this is duplicate short description 1";
         const duplicateShortDescription2: string = "this is duplicate short description 2";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartEnumeration("Enumeration1")

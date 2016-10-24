@@ -13,9 +13,9 @@ describe('InterchangeMustNotDuplicateInterchangeElementName', () => {
 
 
     describe('When_elements_have_different_names', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartInterchange("Interchange1")
@@ -36,9 +36,9 @@ describe('InterchangeMustNotDuplicateInterchangeElementName', () => {
     describe('When_elements_have_duplicate_names', () => {
         let entityName: string = "Interchange1";
         const duplicateTemplate: string = "Identity1";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartInterchange("Interchange1")

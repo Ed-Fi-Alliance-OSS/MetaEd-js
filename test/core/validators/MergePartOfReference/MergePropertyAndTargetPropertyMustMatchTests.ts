@@ -13,9 +13,9 @@ let validatorListener = new ValidatorListener(
 
 describe('MergePropertyAndTargetPropertyMustMatch', () => {
     describe('When_merged_property_names_and_types_match', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("Entity1")
@@ -39,9 +39,9 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
 
 
     describe('When_merged_property_types_are_different', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("Entity1")
@@ -68,9 +68,9 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
 
 
     describe('When_merged_property_names_are_different', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("Entity1")
@@ -94,9 +94,9 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
 
 
     describe('When_merging_properties_of_a_base_and_sub_domain_entity', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("Entity1")
@@ -125,9 +125,9 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
 
 
     describe('When_merging_domain_entity_property_of_an_association', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("Entity1")

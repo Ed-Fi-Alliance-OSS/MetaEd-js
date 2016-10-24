@@ -16,9 +16,9 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName: string = "CommonType";
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonType(commonTypeName)
@@ -44,9 +44,9 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName: string = "CommonType";
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonType(commonTypeName)
@@ -78,9 +78,9 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName: string = "CommonType";
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonType(commonTypeName)
@@ -117,9 +117,9 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName: string = "CommonType";
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonType(commonTypeName)
@@ -158,9 +158,9 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName: string = "CommonType";
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonType(commonTypeName)
@@ -192,9 +192,9 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName: string = "CommonType";
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonType(commonTypeName)
@@ -228,9 +228,9 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName: string = "CommonType";
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonType(commonTypeName)
@@ -268,9 +268,9 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName: string = "CommonType";
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonType(commonTypeName)
@@ -308,9 +308,9 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName: string = "CommonType";
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonType(commonTypeName)
@@ -350,9 +350,9 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
         const commonTypeName: string = "CommonType";
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonType(commonTypeName)

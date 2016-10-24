@@ -5,8 +5,8 @@ import { commonStringErrorRule, includeCommonStringRule } from './CommonSimpleTy
 // eslint-disable-next-line no-unused-vars
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   if (ruleContext.minLength() == null) return true;
-  const minLength = Number.parseInt(ruleContext.minLength().MinLength(), 10);
-  const maxLength = Number.parseInt(ruleContext.maxLength().MaxLength(), 10);
+  const minLength = Number.parseInt(ruleContext.minLength().UNSIGNED_INT().getText(), 10);
+  const maxLength = Number.parseInt(ruleContext.maxLength().UNSIGNED_INT().getText(), 10);
   return minLength <= maxLength;
 }
 

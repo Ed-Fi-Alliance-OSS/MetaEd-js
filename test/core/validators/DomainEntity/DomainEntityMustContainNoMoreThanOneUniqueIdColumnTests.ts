@@ -13,9 +13,9 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
 
 
     describe('When_validating_domain_entity_with_no_uniqueId_fields', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntity1")
@@ -33,9 +33,9 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
 
 
     describe('When_validating_domain_entity_with_one_uniqueId_field', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntity1")
@@ -54,9 +54,9 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
 
     describe('When_validating_domain_entity_with_multiple_uniqueId_fields', () => {
         const entityName: string = "DomainEntity1";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -81,9 +81,9 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
 
     describe('When_validating_domain_entity_with_multiple_uniqueId_fields_in_extension_namespace', () => {
         const entityName: string = "DomainEntity1";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("extension", "projectExtension")
                 .withStartDomainEntity(entityName)

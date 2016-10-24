@@ -15,9 +15,9 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
     describe('When_domain_entity_subclass_renames_base_identity', () => {
         let entityName: string = "SubclassIdentifier";
         const baseName: string = "BaseDomainEntityIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(baseName)
@@ -41,9 +41,9 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
     describe('When_domain_entity_subclass_does_not_rename_identity', () => {
         let entityName: string = "SubclassIdentifier";
         const baseName: string = "BaseDomainEntityIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(baseName)
@@ -68,9 +68,9 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
     describe('When_domain_entity_subclass_renames_base_identity_more_than_once', () => {
         let entityName: string = "SubclassIdentifier";
         const baseName: string = "BaseDomainEntityIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(baseName)
@@ -104,9 +104,9 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
     describe('When_domain_entity_subclass_extends_non_existant_entity', () => {
         let entityName: string = "SubclassIdentifier";
         const baseName: string = "BaseDomainEntityIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntitySubclass(entityName, baseName)

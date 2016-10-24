@@ -15,9 +15,9 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
     describe('When_string_property_has_identifier_matching_no_common_simple_types', () => {
         let entityName: string = "EntityName";
         let propertyName: string = "PropertyName";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -37,9 +37,9 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
 
     describe('When_string_property_has_identifier_matching_common_decimal', () => {
         const commonEntityName: string = "CommonEntityName";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonDecimal(commonEntityName)
@@ -69,9 +69,9 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
 
     describe('When_string_property_has_identifier_matching_common_integer', () => {
         const commonEntityName: string = "CommonEntityName";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonInteger(commonEntityName)
@@ -100,9 +100,9 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
 
     describe('When_string_property_has_identifier_matching_common_short', () => {
         const commonEntityName: string = "CommonEntityName";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonShort(commonEntityName)
@@ -131,9 +131,9 @@ describe('StringPropertyMustNotMatchACommonSimpleType', () => {
 
     describe('When_string_property_has_identifier_matching_common_string', () => {
         const commonEntityName: string = "CommonEntityName";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonString(commonEntityName)

@@ -15,9 +15,9 @@ describe('DomainEntityExtensionExistsOnlyInExtensionNamespaceTests', () => {
     describe('When_domain_entity_extension_exists_in_extension', () => {
         let entityName: string = "MyIdentifier";
         const _property_name: string = "Property1";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -43,9 +43,9 @@ describe('DomainEntityExtensionExistsOnlyInExtensionNamespaceTests', () => {
         const coreNamespace: string = "edfi";
         let entityName: string = "MyIdentifier";
         const _property_name: string = "Property1";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace(coreNamespace)
                 .withStartDomainEntity(entityName)

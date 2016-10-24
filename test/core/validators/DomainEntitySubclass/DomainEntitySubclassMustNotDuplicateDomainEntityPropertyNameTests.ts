@@ -15,9 +15,9 @@ describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName', () => {
         describe('When_domain_entity_subclass_has_different_property_name', () => {
             let entityName: string = "SubclassIdentifier";
             let baseName: string = "BaseDomainEntityIdentifier";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartDomainEntity(baseName)
@@ -43,9 +43,9 @@ describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName', () => {
             let entityName: string = "MyIdentifier";
             let baseName: string = "BaseIdentifier";
             const duplicatePropertyName: string = "Property1";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartDomainEntity(baseName)
@@ -81,9 +81,9 @@ describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName', () => {
             const notDuplicatePropertyName: string = "NotADuplicate";
             const duplicatePropertyName1: string = "Property1";
             const duplicatePropertyName2: string = "Property2";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartDomainEntity(baseName)

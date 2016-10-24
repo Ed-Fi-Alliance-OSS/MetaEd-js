@@ -14,9 +14,9 @@ describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {
 
 
     describe('When_merge_exists_in_core', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("Entity1")
@@ -43,9 +43,9 @@ describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {
         const entityName2: string = "Entity2";
             const propertyName: string = "Prop1";
             const extensionNamespace: string = "extension";
-let helper: ValidatorTestHelper = new ValidatorTestHelper();
+const helper: ValidatorTestHelper = new ValidatorTestHelper();
 before(() => {
-    let metaEdText = MetaEdTextBuilder.build()
+    const metaEdText = MetaEdTextBuilder.build()
 
         .withBeginNamespace(extensionNamespace, "EXTENSION")
         .withStartDomainEntity(entityName1)

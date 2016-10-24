@@ -15,9 +15,9 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
         describe('When_domain_entity_has_valid_identity_property', () => {
             let entityName: string = "MyIdentifier";
             let propertyName: string = "Identifier";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartDomainEntity(entityName)
@@ -37,9 +37,9 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
         describe('When_abstract_entity_has_valid_identity_property', () => {
             let entityName: string = "MyIdentifier";
             let propertyName: string = "Identifier";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartAbstractEntity(entityName)
@@ -59,9 +59,9 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
         describe('When_association_has_valid_identity_property', () => {
             let entityName: string = "MyIdentifier";
             let propertyName: string = "Identifier";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartAssociation(entityName)
@@ -83,9 +83,9 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
         describe('When_common_type_has_valid_identity_property', () => {
             let entityName: string = "MyIdentifier";
             let propertyName: string = "Identifier";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartCommonType(entityName)
@@ -105,9 +105,9 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
         describe('When_inline_common_type_has_valid_identity_property', () => {
             let entityName: string = "MyIdentifier";
             let propertyName: string = "Identifier";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartInlineCommonType(entityName)
@@ -127,9 +127,9 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
         describe('When_association_extension_has_invalid_identity_property', () => {
             let entityName: string = "MyIdentifier";
             let propertyName: string = "Identifier";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartAssociation(entityName)
@@ -163,9 +163,9 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
             let entityName: string = "MyIdentifier";
             const subClassName: string = "NewSubclass";
             let propertyName: string = "Identifier";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartAssociation(entityName)
@@ -198,9 +198,9 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
         describe('When_descriptor_has_invalid_identity_property', () => {
             let entityName: string = "MyIdentifier";
             let propertyName: string = "Identifier";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartDescriptor(entityName)
@@ -231,9 +231,9 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
         describe('When_domain_entity_extension_has_invalid_identity_property', () => {
             let entityName: string = "MyIdentifier";
             let propertyName: string = "Identifier";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartDomainEntity(entityName)
@@ -265,9 +265,9 @@ describe('IdentityExistsOnlyIfIdentityIsAllowed', () => {
             let entityName: string = "MyIdentifier";
             const subClassName: string = "NewSubclass";
             let propertyName: string = "Identifier";
-            let helper: ValidatorTestHelper = new ValidatorTestHelper();
+            const helper: ValidatorTestHelper = new ValidatorTestHelper();
                 before(() => { 
- let metaEdText = MetaEdTextBuilder.build()
+ const metaEdText = MetaEdTextBuilder.build()
                 
 .withBeginNamespace("edfi")
 .withStartDomainEntity(entityName)

@@ -13,11 +13,11 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
 
 
     describe('When_validating_decimal_property_with_correct_total_digit_and_decimal_places_order', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         let totalDigits: string = "10";
         let decimalPlaces: string = "2";
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity("EntityForTest")
@@ -37,11 +37,11 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
     describe('When_validating_decimal_property_with_total_digit_and_decimal_places_out_of_order', () => {
         const entityName: string = "EntityForTest";
         const decimalPropertyName: string = "DecimalProperty";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         let totalDigits: string = "2";
         let decimalPlaces: string = "10";
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity(entityName)
@@ -68,11 +68,11 @@ describe('DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () 
     describe('When_validating_decimal_property_with_same_total_digit_and_decimal_places', () => {
         const entityName: string = "EntityForTest";
         const decimalPropertyName: string = "DecimalProperty";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         let totalDigits: string = "10";
         let decimalPlaces: string = "2";
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity(entityName)

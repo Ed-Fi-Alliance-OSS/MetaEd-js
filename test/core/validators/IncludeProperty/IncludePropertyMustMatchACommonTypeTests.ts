@@ -14,9 +14,9 @@ describe('IncludePropertyMustMatchACommonType', () => {
 
     describe('When_include_property_has_identifier_of_common_type', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartCommonType(entityName)
@@ -41,9 +41,9 @@ describe('IncludePropertyMustMatchACommonType', () => {
 
     describe('When_include_property_has_identifier_of_inline_common_type', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartInlineCommonType(entityName)
@@ -68,9 +68,9 @@ describe('IncludePropertyMustMatchACommonType', () => {
 
     describe('When_include_property_has_identifier_of_choice_common_type', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartChoiceType(entityName)
@@ -95,9 +95,9 @@ describe('IncludePropertyMustMatchACommonType', () => {
 
     describe('When_include_property_has_invalid_identifier', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntity")

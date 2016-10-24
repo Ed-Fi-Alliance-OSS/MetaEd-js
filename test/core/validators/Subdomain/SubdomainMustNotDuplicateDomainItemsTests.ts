@@ -13,9 +13,9 @@ describe('SubdomainMustNotDuplicateDomainItems', () => {
 
 
     describe('When_domain_items_have_different_names', () => {
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartSubdomain("Subdomain1", "Domain1")
@@ -37,9 +37,9 @@ describe('SubdomainMustNotDuplicateDomainItems', () => {
         const parentDomainName: string = "Domain1";
         let entityName: string = "Subdomain1";
         const duplicateTemplate: string = "Item1";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartSubdomain(entityName, parentDomainName)
@@ -68,9 +68,9 @@ describe('SubdomainMustNotDuplicateDomainItems', () => {
         let entityName: string = "Domain1";
         const duplicateTemplate1: string = "Item1";
         const duplicateTemplate2: string = "Item2";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartSubdomain(entityName, parentDomainName)

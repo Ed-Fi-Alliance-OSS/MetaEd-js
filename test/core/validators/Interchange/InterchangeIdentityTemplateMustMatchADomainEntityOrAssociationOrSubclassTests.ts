@@ -14,9 +14,9 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
     describe('When_identity_template_is_domain_entity', () => {
         let entityName: string = "EntityName";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -41,9 +41,9 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
     describe('When_identity_template_is_domain_entity_subclass', () => {
         let entityName: string = "EntityName";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntityBase")
@@ -73,9 +73,9 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
     describe('When_identity_template_is_association', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAssociation(entityName)
@@ -102,9 +102,9 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
     describe('When_identity_template_is_association_subclass', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAssociation("BaseName")
@@ -136,9 +136,9 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
     describe('When_identity_template_is_abstract_entity', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity(entityName)
@@ -163,9 +163,9 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
     describe('When_identity_template_has_invalid_identifier', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartInterchange("InterchangeName")

@@ -14,9 +14,9 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
     describe('When_association_subclass_has_invalid_identity_rename_property', () => {
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAssociation(entityName)
@@ -43,9 +43,9 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
     describe('When_domain_entity_has_invalid_identity_rename_property', () => {
         let entityName: string = "MyIdentifier";
         let propertyName: string = "Identifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -69,9 +69,9 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
 
     describe('When_association_subclass_has_valid_identity_rename_property', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAssociation(entityName)
@@ -97,9 +97,9 @@ describe('IdentityRenameExistsOnlyIfIdentityRenameIsAllowedTests', () => {
 
     describe('When_domain_entity_subclass_has_valid_identity_rename_property', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)

@@ -15,9 +15,9 @@ describe('DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySub
     describe('When_domain_entity_extension_has_valid_extendee', () => {
         let entityName: string = "MyIdentifier";
         const _property_name: string = "Property1";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -40,9 +40,9 @@ describe('DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySub
 
     describe('When_domain_entity_extension_has_invalid_extendee', () => {
         let entityName: string = "NotADomainEntityIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntityExtension(entityName)
@@ -66,9 +66,9 @@ describe('DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySub
     describe('When_domain_entity_extension_extends_domain_entity_subclass', () => {
         let entityName: string = "MyIdentifier";
         const subclassName: string = "MyIdentifierSubclass";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -96,9 +96,9 @@ describe('DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySub
 
     describe('When_domain_entity_extension_extends_abstract_domain_entity', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartAbstractEntity(entityName)

@@ -14,9 +14,9 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
 
     describe('When_domain_entity_extension_has_different_property_name', () => {
         let entityName: string = "MyIdentifier";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -40,9 +40,9 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
     describe('When_domain_entity_extension_has_duplicate_property_name', () => {
         let entityName: string = "MyIdentifier";
         const duplicatePropertyName: string = "Property1";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -74,9 +74,9 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
         const notDuplicatePropertyName: string = "NotADuplicate";
         const duplicatePropertyName1: string = "Property1";
         const duplicatePropertyName2: string = "Property2";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -111,9 +111,9 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
     describe('When_domain_entity_extension_has_duplicate_include_property', () => {
         let entityName: string = "MyIdentifier";
         const duplicatePropertyName: string = "Property1";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
@@ -137,9 +137,9 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
     describe('When_domain_entity_extension_has_duplicate_include_extension_override_property', () => {
         let entityName: string = "MyIdentifier";
         const duplicatePropertyName: string = "Property1";
-        let helper: ValidatorTestHelper = new ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder.build()
+            const metaEdText = MetaEdTextBuilder.build()
 
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
