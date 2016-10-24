@@ -1,18 +1,19 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class CommonTypeExtensionIdentifierMustMatchACommonType extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    isValid(context) {
-        let entityType = context.COMMON_TYPE().GetText();
-        let identifier = context.extendeeName().GetText();
-        return this.symbolTable.identifiersForEntityType(entityType).Any(x => x.Equals(identifier));
-    }
-    getFailureMessage(context) {
-        return `Common Type additions '${context.extendeeName().GetText()}' does not match any declared Common Type.`;
-    }
+// @flow
+import { commonTypeExtensionErrorRule, includeCommonTypeExtensionRule } from './CommonTypeExtensionValidationRule';
+import type SymbolTable from '../SymbolTable';
+import SymbolTableEntityType from '../SymbolTableEntityType';
+
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  const identifier = ruleContext.extendeeName().getText();
+  return Array.from(symbolTable.identifiersForEntityType(SymbolTableEntityType.commonType())).some(x => x === identifier);
 }
-exports.CommonTypeExtensionIdentifierMustMatchACommonType = CommonTypeExtensionIdentifierMustMatchACommonType;
-//# sourceMappingURL=CommonTypeExtensionIdentifierMustMatchACommonType.js.map
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Common Type additions '${ruleContext.extendeeName().getText()}' does not match any declared Common Type.`;
+}
+
+const validationRule = commonTypeExtensionErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeCommonTypeExtensionRule(validationRule);

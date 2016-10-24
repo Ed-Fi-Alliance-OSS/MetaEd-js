@@ -1,28 +1,29 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class CommonTypeExtensionMustNotDuplicateCommonTypePropertyName extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    isValid(context) {
-        let entityType = context.COMMON_TYPE().GetText();
-        let extensionType = context.COMMON_TYPE().GetText() + context.ADDITIONS();
-        let identifier = context.extendeeName().GetText();
-        let commonTypePropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(entityType, identifier);
-        let extensionPropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(extensionType, identifier);
-        return !commonTypePropertyIdentifiers.Intersect(extensionPropertyIdentifiers).Any();
-    }
-    getFailureMessage(context) {
-        let entityType = context.COMMON_TYPE().GetText();
-        let extensionType = context.COMMON_TYPE().GetText() + context.ADDITIONS();
-        let identifier = context.extendeeName().GetText();
-        let commonTypePropertyIdentifiers = this.symbolTable.identifiersForEntityProperties(entityType, identifier).ToList();
-        let propertyRuleContextsForDuplicates = this.symbolTable.contextsForMatchingPropertyIdentifiers(extensionType, identifier, commonTypePropertyIdentifiers);
-        let duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.Select(x => x.IdNode().GetText());
-        let joinedString = duplicatePropertyIdentifierList;
-        return `Common Type additions '${identifier}' declares '${joinedString}' already in property list of Common Type.`;
-    }
+// @flow
+import R from 'ramda';
+import type SymbolTable from '../SymbolTable';
+import { commonTypeExtensionErrorRule, includeCommonTypeExtensionRule } from './CommonTypeExtensionValidationRule';
+import SymbolTableEntityType from '../SymbolTableEntityType';
+
+// eslint-disable-next-line no-unused-vars
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  const identifier = ruleContext.extendeeName().getText();
+  const commonTypePropertyIdentifiers = symbolTable.identifiersForEntityProperties(SymbolTableEntityType.commonType(), identifier);
+  const extensionPropertyIdentifiers = symbolTable.identifiersForEntityProperties(SymbolTableEntityType.commonTypeExtension(), identifier);
+  return R.intersection(Array.from(commonTypePropertyIdentifiers), Array.from(extensionPropertyIdentifiers)).length === 0;
 }
-exports.CommonTypeExtensionMustNotDuplicateCommonTypePropertyName = CommonTypeExtensionMustNotDuplicateCommonTypePropertyName;
-//# sourceMappingURL=CommonTypeExtensionMustNotDuplicateCommonTypePropertyName.js.map
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  const identifier = ruleContext.extendeeName().getText();
+  const commonTypePropertyIdentifiers =
+    Array.from(symbolTable.identifiersForEntityProperties(SymbolTableEntityType.commonType(), identifier));
+  const propertyRuleContextsForDuplicates =
+    symbolTable.contextsForMatchingPropertyIdentifiers(SymbolTableEntityType.commonTypeExtension(), identifier, commonTypePropertyIdentifiers);
+  const duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.map(x => x.propertyName().ID().getText());
+  return `Common Type additions '${identifier}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of Common Type.`;
+}
+
+const validationRule = commonTypeExtensionErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeCommonTypeExtensionRule(validationRule);
