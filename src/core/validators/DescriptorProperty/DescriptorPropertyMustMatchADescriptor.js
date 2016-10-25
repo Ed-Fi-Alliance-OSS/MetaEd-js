@@ -1,18 +1,21 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-import {ISymbolTable} from '../SymbolTable'
-export class DescriptorPropertyMustMatchADescriptor extends ValidationRuleBase<MetaEdGrammar.DescriptorPropertyContext>
-{
-    private symbolTable: ISymbolTable;
-    constructor(symbolTable: ISymbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    public isValid(context: MetaEdGrammar.DescriptorPropertyContext): boolean {
-        let identifierToMatch = context.propertyName().getText();
-        let descriptorType = MetaEdGrammar.TokenName(MetaEdGrammar.DESCRIPTOR_ENTITY);
-        return this.symbolTable.identifierExists(descriptorType, identifierToMatch);
-    }
-    public getFailureMessage(context: MetaEdGrammar.DescriptorPropertyContext): string {
-        return `Descriptor property '${context.propertyName().getText()}' does not match any declared descriptor.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { descriptorPropertyErrorRule, includeDescriptorPropertyRule } from './DescriptorPropertyValidationRule';
+import SymbolTableEntityType from '../SymbolTableEntityType';
+
+// eslint-disable-next-line no-unused-vars
+export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  const identifierToMatch = ruleContext.propertyName().getText();
+  return symbolTable.identifierExists(SymbolTableEntityType.descriptorEntity(), identifierToMatch);
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  const identifierToMatch = ruleContext.propertyName().getText();
+  return `Descriptor property '${identifierToMatch}' does not match any declared descriptor.`;
+}
+
+const validationRule = descriptorPropertyErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeDescriptorPropertyRule(validationRule);

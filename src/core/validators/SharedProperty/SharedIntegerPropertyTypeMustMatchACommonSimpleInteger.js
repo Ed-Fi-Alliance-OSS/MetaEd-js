@@ -1,21 +1,18 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class SharedIntegerPropertyTypeMustMatchACommonSimpleInteger extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
+import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
+export class SharedIntegerPropertyTypeMustMatchACommonSimpleInteger extends ValidationRuleBase<MetaEdGrammar.SharedIntegerPropertyContext>
+{
+    private symbolTable: ISymbolTable;
+    constructor(symbolTable: ISymbolTable) {
         super();
         this.symbolTable = symbolTable;
     }
-    isValid(context) {
-        let identifierToMatch = context.sharedPropertyType().GetText();
+    public isValid(context: MetaEdGrammar.SharedIntegerPropertyContext): boolean {
+        let identifierToMatch = context.sharedPropertyType().getText();
         let commonIntegerType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_INTEGER);
         return this.symbolTable.identifierExists(commonIntegerType, identifierToMatch);
     }
-    getFailureMessage(context) {
-        return `Shared property '${context.propertyName().GetText()}' does not match any declared common integer.", );
+    public getFailureMessage(context: MetaEdGrammar.SharedIntegerPropertyContext): string {
+        return `Shared property '${context.propertyName().getText()}' does not match any declared common integer.", );
     }
 }
-;
-    }
-}
-exports.SharedIntegerPropertyTypeMustMatchACommonSimpleInteger = SharedIntegerPropertyTypeMustMatchACommonSimpleInteger;
-//# sourceMappingURL=SharedIntegerPropertyTypeMustMatchACommonSimpleInteger.js.map

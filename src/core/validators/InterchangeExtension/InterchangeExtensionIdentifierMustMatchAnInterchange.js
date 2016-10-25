@@ -1,18 +1,18 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class InterchangeExtensionIdentifierMustMatchAnInterchange extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
+import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
+export class InterchangeExtensionIdentifierMustMatchAnInterchange extends ValidationRuleBase<MetaEdGrammar.InterchangeExtensionContext>
+{
+    private symbolTable: ISymbolTable;
+    constructor(symbolTable: ISymbolTable) {
         super();
         this.symbolTable = symbolTable;
     }
-    isValid(context) {
-        let entityType = context.INTERCHANGE().GetText();
-        let identifier = context.extendeeName().GetText();
+    public isValid(context: MetaEdGrammar.InterchangeExtensionContext): boolean {
+        let entityType = context.INTERCHANGE().getText();
+        let identifier = context.extendeeName().getText();
         return this.symbolTable.identifiersForEntityType(entityType).Any(x => x.Equals(identifier));
     }
-    getFailureMessage(context) {
-        return `Interchange additions '${context.extendeeName().GetText()}' does not match any declared Interchange.`;
+    public getFailureMessage(context: MetaEdGrammar.InterchangeExtensionContext): string {
+        return `Interchange additions '${context.extendeeName().getText()}' does not match any declared Interchange.`;
     }
 }
-exports.InterchangeExtensionIdentifierMustMatchAnInterchange = InterchangeExtensionIdentifierMustMatchAnInterchange;
-//# sourceMappingURL=InterchangeExtensionIdentifierMustMatchAnInterchange.js.map

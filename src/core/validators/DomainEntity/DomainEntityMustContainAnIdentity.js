@@ -1,12 +1,10 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class DomainEntityMustContainAnIdentity extends ValidationRuleBase_1.ValidationRuleBase {
-    isValid(context) {
-        return context.property().Any(x => x.GetProperty().propertyComponents().propertyAnnotation().identity() != null);
+import { ValidationRuleBase } from "../ValidationRuleBase";
+export class DomainEntityMustContainAnIdentity extends ValidationRuleBase<MetaEdGrammar.DomainEntityContext>
+{
+    public isValid(context: MetaEdGrammar.DomainEntityContext): boolean {
+        return context.property().Any(x => getProperty(x).propertyComponents().propertyAnnotation().identity() != null);
     }
-    getFailureMessage(context) {
-        return `Domain Entity ${context.entityName().ID().GetText()} does not have an identity specified.`;
+    public getFailureMessage(context: MetaEdGrammar.DomainEntityContext): string {
+        return `Domain Entity ${context.entityName().ID().getText()} does not have an identity specified.`;
     }
 }
-exports.DomainEntityMustContainAnIdentity = DomainEntityMustContainAnIdentity;
-//# sourceMappingURL=DomainEntityMustContainAnIdentity.js.map

@@ -1,12 +1,15 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class MergePropertyAndTargetPropertyMustMatch extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable, propertyPathLookup) {
+import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
+export class MergePropertyAndTargetPropertyMustMatch extends ValidationRuleBase<MetaEdGrammar.MergePartOfReferenceContext>
+{
+    private symbolTable: ISymbolTable;
+    private _propertyPathLookup: IPropertyPathLookup;
+    constructor(symbolTable: ISymbolTable, propertyPathLookup: IPropertyPathLookup) {
         super();
         this.symbolTable = symbolTable;
         this._propertyPathLookup = propertyPathLookup;
     }
-    isValid(context) {
+    public isValid(context: MetaEdGrammar.MergePartOfReferenceContext): boolean {
         let entityContext = LookupParentEntityContext(context);
         let mergePropertyPathParts = context.mergePropertyPath().propertyPath().PropertyPathParts();
         let targetPropertyPathParts = context.targetPropertyPath().propertyPath().PropertyPathParts();
@@ -20,16 +23,16 @@ class MergePropertyAndTargetPropertyMustMatch extends ValidationRuleBase_1.Valid
             if (!IsReferenceProperty(mergePropertyType) || !IsReferenceProperty(targetPropertyType))
                 return false;
         }
-        if (mergeProperty.IdNode().GetText() != targetProperty.IdNode().GetText()) {
+        if (mergeProperty.IdNode().getText() != targetProperty.IdNode().getText()) {
             if (!IsReferenceProperty(mergePropertyType) || !IsReferenceProperty(targetPropertyType))
                 return false;
-            if (!MatchBaseType(mergeProperty, targetProperty.IdNode().GetText()) && !MatchBaseType(targetProperty, mergeProperty.IdNode().GetText()))
+            if (!MatchBaseType(mergeProperty, targetProperty.IdNode().getText()) && !MatchBaseType(targetProperty, mergeProperty.IdNode().getText()))
                 return false;
         }
         return true;
     }
-    getFailureMessage(context) {
-        return `The merge paths '${}' and '${}' do not correspond to the same entity type.", context.mergePropertyPath().GetText(), context.targetPropertyPath().GetText());
+    public getFailureMessage(context: MetaEdGrammar.MergePartOfReferenceContext): string {
+        return `The merge paths '${}' and '${}' do not correspond to the same entity type.", context.mergePropertyPath().getText(), context.targetPropertyPath().getText());
     }
     private lookupParentEntityContext(context: MetaEdGrammar.MergePartOfReferenceContext): EntityContext {
         let definingEntityContext = context.parent.parent.parent;
@@ -68,7 +71,7 @@ class MergePropertyAndTargetPropertyMustMatch extends ValidationRuleBase_1.Valid
         return ((type == /*typeof*/MetaEdGrammar.ReferencePropertyContext) || (type == /*typeof*/MetaEdGrammar.FirstDomainEntityContext) || (type == /*typeof*/MetaEdGrammar.SecondDomainEntityContext));
     }
     private matchBaseType(referencingProperty: IContextWithIdentifier, baseTypeName: string): boolean {
-        let entityName = referencingProperty.IdNode().GetText();
+        let entityName = referencingProperty.IdNode().getText();
         let entityContext: EntityContext = null;
         entityContext = this.symbolTable.Get(this.symbolTableEntityType.domainEntitySubclassEntityType(), entityName);
         if (entityContext != null) {
@@ -83,8 +86,3 @@ class MergePropertyAndTargetPropertyMustMatch extends ValidationRuleBase_1.Valid
         return false;
     }
 }
-;
-    }
-}
-exports.MergePropertyAndTargetPropertyMustMatch = MergePropertyAndTargetPropertyMustMatch;
-//# sourceMappingURL=MergePropertyAndTargetPropertyMustMatch.js.map

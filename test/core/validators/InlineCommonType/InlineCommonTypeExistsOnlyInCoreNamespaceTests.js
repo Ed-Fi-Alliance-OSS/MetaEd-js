@@ -1,20 +1,24 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const InlineCommonTypeExistsOnlyInCoreNamespace_1 = require("../../../../src/core/validators/InlineCommonType/InlineCommonTypeExistsOnlyInCoreNamespace");
-let should = chai.should();
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai from 'chai'
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import {InlineCommonTypeExistsOnlyInCoreNamespace}from "../../../../src/core/validators/InlineCommonType/InlineCommonTypeExistsOnlyInCoreNamespace"
+
+chai.should();
+
 describe('InlineCommonTypeExistsOnlyInCoreNamespace', () => {
-    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new InlineCommonTypeExistsOnlyInCoreNamespace_1.InlineCommonTypeExistsOnlyInCoreNamespace()));
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.InlineCommonTypeContext>(
+            new InlineCommonTypeExistsOnlyInCoreNamespace()));
+
+
     describe('When_inline_common_type_exists_in_core', () => {
-        let entityName = "MyIdentifier";
-        const _property_name = "Property1";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        let entityName: string = "MyIdentifier";
+        const _property_name: string = "Property1";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartInlineCommonType(entityName)
                 .withDocumentation("because documentation is required")
@@ -23,17 +27,21 @@ describe('InlineCommonTypeExistsOnlyInCoreNamespace', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
+
+
     describe('When_inline_common_type_exists_in_extension', () => {
-        const extensionNamespace = "edfi";
-        let entityName = "MyIdentifier";
-        const propertyName = "Property1";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        const extensionNamespace: string = "edfi";
+        let entityName: string = "MyIdentifier";
+        const propertyName: string = "Property1";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace(extensionNamespace, "projectExtension")
                 .withStartInlineCommonType(entityName)
                 .withDocumentation("because documentation is required")
@@ -42,15 +50,15 @@ describe('InlineCommonTypeExistsOnlyInCoreNamespace', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Inline Common Type");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("is not valid in extension namespace");
-            helper.errorMessageCollection[0].Message.ShouldContain(extensionNamespace);
+            helper.errorMessageCollection[0].message.should.include("Inline Common Type");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("is not valid in extension namespace");
+            helper.errorMessageCollection[0].message.should.include(extensionNamespace);
         });
     });
 });
-//# sourceMappingURL=InlineCommonTypeExistsOnlyInCoreNamespaceTests.js.map

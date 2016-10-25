@@ -1,18 +1,16 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class EnumerationItemsMustBeUnique extends ValidationRuleBase_1.ValidationRuleBase {
-    static duplicateShortDescriptions(context) {
-        let shortDescriptions = context.enumerationItem().Select(x => x.shortDescription().GetText());
-        return shortDescriptions.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
+import { ValidationRuleBase } from "../ValidationRuleBase";
+export class EnumerationItemsMustBeUnique extends ValidationRuleBase<MetaEdGrammar.EnumerationContext>
+{
+    private static duplicateShortDescriptions(context: MetaEdGrammar.EnumerationContext): string[] {
+        let shortDescriptions = context.enumerationItem().map(x => x.shortDescription().getText());
+        return shortDescriptions.GroupBy(x => x).filter(group => group.Count() > 1).map(group => group.Key).ToArray();
     }
-    isValid(context) {
-        return EnumerationItemsMustBeUnique.duplicateShortDescriptions(context).length == 0;
+    public isValid(context: MetaEdGrammar.EnumerationContext): boolean {
+        return EnumerationItemsMustBeUnique.duplicateShortDescriptions(context).length==0;
     }
-    getFailureMessage(context) {
-        let identifier = context.enumerationName().GetText();
+    public getFailureMessage(context: MetaEdGrammar.EnumerationContext): string {
+        let identifier = context.enumerationName().getText();
         let duplicateShortDescriptions = EnumerationItemsMustBeUnique.duplicateShortDescriptions(context);
         return `Enumeration '${identifier}' declares duplicate item${duplicateShortDescriptions.length > 1 ? "s" : ""} '${duplicateShortDescriptions.join(', ')}'.`;
     }
 }
-exports.EnumerationItemsMustBeUnique = EnumerationItemsMustBeUnique;
-//# sourceMappingURL=EnumerationItemsMustBeUnique.js.map

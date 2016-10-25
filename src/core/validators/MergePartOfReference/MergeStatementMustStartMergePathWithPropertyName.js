@@ -1,16 +1,14 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class MergeStatementMustStartMergePathWithPropertyName extends ValidationRuleBase_1.ValidationRuleBase {
-    isValid(context) {
-        let parent = __as__(context.Parent, MetaEdGrammar.ReferencePropertyContext);
+import { ValidationRuleBase } from "../ValidationRuleBase";
+export class MergeStatementMustStartMergePathWithPropertyName extends ValidationRuleBase<MetaEdGrammar.MergePartOfReferenceContext>
+{
+    public isValid(context: MetaEdGrammar.MergePartOfReferenceContext): boolean {
+        let parent = __as__<MetaEdGrammar.ReferencePropertyContext>(context.Parent, MetaEdGrammar.ReferencePropertyContext);
         if (parent == null)
             return false;
         let referenceName = parent.propertyName().IdText();
         return context.mergePropertyPath().propertyPath().PropertyPathParts()[0] == referenceName;
     }
-    getFailureMessage(context) {
+    public getFailureMessage(context: MetaEdGrammar.MergePartOfReferenceContext): string {
         return "Merge statement must start first property path with the referenced entity name of the current property.";
     }
 }
-exports.MergeStatementMustStartMergePathWithPropertyName = MergeStatementMustStartMergePathWithPropertyName;
-//# sourceMappingURL=MergeStatementMustStartMergePathWithPropertyName.js.map

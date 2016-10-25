@@ -1,23 +1,22 @@
 //TODO: Part of property path unique pattern
-///// <reference path="../../../../typings/index.d.ts" />
-//import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
-//import chai = require('chai');
-//import {ValidatorTestHelper} from "../ValidatorTestHelper";
-//import {ValidatorListener} from "../../../../src/core/validators/ValidatorListener";
-//import {TestRuleProvider} from "../TestRuleProvider";
+
+////import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+//import chai from 'chai'
+//import ValidatorTestHelper from "../ValidatorTestHelper";
+//import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
 //import {InsertClassName}from "../../../../src/core/validators/EnterFolderName/EnterClassName"
 //
-//let should = chai.should();
+//chai.should();
 ////TODO: special case?
 //
 //describe('MergePropertyPathMustExist', () => {
 //
 //    describe('When_domain_entity_has_merge_property_and_path_is_wrong', () => {
 //            private _propertyPathLookup: IPropertyPathLookup;
-//    let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//    const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //
 //    before(() => {
-//        let metaEdText = MetaEdTextBuilder.buildIt
+//        const metaEdText = MetaEdTextBuilder.build()
 //
 //            .withBeginNamespace("edfi")
 //            .withStartDomainEntity("Entity1")
@@ -52,9 +51,9 @@
 //
 //describe('When_domain_entity_has_merge_property', () => {
 //            private _propertyPathLookup: IPropertyPathLookup;
-//let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    const metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -87,9 +86,9 @@
 //
 //describe('When_domain_entity_extension_has_merge_property', () => {
 //            private _propertyPathLookup: IPropertyPathLookup;
-//let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    const metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -125,9 +124,9 @@
 //
 //describe('When_domain_entity_subclass_has_merge_property', () => {
 //            private _propertyPathLookup: IPropertyPathLookup;
-//let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    const metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -164,9 +163,9 @@
 //
 //describe('When_association_has_merge_property', () => {
 //            private _propertyPathLookup: IPropertyPathLookup;
-//let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    const metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -211,9 +210,9 @@
 //
 //describe('When_association_extension_has_merge_property', () => {
 //            private _propertyPathLookup: IPropertyPathLookup;
-//let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    const metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -260,9 +259,9 @@
 //
 //describe('When_association_subclass_has_merge_property', () => {
 //            private _propertyPathLookup: IPropertyPathLookup;
-//let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    const metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -310,9 +309,9 @@
 //
 //describe('When_abstract_entity_has_merge_property', () => {
 //            private _propertyPathLookup: IPropertyPathLookup;
-//let helper: ValidatorTestHelper = new ValidatorTestHelper();
+//const helper: ValidatorTestHelper = new ValidatorTestHelper();
 //before(() => {
-//    let metaEdText = MetaEdTextBuilder.buildIt
+//    const metaEdText = MetaEdTextBuilder.build()
 //
 //        .withBeginNamespace("edfi")
 //        .withStartDomainEntity("Entity1")
@@ -340,5 +339,4 @@
 //    helper.errorMessageCollection.length.should.equal(0);
 //});
 //});
-//}); 
-//# sourceMappingURL=MergePropertyPathMustExistTests.js.map
+//});

@@ -1,29 +1,24 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class IdentityExistsOnlyIfIdentityIsAllowed extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(...args) {
-        super(...args);
-        this._validIdentityRuleIndices = [MetaEdGrammar.RULE_abstractEntity,
-            MetaEdGrammar.RULE_association,
-            MetaEdGrammar.RULE_commonType,
-            MetaEdGrammar.RULE_domainEntity,
-            MetaEdGrammar.RULE_inlineCommonType];
-        this._validIdentityTokenNames = [MetaEdGrammar.TokenName(MetaEdGrammar.ABSTRACT_ENTITY),
-            MetaEdGrammar.TokenName(MetaEdGrammar.ASSOCIATION),
-            MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_TYPE),
-            MetaEdGrammar.TokenName(MetaEdGrammar.DOMAIN_ENTITY),
-            MetaEdGrammar.TokenName(MetaEdGrammar.INLINE_COMMON_TYPE)];
-    }
-    isValid(context) {
-        let topLevelEntity = context.GetAncestorContext();
+import { ValidationRuleBase } from "../ValidationRuleBase";
+export class IdentityExistsOnlyIfIdentityIsAllowed extends ValidationRuleBase<MetaEdGrammar.IdentityContext>
+{
+    private _validIdentityRuleIndices: number[] = [MetaEdGrammar.RULE_abstractEntity,
+        MetaEdGrammar.RULE_association,
+        MetaEdGrammar.RULE_commonType,
+        MetaEdGrammar.RULE_domainEntity,
+        MetaEdGrammar.RULE_inlineCommonType];
+    private _validIdentityTokenNames: string[] = [MetaEdGrammar.TokenName(MetaEdGrammar.ABSTRACT_ENTITY),
+        MetaEdGrammar.TokenName(MetaEdGrammar.ASSOCIATION),
+        MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_TYPE),
+        MetaEdGrammar.TokenName(MetaEdGrammar.DOMAIN_ENTITY),
+        MetaEdGrammar.TokenName(MetaEdGrammar.INLINE_COMMON_TYPE)];
+    public isValid(context: MetaEdGrammar.IdentityContext): boolean {
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         return this._validIdentityRuleIndices.Contains(topLevelEntity.RuleIndex);
     }
-    getFailureMessage(context) {
-        let topLevelEntity = context.GetAncestorContext();
-        let propertyWithComponents = context.GetAncestorContext();
+    public getFailureMessage(context: MetaEdGrammar.IdentityContext): string {
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let propertyWithComponents = context.GetAncestorContext<IPropertyWithComponents>();
         let validNames = this._validIdentityTokenNames.join(", ");
-        return `'is part of identity' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'is part of identity' is only valid for properties on types: ${validNames}.`;
+        return `'is part of identity' is invalid for property ${propertyWithComponents.IdNode().getText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'is part of identity' is only valid for properties on types: ${validNames}.`;
     }
 }
-exports.IdentityExistsOnlyIfIdentityIsAllowed = IdentityExistsOnlyIfIdentityIsAllowed;
-//# sourceMappingURL=IdentityExistsOnlyIfIdentityIsAllowed.js.map

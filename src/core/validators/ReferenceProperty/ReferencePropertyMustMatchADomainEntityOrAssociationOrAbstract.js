@@ -1,19 +1,21 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-const SymbolTableEntityType_1 = require('../SymbolTableEntityType');
-class ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
+import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
+import SymbolTableEntityType from '../SymbolTableEntityType'
+
+export class ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract extends ValidationRuleBase<MetaEdGrammar.ReferencePropertyContext>
+{
+    private symbolTable: ISymbolTable;
+    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
+    constructor(symbolTable: ISymbolTable) {
         super();
-        this.symbolTableEntityType = new SymbolTableEntityType_1.default();
         this.symbolTable = symbolTable;
+        
     }
-    isValid(context) {
-        let identifierToMatch = context.propertyName().GetText();
+    public isValid(context: MetaEdGrammar.ReferencePropertyContext): boolean {
+        let identifierToMatch = context.propertyName().getText();
         return this.symbolTable.identifierExists(this.symbolTableEntityType.abstractEntityEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.associationEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.associationSubclassEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntityEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntitySubclassEntityType(), identifierToMatch);
     }
-    getFailureMessage(context) {
-        return `Reference property '${context.propertyName().GetText()}' does not match any declared domain entity or subclass, association or subclass, or abstract entity.`;
+    public getFailureMessage(context: MetaEdGrammar.ReferencePropertyContext): string {
+        return `Reference property '${context.propertyName().getText()}' does not match any declared domain entity or subclass, association or subclass, or abstract entity.`;
     }
 }
-exports.ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract = ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract;
-//# sourceMappingURL=ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract.js.map

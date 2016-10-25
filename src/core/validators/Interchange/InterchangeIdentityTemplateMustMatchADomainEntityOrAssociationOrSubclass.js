@@ -1,19 +1,19 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-const SymbolTableEntityType_1 = require('../SymbolTableEntityType');
-class InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
+import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
+import SymbolTableEntityType from '../SymbolTableEntityType'
+export class InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass extends ValidationRuleBase<MetaEdGrammar.InterchangeIdentityTemplateContext>
+{
+    private symbolTable: ISymbolTable;
+    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
+    constructor(symbolTable: ISymbolTable) {
         super();
-        this.symbolTableEntityType = new SymbolTableEntityType_1.default();
         this.symbolTable = symbolTable;
     }
-    isValid(context) {
+    public isValid(context: MetaEdGrammar.InterchangeIdentityTemplateContext): boolean {
         let identifierToMatch = context.IdText();
         return this.symbolTable.identifierExists(this.symbolTableEntityType.abstractEntityEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.associationEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.associationSubclassEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntityEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntitySubclassEntityType(), identifierToMatch);
     }
-    getFailureMessage(context) {
+    public getFailureMessage(context: MetaEdGrammar.InterchangeIdentityTemplateContext): string {
         return `Interchange identity template '${context.IdText()}' does not match any declared domain entity or subclass, association or subclass, or abstract entity.`;
     }
 }
-exports.InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass = InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass;
-//# sourceMappingURL=InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass.js.map

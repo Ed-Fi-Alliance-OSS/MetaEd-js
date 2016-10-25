@@ -1,13 +1,11 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class IncludePropertyMustNotContainIdentity extends ValidationRuleBase_1.ValidationRuleBase {
-    isValid(context) {
+import { ValidationRuleBase } from "../ValidationRuleBase";
+export class IncludePropertyMustNotContainIdentity extends ValidationRuleBase<MetaEdGrammar.IncludePropertyContext>
+{
+    public isValid(context: MetaEdGrammar.IncludePropertyContext): boolean {
         return context.propertyComponents().propertyAnnotation().identity() == null;
     }
-    getFailureMessage(context) {
-        let topLevelEntity = context.GetAncestorContext();
-        return `Include property '${context.propertyName().GetText()}' is invalid to be used for the identity of ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'`;
+    public getFailureMessage(context: MetaEdGrammar.IncludePropertyContext): string {
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        return `Include property '${context.propertyName().getText()}' is invalid to be used for the identity of ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'`;
     }
 }
-exports.IncludePropertyMustNotContainIdentity = IncludePropertyMustNotContainIdentity;
-//# sourceMappingURL=IncludePropertyMustNotContainIdentity.js.map

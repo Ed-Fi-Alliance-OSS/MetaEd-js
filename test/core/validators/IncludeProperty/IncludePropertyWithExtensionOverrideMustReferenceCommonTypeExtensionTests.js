@@ -1,27 +1,32 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension_1 = require("../../../../src/core/validators/IncludeProperty/IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension");
-let should = chai.should();
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai from 'chai'
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import {IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension}from "../../../../src/core/validators/IncludeProperty/IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension"
+
+chai.should();
+
 describe('IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension', () => {
-    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension_1.IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension(helper.symbolTable)));
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.IncludePropertyContext>(
+            new IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension(helper.symbolTable)));
+
+
     describe('When_include_property_has_extension_override_of_non_common_type_extension', () => {
-        const commonTypeName = "CommonType";
-        let entityName = "MyIdentifier";
-        let propertyName = "Identifier";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        const commonTypeName: string = "CommonType";
+        let entityName: string = "MyIdentifier";
+        let propertyName: string = "Identifier";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartCommonType(commonTypeName)
                 .withDocumentation("doc")
                 .withBooleanProperty("DummyProperty1", "doc", true, false)
                 .withEndCommonType()
-                .withStartDomainEntity(entityName)
+                
+.withStartDomainEntity(entityName)
                 .withDocumentation("doc")
                 .withBooleanProperty("DummyProperty2", "doc", true, false)
                 .withEndDomainEntity()
@@ -33,32 +38,38 @@ describe('IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension',
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("include extension");
-            helper.errorMessageCollection[0].Message.ShouldContain(propertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("invalid");
+            helper.errorMessageCollection[0].message.should.include("include extension");
+            helper.errorMessageCollection[0].message.should.include(propertyName);
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("invalid");
         });
     });
+
+
     describe('When_include_property_has_extension_override_of_common_type_extension', () => {
-        const commonTypeName = "CommonType";
-        let entityName = "MyIdentifier";
-        let propertyName = "Identifier";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        const commonTypeName: string = "CommonType";
+        let entityName: string = "MyIdentifier";
+        let propertyName: string = "Identifier";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartCommonType(commonTypeName)
                 .withDocumentation("doc")
                 .withBooleanProperty("DummyProperty1", "doc", true, false)
                 .withEndCommonType()
-                .withStartCommonTypeExtension(commonTypeName)
+                
+.withStartCommonTypeExtension(commonTypeName)
                 .withBooleanProperty("DummyProperty3", "doc", true, false)
                 .withEndCommonType()
-                .withStartDomainEntity(entityName)
+                
+.withStartDomainEntity(entityName)
                 .withDocumentation("doc")
                 .withBooleanProperty("DummyProperty2", "doc", true, false)
                 .withEndDomainEntity()
@@ -70,9 +81,9 @@ describe('IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension',
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_not_have_validation_failure()', () => {
             helper.errorMessageCollection.Any().ShouldBeFalse();
         });
     });
 });
-//# sourceMappingURL=IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtensionTests.js.map

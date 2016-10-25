@@ -1,22 +1,22 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class InterchangeMustNotDuplicateInterchangeElementName extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
+import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
+export class InterchangeMustNotDuplicateInterchangeElementName extends ValidationRuleBase<MetaEdGrammar.InterchangeContext>
+{
+    private symbolTable: ISymbolTable;
+    constructor(symbolTable: ISymbolTable) {
         super();
         this.symbolTable = symbolTable;
     }
-    static duplicateInterchangeElements(context) {
-        let interchangeElements = context.interchangeComponent().interchangeElement().Select(x => x.ID().GetText());
-        return interchangeElements.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
+    private static duplicateInterchangeElements(context: MetaEdGrammar.InterchangeContext): string[] {
+        let interchangeElements = context.interchangeComponent().interchangeElement().map(x => x.ID().getText());
+        return interchangeElements.GroupBy(x => x).filter(group => group.Count() > 1).map(group => group.Key).ToArray();
     }
-    isValid(context) {
+    public isValid(context: MetaEdGrammar.InterchangeContext): boolean {
         return InterchangeMustNotDuplicateInterchangeElementName.duplicateInterchangeElements(context).length == 0;
     }
-    getFailureMessage(context) {
-        let identifier = context.interchangeName().GetText();
+    public getFailureMessage(context: MetaEdGrammar.InterchangeContext): string {
+        let identifier = context.interchangeName().getText();
         let duplicateInterchangeElements = InterchangeMustNotDuplicateInterchangeElementName.duplicateInterchangeElements(context);
         return `Interchange '${identifier}' declares duplicate interchange element${duplicateInterchangeElements.length > 1 ? "s" : ""} '${duplicateInterchangeElements.join(', ')}'.`;
     }
 }
-exports.InterchangeMustNotDuplicateInterchangeElementName = InterchangeMustNotDuplicateInterchangeElementName;
-//# sourceMappingURL=InterchangeMustNotDuplicateInterchangeElementName.js.map

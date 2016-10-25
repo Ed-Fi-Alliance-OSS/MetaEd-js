@@ -1,18 +1,22 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const DomainEntityMustContainAnIdentity_1 = require("../../../../src/core/validators/DomainEntity/DomainEntityMustContainAnIdentity");
-let should = chai.should();
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai from 'chai'
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import {DomainEntityMustContainAnIdentity}from "../../../../src/core/validators/DomainEntity/DomainEntityMustContainAnIdentity"
+
+chai.should();
+
 describe('DomainEntityMustContainAnIdentityTests', () => {
-    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new DomainEntityMustContainAnIdentity_1.DomainEntityMustContainAnIdentity()));
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.DomainEntityContext>(
+            new DomainEntityMustContainAnIdentity()));
+
+
     describe('When_validating_domain_entity_with_identity_fields', () => {
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity("DomainEntity1")
                 .withDocumentation("doc1")
@@ -21,15 +25,19 @@ describe('DomainEntityMustContainAnIdentityTests', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
+
+
     describe('When_validating_domain_entity_with_no_identity_fields', () => {
-        let entityName = "MyIdentifier";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        let entityName: string = "MyIdentifier";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(entityName)
                 .withDocumentation("doc1")
@@ -38,14 +46,14 @@ describe('DomainEntityMustContainAnIdentityTests', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("does not have an identity");
+            helper.errorMessageCollection[0].message.should.include("Domain Entity");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("does not have an identity");
         });
     });
 });
-//# sourceMappingURL=DomainEntityMustContainAnIdentityTests.js.map

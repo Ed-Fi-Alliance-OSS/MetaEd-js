@@ -1,18 +1,22 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const InterchangeExtensionMustNotDuplicateIdentityTemplateName_1 = require("../../../../src/core/validators/InterchangeExtension/InterchangeExtensionMustNotDuplicateIdentityTemplateName");
-let should = chai.should();
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai from 'chai'
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import {InterchangeExtensionMustNotDuplicateIdentityTemplateName}from "../../../../src/core/validators/InterchangeExtension/InterchangeExtensionMustNotDuplicateIdentityTemplateName"
+
+chai.should();
+
 describe('InterchangeExtensionMustNotDuplicateIdentityTemplateName', () => {
-    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new InterchangeExtensionMustNotDuplicateIdentityTemplateName_1.InterchangeExtensionMustNotDuplicateIdentityTemplateName(helper.symbolTable)));
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.InterchangeExtensionContext>(
+            new InterchangeExtensionMustNotDuplicateIdentityTemplateName(helper.symbolTable)));
+
+
     describe('When_identity_templates_have_different_names', () => {
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartInterchangeExtension("Interchange1")
                 .withIdentityTemplate("Template1")
@@ -21,16 +25,20 @@ describe('InterchangeExtensionMustNotDuplicateIdentityTemplateName', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
+
+
     describe('When_identity_templates_have_duplicate_names', () => {
-        let entityName = "Interchange1";
-        const duplicateTemplate = "Identity1";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        let entityName: string = "Interchange1";
+        const duplicateTemplate: string = "Identity1";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartInterchangeExtension("Interchange1")
                 .withIdentityTemplate(duplicateTemplate)
@@ -39,15 +47,15 @@ describe('InterchangeExtensionMustNotDuplicateIdentityTemplateName', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Interchange additions");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("duplicate identity template");
-            helper.errorMessageCollection[0].Message.ShouldContain(duplicateTemplate);
+            helper.errorMessageCollection[0].message.should.include("Interchange additions");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("duplicate identity template");
+            helper.errorMessageCollection[0].message.should.include(duplicateTemplate);
         });
     });
 });
-//# sourceMappingURL=InterchangeExtensionMustNotDuplicateIdentityTemplateNameTests.js.map

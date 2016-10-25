@@ -1,25 +1,30 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity_1 = require("../../../../src/core/validators/DomainEntitySubclass/DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity");
-let should = chai.should();
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai from 'chai'
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import {DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity}from "../../../../src/core/validators/DomainEntitySubclass/DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity"
+
+chai.should();
+
 describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity', () => {
-    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity_1.DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity(helper.symbolTable)));
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.DomainEntitySubclassContext>(
+            new DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity(helper.symbolTable)));
+
+
     describe('When_domain_entity_subclass_renames_base_identity', () => {
-        let entityName = "SubclassIdentifier";
-        const baseName = "BaseDomainEntityIdentifier";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        let entityName: string = "SubclassIdentifier";
+        const baseName: string = "BaseDomainEntityIdentifier";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(baseName)
                 .withDocumentation("because documentation is required")
                 .withStringIdentity("Property1", "because a property is required", 100)
                 .withEndDomainEntity()
+
                 .withStartDomainEntitySubclass("When_domain_entity_subclass_renames_base_identity_entity_Name", baseName)
                 .withDocumentation("because documentation is required")
                 .withStringIdentityRename("Property2", "Property1", "because a property is required", 100)
@@ -31,18 +36,22 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
             helper.errorMessageCollection.should.be.empty;
         });
     });
+
+
     describe('When_domain_entity_subclass_does_not_rename_identity', () => {
-        let entityName = "SubclassIdentifier";
-        const baseName = "BaseDomainEntityIdentifier";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        let entityName: string = "SubclassIdentifier";
+        const baseName: string = "BaseDomainEntityIdentifier";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(baseName)
                 .withDocumentation("because documentation is required")
                 .withStringIdentity("Property1", "because a property is required", 100)
                 .withStringIdentity("Property2", "because a property is required", 100)
                 .withEndDomainEntity()
+
                 .withStartDomainEntitySubclass("When_domain_entity_subclass_does_not_rename_identity_entity_Name", baseName)
                 .withDocumentation("because documentation is required")
                 .withStringProperty("Property3", "because a property is required", true, false, 100)
@@ -54,18 +63,22 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
             helper.errorMessageCollection.should.be.empty;
         });
     });
+
+
     describe('When_domain_entity_subclass_renames_base_identity_more_than_once', () => {
-        let entityName = "SubclassIdentifier";
-        const baseName = "BaseDomainEntityIdentifier";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        let entityName: string = "SubclassIdentifier";
+        const baseName: string = "BaseDomainEntityIdentifier";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartDomainEntity(baseName)
                 .withDocumentation("because documentation is required")
                 .withStringIdentity("Property1", "because a property is required", 100)
                 .withStringIdentity("Property2", "because a property is required", 100)
                 .withEndDomainEntity()
+
                 .withStartDomainEntitySubclass("When_domain_entity_subclass_renames_base_identity_more_than_once_entity_name", baseName)
                 .withDocumentation("because documentation is required")
                 .withStringIdentityRename("Property3", "Property1", "because a property is required", 100)
@@ -78,20 +91,23 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
             helper.errorMessageCollection.should.not.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Domain Entity");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("based on");
-            helper.errorMessageCollection[0].Message.ShouldContain(baseName);
-            helper.errorMessageCollection[0].Message.ShouldContain("is invalid for identity rename");
-            helper.errorMessageCollection[0].Message.ShouldContain("has more than one identity property");
+            helper.errorMessageCollection[0].message.should.include("Domain Entity");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("based on");
+            helper.errorMessageCollection[0].message.should.include(baseName);
+            helper.errorMessageCollection[0].message.should.include("is invalid for identity rename");
+            helper.errorMessageCollection[0].message.should.include("has more than one identity property");
         });
     });
+
+
     describe('When_domain_entity_subclass_extends_non_existant_entity', () => {
-        let entityName = "SubclassIdentifier";
-        const baseName = "BaseDomainEntityIdentifier";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        let entityName: string = "SubclassIdentifier";
+        const baseName: string = "BaseDomainEntityIdentifier";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartDomainEntitySubclass(entityName, baseName)
                 .withDocumentation("because documentation is required")
@@ -105,4 +121,3 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
         });
     });
 });
-//# sourceMappingURL=DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentityTests.js.map

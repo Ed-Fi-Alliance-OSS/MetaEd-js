@@ -1,22 +1,22 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class InterchangeExtensionMustNotDuplicateIdentityTemplateName extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
+import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
+export class InterchangeExtensionMustNotDuplicateIdentityTemplateName extends ValidationRuleBase<MetaEdGrammar.InterchangeExtensionContext>
+{
+    private symbolTable: ISymbolTable;
+    constructor(symbolTable: ISymbolTable) {
         super();
         this.symbolTable = symbolTable;
     }
-    static duplicateIdentityTemplates(context) {
-        let identityTemplates = context.interchangeExtensionComponent().interchangeIdentityTemplate().Select(x => x.ID().GetText());
-        return identityTemplates.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
+    private static duplicateIdentityTemplates(context: MetaEdGrammar.InterchangeExtensionContext): string[] {
+        let identityTemplates = context.interchangeExtensionComponent().interchangeIdentityTemplate().map(x => x.ID().getText());
+        return identityTemplates.GroupBy(x => x).filter(group => group.Count() > 1).map(group => group.Key).ToArray();
     }
-    isValid(context) {
+    public isValid(context: MetaEdGrammar.InterchangeExtensionContext): boolean {
         return InterchangeExtensionMustNotDuplicateIdentityTemplateName.duplicateIdentityTemplates(context).length == 0;
     }
-    getFailureMessage(context) {
-        let identifier = context.extendeeName().GetText();
+    public getFailureMessage(context: MetaEdGrammar.InterchangeExtensionContext): string {
+        let identifier = context.extendeeName().getText();
         let duplicateIdentityTemplates = InterchangeExtensionMustNotDuplicateIdentityTemplateName.duplicateIdentityTemplates(context);
         return `Interchange additions '${identifier}' declares duplicate identity template${duplicateIdentityTemplates.length > 1 ? "s" : ""} '${duplicateIdentityTemplates.join(', ')}'`;
     }
 }
-exports.InterchangeExtensionMustNotDuplicateIdentityTemplateName = InterchangeExtensionMustNotDuplicateIdentityTemplateName;
-//# sourceMappingURL=InterchangeExtensionMustNotDuplicateIdentityTemplateName.js.map

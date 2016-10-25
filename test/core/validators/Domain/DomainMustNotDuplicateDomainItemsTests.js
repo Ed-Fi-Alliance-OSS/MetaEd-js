@@ -1,18 +1,22 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const DomainMustNotDuplicateDomainItems_1 = require("../../../../src/core/validators/Domain/DomainMustNotDuplicateDomainItems");
-let should = chai.should();
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai from 'chai'
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import {DomainMustNotDuplicateDomainItems}from "../../../../src/core/validators/Domain/DomainMustNotDuplicateDomainItems"
+
+chai.should();
+
 describe('DomainMustNotDuplicateDomainItemsTests', () => {
-    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new DomainMustNotDuplicateDomainItems_1.DomainMustNotDuplicateDomainItems()));
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.DomainContext>(
+            new DomainMustNotDuplicateDomainItems()));
+
+
     describe('When_domain_items_have_different_names', () => {
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartDomain("Domain1")
                 .withDocumentation("doc")
@@ -22,16 +26,20 @@ describe('DomainMustNotDuplicateDomainItemsTests', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
+
+
     describe('When_domain_items_have_duplicate_names', () => {
-        let entityName = "Domain1";
-        const duplicateTemplate = "Item1";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        let entityName: string = "Domain1";
+        const duplicateTemplate: string = "Item1";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartDomain(entityName)
                 .withDocumentation("doc")
@@ -41,23 +49,27 @@ describe('DomainMustNotDuplicateDomainItemsTests', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Domain");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("duplicate domain item");
-            helper.errorMessageCollection[0].Message.ShouldContain(duplicateTemplate);
+            helper.errorMessageCollection[0].message.should.include("Domain");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("duplicate domain item");
+            helper.errorMessageCollection[0].message.should.include(duplicateTemplate);
         });
     });
+
+
     describe('When_domain_items_have_multiple_duplicate_names', () => {
-        let entityName = "Domain1";
-        const duplicateTemplate1 = "Item1";
-        const duplicateTemplate2 = "Item2";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        let entityName: string = "Domain1";
+        const duplicateTemplate1: string = "Item1";
+        const duplicateTemplate2: string = "Item2";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartDomain(entityName)
                 .withDocumentation("doc")
@@ -71,16 +83,16 @@ describe('DomainMustNotDuplicateDomainItemsTests', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("Domain");
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("duplicate domain items");
-            helper.errorMessageCollection[0].Message.ShouldContain(duplicateTemplate1);
-            helper.errorMessageCollection[0].Message.ShouldContain(duplicateTemplate2);
+            helper.errorMessageCollection[0].message.should.include("Domain");
+            helper.errorMessageCollection[0].message.should.include(entityName);
+            helper.errorMessageCollection[0].message.should.include("duplicate domain items");
+            helper.errorMessageCollection[0].message.should.include(duplicateTemplate1);
+            helper.errorMessageCollection[0].message.should.include(duplicateTemplate2);
         });
     });
 });
-//# sourceMappingURL=DomainMustNotDuplicateDomainItemsTests.js.map

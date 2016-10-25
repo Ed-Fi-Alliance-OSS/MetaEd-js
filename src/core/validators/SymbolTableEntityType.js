@@ -42,7 +42,7 @@ export default class SymbolTableEntityType {
   static commonStringType(): string {
     return literal(MetaEdGrammar.COMMON_STRING);
   }
-  
+
   static commonType(): string {
     return literal(MetaEdGrammar.COMMON_TYPE);
   }
@@ -51,6 +51,10 @@ export default class SymbolTableEntityType {
     return literal(MetaEdGrammar.COMMON_TYPE) + literal(MetaEdGrammar.ADDITIONS);
   }
 
+  static descriptorEntity(): string {
+    return literal(MetaEdGrammar.DESCRIPTOR_ENTITY);
+  }
+  
   static domainEntity(): string {
     return literal(MetaEdGrammar.DOMAIN_ENTITY);
   }

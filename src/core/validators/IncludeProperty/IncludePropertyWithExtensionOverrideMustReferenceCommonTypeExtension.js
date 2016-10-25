@@ -1,23 +1,23 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-const SymbolTableEntityType_1 = require('../SymbolTableEntityType');
-class IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
+import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
+import SymbolTableEntityType from '../SymbolTableEntityType'
+export class IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension extends ValidationRuleBase<MetaEdGrammar.IncludePropertyContext>
+{
+    private symbolTable: ISymbolTable;
+    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
+    constructor(symbolTable: ISymbolTable) {
         super();
-        this.symbolTableEntityType = new SymbolTableEntityType_1.default();
         this.symbolTable = symbolTable;
     }
-    isValid(context) {
+    public isValid(context: MetaEdGrammar.IncludePropertyContext): boolean {
         if (context.includeExtensionOverride() == null)
             return true;
-        let identifierToMatch = context.propertyName().GetText();
+        let identifierToMatch = context.propertyName().getText();
         return this.symbolTable.identifierExists(this.symbolTableEntityType.commonTypeExtensionEntityType(), identifierToMatch);
     }
-    getFailureMessage(context) {
-        let topLevelEntity = context.GetAncestorContext();
-        let propertyWithComponents = context.GetAncestorContext();
-        return `'include extension' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'include extension' is only valid for referencing common type extensions.`;
+    public getFailureMessage(context: MetaEdGrammar.IncludePropertyContext): string {
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let propertyWithComponents = context.GetAncestorContext<IPropertyWithComponents>();
+        return `'include extension' is invalid for property ${propertyWithComponents.IdNode().getText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'include extension' is only valid for referencing common type extensions.`;
     }
 }
-exports.IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension = IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension;
-//# sourceMappingURL=IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension.js.map

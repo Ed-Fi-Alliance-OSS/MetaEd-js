@@ -1,18 +1,22 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const EnumerationItemsMustBeUnique_1 = require("../../../../src/core/validators/Enumeration/EnumerationItemsMustBeUnique");
-let should = chai.should();
+import MetaEdTextBuilder from "../../../grammar/MetaEdTextBuilder";
+import chai from 'chai'
+import ValidatorTestHelper from "../ValidatorTestHelper";
+import ValidatorListener from "../../../../src/core/validators/ValidatorListener";
+import {EnumerationItemsMustBeUnique}from "../../../../src/core/validators/Enumeration/EnumerationItemsMustBeUnique"
+
+chai.should();
+
 describe('EnumerationItemsMustBeUnique', () => {
-    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new EnumerationItemsMustBeUnique_1.EnumerationItemsMustBeUnique()));
+    let validatorListener = new ValidatorListener(
+        new TestRuleProvider<MetaEdGrammar.EnumerationContext>(
+            new EnumerationItemsMustBeUnique()));
+
+
     describe('When_enumeration_items_have_different_short_descriptions', () => {
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartEnumeration("Enumeration1")
                 .withDocumentation("doc")
@@ -22,16 +26,20 @@ describe('EnumerationItemsMustBeUnique', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_no_validation_failures()', () => {
             helper.errorMessageCollection.length.should.equal(0);
         });
     });
+
+
     describe('When_enumeration_items_have_duplicate_short_descriptions', () => {
-        let entityName = "Enumeration1";
-        const duplicateShortDescription = "this is a duplicate short description";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        let entityName: string = "Enumeration1";
+        const duplicateShortDescription: string = "this is a duplicate short description";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartEnumeration("Enumeration1")
                 .withDocumentation("doc")
@@ -41,20 +49,24 @@ describe('EnumerationItemsMustBeUnique', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.should.equal("Enumeration 'Enumeration1' declares duplicate item 'this is a duplicate short description'.");
         });
     });
+
+
     describe('When_enumeration_items_have_multiple_duplicate_short_descriptions', () => {
-        let entityName = "Enumeration1";
-        const duplicateShortDescription1 = "this is duplicate short description 1";
-        const duplicateShortDescription2 = "this is duplicate short description 2";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
+        let entityName: string = "Enumeration1";
+        const duplicateShortDescription1: string = "this is duplicate short description 1";
+        const duplicateShortDescription2: string = "this is duplicate short description 2";
+        const helper: ValidatorTestHelper = new ValidatorTestHelper();
         before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
+            const metaEdText = MetaEdTextBuilder.build()
+
                 .withBeginNamespace("edfi")
                 .withStartEnumeration("Enumeration1")
                 .withDocumentation("doc")
@@ -66,12 +78,12 @@ describe('EnumerationItemsMustBeUnique', () => {
                 .withEndNamespace().toString();
             helper.setup(metaEdText, validatorListener);
         });
+
         it('should_have_validation_failure()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
+            helper.errorMessageCollection.should.be.empty;
         });
         it('should_have_validation_failure_message()', () => {
             helper.errorMessageCollection[0].Message.should.equal("Enumeration 'Enumeration1' declares duplicate items 'this is duplicate short description 1', 'this is duplicate short description 2'.");
         });
     });
 });
-//# sourceMappingURL=EnumerationItemsMustBeUniqueTests.js.map

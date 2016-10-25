@@ -1,19 +1,19 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-const SymbolTableEntityType_1 = require('../SymbolTableEntityType');
-class InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
+import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
+import SymbolTableEntityType from '../SymbolTableEntityType'
+export class InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass extends ValidationRuleBase<MetaEdGrammar.InterchangeElementContext>
+{
+    private symbolTable: ISymbolTable;
+    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
+    constructor(symbolTable: ISymbolTable) {
         super();
-        this.symbolTableEntityType = new SymbolTableEntityType_1.default();
         this.symbolTable = symbolTable;
     }
-    isValid(context) {
+    public isValid(context: MetaEdGrammar.InterchangeElementContext): boolean {
         let identifierToMatch = context.IdText();
         return this.symbolTable.identifierExists(this.symbolTableEntityType.associationEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.associationSubclassEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntityEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntitySubclassEntityType(), identifierToMatch);
     }
-    getFailureMessage(context) {
+    public getFailureMessage(context: MetaEdGrammar.InterchangeElementContext): string {
         return `Interchange element '${context.IdText()}' does not match any declared domain entity or subclass, association or subclass.`;
     }
 }
-exports.InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass = InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass;
-//# sourceMappingURL=InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass.js.map

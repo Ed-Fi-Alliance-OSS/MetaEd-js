@@ -1,45 +1,47 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-const SymbolTableEntityType_1 = require('../SymbolTableEntityType');
-class IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
+import { ValidationRuleBase } from "../ValidationRuleBase";
+import {ISymbolTable} from '../SymbolTable'
+import SymbolTableEntityType from '../SymbolTableEntityType'
+export class IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality extends ValidationRuleBase<MetaEdGrammar.IncludePropertyContext>
+{
+    private symbolTable: ISymbolTable;
+    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
+    constructor(symbolTable: ISymbolTable) {
         super();
-        this.symbolTableEntityType = new SymbolTableEntityType_1.default();
         this.symbolTable = symbolTable;
     }
-    isValid(context) {
+    public isValid(context: MetaEdGrammar.IncludePropertyContext): boolean {
         if (context.includeExtensionOverride() == null)
             return true;
-        let topLevelEntity = context.GetAncestorContext();
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
         switch (topLevelEntity.RuleIndex) {
             case MetaEdGrammar.RULE_domainEntityExtension:
-                return MaintainsCardinalityOnDomainEntity(context, __as__(topLevelEntity, MetaEdGrammar.DomainEntityExtensionContext));
+                return MaintainsCardinalityOnDomainEntity(context, __as__<MetaEdGrammar.DomainEntityExtensionContext>(topLevelEntity, MetaEdGrammar.DomainEntityExtensionContext));
             case MetaEdGrammar.RULE_associationExtension:
-                return MaintainsCardinalityOnAssociation(context, __as__(topLevelEntity, MetaEdGrammar.AssociationExtensionContext));
+                return MaintainsCardinalityOnAssociation(context, __as__<MetaEdGrammar.AssociationExtensionContext>(topLevelEntity, MetaEdGrammar.AssociationExtensionContext));
             default:
                 return false;
         }
     }
-    getFailureMessage(context) {
-        let topLevelEntity = context.GetAncestorContext();
-        let propertyWithComponents = context.GetAncestorContext();
-        return `'include extension' is invalid for property ${propertyWithComponents.IdNode().GetText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'include extension' is only valid for properties on Domain Entity extension and Association extension, and must maintain original cardinality on extendee.`;
+    public getFailureMessage(context: MetaEdGrammar.IncludePropertyContext): string {
+        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
+        let propertyWithComponents = context.GetAncestorContext<IPropertyWithComponents>();
+        return `'include extension' is invalid for property ${propertyWithComponents.IdNode().getText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'include extension' is only valid for properties on Domain Entity extension and Association extension, and must maintain original cardinality on extendee.`;
     }
-    maintainsCardinalityOnDomainEntity(overriddenIncludePropertyContext, extensionEntityContext) {
+    private maintainsCardinalityOnDomainEntity(overriddenIncludePropertyContext: MetaEdGrammar.IncludePropertyContext, extensionEntityContext: MetaEdGrammar.DomainEntityExtensionContext): boolean {
         let extendeeEntityContext = this.symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), extensionEntityContext.EntityName());
         return MaintainsCardinality(overriddenIncludePropertyContext, extendeeEntityContext);
     }
-    maintainsCardinalityOnAssociation(overriddenIncludePropertyContext, extensionEntityContext) {
+    private maintainsCardinalityOnAssociation(overriddenIncludePropertyContext: MetaEdGrammar.IncludePropertyContext, extensionEntityContext: MetaEdGrammar.AssociationExtensionContext): boolean {
         let extendeeEntityContext = this.symbolTable.Get(this.symbolTableEntityType.associationEntityType(), extensionEntityContext.EntityName());
         return MaintainsCardinality(overriddenIncludePropertyContext, extendeeEntityContext);
     }
-    static maintainsCardinality(overriddenIncludePropertyContext, extendeeEntityContext) {
+    private static maintainsCardinality(overriddenIncludePropertyContext: MetaEdGrammar.IncludePropertyContext, extendeeEntityContext: EntityContext): boolean {
         let originalIncludePropertyContext = extendeeEntityContext.PropertySymbolTable.Get(overriddenIncludePropertyContext.PropertyName());
         if (!(originalIncludePropertyContext instanceof MetaEdGrammar.IncludePropertyContext))
             return false;
-        return CardinalitiesMatch(__as__(originalIncludePropertyContext, MetaEdGrammar.IncludePropertyContext), overriddenIncludePropertyContext);
+        return CardinalitiesMatch(__as__<MetaEdGrammar.IncludePropertyContext>(originalIncludePropertyContext, MetaEdGrammar.IncludePropertyContext), overriddenIncludePropertyContext);
     }
-    static cardinalitiesMatch(includePropertyContext, otherIncludePropertyContext) {
+    public static cardinalitiesMatch(includePropertyContext: MetaEdGrammar.IncludePropertyContext, otherIncludePropertyContext: MetaEdGrammar.IncludePropertyContext): boolean {
         let propertyAnnotationContext = includePropertyContext.propertyComponents().propertyAnnotation();
         let otherPropertyAnnotationContext = otherIncludePropertyContext.propertyComponents().propertyAnnotation();
         if (propertyAnnotationContext.required() != null && otherPropertyAnnotationContext.required() != null)
@@ -53,5 +55,3 @@ class IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociation
         return false;
     }
 }
-exports.IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality = IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality;
-//# sourceMappingURL=IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality.js.map
