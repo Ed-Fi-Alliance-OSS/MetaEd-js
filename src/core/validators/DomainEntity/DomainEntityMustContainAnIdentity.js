@@ -1,10 +1,14 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-export class DomainEntityMustContainAnIdentity extends ValidationRuleBase<MetaEdGrammar.DomainEntityContext>
-{
-    public isValid(context: MetaEdGrammar.DomainEntityContext): boolean {
-        return context.property().Any(x => getProperty(x).propertyComponents().propertyAnnotation().identity() != null);
-    }
-    public getFailureMessage(context: MetaEdGrammar.DomainEntityContext): string {
-        return `Domain Entity ${context.entityName().ID().getText()} does not have an identity specified.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { domainEntityErrorRule, includeDomainEntityRule } from './DomainEntityValidationRule';
+import { valid } from '../AbstractEntity/AbstractEntityMustContainAnIdentity';
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Domain Entity ${ruleContext.entityName().ID().getText()} does not have an identity specified.`;
 }
+
+const validationRule = domainEntityErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeDomainEntityRule(validationRule);

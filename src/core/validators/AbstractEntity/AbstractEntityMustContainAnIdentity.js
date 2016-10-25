@@ -4,7 +4,7 @@ import type SymbolTable from '../SymbolTable';
 import { abstractEntityErrorRule, includeAbstractEntityRule } from './AbstractEntityValidationRule';
 
 // eslint-disable-next-line no-unused-vars
-function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   return ruleContext.property().some(x => getProperty(x).propertyComponents().propertyAnnotation().identity() != null);
 }
 
