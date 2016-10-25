@@ -1,7 +1,7 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
 import { descriptorErrorRule, includeDescriptorRule } from './DescriptorValidationRule';
-import { findDuplicateStrings } from '../ValidationHelper';
+import { findDuplicates } from '../ValidationHelper';
 
 function getShortDescriptions(ruleContext: any) {
   return ruleContext.withMapType().enumerationItem().map(x => x.shortDescription().getText());
@@ -12,13 +12,13 @@ export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   if (ruleContext.withMapType() == null) return true;
   const shortDescriptions = getShortDescriptions(ruleContext);
   if (shortDescriptions.length === 0) return true;
-  return findDuplicateStrings(shortDescriptions).length === 0;
+  return findDuplicates(shortDescriptions).length === 0;
 }
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   const identifier = ruleContext.descriptorName().getText();
-  const duplicates = findDuplicateStrings(getShortDescriptions(ruleContext));
+  const duplicates = findDuplicates(getShortDescriptions(ruleContext));
   const joinString = '\', \'';
   return `Descriptor '${identifier}' declares duplicate item${duplicates.length > 1 ? 's' : ''} '${duplicates.join(joinString)}'.`;
 }

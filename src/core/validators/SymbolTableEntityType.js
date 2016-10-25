@@ -54,7 +54,7 @@ export default class SymbolTableEntityType {
   static descriptorEntity(): string {
     return literal(MetaEdGrammar.DESCRIPTOR_ENTITY);
   }
-  
+
   static domainEntity(): string {
     return literal(MetaEdGrammar.DOMAIN_ENTITY);
   }
@@ -76,3 +76,42 @@ export default class SymbolTableEntityType {
   }
 }
 
+export const topLevelEntityTypes: string[] =
+  [
+    SymbolTableEntityType.abstractEntity(),
+    SymbolTableEntityType.association(),
+    SymbolTableEntityType.associationSubclass(),
+    SymbolTableEntityType.domainEntity(),
+    SymbolTableEntityType.domainEntitySubclass(),
+    SymbolTableEntityType.commonType(),
+    SymbolTableEntityType.inlineCommonType(),
+  ];
+
+export const commonSimpleEntityTypes: string[] =
+  [
+    SymbolTableEntityType.commonDecimalType(),
+    SymbolTableEntityType.commonIntegerType(),
+    SymbolTableEntityType.commonShortType(),
+    SymbolTableEntityType.commonStringType(),
+  ];
+
+export const topLevelEntityRules: number[] =
+  [
+    MetaEdGrammar.RULE_abstractEntity,
+    MetaEdGrammar.RULE_association,
+    MetaEdGrammar.RULE_associationSubclass,
+    MetaEdGrammar.RULE_domainEntity,
+    MetaEdGrammar.RULE_domainEntitySubclass,
+    MetaEdGrammar.RULE_commonType,
+    MetaEdGrammar.RULE_inlineCommonType,
+  ];
+
+/*
+export const commonSimpleTypeRules: number[] =
+  [
+    MetaEdGrammar.RULE_commonDecimal,
+    MetaEdGrammar.RULE_commonInteger,
+    MetaEdGrammar.RULE_commonShort,
+    MetaEdGrammar.RULE_commonString,
+  ];
+*/

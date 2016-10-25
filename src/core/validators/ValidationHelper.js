@@ -1,22 +1,27 @@
 // @flow
 import R from 'ramda';
 import grammarInstance from '../../grammar/MetaEdGrammarInstance';
+import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 import type SymbolTable from './SymbolTable';
-import SymbolTableEntityType from './SymbolTableEntityType';
+import { topLevelEntityRules, topLevelEntityTypes, commonSimpleEntityTypes } from './SymbolTableEntityType';
 
-function getAncestorContextNullable(ruleContext: any, ruleIndex: number) {
-  if (ruleContext.ruleIndex === ruleIndex) return ruleContext;
+function getAncestorContextNullable(ruleIndexes: number[], ruleContext: any) {
+  if (R.any(ri => ruleContext.ruleIndex === ri, ruleIndexes)) return ruleContext;
   if (ruleContext.parentCtx === null) return null;
-  return getAncestorContextNullable(ruleContext.parentCtx, ruleIndex);
+  return getAncestorContextNullable(ruleIndexes, ruleContext.parentCtx);
 }
 
-export function getAncestorContext(ruleContext: any, ruleIndex: number) {
-  const ancestor = getAncestorContextNullable(ruleContext, ruleIndex);
+function getAncestorContext(ruleIndexes: number[], ruleContext: any) {
+  const ancestor = getAncestorContextNullable(ruleIndexes, ruleContext);
   if (ancestor === null) {
-    throw new Error(`Unable to find matching Ancestor ${grammarInstance.ruleNames[ruleIndex]} on context of type ${grammarInstance.ruleNames[ruleContext.ruleIndex()]}`);
+    throw new Error(`Unable to find matching ancestor on context of type ${grammarInstance.ruleNames[ruleContext.ruleIndex()]}`);
   }
   return ancestor;
 }
+
+const curriedGetAncestorContext = R.curry(getAncestorContext);
+export const topLevelEntityAncestorContext = curriedGetAncestorContext(topLevelEntityRules);
+export const namespaceAncestorContext = curriedGetAncestorContext([MetaEdGrammar.RULE_namespace]);
 
 export function isExtensionNamespace(namespaceContext: any) {
   return namespaceContext.namespaceType().namespaceProjectExtension() !== null;
@@ -49,11 +54,16 @@ export function getProperty(propertyContext: any): any {
   return null;
 }
 
-function commonSimpleTypeExists(identifierToMatch: string, symbolTable: SymbolTable): boolean {
-  return symbolTable.identifierExists(SymbolTableEntityType.commonDecimalType(), identifierToMatch) ||
-    symbolTable.identifierExists(SymbolTableEntityType.commonIntegerType(), identifierToMatch) ||
-    symbolTable.identifierExists(SymbolTableEntityType.commonShortType(), identifierToMatch) ||
-    symbolTable.identifierExists(SymbolTableEntityType.commonStringType(), identifierToMatch);
+function inSymbolTable(entityTypes: string[], identifierToMatch: string, symbolTable: SymbolTable): boolean {
+  return R.any((rule: number) => symbolTable.identifierExists(rule, identifierToMatch), entityTypes);
+}
+
+const curriedInSymbolTable = R.curry(inSymbolTable);
+const commonSimpleTypeExists = curriedInSymbolTable(commonSimpleEntityTypes);
+const topLevelEntityExists = curriedInSymbolTable(topLevelEntityTypes);
+
+export function contextMustMatchATopLevelEntity(ruleContext: any, symbolTable: SymbolTable): boolean {
+  return topLevelEntityExists(ruleContext.ID().getText(), symbolTable);
 }
 
 export function propertyMustNotMatchACommonSimpleType(propertyRuleContext: any, symbolTable: SymbolTable): boolean {
@@ -61,4 +71,4 @@ export function propertyMustNotMatchACommonSimpleType(propertyRuleContext: any, 
 }
 
 // returns list of strings that are duplicated in the original list, with caching
-export const findDuplicateStrings = R.memoize(R.compose(R.map(R.head), R.filter(x => x.length > 1), R.values, R.groupBy(R.identity)));
+export const findDuplicates = R.memoize(R.compose(R.map(R.head), R.filter(x => x.length > 1), R.values, R.groupBy(R.identity)));

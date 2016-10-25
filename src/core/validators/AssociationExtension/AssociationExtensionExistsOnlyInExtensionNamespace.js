@@ -1,18 +1,17 @@
 // @flow
 import { associationExtensionErrorRule, includeAssociationExtensionRule } from './AssociationExtensionValidationRule';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import type SymbolTable from '../SymbolTable';
-import { getAncestorContext, isExtensionNamespace, namespaceNameFor } from '../ValidationHelper';
+import { namespaceAncestorContext, isExtensionNamespace, namespaceNameFor } from '../ValidationHelper';
 
 // eslint-disable-next-line no-unused-vars
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
-  const parentNamespaceContext = getAncestorContext(ruleContext, MetaEdGrammar.RULE_namespace);
+  const parentNamespaceContext = namespaceAncestorContext(ruleContext);
   return isExtensionNamespace(parentNamespaceContext);
 }
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  const parentNamespaceContext = getAncestorContext(ruleContext, MetaEdGrammar.RULE_namespace);
+  const parentNamespaceContext = namespaceAncestorContext(ruleContext);
   return `Association additions '${ruleContext.extendeeName().getText()}' is not valid in core namespace '${namespaceNameFor(parentNamespaceContext)}`;
 }
 
