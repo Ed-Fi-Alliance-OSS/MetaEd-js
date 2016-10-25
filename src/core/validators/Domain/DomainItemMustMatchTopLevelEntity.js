@@ -1,19 +1,16 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
-import { domainErrorRule, includeDomainRule } from './DomainValidationRule';
-import { contextMustMatchATopLevelEntity, topLevelEntityAncestorContext } from '../ValidationHelper'; 
+import { domainItemErrorRule, includeDomainItemRule } from './DomainValidationRule';
+import { contextMustMatchATopLevelEntity, topLevelEntityAncestorContext } from '../ValidationHelper';
+import { entityIdentifier, entityName } from '../TopLevelEntityInformation';
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  var topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
-  return string.Format("Domain item '{0}' under {1} '{2}' does not match any declared abstract entity, domain entity or subclass, association or subclass, or common type.", context.IdText(), topLevelEntity.EntityIdentifier(), topLevelEntity.EntityName());
-  
-  
-  const identifierToMatch = ruleContext.propertyName().getText();
-  return `Descriptor property '${identifierToMatch}' does not match any declared descriptor.`;
+  const topLevelEntityContext = topLevelEntityAncestorContext(ruleContext);
+  return `Domain item '${ruleContext.ID().getText()}' under ${entityIdentifier(topLevelEntityContext)} '${entityName(topLevelEntityContext)}' does not match any declared abstract entity, domain entity or subclass, association or subclass, or common type.`;
 }
 
-const validationRule = domainErrorRule(contextMustMatchATopLevelEntity, failureMessage);
+const validationRule = domainItemErrorRule(contextMustMatchATopLevelEntity, failureMessage);
 export { validationRule as default };
 
-export const includeRule = includeDomainRule(validationRule);
+export const includeRule = includeDomainItemRule(validationRule);

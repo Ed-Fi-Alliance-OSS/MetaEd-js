@@ -94,24 +94,3 @@ export const commonSimpleEntityTypes: string[] =
     SymbolTableEntityType.commonShortType(),
     SymbolTableEntityType.commonStringType(),
   ];
-
-export const topLevelEntityRules: number[] =
-  [
-    MetaEdGrammar.RULE_abstractEntity,
-    MetaEdGrammar.RULE_association,
-    MetaEdGrammar.RULE_associationSubclass,
-    MetaEdGrammar.RULE_domainEntity,
-    MetaEdGrammar.RULE_domainEntitySubclass,
-    MetaEdGrammar.RULE_commonType,
-    MetaEdGrammar.RULE_inlineCommonType,
-  ];
-
-/*
-export const commonSimpleTypeRules: number[] =
-  [
-    MetaEdGrammar.RULE_commonDecimal,
-    MetaEdGrammar.RULE_commonInteger,
-    MetaEdGrammar.RULE_commonShort,
-    MetaEdGrammar.RULE_commonString,
-  ];
-*/

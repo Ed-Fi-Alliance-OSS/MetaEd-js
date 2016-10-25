@@ -3,18 +3,19 @@ import R from 'ramda';
 import grammarInstance from '../../grammar/MetaEdGrammarInstance';
 import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 import type SymbolTable from './SymbolTable';
-import { topLevelEntityRules, topLevelEntityTypes, commonSimpleEntityTypes } from './SymbolTableEntityType';
+import { topLevelEntityTypes, commonSimpleEntityTypes } from './SymbolTableEntityType';
+import { topLevelEntityRules } from './TopLevelEntityInformation';
 
-function getAncestorContextNullable(ruleIndexes: number[], ruleContext: any) {
+function getAncestorContextNullable(ruleIndexes: number[], ruleContext: any): any {
   if (R.any(ri => ruleContext.ruleIndex === ri, ruleIndexes)) return ruleContext;
   if (ruleContext.parentCtx === null) return null;
   return getAncestorContextNullable(ruleIndexes, ruleContext.parentCtx);
 }
 
-function getAncestorContext(ruleIndexes: number[], ruleContext: any) {
+function getAncestorContext(ruleIndexes: number[], ruleContext: any): any {
   const ancestor = getAncestorContextNullable(ruleIndexes, ruleContext);
   if (ancestor === null) {
-    throw new Error(`Unable to find matching ancestor on context of type ${grammarInstance.ruleNames[ruleContext.ruleIndex()]}`);
+    throw new Error(`Unable to find matching ancestor on context of type ${grammarInstance.ruleNames[ruleContext.ruleIndex]}`);
   }
   return ancestor;
 }
@@ -51,11 +52,11 @@ export function getProperty(propertyContext: any): any {
   if (propertyContext.stringProperty()) return propertyContext.stringProperty();
   if (propertyContext.timeProperty()) return propertyContext.timeProperty();
   if (propertyContext.yearProperty()) return propertyContext.yearProperty();
-  return null;
+  throw new Error(`ValidationHelper.getProperty encountered unknown property context with rule index ${propertyContext.ruleIndex}.`);
 }
 
 function inSymbolTable(entityTypes: string[], identifierToMatch: string, symbolTable: SymbolTable): boolean {
-  return R.any((rule: number) => symbolTable.identifierExists(rule, identifierToMatch), entityTypes);
+  return R.any((entityType: string) => symbolTable.identifierExists(entityType, identifierToMatch), entityTypes);
 }
 
 const curriedInSymbolTable = R.curry(inSymbolTable);
