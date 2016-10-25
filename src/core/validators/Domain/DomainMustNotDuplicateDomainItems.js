@@ -1,16 +1,26 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-export class DomainMustNotDuplicateDomainItems extends ValidationRuleBase<MetaEdGrammar.DomainContext>
-{
-    private static getDuplicateDomainItems(context: MetaEdGrammar.DomainContext): string[] {
-        let domainItemNames = context.domainItem().map(x => x.IdText());
-        return domainItemNames.GroupBy(x => x).filter(group => group.Count() > 1).map(group => group.Key).ToArray();
-    }
-    public isValid(context: MetaEdGrammar.DomainContext): boolean {
-        return DomainMustNotDuplicateDomainItems.getDuplicateDomainItems(context).length == 0
-    }
-    public getFailureMessage(context: MetaEdGrammar.DomainContext): string {
-        let identifier = context.EntityName();
-        let duplicateDomainItems = DomainMustNotDuplicateDomainItems.getDuplicateDomainItems(context);
-        return `Domain '${identifier}' declares duplicate domain item${duplicateDomainItems.length > 1 ? "s" : ""} '${duplicateDomainItems.join(', ')}'.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { domainErrorRule, includeDomainRule } from './DomainValidationRule';
+import { findDuplicates } from '../ValidationHelper';
+
+function getDomainItemNames(ruleContext: any) {
+  return ruleContext.domainItem().map(x => x.ID().getText());
 }
+
+// eslint-disable-next-line no-unused-vars
+export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  return findDuplicates(getDomainItemNames(ruleContext)).length === 0;
+}
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  const identifier = ruleContext.domainName().ID().getText();
+  const duplicates = findDuplicates(getDomainItemNames(ruleContext));
+  const joinString = '\', \'';
+  return `Domain '${identifier}' declares duplicate domain item${duplicates.length > 1 ? 's' : ''} '${duplicates.join(joinString)}'.`;
+}
+
+const validationRule = domainErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeDomainRule(validationRule);
