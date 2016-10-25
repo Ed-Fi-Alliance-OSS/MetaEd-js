@@ -1,5 +1,8 @@
 // @flow
+import R from 'ramda';
 import grammarInstance from '../../grammar/MetaEdGrammarInstance';
+import type SymbolTable from './SymbolTable';
+import SymbolTableEntityType from './SymbolTableEntityType';
 
 function getAncestorContextNullable(ruleContext: any, ruleIndex: number) {
   if (ruleContext.ruleIndex === ruleIndex) return ruleContext;
@@ -45,3 +48,17 @@ export function getProperty(propertyContext: any): any {
   if (propertyContext.yearProperty()) return propertyContext.yearProperty();
   return null;
 }
+
+function commonSimpleTypeExists(identifierToMatch: string, symbolTable: SymbolTable): boolean {
+  return symbolTable.identifierExists(SymbolTableEntityType.commonDecimalType(), identifierToMatch) ||
+    symbolTable.identifierExists(SymbolTableEntityType.commonIntegerType(), identifierToMatch) ||
+    symbolTable.identifierExists(SymbolTableEntityType.commonShortType(), identifierToMatch) ||
+    symbolTable.identifierExists(SymbolTableEntityType.commonStringType(), identifierToMatch);
+}
+
+export function propertyMustNotMatchACommonSimpleType(propertyRuleContext: any, symbolTable: SymbolTable): boolean {
+  return !commonSimpleTypeExists(propertyRuleContext.propertyName().getText(), symbolTable);
+}
+
+// returns list of strings that are duplicated in the original list, with caching
+export const findDuplicateStrings = R.memoize(R.compose(R.map(R.head), R.filter(x => x.length > 1), R.values, R.groupBy(R.identity)));

@@ -1,20 +1,29 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class DescriptorMapTypeItemsMustBeUnique extends ValidationRuleBase_1.ValidationRuleBase {
-    static duplicateShortDescriptions(context) {
-        if (context.withMapType() == null)
-            return new Array(0);
-        let shortDescriptions = context.withMapType().enumerationItem().Select(x => x.shortDescription().GetText());
-        return shortDescriptions.GroupBy(x => x).Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
-    }
-    isValid(context) {
-        return DescriptorMapTypeItemsMustBeUnique.duplicateShortDescriptions(context).length == 0;
-    }
-    getFailureMessage(context) {
-        let identifier = context.descriptorName().GetText();
-        let duplicateShortDescriptions = DescriptorMapTypeItemsMustBeUnique.duplicateShortDescriptions(context);
-        return `Descriptor '${identifier}' declares duplicate item${duplicateShortDescriptions.length > 1 ? "s" : ""} '${duplicateShortDescriptions.join(', ')}'.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { descriptorErrorRule, includeDescriptorRule } from './DescriptorValidationRule';
+import { findDuplicateStrings } from '../ValidationHelper';
+
+function getShortDescriptions(ruleContext: any) {
+  return ruleContext.withMapType().enumerationItem().map(x => x.shortDescription().getText());
 }
-exports.DescriptorMapTypeItemsMustBeUnique = DescriptorMapTypeItemsMustBeUnique;
-//# sourceMappingURL=DescriptorMapTypeItemsMustBeUnique.js.map
+
+// eslint-disable-next-line no-unused-vars
+export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  if (ruleContext.withMapType() == null) return true;
+  const shortDescriptions = getShortDescriptions(ruleContext);
+  if (shortDescriptions.length === 0) return true;
+  return findDuplicateStrings(shortDescriptions).length === 0;
+}
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  const identifier = ruleContext.descriptorName().getText();
+  const duplicates = findDuplicateStrings(getShortDescriptions(ruleContext));
+  const joinString = '\', \'';
+  return `Descriptor '${identifier}' declares duplicate item${duplicates.length > 1 ? 's' : ''} '${duplicates.join(joinString)}'.`;
+}
+
+const validationRule = descriptorErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeDescriptorRule(validationRule);

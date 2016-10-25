@@ -1,7 +1,7 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
 import { stringPropertyErrorRule, includeStringPropertyRule } from './StringPropertyValidationRule';
-import { propertyMustNotMatchACommonSimpleType } from '../PropertyValidationHelper';
+import { propertyMustNotMatchACommonSimpleType } from '../ValidationHelper';
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
