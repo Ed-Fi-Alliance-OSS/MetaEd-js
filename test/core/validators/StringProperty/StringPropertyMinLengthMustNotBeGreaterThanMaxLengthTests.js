@@ -1,94 +1,107 @@
-"use strict";
-/// <reference path="../../../../typings/index.d.ts" />
-const MetaEdTextBuilder_1 = require("../../../grammar/MetaEdTextBuilder");
-const chai = require('chai');
-const ValidatorTestHelper_1 = require("../ValidatorTestHelper");
-const ValidatorListener_1 = require("../../../../src/core/validators/ValidatorListener");
-const TestRuleProvider_1 = require("../TestRuleProvider");
-const StringPropertyMinLengthMustNotBeGreaterThanMaxLength_1 = require("../../../../src/core/validators/StringProperty/StringPropertyMinLengthMustNotBeGreaterThanMaxLength");
-let should = chai.should();
-describe('ReplaceMeWithFileName', () => {
-    let validatorListener = new ValidatorListener_1.ValidatorListener(new TestRuleProvider_1.TestRuleProvider(new StringPropertyMinLengthMustNotBeGreaterThanMaxLength_1.StringPropertyMinLengthMustNotBeGreaterThanMaxLength()));
-    describe('When_validating_string_property_with_no_min_length', () => {
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
-        before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
-                .withBeginNamespace("edfi")
-                .withStartAbstractEntity("EntityForTest")
-                .withDocumentation("doc")
-                .withStringIdentity("StringProperty", "doc2", 100)
-                .withEndAbstractEntity()
-                .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
-        });
-        it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.length.should.equal(0);
-        });
+import chai from 'chai';
+import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
+import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
+import { includeRule } from '../../../../src/core/validators/StringProperty/StringPropertyMinLengthMustNotBeGreaterThanMaxLength';
+import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
+
+chai.should();
+
+describe('StringPropertyMinLengthMustNotBeGreaterThanMaxLengthTests', () => {
+  const repository = includeRule(newRepository());
+  const validatorListener = new ValidatorListener(repository);
+
+  describe('When_validating_string_property_with_no_min_length', () => {
+    const helper: ValidatorTestHelper = new ValidatorTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace('edfi')
+      .withStartAbstractEntity('EntityForTest')
+      .withDocumentation('doc')
+      .withStringIdentity('StringProperty', 'doc2', 100)
+      .withEndAbstractEntity()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText, validatorListener);
     });
-    describe('When_validating_string_property_with_correct_min_max_length_order', () => {
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
-        let maxLength = 100;
-        let minLength = 50;
-        before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
-                .withBeginNamespace("edfi")
-                .withStartAbstractEntity("EntityForTest")
-                .withDocumentation("doc")
-                .withStringIdentity("StringProperty", "doc2", maxLength, minLength)
-                .withEndAbstractEntity()
-                .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
-        });
-        it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.length.should.equal(0);
-        });
+
+    it('should_have_no_validation_failures()', () => {
+      helper.errorMessageCollection.length.should.equal(0);
     });
-    describe('When_validating_string_property_with_min_max_length_out_of_order', () => {
-        let entityName = "EntityForTest";
-        const stringPropertyName = "StringProperty";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
-        let maxLength = 50;
-        let minLength = 100;
-        before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
-                .withBeginNamespace("edfi")
-                .withStartAbstractEntity(entityName)
-                .withDocumentation("doc")
-                .withStringIdentity(stringPropertyName, "doc2", maxLength, minLength)
-                .withEndAbstractEntity()
-                .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
-        });
-        it('should_have_validation_failures()', () => {
-            helper.errorMessageCollection.Any().ShouldBeTrue();
-        });
-        it('should_have_validation_failure_message()', () => {
-            helper.errorMessageCollection[0].Message.ShouldContain("String Property");
-            helper.errorMessageCollection[0].Message.ShouldContain("Abstract Entity");
-            helper.errorMessageCollection[0].Message.ShouldContain(stringPropertyName);
-            helper.errorMessageCollection[0].Message.ShouldContain(entityName);
-            helper.errorMessageCollection[0].Message.ShouldContain("min length greater than max length");
-        });
+  });
+
+  describe('When_validating_string_property_with_correct_min_max_length_order', () => {
+    const helper: ValidatorTestHelper = new ValidatorTestHelper();
+    const maxLength: string = 100;
+    const minLength: string = 50;
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace('edfi')
+      .withStartAbstractEntity('EntityForTest')
+      .withDocumentation('doc')
+      .withStringIdentity('StringProperty', 'doc2', maxLength, minLength)
+      .withEndAbstractEntity()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText, validatorListener);
     });
-    describe('When_validating_string_property_with_same_min_max_length', () => {
-        let entityName = "EntityForTest";
-        const stringPropertyName = "StringProperty";
-        let helper = new ValidatorTestHelper_1.ValidatorTestHelper();
-        let maxLength = 100;
-        let minLength = 100;
-        before(() => {
-            let metaEdText = MetaEdTextBuilder_1.default.buildIt
-                .withBeginNamespace("edfi")
-                .withStartAbstractEntity(entityName)
-                .withDocumentation("doc")
-                .withStringIdentity(stringPropertyName, "doc2", maxLength, minLength)
-                .withEndAbstractEntity()
-                .withEndNamespace().toString();
-            helper.setup(metaEdText, validatorListener);
-        });
-        it('should_have_no_validation_failures()', () => {
-            helper.errorMessageCollection.length.should.equal(0);
-        });
+
+    it('should_have_no_validation_failures()', () => {
+      helper.errorMessageCollection.length.should.equal(0);
     });
+  });
+
+  describe('When_validating_string_property_with_min_max_length_out_of_order', () => {
+    const entityName: string = 'EntityForTest';
+    const stringPropertyName: string = 'StringProperty';
+    const helper: ValidatorTestHelper = new ValidatorTestHelper();
+    const maxLength: string = 50;
+    const minLength: string = 100;
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace('edfi')
+      .withStartAbstractEntity(entityName)
+      .withDocumentation('doc')
+      .withStringIdentity(stringPropertyName, 'doc2', maxLength, minLength)
+      .withEndAbstractEntity()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText, validatorListener);
+    });
+
+    it('should_have_validation_failures()', () => {
+      helper.errorMessageCollection.should.not.be.empty;
+    });
+
+    it('should_have_validation_failure_message()', () => {
+      helper.errorMessageCollection[0].message.should.include('String Property');
+      helper.errorMessageCollection[0].message.should.include('Abstract Entity');
+      helper.errorMessageCollection[0].message.should.include(stringPropertyName);
+      helper.errorMessageCollection[0].message.should.include(entityName);
+      helper.errorMessageCollection[0].message.should.include('min length greater than max length');
+    });
+  });
+
+  describe('When_validating_string_property_with_same_min_max_length', () => {
+    const entityName: string = 'EntityForTest';
+    const stringPropertyName: string = 'StringProperty';
+    const helper: ValidatorTestHelper = new ValidatorTestHelper();
+    const maxLength: string = 100;
+    const minLength: string = 100;
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace('edfi')
+      .withStartAbstractEntity(entityName)
+      .withDocumentation('doc')
+      .withStringIdentity(stringPropertyName, 'doc2', maxLength, minLength)
+      .withEndAbstractEntity()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText, validatorListener);
+    });
+
+    it('should_have_no_validation_failures()', () => {
+      helper.errorMessageCollection.length.should.equal(0);
+    });
+  });
 });
-//# sourceMappingURL=StringPropertyMinLengthMustNotBeGreaterThanMaxLengthTests.js.map

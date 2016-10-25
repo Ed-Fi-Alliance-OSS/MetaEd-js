@@ -3,7 +3,7 @@ import type SymbolTable from '../SymbolTable';
 import { commonShortErrorRule, includeCommonShortRule } from './CommonSimpleTypeValidationRule';
 
 // eslint-disable-next-line no-unused-vars
-function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   if (ruleContext.minValue() == null || ruleContext.maxValue() == null) return true;
   const minValue = Number.parseInt(ruleContext.minValue().signed_int().getText(), 10);
   const maxValue = Number.parseInt(ruleContext.maxValue().signed_int().getText(), 10);

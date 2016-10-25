@@ -1,21 +1,14 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class IntegerPropertyMustNotMatchACommonSimpleType extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    isValid(context) {
-        let identifierToMatch = context.propertyName().GetText();
-        let commonDecimalType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_DECIMAL);
-        let commonIntegerType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_INTEGER);
-        let commonShortType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_SHORT);
-        let commonStringType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_STRING);
-        return !(this.symbolTable.identifierExists(commonDecimalType, identifierToMatch) || this.symbolTable.identifierExists(commonIntegerType, identifierToMatch) || this.symbolTable.identifierExists(commonShortType, identifierToMatch) || this.symbolTable.identifierExists(commonStringType, identifierToMatch));
-    }
-    getFailureMessage(context) {
-        return `Integer property '${context.propertyName().GetText()}' has the same name as a common decimal, integer, short or string.  If intentional, use a shared property instead.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { integerPropertyErrorRule, includeIntegerPropertyRule } from './IntegerPropertyValidationRule';
+import { propertyMustNotMatchACommonSimpleType } from '../PropertyValidationHelper';
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Integer property '${ruleContext.propertyName().getText()}' has the same name as a common decimal, integer, short or string.  If intentional, use a shared property instead.`;
 }
-exports.IntegerPropertyMustNotMatchACommonSimpleType = IntegerPropertyMustNotMatchACommonSimpleType;
-//# sourceMappingURL=IntegerPropertyMustNotMatchACommonSimpleType.js.map
+
+const validationRule = integerPropertyErrorRule(propertyMustNotMatchACommonSimpleType, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeIntegerPropertyRule(validationRule);

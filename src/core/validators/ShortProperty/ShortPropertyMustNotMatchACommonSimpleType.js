@@ -1,21 +1,14 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class ShortPropertyMustNotMatchACommonSimpleType extends ValidationRuleBase_1.ValidationRuleBase {
-    constructor(symbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    isValid(context) {
-        let identifierToMatch = context.propertyName().GetText();
-        let commonDecimalType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_DECIMAL);
-        let commonIntegerType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_INTEGER);
-        let commonShortType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_SHORT);
-        let commonStringType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_STRING);
-        return !(this.symbolTable.identifierExists(commonDecimalType, identifierToMatch) || this.symbolTable.identifierExists(commonIntegerType, identifierToMatch) || this.symbolTable.identifierExists(commonShortType, identifierToMatch) || this.symbolTable.identifierExists(commonStringType, identifierToMatch));
-    }
-    getFailureMessage(context) {
-        return `Short property '${context.propertyName().GetText()}' has the same name as a common decimal, integer, short or string.  If intentional, use a shared property instead.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { shortPropertyErrorRule, includeShortPropertyRule } from './ShortPropertyValidationRule';
+import { propertyMustNotMatchACommonSimpleType } from '../PropertyValidationHelper';
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Short property '${ruleContext.propertyName().getText()}' has the same name as a common decimal, integer, short or string.  If intentional, use a shared property instead.`;
 }
-exports.ShortPropertyMustNotMatchACommonSimpleType = ShortPropertyMustNotMatchACommonSimpleType;
-//# sourceMappingURL=ShortPropertyMustNotMatchACommonSimpleType.js.map
+
+const validationRule = shortPropertyErrorRule(propertyMustNotMatchACommonSimpleType, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeShortPropertyRule(validationRule);

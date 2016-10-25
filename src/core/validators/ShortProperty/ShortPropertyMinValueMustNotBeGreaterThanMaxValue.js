@@ -1,16 +1,16 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class ShortPropertyMinValueMustNotBeGreaterThanMaxValue extends ValidationRuleBase_1.ValidationRuleBase {
-    isValid(context) {
-        if (context.minValue() == null || context.maxValue() == null)
-            return true;
-        let minValue = Number(context.minValue().MinValue());
-        let maxValue = Number(context.maxValue().MaxValue());
-        return minValue <= maxValue;
-    }
-    getFailureMessage(context) {
-        return `Short Property '${context.propertyName().GetText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min value greater than max value.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { parentIdentifierForPropertyContext, parentTypeNameForPropertyContext } from '../../../grammar/ParserRuleContextExtensions';
+import { shortPropertyErrorRule, includeShortPropertyRule } from './ShortPropertyValidationRule';
+import { valid } from '../CommonSimpleType/CommonShortMinValueMustNotBeGreaterThanMaxValue';
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Short Property '${ruleContext.propertyName().getText()}' in ${parentTypeNameForPropertyContext(ruleContext)}` +
+    ` '${parentIdentifierForPropertyContext(ruleContext)}' has min value greater than max value.`;
 }
-exports.ShortPropertyMinValueMustNotBeGreaterThanMaxValue = ShortPropertyMinValueMustNotBeGreaterThanMaxValue;
-//# sourceMappingURL=ShortPropertyMinValueMustNotBeGreaterThanMaxValue.js.map
+
+const validationRule = shortPropertyErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeShortPropertyRule(validationRule);

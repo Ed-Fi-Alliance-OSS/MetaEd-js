@@ -1,16 +1,16 @@
-"use strict";
-const ValidationRuleBase_1 = require("../ValidationRuleBase");
-class StringPropertyMinLengthMustNotBeGreaterThanMaxLength extends ValidationRuleBase_1.ValidationRuleBase {
-    isValid(context) {
-        if (context.minLength() == null)
-            return true;
-        let minLength = Number(context.minLength().MinLength());
-        let maxLength = Number(context.maxLength().MaxLength());
-        return minLength <= maxLength;
-    }
-    getFailureMessage(context) {
-        return `String Property '${context.propertyName().GetText()}' in ${context.ParentTypeName()} '${context.ParentIdentifier()}' has min length greater than max length.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { parentIdentifierForPropertyContext, parentTypeNameForPropertyContext } from '../../../grammar/ParserRuleContextExtensions';
+import { stringPropertyErrorRule, includeStringPropertyRule } from './StringPropertyValidationRule';
+import { valid } from '../CommonSimpleType/CommonStringMinLengthMustNotBeGreaterThanMaxLength';
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `String Property '${ruleContext.propertyName().getText()}' in ${parentTypeNameForPropertyContext(ruleContext)}` +
+    ` '${parentIdentifierForPropertyContext(ruleContext)}' has min length greater than max length.`;
 }
-exports.StringPropertyMinLengthMustNotBeGreaterThanMaxLength = StringPropertyMinLengthMustNotBeGreaterThanMaxLength;
-//# sourceMappingURL=StringPropertyMinLengthMustNotBeGreaterThanMaxLength.js.map
+
+const validationRule = stringPropertyErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeStringPropertyRule(validationRule);
