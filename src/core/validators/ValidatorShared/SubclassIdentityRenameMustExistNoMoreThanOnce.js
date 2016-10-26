@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
-import { getProperty } from './ValidationHelper';
-import type SymbolTable from './SymbolTable';
+import { getProperty } from '../ValidationHelper';
+import type SymbolTable from '../SymbolTable';
 
 // eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
@@ -10,7 +10,7 @@ export function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
 }
 
 // eslint-disable-next-line no-unused-vars
-function failureMessageUncurried(entityTitle: string, identifierFinder: (v: any) => string, ruleContext: any, symbolTable: SymbolTable) : string {
+function failureMessageUncurried(entityTitle: string, identifierFinder: (ruleContext: any) => string, ruleContext: any, symbolTable: SymbolTable) : string {
   const identifier = identifierFinder(ruleContext);
   const baseIdentifier = ruleContext.baseName().getText();
   const identityRenames = ruleContext.property().map(y => getProperty(y).propertyComponents().propertyAnnotation().identityRename()).filter(x => x != null);

@@ -1,7 +1,7 @@
 // @flow
 import { domainEntityExtensionErrorRule, includeDomainEntityExtensionRule } from './DomainEntityExtensionValidationRule';
 import SymbolTableEntityType from '../SymbolTableEntityType';
-import { valid, failureMessage } from '../ExtensionMustNotDuplicatePropertyName';
+import { valid, failureMessage } from '../ValidatorShared/ExtensionMustNotDuplicatePropertyName';
 
 const domainEntityExtensionValid =
   valid(SymbolTableEntityType.domainEntity(), SymbolTableEntityType.domainEntityExtension());

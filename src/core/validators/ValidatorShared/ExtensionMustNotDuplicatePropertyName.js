@@ -1,18 +1,18 @@
 // @flow
 import R from 'ramda';
-import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
-import type SymbolTable from './SymbolTable';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import type SymbolTable from '../SymbolTable';
 
 function isNotIncludePropertyContextWithExtension(context: any): boolean {
   if (context.ruleIndex !== MetaEdGrammar.RULE_includeProperty) return true;
   return context.includeExtensionOverride() === null;
 }
 
-function propertyRuleContextsForDuplicates(entityKey: string, extensionKey: string, context: any, symbolTable: SymbolTable): Array<any> {
+function propertyRuleContextsForDuplicates(baseKey: string, extensionKey: string, context: any, symbolTable: SymbolTable): Array<any> {
   const identifier = context.extendeeName().getText();
-  const associationPropertyIdentifiers = symbolTable.identifiersForEntityProperties(entityKey, identifier);
+  const entityPropertyIdentifiers = symbolTable.identifiersForEntityProperties(baseKey, identifier);
   const duplicates =
-    symbolTable.contextsForMatchingPropertyIdentifiers(extensionKey, identifier, Array.from(associationPropertyIdentifiers));
+    symbolTable.contextsForMatchingPropertyIdentifiers(extensionKey, identifier, Array.from(entityPropertyIdentifiers));
   return duplicates.filter(x => isNotIncludePropertyContextWithExtension(x));
 }
 

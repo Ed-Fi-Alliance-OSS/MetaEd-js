@@ -1,7 +1,7 @@
 // @flow
 import { associationExtensionErrorRule, includeAssociationExtensionRule } from './AssociationExtensionValidationRule';
 import SymbolTableEntityType from '../SymbolTableEntityType';
-import { valid, failureMessage } from '../ExtensionMustNotDuplicatePropertyName';
+import { valid, failureMessage } from '../ValidatorShared/ExtensionMustNotDuplicatePropertyName';
 
 const associationExtensionValid =
   valid(SymbolTableEntityType.association(), SymbolTableEntityType.associationExtension());

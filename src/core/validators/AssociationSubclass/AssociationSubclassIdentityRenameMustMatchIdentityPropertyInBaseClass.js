@@ -1,43 +1,13 @@
 // @flow
-import R from 'ramda';
-import { getProperty } from '../ValidationHelper';
 import { associationSubclassErrorRule, includeAssociationSubclassRule } from './AssociationSubclassValidationRule';
-import type SymbolTable from '../SymbolTable';
 import SymbolTableEntityType from '../SymbolTableEntityType';
+import { valid, failureMessage } from '../ValidatorShared/SubclassIdentityRenameMustMatchIdentityPropertyInBaseClass';
 
-function getIdentityRenames(ruleContext: any): Array<any> {
-  return ruleContext.property().filter(x => getProperty(x).propertyComponents().propertyAnnotation().identityRename() != null)
-  .map(y => getProperty(y).propertyComponents().propertyAnnotation().identityRename());
-}
+const associationSubclassValid = valid(SymbolTableEntityType.association());
+const associationSubclassFailureMessage =
+  failureMessage('Association', (ruleContext: any) => ruleContext.associationName().getText());
 
-function getBasePropertyIdentifierFor(identityRenames: Array<any>): any {
-  return R.head(identityRenames).baseKeyName().getText();
-}
-
-// eslint-disable-next-line no-unused-vars
-function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
-  const identityRenames = getIdentityRenames(ruleContext);
-  if (identityRenames.length === 0) return true;
-
-  const baseIdentifier = ruleContext.baseName().getText();
-  const baseSymbolTable = symbolTable.get(SymbolTableEntityType.association(), baseIdentifier);
-  if (baseSymbolTable == null) return true;
-
-  const baseProperty = baseSymbolTable.propertySymbolTable.get(getBasePropertyIdentifierFor(identityRenames));
-  if (baseProperty == null) return false;
-
-  return baseProperty.propertyComponents().propertyAnnotation().identity() != null;
-}
-
-// eslint-disable-next-line no-unused-vars
-function failureMessage(ruleContext: any, symbolTable: SymbolTable) : string {
-  const identifier = ruleContext.associationName().getText();
-  const baseIdentifier = ruleContext.baseName().getText();
-  const basePropertyIdentifier = getBasePropertyIdentifierFor(getIdentityRenames(ruleContext));
-  return `Association '${identifier}' based on '${baseIdentifier}' tries to rename ${basePropertyIdentifier} which is not part of the identity.`;
-}
-
-const validationRule = associationSubclassErrorRule(valid, failureMessage);
+const validationRule = associationSubclassErrorRule(associationSubclassValid, associationSubclassFailureMessage);
 export { validationRule as default };
 
 export const includeRule = includeAssociationSubclassRule(validationRule);

@@ -7,6 +7,7 @@ export class DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseCl
         super();
         this.symbolTable = symbolTable;
     }
+
     public isValid(context: MetaEdGrammar.DomainEntitySubclassContext): boolean {
         let identityRenames = context.property().filter(x => getProperty(x).propertyComponents().propertyAnnotation().identityRename() != null).map(y => getProperty(y).propertyComponents().propertyAnnotation().identityRename());
         if (!identityRenames.Any())
