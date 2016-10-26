@@ -1,19 +1,20 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-import {ISymbolTable} from '../SymbolTable'
-import SymbolTableEntityType from '../SymbolTableEntityType'
-export class DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclass extends ValidationRuleBase<MetaEdGrammar.DomainEntityExtensionContext>
-{
-    private symbolTable: ISymbolTable;
-    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
-    constructor(symbolTable: ISymbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    public isValid(context: MetaEdGrammar.DomainEntityExtensionContext): boolean {
-        let identifier = context.extendeeName().getText();
-        return this.symbolTable.identifiersForEntityType(this.symbolTableEntityType.domainEntityEntityType()).Any(x => x.Equals(identifier)) || this.symbolTable.identifiersForEntityType(this.symbolTableEntityType.domainEntitySubclassEntityType()).Any(x => x.Equals(identifier));
-    }
-    public getFailureMessage(context: MetaEdGrammar.DomainEntityExtensionContext): string {
-        return `Domain Entity additions '${context.extendeeName().getText()}' does not match any declared Domain Entity or Domain Entity Subclass.`;
-    }
+// @flow
+import { domainEntityExtensionErrorRule, includeDomainEntityExtensionRule } from './DomainEntityExtensionValidationRule';
+import type SymbolTable from '../SymbolTable';
+import SymbolTableEntityType from '../SymbolTableEntityType';
+
+function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
+  const identifierToMatch = ruleContext.extendeeName().getText();
+  return symbolTable.identifierExists(SymbolTableEntityType.domainEntity(), identifierToMatch)
+    || symbolTable.identifierExists(SymbolTableEntityType.domainEntitySubclass(), identifierToMatch);
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable) : string {
+  return `Domain Entity additions '${ruleContext.extendeeName().getText()}' does not match any declared Domain Entity or subclass.`;
+}
+
+const validationRule = domainEntityExtensionErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeDomainEntityExtensionRule(validationRule);

@@ -1,19 +1,20 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-import {ISymbolTable} from '../SymbolTable'
-import SymbolTableEntityType from '../SymbolTableEntityType'
-export class DomainEntitySubclassIdentifierMustMatchADomainOrAbstractEntity extends ValidationRuleBase<MetaEdGrammar.DomainEntitySubclassContext>
-{
-    private symbolTable: ISymbolTable;
-    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
-    constructor(symbolTable: ISymbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    public isValid(context: MetaEdGrammar.DomainEntitySubclassContext): boolean {
-        let basedOnName = context.baseName().getText();
-        return this.symbolTable.identifiersForEntityType(this.symbolTableEntityType.domainEntityEntityType()).Any(x => x.Equals(basedOnName)) || this.symbolTable.identifiersForEntityType(this.symbolTableEntityType.abstractEntityEntityType()).Any(x => x.Equals(basedOnName));
-    }
-    public getFailureMessage(context: MetaEdGrammar.DomainEntitySubclassContext): string {
-        return `Domain Entity '${context.entityName().getText()}' based on '${context.baseName().getText()}' does not match any declared domain or abstract entity.`;
-    }
+// @flow
+import { domainEntitySubclassErrorRule, includeDomainEntitySubclassRule } from './DomainEntitySubclassValidationRule';
+import type SymbolTable from '../SymbolTable';
+import SymbolTableEntityType from '../SymbolTableEntityType';
+
+function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
+  const basedOnName = ruleContext.baseName().getText();
+  return Array.from(symbolTable.identifiersForEntityType(SymbolTableEntityType.domainEntity())).some(x => x === basedOnName) ||
+    Array.from(symbolTable.identifiersForEntityType(SymbolTableEntityType.abstractEntity())).some(x => x === basedOnName);
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable) : string {
+  return `Domain Entity '${ruleContext.entityName().getText()}' based on '${ruleContext.baseName().getText()}' does not match any declared domain or abstract entity.`;
+}
+
+const validationRule = domainEntitySubclassErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeDomainEntitySubclassRule(validationRule);

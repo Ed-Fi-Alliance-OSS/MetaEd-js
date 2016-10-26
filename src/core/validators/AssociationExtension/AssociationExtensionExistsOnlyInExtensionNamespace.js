@@ -4,7 +4,7 @@ import type SymbolTable from '../SymbolTable';
 import { namespaceAncestorContext, isExtensionNamespace, namespaceNameFor } from '../ValidationHelper';
 
 // eslint-disable-next-line no-unused-vars
-function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const parentNamespaceContext = namespaceAncestorContext(ruleContext);
   return isExtensionNamespace(parentNamespaceContext);
 }

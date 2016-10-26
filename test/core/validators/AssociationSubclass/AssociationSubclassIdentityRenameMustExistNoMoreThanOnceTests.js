@@ -7,7 +7,7 @@ import { newRepository } from '../../../../src/core/validators/ValidationRuleRep
 
 chai.should();
 
-describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassTests', () => {
+describe('AssociationSubclassIdentityRenameMustExistNoMoreThanOnceTests', () => {
   const repository = includeRule(newRepository());
   const validatorListener = new ValidatorListener(repository);
 
