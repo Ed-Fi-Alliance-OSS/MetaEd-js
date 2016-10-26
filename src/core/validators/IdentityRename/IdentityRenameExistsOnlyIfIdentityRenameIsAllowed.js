@@ -1,15 +1,29 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-export class IdentityRenameExistsOnlyIfIdentityRenameIsAllowed extends ValidationRuleBase<MetaEdGrammar.IdentityRenameContext>
-{
-    private _validIdentityRenameParentRuleIndices: number[] = [MetaEdGrammar.RULE_domainEntitySubclass,
-        MetaEdGrammar.RULE_associationSubclass];
-    public isValid(context: MetaEdGrammar.IdentityRenameContext): boolean {
-        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
-        return this._validIdentityRenameParentRuleIndices.Contains(topLevelEntity.RuleIndex);
-    }
-    public getFailureMessage(context: MetaEdGrammar.IdentityRenameContext): string {
-        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
-        let propertyWithComponents = context.GetAncestorContext<IPropertyWithComponents>();
-        return `'renames identity property' is invalid for property ${propertyWithComponents.IdNode().getText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'.  'renames identity property' is only valid for properties on types Domain Entity subclass and Association subclass.`;
-    }
+// @flow
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import type SymbolTable from '../SymbolTable';
+import { identityRenameErrorRule, includeIdentityRenameRule } from './IdentityRenameValidationRule';
+import { topLevelEntityAncestorContext, propertyAncestorContext } from '../ValidationHelper';
+import { entityIdentifier, entityName } from '../TopLevelEntityInformation';
+
+const validIdentityRenameParentRuleIndices: number[] = [
+  MetaEdGrammar.RULE_domainEntitySubclass,
+  MetaEdGrammar.RULE_associationSubclass,
+];
+
+// eslint-disable-next-line no-unused-vars
+export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  const parentEntity = topLevelEntityAncestorContext(ruleContext);
+  return validIdentityRenameParentRuleIndices.includes(parentEntity.ruleIndex);
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  const parentEntity = topLevelEntityAncestorContext(ruleContext);
+  const parentPropertyName = propertyAncestorContext(ruleContext).propertyName().ID().getText();
+  return `'renames identity property' is invalid for property ${parentPropertyName} on ${entityIdentifier(parentEntity)} '${entityName(parentEntity)}'.  'renames identity property' is only valid for properties on Domain Entity subclass and Association subclass.`;
+}
+
+const validationRule = identityRenameErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeIdentityRenameRule(validationRule);
