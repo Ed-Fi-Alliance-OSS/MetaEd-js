@@ -5,6 +5,7 @@ import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 import type SymbolTable from './SymbolTable';
 import { topLevelEntityTypes, commonSimpleEntityTypes } from './SymbolTableEntityType';
 import { topLevelEntityRules } from './TopLevelEntityInformation';
+import { propertyRules } from './PropertyInformation';
 
 function getAncestorContextNullable(ruleIndexes: number[], ruleContext: any): any {
   if (R.any(ri => ruleContext.ruleIndex === ri, ruleIndexes)) return ruleContext;
@@ -22,6 +23,7 @@ function getAncestorContext(ruleIndexes: number[], ruleContext: any): any {
 
 const curriedGetAncestorContext = R.curry(getAncestorContext);
 export const topLevelEntityAncestorContext = curriedGetAncestorContext(topLevelEntityRules);
+export const propertyAncestorContext = curriedGetAncestorContext(propertyRules);
 export const namespaceAncestorContext = curriedGetAncestorContext([MetaEdGrammar.RULE_namespace]);
 
 export function isExtensionNamespace(namespaceContext: any) {
