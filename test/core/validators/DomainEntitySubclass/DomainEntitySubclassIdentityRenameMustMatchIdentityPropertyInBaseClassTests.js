@@ -7,7 +7,7 @@ import { newRepository } from '../../../../src/core/validators/ValidationRuleRep
 
 chai.should();
 
-describe('DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass', () => {
+describe('DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClassTests', () => {
   const repository = includeRule(newRepository());
   const validatorListener = new ValidatorListener(repository);
 

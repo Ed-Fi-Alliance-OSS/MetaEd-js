@@ -5,14 +5,12 @@ import SymbolTableEntityType from '../SymbolTableEntityType';
 
 // eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
-  const identifierToMatch = ruleContext.propertyName().getText();
-  return symbolTable.identifierExists(SymbolTableEntityType.descriptorEntity(), identifierToMatch);
+  return symbolTable.identifierExists(SymbolTableEntityType.descriptorEntity(), ruleContext.propertyName().getText());
 }
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  const identifierToMatch = ruleContext.propertyName().getText();
-  return `Descriptor property '${identifierToMatch}' does not match any declared descriptor.`;
+  return `Descriptor property '${ruleContext.propertyName().getText()}' does not match any declared descriptor.`;
 }
 
 const validationRule = descriptorPropertyErrorRule(valid, failureMessage);

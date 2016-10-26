@@ -7,7 +7,7 @@ import { newRepository } from '../../../../src/core/validators/ValidationRuleRep
 
 chai.should();
 
-describe('EnumerationItemsMustBeUnique', () => {
+describe('EnumerationItemsMustBeUniqueTests', () => {
   const repository = includeRule(newRepository());
   const validatorListener = new ValidatorListener(repository);
 

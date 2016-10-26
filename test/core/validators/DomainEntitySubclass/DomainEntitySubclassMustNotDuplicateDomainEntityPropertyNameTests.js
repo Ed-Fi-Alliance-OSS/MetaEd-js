@@ -7,7 +7,7 @@ import { newRepository } from '../../../../src/core/validators/ValidationRuleRep
 
 chai.should();
 
-describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyName', () => {
+describe('DomainEntitySubclassMustNotDuplicateDomainEntityPropertyNameTests', () => {
   const repository = includeRule(newRepository());
   const validatorListener = new ValidatorListener(repository);
 

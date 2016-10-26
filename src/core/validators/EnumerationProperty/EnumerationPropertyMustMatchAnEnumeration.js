@@ -1,19 +1,19 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-import {ISymbolTable} from '../SymbolTable'
-import SymbolTableEntityType from '../SymbolTableEntityType'
-export class EnumerationPropertyMustMatchAnEnumeration extends ValidationRuleBase<MetaEdGrammar.EnumerationPropertyContext>
-{
-    private symbolTable: ISymbolTable;
-    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
-    constructor(symbolTable: ISymbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    public isValid(context: MetaEdGrammar.EnumerationPropertyContext): boolean {
-        let identifierToMatch = context.propertyName().getText();
-        return this.symbolTable.identifierExists(this.symbolTableEntityType.enumerationEntityType(), identifierToMatch);
-    }
-    public getFailureMessage(context: MetaEdGrammar.EnumerationPropertyContext): string {
-        return `Enumeration property '${context.propertyName().getText()}' does not match any declared enumeration.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { enumerationPropertyErrorRule, includeEnumerationPropertyRule } from './EnumerationPropertyValidationRule';
+import SymbolTableEntityType from '../SymbolTableEntityType';
+
+// eslint-disable-next-line no-unused-vars
+export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  return symbolTable.identifierExists(SymbolTableEntityType.enumeration(), ruleContext.propertyName().getText());
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Enumeration property '${ruleContext.propertyName().getText()}' does not match any declared enumeration.`;
+}
+
+const validationRule = enumerationPropertyErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeEnumerationPropertyRule(validationRule);
