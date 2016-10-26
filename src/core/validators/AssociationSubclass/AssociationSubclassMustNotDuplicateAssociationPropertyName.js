@@ -1,30 +1,17 @@
 // @flow
-import R from 'ramda';
 import { associationSubclassErrorRule, includeAssociationSubclassRule } from './AssociationSubclassValidationRule';
-import type SymbolTable from '../SymbolTable';
+import { valid, failureMessage } from '../ValidatorShared/SubclassMustNotDuplicateEntityPropertyName';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
-// eslint-disable-next-line no-unused-vars
-function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
-  const identifier = ruleContext.associationName().getText();
-  const baseIdentifier = ruleContext.baseName().getText();
-  const basePropertyIdentifiers = symbolTable.identifiersForEntityProperties(SymbolTableEntityType.association(), baseIdentifier);
-  const subclassPropertyIdentifiers = symbolTable.identifiersForEntityProperties(SymbolTableEntityType.associationSubclass(), identifier);
-  return R.intersection(Array.from(basePropertyIdentifiers), Array.from(subclassPropertyIdentifiers)).length === 0;
-}
+const associationIdentifierFinder = (ruleContext: any) => ruleContext.associationName().getText();
 
-// eslint-disable-next-line no-unused-vars
-function failureMessage(ruleContext: any, symbolTable: SymbolTable) : string {
-  const identifier = ruleContext.associationName().getText();
-  const baseIdentifier = ruleContext.baseName().getText();
-  const associationPropertyIdentifiers = Array.from(symbolTable.identifiersForEntityProperties(SymbolTableEntityType.association(), baseIdentifier));
-  const propertyRuleContextsForDuplicates =
-    symbolTable.contextsForMatchingPropertyIdentifiers(SymbolTableEntityType.associationSubclass(), identifier, associationPropertyIdentifiers);
-  const duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.map(x => x.propertyName().ID().getText());
-  return `Association '${identifier}' based on '${baseIdentifier}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of base Association.`;
-}
+const associationSubclassValid =
+  valid(SymbolTableEntityType.association(), SymbolTableEntityType.associationSubclass(), associationIdentifierFinder);
 
-const validationRule = associationSubclassErrorRule(valid, failureMessage);
+const associationSubclassFailureMessage =
+  failureMessage('Association', SymbolTableEntityType.association(), SymbolTableEntityType.associationSubclass(), associationIdentifierFinder);
+
+const validationRule = associationSubclassErrorRule(associationSubclassValid, associationSubclassFailureMessage);
 export { validationRule as default };
 
 export const includeRule = includeAssociationSubclassRule(validationRule);

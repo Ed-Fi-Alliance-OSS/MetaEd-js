@@ -8,8 +8,8 @@ function isNotIncludePropertyContextWithExtension(context: any): boolean {
   return context.includeExtensionOverride() === null;
 }
 
-function propertyRuleContextsForDuplicates(baseKey: string, extensionKey: string, context: any, symbolTable: SymbolTable): Array<any> {
-  const identifier = context.extendeeName().getText();
+function propertyRuleContextsForDuplicates(baseKey: string, extensionKey: string, ruleContext: any, symbolTable: SymbolTable): Array<any> {
+  const identifier = ruleContext.extendeeName().getText();
   const entityPropertyIdentifiers = symbolTable.identifiersForEntityProperties(baseKey, identifier);
   const duplicates =
     symbolTable.contextsForMatchingPropertyIdentifiers(extensionKey, identifier, Array.from(entityPropertyIdentifiers));

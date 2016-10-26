@@ -2,7 +2,6 @@
 import R from 'ramda';
 import { getProperty } from '../ValidationHelper';
 import type SymbolTable from '../SymbolTable';
-import SymbolTableEntityType from '../SymbolTableEntityType';
 
 function getIdentityRenames(ruleContext: any): Array<any> {
   return ruleContext.property().filter(x => getProperty(x).propertyComponents().propertyAnnotation().identityRename() != null)
