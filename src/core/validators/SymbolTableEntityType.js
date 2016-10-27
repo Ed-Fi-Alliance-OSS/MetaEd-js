@@ -78,6 +78,10 @@ export default class SymbolTableEntityType {
   static inlineCommonType(): string {
     return literal(MetaEdGrammar.INLINE_COMMON_TYPE);
   }
+
+  static interchange(): string {
+    return literal(MetaEdGrammar.INTERCHANGE);
+  }
 }
 
 export const topLevelEntityTypes: string[] =
