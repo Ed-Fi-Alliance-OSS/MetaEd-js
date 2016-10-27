@@ -1,22 +1,26 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-import {ISymbolTable} from '../SymbolTable'
-export class InterchangeMustNotDuplicateIdentityTemplateName extends ValidationRuleBase<MetaEdGrammar.InterchangeContext>
-{
-    private symbolTable: ISymbolTable;
-    constructor(symbolTable: ISymbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    private static duplicateIdentityTemplates(context: MetaEdGrammar.InterchangeContext): string[] {
-        let identityTemplates = context.interchangeComponent().interchangeIdentityTemplate().map(x => x.ID().getText());
-        return identityTemplates.GroupBy(x => x).filter(group => group.Count() > 1).map(group => group.Key).ToArray();
-    }
-    public isValid(context: MetaEdGrammar.InterchangeContext): boolean {
-        return InterchangeMustNotDuplicateIdentityTemplateName.duplicateIdentityTemplates(context).length == 0;
-    }
-    public getFailureMessage(context: MetaEdGrammar.InterchangeContext): string {
-        let identifier = context.interchangeName().getText();
-        let duplicateIdentityTemplates = InterchangeMustNotDuplicateIdentityTemplateName.duplicateIdentityTemplates(context);
-        return `Interchange '${identifier}' declares duplicate identity template${duplicateIdentityTemplates.length > 1 ? "s" : ""} '${duplicateIdentityTemplates.join(', ')}'.`; 
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { interchangeErrorRule, includeInterchangeRule } from './InterchangeValidationRule';
+import { findDuplicates } from '../ValidationHelper';
+
+function idsToCheck(ruleContext: any) {
+  return ruleContext.interchangeComponent().interchangeIdentityTemplate().map(x => x.ID().getText());
 }
+
+// eslint-disable-next-line no-unused-vars
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  return findDuplicates(idsToCheck(ruleContext)).length === 0;
+}
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  const identifier = ruleContext.interchangeName().getText();
+  const duplicates = findDuplicates(idsToCheck(ruleContext));
+  const joinString = '\', \'';
+  return `Interchange '${identifier}' declares duplicate identity template${duplicates.length > 1 ? 's' : ''} '${duplicates.join(joinString)}'.`;
+}
+
+const validationRule = interchangeErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeInterchangeRule(validationRule);
