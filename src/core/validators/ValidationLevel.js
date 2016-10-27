@@ -1,3 +1,4 @@
+// no flow
 const _Warning = Symbol('Warning');
 const _Error = Symbol('Error');
 
