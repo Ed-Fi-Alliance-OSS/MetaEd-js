@@ -11,7 +11,7 @@ const validIdentityRenameParentRuleIndices: number[] = [
 ];
 
 // eslint-disable-next-line no-unused-vars
-export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const parentEntity = topLevelEntityAncestorContext(ruleContext);
   return validIdentityRenameParentRuleIndices.includes(parentEntity.ruleIndex);
 }

@@ -4,7 +4,7 @@ import { enumerationPropertyErrorRule, includeEnumerationPropertyRule } from './
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
 // eslint-disable-next-line no-unused-vars
-export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   return symbolTable.identifierExists(SymbolTableEntityType.enumeration(), ruleContext.propertyName().getText());
 }
 

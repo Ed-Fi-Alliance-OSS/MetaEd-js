@@ -1,11 +1,21 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-export class IncludePropertyMustNotContainIdentity extends ValidationRuleBase<MetaEdGrammar.IncludePropertyContext>
-{
-    public isValid(context: MetaEdGrammar.IncludePropertyContext): boolean {
-        return context.propertyComponents().propertyAnnotation().identity() == null;
-    }
-    public getFailureMessage(context: MetaEdGrammar.IncludePropertyContext): string {
-        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
-        return `Include property '${context.propertyName().getText()}' is invalid to be used for the identity of ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}'`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { includePropertyErrorRule, includeIncludePropertyRule } from './IncludePropertyValidationRule';
+import { topLevelEntityAncestorContext } from '../ValidationHelper';
+import { entityIdentifier, entityName } from '../TopLevelEntityInformation';
+
+// eslint-disable-next-line no-unused-vars
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  return ruleContext.propertyComponents().propertyAnnotation().identity() == null;
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  const parentEntity = topLevelEntityAncestorContext(ruleContext);
+  return `Include property '${ruleContext.propertyName().getText()}' is invalid to be used for the identity of ${entityIdentifier(parentEntity)} '${entityName(parentEntity)}'`;
+}
+
+const validationRule = includePropertyErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeIncludePropertyRule(validationRule);

@@ -1,905 +1,831 @@
 import chai from 'chai';
-import MetaEdTextBuilder from "../../grammar/MetaEdTextBuilder";
-import SymbolTableTestHelper from "./SymbolTableTestHelper";
-import ValidationMessage from "../../../src/common/ValidationMessage"
+import MetaEdTextBuilder from '../../grammar/MetaEdTextBuilder';
+import SymbolTableTestHelper from './SymbolTableTestHelper';
 
 chai.should();
 
-const entityName = "EntityName";
-const propertyName = "PropertyName";
-const doc = "doc";
-const prop = "prop";
-const edfi = "edfi";
+const entityName = 'EntityName';
+const propertyName = 'PropertyName';
+const doc = 'doc';
+const prop = 'prop';
+const edfi = 'edfi';
 
 describe('SymbolTableBuilderEntityTests', () => {
-
-    describe('When_loading_domain_entity', () => {
-        const symbolTableKey = "Domain Entity";
-
-        let helper = new SymbolTableTestHelper();
-        before(() => {
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartDomainEntity(entityName)
-                .withMetaEdId("100")
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDomainEntity()
-                .withEndNamespace()
-                .toString();
-
-
-            helper.setup(metaEdText);
-        });
-
-        it('Should_load_into_symbol_table', () => {
-            const entityContext = helper.symbolTable.get(symbolTableKey, entityName);
-            entityContext.should.not.be.empty;
-            entityContext.name.should.equal(entityName);
-            entityContext.context.should.not.be.empty;
-        });
+  describe('When_loading_domain_entity', () => {
+    const symbolTableKey = 'Domain Entity';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartDomainEntity(entityName)
+      .withMetaEdId('100')
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_domain_entity', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('Should_load_into_symbol_table', () => {
+      const entityContext = helper.symbolTable.get(symbolTableKey, entityName);
+      entityContext.should.not.be.empty;
+      entityContext.name.should.equal(entityName);
+      entityContext.context.should.not.be.empty;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartDomainEntity(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDomainEntity()
+  describe('When_loading_duplicate_domain_entity', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartDomainEntity(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndDomainEntity()
 
-                .withStartDomainEntity(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDomainEntity()
-                .withEndNamespace()
-                .toString();
-
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
-
-        it('should_report_position_of_error', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.concatenatedLineNumber.should.equal(9);
-            failure.characterPosition.should.equal(16);
-        });
+      .withStartDomainEntity(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_abstract_entity', () => {
-        const symbolTableKey = "Abstract Entity";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+    it('should_report_position_of_error', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.concatenatedLineNumber.should.equal(9);
+      failure.characterPosition.should.equal(16);
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartAbstractEntity(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndAbstractEntity()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_abstract_entity', () => {
+    const symbolTableKey = 'Abstract Entity';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartAbstractEntity(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndAbstractEntity()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_abstract_entity', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartAbstractEntity(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndAbstractEntity()
+  describe('When_loading_duplicate_abstract_entity', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartAbstractEntity(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndAbstractEntity()
 
-                .withStartAbstractEntity(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndAbstractEntity()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartAbstractEntity(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndAbstractEntity()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_association', () => {
-        const symbolTableKey = "Association";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartAssociation(entityName)
-                .withDocumentation(doc)
-                .withDomainEntityProperty("DomainEntity1", "documentation for domain entity 1")
-                .withDomainEntityProperty("DomainEntity2", "documentation for domain entity 2")
-                .withEndAssociation()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_association', () => {
+    const symbolTableKey = 'Association';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartAssociation(entityName)
+      .withDocumentation(doc)
+      .withDomainEntityProperty('DomainEntity1', 'documentation for domain entity 1')
+      .withDomainEntityProperty('DomainEntity2', 'documentation for domain entity 2')
+      .withEndAssociation()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_association', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartAssociation(entityName)
-                .withDocumentation(doc)
-                .withDomainEntityProperty("DomainEntity1", "documentation for domain entity 1")
-                .withDomainEntityProperty("DomainEntity2", "documentation for domain entity 2")
-                .withEndAssociation()
+  describe('When_loading_duplicate_association', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartAssociation(entityName)
+      .withDocumentation(doc)
+      .withDomainEntityProperty('DomainEntity1', 'documentation for domain entity 1')
+      .withDomainEntityProperty('DomainEntity2', 'documentation for domain entity 2')
+      .withEndAssociation()
 
-                .withStartAssociation(entityName)
-                .withDocumentation(doc)
-                .withDomainEntityProperty("DomainEntity3", "documentation for domain entity 3")
-                .withDomainEntityProperty("DomainEntity4", "documentation for domain entity 4")
-                .withEndAssociation()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartAssociation(entityName)
+      .withDocumentation(doc)
+      .withDomainEntityProperty('DomainEntity3', 'documentation for domain entity 3')
+      .withDomainEntityProperty('DomainEntity4', 'documentation for domain entity 4')
+      .withEndAssociation()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_association_extension', () => {
-        const symbolTableKey = "Associationadditions";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartAssociationExtension(entityName)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndAssociationExtension()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_association_extension', () => {
+    const symbolTableKey = 'Associationadditions';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartAssociationExtension(entityName)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndAssociationExtension()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_association_extension', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartAssociationExtension(entityName)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndAssociationExtension()
+  describe('When_loading_duplicate_association_extension', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartAssociationExtension(entityName)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndAssociationExtension()
 
-                .withStartAssociationExtension(entityName)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndAssociationExtension()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartAssociationExtension(entityName)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndAssociationExtension()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_association_subclass', () => {
-        const symbolTableKey = "Associationbased on";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartAssociationSubclass(entityName, "Original")
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndAssociationSubclass()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_association_subclass', () => {
+    const symbolTableKey = 'Associationbased on';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartAssociationSubclass(entityName, 'Original')
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndAssociationSubclass()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_association_subclass', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartAssociationSubclass(entityName, "Original")
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndAssociationSubclass()
+  describe('When_loading_duplicate_association_subclass', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartAssociationSubclass(entityName, 'Original')
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndAssociationSubclass()
 
-                .withStartAssociationSubclass(entityName, "Original")
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndAssociationSubclass()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartAssociationSubclass(entityName, 'Original')
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndAssociationSubclass()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_choice_type', () => {
-        const symbolTableKey = "Choice Common Type";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartChoiceType(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndChoiceType()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_choice_type', () => {
+    const symbolTableKey = 'Choice Common Type';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartChoiceType(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndChoiceType()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_choice_type', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartChoiceType(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndChoiceType()
+  describe('When_loading_duplicate_choice_type', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartChoiceType(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndChoiceType()
 
-                .withStartChoiceType(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndChoiceType()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartChoiceType(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndChoiceType()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_common_decimal', () => {
-        const symbolTableKey = "Common Decimal";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartCommonDecimal(entityName)
-                .withDocumentation(doc)
-                .withTotalDigits(10)
-                .withDecimalPlaces(5)
-                .withEndCommonDecimal()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_common_decimal', () => {
+    const symbolTableKey = 'Common Decimal';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartCommonDecimal(entityName)
+      .withDocumentation(doc)
+      .withTotalDigits(10)
+      .withDecimalPlaces(5)
+      .withEndCommonDecimal()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_common_decimal', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartCommonDecimal(entityName)
-                .withDocumentation(doc)
-                .withTotalDigits(10)
-                .withDecimalPlaces(5)
-                .withEndCommonDecimal()
+  describe('When_loading_duplicate_common_decimal', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartCommonDecimal(entityName)
+      .withDocumentation(doc)
+      .withTotalDigits(10)
+      .withDecimalPlaces(5)
+      .withEndCommonDecimal()
 
-                .withStartCommonDecimal(entityName)
-                .withDocumentation(doc)
-                .withTotalDigits(10)
-                .withDecimalPlaces(5)
-                .withEndCommonDecimal()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartCommonDecimal(entityName)
+      .withDocumentation(doc)
+      .withTotalDigits(10)
+      .withDecimalPlaces(5)
+      .withEndCommonDecimal()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_common_integer', () => {
-        const symbolTableKey = "Common Integer";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartCommonInteger(entityName)
-                .withDocumentation(doc)
-                .withMinValue(0)
-                .withMaxValue(100)
-                .withEndCommonInteger()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_common_integer', () => {
+    const symbolTableKey = 'Common Integer';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartCommonInteger(entityName)
+      .withDocumentation(doc)
+      .withMinValue(0)
+      .withMaxValue(100)
+      .withEndCommonInteger()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_common_integer', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartCommonInteger(entityName)
-                .withDocumentation(doc)
-                .withMinValue(0)
-                .withMaxValue(100)
-                .withEndCommonInteger()
+  describe('When_loading_duplicate_common_integer', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartCommonInteger(entityName)
+      .withDocumentation(doc)
+      .withMinValue(0)
+      .withMaxValue(100)
+      .withEndCommonInteger()
 
-                .withStartCommonInteger(entityName)
-                .withDocumentation(doc)
-                .withMinValue(0)
-                .withMaxValue(100)
-                .withEndCommonInteger()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartCommonInteger(entityName)
+      .withDocumentation(doc)
+      .withMinValue(0)
+      .withMaxValue(100)
+      .withEndCommonInteger()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_common_short', () => {
-        const symbolTableKey = "Common Short";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartCommonShort(entityName)
-                .withDocumentation(doc)
-                .withMinValue(0)
-                .withMaxValue(100)
-                .withEndCommonShort()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_common_short', () => {
+    const symbolTableKey = 'Common Short';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartCommonShort(entityName)
+      .withDocumentation(doc)
+      .withMinValue(0)
+      .withMaxValue(100)
+      .withEndCommonShort()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_common_short', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartCommonShort(entityName)
-                .withDocumentation(doc)
-                .withMinValue(0)
-                .withMaxValue(100)
-                .withEndCommonShort()
+  describe('When_loading_duplicate_common_short', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartCommonShort(entityName)
+      .withDocumentation(doc)
+      .withMinValue(0)
+      .withMaxValue(100)
+      .withEndCommonShort()
 
-                .withStartCommonShort(entityName)
-                .withDocumentation(doc)
-                .withMinValue(0)
-                .withMaxValue(100)
-                .withEndCommonShort()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartCommonShort(entityName)
+      .withDocumentation(doc)
+      .withMinValue(0)
+      .withMaxValue(100)
+      .withEndCommonShort()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_common_string', () => {
-        const symbolTableKey = "Common String";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartCommonString(entityName)
-                .withDocumentation(doc)
-                .withMinLength(0)
-                .withMaxLength(100)
-                .withEndCommonString()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_common_string', () => {
+    const symbolTableKey = 'Common String';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartCommonString(entityName)
+      .withDocumentation(doc)
+      .withMinLength(0)
+      .withMaxLength(100)
+      .withEndCommonString()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_common_string', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartCommonString(entityName)
-                .withDocumentation(doc)
-                .withMinLength(0)
-                .withMaxLength(100)
-                .withEndCommonString()
+  describe('When_loading_duplicate_common_string', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartCommonString(entityName)
+      .withDocumentation(doc)
+      .withMinLength(0)
+      .withMaxLength(100)
+      .withEndCommonString()
 
-                .withStartCommonString(entityName)
-                .withDocumentation(doc)
-                .withMinLength(0)
-                .withMaxLength(100)
-                .withEndCommonString()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartCommonString(entityName)
+      .withDocumentation(doc)
+      .withMinLength(0)
+      .withMaxLength(100)
+      .withEndCommonString()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_common_type', () => {
-        const symbolTableKey = "Common Type";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartCommonType(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndCommonType()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_common_type', () => {
+    const symbolTableKey = 'Common Type';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartCommonType(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndCommonType()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_common_type', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartCommonType(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndCommonType()
+  describe('When_loading_duplicate_common_type', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartCommonType(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndCommonType()
 
-                .withStartCommonType(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndCommonType()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartCommonType(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndCommonType()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_descriptor', () => {
-        const symbolTableKey = "Descriptor";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartDescriptor(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDescriptor()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_descriptor', () => {
+    const symbolTableKey = 'Descriptor';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartDescriptor(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndDescriptor()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_descriptor', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartDescriptor(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDescriptor()
+  describe('When_loading_duplicate_descriptor', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartDescriptor(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndDescriptor()
 
-                .withStartDescriptor(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDescriptor()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartDescriptor(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndDescriptor()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_domain_entity_extension', () => {
-        const symbolTableKey = "Domain Entityadditions";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartDomainEntityExtension(entityName)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDomainEntityExtension()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_domain_entity_extension', () => {
+    const symbolTableKey = 'Domain Entityadditions';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartDomainEntityExtension(entityName)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndDomainEntityExtension()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_domain_entity_extension', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartDomainEntityExtension(entityName)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDomainEntityExtension()
+  describe('When_loading_duplicate_domain_entity_extension', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartDomainEntityExtension(entityName)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndDomainEntityExtension()
 
-                .withStartDomainEntityExtension(entityName)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDomainEntityExtension()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartDomainEntityExtension(entityName)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndDomainEntityExtension()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_domain_entity_subclass', () => {
-        const symbolTableKey = "Domain Entitybased on";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartDomainEntitySubclass(entityName, "Original")
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDomainEntitySubclass()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_domain_entity_subclass', () => {
+    const symbolTableKey = 'Domain Entitybased on';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartDomainEntitySubclass(entityName, 'Original')
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndDomainEntitySubclass()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_domain_entity_subclass', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartDomainEntitySubclass(entityName, "Original")
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDomainEntitySubclass()
+  describe('When_loading_duplicate_domain_entity_subclass', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartDomainEntitySubclass(entityName, 'Original')
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndDomainEntitySubclass()
 
-                .withStartDomainEntitySubclass(entityName, "Original")
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndDomainEntitySubclass()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartDomainEntitySubclass(entityName, 'Original')
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndDomainEntitySubclass()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_enumeration', () => {
-        const symbolTableKey = "Enumeration";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartEnumeration(entityName)
-                .withDocumentation(doc)
-                .withEnumerationItem(propertyName, prop)
-                .withEndEnumeration()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_enumeration', () => {
+    const symbolTableKey = 'Enumeration';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartEnumeration(entityName)
+      .withDocumentation(doc)
+      .withEnumerationItem(propertyName, prop)
+      .withEndEnumeration()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_enumeration', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartEnumeration(entityName)
-                .withDocumentation(doc)
-                .withEnumerationItem(propertyName, "some optional documentation")
-                .withEndEnumeration()
+  describe('When_loading_duplicate_enumeration', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartEnumeration(entityName)
+      .withDocumentation(doc)
+      .withEnumerationItem(propertyName, 'some optional documentation')
+      .withEndEnumeration()
 
-                .withStartEnumeration(entityName)
-                .withDocumentation(doc)
-                .withEnumerationItem(propertyName, "some optional documentation")
-                .withEndEnumeration()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartEnumeration(entityName)
+      .withDocumentation(doc)
+      .withEnumerationItem(propertyName, 'some optional documentation')
+      .withEndEnumeration()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_inline_common_type', () => {
-        const symbolTableKey = "Inline Common Type";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartInlineCommonType(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndInlineCommonType()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_inline_common_type', () => {
+    const symbolTableKey = 'Inline Common Type';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartInlineCommonType(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndInlineCommonType()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_inline_common_type', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartInlineCommonType(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndInlineCommonType()
+  describe('When_loading_duplicate_inline_common_type', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartInlineCommonType(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndInlineCommonType()
 
-                .withStartInlineCommonType(entityName)
-                .withDocumentation(doc)
-                .withBooleanProperty(propertyName, prop, true, false)
-                .withEndInlineCommonType()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+      .withStartInlineCommonType(entityName)
+      .withDocumentation(doc)
+      .withBooleanProperty(propertyName, prop, true, false)
+      .withEndInlineCommonType()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_interchange', () => {
-        const symbolTableKey = "Interchange";
-        let helper = new SymbolTableTestHelper();
-        before(() => {
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartInterchange(entityName)
-                .withDocumentation(doc)
-                .withElement(propertyName)
-                .withEndInterchange()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_load_into_symbol_table', () => {
-            helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
-        });
+  describe('When_loading_interchange', () => {
+    const symbolTableKey = 'Interchange';
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartInterchange(entityName)
+      .withDocumentation(doc)
+      .withElement(propertyName)
+      .withEndInterchange()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
     });
 
-    describe('When_loading_duplicate_interchange', () => {
-        let helper = new SymbolTableTestHelper();
-        before(() => {
-
-            const metaEdText = MetaEdTextBuilder.build()
-                .withBeginNamespace(edfi)
-                .withStartInterchange(entityName)
-                .withDocumentation(doc)
-                .withElement(propertyName)
-                .withEndInterchange()
-
-                .withStartInterchange(entityName)
-                .withDocumentation(doc)
-                .withElement(propertyName)
-                .withEndInterchange()
-                .withEndNamespace()
-                .toString();
-
-            helper.setup(metaEdText);
-        });
-
-        it('should_report_the_duplicate', () => {
-            helper.errorMessageCollection.length.should.equal(1);
-            let failure = helper.errorMessageCollection[0];
-            failure.message.should.contain(entityName);
-            failure.message.should.contain("Duplicate");
-        });
+    it('should_load_into_symbol_table', () => {
+      helper.symbolTable.get(symbolTableKey, entityName).should.not.be.null;
     });
+  });
+
+  describe('When_loading_duplicate_interchange', () => {
+    const helper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace(edfi)
+      .withStartInterchange(entityName)
+      .withDocumentation(doc)
+      .withElement(propertyName)
+      .withEndInterchange()
+
+      .withStartInterchange(entityName)
+      .withDocumentation(doc)
+      .withElement(propertyName)
+      .withEndInterchange()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
+    });
+
+    it('should_report_the_duplicate', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+      const failure = helper.errorMessageCollection[0];
+      failure.message.should.contain(entityName);
+      failure.message.should.contain('Duplicate');
+    });
+  });
 });
-

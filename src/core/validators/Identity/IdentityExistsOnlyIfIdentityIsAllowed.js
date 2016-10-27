@@ -23,7 +23,7 @@ const validIdentityTokenNames: string[] = [
 ];
 
 // eslint-disable-next-line no-unused-vars
-export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const parentEntity = topLevelEntityAncestorContext(ruleContext);
   return validIdentityRuleIndices.includes(parentEntity.ruleIndex);
 }

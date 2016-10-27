@@ -1,20 +1,22 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-import {ISymbolTable} from '../SymbolTable'
-export class IncludePropertyMustMatchACommonType extends ValidationRuleBase<MetaEdGrammar.IncludePropertyContext>
-{
-    private symbolTable: ISymbolTable;
-    constructor(symbolTable: ISymbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    public isValid(context: MetaEdGrammar.IncludePropertyContext): boolean {
-        let identifierToMatch = context.propertyName().getText();
-        let commonTypeType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_TYPE);
-        let inlineCommonTypeType = MetaEdGrammar.TokenName(MetaEdGrammar.INLINE_COMMON_TYPE);
-        let choiceCommonType = MetaEdGrammar.TokenName(MetaEdGrammar.CHOICE_TYPE);
-        return this.symbolTable.identifierExists(commonTypeType, identifierToMatch) || this.symbolTable.identifierExists(inlineCommonTypeType, identifierToMatch) || this.symbolTable.identifierExists(choiceCommonType, identifierToMatch);
-    }
-    public getFailureMessage(context: MetaEdGrammar.IncludePropertyContext): string {
-        return `Include property '${context.propertyName().getText()}' does not match any declared common type.`;
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { includeIncludePropertyRule, includePropertyErrorRule } from './IncludePropertyValidationRule';
+import SymbolTableEntityType from '../SymbolTableEntityType';
+
+// eslint-disable-next-line no-unused-vars
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  const identifierToMatch = ruleContext.propertyName().getText();
+  return symbolTable.identifierExists(SymbolTableEntityType.commonType(), identifierToMatch) ||
+    symbolTable.identifierExists(SymbolTableEntityType.inlineCommonType(), identifierToMatch) ||
+    symbolTable.identifierExists(SymbolTableEntityType.choiceType(), identifierToMatch);
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Include property '${ruleContext.propertyName().getText()}' does not match any declared common type, inline common type, or choice type.`;
+}
+
+const validationRule = includePropertyErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeIncludePropertyRule(validationRule);
