@@ -1,22 +1,22 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-import {ISymbolTable} from '../SymbolTable'
-export class InterchangeExtensionMustNotDuplicateInterchangeElementName extends ValidationRuleBase<MetaEdGrammar.InterchangeExtensionContext>
-{
-    private symbolTable: ISymbolTable;
-    constructor(symbolTable: ISymbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    private static duplicateInterchangeElements(context: MetaEdGrammar.InterchangeExtensionContext): string[] {
-        let interchangeElements = context.interchangeExtensionComponent().interchangeElement().map(x => x.ID().getText());
-        return interchangeElements.GroupBy(x => x).filter(group => group.Count() > 1).map(group => group.Key).ToArray();
-    }
-    public isValid(context: MetaEdGrammar.InterchangeExtensionContext): boolean {
-        return InterchangeExtensionMustNotDuplicateInterchangeElementName.duplicateInterchangeElements(context).length == 0;
-    }
-    public getFailureMessage(context: MetaEdGrammar.InterchangeExtensionContext): string {
-        let identifier = context.extendeeName().getText();
-        let duplicateInterchangeElements = InterchangeExtensionMustNotDuplicateInterchangeElementName.duplicateInterchangeElements(context);
-        return `Interchange additions '${identifier}' declares duplicate interchange element{duplicateInterchangeElements.length > 1 ? "s" : ""} '${duplicateInterchangeElements.join(', ')}'`;
-    }
+// @flow
+import { interchangeExtensionErrorRule, includeInterchangeExtensionRule } from './InterchangeExtensionValidationRule';
+import { validForDuplicates, failureMessageForDuplicates } from '../ValidatorShared/InterchangeMustNotDuplicate';
+
+function idsToCheck(ruleContext: any) {
+  return ruleContext.interchangeExtensionComponent().interchangeElement().map(x => x.ID().getText());
 }
+
+const valid = validForDuplicates(idsToCheck);
+
+const failureMessage =
+  failureMessageForDuplicates(
+    'Interchange additions',
+    'interchange element',
+    (ruleContext: any): string => ruleContext.extendeeName().getText(),
+    idsToCheck
+  );
+
+const validationRule = interchangeExtensionErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeInterchangeExtensionRule(validationRule);
