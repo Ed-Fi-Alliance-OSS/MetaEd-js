@@ -1,18 +1,10 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-import {ISymbolTable} from '../SymbolTable'
-export class SharedDecimalPropertyTypeMustMatchACommonSimpleDecimal extends ValidationRuleBase<MetaEdGrammar.SharedDecimalPropertyContext>
-{
-    private symbolTable: ISymbolTable;
-    constructor(symbolTable: ISymbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    public isValid(context: MetaEdGrammar.SharedDecimalPropertyContext): boolean {
-        let identifierToMatch = context.sharedPropertyType().getText();
-        let commonDecimalType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_DECIMAL);
-        return this.symbolTable.identifierExists(commonDecimalType, identifierToMatch);
-    }
-    public getFailureMessage(context: MetaEdGrammar.SharedDecimalPropertyContext): string {
-        return `Shared property '${}' does not match any declared common decimal.", context.propertyName().getText());
-    }
-}
+// @flow
+import { sharedPropertyErrorRule, includeSharedPropertyRule,
+  validForShared, failureMessageForShared } from './SharedPropertyValidationRule';
+import SymbolTableEntityType from '../SymbolTableEntityType';
+
+const validationRule =
+  sharedPropertyErrorRule(validForShared(SymbolTableEntityType.commonDecimal()), failureMessageForShared('common decimal'));
+export { validationRule as default };
+
+export const includeRule = includeSharedPropertyRule(validationRule);

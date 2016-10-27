@@ -31,19 +31,19 @@ export default class SymbolTableEntityType {
     return literal(MetaEdGrammar.CHOICE_TYPE);
   }
 
-  static commonDecimalType(): string {
+  static commonDecimal(): string {
     return literal(MetaEdGrammar.COMMON_DECIMAL);
   }
 
-  static commonIntegerType(): string {
+  static commonInteger(): string {
     return literal(MetaEdGrammar.COMMON_INTEGER);
   }
 
-  static commonShortType(): string {
+  static commonShort(): string {
     return literal(MetaEdGrammar.COMMON_SHORT);
   }
 
-  static commonStringType(): string {
+  static commonString(): string {
     return literal(MetaEdGrammar.COMMON_STRING);
   }
 
@@ -97,8 +97,8 @@ export const topLevelEntityTypes: string[] =
 
 export const commonSimpleEntityTypes: string[] =
   [
-    SymbolTableEntityType.commonDecimalType(),
-    SymbolTableEntityType.commonIntegerType(),
-    SymbolTableEntityType.commonShortType(),
-    SymbolTableEntityType.commonStringType(),
+    SymbolTableEntityType.commonDecimal(),
+    SymbolTableEntityType.commonInteger(),
+    SymbolTableEntityType.commonShort(),
+    SymbolTableEntityType.commonString(),
   ];

@@ -1,18 +1,10 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-import {ISymbolTable} from '../SymbolTable'
-export class SharedIntegerPropertyTypeMustMatchACommonSimpleInteger extends ValidationRuleBase<MetaEdGrammar.SharedIntegerPropertyContext>
-{
-    private symbolTable: ISymbolTable;
-    constructor(symbolTable: ISymbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-    }
-    public isValid(context: MetaEdGrammar.SharedIntegerPropertyContext): boolean {
-        let identifierToMatch = context.sharedPropertyType().getText();
-        let commonIntegerType = MetaEdGrammar.TokenName(MetaEdGrammar.COMMON_INTEGER);
-        return this.symbolTable.identifierExists(commonIntegerType, identifierToMatch);
-    }
-    public getFailureMessage(context: MetaEdGrammar.SharedIntegerPropertyContext): string {
-        return `Shared property '${context.propertyName().getText()}' does not match any declared common integer.", );
-    }
-}
+// @flow
+import { sharedPropertyErrorRule, includeSharedPropertyRule,
+  validForShared, failureMessageForShared } from './SharedPropertyValidationRule';
+import SymbolTableEntityType from '../SymbolTableEntityType';
+
+const validationRule =
+  sharedPropertyErrorRule(validForShared(SymbolTableEntityType.commonInteger()), failureMessageForShared('common integer'));
+export { validationRule as default };
+
+export const includeRule = includeSharedPropertyRule(validationRule);
