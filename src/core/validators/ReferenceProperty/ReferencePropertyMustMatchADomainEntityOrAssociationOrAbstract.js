@@ -1,21 +1,23 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-import {ISymbolTable} from '../SymbolTable'
-import SymbolTableEntityType from '../SymbolTableEntityType'
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { includeReferencePropertyRule, referencePropertyErrorRule } from './ReferencePropertyValidationRule';
+import SymbolTableEntityType from '../SymbolTableEntityType';
 
-export class ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract extends ValidationRuleBase<MetaEdGrammar.ReferencePropertyContext>
-{
-    private symbolTable: ISymbolTable;
-    private symbolTableEntityType: SymbolTableEntityType = new SymbolTableEntityType();
-    constructor(symbolTable: ISymbolTable) {
-        super();
-        this.symbolTable = symbolTable;
-        
-    }
-    public isValid(context: MetaEdGrammar.ReferencePropertyContext): boolean {
-        let identifierToMatch = context.propertyName().getText();
-        return this.symbolTable.identifierExists(this.symbolTableEntityType.abstractEntityEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.associationEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.associationSubclassEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntityEntityType(), identifierToMatch) || this.symbolTable.identifierExists(this.symbolTableEntityType.domainEntitySubclassEntityType(), identifierToMatch);
-    }
-    public getFailureMessage(context: MetaEdGrammar.ReferencePropertyContext): string {
-        return `Reference property '${context.propertyName().getText()}' does not match any declared domain entity or subclass, association or subclass, or abstract entity.`;
-    }
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  const identifierToMatch = ruleContext.propertyName().getText();
+  return symbolTable.identifierExists(SymbolTableEntityType.abstractEntity(), identifierToMatch) ||
+    symbolTable.identifierExists(SymbolTableEntityType.association(), identifierToMatch) ||
+    symbolTable.identifierExists(SymbolTableEntityType.associationSubclass(), identifierToMatch) ||
+    symbolTable.identifierExists(SymbolTableEntityType.domainEntity(), identifierToMatch) ||
+    symbolTable.identifierExists(SymbolTableEntityType.domainEntitySubclass(), identifierToMatch);
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `Reference property '${ruleContext.propertyName().getText()}' does not match any declared domain entity or subclass, association or subclass, or abstract entity.`;
+}
+
+const validationRule = referencePropertyErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeReferencePropertyRule(validationRule);
