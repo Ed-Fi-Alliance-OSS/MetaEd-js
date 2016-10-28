@@ -1,14 +1,18 @@
 // @flow
+import R from 'ramda';
 import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
 import grammarInstance from '../../../src/grammar/MetaEdGrammarInstance';
 
 // Static strings for top level entity types, taken from generated grammar, used for hashtable keys
 
-function literal(name: string) {
-  const s = grammarInstance.literalNames[name];
-  // generated static strings are surrounded by single quotes, so remove
-  return s.slice(1, s.length - 1);
-}
+const literal = R.memoize(
+  (name: string): string => {
+    const s = grammarInstance.literalNames[name];
+
+    // generated static strings are surrounded by single quotes, so remove
+    return s.slice(1, s.length - 1);
+  }
+);
 
 export default class SymbolTableEntityType {
   static abstractEntity(): string {

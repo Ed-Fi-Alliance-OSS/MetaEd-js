@@ -1,98 +1,92 @@
-import {EntityContext} from '../SymbolTable'
-import {IPropertyWithComponents} from '../../../grammar/IPropertyWithComponents'
-import {IContextWithIdentifier} from '../../../grammar/IContextWithIdentifier'
-import {ISymbolTable} from '../SymbolTable'
-import SymbolTableEntityType from '../SymbolTableEntityType'
+// @flow
+import R from 'ramda';
+import type SymbolTable, { EntityContext } from '../SymbolTable';
+import SymbolTableEntityType from '../SymbolTableEntityType';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 
-export interface IPropertyPathLookup {
-    validate(startingEntityContext: EntityContext, propertyPath: string[], filter: (prop: IPropertyWithComponents) => boolean): boolean;
-    findReferencedProperty(startingEntityContext: EntityContext, propertyPath: string[], filter: (prop: IPropertyWithComponents) => boolean): IContextWithIdentifier;
+export function matchAllIdentityProperties(): (propertyRuleContext: any) => boolean {
+  return propertyWithComponents => propertyWithComponents.propertyComponents().propertyAnnotation().identity() != null ||
+  propertyWithComponents.propertyComponents().propertyAnnotation().identityRename() != null;
 }
 
-export class PropertyPathLookup implements IPropertyPathLookup {
-    private symbolTable: ISymbolTable;
-    private symbolTableEntityType = new SymbolTableEntityType();
-    constructor(symbolTable: ISymbolTable) {
-        this.symbolTable = symbolTable;
+export function matchAllButFirstAsIdentityProperties(): (propertyRuleContext: any) => boolean {
+  let first: boolean = true;
+  let firstComponent: any = null;
+
+  return (components: any): boolean => {
+    if (first) {
+      first = false;
+      firstComponent = components;
+      return true;
     }
 
-    public validate(startingEntityContext: EntityContext, propertyPath: string[], filter: (prop: IPropertyWithComponents) => boolean): boolean {
-        return this.findReferencedProperty(startingEntityContext, propertyPath, filter) != null;
+    if (firstComponent != null && firstComponent === components) return true;
+    return components.propertyComponents().propertyAnnotation().identity() != null;
+  };
+}
+
+function findAssociationDomainEntityProperty(entityContext: EntityContext, propertyNameToMatch: string): any {
+  if (entityContext.context.ruleIndex !== MetaEdGrammar.RULE_association) return null;
+
+  if (entityContext.context.firstDomainEntity().propertyName().ID.getText() === propertyNameToMatch) {
+    return entityContext.context.firstDomainEntity();
+  }
+
+  if (entityContext.context.secondDomainEntity().propertyName().ID.getText() === propertyNameToMatch) {
+    return entityContext.context.secondDomainEntity();
+  }
+
+  return null;
+}
+
+function getEntityType(symbolTable: SymbolTable, identifierToMatch: string): ?string {
+  if (symbolTable.identifierExists(SymbolTableEntityType.domainEntity(), identifierToMatch)) return SymbolTableEntityType.domainEntity();
+  if (symbolTable.identifierExists(SymbolTableEntityType.association(), identifierToMatch)) return SymbolTableEntityType.association();
+  if (symbolTable.identifierExists(SymbolTableEntityType.abstractEntity(), identifierToMatch)) return SymbolTableEntityType.abstractEntity();
+
+  // since this is only being used to find properties that are part of the identity
+  // we won't look for extensions and subclasses now
+  return null;
+}
+
+export function findReferencedProperty(symbolTable: SymbolTable, startingEntityContext: EntityContext, propertyPath: string[], filter: (propertyRuleContext: any) => boolean): any {
+  let entityContext: ?EntityContext = startingEntityContext;
+  let entityName: ?string = null;
+  let propertyContext: any = null;
+
+  // because of the way the original C# code jumps out of the loop, must use for..of until rewrite
+  // eslint-disable-next-line no-restricted-syntax
+  for (const propertyPathPart of propertyPath) {
+    if (entityContext == null) {
+      if (entityName == null) throw new Error('PropertyPathLookup.findReferencedProperty: entityName unexpectedly null');
+      const entityType = getEntityType(symbolTable, entityName);
+      if (entityType == null) return null;
+      entityContext = symbolTable.get(entityType, entityName);
     }
 
-    public findReferencedProperty(startingEntityContext: EntityContext, propertyPath: string[], filter: (prop: IPropertyWithComponents) => boolean): IContextWithIdentifier {
-        let entityContext = startingEntityContext;
-        let entityName: string = null;
-        let propertyContext: IContextWithIdentifier = null;
-
-        for (let propertyPathPart of propertyPath) {
-            if (entityContext == null) {
-                let entityType = this.getEntityType(entityName);
-                if (entityType == null)
-                    return null;
-
-                entityContext = this.symbolTable.get(entityType, entityName);
-            }
-
-            let matchingProperties = entityContext.propertySymbolTable.getWithoutContext(propertyPathPart).filter(filter);
-            if (!matchingProperties.Any()) {
-                if (!this.findAssociationDomainEntityProperty(entityContext, propertyPathPart, /*out*/ propertyContext))
-                    return null;
-            }
-            else if (matchingProperties.Count() > 1) {
-                return null;
-            }
-            else {
-                propertyContext = matchingProperties.First();
-            }
-
-            //   if ((propertyContext is MetaEdGrammar.ReferencePropertyContext)
-            //         || (propertyContext is MetaEdGrammar.FirstDomainEntityContext)
-            //         || (propertyContext is MetaEdGrammar.SecondDomainEntityContext))
-            //   entityName = propertyContext.idNode().getText();
-            //     else
-            entityName = null;
-
-            entityContext = null;
-        }
-
-        return propertyContext;
+    if (entityContext == null) throw new Error('PropertyPathLookup.findReferencedProperty: entityContext unexpectedly null');
+    const matchingProperties = entityContext.propertySymbolTable.getWithoutContext(propertyPathPart).filter(filter);
+    if (!R.isEmpty(matchingProperties)) {
+      propertyContext = findAssociationDomainEntityProperty(entityContext, propertyPathPart);
+      if (propertyContext == null) return null;
+    } else if (matchingProperties.length > 1) {
+      return null;
+    } else {
+      propertyContext = R.head(matchingProperties);
     }
 
-    private findAssociationDomainEntityProperty(entityContext: EntityContext, propertyNameToMatch: string, /*out*/  property: IContextWithIdentifier): bool {
-        property = null;
-        var associationContext = entityContext.context as MetaEdGrammar.AssociationContext;
-        if (associationContext == null)
-            return false;
+    if (propertyContext.ruleIndex === MetaEdGrammar.RULE_referenceProperty ||
+      propertyContext.ruleIndex === MetaEdGrammar.RULE_firstDomainEntity ||
+      propertyContext.ruleIndex === MetaEdGrammar.RULE_secondDomainEntity) {
+      entityName = propertyContext.propertyName().ID().getText();
+    } else entityName = null;
 
-        if (associationContext.firstDomainEntity().IdText() == propertyNameToMatch) {
-            property = associationContext.firstDomainEntity();
-        }
-        else if (associationContext.secondDomainEntity().IdText() == propertyNameToMatch) {
-            property = associationContext.secondDomainEntity();
-        }
-        else
-            return false;
+    entityContext = null;
+  }
 
-        return true;
-    }
+  return propertyContext;
+}
 
-    private getEntityType(identifierToMatch: string): string {
-        var domainEntityType = this.symbolTableEntityType.domainEntityEntityType();
-        if (this.symbolTable.identifierExists(domainEntityType, identifierToMatch))
-            return domainEntityType;
-
-        var associationType = this.symbolTableEntityType.associationEntityType();
-        if (this.symbolTable.identifierExists(associationType, identifierToMatch))
-            return associationType;
-
-        var abstractEntityType = this.symbolTableEntityType.abstractEntityEntityType();
-        if (this.symbolTable.identifierExists(abstractEntityType, identifierToMatch))
-            return abstractEntityType;
-
-        // since this is only being used to find properties that are part of the primary key
-        // we won't look for extensions and subclasses now
-
-        return null;
-    }
+export function validate(symbolTable: SymbolTable, startingEntityContext: EntityContext, propertyPath: string[], filter: (propertyRuleContext: any) => boolean): boolean {
+  return findReferencedProperty(symbolTable, startingEntityContext, propertyPath, filter) != null;
 }
