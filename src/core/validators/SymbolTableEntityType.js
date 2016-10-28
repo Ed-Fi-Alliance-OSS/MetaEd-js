@@ -59,6 +59,10 @@ export default class SymbolTableEntityType {
     return literal(MetaEdGrammar.DESCRIPTOR_ENTITY);
   }
 
+  static domain(): string {
+    return literal(MetaEdGrammar.DOMAIN);
+  }
+
   static domainEntity(): string {
     return literal(MetaEdGrammar.DOMAIN_ENTITY);
   }

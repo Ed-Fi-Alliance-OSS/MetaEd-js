@@ -1,17 +1,22 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
+// @flow
+import { subdomainErrorRule, includeSubdomainRule } from './SubdomainValidationRule';
+import { validForDuplicates, failureMessageForDuplicates } from '../ValidatorShared/MustNotDuplicate';
 
-export class SubdomainMustNotDuplicateDomainItems extends ValidationRuleBase<MetaEdGrammar.SubdomainContext>
-{
-    private static getDuplicateDomainItems(context: MetaEdGrammar.SubdomainContext): string[] {
-        let domainItemNames = context.domainItem().map(x => x.IdText());
-        return domainItemNames.GroupBy(x => x).filter(group => group.Count() > 1).map(group => group.Key).ToArray();
-    }
-    public isValid(context: MetaEdGrammar.SubdomainContext): boolean {
-        return SubdomainMustNotDuplicateDomainItems.getDuplicateDomainItems(context).length == 0;
-    }
-    public getFailureMessage(context: MetaEdGrammar.SubdomainContext): string {
-        let identifier = context.EntityName();
-        let duplicateDomainItems = SubdomainMustNotDuplicateDomainItems.getDuplicateDomainItems(context);
-        return `Subdomain '${identifier}' declares duplicate domain item${duplicateDomainItems.length > 1 ? "s" : ""} '${duplicateDomainItems.join(', ')}'.`;
-    }
+function idsToCheck(ruleContext: any) {
+  return ruleContext.domainItem().map(x => x.ID().getText());
 }
+
+const valid = validForDuplicates(idsToCheck);
+
+const failureMessage =
+  failureMessageForDuplicates(
+    'Subdomain',
+    'domain item',
+    (ruleContext: any): string => ruleContext.subdomainName().ID().getText(),
+    idsToCheck
+  );
+
+const validationRule = subdomainErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeSubdomainRule(validationRule);

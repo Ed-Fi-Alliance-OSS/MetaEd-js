@@ -1,6 +1,6 @@
 // @flow
 import { interchangeErrorRule, includeInterchangeRule } from './InterchangeValidationRule';
-import { validForDuplicates, failureMessageForDuplicates } from '../ValidatorShared/InterchangeMustNotDuplicate';
+import { validForDuplicates, failureMessageForDuplicates } from '../ValidatorShared/MustNotDuplicate';
 
 function idsToCheck(ruleContext: any) {
   return ruleContext.interchangeComponent().interchangeElement().map(x => x.ID().getText());
