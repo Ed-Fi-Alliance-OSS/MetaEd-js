@@ -1,5 +1,5 @@
-import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import chai from 'chai';
+import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper from '../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { includeRule } from '../../../../src/core/validators/ReferenceProperty/ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract';

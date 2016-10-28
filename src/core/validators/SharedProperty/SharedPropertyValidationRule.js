@@ -5,10 +5,19 @@ import { errorValidationRuleBase } from '../ValidationRuleBase';
 import { includeRule } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
-export const includeSharedPropertyRule = includeRule(MetaEdGrammar.RULE_sharedProperty);
+export const includeSharedDecimalPropertyRule = includeRule(MetaEdGrammar.RULE_sharedDecimalProperty);
+export const includeSharedIntegerPropertyRule = includeRule(MetaEdGrammar.RULE_sharedIntegerProperty);
+export const includeSharedShortPropertyRule = includeRule(MetaEdGrammar.RULE_sharedShortProperty);
+export const includeSharedStringPropertyRule = includeRule(MetaEdGrammar.RULE_sharedStringProperty);
 
-export const sharedPropertyErrorRule =
-    errorValidationRuleBase((ruleContext: any) : boolean => ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedProperty);
+export const sharedDecimalPropertyErrorRule =
+  errorValidationRuleBase((ruleContext: any) : boolean => ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedDecimalProperty);
+export const sharedIntegerPropertyErrorRule =
+  errorValidationRuleBase((ruleContext: any) : boolean => ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedIntegerProperty);
+export const sharedShortPropertyErrorRule =
+  errorValidationRuleBase((ruleContext: any) : boolean => ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedShortProperty);
+export const sharedStringPropertyErrorRule =
+  errorValidationRuleBase((ruleContext: any) : boolean => ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedStringProperty);
 
 export const validForShared = R.curry(
   (entityKey: string, ruleContext: any, symbolTable: SymbolTable): boolean =>
