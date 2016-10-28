@@ -1,14 +1,25 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-export class MergePartOfReferenceExistsOnlyInCoreNamespace extends ValidationRuleBase<MetaEdGrammar.MergePartOfReferenceContext>
-{
-    public isValid(context: MetaEdGrammar.MergePartOfReferenceContext): boolean {
-        let namespaceInfo = context.GetAncestorContext<INamespaceInfo>();
-        return !namespaceInfo.IsExtension;
-    }
-    public getFailureMessage(context: MetaEdGrammar.MergePartOfReferenceContext): string {
-        let namespaceInfo = context.GetAncestorContext<INamespaceInfo>();
-        let topLevelEntity = context.GetAncestorContext<ITopLevelEntity>();
-        let propertyWithComponents = context.GetAncestorContext<IPropertyWithComponents>();
-        return `'merge' is invalid for property ${propertyWithComponents.IdNode().getText()} on ${topLevelEntity.EntityIdentifier()} '${topLevelEntity.EntityName()}' in extension namespace ${namespaceInfo.NamespaceName}.  'merge' is only valid for properties on types in a core namespace.`
-    }
+// @flow
+import R from 'ramda';
+import { mergePartOfReferenceErrorRule, includeMergePartOfReferenceRule } from './MergePartOfReferenceValidationRule';
+import type SymbolTable from '../SymbolTable';
+import { entityIdentifier, entityName } from '../TopLevelEntityInformation';
+import { namespaceAncestorContext, topLevelEntityAncestorContext, propertyAncestorContext,
+  isExtensionNamespace, namespaceNameFor } from '../ValidationHelper';
+
+// eslint-disable-next-line no-unused-vars
+export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  return R.compose(R.not, isExtensionNamespace, namespaceAncestorContext)(ruleContext);
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  const namespaceName = namespaceNameFor(namespaceAncestorContext(ruleContext));
+  const parentEntity = topLevelEntityAncestorContext(ruleContext);
+  const propertyName = propertyAncestorContext(ruleContext).propertyName().ID().getText();
+  return `'merge' is invalid for property ${propertyName} on ${entityIdentifier(parentEntity)} '${entityName(parentEntity)}' in extension namespace ${namespaceName}.  'merge' is only valid for properties on types in a core namespace.`;
+}
+
+const validationRule = mergePartOfReferenceErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeMergePartOfReferenceRule(validationRule);

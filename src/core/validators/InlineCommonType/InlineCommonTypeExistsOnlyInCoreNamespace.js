@@ -1,12 +1,12 @@
 // @flow
+import R from 'ramda';
 import { inlineCommonTypePropertyErrorRule, includeInlineCommonTypePropertyRule } from './InlineCommonTypeValidationRule';
 import type SymbolTable from '../SymbolTable';
 import { namespaceAncestorContext, isExtensionNamespace, namespaceNameFor } from '../ValidationHelper';
 
 // eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
-  const parentNamespaceContext = namespaceAncestorContext(ruleContext);
-  return !isExtensionNamespace(parentNamespaceContext);
+  return R.compose(R.not, isExtensionNamespace, namespaceAncestorContext)(ruleContext);
 }
 
 // eslint-disable-next-line no-unused-vars
