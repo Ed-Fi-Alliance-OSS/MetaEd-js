@@ -1,14 +1,20 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-export class MergeStatementMustStartMergePathWithPropertyName extends ValidationRuleBase<MetaEdGrammar.MergePartOfReferenceContext>
-{
-    public isValid(context: MetaEdGrammar.MergePartOfReferenceContext): boolean {
-        let parent = __as__<MetaEdGrammar.ReferencePropertyContext>(context.Parent, MetaEdGrammar.ReferencePropertyContext);
-        if (parent == null)
-            return false;
-        let referenceName = parent.propertyName().IdText();
-        return context.mergePropertyPath().propertyPath().PropertyPathParts()[0] == referenceName;
-    }
-    public getFailureMessage(context: MetaEdGrammar.MergePartOfReferenceContext): string {
-        return "Merge statement must start first property path with the referenced entity name of the current property.";
-    }
+import { mergePartOfReferenceErrorRule, includeMergePartOfReferenceRule } from './MergePartOfReferenceValidationRule';
+import type SymbolTable from '../SymbolTable';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
+
+// eslint-disable-next-line no-unused-vars
+export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  if (ruleContext.parentCtx.ruleIndex !== MetaEdGrammar.RULE_referenceProperty) return false;
+  const firstPropertyPathPart = ruleContext.mergePropertyPath().propertyPath().ID().map(x => x.getText())[0];
+  return firstPropertyPathPart === ruleContext.parentCtx.propertyName().ID().getText();
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return 'Merge statement must start first property path with the referenced entity name of the current property.';
+}
+
+const validationRule = mergePartOfReferenceErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeMergePartOfReferenceRule(validationRule);
