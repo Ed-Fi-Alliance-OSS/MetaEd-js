@@ -1,8 +1,9 @@
 // @flow
-import { secondDomainEntityErrorRule, includeSecondDomainEntityRule } from './AssociationValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { valid, failureMessage } from './FirstDomainEntityPropertyMustNotCollideWithOtherProperty';
 
-const validationRule = secondDomainEntityErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeSecondDomainEntityRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_secondDomainEntity, validationRule);

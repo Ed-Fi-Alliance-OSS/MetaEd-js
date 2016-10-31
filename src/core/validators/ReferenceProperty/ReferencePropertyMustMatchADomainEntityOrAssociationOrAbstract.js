@@ -1,6 +1,8 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
-import { includeReferencePropertyRule, referencePropertyErrorRule } from './ReferencePropertyValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
@@ -17,7 +19,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Reference property '${ruleContext.propertyName().getText()}' does not match any declared domain entity or subclass, association or subclass, or abstract entity.`;
 }
 
-const validationRule = referencePropertyErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeReferencePropertyRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_referenceProperty, validationRule);

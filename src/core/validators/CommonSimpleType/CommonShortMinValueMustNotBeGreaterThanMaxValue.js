@@ -1,6 +1,8 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
-import { commonShortErrorRule, includeCommonShortRule } from './CommonSimpleTypeValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
 // eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
@@ -15,7 +17,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Common Short '${ruleContext.commonShortName().getText()}' has min value greater than max value.`;
 }
 
-const validationRule = commonShortErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeCommonShortRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_commonShort, validationRule);

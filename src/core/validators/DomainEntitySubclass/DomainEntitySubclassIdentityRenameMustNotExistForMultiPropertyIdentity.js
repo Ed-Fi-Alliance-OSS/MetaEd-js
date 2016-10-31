@@ -1,5 +1,7 @@
 // @flow
-import { domainEntitySubclassErrorRule, includeDomainEntitySubclassRule } from './DomainEntitySubclassValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { getProperty } from '../ValidationHelper';
 import type SymbolTable from '../SymbolTable';
 import SymbolTableEntityType from '../SymbolTableEntityType';
@@ -20,7 +22,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable) : string {
   return `Domain Entity '${ruleContext.entityName().getText()}' based on '${baseIdentifier}' is invalid for identity rename because parent entity '${baseIdentifier}' has more than one identity property.`;
 }
 
-const validationRule = domainEntitySubclassErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeDomainEntitySubclassRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_domainEntitySubclass, validationRule);

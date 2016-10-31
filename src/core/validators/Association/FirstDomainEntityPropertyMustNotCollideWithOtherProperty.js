@@ -1,5 +1,7 @@
 // @flow
-import { firstDomainEntityErrorRule, includeFirstDomainEntityRule } from './AssociationValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import SymbolTable from '../SymbolTable';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
@@ -19,7 +21,6 @@ export function failureMessage(ruleContext: any, symbolTable: SymbolTable): stri
   return `Entity ${associationName} has duplicate properties named ${ruleContext.propertyName().ID().getText()}`;
 }
 
-const validationRule = firstDomainEntityErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeFirstDomainEntityRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_firstDomainEntity, validationRule);

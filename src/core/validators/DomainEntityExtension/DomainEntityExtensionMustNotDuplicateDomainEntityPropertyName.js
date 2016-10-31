@@ -1,5 +1,7 @@
 // @flow
-import { domainEntityExtensionErrorRule, includeDomainEntityExtensionRule } from './DomainEntityExtensionValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 import { valid, failureMessage } from '../ValidatorShared/ExtensionMustNotDuplicatePropertyName';
 
@@ -9,7 +11,6 @@ const domainEntityExtensionValid =
 const domainEntityExtensionFailureMessage =
   failureMessage('Domain Entity', SymbolTableEntityType.domainEntity(), SymbolTableEntityType.domainEntityExtension());
 
-const validationRule = domainEntityExtensionErrorRule(domainEntityExtensionValid, domainEntityExtensionFailureMessage);
-export { validationRule as default };
-
-export const includeRule = includeDomainEntityExtensionRule(validationRule);
+const validationRule = errorRuleBase(domainEntityExtensionValid, domainEntityExtensionFailureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_domainEntityExtension, validationRule);

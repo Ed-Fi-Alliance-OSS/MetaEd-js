@@ -1,10 +1,10 @@
 // @flow
-import { sharedDecimalPropertyErrorRule, includeSharedDecimalPropertyRule,
-  validForShared, failureMessageForShared } from './SharedPropertyValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { validForShared, failureMessageForShared } from './SharedPropertyValidationRule';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
-const validationRule =
-  sharedDecimalPropertyErrorRule(validForShared(SymbolTableEntityType.commonDecimal()), failureMessageForShared('common decimal'));
-export { validationRule as default };
-
-export const includeRule = includeSharedDecimalPropertyRule(validationRule);
+const validationRule = errorRuleBase(validForShared(SymbolTableEntityType.commonDecimal()), failureMessageForShared('common decimal'));
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_sharedDecimalProperty, validationRule);

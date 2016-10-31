@@ -1,7 +1,9 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
 import { parentIdentifierForPropertyContext, parentTypeNameForPropertyContext } from '../../../grammar/ParserRuleContextExtensions';
-import { stringPropertyErrorRule, includeStringPropertyRule } from './StringPropertyValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { valid } from '../CommonSimpleType/CommonStringMinLengthMustNotBeGreaterThanMaxLength';
 
 // eslint-disable-next-line no-unused-vars
@@ -10,7 +12,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
     ` '${parentIdentifierForPropertyContext(ruleContext)}' has min length greater than max length.`;
 }
 
-const validationRule = stringPropertyErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeStringPropertyRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_stringProperty, validationRule);

@@ -1,5 +1,7 @@
 // @flow
-import { associationSubclassErrorRule, includeAssociationSubclassRule } from './AssociationSubclassValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import type SymbolTable from '../SymbolTable';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
@@ -13,8 +15,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable) : string {
   return `Association '${ruleContext.associationName().getText()}' based on '${ruleContext.baseName().getText()}' does not match any declared Association.`;
 }
 
-const validationRule = associationSubclassErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeAssociationSubclassRule(validationRule);
-
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_associationSubclass, validationRule);

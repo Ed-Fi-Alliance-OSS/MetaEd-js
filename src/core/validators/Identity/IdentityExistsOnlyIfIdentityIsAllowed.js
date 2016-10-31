@@ -1,7 +1,8 @@
 // @flow
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import type SymbolTable from '../SymbolTable';
-import { identityErrorRule, includeIdentityRule } from './IdentityValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { topLevelEntityAncestorContext, propertyAncestorContext } from '../ValidationHelper';
 import { entityIdentifier, entityName } from '../TopLevelEntityInformation';
 import SymbolTableEntityType from '../SymbolTableEntityType';
@@ -37,7 +38,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
     `'is part of identity' is only valid for properties on types: ${validIdentityTokenNames.join(', ')}.`;
 }
 
-const validationRule = identityErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeIdentityRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_identity, validationRule);

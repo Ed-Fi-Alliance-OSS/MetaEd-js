@@ -1,6 +1,8 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
-import { includeIncludePropertyRule, includePropertyErrorRule } from './IncludePropertyValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
 // eslint-disable-next-line no-unused-vars
@@ -16,7 +18,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Include property '${ruleContext.propertyName().getText()}' does not match any declared common type, inline common type, or choice type.`;
 }
 
-const validationRule = includePropertyErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeIncludePropertyRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_includeProperty, validationRule);

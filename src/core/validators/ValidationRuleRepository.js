@@ -5,17 +5,26 @@ import type { ValidationRule } from './ValidationRuleBase';
 
 export type ValidationRuleRepository = Map<number, List<ValidationRule>>;
 
-// include list appender curried for composition
-function includeRuleBase(ruleIndex: number, validationRule: ValidationRule, includeList: ValidationRuleRepository): ValidationRuleRepository {
-  const ruleList = includeList.get(ruleIndex);
-  if (ruleList == null) {
-    return includeList.set(ruleIndex, List.of(validationRule));
+export const includeRuleBase = R.curry(
+  (ruleIndex: number, validationRule: ValidationRule, includeList: ValidationRuleRepository): ValidationRuleRepository => {
+    const ruleList = includeList.get(ruleIndex);
+    if (ruleList == null) {
+      return includeList.set(ruleIndex, List.of(validationRule));
+    }
+
+    return includeList.set(ruleIndex, ruleList.push(validationRule));
   }
+);
 
-  return includeList.set(ruleIndex, ruleList.push(validationRule));
-}
-
-export const includeRule = R.curry(includeRuleBase);
+export const includeRuleBaseForMultiRuleIndexes = R.curry(
+  (ruleIndexes: number[], validationRule: ValidationRule, includeList: ValidationRuleRepository): ValidationRuleRepository => {
+    let currentRepository = includeList;
+    ruleIndexes.forEach(ruleIndex => {
+      currentRepository = includeRuleBase(ruleIndex, validationRule, includeList);
+    });
+    return currentRepository;
+  }
+);
 
 export function newRepository(): ValidationRuleRepository {
   return new Map();

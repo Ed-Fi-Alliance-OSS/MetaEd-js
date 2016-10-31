@@ -1,7 +1,9 @@
 // @flow
 import R from 'ramda';
 import type SymbolTable from '../SymbolTable';
-import { domainEntityErrorRule, includeDomainEntityRule } from './DomainEntityValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { namespaceAncestorContext, getProperty } from '../ValidationHelper';
 
 function isExtension(namespaceContext: any): boolean {
@@ -19,7 +21,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Domain Entity ${ruleContext.entityName().ID().getText()} has multiple properties with a property name of 'UniqueId'.  Only one column in a core domain entity can be named 'UniqueId'.`;
 }
 
-const validationRule = domainEntityErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeDomainEntityRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_domainEntity, validationRule);

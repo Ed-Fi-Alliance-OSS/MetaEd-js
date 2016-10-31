@@ -1,9 +1,9 @@
 // @flow
-import { includeInterchangeIdentityTemplateRule, interchangeIdentityTemplateErrorRule,
-  validForDomainEntityOrAssociationOrSubclass, failureMessageForEntityTitle } from './InterchangeValidationRule';
+import { validForDomainEntityOrAssociationOrSubclass, failureMessageForEntityTitle } from './InterchangeValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
-const validationRule =
-  interchangeIdentityTemplateErrorRule(validForDomainEntityOrAssociationOrSubclass, failureMessageForEntityTitle('Interchange identity template'));
-export { validationRule as default };
-
-export const includeRule = includeInterchangeIdentityTemplateRule(validationRule);
+const validationRule = errorRuleBase(validForDomainEntityOrAssociationOrSubclass, failureMessageForEntityTitle('Interchange identity template'));
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_interchangeIdentityTemplate, validationRule);

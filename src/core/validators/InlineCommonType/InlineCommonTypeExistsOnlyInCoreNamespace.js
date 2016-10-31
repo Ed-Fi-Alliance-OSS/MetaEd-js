@@ -1,6 +1,8 @@
 // @flow
 import R from 'ramda';
-import { inlineCommonTypePropertyErrorRule, includeInlineCommonTypePropertyRule } from './InlineCommonTypeValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import type SymbolTable from '../SymbolTable';
 import { namespaceAncestorContext, isExtensionNamespace, namespaceNameFor } from '../ValidationHelper';
 
@@ -15,7 +17,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Inline Common Type '${ruleContext.inlineCommonName().ID().getText()}' is not valid in extension namespace '${namespaceNameFor(parentNamespaceContext)}`;
 }
 
-const validationRule = inlineCommonTypePropertyErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeInlineCommonTypePropertyRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_inlineCommonType, validationRule);

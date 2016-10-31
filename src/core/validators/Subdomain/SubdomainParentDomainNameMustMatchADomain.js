@@ -1,6 +1,8 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
-import { subdomainErrorRule, includeSubdomainRule } from './SubdomainValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
@@ -12,7 +14,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Subdomain '${ruleContext.subdomainName().ID().getText()}' is part of '${ruleContext.parentDomainName().ID().getText()}' which does not match any declared domain.`;
 }
 
-const validationRule = subdomainErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeSubdomainRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_subdomain, validationRule);

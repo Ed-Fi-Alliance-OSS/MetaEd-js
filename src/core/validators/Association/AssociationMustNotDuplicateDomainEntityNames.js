@@ -1,5 +1,7 @@
 // @flow
-import { associationErrorRule, includeAssociationRule } from './AssociationValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import SymbolTable from '../SymbolTable';
 
 // eslint-disable-next-line no-unused-vars
@@ -21,7 +23,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Association '${identifier}' has duplicate declarations of Domain Entity '${firstDomainEntityName}'`;
 }
 
-const validationRule = associationErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeAssociationRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_association, validationRule);

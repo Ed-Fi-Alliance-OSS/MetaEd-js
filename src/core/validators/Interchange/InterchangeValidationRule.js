@@ -1,21 +1,7 @@
 // @flow
 import R from 'ramda';
-import { errorValidationRuleBase } from '../ValidationRuleBase';
-import { includeRule } from '../ValidationRuleRepository';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import type SymbolTable from '../SymbolTable';
 import SymbolTableEntityType from '../SymbolTableEntityType';
-
-export const includeInterchangeRule = includeRule(MetaEdGrammar.RULE_interchange);
-export const includeInterchangeElementRule = includeRule(MetaEdGrammar.RULE_interchangeElement);
-export const includeInterchangeIdentityTemplateRule = includeRule(MetaEdGrammar.RULE_interchangeIdentityTemplate);
-
-export const interchangeErrorRule =
-  errorValidationRuleBase((ruleContext: any) : boolean => ruleContext.ruleIndex === MetaEdGrammar.RULE_interchange);
-export const interchangeElementErrorRule =
-  errorValidationRuleBase((ruleContext: any) : boolean => ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeElement);
-export const interchangeIdentityTemplateErrorRule =
-  errorValidationRuleBase((ruleContext: any) : boolean => ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeIdentityTemplate);
 
 export const validForDomainEntityOrAssociationOrSubclass = (ruleContext: any, symbolTable: SymbolTable): boolean => {
   const identifierToMatch = ruleContext.ID().getText();

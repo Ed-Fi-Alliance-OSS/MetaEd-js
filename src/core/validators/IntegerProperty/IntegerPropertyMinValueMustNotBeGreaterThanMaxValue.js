@@ -1,7 +1,9 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
 import { parentIdentifierForPropertyContext, parentTypeNameForPropertyContext } from '../../../grammar/ParserRuleContextExtensions';
-import { integerPropertyErrorRule, includeIntegerPropertyRule } from './IntegerPropertyValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { valid } from '../CommonSimpleType/CommonIntegerMinValueMustNotBeGreaterThanMaxValue';
 
 // eslint-disable-next-line no-unused-vars
@@ -10,8 +12,7 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
     ` '${parentIdentifierForPropertyContext(ruleContext)}' has min value greater than max value.`;
 }
 
-const validationRule = integerPropertyErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeIntegerPropertyRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_integerProperty, validationRule);
 

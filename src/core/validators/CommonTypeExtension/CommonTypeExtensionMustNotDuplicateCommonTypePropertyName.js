@@ -1,7 +1,9 @@
 // @flow
 import R from 'ramda';
 import type SymbolTable from '../SymbolTable';
-import { commonTypeExtensionErrorRule, includeCommonTypeExtensionRule } from './CommonTypeExtensionValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
 // eslint-disable-next-line no-unused-vars
@@ -23,7 +25,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Common Type additions '${identifier}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of Common Type.`;
 }
 
-const validationRule = commonTypeExtensionErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeCommonTypeExtensionRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_commonTypeExtension, validationRule);

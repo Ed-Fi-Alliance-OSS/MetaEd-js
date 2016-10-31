@@ -1,6 +1,8 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
-import { includePropertyErrorRule, includeIncludePropertyRule } from './IncludePropertyValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { topLevelEntityAncestorContext } from '../ValidationHelper';
 import { entityIdentifier, entityName } from '../TopLevelEntityInformation';
 
@@ -15,7 +17,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Include property '${ruleContext.propertyName().getText()}' is invalid to be used for the identity of ${entityIdentifier(parentEntity)} '${entityName(parentEntity)}'`;
 }
 
-const validationRule = includePropertyErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeIncludePropertyRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_includeProperty, validationRule);

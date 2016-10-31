@@ -1,6 +1,8 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
-import { descriptorPropertyErrorRule, includeDescriptorPropertyRule } from './DescriptorPropertyValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
 // eslint-disable-next-line no-unused-vars
@@ -13,7 +15,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Descriptor property '${ruleContext.propertyName().getText()}' does not match any declared descriptor.`;
 }
 
-const validationRule = descriptorPropertyErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeDescriptorPropertyRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_descriptorProperty, validationRule);

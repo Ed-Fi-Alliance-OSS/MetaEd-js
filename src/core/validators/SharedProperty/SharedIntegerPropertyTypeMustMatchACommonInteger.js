@@ -1,10 +1,10 @@
 // @flow
-import { sharedIntegerPropertyErrorRule, includeSharedIntegerPropertyRule,
-  validForShared, failureMessageForShared } from './SharedPropertyValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { validForShared, failureMessageForShared } from './SharedPropertyValidationRule';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
-const validationRule =
-  sharedIntegerPropertyErrorRule(validForShared(SymbolTableEntityType.commonInteger()), failureMessageForShared('common integer'));
-export { validationRule as default };
-
-export const includeRule = includeSharedIntegerPropertyRule(validationRule);
+const validationRule = errorRuleBase(validForShared(SymbolTableEntityType.commonInteger()), failureMessageForShared('common integer'));
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_sharedIntegerProperty, validationRule);

@@ -1,10 +1,11 @@
 // @flow
 import type SymbolTable, { EntityContext } from '../SymbolTable';
-import { includePropertyErrorRule, includeIncludePropertyRule } from './IncludePropertyValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { topLevelEntityAncestorContext, propertyAncestorContext } from '../ValidationHelper';
 import { entityIdentifier, entityName } from '../TopLevelEntityInformation';
 import SymbolTableEntityType from '../SymbolTableEntityType';
-import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 
 function cardinalitiesMatch(includePropertyContext: any, otherIncludePropertyContext: any): boolean {
   const propertyAnnotationContext = includePropertyContext.propertyComponents().propertyAnnotation();
@@ -56,7 +57,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `'include extension' is invalid for property ${parentPropertyName} on ${entityIdentifier(parentEntity)} '${entityName(parentEntity)}'.  'include extension' is only valid for referencing common type extensions.`;
 }
 
-const validationRule = includePropertyErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeIncludePropertyRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_includeProperty, validationRule);

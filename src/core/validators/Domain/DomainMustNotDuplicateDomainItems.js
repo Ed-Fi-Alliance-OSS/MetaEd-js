@@ -1,5 +1,7 @@
 // @flow
-import { domainErrorRule, includeDomainRule } from './DomainValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { validForDuplicates, failureMessageForDuplicates } from '../ValidatorShared/MustNotDuplicate';
 
 function idsToCheck(ruleContext: any) {
@@ -16,7 +18,6 @@ const failureMessage =
     idsToCheck
   );
 
-const validationRule = domainErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeDomainRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_domain, validationRule);

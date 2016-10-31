@@ -1,6 +1,8 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
-import { descriptorErrorRule, includeDescriptorRule } from './DescriptorValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { findDuplicates } from '../ValidationHelper';
 
 function getShortDescriptions(ruleContext: any) {
@@ -23,7 +25,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Descriptor '${identifier}' declares duplicate item${duplicates.length > 1 ? 's' : ''} '${duplicates.join(joinString)}'.`;
 }
 
-const validationRule = descriptorErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeDescriptorRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_descriptor, validationRule);

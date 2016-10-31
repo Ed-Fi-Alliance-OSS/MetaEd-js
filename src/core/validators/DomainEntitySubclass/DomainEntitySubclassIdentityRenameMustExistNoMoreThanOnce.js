@@ -1,9 +1,11 @@
 // @flow
-import { domainEntitySubclassErrorRule, includeDomainEntitySubclassRule } from './DomainEntitySubclassValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { valid, failureMessage } from '../ValidatorShared/SubclassIdentityRenameMustExistNoMoreThanOnce';
 
 const domainEntitySubclassFailureMessage = failureMessage('Domain Entity', (ruleContext: any) => ruleContext.entityName().getText());
-const validationRule = domainEntitySubclassErrorRule(valid, domainEntitySubclassFailureMessage);
-export { validationRule as default };
 
-export const includeRule = includeDomainEntitySubclassRule(validationRule);
+const validationRule = errorRuleBase(valid, domainEntitySubclassFailureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_domainEntitySubclass, validationRule);
