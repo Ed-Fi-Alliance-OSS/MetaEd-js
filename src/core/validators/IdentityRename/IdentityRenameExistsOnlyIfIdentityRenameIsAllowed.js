@@ -4,7 +4,7 @@ import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { topLevelEntityAncestorContext, propertyAncestorContext } from '../ValidationHelper';
-import { entityIdentifier, entityName } from '../TopLevelEntityInformation';
+import { entityIdentifier, entityName } from '../RuleInformation';
 
 const validIdentityRenameParentRuleIndices: number[] = [
   MetaEdGrammar.RULE_domainEntitySubclass,

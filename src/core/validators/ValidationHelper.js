@@ -4,7 +4,7 @@ import grammarInstance from '../../grammar/MetaEdGrammarInstance';
 import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 import type SymbolTable from './SymbolTable';
 import { topLevelEntityTypes, commonSimpleEntityTypes } from './SymbolTableEntityType';
-import { topLevelEntityRules } from './TopLevelEntityInformation';
+import { topLevelEntityRules } from './RuleInformation';
 import { propertyRules } from './PropertyInformation';
 
 function getAncestorContextNullable(ruleIndexes: number[], ruleContext: any): any {

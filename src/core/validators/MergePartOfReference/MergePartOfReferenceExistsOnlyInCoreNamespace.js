@@ -1,8 +1,10 @@
 // @flow
 import R from 'ramda';
-import { mergePartOfReferenceErrorRule, includeMergePartOfReferenceRule } from './MergePartOfReferenceValidationRule';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import type SymbolTable from '../SymbolTable';
-import { entityIdentifier, entityName } from '../TopLevelEntityInformation';
+import { entityIdentifier, entityName } from '../RuleInformation';
 import { namespaceAncestorContext, topLevelEntityAncestorContext, propertyAncestorContext,
   isExtensionNamespace, namespaceNameFor } from '../ValidationHelper';
 
@@ -19,7 +21,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `'merge' is invalid for property ${propertyName} on ${entityIdentifier(parentEntity)} '${entityName(parentEntity)}' in extension namespace ${namespaceName}.  'merge' is only valid for properties on types in a core namespace.`;
 }
 
-const validationRule = mergePartOfReferenceErrorRule(valid, failureMessage);
-export { validationRule as default };
-
-export const includeRule = includeMergePartOfReferenceRule(validationRule);
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_mergePartOfReference, validationRule);

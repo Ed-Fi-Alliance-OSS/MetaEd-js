@@ -20,7 +20,7 @@ export const includeRuleBaseForMultiRuleIndexes = R.curry(
   (ruleIndexes: number[], validationRule: ValidationRule, includeList: ValidationRuleRepository): ValidationRuleRepository => {
     let currentRepository = includeList;
     ruleIndexes.forEach(ruleIndex => {
-      currentRepository = includeRuleBase(ruleIndex, validationRule, includeList);
+      currentRepository = includeRuleBase(ruleIndex, validationRule, currentRepository);
     });
     return currentRepository;
   }

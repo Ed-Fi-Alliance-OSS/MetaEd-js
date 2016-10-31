@@ -4,7 +4,7 @@ import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import { topLevelEntityAncestorContext } from '../ValidationHelper';
-import { entityIdentifier, entityName } from '../TopLevelEntityInformation';
+import { entityIdentifier, entityName } from '../RuleInformation';
 
 // eslint-disable-next-line no-unused-vars
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {

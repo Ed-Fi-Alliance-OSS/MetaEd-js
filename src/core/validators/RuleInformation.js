@@ -33,7 +33,7 @@ export function entityIdentifier(ruleContext: any): string {
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_subdomain) {
     return `${ruleContext.SUBDOMAIN().getText()} ${ruleContext.SUBDOMAIN_OF().getText()} ${ruleContext.parentDomainName().ID().getText()}`;
   }
-  throw new Error(`TopLevelEntityInformation.entityIdentifier encountered unknown context with rule index ${ruleContext.ruleIndex}.`);
+  throw new Error(`RuleInformation.entityIdentifier encountered unknown context with rule index ${ruleContext.ruleIndex}.`);
 }
 
 export function entityName(ruleContext: any): string {
@@ -47,7 +47,7 @@ export function entityName(ruleContext: any): string {
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonShort) return ruleContext.commonShortName().ID().getText();
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonString) return ruleContext.commonStringName().ID().getText();
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonType) return ruleContext.commonName().ID().getText();
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonTypeExtension) return ruleContext.commonName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonTypeExtension) return ruleContext.extendeeName().ID().getText();
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_descriptor) return ruleContext.descriptorName().ID().getText();
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domain) return ruleContext.domainName().ID().getText();
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntity) return ruleContext.entityName().ID().getText();
@@ -56,9 +56,17 @@ export function entityName(ruleContext: any): string {
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_enumeration) return ruleContext.enumerationName().ID().getText();
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_inlineCommonType) return ruleContext.inlineCommonName().ID().getText();
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchange) return ruleContext.interchangeName().ID().getText();
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeExtension) return ruleContext.interchangeName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeExtension) return ruleContext.extendeeName().ID().getText();
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_subdomain) return ruleContext.subdomainName().ID().getText();
-  throw new Error(`TopLevelEntityInformation.entityName encountered unknown context with rule index ${ruleContext.ruleIndex}.`);
+  throw new Error(`RuleInformation.entityName encountered unknown context with rule index ${ruleContext.ruleIndex}.`);
+}
+
+export function itemName(ruleContext: any): string {
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainItem) return ruleContext.ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_enumerationItem) return ruleContext.shortDescription().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeElement) return ruleContext.ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeIdentityTemplate) return ruleContext.ID().getText();
+  throw new Error(`RuleInformation.itemName encountered unknown context with rule index ${ruleContext.ruleIndex}.`);
 }
 
 export const topLevelEntityRules: number[] = [
@@ -83,4 +91,35 @@ export const topLevelEntityRules: number[] = [
   MetaEdGrammar.RULE_interchange,
   MetaEdGrammar.RULE_interchangeExtension,
   MetaEdGrammar.RULE_subdomain,
+];
+
+export const propertyRules: number[] = [
+  MetaEdGrammar.RULE_booleanProperty,
+  MetaEdGrammar.RULE_currencyProperty,
+  MetaEdGrammar.RULE_dateProperty,
+  MetaEdGrammar.RULE_decimalProperty,
+  MetaEdGrammar.RULE_descriptorProperty,
+  MetaEdGrammar.RULE_durationProperty,
+  MetaEdGrammar.RULE_enumerationProperty,
+  MetaEdGrammar.RULE_firstDomainEntity,
+  MetaEdGrammar.RULE_includeProperty,
+  MetaEdGrammar.RULE_integerProperty,
+  MetaEdGrammar.RULE_percentProperty,
+  MetaEdGrammar.RULE_referenceProperty,
+  MetaEdGrammar.RULE_secondDomainEntity,
+  MetaEdGrammar.RULE_sharedDecimalProperty,
+  MetaEdGrammar.RULE_sharedIntegerProperty,
+  MetaEdGrammar.RULE_sharedShortProperty,
+  MetaEdGrammar.RULE_sharedStringProperty,
+  MetaEdGrammar.RULE_shortProperty,
+  MetaEdGrammar.RULE_stringProperty,
+  MetaEdGrammar.RULE_timeProperty,
+  MetaEdGrammar.RULE_yearProperty,
+];
+
+export const itemRules: number[] = [
+  MetaEdGrammar.RULE_domainItem,
+  MetaEdGrammar.RULE_enumerationItem,
+  MetaEdGrammar.RULE_interchangeElement,
+  MetaEdGrammar.RULE_interchangeIdentityTemplate,
 ];
