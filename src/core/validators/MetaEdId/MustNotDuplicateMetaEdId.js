@@ -1,13 +1,22 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-export class MustNotDuplicateMetaEdId extends ValidationRuleBase<MetaEdGrammar.MetaEdIdContext>
-{
-    private _trackedMetaEdIds: ISet<string> = new HashSet<string>();
-    public isValid(context: MetaEdGrammar.MetaEdIdContext): boolean {
-        let metaEdId: string = context.GetValue();
-        return this._trackedMetaEdIds.Add(metaEdId);
-    }
-    public getFailureMessage(context: MetaEdGrammar.MetaEdIdContext): string {
-        let metaEdId: string = context.GetValue();
-        return `MetaEdId '${metaEdId}' exists on multiple entities.  All MetaEdIds must be globally unique.';
-    }
+// @flow
+import type SymbolTable from '../SymbolTable';
+import { metaEdIdErrorRule, includeMetaEdIdRule } from './MetaEdIdValidationRule';
+import repository from './MetaEdIdTrackerRepository';
+
+// eslint-disable-next-line no-unused-vars
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  const metaEdId: string = ruleContext.METAED_ID().getText();
+  if (repository.has(metaEdId)) return false;
+  repository.add(metaEdId);
+  return true;
 }
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `MetaEdId '${ruleContext.METAED_ID().getText()}' exists on multiple entities.  All MetaEdIds must be globally unique.`;
+}
+
+const validationRule = metaEdIdErrorRule(valid, failureMessage);
+export { validationRule as default };
+
+export const includeRule = includeMetaEdIdRule(validationRule);
