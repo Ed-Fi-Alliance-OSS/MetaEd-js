@@ -4,35 +4,25 @@ import type SymbolTable, { EntityContext } from '../SymbolTable';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 
-export function matchAllIdentityProperties(): (propertyRuleContext: any) => boolean {
-  return propertyWithComponents => propertyWithComponents.propertyComponents().propertyAnnotation().identity() != null ||
-  propertyWithComponents.propertyComponents().propertyAnnotation().identityRename() != null;
+// eslint-disable-next-line no-unused-vars
+export function matchAllIdentityProperties(propertyRuleContext: any, index: number): boolean {
+  return propertyRuleContext.propertyComponents().propertyAnnotation().identity() != null ||
+    propertyRuleContext.propertyComponents().propertyAnnotation().identityRename() != null;
 }
 
-export function matchAllButFirstAsIdentityProperties(): (propertyRuleContext: any) => boolean {
-  let first: boolean = true;
-  let firstComponent: any = null;
-
-  return (components: any): boolean => {
-    if (first) {
-      first = false;
-      firstComponent = components;
-      return true;
-    }
-
-    if (firstComponent != null && firstComponent === components) return true;
-    return components.propertyComponents().propertyAnnotation().identity() != null;
-  };
+export function matchAllButFirstAsIdentityProperties(propertyRuleContext: any, index: number): boolean {
+  if (index === 0) return true;
+  return matchAllIdentityProperties(propertyRuleContext, index);
 }
 
 function findAssociationDomainEntityProperty(entityContext: EntityContext, propertyNameToMatch: string): any {
   if (entityContext.context.ruleIndex !== MetaEdGrammar.RULE_association) return null;
 
-  if (entityContext.context.firstDomainEntity().propertyName().ID.getText() === propertyNameToMatch) {
+  if (entityContext.context.firstDomainEntity().propertyName().ID().getText() === propertyNameToMatch) {
     return entityContext.context.firstDomainEntity();
   }
 
-  if (entityContext.context.secondDomainEntity().propertyName().ID.getText() === propertyNameToMatch) {
+  if (entityContext.context.secondDomainEntity().propertyName().ID().getText() === propertyNameToMatch) {
     return entityContext.context.secondDomainEntity();
   }
 
@@ -49,7 +39,10 @@ function getEntityType(symbolTable: SymbolTable, identifierToMatch: string): ?st
   return null;
 }
 
-export function findReferencedProperty(symbolTable: SymbolTable, startingEntityContext: EntityContext, propertyPath: string[], filter: (propertyRuleContext: any) => boolean): any {
+export function findReferencedProperty(symbolTable: SymbolTable,
+                                       startingEntityContext: EntityContext,
+                                       propertyPath: string[],
+                                       filter: (propertyRuleContext: any, index: number) => boolean): any {
   let entityContext: ?EntityContext = startingEntityContext;
   let entityName: ?string = null;
   let propertyContext: any = null;
@@ -65,14 +58,15 @@ export function findReferencedProperty(symbolTable: SymbolTable, startingEntityC
     }
 
     if (entityContext == null) throw new Error('PropertyPathLookup.findReferencedProperty: entityContext unexpectedly null');
-    const matchingProperties = entityContext.propertySymbolTable.getWithoutContext(propertyPathPart).filter(filter);
-    if (!R.isEmpty(matchingProperties)) {
+    const candidatePropertyContexts = entityContext.propertySymbolTable.getWithoutContext(propertyPathPart);
+    const matchingPropertyContexts = R.addIndex(R.filter)(filter, candidatePropertyContexts);
+    if (R.isEmpty(matchingPropertyContexts)) {
       propertyContext = findAssociationDomainEntityProperty(entityContext, propertyPathPart);
       if (propertyContext == null) return null;
-    } else if (matchingProperties.length > 1) {
+    } else if (matchingPropertyContexts.length > 1) {
       return null;
     } else {
-      propertyContext = R.head(matchingProperties);
+      propertyContext = R.head(matchingPropertyContexts);
     }
 
     if (propertyContext.ruleIndex === MetaEdGrammar.RULE_referenceProperty ||
@@ -87,6 +81,9 @@ export function findReferencedProperty(symbolTable: SymbolTable, startingEntityC
   return propertyContext;
 }
 
-export function validate(symbolTable: SymbolTable, startingEntityContext: EntityContext, propertyPath: string[], filter: (propertyRuleContext: any) => boolean): boolean {
+export function validate(symbolTable: SymbolTable,
+                         startingEntityContext: EntityContext,
+                         propertyPath: string[],
+                         filter: (propertyRuleContext: any, index: number) => boolean): boolean {
   return findReferencedProperty(symbolTable, startingEntityContext, propertyPath, filter) != null;
 }

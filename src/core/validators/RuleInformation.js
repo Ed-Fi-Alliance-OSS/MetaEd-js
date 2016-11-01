@@ -61,6 +61,31 @@ export function entityName(ruleContext: any): string {
   throw new Error(`RuleInformation.entityName encountered unknown context with rule index ${ruleContext.ruleIndex}.`);
 }
 
+export function propertyName(ruleContext: any): string {
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_booleanProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_currencyProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_dateProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_decimalProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_descriptorProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_durationProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_enumerationProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_firstDomainEntity) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_includeProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_integerProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_percentProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_referenceProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_secondDomainEntity) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedDecimalProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedIntegerProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedShortProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedStringProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_shortProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_stringProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_timeProperty) return ruleContext.propertyName().ID().getText();
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_yearProperty) return ruleContext.propertyName().ID().getText();
+  throw new Error(`RuleInformation.propertyName encountered unknown context with rule index ${ruleContext.ruleIndex}.`);
+}
+
 export function itemName(ruleContext: any): string {
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainItem) return ruleContext.ID().getText();
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_enumerationItem) return ruleContext.shortDescription().getText();
