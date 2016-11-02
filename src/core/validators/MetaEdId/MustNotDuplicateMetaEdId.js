@@ -3,7 +3,9 @@ import type SymbolTable from '../SymbolTable';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
-import repository from './MetaEdIdTrackerRepository';
+
+// WARNING: maintains state
+const repository = new Set();
 
 // eslint-disable-next-line no-unused-vars
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {

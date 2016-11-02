@@ -118,6 +118,13 @@ export const topLevelEntityRules: number[] = [
   MetaEdGrammar.RULE_subdomain,
 ];
 
+export const topLevelEntityExtensionRules: number[] = [
+  MetaEdGrammar.RULE_associationExtension,
+  MetaEdGrammar.RULE_commonTypeExtension,
+  MetaEdGrammar.RULE_domainEntityExtension,
+  MetaEdGrammar.RULE_interchangeExtension,
+];
+
 export const propertyRules: number[] = [
   MetaEdGrammar.RULE_booleanProperty,
   MetaEdGrammar.RULE_currencyProperty,
