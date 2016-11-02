@@ -6,7 +6,6 @@ import { lookupParentEntityContext, propertyPathParts } from './MergePartOfRefer
 import type SymbolTable from '../SymbolTable';
 import { validate, matchAllIdentityProperties } from './PropertyPathLookup';
 
-// eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   // first parent - mergePartOfReference
   // second parent - referenceProperty

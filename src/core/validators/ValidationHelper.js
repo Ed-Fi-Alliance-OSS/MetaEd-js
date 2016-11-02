@@ -13,18 +13,19 @@ function getAncestorContextNullable(ruleIndexes: number[], ruleContext: any): an
   return getAncestorContextNullable(ruleIndexes, ruleContext.parentCtx);
 }
 
-function getAncestorContext(ruleIndexes: number[], ruleContext: any): any {
-  const ancestor = getAncestorContextNullable(ruleIndexes, ruleContext);
-  if (ancestor === null) {
-    throw new Error(`Unable to find matching ancestor on context of type ${grammarInstance.ruleNames[ruleContext.ruleIndex]}`);
+const getAncestorContext = R.curry(
+  (ruleIndexes: number[], ruleContext: any): any => {
+    const ancestor = getAncestorContextNullable(ruleIndexes, ruleContext);
+    if (ancestor === null) {
+      throw new Error(`Unable to find matching ancestor on context of type ${grammarInstance.ruleNames[ruleContext.ruleIndex]}`);
+    }
+    return ancestor;
   }
-  return ancestor;
-}
+);
 
-const curriedGetAncestorContext = R.curry(getAncestorContext);
-export const topLevelEntityAncestorContext = curriedGetAncestorContext(topLevelEntityRules);
-export const propertyAncestorContext = curriedGetAncestorContext(propertyRules);
-export const namespaceAncestorContext = curriedGetAncestorContext([MetaEdGrammar.RULE_namespace]);
+export const topLevelEntityAncestorContext = getAncestorContext(topLevelEntityRules);
+export const propertyAncestorContext = getAncestorContext(propertyRules);
+export const namespaceAncestorContext = getAncestorContext([MetaEdGrammar.RULE_namespace]);
 
 export function isExtensionNamespace(namespaceContext: any) {
   return namespaceContext.namespaceType().namespaceProjectExtension() !== null;

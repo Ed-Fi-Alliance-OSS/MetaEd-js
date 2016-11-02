@@ -48,7 +48,6 @@ function lookupParentEntityContext(symbolTable: SymbolTable, ruleContext: any): 
   throw new Error(`TargetPropertyPathMustExist.lookupParentEntityContext: parentRuleContext was unexpected type ${parentRuleContext.ruleIndex}`);
 }
 
-// eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const entityContext = lookupParentEntityContext(symbolTable, ruleContext);
   if (entityContext == null) throw new Error('MergePropertyPathMustExist.valid: entityContext not found');

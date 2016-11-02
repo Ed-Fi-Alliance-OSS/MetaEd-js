@@ -6,7 +6,6 @@ import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
-// eslint-disable-next-line no-unused-vars
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const identifier = ruleContext.extendeeName().getText();
   const commonTypePropertyIdentifiers = symbolTable.identifiersForEntityProperties(SymbolTableEntityType.commonType(), identifier);
@@ -14,7 +13,6 @@ function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   return R.intersection(Array.from(commonTypePropertyIdentifiers), Array.from(extensionPropertyIdentifiers)).length === 0;
 }
 
-// eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   const identifier = ruleContext.extendeeName().getText();
   const commonTypePropertyIdentifiers =

@@ -31,7 +31,6 @@ function isReferenceProperty(ruleContext: any): boolean {
     ruleContext.ruleIndex === MetaEdGrammar.RULE_secondDomainEntity;
 }
 
-// eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   // first parent - referenceProperty
   // second parent - property collection

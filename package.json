@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.8.0",
   "description": "MetaEd implemented in JavaScript",
-  "repository": "https://github.com/bradbanister/metaed-ts",
+  "repository": "https://github.com/bradbanister/metaed-js",
   "license": "private",
   "dependencies": {
     "antlr4": "^4.5.3",

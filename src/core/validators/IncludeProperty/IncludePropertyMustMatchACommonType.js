@@ -5,7 +5,6 @@ import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
-// eslint-disable-next-line no-unused-vars
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const identifierToMatch = ruleContext.propertyName().getText();
   return symbolTable.identifierExists(SymbolTableEntityType.commonType(), identifierToMatch) ||

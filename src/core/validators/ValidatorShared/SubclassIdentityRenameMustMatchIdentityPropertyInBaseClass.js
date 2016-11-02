@@ -12,29 +12,28 @@ function getBasePropertyIdentifierFor(identityRenames: Array<any>): any {
   return R.head(identityRenames).baseKeyName().getText();
 }
 
-// eslint-disable-next-line no-unused-vars
-function validUncurried(baseKey: string, ruleContext: any, symbolTable: SymbolTable) : boolean {
-  const identityRenames = getIdentityRenames(ruleContext);
-  if (identityRenames.length === 0) return true;
+export const valid = R.curry(
+  (baseKey: string, ruleContext: any, symbolTable: SymbolTable): boolean => {
+    const identityRenames = getIdentityRenames(ruleContext);
+    if (identityRenames.length === 0) return true;
 
-  const baseIdentifier = ruleContext.baseName().getText();
-  const baseSymbolTable = symbolTable.get(baseKey, baseIdentifier);
-  if (baseSymbolTable == null) return true;
+    const baseIdentifier = ruleContext.baseName().getText();
+    const baseSymbolTable = symbolTable.get(baseKey, baseIdentifier);
+    if (baseSymbolTable == null) return true;
 
-  const baseProperty = baseSymbolTable.propertySymbolTable.get(getBasePropertyIdentifierFor(identityRenames));
-  if (baseProperty == null) return false;
+    const baseProperty = baseSymbolTable.propertySymbolTable.get(getBasePropertyIdentifierFor(identityRenames));
+    if (baseProperty == null) return false;
 
-  return baseProperty.propertyComponents().propertyAnnotation().identity() != null;
-}
+    return baseProperty.propertyComponents().propertyAnnotation().identity() != null;
+  }
+);
 
-export const valid = R.curry(validUncurried);
-
-// eslint-disable-next-line no-unused-vars
-function failureMessageUncurried(entityTitle: string, identifierFinder: (ruleContext: any) => string, ruleContext: any, symbolTable: SymbolTable) : string {
-  const identifier = identifierFinder(ruleContext);
-  const baseIdentifier = ruleContext.baseName().getText();
-  const basePropertyIdentifier = getBasePropertyIdentifierFor(getIdentityRenames(ruleContext));
-  return `${entityTitle} '${identifier}' based on '${baseIdentifier}' tries to rename ${basePropertyIdentifier} which is not part of the identity.`;
-}
-
-export const failureMessage = R.curry(failureMessageUncurried);
+/* eslint-disable no-unused-vars */
+export const failureMessage = R.curry(
+  (entityTitle: string, identifierFinder: (ruleContext: any) => string, ruleContext: any, symbolTable: SymbolTable): string => {
+    const identifier = identifierFinder(ruleContext);
+    const baseIdentifier = ruleContext.baseName().getText();
+    const basePropertyIdentifier = getBasePropertyIdentifierFor(getIdentityRenames(ruleContext));
+    return `${entityTitle} '${identifier}' based on '${baseIdentifier}' tries to rename ${basePropertyIdentifier} which is not part of the identity.`;
+  }
+);
