@@ -4,7 +4,7 @@ import { MetaEdGrammarListener } from '../../../src/grammar/gen/MetaEdGrammarLis
 import { MetaEdContext } from '../tasks/MetaEdContext';
 import { MetaEdFileIndex } from '../../grammar/IMetaEdFileIndex';
 import type SymbolTable from './SymbolTable';
-import { ValidationMessage } from '../../common/ValidationMessage';
+import { ValidationMessage } from './ValidationMessage';
 import type { ValidationRuleRepository } from './ValidationRuleRepository';
 import ValidationLevel from './ValidationLevel';
 

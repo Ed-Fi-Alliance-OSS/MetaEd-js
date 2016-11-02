@@ -1,5 +1,4 @@
 // @flow
-import StringHelper from '../../src/common/StringHelper';
 
 export default class MetaEdTextBuilder {
   textLines: string[];
@@ -30,13 +29,13 @@ export default class MetaEdTextBuilder {
     this.indentationLevel -= 1;
   }
 
-  _addLineWithoutIndentation(line: string, ...parameters: string[]) {
-    this.textLines.push(StringHelper.format(line, ...parameters));
+  _addLineWithoutIndentation(line: string) {
+    this.textLines.push(line);
   }
 
-  _addLine(line: string, ...parameters: string[]) {
+  _addLine(line: string) {
     const indention = this._getIndentation();
-    this.textLines.push(indention + StringHelper.format(line, ...parameters));
+    this.textLines.push(indention + line);
   }
 
   withBlankLine(): MetaEdTextBuilder {
@@ -52,9 +51,9 @@ export default class MetaEdTextBuilder {
 
   withBeginNamespace(identifier: string, projectExtension: ?string = null): MetaEdTextBuilder {
     if (projectExtension == null) {
-      this._addLine('Begin Namespace {0} core', identifier);
+      this._addLine(`Begin Namespace ${identifier} core`);
     } else {
-      this._addLine('Begin Namespace {0} {1}', identifier, projectExtension);
+      this._addLine(`Begin Namespace ${identifier} ${projectExtension}`);
     }
     this._increaseIndentation();
     return this;
@@ -67,7 +66,7 @@ export default class MetaEdTextBuilder {
   }
 
   withComment(comment: string): MetaEdTextBuilder {
-    this._addLine('//{0}', comment);
+    this._addLine(`//${comment}`);
     return this;
   }
 
@@ -92,7 +91,7 @@ export default class MetaEdTextBuilder {
   _withDocumentationLines(...documentationLines: string[]): MetaEdTextBuilder {
     const documentationPrefix = '\'';
     for (const line of documentationLines) {
-      this._addLine('{0}{1}', documentationPrefix, line);
+      this._addLine(`${documentationPrefix}${line}`);
     }
     return this;
   }
@@ -101,32 +100,31 @@ export default class MetaEdTextBuilder {
     if (metaEdId == null) return this;
     if (this.textLines.length > 0) {
       const lastLine = this.textLines[this.textLines.length - 1];
-      this.textLines[this.textLines.length - 1] =
-        StringHelper.format('{0} [{1}]', lastLine, metaEdId);
+      this.textLines[this.textLines.length - 1] = `${lastLine} [${metaEdId}]`;
     } else {
-      this._addLine('[{0}]', metaEdId);
+      this._addLine(`[${metaEdId}]`);
     }
     return this;
   }
 
   _withChildElement(elementType: string, identifier: string, metaEdId: ?string = null): MetaEdTextBuilder {
-    this._addLine('{0} {1}', elementType, identifier);
+    this._addLine(`${elementType} ${identifier}`);
     this.withMetaEdId(metaEdId);
     return this;
   }
 
   _withStartTopLevel(keyword: string, identifier: string, baseIdentifier: ?string = null): MetaEdTextBuilder {
     if (baseIdentifier == null) {
-      this._addLine('{0} {1}', keyword, identifier);
+      this._addLine(`${keyword} ${identifier}`);
     } else {
-      this._addLine('{0} {1} based on {2}', keyword, identifier, baseIdentifier);
+      this._addLine(`${keyword} ${identifier} based on ${baseIdentifier}`);
     }
     this._increaseIndentation();
     return this;
   }
 
   _withStartTopLevelExtension(keyword: string, identifier: string): MetaEdTextBuilder {
-    this._addLine('{0} {1} additions', keyword, identifier);
+    this._addLine(`${keyword} ${identifier} additions`);
     this._increaseIndentation();
     return this;
   }
@@ -321,7 +319,7 @@ export default class MetaEdTextBuilder {
   }
 
   withStartSubdomain(subdomainName: string, parentDomainName: string): MetaEdTextBuilder {
-    this._addLine('Subdomain {0} of {1}', subdomainName, parentDomainName);
+    this._addLine(`Subdomain ${subdomainName} of ${parentDomainName}`);
     this._increaseIndentation();
     return this;
   }
@@ -344,7 +342,7 @@ export default class MetaEdTextBuilder {
   withIdentityRenameIndicator(basePropertyIdentifier: string): MetaEdTextBuilder {
     const identityRename = 'renames identity property';
 
-    this._addLine('{0} {1}', identityRename, basePropertyIdentifier);
+    this._addLine(`${identityRename} ${basePropertyIdentifier}`);
     return this;
   }
 
@@ -381,28 +379,28 @@ export default class MetaEdTextBuilder {
 
     const withContext = 'with context';
     if (shortenTo == null) {
-      this._addLine('{0} {1}', withContext, context);
+      this._addLine(`${withContext} ${context}`);
     } else {
-      this._addLine('{0} {1} shorten to {2}', withContext, context, shortenTo);
+      this._addLine(`${withContext} ${context} shorten to ${shortenTo}`);
     }
 
     return this;
   }
 
   withMergePartOfReference(mergePropertyPath: string, targetPropertyPath: string): MetaEdTextBuilder {
-    this._addLine('merge {0} with {1}', mergePropertyPath, targetPropertyPath);
+    this._addLine(`merge ${mergePropertyPath} with ${targetPropertyPath}`);
     return this;
   }
 
   _withStartProperty(propertyType: string, propertyIdentifier: string, metaEdId: ?string = null): MetaEdTextBuilder {
-    this._addLine('{0} {1}', propertyType, propertyIdentifier);
+    this._addLine(`${propertyType} ${propertyIdentifier}`);
     this.withMetaEdId(metaEdId);
     this._increaseIndentation();
     return this;
   }
 
   _withStartSharedProperty(propertyType: string, propertyIdentifier: string, named: string, metaEdId: ?string = null): MetaEdTextBuilder {
-    this._addLine('shared {0} {1} named {2}', propertyType, propertyIdentifier, named);
+    this._addLine(`shared ${propertyType} ${propertyIdentifier} named ${named}`);
     this.withMetaEdId(metaEdId);
     this._increaseIndentation();
     return this;
@@ -540,37 +538,37 @@ export default class MetaEdTextBuilder {
 
   withMinLength(minLength: ?number): MetaEdTextBuilder {
     if (minLength == null) return this;
-    this._addLine('min length {0}', minLength.toString());
+    this._addLine(`min length ${minLength}`);
     return this;
   }
 
   withMaxLength(maxLength: ?number): MetaEdTextBuilder {
     if (maxLength == null) return this;
-    this._addLine('max length {0}', maxLength.toString());
+    this._addLine(`max length ${maxLength}`);
     return this;
   }
 
   withMinValue(minValue: ?number): MetaEdTextBuilder {
     if (minValue == null) return this;
-    this._addLine('min value {0}', minValue.toString());
+    this._addLine(`min value ${minValue}`);
     return this;
   }
 
   withMaxValue(maxValue: ?number): MetaEdTextBuilder {
     if (maxValue == null) return this;
-    this._addLine('max value {0}', maxValue.toString());
+    this._addLine(`max value ${maxValue}`);
     return this;
   }
 
   withTotalDigits(totalDigits: ?number): MetaEdTextBuilder {
     if (totalDigits == null) return this;
-    this._addLine('total digits {0}', totalDigits.toString());
+    this._addLine(`total digits ${totalDigits}`);
     return this;
   }
 
   withDecimalPlaces(decimalPlaces: ?number): MetaEdTextBuilder {
     if (decimalPlaces == null) return this;
-    this._addLine('decimal places {0}', decimalPlaces.toString());
+    this._addLine(`decimal places ${decimalPlaces}`);
     return this;
   }
 

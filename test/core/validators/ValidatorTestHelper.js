@@ -1,6 +1,6 @@
 // @flow
 import antlr4 from 'antlr4';
-import { ValidationMessage } from '../../../src/common/ValidationMessage';
+import { ValidationMessage } from '../../../src/core/validators/ValidationMessage';
 import SymbolTable from '../../../src/core/validators/SymbolTable';
 import { MetaEdContext } from '../../../src/core/tasks/MetaEdContext';
 import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex';
