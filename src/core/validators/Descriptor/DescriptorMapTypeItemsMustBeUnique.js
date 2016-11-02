@@ -10,7 +10,7 @@ function getShortDescriptions(ruleContext: any) {
 }
 
 // eslint-disable-next-line no-unused-vars
-export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   if (ruleContext.withMapType() == null) return true;
   const shortDescriptions = getShortDescriptions(ruleContext);
   if (shortDescriptions.length === 0) return true;

@@ -11,7 +11,7 @@ function isExtension(namespaceContext: any): boolean {
 }
 
 // eslint-disable-next-line no-unused-vars
-export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const namespaceContext = namespaceAncestorContext(ruleContext);
   return isExtension(namespaceContext) || R.map(x => getProperty(x).propertyName() === 'UniqueId', ruleContext.property()).length <= 1;
 }
