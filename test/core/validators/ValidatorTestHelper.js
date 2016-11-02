@@ -5,7 +5,6 @@ import SymbolTable from '../../../src/core/validators/SymbolTable';
 import { MetaEdContext } from '../../../src/core/tasks/MetaEdContext';
 import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex';
 import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder';
-import NullSymbolTableBuilderListener from '../../common/NullSymbolTableBuilderListener';
 import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
 import BaseLexer from '../../../src/grammar/gen/BaseLexer';
 
@@ -33,7 +32,7 @@ export default class ValidatorTestHelper {
     this.warningMessageCollection = this.metaEdContext.warningMessageCollection;
     this.errorMessageCollection = this.metaEdContext.errorMessageCollection;
 
-    const symbolTableBuilder = new SymbolTableBuilder(new NullSymbolTableBuilderListener());
+    const symbolTableBuilder = new SymbolTableBuilder();
     symbolTableBuilder.withContext(this.metaEdContext);
     antlr4.tree.ParseTreeWalker.DEFAULT.walk(symbolTableBuilder, this.parserContext);
 

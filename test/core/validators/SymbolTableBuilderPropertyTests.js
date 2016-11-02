@@ -1,8 +1,7 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../grammar/MetaEdTextBuilder';
 import SymbolTableTestHelper from './SymbolTableTestHelper';
-import ValidationMessage from '../../../src/common/ValidationMessage'
-import { EntityContext } from '../../../src/core/validators/SymbolTable'
+import { EntityContext } from '../../../src/core/validators/SymbolTable';
 
 chai.should();
 

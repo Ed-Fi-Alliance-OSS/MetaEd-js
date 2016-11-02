@@ -8,23 +8,15 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   symbolTable: SymbolTable;
   metaEdFileIndex: any;
   errorMessageCollection: any;
-  builderListener: any;
   currentPropertySymbolTable: any;
-
-  constructor(builderListener: any) {
-    super();
-    this.builderListener = builderListener;
-  }
 
   withContext(metaEdContext: any) {
     this.metaEdFileIndex = metaEdContext.metaEdFileIndex;
     this.errorMessageCollection = metaEdContext.errorMessageCollection;
     this.symbolTable = metaEdContext.symbolTable;
-    this.builderListener.withContext(metaEdContext);
   }
 
   _addEntity(entityType: string, entityNameIdNode: any, ruleContext: any) {
-    if (!this.builderListener.beforeAddEntity(entityType, entityNameIdNode, ruleContext)) return;
     if (this.symbolTable.tryAdd(entityType, entityNameIdNode.getText(), ruleContext)) {
       const entityContext = this.symbolTable.get(entityType, entityNameIdNode.getText());
       if (entityContext == null) throw new Error('SymbolTableBuilder._addEntity() error should never happen');

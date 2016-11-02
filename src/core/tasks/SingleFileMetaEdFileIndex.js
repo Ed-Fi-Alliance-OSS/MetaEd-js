@@ -1,23 +1,23 @@
-import {MetaEdFile} from '../../grammar/MetaEdFile'
+import { MetaEdFile } from '../../grammar/MetaEdFile';
 
 export default class SingleFileMetaEdFileIndex {
-    add(metaEdFile) {
-        this.metaEdFile = metaEdFile;
-    }
+  add(metaEdFile) {
+    this.metaEdFile = metaEdFile;
+  }
 
-    addContents(contents) {
-        this.metaEdFile = new MetaEdFile("DirectoryName", "FileName", contents);
-    }
+  addContents(contents) {
+    this.metaEdFile = new MetaEdFile('DirectoryName', 'FileName', contents);
+  }
 
-    getAllContents() {
-        return this.metaEdFile.Contents;
-    }
+  getAllContents() {
+    return this.metaEdFile.Contents;
+  }
 
-    getFileAndLineNumber(concatenatedLineNumber) {
-        return { fileName: this.metaEdFile.fileName, lineNumber: concatenatedLineNumber };
-    }
+  getFileAndLineNumber(concatenatedLineNumber) {
+    return { fileName: this.metaEdFile.fileName, lineNumber: concatenatedLineNumber };
+  }
 
-    load(metaEdFiles) {
-        throw new Error("Not implemented");
-    }
+  load(metaEdFiles) {
+    throw new Error('Not implemented');
+  }
 }

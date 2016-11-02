@@ -1,9 +1,8 @@
-import {IMetaEdContext} from './MetaEdContext';
-
-declare type Type = any;//System.Type
+// @flow
+import { MetaEdContext } from './MetaEdContext';
 
 export interface ITask {
   name: string,
-  prerequisite: Type,
-  executeTask(context: IMetaEdContext): boolean
+  prerequisite: any,
+  executeTask(context: MetaEdContext): boolean
 }

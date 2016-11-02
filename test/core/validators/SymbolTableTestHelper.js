@@ -3,7 +3,6 @@ import SymbolTable from '../../../src/core/validators/SymbolTable';
 import { MetaEdContext } from '../../../src/core/tasks/MetaEdContext';
 import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex';
 import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder';
-import NullSymbolTableBuilderListener from '../../common/NullSymbolTableBuilderListener';
 
 import MetaEdGrammar from '../../../src/grammar/gen/MetaEdGrammar';
 import BaseLexer from '../../../src/grammar/gen/BaseLexer';
@@ -15,7 +14,7 @@ export default class SymbolTableTestHelper {
     metaEdFileIndex.addContents(metaEdText);
 
     this.symbolTable = new SymbolTable();
-    const listener = new SymbolTableBuilder(new NullSymbolTableBuilderListener());
+    const listener = new SymbolTableBuilder();
 
     const antlrInputStream = new antlr4.InputStream(metaEdText);
     const lexer = new BaseLexer.BaseLexer(antlrInputStream);

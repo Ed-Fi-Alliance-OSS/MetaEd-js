@@ -1,3 +1,4 @@
+// @flow
 export default class StringHelper {
   static format(formatString: string, ...args: string[]): string {
     let result = formatString;
