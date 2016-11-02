@@ -1,88 +1,65 @@
-import { ValidationRuleBase } from "../ValidationRuleBase";
-import {ISymbolTable} from '../SymbolTable'
-export class MergePropertyAndTargetPropertyMustMatch extends ValidationRuleBase<MetaEdGrammar.MergePartOfReferenceContext>
-{
-    private symbolTable: ISymbolTable;
-    private _propertyPathLookup: IPropertyPathLookup;
-    constructor(symbolTable: ISymbolTable, propertyPathLookup: IPropertyPathLookup) {
-        super();
-        this.symbolTable = symbolTable;
-        this._propertyPathLookup = propertyPathLookup;
-    }
-    public isValid(context: MetaEdGrammar.MergePartOfReferenceContext): boolean {
-        let entityContext = LookupParentEntityContext(context);
-        let mergePropertyPathParts = context.mergePropertyPath().propertyPath().PropertyPathParts();
-        let targetPropertyPathParts = context.targetPropertyPath().propertyPath().PropertyPathParts();
-        let mergeProperty = this._propertyPathLookup.FindReferencedProperty(entityContext, mergePropertyPathParts, PropertyPathLookup.MatchAllButFirstAsIdentityProperties());
-        let targetProperty = this._propertyPathLookup.FindReferencedProperty(entityContext, targetPropertyPathParts, PropertyPathLookup.MatchAllIdentityProperties());
-        if (mergeProperty == null || targetProperty == null)
-            return true;
-        let mergePropertyType = mergeProperty.GetType();
-        let targetPropertyType = targetProperty.GetType();
-        if (mergePropertyType != targetPropertyType) {
-            if (!IsReferenceProperty(mergePropertyType) || !IsReferenceProperty(targetPropertyType))
-                return false;
-        }
-        if (mergeProperty.IdNode().getText() != targetProperty.IdNode().getText()) {
-            if (!IsReferenceProperty(mergePropertyType) || !IsReferenceProperty(targetPropertyType))
-                return false;
-            if (!MatchBaseType(mergeProperty, targetProperty.IdNode().getText()) && !MatchBaseType(targetProperty, mergeProperty.IdNode().getText()))
-                return false;
-        }
-        return true;
-    }
-    public getFailureMessage(context: MetaEdGrammar.MergePartOfReferenceContext): string {
-        return `The merge paths '${}' and '${}' do not correspond to the same entity type.", context.mergePropertyPath().getText(), context.targetPropertyPath().getText());
-    }
-    private lookupParentEntityContext(context: MetaEdGrammar.MergePartOfReferenceContext): EntityContext {
-        let definingEntityContext = context.parent.parent.parent;
-        let domainEntityContext = __as__<MetaEdGrammar.DomainEntityContext>(definingEntityContext, MetaEdGrammar.DomainEntityContext);
-        if (domainEntityContext != null) {
-            return this.symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), domainEntityContext.entityName().IdText());
-        }
-        let domainEntityExtensionContext = __as__<MetaEdGrammar.DomainEntityExtensionContext>(definingEntityContext, MetaEdGrammar.DomainEntityExtensionContext);
-        if (domainEntityExtensionContext != null) {
-            return this.symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), domainEntityExtensionContext.extendeeName().IdText());
-        }
-        let domainEntitySubclassContext = __as__<MetaEdGrammar.DomainEntitySubclassContext>(definingEntityContext, MetaEdGrammar.DomainEntitySubclassContext);
-        if (domainEntitySubclassContext != null) {
-            let domainEntity = this.symbolTable.Get(this.symbolTableEntityType.domainEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
-            return domainEntity != null ? domainEntity : this.symbolTable.Get(this.symbolTableEntityType.abstractEntityEntityType(), domainEntitySubclassContext.baseName().IdText());
-        }
-        let associationContext = __as__<MetaEdGrammar.AssociationContext>(definingEntityContext, MetaEdGrammar.AssociationContext);
-        if (associationContext != null) {
-            return this.symbolTable.Get(this.symbolTableEntityType.associationEntityType(), associationContext.associationName().IdText());
-        }
-        let associationExtensionContext = __as__<MetaEdGrammar.AssociationExtensionContext>(definingEntityContext, MetaEdGrammar.AssociationExtensionContext);
-        if (associationExtensionContext != null) {
-            return this.symbolTable.Get(this.symbolTableEntityType.associationEntityType(), associationExtensionContext.extendeeName().IdText());
-        }
-        let associationSubclassContext = __as__<MetaEdGrammar.AssociationSubclassContext>(definingEntityContext, MetaEdGrammar.AssociationSubclassContext);
-        if (associationSubclassContext != null) {
-            return this.symbolTable.Get(this.symbolTableEntityType.associationEntityType(), associationSubclassContext.baseName().IdText());
-        }
-        let abstractContext = __as__<MetaEdGrammar.AbstractEntityContext>(definingEntityContext, MetaEdGrammar.AbstractEntityContext);
-        if (abstractContext != null) {
-            return this.symbolTable.Get(this.symbolTableEntityType.abstractEntityEntityType(), abstractContext.abstractEntityName().IdText());
-        }
-        return null;
-    }
-    private isReferenceProperty(type: Type): boolean {
-        return ((type == /*typeof*/MetaEdGrammar.ReferencePropertyContext) || (type == /*typeof*/MetaEdGrammar.FirstDomainEntityContext) || (type == /*typeof*/MetaEdGrammar.SecondDomainEntityContext));
-    }
-    private matchBaseType(referencingProperty: IContextWithIdentifier, baseTypeName: string): boolean {
-        let entityName = referencingProperty.IdNode().getText();
-        let entityContext: EntityContext = null;
-        entityContext = this.symbolTable.Get(this.symbolTableEntityType.domainEntitySubclassEntityType(), entityName);
-        if (entityContext != null) {
-            let subclass = __as__<MetaEdGrammar.DomainEntitySubclassContext>(entityContext.Context, MetaEdGrammar.DomainEntitySubclassContext);
-            return subclass.baseName().IdText() == baseTypeName;
-        }
-        entityContext = this.symbolTable.Get(this.symbolTableEntityType.associationSubclassEntityType(), entityName);
-        if (entityContext != null) {
-            let subclass = __as__<MetaEdGrammar.AssociationSubclassContext>(entityContext.Context, MetaEdGrammar.AssociationSubclassContext);
-            return subclass.baseName().IdText() == baseTypeName;
-        }
-        return false;
-    }
+// @flow
+import R from 'ramda';
+import { errorRuleBase } from '../ValidationRuleBase';
+import { includeRuleBase } from '../ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import type SymbolTable, { EntityContext } from '../SymbolTable';
+import { lookupParentEntityContext, propertyPathParts } from './MergePartOfReferenceValidationRule';
+import { findReferencedProperty, matchAllButFirstAsIdentityProperties, matchAllIdentityProperties } from './PropertyPathLookup';
+import { propertyName } from '../RuleInformation';
+import SymbolTableEntityType from '../SymbolTableEntityType';
+
+const entityContextHasBaseName = R.curry(
+  (baseTypeName: string, entityContext: EntityContext): boolean => entityContext.context.baseName().ID.getText() === baseTypeName
+);
+
+function matchBaseType(symbolTable: SymbolTable, propertyRuleContext: any, baseTypeName: string): boolean {
+  const hasBaseName = entityContextHasBaseName(baseTypeName);
+  const entityName = propertyName(propertyRuleContext);
+
+  const deSubclassEntityContext = symbolTable.get(SymbolTableEntityType.domainEntitySubclass(), entityName);
+  if (deSubclassEntityContext) return hasBaseName(deSubclassEntityContext);
+
+  const aSubclassEntityContext = symbolTable.get(SymbolTableEntityType.associationSubclass(), entityName);
+  if (aSubclassEntityContext) return hasBaseName(aSubclassEntityContext);
+  return false;
 }
+
+function isReferenceProperty(ruleContext: any): boolean {
+  return ruleContext.ruleIndex === MetaEdGrammar.RULE_referenceProperty ||
+    ruleContext.ruleIndex === MetaEdGrammar.RULE_firstDomainEntity ||
+    ruleContext.ruleIndex === MetaEdGrammar.RULE_secondDomainEntity;
+}
+
+// eslint-disable-next-line no-unused-vars
+export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  // first parent - referenceProperty
+  // second parent - property collection
+  // third parent - Association/Extension/Subclass or DomainEntity/Extension/Subclass
+  const entityContext: ?EntityContext = lookupParentEntityContext(symbolTable, ruleContext.parentCtx.parentCtx.parentCtx);
+  const fromParts = findReferencedProperty(symbolTable, entityContext);
+
+  const mergeProperty = fromParts(propertyPathParts(ruleContext.mergePropertyPath()), matchAllButFirstAsIdentityProperties);
+  const targetProperty = fromParts(propertyPathParts(ruleContext.targetPropertyPath()), matchAllIdentityProperties);
+  if (mergeProperty == null || targetProperty == null) return true;
+
+  if (mergeProperty.ruleIndex !== targetProperty.ruleIndex) {
+    if (!isReferenceProperty(mergeProperty) || !isReferenceProperty(targetProperty)) return false;
+  }
+
+  if (propertyName(mergeProperty) !== propertyName(targetProperty)) {
+    if (!isReferenceProperty(mergeProperty) || !isReferenceProperty(targetProperty)) return false;
+    if (!matchBaseType(symbolTable, mergeProperty, propertyName(targetProperty)) &&
+        !matchBaseType(symbolTable, targetProperty, propertyName(mergeProperty))) return false;
+  }
+  return true;
+}
+
+// eslint-disable-next-line no-unused-vars
+function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
+  return `The merge paths '${ruleContext.mergePropertyPath().getText()}' and '${ruleContext.targetPropertyPath().getText()}' do not correspond to the same entity type.`;
+}
+
+const validationRule = errorRuleBase(valid, failureMessage);
+// eslint-disable-next-line import/prefer-default-export
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_mergePartOfReference, validationRule);

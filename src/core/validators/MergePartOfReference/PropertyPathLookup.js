@@ -39,47 +39,47 @@ function getEntityType(symbolTable: SymbolTable, identifierToMatch: string): ?st
   return null;
 }
 
-export function findReferencedProperty(symbolTable: SymbolTable,
-                                       startingEntityContext: EntityContext,
-                                       propertyPath: string[],
-                                       filter: (propertyRuleContext: any, index: number) => boolean): any {
-  let entityContext: ?EntityContext = startingEntityContext;
-  let entityName: ?string = null;
-  let propertyContext: any = null;
+export const findReferencedProperty = R.curry(
+  (symbolTable: SymbolTable, startingEntityContext: ?EntityContext,
+   propertyPath: string[], filter: (propertyRuleContext: any, index: number) => boolean): any => {
+    let entityContext: ?EntityContext = startingEntityContext;
+    let entityName: ?string = null;
+    let propertyContext: any = null;
 
-  // because of the way the original C# code jumps out of the loop, must use for..of until rewrite
-  // eslint-disable-next-line no-restricted-syntax
-  for (const propertyPathPart of propertyPath) {
-    if (entityContext == null) {
-      if (entityName == null) throw new Error('PropertyPathLookup.findReferencedProperty: entityName unexpectedly null');
-      const entityType = getEntityType(symbolTable, entityName);
-      if (entityType == null) return null;
-      entityContext = symbolTable.get(entityType, entityName);
+    // because of the way the original C# code jumps out of the loop, must use for..of until rewrite
+    // eslint-disable-next-line no-restricted-syntax
+    for (const propertyPathPart of propertyPath) {
+      if (entityContext == null) {
+        if (entityName == null) throw new Error('PropertyPathLookup.findReferencedProperty: entityName unexpectedly null');
+        const entityType = getEntityType(symbolTable, entityName);
+        if (entityType == null) return null;
+        entityContext = symbolTable.get(entityType, entityName);
+      }
+
+      if (entityContext == null) throw new Error('PropertyPathLookup.findReferencedProperty: entityContext unexpectedly null');
+      const candidatePropertyContexts = entityContext.propertySymbolTable.getWithoutContext(propertyPathPart);
+      const matchingPropertyContexts = R.addIndex(R.filter)(filter, candidatePropertyContexts);
+      if (R.isEmpty(matchingPropertyContexts)) {
+        propertyContext = findAssociationDomainEntityProperty(entityContext, propertyPathPart);
+        if (propertyContext == null) return null;
+      } else if (matchingPropertyContexts.length > 1) {
+        return null;
+      } else {
+        propertyContext = R.head(matchingPropertyContexts);
+      }
+
+      if (propertyContext.ruleIndex === MetaEdGrammar.RULE_referenceProperty ||
+        propertyContext.ruleIndex === MetaEdGrammar.RULE_firstDomainEntity ||
+        propertyContext.ruleIndex === MetaEdGrammar.RULE_secondDomainEntity) {
+        entityName = propertyContext.propertyName().ID().getText();
+      } else entityName = null;
+
+      entityContext = null;
     }
 
-    if (entityContext == null) throw new Error('PropertyPathLookup.findReferencedProperty: entityContext unexpectedly null');
-    const candidatePropertyContexts = entityContext.propertySymbolTable.getWithoutContext(propertyPathPart);
-    const matchingPropertyContexts = R.addIndex(R.filter)(filter, candidatePropertyContexts);
-    if (R.isEmpty(matchingPropertyContexts)) {
-      propertyContext = findAssociationDomainEntityProperty(entityContext, propertyPathPart);
-      if (propertyContext == null) return null;
-    } else if (matchingPropertyContexts.length > 1) {
-      return null;
-    } else {
-      propertyContext = R.head(matchingPropertyContexts);
-    }
-
-    if (propertyContext.ruleIndex === MetaEdGrammar.RULE_referenceProperty ||
-      propertyContext.ruleIndex === MetaEdGrammar.RULE_firstDomainEntity ||
-      propertyContext.ruleIndex === MetaEdGrammar.RULE_secondDomainEntity) {
-      entityName = propertyContext.propertyName().ID().getText();
-    } else entityName = null;
-
-    entityContext = null;
+    return propertyContext;
   }
-
-  return propertyContext;
-}
+);
 
 export function validate(symbolTable: SymbolTable,
                          startingEntityContext: EntityContext,
