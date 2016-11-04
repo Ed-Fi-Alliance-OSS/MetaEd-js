@@ -1,3 +1,68 @@
-/**
- * TODO: Tests were missing from C#
- */
+import chai from 'chai';
+import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
+import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
+import { includeRule } from '../../../../src/core/validators/InterchangeExtension/InterchangeExtensionIdentifierMustMatchAnInterchange';
+import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
+import SymbolTable from '../../../../src/core/validators/SymbolTable';
+
+chai.should();
+
+describe('InterchangeExtensionIdentifierMustMatchAnInterchangeTests', () => {
+  const repository = includeRule(newRepository());
+  const validatorListener = new ValidatorListener(repository);
+
+  describe('When_interchange_extension_has_valid_extendee', () => {
+    const symbolTable = new SymbolTable();
+    const entityName: string = 'MyIdentifier';
+    const helper: ValidatorTestHelper = new ValidatorTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace('edfi')
+      .withStartInterchange(entityName)
+      .withDocumentation('doc')
+      .withElement('Required')
+      .withIdentityTemplate('Template1')
+      .withIdentityTemplate('Template2')
+      .withEndInterchange()
+
+      .withStartInterchangeExtension(entityName)
+      .withElement('Template3')
+      .withEndInterchangeExtension()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText, validatorListener, symbolTable);
+    });
+
+    it('should_have_no_validation_failures()', () => {
+      helper.errorMessageCollection.length.should.equal(0);
+    });
+  });
+
+  describe('When_interchange_extension_has_invalid_extendee', () => {
+    const symbolTable = new SymbolTable();
+    const entityName: string = 'NotAnInterchangeIdentifier';
+    const helper: ValidatorTestHelper = new ValidatorTestHelper();
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withBeginNamespace('edfi')
+      .withStartInterchangeExtension(entityName)
+      .withElement('Template3')
+      .withEndInterchangeExtension()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText, validatorListener, symbolTable);
+    });
+
+    it('should_have_validation_failure()', () => {
+      helper.errorMessageCollection.length.should.equal(1);
+    });
+
+    it('should_have_validation_failure_message()', () => {
+      helper.errorMessageCollection[0].message.should.include('Interchange additions');
+      helper.errorMessageCollection[0].message.should.include(entityName);
+      helper.errorMessageCollection[0].message.should.include('does not match');
+    });
+  });
+
+});
