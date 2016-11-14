@@ -1,42 +1,50 @@
 // @flow
 import antlr4 from 'antlr4';
-import { ValidationMessage } from '../../../src/core/validators/ValidationMessage';
+import { List } from 'immutable';
 import SymbolTable from '../../../src/core/validators/SymbolTable';
-import { MetaEdContext } from '../../../src/core/tasks/MetaEdContext';
+import type { State } from '../../../src/core/State';
 import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex';
 import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder';
 import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
 import BaseLexer from '../../../src/grammar/gen/BaseLexer';
+import type { ValidationMessage } from '../../../src/core/validators/ValidationMessage';
 
 export default class ValidatorTestHelper {
-  symbolTable: SymbolTable;
-  warningMessageCollection: ValidationMessage[];
-  errorMessageCollection: ValidationMessage[];
-  metaEdContext: MetaEdContext;
-  parserContext: any;
+  state: State;
 
   setup(metaEdText: string, validatorListener: any, symbolTable: SymbolTable = new SymbolTable()): void {
     console.log(metaEdText);
     const metaEdFileIndex = new SingleFileMetaEdFileIndex();
     metaEdFileIndex.addContents(metaEdText);
 
-    this.symbolTable = symbolTable;
-
     const antlrInputStream = new antlr4.InputStream(metaEdText);
     const lexer = new BaseLexer.BaseLexer(antlrInputStream);
     const tokens = new antlr4.CommonTokenStream(lexer);
     const parser = new MetaEdGrammar(tokens);
-    this.parserContext = parser.metaEd();
+    const parserContext = parser.metaEd();
 
-    this.metaEdContext = new MetaEdContext(metaEdFileIndex, this.symbolTable);
-    this.warningMessageCollection = this.metaEdContext.warningMessageCollection;
-    this.errorMessageCollection = this.metaEdContext.errorMessageCollection;
+    this.state = {
+      warningMessageCollection: new List(),
+      errorMessageCollection: new List(),
+      symbolTable,
+      metaEdFileIndex,
+    };
 
     const symbolTableBuilder = new SymbolTableBuilder();
-    symbolTableBuilder.withContext(this.metaEdContext);
-    antlr4.tree.ParseTreeWalker.DEFAULT.walk(symbolTableBuilder, this.parserContext);
+    symbolTableBuilder.withState(this.state);
+    antlr4.tree.ParseTreeWalker.DEFAULT.walk(symbolTableBuilder, parserContext);
+    this.state = symbolTableBuilder.postBuildState();
 
-    validatorListener.withContext(this.metaEdContext);
-    antlr4.tree.ParseTreeWalker.DEFAULT.walk(validatorListener, this.parserContext);
+    validatorListener.withState(this.state);
+    antlr4.tree.ParseTreeWalker.DEFAULT.walk(validatorListener, parserContext);
+    this.state = validatorListener.postValidationState();
+  }
+
+  warningMessageCollection(): Array<ValidationMessage> {
+    return this.state.warningMessageCollection.toArray();
+  }
+
+  errorMessageCollection(): Array<ValidationMessage> {
+    return this.state.errorMessageCollection.toArray();
   }
 }

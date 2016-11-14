@@ -33,7 +33,7 @@ describe('DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
     });
   });
 
@@ -59,7 +59,7 @@ describe('DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
     });
   });
 
@@ -85,11 +85,11 @@ describe('DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection[0].message.should.equal('Domain Entity \'SubclassIdentifier\' based on \'BaseDomainEntityIdentifier\' tries to rename Property3 which is not part of the identity.');
+      helper.errorMessageCollection()[0].message.should.equal('Domain Entity \'SubclassIdentifier\' based on \'BaseDomainEntityIdentifier\' tries to rename Property3 which is not part of the identity.');
     });
   });
 
@@ -116,11 +116,11 @@ describe('DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection[0].message.should.equal('Domain Entity \'SubclassIdentifier\' based on \'BaseDomainEntityIdentifier\' tries to rename Property3 which is not part of the identity.');
+      helper.errorMessageCollection()[0].message.should.equal('Domain Entity \'SubclassIdentifier\' based on \'BaseDomainEntityIdentifier\' tries to rename Property3 which is not part of the identity.');
     });
   });
 
@@ -141,7 +141,7 @@ describe('DomainEntitySubclassIdentityRenameMustMatchIdentityPropertyInBaseClass
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
     });
   });
 });

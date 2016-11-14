@@ -48,16 +48,16 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure = helper.errorMessageCollection()[0];
       failure.message.should.include(propertyName);
       failure.message.should.include(entityName);
       failure.message.should.include('duplicate');
     });
 
     it('Should_report_position_of_error', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure = helper.errorMessageCollection()[0];
       failure.concatenatedLineNumber.should.equal(9);
       failure.characterPosition.should.equal(9);
     });
@@ -99,8 +99,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -143,8 +143,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -187,8 +187,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -231,8 +231,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -275,8 +275,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -319,8 +319,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -363,8 +363,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -407,8 +407,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -451,8 +451,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -495,8 +495,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -539,8 +539,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -583,8 +583,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -627,8 +627,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -671,8 +671,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
@@ -720,16 +720,16 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
 
     it('Should_report_duplicate_property_names', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.message.should.contain(propertyName);
       failure.message.should.contain(entityName);
       failure.message.should.contain('duplicate');
     });
 
     it('Should_report_position_of_error', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      const failure: ValidationMessage = helper.errorMessageCollection[0];
+      helper.errorMessageCollection().length.should.equal(1);
+      const failure: ValidationMessage = helper.errorMessageCollection()[0];
       failure.concatenatedLineNumber.should.equal(10);
       failure.characterPosition.should.equal(14);
     });

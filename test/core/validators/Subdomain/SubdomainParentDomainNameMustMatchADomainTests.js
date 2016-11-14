@@ -32,7 +32,7 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 
@@ -53,15 +53,15 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection[0].message.should.include('Subdomain');
-      helper.errorMessageCollection[0].message.should.include(entityName);
-      helper.errorMessageCollection[0].message.should.include('is part of');
-      helper.errorMessageCollection[0].message.should.include(baseName);
-      helper.errorMessageCollection[0].message.should.include('does not match');
+      helper.errorMessageCollection()[0].message.should.include('Subdomain');
+      helper.errorMessageCollection()[0].message.should.include(entityName);
+      helper.errorMessageCollection()[0].message.should.include('is part of');
+      helper.errorMessageCollection()[0].message.should.include(baseName);
+      helper.errorMessageCollection()[0].message.should.include('does not match');
     });
   });
 });

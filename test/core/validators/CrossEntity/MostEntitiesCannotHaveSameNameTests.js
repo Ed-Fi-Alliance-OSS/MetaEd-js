@@ -33,7 +33,7 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 
@@ -57,13 +57,13 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      helper.errorMessageCollection[0].message.should.include('SharedEntity1');
-      helper.errorMessageCollection[0].message.should.include('duplicate');
+      helper.errorMessageCollection().length.should.equal(1);
+      helper.errorMessageCollection()[0].message.should.include('SharedEntity1');
+      helper.errorMessageCollection()[0].message.should.include('duplicate');
     });
   });
 
@@ -86,7 +86,7 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 
@@ -111,7 +111,7 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 
@@ -135,13 +135,13 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection.length.should.equal(1);
-      helper.errorMessageCollection[0].message.should.include('CommonEntityName');
-      helper.errorMessageCollection[0].message.should.include('duplicate');
+      helper.errorMessageCollection().length.should.equal(1);
+      helper.errorMessageCollection()[0].message.should.include('CommonEntityName');
+      helper.errorMessageCollection()[0].message.should.include('duplicate');
     });
   });
 
@@ -165,7 +165,7 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 
@@ -189,7 +189,7 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 
@@ -213,7 +213,7 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 });

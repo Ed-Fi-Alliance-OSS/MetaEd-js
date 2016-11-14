@@ -1,54 +1,30 @@
 // @flow
 import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
 import { MetaEdGrammarListener } from '../../../src/grammar/gen/MetaEdGrammarListener';
-import { MetaEdContext } from '../tasks/MetaEdContext';
-import { MetaEdFileIndex } from '../../grammar/IMetaEdFileIndex';
-import type SymbolTable from './SymbolTable';
-import { ValidationMessage } from './ValidationMessage';
+import type { State } from '../State';
 import type { ValidationRuleRepository } from './ValidationRuleRepository';
-import ValidationLevel from './ValidationLevel';
 
 export default class ValidatorListener extends MetaEdGrammarListener {
-  validationRuleRepository: ValidationRuleRepository;
-  symbolTable: SymbolTable;
-  warningMessageCollection: ValidationMessage[];
-  errorMessageCollection: ValidationMessage[];
-  metaEdFileIndex: MetaEdFileIndex;
+  state: State;
 
-  constructor(validationRuleRepository: ValidationRuleRepository) {
+  constructor(validationRuleRepository: ValidationRuleRepository, state: State) {
     super();
     this.validationRuleRepository = validationRuleRepository;
+    this.state = state;
   }
 
-  withContext(metaEdContext: MetaEdContext) {
-    this.metaEdFileIndex = metaEdContext.metaEdFileIndex;
-    this.warningMessageCollection = metaEdContext.warningMessageCollection;
-    this.errorMessageCollection = metaEdContext.errorMessageCollection;
-    this.symbolTable = metaEdContext.symbolTable;
+  postValidationState(): State {
+    return this.state;
+  }
+
+  withState(state: State) {
+    this.state = state;
   }
 
   _validateContext(ruleContext: any, ruleIndex: number) {
     const relevantRules = this.validationRuleRepository.get(ruleIndex);
     if (relevantRules == null) return;
-
-    const validationResults = relevantRules.map(validationRule => validationRule(ruleContext, this.symbolTable));
-
-    validationResults.filter(x => x.errorLevel === ValidationLevel.Error && !x.valid)
-    .forEach(y => this.errorMessageCollection.push(this._buildValidationMessage(y.failureMessage, ruleContext)));
-
-    validationResults.filter(x => x.errorLevel === ValidationLevel.Warning && !x.valid)
-    .forEach(y => this.warningMessageCollection.push(this._buildValidationMessage(y.failureMessage, ruleContext)));
-  }
-
-  _buildValidationMessage(failureMessage: ?string, context: any): ValidationMessage {
-    const metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(context.start.line);
-    return {
-      message: failureMessage == null ? 'ERROR: Failure, but no failure message provided' : failureMessage,
-      characterPosition: context.start.column,
-      concatenatedLineNumber: context.start.line,
-      fileName: metaEdFile.fileName,
-      lineNumber: metaEdFile.lineNumber,
-    };
+    relevantRules.forEach(validationRule => (this.state = validationRule(ruleContext, this.state)));
   }
 
   enterAbstractEntity(context: any) {

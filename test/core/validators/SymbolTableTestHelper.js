@@ -1,13 +1,17 @@
 import antlr4 from 'antlr4/index';
+import { List } from 'immutable';
 import SymbolTable from '../../../src/core/validators/SymbolTable';
-import { MetaEdContext } from '../../../src/core/tasks/MetaEdContext';
 import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex';
 import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder';
 
 import MetaEdGrammar from '../../../src/grammar/gen/MetaEdGrammar';
 import BaseLexer from '../../../src/grammar/gen/BaseLexer';
+import type { ValidationMessage } from '../../../src/core/validators/ValidationMessage';
+import type { State } from '../../../src/core/State';
 
 export default class SymbolTableTestHelper {
+  state: State;
+
   setup(metaEdText) {
     console.log(metaEdText);
     const metaEdFileIndex = new SingleFileMetaEdFileIndex();
@@ -21,11 +25,23 @@ export default class SymbolTableTestHelper {
     const tokens = new antlr4.CommonTokenStream(lexer);
     const parser = new MetaEdGrammar.MetaEdGrammar(tokens);
     this.parserContext = parser.metaEd();
-    this.metaEdContext = new MetaEdContext(metaEdFileIndex, this.symbolTable);
+    this.state = {
+      warningMessageCollection: new List(),
+      errorMessageCollection: new List(),
+      symbolTable: this.symbolTable,
+      metaEdFileIndex,
+    };
 
-    this.warningMessageCollection = this.metaEdContext.warningMessageCollection;
-    this.errorMessageCollection = this.metaEdContext.errorMessageCollection;
-    listener.withContext(this.metaEdContext);
+    listener.withState(this.state);
     antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, this.parserContext);
+    this.state = listener.postBuildState();
+  }
+
+  warningMessageCollection(): Array<ValidationMessage> {
+    return this.state.warningMessageCollection.toArray();
+  }
+
+  errorMessageCollection(): Array<ValidationMessage> {
+    return this.state.errorMessageCollection.toArray();
   }
 }

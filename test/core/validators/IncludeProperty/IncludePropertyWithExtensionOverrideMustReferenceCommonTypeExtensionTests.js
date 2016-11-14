@@ -39,14 +39,14 @@ describe('IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension',
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection[0].message.should.include('include extension');
-      helper.errorMessageCollection[0].message.should.include(propertyName);
-      helper.errorMessageCollection[0].message.should.include(entityName);
-      helper.errorMessageCollection[0].message.should.include('invalid');
+      helper.errorMessageCollection()[0].message.should.include('include extension');
+      helper.errorMessageCollection()[0].message.should.include(propertyName);
+      helper.errorMessageCollection()[0].message.should.include(entityName);
+      helper.errorMessageCollection()[0].message.should.include('invalid');
     });
   });
 
@@ -81,7 +81,7 @@ describe('IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension',
     });
 
     it('should_not_have_validation_failure()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
     });
   });
 });

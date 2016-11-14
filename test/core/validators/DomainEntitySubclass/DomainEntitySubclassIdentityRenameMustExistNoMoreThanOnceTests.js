@@ -35,11 +35,11 @@ describe('DomainEntitySubclassIdentityRenameMustExistNoMoreThanOnceTests', () =>
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection[0].message.should.equal('Domain Entity \'SubclassIdentifier\' based on \'BaseDomainEntityIdentifier\' tries to rename columns Property1, Property2.  Only one identity rename is allowed for a given Domain Entity.');
+      helper.errorMessageCollection()[0].message.should.equal('Domain Entity \'SubclassIdentifier\' based on \'BaseDomainEntityIdentifier\' tries to rename columns Property1, Property2.  Only one identity rename is allowed for a given Domain Entity.');
     });
   });
 });

@@ -4,6 +4,7 @@ import ValidatorTestHelper from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { includeRule } from '../../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAnIdentity';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
+import { ValidationMessage } from '../../../../src/core/validators/ValidationMessage';
 
 chai.should();
 
@@ -32,8 +33,8 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
     });
 
     it('Should_have_no_validation_failures', () => {
-      helper.errorMessageCollection.length.should.equal(0);
-      helper.warningMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
+      helper.warningMessageCollection().length.should.equal(0);
     });
   });
 
@@ -58,14 +59,13 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
     });
 
     it('Should_have_validation_failure', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('Should_have_validation_failure_message', () => {
-      const failure = helper.errorMessageCollection[0];
-      failure.message.should.include('Abstract Entity');
-      failure.message.should.include(entityName);
-      failure.message.should.include('does not have an identity');
+      helper.errorMessageCollection()[0].message.should.include('Abstract Entity');
+      helper.errorMessageCollection()[0].message.should.include(entityName);
+      helper.errorMessageCollection()[0].message.should.include('does not have an identity');
     });
   });
 });

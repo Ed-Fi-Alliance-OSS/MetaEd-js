@@ -34,13 +34,13 @@ describe('IncludePropertyMustNotContainIdentity', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection[0].message.should.include('Include');
-      helper.errorMessageCollection[0].message.should.include(propertyName);
-      helper.errorMessageCollection[0].message.should.include('invalid');
+      helper.errorMessageCollection()[0].message.should.include('Include');
+      helper.errorMessageCollection()[0].message.should.include(propertyName);
+      helper.errorMessageCollection()[0].message.should.include('invalid');
     });
   });
 });

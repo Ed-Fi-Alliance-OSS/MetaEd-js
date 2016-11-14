@@ -31,10 +31,10 @@ describe('PropertyPathLookupTests', () => {
     });
 
     it('should_return_expected_property()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
       const result = findReferencedProperty(
-        helper.symbolTable,
-        helper.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity1'),
+        helper.state.symbolTable,
+        helper.state.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity1'),
         ['Prop1'],
         matchAllIdentityProperties
       );
@@ -70,10 +70,10 @@ describe('PropertyPathLookupTests', () => {
     });
 
     it('should_return_expected_property()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
       const result = findReferencedProperty(
-        helper.symbolTable,
-        helper.symbolTable.get(SymbolTableEntityType.association(), 'Entity3'),
+        helper.state.symbolTable,
+        helper.state.symbolTable.get(SymbolTableEntityType.association(), 'Entity3'),
         ['Entity1'],
         matchAllIdentityProperties
       );
@@ -109,10 +109,10 @@ describe('PropertyPathLookupTests', () => {
     });
 
     it('should_return_expected_property()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
       const result = findReferencedProperty(
-        helper.symbolTable,
-        helper.symbolTable.get(SymbolTableEntityType.association(), 'Entity3'),
+        helper.state.symbolTable,
+        helper.state.symbolTable.get(SymbolTableEntityType.association(), 'Entity3'),
         ['Entity2'],
         matchAllIdentityProperties
       );
@@ -138,10 +138,10 @@ describe('PropertyPathLookupTests', () => {
     });
 
     it('should_return_null()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
       const result = findReferencedProperty(
-        helper.symbolTable,
-        helper.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity1'),
+        helper.state.symbolTable,
+        helper.state.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity1'),
         ['Prop2'],
         matchAllIdentityProperties
       );
@@ -166,10 +166,10 @@ describe('PropertyPathLookupTests', () => {
     });
 
     it('should_return_null()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
       const result = findReferencedProperty(
-        helper.symbolTable,
-        helper.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity1'),
+        helper.state.symbolTable,
+        helper.state.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity1'),
         ['Prop3'],
         matchAllIdentityProperties
       );
@@ -200,10 +200,10 @@ describe('PropertyPathLookupTests', () => {
     });
 
     it('should_return_null()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
       const result = findReferencedProperty(
-        helper.symbolTable,
-        helper.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity2'),
+        helper.state.symbolTable,
+        helper.state.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity2'),
         ['Entity1'],
         matchAllIdentityProperties
       );
@@ -233,10 +233,10 @@ describe('PropertyPathLookupTests', () => {
     });
 
     it('should_return_expected_property()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
       const result = findReferencedProperty(
-        helper.symbolTable,
-        helper.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity2'),
+        helper.state.symbolTable,
+        helper.state.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity2'),
         ['Entity1', 'Prop1'],
         matchAllIdentityProperties
       );
@@ -268,10 +268,10 @@ describe('PropertyPathLookupTests', () => {
     });
 
     it('should_return_expected_property()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
       const result = findReferencedProperty(
-        helper.symbolTable,
-        helper.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity2'),
+        helper.state.symbolTable,
+        helper.state.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity2'),
         ['Entity1', 'Prop1'],
         matchAllButFirstAsIdentityProperties
       );

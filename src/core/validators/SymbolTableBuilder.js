@@ -1,29 +1,28 @@
 // @flow
 import { MetaEdGrammarListener } from '../../../src/grammar/gen/MetaEdGrammarListener';
-
-import type SymbolTable from './SymbolTable';
+import type { State } from '../../../src/core/State';
 import SymbolTableEntityType from './SymbolTableEntityType';
 
 export default class SymbolTableBuilder extends MetaEdGrammarListener {
-  symbolTable: SymbolTable;
-  metaEdFileIndex: any;
-  errorMessageCollection: any;
+  state: State;
   currentPropertySymbolTable: any;
 
-  withContext(metaEdContext: any) {
-    this.metaEdFileIndex = metaEdContext.metaEdFileIndex;
-    this.errorMessageCollection = metaEdContext.errorMessageCollection;
-    this.symbolTable = metaEdContext.symbolTable;
+  withState(state: State) {
+    this.state = state;
+  }
+
+  postBuildState(): State {
+    return this.state;
   }
 
   _addEntity(entityType: string, entityNameIdNode: any, ruleContext: any) {
-    if (this.symbolTable.tryAdd(entityType, entityNameIdNode.getText(), ruleContext)) {
-      const entityContext = this.symbolTable.get(entityType, entityNameIdNode.getText());
+    if (this.state.symbolTable.tryAdd(entityType, entityNameIdNode.getText(), ruleContext)) {
+      const entityContext = this.state.symbolTable.get(entityType, entityNameIdNode.getText());
       if (entityContext == null) throw new Error('SymbolTableBuilder._addEntity() error should never happen');
       this.currentPropertySymbolTable = entityContext.propertySymbolTable;
       return;
     }
-    const metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(entityNameIdNode.symbol.line);
+    const metaEdFile = this.state.metaEdFileIndex.getFileAndLineNumber(entityNameIdNode.symbol.line);
     const failure = {
       message: `Duplicate ${entityType} named ${entityNameIdNode}`,
       characterPosition: entityNameIdNode.symbol.column,
@@ -31,7 +30,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
       fileName: metaEdFile.fileName,
       lineNumber: metaEdFile.lineNumber,
     };
-    this.errorMessageCollection.push(failure);
+    this.state.errorMessageCollection = this.state.errorMessageCollection.push(failure);
   }
 
   _addProperty(ruleContext: any) {
@@ -42,7 +41,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
       return;
     }
     if (this.currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.getText(), ruleContext)) return;
-    const metaEdFile = this.metaEdFileIndex.getFileAndLineNumber(propertyName.symbol.line);
+    const metaEdFile = this.state.metaEdFileIndex.getFileAndLineNumber(propertyName.symbol.line);
     const duplicateFailure = {
       message: `Entity ${this.currentPropertySymbolTable.parentName()} has duplicate properties named ${propertyName.getText()}`,
       characterPosition: propertyName.symbol.column,
@@ -50,7 +49,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
       fileName: metaEdFile.fileName,
       lineNumber: metaEdFile.lineNumber,
     };
-    this.errorMessageCollection.push(duplicateFailure);
+    this.state.errorMessageCollection = this.state.errorMessageCollection.push(duplicateFailure);
   }
 
   enterDomainEntity(ruleContext: any) {

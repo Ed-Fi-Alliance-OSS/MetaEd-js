@@ -31,7 +31,7 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 
@@ -56,14 +56,14 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection[0].message.should.include('Domain Entity additions');
-      helper.errorMessageCollection[0].message.should.include(entityName);
-      helper.errorMessageCollection[0].message.should.include(duplicatePropertyName);
-      helper.errorMessageCollection[0].message.should.include('already in property list');
+      helper.errorMessageCollection()[0].message.should.include('Domain Entity additions');
+      helper.errorMessageCollection()[0].message.should.include(entityName);
+      helper.errorMessageCollection()[0].message.should.include(duplicatePropertyName);
+      helper.errorMessageCollection()[0].message.should.include('already in property list');
     });
   });
 
@@ -93,16 +93,16 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection[0].message.should.include('Domain Entity additions');
-      helper.errorMessageCollection[0].message.should.include(entityName);
-      helper.errorMessageCollection[0].message.should.include(duplicatePropertyName1);
-      helper.errorMessageCollection[0].message.should.include(duplicatePropertyName2);
-      helper.errorMessageCollection[0].message.should.include('already in property list');
-      helper.errorMessageCollection[0].message.should.not.include(notDuplicatePropertyName);
+      helper.errorMessageCollection()[0].message.should.include('Domain Entity additions');
+      helper.errorMessageCollection()[0].message.should.include(entityName);
+      helper.errorMessageCollection()[0].message.should.include(duplicatePropertyName1);
+      helper.errorMessageCollection()[0].message.should.include(duplicatePropertyName2);
+      helper.errorMessageCollection()[0].message.should.include('already in property list');
+      helper.errorMessageCollection()[0].message.should.not.include(notDuplicatePropertyName);
     });
   });
 
@@ -127,7 +127,7 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
   });
 
@@ -152,7 +152,7 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
     });
 
     it('should_not_have_validation_failure()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 });

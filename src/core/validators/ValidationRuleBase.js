@@ -1,15 +1,23 @@
 // @flow
 import R from 'ramda';
 import ValidationLevel from './ValidationLevel';
-import SymbolTable from './SymbolTable';
+import type { ValidationMessage } from './ValidationMessage';
+import type { State } from '../State';
+import { MetaEdFileIndex } from '../../grammar/IMetaEdFileIndex';
+import type SymbolTable from './SymbolTable';
 
-export type ValidationResult = {
-  errorLevel?: ValidationLevel,
-  valid?: boolean,
-  failureMessage?: string
-};
+export type ValidationRule = (ruleContext: any, state: State) => State;
 
-export type ValidationRule = (ruleContext: any, symbolTable: SymbolTable) => ValidationResult;
+function buildValidationMessage(failureMessage: ?string, start: any, metaEdFileIndex: MetaEdFileIndex): ValidationMessage {
+  const metaEdFile = metaEdFileIndex.getFileAndLineNumber(start.line);
+  return {
+    message: failureMessage == null ? 'ERROR: Failure, but no failure message provided' : failureMessage,
+    characterPosition: start.column,
+    concatenatedLineNumber: start.line,
+    fileName: metaEdFile.fileName,
+    lineNumber: metaEdFile.lineNumber,
+  };
+}
 
 // base of all validation rules
 const validationRuleBase = R.curry(
@@ -17,16 +25,18 @@ const validationRuleBase = R.curry(
    valid: (ruleContext: any, symbolTable: SymbolTable) => boolean,
    failureMessage: (ruleContext: any, symbolTable: SymbolTable) => string,
    ruleContext: any,
-   symbolTable: SymbolTable): ValidationResult => {
-    const result: ValidationResult = {
-      errorLevel,
-    };
+   state: State): State => {
+    const nextState = state;
+    const isValid = valid(ruleContext, state.symbolTable);
+    if (isValid) return state;
 
-    result.valid = valid(ruleContext, symbolTable);
-    if (result.valid) return result;
-
-    result.failureMessage = failureMessage(ruleContext, symbolTable);
-    return result;
+    const message = buildValidationMessage(failureMessage(ruleContext, state.symbolTable), ruleContext.start, state.metaEdFileIndex);
+    if (errorLevel === ValidationLevel.Error) {
+      nextState.errorMessageCollection = nextState.errorMessageCollection.push(message);
+    } else if (errorLevel === ValidationLevel.Warning) {
+      nextState.warningMessageCollection = nextState.warningMessageCollection.push(message);
+    } else throw new Error('ValidationRuleBase: Received error level of unknown type');
+    return nextState;
   }
 );
 

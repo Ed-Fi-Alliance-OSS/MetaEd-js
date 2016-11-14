@@ -37,20 +37,20 @@ describe('AssociationSubclassIdentityRenameMustExistNoMoreThanOnceTests', () => 
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection[0].message.should.include('Association');
-      helper.errorMessageCollection[0].message.should.include(entityName);
-      helper.errorMessageCollection[0].message.should.include('based on');
-      helper.errorMessageCollection[0].message.should.include(baseName);
-      helper.errorMessageCollection[0].message.should.include('tries to rename columns');
-      helper.errorMessageCollection[0].message.should.include('Property1');
-      helper.errorMessageCollection[0].message.should.include('Property2');
-      helper.errorMessageCollection[0].message.should.not.include('Property3');
-      helper.errorMessageCollection[0].message.should.not.include('Property4');
-      helper.errorMessageCollection[0].message.should.include('one identity rename is allowed');
+      helper.errorMessageCollection()[0].message.should.include('Association');
+      helper.errorMessageCollection()[0].message.should.include(entityName);
+      helper.errorMessageCollection()[0].message.should.include('based on');
+      helper.errorMessageCollection()[0].message.should.include(baseName);
+      helper.errorMessageCollection()[0].message.should.include('tries to rename columns');
+      helper.errorMessageCollection()[0].message.should.include('Property1');
+      helper.errorMessageCollection()[0].message.should.include('Property2');
+      helper.errorMessageCollection()[0].message.should.not.include('Property3');
+      helper.errorMessageCollection()[0].message.should.not.include('Property4');
+      helper.errorMessageCollection()[0].message.should.include('one identity rename is allowed');
     });
   });
 });

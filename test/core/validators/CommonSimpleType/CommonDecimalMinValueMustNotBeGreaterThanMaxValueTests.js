@@ -27,7 +27,7 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 
@@ -48,7 +48,7 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 
@@ -69,7 +69,7 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 
@@ -91,7 +91,7 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 
@@ -114,13 +114,13 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection[0].message.should.include('Common Decimal');
-      helper.errorMessageCollection[0].message.should.include(entityName);
-      helper.errorMessageCollection[0].message.should.include('min value greater than max value');
+      helper.errorMessageCollection()[0].message.should.include('Common Decimal');
+      helper.errorMessageCollection()[0].message.should.include(entityName);
+      helper.errorMessageCollection()[0].message.should.include('min value greater than max value');
     });
   });
 
@@ -142,7 +142,7 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 });

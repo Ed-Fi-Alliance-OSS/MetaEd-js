@@ -26,7 +26,7 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
       helper.setup(metaEdText, validatorListener);
     });
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 
@@ -48,14 +48,14 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection[0].message.should.include('Association');
-      helper.errorMessageCollection[0].message.should.include(associationName);
-      helper.errorMessageCollection[0].message.should.include(domainEntityName);
-      helper.errorMessageCollection[0].message.should.include('duplicate declarations');
+      helper.errorMessageCollection()[0].message.should.include('Association');
+      helper.errorMessageCollection()[0].message.should.include(associationName);
+      helper.errorMessageCollection()[0].message.should.include(domainEntityName);
+      helper.errorMessageCollection()[0].message.should.include('duplicate declarations');
     });
   });
 
@@ -78,14 +78,14 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection[0].message.should.include('Association');
-      helper.errorMessageCollection[0].message.should.include(associationName);
-      helper.errorMessageCollection[0].message.should.include(domainEntityName);
-      helper.errorMessageCollection[0].message.should.include('duplicate declarations');
+      helper.errorMessageCollection()[0].message.should.include('Association');
+      helper.errorMessageCollection()[0].message.should.include(associationName);
+      helper.errorMessageCollection()[0].message.should.include(domainEntityName);
+      helper.errorMessageCollection()[0].message.should.include('duplicate declarations');
     });
   });
 
@@ -106,7 +106,7 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 
@@ -127,7 +127,7 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.length.should.equal(0);
+      helper.errorMessageCollection().length.should.equal(0);
     });
   });
 });

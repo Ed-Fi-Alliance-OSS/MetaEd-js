@@ -26,7 +26,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
     });
   });
 
@@ -45,7 +45,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
     });
   });
 
@@ -66,13 +66,13 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection.should.not.be.empty;
+      helper.errorMessageCollection().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection[0].message.should.include('Domain Entity');
-      helper.errorMessageCollection[0].message.should.include(entityName);
-      helper.errorMessageCollection[0].message.should.include('has multiple properties with a property name of \'UniqueId\'');
+      helper.errorMessageCollection()[0].message.should.include('Domain Entity');
+      helper.errorMessageCollection()[0].message.should.include(entityName);
+      helper.errorMessageCollection()[0].message.should.include('has multiple properties with a property name of \'UniqueId\'');
     });
   });
 
@@ -93,7 +93,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection.should.be.empty;
+      helper.errorMessageCollection().should.be.empty;
     });
   });
 });
