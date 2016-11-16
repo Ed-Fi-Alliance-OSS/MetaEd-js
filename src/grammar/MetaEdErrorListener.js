@@ -15,7 +15,7 @@ export default class MetaEdErrorListener {
       message,
       characterPosition,
       concatenatedLineNumber,
-      fileName: 'metaEdFile.fileName',
+      filename: 'metaEdFile.filename',
       lineNumber: 'metaEdFile.lineNumber',
     });
   }

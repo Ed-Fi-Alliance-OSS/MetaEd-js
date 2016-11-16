@@ -1,7 +1,7 @@
 export class MetaEdFile {
-  constructor(directoryName, fileName, contents) {
+  constructor(directoryName, filename, contents) {
     this.directoryName = directoryName;
-    this.fileName = fileName;
+    this.filename = filename;
     this._contents = contents;
   }
 
@@ -22,9 +22,9 @@ export class MetaEdFile {
   }
 
   get FullName() {
-    if (this.directoryName == null || this.directoryName === '') return this.fileName;
+    if (this.directoryName == null || this.directoryName === '') return this.filename;
 
-    return `${this.directoryName}/${this.fileName}`;
+    return `${this.directoryName}/${this.filename}`;
   }
 
   get LineCount() {

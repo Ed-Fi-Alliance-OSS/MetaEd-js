@@ -1,23 +1,27 @@
+// @flow
 import { MetaEdFile } from '../../grammar/MetaEdFile';
+import type { FilenameAndLineNumber } from './IMetaEdFileIndex';
 
 export default class SingleFileMetaEdFileIndex {
-  add(metaEdFile) {
+  metaEdFile: MetaEdFile;
+
+  add(metaEdFile: MetaEdFile) {
     this.metaEdFile = metaEdFile;
   }
 
-  addContents(contents) {
+  addContents(contents: string) {
     this.metaEdFile = new MetaEdFile('DirectoryName', 'FileName', contents);
   }
 
-  getAllContents() {
-    return this.metaEdFile.Contents;
+  getAllContents(): string {
+    return this.metaEdFile.getContents();
   }
 
-  getFileAndLineNumber(concatenatedLineNumber) {
-    return { fileName: this.metaEdFile.fileName, lineNumber: concatenatedLineNumber };
+  getFilenameAndLineNumber(concatenatedLineNumber: number): FilenameAndLineNumber {
+    return { filename: this.metaEdFile.filename, lineNumber: concatenatedLineNumber };
   }
 
-  load(metaEdFiles) {
+  load(metaEdFiles: MetaEdFile[]) {
     throw new Error('Not implemented');
   }
 }

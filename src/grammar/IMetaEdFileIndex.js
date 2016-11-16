@@ -27,12 +27,12 @@ export class MetaEdFileIndex {
     }
 
     if (this._totalLineCount <= concatenatedLineNumber || selectedValue == null) {
-      return { fileName: 'unknown', lineNumber: -1 };
+      return { filename: 'unknown', lineNumber: -1 };
     }
 
     const lineNumber = concatenatedLineNumber - selectedKey + 1;
 
-    return { fileName: selectedValue.fullName, lineNumber };
+    return { filename: selectedValue.fullName, lineNumber };
   }
 
   load(metaEdFiles) {

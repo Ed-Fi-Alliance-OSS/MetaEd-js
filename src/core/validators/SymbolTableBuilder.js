@@ -22,12 +22,12 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
       this.currentPropertySymbolTable = entityContext.propertySymbolTable;
       return;
     }
-    const metaEdFile = this.state.metaEdFileIndex.getFileAndLineNumber(entityNameIdNode.symbol.line);
+    const metaEdFile = this.state.metaEdFileIndex.getFilenameAndLineNumber(entityNameIdNode.symbol.line);
     const failure = {
       message: `Duplicate ${entityType} named ${entityNameIdNode}`,
       characterPosition: entityNameIdNode.symbol.column,
       concatenatedLineNumber: entityNameIdNode.symbol.line,
-      fileName: metaEdFile.fileName,
+      filename: metaEdFile.filename,
       lineNumber: metaEdFile.lineNumber,
     };
     this.state.errorMessageCollection = this.state.errorMessageCollection.push(failure);
@@ -41,12 +41,12 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
       return;
     }
     if (this.currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.getText(), ruleContext)) return;
-    const metaEdFile = this.state.metaEdFileIndex.getFileAndLineNumber(propertyName.symbol.line);
+    const metaEdFile = this.state.metaEdFileIndex.getFilenameAndLineNumber(propertyName.symbol.line);
     const duplicateFailure = {
       message: `Entity ${this.currentPropertySymbolTable.parentName()} has duplicate properties named ${propertyName.getText()}`,
       characterPosition: propertyName.symbol.column,
       concatenatedLineNumber: propertyName.symbol.line,
-      fileName: metaEdFile.fileName,
+      filename: metaEdFile.filename,
       lineNumber: metaEdFile.lineNumber,
     };
     this.state.errorMessageCollection = this.state.errorMessageCollection.push(duplicateFailure);

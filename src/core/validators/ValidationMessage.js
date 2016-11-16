@@ -2,7 +2,7 @@
 
 export type ValidationMessage = {
   message: string,
-  fileName: string,
+  filename: string,
   lineNumber: number,
   characterPosition: number,
   concatenatedLineNumber: number,

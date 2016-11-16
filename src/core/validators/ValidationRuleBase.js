@@ -9,12 +9,12 @@ import type SymbolTable from './SymbolTable';
 export type ValidationRule = (ruleContext: any, state: State) => State;
 
 function buildValidationMessage(failureMessage: ?string, start: any, metaEdFileIndex: MetaEdFileIndex): ValidationMessage {
-  const metaEdFile = metaEdFileIndex.getFileAndLineNumber(start.line);
+  const metaEdFile = metaEdFileIndex.getFilenameAndLineNumber(start.line);
   return {
     message: failureMessage == null ? 'ERROR: Failure, but no failure message provided' : failureMessage,
     characterPosition: start.column,
     concatenatedLineNumber: start.line,
-    fileName: metaEdFile.fileName,
+    filename: metaEdFile.filename,
     lineNumber: metaEdFile.lineNumber,
   };
 }
