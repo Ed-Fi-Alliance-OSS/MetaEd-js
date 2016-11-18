@@ -1,48 +1,39 @@
 // @flow
 import antlr4 from 'antlr4/index';
-import BaseLexer from './gen/BaseLexer';
-import MetaEdGrammar from './gen/MetaEdGrammar';
-
+import { BaseLexer } from './gen/BaseLexer';
+import { MetaEdGrammar } from './gen/MetaEdGrammar';
 import MetaEdErrorListener from './MetaEdErrorListener';
 
-export default class ParseTreeBuilder {
-  _metaEdErrorListener: MetaEdErrorListener;
+function errorListeningParser(metaEdErrorListener: MetaEdErrorListener, metaEdContents: string): MetaEdGrammar {
+  const lexer = new BaseLexer(new antlr4.InputStream(metaEdContents));
+  const parser = new MetaEdGrammar(new antlr4.CommonTokenStream(lexer, undefined));
+  lexer.addErrorListener(metaEdErrorListener);
+  parser.removeErrorListeners();
+  parser.addErrorListener(metaEdErrorListener);
+  return parser;
+}
 
-  constructor(metaEdErrorListener: MetaEdErrorListener) {
-    this._metaEdErrorListener = metaEdErrorListener;
+function errorIgnoringParser(metaEdErrorListener: MetaEdErrorListener, metaEdContents: string): MetaEdGrammar {
+  const lexer = new BaseLexer(new antlr4.InputStream(metaEdContents));
+  const parser = new MetaEdGrammar(new antlr4.CommonTokenStream(lexer, undefined));
+  parser.Interpreter.PredictionMode = antlr4.atn.PredictionMode.SLL;
+  parser.Interpreter.tail_call_preserves_sll = false;
+  parser.ErrorHandler = new antlr4.error.ErrorStrategy();
+  return parser;
+}
+
+export function buildParseTree(metaEdErrorListener: MetaEdErrorListener, metaEdContents: string) {
+  try {
+    return errorIgnoringParser(metaEdErrorListener, metaEdContents).metaEd();
+  } catch (parseCanceledException) {
+    return errorListeningParser(metaEdErrorListener, metaEdContents).metaEd();
   }
+}
 
-  buildParseTree(metaEdContents: string) {
-    try {
-      return this._errorIgnoringParser(metaEdContents).metaEd();
-    } catch (parseCanceledException) {
-      return this._errorListeningParser(metaEdContents).metaEd();
-    }
-  }
-
-  buildTopLevelEntity(metaEdContents: string) {
-    try {
-      return this._errorIgnoringParser(metaEdContents).topLevelEntity();
-    } catch (parseCanceledException) {
-      return this._errorListeningParser(metaEdContents).topLevelEntity();
-    }
-  }
-
-  _errorListeningParser(metaEdContents: string) {
-    const lexer = new BaseLexer.BaseLexer(new antlr4.InputStream(metaEdContents));
-    const parser = new MetaEdGrammar.MetaEdGrammar(new antlr4.CommonTokenStream(lexer, undefined));
-    lexer.addErrorListener(this._metaEdErrorListener);
-    parser.removeErrorListeners();
-    parser.addErrorListener(this._metaEdErrorListener);
-    return parser;
-  }
-
-  _errorIgnoringParser(metaEdContents: string) {
-    const lexer = new BaseLexer.BaseLexer(new antlr4.InputStream(metaEdContents));
-    const parser = new MetaEdGrammar.MetaEdGrammar(new antlr4.CommonTokenStream(lexer, undefined));
-    parser.Interpreter.PredictionMode = antlr4.atn.PredictionMode.SLL;
-    parser.Interpreter.tail_call_preserves_sll = false;
-    parser.ErrorHandler = new antlr4.error.ErrorStrategy();
-    return parser;
+export function buildTopLevelEntity(metaEdErrorListener: MetaEdErrorListener, metaEdContents: string) {
+  try {
+    return errorIgnoringParser(metaEdErrorListener, metaEdContents).topLevelEntity();
+  } catch (parseCanceledException) {
+    return errorListeningParser(metaEdErrorListener, metaEdContents).topLevelEntity();
   }
 }

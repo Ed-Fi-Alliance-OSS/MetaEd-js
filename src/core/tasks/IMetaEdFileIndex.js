@@ -13,7 +13,7 @@ export type FilenameAndLineNumber = {
 
 export interface IMetaEdFileIndex {
   getAllContents(): string;
-  getFilenameAndLineNumber(concatenatedLineNumber: number): FileAndLineNumber;
+  getFilenameAndLineNumber(concatenatedLineNumber: number): FilenameAndLineNumber;
   load(metaEdFiles: MetaEdFile[]): void;
 }
 

@@ -3,12 +3,12 @@ import R from 'ramda';
 import ValidationLevel from './ValidationLevel';
 import type { ValidationMessage } from './ValidationMessage';
 import type { State } from '../State';
-import { MetaEdFileIndex } from '../../grammar/IMetaEdFileIndex';
 import type SymbolTable from './SymbolTable';
+import { IMetaEdFileIndex } from '../tasks/IMetaEdFileIndex';
 
 export type ValidationRule = (ruleContext: any, state: State) => State;
 
-function buildValidationMessage(failureMessage: ?string, start: any, metaEdFileIndex: MetaEdFileIndex): ValidationMessage {
+function buildValidationMessage(failureMessage: ?string, start: any, metaEdFileIndex: IMetaEdFileIndex): ValidationMessage {
   const metaEdFile = metaEdFileIndex.getFilenameAndLineNumber(start.line);
   return {
     message: failureMessage == null ? 'ERROR: Failure, but no failure message provided' : failureMessage,

@@ -1,5 +1,5 @@
 // @flow
-import { MetaEdFile } from '../../grammar/MetaEdFile';
+import MetaEdFile from './MetaEdFile';
 import type { FilenameAndLineNumber } from './IMetaEdFileIndex';
 
 export default class SingleFileMetaEdFileIndex {

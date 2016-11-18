@@ -53,4 +53,55 @@ describe('FileSystemFileNameLoaderTests', () => {
       contents.should.include('Property1');
     });
   });
+
+  describe('When multiple files', () => {
+    before(() => {
+      const metaEdTextDomainEntity = MetaEdTextBuilder.build()
+      .withStartDomainEntity('DomainEntity1')
+      .withDocumentation('doc')
+      .withStringIdentity('Property1', 'doc', 100)
+      .withEndDomainEntity()
+      .toString();
+
+      const metaEdTextAssociation = MetaEdTextBuilder.build()
+      .withStartAssociation('Association1')
+      .withDocumentation('doc')
+      .withDomainEntityProperty('Domain1', 'doc')
+      .withDomainEntityProperty('Domain2', 'doc')
+      .withIntegerIdentity('Property2', 'doc', 100)
+      .withEndDomainEntity()
+      .toString();
+
+      mockfs({
+        '/fake/dir': {
+          'Domain Entities': {
+            'DomainEntity1.metaed': metaEdTextDomainEntity,
+          },
+          'Associations': {
+            'Association1.metaed': metaEdTextAssociation,
+          },
+        },
+      });
+    });
+
+    after(() => {
+      mockfs.restore();
+    });
+
+    it('Should load the file contents', () => {
+      const newState = load(state);
+      const associationContents = newState.filesToLoad[0].files[0].getContents();
+      associationContents.should.include('Association');
+      associationContents.should.include('Domain1');
+      associationContents.should.include('Domain2');
+      associationContents.should.include('integer');
+      associationContents.should.include('Property2');
+
+      const domainEntityContents = newState.filesToLoad[0].files[1].getContents();
+      domainEntityContents.should.include('Domain Entity');
+      domainEntityContents.should.include('DomainEntity1');
+      domainEntityContents.should.include('string');
+      domainEntityContents.should.include('Property1');
+    });
+  });
 });
