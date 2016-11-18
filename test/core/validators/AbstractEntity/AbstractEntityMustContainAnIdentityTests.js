@@ -4,7 +4,6 @@ import ValidatorTestHelper from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { includeRule } from '../../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAnIdentity';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
-import { ValidationMessage } from '../../../../src/core/validators/ValidationMessage';
 
 chai.should();
 
