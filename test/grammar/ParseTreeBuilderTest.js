@@ -1,7 +1,8 @@
 import chai from 'chai';
 import MetaEdErrorListener from '../../src/grammar/MetaEdErrorListener';
-import ParseTreeBuilder from '../../src/grammar/ParseTreeBuilder';
+import { buildTopLevelEntity } from '../../src/grammar/ParseTreeBuilder';
 import MetaEdTextBuilder from './MetaEdTextBuilder';
+import StubMetaEdFileIndex from './StubMetaEdFileIndex';
 
 chai.should();
 
@@ -18,9 +19,8 @@ describe('ParseTreeBuilder', () => {
       ].join('\n');
 
       const errorMessageCollection = [];
-      const errorListener = new MetaEdErrorListener(errorMessageCollection);
-      const parseTreeBuilder = new ParseTreeBuilder(errorListener);
-      parseTreeBuilder.buildTopLevelEntity(inputText);
+      const errorListener = new MetaEdErrorListener(errorMessageCollection, new StubMetaEdFileIndex());
+      buildTopLevelEntity(errorListener, inputText);
       errorMessageCollection.should.be.empty;
     });
 
@@ -35,9 +35,8 @@ describe('ParseTreeBuilder', () => {
       ].join('\n');
 
       const errorMessageCollection = [];
-      const errorListener = new MetaEdErrorListener(errorMessageCollection);
-      const parseTreeBuilder = new ParseTreeBuilder(errorListener);
-      parseTreeBuilder.buildTopLevelEntity(inputText);
+      const errorListener = new MetaEdErrorListener(errorMessageCollection, new StubMetaEdFileIndex());
+      buildTopLevelEntity(errorListener, inputText);
       errorMessageCollection.should.not.be.empty;
       errorMessageCollection[0].message.should.include('xyz');
     });
@@ -52,9 +51,8 @@ describe('ParseTreeBuilder', () => {
         .toString();
 
       const errorMessageCollection = [];
-      const errorListener = new MetaEdErrorListener(errorMessageCollection);
-      const parseTreeBuilder = new ParseTreeBuilder(errorListener);
-      parseTreeBuilder.buildTopLevelEntity(inputText);
+      const errorListener = new MetaEdErrorListener(errorMessageCollection, new StubMetaEdFileIndex());
+      buildTopLevelEntity(errorListener, inputText);
       errorMessageCollection.should.be.empty;
     });
   });
