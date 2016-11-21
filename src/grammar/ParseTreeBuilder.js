@@ -22,7 +22,7 @@ function errorIgnoringParser(metaEdErrorListener: MetaEdErrorListener, metaEdCon
   return parser;
 }
 
-export function buildParseTree(metaEdErrorListener: MetaEdErrorListener, metaEdContents: string): void {
+export function buildMetaEd(metaEdErrorListener: MetaEdErrorListener, metaEdContents: string): MetaEdGrammar {
   try {
     return errorIgnoringParser(metaEdErrorListener, metaEdContents).metaEd();
   } catch (parseCanceledException) {
@@ -30,7 +30,7 @@ export function buildParseTree(metaEdErrorListener: MetaEdErrorListener, metaEdC
   }
 }
 
-export function buildTopLevelEntity(metaEdErrorListener: MetaEdErrorListener, metaEdContents: string): void {
+export function buildTopLevelEntity(metaEdErrorListener: MetaEdErrorListener, metaEdContents: string): MetaEdGrammar {
   try {
     return errorIgnoringParser(metaEdErrorListener, metaEdContents).topLevelEntity();
   } catch (parseCanceledException) {

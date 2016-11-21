@@ -10,7 +10,8 @@
     "final-fs": "^1.6.1",
     "handlebars": "^4.0.5",
     "immutable": "^3.8.1",
-    "ramda": "^0.22.1"
+    "ramda": "^0.22.1",
+    "winston": "^2.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.0.0",

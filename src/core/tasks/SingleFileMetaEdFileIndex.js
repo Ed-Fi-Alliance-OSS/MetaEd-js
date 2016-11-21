@@ -1,4 +1,5 @@
 // @flow
+import winston from 'winston';
 import MetaEdFile from './MetaEdFile';
 import type { FilenameAndLineNumber } from './IMetaEdFileIndex';
 
@@ -21,7 +22,7 @@ export default class SingleFileMetaEdFileIndex {
     return { filename: this.metaEdFile.filename, lineNumber: concatenatedLineNumber };
   }
 
-  load(metaEdFiles: MetaEdFile[]) {
-    throw new Error('Not implemented');
+  load(metaEdFiles: MetaEdFile[]): void {
+    winston.error(`SingleFileMetaEdFileIndex: load method called with ${metaEdFiles.join()}, but not implemented`);
   }
 }

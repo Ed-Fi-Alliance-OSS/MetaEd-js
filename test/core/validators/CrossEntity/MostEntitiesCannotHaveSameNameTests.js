@@ -13,7 +13,6 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
   const validatorListener = new ValidatorListener(repository);
 
   describe('When_entities_have_different_names', () => {
-
     const helper: ValidatorTestHelper = new ValidatorTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()

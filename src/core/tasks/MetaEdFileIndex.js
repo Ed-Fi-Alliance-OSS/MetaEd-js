@@ -9,7 +9,7 @@ export default class MetaEdFileIndex
   _totalLineCount: number;
 
   getAllContents(): string {
-    return this._fileAndLineNumbersSorted.map(x => x.file.getContents()).join();
+    return this._fileAndLineNumbersSorted.map(x => x.file.getContents()).join('');
   }
 
   getFilenameAndLineNumber(concatenatedLineNumber: number): FilenameAndLineNumber {

@@ -1,6 +1,7 @@
 // @flow
 import ffs from 'final-fs';
 import path from 'path';
+import winston from 'winston';
 import MetaEdFile from './MetaEdFile';
 import type { State } from '../State';
 
@@ -18,11 +19,10 @@ export type InputDirectory = {
   isExtension: boolean,
 }
 
-
 // TODO: this is fully synchronous, make async
 export default function load(state: State): State {
   if (state.inputDirectories == null) {
-    // TODO logger should warn on no input directories
+    winston.warn('FileSystemFilenameLoader: no input directories');
     return state;
   }
 
@@ -48,8 +48,7 @@ export default function load(state: State): State {
     });
 
     if (filesToLoad.files.length === 0) {
-      // TODO logger should say:
-      // _log.Warn(string.Format("No MetaEd files found in input directory \"{0}\".", inputDirectory.Path));
+      winston.warn(`No MetaEd files found in input directory ${inputDirectory.path}`);
     }
 
     filesToLoadArray.push(filesToLoad);
