@@ -21,6 +21,9 @@ export const buildParseTree = R.curry(
       winston.error(`ValidateSyntax: errors during parsing ${errorMessageCollection.join()}`);
     }
 
+    // TODO: mutates state
+    state.parseTree = parseTree;
+
     state.errorMessageCollection = state.errorMessageCollection.concat(errorMessageCollection);
     return state;
   }
