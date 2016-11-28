@@ -16,11 +16,11 @@ import type { State } from '../State';
 
 export default function start(initialState: State): State {
   return R.pipe(
-    load(initialState),
+    load,
     validateSyntax(buildTopLevelEntity),
     loadMetaEdFileIndex,
     buildParseTree(buildMetaEd),
     buildSymbolTable(new SymbolTableBuilder()),
     validateParseTree(allValidationRules())
-  );
+  )(initialState);
 }

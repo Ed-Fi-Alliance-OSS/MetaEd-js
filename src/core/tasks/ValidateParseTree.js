@@ -9,7 +9,7 @@ export const validateParseTree = R.curry(
   (validationRuleRepository: ValidationRuleRepository, state: State): State => {
     const validatorListener = new ValidatorListener(validationRuleRepository, state);
     tree.ParseTreeWalker.DEFAULT.walk(validatorListener, state.parseTree);
-    return validatorListener.postBuildState();
+    return validatorListener.postValidationState();
 
     // TODO: error reporting
   }
