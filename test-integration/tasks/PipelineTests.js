@@ -52,6 +52,48 @@ describe('PipelineTests', () => {
     });
   });
 
+  describe('When a single file with a bad reference', () => {
+    const state: State = {
+      warningMessageCollection: new List(),
+      errorMessageCollection: new List(),
+      symbolTable: new SymbolTable(),
+      metaEdFileIndex: new MetaEdFileIndex(),
+      filesToLoad: [],
+      inputDirectories: [{
+        path: '/fake/dir',
+        namespace: 'edfi',
+        projectExtension: '',
+        isExtension: false,
+      }],
+    };
+
+    before(() => {
+      const metaEdText = MetaEdTextBuilder.build()
+      .withStartDomainEntity('DomainEntity1')
+      .withMetaEdId('123')
+      .withDocumentation('doc')
+      .withReferenceIdentity('NoMatchingEntity', 'doc', null, '456')
+      .withEndDomainEntity()
+      .toString();
+
+      mockfs({
+        '/fake/dir': {
+          'DomainEntity1.metaed': metaEdText,
+        },
+      });
+    });
+
+    after(() => {
+      mockfs.restore();
+    });
+
+    it('Should return an error', () => {
+      const endState = start(state);
+      endState.errorMessageCollection.size.should.equal(1);
+      endState.warningMessageCollection.size.should.equal(0);
+    });
+  });
+
   describe('When multiple files', () => {
     const state: State = {
       warningMessageCollection: new List(),
@@ -68,11 +110,19 @@ describe('PipelineTests', () => {
     };
 
     before(() => {
-      const metaEdTextDomainEntity = MetaEdTextBuilder.build()
+      const metaEdTextDomainEntity1 = MetaEdTextBuilder.build()
       .withStartDomainEntity('DomainEntity1')
       .withMetaEdId('123')
       .withDocumentation('doc')
-      .withStringIdentity('Property1', 'doc2', 100, null, null, '456')
+      .withStringIdentity('Property1', 'doc', 100, null, null, '456')
+      .withEndDomainEntity()
+      .toString();
+
+      const metaEdTextDomainEntity2 = MetaEdTextBuilder.build()
+      .withStartDomainEntity('DomainEntity2')
+      .withMetaEdId('234')
+      .withDocumentation('doc')
+      .withStringIdentity('Property2', 'doc', 100, null, null, '456')
       .withEndDomainEntity()
       .toString();
 
@@ -80,18 +130,19 @@ describe('PipelineTests', () => {
       .withStartAssociation('Association1')
       .withMetaEdId('789')
       .withDocumentation('doc')
-      .withDomainEntityProperty('Domain1', 'doc', null, '1000')
-      .withDomainEntityProperty('Domain2', 'doc', null, '2000')
-      .withIntegerIdentity('Property2', 'doc', 100, null, null, '3000')
+      .withDomainEntityProperty('DomainEntity1', 'doc', null, '1000')
+      .withDomainEntityProperty('DomainEntity2', 'doc', null, '2000')
+      .withIntegerIdentity('IntegerProperty', 'doc', 100, null, null, '3000')
       .withEndDomainEntity()
       .toString();
 
       mockfs({
         '/fake/dir': {
           'Domain Entities': {
-            'DomainEntity1.metaed': metaEdTextDomainEntity,
+            'DomainEntity1.metaed': metaEdTextDomainEntity1,
+            'DomainEntity2.metaed': metaEdTextDomainEntity2,
           },
-          'Associations': {
+          Associations: {
             'Association1.metaed': metaEdTextAssociation,
           },
         },

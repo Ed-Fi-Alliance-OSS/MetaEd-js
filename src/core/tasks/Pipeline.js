@@ -21,6 +21,6 @@ export default function start(initialState: State): State {
     loadMetaEdFileIndex,
     buildParseTree(buildMetaEd),
     buildSymbolTable(new SymbolTableBuilder()),
-    validateParseTree(allValidationRules())
+    validateParseTree(allValidationRules()),
   )(initialState);
 }
