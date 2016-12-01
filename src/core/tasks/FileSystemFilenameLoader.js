@@ -27,7 +27,7 @@ export default function load(state: State): State {
   }
 
   const filesToLoadArray: FilesToLoad[] = [];
-  state.inputDirectories.forEach(inputDirectory => {
+  state.get('inputDirectories').forEach(inputDirectory => {
     const filesToLoad: FilesToLoad = {
       namespace: inputDirectory.namespace,
       projectExtension: inputDirectory.projectExtension,
@@ -54,8 +54,7 @@ export default function load(state: State): State {
     filesToLoadArray.push(filesToLoad);
   });
 
-  // TODO: this is a mutation
-  state.filesToLoad = filesToLoadArray;
-  return state;
+  return state.set('filesToLoad', filesToLoadArray)
+              .set('action', state.get('action').push('FileSystemFilenameLoader'));
 }
 

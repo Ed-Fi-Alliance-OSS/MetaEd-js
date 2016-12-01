@@ -22,6 +22,7 @@ export default class SingleFileMetaEdFileIndex {
     return { filename: this.metaEdFile.filename, lineNumber: concatenatedLineNumber };
   }
 
+  // eslint-disable-next-line class-methods-use-this
   load(metaEdFiles: MetaEdFile[]): void {
     winston.error(`SingleFileMetaEdFileIndex: load method called with ${metaEdFiles.join()}, but not implemented`);
   }

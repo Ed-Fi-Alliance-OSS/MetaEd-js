@@ -1,17 +1,19 @@
-// @flow
 import antlr4 from 'antlr4';
-import { List } from 'immutable';
 import SymbolTable from '../../../src/core/validators/SymbolTable';
-import type { State } from '../../../src/core/State';
+
 import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex';
 import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder';
 import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
 import BaseLexer from '../../../src/grammar/gen/BaseLexer';
+import { StateRecordInstance } from '../../../src/core/State';
+// eslint-disable-next-line no-duplicate-imports
+import type { State } from '../../../src/core/State';
 import type { ValidationMessage } from '../../../src/core/validators/ValidationMessage';
 
 export default class ValidatorTestHelper {
   state: State;
 
+  // eslint-disable-next-line no-unused-vars
   setup(metaEdText: string, validatorListener: any, symbolTable: SymbolTable = new SymbolTable()): void {
     console.log(metaEdText);
     const metaEdFileIndex = new SingleFileMetaEdFileIndex();
@@ -23,12 +25,7 @@ export default class ValidatorTestHelper {
     const parser = new MetaEdGrammar(tokens);
     const parserContext = parser.metaEd();
 
-    this.state = {
-      warningMessageCollection: new List(),
-      errorMessageCollection: new List(),
-      symbolTable,
-      metaEdFileIndex,
-    };
+    this.state = new StateRecordInstance({ metaEdFileIndex });
 
     const symbolTableBuilder = new SymbolTableBuilder();
     symbolTableBuilder.withState(this.state);
@@ -41,10 +38,10 @@ export default class ValidatorTestHelper {
   }
 
   warningMessageCollection(): Array<ValidationMessage> {
-    return this.state.warningMessageCollection.toArray();
+    return this.state.get('warningMessageCollection').toArray();
   }
 
   errorMessageCollection(): Array<ValidationMessage> {
-    return this.state.errorMessageCollection.toArray();
+    return this.state.get('errorMessageCollection').toArray();
   }
 }

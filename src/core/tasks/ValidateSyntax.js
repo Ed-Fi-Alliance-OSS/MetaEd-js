@@ -6,16 +6,17 @@ import SingleFileMetaEdFileIndex from './SingleFileMetaEdFileIndex';
 import MetaEdErrorListener from '../../grammar/MetaEdErrorListener';
 import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 
+// eslint-disable-next-line import/prefer-default-export
 export const validateSyntax = R.curry(
 (parseTreeBuilder: (metaEdErrorListener: MetaEdErrorListener, metaEdContents: string) => MetaEdGrammar, state: State): State => {
   const errorMessageCollection = [];
 
-  if (state.filesToLoad == null) {
+  if (state.get('filesToLoad') == null) {
     winston.error('ValidateSyntax: no files to load found');
     return state;
   }
 
-  state.filesToLoad.forEach(fileToLoad => {
+  state.get('filesToLoad').forEach(fileToLoad => {
     fileToLoad.files.forEach(file => {
       const singleFileMetaEdFileIndex = new SingleFileMetaEdFileIndex();
       singleFileMetaEdFileIndex.add(file);
@@ -34,6 +35,6 @@ export const validateSyntax = R.curry(
     winston.error(`ValidateSyntax: errors during parsing ${errorMessageCollection.join()}`);
   }
 
-  state.errorMessageCollection = state.errorMessageCollection.concat(errorMessageCollection);
-  return state;
+  return state.set('errorMessageCollection', state.get('errorMessageCollection').concat(errorMessageCollection))
+              .set('action', state.get('action').push('ValidateSyntax'));
 });

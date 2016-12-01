@@ -25,7 +25,7 @@ export default function loadMetaEdFileIndex(state: State): State {
   }
 
   const metaEdFiles: MetaEdFile[] = [];
-  state.filesToLoad.forEach(loading => {
+  state.get('filesToLoad').forEach(loading => {
     metaEdFiles.push(startNamespace(loading.namespace, loading.projectExtension, loading.isExtension));
     loading.files.forEach(file => {
       metaEdFiles.push(file);
@@ -33,8 +33,7 @@ export default function loadMetaEdFileIndex(state: State): State {
     metaEdFiles.push(endNamespace());
   });
 
-  // TODO: mutates state
-  state.metaEdFileIndex.load(metaEdFiles);
-  return state;
+  return state.set('metaEdFileIndex', state.get('metaEdFileIndex').load(metaEdFiles))
+              .set('action', state.get('action').push('LoadMetaEdFileIndex'));
 }
 

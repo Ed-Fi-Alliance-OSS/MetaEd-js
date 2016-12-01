@@ -7,17 +7,19 @@ import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder'
 import MetaEdGrammar from '../../../src/grammar/gen/MetaEdGrammar';
 import BaseLexer from '../../../src/grammar/gen/BaseLexer';
 import type { ValidationMessage } from '../../../src/core/validators/ValidationMessage';
+import { StateRecordInstance } from '../../../src/core/State';
+// eslint-disable-next-line no-duplicate-imports
 import type { State } from '../../../src/core/State';
 
 export default class SymbolTableTestHelper {
   state: State;
+  symbolTable: ?SymbolTable;
 
   setup(metaEdText) {
     console.log(metaEdText);
     const metaEdFileIndex = new SingleFileMetaEdFileIndex();
     metaEdFileIndex.addContents(metaEdText);
 
-    this.symbolTable = new SymbolTable();
     const listener = new SymbolTableBuilder();
 
     const antlrInputStream = new antlr4.InputStream(metaEdText);
@@ -25,23 +27,20 @@ export default class SymbolTableTestHelper {
     const tokens = new antlr4.CommonTokenStream(lexer);
     const parser = new MetaEdGrammar.MetaEdGrammar(tokens);
     this.parserContext = parser.metaEd();
-    this.state = {
-      warningMessageCollection: new List(),
-      errorMessageCollection: new List(),
-      symbolTable: this.symbolTable,
-      metaEdFileIndex,
-    };
+    this.state = new StateRecordInstance({ metaEdFileIndex });
 
     listener.withState(this.state);
     antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, this.parserContext);
     this.state = listener.postBuildState();
+
+    this.symbolTable = this.state.get('symbolTable');
   }
 
   warningMessageCollection(): Array<ValidationMessage> {
-    return this.state.warningMessageCollection.toArray();
+    return this.state.get('warningMessageCollection').toArray();
   }
 
   errorMessageCollection(): Array<ValidationMessage> {
-    return this.state.errorMessageCollection.toArray();
+    return this.state.get('errorMessageCollection').toArray();
   }
 }

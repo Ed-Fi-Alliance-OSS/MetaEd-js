@@ -6,7 +6,6 @@ import { buildTopLevelEntity, buildMetaEd } from '../../grammar/ParseTreeBuilder
 import loadMetaEdFileIndex from './LoadMetaEdFileIndex';
 import { buildParseTree } from './BuildParseTree';
 import { buildSymbolTable } from './BuildSymbolTable';
-import SymbolTableBuilder from '../validators/SymbolTableBuilder';
 import { validateParseTree } from './ValidateParseTree';
 import allValidationRules from '../validators/AllValidationRules';
 
@@ -20,7 +19,7 @@ export default function start(initialState: State): State {
     validateSyntax(buildTopLevelEntity),
     loadMetaEdFileIndex,
     buildParseTree(buildMetaEd),
-    buildSymbolTable(new SymbolTableBuilder()),
+    buildSymbolTable,
     validateParseTree(allValidationRules()),
   )(initialState);
 }

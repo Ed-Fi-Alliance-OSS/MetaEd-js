@@ -26,19 +26,20 @@ const validationRuleBase = R.curry(
    failureMessage: (ruleContext: any, symbolTable: SymbolTable) => string,
    ruleContext: any,
    state: State): State => {
-    const nextState = state;
-    const isValid = valid(ruleContext, state.symbolTable);
+    let nextState = state;
+    const isValid = valid(ruleContext, state.get('symbolTable'));
     if (isValid) return state;
 
-    const message = buildValidationMessage(failureMessage(ruleContext, state.symbolTable), ruleContext.start, state.metaEdFileIndex);
+    const message = buildValidationMessage(failureMessage(ruleContext, state.get('symbolTable')), ruleContext.start, state.get('metaEdFileIndex'));
     if (errorLevel === ValidationLevel.Error) {
-      nextState.errorMessageCollection = nextState.errorMessageCollection.push(message);
+      nextState = nextState.set('errorMessageCollection', nextState.get('errorMessageCollection').push(message))
+      .set('action', nextState.get('action').push('ValidationRuleBase'));
     } else if (errorLevel === ValidationLevel.Warning) {
-      nextState.warningMessageCollection = nextState.warningMessageCollection.push(message);
+      nextState = nextState.set('warningMessageCollection', nextState.get('warningMessageCollection').push(message))
+      .set('action', nextState.get('action').push('ValidationRuleBase'));
     } else throw new Error('ValidationRuleBase: Received error level of unknown type');
     return nextState;
-  }
-);
+  });
 
 export const errorRuleBase = validationRuleBase(ValidationLevel.Error);
 export const warningRuleBase = validationRuleBase(ValidationLevel.Warning);
