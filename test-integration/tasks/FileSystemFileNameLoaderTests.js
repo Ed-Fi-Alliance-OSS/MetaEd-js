@@ -1,20 +1,19 @@
-import { List } from 'immutable';
 import chai from 'chai';
 import mockfs from 'mock-fs';
 import MetaEdTextBuilder from '../../test/grammar/MetaEdTextBuilder';
 import MetaEdFileIndex from '../../src/core/tasks/MetaEdFileIndex';
 import SymbolTable from '../../src/core/validators/SymbolTable';
 import load from '../../src/core/tasks/FileSystemFilenameLoader';
+import { StateInstance } from '../../src/core/State';
+// eslint-disable-next-line no-duplicate-imports
 import type { State } from '../../src/core/State';
 
 chai.should();
 
 describe('FileSystemFileNameLoaderTests', () => {
-  const state: State = {
-    warningMessageCollection: new List(),
-    errorMessageCollection: new List(),
-    symbolTable: new SymbolTable(),
+  const state: State = new StateInstance({
     metaEdFileIndex: new MetaEdFileIndex(),
+    symbolTable: new SymbolTable(),
     filesToLoad: [],
     inputDirectories: [{
       path: '/fake/dir',
@@ -22,7 +21,7 @@ describe('FileSystemFileNameLoaderTests', () => {
       projectExtension: '',
       isExtension: false,
     }],
-  };
+  });
 
   describe('When a single file', () => {
     before(() => {
@@ -77,7 +76,7 @@ describe('FileSystemFileNameLoaderTests', () => {
           'Domain Entities': {
             'DomainEntity1.metaed': metaEdTextDomainEntity,
           },
-          'Associations': {
+          Associations: {
             'Association1.metaed': metaEdTextAssociation,
           },
         },

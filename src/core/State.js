@@ -21,7 +21,7 @@ type StateRecord = {
 export type State = Record<StateRecord>;
 
 // eslint-disable-next-line import/prefer-default-export
-export const StateRecordInstance: State = Record({
+export const StateInstance: State = Record({
   action: new List(),
   warningMessageCollection: new List(),
   errorMessageCollection: new List(),

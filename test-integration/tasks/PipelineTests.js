@@ -5,17 +5,17 @@ import MetaEdTextBuilder from '../../test/grammar/MetaEdTextBuilder';
 import MetaEdFileIndex from '../../src/core/tasks/MetaEdFileIndex';
 import SymbolTable from '../../src/core/validators/SymbolTable';
 import start from '../../src/core/tasks/Pipeline';
+import { StateInstance } from '../../src/core/State';
+// eslint-disable-next-line no-duplicate-imports
 import type { State } from '../../src/core/State';
 
 chai.should();
 
 describe('PipelineTests', () => {
   describe('When a single file', () => {
-    const state: State = {
-      warningMessageCollection: new List(),
-      errorMessageCollection: new List(),
-      symbolTable: new SymbolTable(),
+    const state: State = new StateInstance({
       metaEdFileIndex: new MetaEdFileIndex(),
+      symbolTable: new SymbolTable(),
       filesToLoad: [],
       inputDirectories: [{
         path: '/fake/dir',
@@ -23,7 +23,7 @@ describe('PipelineTests', () => {
         projectExtension: '',
         isExtension: false,
       }],
-    };
+    });
 
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
@@ -53,11 +53,9 @@ describe('PipelineTests', () => {
   });
 
   describe('When a single file with a bad reference', () => {
-    const state: State = {
-      warningMessageCollection: new List(),
-      errorMessageCollection: new List(),
-      symbolTable: new SymbolTable(),
+    const state: State = new StateInstance({
       metaEdFileIndex: new MetaEdFileIndex(),
+      symbolTable: new SymbolTable(),
       filesToLoad: [],
       inputDirectories: [{
         path: '/fake/dir',
@@ -65,7 +63,7 @@ describe('PipelineTests', () => {
         projectExtension: '',
         isExtension: false,
       }],
-    };
+    });
 
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
@@ -95,11 +93,9 @@ describe('PipelineTests', () => {
   });
 
   describe('When multiple files', () => {
-    const state: State = {
-      warningMessageCollection: new List(),
-      errorMessageCollection: new List(),
-      symbolTable: new SymbolTable(),
+    const state: State = new StateInstance({
       metaEdFileIndex: new MetaEdFileIndex(),
+      symbolTable: new SymbolTable(),
       filesToLoad: [],
       inputDirectories: [{
         path: '/fake/dir',
@@ -107,7 +103,7 @@ describe('PipelineTests', () => {
         projectExtension: '',
         isExtension: false,
       }],
-    };
+    });
 
     before(() => {
       const metaEdTextDomainEntity1 = MetaEdTextBuilder.build()

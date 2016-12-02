@@ -1,5 +1,4 @@
 import antlr4 from 'antlr4/index';
-import { List } from 'immutable';
 import SymbolTable from '../../../src/core/validators/SymbolTable';
 import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex';
 import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder';
@@ -7,7 +6,7 @@ import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder'
 import MetaEdGrammar from '../../../src/grammar/gen/MetaEdGrammar';
 import BaseLexer from '../../../src/grammar/gen/BaseLexer';
 import type { ValidationMessage } from '../../../src/core/validators/ValidationMessage';
-import { StateRecordInstance } from '../../../src/core/State';
+import { StateInstance } from '../../../src/core/State';
 // eslint-disable-next-line no-duplicate-imports
 import type { State } from '../../../src/core/State';
 
@@ -27,7 +26,7 @@ export default class SymbolTableTestHelper {
     const tokens = new antlr4.CommonTokenStream(lexer);
     const parser = new MetaEdGrammar.MetaEdGrammar(tokens);
     this.parserContext = parser.metaEd();
-    this.state = new StateRecordInstance({ metaEdFileIndex });
+    this.state = new StateInstance({ metaEdFileIndex });
 
     listener.withState(this.state);
     antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, this.parserContext);

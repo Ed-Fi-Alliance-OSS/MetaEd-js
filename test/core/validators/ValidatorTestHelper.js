@@ -5,7 +5,7 @@ import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdF
 import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder';
 import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
 import BaseLexer from '../../../src/grammar/gen/BaseLexer';
-import { StateRecordInstance } from '../../../src/core/State';
+import { StateInstance } from '../../../src/core/State';
 // eslint-disable-next-line no-duplicate-imports
 import type { State } from '../../../src/core/State';
 import type { ValidationMessage } from '../../../src/core/validators/ValidationMessage';
@@ -25,7 +25,7 @@ export default class ValidatorTestHelper {
     const parser = new MetaEdGrammar(tokens);
     const parserContext = parser.metaEd();
 
-    this.state = new StateRecordInstance({ metaEdFileIndex });
+    this.state = new StateInstance({ metaEdFileIndex });
 
     const symbolTableBuilder = new SymbolTableBuilder();
     symbolTableBuilder.withState(this.state);
