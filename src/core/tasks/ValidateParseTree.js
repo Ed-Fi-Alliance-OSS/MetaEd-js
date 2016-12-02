@@ -8,7 +8,8 @@ import type { ValidationRuleRepository } from '../validators/ValidationRuleRepos
 // eslint-disable-next-line import/prefer-default-export
 export const validateParseTree = R.curry(
   (validationRuleRepository: ValidationRuleRepository, state: State): State => {
-    const validatorListener = new ValidatorListener(validationRuleRepository, state);
+    const validatorListener = new ValidatorListener(validationRuleRepository);
+    validatorListener.withState(state);
     tree.ParseTreeWalker.DEFAULT.walk(validatorListener, state.get('parseTree'));
     return validatorListener.postValidationState();
 

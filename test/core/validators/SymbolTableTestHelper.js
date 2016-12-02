@@ -1,6 +1,7 @@
 import antlr4 from 'antlr4/index';
 import SymbolTable from '../../../src/core/validators/SymbolTable';
-import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex';
+import { createFileIndex } from '../../../src/core/tasks/FileIndex';
+import { createMetaEdFile } from '../../../src/core/tasks/MetaEdFile';
 import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder';
 
 import MetaEdGrammar from '../../../src/grammar/gen/MetaEdGrammar';
@@ -16,8 +17,7 @@ export default class SymbolTableTestHelper {
 
   setup(metaEdText) {
     console.log(metaEdText);
-    const metaEdFileIndex = new SingleFileMetaEdFileIndex();
-    metaEdFileIndex.addContents(metaEdText);
+    const fileIndex = createFileIndex([createMetaEdFile('DirectoryName', 'FileName', metaEdText)]);
 
     const listener = new SymbolTableBuilder();
 
@@ -26,7 +26,7 @@ export default class SymbolTableTestHelper {
     const tokens = new antlr4.CommonTokenStream(lexer);
     const parser = new MetaEdGrammar.MetaEdGrammar(tokens);
     this.parserContext = parser.metaEd();
-    this.state = new StateInstance({ metaEdFileIndex });
+    this.state = new StateInstance({ fileIndex });
 
     listener.withState(this.state);
     antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, this.parserContext);

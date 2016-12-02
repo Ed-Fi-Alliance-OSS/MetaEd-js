@@ -1,21 +1,23 @@
 // @flow
 import antlr4 from 'antlr4';
 import type { ValidationMessage } from '../core/validators/ValidationMessage';
-import type { IMetaEdFileIndex, FilenameAndLineNumber } from '../core/tasks/IMetaEdFileIndex';
+import type { FileIndex, FilenameAndLineNumber } from '../core/tasks/FileIndex';
+// eslint-disable-next-line no-duplicate-imports
+import { getFilenameAndLineNumber } from '../core/tasks/FileIndex';
 
 export default class MetaEdErrorListener {
   _messageCollection: ValidationMessage[];
-  _metaEdFileIndex: IMetaEdFileIndex;
+  _fileIndex: FileIndex;
 
-  constructor(messageCollection: ValidationMessage[], metaEdFileIndex: IMetaEdFileIndex) {
+  constructor(messageCollection: ValidationMessage[], fileIndex: FileIndex) {
     antlr4.error.ErrorListener.call(this);
     this._messageCollection = messageCollection;
-    this._metaEdFileIndex = metaEdFileIndex;
+    this._fileIndex = fileIndex;
   }
 
   syntaxError(recognizer: any, offendingSymbol: any, concatenatedLineNumber: number, characterPosition: number,
               message: string /* , e */) {
-    const metaEdFile: FilenameAndLineNumber = this._metaEdFileIndex.getFilenameAndLineNumber(concatenatedLineNumber);
+    const metaEdFile: FilenameAndLineNumber = getFilenameAndLineNumber(this._fileIndex, concatenatedLineNumber);
 
     this._messageCollection.push({
       message,

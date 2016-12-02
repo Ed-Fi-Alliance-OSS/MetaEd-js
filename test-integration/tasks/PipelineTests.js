@@ -1,9 +1,6 @@
-import { List } from 'immutable';
 import chai from 'chai';
 import mockfs from 'mock-fs';
 import MetaEdTextBuilder from '../../test/grammar/MetaEdTextBuilder';
-import MetaEdFileIndex from '../../src/core/tasks/MetaEdFileIndex';
-import SymbolTable from '../../src/core/validators/SymbolTable';
 import start from '../../src/core/tasks/Pipeline';
 import { StateInstance } from '../../src/core/State';
 // eslint-disable-next-line no-duplicate-imports
@@ -14,9 +11,6 @@ chai.should();
 describe('PipelineTests', () => {
   describe('When a single file', () => {
     const state: State = new StateInstance({
-      metaEdFileIndex: new MetaEdFileIndex(),
-      symbolTable: new SymbolTable(),
-      filesToLoad: [],
       inputDirectories: [{
         path: '/fake/dir',
         namespace: 'edfi',
@@ -54,9 +48,6 @@ describe('PipelineTests', () => {
 
   describe('When a single file with a bad reference', () => {
     const state: State = new StateInstance({
-      metaEdFileIndex: new MetaEdFileIndex(),
-      symbolTable: new SymbolTable(),
-      filesToLoad: [],
       inputDirectories: [{
         path: '/fake/dir',
         namespace: 'edfi',
@@ -94,9 +85,6 @@ describe('PipelineTests', () => {
 
   describe('When multiple files', () => {
     const state: State = new StateInstance({
-      metaEdFileIndex: new MetaEdFileIndex(),
-      symbolTable: new SymbolTable(),
-      filesToLoad: [],
       inputDirectories: [{
         path: '/fake/dir',
         namespace: 'edfi',
@@ -110,7 +98,7 @@ describe('PipelineTests', () => {
       .withStartDomainEntity('DomainEntity1')
       .withMetaEdId('123')
       .withDocumentation('doc')
-      .withStringIdentity('Property1', 'doc', 100, null, null, '456')
+      .withStringIdentity('Property1', 'doc', 100, null, null, '1231')
       .withEndDomainEntity()
       .toString();
 
@@ -118,7 +106,7 @@ describe('PipelineTests', () => {
       .withStartDomainEntity('DomainEntity2')
       .withMetaEdId('234')
       .withDocumentation('doc')
-      .withStringIdentity('Property2', 'doc', 100, null, null, '456')
+      .withStringIdentity('Property2', 'doc', 100, null, null, '2341')
       .withEndDomainEntity()
       .toString();
 
@@ -126,9 +114,9 @@ describe('PipelineTests', () => {
       .withStartAssociation('Association1')
       .withMetaEdId('789')
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc', null, '1000')
-      .withDomainEntityProperty('DomainEntity2', 'doc', null, '2000')
-      .withIntegerIdentity('IntegerProperty', 'doc', 100, null, null, '3000')
+      .withDomainEntityProperty('DomainEntity1', 'doc', null, '7891')
+      .withDomainEntityProperty('DomainEntity2', 'doc', null, '7892')
+      .withIntegerIdentity('IntegerProperty', 'doc', 100, null, null, '7893')
       .withEndDomainEntity()
       .toString();
 

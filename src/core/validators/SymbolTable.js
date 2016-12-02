@@ -3,7 +3,7 @@ import PropertySymbolTable from './PropertySymbolTable';
 
 declare type ParserRuleContext = any;
 
-function emptyIterator() : any {
+function emptyIterator(): any {
   return {
     next() { return { done: true }; },
   };

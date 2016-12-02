@@ -2,7 +2,9 @@
 import ffs from 'final-fs';
 import path from 'path';
 import winston from 'winston';
-import MetaEdFile from './MetaEdFile';
+import { createMetaEdFile } from './MetaEdFile';
+// eslint-disable-next-line no-duplicate-imports
+import type { MetaEdFile } from './MetaEdFile';
 import type { State } from '../State';
 
 export type FilesToLoad = {
@@ -20,7 +22,7 @@ export type InputDirectory = {
 }
 
 // TODO: this is fully synchronous, make async
-export default function load(state: State): State {
+export default function loadFiles(state: State): State {
   if (state.inputDirectories == null) {
     winston.warn('FileSystemFilenameLoader: no input directories');
     return state;
@@ -40,10 +42,7 @@ export default function load(state: State): State {
 
     filenamesToLoad.forEach(filename => {
       const contents = ffs.readFileSync(filename, 'utf-8');
-      const metaEdFile = new MetaEdFile();
-      metaEdFile.setContents(contents);
-      metaEdFile.directoryName = path.dirname(filename);
-      metaEdFile.filename = path.basename(filename);
+      const metaEdFile = createMetaEdFile(path.dirname(filename), path.basename(filename), contents);
       filesToLoad.files.push(metaEdFile);
     });
 

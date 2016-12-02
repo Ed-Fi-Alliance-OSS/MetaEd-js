@@ -1,13 +1,12 @@
 // @flow
 import R from 'ramda';
-import type SymbolTable from '../SymbolTable';
-import { errorRuleBase } from '../ValidationRuleBase';
+import { Set } from 'immutable';
+import { errorRuleBaseStateModifying } from '../ValidationRuleBase';
 import { includeRuleBaseForMultiRuleIndexes } from '../ValidationRuleRepository';
 import { entityName, entityIdentifier, topLevelEntityRules, topLevelEntityExtensionRules } from '../RuleInformation';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
-
-// WARNING: maintains state
-const repository = new Set();
+import type { State } from '../../State';
+import type SymbolTable from '../SymbolTable';
 
 // Domains, Subdomains, Interchanges, enumerations and descriptors don't have standard cross entity naming issues
 // and extension entities don't define a new identifier
@@ -21,12 +20,18 @@ const relevantEntityRules = R.without(
   ], topLevelEntityExtensionRules),
   topLevelEntityRules);
 
-// eslint-disable-next-line no-unused-vars
-function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
-  const name = entityName(ruleContext);
-  if (repository.has(name)) return false;
-  repository.add(name);
-  return true;
+function validAndNextState(ruleContext: any, state: State): { isValid: boolean, nextState: State } {
+  const validatorData = state.get('validatorData');
+  const repository = validatorData.get('MostEntitiesCannotHaveSameNameRepository', Set());
+
+  const name: string = entityName(ruleContext);
+  if (repository.has(name)) return { isValid: false, nextState: state };
+
+  const nextValidatorData = validatorData.set('MostEntitiesCannotHaveSameNameRepository', repository.add(name));
+  const nextState = state.set('validatorData', nextValidatorData)
+  .set('action', state.get('action').push('MostEntitiesCannotHaveSameName'));
+
+  return { isValid: true, nextState };
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -34,6 +39,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `${entityIdentifier(ruleContext)} named ${entityName(ruleContext)} is a duplicate declaration of that name.`;
 }
 
-const validationRule = errorRuleBase(valid, failureMessage);
+const validationRule = errorRuleBaseStateModifying(validAndNextState, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBaseForMultiRuleIndexes(relevantEntityRules, validationRule);

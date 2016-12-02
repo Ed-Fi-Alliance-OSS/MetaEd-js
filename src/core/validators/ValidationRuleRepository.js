@@ -13,8 +13,7 @@ export const includeRuleBase = R.curry(
     }
 
     return includeList.set(ruleIndex, ruleList.push(validationRule));
-  }
-);
+  });
 
 export const includeRuleBaseForMultiRuleIndexes = R.curry(
   (ruleIndexes: number[], validationRule: ValidationRule, includeList: ValidationRuleRepository): ValidationRuleRepository => {
@@ -23,8 +22,7 @@ export const includeRuleBaseForMultiRuleIndexes = R.curry(
       currentRepository = includeRuleBase(ruleIndex, validationRule, currentRepository);
     });
     return currentRepository;
-  }
-);
+  });
 
 export function newRepository(): ValidationRuleRepository {
   return new Map();

@@ -1,7 +1,6 @@
 import antlr4 from 'antlr4';
 import SymbolTable from '../../../src/core/validators/SymbolTable';
 
-import SingleFileMetaEdFileIndex from '../../../src/core/tasks/SingleFileMetaEdFileIndex';
 import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder';
 import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
 import BaseLexer from '../../../src/grammar/gen/BaseLexer';
@@ -9,6 +8,8 @@ import { StateInstance } from '../../../src/core/State';
 // eslint-disable-next-line no-duplicate-imports
 import type { State } from '../../../src/core/State';
 import type { ValidationMessage } from '../../../src/core/validators/ValidationMessage';
+import { createFileIndex } from '../../../src/core/tasks/FileIndex';
+import { createMetaEdFile } from '../../../src/core/tasks/MetaEdFile';
 
 export default class ValidatorTestHelper {
   state: State;
@@ -16,8 +17,7 @@ export default class ValidatorTestHelper {
   // eslint-disable-next-line no-unused-vars
   setup(metaEdText: string, validatorListener: any, symbolTable: SymbolTable = new SymbolTable()): void {
     console.log(metaEdText);
-    const metaEdFileIndex = new SingleFileMetaEdFileIndex();
-    metaEdFileIndex.addContents(metaEdText);
+    const fileIndex = createFileIndex([createMetaEdFile('DirectoryName', 'FileName', metaEdText)]);
 
     const antlrInputStream = new antlr4.InputStream(metaEdText);
     const lexer = new BaseLexer.BaseLexer(antlrInputStream);
@@ -25,7 +25,7 @@ export default class ValidatorTestHelper {
     const parser = new MetaEdGrammar(tokens);
     const parserContext = parser.metaEd();
 
-    this.state = new StateInstance({ metaEdFileIndex });
+    this.state = new StateInstance({ fileIndex });
 
     const symbolTableBuilder = new SymbolTableBuilder();
     symbolTableBuilder.withState(this.state);

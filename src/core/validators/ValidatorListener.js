@@ -1,4 +1,5 @@
 // @flow
+import { Map } from 'immutable';
 import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
 import { MetaEdGrammarListener } from '../../../src/grammar/gen/MetaEdGrammarListener';
 import type { State } from '../State';
@@ -7,10 +8,9 @@ import type { ValidationRuleRepository } from './ValidationRuleRepository';
 export default class ValidatorListener extends MetaEdGrammarListener {
   state: State;
 
-  constructor(validationRuleRepository: ValidationRuleRepository, state: State) {
+  constructor(validationRuleRepository: ValidationRuleRepository) {
     super();
     this.validationRuleRepository = validationRuleRepository;
-    this.state = state;
   }
 
   postValidationState(): State {
@@ -18,7 +18,8 @@ export default class ValidatorListener extends MetaEdGrammarListener {
   }
 
   withState(state: State) {
-    this.state = state;
+    this.state = state.set('validatorData', Map())
+    .set('action', state.get('action').push('ValidatorListener'));
   }
 
   _validateContext(ruleContext: any, ruleIndex: number) {

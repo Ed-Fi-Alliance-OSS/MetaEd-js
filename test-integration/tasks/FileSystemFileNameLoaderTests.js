@@ -1,9 +1,7 @@
 import chai from 'chai';
 import mockfs from 'mock-fs';
 import MetaEdTextBuilder from '../../test/grammar/MetaEdTextBuilder';
-import MetaEdFileIndex from '../../src/core/tasks/MetaEdFileIndex';
-import SymbolTable from '../../src/core/validators/SymbolTable';
-import load from '../../src/core/tasks/FileSystemFilenameLoader';
+import loadFiles from '../../src/core/tasks/FileSystemFilenameLoader';
 import { StateInstance } from '../../src/core/State';
 // eslint-disable-next-line no-duplicate-imports
 import type { State } from '../../src/core/State';
@@ -12,8 +10,6 @@ chai.should();
 
 describe('FileSystemFileNameLoaderTests', () => {
   const state: State = new StateInstance({
-    metaEdFileIndex: new MetaEdFileIndex(),
-    symbolTable: new SymbolTable(),
     filesToLoad: [],
     inputDirectories: [{
       path: '/fake/dir',
@@ -44,8 +40,8 @@ describe('FileSystemFileNameLoaderTests', () => {
     });
 
     it('Should load the file contents', () => {
-      const newState = load(state);
-      const contents = newState.filesToLoad[0].files[0].getContents();
+      const newState = loadFiles(state);
+      const contents = newState.filesToLoad[0].files[0].get('contents');
       contents.should.include('Domain Entity');
       contents.should.include('DomainEntity1');
       contents.should.include('string');
@@ -88,15 +84,15 @@ describe('FileSystemFileNameLoaderTests', () => {
     });
 
     it('Should load the file contents', () => {
-      const newState = load(state);
-      const associationContents = newState.filesToLoad[0].files[0].getContents();
+      const newState = loadFiles(state);
+      const associationContents = newState.filesToLoad[0].files[0].get('contents');
       associationContents.should.include('Association');
       associationContents.should.include('Domain1');
       associationContents.should.include('Domain2');
       associationContents.should.include('integer');
       associationContents.should.include('Property2');
 
-      const domainEntityContents = newState.filesToLoad[0].files[1].getContents();
+      const domainEntityContents = newState.filesToLoad[0].files[1].get('contents');
       domainEntityContents.should.include('Domain Entity');
       domainEntityContents.should.include('DomainEntity1');
       domainEntityContents.should.include('string');

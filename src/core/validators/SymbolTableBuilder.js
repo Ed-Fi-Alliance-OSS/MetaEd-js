@@ -3,6 +3,7 @@ import { MetaEdGrammarListener } from '../../../src/grammar/gen/MetaEdGrammarLis
 import type { State } from '../../../src/core/State';
 import SymbolTable from './SymbolTable';
 import SymbolTableEntityType from './SymbolTableEntityType';
+import { getFilenameAndLineNumber } from '../tasks/FileIndex';
 
 export default class SymbolTableBuilder extends MetaEdGrammarListener {
   state: State;
@@ -27,13 +28,13 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
       return;
     }
 
-    const metaEdFile = this.state.get('metaEdFileIndex').getFilenameAndLineNumber(entityNameIdNode.symbol.line);
+    const { filename, lineNumber } = getFilenameAndLineNumber(this.state.get('fileIndex'), entityNameIdNode.symbol.line);
     const failure = {
       message: `Duplicate ${entityType} named ${entityNameIdNode}`,
       characterPosition: entityNameIdNode.symbol.column,
       concatenatedLineNumber: entityNameIdNode.symbol.line,
-      filename: metaEdFile.filename,
-      lineNumber: metaEdFile.lineNumber,
+      filename,
+      lineNumber,
     };
     this.state = this.state.set('errorMessageCollection', this.state.get('errorMessageCollection').push(failure))
                            .set('action', this.state.get('action').push('SymbolTableBuilder'));
@@ -47,13 +48,14 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
       return;
     }
     if (this.currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.getText(), ruleContext)) return;
-    const metaEdFile = this.state.get('metaEdFileIndex').getFilenameAndLineNumber(propertyName.symbol.line);
+
+    const { filename, lineNumber } = getFilenameAndLineNumber(this.state.get('fileIndex'), propertyName.symbol.line);
     const duplicateFailure = {
       message: `Entity ${this.currentPropertySymbolTable.parentName()} has duplicate properties named ${propertyName.getText()}`,
       characterPosition: propertyName.symbol.column,
       concatenatedLineNumber: propertyName.symbol.line,
-      filename: metaEdFile.filename,
-      lineNumber: metaEdFile.lineNumber,
+      filename,
+      lineNumber,
     };
     this.state = this.state.set('errorMessageCollection', this.state.get('errorMessageCollection').push(duplicateFailure))
                            .set('action', this.state.get('action').push('SymbolTableBuilder'));

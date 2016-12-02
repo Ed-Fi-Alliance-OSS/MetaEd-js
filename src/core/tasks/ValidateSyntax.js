@@ -2,7 +2,7 @@
 import R from 'ramda';
 import winston from 'winston';
 import type { State } from '../State';
-import SingleFileMetaEdFileIndex from './SingleFileMetaEdFileIndex';
+import { createFileIndex } from './FileIndex';
 import MetaEdErrorListener from '../../grammar/MetaEdErrorListener';
 import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 
@@ -18,12 +18,9 @@ export const validateSyntax = R.curry(
 
   state.get('filesToLoad').forEach(fileToLoad => {
     fileToLoad.files.forEach(file => {
-      const singleFileMetaEdFileIndex = new SingleFileMetaEdFileIndex();
-      singleFileMetaEdFileIndex.add(file);
+      const errorListener = new MetaEdErrorListener(errorMessageCollection, createFileIndex([file]));
 
-      const errorListener = new MetaEdErrorListener(errorMessageCollection, singleFileMetaEdFileIndex);
-
-      const parseTree = parseTreeBuilder(errorListener, file.getContents());
+      const parseTree = parseTreeBuilder(errorListener, file.get('contents'));
       if (parseTree == null) {
         winston.error(`ValidateSyntax: parse tree builder returned null for file ${file.fullName()}`);
       }

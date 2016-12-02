@@ -2,11 +2,14 @@ import chai from 'chai';
 import MetaEdErrorListener from '../../src/grammar/MetaEdErrorListener';
 import { buildTopLevelEntity } from '../../src/grammar/ParseTreeBuilder';
 import MetaEdTextBuilder from './MetaEdTextBuilder';
-import StubMetaEdFileIndex from './StubMetaEdFileIndex';
+import { createFileIndex } from '../../src/core/tasks/FileIndex';
+import { createMetaEdFile } from '../../src/core/tasks/MetaEdFile';
 
 chai.should();
 
 describe('ParseTreeBuilder', () => {
+  const stubFileIndex = createFileIndex([createMetaEdFile('', '', '')]);
+
   describe('Domain Entity', () => {
     it('should parse correctly with valid MetaEd', () => {
       const inputText = [
@@ -19,7 +22,8 @@ describe('ParseTreeBuilder', () => {
       ].join('\n');
 
       const errorMessageCollection = [];
-      const errorListener = new MetaEdErrorListener(errorMessageCollection, new StubMetaEdFileIndex());
+
+      const errorListener = new MetaEdErrorListener(errorMessageCollection, stubFileIndex);
       buildTopLevelEntity(errorListener, inputText);
       errorMessageCollection.should.be.empty;
     });
@@ -35,7 +39,7 @@ describe('ParseTreeBuilder', () => {
       ].join('\n');
 
       const errorMessageCollection = [];
-      const errorListener = new MetaEdErrorListener(errorMessageCollection, new StubMetaEdFileIndex());
+      const errorListener = new MetaEdErrorListener(errorMessageCollection, stubFileIndex);
       buildTopLevelEntity(errorListener, inputText);
       errorMessageCollection.should.not.be.empty;
       errorMessageCollection[0].message.should.include('xyz');
@@ -51,7 +55,7 @@ describe('ParseTreeBuilder', () => {
         .toString();
 
       const errorMessageCollection = [];
-      const errorListener = new MetaEdErrorListener(errorMessageCollection, new StubMetaEdFileIndex());
+      const errorListener = new MetaEdErrorListener(errorMessageCollection, stubFileIndex);
       buildTopLevelEntity(errorListener, inputText);
       errorMessageCollection.should.be.empty;
     });

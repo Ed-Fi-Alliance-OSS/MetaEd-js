@@ -1,9 +1,9 @@
 // @flow
 import R from 'ramda';
-import load from './FileSystemFilenameLoader';
+import loadFiles from './FileSystemFilenameLoader';
 import { validateSyntax } from './ValidateSyntax';
 import { buildTopLevelEntity, buildMetaEd } from '../../grammar/ParseTreeBuilder';
-import loadMetaEdFileIndex from './LoadMetaEdFileIndex';
+import loadFileIndex from './LoadFileIndex';
 import { buildParseTree } from './BuildParseTree';
 import { buildSymbolTable } from './BuildSymbolTable';
 import { validateParseTree } from './ValidateParseTree';
@@ -15,9 +15,9 @@ import type { State } from '../State';
 
 export default function start(initialState: State): State {
   return R.pipe(
-    load,
+    loadFiles,
     validateSyntax(buildTopLevelEntity),
-    loadMetaEdFileIndex,
+    loadFileIndex,
     buildParseTree(buildMetaEd),
     buildSymbolTable,
     validateParseTree(allValidationRules()),

@@ -1,29 +1,43 @@
 // @flow
 import path from 'path';
+import { Record } from 'immutable';
 
-export default class MetaEdFile {
-  _contents: string;
+type MetaEdFileRecord = {
+  contents: string;
   lineCount: number;
   directoryName: string;
   filename: string;
+}
 
-  getContents(): string {
-    return this._contents;
+export type MetaEdFile = Record<MetaEdFileRecord>;
+
+export const MetaEdFileInstance: MetaEdFile = Record({
+  contents: null,
+  lineCount: null,
+  directoryName: null,
+  filename: null,
+});
+
+export function createMetaEdFile(directoryName: string, filename: string, originalContents: string): MetaEdFile {
+  let contents = originalContents;
+  if (contents == null) contents = '';
+
+  if (!contents.endsWith('\r\n') && !contents.endsWith('\n')) {
+    contents += '\r\n';
   }
 
-  setContents(contents: string) {
-    this._contents = contents;
-    if (this._contents == null) this._contents = '';
+  const lineCount = contents.split(/\r\n|\r|\n/).length - 1;
 
-    if (!this._contents.endsWith('\r\n') && !this._contents.endsWith('\n')) {
-      this._contents += '\r\n';
-    }
+  // $FlowFixMe -- doesn't like constructor call on Immutable.Record
+  return new MetaEdFileInstance({
+    contents,
+    lineCount,
+    directoryName,
+    filename,
+  });
+}
 
-    this.lineCount = this._contents.split(/\r\n|\r|\n/).length - 1;
-  }
-
-  fullName(): string {
-    if (!this.directoryName) return this.filename;
-    return path.join(this.directoryName, this.filename);
-  }
+export function fullName(metaEdFile: MetaEdFile): string {
+  if (!metaEdFile.get('directoryName')) return metaEdFile.get('filename');
+  return path.join(metaEdFile.get('directoryName'), metaEdFile.get('filename'));
 }
