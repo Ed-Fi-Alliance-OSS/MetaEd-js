@@ -1,7 +1,7 @@
 // @flow
 import type SymbolTable, { EntityContext } from '../SymbolTable';
 import SymbolTableEntityType from '../SymbolTableEntityType';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 
 // eslint-disable-next-line import/prefer-default-export
 export function lookupParentEntityContext(symbolTable: SymbolTable, parentRuleContext: any): ?EntityContext {

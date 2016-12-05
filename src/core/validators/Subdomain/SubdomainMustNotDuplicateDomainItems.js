@@ -1,7 +1,7 @@
 // @flow
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import { validForDuplicates, failureMessageForDuplicates } from '../ValidatorShared/MustNotDuplicate';
 
 function idsToCheck(ruleContext: any) {

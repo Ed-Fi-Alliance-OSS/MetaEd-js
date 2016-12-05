@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
-import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
-import grammarInstance from '../../../src/grammar/MetaEdGrammarInstance';
+import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
+import grammarInstance from '../../grammar/MetaEdGrammarInstance';
 
 // Static strings for top level entity types, taken from generated grammar, used for hashtable keys
 

@@ -3,7 +3,7 @@ import type SymbolTable from '../SymbolTable';
 import { parentIdentifierForPropertyContext, parentTypeNameForPropertyContext } from '../../../grammar/ParserRuleContextExtensions';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import { valid } from '../CommonSimpleType/CommonDecimalMinValueMustNotBeGreaterThanMaxValue';
 
 // eslint-disable-next-line no-unused-vars

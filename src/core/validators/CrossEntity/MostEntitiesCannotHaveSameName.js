@@ -4,7 +4,7 @@ import { Set } from 'immutable';
 import { errorRuleBaseStateModifying } from '../ValidationRuleBase';
 import { includeRuleBaseForMultiRuleIndexes } from '../ValidationRuleRepository';
 import { entityName, entityIdentifier, topLevelEntityRules, topLevelEntityExtensionRules } from '../RuleInformation';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import type { State } from '../../State';
 import type SymbolTable from '../SymbolTable';
 

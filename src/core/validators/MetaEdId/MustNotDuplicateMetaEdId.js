@@ -2,7 +2,7 @@
 import { Set } from 'immutable';
 import { errorRuleBaseStateModifying } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import type { State } from '../../State';
 import type SymbolTable from '../SymbolTable';
 

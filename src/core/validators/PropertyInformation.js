@@ -1,5 +1,5 @@
 // @flow
-import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 
 // eslint-disable-next-line import/prefer-default-export
 export const propertyRules: number[] = [

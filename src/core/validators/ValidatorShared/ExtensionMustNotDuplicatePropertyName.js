@@ -1,6 +1,6 @@
 // @flow
 import R from 'ramda';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import type SymbolTable from '../SymbolTable';
 
 function isNotIncludePropertyContextWithExtension(context: any): boolean {

@@ -1,5 +1,5 @@
 // @flow
-import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 
 export function entityIdentifier(ruleContext: any): string {
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_abstractEntity) return ruleContext.ABSTRACT_ENTITY().getText();

@@ -2,7 +2,7 @@
 import type SymbolTable from '../SymbolTable';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import { contextMustMatchATopLevelEntity, topLevelEntityAncestorContext } from '../ValidationHelper';
 import { entityIdentifier, entityName } from '../RuleInformation';
 

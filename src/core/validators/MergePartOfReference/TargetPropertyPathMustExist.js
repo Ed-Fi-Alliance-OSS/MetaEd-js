@@ -1,7 +1,7 @@
 // @flow
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import { lookupParentEntityContext, propertyPathParts } from './MergePartOfReferenceValidationRule';
 import type SymbolTable from '../SymbolTable';
 import { validate, matchAllIdentityProperties } from './PropertyPathLookup';

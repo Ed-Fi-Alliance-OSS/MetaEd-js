@@ -3,7 +3,7 @@ import R from 'ramda';
 import type SymbolTable from '../SymbolTable';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import { namespaceAncestorContext, getProperty } from '../ValidationHelper';
 
 function isExtension(namespaceContext: any): boolean {

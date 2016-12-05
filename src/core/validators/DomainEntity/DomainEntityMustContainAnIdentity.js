@@ -2,7 +2,7 @@
 import type SymbolTable from '../SymbolTable';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import { valid } from '../AbstractEntity/AbstractEntityMustContainAnIdentity';
 
 // eslint-disable-next-line no-unused-vars

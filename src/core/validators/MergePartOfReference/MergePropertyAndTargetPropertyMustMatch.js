@@ -2,7 +2,7 @@
 import R from 'ramda';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import type SymbolTable, { EntityContext } from '../SymbolTable';
 import { lookupParentEntityContext, propertyPathParts } from './MergePartOfReferenceValidationRule';
 import { findReferencedProperty, matchAllButFirstAsIdentityProperties, matchAllIdentityProperties } from './PropertyPathLookup';

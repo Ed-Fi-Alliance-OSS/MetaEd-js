@@ -1,6 +1,6 @@
 // @flow
-import { MetaEdGrammarListener } from '../../../src/grammar/gen/MetaEdGrammarListener';
-import type { State } from '../../../src/core/State';
+import { MetaEdGrammarListener } from '../../grammar/gen/MetaEdGrammarListener';
+import type { State } from '../../core/State';
 import SymbolTable from './SymbolTable';
 import SymbolTableEntityType from './SymbolTableEntityType';
 import { getFilenameAndLineNumber } from '../tasks/FileIndex';

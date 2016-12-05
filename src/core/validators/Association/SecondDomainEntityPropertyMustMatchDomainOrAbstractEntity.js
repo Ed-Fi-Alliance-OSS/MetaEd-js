@@ -1,7 +1,7 @@
 // @flow
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
-import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
+import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import { valid, failureMessage } from './FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity';
 
 const validationRule = errorRuleBase(valid, failureMessage);

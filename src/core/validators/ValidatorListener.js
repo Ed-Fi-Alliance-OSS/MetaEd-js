@@ -1,7 +1,7 @@
 // @flow
 import { Map } from 'immutable';
-import { MetaEdGrammar } from '../../../src/grammar/gen/MetaEdGrammar';
-import { MetaEdGrammarListener } from '../../../src/grammar/gen/MetaEdGrammarListener';
+import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
+import { MetaEdGrammarListener } from '../../grammar/gen/MetaEdGrammarListener';
 import type { State } from '../State';
 import type { ValidationRuleRepository } from './ValidationRuleRepository';
 
