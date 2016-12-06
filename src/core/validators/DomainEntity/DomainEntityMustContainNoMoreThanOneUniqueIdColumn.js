@@ -13,7 +13,7 @@ function isExtension(namespaceContext: any): boolean {
 // eslint-disable-next-line no-unused-vars
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const namespaceContext = namespaceAncestorContext(ruleContext);
-  return isExtension(namespaceContext) || R.map(x => getProperty(x).propertyName() === 'UniqueId', ruleContext.property()).length <= 1;
+  return isExtension(namespaceContext) || R.filter(x => getProperty(x).propertyName().ID().getText() === 'UniqueId', ruleContext.property()).length <= 1;
 }
 
 // eslint-disable-next-line no-unused-vars

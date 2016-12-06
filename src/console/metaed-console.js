@@ -7,26 +7,38 @@ import type { State } from '../core/State';
 
 commander.version('0.8')
 .option('--edfi <coreDir>', 'The base path where core MetaEd files will be loaded from. The directory must currently exist.')
-// .option('--ext <extensionDir>', 'The base path where extension MetaEd files will be loaded from. If provided, the directory must currently exist.')
+.option('--ext <extensionDir>', 'The base path where extension MetaEd files will be loaded from. If provided, the directory must currently exist.')
 .parse(process.argv);
 
-winston.log(`Executing MetaEd Console on ${commander.edfi}\n`);
+winston.level = 'info';
+
+winston.info(`Executing MetaEd Console on ${commander.edfi}`);
+winston.info('');
 
 const state: State = new StateInstance({
-  inputDirectories: [{
-    path: commander.edfi,
-    namespace: 'edfi',
-    projectExtension: '',
-    isExtension: false,
-  }],
+  inputDirectories: [
+    {
+      path: commander.edfi,
+      namespace: 'edfi',
+      projectExtension: '',
+      isExtension: false,
+    },
+    {
+      path: commander.ext,
+      namespace: 'extension',
+      projectExtension: 'EXTENSION',
+      isExtension: true,
+    },
+  ],
 });
 
 const endState: State = start(state);
 
 endState.get('errorMessageCollection').forEach(
-  message => winston.error(`${message.filename}(${message.lineNumber},${message.characterPosition}[${message.concatenatedLineNumber}]): error: ${message.message}`));
+  message => winston.error(`${message.filename}(${message.lineNumber},${message.characterPosition}): ${message.message}`));
 
-winston.log('\nMetaEd Console Completed');
+winston.info('');
+winston.info('MetaEd Console Execution Completed');
 
 /*
  namespace MetaEd.Console

@@ -19,6 +19,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
       .withStartDomainEntity('DomainEntity1')
       .withDocumentation('doc1')
       .withStringIdentity('Property1', 'doc2', 100)
+      .withStringProperty('Property2', 'doc', 50)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -38,6 +39,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
       .withStartDomainEntity('DomainEntity1')
       .withDocumentation('doc1')
       .withStringIdentity('UniqueId', 'doc2', 100)
+      .withStringProperty('Property2', 'doc', 50)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -59,6 +61,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
       .withDocumentation('doc1')
       .withStringIdentity('UniqueId', 'doc2', 100, null, 'Student')
       .withStringIdentity('UniqueId', 'doc2', 100, null, 'Staff')
+      .withStringProperty('Property2', 'doc', 50)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -86,6 +89,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
       .withDocumentation('doc1')
       .withStringIdentity('UniqueId', 'doc2', 100, null, 'Student')
       .withStringIdentity('UniqueId', 'doc2', 100, null, 'Staff')
+      .withStringProperty('Property2', 'doc', 50)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
