@@ -28,8 +28,8 @@ export const validateSyntax = R.curry(
   });
 
   if (errorMessageCollection.length > 0) {
-    // TODO: error out if errorMessageCollection has a message
-    winston.error(`ValidateSyntax: errors during parsing ${errorMessageCollection.join()}`);
+    // TODO: maybe error out if errorMessageCollection has a message
+//    winston.error(`ValidateSyntax: errors during parsing ${errorMessageCollection.join()}`);
   }
 
   return state.set('errorMessageCollection', state.get('errorMessageCollection').concat(errorMessageCollection))

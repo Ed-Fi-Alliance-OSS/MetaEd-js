@@ -19,11 +19,12 @@ export const buildParseTree = R.curry(
     }
 
     if (errorMessageCollection.length > 0) {
-      // TODO: error out if errorMessageCollection has a message
-      winston.error(`BuildParseTree: errors during parsing ${errorMessageCollection.join()}`);
+      // TODO: maybe error out if errorMessageCollection has a message
+//      winston.error(`BuildParseTree: errors during parsing ${errorMessageCollection.join()}`);
     }
 
+    // TODO: consider whether BuildParseTree should add errors, they would be the same as errors found in Validate Syntax
     return state.set('parseTree', parseTree)
-                .set('errorMessageCollection', state.get('errorMessageCollection').concat(errorMessageCollection))
-                .set('action', state.get('action').push('BuildParseTree'));
+    //             .set('errorMessageCollection', state.get('errorMessageCollection').concat(errorMessageCollection))
+                 .set('action', state.get('action').push('BuildParseTree'));
   });
