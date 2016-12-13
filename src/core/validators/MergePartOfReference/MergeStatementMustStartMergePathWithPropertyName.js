@@ -13,7 +13,7 @@ export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  return 'Merge statement must start first property path with the referenced entity name of the current property.';
+  return 'Merge statement must startingFromFileLoad first property path with the referenced entity name of the current property.';
 }
 
 const validationRule = errorRuleBase(valid, failureMessage);

@@ -11,12 +11,12 @@ export const validateSyntax = R.curry(
 (parseTreeBuilder: (metaEdErrorListener: MetaEdErrorListener, metaEdContents: string) => MetaEdGrammar, state: State): State => {
   const errorMessageCollection = [];
 
-  if (state.get('filesToLoad') == null) {
+  if (state.get('loadedFileSet') == null) {
     winston.error('ValidateSyntax: no files to load found');
     return state;
   }
 
-  state.get('filesToLoad').forEach(fileToLoad => {
+  state.get('loadedFileSet').forEach(fileToLoad => {
     fileToLoad.files.forEach(file => {
       const errorListener = new MetaEdErrorListener(errorMessageCollection, createFileIndex([file]));
 

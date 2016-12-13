@@ -16,13 +16,13 @@ function endNamespace() {
 }
 
 export default function loadFileIndex(state: State): State {
-  if (state.filesToLoad == null) {
+  if (state.get('loadedFileSet') == null) {
     winston.error('LoadFileIndex: no files to load found');
     return state;
   }
 
   const metaEdFiles: MetaEdFile[] = [];
-  state.get('filesToLoad').forEach(loading => {
+  state.get('loadedFileSet').forEach(loading => {
     metaEdFiles.push(startNamespace(loading.namespace, loading.projectExtension, loading.isExtension));
     loading.files.forEach(file => {
       metaEdFiles.push(file);

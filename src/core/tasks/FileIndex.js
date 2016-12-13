@@ -1,7 +1,6 @@
 // @flow
 import R from 'ramda';
 import { Record } from 'immutable';
-import { fullName } from './MetaEdFile';
 // eslint-disable-next-line no-duplicate-imports
 import type { MetaEdFile } from './MetaEdFile';
 
@@ -39,7 +38,7 @@ export function getFilenameAndLineNumber(fileIndex: FileIndex, concatenatedLineN
   }
 
   const lineNumber = (concatenatedLineNumber - matchingFileAndLineNumber.lineNumber) + 1;
-  return { filename: fullName(matchingFileAndLineNumber.file), lineNumber };
+  return { filename: matchingFileAndLineNumber.file.fullName, lineNumber };
 }
 
 export function createFileIndex(metaEdFiles: MetaEdFile[]): FileIndex {

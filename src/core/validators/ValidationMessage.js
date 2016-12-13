@@ -6,4 +6,5 @@ export type ValidationMessage = {
   lineNumber: number,
   characterPosition: number,
   concatenatedLineNumber: number,
+  tokenText: string
 }

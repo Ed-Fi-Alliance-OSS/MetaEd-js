@@ -41,7 +41,7 @@ describe('FileSystemFileNameLoaderTests', () => {
 
     it('Should load the file contents', () => {
       const newState = loadFiles(state);
-      const contents = newState.filesToLoad[0].files[0].get('contents');
+      const contents = newState.loadedFileSet.get(0).files[0].get('contents');
       contents.should.include('Domain Entity');
       contents.should.include('DomainEntity1');
       contents.should.include('string');
@@ -85,14 +85,14 @@ describe('FileSystemFileNameLoaderTests', () => {
 
     it('Should load the file contents', () => {
       const newState = loadFiles(state);
-      const associationContents = newState.filesToLoad[0].files[0].get('contents');
+      const associationContents = newState.loadedFileSet.get(0).files[0].get('contents');
       associationContents.should.include('Association');
       associationContents.should.include('Domain1');
       associationContents.should.include('Domain2');
       associationContents.should.include('integer');
       associationContents.should.include('Property2');
 
-      const domainEntityContents = newState.filesToLoad[0].files[1].get('contents');
+      const domainEntityContents = newState.loadedFileSet.get(0).files[1].get('contents');
       domainEntityContents.should.include('Domain Entity');
       domainEntityContents.should.include('DomainEntity1');
       domainEntityContents.should.include('string');

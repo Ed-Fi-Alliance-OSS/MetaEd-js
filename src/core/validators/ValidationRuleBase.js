@@ -18,6 +18,7 @@ function buildValidationMessage(failureMessage: ?string, start: any, fileIndex: 
     concatenatedLineNumber: start.line,
     filename,
     lineNumber,
+    tokenText: start.text,
   };
 }
 

@@ -13,7 +13,7 @@ import type { State } from '../State';
 
 // TODO: not stopping on error -- need to review Either monad
 
-export default function start(initialState: State): State {
+export function startingFromFileLoad(initialState: State): State {
   return R.pipe(
     loadFiles,
     validateSyntax(buildTopLevelEntity),

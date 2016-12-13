@@ -16,7 +16,7 @@ export default class MetaEdErrorListener {
   }
 
   syntaxError(recognizer: any, offendingSymbol: any, concatenatedLineNumber: number, characterPosition: number,
-              message: string /* , e */) {
+    message: string /* , e */) {
     const metaEdFile: FilenameAndLineNumber = getFilenameAndLineNumber(this._fileIndex, concatenatedLineNumber);
 
     this._messageCollection.push({
@@ -25,6 +25,7 @@ export default class MetaEdErrorListener {
       concatenatedLineNumber,
       filename: metaEdFile.filename,
       lineNumber: metaEdFile.lineNumber,
+      tokenText: offendingSymbol.text,
     });
   }
 

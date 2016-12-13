@@ -7,6 +7,7 @@ type MetaEdFileRecord = {
   lineCount: number;
   directoryName: string;
   filename: string;
+  fullName: string;
 }
 
 export type MetaEdFile = Record<MetaEdFileRecord>;
@@ -16,7 +17,15 @@ export const MetaEdFileInstance: MetaEdFile = Record({
   lineCount: null,
   directoryName: null,
   filename: null,
+  fullName: null,
 });
+
+export type FileSet = {
+  namespace: string,
+  projectExtension: string,
+  isExtension: boolean,
+  files: MetaEdFile[],
+}
 
 export function createMetaEdFile(directoryName: string, filename: string, originalContents: string): MetaEdFile {
   let contents = originalContents;
@@ -34,10 +43,6 @@ export function createMetaEdFile(directoryName: string, filename: string, origin
     lineCount,
     directoryName,
     filename,
+    fullName: directoryName ? path.join(directoryName, filename) : filename,
   });
-}
-
-export function fullName(metaEdFile: MetaEdFile): string {
-  if (!metaEdFile.get('directoryName')) return metaEdFile.get('filename');
-  return path.join(metaEdFile.get('directoryName'), metaEdFile.get('filename'));
 }

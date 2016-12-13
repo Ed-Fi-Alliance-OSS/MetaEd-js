@@ -4,15 +4,8 @@ import path from 'path';
 import winston from 'winston';
 import { createMetaEdFile } from './MetaEdFile';
 // eslint-disable-next-line no-duplicate-imports
-import type { MetaEdFile } from './MetaEdFile';
+import type { FileSet } from './MetaEdFile';
 import type { State } from '../State';
-
-export type FilesToLoad = {
-  namespace: string,
-  projectExtension: string,
-  isExtension: boolean,
-  files: MetaEdFile[],
-}
 
 export type InputDirectory = {
   path: string,
@@ -28,32 +21,33 @@ export default function loadFiles(state: State): State {
     return state;
   }
 
-  const filesToLoadArray: FilesToLoad[] = [];
+  const fileSets: FileSet[] = [];
   state.get('inputDirectories').forEach(inputDirectory => {
-    const filesToLoad: FilesToLoad = {
+    const fileSet: FileSet = {
       namespace: inputDirectory.namespace,
       projectExtension: inputDirectory.projectExtension,
       isExtension: inputDirectory.isExtension,
       files: [],
     };
 
-    const files = ffs.readdirRecursiveSync(inputDirectory.path, true, inputDirectory.path);
-    const filenamesToLoad = files.filter(x => x.endsWith('.metaed'));
+    const filenames: string[] = ffs.readdirRecursiveSync(inputDirectory.path, true, inputDirectory.path);
+    const filenamesToLoad: string[] =
+      filenames.filter(filename => filename.endsWith('.metaed') && !state.get('filepathsToExclude').has(filename));
 
     filenamesToLoad.forEach(filename => {
       const contents = ffs.readFileSync(filename, 'utf-8');
       const metaEdFile = createMetaEdFile(path.dirname(filename), path.basename(filename), contents);
-      filesToLoad.files.push(metaEdFile);
+      fileSet.files.push(metaEdFile);
     });
 
-    if (filesToLoad.files.length === 0) {
+    if (fileSet.files.length === 0) {
       winston.warn(`No MetaEd files found in input directory ${inputDirectory.path}`);
     }
 
-    filesToLoadArray.push(filesToLoad);
+    fileSets.push(fileSet);
   });
 
-  return state.set('filesToLoad', filesToLoadArray)
+  return state.set('loadedFileSet', state.get('loadedFileSet').concat(fileSets))
               .set('action', state.get('action').push('FileSystemFilenameLoader'));
 }
 

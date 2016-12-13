@@ -1,5 +1,6 @@
 {
   "name": "metaed-js",
+  "main": "dist/index.js",
   "private": true,
   "version": "0.8.0",
   "description": "MetaEd implemented in JavaScript",

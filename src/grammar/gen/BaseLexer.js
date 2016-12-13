@@ -1,5 +1,5 @@
 // Generated from C:/work/metaed/MetaEd/src/MetaEd/Grammar/Antlr/Language/BaseLexer.g4 by ANTLR 4.5.3
-// jshint ignore: start
+// jshint ignore: startingFromFileLoad
 var antlr4 = require('antlr4/index');
 
 

@@ -41,6 +41,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   }
 
   _addProperty(ruleContext: any) {
+    if (ruleContext.propertyName() == null) return;
     const propertyName = ruleContext.propertyName().ID();
     const withContextContext = ruleContext.propertyComponents().withContext();
     const withContextPrefix = withContextContext == null ? '' : withContextContext.withContextName().ID().getText();

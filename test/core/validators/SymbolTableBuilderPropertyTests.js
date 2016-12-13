@@ -32,6 +32,28 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
   });
 
+  describe('When_loading_entities_with_boolean_property_fragment_without_name', () => {
+    const helper: SymbolTableTestHelper = new SymbolTableTestHelper();
+    before(() => {
+      const metaEdText: string = MetaEdTextBuilder.build()
+      .withBeginNamespace('edfi')
+      .withStartDomainEntity(entityName)
+      .withDocumentation('doc')
+      .withBooleanProperty(propertyName, 'doc', true, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .toString();
+      helper.setup(metaEdText);
+    });
+
+    it('Should_load_into_property_symbol_table', () => {
+      const entitySymbolTable = helper.symbolTable.get(entityKey, entityName);
+      entitySymbolTable.should.not.be.empty;
+      const result = entitySymbolTable.propertySymbolTable.get(propertyName);
+      result.should.not.be.empty;
+    });
+  });
+
   describe('When_loading_entities_with_duplicated_boolean_property', () => {
     const helper: SymbolTableTestHelper = new SymbolTableTestHelper();
     before(() => {

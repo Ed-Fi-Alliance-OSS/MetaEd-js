@@ -1,7 +1,7 @@
 import chai from 'chai';
 import mockfs from 'mock-fs';
 import MetaEdTextBuilder from '../../test/grammar/MetaEdTextBuilder';
-import start from '../../src/core/tasks/Pipeline';
+import { startingFromFileLoad } from '../../src/core/tasks/Pipeline';
 import { StateInstance } from '../../src/core/State';
 // eslint-disable-next-line no-duplicate-imports
 import type { State } from '../../src/core/State';
@@ -40,7 +40,7 @@ describe('PipelineTests', () => {
     });
 
     it('Should parse and validate without errors', () => {
-      const endState = start(state);
+      const endState = startingFromFileLoad(state);
       endState.errorMessageCollection.size.should.equal(0);
       endState.warningMessageCollection.size.should.equal(0);
     });
@@ -77,7 +77,7 @@ describe('PipelineTests', () => {
     });
 
     it('Should return an error', () => {
-      const endState = start(state);
+      const endState = startingFromFileLoad(state);
       endState.errorMessageCollection.size.should.equal(1);
       endState.warningMessageCollection.size.should.equal(0);
     });
@@ -138,7 +138,7 @@ describe('PipelineTests', () => {
     });
 
     it('Should load the file contents', () => {
-      const endState = start(state);
+      const endState = startingFromFileLoad(state);
       endState.errorMessageCollection.size.should.equal(0);
       endState.warningMessageCollection.size.should.equal(0);
     });

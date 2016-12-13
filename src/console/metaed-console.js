@@ -1,6 +1,6 @@
 // @flow
 import winston from 'winston';
-import start from '../core/tasks/Pipeline';
+import { startingFromFileLoad } from '../core/tasks/Pipeline';
 import { StateInstance } from '../core/State';
 // eslint-disable-next-line no-duplicate-imports
 import type { State } from '../core/State';
@@ -41,7 +41,7 @@ const state: State = new StateInstance({
   ],
 });
 
-const endState: State = start(state);
+const endState: State = startingFromFileLoad(state);
 
 const errorMessageCollection = endState.get('errorMessageCollection');
 if (errorMessageCollection.size === 0) {
