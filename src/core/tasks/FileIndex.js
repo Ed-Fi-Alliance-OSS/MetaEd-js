@@ -33,8 +33,8 @@ export function getAllContents(fileIndex: FileIndex): string {
 export function getFilenameAndLineNumber(fileIndex: FileIndex, concatenatedLineNumber: number): FilenameAndLineNumber {
   const matchingFileAndLineNumber = R.findLast(x => x.lineNumber <= concatenatedLineNumber, fileIndex.get('fileAndLineNumbersSorted'));
 
-  if (fileIndex.get('totalLineCount') <= concatenatedLineNumber || matchingFileAndLineNumber == null) {
-    return { filename: 'unknown', lineNumber: -1 };
+  if (matchingFileAndLineNumber == null) {
+    return { filename: 'Error/matchingFileAndLineNumber/null', lineNumber: -1 };
   }
 
   const lineNumber = (concatenatedLineNumber - matchingFileAndLineNumber.lineNumber) + 1;
