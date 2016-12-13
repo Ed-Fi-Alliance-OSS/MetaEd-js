@@ -4,6 +4,8 @@ import type { State } from '../../core/State';
 import SymbolTable from './SymbolTable';
 import SymbolTableEntityType from './SymbolTableEntityType';
 import { getFilenameAndLineNumber } from '../tasks/FileIndex';
+import type { ValidationMessage } from './ValidationMessage';
+
 
 export default class SymbolTableBuilder extends MetaEdGrammarListener {
   state: State;
@@ -29,19 +31,22 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
     }
 
     const { filename, lineNumber } = getFilenameAndLineNumber(this.state.get('fileIndex'), entityNameIdNode.symbol.line);
-    const failure = {
+    const failure: ValidationMessage = {
       message: `Duplicate ${entityType} named ${entityNameIdNode}`,
       characterPosition: entityNameIdNode.symbol.column,
       concatenatedLineNumber: entityNameIdNode.symbol.line,
       filename,
       lineNumber,
+      tokenText: entityNameIdNode.symbol.text,
     };
     this.state = this.state.set('errorMessageCollection', this.state.get('errorMessageCollection').push(failure))
                            .set('action', this.state.get('action').push('SymbolTableBuilder'));
   }
 
   _addProperty(ruleContext: any) {
-    if (ruleContext.propertyName() == null) return;
+    // TODO: if assertion fails, add entry to new "indeterminate" state validation collection
+    if (ruleContext.propertyName().exception != null) return;
+
     const propertyName = ruleContext.propertyName().ID();
     const withContextContext = ruleContext.propertyComponents().withContext();
     const withContextPrefix = withContextContext == null ? '' : withContextContext.withContextName().ID().getText();
@@ -51,12 +56,13 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
     if (this.currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.getText(), ruleContext)) return;
 
     const { filename, lineNumber } = getFilenameAndLineNumber(this.state.get('fileIndex'), propertyName.symbol.line);
-    const duplicateFailure = {
+    const duplicateFailure: ValidationMessage = {
       message: `Entity ${this.currentPropertySymbolTable.parentName()} has duplicate properties named ${propertyName.getText()}`,
       characterPosition: propertyName.symbol.column,
       concatenatedLineNumber: propertyName.symbol.line,
       filename,
       lineNumber,
+      tokenText: propertyName.symbol.text,
     };
     this.state = this.state.set('errorMessageCollection', this.state.get('errorMessageCollection').push(duplicateFailure))
                            .set('action', this.state.get('action').push('SymbolTableBuilder'));

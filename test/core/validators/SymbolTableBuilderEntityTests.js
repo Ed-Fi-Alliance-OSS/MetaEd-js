@@ -65,6 +65,7 @@ describe('SymbolTableBuilderEntityTests', () => {
       const failure = helper.errorMessageCollection()[0];
       failure.concatenatedLineNumber.should.equal(9);
       failure.characterPosition.should.equal(16);
+      failure.tokenText.should.equal(entityName);
     });
   });
 
