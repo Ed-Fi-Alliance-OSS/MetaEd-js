@@ -13,6 +13,7 @@ import type { State } from '../State';
 
 // TODO: not stopping on error -- need to review Either monad
 
+// eslint-disable-next-line import/prefer-default-export
 export function startingFromFileLoad(initialState: State): State {
   return R.pipe(
     loadFiles,

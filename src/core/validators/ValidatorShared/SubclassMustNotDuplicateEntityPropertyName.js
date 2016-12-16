@@ -13,8 +13,7 @@ export const valid = R.curry(
     const basePropertyIdentifiers = symbolTable.identifiersForEntityProperties(baseKey, baseIdentifier);
     const subclassPropertyIdentifiers = symbolTable.identifiersForEntityProperties(subclassKey, identifier);
     return R.intersection(Array.from(basePropertyIdentifiers), Array.from(subclassPropertyIdentifiers)).length === 0;
-  }
-);
+  });
 
 export const failureMessage = R.curry(
   (entityTitle: string,
@@ -30,5 +29,4 @@ export const failureMessage = R.curry(
       symbolTable.contextsForMatchingPropertyIdentifiers(subclassKey, identifier, entityPropertyIdentifiers);
     const duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.map(x => x.propertyName().ID().getText());
     return `${entityTitle} '${identifier}' based on '${baseIdentifier}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of base ${entityTitle}.`;
-  }
-);
+  });

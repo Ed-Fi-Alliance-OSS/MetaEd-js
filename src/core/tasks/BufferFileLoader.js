@@ -4,7 +4,7 @@ import type { MetaEdFile, FileSet } from './MetaEdFile';
 import type { State } from '../State';
 
 function appendFileSet(state: State, fileSet: FileSet): State {
-  const filepaths = fileSet.files.map(file => file.fullName);
+  const filepaths = fileSet.files.map(file => file.get('fullName'));
 
   return state.set('loadedFileSet', state.get('loadedFileSet').push(fileSet))
   .set('filepathsToExclude', state.get('filepathsToExclude').concat(filepaths))

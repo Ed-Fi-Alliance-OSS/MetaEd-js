@@ -18,13 +18,11 @@ function propertyRuleContextsForDuplicates(baseKey: string, extensionKey: string
 
 export const valid = R.curry(
   (entityKey: string, extensionKey: string, ruleContext: any, symbolTable: SymbolTable): boolean =>
-    propertyRuleContextsForDuplicates(entityKey, extensionKey, ruleContext, symbolTable).length === 0
-);
+    propertyRuleContextsForDuplicates(entityKey, extensionKey, ruleContext, symbolTable).length === 0);
 
 export const failureMessage = R.curry(
   (entityTitle: string, entityKey: string, extensionKey: string, ruleContext: any, symbolTable: SymbolTable): string => {
     const duplicatePropertyIdentifierList =
       propertyRuleContextsForDuplicates(entityKey, extensionKey, ruleContext, symbolTable).map(x => x.propertyName().ID().getText());
     return `${entityTitle} additions '${ruleContext.extendeeName().getText()}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of {entityTitle}.`;
-  }
-);
+  });

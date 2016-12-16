@@ -15,8 +15,7 @@ const failureMessage =
     'Interchange additions',
     'interchange element',
     (ruleContext: any): string => ruleContext.extendeeName().getText(),
-    idsToCheck
-  );
+    idsToCheck);
 
 const validationRule = errorRuleBase(valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export

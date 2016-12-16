@@ -10,8 +10,7 @@ import { propertyName } from '../RuleInformation';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
 const entityContextHasBaseName = R.curry(
-  (baseTypeName: string, entityContext: EntityContext): boolean => entityContext.context.baseName().ID.getText() === baseTypeName
-);
+  (baseTypeName: string, entityContext: EntityContext): boolean => entityContext.context.baseName().ID.getText() === baseTypeName);
 
 function matchBaseType(symbolTable: SymbolTable, propertyRuleContext: any, baseTypeName: string): boolean {
   const hasBaseName = entityContextHasBaseName(baseTypeName);

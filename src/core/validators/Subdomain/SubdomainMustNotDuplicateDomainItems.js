@@ -15,7 +15,7 @@ const failureMessage =
     'Subdomain',
     'domain item',
     (ruleContext: any): string => ruleContext.subdomainName().ID().getText(),
-    idsToCheck
+    idsToCheck,
   );
 
 const validationRule = errorRuleBase(valid, failureMessage);

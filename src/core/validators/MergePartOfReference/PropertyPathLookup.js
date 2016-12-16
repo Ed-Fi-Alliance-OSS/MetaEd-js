@@ -78,12 +78,9 @@ export const findReferencedProperty = R.curry(
     }
 
     return propertyContext;
-  }
-);
+  });
 
-export function validate(symbolTable: SymbolTable,
-                         startingEntityContext: EntityContext,
-                         propertyPath: string[],
-                         filter: (propertyRuleContext: any, index: number) => boolean): boolean {
+export function validate(symbolTable: SymbolTable, startingEntityContext: EntityContext, propertyPath: string[],
+  filter: (propertyRuleContext: any, index: number) => boolean): boolean {
   return findReferencedProperty(symbolTable, startingEntityContext, propertyPath, filter) != null;
 }

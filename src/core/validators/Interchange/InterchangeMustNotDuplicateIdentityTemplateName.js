@@ -15,8 +15,7 @@ const failureMessage =
     'Interchange',
     'identity template',
     (ruleContext: any): string => ruleContext.interchangeName().getText(),
-    idsToCheck
-  );
+    idsToCheck);
 
 const validationRule = errorRuleBase(valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export

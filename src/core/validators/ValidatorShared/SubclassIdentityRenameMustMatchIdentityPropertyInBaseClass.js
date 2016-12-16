@@ -25,8 +25,7 @@ export const valid = R.curry(
     if (baseProperty == null) return false;
 
     return baseProperty.propertyComponents().propertyAnnotation().identity() != null;
-  }
-);
+  });
 
 /* eslint-disable no-unused-vars */
 export const failureMessage = R.curry(
@@ -35,5 +34,4 @@ export const failureMessage = R.curry(
     const baseIdentifier = ruleContext.baseName().getText();
     const basePropertyIdentifier = getBasePropertyIdentifierFor(getIdentityRenames(ruleContext));
     return `${entityTitle} '${identifier}' based on '${baseIdentifier}' tries to rename ${basePropertyIdentifier} which is not part of the identity.`;
-  }
-);
+  });

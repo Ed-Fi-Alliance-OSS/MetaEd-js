@@ -4,7 +4,7 @@ import { getProperty } from '../ValidationHelper';
 import type SymbolTable from '../SymbolTable';
 
 // eslint-disable-next-line no-unused-vars
-export function valid(ruleContext: any, symbolTable: SymbolTable) : boolean {
+export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   return ruleContext.property().filter(p => getProperty(p).propertyComponents().propertyAnnotation().identityRename() != null).length <= 1;
 }
 
@@ -16,5 +16,4 @@ export const failureMessage = R.curry(
     const identityRenames = ruleContext.property().map(p => getProperty(p).propertyComponents().propertyAnnotation().identityRename()).filter(x => x != null);
     const basePropertyIdentifier = identityRenames.map(ir => ir.baseKeyName().getText()).join(', ');
     return `${entityTitle} '${identifier}' based on '${baseIdentifier}' tries to rename columns ${basePropertyIdentifier}.  Only one identity rename is allowed for a given ${entityTitle}.`;
-  }
-);
+  });

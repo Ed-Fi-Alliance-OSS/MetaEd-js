@@ -15,8 +15,7 @@ const failureMessage =
     'Domain',
     'domain item',
     (ruleContext: any): string => ruleContext.domainName().ID().getText(),
-    idsToCheck
-  );
+    idsToCheck);
 
 const validationRule = errorRuleBase(valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export

@@ -20,8 +20,7 @@ const getAncestorContext = R.curry(
       throw new Error(`Unable to find matching ancestor on context of type ${grammarInstance.ruleNames[ruleContext.ruleIndex]}`);
     }
     return ancestor;
-  }
-);
+  });
 
 export const topLevelEntityAncestorContext = getAncestorContext(topLevelEntityRules);
 export const propertyAncestorContext = getAncestorContext(propertyRules);

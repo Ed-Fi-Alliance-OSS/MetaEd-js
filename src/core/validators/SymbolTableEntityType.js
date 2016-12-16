@@ -11,8 +11,7 @@ const literal = R.memoize(
 
     // generated static strings are surrounded by single quotes, so remove
     return s.slice(1, s.length - 1);
-  }
-);
+  });
 
 export default class SymbolTableEntityType {
   static abstractEntity(): string {
