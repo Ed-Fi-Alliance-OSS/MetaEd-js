@@ -1,9 +1,10 @@
 // @flow
+import R from 'ramda';
 import ffs from 'final-fs';
 import path from 'path';
 import winston from 'winston';
+import { addAction, addLoadedFileSet } from '../State';
 import { createMetaEdFile } from './MetaEdFile';
-// eslint-disable-next-line no-duplicate-imports
 import type { FileSet } from './MetaEdFile';
 import type { State } from '../State';
 
@@ -47,7 +48,6 @@ export default function loadFiles(state: State): State {
     fileSets.push(fileSet);
   });
 
-  return state.set('loadedFileSet', state.get('loadedFileSet').concat(fileSets))
-              .set('action', state.get('action').push('FileSystemFilenameLoader'));
+  return R.pipe(addLoadedFileSet(fileSets), addAction('FileSystemFilenameLoader'))(state);
 }
 

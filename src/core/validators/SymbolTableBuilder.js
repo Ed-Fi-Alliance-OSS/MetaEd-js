@@ -1,5 +1,7 @@
 // @flow
+import R from 'ramda';
 import { MetaEdGrammarListener } from '../../grammar/gen/MetaEdGrammarListener';
+import { addAction, addErrorMessage, setSymbolTable } from '../State';
 import type { State } from '../../core/State';
 import SymbolTable from './SymbolTable';
 import SymbolTableEntityType from './SymbolTableEntityType';
@@ -18,8 +20,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
   }
 
   postBuildState(): State {
-    return this.state.set('symbolTable', this.newSymbolTable)
-                     .set('action', this.state.get('action').push('SymbolTableBuilder'));
+    return R.pipe(setSymbolTable(this.newSymbolTable), addAction('SymbolTableBuilder'))(this.state);
   }
 
   _addEntity(entityType: string, entityNameIdNode: any, ruleContext: any) {
@@ -39,8 +40,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
       lineNumber,
       tokenText: entityNameIdNode.symbol.text,
     };
-    this.state = this.state.set('errorMessageCollection', this.state.get('errorMessageCollection').push(failure))
-                           .set('action', this.state.get('action').push('SymbolTableBuilder'));
+    this.state = R.pipe(addErrorMessage(failure), addAction('SymbolTableBuilder'))(this.state);
   }
 
   _addProperty(ruleContext: any) {
@@ -64,8 +64,7 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
       lineNumber,
       tokenText: propertyName.symbol.text,
     };
-    this.state = this.state.set('errorMessageCollection', this.state.get('errorMessageCollection').push(duplicateFailure))
-                           .set('action', this.state.get('action').push('SymbolTableBuilder'));
+    this.state = R.pipe(addErrorMessage(duplicateFailure), addAction('SymbolTableBuilder'))(this.state);
   }
 
   enterDomainEntity(ruleContext: any) {

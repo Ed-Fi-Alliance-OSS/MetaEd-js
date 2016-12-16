@@ -2,7 +2,6 @@
 import antlr4 from 'antlr4';
 import type { ValidationMessage } from '../core/validators/ValidationMessage';
 import type { FileIndex, FilenameAndLineNumber } from '../core/tasks/FileIndex';
-// eslint-disable-next-line no-duplicate-imports
 import { getFilenameAndLineNumber } from '../core/tasks/FileIndex';
 
 export default class MetaEdErrorListener {

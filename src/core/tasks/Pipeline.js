@@ -14,7 +14,7 @@ import type { State } from '../State';
 // TODO: not stopping on error -- need to review Either monad
 
 // eslint-disable-next-line import/prefer-default-export
-export function startingFromFileLoad(initialState: State): State {
+export function startingFromFileLoad(state: State): State {
   return R.pipe(
     loadFiles,
     validateSyntax(buildTopLevelEntity),
@@ -22,5 +22,5 @@ export function startingFromFileLoad(initialState: State): State {
     buildParseTree(buildMetaEd),
     buildSymbolTable,
     validateParseTree(allValidationRules()),
-  )(initialState);
+  )(state);
 }

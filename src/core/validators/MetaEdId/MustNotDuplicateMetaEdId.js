@@ -1,5 +1,7 @@
 // @flow
+import R from 'ramda';
 import { Set } from 'immutable';
+import { addAction, setValidatorData } from '../../State';
 import { errorRuleBaseStateModifying } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
@@ -14,8 +16,7 @@ function validAndNextState(ruleContext: any, state: State): { isValid: boolean, 
   if (repository.has(metaEdId)) return { isValid: false, nextState: state };
 
   const nextValidatorData = validatorData.set('MustNotDuplicateMetaEdIdsRepository', repository.add(metaEdId));
-  const nextState = state.set('validatorData', nextValidatorData)
-                         .set('action', state.get('action').push('MustNotDuplicateMetaEdIds'));
+  const nextState = R.pipe(setValidatorData(nextValidatorData), addAction('MustNotDuplicateMetaEdIds'))(state);
 
   return { isValid: true, nextState };
 }

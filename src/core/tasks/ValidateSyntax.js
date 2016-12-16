@@ -1,6 +1,7 @@
 // @flow
 import R from 'ramda';
 import winston from 'winston';
+import { addAction, concatenateErrorMessages } from '../State';
 import type { State } from '../State';
 import { createFileIndex } from './FileIndex';
 import MetaEdErrorListener from '../../grammar/MetaEdErrorListener';
@@ -31,7 +32,5 @@ export const validateSyntax = R.curry(
     // TODO: maybe error out if errorMessageCollection has a message
 //    winston.error(`ValidateSyntax: errors during parsing ${errorMessageCollection.join()}`);
   }
-
-  return state.set('errorMessageCollection', state.get('errorMessageCollection').concat(errorMessageCollection))
-              .set('action', state.get('action').push('ValidateSyntax'));
+  return R.pipe(concatenateErrorMessages(errorMessageCollection), addAction('ValidateSyntax'))(state);
 });

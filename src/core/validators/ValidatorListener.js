@@ -1,5 +1,7 @@
 // @flow
+import R from 'ramda';
 import { Map } from 'immutable';
+import { addAction, setValidatorData } from '../State';
 import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 import { MetaEdGrammarListener } from '../../grammar/gen/MetaEdGrammarListener';
 import type { State } from '../State';
@@ -18,8 +20,7 @@ export default class ValidatorListener extends MetaEdGrammarListener {
   }
 
   withState(state: State) {
-    this.state = state.set('validatorData', Map())
-    .set('action', state.get('action').push('ValidatorListener'));
+    this.state = R.pipe(setValidatorData(Map()), addAction('ValidatorListener'))(state);
   }
 
   _validateContext(ruleContext: any, ruleIndex: number) {

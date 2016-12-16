@@ -2,7 +2,6 @@
 import winston from 'winston';
 import { startingFromFileLoad } from '../core/tasks/Pipeline';
 import { StateInstance } from '../core/State';
-// eslint-disable-next-line no-duplicate-imports
 import type { State } from '../core/State';
 
 const argv = require('yargs')

@@ -57,13 +57,12 @@ export function getProperty(propertyContext: any): any {
   throw new Error(`ValidationHelper.getProperty encountered unknown property context with rule index ${propertyContext.ruleIndex}.`);
 }
 
-function inSymbolTable(entityTypes: string[], identifierToMatch: string, symbolTable: SymbolTable): boolean {
-  return R.any((entityType: string) => symbolTable.identifierExists(entityType, identifierToMatch), entityTypes);
-}
+const inSymbolTable = R.curry(
+  (entityTypes: string[], identifierToMatch: string, symbolTable: SymbolTable): boolean =>
+    R.any((entityType: string) => symbolTable.identifierExists(entityType, identifierToMatch), entityTypes));
 
-const curriedInSymbolTable = R.curry(inSymbolTable);
-const commonSimpleTypeExists = curriedInSymbolTable(commonSimpleEntityTypes);
-const topLevelEntityExists = curriedInSymbolTable(topLevelEntityTypes);
+const commonSimpleTypeExists = inSymbolTable(commonSimpleEntityTypes);
+const topLevelEntityExists = inSymbolTable(topLevelEntityTypes);
 
 export function contextMustMatchATopLevelEntity(ruleContext: any, symbolTable: SymbolTable): boolean {
   return topLevelEntityExists(ruleContext.ID().getText(), symbolTable);

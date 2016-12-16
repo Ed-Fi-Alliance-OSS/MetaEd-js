@@ -1,8 +1,9 @@
 // @flow
+import R from 'ramda';
 import winston from 'winston';
+import { addAction, setFileIndex } from '../State';
 import type { State } from '../State';
 import { createMetaEdFile } from './MetaEdFile';
-// eslint-disable-next-line no-duplicate-imports
 import type { MetaEdFile } from './MetaEdFile';
 import { createFileIndex } from './FileIndex';
 
@@ -30,7 +31,6 @@ export default function loadFileIndex(state: State): State {
     metaEdFiles.push(endNamespace());
   });
 
-  return state.set('fileIndex', createFileIndex(metaEdFiles))
-              .set('action', state.get('action').push('LoadFileIndex'));
+  return R.pipe(setFileIndex(createFileIndex(metaEdFiles)), addAction('LoadFileIndex'))(state);
 }
 

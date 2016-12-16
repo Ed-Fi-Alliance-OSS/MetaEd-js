@@ -1,5 +1,8 @@
 // @flow
+import R from 'ramda';
 import { List, Map, Record, Set } from 'immutable';
+import { compose as composeLens, get as getLens, set as setLens } from 'safety-lens';
+import { field as fieldLens } from 'safety-lens/immutable';
 import SymbolTable from './validators/SymbolTable';
 import type { ValidationMessage } from './validators/ValidationMessage';
 import type { InputDirectory } from './tasks/FileSystemFilenameLoader';
@@ -16,6 +19,9 @@ type StateRecord = {
 
   // the collection of warning messages from semantic validation
   warningMessageCollection: List<ValidationMessage>,
+
+  // the collection of indeterminate validations from semantic validation
+  indeterminateCollection: List<string>,
 
   // the specified directories to load .metaed files from
   inputDirectories: ?InputDirectory[],
@@ -56,3 +62,33 @@ export const StateInstance: State = Record({
   parseTree: null,
   validatorData: new Map(),
 });
+
+export const addAction = R.curry((actionString: string, state: State): State =>
+  state.set('action', state.get('action').push(actionString)));
+
+export const addErrorMessage = R.curry((errorMessage: string, state: State): State =>
+  state.set('errorMessageCollection', state.get('errorMessageCollection').push(errorMessage)));
+
+export const concatenateErrorMessages = R.curry((errorMessages: string[], state: State): State =>
+  state.set('errorMessageCollection', state.get('errorMessageCollection').concat(errorMessages)));
+
+export const addWarningMessage = R.curry((warningMessage: string, state: State): State =>
+  state.set('warningMessageCollection', state.get('warningMessageCollection').push(warningMessage)));
+
+export const addLoadedFileSet = R.curry((fileSet: FileSet, state: State): State =>
+  state.set('loadedFileSet', state.get('loadedFileSet').concat(fileSet)));
+
+export const addFilepathsToExclude = R.curry((filepaths: string, state: State): State =>
+  state.set('filepathsToExclude', state.get('filepathsToExclude').concat(filepaths)));
+
+export const setFileIndex = R.curry((fileIndex: FileIndex, state: State): State =>
+  state.set('fileIndex', fileIndex));
+
+export const setParseTree = R.curry((parseTree: ?MetaEdGrammar, state: State): State =>
+  state.set('parseTree', parseTree));
+
+export const setValidatorData = R.curry((validatorData: Map<string, string>, state: State): State =>
+  state.set('validatorData', validatorData));
+
+export const setSymbolTable = R.curry((symbolTable: ?SymbolTable, state: State): State =>
+  state.set('symbolTable', symbolTable));

@@ -1,6 +1,7 @@
 // @flow
 import R from 'ramda';
 import { Set } from 'immutable';
+import { addAction, setValidatorData } from '../../State';
 import { errorRuleBaseStateModifying } from '../ValidationRuleBase';
 import { includeRuleBaseForMultiRuleIndexes } from '../ValidationRuleRepository';
 import { entityName, entityIdentifier, topLevelEntityRules, topLevelEntityExtensionRules } from '../RuleInformation';
@@ -28,8 +29,7 @@ function validAndNextState(ruleContext: any, state: State): { isValid: boolean, 
   if (repository.has(name)) return { isValid: false, nextState: state };
 
   const nextValidatorData = validatorData.set('MostEntitiesCannotHaveSameNameRepository', repository.add(name));
-  const nextState = state.set('validatorData', nextValidatorData)
-  .set('action', state.get('action').push('MostEntitiesCannotHaveSameName'));
+  const nextState = R.pipe(setValidatorData(nextValidatorData), addAction('MostEntitiesCannotHaveSameName'))(state);
 
   return { isValid: true, nextState };
 }

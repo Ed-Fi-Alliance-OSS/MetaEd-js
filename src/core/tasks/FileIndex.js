@@ -1,7 +1,6 @@
 // @flow
 import R from 'ramda';
 import { Record } from 'immutable';
-// eslint-disable-next-line no-duplicate-imports
 import type { MetaEdFile } from './MetaEdFile';
 
 export type FileAndLineNumber = {

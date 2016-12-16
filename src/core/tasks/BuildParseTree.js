@@ -1,6 +1,7 @@
 // @flow
 import R from 'ramda';
 import winston from 'winston';
+import { addAction, setParseTree } from '../State';
 import MetaEdErrorListener from '../../grammar/MetaEdErrorListener';
 import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 import type { State } from '../State';
@@ -24,7 +25,5 @@ export const buildParseTree = R.curry(
     }
 
     // TODO: consider whether BuildParseTree should add errors, they would be the same as errors found in Validate Syntax
-    return state.set('parseTree', parseTree)
-    //             .set('errorMessageCollection', state.get('errorMessageCollection').concat(errorMessageCollection))
-                 .set('action', state.get('action').push('BuildParseTree'));
+    return R.pipe(setParseTree(parseTree), addAction('BuildParseTree'))(state);
   });

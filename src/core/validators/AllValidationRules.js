@@ -1,7 +1,6 @@
 // @flow
 import R from 'ramda';
 import { newRepository } from './ValidationRuleRepository';
-// eslint-disable-next-line no-duplicate-imports
 import type { ValidationRuleRepository } from './ValidationRuleRepository';
 
 import { includeRule as AbstractEntityMustContainAnIdentity } from './AbstractEntity/AbstractEntityMustContainAnIdentity';
