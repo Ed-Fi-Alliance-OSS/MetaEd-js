@@ -28,7 +28,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
     });
 
     it('should_not_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.be.empty;
+      helper.errorMessages().should.be.empty;
     });
   });
 
@@ -49,7 +49,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
     });
 
     it('should_not_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.be.empty;
+      helper.errorMessages().should.be.empty;
     });
   });
 
@@ -72,7 +72,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
     });
 
     it('should_not_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.be.empty;
+      helper.errorMessages().should.be.empty;
     });
   });
 
@@ -93,7 +93,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
     });
 
     it('should_not_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.be.empty;
+      helper.errorMessages().should.be.empty;
     });
   });
 
@@ -114,7 +114,7 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
     });
 
     it('should_not_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.be.empty;
+      helper.errorMessages().should.be.empty;
     });
   });
 
@@ -141,15 +141,15 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Association');
-      helper.errorMessageCollection()[0].message.should.include('additions');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include(propertyName);
-      helper.errorMessageCollection()[0].message.should.include('invalid');
+      helper.errorMessages()[0].message.should.include('Association');
+      helper.errorMessages()[0].message.should.include('additions');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include(propertyName);
+      helper.errorMessages()[0].message.should.include('invalid');
     });
   });
 
@@ -177,15 +177,15 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Association');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include(subClassName);
-      helper.errorMessageCollection()[0].message.should.include(propertyName);
-      helper.errorMessageCollection()[0].message.should.include('invalid');
+      helper.errorMessages()[0].message.should.include('Association');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include(subClassName);
+      helper.errorMessages()[0].message.should.include(propertyName);
+      helper.errorMessages()[0].message.should.include('invalid');
     });
   });
 
@@ -211,14 +211,14 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Descriptor');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include(propertyName);
-      helper.errorMessageCollection()[0].message.should.include('invalid');
+      helper.errorMessages()[0].message.should.include('Descriptor');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include(propertyName);
+      helper.errorMessages()[0].message.should.include('invalid');
     });
   });
 
@@ -243,15 +243,15 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Domain Entity');
-      helper.errorMessageCollection()[0].message.should.include('additions');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include(propertyName);
-      helper.errorMessageCollection()[0].message.should.include('invalid');
+      helper.errorMessages()[0].message.should.include('Domain Entity');
+      helper.errorMessages()[0].message.should.include('additions');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include(propertyName);
+      helper.errorMessages()[0].message.should.include('invalid');
     });
   });
 
@@ -278,15 +278,15 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Domain Entity');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include(subClassName);
-      helper.errorMessageCollection()[0].message.should.include(propertyName);
-      helper.errorMessageCollection()[0].message.should.include('invalid');
+      helper.errorMessages()[0].message.should.include('Domain Entity');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include(subClassName);
+      helper.errorMessages()[0].message.should.include(propertyName);
+      helper.errorMessages()[0].message.should.include('invalid');
     });
   });
 });

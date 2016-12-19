@@ -55,14 +55,14 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
     it('should_report_position_of_error', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.concatenatedLineNumber.should.equal(9);
       failure.characterPosition.should.equal(16);
       failure.tokenText.should.equal(entityName);
@@ -109,8 +109,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -159,8 +159,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -203,8 +203,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -250,8 +250,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -297,8 +297,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -347,8 +347,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -397,8 +397,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -447,8 +447,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -497,8 +497,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -544,8 +544,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -591,8 +591,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -635,8 +635,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -682,8 +682,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -729,8 +729,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -776,8 +776,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });
@@ -823,8 +823,8 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
 
     it('should_report_the_duplicate', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      const failure = helper.errorMessageCollection()[0];
+      helper.errorMessages().length.should.equal(1);
+      const failure = helper.errorMessages()[0];
       failure.message.should.contain(entityName);
       failure.message.should.contain('Duplicate');
     });

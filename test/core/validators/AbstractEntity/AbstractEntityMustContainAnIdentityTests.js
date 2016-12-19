@@ -32,8 +32,8 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
     });
 
     it('Should_have_no_validation_failures', () => {
-      helper.errorMessageCollection().length.should.equal(0);
-      helper.warningMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
+      helper.warningMessages().length.should.equal(0);
     });
   });
 
@@ -58,13 +58,13 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
     });
 
     it('Should_have_validation_failure', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('Should_have_validation_failure_message', () => {
-      helper.errorMessageCollection()[0].message.should.include('Abstract Entity');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include('does not have an identity');
+      helper.errorMessages()[0].message.should.include('Abstract Entity');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include('does not have an identity');
     });
   });
 });

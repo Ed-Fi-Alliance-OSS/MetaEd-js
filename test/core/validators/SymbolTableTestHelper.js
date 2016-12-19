@@ -35,11 +35,11 @@ export default class SymbolTableTestHelper {
     this.symbolTable = this.state.get('symbolTable');
   }
 
-  warningMessageCollection(): Array<ValidationMessage> {
-    return this.state.get('warningMessageCollection').toArray();
+  warningMessages(): Array<ValidationMessage> {
+    return this.state.get('warningMessages').toArray();
   }
 
-  errorMessageCollection(): Array<ValidationMessage> {
-    return this.state.get('errorMessageCollection').toArray();
+  errorMessages(): Array<ValidationMessage> {
+    return this.state.get('errorMessages').toArray();
   }
 }

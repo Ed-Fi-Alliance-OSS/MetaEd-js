@@ -37,11 +37,11 @@ export default class ValidatorTestHelper {
     this.state = validatorListener.postValidationState();
   }
 
-  warningMessageCollection(): Array<ValidationMessage> {
-    return this.state.get('warningMessageCollection').toArray();
+  warningMessages(): Array<ValidationMessage> {
+    return this.state.get('warningMessages').toArray();
   }
 
-  errorMessageCollection(): Array<ValidationMessage> {
-    return this.state.get('errorMessageCollection').toArray();
+  errorMessages(): Array<ValidationMessage> {
+    return this.state.get('errorMessages').toArray();
   }
 }

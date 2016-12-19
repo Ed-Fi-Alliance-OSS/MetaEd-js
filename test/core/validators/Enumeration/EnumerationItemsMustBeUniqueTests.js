@@ -27,7 +27,7 @@ describe('EnumerationItemsMustBeUniqueTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -48,11 +48,11 @@ describe('EnumerationItemsMustBeUniqueTests', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.equal('Enumeration \'Enumeration1\' declares duplicate item \'this is a duplicate short description\'.');
+      helper.errorMessages()[0].message.should.equal('Enumeration \'Enumeration1\' declares duplicate item \'this is a duplicate short description\'.');
     });
   });
 
@@ -76,11 +76,11 @@ describe('EnumerationItemsMustBeUniqueTests', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.equal(
+      helper.errorMessages()[0].message.should.equal(
         'Enumeration \'Enumeration1\' declares duplicate items \'this is duplicate short description 1\', \'this is duplicate short description 2\'.');
     });
   });

@@ -40,7 +40,7 @@ describe('SecondDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -76,14 +76,14 @@ describe('SecondDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(1);
+      helper.errorMessages().length.should.equal(1);
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Entity');
-      helper.errorMessageCollection()[0].message.should.include(associationName);
-      helper.errorMessageCollection()[0].message.should.include('has duplicate');
-      helper.errorMessageCollection()[0].message.should.include(secondName);
+      helper.errorMessages()[0].message.should.include('Entity');
+      helper.errorMessages()[0].message.should.include(associationName);
+      helper.errorMessages()[0].message.should.include('has duplicate');
+      helper.errorMessages()[0].message.should.include(secondName);
     });
   });
 });

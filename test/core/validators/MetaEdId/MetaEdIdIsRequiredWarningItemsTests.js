@@ -29,11 +29,11 @@ describe('MetaEdIdIsRequiredForItemsTests', () => {
     });
 
     it('should_have_validation_warning', () => {
-      helper.errorMessageCollection().should.be.empty;
-      helper.warningMessageCollection()[0].message.should.include('Item');
-      helper.warningMessageCollection()[0].message.should.include(entityName);
-      helper.warningMessageCollection()[0].message.should.include(propertyName);
-      helper.warningMessageCollection()[0].message.should.include('missing a MetaEdId');
+      helper.errorMessages().should.be.empty;
+      helper.warningMessages()[0].message.should.include('Item');
+      helper.warningMessages()[0].message.should.include(entityName);
+      helper.warningMessages()[0].message.should.include(propertyName);
+      helper.warningMessages()[0].message.should.include('missing a MetaEdId');
     });
   });
 
@@ -52,11 +52,11 @@ describe('MetaEdIdIsRequiredForItemsTests', () => {
     });
 
     it('should_have_validation_warning', () => {
-      helper.errorMessageCollection().should.be.empty;
-      helper.warningMessageCollection()[0].message.should.include('Item');
-      helper.warningMessageCollection()[0].message.should.include(entityName);
-      helper.warningMessageCollection()[0].message.should.include(propertyName);
-      helper.warningMessageCollection()[0].message.should.include('missing a MetaEdId');
+      helper.errorMessages().should.be.empty;
+      helper.warningMessages()[0].message.should.include('Item');
+      helper.warningMessages()[0].message.should.include(entityName);
+      helper.warningMessages()[0].message.should.include(propertyName);
+      helper.warningMessages()[0].message.should.include('missing a MetaEdId');
     });
   });
 
@@ -75,11 +75,11 @@ describe('MetaEdIdIsRequiredForItemsTests', () => {
     });
 
     it('should_have_validation_warning', () => {
-      helper.errorMessageCollection().should.be.empty;
-      helper.warningMessageCollection()[0].message.should.include('Item');
-      helper.warningMessageCollection()[0].message.should.include(entityName);
-      helper.warningMessageCollection()[0].message.should.include(propertyName);
-      helper.warningMessageCollection()[0].message.should.include('missing a MetaEdId');
+      helper.errorMessages().should.be.empty;
+      helper.warningMessages()[0].message.should.include('Item');
+      helper.warningMessages()[0].message.should.include(entityName);
+      helper.warningMessages()[0].message.should.include(propertyName);
+      helper.warningMessages()[0].message.should.include('missing a MetaEdId');
     });
   });
 
@@ -99,11 +99,11 @@ describe('MetaEdIdIsRequiredForItemsTests', () => {
     });
 
     it('should_have_validation_warning', () => {
-      helper.errorMessageCollection().should.be.empty;
-      helper.warningMessageCollection()[0].message.should.include('Item');
-      helper.warningMessageCollection()[0].message.should.include(entityName);
-      helper.warningMessageCollection()[0].message.should.include(propertyName);
-      helper.warningMessageCollection()[0].message.should.include('missing a MetaEdId');
+      helper.errorMessages().should.be.empty;
+      helper.warningMessages()[0].message.should.include('Item');
+      helper.warningMessages()[0].message.should.include(entityName);
+      helper.warningMessages()[0].message.should.include(propertyName);
+      helper.warningMessages()[0].message.should.include('missing a MetaEdId');
     });
   });
 });

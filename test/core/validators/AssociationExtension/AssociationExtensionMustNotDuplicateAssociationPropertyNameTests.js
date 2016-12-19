@@ -35,7 +35,7 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -63,14 +63,14 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().length.should.equal(1);
+      helper.errorMessages().length.should.equal(1);
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Association additions');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include(duplicatePropertyName);
-      helper.errorMessageCollection()[0].message.should.include('already in property list');
+      helper.errorMessages()[0].message.should.include('Association additions');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include(duplicatePropertyName);
+      helper.errorMessages()[0].message.should.include('already in property list');
     });
   });
 
@@ -103,16 +103,16 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().length.should.equal(1);
+      helper.errorMessages().length.should.equal(1);
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Association additions');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include(duplicatePropertyName1);
-      helper.errorMessageCollection()[0].message.should.include(duplicatePropertyName2);
-      helper.errorMessageCollection()[0].message.should.include('already in property list');
-      helper.errorMessageCollection()[0].message.should.not.include(notDuplicatePropertyName);
+      helper.errorMessages()[0].message.should.include('Association additions');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include(duplicatePropertyName1);
+      helper.errorMessages()[0].message.should.include(duplicatePropertyName2);
+      helper.errorMessages()[0].message.should.include('already in property list');
+      helper.errorMessages()[0].message.should.not.include(notDuplicatePropertyName);
     });
   });
 
@@ -140,7 +140,7 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().length.should.equal(1);
+      helper.errorMessages().length.should.equal(1);
     });
   });
 
@@ -168,7 +168,7 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
     });
 
     it('should_not_have_validation_failure()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 });

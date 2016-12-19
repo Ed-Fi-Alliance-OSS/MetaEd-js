@@ -23,22 +23,22 @@ describe('SimpleParseTest', () => {
       const tokens = new antlr4.CommonTokenStream(lexer, undefined);
       const parser = new MetaEdGrammar.MetaEdGrammar(tokens);
 
-      const errorMessageCollection = [];
-      const errorListener = new MetaEdErrorListener(errorMessageCollection);
+      const errorMessages = [];
+      const errorListener = new MetaEdErrorListener(errorMessages);
 
       parser.removeErrorListeners();
       parser.addErrorListener(errorListener);
       parser.topLevelEntity();
 
-      if (errorMessageCollection.length === 0) {
+      if (errorMessages.length === 0) {
         console.log('No parse errors found');
       } else {
-        for (const errorMessage of errorMessageCollection) {
+        for (const errorMessage of errorMessages) {
           console.log(errorMessage);
         }
       }
 
-      errorMessageCollection.should.be.empty;
+      errorMessages.should.be.empty;
     });
   });
 });

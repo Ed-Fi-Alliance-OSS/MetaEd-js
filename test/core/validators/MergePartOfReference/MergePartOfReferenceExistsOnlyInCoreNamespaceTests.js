@@ -32,7 +32,7 @@ describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {
     });
 
     it('should_validate_successfully()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -61,15 +61,15 @@ describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_meaningful_validation_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('\'merge\' is invalid for property');
-      helper.errorMessageCollection()[0].message.should.include(entityName1);
-      helper.errorMessageCollection()[0].message.should.include(entityName2);
-      helper.errorMessageCollection()[0].message.should.include(extensionNamespace);
-      helper.errorMessageCollection()[0].message.should.include('\'merge\' is only valid for properties on types in a core namespace.');
+      helper.errorMessages()[0].message.should.include('\'merge\' is invalid for property');
+      helper.errorMessages()[0].message.should.include(entityName1);
+      helper.errorMessages()[0].message.should.include(entityName2);
+      helper.errorMessages()[0].message.should.include(extensionNamespace);
+      helper.errorMessages()[0].message.should.include('\'merge\' is only valid for properties on types in a core namespace.');
     });
   });
 });

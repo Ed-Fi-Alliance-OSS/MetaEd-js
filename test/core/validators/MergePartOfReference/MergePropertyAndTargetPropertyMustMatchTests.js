@@ -33,7 +33,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
     });
 
     it('should_validate_successfully()', () => {
-      helper.errorMessageCollection().should.be.empty;
+      helper.errorMessages().should.be.empty;
     });
   });
 
@@ -59,11 +59,11 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(1);
+      helper.errorMessages().length.should.equal(1);
     });
 
     it('should_have_meaningful_validation_message()', () => {
-      helper.errorMessageCollection()[0].message.should.equal('The merge paths \'Entity1.Prop1\' and \'Prop1\' do not correspond to the same entity type.');
+      helper.errorMessages()[0].message.should.equal('The merge paths \'Entity1.Prop1\' and \'Prop1\' do not correspond to the same entity type.');
     });
   });
 
@@ -89,7 +89,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(1);
+      helper.errorMessages().length.should.equal(1);
     });
   });
 
@@ -120,7 +120,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
     });
 
     it('should_validate_successfully()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -158,7 +158,7 @@ describe('MergePropertyAndTargetPropertyMustMatch', () => {
     });
 
     it('should_validate_successfully()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 });

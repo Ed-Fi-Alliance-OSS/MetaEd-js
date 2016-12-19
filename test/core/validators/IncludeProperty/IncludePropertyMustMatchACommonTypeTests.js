@@ -33,7 +33,7 @@ describe('IncludePropertyMustMatchACommonType', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -59,7 +59,7 @@ describe('IncludePropertyMustMatchACommonType', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -85,7 +85,7 @@ describe('IncludePropertyMustMatchACommonType', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -106,13 +106,13 @@ describe('IncludePropertyMustMatchACommonType', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().length.should.not.be.empty;
+      helper.errorMessages().length.should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Include');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include('does not match');
+      helper.errorMessages()[0].message.should.include('Include');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include('does not match');
     });
   });
 });

@@ -25,7 +25,7 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -44,7 +44,7 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -63,7 +63,7 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -83,7 +83,7 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -104,13 +104,13 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Common Short');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include('min value greater than max value');
+      helper.errorMessages()[0].message.should.include('Common Short');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include('min value greater than max value');
     });
   });
 
@@ -130,7 +130,7 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 });

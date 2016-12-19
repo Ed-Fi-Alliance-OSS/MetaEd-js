@@ -10,7 +10,7 @@ import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 // eslint-disable-next-line import/prefer-default-export
 export const validateSyntax = R.curry(
 (parseTreeBuilder: (metaEdErrorListener: MetaEdErrorListener, metaEdContents: string) => MetaEdGrammar, state: State): State => {
-  const errorMessageCollection = [];
+  const errorMessages = [];
 
   if (state.get('loadedFileSet') == null) {
     winston.error('ValidateSyntax: no files to load found');
@@ -19,7 +19,7 @@ export const validateSyntax = R.curry(
 
   state.get('loadedFileSet').forEach(fileToLoad => {
     fileToLoad.files.forEach(file => {
-      const errorListener = new MetaEdErrorListener(errorMessageCollection, createFileIndex([file]));
+      const errorListener = new MetaEdErrorListener(errorMessages, createFileIndex([file]));
 
       const parseTree = parseTreeBuilder(errorListener, file.get('contents'));
       if (parseTree == null) {
@@ -28,9 +28,9 @@ export const validateSyntax = R.curry(
     });
   });
 
-  if (errorMessageCollection.length > 0) {
-    // TODO: maybe error out if errorMessageCollection has a message
-//    winston.error(`ValidateSyntax: errors during parsing ${errorMessageCollection.join()}`);
+  if (errorMessages.length > 0) {
+    // TODO: maybe error out if errorMessages has a message
+//    winston.error(`ValidateSyntax: errors during parsing ${errorMessages.join()}`);
   }
-  return R.pipe(concatenateErrorMessages(errorMessageCollection), addAction('ValidateSyntax'))(state);
+  return R.pipe(concatenateErrorMessages(errorMessages), addAction('ValidateSyntax'))(state);
 });

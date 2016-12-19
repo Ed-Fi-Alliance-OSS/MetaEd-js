@@ -1,8 +1,6 @@
 // @flow
 import R from 'ramda';
 import { List, Map, Record, Set } from 'immutable';
-import { compose as composeLens, get as getLens, set as setLens } from 'safety-lens';
-import { field as fieldLens } from 'safety-lens/immutable';
 import SymbolTable from './validators/SymbolTable';
 import type { ValidationMessage } from './validators/ValidationMessage';
 import type { InputDirectory } from './tasks/FileSystemFilenameLoader';
@@ -15,10 +13,10 @@ type StateRecord = {
   action: List<string>,
 
   // the collection of error messages from syntax and semantic validation, and other processes
-  errorMessageCollection: List<ValidationMessage>,
+  errorMessages: List<ValidationMessage>,
 
   // the collection of warning messages from semantic validation
-  warningMessageCollection: List<ValidationMessage>,
+  warningMessages: List<ValidationMessage>,
 
   // the collection of indeterminate validations from semantic validation
   indeterminateCollection: List<string>,
@@ -52,8 +50,8 @@ export type State = Record<StateRecord>;
 // eslint-disable-next-line import/prefer-default-export
 export const StateInstance: State = Record({
   action: new List(),
-  warningMessageCollection: new List(),
-  errorMessageCollection: new List(),
+  warningMessages: new List(),
+  errorMessages: new List(),
   symbolTable: null,
   fileIndex: null,
   loadedFileSet: new List(),
@@ -67,13 +65,13 @@ export const addAction = R.curry((actionString: string, state: State): State =>
   state.set('action', state.get('action').push(actionString)));
 
 export const addErrorMessage = R.curry((errorMessage: string, state: State): State =>
-  state.set('errorMessageCollection', state.get('errorMessageCollection').push(errorMessage)));
+  state.set('errorMessages', state.get('errorMessages').push(errorMessage)));
 
 export const concatenateErrorMessages = R.curry((errorMessages: string[], state: State): State =>
-  state.set('errorMessageCollection', state.get('errorMessageCollection').concat(errorMessages)));
+  state.set('errorMessages', state.get('errorMessages').concat(errorMessages)));
 
 export const addWarningMessage = R.curry((warningMessage: string, state: State): State =>
-  state.set('warningMessageCollection', state.get('warningMessageCollection').push(warningMessage)));
+  state.set('warningMessages', state.get('warningMessages').push(warningMessage)));
 
 export const addLoadedFileSet = R.curry((fileSet: FileSet, state: State): State =>
   state.set('loadedFileSet', state.get('loadedFileSet').concat(fileSet)));

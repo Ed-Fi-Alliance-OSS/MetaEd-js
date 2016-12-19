@@ -39,7 +39,7 @@ describe('MustNotDuplicateMetaEdId', () => {
     });
 
     it('should_not_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.be.empty;
+      helper.errorMessages().should.be.empty;
     });
   });
 
@@ -70,13 +70,13 @@ describe('MustNotDuplicateMetaEdId', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('MetaEdId');
-      helper.errorMessageCollection()[0].message.should.include(metaEdId);
-      helper.errorMessageCollection()[0].message.should.include('All MetaEdIds must be globally unique.');
+      helper.errorMessages()[0].message.should.include('MetaEdId');
+      helper.errorMessages()[0].message.should.include(metaEdId);
+      helper.errorMessages()[0].message.should.include('All MetaEdIds must be globally unique.');
     });
   });
 
@@ -99,13 +99,13 @@ describe('MustNotDuplicateMetaEdId', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('MetaEdId');
-      helper.errorMessageCollection()[0].message.should.include(metaEdId);
-      helper.errorMessageCollection()[0].message.should.include('All MetaEdIds must be globally unique.');
+      helper.errorMessages()[0].message.should.include('MetaEdId');
+      helper.errorMessages()[0].message.should.include(metaEdId);
+      helper.errorMessages()[0].message.should.include('All MetaEdIds must be globally unique.');
     });
   });
 
@@ -135,13 +135,13 @@ describe('MustNotDuplicateMetaEdId', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('MetaEdId');
-      helper.errorMessageCollection()[0].message.should.include(metaEdId);
-      helper.errorMessageCollection()[0].message.should.include('All MetaEdIds must be globally unique.');
+      helper.errorMessages()[0].message.should.include('MetaEdId');
+      helper.errorMessages()[0].message.should.include(metaEdId);
+      helper.errorMessages()[0].message.should.include('All MetaEdIds must be globally unique.');
     });
   });
 });

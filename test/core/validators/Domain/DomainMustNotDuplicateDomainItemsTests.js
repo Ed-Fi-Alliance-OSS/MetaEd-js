@@ -27,7 +27,7 @@ describe('DomainMustNotDuplicateDomainItemsTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -49,14 +49,14 @@ describe('DomainMustNotDuplicateDomainItemsTests', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Domain');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include('duplicate domain item');
-      helper.errorMessageCollection()[0].message.should.include(duplicateTemplate);
+      helper.errorMessages()[0].message.should.include('Domain');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include('duplicate domain item');
+      helper.errorMessages()[0].message.should.include(duplicateTemplate);
     });
   });
 
@@ -83,15 +83,15 @@ describe('DomainMustNotDuplicateDomainItemsTests', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Domain');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include('duplicate domain items');
-      helper.errorMessageCollection()[0].message.should.include(duplicateTemplate1);
-      helper.errorMessageCollection()[0].message.should.include(duplicateTemplate2);
+      helper.errorMessages()[0].message.should.include('Domain');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include('duplicate domain items');
+      helper.errorMessages()[0].message.should.include(duplicateTemplate1);
+      helper.errorMessages()[0].message.should.include(duplicateTemplate2);
     });
   });
 });

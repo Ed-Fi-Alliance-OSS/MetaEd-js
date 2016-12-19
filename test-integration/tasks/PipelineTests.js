@@ -41,8 +41,8 @@ describe('PipelineTests', () => {
 
     it('Should parse and validate without errors', () => {
       const endState = startingFromFileLoad(state);
-      endState.errorMessageCollection.size.should.equal(0);
-      endState.warningMessageCollection.size.should.equal(0);
+      endState.errorMessages.size.should.equal(0);
+      endState.warningMessages.size.should.equal(0);
     });
   });
 
@@ -78,8 +78,8 @@ describe('PipelineTests', () => {
 
     it('Should return an error', () => {
       const endState = startingFromFileLoad(state);
-      endState.errorMessageCollection.size.should.equal(1);
-      endState.warningMessageCollection.size.should.equal(0);
+      endState.errorMessages.size.should.equal(1);
+      endState.warningMessages.size.should.equal(0);
     });
   });
 
@@ -139,8 +139,8 @@ describe('PipelineTests', () => {
 
     it('Should load the file contents', () => {
       const endState = startingFromFileLoad(state);
-      endState.errorMessageCollection.size.should.equal(0);
-      endState.warningMessageCollection.size.should.equal(0);
+      endState.errorMessages.size.should.equal(0);
+      endState.warningMessages.size.should.equal(0);
     });
   });
 });

@@ -35,7 +35,7 @@ describe('InterchangeExtensionIdentifierMustMatchAnInterchangeTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -55,13 +55,13 @@ describe('InterchangeExtensionIdentifierMustMatchAnInterchangeTests', () => {
     });
 
     it('should_have_validation_failure()', () => {
-      helper.errorMessageCollection().length.should.equal(1);
+      helper.errorMessages().length.should.equal(1);
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Interchange additions');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include('does not match');
+      helper.errorMessages()[0].message.should.include('Interchange additions');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include('does not match');
     });
   });
 

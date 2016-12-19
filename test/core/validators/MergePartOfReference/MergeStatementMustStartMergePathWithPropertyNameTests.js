@@ -29,7 +29,7 @@ describe('MergeStatementMustStartMergePathWithPropertyName', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -51,8 +51,8 @@ describe('MergeStatementMustStartMergePathWithPropertyName', () => {
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(1);
-      helper.errorMessageCollection()[0].message.should.equal('Merge statement must startingFromFileLoad first property path with the referenced entity name of the current property.');
+      helper.errorMessages().length.should.equal(1);
+      helper.errorMessages()[0].message.should.equal('Merge statement must startingFromFileLoad first property path with the referenced entity name of the current property.');
     });
   });
 });

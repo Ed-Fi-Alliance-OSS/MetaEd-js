@@ -26,7 +26,7 @@ describe('StringPropertyMinLengthMustNotBeGreaterThanMaxLengthTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -47,7 +47,7 @@ describe('StringPropertyMinLengthMustNotBeGreaterThanMaxLengthTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 
@@ -70,15 +70,15 @@ describe('StringPropertyMinLengthMustNotBeGreaterThanMaxLengthTests', () => {
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('String Property');
-      helper.errorMessageCollection()[0].message.should.include('Abstract Entity');
-      helper.errorMessageCollection()[0].message.should.include(stringPropertyName);
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include('min length greater than max length');
+      helper.errorMessages()[0].message.should.include('String Property');
+      helper.errorMessages()[0].message.should.include('Abstract Entity');
+      helper.errorMessages()[0].message.should.include(stringPropertyName);
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include('min length greater than max length');
     });
   });
 
@@ -101,7 +101,7 @@ describe('StringPropertyMinLengthMustNotBeGreaterThanMaxLengthTests', () => {
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().length.should.equal(0);
+      helper.errorMessages().length.should.equal(0);
     });
   });
 });

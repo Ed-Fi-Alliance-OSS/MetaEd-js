@@ -21,11 +21,11 @@ describe('ParseTreeBuilder', () => {
         '        is part of identity\n',
       ].join('\n');
 
-      const errorMessageCollection = [];
+      const errorMessages = [];
 
-      const errorListener = new MetaEdErrorListener(errorMessageCollection, stubFileIndex);
+      const errorListener = new MetaEdErrorListener(errorMessages, stubFileIndex);
       buildTopLevelEntity(errorListener, inputText);
-      errorMessageCollection.should.be.empty;
+      errorMessages.should.be.empty;
     });
 
     it('should parse incorrectly with invalid MetaEd', () => {
@@ -38,11 +38,11 @@ describe('ParseTreeBuilder', () => {
         '        is part of identity\n',
       ].join('\n');
 
-      const errorMessageCollection = [];
-      const errorListener = new MetaEdErrorListener(errorMessageCollection, stubFileIndex);
+      const errorMessages = [];
+      const errorListener = new MetaEdErrorListener(errorMessages, stubFileIndex);
       buildTopLevelEntity(errorListener, inputText);
-      errorMessageCollection.should.not.be.empty;
-      errorMessageCollection[0].message.should.include('xyz');
+      errorMessages.should.not.be.empty;
+      errorMessages[0].message.should.include('xyz');
     });
 
     it('should parse correctly with valid MetaEd from MetaEdTextBuilder', () => {
@@ -54,10 +54,10 @@ describe('ParseTreeBuilder', () => {
         .withEndDomainEntity()
         .toString();
 
-      const errorMessageCollection = [];
-      const errorListener = new MetaEdErrorListener(errorMessageCollection, stubFileIndex);
+      const errorMessages = [];
+      const errorListener = new MetaEdErrorListener(errorMessages, stubFileIndex);
       buildTopLevelEntity(errorListener, inputText);
-      errorMessageCollection.should.be.empty;
+      errorMessages.should.be.empty;
     });
   });
 });

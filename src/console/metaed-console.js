@@ -42,11 +42,11 @@ const state: State = new StateInstance({
 
 const endState: State = startingFromFileLoad(state);
 
-const errorMessageCollection = endState.get('errorMessageCollection');
-if (errorMessageCollection.size === 0) {
+const errorMessages = endState.get('errorMessages');
+if (errorMessages.size === 0) {
   winston.info('No errors found.');
 } else {
-  errorMessageCollection.forEach(
+  errorMessages.forEach(
     message => winston.error(`${message.filename}(${message.lineNumber},${message.characterPosition}): ${message.message}`));
 }
 

@@ -35,7 +35,7 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().should.be.empty;
+      helper.errorMessages().should.be.empty;
     });
   });
 
@@ -63,7 +63,7 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
     });
 
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().should.be.empty;
+      helper.errorMessages().should.be.empty;
     });
   });
 
@@ -91,18 +91,18 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Association');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include('based on');
-      helper.errorMessageCollection()[0].message.should.include(baseName);
-      helper.errorMessageCollection()[0].message.should.include('tries to rename');
-      helper.errorMessageCollection()[0].message.should.include('Property3');
-      helper.errorMessageCollection()[0].message.should.not.include('Property2');
-      helper.errorMessageCollection()[0].message.should.include('is not part of the identity');
+      helper.errorMessages()[0].message.should.include('Association');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include('based on');
+      helper.errorMessages()[0].message.should.include(baseName);
+      helper.errorMessages()[0].message.should.include('tries to rename');
+      helper.errorMessages()[0].message.should.include('Property3');
+      helper.errorMessages()[0].message.should.not.include('Property2');
+      helper.errorMessages()[0].message.should.include('is not part of the identity');
     });
   });
 
@@ -130,18 +130,18 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
     });
 
     it('should_have_validation_failures()', () => {
-      helper.errorMessageCollection().should.not.be.empty;
+      helper.errorMessages().should.not.be.empty;
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessageCollection()[0].message.should.include('Association');
-      helper.errorMessageCollection()[0].message.should.include(entityName);
-      helper.errorMessageCollection()[0].message.should.include('based on');
-      helper.errorMessageCollection()[0].message.should.include(baseName);
-      helper.errorMessageCollection()[0].message.should.include('tries to rename');
-      helper.errorMessageCollection()[0].message.should.include('Property1');
-      helper.errorMessageCollection()[0].message.should.not.include('Property2');
-      helper.errorMessageCollection()[0].message.should.include('is not part of the identity');
+      helper.errorMessages()[0].message.should.include('Association');
+      helper.errorMessages()[0].message.should.include(entityName);
+      helper.errorMessages()[0].message.should.include('based on');
+      helper.errorMessages()[0].message.should.include(baseName);
+      helper.errorMessages()[0].message.should.include('tries to rename');
+      helper.errorMessages()[0].message.should.include('Property1');
+      helper.errorMessages()[0].message.should.not.include('Property2');
+      helper.errorMessages()[0].message.should.include('is not part of the identity');
     });
   });
 
@@ -161,7 +161,7 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
       helper.setup(metaEdText, validatorListener);
     });
     it('should_have_no_validation_failures()', () => {
-      helper.errorMessageCollection().should.be.empty;
+      helper.errorMessages().should.be.empty;
     });
   });
 });
