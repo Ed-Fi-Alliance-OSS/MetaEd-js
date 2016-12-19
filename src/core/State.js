@@ -2,7 +2,7 @@
 import R from 'ramda';
 import { List, Map, Record, Set } from 'immutable';
 import SymbolTable from './validators/SymbolTable';
-import type { ValidationMessage } from './validators/ValidationMessage';
+import type { ValidationMessage, ValidationProblem } from './validators/ValidationTypes';
 import type { InputDirectory } from './tasks/FileSystemFilenameLoader';
 import type { FileSet } from './tasks/MetaEdFile';
 import type { FileIndex } from './tasks/FileIndex';
@@ -19,7 +19,7 @@ type StateRecord = {
   warningMessages: List<ValidationMessage>,
 
   // the collection of indeterminate validations from semantic validation
-  indeterminateCollection: List<string>,
+  validationProblems: List<ValidationProblem>,
 
   // the specified directories to load .metaed files from
   inputDirectories: ?InputDirectory[],
@@ -52,6 +52,7 @@ export const StateInstance: State = Record({
   action: new List(),
   warningMessages: new List(),
   errorMessages: new List(),
+  validationProblems: new List(),
   symbolTable: null,
   fileIndex: null,
   loadedFileSet: new List(),
@@ -64,14 +65,17 @@ export const StateInstance: State = Record({
 export const addAction = R.curry((actionString: string, state: State): State =>
   state.set('action', state.get('action').push(actionString)));
 
-export const addErrorMessage = R.curry((errorMessage: string, state: State): State =>
+export const addErrorMessage = R.curry((errorMessage: ValidationMessage, state: State): State =>
   state.set('errorMessages', state.get('errorMessages').push(errorMessage)));
 
-export const concatenateErrorMessages = R.curry((errorMessages: string[], state: State): State =>
+export const concatenateErrorMessages = R.curry((errorMessages: ValidationMessage[], state: State): State =>
   state.set('errorMessages', state.get('errorMessages').concat(errorMessages)));
 
-export const addWarningMessage = R.curry((warningMessage: string, state: State): State =>
+export const addWarningMessage = R.curry((warningMessage: ValidationMessage, state: State): State =>
   state.set('warningMessages', state.get('warningMessages').push(warningMessage)));
+
+export const addValidationProblem = R.curry((validationProblem: ValidationProblem, state: State): State =>
+  state.set('validationProblems', state.get('validationProblems').push(validationProblem)));
 
 export const addLoadedFileSet = R.curry((fileSet: FileSet, state: State): State =>
   state.set('loadedFileSet', state.get('loadedFileSet').concat(fileSet)));

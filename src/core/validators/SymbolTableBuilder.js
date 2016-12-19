@@ -6,7 +6,7 @@ import type { State } from '../../core/State';
 import SymbolTable from './SymbolTable';
 import SymbolTableEntityType from './SymbolTableEntityType';
 import { getFilenameAndLineNumber } from '../tasks/FileIndex';
-import type { ValidationMessage } from './ValidationMessage';
+import type { ValidationMessage } from './ValidationTypes';
 
 
 export default class SymbolTableBuilder extends MetaEdGrammarListener {

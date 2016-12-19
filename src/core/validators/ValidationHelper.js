@@ -74,3 +74,19 @@ export function propertyMustNotMatchACommonSimpleType(propertyRuleContext: any, 
 
 // returns list of strings that are duplicated in the original list, with caching
 export const findDuplicates = R.memoize(R.compose(R.map(R.head), R.filter(x => x.length > 1), R.values, R.groupBy(R.identity)));
+
+// traverse a rule context path, defined as a string[], looking for an exception
+// returns the path to the exception or null
+export const exceptionPath = R.curry(
+  (ruleContextPath: string[], ruleContext: any): ?string[] => {
+    let idx = 0;
+    let currentContext = ruleContext;
+
+    while (idx < ruleContextPath.length) {
+      if (currentContext == null || currentContext.exception != null) return ruleContextPath.slice(0, idx);
+      currentContext = currentContext[ruleContextPath[idx]]();
+      idx += 1;
+    }
+
+    return null;
+  });

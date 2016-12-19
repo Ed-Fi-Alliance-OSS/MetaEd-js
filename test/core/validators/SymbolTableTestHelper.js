@@ -6,7 +6,7 @@ import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder'
 
 import MetaEdGrammar from '../../../src/grammar/gen/MetaEdGrammar';
 import BaseLexer from '../../../src/grammar/gen/BaseLexer';
-import type { ValidationMessage } from '../../../src/core/validators/ValidationMessage';
+import type { ValidationMessage } from '../../../src/core/validators/ValidationTypes';
 import { StateInstance } from '../../../src/core/State';
 // eslint-disable-next-line no-duplicate-imports
 import type { State } from '../../../src/core/State';

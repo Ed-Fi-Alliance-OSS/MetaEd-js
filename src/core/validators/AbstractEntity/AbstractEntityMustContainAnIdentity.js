@@ -1,9 +1,29 @@
 // @flow
-import { getProperty } from '../ValidationHelper';
+import { getProperty, exceptionPath } from '../ValidationHelper';
 import type SymbolTable from '../SymbolTable';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
+
+import type { ValidatableResult } from '../ValidationTypes';
+
+export function validatable(ruleContext: any): ValidatableResult {
+  const validatorName = 'AbstractEntityMustContainAnIdentity';
+  let invalidPath: ?string[] = exceptionPath(['property'], ruleContext);
+
+  if (invalidPath) return { invalidPath, validatorName };
+
+  ruleContext.property().forEach(property => {
+    const concreteProperty = getProperty(property);
+    invalidPath = exceptionPath(['propertyComponents', 'propertyAnnotation'], concreteProperty);
+    if (invalidPath) return { invalidPath, validatorName };
+  });
+
+  invalidPath = exceptionPath(['abstractEntityName', 'ID'], ruleContext);
+  if (invalidPath) return { invalidPath, validatorName };
+
+  return { validatorName };
+}
 
 // eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
@@ -15,6 +35,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Abstract Entity ${ruleContext.abstractEntityName().ID().getText()} does not have an identity specified.`;
 }
 
-const validationRule = errorRuleBase(valid, failureMessage);
+const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_abstractEntity, validationRule);
