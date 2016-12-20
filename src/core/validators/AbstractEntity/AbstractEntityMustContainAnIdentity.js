@@ -1,10 +1,9 @@
 // @flow
 import { getProperty, exceptionPath } from '../ValidationHelper';
-import type SymbolTable from '../SymbolTable';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
-
+import type SymbolTable from '../SymbolTable';
 import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {
@@ -13,6 +12,7 @@ export function validatable(ruleContext: any): ValidatableResult {
 
   if (invalidPath) return { invalidPath, validatorName };
 
+  // eslint-disable-next-line consistent-return
   ruleContext.property().forEach(property => {
     const concreteProperty = getProperty(property);
     invalidPath = exceptionPath(['propertyComponents', 'propertyAnnotation'], concreteProperty);

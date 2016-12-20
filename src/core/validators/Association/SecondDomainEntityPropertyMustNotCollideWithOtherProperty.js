@@ -2,8 +2,8 @@
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
-import { valid, failureMessage } from './FirstDomainEntityPropertyMustNotCollideWithOtherProperty';
+import { validatable, valid, failureMessage } from './FirstDomainEntityPropertyMustNotCollideWithOtherProperty';
 
-const validationRule = errorRuleBase(valid, failureMessage);
+const validationRule = errorRuleBase(validatable('SecondDomainEntityPropertyMustNotCollideWithOtherProperty'), valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_secondDomainEntity, validationRule);
