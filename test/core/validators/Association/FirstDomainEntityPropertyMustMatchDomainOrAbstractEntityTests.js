@@ -1,6 +1,6 @@
 ﻿import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper, { mockRuleContext } from './../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 import { includeRule, validatable } from '../../../../src/core/validators/Association/FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity';
@@ -144,7 +144,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
   });
 
   describe('When rule context has exception', () => {
-    const ruleContext = ruleContextWithException(['propertyName', 'ID']);
+    const ruleContext = addRuleContextPath(['propertyName', 'ID'], {}, true);
     const { invalidPath, validatorName } = validatable('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTest', ruleContext);
 
     it('Should_have_validatable_failure', () => {

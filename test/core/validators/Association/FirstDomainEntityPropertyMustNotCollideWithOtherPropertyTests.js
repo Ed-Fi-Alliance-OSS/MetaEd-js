@@ -1,6 +1,6 @@
 ﻿import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper, { mockRuleContext } from './../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 import { includeRule, validatable } from '../../../../src/core/validators/Association/FirstDomainEntityPropertyMustNotCollideWithOtherProperty';
@@ -84,8 +84,40 @@ describe('FirstDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
     });
   });
 
-  describe('When rule context has exception', () => {
-    const ruleContext = ruleContextWithException(['propertyName', 'ID']);
+  describe('When rule context has propertyName exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['propertyName', 'ID'], {}, true);
+    addRuleContextPath(['associationName', 'ID'], {}, false);
+    addRuleContextPath(['withContext', 'withContextName', 'ID'], ruleContext, false);
+
+    const { invalidPath, validatorName } = validatable('FirstDomainEntityPropertyMustNotCollideWithOtherPropertyTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has withContextName exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['propertyName', 'ID'], {}, false);
+    addRuleContextPath(['associationName', 'ID'], {}, false);
+    addRuleContextPath(['withContext', 'withContextName', 'ID'], ruleContext, true);
+
+    const { invalidPath, validatorName } = validatable('FirstDomainEntityPropertyMustNotCollideWithOtherPropertyTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has associationName exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['propertyName', 'ID'], {}, false);
+    addRuleContextPath(['associationName', 'ID'], {}, true);
+    addRuleContextPath(['withContext', 'withContextName', 'ID'], ruleContext, false);
+
     const { invalidPath, validatorName } = validatable('FirstDomainEntityPropertyMustNotCollideWithOtherPropertyTests', ruleContext);
 
     it('Should_have_validatable_failure', () => {

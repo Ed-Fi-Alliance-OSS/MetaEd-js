@@ -48,7 +48,7 @@ export default class ValidatorTestHelper {
 }
 
 // mutating function that appends mock rule functions for the given path onto the given root, possibly ending with an exception
-export function addRuleContextPath(ruleContextPath: string[], rootContext: any, endWithException: boolean = true) {
+export function addRuleContextPath(ruleContextPath: string[], rootContext: any, endWithException: boolean = true): any {
   let currentContext = rootContext;
 
   ruleContextPath.forEach(pathElement => {
@@ -58,4 +58,5 @@ export function addRuleContextPath(ruleContextPath: string[], rootContext: any, 
   });
 
   if (endWithException) currentContext.exception = true;
+  return rootContext;
 }
