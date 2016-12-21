@@ -2,6 +2,8 @@
 import R from 'ramda';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import type SymbolTable from '../SymbolTable';
+import { exceptionPath } from '../ValidationHelper';
+import type { ValidatableResult } from '../ValidationTypes';
 
 function isNotIncludePropertyContextWithExtension(context: any): boolean {
   if (context.ruleIndex !== MetaEdGrammar.RULE_includeProperty) return true;
@@ -15,6 +17,14 @@ function propertyRuleContextsForDuplicates(baseKey: string, extensionKey: string
     symbolTable.contextsForMatchingPropertyIdentifiers(extensionKey, identifier, Array.from(entityPropertyIdentifiers));
   return duplicates.filter(x => isNotIncludePropertyContextWithExtension(x));
 }
+
+export const validatable = R.curry(
+  (validatorName: string, ruleContext: any): ValidatableResult => {
+    const invalidPath: ?string[] = exceptionPath(['extendeeName'], ruleContext);
+    if (invalidPath) return { invalidPath, validatorName };
+
+    return { validatorName };
+  });
 
 export const valid = R.curry(
   (entityKey: string, extensionKey: string, ruleContext: any, symbolTable: SymbolTable): boolean =>

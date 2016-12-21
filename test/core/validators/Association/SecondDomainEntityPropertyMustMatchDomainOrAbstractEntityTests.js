@@ -1,6 +1,6 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from './../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 import { includeRule } from '../../../../src/core/validators/Association/SecondDomainEntityPropertyMustMatchDomainOrAbstractEntity';

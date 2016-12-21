@@ -3,7 +3,7 @@ import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import SymbolTableEntityType from '../SymbolTableEntityType';
-import { valid, failureMessage } from '../ValidatorShared/ExtensionMustNotDuplicatePropertyName';
+import { validatable, valid, failureMessage } from '../ValidatorShared/ExtensionMustNotDuplicatePropertyName';
 
 const associationExtensionValid =
   valid(SymbolTableEntityType.association(), SymbolTableEntityType.associationExtension());
@@ -11,6 +11,6 @@ const associationExtensionValid =
 const associationExtensionFailureMessage =
   failureMessage('Association', SymbolTableEntityType.association(), SymbolTableEntityType.associationExtension());
 
-const validationRule = errorRuleBase(associationExtensionValid, associationExtensionFailureMessage);
+const validationRule = errorRuleBase(validatable('AssociationExtensionMustNotDuplicateAssociationPropertyName'), associationExtensionValid, associationExtensionFailureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_associationExtension, validationRule);

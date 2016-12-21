@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/AssociationExtension/AssociationExtensionExistsOnlyInExtensionNamespace';
+import { includeRule, validatable } from '../../../../src/core/validators/AssociationExtension/AssociationExtensionExistsOnlyInExtensionNamespace';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 import SymbolTable from '../../../../src/core/validators/SymbolTable';
 
@@ -72,6 +72,16 @@ describe('AssociationExtensionExistsOnlyInExtensionNamespaceTests', () => {
       helper.errorMessages()[0].message.should.include(entityName);
       helper.errorMessages()[0].message.should.include('is not valid in core namespace');
       helper.errorMessages()[0].message.should.include(coreNamespace);
+    });
+  });
+
+  describe('When rule context has exception', () => {
+    const ruleContext = addRuleContextPath(['extendeeName'], {}, true);
+    const { invalidPath, validatorName } = validatable('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTest', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });
