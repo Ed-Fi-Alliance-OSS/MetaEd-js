@@ -12,12 +12,12 @@ export function validatable(ruleContext: any): ValidatableResult {
 
   if (invalidPath) return { invalidPath, validatorName };
 
-  // eslint-disable-next-line consistent-return
-  ruleContext.property().forEach(property => {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const property of ruleContext.property()) {
     const concreteProperty = getProperty(property);
     invalidPath = exceptionPath(['propertyComponents', 'propertyAnnotation'], concreteProperty);
     if (invalidPath) return { invalidPath, validatorName };
-  });
+  }
 
   invalidPath = exceptionPath(['abstractEntityName', 'ID'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };

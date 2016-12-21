@@ -1,8 +1,9 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { includeRule } from '../../../../src/core/validators/AssociationSubclass/AssociationSubclassIdentityRenameMustExistNoMoreThanOnce';
+import { validatable } from '../../../../src/core/validators/ValidatorShared/SubclassIdentityRenameMustExistNoMoreThanOnce';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -51,6 +52,22 @@ describe('AssociationSubclassIdentityRenameMustExistNoMoreThanOnceTests', () => 
       helper.errorMessages()[0].message.should.not.include('Property3');
       helper.errorMessages()[0].message.should.not.include('Property4');
       helper.errorMessages()[0].message.should.include('one identity rename is allowed');
+    });
+  });
+
+  describe('When rule context has 1st DE exceptions', () => {
+    const ruleContext = {};
+    addRuleContextPath(['baseName'], ruleContext, true);
+//    ****************  need to add a helper builder method to make functions that return array with an element -- e.g. property()
+    addRuleContextPath(['property', 'stringProperty', 'propertyComponents', 'propertyAnnotation', 'identityRename'], ruleContext, false);
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

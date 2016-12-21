@@ -27,6 +27,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Association additions '${ruleContext.extendeeName().getText()}' does not match any declared Association or subclass.`;
 }
 
-const validationRule = errorRuleBase(validatable, valid, failureMessage);
+const validationRule = errorRuleBase(validatable('AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass'), valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_associationExtension, validationRule);

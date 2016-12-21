@@ -100,7 +100,7 @@ describe('AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubcl
 
   describe('When rule context has exception', () => {
     const ruleContext = addRuleContextPath(['extendeeName'], {}, true);
-    const { invalidPath, validatorName } = validatable('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTest', ruleContext);
+    const { invalidPath, validatorName } = validatable('AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclassTests', ruleContext);
 
     it('Should_have_validatable_failure', () => {
       invalidPath.should.exist;

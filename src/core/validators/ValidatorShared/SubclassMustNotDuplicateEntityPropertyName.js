@@ -1,6 +1,16 @@
 // @flow
 import R from 'ramda';
+import { exceptionPath } from '../ValidationHelper';
 import type SymbolTable from '../SymbolTable';
+import type { ValidatableResult } from '../ValidationTypes';
+
+export const validatable = R.curry(
+  (validatorName: string, ruleContext: any): ValidatableResult => {
+    const invalidPath: ?string[] = exceptionPath(['baseName'], ruleContext);
+
+    if (invalidPath) return { invalidPath, validatorName };
+    return { validatorName };
+  });
 
 export const valid = R.curry(
   (baseKey: string,

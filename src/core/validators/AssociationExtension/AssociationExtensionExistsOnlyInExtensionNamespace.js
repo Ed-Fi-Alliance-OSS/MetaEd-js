@@ -27,6 +27,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Association additions '${ruleContext.extendeeName().getText()}' is not valid in core namespace '${namespaceNameFor(parentNamespaceContext)}`;
 }
 
-const validationRule = errorRuleBase(validatable, valid, failureMessage);
+const validationRule = errorRuleBase(validatable('AssociationExtensionExistsOnlyInExtensionNamespace'), valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_associationExtension, validationRule);
