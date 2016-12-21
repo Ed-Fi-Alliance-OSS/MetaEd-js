@@ -1,8 +1,8 @@
 ﻿import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/Association/AssociationMustNotDuplicateDomainEntityNames';
+import { includeRule, validatable } from '../../../../src/core/validators/Association/AssociationMustNotDuplicateDomainEntityNames';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -128,6 +128,63 @@ describe('AssociationMustNotDuplicateDomainEntityNamesTests', () => {
 
     it('should_have_no_validation_failures()', () => {
       helper.errorMessages().length.should.equal(0);
+    });
+  });
+
+  describe('When rule context has 1st DE exceptions', () => {
+    const ruleContext = {};
+    addRuleContextPath(['firstDomainEntity', 'propertyName', 'ID'], ruleContext, true);
+    addRuleContextPath(['secondDomainEntity', 'propertyName', 'ID'], ruleContext, false);
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has 2nd DE exceptions', () => {
+    const ruleContext = {};
+    addRuleContextPath(['firstDomainEntity', 'propertyName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'propertyName', 'ID'], ruleContext, true);
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has 1st DE with-context exceptions', () => {
+    const ruleContext = {};
+    addRuleContextPath(['firstDomainEntity', 'propertyName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'propertyName', 'ID'], ruleContext, false);
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, true);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has 2nd DE with-context exceptions', () => {
+    const ruleContext = {};
+    addRuleContextPath(['firstDomainEntity', 'propertyName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'propertyName', 'ID'], ruleContext, false);
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, true);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

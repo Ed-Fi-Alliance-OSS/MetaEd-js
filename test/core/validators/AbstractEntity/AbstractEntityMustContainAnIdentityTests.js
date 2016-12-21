@@ -1,6 +1,6 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper, { ruleContextWithException } from './../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { includeRule, validatable } from '../../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAnIdentity';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
@@ -69,7 +69,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
   });
 
   describe('When rule context has exceptions', () => {
-    const ruleContext = ruleContextWithException(['property']);
+    const ruleContext = addRuleContextPath(['property'], {}, true);
     const { invalidPath, validatorName } = validatable(ruleContext);
 
     it('Should_have_validatable_failure', () => {

@@ -1,9 +1,9 @@
 ﻿import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { mockRuleContext } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
-import { includeRule } from '../../../../src/core/validators/Association/FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity';
+import { includeRule, validatable } from '../../../../src/core/validators/Association/FirstDomainEntityPropertyMustMatchDomainOrAbstractEntity';
 import SymbolTable from '../../../../src/core/validators/SymbolTable';
 
 chai.should();
@@ -140,6 +140,16 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
       helper.errorMessages()[0].message.should.include('Domain Entity');
       helper.errorMessages()[0].message.should.include(entityName);
       helper.errorMessages()[0].message.should.include('does not match');
+    });
+  });
+
+  describe('When rule context has exception', () => {
+    const ruleContext = ruleContextWithException(['propertyName', 'ID']);
+    const { invalidPath, validatorName } = validatable('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTest', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

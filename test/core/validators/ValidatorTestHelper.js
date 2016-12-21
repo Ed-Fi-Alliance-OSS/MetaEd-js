@@ -47,14 +47,15 @@ export default class ValidatorTestHelper {
   }
 }
 
-// build a mock rule context from the given path, ending with a truthy exception
-export function ruleContextWithException(ruleContextPath: string[]): any {
-  const last = { exception: true };
-  const buildFunction = (acc, pathElement) => () => {
-    const result = {};
-    result[pathElement] = () => acc;
-    return result;
-  };
+// mutating function that appends mock rule functions for the given path onto the given root, possibly ending with an exception
+export function addRuleContextPath(ruleContextPath: string[], rootContext: any, endWithException: boolean = true) {
+  let currentContext = rootContext;
 
-  return ruleContextPath.reduceRight(buildFunction, last, ruleContextPath)();
+  ruleContextPath.forEach(pathElement => {
+    const nextContext = {};
+    currentContext[pathElement] = () => nextContext;
+    currentContext = nextContext;
+  });
+
+  if (endWithException) currentContext.exception = true;
 }
