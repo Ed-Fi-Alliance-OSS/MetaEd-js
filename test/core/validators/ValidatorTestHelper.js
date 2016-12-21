@@ -1,4 +1,5 @@
 import antlr4 from 'antlr4';
+import R from 'ramda';
 import SymbolTable from '../../../src/core/validators/SymbolTable';
 
 import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder';
@@ -44,4 +45,16 @@ export default class ValidatorTestHelper {
   errorMessages(): Array<ValidationMessage> {
     return this.state.get('errorMessages').toArray();
   }
+}
+
+// build a mock rule context from the given path, ending with a truthy exception
+export function ruleContextWithException(ruleContextPath: string[]): any {
+  const last = { exception: true };
+  const buildFunction = (acc, pathElement) => () => {
+    const result = {};
+    result[pathElement] = () => acc;
+    return result;
+  };
+
+  return ruleContextPath.reduceRight(buildFunction, last, ruleContextPath)();
 }

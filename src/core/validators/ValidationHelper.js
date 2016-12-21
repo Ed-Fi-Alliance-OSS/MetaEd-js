@@ -1,5 +1,6 @@
 // @flow
 import R from 'ramda';
+import { Record, List } from 'immutable';
 import grammarInstance from '../../grammar/MetaEdGrammarInstance';
 import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 import type SymbolTable from './SymbolTable';
@@ -75,18 +76,29 @@ export function propertyMustNotMatchACommonSimpleType(propertyRuleContext: any, 
 // returns list of strings that are duplicated in the original list, with caching
 export const findDuplicates = R.memoize(R.compose(R.map(R.head), R.filter(x => x.length > 1), R.values, R.groupBy(R.identity)));
 
+type ScanAccumulator = {
+  exception: boolean,
+  path: List<string>,
+  ruleContext: any
+}
+
+const scanForException = (acc: Record<ScanAccumulator>, pathElement: string): Record<ScanAccumulator> => {
+  if (acc.get('exception') === true) return acc;
+  acc.set('path', acc.get('path').push(pathElement));
+
+  if (acc.get('ruleContext')[pathElement]().exception != null) {
+    return acc.set('exception', true);
+  }
+
+  return acc.set('ruleContext', acc.get('ruleContext')[pathElement]());
+};
+
 // traverse a rule context path, defined as a string[], looking for an exception
 // returns the path to the exception or null
-export const exceptionPath = R.curry(
-  (ruleContextPath: string[], ruleContext: any): ?string[] => {
-    let idx = 0;
-    let currentContext = ruleContext;
-
-    while (idx < ruleContextPath.length) {
-      if (currentContext == null || currentContext.exception != null) return ruleContextPath.slice(0, idx);
-      currentContext = currentContext[ruleContextPath[idx]]();
-      idx += 1;
-    }
-
-    return null;
-  });
+export const exceptionPath = (ruleContextPath: string[], ruleContext: any): ?string[] => {
+  if (ruleContext.exception != null) return [];
+  const Accumulator = Record({ exception: false, path: new List(), ruleContext });
+  const initial = new Accumulator();
+  const result = R.reduce(scanForException, initial, ruleContextPath);
+  return result.exception ? result.path.toArray() : null;
+};

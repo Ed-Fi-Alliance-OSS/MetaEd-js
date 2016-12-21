@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from './../ValidatorTestHelper';
+import ValidatorTestHelper, { ruleContextWithException } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAnIdentity';
+import { includeRule, validatable } from '../../../../src/core/validators/AbstractEntity/AbstractEntityMustContainAnIdentity';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -65,6 +65,16 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
       helper.errorMessages()[0].message.should.include('Abstract Entity');
       helper.errorMessages()[0].message.should.include(entityName);
       helper.errorMessages()[0].message.should.include('does not have an identity');
+    });
+  });
+
+  describe('When rule context has exceptions', () => {
+    const ruleContext = ruleContextWithException(['property']);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

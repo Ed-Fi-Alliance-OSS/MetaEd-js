@@ -10,8 +10,8 @@ import type { ValidatableResult } from '../ValidationTypes';
 
 export const validatable = R.curry(
   (validatorName: string, ruleContext: any): ValidatableResult => {
-    //const invalidPath: ?string[] = exceptionPath(['propertyName', 'ID'], ruleContext);
-    //if (invalidPath) return { invalidPath, validatorName };
+    const invalidPath: ?string[] = exceptionPath(['propertyName', 'ID'], ruleContext);
+    if (invalidPath) return { invalidPath, validatorName };
 
     return { validatorName };
   });
