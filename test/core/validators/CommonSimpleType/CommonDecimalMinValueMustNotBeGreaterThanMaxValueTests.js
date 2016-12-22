@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/CommonSimpleType/CommonDecimalMinValueMustNotBeGreaterThanMaxValue';
+import { includeRule, validatable } from '../../../../src/core/validators/CommonSimpleType/CommonDecimalMinValueMustNotBeGreaterThanMaxValue';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -143,6 +143,42 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
 
     it('should_have_no_validation_failures()', () => {
       helper.errorMessages().length.should.equal(0);
+    });
+  });
+
+  describe('When rule context has minValueDecimal exception', () => {
+    const { ruleContext } = addRuleContextPath(['minValueDecimal', 'decimalValue', 'signed_int'], {}, true);
+    addRuleContextPath(['maxValueDecimal', 'decimalValue', 'signed_int'], ruleContext, false);
+    addRuleContextPath(['commonDecimalName'], ruleContext, false);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has maxValueDecimal exception', () => {
+    const { ruleContext } = addRuleContextPath(['minValueDecimal', 'decimalValue', 'signed_int'], {}, false);
+    addRuleContextPath(['maxValueDecimal', 'decimalValue', 'signed_int'], ruleContext, true);
+    addRuleContextPath(['commonDecimalName'], ruleContext, false);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has commonDecimalName exception', () => {
+    const { ruleContext } = addRuleContextPath(['minValueDecimal', 'decimalValue', 'signed_int'], {}, false);
+    addRuleContextPath(['maxValueDecimal', 'decimalValue', 'signed_int'], ruleContext, false);
+    addRuleContextPath(['commonDecimalName'], ruleContext, true);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

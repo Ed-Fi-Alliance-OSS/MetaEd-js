@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/CommonSimpleType/CommonIntegerMinValueMustNotBeGreaterThanMaxValue'
+import { includeRule, validatable } from '../../../../src/core/validators/CommonSimpleType/CommonIntegerMinValueMustNotBeGreaterThanMaxValue';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -132,6 +132,42 @@ describe('CommonIntegerMinValueMustNotBeGreaterThanMaxValueTests', () => {
 
     it('should_have_no_validation_failures()', () => {
       helper.errorMessages().length.should.equal(0);
+    });
+  });
+
+  describe('When rule context has minValue exception', () => {
+    const { ruleContext } = addRuleContextPath(['minValue', 'signed_int'], {}, true);
+    addRuleContextPath(['maxValue', 'signed_int'], ruleContext, false);
+    addRuleContextPath(['commonIntegerName'], ruleContext, false);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has maxValue exception', () => {
+    const { ruleContext } = addRuleContextPath(['minValue', 'signed_int'], {}, false);
+    addRuleContextPath(['maxValue', 'signed_int'], ruleContext, true);
+    addRuleContextPath(['commonIntegerName'], ruleContext, false);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has commonIntegerName exception', () => {
+    const { ruleContext } = addRuleContextPath(['minValue', 'signed_int'], {}, false);
+    addRuleContextPath(['maxValue', 'signed_int'], ruleContext, false);
+    addRuleContextPath(['commonIntegerName'], ruleContext, true);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

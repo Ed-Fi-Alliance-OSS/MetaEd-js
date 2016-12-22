@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from './../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/CommonSimpleType/CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits';
+import { includeRule, validatable } from '../../../../src/core/validators/CommonSimpleType/CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -90,6 +90,42 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
     it('should_have_no_validation_failures', () => {
       helper.errorMessages().length.should.equal(0);
       helper.warningMessages().length.should.equal(0);
+    });
+  });
+
+  describe('When rule context has decimalPlaces exception', () => {
+    const { ruleContext } = addRuleContextPath(['decimalPlaces', 'UNSIGNED_INT'], {}, true);
+    addRuleContextPath(['totalDigits', 'UNSIGNED_INT'], ruleContext, false);
+    addRuleContextPath(['commonDecimalName'], ruleContext, false);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has totalDigits exception', () => {
+    const { ruleContext } = addRuleContextPath(['decimalPlaces', 'UNSIGNED_INT'], {}, false);
+    addRuleContextPath(['totalDigits', 'UNSIGNED_INT'], ruleContext, true);
+    addRuleContextPath(['commonDecimalName'], ruleContext, false);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has commonDecimalName exception', () => {
+    const { ruleContext } = addRuleContextPath(['decimalPlaces', 'UNSIGNED_INT'], {}, false);
+    addRuleContextPath(['totalDigits', 'UNSIGNED_INT'], ruleContext, false);
+    addRuleContextPath(['commonDecimalName'], ruleContext, true);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });
