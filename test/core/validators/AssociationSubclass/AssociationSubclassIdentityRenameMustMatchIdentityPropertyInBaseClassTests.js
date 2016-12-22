@@ -1,8 +1,9 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath, addArrayContext, addPropertyArrayContext } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { includeRule } from '../../../../src/core/validators/AssociationSubclass/AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClass';
+import { validatable } from '../../../../src/core/validators/ValidatorShared/SubclassIdentityRenameMustMatchIdentityPropertyInBaseClass';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -162,6 +163,111 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
     });
     it('should_have_no_validation_failures()', () => {
       helper.errorMessages().should.be.empty;
+    });
+  });
+
+  describe('When rule context has baseName exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['baseName'], ruleContext, true);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    const { leafContext: propertyAnnotationContext } =
+      addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, false);
+    const { leafContext: identityRenameArrayContext } = addArrayContext('identityRename', propertyAnnotationContext);
+    addRuleContextPath(['baseKeyName'], identityRenameArrayContext, false);
+
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+
+    const { invalidPath, validatorName } = validatable('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has propertyAnnotation exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['baseName'], ruleContext, false);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    const { leafContext: propertyAnnotationContext } =
+      addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, true);
+    const { leafContext: identityRenameArrayContext } = addArrayContext('identityRename', propertyAnnotationContext);
+    addRuleContextPath(['baseKeyName'], identityRenameArrayContext, false);
+
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+
+    const { invalidPath, validatorName } = validatable('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has baseKeyName exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['baseName'], ruleContext, false);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    const { leafContext: propertyAnnotationContext } =
+      addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, false);
+    const { leafContext: identityRenameArrayContext } = addArrayContext('identityRename', propertyAnnotationContext);
+    addRuleContextPath(['baseKeyName'], identityRenameArrayContext, true);
+
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+
+    const { invalidPath, validatorName } = validatable('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has firstDomainEntity withContextName exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['baseName'], ruleContext, false);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    const { leafContext: propertyAnnotationContext } =
+      addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, false);
+    const { leafContext: identityRenameArrayContext } = addArrayContext('identityRename', propertyAnnotationContext);
+    addRuleContextPath(['baseKeyName'], identityRenameArrayContext, false);
+
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, true);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+
+    const { invalidPath, validatorName } = validatable('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has secondDomainEntity withContextName exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['baseName'], ruleContext, false);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    const { leafContext: propertyAnnotationContext } =
+      addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, false);
+    const { leafContext: identityRenameArrayContext } = addArrayContext('identityRename', propertyAnnotationContext);
+    addRuleContextPath(['baseKeyName'], identityRenameArrayContext, false);
+
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, true);
+
+    const { invalidPath, validatorName } = validatable('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

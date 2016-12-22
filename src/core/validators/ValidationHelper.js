@@ -86,7 +86,7 @@ const scanForException = (acc: Record<ScanAccumulator>, pathElement: string): Re
   if (acc.get('exception') === true) return acc;
   acc.set('path', acc.get('path').push(pathElement));
 
-  if (acc.get('ruleContext')[pathElement] == null) {
+  if (acc.get('ruleContext')[pathElement] == null || acc.get('ruleContext')[pathElement]() == null) {
     return acc.set('exception', true);
   }
 
@@ -102,6 +102,7 @@ const scanForException = (acc: Record<ScanAccumulator>, pathElement: string): Re
 export const exceptionPath = (ruleContextPath: string[], ruleContext: any): ?string[] => {
   if (ruleContext.exception != null) return [];
   const Accumulator = Record({ exception: false, path: new List(), ruleContext });
+
   const result = R.reduce(scanForException, new Accumulator(), ruleContextPath);
   return result.exception ? result.path.toArray() : null;
 };

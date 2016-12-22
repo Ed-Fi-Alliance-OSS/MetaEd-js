@@ -76,7 +76,7 @@ describe('AssociationExtensionExistsOnlyInExtensionNamespaceTests', () => {
   });
 
   describe('When rule context has exception', () => {
-    const ruleContext = addRuleContextPath(['extendeeName'], {}, true);
+    const { ruleContext } = addRuleContextPath(['extendeeName'], {}, true);
     const { invalidPath, validatorName } = validatable('AssociationExtensionExistsOnlyInExtensionNamespaceTests', ruleContext);
 
     it('Should_have_validatable_failure', () => {

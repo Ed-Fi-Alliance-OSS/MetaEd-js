@@ -69,7 +69,7 @@ describe('AbstractEntityMustContainAnIdentityTests', () => {
   });
 
   describe('When rule context has exceptions', () => {
-    const ruleContext = addRuleContextPath(['property'], {}, true);
+    const { ruleContext } = addRuleContextPath(['property'], {}, true);
     const { invalidPath, validatorName } = validatable(ruleContext);
 
     it('Should_have_validatable_failure', () => {

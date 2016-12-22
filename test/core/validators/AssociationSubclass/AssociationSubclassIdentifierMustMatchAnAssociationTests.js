@@ -68,7 +68,7 @@ describe('AssociationSubclassIdentifierMustMatchAnAssociationTests', () => {
   });
 
   describe('When rule context has exception', () => {
-    const ruleContext = addRuleContextPath(['baseName'], {}, true);
+    const { ruleContext } = addRuleContextPath(['baseName'], {}, true);
     const { invalidPath, validatorName } = validatable('AssociationSubclassIdentifierMustMatchAnAssociationTests', ruleContext);
 
     it('Should_have_validatable_failure', () => {

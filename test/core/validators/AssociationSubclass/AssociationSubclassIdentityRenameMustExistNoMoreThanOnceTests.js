@@ -1,6 +1,6 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath, addArrayContext, addPropertyArrayContext } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { includeRule } from '../../../../src/core/validators/AssociationSubclass/AssociationSubclassIdentityRenameMustExistNoMoreThanOnce';
 import { validatable } from '../../../../src/core/validators/ValidatorShared/SubclassIdentityRenameMustExistNoMoreThanOnce';
@@ -55,15 +55,104 @@ describe('AssociationSubclassIdentityRenameMustExistNoMoreThanOnceTests', () => 
     });
   });
 
-  describe('When rule context has 1st DE exceptions', () => {
+  describe('When rule context has baseName exception', () => {
     const ruleContext = {};
     addRuleContextPath(['baseName'], ruleContext, true);
-//    ****************  need to add a helper builder method to make functions that return array with an element -- e.g. property()
-    addRuleContextPath(['property', 'stringProperty', 'propertyComponents', 'propertyAnnotation', 'identityRename'], ruleContext, false);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    const { leafContext: propertyAnnotationContext } =
+      addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, false);
+    const { leafContext: identityRenameArrayContext } = addArrayContext('identityRename', propertyAnnotationContext);
+    addRuleContextPath(['baseKeyName'], identityRenameArrayContext, false);
+
     addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
     addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
 
-    const { invalidPath, validatorName } = validatable(ruleContext);
+    const { invalidPath, validatorName } = validatable('AssociationSubclassIdentityRenameMustExistNoMoreThanOnceTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has propertyAnnotation exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['baseName'], ruleContext, false);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    const { leafContext: propertyAnnotationContext } =
+      addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, true);
+    const { leafContext: identityRenameArrayContext } = addArrayContext('identityRename', propertyAnnotationContext);
+    addRuleContextPath(['baseKeyName'], identityRenameArrayContext, false);
+
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+
+    const { invalidPath, validatorName } = validatable('AssociationSubclassIdentityRenameMustExistNoMoreThanOnceTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has baseKeyName exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['baseName'], ruleContext, false);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    const { leafContext: propertyAnnotationContext } =
+      addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, false);
+    const { leafContext: identityRenameArrayContext } = addArrayContext('identityRename', propertyAnnotationContext);
+    addRuleContextPath(['baseKeyName'], identityRenameArrayContext, true);
+
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+
+    const { invalidPath, validatorName } = validatable('AssociationSubclassIdentityRenameMustExistNoMoreThanOnceTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has firstDomainEntity withContextName exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['baseName'], ruleContext, false);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    const { leafContext: propertyAnnotationContext } =
+      addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, false);
+    const { leafContext: identityRenameArrayContext } = addArrayContext('identityRename', propertyAnnotationContext);
+    addRuleContextPath(['baseKeyName'], identityRenameArrayContext, false);
+
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, true);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+
+    const { invalidPath, validatorName } = validatable('AssociationSubclassIdentityRenameMustExistNoMoreThanOnceTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has secondDomainEntity withContextName exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['baseName'], ruleContext, false);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    const { leafContext: propertyAnnotationContext } =
+      addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, false);
+    const { leafContext: identityRenameArrayContext } = addArrayContext('identityRename', propertyAnnotationContext);
+    addRuleContextPath(['baseKeyName'], identityRenameArrayContext, false);
+
+    addRuleContextPath(['firstDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, false);
+    addRuleContextPath(['secondDomainEntity', 'withContext', 'withContextName', 'ID'], ruleContext, true);
+
+    const { invalidPath, validatorName } = validatable('AssociationSubclassIdentityRenameMustExistNoMoreThanOnceTests', ruleContext);
 
     it('Should_have_validatable_failure', () => {
       invalidPath.should.exist;

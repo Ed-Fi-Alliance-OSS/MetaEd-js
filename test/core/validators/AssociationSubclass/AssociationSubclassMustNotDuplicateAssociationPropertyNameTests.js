@@ -1,8 +1,9 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath, addArrayContext, addPropertyArrayContext } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { includeRule } from '../../../../src/core/validators/AssociationSubclass/AssociationSubclassMustNotDuplicateAssociationPropertyName';
+import { validatable } from '../../../../src/core/validators/ValidatorShared/SubclassMustNotDuplicateEntityPropertyName';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -119,6 +120,16 @@ describe('AssociationSubclassMustNotDuplicateAssociationPropertyName', () => {
       helper.errorMessages()[0].message.should.include(duplicatePropertyName2);
       helper.errorMessages()[0].message.should.include('already in property list');
       helper.errorMessages()[0].message.should.not.include(notDuplicatePropertyName);
+    });
+  });
+
+  describe('When rule context has baseName exception', () => {
+    const { ruleContext } = addRuleContextPath(['baseName'], {}, true);
+    const { invalidPath, validatorName } = validatable('AssociationSubclassMustNotDuplicateAssociationPropertyNameTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

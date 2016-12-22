@@ -144,7 +144,7 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
   });
 
   describe('When rule context has exception', () => {
-    const ruleContext = addRuleContextPath(['propertyName', 'ID'], {}, true);
+    const { ruleContext } = addRuleContextPath(['propertyName', 'ID'], {}, true);
     const { invalidPath, validatorName } = validatable('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTest', ruleContext);
 
     it('Should_have_validatable_failure', () => {

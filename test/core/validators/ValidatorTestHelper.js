@@ -47,8 +47,13 @@ export default class ValidatorTestHelper {
   }
 }
 
+export type RuleContextChain = {
+  ruleContext: any,
+  leafContext: any,
+}
+
 // mutating function that appends mock rule functions for the given path onto the given root, possibly ending with an exception
-export function addRuleContextPath(ruleContextPath: string[], rootContext: any, endWithException: boolean = true): any {
+export function addRuleContextPath(ruleContextPath: string[], rootContext: any, endWithException: boolean = true): RuleContextChain {
   let currentContext = rootContext;
 
   ruleContextPath.forEach(pathElement => {
@@ -58,5 +63,53 @@ export function addRuleContextPath(ruleContextPath: string[], rootContext: any, 
   });
 
   if (endWithException) currentContext.exception = true;
-  return rootContext;
+  return { ruleContext: rootContext, leafContext: currentContext };
+}
+
+// mutating function that appends an array to the rule context function chain
+export function addArrayContext(arrayContextName: string, rootContext: any): RuleContextChain {
+  const leafContext = {};
+  rootContext[arrayContextName] = () => [leafContext];
+  return { ruleContext: rootContext, leafContext };
+}
+
+// mutating function that appends a PropertyContext, which is special because all possible
+// property methods exist, though only one ever returns not-null, which here is the propertyName specified
+export function addPropertyContext(propertyName: string, rootContext: any): RuleContextChain {
+  const propertyContextNames = [
+    'booleanProperty',
+    'currencyProperty',
+    'dateProperty',
+    'decimalProperty',
+    'descriptorProperty',
+    'durationProperty',
+    'enumerationProperty',
+    'includeProperty',
+    'integerProperty',
+    'percentProperty',
+    'referenceProperty',
+    'sharedDecimalProperty',
+    'sharedIntegerProperty',
+    'sharedShortProperty',
+    'sharedStringProperty',
+    'shortProperty',
+    'stringProperty',
+    'timeProperty',
+    'yearProperty',
+  ];
+
+  propertyContextNames.forEach(propertyContextName => {
+    rootContext[propertyContextName] = () => null;
+  });
+
+  const leafContext = {};
+  rootContext[propertyName] = () => leafContext;
+  return { ruleContext: rootContext, leafContext };
+}
+
+// mutating function that appends an array with a single PropertyContext of the specified name
+export function addPropertyArrayContext(propertyName: string, rootContext: any): RuleContextChain {
+  const { leafContext: propertyArrayContext } = addArrayContext('property', rootContext);
+  const { leafContext: propertyContext } = addPropertyContext(propertyName, propertyArrayContext);
+  return { ruleContext: rootContext, leafContext: propertyContext };
 }
