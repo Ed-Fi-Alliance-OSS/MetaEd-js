@@ -7,7 +7,6 @@ import { newRepository } from '../../../../src/core/validators/ValidationRuleRep
 
 chai.should();
 
-// WARNING: early implementation of MostEntitiesCannotHaveSameName maintains state between tests
 describe('MostEntitiesCannotHaveSameNameTests', () => {
   const repository = includeRule(newRepository());
   const validatorListener = new ValidatorListener(repository);

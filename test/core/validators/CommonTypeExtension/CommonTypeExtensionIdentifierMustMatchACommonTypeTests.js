@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/CommonTypeExtension/CommonTypeExtensionIdentifierMustMatchACommonType';
+import { includeRule, validatable } from '../../../../src/core/validators/CommonTypeExtension/CommonTypeExtensionIdentifierMustMatchACommonType';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -57,6 +57,16 @@ describe('CommonTypeExtensionIdentifierMustMatchACommonTypeTests', () => {
       helper.errorMessages()[0].message.should.include('Common Type additions');
       helper.errorMessages()[0].message.should.include(entityName);
       helper.errorMessages()[0].message.should.include('does not match');
+    });
+  });
+
+  describe('When rule context has extendeeName exception', () => {
+    const { ruleContext } = addRuleContextPath(['extendeeName'], {}, true);
+    const { invalidPath, validatorName } = validatable('CommonTypeExtensionIdentifierMustMatchACommonTypeTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

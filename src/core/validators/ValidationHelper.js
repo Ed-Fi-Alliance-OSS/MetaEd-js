@@ -106,3 +106,85 @@ export const exceptionPath = (ruleContextPath: string[], ruleContext: any): ?str
   const result = R.reduce(scanForException, new Accumulator(), ruleContextPath);
   return result.exception ? result.path.toArray() : null;
 };
+
+export function entityIdentifierExceptionPath(ruleContext: any): ?string[] {
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_abstractEntity) return exceptionPath(['ABSTRACT_ENTITY'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_association) return exceptionPath(['ASSOCIATION'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_associationExtension) {
+    const associationPath = exceptionPath(['ASSOCIATION'], ruleContext)
+    if (associationPath) return associationPath;
+    return exceptionPath(['ADDITIONS'], ruleContext);
+  }
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_associationSubclass) {
+    const associationPath = exceptionPath(['ASSOCIATION'], ruleContext)
+    if (associationPath) return associationPath;
+
+    const basedOnPath = exceptionPath(['BASED_ON'], ruleContext)
+    if (basedOnPath) return basedOnPath;
+
+    return exceptionPath(['baseName', 'ID'], ruleContext);
+  }
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_choiceType) return exceptionPath(['CHOICE_TYPE'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonDecimal) return exceptionPath(['COMMON_DECIMAL'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonInteger) return exceptionPath(['COMMON_INTEGER'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonShort) return exceptionPath(['COMMON_SHORT'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonString) return exceptionPath(['COMMON_STRING'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonType) return exceptionPath(['COMMON_TYPE'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonTypeExtension) return exceptionPath(['COMMON_TYPE'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_descriptor) return exceptionPath(['DESCRIPTOR_ENTITY'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domain) return exceptionPath(['DOMAIN'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntity) return exceptionPath(['DOMAIN_ENTITY'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntityExtension) {
+    const domainEntityPath = exceptionPath(['DOMAIN_ENTITY'], ruleContext)
+    if (domainEntityPath) return domainEntityPath;
+    return exceptionPath(['ADDITIONS'], ruleContext);
+  }
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntitySubclass) {
+    const domainEntityPath = exceptionPath(['DOMAIN_ENTITY'], ruleContext)
+    if (domainEntityPath) return domainEntityPath;
+
+    const basedOnPath = exceptionPath(['BASED_ON'], ruleContext)
+    if (basedOnPath) return basedOnPath;
+
+    return exceptionPath(['baseName', 'ID'], ruleContext);
+  }
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_enumeration) return exceptionPath(['ENUMERATION_ENTITY'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_inlineCommonType) return exceptionPath(['INLINE_COMMON_TYPE'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchange) return exceptionPath(['INTERCHANGE'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeExtension) return exceptionPath(['INTERCHANGE'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_subdomain) {
+    const subdomainPath = exceptionPath(['SUBDOMAIN'], ruleContext)
+    if (subdomainPath) return subdomainPath;
+
+    const subdomainOfPath = exceptionPath(['SUBDOMAIN_OF'], ruleContext)
+    if (subdomainOfPath) return subdomainOfPath;
+
+    return exceptionPath(['parentDomainName', 'ID'], ruleContext);
+  }
+  throw new Error(`ValidationHelper.entityIdentifierExceptionPath encountered unknown context with rule index ${ruleContext.ruleIndex}.`);
+}
+
+export function entityNameExceptionPath(ruleContext: any): ?string[] {
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_abstractEntity) return exceptionPath(['abstractEntityName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_association) return exceptionPath(['associationName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_associationExtension) return exceptionPath(['extendeeName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_associationSubclass) return exceptionPath(['associationName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_choiceType) return exceptionPath(['choiceName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonDecimal) return exceptionPath(['commonDecimalName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonInteger) return exceptionPath(['commonIntegerName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonShort) return exceptionPath(['commonShortName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonString) return exceptionPath(['commonStringName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonType) return exceptionPath(['commonName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonTypeExtension) return exceptionPath(['extendeeName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_descriptor) return exceptionPath(['descriptorName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domain) return exceptionPath(['domainName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntity) return exceptionPath(['entityName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntityExtension) return exceptionPath(['extendeeName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntitySubclass) return exceptionPath(['entityName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_enumeration) return exceptionPath(['enumerationName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_inlineCommonType) return exceptionPath(['inlineCommonName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchange) return exceptionPath(['interchangeName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeExtension) return exceptionPath(['extendeeName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_subdomain) return exceptionPath(['subdomainName', 'ID'], ruleContext);
+  throw new Error(`ValidationHelper.entityNameExceptionPath encountered unknown context with rule index ${ruleContext.ruleIndex}.`);
+}
