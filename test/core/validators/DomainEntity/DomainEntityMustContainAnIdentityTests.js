@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath, addPropertyArrayContext } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/DomainEntity/DomainEntityMustContainAnIdentity';
+import { includeRule, validatable } from '../../../../src/core/validators/DomainEntity/DomainEntityMustContainAnIdentity';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -53,6 +53,34 @@ describe('DomainEntityMustContainAnIdentityTests', () => {
       helper.errorMessages()[0].message.should.include('Domain Entity');
       helper.errorMessages()[0].message.should.include(entityName);
       helper.errorMessages()[0].message.should.include('does not have an identity');
+    });
+  });
+
+  describe('When rule context has entityName exception', () => {
+    const { ruleContext } = addRuleContextPath(['entityName', 'ID'], {}, true);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has identity exception', () => {
+    const { ruleContext } = addRuleContextPath(['abstractEntityName', 'ID'], {}, false);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, true);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

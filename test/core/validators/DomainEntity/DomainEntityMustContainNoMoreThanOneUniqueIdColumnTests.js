@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath, addPropertyArrayContext } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/DomainEntity/DomainEntityMustContainNoMoreThanOneUniqueIdColumn';
+import { includeRule, validatable } from '../../../../src/core/validators/DomainEntity/DomainEntityMustContainNoMoreThanOneUniqueIdColumn';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -98,6 +98,34 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
 
     it('should_have_no_validation_failures()', () => {
       helper.errorMessages().should.be.empty;
+    });
+  });
+
+  describe('When rule context has entityName exception', () => {
+    const { ruleContext } = addRuleContextPath(['entityName', 'ID'], {}, true);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    addRuleContextPath(['propertyName', 'ID'], stringPropertyContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has identity exception', () => {
+    const { ruleContext } = addRuleContextPath(['entityName', 'ID'], {}, false);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    addRuleContextPath(['propertyName', 'ID'], stringPropertyContext, true);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });
