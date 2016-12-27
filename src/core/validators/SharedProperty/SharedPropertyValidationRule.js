@@ -9,4 +9,4 @@ export const validForShared = R.curry(
 /* eslint-disable no-unused-vars */
 export const failureMessageForShared = R.curry(
   (entityTitle: string, ruleContext: any, symbolTable: SymbolTable): string =>
-  `Shared property '${ruleContext.propertyName().getText()}' does not match any declared ${entityTitle}.`);
+  `Shared property '${ruleContext.propertyName().ID().getText()}' does not match any declared ${entityTitle}.`);

@@ -9,7 +9,7 @@ import SymbolTableEntityType from '../SymbolTableEntityType';
 
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   if (ruleContext.includeExtensionOverride() == null) return true;
-  return symbolTable.identifierExists(SymbolTableEntityType.commonTypeExtension(), ruleContext.propertyName().getText());
+  return symbolTable.identifierExists(SymbolTableEntityType.commonTypeExtension(), ruleContext.propertyName().ID().getText());
 }
 
 // eslint-disable-next-line no-unused-vars

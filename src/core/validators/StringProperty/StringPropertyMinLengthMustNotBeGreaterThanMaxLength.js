@@ -8,7 +8,7 @@ import { valid } from '../CommonSimpleType/CommonStringMinLengthMustNotBeGreater
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  return `String Property '${ruleContext.propertyName().getText()}' in ${parentTypeNameForPropertyContext(ruleContext)}` +
+  return `String Property '${ruleContext.propertyName().ID().getText()}' in ${parentTypeNameForPropertyContext(ruleContext)}` +
     ` '${parentIdentifierForPropertyContext(ruleContext)}' has min length greater than max length.`;
 }
 

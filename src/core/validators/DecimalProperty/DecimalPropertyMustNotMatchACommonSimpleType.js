@@ -7,7 +7,7 @@ import { propertyMustNotMatchACommonSimpleType } from '../ValidationHelper';
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  return `Decimal property '${ruleContext.propertyName().getText()}' has the same name as a common decimal, integer, short or string.  If intentional, use a shared property instead.`;
+  return `Decimal property '${ruleContext.propertyName().ID().getText()}' has the same name as a common decimal, integer, short or string.  If intentional, use a shared property instead.`;
 }
 
 const validationRule = errorRuleBase(propertyMustNotMatchACommonSimpleType, failureMessage);

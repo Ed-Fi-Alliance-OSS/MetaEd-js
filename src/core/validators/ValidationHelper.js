@@ -70,7 +70,7 @@ export function contextMustMatchATopLevelEntity(ruleContext: any, symbolTable: S
 }
 
 export function propertyMustNotMatchACommonSimpleType(propertyRuleContext: any, symbolTable: SymbolTable): boolean {
-  return !commonSimpleTypeExists(propertyRuleContext.propertyName().getText(), symbolTable);
+  return !commonSimpleTypeExists(propertyRuleContext.propertyName().ID().getText(), symbolTable);
 }
 
 // returns list of strings that are duplicated in the original list, with caching

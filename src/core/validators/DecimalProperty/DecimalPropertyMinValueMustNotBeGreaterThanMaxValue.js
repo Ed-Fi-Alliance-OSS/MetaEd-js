@@ -8,7 +8,7 @@ import { valid } from '../CommonSimpleType/CommonDecimalMinValueMustNotBeGreater
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  return `Decimal Property '${ruleContext.propertyName().getText()}' in ${parentTypeNameForPropertyContext(ruleContext)}` +
+  return `Decimal Property '${ruleContext.propertyName().ID().getText()}' in ${parentTypeNameForPropertyContext(ruleContext)}` +
     ` '${parentIdentifierForPropertyContext(ruleContext)}' has min value greater than max value.`;
 }
 

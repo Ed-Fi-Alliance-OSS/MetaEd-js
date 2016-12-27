@@ -6,7 +6,7 @@ import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
-  const identifierToMatch = ruleContext.propertyName().getText();
+  const identifierToMatch = ruleContext.propertyName().ID().getText();
   return symbolTable.identifierExists(SymbolTableEntityType.commonType(), identifierToMatch) ||
     symbolTable.identifierExists(SymbolTableEntityType.inlineCommonType(), identifierToMatch) ||
     symbolTable.identifierExists(SymbolTableEntityType.choiceType(), identifierToMatch);
@@ -14,7 +14,7 @@ function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  return `Include property '${ruleContext.propertyName().getText()}' does not match any declared common type, inline common type, or choice type.`;
+  return `Include property '${ruleContext.propertyName().ID().getText()}' does not match any declared common type, inline common type, or choice type.`;
 }
 
 const validationRule = errorRuleBase(valid, failureMessage);

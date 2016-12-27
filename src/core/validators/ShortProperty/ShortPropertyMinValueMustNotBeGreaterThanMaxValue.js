@@ -8,7 +8,7 @@ import { valid } from '../CommonSimpleType/CommonShortMinValueMustNotBeGreaterTh
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  return `Short Property '${ruleContext.propertyName().getText()}' in ${parentTypeNameForPropertyContext(ruleContext)}` +
+  return `Short Property '${ruleContext.propertyName().ID().getText()}' in ${parentTypeNameForPropertyContext(ruleContext)}` +
     ` '${parentIdentifierForPropertyContext(ruleContext)}' has min value greater than max value.`;
 }
 
