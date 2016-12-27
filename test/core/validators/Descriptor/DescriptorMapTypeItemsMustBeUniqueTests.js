@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath, addPropertyArrayContext } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/Descriptor/DescriptorMapTypeItemsMustBeUnique';
+import { includeRule, validatable } from '../../../../src/core/validators/Descriptor/DescriptorMapTypeItemsMustBeUnique';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -94,6 +94,51 @@ describe('DescriptorMapTypeItemsMustBeUniqueTests', () => {
     it('should_have_validation_failure_message()', () => {
       helper.errorMessages()[0].message.should.equal(
         'Descriptor \'Descriptor1\' declares duplicate items \'this is duplicate short description 1\', \'this is duplicate short description 2\'.');
+    });
+  });
+
+  describe('When rule context has descriptorName exception', () => {
+    const { ruleContext } = addRuleContextPath(['descriptorName', 'ID'], {}, true);
+    const { leafContext: withMapTypeContext } = addRuleContextPath(['withMapType'], ruleContext, false);
+
+    const { leafContext: enumerationItemContext } = addPropertyArrayContext('enumerationItem', withMapTypeContext);
+    addRuleContextPath(['shortDescription', 'ENUMERATION_ITEM_VALUE'], enumerationItemContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has withMapType exception', () => {
+    const { ruleContext } = addRuleContextPath(['descriptorName', 'ID'], {}, false);
+    const { leafContext: withMapTypeContext } = addRuleContextPath(['withMapType'], ruleContext, true);
+
+    const { leafContext: enumerationItemContext } = addPropertyArrayContext('enumerationItem', withMapTypeContext);
+    addRuleContextPath(['shortDescription', 'ENUMERATION_ITEM_VALUE'], enumerationItemContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has shortDescription exception', () => {
+    const { ruleContext } = addRuleContextPath(['descriptorName', 'ID'], {}, false);
+    const { leafContext: withMapTypeContext } = addRuleContextPath(['withMapType'], ruleContext, false);
+
+    const { leafContext: enumerationItemContext } = addPropertyArrayContext('enumerationItem', withMapTypeContext);
+    addRuleContextPath(['shortDescription', 'ENUMERATION_ITEM_VALUE'], enumerationItemContext, true);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

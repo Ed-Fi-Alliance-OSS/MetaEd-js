@@ -1,12 +1,33 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
+import { findDuplicates, exceptionPath } from '../ValidationHelper';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
-import { findDuplicates } from '../ValidationHelper';
+import type { ValidatableResult } from '../ValidationTypes';
 
 function getShortDescriptions(ruleContext: any) {
-  return ruleContext.withMapType().enumerationItem().map(x => x.shortDescription().getText());
+  return ruleContext.withMapType().enumerationItem().map(x => x.shortDescription().ENUMERATION_ITEM_VALUE().getText());
+}
+
+export function validatable(ruleContext: any): ValidatableResult {
+  const validatorName = 'DescriptorMapTypeItemsMustBeUnique';
+  if (ruleContext.withMapType() == null) return { validatorName };
+
+  let invalidPath: ?string[] = exceptionPath(['withMapType', 'enumerationItem'], ruleContext);
+
+  if (invalidPath) return { invalidPath, validatorName };
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const enumerationItem of ruleContext.withMapType().enumerationItem()) {
+    invalidPath = exceptionPath(['shortDescription', 'ENUMERATION_ITEM_VALUE'], enumerationItem);
+    if (invalidPath) return { invalidPath, validatorName };
+  }
+
+  invalidPath = exceptionPath(['descriptorName', 'ID'], ruleContext);
+  if (invalidPath) return { invalidPath, validatorName };
+
+  return { validatorName };
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -19,12 +40,12 @@ function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  const identifier = ruleContext.descriptorName().getText();
+  const identifier = ruleContext.descriptorName().ID().getText();
   const duplicates = findDuplicates(getShortDescriptions(ruleContext));
   const joinString = '\', \'';
   return `Descriptor '${identifier}' declares duplicate item${duplicates.length > 1 ? 's' : ''} '${duplicates.join(joinString)}'.`;
 }
 
-const validationRule = errorRuleBase(valid, failureMessage);
+const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_descriptor, validationRule);
