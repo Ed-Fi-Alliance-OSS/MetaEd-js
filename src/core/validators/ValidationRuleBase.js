@@ -66,8 +66,7 @@ const validationRuleStateModifying = R.curry(
    state: State): State => {
     const { validatorName, invalidPath } = validatable(ruleContext);
     if (invalidPath) return addValidationProblem({ validatorName, reason: invalidPath.join(' -> ') }, state);
-    // eslint-disable-next-line prefer-const
-    let { isValid, nextState } = validAndNextState(ruleContext, state);
+    const { isValid, nextState } = validAndNextState(ruleContext, state);
     if (isValid) return nextState;
 
     return addValidationMessage(validatorName, errorLevel, failureMessage, ruleContext, nextState);

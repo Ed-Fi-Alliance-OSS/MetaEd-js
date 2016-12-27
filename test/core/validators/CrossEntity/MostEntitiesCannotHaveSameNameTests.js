@@ -1,9 +1,10 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/CrossEntity/MostEntitiesCannotHaveSameName';
+import { includeRule, validatable } from '../../../../src/core/validators/CrossEntity/MostEntitiesCannotHaveSameName';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
 chai.should();
 
@@ -212,6 +213,30 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
 
     it('should_have_no_validation_failures()', () => {
       helper.errorMessages().length.should.equal(0);
+    });
+  });
+
+  describe('When rule context has entityName exception', () => {
+    const { ruleContext } = addRuleContextPath(['DOMAIN_ENTITY'], {}, true);
+    addRuleContextPath(['entityName', 'ID'], ruleContext, false);
+    ruleContext.ruleIndex = MetaEdGrammar.RULE_domainEntity;
+    const { invalidPath, validatorName } = validatable('MostEntitiesCannotHaveSameNameTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has entityIdentifierName exception', () => {
+    const { ruleContext } = addRuleContextPath(['DOMAIN_ENTITY'], {}, false);
+    addRuleContextPath(['entityName', 'ID'], ruleContext, true);
+    ruleContext.ruleIndex = MetaEdGrammar.RULE_domainEntity;
+    const { invalidPath, validatorName } = validatable('MostEntitiesCannotHaveSameNameTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

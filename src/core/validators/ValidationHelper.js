@@ -111,15 +111,15 @@ export function entityIdentifierExceptionPath(ruleContext: any): ?string[] {
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_abstractEntity) return exceptionPath(['ABSTRACT_ENTITY'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_association) return exceptionPath(['ASSOCIATION'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_associationExtension) {
-    const associationPath = exceptionPath(['ASSOCIATION'], ruleContext)
+    const associationPath = exceptionPath(['ASSOCIATION'], ruleContext);
     if (associationPath) return associationPath;
     return exceptionPath(['ADDITIONS'], ruleContext);
   }
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_associationSubclass) {
-    const associationPath = exceptionPath(['ASSOCIATION'], ruleContext)
+    const associationPath = exceptionPath(['ASSOCIATION'], ruleContext);
     if (associationPath) return associationPath;
 
-    const basedOnPath = exceptionPath(['BASED_ON'], ruleContext)
+    const basedOnPath = exceptionPath(['BASED_ON'], ruleContext);
     if (basedOnPath) return basedOnPath;
 
     return exceptionPath(['baseName', 'ID'], ruleContext);
@@ -135,15 +135,15 @@ export function entityIdentifierExceptionPath(ruleContext: any): ?string[] {
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domain) return exceptionPath(['DOMAIN'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntity) return exceptionPath(['DOMAIN_ENTITY'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntityExtension) {
-    const domainEntityPath = exceptionPath(['DOMAIN_ENTITY'], ruleContext)
+    const domainEntityPath = exceptionPath(['DOMAIN_ENTITY'], ruleContext);
     if (domainEntityPath) return domainEntityPath;
     return exceptionPath(['ADDITIONS'], ruleContext);
   }
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntitySubclass) {
-    const domainEntityPath = exceptionPath(['DOMAIN_ENTITY'], ruleContext)
+    const domainEntityPath = exceptionPath(['DOMAIN_ENTITY'], ruleContext);
     if (domainEntityPath) return domainEntityPath;
 
-    const basedOnPath = exceptionPath(['BASED_ON'], ruleContext)
+    const basedOnPath = exceptionPath(['BASED_ON'], ruleContext);
     if (basedOnPath) return basedOnPath;
 
     return exceptionPath(['baseName', 'ID'], ruleContext);
@@ -153,10 +153,10 @@ export function entityIdentifierExceptionPath(ruleContext: any): ?string[] {
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchange) return exceptionPath(['INTERCHANGE'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeExtension) return exceptionPath(['INTERCHANGE'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_subdomain) {
-    const subdomainPath = exceptionPath(['SUBDOMAIN'], ruleContext)
+    const subdomainPath = exceptionPath(['SUBDOMAIN'], ruleContext);
     if (subdomainPath) return subdomainPath;
 
-    const subdomainOfPath = exceptionPath(['SUBDOMAIN_OF'], ruleContext)
+    const subdomainOfPath = exceptionPath(['SUBDOMAIN_OF'], ruleContext);
     if (subdomainOfPath) return subdomainOfPath;
 
     return exceptionPath(['parentDomainName', 'ID'], ruleContext);

@@ -2,12 +2,14 @@
 import R from 'ramda';
 import { Set } from 'immutable';
 import { addAction, setValidatorData } from '../../State';
+import { entityNameExceptionPath, entityIdentifierExceptionPath } from '../ValidationHelper';
 import { errorRuleBaseStateModifying } from '../ValidationRuleBase';
 import { includeRuleBaseForMultiRuleIndexes } from '../ValidationRuleRepository';
 import { entityName, entityIdentifier, topLevelEntityRules, topLevelEntityExtensionRules } from '../RuleInformation';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import type { State } from '../../State';
 import type SymbolTable from '../SymbolTable';
+import type { ValidatableResult } from '../ValidationTypes';
 
 // Domains, Subdomains, Interchanges, enumerations and descriptors don't have standard cross entity naming issues
 // and extension entities don't define a new identifier
@@ -20,6 +22,17 @@ const relevantEntityRules = R.without(
     MetaEdGrammar.RULE_subdomain,
   ], topLevelEntityExtensionRules),
   topLevelEntityRules);
+
+export const validatable = R.curry(
+  (validatorName: string, ruleContext: any): ValidatableResult => {
+    let invalidPath: ?string[] = entityNameExceptionPath(ruleContext);
+    if (invalidPath) return { invalidPath, validatorName };
+
+    invalidPath = entityIdentifierExceptionPath(ruleContext);
+    if (invalidPath) return { invalidPath, validatorName };
+
+    return { validatorName };
+  });
 
 function validAndNextState(ruleContext: any, state: State): { isValid: boolean, nextState: State } {
   const validatorData = state.get('validatorData');
@@ -39,6 +52,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `${entityIdentifier(ruleContext)} named ${entityName(ruleContext)} is a duplicate declaration of that name.`;
 }
 
-const validationRule = errorRuleBaseStateModifying(validAndNextState, failureMessage);
+const validationRule = errorRuleBaseStateModifying(validatable('MostEntitiesCannotHaveSameName'), validAndNextState, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBaseForMultiRuleIndexes(relevantEntityRules, validationRule);
