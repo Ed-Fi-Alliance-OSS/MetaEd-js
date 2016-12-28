@@ -10,7 +10,10 @@ import type { ValidatableResult } from '../ValidationTypes';
 
 export const validatable = R.curry(
   (validatorName: string, ruleContext: any): ValidatableResult => {
-    const invalidPath: ?string[] = exceptionPath(['baseName'], ruleContext);
+    let invalidPath: ?string[] = exceptionPath(['baseName', 'ID'], ruleContext);
+    if (invalidPath) return { invalidPath, validatorName };
+
+    invalidPath = exceptionPath(['associationName', 'ID'], ruleContext);
     if (invalidPath) return { invalidPath, validatorName };
 
     return { validatorName };
@@ -23,7 +26,7 @@ function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  return `Association '${ruleContext.associationName().getText()}' based on '${ruleContext.baseName().getText()}' does not match any declared Association.`;
+  return `Association '${ruleContext.associationName().ID().getText()}' based on '${ruleContext.baseName().ID().getText()}' does not match any declared Association.`;
 }
 
 const validationRule = errorRuleBase(validatable('AssociationSubclassIdentifierMustMatchAnAssociation'), valid, failureMessage);

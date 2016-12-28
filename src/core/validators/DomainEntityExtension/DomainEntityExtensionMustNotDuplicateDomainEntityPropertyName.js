@@ -3,7 +3,7 @@ import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import SymbolTableEntityType from '../SymbolTableEntityType';
-import { valid, failureMessage } from '../ValidatorShared/ExtensionMustNotDuplicatePropertyName';
+import { validatable, valid, failureMessage } from '../ValidatorShared/ExtensionMustNotDuplicatePropertyName';
 
 const domainEntityExtensionValid =
   valid(SymbolTableEntityType.domainEntity(), SymbolTableEntityType.domainEntityExtension());
@@ -11,6 +11,6 @@ const domainEntityExtensionValid =
 const domainEntityExtensionFailureMessage =
   failureMessage('Domain Entity', SymbolTableEntityType.domainEntity(), SymbolTableEntityType.domainEntityExtension());
 
-const validationRule = errorRuleBase(domainEntityExtensionValid, domainEntityExtensionFailureMessage);
+const validationRule = errorRuleBase(validatable, domainEntityExtensionValid, domainEntityExtensionFailureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_domainEntityExtension, validationRule);

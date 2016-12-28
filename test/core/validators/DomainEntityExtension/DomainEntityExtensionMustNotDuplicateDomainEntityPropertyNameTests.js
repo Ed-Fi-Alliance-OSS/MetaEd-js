@@ -1,9 +1,10 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { includeRule } from '../../../../src/core/validators/DomainEntityExtension/DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
+import { validatable } from '../../../../src/core/validators/ValidatorShared/ExtensionMustNotDuplicatePropertyName';
 
 chai.should();
 
@@ -153,6 +154,16 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
 
     it('should_not_have_validation_failure()', () => {
       helper.errorMessages().length.should.equal(0);
+    });
+  });
+
+  describe('When rule context has exception', () => {
+    const { ruleContext } = addRuleContextPath(['extendeeName'], {}, true);
+    const { invalidPath, validatorName } = validatable('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyNameTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });
