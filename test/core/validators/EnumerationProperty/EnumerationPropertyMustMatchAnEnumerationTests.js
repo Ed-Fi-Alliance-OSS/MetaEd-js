@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/EnumerationProperty/EnumerationPropertyMustMatchAnEnumeration';
+import { includeRule, validatable } from '../../../../src/core/validators/EnumerationProperty/EnumerationPropertyMustMatchAnEnumeration';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -61,6 +61,16 @@ describe('EnumerationPropertyMustMatchAnEnumerationTests', () => {
       helper.errorMessages()[0].message.should.include('Enumeration');
       helper.errorMessages()[0].message.should.include(entityName);
       helper.errorMessages()[0].message.should.include('does not match');
+    });
+  });
+
+  describe('When rule context has propertyName exception', () => {
+    const { ruleContext } = addRuleContextPath(['propertyName', 'ID'], {}, true);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

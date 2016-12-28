@@ -1,9 +1,10 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/Identity/IdentityExistsOnlyIfIdentityIsAllowed';
+import { includeRule, validatable } from '../../../../src/core/validators/Identity/IdentityExistsOnlyIfIdentityIsAllowed';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
 chai.should();
 
@@ -289,4 +290,16 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
       helper.errorMessages()[0].message.should.include('invalid');
     });
   });
+
+  describe('When rule context has propertyName exception', () => {
+    const { ruleContext } = addRuleContextPath(['propertyName', 'ID'], {}, true);
+    ruleContext.ruleIndex = MetaEdGrammar.RULE_stringProperty;
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
 });

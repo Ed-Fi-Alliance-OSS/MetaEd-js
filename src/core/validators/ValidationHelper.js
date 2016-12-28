@@ -100,7 +100,7 @@ const scanForException = (acc: Record<ScanAccumulator>, pathElement: string): Re
 // traverse a rule context path, defined as a string[], looking for an exception
 // returns the path to the exception or null
 export const exceptionPath = (ruleContextPath: string[], ruleContext: any): ?string[] => {
-  if (ruleContext.exception != null) return [];
+  if (ruleContext == null || ruleContext.exception != null) return [];
   const Accumulator = Record({ exception: false, path: new List(), ruleContext });
 
   const result = R.reduce(scanForException, new Accumulator(), ruleContextPath);

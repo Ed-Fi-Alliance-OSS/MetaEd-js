@@ -3,9 +3,10 @@ import type SymbolTable from '../SymbolTable';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
-import { topLevelEntityAncestorContext, propertyAncestorContext } from '../ValidationHelper';
+import { topLevelEntityAncestorContext, propertyAncestorContext, exceptionPath } from '../ValidationHelper';
 import { entityIdentifier, entityName } from '../RuleInformation';
 import SymbolTableEntityType from '../SymbolTableEntityType';
+import type { ValidatableResult } from '../ValidationTypes';
 
 const validIdentityRuleIndices: number[] = [
   MetaEdGrammar.RULE_abstractEntity,
@@ -23,6 +24,15 @@ const validIdentityTokenNames: string[] = [
   SymbolTableEntityType.inlineCommonType(),
 ];
 
+export function validatable(ruleContext: any): ValidatableResult {
+  const validatorName = 'DescriptorPropertyMustMatchADescriptor';
+
+  const invalidPath: ?string[] = exceptionPath(['propertyName', 'ID'], propertyAncestorContext(ruleContext));
+  if (invalidPath) return { invalidPath, validatorName };
+
+  return { validatorName };
+}
+
 // eslint-disable-next-line no-unused-vars
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const parentEntity = topLevelEntityAncestorContext(ruleContext);
@@ -38,6 +48,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
     `'is part of identity' is only valid for properties on types: ${validIdentityTokenNames.join(', ')}.`;
 }
 
-const validationRule = errorRuleBase(valid, failureMessage);
+const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_identity, validationRule);
