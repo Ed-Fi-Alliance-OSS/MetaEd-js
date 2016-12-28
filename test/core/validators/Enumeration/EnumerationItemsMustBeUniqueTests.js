@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath, addPropertyArrayContext } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/Enumeration/EnumerationItemsMustBeUnique';
+import { includeRule, validatable } from '../../../../src/core/validators/Enumeration/EnumerationItemsMustBeUnique';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -82,6 +82,34 @@ describe('EnumerationItemsMustBeUniqueTests', () => {
     it('should_have_validation_failure_message()', () => {
       helper.errorMessages()[0].message.should.equal(
         'Enumeration \'Enumeration1\' declares duplicate items \'this is duplicate short description 1\', \'this is duplicate short description 2\'.');
+    });
+  });
+
+  describe('When rule context has descriptorName exception', () => {
+    const { ruleContext } = addRuleContextPath(['enumerationName', 'ID'], {}, true);
+
+    const { leafContext: enumerationItemContext } = addPropertyArrayContext('enumerationItem', ruleContext);
+    addRuleContextPath(['shortDescription', 'ENUMERATION_ITEM_VALUE'], enumerationItemContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has shortDescription exception', () => {
+    const { ruleContext } = addRuleContextPath(['enumerationName', 'ID'], {}, false);
+
+    const { leafContext: enumerationItemContext } = addPropertyArrayContext('enumerationItem', ruleContext);
+    addRuleContextPath(['shortDescription', 'ENUMERATION_ITEM_VALUE'], enumerationItemContext, true);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });
