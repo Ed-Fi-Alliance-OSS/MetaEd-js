@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath, addArrayContext, addPropertyArrayContext } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/DomainEntitySubclass/DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity';
+import { includeRule, validatable } from '../../../../src/core/validators/DomainEntitySubclass/DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -119,6 +119,60 @@ describe('DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity
 
     it('should_have_no_validation_failures()', () => {
       helper.errorMessages().should.be.empty;
+    });
+  });
+
+  describe('When rule context has baseName exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['baseName'], ruleContext, true);
+    addRuleContextPath(['entityName'], ruleContext, false);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    const { leafContext: propertyAnnotationContext } =
+      addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, false);
+    addArrayContext('identityRename', propertyAnnotationContext);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has entityName exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['baseName'], ruleContext, false);
+    addRuleContextPath(['entityName'], ruleContext, true);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    const { leafContext: propertyAnnotationContext } =
+      addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, false);
+    addArrayContext('identityRename', propertyAnnotationContext);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has propertyAnnotation exception', () => {
+    const ruleContext = {};
+    addRuleContextPath(['baseName'], ruleContext, false);
+    addRuleContextPath(['entityName'], ruleContext, false);
+
+    const { leafContext: stringPropertyContext } = addPropertyArrayContext('stringProperty', ruleContext);
+    const { leafContext: propertyAnnotationContext } =
+      addRuleContextPath(['propertyComponents', 'propertyAnnotation'], stringPropertyContext, true);
+    addArrayContext('identityRename', propertyAnnotationContext);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

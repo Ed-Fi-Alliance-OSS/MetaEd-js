@@ -1,5 +1,4 @@
 // @flow
-import R from 'ramda';
 import { exceptionPath } from '../ValidationHelper';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
@@ -8,16 +7,16 @@ import type SymbolTable from '../SymbolTable';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 import type { ValidatableResult } from '../ValidationTypes';
 
-export const validatable = R.curry(
-  (validatorName: string, ruleContext: any): ValidatableResult => {
-    let invalidPath: ?string[] = exceptionPath(['baseName', 'ID'], ruleContext);
-    if (invalidPath) return { invalidPath, validatorName };
+export function validatable(ruleContext: any): ValidatableResult {
+  const validatorName = 'AssociationSubclassIdentifierMustMatchAnAssociation';
+  let invalidPath: ?string[] = exceptionPath(['baseName', 'ID'], ruleContext);
+  if (invalidPath) return { invalidPath, validatorName };
 
-    invalidPath = exceptionPath(['associationName', 'ID'], ruleContext);
-    if (invalidPath) return { invalidPath, validatorName };
+  invalidPath = exceptionPath(['associationName', 'ID'], ruleContext);
+  if (invalidPath) return { invalidPath, validatorName };
 
-    return { validatorName };
-  });
+  return { validatorName };
+}
 
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const basedOnName = ruleContext.baseName().getText();
@@ -29,6 +28,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Association '${ruleContext.associationName().ID().getText()}' based on '${ruleContext.baseName().ID().getText()}' does not match any declared Association.`;
 }
 
-const validationRule = errorRuleBase(validatable('AssociationSubclassIdentifierMustMatchAnAssociation'), valid, failureMessage);
+const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_associationSubclass, validationRule);

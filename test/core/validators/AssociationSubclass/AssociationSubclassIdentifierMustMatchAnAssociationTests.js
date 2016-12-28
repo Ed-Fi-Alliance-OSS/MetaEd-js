@@ -67,9 +67,21 @@ describe('AssociationSubclassIdentifierMustMatchAnAssociationTests', () => {
     });
   });
 
-  describe('When rule context has exception', () => {
-    const { ruleContext } = addRuleContextPath(['baseName'], {}, true);
-    const { invalidPath, validatorName } = validatable('AssociationSubclassIdentifierMustMatchAnAssociationTests', ruleContext);
+  describe('When rule context has baseName exception', () => {
+    const { ruleContext } = addRuleContextPath(['baseName', 'ID'], {}, true);
+    addRuleContextPath(['associationName', 'ID'], ruleContext, false);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has associationName exception', () => {
+    const { ruleContext } = addRuleContextPath(['baseName', 'ID'], {}, false);
+    addRuleContextPath(['associationName', 'ID'], ruleContext, true);
+    const { invalidPath, validatorName } = validatable(ruleContext);
 
     it('Should_have_validatable_failure', () => {
       invalidPath.should.exist;

@@ -107,6 +107,10 @@ export const exceptionPath = (ruleContextPath: string[], ruleContext: any): ?str
   return result.exception ? result.path.toArray() : null;
 };
 
+// returns true if the rule context path is valid for the given rule context
+export const validPath =
+  (ruleContextPath: string[], ruleContext: any): boolean => exceptionPath(ruleContextPath, ruleContext) === null;
+
 export function entityIdentifierExceptionPath(ruleContext: any): ?string[] {
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_abstractEntity) return exceptionPath(['ABSTRACT_ENTITY'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_association) return exceptionPath(['ASSOCIATION'], ruleContext);
