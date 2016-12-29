@@ -1,9 +1,10 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/IncludeProperty/IncludePropertyMustNotContainIdentity';
+import { includeRule, validatable } from '../../../../src/core/validators/IncludeProperty/IncludePropertyMustNotContainIdentity';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
 chai.should();
 
@@ -41,6 +42,70 @@ describe('IncludePropertyMustNotContainIdentity', () => {
       helper.errorMessages()[0].message.should.include('Include');
       helper.errorMessages()[0].message.should.include(propertyName);
       helper.errorMessages()[0].message.should.include('invalid');
+    });
+  });
+
+  describe('When rule context has propertyName exception', () => {
+    const { ruleContext } = addRuleContextPath(['propertyName', 'ID'], { ruleIndex: MetaEdGrammar.RULE_stringProperty }, true);
+    addRuleContextPath(['propertyComponents', 'propertyAnnotation', 'identity'], ruleContext, false);
+
+    const { ruleContext: parentContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntity }, false);
+    ruleContext.parentCtx = parentContext;
+    addRuleContextPath(['entityName', 'ID'], parentContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has identity exception', () => {
+    const { ruleContext } = addRuleContextPath(['propertyName', 'ID'], { ruleIndex: MetaEdGrammar.RULE_stringProperty }, false);
+    addRuleContextPath(['propertyComponents', 'propertyAnnotation', 'identity'], ruleContext, true);
+
+    const { ruleContext: parentContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntity }, false);
+    ruleContext.parentCtx = parentContext;
+    addRuleContextPath(['entityName', 'ID'], parentContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has DOMAIN_ENTITY exception', () => {
+    const { ruleContext } = addRuleContextPath(['propertyName', 'ID'], { ruleIndex: MetaEdGrammar.RULE_stringProperty }, false);
+    addRuleContextPath(['propertyComponents', 'propertyAnnotation', 'identity'], ruleContext, false);
+
+    const { ruleContext: parentContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntity }, true);
+    ruleContext.parentCtx = parentContext;
+    addRuleContextPath(['entityName', 'ID'], parentContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has entityName exception', () => {
+    const { ruleContext } = addRuleContextPath(['propertyName', 'ID'], { ruleIndex: MetaEdGrammar.RULE_stringProperty }, false);
+    addRuleContextPath(['propertyComponents', 'propertyAnnotation', 'identity'], ruleContext, false);
+
+    const { ruleContext: parentContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntity }, false);
+    ruleContext.parentCtx = parentContext;
+    addRuleContextPath(['entityName', 'ID'], parentContext, true);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });
