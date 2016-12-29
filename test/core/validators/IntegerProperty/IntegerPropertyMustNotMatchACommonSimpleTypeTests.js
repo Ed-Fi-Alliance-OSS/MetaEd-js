@@ -161,7 +161,7 @@ describe('IntegerPropertyMustNotMatchACommonSimpleTypeTests', () => {
       helper.errorMessages()[0].message.should.include('has the same name');
     });
   });
-  
+
   describe('When rule context has propertyName exception', () => {
     const { ruleContext } = addRuleContextPath(['propertyName', 'ID'], {}, true);
     const { invalidPath, validatorName } = validatable(ruleContext);
