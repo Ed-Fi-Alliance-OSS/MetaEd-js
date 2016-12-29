@@ -1,9 +1,10 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/IncludeProperty/IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality';
+import { includeRule, validatable } from '../../../../src/core/validators/IncludeProperty/IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
 chai.should();
 
@@ -379,6 +380,63 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
       helper.errorMessages()[0].message.should.include(propertyName);
       helper.errorMessages()[0].message.should.include(entityName);
       helper.errorMessages()[0].message.should.include('invalid');
+    });
+  });
+
+  describe('When rule context has propertyName exception', () => {
+    const { ruleContext } = addRuleContextPath(['propertyName', 'ID'],
+      {
+        ruleIndex: MetaEdGrammar.RULE_stringProperty,
+        includeExtensionOverride: () => ({}),
+      }, true);
+
+    const { ruleContext: parentContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntityExtension }, false);
+    ruleContext.parentCtx = parentContext;
+    addRuleContextPath(['extendeeName', 'ID'], parentContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has DOMAIN_ENTITY exception', () => {
+    const { ruleContext } = addRuleContextPath(['propertyName', 'ID'],
+      {
+        ruleIndex: MetaEdGrammar.RULE_stringProperty,
+        includeExtensionOverride: () => ({}),
+      }, false);
+
+    const { ruleContext: parentContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntityExtension }, true);
+    ruleContext.parentCtx = parentContext;
+    addRuleContextPath(['extendeeName', 'ID'], parentContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has extendeeName exception', () => {
+    const { ruleContext } = addRuleContextPath(['propertyName', 'ID'],
+      {
+        ruleIndex: MetaEdGrammar.RULE_stringProperty,
+        includeExtensionOverride: () => ({}),
+      }, false);
+
+    const { ruleContext: parentContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntityExtension }, false);
+    ruleContext.parentCtx = parentContext;
+    addRuleContextPath(['extendeeName', 'ID'], parentContext, true);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

@@ -3,9 +3,10 @@ import type SymbolTable, { EntityContext } from '../SymbolTable';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
-import { topLevelEntityAncestorContext, propertyAncestorContext } from '../ValidationHelper';
+import { topLevelEntityAncestorContext, propertyAncestorContext, exceptionPath, entityNameExceptionPath, entityIdentifierExceptionPath } from '../ValidationHelper';
 import { entityIdentifier, entityName } from '../RuleInformation';
 import SymbolTableEntityType from '../SymbolTableEntityType';
+import type { ValidatableResult } from '../ValidationTypes';
 
 function cardinalitiesMatch(includePropertyContext: any, otherIncludePropertyContext: any): boolean {
   const propertyAnnotationContext = includePropertyContext.propertyComponents().propertyAnnotation();
@@ -38,6 +39,34 @@ function maintainsCardinalityOnAssociation(symbolTable: SymbolTable, overriddenI
   return maintainsCardinality(overriddenIncludePropertyContext, extendeeEntityContext);
 }
 
+export function validatable(ruleContext: any): ValidatableResult {
+  const validatorName = 'IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality';
+
+  if (ruleContext.includeExtensionOverride() == null) return { validatorName };
+
+  let invalidPath: ?string[] = exceptionPath(['propertyName', 'ID'], ruleContext);
+  if (invalidPath) return { invalidPath, validatorName };
+
+  invalidPath = exceptionPath(['propertyName', 'ID'], propertyAncestorContext(ruleContext));
+  if (invalidPath) return { invalidPath, validatorName };
+
+  const parentEntityContext = topLevelEntityAncestorContext(ruleContext);
+
+  if (parentEntityContext.ruleIndex === MetaEdGrammar.RULE_domainEntityExtension ||
+    parentEntityContext.ruleIndex === MetaEdGrammar.RULE_associationExtension) {
+    invalidPath = exceptionPath(['extendeeName', 'ID'], parentEntityContext);
+    if (invalidPath) return { invalidPath, validatorName };
+  }
+
+  invalidPath = entityNameExceptionPath(parentEntityContext);
+  if (invalidPath) return { invalidPath, validatorName };
+
+  invalidPath = entityIdentifierExceptionPath(parentEntityContext);
+  if (invalidPath) return { invalidPath, validatorName };
+
+  return { validatorName };
+}
+
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   if (ruleContext.includeExtensionOverride() == null) return true;
   const parentEntityContext = topLevelEntityAncestorContext(ruleContext);
@@ -57,6 +86,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `'include extension' is invalid for property ${parentPropertyName} on ${entityIdentifier(parentEntity)} '${entityName(parentEntity)}'.  'include extension' is only valid for referencing common type extensions.`;
 }
 
-const validationRule = errorRuleBase(valid, failureMessage);
+const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_includeProperty, validationRule);
