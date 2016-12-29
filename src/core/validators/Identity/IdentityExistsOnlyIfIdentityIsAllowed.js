@@ -25,7 +25,7 @@ const validIdentityTokenNames: string[] = [
 ];
 
 export function validatable(ruleContext: any): ValidatableResult {
-  const validatorName = 'DescriptorPropertyMustMatchADescriptor';
+  const validatorName = 'IdentityExistsOnlyIfIdentityIsAllowed';
 
   const invalidPath: ?string[] = exceptionPath(['propertyName', 'ID'], propertyAncestorContext(ruleContext));
   if (invalidPath) return { invalidPath, validatorName };

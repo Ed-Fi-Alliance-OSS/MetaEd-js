@@ -412,7 +412,7 @@ export default class MetaEdTextBuilder {
   }
 
   _withProperty(propertyType: string, propertyIdentifier: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withStartProperty(propertyType, propertyIdentifier, metaEdId);
     this._withPropertyElements(documentation, isRequired, isCollection, context);
     this._withEndProperty();
@@ -420,7 +420,7 @@ export default class MetaEdTextBuilder {
   }
 
   _withSharedProperty(propertyType: string, propertyIdentifier: string, named: string, documentation: string, isRequired: boolean,
-                      isCollection: boolean, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    isCollection: boolean, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withStartSharedProperty(propertyType, propertyIdentifier, named, metaEdId);
     this._withPropertyElements(documentation, isRequired, isCollection, context);
     this._withEndProperty();
@@ -428,7 +428,7 @@ export default class MetaEdTextBuilder {
   }
 
   _withIdentityProperty(propertyType: string, propertyIdentifier: string, documentation: string,
-                        context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withStartProperty(propertyType, propertyIdentifier, metaEdId);
 
     this.withDocumentation(documentation);
@@ -440,7 +440,7 @@ export default class MetaEdTextBuilder {
   }
 
   _withIdentityRenameProperty(propertyType: string, propertyIdentifier: string, basePropertyIdentifier: string,
-                              documentation: string, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    documentation: string, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withStartProperty(propertyType, propertyIdentifier, metaEdId);
 
     this.withDocumentation(documentation);
@@ -469,37 +469,37 @@ export default class MetaEdTextBuilder {
   }
 
   withBooleanProperty(propertyIdentifier: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                      context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withProperty('bool', propertyIdentifier, documentation, isRequired,
       isCollection, context, metaEdId);
   }
 
   withDateProperty(propertyIdentifier: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                   context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withProperty('date', propertyIdentifier, documentation, isRequired,
       isCollection, context, metaEdId);
   }
 
   withDurationProperty(propertyIdentifier: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                       context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withProperty('duration', propertyIdentifier, documentation, isRequired,
       isCollection, context, metaEdId);
   }
 
   withPercentProperty(propertyIdentifier: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                      context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withProperty('percent', propertyIdentifier, documentation, isRequired,
       isCollection, context, metaEdId);
   }
 
   withTimeProperty(propertyIdentifier: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                   context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withProperty('time', propertyIdentifier, documentation, isRequired,
       isCollection, context, metaEdId);
   }
 
   withYearProperty(propertyIdentifier: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                   context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withProperty('year', propertyIdentifier, documentation, isRequired, isCollection,
       context, metaEdId);
   }
@@ -513,25 +513,25 @@ export default class MetaEdTextBuilder {
   }
 
   withDescriptorProperty(descriptorName: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                         context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withProperty('descriptor', descriptorName, documentation, isRequired,
       isCollection, context, metaEdId);
   }
 
   withEnumerationProperty(enumerationName: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                          context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withProperty('enumeration', enumerationName, documentation, isRequired,
       isCollection, context, metaEdId);
   }
 
   withIncludeProperty(commonTypeName: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                      context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withProperty('include', commonTypeName, documentation, isRequired,
       isCollection, context, metaEdId);
   }
 
   withIncludeExtensionOverrideProperty(commonTypeName: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                                       context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withProperty('include extension', commonTypeName, documentation, isRequired,
       isCollection, context, metaEdId);
   }
@@ -620,7 +620,7 @@ export default class MetaEdTextBuilder {
   }
 
   withStringProperty(propertyIdentifier: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                     maxLength: number, minLength: ?number = null, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    maxLength: number, minLength: ?number = null, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withProperty('string', propertyIdentifier, documentation, isRequired, isCollection,
       context, metaEdId);
     this._withStringRestrictions(minLength, maxLength);
@@ -629,13 +629,13 @@ export default class MetaEdTextBuilder {
   }
 
   withCurrencyProperty(propertyIdentifier: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                       context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withProperty('currency', propertyIdentifier, documentation, isRequired,
       isCollection, context, metaEdId);
   }
 
   withIntegerProperty(propertyIdentifier: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                      maxValue: ?number = null, minValue: ?number = null, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    maxValue: ?number = null, minValue: ?number = null, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withProperty('integer', propertyIdentifier, documentation, isRequired, isCollection,
       context, metaEdId);
     this._withNumericRestrictions(minValue, maxValue);
@@ -643,7 +643,7 @@ export default class MetaEdTextBuilder {
   }
 
   withShortProperty(propertyIdentifier: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                    maxValue: ?number = null, minValue: ?number = null, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    maxValue: ?number = null, minValue: ?number = null, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withProperty('short', propertyIdentifier, documentation, isRequired, isCollection,
       context, metaEdId);
     this._withNumericRestrictions(minValue, maxValue);
@@ -651,8 +651,8 @@ export default class MetaEdTextBuilder {
   }
 
   withDecimalProperty(propertyIdentifier: string, documentation: string, isRequired: boolean, isCollection: boolean, totalDigits: number,
-                      decimalPlaces: number, minValue: ?number = null, maxValue: ?number = null,
-                      context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    decimalPlaces: number, minValue: ?number = null, maxValue: ?number = null,
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withProperty('decimal', propertyIdentifier, documentation, isRequired, isCollection,
       context, metaEdId);
     this._withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue);
@@ -660,7 +660,7 @@ export default class MetaEdTextBuilder {
   }
 
   withReferenceProperty(propertyIdentifier: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                        isWeak: boolean = false, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    isWeak: boolean = false, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withProperty('reference', propertyIdentifier, documentation, isRequired,
       isCollection, context, metaEdId);
     this._withReferenceAdditions(isWeak);
@@ -668,25 +668,25 @@ export default class MetaEdTextBuilder {
   }
 
   withSharedDecimalProperty(propertyIdentifier: string, named: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                            context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withSharedProperty('decimal', propertyIdentifier, named, documentation,
       isRequired, isCollection, context, metaEdId);
   }
 
   withSharedIntegerProperty(propertyIdentifier: string, named: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                            context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withSharedProperty('integer', propertyIdentifier, named, documentation,
       isRequired, isCollection, context, metaEdId);
   }
 
   withSharedShortProperty(propertyIdentifier: string, named: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                          context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withSharedProperty('short', propertyIdentifier, named, documentation,
       isRequired, isCollection, context, metaEdId);
   }
 
   withSharedStringProperty(propertyIdentifier: string, named: string, documentation: string, isRequired: boolean, isCollection: boolean,
-                           context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     return this._withSharedProperty('string', propertyIdentifier, named, documentation,
       isRequired, isCollection, context, metaEdId);
   }
@@ -717,28 +717,28 @@ export default class MetaEdTextBuilder {
   }
 
   withStringIdentity(propertyIdentifier: string, documentation: string, maxLength: number, minLength: ?number = null,
-                     context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withIdentityProperty('string', propertyIdentifier, documentation, context, metaEdId);
     this._withStringRestrictions(minLength, maxLength);
     return this;
   }
 
   withIntegerIdentity(propertyIdentifier: string, documentation: string, maxValue: ?number = null, minValue: ?number = null,
-                      context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withIdentityProperty('integer', propertyIdentifier, documentation, context, metaEdId);
     this._withNumericRestrictions(minValue, maxValue);
     return this;
   }
 
   withShortIdentity(propertyIdentifier: string, documentation: string, maxValue: ?number = null, minValue: ?number = null,
-                    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withIdentityProperty('short', propertyIdentifier, documentation, context, metaEdId);
     this._withNumericRestrictions(minValue, maxValue);
     return this;
   }
 
   withDecimalIdentity(propertyIdentifier: string, documentation: string, totalDigits: number, decimalPlaces: number,
-                      minValue: ?number = null, maxValue: ?number = null, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    minValue: ?number = null, maxValue: ?number = null, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withIdentityProperty('decimal', propertyIdentifier, documentation, context, metaEdId);
     this._withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue);
     return this;
@@ -760,7 +760,7 @@ export default class MetaEdTextBuilder {
   }
 
   withStringIdentityRename(propertyIdentifier: string, basePropertyIdentifier: string, documentation: string,
-                           maxLength: number, minLength: ?number = null, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    maxLength: number, minLength: ?number = null, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withIdentityRenameProperty('string', propertyIdentifier, basePropertyIdentifier,
       documentation, context, metaEdId);
     this._withStringRestrictions(minLength, maxLength);
@@ -768,7 +768,7 @@ export default class MetaEdTextBuilder {
   }
 
   withIntegerIdentityRename(propertyIdentifier: string, basePropertyIdentifier: string, documentation: string,
-                            maxValue: ?number = null, minValue: ?number = null, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
+    maxValue: ?number = null, minValue: ?number = null, context: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
     this._withIdentityRenameProperty('integer', propertyIdentifier, basePropertyIdentifier,
       documentation, context, metaEdId);
     this._withNumericRestrictions(minValue, maxValue);

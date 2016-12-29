@@ -23,16 +23,16 @@ const relevantEntityRules = R.without(
   ], topLevelEntityExtensionRules),
   topLevelEntityRules);
 
-export const validatable = R.curry(
-  (validatorName: string, ruleContext: any): ValidatableResult => {
-    let invalidPath: ?string[] = entityNameExceptionPath(ruleContext);
-    if (invalidPath) return { invalidPath, validatorName };
+export function validatable(ruleContext: any): ValidatableResult {
+  const validatorName = 'MostEntitiesCannotHaveSameName';
+  let invalidPath: ?string[] = entityNameExceptionPath(ruleContext);
+  if (invalidPath) return { invalidPath, validatorName };
 
-    invalidPath = entityIdentifierExceptionPath(ruleContext);
-    if (invalidPath) return { invalidPath, validatorName };
+  invalidPath = entityIdentifierExceptionPath(ruleContext);
+  if (invalidPath) return { invalidPath, validatorName };
 
-    return { validatorName };
-  });
+  return { validatorName };
+}
 
 function validAndNextState(ruleContext: any, state: State): { isValid: boolean, nextState: State } {
   const validatorData = state.get('validatorData');
@@ -52,6 +52,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `${entityIdentifier(ruleContext)} named ${entityName(ruleContext)} is a duplicate declaration of that name.`;
 }
 
-const validationRule = errorRuleBaseStateModifying(validatable('MostEntitiesCannotHaveSameName'), validAndNextState, failureMessage);
+const validationRule = errorRuleBaseStateModifying(validatable, validAndNextState, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBaseForMultiRuleIndexes(relevantEntityRules, validationRule);

@@ -217,10 +217,9 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
   });
 
   describe('When rule context has entityName exception', () => {
-    const { ruleContext } = addRuleContextPath(['DOMAIN_ENTITY'], {}, true);
+    const { ruleContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntity }, true);
     addRuleContextPath(['entityName', 'ID'], ruleContext, false);
-    ruleContext.ruleIndex = MetaEdGrammar.RULE_domainEntity;
-    const { invalidPath, validatorName } = validatable('MostEntitiesCannotHaveSameNameTests', ruleContext);
+    const { invalidPath, validatorName } = validatable(ruleContext);
 
     it('Should_have_validatable_failure', () => {
       invalidPath.should.exist;
@@ -229,10 +228,9 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
   });
 
   describe('When rule context has entityIdentifierName exception', () => {
-    const { ruleContext } = addRuleContextPath(['DOMAIN_ENTITY'], {}, false);
+    const { ruleContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntity }, false);
     addRuleContextPath(['entityName', 'ID'], ruleContext, true);
-    ruleContext.ruleIndex = MetaEdGrammar.RULE_domainEntity;
-    const { invalidPath, validatorName } = validatable('MostEntitiesCannotHaveSameNameTests', ruleContext);
+    const { invalidPath, validatorName } = validatable(ruleContext);
 
     it('Should_have_validatable_failure', () => {
       invalidPath.should.exist;
