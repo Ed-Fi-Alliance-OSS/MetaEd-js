@@ -7,7 +7,7 @@ import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {
-  const validatorName = 'CommonSimpleType/CommonIntegerMinValueMustNotBeGreaterThanMaxValue';
+  const validatorName = 'CommonIntegerMinValueMustNotBeGreaterThanMaxValue';
   if (ruleContext.minValue() == null || ruleContext.maxValue() == null) return { validatorName };
 
   let invalidPath: ?string[] = exceptionPath(['minValue', 'signed_int'], ruleContext);
