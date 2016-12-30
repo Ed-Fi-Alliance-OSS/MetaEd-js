@@ -1,28 +1,27 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/SharedProperty/SharedDecimalPropertyTypeMustMatchACommonDecimal';
+import { includeRule, validatable } from '../../../../src/core/validators/SharedProperty/SharedStringPropertyTypeMustMatchACommonString';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
 
-describe('SharedDecimalPropertyTypeMustMatchACommonDecimalTests', () => {
+describe('SharedStringPropertyTypeMustMatchACommonStringTests', () => {
   const repository = includeRule(newRepository());
   const validatorListener = new ValidatorListener(repository);
 
-  describe('When_shared_property_has_identifier_of_common_simple_decimal', () => {
+  describe('When_shared_property_has_identifier_of_common_simple_string', () => {
     const entityName: string = 'EntityName';
     const propertyName: string = 'PropertyName';
     const helper: ValidatorTestHelper = new ValidatorTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonDecimal(entityName)
+      .withStartCommonString(entityName)
       .withDocumentation('doc')
-      .withTotalDigits('10')
-      .withDecimalPlaces('2')
-      .withEndCommonDecimal()
+      .withMaxLength(100)
+      .withEndCommonString()
 
       .withStartDomainEntity('DomainEntity')
       .withDocumentation('doc')
@@ -39,7 +38,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonDecimalTests', () => {
     });
   });
 
-  describe('When_shared_decimal_property_has_invalid_identifier', () => {
+  describe('When_shared_string_property_has_invalid_identifier', () => {
     const entityName: string = 'DoesNotExist';
     const propertyName: string = 'PropertyName';
     const helper: ValidatorTestHelper = new ValidatorTestHelper();
@@ -49,7 +48,7 @@ describe('SharedDecimalPropertyTypeMustMatchACommonDecimalTests', () => {
       .withStartDomainEntity('DomainEntity')
       .withDocumentation('doc')
       .withStringIdentity('RequirePrimaryKey', 'doc', 100)
-      .withSharedDecimalProperty(entityName, propertyName, 'doc', true, false)
+      .withSharedStringProperty(entityName, propertyName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -64,6 +63,30 @@ describe('SharedDecimalPropertyTypeMustMatchACommonDecimalTests', () => {
       helper.errorMessages()[0].message.should.include('Shared property');
       helper.errorMessages()[0].message.should.include(propertyName);
       helper.errorMessages()[0].message.should.include('does not match');
+    });
+  });
+
+  describe('When rule context has sharedPropertyType exception', () => {
+    const { ruleContext } = addRuleContextPath(['sharedPropertyType', 'ID'], {}, true);
+    addRuleContextPath(['propertyName', 'ID'], {}, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has propertyName exception', () => {
+    const { ruleContext } = addRuleContextPath(['sharedPropertyType', 'ID'], {}, false);
+    addRuleContextPath(['propertyName', 'ID'], {}, true);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

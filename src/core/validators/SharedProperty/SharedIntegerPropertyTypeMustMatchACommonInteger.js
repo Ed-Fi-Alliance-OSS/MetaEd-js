@@ -4,7 +4,20 @@ import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import { validForShared, failureMessageForShared } from './SharedPropertyValidationRule';
 import SymbolTableEntityType from '../SymbolTableEntityType';
+import { exceptionPath } from '../ValidationHelper';
+import type { ValidatableResult } from '../ValidationTypes';
 
-const validationRule = errorRuleBase(validForShared(SymbolTableEntityType.commonInteger()), failureMessageForShared('common integer'));
+export function validatable(ruleContext: any): ValidatableResult {
+  const validatorName = 'SharedIntegerPropertyTypeMustMatchACommonInteger';
+  let invalidPath: ?string[] = exceptionPath(['sharedPropertyType', 'ID'], ruleContext);
+  if (invalidPath) return { invalidPath, validatorName };
+
+  invalidPath = exceptionPath(['propertyName', 'ID'], ruleContext);
+  if (invalidPath) return { invalidPath, validatorName };
+
+  return { validatorName };
+}
+
+const validationRule = errorRuleBase(validatable, validForShared(SymbolTableEntityType.commonInteger()), failureMessageForShared('common integer'));
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_sharedIntegerProperty, validationRule);
