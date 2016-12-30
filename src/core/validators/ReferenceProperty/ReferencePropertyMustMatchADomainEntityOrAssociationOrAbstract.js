@@ -4,6 +4,16 @@ import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import SymbolTableEntityType from '../SymbolTableEntityType';
+import { exceptionPath } from '../ValidationHelper';
+import type { ValidatableResult } from '../ValidationTypes';
+
+export function validatable(ruleContext: any): ValidatableResult {
+  const validatorName = 'ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract';
+  const invalidPath: ?string[] = exceptionPath(['propertyName', 'ID'], ruleContext);
+  if (invalidPath) return { invalidPath, validatorName };
+
+  return { validatorName };
+}
 
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const identifierToMatch = ruleContext.propertyName().ID().getText();
@@ -19,6 +29,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Reference property '${ruleContext.propertyName().ID().getText()}' does not match any declared domain entity or subclass, association or subclass, or abstract entity.`;
 }
 
-const validationRule = errorRuleBase(valid, failureMessage);
+const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_referenceProperty, validationRule);
