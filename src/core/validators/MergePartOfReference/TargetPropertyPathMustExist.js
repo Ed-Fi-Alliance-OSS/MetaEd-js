@@ -5,6 +5,13 @@ import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import { lookupParentEntityContext, propertyPathParts } from './MergePartOfReferenceValidationRule';
 import type SymbolTable from '../SymbolTable';
 import { validate, matchAllIdentityProperties } from './PropertyPathLookup';
+import type { ValidatableResult } from '../ValidationTypes';
+
+// TODO: *** Empty validatable implementation until port of C# merge property validator rewrite Jan 2017
+// eslint-disable-next-line no-unused-vars
+export function validatable(ruleContext: any): ValidatableResult {
+  return { validatorName: 'TargetPropertyPathMustExist' };
+}
 
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   // first parent - mergePartOfReference
@@ -22,6 +29,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Path ${ruleContext.getText()} is not valid or lists properties that are not part of the primary key.`;
 }
 
-const validationRule = errorRuleBase(valid, failureMessage);
+const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_targetPropertyPath, validationRule);

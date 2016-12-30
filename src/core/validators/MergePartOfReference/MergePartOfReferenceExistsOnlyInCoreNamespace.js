@@ -7,6 +7,13 @@ import type SymbolTable from '../SymbolTable';
 import { entityIdentifier, entityName } from '../RuleInformation';
 import { namespaceAncestorContext, topLevelEntityAncestorContext, propertyAncestorContext,
   isExtensionNamespace, namespaceNameFor } from '../ValidationHelper';
+import type { ValidatableResult } from '../ValidationTypes';
+
+// TODO: *** Empty validatable implementation until port of C# merge property validator rewrite Jan 2017
+// eslint-disable-next-line no-unused-vars
+export function validatable(ruleContext: any): ValidatableResult {
+  return { validatorName: 'MergePartOfReferenceExistsOnlyInCoreNamespace' };
+}
 
 // eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
@@ -21,6 +28,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `'merge' is invalid for property ${propertyName} on ${entityIdentifier(parentEntity)} '${entityName(parentEntity)}' in extension namespace ${namespaceName}.  'merge' is only valid for properties on types in a core namespace.`;
 }
 
-const validationRule = errorRuleBase(valid, failureMessage);
+const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_mergePartOfReference, validationRule);

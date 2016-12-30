@@ -6,6 +6,13 @@ import type SymbolTable, { EntityContext } from '../SymbolTable';
 import { validate, matchAllButFirstAsIdentityProperties } from './PropertyPathLookup';
 import { propertyPathParts } from './MergePartOfReferenceValidationRule';
 import SymbolTableEntityType from '../SymbolTableEntityType';
+import type { ValidatableResult } from '../ValidationTypes';
+
+// TODO: *** Empty validatable implementation until port of C# merge property validator rewrite Jan 2017
+// eslint-disable-next-line no-unused-vars
+export function validatable(ruleContext: any): ValidatableResult {
+  return { validatorName: 'MergePropertyPathMustExist' };
+}
 
 // different from the one used by other validators
 function lookupParentEntityContext(symbolTable: SymbolTable, ruleContext: any): ?EntityContext {
@@ -59,6 +66,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Path ${ruleContext.getText()} is not valid.`;
 }
 
-const validationRule = errorRuleBase(valid, failureMessage);
+const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_mergePropertyPath, validationRule);

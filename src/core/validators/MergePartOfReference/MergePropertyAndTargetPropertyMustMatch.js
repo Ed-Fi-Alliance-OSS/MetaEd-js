@@ -8,6 +8,13 @@ import { lookupParentEntityContext, propertyPathParts } from './MergePartOfRefer
 import { findReferencedProperty, matchAllButFirstAsIdentityProperties, matchAllIdentityProperties } from './PropertyPathLookup';
 import { propertyName } from '../RuleInformation';
 import SymbolTableEntityType from '../SymbolTableEntityType';
+import type { ValidatableResult } from '../ValidationTypes';
+
+// TODO: *** Empty validatable implementation until port of C# merge property validator rewrite Jan 2017
+// eslint-disable-next-line no-unused-vars
+export function validatable(ruleContext: any): ValidatableResult {
+  return { validatorName: 'MergePropertyAndTargetPropertyMustMatch' };
+}
 
 const entityContextHasBaseName = R.curry(
   (baseTypeName: string, entityContext: EntityContext): boolean => entityContext.context.baseName().ID.getText() === baseTypeName);
@@ -58,6 +65,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `The merge paths '${ruleContext.mergePropertyPath().getText()}' and '${ruleContext.targetPropertyPath().getText()}' do not correspond to the same entity type.`;
 }
 
-const validationRule = errorRuleBase(valid, failureMessage);
+const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_mergePartOfReference, validationRule);
