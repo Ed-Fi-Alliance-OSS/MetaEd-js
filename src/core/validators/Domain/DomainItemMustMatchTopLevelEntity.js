@@ -1,8 +1,10 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
-import { exceptionPath,
+import { topLevelEntityAncestorContext,
   contextMustMatchATopLevelEntity,
-  topLevelEntityAncestorContext } from '../ValidationHelper';
+  exceptionPath,
+  entityNameExceptionPath,
+  entityIdentifierExceptionPath } from '../ValidationHelper';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
@@ -11,10 +13,15 @@ import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {
   const validatorName = 'DomainItemMustMatchTopLevelEntity';
-  const invalidPath: ?string[] = exceptionPath(['ID'], ruleContext);
+  let invalidPath: ?string[] = exceptionPath(['ID'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
 
-  // NOTE: not clearing usage of entityIdentifier/entityName
+  const parentEntityContext = topLevelEntityAncestorContext(ruleContext);
+  invalidPath = entityNameExceptionPath(parentEntityContext);
+  if (invalidPath) return { invalidPath, validatorName };
+
+  invalidPath = entityIdentifierExceptionPath(parentEntityContext);
+  if (invalidPath) return { invalidPath, validatorName };
 
   return { validatorName };
 }

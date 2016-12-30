@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath, addArrayContext } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/Subdomain/SubdomainMustNotDuplicateDomainItems';
+import { includeRule, validatable } from '../../../../src/core/validators/Subdomain/SubdomainMustNotDuplicateDomainItems';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -94,6 +94,32 @@ describe('SubdomainMustNotDuplicateDomainItems', () => {
       helper.errorMessages()[0].message.should.include('duplicate domain items');
       helper.errorMessages()[0].message.should.include(duplicateTemplate1);
       helper.errorMessages()[0].message.should.include(duplicateTemplate2);
+    });
+  });
+
+  describe('When rule context has subdomainName exception', () => {
+    const { ruleContext } = addRuleContextPath(['subdomainName', 'ID'], {}, true);
+    const { leafContext: domainItemContext } = addArrayContext('domainItem', ruleContext);
+    addRuleContextPath(['ID'], domainItemContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has ID exception', () => {
+    const { ruleContext } = addRuleContextPath(['subdomainName', 'ID'], {}, false);
+    const { leafContext: domainItemContext } = addArrayContext('domainItem', ruleContext);
+    addRuleContextPath(['ID'], domainItemContext, true);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

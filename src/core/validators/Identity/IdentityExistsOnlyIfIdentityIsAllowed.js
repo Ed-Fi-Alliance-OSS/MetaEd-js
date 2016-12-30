@@ -3,7 +3,11 @@ import type SymbolTable from '../SymbolTable';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
-import { topLevelEntityAncestorContext, propertyAncestorContext, exceptionPath } from '../ValidationHelper';
+import { topLevelEntityAncestorContext,
+  propertyAncestorContext,
+  exceptionPath,
+  entityNameExceptionPath,
+  entityIdentifierExceptionPath } from '../ValidationHelper';
 import { entityIdentifier, entityName } from '../RuleInformation';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 import type { ValidatableResult } from '../ValidationTypes';
@@ -27,7 +31,14 @@ const validIdentityTokenNames: string[] = [
 export function validatable(ruleContext: any): ValidatableResult {
   const validatorName = 'IdentityExistsOnlyIfIdentityIsAllowed';
 
-  const invalidPath: ?string[] = exceptionPath(['propertyName', 'ID'], propertyAncestorContext(ruleContext));
+  let invalidPath: ?string[] = exceptionPath(['propertyName', 'ID'], propertyAncestorContext(ruleContext));
+  if (invalidPath) return { invalidPath, validatorName };
+
+  const parentEntityContext = topLevelEntityAncestorContext(ruleContext);
+  invalidPath = entityNameExceptionPath(parentEntityContext);
+  if (invalidPath) return { invalidPath, validatorName };
+
+  invalidPath = entityIdentifierExceptionPath(parentEntityContext);
   if (invalidPath) return { invalidPath, validatorName };
 
   return { validatorName };

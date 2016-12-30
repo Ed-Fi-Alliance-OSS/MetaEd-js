@@ -4,6 +4,7 @@ import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelpe
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
 import { includeRule, validatable } from '../../../../src/core/validators/Domain/DomainItemMustMatchTopLevelEntity';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
 chai.should();
 
@@ -283,8 +284,43 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
   });
 
   describe('When rule context has ID exception', () => {
-    const { ruleContext } = addRuleContextPath(['ID'], {}, true);
-    const { invalidPath, validatorName } = validatable('MostEntitiesCannotHaveSameNameTests', ruleContext);
+    const { ruleContext } = addRuleContextPath(['ID'], { ruleIndex: MetaEdGrammar.RULE_domainItem }, true);
+
+    const { ruleContext: parentContext } = addRuleContextPath(['DOMAIN'], { ruleIndex: MetaEdGrammar.RULE_domain }, false);
+    ruleContext.parentCtx = parentContext;
+    addRuleContextPath(['entityName', 'ID'], parentContext, false);
+
+    const { invalidPath, validatorName } = validatable('DomainItemMustMatchTopLevelEntityTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has DOMAIN_ENTITY exception', () => {
+    const { ruleContext } = addRuleContextPath(['ID'], { ruleIndex: MetaEdGrammar.RULE_domainItem }, false);
+
+    const { ruleContext: parentContext } = addRuleContextPath(['DOMAINY'], { ruleIndex: MetaEdGrammar.RULE_domain }, true);
+    ruleContext.parentCtx = parentContext;
+    addRuleContextPath(['entityName', 'ID'], parentContext, false);
+
+    const { invalidPath, validatorName } = validatable('DomainItemMustMatchTopLevelEntityTests', ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has entityName exception', () => {
+    const { ruleContext } = addRuleContextPath(['ID'], { ruleIndex: MetaEdGrammar.RULE_domainItem }, false);
+
+    const { ruleContext: parentContext } = addRuleContextPath(['DOMAIN'], { ruleIndex: MetaEdGrammar.RULE_domain }, false);
+    ruleContext.parentCtx = parentContext;
+    addRuleContextPath(['entityName', 'ID'], parentContext, true);
+
+    const { invalidPath, validatorName } = validatable('DomainItemMustMatchTopLevelEntityTests', ruleContext);
 
     it('Should_have_validatable_failure', () => {
       invalidPath.should.exist;
