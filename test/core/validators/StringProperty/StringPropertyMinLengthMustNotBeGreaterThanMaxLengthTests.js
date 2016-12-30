@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/StringProperty/StringPropertyMinLengthMustNotBeGreaterThanMaxLength';
+import { includeRule, validatable } from '../../../../src/core/validators/StringProperty/StringPropertyMinLengthMustNotBeGreaterThanMaxLength';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -102,6 +102,42 @@ describe('StringPropertyMinLengthMustNotBeGreaterThanMaxLengthTests', () => {
 
     it('should_have_no_validation_failures()', () => {
       helper.errorMessages().length.should.equal(0);
+    });
+  });
+
+  describe('When rule context has minLength exception', () => {
+    const { ruleContext } = addRuleContextPath(['minLength', 'UNSIGNED_INT'], {}, true);
+    addRuleContextPath(['maxLength', 'UNSIGNED_INT'], ruleContext, false);
+    addRuleContextPath(['propertyName'], ruleContext, false);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has maxLength exception', () => {
+    const { ruleContext } = addRuleContextPath(['minLength', 'UNSIGNED_INT'], {}, false);
+    addRuleContextPath(['maxLength', 'UNSIGNED_INT'], ruleContext, true);
+    addRuleContextPath(['propertyName'], ruleContext, false);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has propertyName exception', () => {
+    const { ruleContext } = addRuleContextPath(['minLength', 'UNSIGNED_INT'], {}, false);
+    addRuleContextPath(['maxLength', 'UNSIGNED_INT'], ruleContext, false);
+    addRuleContextPath(['propertyName'], ruleContext, true);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });
