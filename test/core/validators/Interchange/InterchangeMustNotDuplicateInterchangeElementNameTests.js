@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath, addPropertyArrayContext } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/Interchange/InterchangeMustNotDuplicateInterchangeElementName';
+import { includeRule, validatable } from '../../../../src/core/validators/Interchange/InterchangeMustNotDuplicateInterchangeElementName';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -57,6 +57,48 @@ describe('InterchangeMustNotDuplicateInterchangeElementNameTests', () => {
       helper.errorMessages()[0].message.should.include(entityName);
       helper.errorMessages()[0].message.should.include('duplicate interchange element');
       helper.errorMessages()[0].message.should.include(duplicateTemplate);
+    });
+  });
+
+  describe('When rule context has interchangeName exception', () => {
+    const { ruleContext } = addRuleContextPath(['interchangeName', 'ID'], {}, true);
+    const { leafContext: interchangeComponentContext } = addRuleContextPath(['interchangeComponent'], ruleContext, false);
+    const { leafContext: interchangeElementContext } = addPropertyArrayContext('interchangeElement', interchangeComponentContext);
+    addRuleContextPath(['ID'], interchangeElementContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has interchangeComponent exception', () => {
+    const { ruleContext } = addRuleContextPath(['interchangeName', 'ID'], {}, false);
+    const { leafContext: interchangeComponentContext } = addRuleContextPath(['interchangeComponent'], ruleContext, true);
+    const { leafContext: interchangeElementContext } = addPropertyArrayContext('interchangeElement', interchangeComponentContext);
+    addRuleContextPath(['ID'], interchangeElementContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has ID exception', () => {
+    const { ruleContext } = addRuleContextPath(['interchangeName', 'ID'], {}, false);
+    const { leafContext: interchangeComponentContext } = addRuleContextPath(['interchangeComponent'], ruleContext, false);
+    const { leafContext: interchangeIdentityTemplateContext } = addPropertyArrayContext('interchangeElement', interchangeComponentContext);
+    addRuleContextPath(['ID'], interchangeIdentityTemplateContext, true);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

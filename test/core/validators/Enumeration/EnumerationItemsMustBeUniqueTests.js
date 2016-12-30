@@ -85,7 +85,7 @@ describe('EnumerationItemsMustBeUniqueTests', () => {
     });
   });
 
-  describe('When rule context has descriptorName exception', () => {
+  describe('When rule context has enumerationName exception', () => {
     const { ruleContext } = addRuleContextPath(['enumerationName', 'ID'], {}, true);
 
     const { leafContext: enumerationItemContext } = addPropertyArrayContext('enumerationItem', ruleContext);

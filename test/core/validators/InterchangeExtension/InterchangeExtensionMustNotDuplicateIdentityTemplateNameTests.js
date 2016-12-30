@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath, addPropertyArrayContext } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/InterchangeExtension/InterchangeExtensionMustNotDuplicateIdentityTemplateName';
+import { includeRule, validatable } from '../../../../src/core/validators/InterchangeExtension/InterchangeExtensionMustNotDuplicateIdentityTemplateName';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -55,6 +55,48 @@ describe('InterchangeExtensionMustNotDuplicateIdentityTemplateName', () => {
       helper.errorMessages()[0].message.should.include(entityName);
       helper.errorMessages()[0].message.should.include('duplicate identity template');
       helper.errorMessages()[0].message.should.include(duplicateTemplate);
+    });
+  });
+
+  describe('When rule context has extendeeName exception', () => {
+    const { ruleContext } = addRuleContextPath(['extendeeName', 'ID'], {}, true);
+    const { leafContext: interchangeExtensionComponentContext } = addRuleContextPath(['interchangeExtensionComponent'], ruleContext, false);
+    const { leafContext: interchangeIdentityTemplateContext } = addPropertyArrayContext('interchangeIdentityTemplate', interchangeExtensionComponentContext);
+    addRuleContextPath(['ID'], interchangeIdentityTemplateContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has interchangeComponent exception', () => {
+    const { ruleContext } = addRuleContextPath(['extendeeName', 'ID'], {}, false);
+    const { leafContext: interchangeExtensionComponentContext } = addRuleContextPath(['interchangeExtensionComponent'], ruleContext, true);
+    const { leafContext: interchangeIdentityTemplateContext } = addPropertyArrayContext('interchangeIdentityTemplate', interchangeExtensionComponentContext);
+    addRuleContextPath(['ID'], interchangeIdentityTemplateContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has ID exception', () => {
+    const { ruleContext } = addRuleContextPath(['extendeeName', 'ID'], {}, false);
+    const { leafContext: interchangeExtensionComponentContext } = addRuleContextPath(['interchangeExtensionComponent'], ruleContext, false);
+    const { leafContext: interchangeIdentityTemplateContext } = addPropertyArrayContext('interchangeIdentityTemplate', interchangeExtensionComponentContext);
+    addRuleContextPath(['ID'], interchangeIdentityTemplateContext, true);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });
