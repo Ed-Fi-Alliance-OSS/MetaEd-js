@@ -2,12 +2,29 @@
 import type SymbolTable from '../SymbolTable';
 import { warningRuleBase } from '../ValidationRuleBase';
 import { includeRuleBaseForMultiRuleIndexes } from '../ValidationRuleRepository';
-import { topLevelEntityAncestorContext } from '../ValidationHelper';
+import { topLevelEntityAncestorContext, exceptionPath, entityIdentifierExceptionPath, entityNameExceptionPath } from '../ValidationHelper';
 import { entityIdentifier, entityName, propertyRules } from '../RuleInformation';
+import type { ValidatableResult } from '../ValidationTypes';
+
+export function validatable(ruleContext: any): ValidatableResult {
+  const validatorName = 'MetaEdIdIsRequiredForProperties';
+
+  let invalidPath: ?string[] = exceptionPath(['propertyName', 'ID'], ruleContext);
+  if (invalidPath) return { invalidPath, validatorName };
+
+  const parentEntityContext = topLevelEntityAncestorContext(ruleContext);
+  invalidPath = entityNameExceptionPath(parentEntityContext);
+  if (invalidPath) return { invalidPath, validatorName };
+
+  invalidPath = entityIdentifierExceptionPath(parentEntityContext);
+  if (invalidPath) return { invalidPath, validatorName };
+
+  return { validatorName };
+}
 
 // eslint-disable-next-line no-unused-vars
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
-  return ruleContext.metaEdId() && ruleContext.metaEdId().METAED_ID().getText();
+  return ruleContext.metaEdId() && ruleContext.metaEdId().METAED_ID();
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -17,6 +34,6 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   return `Property '${propertyName}' on ${entityIdentifier(parentEntity)} '${entityName(parentEntity)}' is missing a MetaEdId value.`;
 }
 
-const validationRule = warningRuleBase(valid, failureMessage);
+const validationRule = warningRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBaseForMultiRuleIndexes(propertyRules, validationRule);

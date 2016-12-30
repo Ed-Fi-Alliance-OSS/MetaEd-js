@@ -301,7 +301,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
   describe('When rule context has DOMAIN_ENTITY exception', () => {
     const { ruleContext } = addRuleContextPath(['ID'], { ruleIndex: MetaEdGrammar.RULE_domainItem }, false);
 
-    const { ruleContext: parentContext } = addRuleContextPath(['DOMAINY'], { ruleIndex: MetaEdGrammar.RULE_domain }, true);
+    const { ruleContext: parentContext } = addRuleContextPath(['DOMAIN'], { ruleIndex: MetaEdGrammar.RULE_domain }, true);
     ruleContext.parentCtx = parentContext;
     addRuleContextPath(['entityName', 'ID'], parentContext, false);
 

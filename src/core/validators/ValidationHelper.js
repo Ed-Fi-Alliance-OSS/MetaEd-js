@@ -192,3 +192,11 @@ export function entityNameExceptionPath(ruleContext: any): ?string[] {
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_subdomain) return exceptionPath(['subdomainName', 'ID'], ruleContext);
   throw new Error(`ValidationHelper.entityNameExceptionPath encountered unknown context with rule index ${ruleContext.ruleIndex}.`);
 }
+
+export function itemNameExceptionPath(ruleContext: any): ?string[] {
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainItem) return exceptionPath(['ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_enumerationItem) return exceptionPath(['shortDescription'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeElement) return exceptionPath(['ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeIdentityTemplate) return exceptionPath(['ID'], ruleContext);
+  throw new Error(`RuleInformation.itemName encountered unknown context with rule index ${ruleContext.ruleIndex}.`);
+}

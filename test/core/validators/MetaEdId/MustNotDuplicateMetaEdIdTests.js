@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/MetaEdId/MustNotDuplicateMetaEdId';
+import { includeRule, validatable } from '../../../../src/core/validators/MetaEdId/MustNotDuplicateMetaEdId';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -142,6 +142,16 @@ describe('MustNotDuplicateMetaEdId', () => {
       helper.errorMessages()[0].message.should.include('MetaEdId');
       helper.errorMessages()[0].message.should.include(metaEdId);
       helper.errorMessages()[0].message.should.include('All MetaEdIds must be globally unique.');
+    });
+  });
+
+  describe('When rule context has METAED_ID exception', () => {
+    const { ruleContext } = addRuleContextPath(['METAED_ID'], {}, true);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });

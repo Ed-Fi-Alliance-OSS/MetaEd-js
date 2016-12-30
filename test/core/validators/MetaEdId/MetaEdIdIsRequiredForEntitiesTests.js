@@ -1,9 +1,10 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/MetaEdId/MetaEdIdIsRequiredForEntities';
+import { includeRule, validatable } from '../../../../src/core/validators/MetaEdId/MetaEdIdIsRequiredForEntities';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
+import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
 chai.should();
 
@@ -452,6 +453,30 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
       helper.errorMessages().should.be.empty;
       helper.warningMessages()[0].message.should.include(entityName);
       helper.warningMessages()[0].message.should.include('missing a MetaEdId');
+    });
+  });
+
+  describe('When rule context has DOMAIN_ENTITY exception', () => {
+    const { ruleContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntity }, true);
+    addRuleContextPath(['entityName', 'ID'], ruleContext, false);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
+
+  describe('When rule context has entityName exception', () => {
+    const { ruleContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntity }, false);
+    addRuleContextPath(['entityName', 'ID'], ruleContext, true);
+
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
     });
   });
 });
