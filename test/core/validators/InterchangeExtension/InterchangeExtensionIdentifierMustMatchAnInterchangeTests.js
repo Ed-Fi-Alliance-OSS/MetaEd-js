@@ -1,8 +1,8 @@
 import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
-import ValidatorTestHelper from '../ValidatorTestHelper';
+import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule } from '../../../../src/core/validators/InterchangeExtension/InterchangeExtensionIdentifierMustMatchAnInterchange';
+import { includeRule, validatable } from '../../../../src/core/validators/InterchangeExtension/InterchangeExtensionIdentifierMustMatchAnInterchange';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 import SymbolTable from '../../../../src/core/validators/SymbolTable';
 
@@ -65,4 +65,13 @@ describe('InterchangeExtensionIdentifierMustMatchAnInterchangeTests', () => {
     });
   });
 
+  describe('When rule context has extendeeName exception', () => {
+    const { ruleContext } = addRuleContextPath(['extendeeName', 'ID'], {}, true);
+    const { invalidPath, validatorName } = validatable(ruleContext);
+
+    it('Should_have_validatable_failure', () => {
+      invalidPath.should.exist;
+      validatorName.should.exist;
+    });
+  });
 });
