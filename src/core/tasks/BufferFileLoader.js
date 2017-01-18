@@ -7,7 +7,7 @@ import type { State } from '../State';
 function appendFileSet(state: State, fileSet: FileSet): State {
   const filepaths = fileSet.files.map(file => file.get('fullName'));
   return R.pipe(
-    addAction('BufferFilenameLoader.loadCoreBufferedFiles'),
+    addAction('BufferFilenameLoader.appendFileSet'),
     addFilepathsToExclude(filepaths),
     addLoadedFileSet(fileSet))(state);
 }

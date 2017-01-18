@@ -36,8 +36,8 @@
     "prestart": "npm install",
     "test": "mocha --compilers js:babel-register test/**/*Test.js test/**/*Tests.js",
     "test:debug": "mocha --compilers js:babel-register test/**/*Test.js test/**/*Tests.js --debug-brk",
-    "babel": "./node_modules/.bin/babel.cmd src -d dist",
-    "babel-linux": "./node_modules/.bin/babel src -d dist",
+    "babel": "./node_modules/.bin/babel.cmd src -d dist --source-maps",
+    "babel-linux": "./node_modules/.bin/babel src -d dist --source-maps",
     "flow-linux": "./node_modules/.bin/flow"
   }
 }
