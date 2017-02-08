@@ -84,7 +84,7 @@ describe('DomainEntityMustContainNoMoreThanOneUniqueIdColumnTests', () => {
     const helper: ValidatorTestHelper = new ValidatorTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
-      .withBeginNamespace('extension', 'projectExtension')
+      .withBeginNamespace('extension', 'ProjectExtension')
       .withStartDomainEntity(entityName)
       .withDocumentation('doc1')
       .withStringIdentity('UniqueId', 'doc2', 100, null, 'Student')

@@ -23,7 +23,7 @@ describe('DomainEntityExtensionExistsOnlyInExtensionNamespaceTests', () => {
       .withEndDomainEntity()
       .withEndNamespace()
 
-      .withBeginNamespace('extension', 'projectExtension')
+      .withBeginNamespace('extension', 'ProjectExtension')
       .withStartDomainEntityExtension(entityName)
       .withBooleanProperty('Property2', 'because a property is required', true, false)
       .withEndDomainEntityExtension()

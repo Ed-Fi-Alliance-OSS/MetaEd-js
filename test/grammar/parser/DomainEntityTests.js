@@ -7,8 +7,7 @@ const should = chai.should();
 describe('DomainEntityTests', () => {
   describe('When_parsing_domain_entity_with_name_documentation_and_property', () => {
     const entity_name: string = 'MyIdentifier';
-    const documentation1: string = 'line 1 of documentation';
-    const documentation2: string = 'another line of intervention documentation';
+    const documentation: string = 'line 1 of documentation\nanother line of intervention documentation';
     const property_name: string = 'Property1';
     const property_documentation: string = 'property intervention documentation';
 
@@ -16,7 +15,7 @@ describe('DomainEntityTests', () => {
     const inputText: string = metaEdTextBuilder
       .withStartDomainEntity(entity_name)
       .withMetaEdId('100')
-      .withDocumentation(documentation1, documentation2)
+      .withDocumentation(documentation)
       .withStringProperty(property_name, property_documentation, true, false, 100)
       .withEndDomainEntity()
       .toString();
@@ -42,14 +41,9 @@ describe('DomainEntityTests', () => {
     });
 
     it('Should_parse_documentation', () => {
-      const documentation = context.documentation();
-      documentation.should.exist;
-      should.not.exist(documentation.exception);
-
-      const documentationLine = documentation.documentationLine();
-      documentationLine.length.should.equal(2);
-      should.exist(documentationLine[0]);
-      should.exist(documentationLine[1]);
+      const documentationContext = context.documentation();
+      documentationContext.should.exist;
+      should.not.exist(documentationContext.exception);
     });
 
     it('Should_parse_properties_collection', () => {

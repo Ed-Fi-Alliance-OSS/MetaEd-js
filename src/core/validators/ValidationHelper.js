@@ -28,11 +28,25 @@ export const propertyAncestorContext = getAncestorContext(propertyRules);
 export const namespaceAncestorContext = getAncestorContext([MetaEdGrammar.RULE_namespace]);
 
 export function isExtensionNamespace(namespaceContext: any) {
-  return namespaceContext.namespaceType().namespaceProjectExtension() !== null;
+  return namespaceContext.namespaceType().CORE() == null;
 }
 
 export function namespaceNameFor(namespaceContext: any): string {
   return namespaceContext.namespaceName().NAMESPACE_ID().getText();
+}
+
+export function propertyNameForSharedProperty(sharedPropertyContext: any): ?any {
+  if (sharedPropertyContext.propertyName() && !sharedPropertyContext.propertyName().exception) {
+    return sharedPropertyContext.propertyName();
+  }
+
+  if (!sharedPropertyContext.propertyName() &&
+      sharedPropertyContext.sharedPropertyType() &&
+      !sharedPropertyContext.sharedPropertyType().exception) {
+    return sharedPropertyContext.sharedPropertyType();
+  }
+
+  return null;
 }
 
 export function getProperty(propertyContext: any): any {

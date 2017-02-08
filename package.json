@@ -7,7 +7,7 @@
   "repository": "https://github.com/bradbanister/metaed-js",
   "license": "private",
   "dependencies": {
-    "antlr4": "^4.5.3",
+    "antlr4": "4.6",
     "final-fs": "^1.6.1",
     "handlebars": "^4.0.6",
     "immutable": "^3.8.1",

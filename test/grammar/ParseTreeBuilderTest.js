@@ -14,10 +14,9 @@ describe('ParseTreeBuilder', () => {
     it('should parse correctly with valid MetaEd', () => {
       const inputText = [
         'Domain Entity TestEntity',
-        'documentation \'This is the first line',
-        '              \'This is more...',
+        'documentation "This is the first line\nThis is more..."',
         '    integer MyProperty',
-        '        documentation \'Integer documentation',
+        '        documentation "Integer documentation"',
         '        is part of identity\n',
       ].join('\n');
 
@@ -31,10 +30,9 @@ describe('ParseTreeBuilder', () => {
     it('should parse incorrectly with invalid MetaEd', () => {
       const inputText = [
         'Domain Entity TestEntity',
-        'documentation \'This is the first line',
-        '              \'This is more...',
+        'documentation "This is the first line\nThis is more..."',
         '    integer MyProperty xyz',
-        '        documentation \'Integer documentation',
+        '        documentation "Integer documentation"',
         '        is part of identity\n',
       ].join('\n');
 
@@ -49,7 +47,7 @@ describe('ParseTreeBuilder', () => {
       const builder = new MetaEdTextBuilder();
       const inputText =
         builder.withStartDomainEntity('TestEntity')
-        .withDocumentation('This is the first line', 'This is more...')
+        .withDocumentation('This is the first line\nThis is more...')
         .withIntegerIdentity('MyProperty', 'Integer documentation')
         .withEndDomainEntity()
         .toString();

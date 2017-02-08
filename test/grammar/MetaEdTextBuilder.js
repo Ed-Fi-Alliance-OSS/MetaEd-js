@@ -70,29 +70,26 @@ export default class MetaEdTextBuilder {
     return this;
   }
 
-  withDocumentation(...documentationLines: string[]): MetaEdTextBuilder {
-    const documentation = 'documentation';
-    this._addLine(documentation);
-    return this._withDocumentationLines(...documentationLines);
+  withDocumentation(documentation: string): MetaEdTextBuilder {
+    const documentationToken = 'documentation';
+    this._addLine(documentationToken);
+    return this._withDocumentationLine(documentation);
   }
 
-  withExtendedDocumentation(...documentationLines: string[]): MetaEdTextBuilder {
-    const extendedDocumentation = 'extended documentation';
-    this._addLine(extendedDocumentation);
-    return this._withDocumentationLines(...documentationLines);
+  withExtendedDocumentation(documentation: string): MetaEdTextBuilder {
+    const documentationToken = 'extended documentation';
+    this._addLine(documentationToken);
+    return this._withDocumentationLine(documentation);
   }
 
-  withUseCaseDocumentation(...documentationLines: string[]): MetaEdTextBuilder {
-    const useCaseDocumentation = 'use case documentation';
-    this._addLine(useCaseDocumentation);
-    return this._withDocumentationLines(...documentationLines);
+  withUseCaseDocumentation(documentation: string): MetaEdTextBuilder {
+    const documentationToken = 'use case documentation';
+    this._addLine(documentationToken);
+    return this._withDocumentationLine(documentation);
   }
 
-  _withDocumentationLines(...documentationLines: string[]): MetaEdTextBuilder {
-    const documentationPrefix = '\'';
-    for (const line of documentationLines) {
-      this._addLine(`${documentationPrefix}${line}`);
-    }
+  _withDocumentationLine(documentation: string): MetaEdTextBuilder {
+    this._addLine(`"${documentation}"`);
     return this;
   }
 
@@ -400,7 +397,12 @@ export default class MetaEdTextBuilder {
   }
 
   _withStartSharedProperty(propertyType: string, propertyIdentifier: string, named: string, metaEdId: ?string = null): MetaEdTextBuilder {
-    this._addLine(`shared ${propertyType} ${propertyIdentifier} named ${named}`);
+    if (named) {
+      this._addLine(`shared ${propertyType} ${propertyIdentifier} named ${named}`);
+    } else {
+      this._addLine(`shared ${propertyType} ${propertyIdentifier}`);
+    }
+
     this.withMetaEdId(metaEdId);
     this._increaseIndentation();
     return this;
@@ -776,7 +778,7 @@ export default class MetaEdTextBuilder {
   }
 
   withEnumerationItem(shortDescription: string, documentation: ?string = null, metaEdId: ?string = null): MetaEdTextBuilder {
-    this._withStartProperty('item', shortDescription, metaEdId);
+    this._withStartProperty('item', `"${shortDescription}"`, metaEdId);
     if (documentation != null) {
       this.withDocumentation(documentation);
     }

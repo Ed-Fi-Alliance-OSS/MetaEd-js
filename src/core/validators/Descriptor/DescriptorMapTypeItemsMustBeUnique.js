@@ -7,7 +7,7 @@ import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import type { ValidatableResult } from '../ValidationTypes';
 
 function getShortDescriptions(ruleContext: any) {
-  return ruleContext.withMapType().enumerationItem().map(x => x.shortDescription().ENUMERATION_ITEM_VALUE().getText());
+  return ruleContext.withMapType().enumerationItem().map(x => x.shortDescription().TEXT().getText());
 }
 
 export function validatable(ruleContext: any): ValidatableResult {
@@ -20,7 +20,7 @@ export function validatable(ruleContext: any): ValidatableResult {
 
   // eslint-disable-next-line no-restricted-syntax
   for (const enumerationItem of ruleContext.withMapType().enumerationItem()) {
-    invalidPath = exceptionPath(['shortDescription', 'ENUMERATION_ITEM_VALUE'], enumerationItem);
+    invalidPath = exceptionPath(['shortDescription', 'TEXT'], enumerationItem);
     if (invalidPath) return { invalidPath, validatorName };
   }
 

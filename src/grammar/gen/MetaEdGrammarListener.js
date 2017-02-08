@@ -1,4 +1,4 @@
-// Generated from C:/work/metaed/MetaEd/src/MetaEd/Grammar/Antlr/Language/MetaEdGrammar.g4 by ANTLR 4.5.3
+// Generated from C:\work\metaed\MetaEd\src\MetaEd\Grammar\Antlr\Language\MetaEdGrammar.g4 by ANTLR 4.6
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 
@@ -38,15 +38,6 @@ MetaEdGrammarListener.prototype.exitNamespaceType = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#namespaceProjectExtension.
-MetaEdGrammarListener.prototype.enterNamespaceProjectExtension = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#namespaceProjectExtension.
-MetaEdGrammarListener.prototype.exitNamespaceProjectExtension = function(ctx) {
-};
-
-
 // Enter a parse tree produced by MetaEdGrammar#topLevelEntity.
 MetaEdGrammarListener.prototype.enterTopLevelEntity = function(ctx) {
 };
@@ -65,12 +56,30 @@ MetaEdGrammarListener.prototype.exitDocumentation = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#documentationLine.
-MetaEdGrammarListener.prototype.enterDocumentationLine = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#enumerationItemDocumentation.
+MetaEdGrammarListener.prototype.enterEnumerationItemDocumentation = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#documentationLine.
-MetaEdGrammarListener.prototype.exitDocumentationLine = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#enumerationItemDocumentation.
+MetaEdGrammarListener.prototype.exitEnumerationItemDocumentation = function(ctx) {
+};
+
+
+// Enter a parse tree produced by MetaEdGrammar#mapTypeDocumentation.
+MetaEdGrammarListener.prototype.enterMapTypeDocumentation = function(ctx) {
+};
+
+// Exit a parse tree produced by MetaEdGrammar#mapTypeDocumentation.
+MetaEdGrammarListener.prototype.exitMapTypeDocumentation = function(ctx) {
+};
+
+
+// Enter a parse tree produced by MetaEdGrammar#propertyDocumentation.
+MetaEdGrammarListener.prototype.enterPropertyDocumentation = function(ctx) {
+};
+
+// Exit a parse tree produced by MetaEdGrammar#propertyDocumentation.
+MetaEdGrammarListener.prototype.exitPropertyDocumentation = function(ctx) {
 };
 
 

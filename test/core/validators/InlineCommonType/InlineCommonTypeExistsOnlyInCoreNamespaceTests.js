@@ -38,7 +38,7 @@ describe('InlineCommonTypeExistsOnlyInCoreNamespace', () => {
     const helper: ValidatorTestHelper = new ValidatorTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
-      .withBeginNamespace(extensionNamespace, 'projectExtension')
+      .withBeginNamespace(extensionNamespace, 'ProjectExtension')
       .withStartInlineCommonType(entityName)
       .withDocumentation('because documentation is required')
       .withBooleanProperty('Property2', 'because a property is required', true, false)

@@ -173,8 +173,16 @@ export default class ValidatorListener extends MetaEdGrammarListener {
     this._validateContext(context, MetaEdGrammar.RULE_useCaseDocumentation);
   }
 
-  enterDocumentationLine(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_documentationLine);
+  enterEnumerationItemDocumentation(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_enumerationItemDocumentation);
+  }
+
+  enterMapTypeItemDocumentation(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_mapTypeDocumentation);
+  }
+
+  enterPropertyDocumentation(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_propertyDocumentation);
   }
 
   enterDomain(context: any) {
@@ -340,10 +348,6 @@ export default class ValidatorListener extends MetaEdGrammarListener {
 
   enterNamespaceType(context: any) {
     this._validateContext(context, MetaEdGrammar.RULE_namespaceType);
-  }
-
-  enterNamespaceProjectExtension(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_namespaceProjectExtension);
   }
 
   enterOptional(context: any) {

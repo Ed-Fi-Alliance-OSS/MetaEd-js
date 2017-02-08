@@ -59,8 +59,8 @@ describe('DescriptorMapTypeItemsMustBeUniqueTests', () => {
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessages()[0].message.should.equal(
-        'Descriptor \'Descriptor1\' declares duplicate item \'this is a duplicate short description\'.');
+      helper.errorMessages()[0].message.should.include('Descriptor \'Descriptor1\' declares duplicate item');
+      helper.errorMessages()[0].message.should.include('this is a duplicate short description');
     });
   });
 
@@ -92,8 +92,9 @@ describe('DescriptorMapTypeItemsMustBeUniqueTests', () => {
     });
 
     it('should_have_validation_failure_message()', () => {
-      helper.errorMessages()[0].message.should.equal(
-        'Descriptor \'Descriptor1\' declares duplicate items \'this is duplicate short description 1\', \'this is duplicate short description 2\'.');
+      helper.errorMessages()[0].message.should.include('Descriptor \'Descriptor1\' declares duplicate items');
+      helper.errorMessages()[0].message.should.include('this is duplicate short description 1');
+      helper.errorMessages()[0].message.should.include('this is duplicate short description 2');
     });
   });
 

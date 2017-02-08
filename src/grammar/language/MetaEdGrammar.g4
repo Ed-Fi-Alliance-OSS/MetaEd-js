@@ -13,9 +13,7 @@ namespace
       END_NAMESPACE
     ;
 
-namespaceType : CORE | namespaceProjectExtension;
-
-namespaceProjectExtension : ID | NAMESPACE_EXTENSION;
+namespaceType : CORE | ID;
 
 topLevelEntity
     : abstractEntity
@@ -44,12 +42,19 @@ topLevelEntity
 // Documentation
 
 documentation
-    : DOCUMENTATION (DOCUMENTATION_START documentationLine)+
+    : DOCUMENTATION TEXT
     ;
 
-documentationLine
-    : DOCUMENTATION_LINE
-    | DOCUMENTATION_EOL
+enumerationItemDocumentation
+    : DOCUMENTATION TEXT
+    ;
+
+mapTypeDocumentation
+    : DOCUMENTATION TEXT
+    ;
+
+propertyDocumentation
+    : DOCUMENTATION (TEXT | INHERITED)
     ;
 
 // Abstract Entity
@@ -83,13 +88,13 @@ association
 
 firstDomainEntity
     :  ASSOCIATION_DOMAIN_ENTITY propertyName metaEdId?
-       documentation
+       propertyDocumentation
        withContext?
     ;
 
 secondDomainEntity
     :  ASSOCIATION_DOMAIN_ENTITY propertyName metaEdId?
-       documentation
+       propertyDocumentation
        withContext?
     ;
 
@@ -181,7 +186,7 @@ descriptor
 
 withMapType
     : (requiredMapType | optionalMapType)
-      documentation
+      mapTypeDocumentation
       enumerationItem+
     ;
 
@@ -203,7 +208,7 @@ domainItem
     ;
 
 footerDocumentation
-    : FOOTER_DOCUMENTATION (DOCUMENTATION_START documentationLine)+
+    : FOOTER_DOCUMENTATION TEXT
     ;
 
 //  DomainEntity
@@ -236,10 +241,10 @@ enumeration
 
 enumerationItem
     : ENUMERATION_ITEM shortDescription metaEdId?
-      documentation?
+      enumerationItemDocumentation?
       ;
 
-shortDescription : ENUMERATION_ITEM_VALUE ;
+shortDescription : TEXT ;
 
 // InlineCommonType
 inlineCommonType
@@ -259,11 +264,11 @@ interchange
       ;
 
 extendedDocumentation
-    : EXTENDED_DOCUMENTATION (DOCUMENTATION_START documentationLine)+
+    : EXTENDED_DOCUMENTATION TEXT
     ;
 
 useCaseDocumentation
-    : USE_CASE_DOCUMENTATION (DOCUMENTATION_START documentationLine)+
+    : USE_CASE_DOCUMENTATION TEXT
     ;
 
 interchangeComponent
@@ -337,7 +342,7 @@ optionalCollection : OPTIONAL_COLLECTION ;
 isQueryableOnly : IS_QUERYABLE_ONLY ;
 
 propertyComponents
-    : documentation
+    : propertyDocumentation
       propertyAnnotation
       withContext?
       isQueryableField?
@@ -389,7 +394,9 @@ durationProperty :DURATION propertyName metaEdId? propertyComponents;
 
 enumerationProperty : ENUMERATION propertyName metaEdId? propertyComponents ;
 
-includeProperty : (INCLUDE | includeExtensionOverride) propertyName metaEdId? propertyComponents ;
+includeProperty : (INCLUDE | includeExtensionOverride) propertyName metaEdId?
+            propertyComponents
+            mergePartOfReference* ;
 
 integerProperty : INTEGER propertyName metaEdId? propertyComponents minValue? maxValue? ;
 
@@ -400,16 +407,16 @@ referenceProperty : REFERENCE propertyName metaEdId?
             isWeakReference?
             mergePartOfReference* ;
 
-sharedDecimalProperty : SHARED_DECIMAL sharedPropertyType SHARED_NAMED propertyName metaEdId?
+sharedDecimalProperty : SHARED_DECIMAL sharedPropertyType (SHARED_NAMED propertyName)? metaEdId?
             propertyComponents ;
 
-sharedIntegerProperty : SHARED_INTEGER sharedPropertyType SHARED_NAMED propertyName metaEdId?
+sharedIntegerProperty : SHARED_INTEGER sharedPropertyType (SHARED_NAMED propertyName)? metaEdId?
             propertyComponents ;
 
-sharedShortProperty : SHARED_SHORT sharedPropertyType SHARED_NAMED propertyName metaEdId?
+sharedShortProperty : SHARED_SHORT sharedPropertyType (SHARED_NAMED propertyName)? metaEdId?
             propertyComponents ;
 
-sharedStringProperty : SHARED_STRING sharedPropertyType SHARED_NAMED propertyName metaEdId?
+sharedStringProperty : SHARED_STRING sharedPropertyType (SHARED_NAMED propertyName)? metaEdId?
             propertyComponents ;
 
 shortProperty : SHORT propertyName metaEdId?

@@ -26,7 +26,7 @@ describe('AssociationExtensionExistsOnlyInExtensionNamespaceTests', () => {
       .withBooleanProperty('Property1', 'because a property is required', true, false)
       .withEndAssociation()
       .withEndNamespace()
-      .withBeginNamespace('extension', 'projectExtension')
+      .withBeginNamespace('extension', 'ProjectExtension')
       .withStartAssociationExtension(entityName)
       .withBooleanProperty('Property2', 'because a property is required', true, false)
       .withEndAssociationExtension()

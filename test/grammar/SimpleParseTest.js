@@ -11,10 +11,9 @@ describe('SimpleParseTest', () => {
     it('should parse correctly', () => {
       const inputText = [
         'Domain Entity TestEntity',
-        'documentation \'This is the first line',
-        '              \'This is more...',
+        'documentation "This is the first line\nThis is more..."',
         '    integer MyProperty',
-        '        documentation \'Integer documentation',
+        '        documentation "Integer documentation"',
         '        is part of identity\n',
       ].join('\n');
 

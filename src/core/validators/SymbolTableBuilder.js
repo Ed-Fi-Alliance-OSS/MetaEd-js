@@ -1,9 +1,11 @@
 // @flow
 import R from 'ramda';
 import { MetaEdGrammarListener } from '../../grammar/gen/MetaEdGrammarListener';
+import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 import { addAction, addErrorMessage, setSymbolTable } from '../State';
 import type { State } from '../../core/State';
 import SymbolTable from './SymbolTable';
+import { propertyNameForSharedProperty } from './ValidationHelper';
 import SymbolTableEntityType from './SymbolTableEntityType';
 import { getFilenameAndLineNumber } from '../tasks/FileIndex';
 import type { ValidationMessage } from './ValidationTypes';
@@ -45,24 +47,37 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
 
   _addProperty(ruleContext: any) {
     // TODO: if assertion fails, add entry to new "indeterminate" state validation collection
-    if (ruleContext.propertyName().exception != null) return;
+    let propertyName: any = null;
 
-    const propertyName = ruleContext.propertyName().ID();
+    // TODO: this is a temporary hack, not looking for more encapsulated solution because this will be a part
+    // TODO: of the builder once we put builders ahead of validators and drop the symbol table completely
+    if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedDecimalProperty ||
+      ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedIntegerProperty ||
+      ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedShortProperty ||
+      ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedStringProperty) {
+      propertyName = propertyNameForSharedProperty(ruleContext);
+      if (propertyName == null) return;
+    } else {
+      if (!ruleContext.propertyName() || ruleContext.propertyName().exception) return;
+      propertyName = ruleContext.propertyName();
+    }
+
     const withContextContext = ruleContext.propertyComponents().withContext();
     const withContextPrefix = withContextContext == null ? '' : withContextContext.withContextName().ID().getText();
     if (this.currentPropertySymbolTable == null) {
       return;
     }
-    if (this.currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.getText(), ruleContext)) return;
+    if (this.currentPropertySymbolTable.tryAdd(withContextPrefix + propertyName.ID().getText(), ruleContext)) return;
 
-    const { filename, lineNumber } = getFilenameAndLineNumber(this.state.get('fileIndex'), propertyName.symbol.line);
+    const propertyNameToken = propertyName.ID();
+    const { filename, lineNumber } = getFilenameAndLineNumber(this.state.get('fileIndex'), propertyNameToken.symbol.line);
     const duplicateFailure: ValidationMessage = {
-      message: `Entity ${this.currentPropertySymbolTable.parentName()} has duplicate properties named ${propertyName.getText()}`,
-      characterPosition: propertyName.symbol.column,
-      concatenatedLineNumber: propertyName.symbol.line,
+      message: `Entity ${this.currentPropertySymbolTable.parentName()} has duplicate properties named ${propertyNameToken.getText()}`,
+      characterPosition: propertyNameToken.symbol.column,
+      concatenatedLineNumber: propertyNameToken.symbol.line,
       filename,
       lineNumber,
-      tokenText: propertyName.symbol.text,
+      tokenText: propertyNameToken.symbol.text,
     };
     this.state = R.pipe(addErrorMessage(duplicateFailure), addAction('SymbolTableBuilder'))(this.state);
   }

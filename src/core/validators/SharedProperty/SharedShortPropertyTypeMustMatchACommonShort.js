@@ -9,12 +9,8 @@ import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {
   const validatorName = 'SharedShortPropertyTypeMustMatchACommonShort';
-  let invalidPath: ?string[] = exceptionPath(['sharedPropertyType', 'ID'], ruleContext);
+  const invalidPath: ?string[] = exceptionPath(['sharedPropertyType', 'ID'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
-
-  invalidPath = exceptionPath(['propertyName', 'ID'], ruleContext);
-  if (invalidPath) return { invalidPath, validatorName };
-
   return { validatorName };
 }
 

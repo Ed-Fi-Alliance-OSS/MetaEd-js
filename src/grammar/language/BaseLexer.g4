@@ -31,7 +31,7 @@ DOMAIN_ITEM :               'domain item';
 DURATION :                  'duration';
 ELEMENT :                   'element';
 ENUMERATION :               'enumeration';
-ENUMERATION_ITEM :          'item' -> pushMode(ENUMERATION_ITEM_MODE);
+ENUMERATION_ITEM :          'item';
 IDENTITY_TEMPLATE :         'identity template';
 INCLUDE :                   'include';
 INCLUDE_EXTENSION :         'include extension';
@@ -76,10 +76,10 @@ WITH_OPTIONAL_MAP_TYPE : 'with optional map type';
 WITH_MAP_TYPE :         'with map type';
 
 DOCUMENTATION:              'documentation';
+INHERITED:                  'inherited';
 EXTENDED_DOCUMENTATION :    'extended documentation';
 USE_CASE_DOCUMENTATION :    'use case documentation';
 FOOTER_DOCUMENTATION :      'footer documentation';
-DOCUMENTATION_START :       ['] -> pushMode(DOCUMENTATION_MODE);
 
 fragment DIGIT :		[0-9];
 fragment UPPER_CASE :   [A-Z];
@@ -90,10 +90,10 @@ fragment INT_FRAG :     ([0] | [1-9] [0-9]*);
 
 ID : UPPER_CASE (ALPHANUMERIC)* ;
 NAMESPACE_ID : LOWER_CASE+;
-NAMESPACE_EXTENSION : MIXED_CASE+;
 
 UNSIGNED_INT : INT_FRAG;
 DECIMAL_VALUE : '-'? INT_FRAG '.' [0-9]* ;
+TEXT : '"' ( '""' | ~["] )* '"';
 
 fragment METAED_ID_START : '[';
 fragment METAED_ID_END : ']';
@@ -106,19 +106,3 @@ PERIOD : '.';
 LINE_COMMENT : '//' .*? '\r'? '\n' -> skip ; // Match "//" stuff '\n'
 
 WS : [ \t\n\r]+ -> skip ;
-
-fragment EOL : [\n\r]+;
-
-mode DOCUMENTATION_MODE;
-DOCUMENTATION_LINE : ~[\n\r]+ -> popMode;
-DOCUMENTATION_EOL : EOL -> popMode;
-
-mode ENUMERATION_ITEM_MODE;
-ENUMERATION_ITEM_VALUE
-    : (~[\r\[\]\n\t ]
-    | ~[\r\[\]\n\t ](~[\r\[\]\n])*(~[\r\[\]\n\t ]))
-    -> popMode
-    ;
-ENUMERATION_ITEM_WS : [ \t]+ -> skip ;
-
-ENUMERATION_ERROR_CHARACTER : . -> popMode ;
