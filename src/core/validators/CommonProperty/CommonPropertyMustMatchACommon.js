@@ -8,7 +8,7 @@ import { exceptionPath } from '../ValidationHelper';
 import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {
-  const validatorName = 'IncludePropertyMustMatchACommonType';
+  const validatorName = 'CommonPropertyMustMatchACommon';
   const invalidPath: ?string[] = exceptionPath(['propertyName', 'ID'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
 
@@ -17,9 +17,9 @@ export function validatable(ruleContext: any): ValidatableResult {
 
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const identifierToMatch = ruleContext.propertyName().ID().getText();
-  return symbolTable.identifierExists(SymbolTableEntityType.commonType(), identifierToMatch) ||
-    symbolTable.identifierExists(SymbolTableEntityType.inlineCommonType(), identifierToMatch) ||
-    symbolTable.identifierExists(SymbolTableEntityType.choiceType(), identifierToMatch);
+  return symbolTable.identifierExists(SymbolTableEntityType.common(), identifierToMatch) ||
+    symbolTable.identifierExists(SymbolTableEntityType.inlineCommon(), identifierToMatch) ||
+    symbolTable.identifierExists(SymbolTableEntityType.choice(), identifierToMatch);
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -29,4 +29,4 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
 
 const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
-export const includeRule = includeRuleBase(MetaEdGrammar.RULE_includeProperty, validationRule);
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_commonProperty, validationRule);

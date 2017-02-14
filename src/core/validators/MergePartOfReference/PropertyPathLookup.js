@@ -68,7 +68,8 @@ export const findReferencedProperty = R.curry(
         propertyContext = R.head(matchingPropertyContexts);
       }
 
-      if (propertyContext.ruleIndex === MetaEdGrammar.RULE_referenceProperty ||
+      if (propertyContext.ruleIndex === MetaEdGrammar.RULE_associationProperty ||
+        propertyContext.ruleIndex === MetaEdGrammar.RULE_domainEntityProperty ||
         propertyContext.ruleIndex === MetaEdGrammar.RULE_firstDomainEntity ||
         propertyContext.ruleIndex === MetaEdGrammar.RULE_secondDomainEntity) {
         entityName = propertyContext.propertyName().ID().getText();

@@ -15,17 +15,17 @@ import type { ValidatableResult } from '../ValidationTypes';
 const validIdentityRuleIndices: number[] = [
   MetaEdGrammar.RULE_abstractEntity,
   MetaEdGrammar.RULE_association,
-  MetaEdGrammar.RULE_commonType,
+  MetaEdGrammar.RULE_common,
   MetaEdGrammar.RULE_domainEntity,
-  MetaEdGrammar.RULE_inlineCommonType,
+  MetaEdGrammar.RULE_inlineCommon,
 ];
 
 const validIdentityTokenNames: string[] = [
   SymbolTableEntityType.abstractEntity(),
   SymbolTableEntityType.association(),
-  SymbolTableEntityType.commonType(),
+  SymbolTableEntityType.common(),
   SymbolTableEntityType.domainEntity(),
-  SymbolTableEntityType.inlineCommonType(),
+  SymbolTableEntityType.inlineCommon(),
 ];
 
 export function validatable(ruleContext: any): ValidatableResult {

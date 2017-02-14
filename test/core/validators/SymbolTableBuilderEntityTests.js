@@ -124,8 +124,8 @@ describe('SymbolTableBuilderEntityTests', () => {
       .withBeginNamespace(edfi)
       .withStartAssociation(entityName)
       .withDocumentation(doc)
-      .withDomainEntityProperty('DomainEntity1', 'documentation for domain entity 1')
-      .withDomainEntityProperty('DomainEntity2', 'documentation for domain entity 2')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'documentation for domain entity 1')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'documentation for domain entity 2')
       .withEndAssociation()
       .withEndNamespace()
       .toString();
@@ -144,14 +144,14 @@ describe('SymbolTableBuilderEntityTests', () => {
       .withBeginNamespace(edfi)
       .withStartAssociation(entityName)
       .withDocumentation(doc)
-      .withDomainEntityProperty('DomainEntity1', 'documentation for domain entity 1')
-      .withDomainEntityProperty('DomainEntity2', 'documentation for domain entity 2')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'documentation for domain entity 1')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'documentation for domain entity 2')
       .withEndAssociation()
 
       .withStartAssociation(entityName)
       .withDocumentation(doc)
-      .withDomainEntityProperty('DomainEntity3', 'documentation for domain entity 3')
-      .withDomainEntityProperty('DomainEntity4', 'documentation for domain entity 4')
+      .withAssociationDomainEntityProperty('DomainEntity3', 'documentation for domain entity 3')
+      .withAssociationDomainEntityProperty('DomainEntity4', 'documentation for domain entity 4')
       .withEndAssociation()
       .withEndNamespace()
       .toString();
@@ -257,16 +257,16 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
   });
 
-  describe('When_loading_choice_type', () => {
-    const symbolTableKey = 'Choice Common Type';
+  describe('When_loading_choice', () => {
+    const symbolTableKey = 'Choice';
     const helper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartChoiceType(entityName)
+      .withStartChoice(entityName)
       .withDocumentation(doc)
       .withBooleanProperty(propertyName, prop, true, false)
-      .withEndChoiceType()
+      .withEndChoice()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -277,20 +277,20 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
   });
 
-  describe('When_loading_duplicate_choice_type', () => {
+  describe('When_loading_duplicate_choice', () => {
     const helper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartChoiceType(entityName)
+      .withStartChoice(entityName)
       .withDocumentation(doc)
       .withBooleanProperty(propertyName, prop, true, false)
-      .withEndChoiceType()
+      .withEndChoice()
 
-      .withStartChoiceType(entityName)
+      .withStartChoice(entityName)
       .withDocumentation(doc)
       .withBooleanProperty(propertyName, prop, true, false)
-      .withEndChoiceType()
+      .withEndChoice()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -304,17 +304,17 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
   });
 
-  describe('When_loading_common_decimal', () => {
-    const symbolTableKey = 'Common Decimal';
+  describe('When_loading_shared_decimal', () => {
+    const symbolTableKey = 'Shared Decimal';
     const helper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartCommonDecimal(entityName)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(doc)
       .withTotalDigits(10)
       .withDecimalPlaces(5)
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -330,17 +330,17 @@ describe('SymbolTableBuilderEntityTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartCommonDecimal(entityName)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(doc)
       .withTotalDigits(10)
       .withDecimalPlaces(5)
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
 
-      .withStartCommonDecimal(entityName)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(doc)
       .withTotalDigits(10)
       .withDecimalPlaces(5)
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -354,17 +354,17 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
   });
 
-  describe('When_loading_common_integer', () => {
-    const symbolTableKey = 'Common Integer';
+  describe('When_loading_shared_integer', () => {
+    const symbolTableKey = 'Shared Integer';
     const helper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartCommonInteger(entityName)
+      .withStartSharedInteger(entityName)
       .withDocumentation(doc)
       .withMinValue(0)
       .withMaxValue(100)
-      .withEndCommonInteger()
+      .withEndSharedInteger()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -375,22 +375,22 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
   });
 
-  describe('When_loading_duplicate_common_integer', () => {
+  describe('When_loading_duplicate_shared_integer', () => {
     const helper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartCommonInteger(entityName)
+      .withStartSharedInteger(entityName)
       .withDocumentation(doc)
       .withMinValue(0)
       .withMaxValue(100)
-      .withEndCommonInteger()
+      .withEndSharedInteger()
 
-      .withStartCommonInteger(entityName)
+      .withStartSharedInteger(entityName)
       .withDocumentation(doc)
       .withMinValue(0)
       .withMaxValue(100)
-      .withEndCommonInteger()
+      .withEndSharedInteger()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -404,17 +404,17 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
   });
 
-  describe('When_loading_common_short', () => {
-    const symbolTableKey = 'Common Short';
+  describe('When_loading_shared_short', () => {
+    const symbolTableKey = 'Shared Short';
     const helper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartCommonShort(entityName)
+      .withStartSharedShort(entityName)
       .withDocumentation(doc)
       .withMinValue(0)
       .withMaxValue(100)
-      .withEndCommonShort()
+      .withEndSharedShort()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -425,22 +425,22 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
   });
 
-  describe('When_loading_duplicate_common_short', () => {
+  describe('When_loading_duplicate_shared_short', () => {
     const helper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartCommonShort(entityName)
+      .withStartSharedShort(entityName)
       .withDocumentation(doc)
       .withMinValue(0)
       .withMaxValue(100)
-      .withEndCommonShort()
+      .withEndSharedShort()
 
-      .withStartCommonShort(entityName)
+      .withStartSharedShort(entityName)
       .withDocumentation(doc)
       .withMinValue(0)
       .withMaxValue(100)
-      .withEndCommonShort()
+      .withEndSharedShort()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -454,17 +454,17 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
   });
 
-  describe('When_loading_common_string', () => {
-    const symbolTableKey = 'Common String';
+  describe('When_loading_shared_string', () => {
+    const symbolTableKey = 'Shared String';
     const helper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartCommonString(entityName)
+      .withStartSharedString(entityName)
       .withDocumentation(doc)
       .withMinLength(0)
       .withMaxLength(100)
-      .withEndCommonString()
+      .withEndSharedString()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -475,22 +475,22 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
   });
 
-  describe('When_loading_duplicate_common_string', () => {
+  describe('When_loading_duplicate_shared_string', () => {
     const helper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartCommonString(entityName)
+      .withStartSharedString(entityName)
       .withDocumentation(doc)
       .withMinLength(0)
       .withMaxLength(100)
-      .withEndCommonString()
+      .withEndSharedString()
 
-      .withStartCommonString(entityName)
+      .withStartSharedString(entityName)
       .withDocumentation(doc)
       .withMinLength(0)
       .withMaxLength(100)
-      .withEndCommonString()
+      .withEndSharedString()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -504,16 +504,16 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
   });
 
-  describe('When_loading_common_type', () => {
-    const symbolTableKey = 'Common Type';
+  describe('When_loading_common', () => {
+    const symbolTableKey = 'Common';
     const helper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartCommonType(entityName)
+      .withStartCommon(entityName)
       .withDocumentation(doc)
       .withBooleanProperty(propertyName, prop, true, false)
-      .withEndCommonType()
+      .withEndCommon()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -524,20 +524,20 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
   });
 
-  describe('When_loading_duplicate_common_type', () => {
+  describe('When_loading_duplicate_common', () => {
     const helper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartCommonType(entityName)
+      .withStartCommon(entityName)
       .withDocumentation(doc)
       .withBooleanProperty(propertyName, prop, true, false)
-      .withEndCommonType()
+      .withEndCommon()
 
-      .withStartCommonType(entityName)
+      .withStartCommon(entityName)
       .withDocumentation(doc)
       .withBooleanProperty(propertyName, prop, true, false)
-      .withEndCommonType()
+      .withEndCommon()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -736,16 +736,16 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
   });
 
-  describe('When_loading_inline_common_type', () => {
-    const symbolTableKey = 'Inline Common Type';
+  describe('When_loading_inline_common', () => {
+    const symbolTableKey = 'Inline Common';
     const helper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartInlineCommonType(entityName)
+      .withStartInlineCommon(entityName)
       .withDocumentation(doc)
       .withBooleanProperty(propertyName, prop, true, false)
-      .withEndInlineCommonType()
+      .withEndInlineCommon()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -756,20 +756,20 @@ describe('SymbolTableBuilderEntityTests', () => {
     });
   });
 
-  describe('When_loading_duplicate_inline_common_type', () => {
+  describe('When_loading_duplicate_inline_common', () => {
     const helper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(edfi)
-      .withStartInlineCommonType(entityName)
+      .withStartInlineCommon(entityName)
       .withDocumentation(doc)
       .withBooleanProperty(propertyName, prop, true, false)
-      .withEndInlineCommonType()
+      .withEndInlineCommon()
 
-      .withStartInlineCommonType(entityName)
+      .withStartInlineCommon(entityName)
       .withDocumentation(doc)
       .withBooleanProperty(propertyName, prop, true, false)
-      .withEndInlineCommonType()
+      .withEndInlineCommon()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText);
@@ -791,7 +791,7 @@ describe('SymbolTableBuilderEntityTests', () => {
       .withBeginNamespace(edfi)
       .withStartInterchange(entityName)
       .withDocumentation(doc)
-      .withElement(propertyName)
+      .withDomainEntityElement(propertyName)
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -810,12 +810,12 @@ describe('SymbolTableBuilderEntityTests', () => {
       .withBeginNamespace(edfi)
       .withStartInterchange(entityName)
       .withDocumentation(doc)
-      .withElement(propertyName)
+      .withDomainEntityElement(propertyName)
       .withEndInterchange()
 
       .withStartInterchange(entityName)
       .withDocumentation(doc)
-      .withElement(propertyName)
+      .withDomainEntityElement(propertyName)
       .withEndInterchange()
       .withEndNamespace()
       .toString();

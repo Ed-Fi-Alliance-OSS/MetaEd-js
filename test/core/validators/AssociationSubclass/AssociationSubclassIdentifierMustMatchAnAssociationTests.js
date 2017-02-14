@@ -19,8 +19,8 @@ describe('AssociationSubclassIdentifierMustMatchAnAssociationTests', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty('Property1', 'doc', true, false)
       .withEndAssociation()
 

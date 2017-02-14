@@ -107,7 +107,7 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
     });
   });
 
-  describe('When_domain_entity_extension_has_duplicate_include_property', () => {
+  describe('When_domain_entity_extension_has_duplicate_common_property', () => {
     const entityName: string = 'MyIdentifier';
     const duplicatePropertyName: string = 'Property1';
     const helper: ValidatorTestHelper = new ValidatorTestHelper();
@@ -116,11 +116,11 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
       .withBeginNamespace('edfi')
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withIncludeProperty(duplicatePropertyName, 'doc', true, false)
+      .withCommonProperty(duplicatePropertyName, 'doc', true, false)
       .withEndDomainEntity()
 
       .withStartDomainEntityExtension(entityName)
-      .withIncludeProperty(duplicatePropertyName, 'doc', true, false)
+      .withCommonProperty(duplicatePropertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
       .toString();
@@ -141,11 +141,11 @@ describe('DomainEntityExtensionMustNotDuplicateDomainEntityPropertyName', () => 
       .withBeginNamespace('edfi')
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withIncludeProperty(duplicatePropertyName, 'doc', true, false)
+      .withCommonProperty(duplicatePropertyName, 'doc', true, false)
       .withEndDomainEntity()
 
       .withStartDomainEntityExtension(entityName)
-      .withIncludeExtensionOverrideProperty(duplicatePropertyName, 'doc', true, false)
+      .withCommonExtensionOverrideProperty(duplicatePropertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
       .toString();

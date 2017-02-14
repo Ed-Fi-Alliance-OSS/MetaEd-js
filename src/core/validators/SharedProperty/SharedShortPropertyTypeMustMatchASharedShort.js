@@ -8,12 +8,12 @@ import { exceptionPath } from '../ValidationHelper';
 import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {
-  const validatorName = 'SharedShortPropertyTypeMustMatchACommonShort';
+  const validatorName = 'SharedShortPropertyTypeMustMatchASharedShort';
   const invalidPath: ?string[] = exceptionPath(['sharedPropertyType', 'ID'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
   return { validatorName };
 }
 
-const validationRule = errorRuleBase(validatable, validForShared(SymbolTableEntityType.commonShort()), failureMessageForShared('common short'));
+const validationRule = errorRuleBase(validatable, validForShared(SymbolTableEntityType.sharedShort()), failureMessageForShared('common short'));
 // eslint-disable-next-line import/prefer-default-export
 export const includeRule = includeRuleBase(MetaEdGrammar.RULE_sharedShortProperty, validationRule);

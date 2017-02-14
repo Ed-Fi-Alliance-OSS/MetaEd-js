@@ -16,13 +16,13 @@ import { includeRule as AssociationSubclassIdentifierMustMatchAnAssociation } fr
 import { includeRule as AssociationSubclassIdentityRenameMustExistNoMoreThanOnce } from './AssociationSubclass/AssociationSubclassIdentityRenameMustExistNoMoreThanOnce';
 import { includeRule as AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClass } from './AssociationSubclass/AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClass';
 import { includeRule as AssociationSubclassMustNotDuplicateAssociationPropertyName } from './AssociationSubclass/AssociationSubclassMustNotDuplicateAssociationPropertyName';
-import { includeRule as CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits } from './CommonSimpleType/CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits';
-import { includeRule as CommonDecimalMinValueMustNotBeGreaterThanMaxValue } from './CommonSimpleType/CommonDecimalMinValueMustNotBeGreaterThanMaxValue';
-import { includeRule as CommonIntegerMinValueMustNotBeGreaterThanMaxValue } from './CommonSimpleType/CommonIntegerMinValueMustNotBeGreaterThanMaxValue';
-import { includeRule as CommonShortMinValueMustNotBeGreaterThanMaxValue } from './CommonSimpleType/CommonShortMinValueMustNotBeGreaterThanMaxValue';
-import { includeRule as CommonStringMinLengthMustNotBeGreaterThanMaxLength } from './CommonSimpleType/CommonStringMinLengthMustNotBeGreaterThanMaxLength';
-import { includeRule as CommonTypeExtensionIdentifierMustMatchACommonType } from './CommonTypeExtension/CommonTypeExtensionIdentifierMustMatchACommonType';
-import { includeRule as CommonTypeExtensionMustNotDuplicateCommonTypePropertyName } from './CommonTypeExtension/CommonTypeExtensionMustNotDuplicateCommonTypePropertyName';
+import { includeRule as CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits } from './SharedSimpleType/SharedDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits';
+import { includeRule as CommonDecimalMinValueMustNotBeGreaterThanMaxValue } from './SharedSimpleType/SharedDecimalMinValueMustNotBeGreaterThanMaxValue';
+import { includeRule as CommonIntegerMinValueMustNotBeGreaterThanMaxValue } from './SharedSimpleType/SharedIntegerMinValueMustNotBeGreaterThanMaxValue';
+import { includeRule as CommonShortMinValueMustNotBeGreaterThanMaxValue } from './SharedSimpleType/SharedShortMinValueMustNotBeGreaterThanMaxValue';
+import { includeRule as CommonStringMinLengthMustNotBeGreaterThanMaxLength } from './SharedSimpleType/SharedStringMinLengthMustNotBeGreaterThanMaxLength';
+import { includeRule as CommonTypeExtensionIdentifierMustMatchACommonType } from './CommonExtension/CommonExtensionIdentifierMustMatchACommonType';
+import { includeRule as CommonTypeExtensionMustNotDuplicateCommonTypePropertyName } from './CommonExtension/CommonExtensionMustNotDuplicateCommonTypePropertyName';
 import { includeRule as MostEntitiesCannotHaveSameName } from './CrossEntity/MostEntitiesCannotHaveSameName';
 import { includeRule as DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits } from './DecimalProperty/DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits';
 import { includeRule as DecimalPropertyMinValueMustNotBeGreaterThanMaxValue } from './DecimalProperty/DecimalPropertyMinValueMustNotBeGreaterThanMaxValue';
@@ -45,19 +45,19 @@ import { includeRule as EnumerationItemsMustBeUnique } from './Enumeration/Enume
 import { includeRule as EnumerationPropertyMustMatchAnEnumeration } from './EnumerationProperty/EnumerationPropertyMustMatchAnEnumeration';
 import { includeRule as IdentityExistsOnlyIfIdentityIsAllowed } from './Identity/IdentityExistsOnlyIfIdentityIsAllowed';
 import { includeRule as IdentityRenameExistsOnlyIfIdentityRenameIsAllowed } from './IdentityRename/IdentityRenameExistsOnlyIfIdentityRenameIsAllowed';
-import { includeRule as IncludePropertyMustMatchACommonType } from './IncludeProperty/IncludePropertyMustMatchACommonType';
-import { includeRule as IncludePropertyMustNotContainIdentity } from './IncludeProperty/IncludePropertyMustNotContainIdentity';
-import { includeRule as IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension } from './IncludeProperty/IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension';
-import { includeRule as IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality } from './IncludeProperty/IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality';
-import { includeRule as InlineCommonTypeExistsOnlyInCoreNamespace } from './InlineCommonType/InlineCommonTypeExistsOnlyInCoreNamespace';
+import { includeRule as CommonPropertyMustMatchACommon } from './CommonProperty/CommonPropertyMustMatchACommon';
+import { includeRule as CommonPropertyMustNotContainIdentity } from './CommonProperty/CommonPropertyMustNotContainIdentity';
+import { includeRule as CommonPropertyWithExtensionOverrideMustReferenceCommonTypeExtension } from './CommonProperty/CommonPropertyWithExtensionOverrideMustReferenceCommonTypeExtension';
+import { includeRule as CommonPropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality } from './CommonProperty/CommonPropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality';
+import { includeRule as InlineCommonExistsOnlyInCoreNamespace } from './InlineCommon/InlineCommonExistsOnlyInCoreNamespace';
 import { includeRule as IntegerPropertyMinValueMustNotBeGreaterThanMaxValue } from './IntegerProperty/IntegerPropertyMinValueMustNotBeGreaterThanMaxValue';
 import { includeRule as IntegerPropertyMustNotMatchACommonSimpleType } from './IntegerProperty/IntegerPropertyMustNotMatchACommonSimpleType';
 import { includeRule as InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass } from './Interchange/InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass';
-import { includeRule as InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass } from './Interchange/InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass';
-import { includeRule as InterchangeMustNotDuplicateIdentityTemplateName } from './Interchange/InterchangeMustNotDuplicateIdentityTemplateName';
+import { includeRule as InterchangeIdentityMustMatchADomainEntityOrAssociationOrSubclass } from './Interchange/InterchangeIdentityMustMatchADomainEntityOrAssociationOrSubclass';
+import { includeRule as InterchangeMustNotDuplicateIdentityName } from './Interchange/InterchangeMustNotDuplicateIdentityName';
 import { includeRule as InterchangeMustNotDuplicateInterchangeElementName } from './Interchange/InterchangeMustNotDuplicateInterchangeElementName';
 import { includeRule as InterchangeExtensionIdentifierMustMatchAnInterchange } from './InterchangeExtension/InterchangeExtensionIdentifierMustMatchAnInterchange';
-import { includeRule as InterchangeExtensionMustNotDuplicateIdentityTemplateName } from './InterchangeExtension/InterchangeExtensionMustNotDuplicateIdentityTemplateName';
+import { includeRule as InterchangeExtensionMustNotDuplicateIdentityName } from './InterchangeExtension/InterchangeExtensionMustNotDuplicateIdentityName';
 import { includeRule as InterchangeExtensionMustNotDuplicateInterchangeElementName } from './InterchangeExtension/InterchangeExtensionMustNotDuplicateInterchangeElementName';
 import { includeRule as MergePartOfReferenceExistsOnlyInCoreNamespace } from './MergePartOfReference/MergePartOfReferenceExistsOnlyInCoreNamespace';
 import { includeRule as MergePropertyAndTargetPropertyMustMatch } from './MergePartOfReference/MergePropertyAndTargetPropertyMustMatch';
@@ -69,10 +69,10 @@ import { includeRule as MetaEdIdIsRequiredForItems } from './MetaEdId/MetaEdIdIs
 import { includeRule as MetaEdIdIsRequiredForProperties } from './MetaEdId/MetaEdIdIsRequiredForProperties';
 import { includeRule as MustNotDuplicateMetaEdId } from './MetaEdId/MustNotDuplicateMetaEdId';
 import { includeRule as ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract } from './ReferenceProperty/ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract';
-import { includeRule as SharedDecimalPropertyTypeMustMatchACommonDecimal } from './SharedProperty/SharedDecimalPropertyTypeMustMatchACommonDecimal';
-import { includeRule as SharedIntegerPropertyTypeMustMatchACommonInteger } from './SharedProperty/SharedIntegerPropertyTypeMustMatchACommonInteger';
-import { includeRule as SharedShortPropertyTypeMustMatchACommonShort } from './SharedProperty/SharedShortPropertyTypeMustMatchACommonShort';
-import { includeRule as SharedStringPropertyTypeMustMatchACommonString } from './SharedProperty/SharedStringPropertyTypeMustMatchACommonString';
+import { includeRule as SharedDecimalPropertyTypeMustMatchASharedDecimal } from './SharedProperty/SharedDecimalPropertyTypeMustMatchASharedDecimal';
+import { includeRule as SharedIntegerPropertyTypeMustMatchASharedInteger } from './SharedProperty/SharedIntegerPropertyTypeMustMatchASharedInteger';
+import { includeRule as SharedShortPropertyTypeMustMatchASharedShort } from './SharedProperty/SharedShortPropertyTypeMustMatchASharedShort';
+import { includeRule as SharedStringPropertyTypeMustMatchASharedString } from './SharedProperty/SharedStringPropertyTypeMustMatchASharedString';
 import { includeRule as ShortPropertyMinValueMustNotBeGreaterThanMaxValue } from './ShortProperty/ShortPropertyMinValueMustNotBeGreaterThanMaxValue';
 import { includeRule as ShortPropertyMustNotMatchACommonSimpleType } from './ShortProperty/ShortPropertyMustNotMatchACommonSimpleType';
 import { includeRule as StringPropertyMinLengthMustNotBeGreaterThanMaxLength } from './StringProperty/StringPropertyMinLengthMustNotBeGreaterThanMaxLength';
@@ -124,19 +124,19 @@ export default function allValidationRules(): ValidationRuleRepository {
     EnumerationPropertyMustMatchAnEnumeration,
     IdentityExistsOnlyIfIdentityIsAllowed,
     IdentityRenameExistsOnlyIfIdentityRenameIsAllowed,
-    IncludePropertyMustMatchACommonType,
-    IncludePropertyMustNotContainIdentity,
-    IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension,
-    IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality,
-    InlineCommonTypeExistsOnlyInCoreNamespace,
+    CommonPropertyMustMatchACommon,
+    CommonPropertyMustNotContainIdentity,
+    CommonPropertyWithExtensionOverrideMustReferenceCommonTypeExtension,
+    CommonPropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality,
+    InlineCommonExistsOnlyInCoreNamespace,
     IntegerPropertyMinValueMustNotBeGreaterThanMaxValue,
     IntegerPropertyMustNotMatchACommonSimpleType,
     InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass,
-    InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass,
-    InterchangeMustNotDuplicateIdentityTemplateName,
+    InterchangeIdentityMustMatchADomainEntityOrAssociationOrSubclass,
+    InterchangeMustNotDuplicateIdentityName,
     InterchangeMustNotDuplicateInterchangeElementName,
     InterchangeExtensionIdentifierMustMatchAnInterchange,
-    InterchangeExtensionMustNotDuplicateIdentityTemplateName,
+    InterchangeExtensionMustNotDuplicateIdentityName,
     InterchangeExtensionMustNotDuplicateInterchangeElementName,
     MergePartOfReferenceExistsOnlyInCoreNamespace,
     MergePropertyAndTargetPropertyMustMatch,
@@ -148,10 +148,10 @@ export default function allValidationRules(): ValidationRuleRepository {
     MetaEdIdIsRequiredForProperties,
     MustNotDuplicateMetaEdId,
     ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract,
-    SharedDecimalPropertyTypeMustMatchACommonDecimal,
-    SharedIntegerPropertyTypeMustMatchACommonInteger,
-    SharedShortPropertyTypeMustMatchACommonShort,
-    SharedStringPropertyTypeMustMatchACommonString,
+    SharedDecimalPropertyTypeMustMatchASharedDecimal,
+    SharedIntegerPropertyTypeMustMatchASharedInteger,
+    SharedShortPropertyTypeMustMatchASharedShort,
+    SharedStringPropertyTypeMustMatchASharedString,
     ShortPropertyMinValueMustNotBeGreaterThanMaxValue,
     ShortPropertyMustNotMatchACommonSimpleType,
     StringPropertyMinLengthMustNotBeGreaterThanMaxLength,

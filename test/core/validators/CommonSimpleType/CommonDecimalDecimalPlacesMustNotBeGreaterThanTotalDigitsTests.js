@@ -2,7 +2,7 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/CommonSimpleType/CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits';
+import { includeRule, validatable } from '../../../../src/core/validators/SharedSimpleType/SharedDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -19,11 +19,11 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
 
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonDecimal('EntityForTest')
+      .withStartSharedDecimal('EntityForTest')
       .withDocumentation('doc')
       .withTotalDigits(totalDigits)
       .withDecimalPlaces(decimalPlaces)
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -45,11 +45,11 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
 
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonDecimal(entityName)
+      .withStartSharedDecimal(entityName)
       .withDocumentation('doc')
       .withTotalDigits(totalDigits)
       .withDecimalPlaces(decimalPlaces)
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
       .withEndNamespace()
       .toString();
 
@@ -76,11 +76,11 @@ describe('CommonDecimalDecimalPlacesMustNotBeGreaterThanTotalDigitsTests', () =>
 
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonDecimal(_entityName)
+      .withStartSharedDecimal(_entityName)
       .withDocumentation('doc')
       .withTotalDigits(totalDigits)
       .withDecimalPlaces(decimalPlaces)
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
       .withEndNamespace()
       .toString();
 

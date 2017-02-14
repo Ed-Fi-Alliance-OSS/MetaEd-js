@@ -53,6 +53,10 @@ export default class ValidatorListener extends MetaEdGrammarListener {
     this._validateContext(context, MetaEdGrammar.RULE_associationSubclass);
   }
 
+  enterAssociationProperty(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_associationProperty);
+  }
+
   enterBaseKeyName(context: any) {
     this._validateContext(context, MetaEdGrammar.RULE_baseKeyName);
   }
@@ -73,56 +77,56 @@ export default class ValidatorListener extends MetaEdGrammarListener {
     this._validateContext(context, MetaEdGrammar.RULE_choiceName);
   }
 
-  enterChoiceType(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_choiceType);
+  enterChoice(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_choice);
   }
 
   enterCollection(context: any) {
     this._validateContext(context, MetaEdGrammar.RULE_collection);
   }
 
-  enterCommonDecimalName(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_commonDecimalName);
+  enterSharedDecimalName(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_sharedDecimalName);
   }
 
-  enterCommonDecimal(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_commonDecimal);
+  enterSharedDecimal(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_sharedDecimal);
   }
 
-  enterCommonIntegerName(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_commonIntegerName);
+  enterSharedIntegerName(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_sharedIntegerName);
   }
 
-  enterCommonInteger(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_commonInteger);
+  enterSharedInteger(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_sharedInteger);
   }
 
-  enterCommonShortName(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_commonShortName);
+  enterSharedShortName(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_sharedShortName);
   }
 
-  enterCommonShort(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_commonShort);
+  enterSharedShort(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_sharedShort);
   }
 
-  enterCommonStringName(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_commonStringName);
+  enterSharedStringName(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_sharedStringName);
   }
 
-  enterCommonString(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_commonString);
+  enterSharedString(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_sharedString);
   }
 
   enterCommonName(context: any) {
     this._validateContext(context, MetaEdGrammar.RULE_commonName);
   }
 
-  enterCommonType(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_commonType);
+  enterCommon(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_common);
   }
 
-  enterCommonTypeExtension(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_commonTypeExtension);
+  enterCommonExtension(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_commonExtension);
   }
 
   enterCurrencyProperty(context: any) {
@@ -155,6 +159,10 @@ export default class ValidatorListener extends MetaEdGrammarListener {
 
   enterDescriptorProperty(context: any) {
     this._validateContext(context, MetaEdGrammar.RULE_descriptorProperty);
+  }
+
+  enterDomainEntityProperty(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_domainEntityProperty);
   }
 
   enterDocumentation(context: any) {
@@ -241,20 +249,24 @@ export default class ValidatorListener extends MetaEdGrammarListener {
     this._validateContext(context, MetaEdGrammar.RULE_firstDomainEntity);
   }
 
-  enterIncludeProperty(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_includeProperty);
+  enterCommonProperty(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_commonProperty);
   }
 
   enterIncludeExtensionOverride(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_includeExtensionOverride);
+    this._validateContext(context, MetaEdGrammar.RULE_commonExtensionOverride);
   }
 
   enterInlineCommonName(context: any) {
     this._validateContext(context, MetaEdGrammar.RULE_inlineCommonName);
   }
 
-  enterInlineCommonType(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_inlineCommonType);
+  enterInlineCommon(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_inlineCommon);
+  }
+
+  enterInlineCommonProperty(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_inlineCommonProperty);
   }
 
   // eslint-disable-next-line camelcase
@@ -286,8 +298,8 @@ export default class ValidatorListener extends MetaEdGrammarListener {
     this._validateContext(context, MetaEdGrammar.RULE_interchangeExtensionComponent);
   }
 
-  enterInterchangeIdentityTemplate(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_interchangeIdentityTemplate);
+  enterInterchangeIdentity(context: any) {
+    this._validateContext(context, MetaEdGrammar.RULE_interchangeIdentity);
   }
 
   enterInterchangeName(context: any) {
@@ -396,10 +408,6 @@ export default class ValidatorListener extends MetaEdGrammarListener {
 
   enterPropertyPath(context: any) {
     this._validateContext(context, MetaEdGrammar.RULE_propertyPath);
-  }
-
-  enterReferenceProperty(context: any) {
-    this._validateContext(context, MetaEdGrammar.RULE_referenceProperty);
   }
 
   enterRequired(context: any) {

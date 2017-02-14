@@ -4,7 +4,7 @@ import { Record, List } from 'immutable';
 import grammarInstance from '../../grammar/MetaEdGrammarInstance';
 import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 import type SymbolTable from './SymbolTable';
-import { topLevelEntityTypes, commonSimpleEntityTypes } from './SymbolTableEntityType';
+import { topLevelEntityTypes, sharedSimpleEntityTypes } from './SymbolTableEntityType';
 import { topLevelEntityRules } from './RuleInformation';
 import { propertyRules } from './PropertyInformation';
 
@@ -50,17 +50,20 @@ export function propertyNameForSharedProperty(sharedPropertyContext: any): ?any 
 }
 
 export function getProperty(propertyContext: any): any {
+  if (propertyContext.associationProperty()) return propertyContext.associationProperty();
   if (propertyContext.booleanProperty()) return propertyContext.booleanProperty();
+  if (propertyContext.choiceProperty()) return propertyContext.choiceProperty();
+  if (propertyContext.commonProperty()) return propertyContext.commonProperty();
   if (propertyContext.currencyProperty()) return propertyContext.currencyProperty();
   if (propertyContext.dateProperty()) return propertyContext.dateProperty();
   if (propertyContext.decimalProperty()) return propertyContext.decimalProperty();
   if (propertyContext.descriptorProperty()) return propertyContext.descriptorProperty();
+  if (propertyContext.domainEntityProperty()) return propertyContext.domainEntityProperty();
   if (propertyContext.durationProperty()) return propertyContext.durationProperty();
   if (propertyContext.enumerationProperty()) return propertyContext.enumerationProperty();
-  if (propertyContext.includeProperty()) return propertyContext.includeProperty();
+  if (propertyContext.inlineCommonProperty()) return propertyContext.inlineCommonProperty();
   if (propertyContext.integerProperty()) return propertyContext.integerProperty();
   if (propertyContext.percentProperty()) return propertyContext.percentProperty();
-  if (propertyContext.referenceProperty()) return propertyContext.referenceProperty();
   if (propertyContext.sharedDecimalProperty()) return propertyContext.sharedDecimalProperty();
   if (propertyContext.sharedIntegerProperty()) return propertyContext.sharedIntegerProperty();
   if (propertyContext.sharedShortProperty()) return propertyContext.sharedShortProperty();
@@ -76,7 +79,7 @@ const inSymbolTable = R.curry(
   (entityTypes: string[], identifierToMatch: string, symbolTable: SymbolTable): boolean =>
     R.any((entityType: string) => symbolTable.identifierExists(entityType, identifierToMatch), entityTypes));
 
-const commonSimpleTypeExists = inSymbolTable(commonSimpleEntityTypes);
+const commonSimpleTypeExists = inSymbolTable(sharedSimpleEntityTypes);
 const topLevelEntityExists = inSymbolTable(topLevelEntityTypes);
 
 export function contextMustMatchATopLevelEntity(ruleContext: any, symbolTable: SymbolTable): boolean {
@@ -142,14 +145,14 @@ export function entityIdentifierExceptionPath(ruleContext: any): ?string[] {
 
     return exceptionPath(['baseName', 'ID'], ruleContext);
   }
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_choiceType) return exceptionPath(['CHOICE_TYPE'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonDecimal) return exceptionPath(['COMMON_DECIMAL'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonInteger) return exceptionPath(['COMMON_INTEGER'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonShort) return exceptionPath(['COMMON_SHORT'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonString) return exceptionPath(['COMMON_STRING'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonType) return exceptionPath(['COMMON_TYPE'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonTypeExtension) return exceptionPath(['COMMON_TYPE'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_descriptor) return exceptionPath(['DESCRIPTOR_ENTITY'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_choice) return exceptionPath(['CHOICE'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedDecimal) return exceptionPath(['SHARED_DECIMAL'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedInteger) return exceptionPath(['SHARED_INTEGER'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedShort) return exceptionPath(['SHARED_SHORT'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedString) return exceptionPath(['SHARED_STRING'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_common) return exceptionPath(['COMMON'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonExtension) return exceptionPath(['COMMON'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_descriptor) return exceptionPath(['DESCRIPTOR'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domain) return exceptionPath(['DOMAIN'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntity) return exceptionPath(['DOMAIN_ENTITY'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntityExtension) {
@@ -166,8 +169,8 @@ export function entityIdentifierExceptionPath(ruleContext: any): ?string[] {
 
     return exceptionPath(['baseName', 'ID'], ruleContext);
   }
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_enumeration) return exceptionPath(['ENUMERATION_ENTITY'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_inlineCommonType) return exceptionPath(['INLINE_COMMON_TYPE'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_enumeration) return exceptionPath(['ENUMERATION'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_inlineCommon) return exceptionPath(['INLINE_COMMON'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchange) return exceptionPath(['INTERCHANGE'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeExtension) return exceptionPath(['INTERCHANGE'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_subdomain) {
@@ -187,20 +190,20 @@ export function entityNameExceptionPath(ruleContext: any): ?string[] {
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_association) return exceptionPath(['associationName', 'ID'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_associationExtension) return exceptionPath(['extendeeName', 'ID'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_associationSubclass) return exceptionPath(['associationName', 'ID'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_choiceType) return exceptionPath(['choiceName', 'ID'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonDecimal) return exceptionPath(['commonDecimalName', 'ID'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonInteger) return exceptionPath(['commonIntegerName', 'ID'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonShort) return exceptionPath(['commonShortName', 'ID'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonString) return exceptionPath(['commonStringName', 'ID'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonType) return exceptionPath(['commonName', 'ID'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonTypeExtension) return exceptionPath(['extendeeName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_choice) return exceptionPath(['choiceName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedDecimal) return exceptionPath(['sharedDecimalName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedInteger) return exceptionPath(['sharedIntegerName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedShort) return exceptionPath(['sharedShortName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedString) return exceptionPath(['sharedStringName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_common) return exceptionPath(['commonName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_commonExtension) return exceptionPath(['extendeeName', 'ID'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_descriptor) return exceptionPath(['descriptorName', 'ID'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domain) return exceptionPath(['domainName', 'ID'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntity) return exceptionPath(['entityName', 'ID'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntityExtension) return exceptionPath(['extendeeName', 'ID'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntitySubclass) return exceptionPath(['entityName', 'ID'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_enumeration) return exceptionPath(['enumerationName', 'ID'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_inlineCommonType) return exceptionPath(['inlineCommonName', 'ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_inlineCommon) return exceptionPath(['inlineCommonName', 'ID'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchange) return exceptionPath(['interchangeName', 'ID'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeExtension) return exceptionPath(['extendeeName', 'ID'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_subdomain) return exceptionPath(['subdomainName', 'ID'], ruleContext);
@@ -211,6 +214,6 @@ export function itemNameExceptionPath(ruleContext: any): ?string[] {
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_domainItem) return exceptionPath(['ID'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_enumerationItem) return exceptionPath(['shortDescription'], ruleContext);
   if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeElement) return exceptionPath(['ID'], ruleContext);
-  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeIdentityTemplate) return exceptionPath(['ID'], ruleContext);
+  if (ruleContext.ruleIndex === MetaEdGrammar.RULE_interchangeIdentity) return exceptionPath(['ID'], ruleContext);
   throw new Error(`RuleInformation.itemName encountered unknown context with rule index ${ruleContext.ruleIndex}.`);
 }

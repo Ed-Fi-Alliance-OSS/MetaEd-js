@@ -8,9 +8,9 @@ import { entityIdentifier, entityName } from '../RuleInformation';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 import type { ValidatableResult } from '../ValidationTypes';
 
-function cardinalitiesMatch(includePropertyContext: any, otherIncludePropertyContext: any): boolean {
-  const propertyAnnotationContext = includePropertyContext.propertyComponents().propertyAnnotation();
-  const otherPropertyAnnotationContext = otherIncludePropertyContext.propertyComponents().propertyAnnotation();
+function cardinalitiesMatch(commonPropertyContext: any, otherCommonPropertyContext: any): boolean {
+  const propertyAnnotationContext = commonPropertyContext.propertyComponents().propertyAnnotation();
+  const otherPropertyAnnotationContext = otherCommonPropertyContext.propertyComponents().propertyAnnotation();
   if (propertyAnnotationContext.required() && otherPropertyAnnotationContext.required()) return true;
   if (propertyAnnotationContext.optional() && otherPropertyAnnotationContext.optional()) return true;
   if (propertyAnnotationContext.collection() && propertyAnnotationContext.collection().requiredCollection() &&
@@ -20,29 +20,29 @@ function cardinalitiesMatch(includePropertyContext: any, otherIncludePropertyCon
   return false;
 }
 
-function maintainsCardinality(overriddenIncludePropertyContext: any, extendeeEntityContext: EntityContext): boolean {
-  const originalIncludePropertyContext = extendeeEntityContext.propertySymbolTable.get(overriddenIncludePropertyContext.propertyName().ID().getText());
-  if (originalIncludePropertyContext == null) return false;
-  if (originalIncludePropertyContext.ruleIndex !== MetaEdGrammar.RULE_includeProperty) return false;
-  return cardinalitiesMatch(originalIncludePropertyContext, overriddenIncludePropertyContext);
+function maintainsCardinality(overriddenCommonPropertyContext: any, extendeeEntityContext: EntityContext): boolean {
+  const originalCommonPropertyContext = extendeeEntityContext.propertySymbolTable.get(overriddenCommonPropertyContext.propertyName().ID().getText());
+  if (originalCommonPropertyContext == null) return false;
+  if (originalCommonPropertyContext.ruleIndex !== MetaEdGrammar.RULE_commonProperty) return false;
+  return cardinalitiesMatch(originalCommonPropertyContext, overriddenCommonPropertyContext);
 }
 
-function maintainsCardinalityOnDomainEntity(symbolTable: SymbolTable, overriddenIncludePropertyContext: any, domainEntityExtensionContext: any): boolean {
+function maintainsCardinalityOnDomainEntity(symbolTable: SymbolTable, overriddenCommonPropertyContext: any, domainEntityExtensionContext: any): boolean {
   const extendeeEntityContext = symbolTable.get(SymbolTableEntityType.domainEntity(), domainEntityExtensionContext.extendeeName().ID().getText());
-  if (extendeeEntityContext == null) throw new Error('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality: extendeeEntityContext was null');
-  return maintainsCardinality(overriddenIncludePropertyContext, extendeeEntityContext);
+  if (extendeeEntityContext == null) throw new Error('CommonPropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality: extendeeEntityContext was null');
+  return maintainsCardinality(overriddenCommonPropertyContext, extendeeEntityContext);
 }
 
-function maintainsCardinalityOnAssociation(symbolTable: SymbolTable, overriddenIncludePropertyContext: any, associationExtensionContext: any): boolean {
+function maintainsCardinalityOnAssociation(symbolTable: SymbolTable, overriddenCommonPropertyContext: any, associationExtensionContext: any): boolean {
   const extendeeEntityContext = symbolTable.get(SymbolTableEntityType.association(), associationExtensionContext.extendeeName().ID().getText());
-  if (extendeeEntityContext == null) throw new Error('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality: extendeeEntityContext was null');
-  return maintainsCardinality(overriddenIncludePropertyContext, extendeeEntityContext);
+  if (extendeeEntityContext == null) throw new Error('CommonPropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality: extendeeEntityContext was null');
+  return maintainsCardinality(overriddenCommonPropertyContext, extendeeEntityContext);
 }
 
 export function validatable(ruleContext: any): ValidatableResult {
-  const validatorName = 'IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality';
+  const validatorName = 'CommonPropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality';
 
-  if (ruleContext.includeExtensionOverride() == null) return { validatorName };
+  if (ruleContext.commonExtensionOverride() == null) return { validatorName };
 
   let invalidPath: ?string[] = exceptionPath(['propertyName', 'ID'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
@@ -68,7 +68,7 @@ export function validatable(ruleContext: any): ValidatableResult {
 }
 
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
-  if (ruleContext.includeExtensionOverride() == null) return true;
+  if (ruleContext.commonExtensionOverride() == null) return true;
   const parentEntityContext = topLevelEntityAncestorContext(ruleContext);
   if (parentEntityContext.ruleIndex === MetaEdGrammar.RULE_domainEntityExtension) {
     return maintainsCardinalityOnDomainEntity(symbolTable, ruleContext, parentEntityContext);
@@ -88,4 +88,4 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
 
 const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
-export const includeRule = includeRuleBase(MetaEdGrammar.RULE_includeProperty, validationRule);
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_commonProperty, validationRule);

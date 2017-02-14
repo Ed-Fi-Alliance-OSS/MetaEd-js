@@ -30,36 +30,36 @@ export default class SymbolTableEntityType {
     return literal(MetaEdGrammar.ASSOCIATION) + literal(MetaEdGrammar.BASED_ON);
   }
 
-  static choiceType(): string {
-    return literal(MetaEdGrammar.CHOICE_TYPE);
+  static choice(): string {
+    return literal(MetaEdGrammar.CHOICE);
   }
 
-  static commonDecimal(): string {
-    return literal(MetaEdGrammar.COMMON_DECIMAL);
+  static sharedDecimal(): string {
+    return literal(MetaEdGrammar.SHARED_DECIMAL);
   }
 
-  static commonInteger(): string {
-    return literal(MetaEdGrammar.COMMON_INTEGER);
+  static sharedInteger(): string {
+    return literal(MetaEdGrammar.SHARED_INTEGER);
   }
 
-  static commonShort(): string {
-    return literal(MetaEdGrammar.COMMON_SHORT);
+  static sharedShort(): string {
+    return literal(MetaEdGrammar.SHARED_SHORT);
   }
 
-  static commonString(): string {
-    return literal(MetaEdGrammar.COMMON_STRING);
+  static sharedString(): string {
+    return literal(MetaEdGrammar.SHARED_STRING);
   }
 
-  static commonType(): string {
-    return literal(MetaEdGrammar.COMMON_TYPE);
+  static common(): string {
+    return literal(MetaEdGrammar.COMMON);
   }
 
-  static commonTypeExtension(): string {
-    return literal(MetaEdGrammar.COMMON_TYPE) + literal(MetaEdGrammar.ADDITIONS);
+  static commonExtension(): string {
+    return literal(MetaEdGrammar.COMMON) + literal(MetaEdGrammar.ADDITIONS);
   }
 
   static descriptorEntity(): string {
-    return literal(MetaEdGrammar.DESCRIPTOR_ENTITY);
+    return literal(MetaEdGrammar.DESCRIPTOR);
   }
 
   static domain(): string {
@@ -79,11 +79,11 @@ export default class SymbolTableEntityType {
   }
 
   static enumeration(): string {
-    return literal(MetaEdGrammar.ENUMERATION_ENTITY);
+    return literal(MetaEdGrammar.ENUMERATION);
   }
 
-  static inlineCommonType(): string {
-    return literal(MetaEdGrammar.INLINE_COMMON_TYPE);
+  static inlineCommon(): string {
+    return literal(MetaEdGrammar.INLINE_COMMON);
   }
 
   static interchange(): string {
@@ -98,14 +98,14 @@ export const topLevelEntityTypes: string[] =
     SymbolTableEntityType.associationSubclass(),
     SymbolTableEntityType.domainEntity(),
     SymbolTableEntityType.domainEntitySubclass(),
-    SymbolTableEntityType.commonType(),
-    SymbolTableEntityType.inlineCommonType(),
+    SymbolTableEntityType.common(),
+    SymbolTableEntityType.inlineCommon(),
   ];
 
-export const commonSimpleEntityTypes: string[] =
+export const sharedSimpleEntityTypes: string[] =
   [
-    SymbolTableEntityType.commonDecimal(),
-    SymbolTableEntityType.commonInteger(),
-    SymbolTableEntityType.commonShort(),
-    SymbolTableEntityType.commonString(),
+    SymbolTableEntityType.sharedDecimal(),
+    SymbolTableEntityType.sharedInteger(),
+    SymbolTableEntityType.sharedShort(),
+    SymbolTableEntityType.sharedString(),
   ];

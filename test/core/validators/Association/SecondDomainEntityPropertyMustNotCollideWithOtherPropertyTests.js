@@ -30,8 +30,8 @@ describe('SecondDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
 
       .withStartAssociation('Association1')
       .withDocumentation('doc')
-      .withDomainEntityProperty('First', 'doc1')
-      .withDomainEntityProperty('Second', 'doc2')
+      .withAssociationDomainEntityProperty('First', 'doc1')
+      .withAssociationDomainEntityProperty('Second', 'doc2')
       .withIntegerProperty('Third', 'doc3', false, false)
       .withEndAssociation()
       .withEndNamespace()
@@ -66,8 +66,8 @@ describe('SecondDomainEntityPropertyMustNotCollideWithOtherProperty', () => {
 
       .withStartAssociation(associationName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('First', 'doc')
-      .withDomainEntityProperty(secondName, 'doc')
+      .withAssociationDomainEntityProperty('First', 'doc')
+      .withAssociationDomainEntityProperty(secondName, 'doc')
       .withIntegerProperty(secondName, 'doc', false, false)
       .withEndAssociation()
       .withEndNamespace()

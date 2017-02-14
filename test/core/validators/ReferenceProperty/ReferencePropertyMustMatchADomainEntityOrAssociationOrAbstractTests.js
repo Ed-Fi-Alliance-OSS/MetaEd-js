@@ -25,7 +25,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
       .withStartDomainEntity('DomainEntity2')
       .withDocumentation('doc')
       .withStringIdentity('RequirePrimaryKey', 'doc', 100)
-      .withReferenceProperty(entityName, 'doc', true, false)
+      .withDomainEntityProperty(entityName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -56,7 +56,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
       .withStartDomainEntity('DomainEntity2')
       .withDocumentation('doc')
       .withStringIdentity('RequirePrimaryKey', 'doc', 100)
-      .withReferenceProperty(entityName, 'doc', true, false)
+      .withDomainEntityProperty(entityName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -76,15 +76,15 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty('Property1', 'because a property is required', true, false)
       .withEndAssociation()
 
       .withStartDomainEntity('DomainEntity3')
       .withDocumentation('doc')
       .withStringIdentity('RequirePrimaryKey', 'doc', 100)
-      .withReferenceProperty(entityName, 'doc', true, false)
+      .withAssociationProperty(entityName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -104,8 +104,8 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
       .withBeginNamespace('edfi')
       .withStartAssociation('BaseName')
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty('Property1', 'doc', true, false)
       .withEndAssociation()
 
@@ -117,7 +117,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
       .withStartDomainEntity('DomainEntity')
       .withDocumentation('doc')
       .withStringIdentity('RequirePrimaryKey', 'doc', 100)
-      .withReferenceProperty(entityName, 'doc', true, false)
+      .withAssociationProperty(entityName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -143,7 +143,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
       .withStartDomainEntity('DomainEntity2')
       .withDocumentation('doc')
       .withStringIdentity('RequirePrimaryKey', 'doc', 100)
-      .withReferenceProperty(entityName, 'doc', true, false)
+      .withDomainEntityProperty(entityName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -164,7 +164,7 @@ describe('ReferencePropertyMustMatchADomainEntityOrAssociationOrAbstract', () =>
       .withStartDomainEntity('DomainEntity')
       .withDocumentation('doc')
       .withStringIdentity('RequirePrimaryKey', 'doc', 100)
-      .withReferenceProperty(entityName, 'doc', true, false)
+      .withDomainEntityProperty(entityName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();

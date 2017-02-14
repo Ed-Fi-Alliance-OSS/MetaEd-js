@@ -155,66 +155,66 @@ MetaEdGrammarListener.prototype.exitAssociationSubclass = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#choiceType.
-MetaEdGrammarListener.prototype.enterChoiceType = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#choice.
+MetaEdGrammarListener.prototype.enterChoice = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#choiceType.
-MetaEdGrammarListener.prototype.exitChoiceType = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#commonDecimal.
-MetaEdGrammarListener.prototype.enterCommonDecimal = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#commonDecimal.
-MetaEdGrammarListener.prototype.exitCommonDecimal = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#choice.
+MetaEdGrammarListener.prototype.exitChoice = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#commonInteger.
-MetaEdGrammarListener.prototype.enterCommonInteger = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#sharedDecimal.
+MetaEdGrammarListener.prototype.enterSharedDecimal = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#commonInteger.
-MetaEdGrammarListener.prototype.exitCommonInteger = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#commonShort.
-MetaEdGrammarListener.prototype.enterCommonShort = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#commonShort.
-MetaEdGrammarListener.prototype.exitCommonShort = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#sharedDecimal.
+MetaEdGrammarListener.prototype.exitSharedDecimal = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#commonString.
-MetaEdGrammarListener.prototype.enterCommonString = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#sharedInteger.
+MetaEdGrammarListener.prototype.enterSharedInteger = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#commonString.
-MetaEdGrammarListener.prototype.exitCommonString = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#commonType.
-MetaEdGrammarListener.prototype.enterCommonType = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#commonType.
-MetaEdGrammarListener.prototype.exitCommonType = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#sharedInteger.
+MetaEdGrammarListener.prototype.exitSharedInteger = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#commonTypeExtension.
-MetaEdGrammarListener.prototype.enterCommonTypeExtension = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#sharedShort.
+MetaEdGrammarListener.prototype.enterSharedShort = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#commonTypeExtension.
-MetaEdGrammarListener.prototype.exitCommonTypeExtension = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#sharedShort.
+MetaEdGrammarListener.prototype.exitSharedShort = function(ctx) {
+};
+
+
+// Enter a parse tree produced by MetaEdGrammar#sharedString.
+MetaEdGrammarListener.prototype.enterSharedString = function(ctx) {
+};
+
+// Exit a parse tree produced by MetaEdGrammar#sharedString.
+MetaEdGrammarListener.prototype.exitSharedString = function(ctx) {
+};
+
+
+// Enter a parse tree produced by MetaEdGrammar#common.
+MetaEdGrammarListener.prototype.enterCommon = function(ctx) {
+};
+
+// Exit a parse tree produced by MetaEdGrammar#common.
+MetaEdGrammarListener.prototype.exitCommon = function(ctx) {
+};
+
+
+// Enter a parse tree produced by MetaEdGrammar#commonExtension.
+MetaEdGrammarListener.prototype.enterCommonExtension = function(ctx) {
+};
+
+// Exit a parse tree produced by MetaEdGrammar#commonExtension.
+MetaEdGrammarListener.prototype.exitCommonExtension = function(ctx) {
 };
 
 
@@ -335,12 +335,12 @@ MetaEdGrammarListener.prototype.exitShortDescription = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#inlineCommonType.
-MetaEdGrammarListener.prototype.enterInlineCommonType = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#inlineCommon.
+MetaEdGrammarListener.prototype.enterInlineCommon = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#inlineCommonType.
-MetaEdGrammarListener.prototype.exitInlineCommonType = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#inlineCommon.
+MetaEdGrammarListener.prototype.exitInlineCommon = function(ctx) {
 };
 
 
@@ -389,12 +389,12 @@ MetaEdGrammarListener.prototype.exitInterchangeElement = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#interchangeIdentityTemplate.
-MetaEdGrammarListener.prototype.enterInterchangeIdentityTemplate = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#interchangeIdentity.
+MetaEdGrammarListener.prototype.enterInterchangeIdentity = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#interchangeIdentityTemplate.
-MetaEdGrammarListener.prototype.exitInterchangeIdentityTemplate = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#interchangeIdentity.
+MetaEdGrammarListener.prototype.exitInterchangeIdentity = function(ctx) {
 };
 
 
@@ -497,12 +497,12 @@ MetaEdGrammarListener.prototype.exitDecimalPlaces = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#includeExtensionOverride.
-MetaEdGrammarListener.prototype.enterIncludeExtensionOverride = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#commonExtensionOverride.
+MetaEdGrammarListener.prototype.enterCommonExtensionOverride = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#includeExtensionOverride.
-MetaEdGrammarListener.prototype.exitIncludeExtensionOverride = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#commonExtensionOverride.
+MetaEdGrammarListener.prototype.exitCommonExtensionOverride = function(ctx) {
 };
 
 
@@ -704,12 +704,30 @@ MetaEdGrammarListener.prototype.exitEnumerationProperty = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#includeProperty.
-MetaEdGrammarListener.prototype.enterIncludeProperty = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#commonProperty.
+MetaEdGrammarListener.prototype.enterCommonProperty = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#includeProperty.
-MetaEdGrammarListener.prototype.exitIncludeProperty = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#commonProperty.
+MetaEdGrammarListener.prototype.exitCommonProperty = function(ctx) {
+};
+
+
+// Enter a parse tree produced by MetaEdGrammar#inlineCommonProperty.
+MetaEdGrammarListener.prototype.enterInlineCommonProperty = function(ctx) {
+};
+
+// Exit a parse tree produced by MetaEdGrammar#inlineCommonProperty.
+MetaEdGrammarListener.prototype.exitInlineCommonProperty = function(ctx) {
+};
+
+
+// Enter a parse tree produced by MetaEdGrammar#choiceProperty.
+MetaEdGrammarListener.prototype.enterChoiceProperty = function(ctx) {
+};
+
+// Exit a parse tree produced by MetaEdGrammar#choiceProperty.
+MetaEdGrammarListener.prototype.exitChoiceProperty = function(ctx) {
 };
 
 
@@ -731,12 +749,21 @@ MetaEdGrammarListener.prototype.exitPercentProperty = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#referenceProperty.
-MetaEdGrammarListener.prototype.enterReferenceProperty = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#associationProperty.
+MetaEdGrammarListener.prototype.enterAssociationProperty = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#referenceProperty.
-MetaEdGrammarListener.prototype.exitReferenceProperty = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#associationProperty.
+MetaEdGrammarListener.prototype.exitAssociationProperty = function(ctx) {
+};
+
+
+// Enter a parse tree produced by MetaEdGrammar#domainEntityProperty.
+MetaEdGrammarListener.prototype.enterDomainEntityProperty = function(ctx) {
+};
+
+// Exit a parse tree produced by MetaEdGrammar#domainEntityProperty.
+MetaEdGrammarListener.prototype.exitDomainEntityProperty = function(ctx) {
 };
 
 
@@ -920,21 +947,21 @@ MetaEdGrammarListener.prototype.exitChoiceName = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#commonDecimalName.
-MetaEdGrammarListener.prototype.enterCommonDecimalName = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#sharedDecimalName.
+MetaEdGrammarListener.prototype.enterSharedDecimalName = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#commonDecimalName.
-MetaEdGrammarListener.prototype.exitCommonDecimalName = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#sharedDecimalName.
+MetaEdGrammarListener.prototype.exitSharedDecimalName = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#commonIntegerName.
-MetaEdGrammarListener.prototype.enterCommonIntegerName = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#sharedIntegerName.
+MetaEdGrammarListener.prototype.enterSharedIntegerName = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#commonIntegerName.
-MetaEdGrammarListener.prototype.exitCommonIntegerName = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#sharedIntegerName.
+MetaEdGrammarListener.prototype.exitSharedIntegerName = function(ctx) {
 };
 
 
@@ -947,21 +974,21 @@ MetaEdGrammarListener.prototype.exitCommonName = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#commonShortName.
-MetaEdGrammarListener.prototype.enterCommonShortName = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#sharedShortName.
+MetaEdGrammarListener.prototype.enterSharedShortName = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#commonShortName.
-MetaEdGrammarListener.prototype.exitCommonShortName = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#sharedShortName.
+MetaEdGrammarListener.prototype.exitSharedShortName = function(ctx) {
 };
 
 
-// Enter a parse tree produced by MetaEdGrammar#commonStringName.
-MetaEdGrammarListener.prototype.enterCommonStringName = function(ctx) {
+// Enter a parse tree produced by MetaEdGrammar#sharedStringName.
+MetaEdGrammarListener.prototype.enterSharedStringName = function(ctx) {
 };
 
-// Exit a parse tree produced by MetaEdGrammar#commonStringName.
-MetaEdGrammarListener.prototype.exitCommonStringName = function(ctx) {
+// Exit a parse tree produced by MetaEdGrammar#sharedStringName.
+MetaEdGrammarListener.prototype.exitSharedStringName = function(ctx) {
 };
 
 

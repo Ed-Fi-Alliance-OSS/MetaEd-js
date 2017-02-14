@@ -63,8 +63,8 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withStringIdentity(propertyName, 'doc', 100)
       .withEndAssociation()
       .withEndNamespace()
@@ -84,10 +84,10 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(entityName)
+      .withStartCommon(entityName)
       .withDocumentation('doc')
       .withStringIdentity(propertyName, 'doc', 100)
-      .withEndCommonType()
+      .withEndCommon()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -105,10 +105,10 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartInlineCommonType(entityName)
+      .withStartInlineCommon(entityName)
       .withDocumentation('doc')
       .withStringIdentity(propertyName, 'doc', 100)
-      .withEndInlineCommonType()
+      .withEndInlineCommon()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -128,8 +128,8 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('because documentation is required')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty('Property1', 'because a property is required', true, false)
       .withEndAssociation()
 
@@ -164,8 +164,8 @@ describe('IdentityExistsOnlyIfIdentityIsAllowedTests', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withEndAssociation()
 
       .withStartAssociationSubclass(subClassName, entityName)

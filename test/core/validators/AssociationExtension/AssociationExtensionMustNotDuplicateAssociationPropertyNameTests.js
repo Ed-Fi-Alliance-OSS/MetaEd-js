@@ -22,8 +22,8 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('because documentation is required')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty('Property1', 'because a property is required', true, false)
       .withEndAssociation()
 
@@ -50,8 +50,8 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('because documentation is required')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty(duplicatePropertyName, 'because a property is required', true, false)
       .withEndAssociation()
 
@@ -87,8 +87,8 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('because documentation is required')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty(duplicatePropertyName1, 'because a property is required', true, false)
       .withBooleanProperty(duplicatePropertyName2, 'because a property is required', true, false)
       .withEndAssociation()
@@ -117,7 +117,7 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
     });
   });
 
-  describe('When_association_extension_has_duplicate_include_property', () => {
+  describe('When_association_extension_has_duplicate_common_property', () => {
     const symbolTable = new SymbolTable();
     const entityName: string = 'MyIdentifier';
     const duplicatePropertyName: string = 'Property1';
@@ -127,13 +127,13 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
-      .withIncludeProperty(duplicatePropertyName, 'doc', true, false)
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
+      .withCommonProperty(duplicatePropertyName, 'doc', true, false)
       .withEndAssociation()
 
       .withStartAssociationExtension(entityName)
-      .withIncludeProperty(duplicatePropertyName, 'doc', true, false)
+      .withCommonProperty(duplicatePropertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
       .toString();
@@ -155,13 +155,13 @@ describe('AssociationExtensionMustNotDuplicateAssociationPropertyName', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
-      .withIncludeProperty(duplicatePropertyName, 'doc', true, false)
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
+      .withCommonProperty(duplicatePropertyName, 'doc', true, false)
       .withEndAssociation()
 
       .withStartAssociationExtension(entityName)
-      .withIncludeExtensionOverrideProperty(duplicatePropertyName, 'doc', true, false)
+      .withCommonExtensionOverrideProperty(duplicatePropertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
       .toString();

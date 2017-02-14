@@ -2,7 +2,7 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/CommonTypeExtension/CommonTypeExtensionMustNotDuplicateCommonTypePropertyName';
+import { includeRule, validatable } from '../../../../src/core/validators/CommonExtension/CommonExtensionMustNotDuplicateCommonTypePropertyName';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -17,14 +17,14 @@ describe('CommonTypeExtensionMustNotDuplicateCommonTypePropertyNameTests', () =>
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(entityName)
+      .withStartCommon(entityName)
       .withDocumentation('doc')
       .withBooleanProperty('Property1', 'doc', true, false)
       .withEndAssociation()
 
-      .withStartCommonTypeExtension(entityName)
+      .withStartCommonExtension(entityName)
       .withBooleanProperty('Property2', 'doc', true, false)
-      .withEndCommonTypeExtension()
+      .withEndCommonExtension()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -42,14 +42,14 @@ describe('CommonTypeExtensionMustNotDuplicateCommonTypePropertyNameTests', () =>
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(entityName)
+      .withStartCommon(entityName)
       .withDocumentation('doc')
       .withBooleanProperty(duplicatePropertyName, 'doc', true, false)
-      .withEndCommonType()
+      .withEndCommon()
 
-      .withStartCommonTypeExtension(entityName)
+      .withStartCommonExtension(entityName)
       .withBooleanProperty(duplicatePropertyName, 'doc', true, false)
-      .withEndCommonTypeExtension()
+      .withEndCommonExtension()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);

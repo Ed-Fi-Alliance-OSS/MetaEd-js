@@ -43,8 +43,8 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('First', 'doc1')
-      .withDomainEntityProperty('Second', 'doc2')
+      .withAssociationDomainEntityProperty('First', 'doc1')
+      .withAssociationDomainEntityProperty('Second', 'doc2')
       .withEndAssociation()
       .withEndNamespace()
       .toString();
@@ -104,10 +104,10 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartChoiceType(entityName)
+      .withStartChoice(entityName)
       .withDocumentation('doc')
       .withBooleanProperty(propertyName, 'doc', true, false)
-      .withEndChoiceType()
+      .withEndChoice()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -125,11 +125,11 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonDecimal(entityName)
+      .withStartSharedDecimal(entityName)
       .withDocumentation('doc')
       .withTotalDigits('10')
       .withDecimalPlaces('2')
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -147,9 +147,9 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonInteger(entityName)
+      .withStartSharedInteger(entityName)
       .withDocumentation('doc')
-      .withEndCommonInteger()
+      .withEndSharedInteger()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -167,9 +167,9 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonShort(entityName)
+      .withStartSharedShort(entityName)
       .withDocumentation('doc')
-      .withEndCommonShort()
+      .withEndSharedShort()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -187,10 +187,10 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonString(entityName)
+      .withStartSharedString(entityName)
       .withDocumentation('doc')
       .withMaxLength(100)
-      .withEndCommonString()
+      .withEndSharedString()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -208,10 +208,10 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(entityName)
+      .withStartCommon(entityName)
       .withDocumentation('doc')
       .withBooleanProperty('Property1', 'doc', true, false)
-      .withEndCommonType()
+      .withEndCommon()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -229,9 +229,9 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonTypeExtension(entityName)
+      .withStartCommonExtension(entityName)
       .withBooleanProperty('Property2', 'doc', true, false)
-      .withEndCommonTypeExtension()
+      .withEndCommonExtension()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -276,7 +276,7 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
       .withBeginNamespace('edfi')
       .withStartDomain(entityName)
       .withDocumentation('doc')
-      .withDomainItem(propertyName)
+      .withDomainEntityDomainItem(propertyName)
       .withEndDomain()
       .withEndNamespace()
       .toString();
@@ -378,10 +378,10 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartInlineCommonType(entityName)
+      .withStartInlineCommon(entityName)
       .withDocumentation('doc')
       .withBooleanProperty('Property1', 'doc', true, false)
-      .withEndInlineCommonType()
+      .withEndInlineCommon()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -401,7 +401,7 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
       .withBeginNamespace('edfi')
       .withStartInterchange(entityName)
       .withDocumentation('doc')
-      .withElement('DomainEntity')
+      .withDomainEntityElement('DomainEntity')
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -421,7 +421,7 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
       .withStartInterchangeExtension(entityName)
-      .withElement('DomainEntity')
+      .withDomainEntityElement('DomainEntity')
       .withEndInterchangeExtension()
       .withEndNamespace()
       .toString();
@@ -442,7 +442,7 @@ describe('MetaEdIdIsRequiredForEntitiesTests', () => {
       .withBeginNamespace('edfi')
       .withStartSubdomain(entityName, 'ParentDomain')
       .withDocumentation('doc')
-      .withDomainItem(propertyName)
+      .withDomainEntityElement(propertyName)
       .withEndSubdomain()
       .withEndNamespace()
       .toString();

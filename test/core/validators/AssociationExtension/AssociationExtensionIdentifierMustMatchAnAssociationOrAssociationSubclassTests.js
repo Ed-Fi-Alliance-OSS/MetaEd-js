@@ -21,8 +21,8 @@ describe('AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubcl
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('because documentation is required')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty('Property1', 'because a property is required', true, false)
       .withEndAssociation()
 
@@ -75,8 +75,8 @@ describe('AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubcl
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('because documentation is required')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty('Property1', 'because a property is required', true, false)
       .withEndAssociation()
 

@@ -2,7 +2,7 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/IncludeProperty/IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality';
+import { includeRule, validatable } from '../../../../src/core/validators/CommonProperty/CommonPropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
@@ -20,14 +20,14 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(commonTypeName)
+      .withStartCommon(commonTypeName)
       .withDocumentation('doc')
       .withStringProperty('StringProperty', 'doc', true, false, 100)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withIncludeIdentity(propertyName, 'doc')
+      .withCommonIdentity(propertyName, 'doc')
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -47,14 +47,14 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(commonTypeName)
+      .withStartCommon(commonTypeName)
       .withDocumentation('doc')
       .withStringProperty('StringProperty', 'doc', true, false, 100)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withIncludeExtensionOverrideProperty(commonTypeName, 'doc', true, true)
+      .withCommonExtensionOverrideProperty(commonTypeName, 'doc', true, true)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -81,10 +81,10 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(commonTypeName)
+      .withStartCommon(commonTypeName)
       .withDocumentation('doc')
       .withBooleanProperty('DummyProperty1', 'doc', true, false)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
@@ -93,7 +93,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
       .withEndNamespace()
       .withBeginNamespace('extension', 'EXTENSION')
       .withStartDomainEntityExtension(entityName)
-      .withIncludeExtensionOverrideProperty(commonTypeName, 'doc', true, true)
+      .withCommonExtensionOverrideProperty(commonTypeName, 'doc', true, true)
       .withEndDomainEntityExtension()
       .withEndNamespace()
       .toString();
@@ -120,21 +120,21 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(commonTypeName)
+      .withStartCommon(commonTypeName)
       .withDocumentation('doc')
       .withBooleanProperty('DummyProperty1', 'doc', true, false)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('DummyEntity1', 'doc')
-      .withDomainEntityProperty('DummyEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DummyEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DummyEntity2', 'doc')
       .withBooleanProperty('DummyProperty2', 'doc', true, false)
-      .withEndDomainEntity()
+      .withEndAssociation()
       .withEndNamespace()
       .withBeginNamespace('extension', 'EXTENSION')
       .withStartAssociationExtension(entityName)
-      .withIncludeExtensionOverrideProperty(commonTypeName, 'doc', true, true)
+      .withCommonExtensionOverrideProperty(commonTypeName, 'doc', true, true)
       .withEndDomainEntityExtension()
       .withEndNamespace()
       .toString();
@@ -160,20 +160,20 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(commonTypeName)
+      .withStartCommon(commonTypeName)
       .withDocumentation('doc')
       .withBooleanProperty('DummyProperty1', 'doc', true, false)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
       .withBooleanProperty('DummyProperty2', 'doc', true, false)
-      .withIncludeProperty(commonTypeName, 'doc', true, true)
+      .withCommonProperty(commonTypeName, 'doc', true, true)
       .withEndDomainEntity()
       .withEndNamespace()
       .withBeginNamespace('extension', 'EXTENSION')
       .withStartDomainEntityExtension(entityName)
-      .withIncludeExtensionOverrideProperty(commonTypeName, 'doc', true, true)
+      .withCommonExtensionOverrideProperty(commonTypeName, 'doc', true, true)
       .withEndDomainEntityExtension()
       .withEndNamespace()
       .toString();
@@ -192,22 +192,22 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(commonTypeName)
+      .withStartCommon(commonTypeName)
       .withDocumentation('doc')
       .withBooleanProperty('DummyProperty1', 'doc', true, false)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('DummyEntity1', 'doc')
-      .withDomainEntityProperty('DummyEntity2', 'doc')
-      .withIncludeProperty(commonTypeName, 'doc', true, true)
+      .withAssociationDomainEntityProperty('DummyEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DummyEntity2', 'doc')
+      .withCommonProperty(commonTypeName, 'doc', true, true)
       .withBooleanProperty('DummyProperty2', 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .withBeginNamespace('extension', 'EXTENSION')
       .withStartAssociationExtension(entityName)
-      .withIncludeExtensionOverrideProperty(commonTypeName, 'doc', true, true)
+      .withCommonExtensionOverrideProperty(commonTypeName, 'doc', true, true)
       .withEndDomainEntityExtension()
       .withEndNamespace()
       .toString();
@@ -227,20 +227,20 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(commonTypeName)
+      .withStartCommon(commonTypeName)
       .withDocumentation('doc')
       .withBooleanProperty('DummyProperty1', 'doc', true, false)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
       .withBooleanProperty('DummyProperty2', 'doc', true, false)
-      .withIncludeProperty(commonTypeName, 'doc', true, false)
+      .withCommonProperty(commonTypeName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .withBeginNamespace('extension', 'EXTENSION')
       .withStartDomainEntityExtension(entityName)
-      .withIncludeExtensionOverrideProperty(commonTypeName, 'doc', true, true)
+      .withCommonExtensionOverrideProperty(commonTypeName, 'doc', true, true)
       .withEndDomainEntityExtension()
       .withEndNamespace()
       .toString();
@@ -267,20 +267,20 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(commonTypeName)
+      .withStartCommon(commonTypeName)
       .withDocumentation('doc')
       .withBooleanProperty('DummyProperty1', 'doc', true, false)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
       .withBooleanProperty('DummyProperty2', 'doc', true, false)
-      .withIncludeProperty(commonTypeName, 'doc', false, true)
+      .withCommonProperty(commonTypeName, 'doc', false, true)
       .withEndDomainEntity()
       .withEndNamespace()
       .withBeginNamespace('extension', 'EXTENSION')
       .withStartDomainEntityExtension(entityName)
-      .withIncludeExtensionOverrideProperty(commonTypeName, 'doc', true, true)
+      .withCommonExtensionOverrideProperty(commonTypeName, 'doc', true, true)
       .withEndDomainEntityExtension()
       .withEndNamespace()
       .toString();
@@ -307,22 +307,22 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(commonTypeName)
+      .withStartCommon(commonTypeName)
       .withDocumentation('doc')
       .withBooleanProperty('DummyProperty1', 'doc', true, false)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('DummyEntity1', 'doc')
-      .withDomainEntityProperty('DummyEntity2', 'doc')
-      .withIncludeProperty(commonTypeName, 'doc', true, false)
+      .withAssociationDomainEntityProperty('DummyEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DummyEntity2', 'doc')
+      .withCommonProperty(commonTypeName, 'doc', true, false)
       .withBooleanProperty('DummyProperty2', 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .withBeginNamespace('extension', 'EXTENSION')
       .withStartAssociationExtension(entityName)
-      .withIncludeExtensionOverrideProperty(commonTypeName, 'doc', true, true)
+      .withCommonExtensionOverrideProperty(commonTypeName, 'doc', true, true)
       .withEndDomainEntityExtension()
       .withEndNamespace()
       .toString();
@@ -349,22 +349,22 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(commonTypeName)
+      .withStartCommon(commonTypeName)
       .withDocumentation('doc')
       .withBooleanProperty('DummyProperty1', 'doc', true, false)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('DummyEntity1', 'doc')
-      .withDomainEntityProperty('DummyEntity2', 'doc')
-      .withIncludeProperty(commonTypeName, 'doc', false, true)
+      .withAssociationDomainEntityProperty('DummyEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DummyEntity2', 'doc')
+      .withCommonProperty(commonTypeName, 'doc', false, true)
       .withBooleanProperty('DummyProperty2', 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .withBeginNamespace('extension', 'EXTENSION')
       .withStartAssociationExtension(entityName)
-      .withIncludeExtensionOverrideProperty(commonTypeName, 'doc', true, true)
+      .withCommonExtensionOverrideProperty(commonTypeName, 'doc', true, true)
       .withEndDomainEntityExtension()
       .withEndNamespace()
       .toString();
@@ -387,7 +387,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
     const { ruleContext } = addRuleContextPath(['propertyName', 'ID'],
       {
         ruleIndex: MetaEdGrammar.RULE_stringProperty,
-        includeExtensionOverride: () => ({}),
+        commonExtensionOverride: () => ({}),
       }, true);
 
     const { ruleContext: parentContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntityExtension }, false);
@@ -406,7 +406,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
     const { ruleContext } = addRuleContextPath(['propertyName', 'ID'],
       {
         ruleIndex: MetaEdGrammar.RULE_stringProperty,
-        includeExtensionOverride: () => ({}),
+        commonExtensionOverride: () => ({}),
       }, false);
 
     const { ruleContext: parentContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntityExtension }, true);
@@ -425,7 +425,7 @@ describe('IncludePropertyWithExtensionOverrideRestrictedToDomainEntityAndAssocia
     const { ruleContext } = addRuleContextPath(['propertyName', 'ID'],
       {
         ruleIndex: MetaEdGrammar.RULE_stringProperty,
-        includeExtensionOverride: () => ({}),
+        commonExtensionOverride: () => ({}),
       }, false);
 
     const { ruleContext: parentContext } = addRuleContextPath(['DOMAIN_ENTITY'], { ruleIndex: MetaEdGrammar.RULE_domainEntityExtension }, false);

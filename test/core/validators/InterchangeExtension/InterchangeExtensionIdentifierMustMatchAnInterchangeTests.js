@@ -21,13 +21,13 @@ describe('InterchangeExtensionIdentifierMustMatchAnInterchangeTests', () => {
       .withBeginNamespace('edfi')
       .withStartInterchange(entityName)
       .withDocumentation('doc')
-      .withElement('Required')
-      .withIdentityTemplate('Template1')
-      .withIdentityTemplate('Template2')
+      .withDomainEntityElement('Required')
+      .withDomainEntityIdentityTemplate('Template1')
+      .withDomainEntityIdentityTemplate('Template2')
       .withEndInterchange()
 
       .withStartInterchangeExtension(entityName)
-      .withElement('Template3')
+      .withDomainEntityElement('Template3')
       .withEndInterchangeExtension()
       .withEndNamespace()
       .toString();
@@ -47,7 +47,7 @@ describe('InterchangeExtensionIdentifierMustMatchAnInterchangeTests', () => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
       .withStartInterchangeExtension(entityName)
-      .withElement('Template3')
+      .withDomainEntityElement('Template3')
       .withEndInterchangeExtension()
       .withEndNamespace()
       .toString();

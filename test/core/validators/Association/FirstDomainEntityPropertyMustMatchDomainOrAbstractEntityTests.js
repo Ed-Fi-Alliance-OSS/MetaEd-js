@@ -30,8 +30,8 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
 
       .withStartAssociation('Association1')
       .withDocumentation('doc')
-      .withDomainEntityProperty('First', 'doc1')
-      .withDomainEntityProperty('Second', 'doc2')
+      .withAssociationDomainEntityProperty('First', 'doc1')
+      .withAssociationDomainEntityProperty('Second', 'doc2')
       .withEndAssociation()
       .withEndNamespace()
       .toString();
@@ -61,8 +61,8 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
 
       .withStartAssociation('Association1')
       .withDocumentation('doc')
-      .withDomainEntityProperty('First', 'doc1')
-      .withDomainEntityProperty('Second', 'doc2')
+      .withAssociationDomainEntityProperty('First', 'doc1')
+      .withAssociationDomainEntityProperty('Second', 'doc2')
       .withEndAssociation()
       .withEndNamespace()
       .toString();
@@ -97,8 +97,8 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
 
       .withStartAssociation('Association1')
       .withDocumentation('doc')
-      .withDomainEntityProperty('Third', 'doc1')
-      .withDomainEntityProperty('Second', 'doc2')
+      .withAssociationDomainEntityProperty('Third', 'doc1')
+      .withAssociationDomainEntityProperty('Second', 'doc2')
       .withEndAssociation()
       .withEndNamespace()
       .toString();
@@ -124,8 +124,8 @@ describe('FirstDomainEntityPropertyMustMatchDomainOrAbstractEntityTests', () => 
 
       .withStartAssociation('Association1')
       .withDocumentation('doc')
-      .withDomainEntityProperty(entityName, 'doc1')
-      .withDomainEntityProperty('Second', 'doc2')
+      .withAssociationDomainEntityProperty(entityName, 'doc1')
+      .withAssociationDomainEntityProperty('Second', 'doc2')
       .withEndAssociation()
       .withEndNamespace()
       .toString();

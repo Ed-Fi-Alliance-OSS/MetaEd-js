@@ -2,7 +2,7 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/IncludeProperty/IncludePropertyMustMatchACommonType';
+import { includeRule, validatable } from '../../../../src/core/validators/CommonProperty/CommonPropertyMustMatchACommon';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -17,15 +17,15 @@ describe('IncludePropertyMustMatchACommonType', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(entityName)
+      .withStartCommon(entityName)
       .withDocumentation('doc')
       .withStringProperty('StringProperty', 'doc', true, false, 100)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartDomainEntity('DomainEntity')
       .withDocumentation('doc')
       .withStringIdentity('RequirePrimaryKey', 'doc', 100)
-      .withIncludeProperty(entityName, 'doc', true, false)
+      .withCommonProperty(entityName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -43,15 +43,15 @@ describe('IncludePropertyMustMatchACommonType', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartInlineCommonType(entityName)
+      .withStartInlineCommon(entityName)
       .withDocumentation('doc')
       .withStringProperty('StringProperty', 'doc', true, false, 100)
-      .withEndInlineCommonType()
+      .withEndInlineCommon()
 
       .withStartDomainEntity('DomainEntity')
       .withDocumentation('doc')
       .withStringIdentity('RequirePrimaryKey', 'doc', 100)
-      .withIncludeProperty(entityName, 'doc', true, false)
+      .withInlineCommonProperty(entityName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -69,15 +69,15 @@ describe('IncludePropertyMustMatchACommonType', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartChoiceType(entityName)
+      .withStartChoice(entityName)
       .withDocumentation('doc')
       .withStringProperty('StringProperty', 'doc', true, false, 100)
-      .withEndChoiceType()
+      .withEndChoice()
 
       .withStartDomainEntity('DomainEntity')
       .withDocumentation('doc')
       .withStringIdentity('RequirePrimaryKey', 'doc', 100)
-      .withIncludeProperty(entityName, 'doc', true, false)
+      .withChoiceProperty(entityName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -98,7 +98,7 @@ describe('IncludePropertyMustMatchACommonType', () => {
       .withStartDomainEntity('DomainEntity')
       .withDocumentation('doc')
       .withStringIdentity('RequirePrimaryKey', 'doc', 100)
-      .withIncludeProperty(entityName, 'doc', true, false)
+      .withCommonProperty(entityName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();

@@ -2,7 +2,7 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/IncludeProperty/IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension';
+import { includeRule, validatable } from '../../../../src/core/validators/CommonProperty/CommonPropertyWithExtensionOverrideMustReferenceCommonTypeExtension';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
@@ -19,10 +19,10 @@ describe('IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension',
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(commonTypeName)
+      .withStartCommon(commonTypeName)
       .withDocumentation('doc')
       .withBooleanProperty('DummyProperty1', 'doc', true, false)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
@@ -31,7 +31,7 @@ describe('IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension',
       .withEndNamespace()
       .withBeginNamespace('extension', 'EXTENSION')
       .withStartDomainEntityExtension(entityName)
-      .withIncludeExtensionOverrideProperty(commonTypeName, 'doc', true, true)
+      .withCommonExtensionOverrideProperty(commonTypeName, 'doc', true, true)
       .withEndDomainEntityExtension()
       .withEndNamespace()
       .toString();
@@ -56,14 +56,14 @@ describe('IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension',
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(commonTypeName)
+      .withStartCommon(commonTypeName)
       .withDocumentation('doc')
       .withBooleanProperty('DummyProperty1', 'doc', true, false)
-      .withEndCommonType()
+      .withEndCommon()
 
-      .withStartCommonTypeExtension(commonTypeName)
+      .withStartCommonExtension(commonTypeName)
       .withBooleanProperty('DummyProperty3', 'doc', true, false)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
@@ -72,7 +72,7 @@ describe('IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension',
       .withEndNamespace()
       .withBeginNamespace('extension', 'EXTENSION')
       .withStartDomainEntityExtension(entityName)
-      .withIncludeExtensionOverrideProperty(commonTypeName, 'doc', true, true)
+      .withCommonExtensionOverrideProperty(commonTypeName, 'doc', true, true)
       .withEndDomainEntityExtension()
       .withEndNamespace()
       .toString();

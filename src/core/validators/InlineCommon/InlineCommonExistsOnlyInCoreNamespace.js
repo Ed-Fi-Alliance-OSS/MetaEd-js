@@ -8,7 +8,7 @@ import { namespaceAncestorContext, isExtensionNamespace, namespaceNameFor, excep
 import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {
-  const validatorName = 'InlineCommonTypeExistsOnlyInCoreNamespace';
+  const validatorName = 'InlineCommonExistsOnlyInCoreNamespace';
   let invalidPath: ?string[] = exceptionPath(['inlineCommonName', 'ID'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
 
@@ -31,4 +31,4 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
 
 const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
-export const includeRule = includeRuleBase(MetaEdGrammar.RULE_inlineCommonType, validationRule);
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_inlineCommon, validationRule);

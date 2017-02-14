@@ -1,7 +1,7 @@
 // @flow
 import type SymbolTable from '../SymbolTable';
 import { errorRuleBase } from '../ValidationRuleBase';
-import { includeRuleBase } from '../ValidationRuleRepository';
+import { includeRuleBaseForMultiRuleIndexes } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 import { exceptionPath } from '../ValidationHelper';
@@ -31,4 +31,4 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
 
 const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
-export const includeRule = includeRuleBase(MetaEdGrammar.RULE_referenceProperty, validationRule);
+export const includeRule = includeRuleBaseForMultiRuleIndexes([MetaEdGrammar.RULE_domainEntityProperty, MetaEdGrammar.RULE_associationProperty], validationRule);

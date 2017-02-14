@@ -22,7 +22,7 @@ describe('MetaEdIdIsRequiredForItemsTests', () => {
       .withBeginNamespace('edfi')
       .withStartDomain(entityName)
       .withDocumentation('doc')
-      .withDomainItem(propertyName)
+      .withDomainEntityElement(propertyName)
       .withEndDomain()
       .withEndNamespace()
       .toString();
@@ -68,7 +68,7 @@ describe('MetaEdIdIsRequiredForItemsTests', () => {
       .withBeginNamespace('edfi')
       .withStartInterchange(entityName)
       .withDocumentation('doc')
-      .withElement(propertyName)
+      .withDomainEntityElement(propertyName)
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -91,8 +91,8 @@ describe('MetaEdIdIsRequiredForItemsTests', () => {
       .withBeginNamespace('edfi')
       .withStartInterchange(entityName)
       .withDocumentation('doc')
-      .withElement('DomainEntity')
-      .withIdentityTemplate(propertyName)
+      .withDomainEntityElement('DomainEntity')
+      .withDomainEntityIdentityTemplate(propertyName)
       .withEndInterchange()
       .withEndNamespace()
       .toString();

@@ -17,8 +17,8 @@ describe('InterchangeExtensionMustNotDuplicateInterchangeElementName', () => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
       .withStartInterchangeExtension('Interchange1')
-      .withElement('Template1')
-      .withElement('Template2')
+      .withDomainEntityElement('Template1')
+      .withDomainEntityElement('Template2')
       .withEndInterchangeExtension()
       .withEndNamespace()
       .toString();
@@ -38,8 +38,8 @@ describe('InterchangeExtensionMustNotDuplicateInterchangeElementName', () => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
       .withStartInterchangeExtension('Interchange1')
-      .withElement(duplicateTemplate)
-      .withElement(duplicateTemplate)
+      .withDomainEntityElement(duplicateTemplate)
+      .withDomainEntityElement(duplicateTemplate)
       .withEndInterchangeExtension()
       .withEndNamespace()
       .toString();

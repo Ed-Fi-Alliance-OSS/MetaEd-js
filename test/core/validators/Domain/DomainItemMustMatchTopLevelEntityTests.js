@@ -25,11 +25,11 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
       .withStartDomain('DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withDomainEntityDomainItem(entityName)
       .withEndDomain()
       .withStartSubdomain('SubdomainName', 'DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withDomainEntityDomainItem(entityName)
       .withEndSubdomain()
       .withEndNamespace()
       .toString();
@@ -59,11 +59,11 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
       .withStartDomain('DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withDomainEntityDomainItem(entityName)
       .withEndDomain()
       .withStartSubdomain('SubdomainName', 'DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withDomainEntityDomainItem(entityName)
       .withEndSubdomain()
       .withEndNamespace()
       .toString();
@@ -83,18 +83,18 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty('Property1', 'because a property is required', true, false)
       .withEndAssociation()
 
       .withStartDomain('DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withAssociationDomainItem(entityName)
       .withEndDomain()
       .withStartSubdomain('SubdomainName', 'DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withAssociationDomainItem(entityName)
       .withEndSubdomain()
       .withEndNamespace()
       .toString();
@@ -114,8 +114,8 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation('BaseName')
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty('Property1', 'doc', true, false)
       .withEndAssociation()
 
@@ -126,11 +126,11 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
       .withStartDomain('DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withAssociationDomainItem(entityName)
       .withEndDomain()
       .withStartSubdomain('SubdomainName', 'DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withAssociationDomainItem(entityName)
       .withEndSubdomain()
       .withEndNamespace()
       .toString();
@@ -148,18 +148,18 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(entityName)
+      .withStartCommon(entityName)
       .withDocumentation('doc')
       .withStringIdentity('RequirePrimaryKey', 'doc', 100)
       .withEndDescriptor()
 
       .withStartDomain('DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withCommonDomainItem(entityName)
       .withEndDomain()
       .withStartSubdomain('SubdomainName', 'DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withCommonDomainItem(entityName)
       .withEndSubdomain()
       .withEndNamespace()
       .toString();
@@ -187,7 +187,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
       .withStartDomain('DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withDescriptorDomainItem(entityName)
       .withEndDomain()
       .withEndNamespace()
       .toString();
@@ -215,7 +215,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
 
       .withStartSubdomain('SubdomainName', 'DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withDescriptorDomainItem(entityName)
       .withEndSubdomain()
       .withEndNamespace()
       .toString();
@@ -235,7 +235,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
       .withBeginNamespace('edfi')
       .withStartDomain('DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withDomainEntityDomainItem(entityName)
       .withEndDomain()
       .withEndNamespace()
       .toString();
@@ -263,7 +263,7 @@ describe('DomainItemMustMatchTopLevelEntityTests', () => {
       .withBeginNamespace('edfi')
       .withStartSubdomain('SubdomainName', 'DomainName')
       .withDocumentation('doc')
-      .withDomainItem(entityName)
+      .withDomainEntityDomainItem(entityName)
       .withEndSubdomain()
       .withEndNamespace()
       .toString();

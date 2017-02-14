@@ -21,8 +21,8 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
       .withBeginNamespace('edfi')
       .withStartAssociation(baseName)
       .withDocumentation('because documentation is required')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withStringIdentity('Property1', 'because a property is required', 100)
       .withEndAssociation()
 
@@ -49,8 +49,8 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
       .withBeginNamespace('edfi')
       .withStartAssociation(baseName)
       .withDocumentation('because documentation is required')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withStringIdentity('Property1', 'because a property is required', 100)
       .withEndAssociation()
 
@@ -77,8 +77,8 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
       .withBeginNamespace('edfi')
       .withStartAssociation(baseName)
       .withDocumentation('because documentation is required')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withStringIdentity('Property1', 'because a property is required', 100)
       .withEndAssociation()
 
@@ -116,8 +116,8 @@ describe('AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClassT
       .withBeginNamespace('edfi')
       .withStartAssociation(baseName)
       .withDocumentation('because documentation is required')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withStringProperty('Property1', 'because a property is required', true, false, 100)
       .withEndAssociation()
 

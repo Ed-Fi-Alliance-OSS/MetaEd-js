@@ -39,4 +39,4 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
 
 const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
-export const includeRule = includeRuleBase(MetaEdGrammar.RULE_includeProperty, validationRule);
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_commonProperty, validationRule);

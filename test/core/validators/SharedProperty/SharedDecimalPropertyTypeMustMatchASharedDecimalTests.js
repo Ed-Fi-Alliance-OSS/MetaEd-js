@@ -2,27 +2,27 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/SharedProperty/SharedShortPropertyTypeMustMatchACommonShort';
+import { includeRule, validatable } from '../../../../src/core/validators/SharedProperty/SharedDecimalPropertyTypeMustMatchASharedDecimal';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
 
-describe('SharedShortPropertyTypeMustMatchACommonShortTests', () => {
+describe('SharedDecimalPropertyTypeMustMatchACommonDecimalTests', () => {
   const repository = includeRule(newRepository());
   const validatorListener = new ValidatorListener(repository);
 
-  describe('When_shared_property_has_identifier_of_common_simple_short', () => {
+  describe('When_shared_property_has_identifier_of_shared_simple_decimal', () => {
     const entityName: string = 'EntityName';
     const propertyName: string = 'PropertyName';
     const helper: ValidatorTestHelper = new ValidatorTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonShort(entityName)
+      .withStartSharedDecimal(entityName)
       .withDocumentation('doc')
-      .withMinValue(0)
-      .withMaxValue(1000)
-      .withEndCommonShort()
+      .withTotalDigits('10')
+      .withDecimalPlaces('2')
+      .withEndSharedDecimal()
 
       .withStartDomainEntity('DomainEntity')
       .withDocumentation('doc')
@@ -45,11 +45,11 @@ describe('SharedShortPropertyTypeMustMatchACommonShortTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
         .withBeginNamespace('edfi')
-        .withStartCommonShort(entityName)
+        .withStartSharedDecimal(entityName)
         .withDocumentation('doc')
-        .withMinValue(0)
-        .withMaxValue(1000)
-        .withEndCommonShort()
+        .withTotalDigits('10')
+        .withDecimalPlaces('2')
+        .withEndSharedDecimal()
 
         .withStartDomainEntity('DomainEntity')
         .withDocumentation('doc')
@@ -66,7 +66,7 @@ describe('SharedShortPropertyTypeMustMatchACommonShortTests', () => {
     });
   });
 
-  describe('When_shared_short_property_has_invalid_identifier', () => {
+  describe('When_shared_decimal_property_has_invalid_identifier', () => {
     const entityName: string = 'DoesNotExist';
     const propertyName: string = 'PropertyName';
     const helper: ValidatorTestHelper = new ValidatorTestHelper();
@@ -76,7 +76,7 @@ describe('SharedShortPropertyTypeMustMatchACommonShortTests', () => {
       .withStartDomainEntity('DomainEntity')
       .withDocumentation('doc')
       .withStringIdentity('RequirePrimaryKey', 'doc', 100)
-      .withSharedShortProperty(entityName, propertyName, 'doc', true, false)
+      .withSharedDecimalProperty(entityName, propertyName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -94,7 +94,7 @@ describe('SharedShortPropertyTypeMustMatchACommonShortTests', () => {
     });
   });
 
-  describe('When_shared_short_property_has_invalid_type_and_no_identifier', () => {
+  describe('When_shared_decimal_property_has_invalid_type_and_no_identifier', () => {
     const entityName: string = 'DoesNotExist';
     const helper: ValidatorTestHelper = new ValidatorTestHelper();
     before(() => {
@@ -103,7 +103,7 @@ describe('SharedShortPropertyTypeMustMatchACommonShortTests', () => {
         .withStartDomainEntity('DomainEntity')
         .withDocumentation('doc')
         .withStringIdentity('RequirePrimaryKey', 'doc', 100)
-        .withSharedShortProperty(entityName, null, 'doc', true, false)
+        .withSharedDecimalProperty(entityName, null, 'doc', true, false)
         .withEndDomainEntity()
         .withEndNamespace()
         .toString();

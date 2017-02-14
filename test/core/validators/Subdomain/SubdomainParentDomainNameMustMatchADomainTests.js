@@ -19,12 +19,12 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
       .withBeginNamespace('edfi')
       .withStartDomain(entityName)
       .withDocumentation('doc')
-      .withDomainItem('DomainEntity')
+      .withDomainEntityDomainItem('DomainEntity')
       .withEndDomain()
 
       .withStartSubdomain('NewSubclassName', entityName)
       .withDocumentation('doc')
-      .withDomainItem('DomainEntity')
+      .withDomainEntityDomainItem('DomainEntity')
       .withEndSubdomain()
       .withEndNamespace()
       .toString();
@@ -45,7 +45,7 @@ describe('SubdomainParentDomainNameMustMatchADomain', () => {
       .withBeginNamespace('edfi')
       .withStartSubdomain(entityName, baseName)
       .withDocumentation('doc')
-      .withDomainItem('DomainEntity')
+      .withDomainEntityDomainItem('DomainEntity')
       .withEndSubdomain()
       .withEndNamespace()
       .toString();

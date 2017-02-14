@@ -77,14 +77,18 @@ export function addArrayContext(arrayContextName: string, rootContext: any): Rul
 // property methods exist, though only one ever returns not-null, which here is the propertyName specified
 export function addPropertyContext(propertyName: string, rootContext: any): RuleContextChain {
   const propertyContextNames = [
+    'associationProperty',
     'booleanProperty',
+    'choiceProperty',
+    'commonProperty',
     'currencyProperty',
     'dateProperty',
     'decimalProperty',
     'descriptorProperty',
+    'domainEntityProperty',
     'durationProperty',
     'enumerationProperty',
-    'includeProperty',
+    'inlineCommonProperty',
     'integerProperty',
     'percentProperty',
     'referenceProperty',

@@ -2,7 +2,7 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/SharedProperty/SharedIntegerPropertyTypeMustMatchACommonInteger';
+import { includeRule, validatable } from '../../../../src/core/validators/SharedProperty/SharedIntegerPropertyTypeMustMatchASharedInteger';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -11,18 +11,18 @@ describe('SharedIntegerPropertyTypeMustMatchACommonIntegerTests', () => {
   const repository = includeRule(newRepository());
   const validatorListener = new ValidatorListener(repository);
 
-  describe('When_shared_property_has_identifier_of_common_simple_integer', () => {
+  describe('When_shared_property_has_identifier_of_shared_simple_integer', () => {
     const entityName: string = 'EntityName';
     const propertyName: string = 'PropertyName';
     const helper: ValidatorTestHelper = new ValidatorTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonInteger(entityName)
+      .withStartSharedInteger(entityName)
       .withDocumentation('doc')
       .withMinValue(0)
       .withMaxValue(1000)
-      .withEndCommonInteger()
+      .withEndSharedInteger()
 
       .withStartDomainEntity('DomainEntity')
       .withDocumentation('doc')
@@ -45,11 +45,11 @@ describe('SharedIntegerPropertyTypeMustMatchACommonIntegerTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
         .withBeginNamespace('edfi')
-        .withStartCommonInteger(entityName)
+        .withStartSharedInteger(entityName)
         .withDocumentation('doc')
         .withMinValue(0)
         .withMaxValue(1000)
-        .withEndCommonInteger()
+        .withEndSharedInteger()
 
         .withStartDomainEntity('DomainEntity')
         .withDocumentation('doc')

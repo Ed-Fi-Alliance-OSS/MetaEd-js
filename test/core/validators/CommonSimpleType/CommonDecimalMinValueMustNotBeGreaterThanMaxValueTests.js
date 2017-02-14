@@ -2,7 +2,7 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/CommonSimpleType/CommonDecimalMinValueMustNotBeGreaterThanMaxValue';
+import { includeRule, validatable } from '../../../../src/core/validators/SharedSimpleType/SharedDecimalMinValueMustNotBeGreaterThanMaxValue';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -16,11 +16,11 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonDecimal('EntityForTest')
+      .withStartSharedDecimal('EntityForTest')
       .withDocumentation('doc')
       .withTotalDigits('10')
       .withDecimalPlaces('2')
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -36,12 +36,12 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonDecimal('EntityForTest')
+      .withStartSharedDecimal('EntityForTest')
       .withDocumentation('doc')
       .withTotalDigits('10')
       .withDecimalPlaces('2')
       .withMaxValue(100)
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -57,12 +57,12 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonDecimal('EntityForTest')
+      .withStartSharedDecimal('EntityForTest')
       .withDocumentation('doc')
       .withTotalDigits('10')
       .withDecimalPlaces('2')
       .withMinValue(0)
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -78,13 +78,13 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonDecimal('EntityForTest')
+      .withStartSharedDecimal('EntityForTest')
       .withDocumentation('doc')
       .withTotalDigits('10')
       .withDecimalPlaces('2')
       .withMinValue(0)
       .withMaxValue(100)
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -101,13 +101,13 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonDecimal(entityName)
+      .withStartSharedDecimal(entityName)
       .withDocumentation('doc')
       .withTotalDigits('10')
       .withDecimalPlaces('2')
       .withMinValue(100)
       .withMaxValue(0)
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -129,13 +129,13 @@ describe('CommonDecimalMinValueMustNotBeGreaterThanMaxValue', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonDecimal('EntityForTest')
+      .withStartSharedDecimal('EntityForTest')
       .withDocumentation('doc')
       .withTotalDigits('10')
       .withDecimalPlaces('2')
       .withMinValue(100)
       .withMaxValue(100)
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);

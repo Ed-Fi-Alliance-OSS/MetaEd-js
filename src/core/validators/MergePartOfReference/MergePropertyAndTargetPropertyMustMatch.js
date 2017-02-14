@@ -32,7 +32,8 @@ function matchBaseType(symbolTable: SymbolTable, propertyRuleContext: any, baseT
 }
 
 function isReferenceProperty(ruleContext: any): boolean {
-  return ruleContext.ruleIndex === MetaEdGrammar.RULE_referenceProperty ||
+  return ruleContext.ruleIndex === MetaEdGrammar.RULE_associationProperty ||
+    ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntityProperty ||
     ruleContext.ruleIndex === MetaEdGrammar.RULE_firstDomainEntity ||
     ruleContext.ruleIndex === MetaEdGrammar.RULE_secondDomainEntity;
 }

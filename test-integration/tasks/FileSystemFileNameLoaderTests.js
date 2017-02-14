@@ -61,8 +61,8 @@ describe('FileSystemFileNameLoaderTests', () => {
       const metaEdTextAssociation = MetaEdTextBuilder.build()
       .withStartAssociation('Association1')
       .withDocumentation('doc')
-      .withDomainEntityProperty('Domain1', 'doc')
-      .withDomainEntityProperty('Domain2', 'doc')
+      .withAssociationDomainEntityProperty('Domain1', 'doc')
+      .withAssociationDomainEntityProperty('Domain2', 'doc')
       .withIntegerIdentity('Property2', 'doc', 100)
       .withEndDomainEntity()
       .toString();

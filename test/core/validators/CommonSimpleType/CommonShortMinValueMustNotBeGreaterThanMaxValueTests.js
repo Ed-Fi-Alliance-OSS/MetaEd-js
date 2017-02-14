@@ -2,7 +2,7 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/CommonSimpleType/CommonShortMinValueMustNotBeGreaterThanMaxValue';
+import { includeRule, validatable } from '../../../../src/core/validators/SharedSimpleType/SharedShortMinValueMustNotBeGreaterThanMaxValue';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -16,9 +16,9 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonShort('EntityForTest')
+      .withStartSharedShort('EntityForTest')
       .withDocumentation('doc')
-      .withEndCommonShort()
+      .withEndSharedShort()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -34,10 +34,10 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonShort('EntityForTest')
+      .withStartSharedShort('EntityForTest')
       .withDocumentation('doc')
       .withMaxValue(100)
-      .withEndCommonShort()
+      .withEndSharedShort()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -53,10 +53,10 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonShort('EntityForTest')
+      .withStartSharedShort('EntityForTest')
       .withDocumentation('doc')
       .withMinValue(0)
-      .withEndCommonShort()
+      .withEndSharedShort()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -72,11 +72,11 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonShort('EntityForTest')
+      .withStartSharedShort('EntityForTest')
       .withDocumentation('doc')
       .withMinValue(0)
       .withMaxValue(100)
-      .withEndCommonShort()
+      .withEndSharedShort()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -93,11 +93,11 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonShort(entityName)
+      .withStartSharedShort(entityName)
       .withDocumentation('doc')
       .withMinValue(100)
       .withMaxValue(0)
-      .withEndCommonShort()
+      .withEndSharedShort()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -119,11 +119,11 @@ describe('CommonShortMinValueMustNotBeGreaterThanMaxValue', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonShort('EntityForTest')
+      .withStartSharedShort('EntityForTest')
       .withDocumentation('doc')
       .withMinValue(100)
       .withMaxValue(100)
-      .withEndCommonShort()
+      .withEndSharedShort()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);

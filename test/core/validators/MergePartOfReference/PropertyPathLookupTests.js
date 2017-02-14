@@ -36,7 +36,7 @@ describe('PropertyPathLookupTests', () => {
         helper.state.symbolTable,
         helper.state.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity1'),
         ['Prop1'],
-        matchAllIdentityProperties
+        matchAllIdentityProperties,
       );
 
       result.should.not.be.null;
@@ -61,8 +61,8 @@ describe('PropertyPathLookupTests', () => {
 
       .withStartAssociation('Entity3')
       .withDocumentation('doc')
-      .withDomainEntityProperty('Entity1', 'doc')
-      .withDomainEntityProperty('Entity2', 'doc')
+      .withAssociationDomainEntityProperty('Entity1', 'doc')
+      .withAssociationDomainEntityProperty('Entity2', 'doc')
       .withEndAssociation()
       .withEndNamespace()
       .toString();
@@ -100,8 +100,8 @@ describe('PropertyPathLookupTests', () => {
 
       .withStartAssociation('Entity3')
       .withDocumentation('doc')
-      .withDomainEntityProperty('Entity1', 'doc')
-      .withDomainEntityProperty('Entity2', 'doc')
+      .withAssociationDomainEntityProperty('Entity1', 'doc')
+      .withAssociationDomainEntityProperty('Entity2', 'doc')
       .withEndAssociation()
       .withEndNamespace()
       .toString();
@@ -191,8 +191,8 @@ describe('PropertyPathLookupTests', () => {
 
       .withStartDomainEntity('Entity2')
       .withDocumentation('doc')
-      .withReferenceIdentity('Entity1', 'doc', 'Test')
-      .withReferenceIdentity('Entity1', 'doc', 'Win')
+      .withDomainEntityIdentity('Entity1', 'doc', 'Test')
+      .withDomainEntityIdentity('Entity1', 'doc', 'Win')
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -225,7 +225,7 @@ describe('PropertyPathLookupTests', () => {
 
       .withStartDomainEntity('Entity2')
       .withDocumentation('doc')
-      .withReferenceIdentity('Entity1', 'doc', 'Test')
+      .withDomainEntityIdentity('Entity1', 'doc', 'Test')
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -260,7 +260,7 @@ describe('PropertyPathLookupTests', () => {
       .withStartDomainEntity('Entity2')
       .withDocumentation('doc')
       .withIntegerIdentity('Prop3', 'doc')
-      .withReferenceProperty('Entity1', 'doc', false, false, 'Test')
+      .withDomainEntityProperty('Entity1', 'doc', false, false, 'Test')
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();

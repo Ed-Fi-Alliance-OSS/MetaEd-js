@@ -2,7 +2,7 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/InlineCommonType/InlineCommonTypeExistsOnlyInCoreNamespace';
+import { includeRule, validatable } from '../../../../src/core/validators/InlineCommon/InlineCommonExistsOnlyInCoreNamespace';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
@@ -18,10 +18,10 @@ describe('InlineCommonTypeExistsOnlyInCoreNamespace', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartInlineCommonType(entityName)
+      .withStartInlineCommon(entityName)
       .withDocumentation('because documentation is required')
       .withBooleanProperty('Property1', 'because a property is required', true, false)
-      .withEndInlineCommonType()
+      .withEndInlineCommon()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -39,10 +39,10 @@ describe('InlineCommonTypeExistsOnlyInCoreNamespace', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace(extensionNamespace, 'ProjectExtension')
-      .withStartInlineCommonType(entityName)
+      .withStartInlineCommon(entityName)
       .withDocumentation('because documentation is required')
       .withBooleanProperty('Property2', 'because a property is required', true, false)
-      .withEndInlineCommonType()
+      .withEndInlineCommon()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);

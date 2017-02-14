@@ -39,11 +39,11 @@ describe('ShortPropertyMustNotMatchACommonSimpleTypeTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonDecimal(commonEntityName)
+      .withStartSharedDecimal(commonEntityName)
       .withDocumentation('doc')
       .withTotalDigits('10')
       .withDecimalPlaces('2')
-      .withEndCommonDecimal()
+      .withEndSharedDecimal()
 
       .withStartDomainEntity('EntityName')
       .withDocumentation('doc')
@@ -72,10 +72,10 @@ describe('ShortPropertyMustNotMatchACommonSimpleTypeTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonInteger(commonEntityName)
+      .withStartSharedInteger(commonEntityName)
       .withDocumentation('doc')
       .withMaxValue(100)
-      .withEndCommonInteger()
+      .withEndSharedInteger()
 
       .withStartDomainEntity('EntityName')
       .withDocumentation('doc')
@@ -104,10 +104,10 @@ describe('ShortPropertyMustNotMatchACommonSimpleTypeTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonShort(commonEntityName)
+      .withStartSharedShort(commonEntityName)
       .withDocumentation('doc')
       .withMaxValue(100)
-      .withEndCommonShort()
+      .withEndSharedShort()
 
       .withStartDomainEntity('EntityName')
       .withDocumentation('doc')
@@ -136,10 +136,10 @@ describe('ShortPropertyMustNotMatchACommonSimpleTypeTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonString(commonEntityName)
+      .withStartSharedString(commonEntityName)
       .withDocumentation('doc')
       .withMaxLength(100)
-      .withEndCommonString()
+      .withEndSharedString()
 
       .withStartDomainEntity('EntityName')
       .withDocumentation('doc')

@@ -350,14 +350,14 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
   });
 
-  describe('When_loading_entities_with_include_property', () => {
+  describe('When_loading_entities_with_common_property', () => {
     const helper: SymbolTableTestHelper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withIncludeProperty(propertyName, 'doc', true, false)
+      .withCommonProperty(propertyName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -370,7 +370,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
   });
 
-  describe('When_loading_entities_with_duplicated_include_property', () => {
+  describe('When_loading_entities_with_duplicated_common_property', () => {
     const helper: SymbolTableTestHelper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
@@ -378,7 +378,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
       .withBooleanProperty(propertyName, 'doc', true, false)
-      .withIncludeProperty(propertyName, 'doc', true, false)
+      .withCommonProperty(propertyName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -438,14 +438,14 @@ describe('SymbolTableBuilderPropertyTests', () => {
     });
   });
 
-  describe('When_loading_entities_with_reference_property', () => {
+  describe('When_loading_entities_with_domain_entity_property', () => {
     const helper: SymbolTableTestHelper = new SymbolTableTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withReferenceProperty(propertyName, 'doc', true, false)
+      .withDomainEntityProperty(propertyName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -466,7 +466,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
       .withBooleanProperty(propertyName, 'doc', true, false)
-      .withReferenceProperty(propertyName, 'doc', true, false)
+      .withDomainEntityProperty(propertyName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -711,8 +711,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
       .withBeginNamespace('edfi')
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withReferenceProperty(propertyName, 'doc', true, false, false, withContext1)
-      .withReferenceProperty(propertyName, 'doc', true, false, false, withContext2)
+      .withDomainEntityProperty(propertyName, 'doc', true, false, false, withContext1)
+      .withDomainEntityProperty(propertyName, 'doc', true, false, false, withContext2)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -734,8 +734,8 @@ describe('SymbolTableBuilderPropertyTests', () => {
       .withBeginNamespace('edfi')
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withReferenceProperty(propertyName, 'doc', true, false, false, withContext)
-      .withReferenceProperty(propertyName, 'doc', true, false, false, withContext)
+      .withDomainEntityProperty(propertyName, 'doc', true, false, false, withContext)
+      .withDomainEntityProperty(propertyName, 'doc', true, false, false, withContext)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -754,7 +754,7 @@ describe('SymbolTableBuilderPropertyTests', () => {
       helper.errorMessages().length.should.equal(1);
       const failure: ValidationMessage = helper.errorMessages()[0];
       failure.concatenatedLineNumber.should.equal(10);
-      failure.characterPosition.should.equal(14);
+      failure.characterPosition.should.equal(18);
     });
   });
 });

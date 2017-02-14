@@ -24,7 +24,7 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
 
       .withStartInterchange('InterchangeName')
       .withDocumentation('doc')
-      .withElement(entityName)
+      .withDomainEntityElement(entityName)
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -54,7 +54,7 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
 
       .withStartInterchange('InterchangeName')
       .withDocumentation('doc')
-      .withElement(entityName)
+      .withDomainEntityElement(entityName)
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -74,14 +74,14 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty('Property1', 'because a property is required', true, false)
       .withEndAssociation()
 
       .withStartInterchange('InterchangeName')
       .withDocumentation('doc')
-      .withElement(entityName)
+      .withAssociationElement(entityName)
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -101,8 +101,8 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
       .withBeginNamespace('edfi')
       .withStartAssociation('BaseName')
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty('Property1', 'doc', true, false)
       .withEndAssociation()
 
@@ -113,7 +113,7 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
 
       .withStartInterchange('InterchangeName')
       .withDocumentation('doc')
-      .withElement(entityName)
+      .withAssociationElement(entityName)
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -141,7 +141,7 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
 
       .withStartInterchange('InterchangeName')
       .withDocumentation('doc')
-      .withElement(entityName)
+      .withDescriptorElement(entityName)
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -161,7 +161,7 @@ describe('InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass', () =
       .withBeginNamespace('edfi')
       .withStartInterchange('InterchangeName')
       .withDocumentation('doc')
-      .withElement(entityName)
+      .withDomainEntityElement(entityName)
       .withEndInterchange()
       .withEndNamespace()
       .toString();

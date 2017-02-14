@@ -7,7 +7,7 @@ import type { ValidatableResult } from '../ValidationTypes';
 import { exceptionPath } from '../ValidationHelper';
 
 export function validatable(ruleContext: any): ValidatableResult {
-  const validatorName = 'InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass';
+  const validatorName = 'InterchangeIdentityMustMatchADomainEntityOrAssociationOrSubclass';
   const invalidPath: ?string[] = exceptionPath(['ID'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
 
@@ -16,4 +16,4 @@ export function validatable(ruleContext: any): ValidatableResult {
 
 const validationRule = errorRuleBase(validatable, validForDomainEntityOrAssociationOrSubclass, failureMessageForEntityTitle('Interchange identity template'));
 // eslint-disable-next-line import/prefer-default-export
-export const includeRule = includeRuleBase(MetaEdGrammar.RULE_interchangeIdentityTemplate, validationRule);
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_interchangeIdentity, validationRule);

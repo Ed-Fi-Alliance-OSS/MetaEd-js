@@ -176,8 +176,8 @@ describe('MetaEdIdIsRequiredForPropertiesTests', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('First', 'doc1')
-      .withDomainEntityProperty('Second', 'doc2')
+      .withAssociationDomainEntityProperty('First', 'doc1')
+      .withAssociationDomainEntityProperty('Second', 'doc2')
       .withEndAssociation()
       .withEndNamespace()
       .toString();
@@ -192,14 +192,14 @@ describe('MetaEdIdIsRequiredForPropertiesTests', () => {
     });
   });
 
-  describe('When_includeProperty_is_missing_metaEdId', () => {
+  describe('When_commonProperty_is_missing_metaEdId', () => {
     const helper: ValidatorTestHelper = new ValidatorTestHelper();
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withIncludeProperty(propertyName, 'doc', true, false)
+      .withCommonProperty(propertyName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -265,7 +265,7 @@ describe('MetaEdIdIsRequiredForPropertiesTests', () => {
       .withBeginNamespace('edfi')
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withReferenceProperty(propertyName, 'doc', true, false)
+      .withDomainEntityProperty(propertyName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();
@@ -287,8 +287,8 @@ describe('MetaEdIdIsRequiredForPropertiesTests', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('First', 'doc1')
-      .withDomainEntityProperty('Second', 'doc2')
+      .withAssociationDomainEntityProperty('First', 'doc1')
+      .withAssociationDomainEntityProperty('Second', 'doc2')
       .withEndAssociation()
       .withEndNamespace()
       .toString();

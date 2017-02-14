@@ -7,17 +7,17 @@ import { validForDuplicates, failureMessageForDuplicates } from '../ValidatorSha
 import type { ValidatableResult } from '../ValidationTypes';
 
 function idsToCheck(ruleContext: any) {
-  return ruleContext.interchangeComponent().interchangeIdentityTemplate().map(x => x.ID().getText());
+  return ruleContext.interchangeComponent().interchangeIdentity().map(x => x.ID().getText());
 }
 
 export function validatable(ruleContext: any): ValidatableResult {
-  const validatorName = 'InterchangeMustNotDuplicateIdentityTemplateName';
-  let invalidPath: ?string[] = exceptionPath(['interchangeComponent', 'interchangeIdentityTemplate'], ruleContext);
+  const validatorName = 'InterchangeMustNotDuplicateIdentityName';
+  let invalidPath: ?string[] = exceptionPath(['interchangeComponent', 'interchangeIdentity'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
 
   // eslint-disable-next-line no-restricted-syntax
-  for (const interchangeIdentityTemplate of ruleContext.interchangeComponent().interchangeIdentityTemplate()) {
-    invalidPath = exceptionPath(['ID'], interchangeIdentityTemplate);
+  for (const interchangeIdentity of ruleContext.interchangeComponent().interchangeIdentity()) {
+    invalidPath = exceptionPath(['ID'], interchangeIdentity);
     if (invalidPath) return { invalidPath, validatorName };
   }
 

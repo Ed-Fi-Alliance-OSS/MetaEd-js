@@ -2,7 +2,7 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/Interchange/InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubclass';
+import { includeRule, validatable } from '../../../../src/core/validators/Interchange/InterchangeIdentityMustMatchADomainEntityOrAssociationOrSubclass';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -24,8 +24,8 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
       .withStartInterchange('InterchangeName')
       .withDocumentation('doc')
-      .withIdentityTemplate(entityName)
-      .withElement('Required')
+      .withDomainEntityIdentityTemplate(entityName)
+      .withDomainEntityElement('Required')
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -55,8 +55,8 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
       .withStartInterchange('InterchangeName')
       .withDocumentation('doc')
-      .withIdentityTemplate(entityName)
-      .withElement('Required')
+      .withDomainEntityIdentityTemplate(entityName)
+      .withDomainEntityElement('Required')
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -76,15 +76,15 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
       .withBeginNamespace('edfi')
       .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty('Property1', 'because a property is required', true, false)
       .withEndAssociation()
 
       .withStartInterchange('InterchangeName')
       .withDocumentation('doc')
-      .withIdentityTemplate(entityName)
-      .withElement('Required')
+      .withAssociationIdentityTemplate(entityName)
+      .withDomainEntityElement('Required')
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -104,8 +104,8 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
       .withBeginNamespace('edfi')
       .withStartAssociation('BaseName')
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc')
-      .withDomainEntityProperty('DomainEntity2', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc')
       .withBooleanProperty('Property1', 'doc', true, false)
       .withEndAssociation()
 
@@ -116,8 +116,8 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
       .withStartInterchange('InterchangeName')
       .withDocumentation('doc')
-      .withIdentityTemplate(entityName)
-      .withElement('Required')
+      .withAssociationIdentityTemplate(entityName)
+      .withDomainEntityElement('Required')
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -142,8 +142,8 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
 
       .withStartInterchange('InterchangeName')
       .withDocumentation('doc')
-      .withIdentityTemplate(entityName)
-      .withElement('Required')
+      .withDomainEntityIdentityTemplate(entityName)
+      .withDomainEntityElement('Required')
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -163,8 +163,8 @@ describe('InterchangeIdentityTemplateMustMatchADomainEntityOrAssociationOrSubcla
       .withBeginNamespace('edfi')
       .withStartInterchange('InterchangeName')
       .withDocumentation('doc')
-      .withIdentityTemplate(entityName)
-      .withElement('Required')
+      .withDomainEntityIdentityTemplate(entityName)
+      .withDomainEntityElement('Required')
       .withEndInterchange()
       .withEndNamespace()
       .toString();

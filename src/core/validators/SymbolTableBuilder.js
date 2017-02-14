@@ -127,71 +127,71 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
     this.currentPropertySymbolTable = null;
   }
 
-  enterChoiceType(ruleContext: any) {
-    this._addEntity(ruleContext.CHOICE_TYPE().getText(), ruleContext.choiceName().ID(), ruleContext);
+  enterChoice(ruleContext: any) {
+    this._addEntity(ruleContext.CHOICE().getText(), ruleContext.choiceName().ID(), ruleContext);
   }
 
   // eslint-disable-next-line no-unused-vars
-  exitChoiceType(ruleContext: any) {
+  exitChoice(ruleContext: any) {
     this.currentPropertySymbolTable = null;
   }
 
-  enterCommonDecimal(ruleContext: any) {
-    this._addEntity(ruleContext.COMMON_DECIMAL().getText(), ruleContext.commonDecimalName().ID(), ruleContext);
+  enterSharedDecimal(ruleContext: any) {
+    this._addEntity(ruleContext.SHARED_DECIMAL().getText(), ruleContext.sharedDecimalName().ID(), ruleContext);
   }
 
   // eslint-disable-next-line no-unused-vars
-  exitCommonDecimal(ruleContext: any) {
+  exitSharedDecimal(ruleContext: any) {
     this.currentPropertySymbolTable = null;
   }
 
-  enterCommonInteger(ruleContext: any) {
-    this._addEntity(ruleContext.COMMON_INTEGER().getText(), ruleContext.commonIntegerName().ID(), ruleContext);
+  enterSharedInteger(ruleContext: any) {
+    this._addEntity(ruleContext.SHARED_INTEGER().getText(), ruleContext.sharedIntegerName().ID(), ruleContext);
   }
 
   // eslint-disable-next-line no-unused-vars
-  exitCommonInteger(ruleContext: any) {
+  exitSharedInteger(ruleContext: any) {
     this.currentPropertySymbolTable = null;
   }
 
-  enterCommonShort(ruleContext: any) {
-    this._addEntity(ruleContext.COMMON_SHORT().getText(), ruleContext.commonShortName().ID(), ruleContext);
+  enterSharedShort(ruleContext: any) {
+    this._addEntity(ruleContext.SHARED_SHORT().getText(), ruleContext.sharedShortName().ID(), ruleContext);
   }
 
   // eslint-disable-next-line no-unused-vars
-  exitCommonShort(ruleContext: any) {
+  exitSharedShort(ruleContext: any) {
     this.currentPropertySymbolTable = null;
   }
 
-  enterCommonString(ruleContext: any) {
-    this._addEntity(ruleContext.COMMON_STRING().getText(), ruleContext.commonStringName().ID(), ruleContext);
+  enterSharedString(ruleContext: any) {
+    this._addEntity(ruleContext.SHARED_STRING().getText(), ruleContext.sharedStringName().ID(), ruleContext);
   }
 
   // eslint-disable-next-line no-unused-vars
-  exitCommonString(ruleContext: any) {
+  exitSharedString(ruleContext: any) {
     this.currentPropertySymbolTable = null;
   }
 
-  enterCommonType(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.commonType(), ruleContext.commonName().ID(), ruleContext);
+  enterCommon(ruleContext: any) {
+    this._addEntity(SymbolTableEntityType.common(), ruleContext.commonName().ID(), ruleContext);
   }
 
   // eslint-disable-next-line no-unused-vars
-  exitCommonType(ruleContext: any) {
+  exitCommon(ruleContext: any) {
     this.currentPropertySymbolTable = null;
   }
 
-  enterCommonTypeExtension(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.commonTypeExtension(), ruleContext.extendeeName().ID(), ruleContext);
+  enterCommonExtension(ruleContext: any) {
+    this._addEntity(SymbolTableEntityType.commonExtension(), ruleContext.extendeeName().ID(), ruleContext);
   }
 
   // eslint-disable-next-line no-unused-vars
-  exitCommonTypeExtension(ruleContext: any) {
+  exitCommonExtension(ruleContext: any) {
     this.currentPropertySymbolTable = null;
   }
 
   enterDescriptor(ruleContext: any) {
-    this._addEntity(ruleContext.DESCRIPTOR_ENTITY().getText(), ruleContext.descriptorName().ID(), ruleContext);
+    this._addEntity(ruleContext.DESCRIPTOR().getText(), ruleContext.descriptorName().ID(), ruleContext);
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -235,12 +235,12 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
     this.currentPropertySymbolTable = null;
   }
 
-  enterInlineCommonType(ruleContext: any) {
-    this._addEntity(SymbolTableEntityType.inlineCommonType(), ruleContext.inlineCommonName().ID(), ruleContext);
+  enterInlineCommon(ruleContext: any) {
+    this._addEntity(SymbolTableEntityType.inlineCommon(), ruleContext.inlineCommonName().ID(), ruleContext);
   }
 
   // eslint-disable-next-line no-unused-vars
-  exitInlineCommonType(ruleContext: any) {
+  exitInlineCommon(ruleContext: any) {
     this.currentPropertySymbolTable = null;
   }
 
@@ -271,7 +271,19 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
     this.currentPropertySymbolTable = null;
   }
 
+  enterAssociationProperty(ruleContext: any) {
+    this._addProperty(ruleContext);
+  }
+
   enterBooleanProperty(ruleContext: any) {
+    this._addProperty(ruleContext);
+  }
+
+  enterChoiceProperty(ruleContext: any) {
+    this._addProperty(ruleContext);
+  }
+
+  enterCommonProperty(ruleContext: any) {
     this._addProperty(ruleContext);
   }
 
@@ -291,6 +303,10 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
     this._addProperty(ruleContext);
   }
 
+  enterDomainEntityProperty(ruleContext: any) {
+    this._addProperty(ruleContext);
+  }
+
   enterDurationProperty(ruleContext: any) {
     this._addProperty(ruleContext);
   }
@@ -299,15 +315,11 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
     this._addProperty(ruleContext);
   }
 
-  enterIncludeProperty(ruleContext: any) {
-    this._addProperty(ruleContext);
-  }
-
   enterIntegerProperty(ruleContext: any) {
     this._addProperty(ruleContext);
   }
 
-  enterReferenceProperty(ruleContext: any) {
+  enterInlineCommonProperty(ruleContext: any) {
     this._addProperty(ruleContext);
   }
 

@@ -23,7 +23,7 @@ describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {
       .withStartDomainEntity('Entity2')
       .withDocumentation('doc')
       .withIntegerIdentity('Prop1', 'doc')
-      .withReferenceProperty('Entity1', 'doc', false, false)
+      .withDomainEntityProperty('Entity1', 'doc', false, false)
       .withMergePartOfReference('Entity1.Prop1', 'Prop1')
       .withEndDomainEntity()
       .withEndNamespace()
@@ -53,10 +53,11 @@ describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {
       .withStartDomainEntity(entityName2)
       .withDocumentation('doc')
       .withIntegerIdentity(propertyName, 'doc')
-      .withReferenceProperty(entityName1, 'doc', false, false)
+      .withDomainEntityProperty(entityName1, 'doc', false, false)
       .withMergePartOfReference(entityName1 + '.' + propertyName, propertyName)
       .withEndDomainEntity()
-      .withEndNamespace().toString();
+      .withEndNamespace()
+      .toString();
       helper.setup(metaEdText, validatorListener);
     });
 

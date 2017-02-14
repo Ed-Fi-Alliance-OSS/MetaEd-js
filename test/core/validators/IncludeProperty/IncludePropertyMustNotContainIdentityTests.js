@@ -2,7 +2,7 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/IncludeProperty/IncludePropertyMustNotContainIdentity';
+import { includeRule, validatable } from '../../../../src/core/validators/CommonProperty/CommonPropertyMustNotContainIdentity';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../../src/grammar/gen/MetaEdGrammar';
 
@@ -20,14 +20,14 @@ describe('IncludePropertyMustNotContainIdentity', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonType(commonTypeName)
+      .withStartCommon(commonTypeName)
       .withDocumentation('doc')
       .withStringProperty('StringProperty', 'doc', true, false, 100)
-      .withEndCommonType()
+      .withEndCommon()
 
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withIncludeIdentity(propertyName, 'doc')
+      .withCommonIdentity(propertyName, 'doc')
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();

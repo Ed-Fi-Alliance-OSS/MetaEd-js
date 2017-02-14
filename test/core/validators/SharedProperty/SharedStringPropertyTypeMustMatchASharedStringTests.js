@@ -2,7 +2,7 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/SharedProperty/SharedStringPropertyTypeMustMatchACommonString';
+import { includeRule, validatable } from '../../../../src/core/validators/SharedProperty/SharedStringPropertyTypeMustMatchASharedString';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -18,10 +18,10 @@ describe('SharedStringPropertyTypeMustMatchACommonStringTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
       .withBeginNamespace('edfi')
-      .withStartCommonString(entityName)
+      .withStartSharedString(entityName)
       .withDocumentation('doc')
       .withMaxLength(100)
-      .withEndCommonString()
+      .withEndSharedString()
 
       .withStartDomainEntity('DomainEntity')
       .withDocumentation('doc')
@@ -44,10 +44,10 @@ describe('SharedStringPropertyTypeMustMatchACommonStringTests', () => {
     before(() => {
       const metaEdText = MetaEdTextBuilder.build()
         .withBeginNamespace('edfi')
-        .withStartCommonString(entityName)
+        .withStartSharedString(entityName)
         .withDocumentation('doc')
         .withMaxLength(100)
-        .withEndCommonString()
+        .withEndSharedString()
 
         .withStartDomainEntity('DomainEntity')
         .withDocumentation('doc')

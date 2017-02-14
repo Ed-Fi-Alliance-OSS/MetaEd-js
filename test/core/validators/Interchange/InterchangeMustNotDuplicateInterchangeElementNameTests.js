@@ -18,8 +18,8 @@ describe('InterchangeMustNotDuplicateInterchangeElementNameTests', () => {
       .withBeginNamespace('edfi')
       .withStartInterchange('Interchange1')
       .withDocumentation('doc')
-      .withElement('Template1')
-      .withElement('Template2')
+      .withDomainEntityElement('Template1')
+      .withDomainEntityElement('Template2')
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -40,8 +40,8 @@ describe('InterchangeMustNotDuplicateInterchangeElementNameTests', () => {
       .withBeginNamespace('edfi')
       .withStartInterchange('Interchange1')
       .withDocumentation('doc')
-      .withElement(duplicateTemplate)
-      .withElement(duplicateTemplate)
+      .withDomainEntityElement(duplicateTemplate)
+      .withDomainEntityElement(duplicateTemplate)
       .withEndInterchange()
       .withEndNamespace()
       .toString();

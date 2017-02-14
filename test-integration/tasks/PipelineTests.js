@@ -61,7 +61,7 @@ describe('PipelineTests', () => {
       .withStartDomainEntity('DomainEntity1')
       .withMetaEdId('123')
       .withDocumentation('doc')
-      .withReferenceIdentity('NoMatchingEntity', 'doc', null, '456')
+      .withDomainEntityIdentity('NoMatchingEntity', 'doc', null, '456')
       .withEndDomainEntity()
       .toString();
 
@@ -114,8 +114,8 @@ describe('PipelineTests', () => {
       .withStartAssociation('Association1')
       .withMetaEdId('789')
       .withDocumentation('doc')
-      .withDomainEntityProperty('DomainEntity1', 'doc', null, '7891')
-      .withDomainEntityProperty('DomainEntity2', 'doc', null, '7892')
+      .withAssociationDomainEntityProperty('DomainEntity1', 'doc', null, '7891')
+      .withAssociationDomainEntityProperty('DomainEntity2', 'doc', null, '7892')
       .withIntegerIdentity('IntegerProperty', 'doc', 100, null, null, '7893')
       .withEndDomainEntity()
       .toString();

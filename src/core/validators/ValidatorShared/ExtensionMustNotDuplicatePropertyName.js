@@ -5,9 +5,9 @@ import type SymbolTable from '../SymbolTable';
 import { exceptionPath } from '../ValidationHelper';
 import type { ValidatableResult } from '../ValidationTypes';
 
-function isNotIncludePropertyContextWithExtension(context: any): boolean {
-  if (context.ruleIndex !== MetaEdGrammar.RULE_includeProperty) return true;
-  return context.includeExtensionOverride() === null;
+function isNotCommonPropertyContextWithExtension(context: any): boolean {
+  if (context.ruleIndex !== MetaEdGrammar.RULE_commonProperty) return true;
+  return context.commonExtensionOverride() === null;
 }
 
 function propertyRuleContextsForDuplicates(baseKey: string, extensionKey: string, ruleContext: any, symbolTable: SymbolTable): Array<any> {
@@ -15,7 +15,7 @@ function propertyRuleContextsForDuplicates(baseKey: string, extensionKey: string
   const entityPropertyIdentifiers = symbolTable.identifiersForEntityProperties(baseKey, identifier);
   const duplicates =
     symbolTable.contextsForMatchingPropertyIdentifiers(extensionKey, identifier, Array.from(entityPropertyIdentifiers));
-  return duplicates.filter(x => isNotIncludePropertyContextWithExtension(x));
+  return duplicates.filter(x => isNotCommonPropertyContextWithExtension(x));
 }
 
 export const validatable = R.curry(

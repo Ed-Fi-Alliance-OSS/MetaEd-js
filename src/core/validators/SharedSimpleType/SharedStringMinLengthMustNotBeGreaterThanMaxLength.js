@@ -7,16 +7,16 @@ import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {
-  const validatorName = 'CommonShortMinValueMustNotBeGreaterThanMaxValue';
-  if (ruleContext.minValue() == null || ruleContext.maxValue() == null) return { validatorName };
+  const validatorName = 'CommonStringMinLengthMustNotBeGreaterThanMaxLength';
+  if (ruleContext.minLength() == null) return { validatorName };
 
-  let invalidPath: ?string[] = exceptionPath(['minValue', 'signed_int'], ruleContext);
+  let invalidPath: ?string[] = exceptionPath(['minLength', 'UNSIGNED_INT'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
 
-  invalidPath = exceptionPath(['maxValue', 'signed_int'], ruleContext);
+  invalidPath = exceptionPath(['maxLength', 'UNSIGNED_INT'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
 
-  invalidPath = exceptionPath(['commonShortName'], ruleContext);
+  invalidPath = exceptionPath(['sharedStringName'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
 
   return { validatorName };
@@ -24,17 +24,17 @@ export function validatable(ruleContext: any): ValidatableResult {
 
 // eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
-  if (ruleContext.minValue() == null || ruleContext.maxValue() == null) return true;
-  const minValue = Number.parseInt(ruleContext.minValue().signed_int().getText(), 10);
-  const maxValue = Number.parseInt(ruleContext.maxValue().signed_int().getText(), 10);
-  return minValue <= maxValue;
+  if (ruleContext.minLength() == null) return true;
+  const minLength = Number.parseInt(ruleContext.minLength().UNSIGNED_INT().getText(), 10);
+  const maxLength = Number.parseInt(ruleContext.maxLength().UNSIGNED_INT().getText(), 10);
+  return minLength <= maxLength;
 }
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  return `Common Short '${ruleContext.commonShortName().getText()}' has min value greater than max value.`;
+  return `Common String '${ruleContext.sharedStringName().getText()}' has min length greater than max length.`;
 }
 
 const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
-export const includeRule = includeRuleBase(MetaEdGrammar.RULE_commonShort, validationRule);
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_sharedString, validationRule);

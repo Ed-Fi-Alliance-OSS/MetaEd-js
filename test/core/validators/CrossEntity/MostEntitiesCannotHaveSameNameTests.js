@@ -96,8 +96,8 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
       .withBeginNamespace('edfi')
       .withStartAssociation('Association1')
       .withDocumentation('because documentation is required')
-      .withDomainEntityProperty('Prop7', 'because a property is required')
-      .withDomainEntityProperty('Prop8', 'because a property is required')
+      .withAssociationDomainEntityProperty('Prop7', 'because a property is required')
+      .withAssociationDomainEntityProperty('Prop8', 'because a property is required')
       .withEndAssociation()
 
       .withStartAssociationExtension('Association1')
@@ -124,10 +124,10 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
       .withBooleanProperty('Prop9', 'doc', true, false)
       .withEndDomainEntity()
 
-      .withStartCommonInteger('CommonEntityName')
+      .withStartSharedInteger('CommonEntityName')
       .withDocumentation('doc')
       .withMinValue('0')
-      .withEndCommonInteger()
+      .withEndSharedInteger()
       .withEndNamespace()
       .toString();
       helper.setup(metaEdText, validatorListener);
@@ -204,7 +204,7 @@ describe('MostEntitiesCannotHaveSameNameTests', () => {
 
       .withStartInterchange('SharedEntity4')
       .withDocumentation('doc')
-      .withElement('SharedEntity4')
+      .withDomainEntityElement('SharedEntity4')
       .withEndInterchange()
       .withEndNamespace()
       .toString();

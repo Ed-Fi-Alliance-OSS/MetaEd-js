@@ -9,7 +9,7 @@ import SymbolTableEntityType from '../SymbolTableEntityType';
 import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {
-  const validatorName = 'IncludePropertyWithExtensionOverrideMustReferenceCommonTypeExtension';
+  const validatorName = 'CommonPropertyWithExtensionOverrideMustReferenceCommonTypeExtension';
 
   let invalidPath: ?string[] = exceptionPath(['propertyName', 'ID'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
@@ -28,8 +28,8 @@ export function validatable(ruleContext: any): ValidatableResult {
 }
 
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
-  if (ruleContext.includeExtensionOverride() == null) return true;
-  return symbolTable.identifierExists(SymbolTableEntityType.commonTypeExtension(), ruleContext.propertyName().ID().getText());
+  if (ruleContext.commonExtensionOverride() == null) return true;
+  return symbolTable.identifierExists(SymbolTableEntityType.commonExtension(), ruleContext.propertyName().ID().getText());
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -41,4 +41,4 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
 
 const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
-export const includeRule = includeRuleBase(MetaEdGrammar.RULE_includeProperty, validationRule);
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_commonProperty, validationRule);

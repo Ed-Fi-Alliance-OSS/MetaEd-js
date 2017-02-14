@@ -2,7 +2,7 @@ import chai from 'chai';
 import MetaEdTextBuilder from '../../../grammar/MetaEdTextBuilder';
 import ValidatorTestHelper, { addRuleContextPath, addPropertyArrayContext } from './../ValidatorTestHelper';
 import ValidatorListener from '../../../../src/core/validators/ValidatorListener';
-import { includeRule, validatable } from '../../../../src/core/validators/Interchange/InterchangeMustNotDuplicateIdentityTemplateName';
+import { includeRule, validatable } from '../../../../src/core/validators/Interchange/InterchangeMustNotDuplicateIdentityName';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
 
 chai.should();
@@ -18,9 +18,9 @@ describe('InterchangeMustNotDuplicateIdentityTemplateNameTests', () => {
       .withBeginNamespace('edfi')
       .withStartInterchange('Interchange1')
       .withDocumentation('doc')
-      .withElement('Required')
-      .withIdentityTemplate('Template1')
-      .withIdentityTemplate('Template2')
+      .withDomainEntityElement('Required')
+      .withDomainEntityIdentityTemplate('Template1')
+      .withDomainEntityIdentityTemplate('Template2')
       .withEndInterchange()
       .withEndNamespace()
       .toString();
@@ -41,9 +41,9 @@ describe('InterchangeMustNotDuplicateIdentityTemplateNameTests', () => {
       .withBeginNamespace('edfi')
       .withStartInterchange('Interchange1')
       .withDocumentation('doc')
-      .withElement('Required')
-      .withIdentityTemplate(duplicateTemplate)
-      .withIdentityTemplate(duplicateTemplate)
+      .withDomainEntityElement('Required')
+      .withDomainEntityIdentityTemplate(duplicateTemplate)
+      .withDomainEntityIdentityTemplate(duplicateTemplate)
       .withEndInterchange()
       .withEndNamespace()
       .toString();

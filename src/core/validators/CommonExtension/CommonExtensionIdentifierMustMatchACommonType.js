@@ -18,7 +18,7 @@ export const validatable = R.curry(
 
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const identifier = ruleContext.extendeeName().getText();
-  return Array.from(symbolTable.identifiersForEntityType(SymbolTableEntityType.commonType())).some(x => x === identifier);
+  return Array.from(symbolTable.identifiersForEntityType(SymbolTableEntityType.common())).some(x => x === identifier);
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -28,4 +28,4 @@ function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
 
 const validationRule = errorRuleBase(validatable('CommonTypeExtensionIdentifierMustMatchACommonType'), valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
-export const includeRule = includeRuleBase(MetaEdGrammar.RULE_commonTypeExtension, validationRule);
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_commonExtension, validationRule);

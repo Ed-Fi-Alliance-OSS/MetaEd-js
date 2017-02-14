@@ -5,7 +5,7 @@ import { parentIdentifierForPropertyContext, parentTypeNameForPropertyContext } 
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
-import { valid } from '../CommonSimpleType/CommonDecimalMinValueMustNotBeGreaterThanMaxValue';
+import { valid } from '../SharedSimpleType/SharedDecimalMinValueMustNotBeGreaterThanMaxValue';
 import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {

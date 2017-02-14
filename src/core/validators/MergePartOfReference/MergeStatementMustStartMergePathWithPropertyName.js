@@ -13,7 +13,8 @@ export function validatable(ruleContext: any): ValidatableResult {
 
 // eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
-  if (ruleContext.parentCtx.ruleIndex !== MetaEdGrammar.RULE_referenceProperty) return false;
+  if (!(ruleContext.parentCtx.ruleIndex === MetaEdGrammar.RULE_associationProperty ||
+    ruleContext.parentCtx.ruleIndex === MetaEdGrammar.RULE_domainEntityProperty)) return false;
   const firstPropertyPathPart = ruleContext.mergePropertyPath().propertyPath().ID().map(x => x.getText())[0];
   return firstPropertyPathPart === ruleContext.parentCtx.propertyName().ID().getText();
 }

@@ -16,7 +16,7 @@ export function validatable(ruleContext: any): ValidatableResult {
   invalidPath = exceptionPath(['maxValueDecimal', 'decimalValue', 'signed_int'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
 
-  invalidPath = exceptionPath(['commonDecimalName'], ruleContext);
+  invalidPath = exceptionPath(['sharedDecimalName'], ruleContext);
   if (invalidPath) return { invalidPath, validatorName };
 
   return { validatorName };
@@ -32,9 +32,9 @@ export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  return `Common Decimal '${ruleContext.commonDecimalName().getText()}' has min value greater than max value.`;
+  return `Common Decimal '${ruleContext.sharedDecimalName().getText()}' has min value greater than max value.`;
 }
 
 const validationRule = errorRuleBase(validatable, valid, failureMessage);
 // eslint-disable-next-line import/prefer-default-export
-export const includeRule = includeRuleBase(MetaEdGrammar.RULE_commonDecimal, validationRule);
+export const includeRule = includeRuleBase(MetaEdGrammar.RULE_sharedDecimal, validationRule);
