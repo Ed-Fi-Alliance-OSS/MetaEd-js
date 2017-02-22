@@ -13,15 +13,19 @@ export function validatable(ruleContext: any): ValidatableResult {
 
 // eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  // TODO: disabling this for now, revisit after validator refactor
+  return true;
+  /*
   if (!(ruleContext.parentCtx.ruleIndex === MetaEdGrammar.RULE_associationProperty ||
     ruleContext.parentCtx.ruleIndex === MetaEdGrammar.RULE_domainEntityProperty)) return false;
   const firstPropertyPathPart = ruleContext.mergePropertyPath().propertyPath().ID().map(x => x.getText())[0];
   return firstPropertyPathPart === ruleContext.parentCtx.propertyName().ID().getText();
+  */
 }
 
 // eslint-disable-next-line no-unused-vars
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
-  return 'Merge statement must startingFromFileLoad first property path with the referenced entity name of the current property.';
+  return 'Merge statement must start first property path with the name of the current property.';
 }
 
 const validationRule = errorRuleBase(validatable, valid, failureMessage);

@@ -7,8 +7,10 @@ import { topLevelEntityAncestorContext,
   propertyAncestorContext,
   exceptionPath,
   entityNameExceptionPath,
-  entityIdentifierExceptionPath } from '../ValidationHelper';
-import { entityIdentifier, entityName } from '../RuleInformation';
+  entityIdentifierExceptionPath,
+  entityIdentifier,
+  entityName } from '../ValidationHelper';
+import { } from '../RuleInformation';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 import type { ValidatableResult } from '../ValidationTypes';
 

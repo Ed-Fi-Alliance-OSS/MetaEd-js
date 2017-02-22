@@ -4,9 +4,9 @@ import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import type SymbolTable from '../SymbolTable';
-import { entityIdentifier, entityName } from '../RuleInformation';
 import { namespaceAncestorContext, topLevelEntityAncestorContext, propertyAncestorContext,
-  isExtensionNamespace, namespaceNameFor } from '../ValidationHelper';
+  isExtensionNamespace, namespaceNameFor,
+  entityIdentifier, entityName } from '../ValidationHelper';
 import type { ValidatableResult } from '../ValidationTypes';
 
 // TODO: *** Empty validatable implementation until port of C# merge property validator rewrite Jan 2017

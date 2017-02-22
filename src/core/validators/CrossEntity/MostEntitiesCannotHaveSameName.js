@@ -2,10 +2,10 @@
 import R from 'ramda';
 import { Set } from 'immutable';
 import { addAction, setValidatorData } from '../../State';
-import { entityNameExceptionPath, entityIdentifierExceptionPath } from '../ValidationHelper';
+import { entityNameExceptionPath, entityIdentifierExceptionPath, entityName, entityIdentifier } from '../ValidationHelper';
 import { errorRuleBaseStateModifying } from '../ValidationRuleBase';
 import { includeRuleBaseForMultiRuleIndexes } from '../ValidationRuleRepository';
-import { entityName, entityIdentifier, topLevelEntityRules, topLevelEntityExtensionRules } from '../RuleInformation';
+import { topLevelEntityRules, topLevelEntityExtensionRules } from '../RuleInformation';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import type { State } from '../../State';
 import type SymbolTable from '../SymbolTable';

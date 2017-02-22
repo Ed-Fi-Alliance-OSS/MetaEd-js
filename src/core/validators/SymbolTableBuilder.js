@@ -1,11 +1,10 @@
 // @flow
 import R from 'ramda';
 import { MetaEdGrammarListener } from '../../grammar/gen/MetaEdGrammarListener';
-import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 import { addAction, addErrorMessage, setSymbolTable } from '../State';
 import type { State } from '../../core/State';
 import SymbolTable from './SymbolTable';
-import { propertyNameForSharedProperty } from './ValidationHelper';
+import { propertyNameHandlingSharedProperty } from './ValidationHelper';
 import SymbolTableEntityType from './SymbolTableEntityType';
 import { getFilenameAndLineNumber } from '../tasks/FileIndex';
 import type { ValidationMessage } from './ValidationTypes';
@@ -47,23 +46,13 @@ export default class SymbolTableBuilder extends MetaEdGrammarListener {
 
   _addProperty(ruleContext: any) {
     // TODO: if assertion fails, add entry to new "indeterminate" state validation collection
-    let propertyName: any = null;
-
-    // TODO: this is a temporary hack, not looking for more encapsulated solution because this will be a part
-    // TODO: of the builder once we put builders ahead of validators and drop the symbol table completely
-    if (ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedDecimalProperty ||
-      ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedIntegerProperty ||
-      ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedShortProperty ||
-      ruleContext.ruleIndex === MetaEdGrammar.RULE_sharedStringProperty) {
-      propertyName = propertyNameForSharedProperty(ruleContext);
-      if (propertyName == null) return;
-    } else {
-      if (!ruleContext.propertyName() || ruleContext.propertyName().exception) return;
-      propertyName = ruleContext.propertyName();
-    }
+    const propertyName: any = propertyNameHandlingSharedProperty(ruleContext);
+    if (propertyName == null || ruleContext.propertyComponents() == null || ruleContext.propertyComponents().exception) return;
 
     const withContextContext = ruleContext.propertyComponents().withContext();
-    const withContextPrefix = withContextContext == null ? '' : withContextContext.withContextName().ID().getText();
+    const withContextPrefix =
+      (withContextContext == null || withContextContext.withContextName() == null || withContextContext.withContextName().exception) ?
+        '' : withContextContext.withContextName().ID().getText();
     if (this.currentPropertySymbolTable == null) {
       return;
     }

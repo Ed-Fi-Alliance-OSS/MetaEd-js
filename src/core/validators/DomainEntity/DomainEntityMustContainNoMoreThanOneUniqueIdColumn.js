@@ -4,7 +4,7 @@ import type SymbolTable from '../SymbolTable';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
-import { namespaceAncestorContext, getProperty, exceptionPath, isExtensionNamespace } from '../ValidationHelper';
+import { namespaceAncestorContext, getProperty, exceptionPath, isExtensionNamespace, getPropertyThenPropertyName } from '../ValidationHelper';
 import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {
@@ -29,7 +29,7 @@ export function validatable(ruleContext: any): ValidatableResult {
 // eslint-disable-next-line no-unused-vars
 function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   const namespaceContext = namespaceAncestorContext(ruleContext);
-  return isExtensionNamespace(namespaceContext) || R.filter(x => getProperty(x).propertyName().ID().getText() === 'UniqueId', ruleContext.property()).length <= 1;
+  return isExtensionNamespace(namespaceContext) || R.filter(x => getPropertyThenPropertyName(x) === 'UniqueId', ruleContext.property()).length <= 1;
 }
 
 // eslint-disable-next-line no-unused-vars

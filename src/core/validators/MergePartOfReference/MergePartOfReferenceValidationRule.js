@@ -39,6 +39,10 @@ export function lookupParentEntityContext(symbolTable: SymbolTable, parentRuleCo
     return symbolTable.get(SymbolTableEntityType.abstractEntity(), parentRuleContext.abstractEntityName().ID().getText());
   }
 
+  if (parentRuleContext.ruleIndex === MetaEdGrammar.RULE_choice) {
+    return symbolTable.get(SymbolTableEntityType.choice(), parentRuleContext.choiceName().ID().getText());
+  }
+
   throw new Error(`TargetPropertyPathMustExist.lookupParentEntityContext: parentRuleContext was unexpected type ${parentRuleContext.ruleIndex}`);
 }
 

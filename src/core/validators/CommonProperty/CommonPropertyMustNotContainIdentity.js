@@ -3,8 +3,7 @@ import type SymbolTable from '../SymbolTable';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
-import { topLevelEntityAncestorContext, exceptionPath, entityNameExceptionPath, entityIdentifierExceptionPath } from '../ValidationHelper';
-import { entityIdentifier, entityName } from '../RuleInformation';
+import { topLevelEntityAncestorContext, exceptionPath, entityNameExceptionPath, entityIdentifierExceptionPath, entityIdentifier, entityName } from '../ValidationHelper';
 import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {

@@ -1,4 +1,6 @@
 // @flow
+import { propertyNameStringHandlingSharedProperty } from './ValidationHelper';
+
 declare type PropertyRuleContext = any;
 
 export default class PropertySymbolTable {
@@ -41,6 +43,6 @@ export default class PropertySymbolTable {
   }
 
   getWithoutContext(name: string): Array<PropertyRuleContext> {
-    return Array.from(this._symbolTable.entries()).filter(x => x[1].propertyName().ID().getText() === name).map(x => x[1]);
+    return Array.from(this._symbolTable.entries()).filter(x => propertyNameStringHandlingSharedProperty(x[1]) === name).map(x => x[1]);
   }
 }

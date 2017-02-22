@@ -2,8 +2,8 @@
 import type SymbolTable from '../SymbolTable';
 import { warningRuleBase } from '../ValidationRuleBase';
 import { includeRuleBaseForMultiRuleIndexes } from '../ValidationRuleRepository';
-import { entityIdentifier, entityName, topLevelEntityRules } from '../RuleInformation';
-import { entityNameExceptionPath, entityIdentifierExceptionPath } from '../ValidationHelper';
+import { topLevelEntityRules } from '../RuleInformation';
+import { entityNameExceptionPath, entityIdentifierExceptionPath, entityIdentifier, entityName } from '../ValidationHelper';
 import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {

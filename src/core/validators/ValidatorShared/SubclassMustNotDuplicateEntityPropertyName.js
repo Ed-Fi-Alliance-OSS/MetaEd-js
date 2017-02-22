@@ -1,6 +1,6 @@
 // @flow
 import R from 'ramda';
-import { exceptionPath } from '../ValidationHelper';
+import { exceptionPath, propertyName } from '../ValidationHelper';
 import type SymbolTable from '../SymbolTable';
 import type { ValidatableResult } from '../ValidationTypes';
 
@@ -37,6 +37,6 @@ export const failureMessage = R.curry(
     const entityPropertyIdentifiers = Array.from(symbolTable.identifiersForEntityProperties(baseKey, baseIdentifier));
     const propertyRuleContextsForDuplicates =
       symbolTable.contextsForMatchingPropertyIdentifiers(subclassKey, identifier, entityPropertyIdentifiers);
-    const duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.map(x => x.propertyName().ID().getText());
+    const duplicatePropertyIdentifierList = propertyRuleContextsForDuplicates.map(x => propertyName(x));
     return `${entityTitle} '${identifier}' based on '${baseIdentifier}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of base ${entityTitle}.`;
   });

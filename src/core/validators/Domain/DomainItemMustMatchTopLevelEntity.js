@@ -4,11 +4,12 @@ import { topLevelEntityAncestorContext,
   contextMustMatchATopLevelEntity,
   exceptionPath,
   entityNameExceptionPath,
-  entityIdentifierExceptionPath } from '../ValidationHelper';
+  entityIdentifierExceptionPath,
+  entityIdentifier,
+  entityName } from '../ValidationHelper';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
-import { entityIdentifier, entityName } from '../RuleInformation';
 import type { ValidatableResult } from '../ValidationTypes';
 
 export function validatable(ruleContext: any): ValidatableResult {

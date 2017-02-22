@@ -9,7 +9,7 @@ import {
   matchAllButFirstAsIdentityProperties,
 } from '../../../../src/core/validators/MergePartOfReference/PropertyPathLookup';
 import { newRepository } from '../../../../src/core/validators/ValidationRuleRepository';
-import { propertyName } from '../../../../src/core/validators/RuleInformation';
+import { propertyName } from '../../../../src/core/validators/ValidationHelper';
 
 const should = chai.should();
 

@@ -3,8 +3,7 @@ import type SymbolTable, { EntityContext } from '../SymbolTable';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
-import { topLevelEntityAncestorContext, propertyAncestorContext, exceptionPath, entityNameExceptionPath, entityIdentifierExceptionPath } from '../ValidationHelper';
-import { entityIdentifier, entityName } from '../RuleInformation';
+import { topLevelEntityAncestorContext, propertyAncestorContext, exceptionPath, entityNameExceptionPath, entityIdentifierExceptionPath, entityIdentifier, entityName } from '../ValidationHelper';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 import type { ValidatableResult } from '../ValidationTypes';
 

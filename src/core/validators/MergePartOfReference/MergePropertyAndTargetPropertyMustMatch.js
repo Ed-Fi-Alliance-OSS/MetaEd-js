@@ -6,7 +6,7 @@ import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import type SymbolTable, { EntityContext } from '../SymbolTable';
 import { lookupParentEntityContext, propertyPathParts } from './MergePartOfReferenceValidationRule';
 import { findReferencedProperty, matchAllButFirstAsIdentityProperties, matchAllIdentityProperties } from './PropertyPathLookup';
-import { propertyName } from '../RuleInformation';
+import { propertyName } from '../ValidationHelper';
 import SymbolTableEntityType from '../SymbolTableEntityType';
 import type { ValidatableResult } from '../ValidationTypes';
 
@@ -39,6 +39,10 @@ function isReferenceProperty(ruleContext: any): boolean {
 }
 
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
+  // TODO: disabling this for now, revisit after validator refactor
+
+  /*
+
   // first parent - referenceProperty
   // second parent - property collection
   // third parent - Association/Extension/Subclass or DomainEntity/Extension/Subclass
@@ -58,6 +62,8 @@ export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
     if (!matchBaseType(symbolTable, mergeProperty, propertyName(targetProperty)) &&
         !matchBaseType(symbolTable, targetProperty, propertyName(mergeProperty))) return false;
   }
+
+  */
   return true;
 }
 

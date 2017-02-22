@@ -2,7 +2,7 @@
 import R from 'ramda';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
 import type SymbolTable from '../SymbolTable';
-import { exceptionPath } from '../ValidationHelper';
+import { exceptionPath, propertyName } from '../ValidationHelper';
 import type { ValidatableResult } from '../ValidationTypes';
 
 function isNotCommonPropertyContextWithExtension(context: any): boolean {
@@ -33,6 +33,6 @@ export const valid = R.curry(
 export const failureMessage = R.curry(
   (entityTitle: string, entityKey: string, extensionKey: string, ruleContext: any, symbolTable: SymbolTable): string => {
     const duplicatePropertyIdentifierList =
-      propertyRuleContextsForDuplicates(entityKey, extensionKey, ruleContext, symbolTable).map(x => x.propertyName().ID().getText());
+      propertyRuleContextsForDuplicates(entityKey, extensionKey, ruleContext, symbolTable).map(x => propertyName(x));
     return `${entityTitle} additions '${ruleContext.extendeeName().getText()}' declares '${duplicatePropertyIdentifierList.join(',')}' already in property list of {entityTitle}.`;
   });
