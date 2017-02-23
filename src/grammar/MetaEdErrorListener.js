@@ -24,7 +24,7 @@ export default class MetaEdErrorListener {
       concatenatedLineNumber,
       filename: metaEdFile.filename,
       lineNumber: metaEdFile.lineNumber,
-      tokenText: offendingSymbol.text,
+      tokenText: offendingSymbol && offendingSymbol.text ? offendingSymbol.text : '',
     });
   }
 

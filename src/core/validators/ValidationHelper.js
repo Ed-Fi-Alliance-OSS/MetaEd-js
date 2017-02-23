@@ -101,33 +101,35 @@ export const findDuplicates = R.memoize(R.compose(R.map(R.head), R.filter(x => x
 
 type ScanAccumulator = {
   exception: boolean,
-  path: List<string>,
+  path: string[],
   ruleContext: any
 }
 
-const scanForException = (acc: Record<ScanAccumulator>, pathElement: string): Record<ScanAccumulator> => {
-  if (acc.get('exception') === true) return acc;
-  acc.set('path', acc.get('path').push(pathElement));
+const scanForException = (acc: ScanAccumulator, pathElement: string): ScanAccumulator => {
+  if (acc.exception === true) return acc;
+  acc.path.push(pathElement);
 
-  if (acc.get('ruleContext')[pathElement] == null || acc.get('ruleContext')[pathElement]() == null) {
-    return acc.set('exception', true);
+  if (acc.ruleContext[pathElement] == null || acc.ruleContext[pathElement]() == null) {
+    acc.exception = true;
+    return acc;
   }
 
-  if (acc.get('ruleContext')[pathElement]().exception != null) {
-    return acc.set('exception', true);
+  if (acc.ruleContext[pathElement]().exception != null) {
+    acc.exception = true;
+    return acc;
   }
 
-  return acc.set('ruleContext', acc.get('ruleContext')[pathElement]());
+  acc.ruleContext = acc.ruleContext[pathElement]();
+  return acc;
 };
 
 // traverse a rule context path, defined as a string[], looking for an exception
 // returns the path to the exception or null
 export const exceptionPath = (ruleContextPath: string[], ruleContext: any): ?string[] => {
   if (ruleContext == null || ruleContext.exception != null) return [];
-  const Accumulator = Record({ exception: false, path: new List(), ruleContext });
 
-  const result = R.reduce(scanForException, new Accumulator(), ruleContextPath);
-  return result.exception ? result.path.toArray() : null;
+  const result = R.reduce(scanForException, { exception: false, path: [], ruleContext }, ruleContextPath);
+  return result.exception ? result.path : null;
 };
 
 // returns true if the rule context path is valid for the given rule context
