@@ -1,11 +1,12 @@
 {
   "name": "metaed-js",
   "main": "dist/index.js",
-  "private": true,
-  "version": "0.8.0",
+  "version": "0.9.2",
   "description": "MetaEd implemented in JavaScript",
-  "repository": "https://github.com/bradbanister/metaed-js",
   "license": "private",
+  "publishConfig": {
+    "registry": "https://www.myget.org/F/ed-fi/npm/"
+  },
   "dependencies": {
     "antlr4": "4.6",
     "final-fs": "^1.6.1",
@@ -33,11 +34,11 @@
     "mock-fs": "^3.12.1"
   },
   "scripts": {
-    "prestart": "npm install",
+    "prepublishOnly": "npm run build",
     "test": "mocha --compilers js:babel-register test/**/*Test.js test/**/*Tests.js",
     "test:debug": "mocha --compilers js:babel-register test/**/*Test.js test/**/*Tests.js --debug-brk",
-    "babel": "./node_modules/.bin/babel.cmd src -d dist --source-maps",
-    "babel-linux": "./node_modules/.bin/babel src -d dist --source-maps",
+    "build-windows": "./node_modules/.bin/babel.cmd src -d dist --source-maps",
+    "build": "./node_modules/.bin/babel src -d dist --source-maps",
     "flow-linux": "./node_modules/.bin/flow"
   }
 }

@@ -5,6 +5,7 @@ bower_components/
 jspm_packages/
 tmp
 .DS_Store
+npm-debug.log
 
 ## Webstorm user specific files:
 .idea/workspace.xml

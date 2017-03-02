@@ -1,1 +1,1 @@
-# node-metaed
+# metaed-js
