@@ -35,8 +35,8 @@
   },
   "scripts": {
     "prepublishOnly": "npm run build",
-    "test": "mocha --compilers js:babel-register test/**/*Test.js test/**/*Tests.js",
-    "test:debug": "mocha --compilers js:babel-register test/**/*Test.js test/**/*Tests.js --debug-brk",
+    "test": "mocha --compilers js:babel-register \"test/**/*Tests.js\" \"test-integration/**/*Tests.js\"",
+    "test:debug": "mocha --compilers js:babel-register \"test/**/*Tests.js\" \"test-integration/**/*Tests.js\" --debug-brk",
     "build-windows": "./node_modules/.bin/babel.cmd src -d dist --source-maps",
     "build": "./node_modules/.bin/babel src -d dist --source-maps",
     "flow-linux": "./node_modules/.bin/flow"

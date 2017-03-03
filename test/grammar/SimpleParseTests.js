@@ -6,7 +6,7 @@ import MetaEdErrorListener from '../../src/grammar/MetaEdErrorListener';
 
 chai.should();
 
-describe('SimpleParseTest', () => {
+describe('SimpleParseTests', () => {
   describe('Domain Entity', () => {
     it('should parse correctly', () => {
       const inputText = [

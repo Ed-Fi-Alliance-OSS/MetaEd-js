@@ -7,7 +7,7 @@ import { createMetaEdFile } from '../../src/core/tasks/MetaEdFile';
 
 chai.should();
 
-describe('ParseTreeBuilder', () => {
+describe('ParseTreeBuilderTests', () => {
   const stubFileIndex = createFileIndex([createMetaEdFile('', '', '')]);
 
   describe('Domain Entity', () => {
