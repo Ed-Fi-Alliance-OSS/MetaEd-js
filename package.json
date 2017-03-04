@@ -1,7 +1,7 @@
 {
   "name": "metaed-js",
   "main": "dist/index.js",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "description": "MetaEd implemented in JavaScript",
   "license": "private",
   "publishConfig": {
