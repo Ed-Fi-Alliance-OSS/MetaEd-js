@@ -75,7 +75,7 @@ describe('PropertyPathLookupTests', () => {
         helper.state.symbolTable,
         helper.state.symbolTable.get(SymbolTableEntityType.association(), 'Entity3'),
         ['Entity1'],
-        matchAllIdentityProperties
+        matchAllIdentityProperties,
       );
 
       result.should.not.be.null;
@@ -114,7 +114,7 @@ describe('PropertyPathLookupTests', () => {
         helper.state.symbolTable,
         helper.state.symbolTable.get(SymbolTableEntityType.association(), 'Entity3'),
         ['Entity2'],
-        matchAllIdentityProperties
+        matchAllIdentityProperties,
       );
 
       result.should.not.be.null;
@@ -143,7 +143,7 @@ describe('PropertyPathLookupTests', () => {
         helper.state.symbolTable,
         helper.state.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity1'),
         ['Prop2'],
-        matchAllIdentityProperties
+        matchAllIdentityProperties,
       );
 
       should.not.exist(result);
@@ -171,7 +171,7 @@ describe('PropertyPathLookupTests', () => {
         helper.state.symbolTable,
         helper.state.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity1'),
         ['Prop3'],
-        matchAllIdentityProperties
+        matchAllIdentityProperties,
       );
 
       should.not.exist(result);
@@ -205,7 +205,7 @@ describe('PropertyPathLookupTests', () => {
         helper.state.symbolTable,
         helper.state.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity2'),
         ['Entity1'],
-        matchAllIdentityProperties
+        matchAllIdentityProperties,
       );
 
       should.not.exist(result);
@@ -238,7 +238,7 @@ describe('PropertyPathLookupTests', () => {
         helper.state.symbolTable,
         helper.state.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity2'),
         ['Entity1', 'Prop1'],
-        matchAllIdentityProperties
+        matchAllIdentityProperties,
       );
 
       result.should.not.be.null;
@@ -273,7 +273,7 @@ describe('PropertyPathLookupTests', () => {
         helper.state.symbolTable,
         helper.state.symbolTable.get(SymbolTableEntityType.domainEntity(), 'Entity2'),
         ['Entity1', 'Prop1'],
-        matchAllButFirstAsIdentityProperties
+        matchAllButFirstAsIdentityProperties,
       );
 
       result.should.not.be.null;

@@ -6,17 +6,17 @@ const should = chai.should();
 
 describe('DomainEntityTests', () => {
   describe('When_parsing_domain_entity_with_name_documentation_and_property', () => {
-    const entity_name: string = 'MyIdentifier';
+    const entityName: string = 'MyIdentifier';
     const documentation: string = 'line 1 of documentation\nanother line of intervention documentation';
-    const property_name: string = 'Property1';
-    const property_documentation: string = 'property intervention documentation';
+    const propertyName: string = 'Property1';
+    const propertyDocumentation: string = 'property intervention documentation';
 
     const metaEdTextBuilder: MetaEdTextBuilder = new MetaEdTextBuilder();
     const inputText: string = metaEdTextBuilder
-      .withStartDomainEntity(entity_name)
+      .withStartDomainEntity(entityName)
       .withMetaEdId('100')
       .withDocumentation(documentation)
-      .withStringProperty(property_name, property_documentation, true, false, 100)
+      .withStringProperty(propertyName, propertyDocumentation, true, false, 100)
       .withEndDomainEntity()
       .toString();
 
@@ -34,10 +34,10 @@ describe('DomainEntityTests', () => {
     });
 
     it('Should_parse_entity_name', () => {
-      const entityName = context.entityName();
-      entityName.should.exist;
-      should.not.exist(entityName.exception);
-      entityName.ID().symbol.text.should.equal(entity_name);
+      const contextEntityName = context.entityName();
+      contextEntityName.should.exist;
+      should.not.exist(contextEntityName.exception);
+      contextEntityName.ID().symbol.text.should.equal(entityName);
     });
 
     it('Should_parse_documentation', () => {

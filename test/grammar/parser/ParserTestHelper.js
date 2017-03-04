@@ -16,6 +16,7 @@ export default class ParserTestHelper {
     if (ruleContext.exception != null) return true;
     if (ruleContext.children == null) return false;
 
+    // eslint-disable-next-line no-restricted-syntax
     for (const childContext of ruleContext.children) {
       if (this._isErrorNode(childContext)) return true;
       if (this.hasErrors(childContext)) return true;

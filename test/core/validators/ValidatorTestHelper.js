@@ -1,5 +1,4 @@
 import antlr4 from 'antlr4';
-import R from 'ramda';
 import SymbolTable from '../../../src/core/validators/SymbolTable';
 
 import SymbolTableBuilder from '../../../src/core/validators/SymbolTableBuilder';
@@ -69,6 +68,7 @@ export function addRuleContextPath(ruleContextPath: string[], rootContext: any, 
 // mutating function that appends an array to the rule context function chain
 export function addArrayContext(arrayContextName: string, rootContext: any): RuleContextChain {
   const leafContext = {};
+  // eslint-disable-next-line no-param-reassign
   rootContext[arrayContextName] = () => [leafContext];
   return { ruleContext: rootContext, leafContext };
 }
@@ -103,10 +103,12 @@ export function addPropertyContext(propertyName: string, rootContext: any): Rule
   ];
 
   propertyContextNames.forEach(propertyContextName => {
+    // eslint-disable-next-line no-param-reassign
     rootContext[propertyContextName] = () => null;
   });
 
   const leafContext = {};
+  // eslint-disable-next-line no-param-reassign
   rootContext[propertyName] = () => leafContext;
   return { ruleContext: rootContext, leafContext };
 }

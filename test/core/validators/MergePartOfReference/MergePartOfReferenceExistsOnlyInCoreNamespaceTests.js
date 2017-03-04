@@ -54,7 +54,7 @@ describe('MergePartOfReferenceExistsOnlyInCoreNamespace', () => {
       .withDocumentation('doc')
       .withIntegerIdentity(propertyName, 'doc')
       .withDomainEntityProperty(entityName1, 'doc', false, false)
-      .withMergePartOfReference(entityName1 + '.' + propertyName, propertyName)
+      .withMergePartOfReference(`${entityName1}.${propertyName}`, propertyName)
       .withEndDomainEntity()
       .withEndNamespace()
       .toString();

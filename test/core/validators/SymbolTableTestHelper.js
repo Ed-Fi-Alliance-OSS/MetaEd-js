@@ -16,7 +16,6 @@ export default class SymbolTableTestHelper {
   symbolTable: ?SymbolTable;
 
   setup(metaEdText) {
-    console.log(metaEdText);
     const fileIndex = createFileIndex([createMetaEdFile('DirectoryName', 'FileName', metaEdText)]);
 
     const listener = new SymbolTableBuilder();

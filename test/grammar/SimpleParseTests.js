@@ -28,15 +28,6 @@ describe('SimpleParseTests', () => {
       parser.removeErrorListeners();
       parser.addErrorListener(errorListener);
       parser.topLevelEntity();
-
-      if (errorMessages.length === 0) {
-        console.log('No parse errors found');
-      } else {
-        for (const errorMessage of errorMessages) {
-          console.log(errorMessage);
-        }
-      }
-
       errorMessages.should.be.empty;
     });
   });
