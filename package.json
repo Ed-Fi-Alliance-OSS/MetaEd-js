@@ -1,7 +1,7 @@
 {
   "name": "metaed-js",
   "main": "dist/index.js",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "MetaEd implemented in JavaScript",
   "license": "private",
   "publishConfig": {
@@ -34,11 +34,12 @@
     "mock-fs": "^3.12.1"
   },
   "scripts": {
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm test && npm run flow && npm run eslint && npm run eslint:test && npm run build",
     "test": "mocha --compilers js:babel-register \"test/**/*Tests.js\" \"test-integration/**/*Tests.js\"",
     "test:debug": "mocha --compilers js:babel-register \"test/**/*Tests.js\" \"test-integration/**/*Tests.js\" --debug-brk",
-    "build-windows": "./node_modules/.bin/babel.cmd src -d dist --source-maps",
-    "build": "./node_modules/.bin/babel src -d dist --source-maps",
-    "flow-linux": "./node_modules/.bin/flow"
+    "build": "babel src -d dist --source-maps",
+    "flow": "flow check",
+    "eslint": "eslint src",
+    "eslint:test": "eslint tests && eslint test-integration"
   }
 }
