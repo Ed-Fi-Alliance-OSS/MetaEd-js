@@ -1,7 +1,7 @@
 {
   "name": "metaed-js",
   "main": "dist/index.js",
-  "version": "0.9.10",
+  "version": "0.9.11-dev.0",
   "description": "MetaEd implemented in JavaScript",
   "license": "private",
   "publishConfig": {
@@ -43,6 +43,6 @@
     "eslint": "eslint src",
     "eslint:tests": "eslint test && eslint test-integration",
     "release": "standard-version",
-    "release:dev": "standard-version -- --prerelease dev"
+    "release:dev": "standard-version --prerelease dev"
   }
 }
