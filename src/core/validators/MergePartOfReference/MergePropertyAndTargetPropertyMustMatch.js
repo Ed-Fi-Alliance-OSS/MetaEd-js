@@ -1,13 +1,13 @@
 // @flow
-import R from 'ramda';
+// import R from 'ramda';
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
-import type SymbolTable, { EntityContext } from '../SymbolTable';
-import { lookupParentEntityContext, propertyPathParts } from './MergePartOfReferenceValidationRule';
-import { findReferencedProperty, matchAllButFirstAsIdentityProperties, matchAllIdentityProperties } from './PropertyPathLookup';
-import { propertyName } from '../ValidationHelper';
-import SymbolTableEntityType from '../SymbolTableEntityType';
+import type SymbolTable /* , { EntityContext } */ from '../SymbolTable';
+// import { lookupParentEntityContext, propertyPathParts } from './MergePartOfReferenceValidationRule';
+// import { findReferencedProperty, matchAllButFirstAsIdentityProperties, matchAllIdentityProperties } from './PropertyPathLookup';
+// import { propertyName } from '../ValidationHelper';
+// import SymbolTableEntityType from '../SymbolTableEntityType';
 import type { ValidatableResult } from '../ValidationTypes';
 
 // TODO: *** Empty validatable implementation until port of C# merge property validator rewrite Jan 2017
@@ -16,28 +16,29 @@ export function validatable(ruleContext: any): ValidatableResult {
   return { validatorName: 'MergePropertyAndTargetPropertyMustMatch' };
 }
 
-const entityContextHasBaseName = R.curry(
-  (baseTypeName: string, entityContext: EntityContext): boolean => entityContext.context.baseName().ID.getText() === baseTypeName);
+// const entityContextHasBaseName = R.curry(
+//   (baseTypeName: string, entityContext: EntityContext): boolean => entityContext.context.baseName().ID.getText() === baseTypeName);
+//
+// function matchBaseType(symbolTable: SymbolTable, propertyRuleContext: any, baseTypeName: string): boolean {
+//   const hasBaseName = entityContextHasBaseName(baseTypeName);
+//   const entityName = propertyName(propertyRuleContext);
+//
+//   const deSubclassEntityContext = symbolTable.get(SymbolTableEntityType.domainEntitySubclass(), entityName);
+//   if (deSubclassEntityContext) return hasBaseName(deSubclassEntityContext);
+//
+//   const aSubclassEntityContext = symbolTable.get(SymbolTableEntityType.associationSubclass(), entityName);
+//   if (aSubclassEntityContext) return hasBaseName(aSubclassEntityContext);
+//   return false;
+// }
+//
+// function isReferenceProperty(ruleContext: any): boolean {
+//   return ruleContext.ruleIndex === MetaEdGrammar.RULE_associationProperty ||
+//     ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntityProperty ||
+//     ruleContext.ruleIndex === MetaEdGrammar.RULE_firstDomainEntity ||
+//     ruleContext.ruleIndex === MetaEdGrammar.RULE_secondDomainEntity;
+// }
 
-function matchBaseType(symbolTable: SymbolTable, propertyRuleContext: any, baseTypeName: string): boolean {
-  const hasBaseName = entityContextHasBaseName(baseTypeName);
-  const entityName = propertyName(propertyRuleContext);
-
-  const deSubclassEntityContext = symbolTable.get(SymbolTableEntityType.domainEntitySubclass(), entityName);
-  if (deSubclassEntityContext) return hasBaseName(deSubclassEntityContext);
-
-  const aSubclassEntityContext = symbolTable.get(SymbolTableEntityType.associationSubclass(), entityName);
-  if (aSubclassEntityContext) return hasBaseName(aSubclassEntityContext);
-  return false;
-}
-
-function isReferenceProperty(ruleContext: any): boolean {
-  return ruleContext.ruleIndex === MetaEdGrammar.RULE_associationProperty ||
-    ruleContext.ruleIndex === MetaEdGrammar.RULE_domainEntityProperty ||
-    ruleContext.ruleIndex === MetaEdGrammar.RULE_firstDomainEntity ||
-    ruleContext.ruleIndex === MetaEdGrammar.RULE_secondDomainEntity;
-}
-
+// eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   // TODO: disabling this for now, revisit after validator refactor
 

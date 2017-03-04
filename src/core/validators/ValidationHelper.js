@@ -1,6 +1,5 @@
 // @flow
 import R from 'ramda';
-import { Record, List } from 'immutable';
 import grammarInstance from '../../grammar/MetaEdGrammarInstance';
 import { MetaEdGrammar } from '../../grammar/gen/MetaEdGrammar';
 import type SymbolTable from './SymbolTable';
@@ -110,15 +109,18 @@ const scanForException = (acc: ScanAccumulator, pathElement: string): ScanAccumu
   acc.path.push(pathElement);
 
   if (acc.ruleContext[pathElement] == null || acc.ruleContext[pathElement]() == null) {
+    // eslint-disable-next-line no-param-reassign
     acc.exception = true;
     return acc;
   }
 
   if (acc.ruleContext[pathElement]().exception != null) {
+    // eslint-disable-next-line no-param-reassign
     acc.exception = true;
     return acc;
   }
 
+  // eslint-disable-next-line no-param-reassign
   acc.ruleContext = acc.ruleContext[pathElement]();
   return acc;
 };

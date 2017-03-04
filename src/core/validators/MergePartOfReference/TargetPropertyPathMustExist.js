@@ -2,9 +2,9 @@
 import { errorRuleBase } from '../ValidationRuleBase';
 import { includeRuleBase } from '../ValidationRuleRepository';
 import { MetaEdGrammar } from '../../../grammar/gen/MetaEdGrammar';
-import { lookupParentEntityContext, propertyPathParts } from './MergePartOfReferenceValidationRule';
+// import { lookupParentEntityContext, propertyPathParts } from './MergePartOfReferenceValidationRule';
 import type SymbolTable from '../SymbolTable';
-import { validate, matchAllIdentityProperties } from './PropertyPathLookup';
+// import { validate, matchAllIdentityProperties } from './PropertyPathLookup';
 import type { ValidatableResult } from '../ValidationTypes';
 
 // TODO: *** Empty validatable implementation until port of C# merge property validator rewrite Jan 2017
@@ -13,6 +13,7 @@ export function validatable(ruleContext: any): ValidatableResult {
   return { validatorName: 'TargetPropertyPathMustExist' };
 }
 
+// eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
   // TODO: disabling this for now, revisit after validator refactor
   return true;
