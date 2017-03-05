@@ -1,11 +1,11 @@
 {
   "name": "metaed-js",
   "main": "dist/index.js",
-  "version": "0.9.11-dev.1",
-  "description": "MetaEd implemented in JavaScript",
+  "version": "0.9.11-dev.2",
+  "description": "MetaEd for JavaScript",
   "license": "private",
   "publishConfig": {
-    "registry": "https://www.myget.org/F/ed-fi/npm/"
+    "registry": "https://www.myget.org/F/bradbanister/npm/"
   },
   "dependencies": {
     "antlr4": "4.6",
