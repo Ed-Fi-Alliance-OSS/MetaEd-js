@@ -8,8 +8,7 @@ tmp
 npm-debug.log
 
 ## Webstorm user specific files:
-.idea/workspace.xml
-.idea/tasks.xml
+.idea/
 
 ## Babel target directory
 dist/
