@@ -16,7 +16,6 @@ export default class ValidatorTestHelper {
 
   // eslint-disable-next-line no-unused-vars
   setup(metaEdText: string, validatorListener: any, symbolTable: SymbolTable = new SymbolTable()): void {
-    console.log(metaEdText);
     const fileIndex = createFileIndex([createMetaEdFile('DirectoryName', 'FileName', metaEdText)]);
 
     const antlrInputStream = new antlr4.InputStream(metaEdText);

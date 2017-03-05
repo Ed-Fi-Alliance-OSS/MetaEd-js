@@ -1,2 +1,3 @@
 [ignore]
 <PROJECT_ROOT>/dist/.*
+<PROJECT_ROOT>/node_modules/conventional-changelog-core/test/fixtures/_malformation.json
