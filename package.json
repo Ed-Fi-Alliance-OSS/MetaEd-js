@@ -1,7 +1,7 @@
 {
   "name": "metaed-js",
   "main": "dist/index.js",
-  "version": "0.9.11-dev.0",
+  "version": "0.9.11-dev.1",
   "description": "MetaEd implemented in JavaScript",
   "license": "private",
   "publishConfig": {
@@ -35,14 +35,15 @@
     "standard-version": "^4.0.0"
   },
   "scripts": {
-    "prepublishOnly": "npm test && npm run flow && npm run eslint && npm run eslint:test && npm run build",
+    "prepublishOnly": "npm test && npm run lint && npm run build",
     "test": "mocha --compilers js:babel-register \"test/**/*Tests.js\" \"test-integration/**/*Tests.js\"",
-    "test:debug": "mocha --compilers js:babel-register \"test/**/*Tests.js\" \"test-integration/**/*Tests.js\" --debug-brk",
     "build": "babel src -d dist --source-maps",
+    "lint": "npm run flow && npm run eslint && npm run eslint:tests",
     "flow": "flow check",
     "eslint": "eslint src",
     "eslint:tests": "eslint test && eslint test-integration",
-    "release": "standard-version",
-    "release:dev": "standard-version --prerelease dev"
+    "release:version-dev": "standard-version --prerelease dev",
+    "release:push-master-tags": "git push --follow-tags origin master",
+    "release:publish-dev": "npm run release:push-master-tags && npm publish --tag=dev"
   }
 }
