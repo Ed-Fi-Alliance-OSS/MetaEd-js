@@ -35,7 +35,7 @@
     "standard-version": "^4.0.0"
   },
   "scripts": {
-    "prepublishOnly": "npm test && npm run lint && npm run build",
+    "prepublishOnly": "npm run build && npm test && npm run lint",
     "test": "mocha --compilers js:babel-register \"test/**/*Tests.js\" \"test-integration/**/*Tests.js\"",
     "build": "babel src -d dist --source-maps",
     "lint": "npm run flow && npm run eslint && npm run eslint:tests",
@@ -43,7 +43,7 @@
     "eslint": "eslint src",
     "eslint:tests": "eslint test && eslint test-integration",
     "release:version-dev": "standard-version --prerelease dev",
-    "release:push-master-tags": "git push --follow-tags origin master",
+    "release:push-master-tags": "git push --follow-tags",
     "release:publish-dev": "npm run release:push-master-tags && npm publish --tag=dev"
   }
 }
