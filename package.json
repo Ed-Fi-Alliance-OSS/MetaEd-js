@@ -1,21 +1,21 @@
 {
   "name": "metaed-js",
   "main": "dist/index.js",
-  "version": "1.0.0-dev.5",
+  "version": "1.0.0",
   "description": "MetaEd for JavaScript",
   "license": "private",
   "publishConfig": {
     "registry": "https://www.myget.org/F/ed-fi/npm/"
   },
   "dependencies": {
-    "antlr4": "4.6",
-    "final-fs": "^1.6.1",
-    "handlebars": "^4.0.6",
-    "immutable": "^3.8.1",
-    "ramda": "^0.22.1",
-    "safety-lens": "^1.5.0",
-    "winston": "^2.3.0",
-    "yargs": "^6.5.0"
+    "antlr4": "4.6.0",
+    "final-fs": "1.6.1",
+    "handlebars": "4.0.6",
+    "immutable": "3.8.1",
+    "ramda": "0.22.1",
+    "safety-lens": "1.5.0",
+    "winston": "2.3.1",
+    "yargs": "6.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
