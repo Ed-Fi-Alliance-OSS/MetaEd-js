@@ -21,21 +21,26 @@ export const validatable = R.curry(
 
     if (invalidContextArray(ruleContext.property())) return { invalidPath: ['property'], validatorName };
 
+    const identityRenames = [];
+
     // eslint-disable-next-line no-restricted-syntax
     for (const property of ruleContext.property()) {
       const concreteProperty = getProperty(property);
-      invalidPath = exceptionPath(['propertyComponents', 'propertyAnnotation', 'identityRename'], concreteProperty);
+      invalidPath = exceptionPath(['propertyComponents', 'propertyAnnotation'], concreteProperty);
       if (invalidPath) return { invalidPath, validatorName };
 
-      const identityRenames = ruleContext.property().map(p => getProperty(p).propertyComponents().propertyAnnotation().identityRename()).filter(x => x != null);
-
-      if (invalidContextArray(identityRenames)) return { invalidPath: ['identityRenames'], validatorName };
-
-      // eslint-disable-next-line no-restricted-syntax
-      for (const identityRename of identityRenames) {
-        invalidPath = exceptionPath(['baseKeyName'], identityRename);
-        if (invalidPath) return { invalidPath, validatorName };
+      const propertyAnnotation = concreteProperty.propertyComponents().propertyAnnotation();
+      if (propertyAnnotation.identityRename() != null && propertyAnnotation.identityRename().exception != null) {
+        return { invalidPath: ['identityRenames'], validatorName };
       }
+
+      if (propertyAnnotation.identityRename() != null) identityRenames.push(propertyAnnotation.identityRename());
+    }
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const identityRename of identityRenames) {
+      invalidPath = exceptionPath(['baseKeyName'], identityRename);
+      if (invalidPath) return { invalidPath, validatorName };
     }
 
     return { validatorName };

@@ -1,36 +1,9 @@
 // @flow
 import R from 'ramda';
-import { exceptionPath, getProperty, invalidContextArray } from '../ValidationHelper';
+import { getProperty } from '../ValidationHelper';
 import type SymbolTable from '../SymbolTable';
-import type { ValidatableResult } from '../ValidationTypes';
 
-export const validatable = R.curry(
-  (validatorName: string, ruleContext: any): ValidatableResult => {
-    let invalidPath: ?string[] = exceptionPath(['baseName'], ruleContext);
-
-    if (invalidPath) return { invalidPath, validatorName };
-
-    if (invalidContextArray(ruleContext.property())) return { invalidPath: ['property'], validatorName };
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (const property of ruleContext.property()) {
-      const concreteProperty = getProperty(property);
-      invalidPath = exceptionPath(['propertyComponents', 'propertyAnnotation', 'identityRename'], concreteProperty);
-      if (invalidPath) return { invalidPath, validatorName };
-
-      const identityRenames = ruleContext.property().map(p => getProperty(p).propertyComponents().propertyAnnotation().identityRename()).filter(x => x != null);
-
-      if (invalidContextArray(identityRenames)) return { invalidPath: ['identityRenames'], validatorName };
-
-      // eslint-disable-next-line no-restricted-syntax
-      for (const identityRename of identityRenames) {
-        invalidPath = exceptionPath(['baseKeyName'], identityRename);
-        if (invalidPath) return { invalidPath, validatorName };
-      }
-    }
-
-    return { validatorName };
-  });
+export { validatable } from './SubclassIdentityRenameMustMatchIdentityPropertyInBaseClass';
 
 // eslint-disable-next-line no-unused-vars
 export function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
