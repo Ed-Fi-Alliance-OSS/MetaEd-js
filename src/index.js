@@ -1,3 +1,5 @@
+// @flow
+
 export { StateInstance } from './core/State';
 export { startingFromFileLoad, startingFromFileLoadP } from './core/tasks/Pipeline';
 export { createMetaEdFile } from './core/tasks/MetaEdFile';
