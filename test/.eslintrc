@@ -3,6 +3,7 @@
     "mocha": true
   },
   "rules": {
+    "flowtype/no-types-missing-file-annotation": "off",
     "no-unused-expressions": "off",
     "import/no-extraneous-dependencies": [
       "error",

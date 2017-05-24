@@ -42,8 +42,8 @@
     "flow": "flow check",
     "eslint": "eslint src",
     "eslint:tests": "eslint test && eslint test-integration",
-    "release:version-dev": "standard-version --prerelease dev",
+    "release:version-dev": "yarn run build && yarn test && yarn run lint && standard-version --prerelease dev",
     "release:push-tags": "git push --follow-tags",
-    "release:publish-dev": "yarn run build && yarn test && yarn run lint && yarn run release:push-tags && npm publish --tag=dev"
+    "release:publish-dev": "yarn run release:push-tags && npm publish --tag=dev"
   }
 }
