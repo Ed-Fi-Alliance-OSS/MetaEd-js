@@ -59,7 +59,6 @@ import { includeRule as InterchangeMustNotDuplicateInterchangeElementName } from
 import { includeRule as InterchangeExtensionIdentifierMustMatchAnInterchange } from './InterchangeExtension/InterchangeExtensionIdentifierMustMatchAnInterchange';
 import { includeRule as InterchangeExtensionMustNotDuplicateIdentityName } from './InterchangeExtension/InterchangeExtensionMustNotDuplicateIdentityName';
 import { includeRule as InterchangeExtensionMustNotDuplicateInterchangeElementName } from './InterchangeExtension/InterchangeExtensionMustNotDuplicateInterchangeElementName';
-import { includeRule as MergePartOfReferenceExistsOnlyInCoreNamespace } from './MergePartOfReference/MergePartOfReferenceExistsOnlyInCoreNamespace';
 import { includeRule as MergePropertyAndTargetPropertyMustMatch } from './MergePartOfReference/MergePropertyAndTargetPropertyMustMatch';
 import { includeRule as MergePropertyPathMustExist } from './MergePartOfReference/MergePropertyPathMustExist';
 import { includeRule as MergeStatementMustStartMergePathWithPropertyName } from './MergePartOfReference/MergeStatementMustStartMergePathWithPropertyName';
@@ -138,7 +137,6 @@ export default function allValidationRules(): ValidationRuleRepository {
     InterchangeExtensionIdentifierMustMatchAnInterchange,
     InterchangeExtensionMustNotDuplicateIdentityName,
     InterchangeExtensionMustNotDuplicateInterchangeElementName,
-    MergePartOfReferenceExistsOnlyInCoreNamespace,
     MergePropertyAndTargetPropertyMustMatch,
     MergePropertyPathMustExist,
     MergeStatementMustStartMergePathWithPropertyName,
