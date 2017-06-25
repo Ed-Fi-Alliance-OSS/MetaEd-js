@@ -1,0 +1,14 @@
+{
+  "name": "metaed-edfi-unified",
+  "version": "0.0.1",
+  "metaed-plugin": {
+    "artifact-specific": {
+      "pluginName": "edfi:unified",
+      "mainModule": "./unified.js",
+      "displayName": "The Ed-Fi Alliance Unified Plugin",
+      "author": "Ed-Fi Alliance",
+      "metaEdVersion": ">=1.0.0 <2.0.0",
+      "dependencies": []
+    }
+  }
+}

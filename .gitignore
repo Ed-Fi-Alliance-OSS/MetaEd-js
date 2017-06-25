@@ -16,4 +16,5 @@ npm-debug.log
 
 ## Babel target directory
 dist/
+dist-unified/
 

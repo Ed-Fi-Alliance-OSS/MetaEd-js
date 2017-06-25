@@ -12,3 +12,4 @@ test-integration
 .travis.yml
 npm-debug.log
 .npmignore
+dist-unified

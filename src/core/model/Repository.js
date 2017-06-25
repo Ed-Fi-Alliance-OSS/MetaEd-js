@@ -93,19 +93,3 @@ export type MostEntities =
   SharedDecimal |
   SharedInteger |
   SharedString;
-
-// Domains, Subdomains, Interchanges, Enumerations and Descriptors don't have standard cross entity naming issues
-// and extension entities don't define a new identifier
-export function entitiesNeedingDuplicateChecking(repository: Repository): Array<MostEntities> {
-  const result: Array<MostEntities> = [];
-  result.push(...repository.entity.association.values());
-  result.push(...repository.entity.associationSubclass.values());
-  result.push(...repository.entity.choice.values());
-  result.push(...repository.entity.common.values());
-  result.push(...repository.entity.domainEntity.values());
-  result.push(...repository.entity.domainEntitySubclass.values());
-  result.push(...repository.entity.sharedDecimal.values());
-  result.push(...repository.entity.sharedInteger.values());
-  result.push(...repository.entity.sharedString.values());
-  return result;
-}

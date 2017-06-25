@@ -43,6 +43,7 @@ const state: State = {
   parseTree: null,
   repository: null,
   propertyIndex: null,
+  pluginManifest: [],
 };
 
 const endState: State = startingFromFileLoad(state);

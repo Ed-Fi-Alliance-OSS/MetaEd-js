@@ -7,6 +7,7 @@ import type { ValidationFailure } from './validator/ValidationFailure';
 import type { Repository } from './model/Repository';
 import type { PropertyType } from './model/property/PropertyType';
 import type { EntityProperty } from './model/property/EntityProperty';
+import type { PluginManifest } from '../plugin/PluginTypes';
 
 export type State = {
   // the collection of error messages from syntax and semantic validation, and other processes
@@ -33,6 +34,12 @@ export type State = {
 
   // the transient property index
   propertyIndex: ?Map<PropertyType, Array<EntityProperty>>,
+
+  // the directory to scan for plugins
+  pluginScanDirectory: ?string,
+
+  // plugins
+  pluginManifest: Array<PluginManifest>,
 };
 
 export const defaultStateFactory: () => State = () =>
@@ -45,4 +52,6 @@ export const defaultStateFactory: () => State = () =>
     parseTree: null,
     repository: null,
     propertyIndex: null,
+    pluginScanDirectory: null,
+    pluginManifest: [],
   });

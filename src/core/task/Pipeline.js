@@ -28,7 +28,7 @@ import {
   executeSharedStringBuilder,
 } from './WalkBuildersP';
 import { execute as runValidators } from './RunValidators';
-
+import { loadPlugins } from './LoadPlugins';
 import type { State } from '../State';
 
 function nextMacroTask<T>(value: T): Promise<T> {
@@ -37,6 +37,8 @@ function nextMacroTask<T>(value: T): Promise<T> {
 
 export function oldStartingFromFileLoadP(state: State): Promise<State> {
   return Promise.resolve(loadFiles(state))
+    .then(nextMacroTask)
+    .then(s => loadPlugins(s))
     .then(nextMacroTask)
     .then(s => validateSyntax(buildTopLevelEntity, s))
     .then(nextMacroTask)
@@ -54,6 +56,8 @@ export function oldStartingFromFileLoadP(state: State): Promise<State> {
 
 export function startingFromFileLoadP(state: State): Promise<State> {
   return Promise.resolve(loadFiles(state))
+    .then(nextMacroTask)
+    .then(s => loadPlugins(s))
     .then(nextMacroTask)
     .then(s => validateSyntax(buildTopLevelEntity, s))
     .then(nextMacroTask)
