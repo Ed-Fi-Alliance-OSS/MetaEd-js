@@ -5,13 +5,10 @@ import { validate as commonPropertyMustMatchACommon } from '../../plugin/unified
 import { validate as mostEntitiesCannotHaveSameName } from '../../plugin/unified/validator/CrossEntity/MostEntitiesCannotHaveSameName';
 import { validate as domainEntityMustContainAnIdentity } from '../../plugin/unified/validator/DomainEntity/DomainEntityMustContainAnIdentity';
 import { validate as domainEntityMustContainNoMoreThanOneUniqueIdColumn } from '../../plugin/unified/validator/DomainEntity/DomainEntityMustContainNoMoreThanOneUniqueIdColumn';
-import type { Repository } from '../model/Repository';
-import type { PropertyType } from '../model/property/PropertyType';
-import type { EntityProperty } from '../model/property/EntityProperty';
-import type { ValidationFailure } from '../validator/ValidationFailure';
+import type { Validator } from '../validator/Validator';
 
 export function execute(state: State): State {
-  const validators: Array<((Repository, Map<PropertyType, Array<EntityProperty>>) => Array<ValidationFailure>)> = [];
+  const validators: Array<Validator> = [];
 
   validators.push(choicePropertyMustMatchAChoice);
   validators.push(commonPropertyMustMatchACommon);
