@@ -1,6 +1,9 @@
 {
   "name": "metaed-plugin-edfi-unified",
   "version": "0.0.1",
+  "publishConfig": {
+    "registry": "https://www.myget.org/F/ed-fi/npm/"
+  },
   "metaed-plugin": {
     "artifact-specific": {
       "pluginName": "edfi:unified",

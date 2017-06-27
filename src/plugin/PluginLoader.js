@@ -42,7 +42,7 @@ export function scanDirectories(directories: string | Array<string>, options: Pl
   const result = [];
   directories.forEach(directory => {
     try {
-      const subdirectories = fs.readdirSync(directory).filter(file => fs.lstatSync(path.join(directory, file)).isDirectory());
+      const subdirectories = fs.readdirSync(directory).filter(file => fs.statSync(path.join(directory, file)).isDirectory());
       subdirectories.forEach(subdirectory => {
         const directoryToTry = path.join(directory, subdirectory);
         const manifest = loadPluginManifest(directoryToTry, options);
