@@ -1,5 +1,5 @@
 {
-  "name": "metaed-edfi-unified",
+  "name": "metaed-plugin-edfi-unified",
   "version": "0.0.1",
   "metaed-plugin": {
     "artifact-specific": {

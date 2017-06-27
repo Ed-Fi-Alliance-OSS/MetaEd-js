@@ -52,7 +52,7 @@
     "test:coverage": "rimraf coverage/ && jest --coverage",
     "test:watch": "jest --watch",
     "build": "rimraf dist/ && babel src -d dist --source-maps --copy-files",
-    "build:unified": "rimraf dist-unified/ && babel src/plugin/unified -d dist-unified --source-maps",
+    "build:unified": "rimraf dist-unified/ && babel src/plugin/unified -d dist-unified --source-maps --copy-files",
     "flow": "flow check",
     "eslint": "eslint src",
     "eslint:tests": "eslint test && eslint test-integration",
