@@ -9,13 +9,21 @@ import type { ValidatableResult } from '../ValidationTypes';
 
 function cardinalitiesMatch(commonPropertyContext: any, otherCommonPropertyContext: any): boolean {
   const propertyAnnotationContext = commonPropertyContext.propertyComponents().propertyAnnotation();
+  if (!propertyAnnotationContext || propertyAnnotationContext.exception) return false;
   const otherPropertyAnnotationContext = otherCommonPropertyContext.propertyComponents().propertyAnnotation();
-  if (propertyAnnotationContext.required() && otherPropertyAnnotationContext.required()) return true;
-  if (propertyAnnotationContext.optional() && otherPropertyAnnotationContext.optional()) return true;
-  if (propertyAnnotationContext.collection() && propertyAnnotationContext.collection().requiredCollection() &&
-    otherPropertyAnnotationContext.collection() && otherPropertyAnnotationContext.collection().requiredCollection()) return true;
-  if (propertyAnnotationContext.collection() && propertyAnnotationContext.collection().optionalCollection() &&
-    otherPropertyAnnotationContext.collection() && otherPropertyAnnotationContext.collection().optionalCollection()) return true;
+  if (!otherPropertyAnnotationContext || otherPropertyAnnotationContext.exception) return false;
+  if (propertyAnnotationContext.required() && !propertyAnnotationContext.required().exception &&
+    otherPropertyAnnotationContext.required() && !otherPropertyAnnotationContext.required()) return true;
+  if (propertyAnnotationContext.optional() && !propertyAnnotationContext.optional() &&
+    otherPropertyAnnotationContext.optional() && !otherPropertyAnnotationContext.optional().exception) return true;
+  if (propertyAnnotationContext.collection() && !propertyAnnotationContext.collection().exception &&
+    propertyAnnotationContext.collection().requiredCollection() && !propertyAnnotationContext.collection().requiredCollection().exception &&
+    otherPropertyAnnotationContext.collection() && !otherPropertyAnnotationContext.collection().exception &&
+    otherPropertyAnnotationContext.collection().requiredCollection() && !otherPropertyAnnotationContext.collection().requiredCollection().exception) return true;
+  if (propertyAnnotationContext.collection() && !propertyAnnotationContext.collection().exception &&
+    propertyAnnotationContext.collection().optionalCollection() && !propertyAnnotationContext.collection().optionalCollection().exception &&
+    otherPropertyAnnotationContext.collection() && !otherPropertyAnnotationContext.collection().exception &&
+    otherPropertyAnnotationContext.collection().optionalCollection() && !otherPropertyAnnotationContext.collection().optionalCollection().exception) return true;
   return false;
 }
 
