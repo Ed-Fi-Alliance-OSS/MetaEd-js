@@ -90,7 +90,7 @@ function valid(ruleContext: any, symbolTable: SymbolTable): boolean {
 function failureMessage(ruleContext: any, symbolTable: SymbolTable): string {
   const parentEntity = topLevelEntityAncestorContext(ruleContext);
   const parentPropertyName = propertyAncestorContext(ruleContext).propertyName().ID().getText();
-  return `'common extension' is invalid for property ${parentPropertyName} on ${entityIdentifier(parentEntity)} '${entityName(parentEntity)}'.  'common extension' is only valid for referencing Common extensions.`;
+  return `'common extension' is invalid for property ${parentPropertyName} on ${entityIdentifier(parentEntity)} '${entityName(parentEntity)}'.  'common extension' is only valid for properties on Domain Entity extension and Association extension, and must maintain original cardinality on extendee.`;
 }
 
 const validationRule = errorRuleBase(validatable, valid, failureMessage);
