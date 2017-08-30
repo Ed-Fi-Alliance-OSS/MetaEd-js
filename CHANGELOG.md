@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0-dev.1"></a>
+# [1.1.0-dev.1](https://github.com/tbmeador-dlp/MetaEd-js/compare/v1.1.0-dev.0...v1.1.0-dev.1) (2017-08-30)
+
+
+
 <a name="1.1.0-dev.0"></a>
 # [1.1.0-dev.0](https://github.com/tbmeador-dlp/MetaEd-js/compare/v1.0.6-dev.0...v1.1.0-dev.0) (2017-08-30)
 
