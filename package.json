@@ -1,7 +1,7 @@
 {
   "name": "metaed-js",
   "main": "dist/index.js",
-  "version": "1.1.0-richard.1",
+  "version": "1.1.0-richard.2",
   "description": "MetaEd for JavaScript",
   "license": "private",
   "publishConfig": {
@@ -39,7 +39,7 @@
     "test": "mocha --compilers js:babel-register \"test/**/*Tests.js\" \"test-integration/**/*Tests.js\"",
     "build": "rimraf dist/ && babel src -d dist --source-maps",
     "lint": "yarn run flow && yarn run eslint && yarn run eslint:tests",
-    "flow": "dir",
+    "flow": "flow check",
     "eslint": "eslint src",
     "eslint:tests": "eslint test && eslint test-integration",
     "release:version-dev": "yarn run build && yarn test && yarn run lint && standard-version --prerelease richard",
