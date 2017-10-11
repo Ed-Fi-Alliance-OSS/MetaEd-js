@@ -7,28 +7,7 @@ import loadFileIndex from './LoadFileIndex';
 import { buildParseTree } from './BuildParseTree';
 import { execute as walkBuilders } from './WalkBuilders';
 import { fileMapForFailure } from './FileMapForFailure';
-import {
-  executeAssociationBuilder,
-  executeAssociationExtensionBuilder,
-  executeAssociationSubclassBuilder,
-  executeChoiceBuilder,
-  executeCommonBuilder,
-  executeCommonExtensionBuilder,
-  executeDecimalTypeBuilder,
-  executeDescriptorBuilder,
-  executeDomainBuilder,
-  executeDomainEntityBuilder,
-  executeDomainEntityExtensionBuilder,
-  executeDomainEntitySubclassBuilder,
-  executeEnumerationBuilder,
-  executeIntegerTypeBuilder,
-  executeInterchangeBuilder,
-  executeNamespaceInfoBuilder,
-  executeSharedDecimalBuilder,
-  executeSharedIntegerBuilder,
-  executeSharedStringBuilder,
-  executeStringTypeBuilder,
-} from './WalkBuildersP';
+import { execute as walkBuildersMultiplexed } from './WalkBuildersMultiplexed';
 import { execute as runValidators } from './RunValidators';
 import { loadPlugins } from './LoadPlugins';
 import type { State } from '../State';
@@ -67,45 +46,7 @@ export function startingFromFileLoadP(state: State): Promise<State> {
     .then(nextMacroTask)
     .then(s => buildParseTree(buildMetaEd, s))
     .then(nextMacroTask)
-    .then(s => executeAssociationBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeAssociationExtensionBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeAssociationSubclassBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeChoiceBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeCommonBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeCommonExtensionBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeDecimalTypeBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeDescriptorBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeDomainBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeDomainEntityBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeDomainEntityExtensionBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeDomainEntitySubclassBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeEnumerationBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeIntegerTypeBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeInterchangeBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeNamespaceInfoBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeSharedDecimalBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeSharedIntegerBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeSharedStringBuilder(s))
-    .then(nextMacroTask)
-    .then(s => executeStringTypeBuilder(s))
+    .then(s => walkBuildersMultiplexed(s))
     .then(nextMacroTask)
     .then(s => runValidators(s))
     .then(nextMacroTask)
