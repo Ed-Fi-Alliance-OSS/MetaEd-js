@@ -1,6 +1,6 @@
 // @flow
-import type { MetaEdEnvironment, EnhancerResult, TopLevelEntity, EntityProperty } from '../../../../packages/metaed-core/index';
-import { getEntitiesOfType } from '../../../../packages/metaed-core/index';
+import type { MetaEdEnvironment, EnhancerResult, TopLevelEntity, EntityProperty } from '../../../metaed-core/index';
+import { getEntitiesOfType } from '../../../metaed-core/index';
 import { EntityRepository } from '../../../metaed-core/src/model/EntityRepository';
 import type { TopLevelEntityEdfiXsd } from '../model/TopLevelEntity';
 

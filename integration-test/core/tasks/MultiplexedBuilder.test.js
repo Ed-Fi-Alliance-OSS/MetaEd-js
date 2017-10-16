@@ -378,14 +378,14 @@ describe('when building single interchange', () => {
     expect(metaEd.entity.interchange.get(interchangeName).elements).toHaveLength(1);
     expect(metaEd.entity.interchange.get(interchangeName).elements[0].metaEdName).toBe(interchangeElementName);
     expect(metaEd.entity.interchange.get(interchangeName).elements[0].metaEdId).toBe(interchangeElementMetaEdId);
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].referencedType).toBe('domainEntity');
+    expect(metaEd.entity.interchange.get(interchangeName).elements[0].referencedType).toEqual(['domainEntity', 'domainEntitySubclass']);
   });
 
   it('should have one identity template', () => {
     expect(metaEd.entity.interchange.get(interchangeName).identityTemplates).toHaveLength(1);
     expect(metaEd.entity.interchange.get(interchangeName).identityTemplates[0].metaEdName).toBe(interchangeIdentityTemplateName);
     expect(metaEd.entity.interchange.get(interchangeName).identityTemplates[0].metaEdId).toBe(interchangeIdentityTemplateMetaEdId);
-    expect(metaEd.entity.interchange.get(interchangeName).identityTemplates[0].referencedType).toBe('association');
+    expect(metaEd.entity.interchange.get(interchangeName).identityTemplates[0].referencedType).toEqual(['association', 'associationSubclass']);
   });
 });
 
