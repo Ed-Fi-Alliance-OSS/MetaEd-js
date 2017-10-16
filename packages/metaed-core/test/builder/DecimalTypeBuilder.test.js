@@ -1,9 +1,10 @@
-// @noflow
-import type { ValidationFailure } from '../../src/validator/ValidationFailure';
+// @flow
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
-import type { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { DecimalTypeBuilder } from '../../src/builder/DecimalTypeBuilder';
 import { MetaEdTextBuilder } from '../MetaEdTextBuilder';
+import { getDecimalType } from '../TestHelper';
+import type { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
+import type { ValidationFailure } from '../../src/validator/ValidationFailure';
 
 describe('when building shared decimal in extension namespace', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
@@ -37,7 +38,7 @@ describe('when building shared decimal in extension namespace', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId)).toBeDefined();
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId)).toBeDefined();
   });
 
   it('should have no validation failures', () => {
@@ -45,47 +46,51 @@ describe('when building shared decimal in extension namespace', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).namespaceInfo.namespace).toBe(namespace);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).type).toBe('decimalType');
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).type).toBe('decimalType');
   });
 
   it('should have type humanized name', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).typeHumanizedName).toBe('Decimal Type');
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).typeHumanizedName).toBe('Decimal Type');
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).metaEdId).toBe(metaEdId);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).documentation).toBe(documentation);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).documentation).toBe(documentation);
   });
 
   it('should have total digits', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).totalDigits).toBe(totalDigits);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).totalDigits).toBe(totalDigits);
   });
 
   it('should have decimal places', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).decimalPlaces).toBe(decimalPlaces);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).decimalPlaces).toBe(decimalPlaces);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).minValue).toBe(minValue);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).maxValue).toBe(maxValue);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).maxValue).toBe(maxValue);
+  });
+
+  it('should have data', () => {
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).data).toBeDefined();
   });
 
   it('should not be a generated type', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).generatedSimpleType).toBe(false);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).generatedSimpleType).toBe(false);
   });
 });
 
@@ -121,7 +126,7 @@ describe('when building domain entity with decimal property in extension namespa
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId)).toBeDefined();
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId)).toBeDefined();
   });
 
   it('should have no validation failures', () => {
@@ -129,47 +134,51 @@ describe('when building domain entity with decimal property in extension namespa
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).namespaceInfo.namespace).toBe(namespace);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).type).toBe('decimalType');
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).type).toBe('decimalType');
   });
 
   it('should have type humanized name', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).typeHumanizedName).toBe('Decimal Type');
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).typeHumanizedName).toBe('Decimal Type');
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).metaEdId).toBe(metaEdId);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).documentation).toBe(documentation);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).documentation).toBe(documentation);
   });
 
   it('should have total digits', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).totalDigits).toBe(totalDigits);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).totalDigits).toBe(totalDigits);
   });
 
   it('should have decimal places', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).decimalPlaces).toBe(decimalPlaces);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).decimalPlaces).toBe(decimalPlaces);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).minValue).toBe(minValue);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).maxValue).toBe(maxValue);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).maxValue).toBe(maxValue);
+  });
+
+  it('should have data', () => {
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).data).toBeDefined();
   });
 
   it('should be a generated type', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId).generatedSimpleType).toBe(true);
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId).generatedSimpleType).toBe(true);
   });
 });
 
@@ -213,7 +222,7 @@ describe('when building multiple shared decimals in extension namespace', () => 
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId)).toBeDefined();
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId)).toBeDefined();
     expect(metaEd.entity.decimalType.get(expectedRepositoryId2)).toBeDefined();
   });
 
@@ -258,7 +267,7 @@ describe('when building domain entity with multiple decimal properties in extens
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.decimalType.get(expectedRepositoryId)).toBeDefined();
+    expect(getDecimalType(metaEd.entity, expectedRepositoryId)).toBeDefined();
     expect(metaEd.entity.decimalType.get(expectedRepositoryId2)).toBeDefined();
   });
 

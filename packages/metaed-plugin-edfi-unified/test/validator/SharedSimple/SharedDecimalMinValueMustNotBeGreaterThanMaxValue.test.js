@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, SharedDecimalBuilder } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, ValidationFailure } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, MetaEdTextBuilder, SharedDecimalBuilder } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, ValidationFailure } from '../../../../metaed-core/index';
 import { validate } from '../../../src/validator/SharedSimple/SharedDecimalMinValueMustNotBeGreaterThanMaxValue';
 
 describe('when validating shared decimal with max value greater than min value', () => {

@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, newNamespaceInfo, newStringType } from '../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, NamespaceInfo } from '../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newNamespaceInfo, newStringType } from '../../../metaed-core/index';
+import type { MetaEdEnvironment, NamespaceInfo } from '../../../metaed-core/index';
 import { enhance } from '../../src/enhancer/DeleteExtraneousImplicitExtensionSimpleTypesEnhancer';
 
 describe('when there are duplicate string types', () => {

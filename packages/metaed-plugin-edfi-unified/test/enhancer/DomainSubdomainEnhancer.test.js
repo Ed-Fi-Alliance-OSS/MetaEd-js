@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, newSubdomain, newDomain, addEntity, getEntity } from '../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment } from '../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newSubdomain, newDomain, addEntity, getEntity } from '../../../metaed-core/index';
+import type { MetaEdEnvironment } from '../../../metaed-core/index';
 import { enhance } from '../../src/enhancer/DomainSubdomainEnhancer';
 
 describe('when enhancing domain', () => {

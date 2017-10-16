@@ -12,8 +12,8 @@ import {
   newInterchangeExtension,
   addEntity,
   getEntity,
-} from '../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment } from '../../../../packages/metaed-core/index';
+} from '../../../metaed-core/index';
+import type { MetaEdEnvironment } from '../../../metaed-core/index';
 import { enhance } from '../../src/enhancer/InterchangeBaseItemEnhancer';
 
 describe('when enhancing interchange in core', () => {
@@ -42,7 +42,7 @@ describe('when enhancing interchange in core', () => {
     elementEntities.forEach(entity => {
       interchange.elements.push(Object.assign(newInterchangeItem(), {
         metaEdName: entity.metaEdName,
-        referencedType: entity.type,
+        referencedType: [entity.type],
       }));
       addEntity(metaEd.entity, entity);
     });
@@ -50,7 +50,7 @@ describe('when enhancing interchange in core', () => {
     identityTemplateEntities.forEach(entity => {
       interchange.identityTemplates.push(Object.assign(newInterchangeItem(), {
         metaEdName: entity.metaEdName,
-        referencedType: entity.type,
+        referencedType: [entity.type],
       }));
       addEntity(metaEd.entity, entity);
     });
@@ -94,12 +94,12 @@ describe('when enhancing interchange extension', () => {
 
     interchange.elements.push(Object.assign(newInterchangeItem(), {
       metaEdName: domainEntity.metaEdName,
-      referencedType: domainEntity.type,
+      referencedType: [domainEntity.type],
     }));
 
     interchangeExtension.elements.push(Object.assign(newInterchangeItem(), {
       metaEdName: domainEntityExtension.metaEdName,
-      referencedType: domainEntityExtension.type,
+      referencedType: [domainEntityExtension.type],
     }));
 
     enhance(metaEd);
@@ -113,3 +113,4 @@ describe('when enhancing interchange extension', () => {
     expect(interchangeExtension.elements[0].referencedEntity).toBe(domainEntityExtension);
   });
 });
+

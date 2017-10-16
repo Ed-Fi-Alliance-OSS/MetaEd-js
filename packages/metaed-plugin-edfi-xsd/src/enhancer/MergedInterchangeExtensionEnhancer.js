@@ -1,10 +1,11 @@
 // @flow
 import R from 'ramda';
-import type { MetaEdEnvironment, EnhancerResult, ModelBase } from '../../../metaed-core/index';
 import { getEntitiesOfType, newInterchangeItem } from '../../../metaed-core/index';
-import type { MergedInterchange } from '../model/MergedInterchange';
 import { newMergedInterchange, addMergedInterchangeToRepository } from '../model/MergedInterchange';
+import { addInterchangeItemEdfiXsdTo } from '../model/InterchangeItem';
 import type { EdFiXsdEntityRepository } from '../model/EdFiXsdEntityRepository';
+import type { MergedInterchange } from '../model/MergedInterchange';
+import type { MetaEdEnvironment, EnhancerResult, ModelBase } from '../../../metaed-core/index';
 
 const enhancerName: string = 'MergedInterchangeExtensionEnhancer';
 
@@ -44,6 +45,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
             referencedEntity: element.referencedEntity,
             documentation: element.documentation,
           });
+          addInterchangeItemEdfiXsdTo(interchangeItem);
           extensionInterchange.elements.push(interchangeItem);
         });
 
@@ -65,6 +67,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           referencedEntity: elementToExtend.extensionElement,
           documentation: elementToExtend.element.documentation,
         });
+        addInterchangeItemEdfiXsdTo(interchangeItem);
         extensionInterchange.elements.push(interchangeItem);
       });
     });

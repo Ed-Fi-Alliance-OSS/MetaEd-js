@@ -39,6 +39,7 @@ export function newDecimalType(): DecimalType {
     maxValue: '',
     referringSimpleProperties: [],
     sourceMap: new DecimalTypeSourceMap(),
+    data: {},
   });
 }
 

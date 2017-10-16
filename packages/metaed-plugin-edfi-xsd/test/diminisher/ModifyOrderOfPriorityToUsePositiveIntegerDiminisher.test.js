@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
-import type { Common, MetaEdEnvironment, IntegerType } from '../../../../packages/metaed-core/index';
-import { addEntity, newCommon, newMetaEdEnvironment, newIntegerType } from '../../../../packages/metaed-core/index';
+import type { Common, MetaEdEnvironment, IntegerType } from '../../../metaed-core/index';
+import { addEntity, newCommon, newMetaEdEnvironment, newIntegerType } from '../../../metaed-core/index';
 import { newComplexType } from '../../src/model/schema/ComplexType';
 import { newElement } from '../../src/model/schema/Element';
 import { newIntegerSimpleType } from '../../src/model/schema/IntegerSimpleType';

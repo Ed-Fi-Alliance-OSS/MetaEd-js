@@ -1,8 +1,8 @@
 // @flow
 import R from 'ramda';
-import { loadFiles } from '../../../packages/metaed-core/src/task/FileSystemFilenameLoader';
-import { validateSyntax } from '../../../packages/metaed-core/src/task/ValidateSyntax';
-import { buildTopLevelEntity, buildMetaEd } from '../../../packages/metaed-core/src/grammar/ParseTreeBuilder';
+import { loadFiles } from '../../../packages/../packages/metaed-core/src/task/FileSystemFilenameLoader';
+import { validateSyntax } from '../../../packages/../packages/metaed-core/src/task/ValidateSyntax';
+import { buildTopLevelEntity, buildMetaEd } from '../../../packages/../packages/metaed-core/src/grammar/ParseTreeBuilder';
 import loadFileIndex from '../../../packages/metaed-core/src/task/LoadFileIndex';
 import { buildParseTree } from '../../../packages/metaed-core/src/task/BuildParseTree';
 import { execute as walkBuilders } from '../../../packages/metaed-core/src/task/WalkBuilders';

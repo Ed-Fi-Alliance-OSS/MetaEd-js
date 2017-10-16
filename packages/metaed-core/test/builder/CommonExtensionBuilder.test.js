@@ -1,7 +1,8 @@
-// @noflow
+// @flow
 import { CommonExtensionBuilder } from '../../src/builder/CommonExtensionBuilder';
 import { MetaEdTextBuilder } from '../MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
+import { getCommonExtension } from '../TestHelper';
 import type { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import type { ValidationFailure } from '../../src/validator/ValidationFailure';
 
@@ -31,8 +32,8 @@ describe('when building common extension in extension namespace', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.commonExtension.get(entityName)).toBeDefined();
-    expect(metaEd.entity.commonExtension.get(entityName).metaEdName).toBe(entityName);
+    expect(getCommonExtension(metaEd.entity, entityName)).toBeDefined();
+    expect(getCommonExtension(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -40,23 +41,23 @@ describe('when building common extension in extension namespace', () => {
   });
 
   it('should have extendee name', () => {
-    expect(metaEd.entity.commonExtension.get(entityName).baseEntityName).toBe(entityName);
+    expect(getCommonExtension(metaEd.entity, entityName).baseEntityName).toBe(entityName);
   });
 
   it('should have correct namespace', () => {
-    expect(metaEd.entity.commonExtension.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getCommonExtension(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have correct project extension', () => {
-    expect(metaEd.entity.commonExtension.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getCommonExtension(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have one property', () => {
-    expect(metaEd.entity.commonExtension.get(entityName).properties).toHaveLength(1);
+    expect(getCommonExtension(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have integer property', () => {
-    const integerProperty = metaEd.entity.commonExtension.get(entityName).properties[0];
+    const integerProperty = getCommonExtension(metaEd.entity, entityName).properties[0];
 
     expect(integerProperty.metaEdName).toBe(propertyName);
     expect(integerProperty.type).toBe('integer');
@@ -94,8 +95,8 @@ describe('when building multiple common extensions', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.commonExtension.get(entityName)).toBeDefined();
-    expect(metaEd.entity.commonExtension.get(entityName).metaEdName).toBe(entityName);
+    expect(getCommonExtension(metaEd.entity, entityName)).toBeDefined();
+    expect(getCommonExtension(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have two validation failures', () => {
@@ -245,22 +246,22 @@ describe('when building common extension source map', () => {
   });
 
   it('should have a baseEntityName property', () => {
-    expect(metaEd.entity.commonExtension.get(entityName).sourceMap.baseEntityName).toBeDefined();
+    expect(getCommonExtension(metaEd.entity, entityName).sourceMap.baseEntityName).toBeDefined();
   });
 
   it('should have a metaEdId property', () => {
-    expect(metaEd.entity.commonExtension.get(entityName).sourceMap.metaEdId).toBeDefined();
+    expect(getCommonExtension(metaEd.entity, entityName).sourceMap.metaEdId).toBeDefined();
   });
 
   it('should have a metaEdName property', () => {
-    expect(metaEd.entity.commonExtension.get(entityName).sourceMap.metaEdName).toBeDefined();
+    expect(getCommonExtension(metaEd.entity, entityName).sourceMap.metaEdName).toBeDefined();
   });
 
   it('should have a type property', () => {
-    expect(metaEd.entity.commonExtension.get(entityName).sourceMap.type).toBeDefined();
+    expect(getCommonExtension(metaEd.entity, entityName).sourceMap.type).toBeDefined();
   });
 
   it('should have source map data', () => {
-    expect(metaEd.entity.commonExtension.get(entityName).sourceMap).toMatchSnapshot();
+    expect(getCommonExtension(metaEd.entity, entityName).sourceMap).toMatchSnapshot();
   });
 });

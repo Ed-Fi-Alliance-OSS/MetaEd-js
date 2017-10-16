@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
-import { newMetaEdEnvironment, newAssociationProperty, newAssociation, newAssociationSubclass } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, AssociationProperty, Association, AssociationSubclass } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newAssociationProperty, newAssociation, newAssociationSubclass } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, AssociationProperty, Association, AssociationSubclass } from '../../../../metaed-core/index';
 import { enhance } from '../../../src/enhancer/property/AssociationReferenceEnhancer';
 
 describe('when enhancing association property referring to association', () => {

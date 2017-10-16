@@ -14,8 +14,8 @@ import { newMetaEdEnvironment,
   newDecimalType,
   newIntegerType,
   newStringType,
-} from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment } from '../../../../../packages/metaed-core/index';
+} from '../../../../metaed-core/index';
+import type { MetaEdEnvironment } from '../../../../metaed-core/index';
 import { NoSimpleType } from '../../../src/model/schema/SimpleType';
 import { newComplexType, NoComplexType } from '../../../src/model/schema/ComplexType';
 import { newEnumerationSimpleType, NoEnumerationSimpleType } from '../../../src/model/schema/EnumerationSimpleType';

@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
-import { newMetaEdEnvironment, newSharedDecimalProperty, newDecimalType, addProperty } from '../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment } from '../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newSharedDecimalProperty, newDecimalType, addProperty } from '../../../metaed-core/index';
+import type { MetaEdEnvironment } from '../../../metaed-core/index';
 import { enhance } from '../../src/enhancer/SharedDecimalPropertyEnhancer';
 
 describe('when shared decimal property refers to a shared decimal', () => {

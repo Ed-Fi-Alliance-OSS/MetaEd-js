@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
-import { newMetaEdEnvironment, newInlineCommonProperty, newInlineCommon } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, InlineCommonProperty, Common } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newInlineCommonProperty, newInlineCommon } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, InlineCommonProperty, Common } from '../../../../metaed-core/index';
 import { enhance } from '../../../src/enhancer/property/InlineCommonReferenceEnhancer';
 
 describe('when enhancing inlineCommon property', () => {

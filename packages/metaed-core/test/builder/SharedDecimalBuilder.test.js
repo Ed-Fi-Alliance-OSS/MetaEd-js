@@ -1,7 +1,9 @@
-// @noflow
+// @flow
 import { SharedDecimalBuilder } from '../../src/builder/SharedDecimalBuilder';
 import { MetaEdTextBuilder } from '../MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
+import { getSharedDecimal } from '../TestHelper';
+import type { SharedDecimalSourceMap } from '../../src/model/SharedDecimal';
 import type { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import type { ValidationFailure } from '../../src/validator/ValidationFailure';
 
@@ -37,8 +39,8 @@ describe('when building shared decimal in extension namespace', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName)).toBeDefined();
-    expect(metaEd.entity.sharedDecimal.get(entityName).metaEdName).toBe(entityName);
+    expect(getSharedDecimal(metaEd.entity, entityName)).toBeDefined();
+    expect(getSharedDecimal(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -46,35 +48,35 @@ describe('when building shared decimal in extension namespace', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getSharedDecimal(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).documentation).toBe(documentation);
+    expect(getSharedDecimal(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have total digits', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).totalDigits).toBe(totalDigits);
+    expect(getSharedDecimal(metaEd.entity, entityName).totalDigits).toBe(totalDigits);
   });
 
   it('should have decimal places', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).decimalPlaces).toBe(decimalPlaces);
+    expect(getSharedDecimal(metaEd.entity, entityName).decimalPlaces).toBe(decimalPlaces);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).minValue).toBe(minValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).maxValue).toBe(maxValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).maxValue).toBe(maxValue);
   });
 });
 
@@ -115,8 +117,8 @@ describe('when building duplicate shared decimals', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName)).toBeDefined();
-    expect(metaEd.entity.sharedDecimal.get(entityName).metaEdName).toBe(entityName);
+    expect(getSharedDecimal(metaEd.entity, entityName)).toBeDefined();
+    expect(getSharedDecimal(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have two validation failures', () => {
@@ -181,6 +183,7 @@ describe('when building shared decimal with lowercase shared decimal name', () =
   const projectExtension: string = 'ProjectExtension';
 
   const entityName: string = 'entityName';
+  const expectedName: string = 'Name';
   const metaEdId: string = '123';
   const documentation = 'doc';
   const totalDigits = '10';
@@ -206,40 +209,40 @@ describe('when building shared decimal with lowercase shared decimal name', () =
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.sharedDecimal.get('Name')).toBeDefined();
-    expect(metaEd.entity.sharedDecimal.get('Name').metaEdName).toBe('Name');
+    expect(getSharedDecimal(metaEd.entity, expectedName)).toBeDefined();
+    expect(getSharedDecimal(metaEd.entity, expectedName).metaEdName).toBe(expectedName);
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedDecimal.get('Name').namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedDecimal(metaEd.entity, expectedName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedDecimal.get('Name').namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedDecimal(metaEd.entity, expectedName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedDecimal.get('Name').metaEdId).toBe(metaEdId);
+    expect(getSharedDecimal(metaEd.entity, expectedName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedDecimal.get('Name').documentation).toBe(documentation);
+    expect(getSharedDecimal(metaEd.entity, expectedName).documentation).toBe(documentation);
   });
 
   it('should have total digits', () => {
-    expect(metaEd.entity.sharedDecimal.get('Name').totalDigits).toBe(totalDigits);
+    expect(getSharedDecimal(metaEd.entity, expectedName).totalDigits).toBe(totalDigits);
   });
 
   it('should have decimal places', () => {
-    expect(metaEd.entity.sharedDecimal.get('Name').decimalPlaces).toBe(decimalPlaces);
+    expect(getSharedDecimal(metaEd.entity, expectedName).decimalPlaces).toBe(decimalPlaces);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.sharedDecimal.get('Name').minValue).toBe(minValue);
+    expect(getSharedDecimal(metaEd.entity, expectedName).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.sharedDecimal.get('Name').maxValue).toBe(maxValue);
+    expect(getSharedDecimal(metaEd.entity, expectedName).maxValue).toBe(maxValue);
   });
 
   it('should have extraneous input error', () => {
@@ -274,35 +277,35 @@ describe('when building shared decimal with no documentation', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getSharedDecimal(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should not have documentation', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).documentation).toBe('');
+    expect(getSharedDecimal(metaEd.entity, entityName).documentation).toBe('');
   });
 
   it('should have total digits', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).totalDigits).toBe(totalDigits);
+    expect(getSharedDecimal(metaEd.entity, entityName).totalDigits).toBe(totalDigits);
   });
 
   it('should have decimal places', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).decimalPlaces).toBe(decimalPlaces);
+    expect(getSharedDecimal(metaEd.entity, entityName).decimalPlaces).toBe(decimalPlaces);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).minValue).toBe(minValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).maxValue).toBe(maxValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).maxValue).toBe(maxValue);
   });
 
   it('should have mismatched input error', () => {
@@ -339,35 +342,35 @@ describe('when building shared decimal with no metaed id', () => {
   });
 
   it('should have correct namespace', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have correct project extension', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should not have metaed id', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).metaEdId).toBe('');
+    expect(getSharedDecimal(metaEd.entity, entityName).metaEdId).toBe('');
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).documentation).toBe(documentation);
+    expect(getSharedDecimal(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have total digits', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).totalDigits).toBe(totalDigits);
+    expect(getSharedDecimal(metaEd.entity, entityName).totalDigits).toBe(totalDigits);
   });
 
   it('should have decimal places', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).decimalPlaces).toBe(decimalPlaces);
+    expect(getSharedDecimal(metaEd.entity, entityName).decimalPlaces).toBe(decimalPlaces);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).minValue).toBe(minValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).maxValue).toBe(maxValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).maxValue).toBe(maxValue);
   });
 
   it('should have token recognition error', () => {
@@ -405,35 +408,35 @@ describe('when building shared decimal with no total digits property', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getSharedDecimal(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).documentation).toBe(documentation);
+    expect(getSharedDecimal(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should not have total digits', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).totalDigits).toBe('');
+    expect(getSharedDecimal(metaEd.entity, entityName).totalDigits).toBe('');
   });
 
   it('should have decimal places', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).decimalPlaces).toBe(decimalPlaces);
+    expect(getSharedDecimal(metaEd.entity, entityName).decimalPlaces).toBe(decimalPlaces);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).minValue).toBe(minValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).maxValue).toBe(maxValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).maxValue).toBe(maxValue);
   });
 
   it('should have extraneous input error', () => {
@@ -473,35 +476,35 @@ describe('when building shared decimal with no total digits value', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getSharedDecimal(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).documentation).toBe(documentation);
+    expect(getSharedDecimal(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have total digits because decimal places token was ignored', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).totalDigits).toBe(decimalPlaces);
+    expect(getSharedDecimal(metaEd.entity, entityName).totalDigits).toBe(decimalPlaces);
   });
 
   it('should not have decimal places because it was consumed by total digits', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).decimalPlaces).toBe('');
+    expect(getSharedDecimal(metaEd.entity, entityName).decimalPlaces).toBe('');
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).minValue).toBe(minValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).maxValue).toBe(maxValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).maxValue).toBe(maxValue);
   });
 
   it('should have extraneous input and mismatched input error', () => {
@@ -539,35 +542,35 @@ describe('when building shared decimal with no decimal places property', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getSharedDecimal(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).documentation).toBe(documentation);
+    expect(getSharedDecimal(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have total digits', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).totalDigits).toBe(totalDigits);
+    expect(getSharedDecimal(metaEd.entity, entityName).totalDigits).toBe(totalDigits);
   });
 
   it('should not have decimal places', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).decimalPlaces).toBe('');
+    expect(getSharedDecimal(metaEd.entity, entityName).decimalPlaces).toBe('');
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).minValue).toBe(minValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).maxValue).toBe(maxValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).maxValue).toBe(maxValue);
   });
 
   it('should have mismatched input and extraneous input error', () => {
@@ -607,35 +610,35 @@ describe('when building shared decimal with no min value', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getSharedDecimal(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).documentation).toBe(documentation);
+    expect(getSharedDecimal(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have total digits', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).totalDigits).toBe(totalDigits);
+    expect(getSharedDecimal(metaEd.entity, entityName).totalDigits).toBe(totalDigits);
   });
 
   it('should have decimal places', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).decimalPlaces).toBe(decimalPlaces);
+    expect(getSharedDecimal(metaEd.entity, entityName).decimalPlaces).toBe(decimalPlaces);
   });
 
   it('should have minValue because max value token was ignored', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).minValue).toBe(`max value${maxValue}`);
+    expect(getSharedDecimal(metaEd.entity, entityName).minValue).toBe(`max value${maxValue}`);
   });
 
   it('should not have maxValue because it was consumed by min value', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).maxValue).toBe('');
+    expect(getSharedDecimal(metaEd.entity, entityName).maxValue).toBe('');
   });
 
   it('should have extraneous input error', () => {
@@ -675,35 +678,35 @@ describe('when building shared decimal with no max value', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getSharedDecimal(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).documentation).toBe(documentation);
+    expect(getSharedDecimal(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have total digits', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).totalDigits).toBe(totalDigits);
+    expect(getSharedDecimal(metaEd.entity, entityName).totalDigits).toBe(totalDigits);
   });
 
   it('should have decimal places', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).decimalPlaces).toBe(decimalPlaces);
+    expect(getSharedDecimal(metaEd.entity, entityName).decimalPlaces).toBe(decimalPlaces);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).minValue).toBe(minValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).minValue).toBe(minValue);
   });
 
   it('should not have maxValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).maxValue).toBe('');
+    expect(getSharedDecimal(metaEd.entity, entityName).maxValue).toBe('');
   });
 
   it('should have mismatched input error', () => {
@@ -742,35 +745,35 @@ describe('when building shared decimal with invalid trailing text', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedDecimal(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getSharedDecimal(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).documentation).toBe(documentation);
+    expect(getSharedDecimal(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have total digits', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).totalDigits).toBe(totalDigits);
+    expect(getSharedDecimal(metaEd.entity, entityName).totalDigits).toBe(totalDigits);
   });
 
   it('should have decimal places', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).decimalPlaces).toBe(decimalPlaces);
+    expect(getSharedDecimal(metaEd.entity, entityName).decimalPlaces).toBe(decimalPlaces);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).minValue).toBe(minValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).maxValue).toBe(maxValue);
+    expect(getSharedDecimal(metaEd.entity, entityName).maxValue).toBe(maxValue);
   });
 
   it('should have extraneous input error', () => {
@@ -807,45 +810,47 @@ describe('when building shared decimal source map', () => {
 
   // SharedSimpleSourceMap
   it('should have type', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).sourceMap.type).toBeDefined();
+    expect(getSharedDecimal(metaEd.entity, entityName).sourceMap.type).toBeDefined();
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).sourceMap.documentation).toBeDefined();
+    expect(getSharedDecimal(metaEd.entity, entityName).sourceMap.documentation).toBeDefined();
   });
 
   it('should have metaEdName', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).sourceMap.metaEdName).toBeDefined();
-    expect(metaEd.entity.sharedDecimal.get(entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
+    expect(getSharedDecimal(metaEd.entity, entityName).sourceMap.metaEdName).toBeDefined();
+    // $FlowIgnore = metaEdName could be null
+    expect(getSharedDecimal(metaEd.entity, entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).sourceMap.metaEdId).toBeDefined();
-    expect(metaEd.entity.sharedDecimal.get(entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
+    expect(getSharedDecimal(metaEd.entity, entityName).sourceMap.metaEdId).toBeDefined();
+    // $FlowIgnore = metaEdName could be null
+    expect(getSharedDecimal(metaEd.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
   });
 
   it('should have namespaceInfo', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).sourceMap.namespaceInfo).toBeDefined();
+    expect(getSharedDecimal(metaEd.entity, entityName).sourceMap.namespaceInfo).toBeDefined();
   });
 
   // SharedDecimalSourceMap
   it('should have totalDigits', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).sourceMap.totalDigits).toBeDefined();
+    expect(((getSharedDecimal(metaEd.entity, entityName).sourceMap: any): SharedDecimalSourceMap).totalDigits).toBeDefined();
   });
 
   it('should have decimalPlaces', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).sourceMap.decimalPlaces).toBeDefined();
+    expect(((getSharedDecimal(metaEd.entity, entityName).sourceMap: any): SharedDecimalSourceMap).decimalPlaces).toBeDefined();
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).sourceMap.minValue).toBeDefined();
+    expect(((getSharedDecimal(metaEd.entity, entityName).sourceMap: any): SharedDecimalSourceMap).minValue).toBeDefined();
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).sourceMap.maxValue).toBeDefined();
+    expect(((getSharedDecimal(metaEd.entity, entityName).sourceMap: any): SharedDecimalSourceMap).maxValue).toBeDefined();
   });
 
   it('should have line, column, text for each property', () => {
-    expect(metaEd.entity.sharedDecimal.get(entityName).sourceMap).toMatchSnapshot();
+    expect(getSharedDecimal(metaEd.entity, entityName).sourceMap).toMatchSnapshot();
   });
 });

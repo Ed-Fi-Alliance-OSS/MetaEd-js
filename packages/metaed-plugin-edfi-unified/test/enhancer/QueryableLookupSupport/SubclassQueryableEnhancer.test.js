@@ -8,8 +8,8 @@ import {
   newDomainEntitySubclass,
   newIntegerProperty,
   newMetaEdEnvironment,
-} from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment } from '../../../../../packages/metaed-core/index';
+} from '../../../../metaed-core/index';
+import type { MetaEdEnvironment } from '../../../../metaed-core/index';
 import { enhance } from '../../../src/enhancer/QueryableLookupSupport/SubclassQueryableEnhancer';
 
 describe('when enhancing domain entity subclass queryables', () => {

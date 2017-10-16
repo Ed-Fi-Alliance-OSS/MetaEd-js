@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, DomainEntityExtensionBuilder, DomainEntitySubclassBuilder } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, ValidationFailure } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, DomainEntityExtensionBuilder, DomainEntitySubclassBuilder } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, ValidationFailure } from '../../../../metaed-core/index';
 import { validate } from '../../../src/validator/DomainEntityExtension/DomainEntityExtensionMustNotRedeclareProperties';
 
 describe('when domain entity extension correctly has different property names', () => {

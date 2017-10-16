@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainBuilder, CommonBuilder } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, ValidationFailure } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DomainBuilder, CommonBuilder } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, ValidationFailure } from '../../../../metaed-core/index';
 import { validate } from '../../../src/validator/Domain/InlineCommonDomainItemMustMatchTopLevelEntity';
 
 describe('when validating inline common domain item matches top level entity', () => {

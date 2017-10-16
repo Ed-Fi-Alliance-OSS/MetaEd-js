@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
-import { newMetaEdEnvironment, newEnumerationProperty, newEnumeration } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, EnumerationProperty, Enumeration } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newEnumerationProperty, newEnumeration } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, EnumerationProperty, Enumeration } from '../../../../metaed-core/index';
 import { enhance } from '../../../src/enhancer/property/EnumerationReferenceEnhancer';
 
 describe('when enhancing enumeration property', () => {

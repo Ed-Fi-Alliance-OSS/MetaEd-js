@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, newAssociation, newAssociationSubclass } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, AssociationSubclass } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newAssociation, newAssociationSubclass } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, AssociationSubclass } from '../../../../metaed-core/index';
 import type { ComplexType } from '../../../src/model/schema/ComplexType';
 import { NoComplexType } from '../../../src/model/schema/ComplexType';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';

@@ -1,9 +1,10 @@
-// @noflow
-import type { ValidationFailure } from '../../src/validator/ValidationFailure';
+// @flow
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
-import type { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { IntegerTypeBuilder } from '../../src/builder/IntegerTypeBuilder';
 import { MetaEdTextBuilder } from '../MetaEdTextBuilder';
+import { getIntegerType } from '../TestHelper';
+import type { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
+import type { ValidationFailure } from '../../src/validator/ValidationFailure';
 
 describe('when building shared integer in extension namespace', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
@@ -35,7 +36,7 @@ describe('when building shared integer in extension namespace', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId)).toBeDefined();
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId)).toBeDefined();
   });
 
   it('should have no validation failures', () => {
@@ -43,43 +44,47 @@ describe('when building shared integer in extension namespace', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).namespaceInfo.namespace).toBe(namespace);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).type).toBe('integerType');
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).type).toBe('integerType');
   });
 
   it('should have type humanized name', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).typeHumanizedName).toBe('Integer Type');
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).typeHumanizedName).toBe('Integer Type');
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).metaEdId).toBe(metaEdId);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).documentation).toBe(documentation);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).documentation).toBe(documentation);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).minValue).toBe(minValue);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).maxValue).toBe(maxValue);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).maxValue).toBe(maxValue);
+  });
+
+  it('should have data', () => {
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).data).toBeDefined();
   });
 
   it('should not be a generated type', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).generatedSimpleType).toBe(false);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).generatedSimpleType).toBe(false);
   });
 
   it('should not be a short type', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).isShort).toBe(false);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).isShort).toBe(false);
   });
 });
 
@@ -113,7 +118,7 @@ describe('when building domain entity with integer property in extension namespa
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId)).toBeDefined();
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId)).toBeDefined();
   });
 
   it('should have no validation failures', () => {
@@ -121,43 +126,47 @@ describe('when building domain entity with integer property in extension namespa
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).namespaceInfo.namespace).toBe(namespace);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).type).toBe('integerType');
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).type).toBe('integerType');
   });
 
   it('should have type humanized name', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).typeHumanizedName).toBe('Integer Type');
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).typeHumanizedName).toBe('Integer Type');
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).metaEdId).toBe(metaEdId);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).documentation).toBe(documentation);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).documentation).toBe(documentation);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).minValue).toBe(minValue);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).maxValue).toBe(maxValue);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).maxValue).toBe(maxValue);
+  });
+
+  it('should have data', () => {
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).data).toBeDefined();
   });
 
   it('should be a generated type', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).generatedSimpleType).toBe(true);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).generatedSimpleType).toBe(true);
   });
 
   it('should not be a short type', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).isShort).toBe(false);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).isShort).toBe(false);
   });
 });
 
@@ -191,7 +200,7 @@ describe('when building shared short in extension namespace', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId)).toBeDefined();
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId)).toBeDefined();
   });
 
   it('should have no validation failures', () => {
@@ -199,43 +208,47 @@ describe('when building shared short in extension namespace', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).namespaceInfo.namespace).toBe(namespace);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).type).toBe('integerType');
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).type).toBe('integerType');
   });
 
   it('should have type humanized name', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).typeHumanizedName).toBe('Integer Type');
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).typeHumanizedName).toBe('Integer Type');
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).metaEdId).toBe(metaEdId);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).documentation).toBe(documentation);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).documentation).toBe(documentation);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).minValue).toBe(minValue);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).maxValue).toBe(maxValue);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).maxValue).toBe(maxValue);
+  });
+
+  it('should have data', () => {
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).data).toBeDefined();
   });
 
   it('should not be a generated type', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).generatedSimpleType).toBe(false);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).generatedSimpleType).toBe(false);
   });
 
   it('should be a short type', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).isShort).toBe(true);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).isShort).toBe(true);
   });
 });
 
@@ -269,7 +282,7 @@ describe('when building domain entity with short property in extension namespace
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId)).toBeDefined();
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId)).toBeDefined();
   });
 
   it('should have no validation failures', () => {
@@ -277,43 +290,47 @@ describe('when building domain entity with short property in extension namespace
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).namespaceInfo.namespace).toBe(namespace);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).type).toBe('integerType');
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).type).toBe('integerType');
   });
 
   it('should have type humanized name', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).typeHumanizedName).toBe('Integer Type');
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).typeHumanizedName).toBe('Integer Type');
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).metaEdId).toBe(metaEdId);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).documentation).toBe(documentation);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).documentation).toBe(documentation);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).minValue).toBe(minValue);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).minValue).toBe(minValue);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).maxValue).toBe(maxValue);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).maxValue).toBe(maxValue);
+  });
+
+  it('should have data', () => {
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).data).toBeDefined();
   });
 
   it('should be a generated type', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).generatedSimpleType).toBe(true);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).generatedSimpleType).toBe(true);
   });
 
   it('should be a short type', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId).isShort).toBe(true);
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId).isShort).toBe(true);
   });
 });
 
@@ -355,7 +372,7 @@ describe('when building multiple shared integers in extension namespace', () => 
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId)).toBeDefined();
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId)).toBeDefined();
     expect(metaEd.entity.integerType.get(expectedRepositoryId2)).toBeDefined();
   });
 
@@ -398,7 +415,7 @@ describe('when building domain entity with multiple integer properties in extens
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.integerType.get(expectedRepositoryId)).toBeDefined();
+    expect(getIntegerType(metaEd.entity, expectedRepositoryId)).toBeDefined();
     expect(metaEd.entity.integerType.get(expectedRepositoryId2)).toBeDefined();
   });
 

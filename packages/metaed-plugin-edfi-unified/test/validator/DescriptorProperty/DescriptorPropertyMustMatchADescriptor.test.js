@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, DescriptorBuilder } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, ValidationFailure } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, DescriptorBuilder } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, ValidationFailure } from '../../../../metaed-core/index';
 import { validate } from '../../../src/validator/DescriptorProperty/DescriptorPropertyMustMatchADescriptor';
 
 describe('when descriptor property has valid identifier', () => {

@@ -18,8 +18,8 @@ import {
   SharedStringBuilder,
   newMetaEdEnvironment,
   MetaEdTextBuilder,
-} from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, ValidationFailure } from '../../../../../packages/metaed-core/index';
+} from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, ValidationFailure } from '../../../../metaed-core/index';
 import { validate } from '../../../../metaed-plugin-edfi-unified/src/validator/MetaEdId/MetaEdIdIsRequiredForEntities';
 
 describe('when validating abstract entity is missing metaEdId for entity', () => {

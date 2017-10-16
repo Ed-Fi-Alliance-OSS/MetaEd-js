@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, newAssociation, newAssociationProperty, newAssociationSubclass } from '../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, Association, AssociationSubclass, AssociationProperty } from '../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newAssociation, newAssociationProperty, newAssociationSubclass } from '../../../metaed-core/index';
+import type { MetaEdEnvironment, Association, AssociationSubclass, AssociationProperty } from '../../../metaed-core/index';
 import { enhance as initializeTopLevelEntities } from '../../src/model/TopLevelEntity';
 import { enhance as copyPropertiesEnhance } from '../../src/enhancer/CopyPropertiesEnhancer';
 import { enhance } from '../../src/enhancer/SubclassIdentityEnhancer';

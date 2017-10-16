@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, newDecimalType } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, DecimalType } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newDecimalType } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, DecimalType } from '../../../../metaed-core/index';
 import type { DecimalSimpleType } from '../../../src/model/schema/DecimalSimpleType';
 import { NoSimpleType } from '../../../src/model/schema/SimpleType';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';

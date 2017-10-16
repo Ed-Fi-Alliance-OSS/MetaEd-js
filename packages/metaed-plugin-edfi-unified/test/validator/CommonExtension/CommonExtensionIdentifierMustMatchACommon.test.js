@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, CommonBuilder, CommonExtensionBuilder } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, ValidationFailure } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, MetaEdTextBuilder, CommonBuilder, CommonExtensionBuilder } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, ValidationFailure } from '../../../../metaed-core/index';
 import { validate } from '../../../src/validator/CommonExtension/CommonExtensionIdentifierMustMatchACommon';
 
 describe('when common extension extends common', () => {

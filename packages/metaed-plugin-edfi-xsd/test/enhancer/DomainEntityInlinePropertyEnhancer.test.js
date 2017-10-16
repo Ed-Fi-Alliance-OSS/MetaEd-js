@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, newDomainEntity, newCommon, newCommonProperty, newStringProperty } from '../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, Common, DomainEntity } from '../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newDomainEntity, newCommon, newCommonProperty, newStringProperty } from '../../../metaed-core/index';
+import type { MetaEdEnvironment, Common, DomainEntity } from '../../../metaed-core/index';
 import { enhance as initializeTopLevelEntities } from '../../src/model/TopLevelEntity';
 import { enhance } from '../../src/enhancer/AddInlineIdentityEnhancer';
 

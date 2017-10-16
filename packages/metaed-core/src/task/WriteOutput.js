@@ -1,0 +1,26 @@
+// @flow
+import R from 'ramda';
+import ffs from 'final-fs';
+import path from 'path';
+import winston from 'winston';
+import type { State } from '../State';
+
+winston.cli();
+
+export function execute(state: State): State {
+  const outputDirectory = state.outputDirectory
+    ? state.outputDirectory
+    : path.resolve(R.last(state.inputDirectories).path, './MetaEdOutput');
+
+  if (!ffs.exists(outputDirectory)) {
+    winston.info('No output directory specified. Not writing files.');
+    return state;
+  }
+  winston.info(`Output directory: ${outputDirectory}`);
+  ffs.rmdirRecursiveSync(outputDirectory);
+  ffs.mkdirRecursiveSync(outputDirectory);
+  if (ffs.exists(outputDirectory)) {
+    R.head(state.generatorResults).generatedOutput.map(x => ffs.writeFileSync(`${outputDirectory}/${x.fileName}`, x.resultString, 'utf-8'));
+  }
+  return state;
+}

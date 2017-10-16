@@ -169,9 +169,9 @@ export class InterchangeBuilder extends MetaEdGrammarListener {
     });
 
     // mutually exclusive in language
-    if (context.ASSOCIATION_KEYWORD()) this.currentInterchangeItem.referencedType = 'association';
-    if (context.DOMAIN_ENTITY_KEYWORD()) this.currentInterchangeItem.referencedType = 'domainEntity';
-    if (context.DESCRIPTOR_KEYWORD()) this.currentInterchangeItem.referencedType = 'descriptor';
+    if (context.ASSOCIATION_KEYWORD()) this.currentInterchangeItem.referencedType = ['association', 'associationSubclass'];
+    if (context.DOMAIN_ENTITY_KEYWORD()) this.currentInterchangeItem.referencedType = ['domainEntity', 'domainEntitySubclass'];
+    if (context.DESCRIPTOR_KEYWORD()) this.currentInterchangeItem.referencedType = ['descriptor'];
     ((this.currentInterchange.sourceMap: any): InterchangeSourceMap).elements.push(sourceMapFrom(context));
   }
 
@@ -186,8 +186,8 @@ export class InterchangeBuilder extends MetaEdGrammarListener {
     });
 
     // mutually exclusive in language
-    if (context.ASSOCIATION_IDENTITY()) this.currentInterchangeItem.referencedType = 'association';
-    if (context.DOMAIN_ENTITY_IDENTITY()) this.currentInterchangeItem.referencedType = 'domainEntity';
+    if (context.ASSOCIATION_IDENTITY()) this.currentInterchangeItem.referencedType = ['association', 'associationSubclass'];
+    if (context.DOMAIN_ENTITY_IDENTITY()) this.currentInterchangeItem.referencedType = ['domainEntity', 'domainEntitySubclass'];
     ((this.currentInterchange.sourceMap: any): InterchangeSourceMap).identityTemplates.push(sourceMapFrom(context));
   }
 

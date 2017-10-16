@@ -32,6 +32,7 @@ export function newStringType(): StringType {
     maxLength: '',
     referringSimpleProperties: [],
     sourceMap: new StringTypeSourceMap(),
+    data: {},
   });
 }
 

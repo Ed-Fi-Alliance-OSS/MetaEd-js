@@ -16,3 +16,9 @@ npm-debug.log
 
 ## Babel target directory
 dist/
+
+## Xsd test artifacts
+/packages/metaed-plugin-edfi-xsd/test/integration/artifact/Ed-Fi-Core-Generated.xsd
+/packages/metaed-plugin-edfi-xsd/test/integration/artifact/Ed-Fi-Core.diff
+/packages/metaed-plugin-edfi-xsd/test/integration/artifact/Ed-Fi-Core.html
+/packages/metaed-plugin-edfi-xsd/test/integration/artifact/Ed-Fi-Core.xsd

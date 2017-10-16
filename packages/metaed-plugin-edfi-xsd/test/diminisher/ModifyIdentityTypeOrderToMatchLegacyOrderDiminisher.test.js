@@ -1,11 +1,11 @@
 // @flow
-import type { MetaEdEnvironment, TopLevelEntity } from '../../../../packages/metaed-core/index';
+import type { MetaEdEnvironment, TopLevelEntity } from '../../../metaed-core/index';
 import {
   addEntity,
   newAssociation,
   newDomainEntity,
   newMetaEdEnvironment,
-} from '../../../../packages/metaed-core/index';
+} from '../../../metaed-core/index';
 import type { ComplexType } from '../../src/model/schema/ComplexType';
 import { asElement, newElement } from '../../src/model/schema/Element';
 import { newComplexType } from '../../src/model/schema/ComplexType';

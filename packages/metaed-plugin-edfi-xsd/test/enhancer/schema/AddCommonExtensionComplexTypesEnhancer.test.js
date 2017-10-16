@@ -3,8 +3,8 @@ import {
   newMetaEdEnvironment,
   newCommon,
   newCommonExtension,
-} from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, CommonExtension } from '../../../../../packages/metaed-core/index';
+} from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, CommonExtension } from '../../../../metaed-core/index';
 import type { ComplexType } from '../../../src/model/schema/ComplexType';
 import { NoComplexType } from '../../../src/model/schema/ComplexType';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';

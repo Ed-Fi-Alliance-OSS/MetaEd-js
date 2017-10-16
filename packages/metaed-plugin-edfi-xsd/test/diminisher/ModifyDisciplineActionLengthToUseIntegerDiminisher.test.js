@@ -5,12 +5,12 @@ import type {
   DomainEntity,
   EnhancerResult,
   IntegerType,
-} from '../../../../packages/metaed-core/index';
+} from '../../../metaed-core/index';
 import {
   newDomainEntity,
   newIntegerType,
   newMetaEdEnvironment,
-} from '../../../../packages/metaed-core/index';
+} from '../../../metaed-core/index';
 import { newComplexType } from '../../src/model/schema/ComplexType';
 import { newElement } from '../../src/model/schema/Element';
 import { newIntegerSimpleType } from '../../src/model/schema/IntegerSimpleType';

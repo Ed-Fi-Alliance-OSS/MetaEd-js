@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, newIntegerType } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, IntegerType } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newIntegerType } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, IntegerType } from '../../../../metaed-core/index';
 import type { IntegerSimpleType } from '../../../src/model/schema/IntegerSimpleType';
 import { NoSimpleType } from '../../../src/model/schema/SimpleType';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';
@@ -49,7 +49,7 @@ describe('when enhancing integer type', () => {
   });
 
   it('should have base type assigned', () => {
-    expect(createdSimpleType.baseType).toBe('xs:integer');
+    expect(createdSimpleType.baseType).toBe('xs:int');
   });
 
   it('should have max value assigned', () => {

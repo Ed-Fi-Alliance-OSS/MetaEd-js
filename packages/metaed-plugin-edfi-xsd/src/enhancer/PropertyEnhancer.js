@@ -23,7 +23,7 @@ import type {
   AssociationProperty,
   DomainEntityProperty,
 } from '../../../metaed-core/index';
-import { NoTopLevelEntity, getAllProperties, getAllTopLevelEntities, isReferenceProperty } from '../../../metaed-core/index';
+import { NoTopLevelEntity, getAllProperties, getAllTopLevelEntities } from '../../../metaed-core/index';
 import type { EntityPropertyEdfiXsd } from '../model/property/EntityProperty';
 
 const enhancerName: string = 'PropertyEnhancer';
@@ -94,7 +94,7 @@ function xsdTypeFor(property: EntityProperty): string {
 // Note: XSD ignores 'with context' entry if same name as entity (typically used for ODS naming)
 function xsdNameFor(property: EntityProperty): string {
   const baseName = (property.withContext === property.metaEdName) ? property.metaEdName : `${property.withContext}${property.metaEdName}`;
-  return isReferenceProperty(property) ? `${baseName}Reference` : baseName;
+  return ['choice', 'association', 'domainEntity'].includes(property.type) ? `${baseName}Reference` : baseName;
 }
 
 

@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, newCommon, newCommonExtension } from '../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, Common, CommonExtension } from '../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newCommon, newCommonExtension } from '../../../metaed-core/index';
+import type { MetaEdEnvironment, Common, CommonExtension } from '../../../metaed-core/index';
 import { enhance } from '../../src/enhancer/CommonExtenderEnhancer';
 
 describe('when enhancing parent of common extension', () => {

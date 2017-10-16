@@ -38,7 +38,7 @@ const removeNoComplexType = R.filter(x => x !== NoComplexType);
 const removeNoSimpleType = R.filter(x => x !== NoSimpleType);
 const removeNoEnumerationSimpleType = R.filter(x => x !== NoEnumerationSimpleType);
 
-const orderByName = R.sortBy(R.prop('name'));
+const orderByName = R.sortBy(R.compose(R.toLower, R.prop('name')));
 const inNamespace = namespaceInfo => R.filter(x => x.namespaceInfo.namespace === namespaceInfo.namespace);
 
 function baseSchemaSection() {

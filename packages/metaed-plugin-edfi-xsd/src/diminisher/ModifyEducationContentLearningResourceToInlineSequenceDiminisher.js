@@ -2,11 +2,9 @@
 import R from 'ramda';
 import type {
   EnhancerResult,
-  EntityProperty,
   MetaEdEnvironment,
   ModelBase,
   ModelType,
-  PropertyType,
 } from '../../../metaed-core/index';
 import type { ComplexType } from '../model/schema/ComplexType';
 import type { ComplexTypeItem } from '../model/schema/ComplexTypeItem';
@@ -14,7 +12,7 @@ import type { Element } from '../../src/model/schema/Element';
 import type { ElementGroup } from '../../src/model/schema/ElementGroup';
 import { asElement } from '../../src/model/schema/Element';
 import { asElementGroup, newElementGroup } from '../../src/model/schema/ElementGroup';
-import { getEntity, getPropertiesOfType } from '../../../metaed-core/index';
+import { getEntity } from '../../../metaed-core/index';
 
 // Force generation of LearningStandard common type under EducationContent to output what the ods sql is expecting from an xsd perspective
 // Temporary work around until ODS-904 is resolved
@@ -24,7 +22,7 @@ const targetVersions: string = '2.0.0';
 const entityName: string = 'EducationContent';
 const entityType: ModelType = 'domainEntity';
 const elementName: string = 'LearningResource';
-const elementType: PropertyType = 'inlineCommon';
+const elementType: ModelType = 'common';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (metaEd.dataStandardVersion !== targetVersions) return { enhancerName, success: true };
@@ -38,15 +36,16 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     if (entityElementGroup != null) {
       const learningResourceElement: ?Element = asElement(entityElementGroup.items.find(x => asElement(x).name === elementName));
-      const property: ?EntityProperty = getPropertiesOfType(metaEd.propertyIndex, elementType)
-        .find(x => x.metaEdName === elementName);
+      const inlineCommon: ?ModelBase = getEntity(metaEd.entity, elementName, elementType);
 
-      if (learningResourceElement != null && property != null && property.data.edfiXsd.xsd_ComplexTypes.length === 1) {
+      if (learningResourceElement != null
+        && inlineCommon != null
+        && inlineCommon.data.edfiXsd.xsd_ComplexTypes.length === 1) {
         const propertyComplexTypeItems: Array<ComplexTypeItem> =
-          R.head(property.data.edfiXsd.xsd_ComplexTypes).items;
+          R.head(inlineCommon.data.edfiXsd.xsd_ComplexTypes).items;
 
         // Clear out generation of the common type
-        property.data.edfiXsd.xsd_ComplexTypes = [];
+        inlineCommon.data.edfiXsd.xsd_ComplexTypes = [];
 
         // Build new element group to replace element
         const elementIndex: number = entityElementGroup.items.indexOf(learningResourceElement);

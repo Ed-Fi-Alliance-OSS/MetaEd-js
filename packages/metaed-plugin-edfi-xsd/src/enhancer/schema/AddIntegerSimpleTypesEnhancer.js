@@ -20,7 +20,7 @@ function createSchemaSimpleType(integerType: IntegerType): SimpleType {
       documentation: integerType.documentation,
       typeGroup: 'Simple',
     }),
-    baseType: integerType.isShort ? 'xs:short' : 'xs:integer',
+    baseType: integerType.isShort ? 'xs:short' : 'xs:int',
     minValue: integerType.minValue,
     maxValue: integerType.maxValue,
   });

@@ -10,6 +10,16 @@ import type { SemVer } from '../../../metaed-core/index';
 // Handlebars instance scoped for this plugin
 export const xsdHandlebars = handlebars.create();
 
+const prettify = R.flip(prettifyXml)({ indent: 2, newline: '\n' });
+const collapseXsd = R.compose(R.replace(/>\s</g, '><'), R.replace(/\s\s+/g, ' '));
+// const collapseXsd = R.compose(R.replace(/\s+(?=name|type|minOccurs|maxOccurs)/g, ' '), R.replace(/>\s+</g, '><'), R.replace(/[ ] +/gm, ''));
+
+// Modifications to align with authoritative xsd
+const fixEmptyDocumentation = R.replace(/<xs:documentation>\s+<\/xs:documentation>/g, '<xs:documentation></xs:documentation>');
+const removeElementWhiteSpace = R.compose(R.replace(/"\/>/g, '" />'), R.replace(/\s+>/g, '>'));
+const removeDoubleQuotes = R.replace(/""/g, '"');
+const alignXsd = R.compose(fixEmptyDocumentation, removeElementWhiteSpace, removeDoubleQuotes);
+
 function templateString(templateName: string) {
   return fs.readFileSync(path.join(__dirname, 'templates', `${templateName}.hbs`)).toString();
 }
@@ -44,7 +54,7 @@ export function formatAndPrependHeader(xsdBody: string): string {
     xsdBody,
     copyrightYear: new Date().getFullYear(),
   });
-  return prettifyXml(completeXsd, { indent: 2, newline: '\n' });
+  return R.compose(alignXsd, prettify, collapseXsd)(completeXsd);
 }
 
 export function formatVersionForSchema(version: SemVer): string {

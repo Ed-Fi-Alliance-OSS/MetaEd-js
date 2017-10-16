@@ -8,8 +8,8 @@ import {
   DomainEntityBuilder,
   DomainEntitySubclassBuilder,
   InterchangeBuilder,
-} from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, ValidationFailure } from '../../../../../packages/metaed-core/index';
+} from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, ValidationFailure } from '../../../../metaed-core/index';
 import { validate } from '../../../src/validator/Interchange/InterchangeElementMustMatchADomainEntityOrAssociationOrSubclass';
 
 describe('when validating interchange element is an abstract entity', () => {

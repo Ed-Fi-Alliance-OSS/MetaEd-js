@@ -1,7 +1,7 @@
 // @flow
 import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, DomainEntityExtensionBuilder, DomainEntitySubclassBuilder,
-  AssociationBuilder, AssociationExtensionBuilder, AssociationSubclassBuilder } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, ValidationFailure } from '../../../../../packages/metaed-core/index';
+  AssociationBuilder, AssociationExtensionBuilder, AssociationSubclassBuilder } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, ValidationFailure } from '../../../../metaed-core/index';
 import { validate } from '../../../src/validator/MergePartOfReference/MergePropertyPathMustExist';
 import { CommonBuilder } from '../../../../metaed-core/src/builder/CommonBuilder';
 

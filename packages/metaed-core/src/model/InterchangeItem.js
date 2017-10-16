@@ -12,7 +12,7 @@ export class InterchangeItemSourceMap extends ModelBaseSourceMap {
 
 export class InterchangeItem extends ModelBase {
   typeHumanizedName: string;
-  referencedType: ModelType;
+  referencedType: Array<ModelType>;
   referencedEntity: TopLevelEntity;
   sourceMap: InterchangeItemSourceMap;
 }
@@ -25,7 +25,7 @@ export function newInterchangeItem(): InterchangeItem {
     metaEdName: '',
     metaEdId: '',
     namespaceInfo: newNamespaceInfo(),
-    referencedType: 'unknown',
+    referencedType: [],
     referencedEntity: newTopLevelEntity(),
     sourceMap: new InterchangeItemSourceMap(),
     data: {},

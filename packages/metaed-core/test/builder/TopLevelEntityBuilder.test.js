@@ -1,8 +1,25 @@
-// @noflow
+// @flow
 import { DomainEntityBuilder } from '../../src/builder/DomainEntityBuilder';
 import { MetaEdTextBuilder } from '../MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { NoSourceMap } from '../../src/model/SourceMap';
+import { getDomainEntity } from '../TestHelper';
+import { asAssociationProperty } from '../../src/model/property/AssociationProperty';
+import { asCommonProperty } from '../../src/model/property/CommonProperty';
+import { asDecimalProperty } from '../../src/model/property/DecimalProperty';
+import { asDomainEntityProperty } from '../../src/model/property/DomainEntityProperty';
+import { asIntegerProperty } from '../../src/model/property/IntegerProperty';
+import { asReferentialProperty } from '../../src/model/property/ReferentialProperty';
+import { asShortProperty } from '../../src/model/property/ShortProperty';
+import { asStringProperty } from '../../src/model/property/StringProperty';
+import type { AssociationPropertySourceMap } from '../../src/model/property/AssociationProperty';
+import type { CommonPropertySourceMap } from '../../src/model/property/CommonProperty';
+import type { DecimalPropertySourceMap } from '../../src/model/property/DecimalProperty';
+import type { DomainEntityPropertySourceMap } from '../../src/model/property/DomainEntityProperty';
+import type { IntegerPropertySourceMap } from '../../src/model/property/IntegerProperty';
+import type { ReferentialPropertySourceMap } from '../../src/model/property/ReferentialProperty';
+import type { ShortPropertySourceMap } from '../../src/model/property/ShortProperty';
+import type { StringPropertySourceMap } from '../../src/model/property/StringProperty';
 import type { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import type { ValidationFailure } from '../../src/validator/ValidationFailure';
 
@@ -32,17 +49,17 @@ describe('when building association property', () => {
   });
 
   it('should have association property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -72,27 +89,27 @@ describe('when building association property with weak reference', () => {
   });
 
   it('should have association property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 
   it('should have isWeak', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].isWeak).toBe(true);
+    expect(asAssociationProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).isWeak).toBe(true);
   });
 
   it('should have source map for isWeak with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isWeak).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isWeak).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isWeak).toMatchSnapshot();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): AssociationPropertySourceMap).isWeak).toBeDefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): AssociationPropertySourceMap).isWeak).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): AssociationPropertySourceMap).isWeak).toMatchSnapshot();
   });
 });
 
@@ -122,17 +139,17 @@ describe('when building boolean property', () => {
   });
 
   it('should have boolean property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -162,17 +179,17 @@ describe('when building choice property', () => {
   });
 
   it('should have choice property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -202,17 +219,17 @@ describe('when building common property', () => {
   });
 
   it('should have common property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -241,27 +258,27 @@ describe('when building common property with extension override', () => {
   });
 
   it('should have common property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 
   it('should have isExtensionOverride', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].isExtensionOverride).toBe(true);
+    expect(asCommonProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).isExtensionOverride).toBe(true);
   });
 
   it('should have source map for isExtensionOverride with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isExtensionOverride).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isExtensionOverride).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isExtensionOverride).toMatchSnapshot();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): CommonPropertySourceMap).isExtensionOverride).toBeDefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): CommonPropertySourceMap).isExtensionOverride).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): CommonPropertySourceMap).isExtensionOverride).toMatchSnapshot();
   });
 });
 
@@ -291,17 +308,17 @@ describe('when building currency property', () => {
   });
 
   it('should have currency property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -331,17 +348,17 @@ describe('when building date property', () => {
   });
 
   it('should have date property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -374,65 +391,65 @@ describe('when building decimal property', () => {
   });
 
   it('should have integer property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
   });
 
   it('should have hasRestriction', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].hasRestriction).toBe(true);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].hasRestriction).toBe(true);
   });
 
   it('should have source map for hasRestriction', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.hasRestriction).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.hasRestriction).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.hasRestriction).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.hasRestriction).not.toBe(NoSourceMap);
   });
 
   it('should have totalDigits', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].totalDigits).toBe(totalDigits);
+    expect(asDecimalProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).totalDigits).toBe(totalDigits);
   });
 
   it('should have source map for totalDigits', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.totalDigits).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.totalDigits).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): DecimalPropertySourceMap).totalDigits).toBeDefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): DecimalPropertySourceMap).totalDigits).not.toBe(NoSourceMap);
   });
 
   it('should have decimalPlaces', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].decimalPlaces).toBe(decimalPlaces);
+    expect(asDecimalProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).decimalPlaces).toBe(decimalPlaces);
   });
 
   it('should have source map for decimalPlaces', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.decimalPlaces).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.decimalPlaces).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): DecimalPropertySourceMap).decimalPlaces).toBeDefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): DecimalPropertySourceMap).decimalPlaces).not.toBe(NoSourceMap);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].minValue).toBe(minValue);
+    expect(asDecimalProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).minValue).toBe(minValue);
   });
 
   it('should have source map for minValue', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.minValue).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.minValue).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): DecimalPropertySourceMap).minValue).toBeDefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): DecimalPropertySourceMap).minValue).not.toBe(NoSourceMap);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].maxValue).toBe(maxValue);
+    expect(asDecimalProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).maxValue).toBe(maxValue);
   });
 
   it('should have source map for maxValue', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.maxValue).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.maxValue).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): DecimalPropertySourceMap).maxValue).toBeDefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): DecimalPropertySourceMap).maxValue).not.toBe(NoSourceMap);
   });
 
   it('should have source map with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap).toMatchSnapshot();
   });
 });
 
@@ -462,17 +479,17 @@ describe('when building descriptor property', () => {
   });
 
   it('should have descriptor property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -503,17 +520,17 @@ describe('when building domain entity property', () => {
   });
 
   it('should have domain entity property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -544,27 +561,27 @@ describe('when building domain entity property with weak reference', () => {
   });
 
   it('should have domain entity property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 
   it('should have isWeak', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].isWeak).toBe(true);
+    expect(asDomainEntityProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).isWeak).toBe(true);
   });
 
   it('should have source map for isWeak with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isWeak).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isWeak).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isWeak).toMatchSnapshot();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): DomainEntityPropertySourceMap).isWeak).toBeDefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): DomainEntityPropertySourceMap).isWeak).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): DomainEntityPropertySourceMap).isWeak).toMatchSnapshot();
   });
 });
 
@@ -594,17 +611,17 @@ describe('when building duration property', () => {
   });
 
   it('should have duration property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -636,83 +653,83 @@ describe('when building required entity properties', () => {
   });
 
   it('should have association property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have association property in property index', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0]).toBe(metaEd.propertyIndex[propertyType][0]);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0]).toBe(metaEd.propertyIndex.association[0]);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].documentation).toBe(propertyDocumentation);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].documentation).toBe(propertyDocumentation);
   });
 
   it('should have metaEdName', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].metaEdName).toBe(propertyName);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].metaEdName).toBe(propertyName);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].metaEdId).toBe(metaEdId);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].metaEdId).toBe(metaEdId);
   });
 
   it('should have namespaceInfo', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].namespaceInfo).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].namespaceInfo).toBeDefined();
   });
 
   it('should have parentEntityName', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].parentEntityName).toBe(entityName);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].parentEntityName).toBe(entityName);
   });
 
   it('should have parentEntity', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].parentEntity).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].parentEntity).toBeDefined();
   });
 
   it('should have isRequired', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].isRequired).toBe(true);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].isRequired).toBe(true);
   });
 
   it('should have source map for type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
   });
 
   it('should have source map for documentation', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.documentation).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.documentation).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.documentation).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.documentation).not.toBe(NoSourceMap);
   });
 
   it('should have source map for metaEdName', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.metaEdName).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.metaEdName).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.metaEdName).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.metaEdName).not.toBe(NoSourceMap);
   });
 
   it('should have source map for metaEdId', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.metaEdId).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.metaEdId).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.metaEdId).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.metaEdId).not.toBe(NoSourceMap);
   });
 
   it('should have source map for parentEntityName', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.parentEntityName).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.parentEntityName).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.parentEntityName).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.parentEntityName).not.toBe(NoSourceMap);
   });
 
   it('should have source map for parentEntity', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.parentEntity).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.parentEntity).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.parentEntity).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.parentEntity).not.toBe(NoSourceMap);
   });
 
   it('should have source map for isRequired', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isRequired).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isRequired).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.isRequired).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.isRequired).not.toBe(NoSourceMap);
   });
 
   it('should have source map with line, column, text for each property', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap).toMatchSnapshot();
   });
 });
 
@@ -740,17 +757,17 @@ describe('when building entity property with inherited documentation', () => {
   });
 
   it('should have documentationInherited', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].documentationInherited).toBe(true);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].documentationInherited).toBe(true);
   });
 
   it('should not have documentation', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].documentation).toBe('');
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].documentation).toBe('');
   });
 
   it('should have source map for documentationInherited with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.documentationInherited).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.documentationInherited).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.documentationInherited).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.documentationInherited).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.documentationInherited).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.documentationInherited).toMatchSnapshot();
   });
 });
 
@@ -780,19 +797,19 @@ describe('when building identity entity property', () => {
   });
 
   it('should have entity identity property', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).identityProperties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).identityProperties).toHaveLength(1);
   });
 
   it('should have entity source map for identity properties with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).sourceMap.identityProperties).toHaveLength(1);
-    expect(metaEd.entity.domainEntity.get(entityName).sourceMap.identityProperties).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).sourceMap.identityProperties).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).sourceMap.identityProperties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).sourceMap.identityProperties).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).sourceMap.identityProperties).toMatchSnapshot();
   });
 
   it('should have source map for isPartOfIdentity with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).identityProperties[0].sourceMap.isPartOfIdentity).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).identityProperties[0].sourceMap.isPartOfIdentity).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).identityProperties[0].sourceMap.isPartOfIdentity).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).identityProperties[0].sourceMap.isPartOfIdentity).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).identityProperties[0].sourceMap.isPartOfIdentity).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).identityProperties[0].sourceMap.isPartOfIdentity).toMatchSnapshot();
   });
 });
 
@@ -820,13 +837,13 @@ describe('when building optional entity property', () => {
   });
 
   it('should have isOptional', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].isOptional).toBe(true);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].isOptional).toBe(true);
   });
 
   it('should have source map for isOptional with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isOptional).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isOptional).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isOptional).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.isOptional).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.isOptional).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.isOptional).toMatchSnapshot();
   });
 });
 
@@ -854,13 +871,13 @@ describe('when building required collection entity property', () => {
   });
 
   it('should have isRequiredCollection', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].isRequiredCollection).toBe(true);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].isRequiredCollection).toBe(true);
   });
 
   it('should have source map for isRequiredCollection with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isRequiredCollection).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isRequiredCollection).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isRequiredCollection).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.isRequiredCollection).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.isRequiredCollection).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.isRequiredCollection).toMatchSnapshot();
   });
 });
 
@@ -888,13 +905,13 @@ describe('when building optional collection entity property', () => {
   });
 
   it('should have isOptionalCollection', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].isOptionalCollection).toBe(true);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].isOptionalCollection).toBe(true);
   });
 
   it('should have source map for isOptionalCollection with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isOptionalCollection).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isOptionalCollection).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.isOptionalCollection).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.isOptionalCollection).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.isOptionalCollection).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.isOptionalCollection).toMatchSnapshot();
   });
 });
 
@@ -924,13 +941,13 @@ describe('when building entity property with context', () => {
   });
 
   it('should have withContext', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].withContext).toBe(contextName);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].withContext).toBe(contextName);
   });
 
   it('should have source map for contextName with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.withContext).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.withContext).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.withContext).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.withContext).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.withContext).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.withContext).toMatchSnapshot();
   });
 });
 
@@ -961,13 +978,13 @@ describe('when building entity property with shortened context', () => {
   });
 
   it('should have shortenTo', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].shortenTo).toBe(shortenToName);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].shortenTo).toBe(shortenToName);
   });
 
   it('should have source map for shortenTo with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.shortenTo).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.shortenTo).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.shortenTo).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.shortenTo).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.shortenTo).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.shortenTo).toMatchSnapshot();
   });
 });
 
@@ -1001,27 +1018,27 @@ describe('when building renamed identity entity property', () => {
   });
 
   it('should have entity identity property', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).identityProperties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).identityProperties).toHaveLength(1);
   });
 
   it('should have isIdentityRename', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).identityProperties[0].isIdentityRename).toBe(true);
+    expect(getDomainEntity(metaEd.entity, entityName).identityProperties[0].isIdentityRename).toBe(true);
   });
 
   it('should have baseKeyName', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).identityProperties[0].baseKeyName).toBe(baseName);
+    expect(getDomainEntity(metaEd.entity, entityName).identityProperties[0].baseKeyName).toBe(baseName);
   });
 
   it('should have source map for isIdentityRename with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).identityProperties[0].sourceMap.isIdentityRename).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).identityProperties[0].sourceMap.isIdentityRename).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).identityProperties[0].sourceMap.isIdentityRename).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).identityProperties[0].sourceMap.isIdentityRename).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).identityProperties[0].sourceMap.isIdentityRename).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).identityProperties[0].sourceMap.isIdentityRename).toMatchSnapshot();
   });
 
   it('should have source map for baseKeyName with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).identityProperties[0].sourceMap.baseKeyName).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).identityProperties[0].sourceMap.baseKeyName).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).identityProperties[0].sourceMap.baseKeyName).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).identityProperties[0].sourceMap.baseKeyName).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).identityProperties[0].sourceMap.baseKeyName).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).identityProperties[0].sourceMap.baseKeyName).toMatchSnapshot();
   });
 });
 
@@ -1051,19 +1068,19 @@ describe('when building queryable entity property ', () => {
   });
 
   it('should have entity queryable field', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).queryableFields).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).queryableFields).toHaveLength(1);
   });
 
   it('should have entity source map for queryable field with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).sourceMap.queryableFields).toHaveLength(1);
-    expect(metaEd.entity.domainEntity.get(entityName).sourceMap.queryableFields).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).sourceMap.queryableFields).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).sourceMap.queryableFields).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).sourceMap.queryableFields).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).sourceMap.queryableFields).toMatchSnapshot();
   });
 
   it('should have source map for isQueryableOnly with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).queryableFields[0].sourceMap.isQueryableOnly).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).queryableFields[0].sourceMap.isQueryableOnly).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).queryableFields[0].sourceMap.isQueryableOnly).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).queryableFields[0].sourceMap.isQueryableOnly).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).queryableFields[0].sourceMap.isQueryableOnly).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).queryableFields[0].sourceMap.isQueryableOnly).toMatchSnapshot();
   });
 });
 
@@ -1084,24 +1101,23 @@ describe('when building shared entity property', () => {
       .withBeginNamespace(namespace)
       .withStartDomainEntity(entityName)
       .withDocumentation(entityDocumentation)
-      .withSharedDecimalProperty(propertyName, propertyDocumentation, false, false)
+      .withSharedDecimalProperty(propertyName, '', propertyDocumentation, false, false)
       .withEndDomainEntity()
-      .withEndNamespace()
       .sendToListener(builder);
   });
 
   it('should have entity property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have referencedType', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].referencedType).toBe(propertyName);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].referencedType).toBe(propertyName);
   });
 
   it('should have source map for referencedType with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.referencedType).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.referencedType).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.referencedType).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.referencedType).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.referencedType).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.referencedType).toMatchSnapshot();
   });
 });
 
@@ -1131,17 +1147,17 @@ describe('when building enumeration property', () => {
   });
 
   it('should have enumeration property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -1171,17 +1187,17 @@ describe('when building inline common property', () => {
   });
 
   it('should have inline common property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -1212,47 +1228,47 @@ describe('when building integer property', () => {
   });
 
   it('should have integer property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
   });
 
   it('should have hasRestriction', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].hasRestriction).toBe(true);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].hasRestriction).toBe(true);
   });
 
   it('should have source map for hasRestriction', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.hasRestriction).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.hasRestriction).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.hasRestriction).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.hasRestriction).not.toBe(NoSourceMap);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].minValue).toBe(minValue);
+    expect(asIntegerProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).minValue).toBe(minValue);
   });
 
   it('should have source map for minValue', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.minValue).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.minValue).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): IntegerPropertySourceMap).minValue).toBeDefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): IntegerPropertySourceMap).minValue).not.toBe(NoSourceMap);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].maxValue).toBe(maxValue);
+    expect(asIntegerProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).maxValue).toBe(maxValue);
   });
 
   it('should have source map for maxValue', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.maxValue).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.maxValue).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): IntegerPropertySourceMap).maxValue).toBeDefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): IntegerPropertySourceMap).maxValue).not.toBe(NoSourceMap);
   });
 
   it('should have source map with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap).toMatchSnapshot();
   });
 });
 
@@ -1283,31 +1299,31 @@ describe('when building merged property reference', () => {
   });
 
   it('should have property in merge properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties).toHaveLength(1);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties).toHaveLength(1);
   });
 
   it('should have mergedPropertyPath', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].mergePropertyPath).toHaveLength(2);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].mergePropertyPath[0]).toBe(mergePropertyPath.split('.')[0]);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].mergePropertyPath[1]).toBe(mergePropertyPath.split('.')[1]);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].mergePropertyPath).toHaveLength(2);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].mergePropertyPath[0]).toBe(mergePropertyPath.split('.')[0]);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].mergePropertyPath[1]).toBe(mergePropertyPath.split('.')[1]);
   });
 
   it('should have source map for mergePropertyPath with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].sourceMap.mergePropertyPath).toHaveLength(1);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].sourceMap.mergePropertyPath).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].sourceMap.mergePropertyPath).toMatchSnapshot();
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].sourceMap.mergePropertyPath).toHaveLength(1);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].sourceMap.mergePropertyPath).not.toBe(NoSourceMap);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].sourceMap.mergePropertyPath).toMatchSnapshot();
   });
 
   it('should have targetPropertyPath', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].targetPropertyPath).toHaveLength(2);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].targetPropertyPath[0]).toBe(targetPropertyPath.split('.')[0]);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].targetPropertyPath[1]).toBe(targetPropertyPath.split('.')[1]);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].targetPropertyPath).toHaveLength(2);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].targetPropertyPath[0]).toBe(targetPropertyPath.split('.')[0]);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].targetPropertyPath[1]).toBe(targetPropertyPath.split('.')[1]);
   });
 
   it('should have source map for targetPropertyPath with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].sourceMap.targetPropertyPath).toHaveLength(1);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].sourceMap.targetPropertyPath).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].sourceMap.targetPropertyPath).toMatchSnapshot();
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].sourceMap.targetPropertyPath).toHaveLength(1);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].sourceMap.targetPropertyPath).not.toBe(NoSourceMap);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].sourceMap.targetPropertyPath).toMatchSnapshot();
   });
 });
 
@@ -1339,37 +1355,37 @@ describe('when building multiple merge property references', () => {
   });
 
   it('should have multiple properties in merged properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties).toHaveLength(2);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties).toHaveLength(2);
   });
 
   it('should have mergedPropertyPath and targetPropertyPath for first merged property', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].mergePropertyPath).toHaveLength(1);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].targetPropertyPath).toHaveLength(1);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].mergePropertyPath[0]).toBe(mergePropertyPath0);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].targetPropertyPath[0]).toBe(targetPropertyPath0);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].mergePropertyPath).toHaveLength(1);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].targetPropertyPath).toHaveLength(1);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].mergePropertyPath[0]).toBe(mergePropertyPath0);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].targetPropertyPath[0]).toBe(targetPropertyPath0);
   });
 
   it('should have source map for first merged property', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].sourceMap.mergePropertyPath[0]).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].sourceMap.mergePropertyPath[0]).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].sourceMap.targetPropertyPath[0]).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].sourceMap.targetPropertyPath[0]).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[0].sourceMap).toMatchSnapshot();
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].sourceMap.mergePropertyPath[0]).toBeDefined();
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].sourceMap.mergePropertyPath[0]).not.toBe(NoSourceMap);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].sourceMap.targetPropertyPath[0]).toBeDefined();
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].sourceMap.targetPropertyPath[0]).not.toBe(NoSourceMap);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[0].sourceMap).toMatchSnapshot();
   });
 
   it('should have mergedPropertyPath and targetPropertyPath for second merged property', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[1].mergePropertyPath).toHaveLength(1);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[1].targetPropertyPath).toHaveLength(1);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[1].mergePropertyPath[0]).toBe(mergePropertyPath1);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[1].targetPropertyPath[0]).toBe(targetPropertyPath1);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[1].mergePropertyPath).toHaveLength(1);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[1].targetPropertyPath).toHaveLength(1);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[1].mergePropertyPath[0]).toBe(mergePropertyPath1);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[1].targetPropertyPath[0]).toBe(targetPropertyPath1);
   });
 
   it('should have source map for second merged property', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[1].sourceMap.mergePropertyPath[0]).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[1].sourceMap.mergePropertyPath[0]).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[1].sourceMap.targetPropertyPath[0]).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[1].sourceMap.targetPropertyPath[0]).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties[1].sourceMap).toMatchSnapshot();
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[1].sourceMap.mergePropertyPath[0]).toBeDefined();
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[1].sourceMap.mergePropertyPath[0]).not.toBe(NoSourceMap);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[1].sourceMap.targetPropertyPath[0]).toBeDefined();
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[1].sourceMap.targetPropertyPath[0]).not.toBe(NoSourceMap);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties[1].sourceMap).toMatchSnapshot();
   });
 });
 
@@ -1399,17 +1415,17 @@ describe('when building percent property', () => {
   });
 
   it('should have percent property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -1442,13 +1458,13 @@ describe('when building referential property with merged properties', () => {
   });
 
   it('should have merged property', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].mergedProperties).toHaveLength(1);
+    expect(asReferentialProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).mergedProperties).toHaveLength(1);
   });
 
   it('should have source map for mergedProperties with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.mergedProperties).toHaveLength(1);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.mergedProperties).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.mergedProperties).toMatchSnapshot();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): ReferentialPropertySourceMap).mergedProperties).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): ReferentialPropertySourceMap).mergedProperties).toMatchSnapshot();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): ReferentialPropertySourceMap).mergedProperties).toHaveLength(1);
   });
 });
 
@@ -1478,17 +1494,17 @@ describe('when building school year enumeration property', () => {
   });
 
   it('should have school year enumeration property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -1518,17 +1534,17 @@ describe('when building shared decimal property', () => {
   });
 
   it('should have shared decimal property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -1558,17 +1574,17 @@ describe('when building shared integer property', () => {
   });
 
   it('should have shared integer property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -1598,17 +1614,17 @@ describe('when building shared string property', () => {
   });
 
   it('should have shared string property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -1639,47 +1655,47 @@ describe('when building short property', () => {
   });
 
   it('should have short property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
   });
 
   it('should have hasRestriction', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].hasRestriction).toBe(true);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].hasRestriction).toBe(true);
   });
 
   it('should have source map for hasRestriction', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.hasRestriction).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.hasRestriction).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.hasRestriction).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.hasRestriction).not.toBe(NoSourceMap);
   });
 
   it('should have minValue', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].minValue).toBe(minValue);
+    expect(asShortProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).minValue).toBe(minValue);
   });
 
   it('should have source map for minValue', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.minValue).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.minValue).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): ShortPropertySourceMap).minValue).toBeDefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): ShortPropertySourceMap).minValue).not.toBe(NoSourceMap);
   });
 
   it('should have maxValue', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].maxValue).toBe(maxValue);
+    expect(asShortProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).maxValue).toBe(maxValue);
   });
 
   it('should have source map for maxValue', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.maxValue).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.maxValue).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): ShortPropertySourceMap).maxValue).toBeDefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): ShortPropertySourceMap).maxValue).not.toBe(NoSourceMap);
   });
 
   it('should have source map with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap).toMatchSnapshot();
   });
 });
 
@@ -1710,47 +1726,47 @@ describe('when building string property', () => {
   });
 
   it('should have string property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
   });
 
   it('should have hasRestriction', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].hasRestriction).toBe(true);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].hasRestriction).toBe(true);
   });
 
   it('should have source map for hasRestriction', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.hasRestriction).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.hasRestriction).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.hasRestriction).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.hasRestriction).not.toBe(NoSourceMap);
   });
 
   it('should have minLength', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].minLength).toBe(minLength);
+    expect(asStringProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).minLength).toBe(minLength);
   });
 
   it('should have source map for minLength', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.minLength).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.minLength).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): StringPropertySourceMap).minLength).toBeDefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): StringPropertySourceMap).minLength).not.toBe(NoSourceMap);
   });
 
   it('should have maxLength', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].maxLength).toBe(maxLength);
+    expect(asStringProperty(getDomainEntity(metaEd.entity, entityName).properties[0]).maxLength).toBe(maxLength);
   });
 
   it('should have source map for maxLength', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.maxLength).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.maxLength).not.toBe(NoSourceMap);
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): StringPropertySourceMap).maxLength).toBeDefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap: any): StringPropertySourceMap).maxLength).not.toBe(NoSourceMap);
   });
 
   it('should have source map with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap).toMatchSnapshot();
   });
 });
 
@@ -1780,17 +1796,17 @@ describe('when building time property', () => {
   });
 
   it('should have time property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });
 
@@ -1820,16 +1836,16 @@ describe('when building year property', () => {
   });
 
   it('should have year property in entity properties', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntity(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].type).toBe(propertyType);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].type).toBe(propertyType);
   });
 
   it('should have source map for type with line, column, text', () => {
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toBeDefined();
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
-    expect(metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.type).toMatchSnapshot();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toBeDefined();
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).not.toBe(NoSourceMap);
+    expect(getDomainEntity(metaEd.entity, entityName).properties[0].sourceMap.type).toMatchSnapshot();
   });
 });

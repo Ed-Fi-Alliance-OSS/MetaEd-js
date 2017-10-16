@@ -1,6 +1,7 @@
 // @flow
+import R from 'ramda';
 import type { MetaEdEnvironment, EnhancerResult, EntityProperty } from '../../../../metaed-core/index';
-import { getAllProperties } from '../../../../metaed-core/index';
+import { getAllProperties, getAllTopLevelEntities } from '../../../../metaed-core/index';
 
 export type EntityPropertyEdfiXsd = {
   xsd_Name: string,
@@ -24,7 +25,8 @@ export function addEntityPropertyEdfiXsdTo(property: EntityProperty) {
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllProperties(metaEd.propertyIndex).forEach((property: EntityProperty) => {
+  [...getAllProperties(metaEd.propertyIndex), ...R.chain(x => x.queryableFields, getAllTopLevelEntities(metaEd.entity))]
+  .forEach((property: EntityProperty) => {
     addEntityPropertyEdfiXsdTo(property);
   });
 

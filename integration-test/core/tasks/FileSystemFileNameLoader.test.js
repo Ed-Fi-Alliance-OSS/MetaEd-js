@@ -1,4 +1,4 @@
-// @noflow
+// @flow
 import ffs from 'final-fs';
 import { MetaEdTextBuilder } from '../../../packages/metaed-core/test/MetaEdTextBuilder';
 import { newState, loadFiles } from '../../../packages/metaed-core/index';
@@ -30,10 +30,10 @@ describe('When a single file', () => {
         }],
       }));
     const contents = state.loadedFileSet[0].files[0].contents;
-    expect(contents).toMatch('Domain Entity');
-    expect(contents).toMatch('DomainEntity1');
-    expect(contents).toMatch('string');
-    expect(contents).toMatch('Property1');
+    expect(contents).toMatch(new RegExp('Domain Entity'));
+    expect(contents).toMatch(new RegExp('DomainEntity1'));
+    expect(contents).toMatch(new RegExp('string'));
+    expect(contents).toMatch(new RegExp('Property1'));
   });
 });
 
@@ -79,18 +79,18 @@ describe('When multiple files', () => {
         }],
       }));
     const associationContents = state.loadedFileSet[0].files[0].contents;
-    expect(associationContents).toMatch('Association');
-    expect(associationContents).toMatch('Domain1');
-    expect(associationContents).toMatch('Domain2');
-    expect(associationContents).toMatch('integer');
-    expect(associationContents).toMatch('Property2');
+    expect(associationContents).toMatch(new RegExp('Association'));
+    expect(associationContents).toMatch(new RegExp('Domain1'));
+    expect(associationContents).toMatch(new RegExp('Domain2'));
+    expect(associationContents).toMatch(new RegExp('integer'));
+    expect(associationContents).toMatch(new RegExp('Property2'));
     expect(associationContents).toMatchSnapshot();
 
     const domainEntityContents = state.loadedFileSet[0].files[1].contents;
-    expect(domainEntityContents).toMatch('Domain Entity');
-    expect(domainEntityContents).toMatch('DomainEntity1');
-    expect(domainEntityContents).toMatch('string');
-    expect(domainEntityContents).toMatch('Property1');
+    expect(domainEntityContents).toMatch(new RegExp('Domain Entity'));
+    expect(domainEntityContents).toMatch(new RegExp('DomainEntity1'));
+    expect(domainEntityContents).toMatch(new RegExp('string'));
+    expect(domainEntityContents).toMatch(new RegExp('Property1'));
     expect(associationContents).toMatchSnapshot();
   });
 });

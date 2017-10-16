@@ -4,8 +4,8 @@ import {
   DomainEntityBuilder,
   newMetaEdEnvironment,
   MetaEdTextBuilder,
-} from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, ValidationFailure } from '../../../../../packages/metaed-core/index';
+} from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, ValidationFailure } from '../../../../metaed-core/index';
 import { validate } from '../../../../metaed-plugin-edfi-unified/src/validator/MetaEdId/MetaEdIdIsRequiredForProperties';
 
 describe('when validating association property is missing metaEdId', () => {

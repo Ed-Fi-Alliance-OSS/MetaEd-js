@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, newStringType } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, StringType } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newStringType } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, StringType } from '../../../../metaed-core/index';
 import type { StringSimpleType } from '../../../src/model/schema/StringSimpleType';
 import { NoSimpleType } from '../../../src/model/schema/SimpleType';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';

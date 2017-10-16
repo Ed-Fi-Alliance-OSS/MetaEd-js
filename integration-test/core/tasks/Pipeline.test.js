@@ -1,12 +1,16 @@
-// @noflow
+// @flow
 import path from 'path';
 import normalize from 'normalize-path';
-import { MetaEdTextBuilder } from '../../../packages/metaed-core/test/MetaEdTextBuilder';
+import { asDomainEntity } from '../../../packages/metaed-core/src/model/DomainEntity';
 import { startingFromFileLoad, startingFromFileLoadP } from './Pipeline';
-import type { State } from '../../../packages/metaed-core/src/State';
-import { newState } from '../../../packages/metaed-core/src/State';
-import { createMetaEdFile } from '../../../packages/metaed-core/src/task/MetaEdFile';
-import { loadCoreBufferedFiles } from '../../../packages/metaed-core/src/task/BufferFileLoader';
+import {
+  createMetaEdFile,
+  getEntity,
+  loadCoreBufferedFiles,
+  MetaEdTextBuilder,
+  newState,
+} from '../../../packages/metaed-core/index';
+import type { State } from '../../../packages/metaed-core/index';
 
 
 jest.unmock('final-fs');
@@ -159,7 +163,7 @@ describe('When plugins are present', () => {
     .withMetaEdId('234')
     .withDocumentation('doc')
     .withStringIdentity('Property2', 'doc', '100', null, null, '2341')
-    .withCommonProperty('nonExistantCommon')
+    .withCommonProperty('nonExistantCommon', 'doc', false, false)
     .withEndDomainEntity()
     .toString();
 
@@ -181,7 +185,7 @@ describe('When plugins are present', () => {
       createMetaEdFile('/fake/dir', 'DomainEntity2.metaed', metaEdTextDomainEntity2),
       createMetaEdFile('/fake/dir', 'Association1.metaed', metaEdTextAssociation),
     ]);
-    state.pluginScanDirectory = path.resolve(__dirname, '../../../packages/');
+    state.pluginScanDirectory = path.resolve(__dirname, '../../');
     startingFromFileLoadP(state);
   });
 
@@ -215,16 +219,18 @@ describe('when building entity property with context', () => {
     state = loadCoreBufferedFiles(newState(), [
       createMetaEdFile('/fake/dir', 'DomainEntity1.metaed', metaedText),
     ]);
-    state.pluginScanDirectory = path.resolve(__dirname, '../../../packages/');
+    state.pluginScanDirectory = path.resolve(__dirname, '../../');
     startingFromFileLoadP(state);
   });
   it('should have withContext', () => {
-    expect(state.metaEd.entity.domainEntity.get(entityName).properties[0].withContext).toBe(contextName);
+    const entity: any = getEntity(state.metaEd.entity, entityName, 'domainEntity');
+    expect(asDomainEntity(entity).properties[0].withContext).toBe(contextName);
   });
 
   it('should have source map for contextName with line, column, text', () => {
-    expect(state.metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.withContext).toBeDefined();
-    expect(state.metaEd.entity.domainEntity.get(entityName).properties[0].sourceMap.withContext).toMatchSnapshot();
+    const entity: any = getEntity(state.metaEd.entity, entityName, 'domainEntity');
+    expect(asDomainEntity(entity).properties[0].sourceMap.withContext).toBeDefined();
+    expect(asDomainEntity(entity).properties[0].sourceMap.withContext).toMatchSnapshot();
   });
 });
 
@@ -255,7 +261,7 @@ describe('when building a domain entity with a integer property that conflicts w
       createMetaEdFile('/fake/dir', 'DomainEntity1.metaed', metaedDEText),
       createMetaEdFile('/fake/dir', 'SharedInteger1.metaed', metaedSharedInteger),
     ]);
-    state.pluginScanDirectory = path.resolve(__dirname, '../../../packages/');
+    state.pluginScanDirectory = path.resolve(__dirname, '../../');
     startingFromFileLoadP(state);
   });
   it('should have built one domain entity', () => {
@@ -289,7 +295,7 @@ describe('when building a valid domain entity with an integer identity', () => {
     state = loadCoreBufferedFiles(newState(), [
       createMetaEdFile('/fake/dir', 'DomainEntity1.metaed', metaedDEText),
     ]);
-    state.pluginScanDirectory = path.resolve(__dirname, '../../../packages/');
+    state.pluginScanDirectory = path.resolve(__dirname, '../../');
     startingFromFileLoadP(state);
   });
   it('should have built one domain entity', () => {
@@ -325,7 +331,7 @@ describe('when building duplicate domain entities', () => {
       createMetaEdFile('/fake/dir', 'DomainEntity1.metaed', metaedDE1Text),
       createMetaEdFile('/fake/dir', 'DomainEntity2.metaed', metaedDE2Text),
     ]);
-    state.pluginScanDirectory = path.resolve(__dirname, '../../../packages/');
+    state.pluginScanDirectory = path.resolve(__dirname, '../../');
     startingFromFileLoadP(state);
   });
   it('should have built one domain entity', () => {
@@ -354,7 +360,7 @@ describe('when building a domain entity with an integer property', () => {
     state = loadCoreBufferedFiles(newState(), [
       createMetaEdFile('/fake/dir', 'DomainEntity1.metaed', metaedDE1Text),
     ]);
-    state.pluginScanDirectory = path.resolve(__dirname, '../../../packages/');
+    state.pluginScanDirectory = path.resolve(__dirname, '../../');
     startingFromFileLoadP(state);
   });
   it('should have built one domain entity', () => {
@@ -384,7 +390,7 @@ describe('when building a valid domain entity with duplicate metaedIds', () => {
     state = loadCoreBufferedFiles(newState(), [
       createMetaEdFile('/fake/dir', 'DomainEntity1.metaed', metaedDEText),
     ]);
-    state.pluginScanDirectory = path.resolve(__dirname, '../../../packages/');
+    state.pluginScanDirectory = path.resolve(__dirname, '../../');
     startingFromFileLoadP(state);
   });
   it('should have built one domain entity', () => {
@@ -416,7 +422,7 @@ describe('when building a DE with a common property but no common declaration', 
     state = loadCoreBufferedFiles(newState(), [
       createMetaEdFile('/fake/dir', 'DomainEntity1.metaed', metaedDEText),
     ]);
-    state.pluginScanDirectory = path.resolve(__dirname, '../../../packages/');
+    state.pluginScanDirectory = path.resolve(__dirname, '../../');
     startingFromFileLoadP(state);
   });
   it('should have built one domain entity', () => {
@@ -447,14 +453,14 @@ describe('when building a DE with a common property and duplicate common declera
       .toString();
 
     const metaedCommon1Text = MetaEdTextBuilder.build()
-    .withStartCommon(commonName, 100)
+    .withStartCommon(commonName, '100')
     .withDocumentation('doc')
     .withIntegerProperty(propertyName, 'This is a common with a duplicate name', true, false, '10', '0', null, '101')
     .withEndCommon()
     .toString();
 
     const metaedCommon2Text = MetaEdTextBuilder.build()
-    .withStartCommon(commonName, 200)
+    .withStartCommon(commonName, '200')
     .withDocumentation('doc')
     .withIntegerProperty(propertyName, 'This is a common with a duplicate name', true, false, '10', '0', null, '201')
     .withEndCommon()
@@ -465,7 +471,7 @@ describe('when building a DE with a common property and duplicate common declera
       createMetaEdFile('/fake/dir', 'Common1.metaed', metaedCommon1Text),
       createMetaEdFile('/fake/dir', 'Common2.metaed', metaedCommon2Text),
     ]);
-    state.pluginScanDirectory = path.resolve(__dirname, '../../../packages/');
+    state.pluginScanDirectory = path.resolve(__dirname, '../../');
     startingFromFileLoadP(state);
   });
   it('should have built one domain entity and one comon', () => {

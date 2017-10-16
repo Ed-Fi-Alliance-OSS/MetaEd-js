@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
-import { newMetaEdEnvironment, newSchoolYearEnumerationProperty, newSchoolYearEnumeration } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, SchoolYearEnumerationProperty, SchoolYearEnumeration } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newSchoolYearEnumerationProperty, newSchoolYearEnumeration } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, SchoolYearEnumerationProperty, SchoolYearEnumeration } from '../../../../metaed-core/index';
 import { enhance } from '../../../src/enhancer/property/SchoolYearEnumerationReferenceEnhancer';
 
 describe('when enhancing schoolYearEnumeration property', () => {

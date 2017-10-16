@@ -1,6 +1,8 @@
 // @flow
-import winston from 'winston';
-import { startingFromFileLoad } from '../../metaed-core/src/task/Pipeline';
+import path from 'path';
+import { Logger, transports } from 'winston';
+import * as Chalk from 'chalk';
+import { build } from '../../metaed-core/src/task/Pipeline';
 import { newState } from '../../metaed-core/src/State';
 import type { State } from '../../metaed-core/src/State';
 
@@ -17,15 +19,23 @@ const argv = require('yargs')
   .alias('h', 'help')
   .argv;
 
-winston.level = 'info';
+const chalk = new Chalk.constructor({ level: 2 });
 
-winston.info(`Executing MetaEd Console on core ${argv.edfi} and extension ${argv.ext}.`);
-winston.info('');
+const logger = new Logger({
+  level: 'info',
+  transports: [
+    new transports.Console(),
+  ],
+});
+logger.cli();
+
+logger.info(`Executing MetaEd Console on core ${path.resolve(__dirname, argv.edfi)} and extension ${argv.ext}.`);
+logger.info('');
 
 const state: State = Object.assign(newState(), {
   inputDirectories: [
     {
-      path: argv.edfi,
+      path: path.resolve(__dirname, argv.edfi),
       namespace: 'edfi',
       projectExtension: '',
       isExtension: false,
@@ -39,19 +49,19 @@ const state: State = Object.assign(newState(), {
   ],
 });
 
-const endState: State = startingFromFileLoad(state);
+const endState: State = build(state);
 
 const errorMessages = endState.validationFailure;
 if (errorMessages.size === 0) {
-  winston.info('No errors found.');
+  logger.info('No errors found.');
 } else {
   errorMessages.forEach(message => {
-    const filename = message.fileMap ? message.fileMap.filename : '';
+    const filename = message.fileMap ? path.relative(`${argv.edfi}\\..`, message.fileMap.filename) : '';
     const lineNumber = message.fileMap ? message.fileMap.lineNumber : '';
     const column = message.sourceMap ? message.sourceMap.column : '';
-    winston.error(`${filename}(${lineNumber},${column}): ${message.message}`);
+    logger.error(`${message.message} ${chalk.gray(`${filename} (${lineNumber},${column})`)}`);
   });
 }
 
-winston.info('');
-winston.info('MetaEd Console execution completed.');
+logger.info('');
+logger.info('MetaEd Console execution completed.');

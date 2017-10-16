@@ -1,6 +1,6 @@
 // @flow
-import type { MetaEdEnvironment, EnhancerResult, TopLevelEntity, EntityProperty } from '../../../metaed-core/index';
-import { getEntitiesOfType } from '../../../metaed-core/index';
+import type { MetaEdEnvironment, EnhancerResult, TopLevelEntity, EntityProperty } from '../../../../packages/metaed-core/index';
+import { getEntitiesOfType } from '../../../../packages/metaed-core/index';
 import { EntityRepository } from '../../../metaed-core/src/model/EntityRepository';
 import type { TopLevelEntityEdfiXsd } from '../model/TopLevelEntity';
 
@@ -9,7 +9,7 @@ import type { TopLevelEntityEdfiXsd } from '../model/TopLevelEntity';
 const enhancerName: string = 'AddInlineIdentityEnhancer';
 
 function addInlineIdentities(topLevelEntity: TopLevelEntity, properties: Array<EntityProperty>, entity: EntityRepository) {
-  properties.filter(p => p.type === 'common').forEach(commonProperty => {
+  properties.filter(p => p.type === 'inlineCommon' || p.type === 'common').forEach(commonProperty => {
     const common = entity.common.get(commonProperty.metaEdName);
     if (!(common && common.inlineInOds)) return;
     common.properties.filter(p => p.isPartOfIdentity).forEach(identityProperty => {

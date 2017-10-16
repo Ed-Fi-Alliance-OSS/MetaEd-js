@@ -2,15 +2,17 @@
 import R from 'ramda';
 import type {
   DomainEntity,
-  InlineCommonProperty,
+  Common,
   MetaEdEnvironment,
-} from '../../../../packages/metaed-core/index';
+} from '../../../metaed-core/index';
 import {
+  addEntity,
+  getEntity,
   newDomainEntity,
-  newInlineCommonProperty,
+  newCommon,
   newMetaEdEnvironment,
   newNamespaceInfo,
-} from '../../../../packages/metaed-core/index';
+} from '../../../metaed-core/index';
 import type { ComplexType } from '../../src/model/schema/ComplexType';
 import type { ElementGroup } from '../../src/model/schema/ElementGroup';
 import { enhance } from '../../src/diminisher/ModifyEducationContentLearningResourceToInlineSequenceDiminisher';
@@ -65,7 +67,7 @@ describe('when ModifyEducationContentLearningResourceToInlineSequenceDiminisher 
         ],
       }),
     ];
-    const inlineCommon1: InlineCommonProperty = Object.assign(newInlineCommonProperty(), {
+    const inlineCommon1: Common = Object.assign(newCommon(), {
       metaEdName: learningResourceName,
       namespaceInfo: Object.assign(newNamespaceInfo(), { namespace }),
       data: {
@@ -75,31 +77,30 @@ describe('when ModifyEducationContentLearningResourceToInlineSequenceDiminisher 
       },
     });
 
-    metaEd.propertyIndex.inlineCommon.push(inlineCommon1);
+    addEntity(metaEd.entity, inlineCommon1);
     metaEd.dataStandardVersion = '2.0.0';
 
     enhance(metaEd);
   });
 
-  it('should clear complex types for LearningResource property', () => {
-    // $FlowIgnore - property could be undefined
-    const propertyComplexTypes: Array<ComplexType> = metaEd.propertyIndex.inlineCommon
-      .find(x => x.metaEdName === learningResourceName).data.edfiXsd.xsd_ComplexTypes;
-    expect(propertyComplexTypes).toBeDefined();
-    expect(propertyComplexTypes).toHaveLength(0);
-    expect(propertyComplexTypes).toEqual([]);
+  it('should clear complex types for LearningResource entity', () => {
+    // $FlowIgnore - entity could be undefined
+    const entityComplexTypes: Array<ComplexType> = getEntity(metaEd.entity, learningResourceName, 'common').data.edfiXsd.xsd_ComplexTypes;
+    expect(entityComplexTypes).toBeDefined();
+    expect(entityComplexTypes).toHaveLength(0);
+    expect(entityComplexTypes).toEqual([]);
   });
 
   it('should not have learning standard element', () => {
     // $FlowIgnore - entity could be undefined
-    const entityComplexTypes = metaEd.entity.domainEntity.get(educationContentName).data.edfiXsd.xsd_ComplexTypes;
+    const entityComplexTypes = getEntity(metaEd.entity, educationContentName, 'domainEntity').data.edfiXsd.xsd_ComplexTypes;
     expect(entityComplexTypes).toBeDefined();
     expect(R.head(R.head(entityComplexTypes).items).items.some(x => x.name === learningResourceName)).toBe(false);
   });
 
   it('should copy items from property and place them in the domain entity under EducationContent choice', () => {
     // $FlowIgnore - entity could be undefined
-    const entityComplexTypes = metaEd.entity.domainEntity.get(educationContentName).data.edfiXsd.xsd_ComplexTypes;
+    const entityComplexTypes = getEntity(metaEd.entity, educationContentName, 'domainEntity').data.edfiXsd.xsd_ComplexTypes;
     expect(entityComplexTypes).toBeDefined();
     const newItemGroup: ElementGroup = R.head(entityComplexTypes).items.find(x => x.isChoice != null);
     expect(newItemGroup).toBeTruthy();

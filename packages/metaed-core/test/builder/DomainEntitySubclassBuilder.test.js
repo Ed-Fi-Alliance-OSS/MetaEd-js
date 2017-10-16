@@ -1,7 +1,8 @@
-// @noflow
+// @flow
 import { DomainEntitySubclassBuilder } from '../../src/builder/DomainEntitySubclassBuilder';
 import { MetaEdTextBuilder } from '../MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
+import { getDomainEntitySubclass } from '../TestHelper';
 import type { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import type { ValidationFailure } from '../../src/validator/ValidationFailure';
 
@@ -35,8 +36,8 @@ describe('when building domain entity subclass in extension namespace', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName)).toBeDefined();
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).metaEdName).toBe(entityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName)).toBeDefined();
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -44,23 +45,23 @@ describe('when building domain entity subclass in extension namespace', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have base name', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).baseEntityName).toBe(baseEntityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).baseEntityName).toBe(baseEntityName);
   });
 
   it('should have one property', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have integer property', () => {
-    const integerProperty = metaEd.entity.domainEntitySubclass.get(entityName).properties[0];
+    const integerProperty = getDomainEntitySubclass(metaEd.entity, entityName).properties[0];
 
     expect(integerProperty.metaEdName).toBe(propertyName);
     expect(integerProperty.type).toBe('integer');
@@ -103,8 +104,8 @@ describe('when building duplicate domain entity subclasses', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName)).toBeDefined();
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).metaEdName).toBe(entityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName)).toBeDefined();
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have two validation failures', () => {
@@ -225,8 +226,8 @@ describe('when building domain entity subclass with lowercase based on name', ()
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName)).toBeDefined();
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).metaEdName).toBe(entityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName)).toBeDefined();
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -234,23 +235,23 @@ describe('when building domain entity subclass with lowercase based on name', ()
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have base name but with lowercase prefix ignored', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).baseEntityName).toBe('EntityName');
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).baseEntityName).toBe('EntityName');
   });
 
   it('should have one property', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have integer property', () => {
-    const integerProperty = metaEd.entity.domainEntitySubclass.get(entityName).properties[0];
+    const integerProperty = getDomainEntitySubclass(metaEd.entity, entityName).properties[0];
 
     expect(integerProperty.metaEdName).toBe(propertyName);
     expect(integerProperty.type).toBe('integer');
@@ -292,8 +293,8 @@ describe('when building domain entity subclass with no based on name', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName)).toBeDefined();
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).metaEdName).toBe(entityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName)).toBeDefined();
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -301,27 +302,27 @@ describe('when building domain entity subclass with no based on name', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have no base name', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).baseEntityName).toBe('');
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).baseEntityName).toBe('');
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).documentation).toBe(documentation);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have one property', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have integer property', () => {
-    const integerProperty = metaEd.entity.domainEntitySubclass.get(entityName).properties[0];
+    const integerProperty = getDomainEntitySubclass(metaEd.entity, entityName).properties[0];
 
     expect(integerProperty.metaEdName).toBe(propertyName);
     expect(integerProperty.type).toBe('integer');
@@ -362,8 +363,8 @@ describe('when building domain entity subclass with no documentation', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName)).toBeDefined();
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).metaEdName).toBe(entityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName)).toBeDefined();
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -371,23 +372,23 @@ describe('when building domain entity subclass with no documentation', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have no base name', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).baseEntityName).toBe(baseEntityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).baseEntityName).toBe(baseEntityName);
   });
 
   it('should have no documentation', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).documentation).toBe('');
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).documentation).toBe('');
   });
 
   it('should have no property', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).properties).toHaveLength(0);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).properties).toHaveLength(0);
   });
 
   it('should have mismatched input error', () => {
@@ -423,8 +424,8 @@ describe('when building domain entity subclass with no property', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName)).toBeDefined();
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).metaEdName).toBe(entityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName)).toBeDefined();
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -432,23 +433,23 @@ describe('when building domain entity subclass with no property', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have base name', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).baseEntityName).toBe(baseEntityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).baseEntityName).toBe(baseEntityName);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).documentation).toBe(documentation);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have no property', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).properties).toHaveLength(0);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).properties).toHaveLength(0);
   });
 
   it('should have mismatched input error', () => {
@@ -489,8 +490,8 @@ describe('when building domain entity subclass with invalid trailing text', () =
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName)).toBeDefined();
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).metaEdName).toBe(entityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName)).toBeDefined();
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -498,27 +499,27 @@ describe('when building domain entity subclass with invalid trailing text', () =
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have base name', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).baseEntityName).toBe(baseEntityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).baseEntityName).toBe(baseEntityName);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).documentation).toBe(documentation);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have one property', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).properties).toHaveLength(1);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).properties).toHaveLength(1);
   });
 
   it('should have integer property', () => {
-    const integerProperty = metaEd.entity.domainEntitySubclass.get(entityName).properties[0];
+    const integerProperty = getDomainEntitySubclass(metaEd.entity, entityName).properties[0];
 
     expect(integerProperty.metaEdName).toBe(propertyName);
     expect(integerProperty.type).toBe('integer');
@@ -557,42 +558,47 @@ describe('when building domain entity subclass source map', () => {
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).sourceMap.type).toBeDefined();
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).sourceMap.type).toBeDefined();
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).sourceMap.documentation).toBeDefined();
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).sourceMap.documentation).toBeDefined();
   });
 
   it('should have metaEdName', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).sourceMap.metaEdName).toBeDefined();
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).sourceMap.metaEdName).toBeDefined();
+    // $FlowIgnore - metaEdName could be null
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).sourceMap.metaEdId).toBeDefined();
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).sourceMap.metaEdId).toBeDefined();
+    // $FlowIgnore - metaEdId could be null
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
   });
 
   it('should have namespaceInfo', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).sourceMap.namespaceInfo).toBeDefined();
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).sourceMap.namespaceInfo).toBeDefined();
   });
 
   it('should have baseEntity', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).sourceMap.baseEntity).toBeDefined();
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).sourceMap.baseEntity.tokenText).toBe(baseEntityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).sourceMap.baseEntity).toBeDefined();
+    // $FlowIgnore - baseEntity could be null
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).sourceMap.baseEntity.tokenText).toBe(baseEntityName);
   });
 
   it('should have baseEntityName', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).sourceMap.baseEntityName).toBeDefined();
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).sourceMap.baseEntityName.tokenText).toBe(baseEntityName);
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).sourceMap.baseEntityName).toBeDefined();
+    // $FlowIgnore - baseEntityName could be null
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).sourceMap.baseEntityName.tokenText).toBe(baseEntityName);
   });
 
   it('should have isAbstract', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).sourceMap.isAbstract).toBeUndefined();
+    // $FlowIgnore - isAbstract could be null
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).sourceMap.isAbstract).toBeUndefined();
   });
 
   it('should have line, column, text for each property', () => {
-    expect(metaEd.entity.domainEntitySubclass.get(entityName).sourceMap).toMatchSnapshot();
+    expect(getDomainEntitySubclass(metaEd.entity, entityName).sourceMap).toMatchSnapshot();
   });
 });

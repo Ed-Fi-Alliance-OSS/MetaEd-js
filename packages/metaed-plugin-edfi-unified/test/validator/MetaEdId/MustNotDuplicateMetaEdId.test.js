@@ -7,8 +7,8 @@ import {
   InterchangeBuilder,
   newMetaEdEnvironment,
   MetaEdTextBuilder,
-} from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, ValidationFailure } from '../../../../../packages/metaed-core/index';
+} from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, ValidationFailure } from '../../../../metaed-core/index';
 import { validate } from '../../../../metaed-plugin-edfi-unified/src/validator/MetaEdId/MustNotDuplicateMetaEdId';
 
 describe('when validating two entities have different metaEdId', () => {

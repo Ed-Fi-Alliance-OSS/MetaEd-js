@@ -1,7 +1,9 @@
-// @noflow
+// @flow
 import { SharedStringBuilder } from '../../src/builder/SharedStringBuilder';
 import { MetaEdTextBuilder } from '../MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
+import { getSharedString } from '../TestHelper';
+import type { SharedStringSourceMap } from '../../src/model/SharedString';
 import type { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import type { ValidationFailure } from '../../src/validator/ValidationFailure';
 
@@ -34,8 +36,8 @@ describe('when building shared string in extension namespace', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.sharedString.get(entityName)).toBeDefined();
-    expect(metaEd.entity.sharedString.get(entityName).metaEdName).toBe(entityName);
+    expect(getSharedString(metaEd.entity, entityName)).toBeDefined();
+    expect(getSharedString(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -43,27 +45,27 @@ describe('when building shared string in extension namespace', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedString.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedString(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedString.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedString(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedString.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getSharedString(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedString.get(entityName).documentation).toBe(documentation);
+    expect(getSharedString(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have min length', () => {
-    expect(metaEd.entity.sharedString.get(entityName).minLength).toBe(minLength);
+    expect(getSharedString(metaEd.entity, entityName).minLength).toBe(minLength);
   });
 
   it('should have max length', () => {
-    expect(metaEd.entity.sharedString.get(entityName).maxLength).toBe(maxLength);
+    expect(getSharedString(metaEd.entity, entityName).maxLength).toBe(maxLength);
   });
 });
 
@@ -101,8 +103,8 @@ describe('when building duplicate shared strings', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.sharedString.get(entityName)).toBeDefined();
-    expect(metaEd.entity.sharedString.get(entityName).metaEdName).toBe(entityName);
+    expect(getSharedString(metaEd.entity, entityName)).toBeDefined();
+    expect(getSharedString(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have two validation failures', () => {
@@ -165,6 +167,7 @@ describe('when building shared string with lowercase shared string name', () => 
   const projectExtension: string = 'ProjectExtension';
 
   const entityName: string = 'entityName';
+  const expectedName: string = 'Name';
   const metaEdId: string = '123';
   const documentation = 'doc';
   const minLength = '2';
@@ -188,32 +191,32 @@ describe('when building shared string with lowercase shared string name', () => 
   });
 
   it('should be found in entity repository but with lowercase prefix ignored', () => {
-    expect(metaEd.entity.sharedString.get('Name')).toBeDefined();
-    expect(metaEd.entity.sharedString.get('Name').metaEdName).toBe('Name');
+    expect(getSharedString(metaEd.entity, expectedName)).toBeDefined();
+    expect(getSharedString(metaEd.entity, expectedName).metaEdName).toBe(expectedName);
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedString.get('Name').namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedString(metaEd.entity, expectedName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedString.get('Name').namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedString(metaEd.entity, expectedName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedString.get('Name').metaEdId).toBe(metaEdId);
+    expect(getSharedString(metaEd.entity, expectedName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedString.get('Name').documentation).toBe(documentation);
+    expect(getSharedString(metaEd.entity, expectedName).documentation).toBe(documentation);
   });
 
   it('should have min length', () => {
-    expect(metaEd.entity.sharedString.get('Name').minLength).toBe(minLength);
+    expect(getSharedString(metaEd.entity, expectedName).minLength).toBe(minLength);
   });
 
   it('should have max length', () => {
-    expect(metaEd.entity.sharedString.get('Name').maxLength).toBe(maxLength);
+    expect(getSharedString(metaEd.entity, expectedName).maxLength).toBe(maxLength);
   });
 
   it('should have extraneous input error', () => {
@@ -246,27 +249,27 @@ describe('when building shared string with no documentation', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedString.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedString(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedString.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedString(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedString.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getSharedString(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should not have documentation', () => {
-    expect(metaEd.entity.sharedString.get(entityName).documentation).toBe('');
+    expect(getSharedString(metaEd.entity, entityName).documentation).toBe('');
   });
 
   it('should have min length', () => {
-    expect(metaEd.entity.sharedString.get(entityName).minLength).toBe(minLength);
+    expect(getSharedString(metaEd.entity, entityName).minLength).toBe(minLength);
   });
 
   it('should have max length', () => {
-    expect(metaEd.entity.sharedString.get(entityName).maxLength).toBe(maxLength);
+    expect(getSharedString(metaEd.entity, entityName).maxLength).toBe(maxLength);
   });
 
   it('should have mismatched input error', () => {
@@ -301,27 +304,27 @@ describe('when building shared string with no min length', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedString.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedString(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedString.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedString(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedString.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getSharedString(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedString.get(entityName).documentation).toBe(documentation);
+    expect(getSharedString(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have a min length because max length token was ignored', () => {
-    expect(metaEd.entity.sharedString.get(entityName).minLength).toBe(maxLength);
+    expect(getSharedString(metaEd.entity, entityName).minLength).toBe(maxLength);
   });
 
   it('should not have max length', () => {
-    expect(metaEd.entity.sharedString.get(entityName).maxLength).toBe('');
+    expect(getSharedString(metaEd.entity, entityName).maxLength).toBe('');
   });
 
   it('should have extraneous input and mismatched input error', () => {
@@ -356,27 +359,27 @@ describe('when building shared string with no max length', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedString.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedString(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedString.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedString(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedString.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getSharedString(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedString.get(entityName).documentation).toBe(documentation);
+    expect(getSharedString(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have min length', () => {
-    expect(metaEd.entity.sharedString.get(entityName).minLength).toBe(minLength);
+    expect(getSharedString(metaEd.entity, entityName).minLength).toBe(minLength);
   });
 
   it('should no max length', () => {
-    expect(metaEd.entity.sharedString.get(entityName).maxLength).toBe('');
+    expect(getSharedString(metaEd.entity, entityName).maxLength).toBe('');
   });
 
   it('should have missing unsigned int error', () => {
@@ -413,27 +416,27 @@ describe('when building shared string with invalid trailing text', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.sharedString.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getSharedString(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.sharedString.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getSharedString(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have metaed id', () => {
-    expect(metaEd.entity.sharedString.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getSharedString(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedString.get(entityName).documentation).toBe(documentation);
+    expect(getSharedString(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have min length', () => {
-    expect(metaEd.entity.sharedString.get(entityName).minLength).toBe(minLength);
+    expect(getSharedString(metaEd.entity, entityName).minLength).toBe(minLength);
   });
 
   it('should have max length', () => {
-    expect(metaEd.entity.sharedString.get(entityName).maxLength).toBe(maxLength);
+    expect(getSharedString(metaEd.entity, entityName).maxLength).toBe(maxLength);
   });
 
   it('should have extraneous input error', () => {
@@ -468,37 +471,40 @@ describe('when building shared string source map', () => {
 
   // SharedSimpleSourceMap
   it('should have type', () => {
-    expect(metaEd.entity.sharedString.get(entityName).sourceMap.type).toBeDefined();
+    expect(getSharedString(metaEd.entity, entityName).sourceMap.type).toBeDefined();
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.sharedString.get(entityName).sourceMap.documentation).toBeDefined();
+    expect(getSharedString(metaEd.entity, entityName).sourceMap.documentation).toBeDefined();
   });
 
   it('should have metaEdName', () => {
-    expect(metaEd.entity.sharedString.get(entityName).sourceMap.metaEdName).toBeDefined();
-    expect(metaEd.entity.sharedString.get(entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
+    expect(getSharedString(metaEd.entity, entityName).sourceMap.metaEdName).toBeDefined();
+
+    // $FlowIgnore - metaEdName could be null
+    expect(getSharedString(metaEd.entity, entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.sharedString.get(entityName).sourceMap.metaEdId).toBeDefined();
-    expect(metaEd.entity.sharedString.get(entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
+    expect(getSharedString(metaEd.entity, entityName).sourceMap.metaEdId).toBeDefined();
+    // $FlowIgnore - metaEdId could be null
+    expect(getSharedString(metaEd.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
   });
 
   it('should have namespaceInfo', () => {
-    expect(metaEd.entity.sharedString.get(entityName).sourceMap.namespaceInfo).toBeDefined();
+    expect(getSharedString(metaEd.entity, entityName).sourceMap.namespaceInfo).toBeDefined();
   });
 
   // SharedStringSourceMap
   it('should have minLength', () => {
-    expect(metaEd.entity.sharedString.get(entityName).sourceMap.minLength).toBeDefined();
+    expect(((getSharedString(metaEd.entity, entityName).sourceMap: any): SharedStringSourceMap).minLength).toBeDefined();
   });
 
   it('should have maxLength', () => {
-    expect(metaEd.entity.sharedString.get(entityName).sourceMap.maxLength).toBeDefined();
+    expect(((getSharedString(metaEd.entity, entityName).sourceMap: any): SharedStringSourceMap).maxLength).toBeDefined();
   });
 
   it('should have line, column, text for each property', () => {
-    expect(metaEd.entity.sharedString.get(entityName).sourceMap).toMatchSnapshot();
+    expect(getSharedString(metaEd.entity, entityName).sourceMap).toMatchSnapshot();
   });
 });

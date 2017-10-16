@@ -8,8 +8,8 @@ import {
   newSharedIntegerProperty,
   addEntity,
   addProperty,
-} from '../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment } from '../../../../packages/metaed-core/index';
+} from '../../../metaed-core/index';
+import type { MetaEdEnvironment } from '../../../metaed-core/index';
 import { enhance } from '../../src/enhancer/InheritedDocumentationCopyingEnhancer';
 
 describe('when enhancing shared integer property with inherited documentation', () => {

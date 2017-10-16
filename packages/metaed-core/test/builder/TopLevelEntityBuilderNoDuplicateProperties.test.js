@@ -1,4 +1,4 @@
-// @noflow
+// @flow
 import {
   newMetaEdEnvironment,
   MetaEdTextBuilder,
@@ -377,7 +377,7 @@ describe('when building entities with an association property that duplicates na
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
-  it('should build one common, zero assocations', () => {
+  it('should build one common, zero associations', () => {
     expect(metaEd.propertyIndex.common.length).toBe(1);
     expect(metaEd.propertyIndex.association.length).toBe(0);
   });
@@ -448,7 +448,7 @@ describe('when building entities with an shared decimal property that duplicates
     .withStartDomainEntity(entityName)
     .withDocumentation(documentation)
     .withCommonProperty(propertyName, documentation, true, false)
-    .withSharedDecimalProperty(propertyName, documentation, true, false)
+    .withSharedDecimalProperty(propertyName, '', documentation, true, false)
     .withEndDomainEntity()
     .withEndNamespace()
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
@@ -547,7 +547,7 @@ describe('when building entities with a year property that duplicates name of an
     expect(validationFailures[1].category).toBe('error');
   });
 });
-describe('when building entities with two association propeties duplicate property name but different contexts', () => {
+describe('when building entities with two association properties duplicate property name but different contexts', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const validationFailures: Array<ValidationFailure> = [];
   const namespace: string = 'namespace';
@@ -561,14 +561,14 @@ describe('when building entities with two association propeties duplicate proper
     .withBeginNamespace(namespace)
     .withStartDomainEntity(entityName)
     .withDocumentation(documentation)
-    .withAssociationProperty(propertyName, documentation, true, false, null, 'Context1')
-    .withAssociationProperty(propertyName, documentation, true, false, null, 'Context2')
+    .withAssociationProperty(propertyName, documentation, true, false, false, 'Context1')
+    .withAssociationProperty(propertyName, documentation, true, false, false, 'Context2')
     .withEndDomainEntity()
     .withEndNamespace()
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
-  it('should build two assocations', () => {
+  it('should build two associations', () => {
     expect(metaEd.propertyIndex.association.length).toBe(2);
   });
 
@@ -576,7 +576,7 @@ describe('when building entities with two association propeties duplicate proper
     expect(validationFailures).toHaveLength(0);
   });
 });
-describe('when building entities with two association propeties with duplicate property name and duplicate contexts', () => {
+describe('when building entities with two association properties with duplicate property name and duplicate contexts', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const validationFailures: Array<ValidationFailure> = [];
   const namespace: string = 'namespace';
@@ -590,14 +590,14 @@ describe('when building entities with two association propeties with duplicate p
     .withBeginNamespace(namespace)
     .withStartDomainEntity(entityName)
     .withDocumentation(documentation)
-    .withAssociationProperty(propertyName, documentation, true, false, null, 'Context1')
-    .withAssociationProperty(propertyName, documentation, true, false, null, 'Context1')
+    .withAssociationProperty(propertyName, documentation, true, false, false, 'Context1')
+    .withAssociationProperty(propertyName, documentation, true, false, false, 'Context1')
     .withEndDomainEntity()
     .withEndNamespace()
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
-  it('should build one assocation', () => {
+  it('should build one association', () => {
     expect(metaEd.propertyIndex.association.length).toBe(1);
   });
 
@@ -613,7 +613,7 @@ describe('when building entities with two association propeties with duplicate p
     expect(validationFailures[1].category).toBe('error');
   });
 });
-describe('when building entities with two association propeties with duplicate property name and duplicate contexts, different shorten to', () => {
+describe('when building entities with two association properties with duplicate property name and duplicate contexts, different shorten to', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const validationFailures: Array<ValidationFailure> = [];
   const namespace: string = 'namespace';
@@ -627,16 +627,16 @@ describe('when building entities with two association propeties with duplicate p
     .withBeginNamespace(namespace)
     .withStartDomainEntity(entityName)
     .withDocumentation(documentation)
-    .withAssociationProperty(propertyName, documentation, true, false, null)
+    .withAssociationProperty(propertyName, documentation, true, false, false)
     .withContext('context1', 'Short1')
-    .withAssociationProperty(propertyName, documentation, true, false, null)
+    .withAssociationProperty(propertyName, documentation, true, false, false)
     .withContext('context1', 'Short2')
     .withEndDomainEntity()
     .withEndNamespace()
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
-  it('should build two assocations', () => {
+  it('should build two associations', () => {
     expect(metaEd.propertyIndex.association.length).toBe(1);
   });
 
@@ -653,7 +653,7 @@ describe('when building entities with two association propeties with duplicate p
   });
 });
 
-describe('when building entities with two association propeties with duplicate property name and duplicate contexts, duplicate shorten to', () => {
+describe('when building entities with two association properties with duplicate property name and duplicate contexts, duplicate shorten to', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const validationFailures: Array<ValidationFailure> = [];
   const namespace: string = 'namespace';
@@ -667,16 +667,16 @@ describe('when building entities with two association propeties with duplicate p
     .withBeginNamespace(namespace)
     .withStartDomainEntity(entityName)
     .withDocumentation(documentation)
-    .withAssociationProperty(propertyName, documentation, true, false, null)
+    .withAssociationProperty(propertyName, documentation, true, false, false)
     .withContext('context1', 'ShortOne')
-    .withAssociationProperty(propertyName, documentation, true, false, null)
+    .withAssociationProperty(propertyName, documentation, true, false, false)
     .withContext('context1', 'ShortOne')
     .withEndDomainEntity()
     .withEndNamespace()
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
-  it('should build two assocations', () => {
+  it('should build two associations', () => {
     expect(metaEd.propertyIndex.association.length).toBe(1);
   });
 

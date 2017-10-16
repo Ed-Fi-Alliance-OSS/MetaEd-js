@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, newDescriptor, newMapTypeEnumeration, newBooleanProperty, newDescriptorProperty } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, Descriptor, MapTypeEnumeration } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newDescriptor, newMapTypeEnumeration, newBooleanProperty, newDescriptorProperty } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, Descriptor, MapTypeEnumeration } from '../../../../metaed-core/index';
 import type { ComplexType } from '../../../src/model/schema/ComplexType';
 import type { Element } from '../../../src/model/schema/Element';
 import { NoComplexType } from '../../../src/model/schema/ComplexType';

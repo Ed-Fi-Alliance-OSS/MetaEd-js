@@ -1,7 +1,9 @@
-// @noflow
+// @flow
 import { EnumerationBuilder } from '../../src/builder/EnumerationBuilder';
 import { MetaEdTextBuilder } from '../MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
+import { getEnumeration, getSchoolYearEnumeration } from '../TestHelper';
+import type { EnumerationSourceMap } from '../../src/model/Enumeration';
 import type { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import type { ValidationFailure } from '../../src/validator/ValidationFailure';
 
@@ -36,8 +38,8 @@ describe('when building single enumeration', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.enumeration.get(entityName)).toBeDefined();
-    expect(metaEd.entity.enumeration.get(entityName).metaEdName).toBe(entityName);
+    expect(getEnumeration(metaEd.entity, entityName)).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -45,39 +47,39 @@ describe('when building single enumeration', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.enumeration.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getEnumeration(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.enumeration.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getEnumeration(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.enumeration.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getEnumeration(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).documentation).toBe(documentation);
+    expect(getEnumeration(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have no properties', () => {
-    expect(metaEd.entity.enumeration.get(entityName).properties).toHaveLength(0);
+    expect(getEnumeration(metaEd.entity, entityName).properties).toHaveLength(0);
   });
 
   it('should have one enumeration item', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems).toHaveLength(1);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems).toHaveLength(1);
   });
 
   it('should have enumeration item with short description', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].shortDescription).toBe(itemShortDescription);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].shortDescription).toBe(itemShortDescription);
   });
 
   it('should have enumeration item with documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].documentation).toBe(itemDocumentation);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].documentation).toBe(itemDocumentation);
   });
 
   it('should have enumeration item with metaEdId ', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].metaEdId).toBe(itemMetaEdId);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].metaEdId).toBe(itemMetaEdId);
   });
 });
 
@@ -110,24 +112,24 @@ describe('when building school year enumeration', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.schoolYearEnumeration.get(entityName)).toBeDefined();
-    expect(metaEd.entity.schoolYearEnumeration.get(entityName).metaEdName).toBe(entityName);
+    expect(getSchoolYearEnumeration(metaEd.entity, entityName)).toBeDefined();
+    expect(getSchoolYearEnumeration(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.schoolYearEnumeration.get(entityName).type).toBe(entityType);
+    expect(getSchoolYearEnumeration(metaEd.entity, entityName).type).toBe(entityType);
   });
 
   it('should have source map for type', () => {
-    expect(metaEd.entity.schoolYearEnumeration.get(entityName).sourceMap.type).toBeDefined();
+    expect(getSchoolYearEnumeration(metaEd.entity, entityName).sourceMap.type).toBeDefined();
   });
 
   it('should have source map for namespaceInfo', () => {
-    expect(metaEd.entity.schoolYearEnumeration.get(entityName).sourceMap.namespaceInfo).toBeDefined();
+    expect(getSchoolYearEnumeration(metaEd.entity, entityName).sourceMap.namespaceInfo).toBeDefined();
   });
 
   it('should have source map with line, column, text', () => {
-    expect(metaEd.entity.schoolYearEnumeration.get(entityName).sourceMap).toMatchSnapshot();
+    expect(getSchoolYearEnumeration(metaEd.entity, entityName).sourceMap).toMatchSnapshot();
   });
 });
 
@@ -167,8 +169,8 @@ describe('when building duplicate enumerations', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.enumeration.get(entityName)).toBeDefined();
-    expect(metaEd.entity.enumeration.get(entityName).metaEdName).toBe(entityName);
+    expect(getEnumeration(metaEd.entity, entityName)).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have two validation failures', () => {
@@ -212,15 +214,15 @@ describe('when building enumeration without item documentation', () => {
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).documentation).toBe(documentation);
+    expect(getEnumeration(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have enumeration item with short description', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].shortDescription).toBe(itemShortDescription);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].shortDescription).toBe(itemShortDescription);
   });
 
   it('should have enumeration item with no documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].documentation).toBe('');
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].documentation).toBe('');
   });
 });
 
@@ -258,16 +260,16 @@ describe('when building multiple enumerations', () => {
   });
 
   it('should both be found in entityRepository', () => {
-    expect(metaEd.entity.enumeration.get(entityName1)).toBeDefined();
-    expect(metaEd.entity.enumeration.get(entityName1).metaEdName).toBe(entityName1);
+    expect(getEnumeration(metaEd.entity, entityName1)).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName1).metaEdName).toBe(entityName1);
 
-    expect(metaEd.entity.enumeration.get(entityName2)).toBeDefined();
-    expect(metaEd.entity.enumeration.get(entityName2).metaEdName).toBe(entityName2);
+    expect(getEnumeration(metaEd.entity, entityName2)).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName2).metaEdName).toBe(entityName2);
   });
 
   it('should both have metaEdIds', () => {
-    expect(metaEd.entity.enumeration.get(entityName1).metaEdId).toBe(metaEdId1);
-    expect(metaEd.entity.enumeration.get(entityName2).metaEdId).toBe(metaEdId2);
+    expect(getEnumeration(metaEd.entity, entityName1).metaEdId).toBe(metaEdId1);
+    expect(getEnumeration(metaEd.entity, entityName2).metaEdId).toBe(metaEdId2);
   });
 });
 
@@ -312,6 +314,7 @@ describe('when building enumeration with lowercase enumeration name', () => {
   const projectExtension: string = 'ProjectExtension';
 
   const entityName: string = 'entityName';
+  const expectedName: string = 'Name';
   const entityMetaEdId: string = '1';
   const documentation: string = 'Documentation';
   const itemShortDescription: string = 'ItemShortDescription';
@@ -336,8 +339,8 @@ describe('when building enumeration with lowercase enumeration name', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.enumeration.get('Name')).toBeDefined();
-    expect(metaEd.entity.enumeration.get('Name').metaEdName).toBe('Name');
+    expect(getEnumeration(metaEd.entity, expectedName)).toBeDefined();
+    expect(getEnumeration(metaEd.entity, expectedName).metaEdName).toBe(expectedName);
   });
 
   it('should have no validation failures', () => {
@@ -345,39 +348,39 @@ describe('when building enumeration with lowercase enumeration name', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.enumeration.get('Name').namespaceInfo.namespace).toBe(namespace);
+    expect(getEnumeration(metaEd.entity, expectedName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.enumeration.get('Name').metaEdId).toBe(entityMetaEdId);
+    expect(getEnumeration(metaEd.entity, expectedName).metaEdId).toBe(entityMetaEdId);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.enumeration.get('Name').namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getEnumeration(metaEd.entity, expectedName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.enumeration.get('Name').documentation).toBe(documentation);
+    expect(getEnumeration(metaEd.entity, expectedName).documentation).toBe(documentation);
   });
 
   it('should have no properties', () => {
-    expect(metaEd.entity.enumeration.get('Name').properties).toHaveLength(0);
+    expect(getEnumeration(metaEd.entity, expectedName).properties).toHaveLength(0);
   });
 
   it('should have one enumeration item', () => {
-    expect(metaEd.entity.enumeration.get('Name').enumerationItems).toHaveLength(1);
+    expect(getEnumeration(metaEd.entity, expectedName).enumerationItems).toHaveLength(1);
   });
 
   it('should have enumeration item with short description', () => {
-    expect(metaEd.entity.enumeration.get('Name').enumerationItems[0].shortDescription).toBe(itemShortDescription);
+    expect(getEnumeration(metaEd.entity, expectedName).enumerationItems[0].shortDescription).toBe(itemShortDescription);
   });
 
   it('should have enumeration item with documentation', () => {
-    expect(metaEd.entity.enumeration.get('Name').enumerationItems[0].documentation).toBe(itemDocumentation);
+    expect(getEnumeration(metaEd.entity, expectedName).enumerationItems[0].documentation).toBe(itemDocumentation);
   });
 
   it('should have enumeration item with metaEdId ', () => {
-    expect(metaEd.entity.enumeration.get('Name').enumerationItems[0].metaEdId).toBe(itemMetaEdId);
+    expect(getEnumeration(metaEd.entity, expectedName).enumerationItems[0].metaEdId).toBe(itemMetaEdId);
   });
 
   it('should have extraneous input error', () => {
@@ -415,8 +418,8 @@ describe('when building enumeration with no documentation', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.enumeration.get(entityName)).toBeDefined();
-    expect(metaEd.entity.enumeration.get(entityName).metaEdName).toBe(entityName);
+    expect(getEnumeration(metaEd.entity, entityName)).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -424,39 +427,39 @@ describe('when building enumeration with no documentation', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.enumeration.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getEnumeration(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.enumeration.get(entityName).metaEdId).toBe(entityMetaEdId);
+    expect(getEnumeration(metaEd.entity, entityName).metaEdId).toBe(entityMetaEdId);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.enumeration.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getEnumeration(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have no documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).documentation).toBe('');
+    expect(getEnumeration(metaEd.entity, entityName).documentation).toBe('');
   });
 
   it('should have no properties', () => {
-    expect(metaEd.entity.enumeration.get(entityName).properties).toHaveLength(0);
+    expect(getEnumeration(metaEd.entity, entityName).properties).toHaveLength(0);
   });
 
   it('should have one enumeration item', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems).toHaveLength(1);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems).toHaveLength(1);
   });
 
   it('should have enumeration item with short description', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].shortDescription).toBe(itemShortDescription);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].shortDescription).toBe(itemShortDescription);
   });
 
   it('should have enumeration item with documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].documentation).toBe(itemDocumentation);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].documentation).toBe(itemDocumentation);
   });
 
   it('should have enumeration item with metaEdId ', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].metaEdId).toBe(itemMetaEdId);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].metaEdId).toBe(itemMetaEdId);
   });
 
   it('should have mismatched input error', () => {
@@ -493,8 +496,8 @@ describe('when building enumeration with no enumeration item', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.enumeration.get(entityName)).toBeDefined();
-    expect(metaEd.entity.enumeration.get(entityName).metaEdName).toBe(entityName);
+    expect(getEnumeration(metaEd.entity, entityName)).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -502,27 +505,27 @@ describe('when building enumeration with no enumeration item', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.enumeration.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getEnumeration(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.enumeration.get(entityName).metaEdId).toBe(entityMetaEdId);
+    expect(getEnumeration(metaEd.entity, entityName).metaEdId).toBe(entityMetaEdId);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.enumeration.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getEnumeration(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).documentation).toBe(documentation);
+    expect(getEnumeration(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have no properties', () => {
-    expect(metaEd.entity.enumeration.get(entityName).properties).toHaveLength(0);
+    expect(getEnumeration(metaEd.entity, entityName).properties).toHaveLength(0);
   });
 
   it('should have no enumeration item', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems).toHaveLength(0);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems).toHaveLength(0);
   });
 
   it('should have mismatched input error', () => {
@@ -561,8 +564,8 @@ describe('when building enumeration with empty enumeration item description', ()
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.enumeration.get(entityName)).toBeDefined();
-    expect(metaEd.entity.enumeration.get(entityName).metaEdName).toBe(entityName);
+    expect(getEnumeration(metaEd.entity, entityName)).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -570,39 +573,39 @@ describe('when building enumeration with empty enumeration item description', ()
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.enumeration.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getEnumeration(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.enumeration.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getEnumeration(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.enumeration.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getEnumeration(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).documentation).toBe(documentation);
+    expect(getEnumeration(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have no properties', () => {
-    expect(metaEd.entity.enumeration.get(entityName).properties).toHaveLength(0);
+    expect(getEnumeration(metaEd.entity, entityName).properties).toHaveLength(0);
   });
 
   it('should have one enumeration item', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems).toHaveLength(1);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems).toHaveLength(1);
   });
 
   it('should have enumeration item with no short description', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].shortDescription).toBe('');
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].shortDescription).toBe('');
   });
 
   it('should have enumeration item with documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].documentation).toBe(itemDocumentation);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].documentation).toBe(itemDocumentation);
   });
 
   it('should have enumeration item with metaEdId ', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].metaEdId).toBe(itemMetaEdId);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].metaEdId).toBe(itemMetaEdId);
   });
 
   it('should have extraneous input error', () => {
@@ -648,8 +651,8 @@ describe('when building enumeration with invalid trailing text', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.enumeration.get(entityName)).toBeDefined();
-    expect(metaEd.entity.enumeration.get(entityName).metaEdName).toBe(entityName);
+    expect(getEnumeration(metaEd.entity, entityName)).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).metaEdName).toBe(entityName);
   });
 
   it('should have no validation failures', () => {
@@ -657,39 +660,39 @@ describe('when building enumeration with invalid trailing text', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.enumeration.get(entityName).namespaceInfo.namespace).toBe(namespace);
+    expect(getEnumeration(metaEd.entity, entityName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.enumeration.get(entityName).metaEdId).toBe(metaEdId);
+    expect(getEnumeration(metaEd.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.enumeration.get(entityName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getEnumeration(metaEd.entity, entityName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).documentation).toBe(documentation);
+    expect(getEnumeration(metaEd.entity, entityName).documentation).toBe(documentation);
   });
 
   it('should have no properties', () => {
-    expect(metaEd.entity.enumeration.get(entityName).properties).toHaveLength(0);
+    expect(getEnumeration(metaEd.entity, entityName).properties).toHaveLength(0);
   });
 
   it('should have one enumeration item', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems).toHaveLength(1);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems).toHaveLength(1);
   });
 
   it('should have enumeration item with short description', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].shortDescription).toBe(itemShortDescription);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].shortDescription).toBe(itemShortDescription);
   });
 
   it('should have enumeration item with documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].documentation).toBe(itemDocumentation);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].documentation).toBe(itemDocumentation);
   });
 
   it('should have enumeration item with metaEdId ', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].metaEdId).toBe(itemMetaEdId);
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].metaEdId).toBe(itemMetaEdId);
   });
 
   it('should have extraneous input error', () => {
@@ -728,64 +731,64 @@ describe('when building enumeration source map', () => {
   });
 
   it('should have type', () => {
-    expect(metaEd.entity.enumeration.get(entityName).sourceMap.type).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).sourceMap.type).toBeDefined();
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).sourceMap.documentation).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).sourceMap.documentation).toBeDefined();
   });
 
   it('should have metaEdName', () => {
-    expect(metaEd.entity.enumeration.get(entityName).sourceMap.metaEdName).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).sourceMap.metaEdName).toBeDefined();
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.enumeration.get(entityName).sourceMap.metaEdId).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).sourceMap.metaEdId).toBeDefined();
   });
 
   it('should have namespaceInfo', () => {
-    expect(metaEd.entity.enumeration.get(entityName).sourceMap.namespaceInfo).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).sourceMap.namespaceInfo).toBeDefined();
   });
 
   it('should have for enumerationItems', () => {
-    expect(metaEd.entity.enumeration.get(entityName).sourceMap.enumerationItems).toHaveLength(2);
+    expect(((getEnumeration(metaEd.entity, entityName).sourceMap: any): EnumerationSourceMap).enumerationItems).toHaveLength(2);
   });
 
   it('should have first enumeration item type', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].sourceMap.type).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].sourceMap.type).toBeDefined();
   });
 
   it('should have first enumeration item shortDescription', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].sourceMap.shortDescription).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].sourceMap.shortDescription).toBeDefined();
   });
 
   it('should have first enumeration item metaEdId', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].sourceMap.metaEdId).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].sourceMap.metaEdId).toBeDefined();
   });
 
   it('should have first enumeration item documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].sourceMap.documentation).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].sourceMap.documentation).toBeDefined();
   });
 
   it('should have second enumeration item type', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[1].sourceMap.type).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[1].sourceMap.type).toBeDefined();
   });
 
   it('should have second enumeration item shortDescription', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[1].sourceMap.shortDescription).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[1].sourceMap.shortDescription).toBeDefined();
   });
 
   it('should have second enumeration item metaEdId', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[1].sourceMap.metaEdId).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[1].sourceMap.metaEdId).toBeDefined();
   });
 
   it('should have second enumeration item documentation', () => {
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[1].sourceMap.documentation).toBeDefined();
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[1].sourceMap.documentation).toBeDefined();
   });
 
   it('should have line, column, text for each property', () => {
-    expect(metaEd.entity.enumeration.get(entityName).sourceMap).toMatchSnapshot();
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[0].sourceMap).toMatchSnapshot();
-    expect(metaEd.entity.enumeration.get(entityName).enumerationItems[1].sourceMap).toMatchSnapshot();
+    expect(getEnumeration(metaEd.entity, entityName).sourceMap).toMatchSnapshot();
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[0].sourceMap).toMatchSnapshot();
+    expect(getEnumeration(metaEd.entity, entityName).enumerationItems[1].sourceMap).toMatchSnapshot();
   });
 });

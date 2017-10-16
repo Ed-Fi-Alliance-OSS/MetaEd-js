@@ -36,6 +36,7 @@ export function newIntegerType(): IntegerType {
     maxValue: '',
     referringSimpleProperties: [],
     sourceMap: new IntegerTypeSourceMap(),
+    data: {},
   });
 }
 
@@ -48,6 +49,7 @@ export function newShortType(): IntegerType {
     maxValue: '',
     referringSimpleProperties: [],
     sourceMap: new IntegerTypeSourceMap(),
+    data: {},
   });
 }
 

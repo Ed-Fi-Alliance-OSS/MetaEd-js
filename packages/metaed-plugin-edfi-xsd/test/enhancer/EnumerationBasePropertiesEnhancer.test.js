@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, newEnumeration, newNamespaceInfo, newMapTypeEnumeration, newSchoolYearEnumeration } from '../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, Enumeration, MapTypeEnumeration, SchoolYearEnumeration } from '../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newEnumeration, newNamespaceInfo, newMapTypeEnumeration, newSchoolYearEnumeration } from '../../../metaed-core/index';
+import type { MetaEdEnvironment, Enumeration, MapTypeEnumeration, SchoolYearEnumeration } from '../../../metaed-core/index';
 import { enhance as initializeTopLevelEntities } from '../../src/model/TopLevelEntity';
 import { enhance } from '../../src/enhancer/EnumerationBasePropertiesEnhancer';
 

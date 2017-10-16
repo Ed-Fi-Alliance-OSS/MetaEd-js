@@ -11,8 +11,8 @@ import {
   newCommonProperty,
   newDescriptorProperty,
   newEnumerationProperty,
-} from '../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, NamespaceInfo, EntityProperty } from '../../../../packages/metaed-core/index';
+} from '../../../metaed-core/index';
+import type { MetaEdEnvironment, NamespaceInfo, EntityProperty } from '../../../metaed-core/index';
 import { enhance as initializeTopLevelEntities } from '../../src/model/TopLevelEntity';
 import { enhance } from '../../src/enhancer/PropertyEnhancer';
 import { enhance as addModelBaseEdfiXsd } from '../../src/model/ModelBase';
@@ -228,7 +228,7 @@ describe('when enhancing core descriptor property', () => {
   });
 
   it('should have correct xsdName and xsdType', () => {
-    expect(property.data.edfiXsd.xsd_Name).toBe(`${propertyName}Reference`);
+    expect(property.data.edfiXsd.xsd_Name).toBe(propertyName);
     expect(property.data.edfiXsd.xsd_Type).toBe(`${propertyName}DescriptorReferenceType`);
   });
 });
@@ -250,7 +250,7 @@ describe('when enhancing extension descriptor property', () => {
   });
 
   it('should have correct xsdName and xsdType', () => {
-    expect(property.data.edfiXsd.xsd_Name).toBe(`${propertyName}Reference`);
+    expect(property.data.edfiXsd.xsd_Name).toBe(propertyName);
     expect(property.data.edfiXsd.xsd_Type).toBe(`${projectExtension}-${propertyName}DescriptorReferenceType`);
   });
 });
@@ -282,7 +282,7 @@ describe('when enhancing extension descriptor property referring to core entity'
   });
 
   it('should use parent to determine xsdType', () => {
-    expect(property.data.edfiXsd.xsd_Name).toBe(`${propertyName}Reference`);
+    expect(property.data.edfiXsd.xsd_Name).toBe(propertyName);
     expect(property.data.edfiXsd.xsd_Type).toBe(`${propertyName}DescriptorReferenceType`);
   });
 });
@@ -348,7 +348,7 @@ describe('when enhancing common property', () => {
   });
 
   it('should have correct xsdName and xsdType', () => {
-    expect(property.data.edfiXsd.xsd_Name).toBe(`${propertyName}Reference`);
+    expect(property.data.edfiXsd.xsd_Name).toBe(propertyName);
     expect(property.data.edfiXsd.xsd_Type).toBe(propertyName);
   });
 });
@@ -371,7 +371,7 @@ describe('when enhancing extension override common property', () => {
   });
 
   it('should have correct xsdName and xsdType', () => {
-    expect(property.data.edfiXsd.xsd_Name).toBe(`${propertyName}Reference`);
+    expect(property.data.edfiXsd.xsd_Name).toBe(propertyName);
     expect(property.data.edfiXsd.xsd_Type).toBe(`${propertyName}${property.namespaceInfo.extensionEntitySuffix}`);
   });
 });

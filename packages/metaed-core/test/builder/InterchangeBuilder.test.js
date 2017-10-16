@@ -1,7 +1,9 @@
-// @noflow
+// @flow
 import { InterchangeBuilder } from '../../src/builder/InterchangeBuilder';
 import { MetaEdTextBuilder } from '../MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
+import { getInterchange, getInterchangeExtension } from '../TestHelper';
+import type { InterchangeSourceMap } from '../../src/model/Interchange';
 import type { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import type { ValidationFailure } from '../../src/validator/ValidationFailure';
 
@@ -42,8 +44,8 @@ describe('when building single interchange', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.interchange.get(interchangeName)).toBeDefined();
-    expect(metaEd.entity.interchange.get(interchangeName).metaEdName).toBe(interchangeName);
+    expect(getInterchange(metaEd.entity, interchangeName)).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).metaEdName).toBe(interchangeName);
   });
 
   it('should have no validation failures', () => {
@@ -51,41 +53,41 @@ describe('when building single interchange', () => {
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).namespaceInfo.namespace).toBe(namespace);
+    expect(getInterchange(metaEd.entity, interchangeName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).metaEdId).toBe(interchangeMetaEdId);
+    expect(getInterchange(metaEd.entity, interchangeName).metaEdId).toBe(interchangeMetaEdId);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getInterchange(metaEd.entity, interchangeName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have interchange documentation', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).documentation).toBe(interchangeDocumentation);
+    expect(getInterchange(metaEd.entity, interchangeName).documentation).toBe(interchangeDocumentation);
   });
 
   it('should have extended documentation', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).extendedDocumentation).toBe(extendedDocumentation);
+    expect(getInterchange(metaEd.entity, interchangeName).extendedDocumentation).toBe(extendedDocumentation);
   });
 
   it('should have use case documentation', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).useCaseDocumentation).toBe(useCaseDocumentation);
+    expect(getInterchange(metaEd.entity, interchangeName).useCaseDocumentation).toBe(useCaseDocumentation);
   });
 
   it('should have one element', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).elements).toHaveLength(1);
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].metaEdName).toBe(interchangeElementName);
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].metaEdId).toBe(interchangeElementMetaEdId);
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].referencedType).toBe('domainEntity');
+    expect(getInterchange(metaEd.entity, interchangeName).elements).toHaveLength(1);
+    expect(getInterchange(metaEd.entity, interchangeName).elements[0].metaEdName).toBe(interchangeElementName);
+    expect(getInterchange(metaEd.entity, interchangeName).elements[0].metaEdId).toBe(interchangeElementMetaEdId);
+    expect(getInterchange(metaEd.entity, interchangeName).elements[0].referencedType).toEqual(['domainEntity', 'domainEntitySubclass']);
   });
 
   it('should have one identity template', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).identityTemplates).toHaveLength(1);
-    expect(metaEd.entity.interchange.get(interchangeName).identityTemplates[0].metaEdName).toBe(interchangeIdentityTemplateName);
-    expect(metaEd.entity.interchange.get(interchangeName).identityTemplates[0].metaEdId).toBe(interchangeIdentityTemplateMetaEdId);
-    expect(metaEd.entity.interchange.get(interchangeName).identityTemplates[0].referencedType).toBe('association');
+    expect(getInterchange(metaEd.entity, interchangeName).identityTemplates).toHaveLength(1);
+    expect(getInterchange(metaEd.entity, interchangeName).identityTemplates[0].metaEdName).toBe(interchangeIdentityTemplateName);
+    expect(getInterchange(metaEd.entity, interchangeName).identityTemplates[0].metaEdId).toBe(interchangeIdentityTemplateMetaEdId);
+    expect(getInterchange(metaEd.entity, interchangeName).identityTemplates[0].referencedType).toEqual(['association', 'associationSubclass']);
   });
 });
 
@@ -116,17 +118,17 @@ describe('when building interchange with additional element and identity types',
   });
 
   it('should have two element', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).elements).toHaveLength(2);
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].metaEdName).toBe(interchangeElementName1);
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].referencedType).toBe('association');
-    expect(metaEd.entity.interchange.get(interchangeName).elements[1].metaEdName).toBe(interchangeElementName2);
-    expect(metaEd.entity.interchange.get(interchangeName).elements[1].referencedType).toBe('descriptor');
+    expect(getInterchange(metaEd.entity, interchangeName).elements).toHaveLength(2);
+    expect(getInterchange(metaEd.entity, interchangeName).elements[0].metaEdName).toBe(interchangeElementName1);
+    expect(getInterchange(metaEd.entity, interchangeName).elements[0].referencedType).toEqual(['association', 'associationSubclass']);
+    expect(getInterchange(metaEd.entity, interchangeName).elements[1].metaEdName).toBe(interchangeElementName2);
+    expect(getInterchange(metaEd.entity, interchangeName).elements[1].referencedType).toEqual(['descriptor']);
   });
 
   it('should have one identity template', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).identityTemplates).toHaveLength(1);
-    expect(metaEd.entity.interchange.get(interchangeName).identityTemplates[0].metaEdName).toBe(interchangeIdentityTemplateName);
-    expect(metaEd.entity.interchange.get(interchangeName).identityTemplates[0].referencedType).toBe('domainEntity');
+    expect(getInterchange(metaEd.entity, interchangeName).identityTemplates).toHaveLength(1);
+    expect(getInterchange(metaEd.entity, interchangeName).identityTemplates[0].metaEdName).toBe(interchangeIdentityTemplateName);
+    expect(getInterchange(metaEd.entity, interchangeName).identityTemplates[0].referencedType).toEqual(['domainEntity', 'domainEntitySubclass']);
   });
 });
 
@@ -175,8 +177,8 @@ describe('when building duplicate interchanges', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.interchange.get(interchangeName)).toBeDefined();
-    expect(metaEd.entity.interchange.get(interchangeName).metaEdName).toBe(interchangeName);
+    expect(getInterchange(metaEd.entity, interchangeName)).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).metaEdName).toBe(interchangeName);
   });
 
   it('should have two validation failures', () => {
@@ -227,32 +229,32 @@ describe('when building single interchange extension', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName)).toBeDefined();
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).metaEdName).toBe(interchangeName);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName)).toBeDefined();
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).metaEdName).toBe(interchangeName);
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).namespaceInfo.namespace).toBe(namespace);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).metaEdId).toBe(interchangeMetaEdId);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).metaEdId).toBe(interchangeMetaEdId);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have one element', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).elements).toHaveLength(1);
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).elements[0].metaEdName).toBe(interchangeElementName);
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).elements[0].metaEdId).toBe(interchangeElementMetaEdId);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).elements).toHaveLength(1);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).elements[0].metaEdName).toBe(interchangeElementName);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).elements[0].metaEdId).toBe(interchangeElementMetaEdId);
   });
 
   it('should have one identity template', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).identityTemplates).toHaveLength(1);
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).identityTemplates[0].metaEdName).toBe(interchangeIdentityTemplateName);
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).identityTemplates[0].metaEdId).toBe(interchangeIdentityTemplateMetaEdId);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).identityTemplates).toHaveLength(1);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).identityTemplates[0].metaEdName).toBe(interchangeIdentityTemplateName);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).identityTemplates[0].metaEdId).toBe(interchangeIdentityTemplateMetaEdId);
   });
 });
 
@@ -292,8 +294,8 @@ describe('when building duplicate interchange extensions', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName)).toBeDefined();
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).metaEdName).toBe(interchangeName);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName)).toBeDefined();
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).metaEdName).toBe(interchangeName);
   });
 
   it('should have two validation failures', () => {
@@ -412,30 +414,30 @@ describe('when building interchange with no documentation', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.interchange.get(interchangeName)).toBeDefined();
-    expect(metaEd.entity.interchange.get(interchangeName).metaEdName).toBe(interchangeName);
+    expect(getInterchange(metaEd.entity, interchangeName)).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).metaEdName).toBe(interchangeName);
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).namespaceInfo.namespace).toBe(namespace);
+    expect(getInterchange(metaEd.entity, interchangeName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).metaEdId).toBe(interchangeMetaEdId);
+    expect(getInterchange(metaEd.entity, interchangeName).metaEdId).toBe(interchangeMetaEdId);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getInterchange(metaEd.entity, interchangeName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have no documentation', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).documentation).toBe('');
+    expect(getInterchange(metaEd.entity, interchangeName).documentation).toBe('');
   });
 
   it('should have one element', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).elements).toHaveLength(1);
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].metaEdName).toBe(interchangeElementName);
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].metaEdId).toBe(interchangeElementMetaEdId);
+    expect(getInterchange(metaEd.entity, interchangeName).elements).toHaveLength(1);
+    expect(getInterchange(metaEd.entity, interchangeName).elements[0].metaEdName).toBe(interchangeElementName);
+    expect(getInterchange(metaEd.entity, interchangeName).elements[0].metaEdId).toBe(interchangeElementMetaEdId);
   });
 
   it('should have mismatched input error', () => {
@@ -470,28 +472,28 @@ describe('when building interchange with no interchange component property', () 
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.interchange.get(interchangeName)).toBeDefined();
-    expect(metaEd.entity.interchange.get(interchangeName).metaEdName).toBe(interchangeName);
+    expect(getInterchange(metaEd.entity, interchangeName)).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).metaEdName).toBe(interchangeName);
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).namespaceInfo.namespace).toBe(namespace);
+    expect(getInterchange(metaEd.entity, interchangeName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).metaEdId).toBe(interchangeMetaEdId);
+    expect(getInterchange(metaEd.entity, interchangeName).metaEdId).toBe(interchangeMetaEdId);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getInterchange(metaEd.entity, interchangeName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have no documentation', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).documentation).toBe(interchangeDocumentation);
+    expect(getInterchange(metaEd.entity, interchangeName).documentation).toBe(interchangeDocumentation);
   });
 
   it('should have no element', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).elements).toHaveLength(0);
+    expect(getInterchange(metaEd.entity, interchangeName).elements).toHaveLength(0);
   });
 
   it('should have mismatched input error', () => {
@@ -532,30 +534,30 @@ describe('when building interchange with invalid trailing text', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.interchange.get(interchangeName)).toBeDefined();
-    expect(metaEd.entity.interchange.get(interchangeName).metaEdName).toBe(interchangeName);
+    expect(getInterchange(metaEd.entity, interchangeName)).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).metaEdName).toBe(interchangeName);
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).namespaceInfo.namespace).toBe(namespace);
+    expect(getInterchange(metaEd.entity, interchangeName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).metaEdId).toBe(interchangeMetaEdId);
+    expect(getInterchange(metaEd.entity, interchangeName).metaEdId).toBe(interchangeMetaEdId);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getInterchange(metaEd.entity, interchangeName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
   it('should have no documentation', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).documentation).toBe(interchangeDocumentation);
+    expect(getInterchange(metaEd.entity, interchangeName).documentation).toBe(interchangeDocumentation);
   });
 
   it('should have one element', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).elements).toHaveLength(1);
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].metaEdName).toBe(interchangeElementName);
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].metaEdId).toBe(interchangeElementMetaEdId);
+    expect(getInterchange(metaEd.entity, interchangeName).elements).toHaveLength(1);
+    expect(getInterchange(metaEd.entity, interchangeName).elements[0].metaEdName).toBe(interchangeElementName);
+    expect(getInterchange(metaEd.entity, interchangeName).elements[0].metaEdId).toBe(interchangeElementMetaEdId);
   });
 
   it('should have extraneous input error', () => {
@@ -655,25 +657,25 @@ describe('when building interchange extension with no element property', () => {
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName)).toBeDefined();
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).metaEdName).toBe(interchangeName);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName)).toBeDefined();
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).metaEdName).toBe(interchangeName);
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).namespaceInfo.namespace).toBe(namespace);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).metaEdId).toBe(interchangeMetaEdId);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).metaEdId).toBe(interchangeMetaEdId);
   });
 
   it('should have project extension', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).namespaceInfo.projectExtension).toBe(projectExtension);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).namespaceInfo.projectExtension).toBe(projectExtension);
   });
 
 
   it('should have no element', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).elements).toHaveLength(0);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).elements).toHaveLength(0);
   });
 
   it('should have mismatched input error', () => {
@@ -712,22 +714,22 @@ describe('when building interchange extension with invalid trailing text', () =>
   });
 
   it('should be found in entity repository', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName)).toBeDefined();
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).metaEdName).toBe(interchangeName);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName)).toBeDefined();
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).metaEdName).toBe(interchangeName);
   });
 
   it('should have namespace', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).namespaceInfo.namespace).toBe(namespace);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).namespaceInfo.namespace).toBe(namespace);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).metaEdId).toBe(interchangeMetaEdId);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).metaEdId).toBe(interchangeMetaEdId);
   });
 
   it('should have one element', () => {
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).elements).toHaveLength(1);
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).elements[0].metaEdName).toBe(interchangeElementName);
-    expect(metaEd.entity.interchangeExtension.get(interchangeName).elements[0].metaEdId).toBe(interchangeElementMetaEdId);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).elements).toHaveLength(1);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).elements[0].metaEdName).toBe(interchangeElementName);
+    expect(getInterchangeExtension(metaEd.entity, interchangeName).elements[0].metaEdId).toBe(interchangeElementMetaEdId);
   });
 
   it('should have no viable alternative error', () => {
@@ -769,78 +771,80 @@ describe('when building single interchange source map', () => {
 
   // ModelBaseSourceMap
   it('should have type', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).sourceMap.type).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).sourceMap.type).toBeDefined();
   });
 
   it('should have documentation', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).sourceMap.documentation).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).sourceMap.documentation).toBeDefined();
   });
 
   it('should have metaEdName', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).sourceMap.metaEdName).toBeDefined();
-    expect(metaEd.entity.interchange.get(interchangeName).sourceMap.metaEdName.tokenText).toBe(interchangeName);
+    expect(getInterchange(metaEd.entity, interchangeName).sourceMap.metaEdName).toBeDefined();
+    // $FlowIgnore - metaEdName could be null
+    expect(getInterchange(metaEd.entity, interchangeName).sourceMap.metaEdName.tokenText).toBe(interchangeName);
   });
 
   it('should have metaEdId', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).sourceMap.metaEdId).toBeDefined();
-    expect(metaEd.entity.interchange.get(interchangeName).sourceMap.metaEdId.tokenText).toBe(`[${interchangeMetaEdId}]`);
+    expect(getInterchange(metaEd.entity, interchangeName).sourceMap.metaEdId).toBeDefined();
+    // $FlowIgnore - metaEdId could be null
+    expect(getInterchange(metaEd.entity, interchangeName).sourceMap.metaEdId.tokenText).toBe(`[${interchangeMetaEdId}]`);
   });
 
   it('should have namespaceInfo', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).sourceMap.namespaceInfo).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).sourceMap.namespaceInfo).toBeDefined();
   });
 
   // InterchangeSourceMap
   it('should have extendedDocumentation', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).sourceMap.extendedDocumentation).toBeDefined();
+    expect(((getInterchange(metaEd.entity, interchangeName).sourceMap: any): InterchangeSourceMap).extendedDocumentation).toBeDefined();
   });
 
   it('should have useCaseDocumentation', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).sourceMap.useCaseDocumentation).toBeDefined();
+    expect(((getInterchange(metaEd.entity, interchangeName).sourceMap: any): InterchangeSourceMap).useCaseDocumentation).toBeDefined();
   });
 
   it('should have one element', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).sourceMap.elements).toHaveLength(1);
+    expect(((getInterchange(metaEd.entity, interchangeName).sourceMap: any): InterchangeSourceMap).elements).toHaveLength(1);
   });
 
   it('should have one identityTemplate', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).sourceMap.identityTemplates).toHaveLength(1);
+    expect(((getInterchange(metaEd.entity, interchangeName).sourceMap: any): InterchangeSourceMap).identityTemplates).toHaveLength(1);
   });
 
   it('should have line, column, text for each property', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).sourceMap).toMatchSnapshot();
+    expect(getInterchange(metaEd.entity, interchangeName).sourceMap).toMatchSnapshot();
   });
 
   // InterchangeItemSourceMap
   it('should have element type', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].sourceMap.type).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).elements[0].sourceMap.type).toBeDefined();
   });
 
   it('should have element metaEdName', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].sourceMap.metaEdName).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).elements[0].sourceMap.metaEdName).toBeDefined();
   });
 
   it('should have element metaEdId', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].sourceMap.metaEdId).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).elements[0].sourceMap.metaEdId).toBeDefined();
   });
 
   it('should have element line, column, text for each property', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).elements[0].sourceMap).toMatchSnapshot();
+    expect(getInterchange(metaEd.entity, interchangeName).elements[0].sourceMap).toMatchSnapshot();
   });
 
   it('should have identityTemplate type', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).identityTemplates[0].sourceMap.type).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).identityTemplates[0].sourceMap.type).toBeDefined();
   });
 
   it('should have identityTemplate metaEdName', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).identityTemplates[0].sourceMap.metaEdName).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).identityTemplates[0].sourceMap.metaEdName).toBeDefined();
   });
 
   it('should have identityTemplate metaEdId', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).identityTemplates[0].sourceMap.metaEdId).toBeDefined();
+    expect(getInterchange(metaEd.entity, interchangeName).identityTemplates[0].sourceMap.metaEdId).toBeDefined();
   });
 
   it('should have identityTemplate line, column, text for each property', () => {
-    expect(metaEd.entity.interchange.get(interchangeName).identityTemplates[0].sourceMap).toMatchSnapshot();
+    expect(getInterchange(metaEd.entity, interchangeName).identityTemplates[0].sourceMap).toMatchSnapshot();
   });
 });

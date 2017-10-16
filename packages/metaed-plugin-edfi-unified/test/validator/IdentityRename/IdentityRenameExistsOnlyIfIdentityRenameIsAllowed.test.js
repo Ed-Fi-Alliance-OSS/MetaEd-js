@@ -6,8 +6,8 @@ import {
   AssociationSubclassBuilder,
   DomainEntityBuilder,
   DomainEntitySubclassBuilder,
-} from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, ValidationFailure } from '../../../../../packages/metaed-core/index';
+} from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, ValidationFailure } from '../../../../metaed-core/index';
 import { validate } from '../../../src/validator/IdentityRename/IdentityRenameExistsOnlyIfIdentityRenameIsAllowed';
 
 describe('when validating association with invalid identity rename property', () => {

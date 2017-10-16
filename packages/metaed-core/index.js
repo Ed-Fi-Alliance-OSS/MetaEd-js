@@ -7,7 +7,7 @@ export { MetaEdTextBuilder } from './test/MetaEdTextBuilder';
 // Functions
 
 export { deepFreeze, deepFreezeAssign, prependIndefiniteArticle } from './src/Utility';
-export { startingFromFileLoadP } from './src/task/Pipeline';
+export { startingFromFileLoadP, build } from './src/task/Pipeline';
 export { createMetaEdFile } from './src/task/MetaEdFile';
 export { loadCoreBufferedFiles, loadExtensionBufferedFiles } from './src/task/BufferFileLoader';
 export { loadFiles } from './src/task/FileSystemFilenameLoader';

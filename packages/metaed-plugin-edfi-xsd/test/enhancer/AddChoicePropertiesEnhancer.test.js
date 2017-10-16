@@ -1,6 +1,6 @@
 // @flow
-import { newMetaEdEnvironment, newAssociation, newChoice, newCommon, newCommonProperty, newChoiceProperty, newDescriptor, newDomainEntity } from '../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, Association, Choice, Common, Descriptor, DomainEntity } from '../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newAssociation, newChoice, newCommon, newCommonProperty, newChoiceProperty, newDescriptor, newDomainEntity } from '../../../metaed-core/index';
+import type { MetaEdEnvironment, Association, Choice, Common, Descriptor, DomainEntity } from '../../../metaed-core/index';
 import { enhance } from '../../src/enhancer/AddChoicePropertiesEnhancer';
 
 describe('when enhancing association with choice', () => {

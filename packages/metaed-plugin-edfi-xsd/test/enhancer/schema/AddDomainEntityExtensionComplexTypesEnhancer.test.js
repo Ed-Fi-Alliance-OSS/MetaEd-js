@@ -8,8 +8,8 @@ import {
   newCommonExtension,
   newCommonProperty,
   newStringProperty,
-} from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, DomainEntityExtension } from '../../../../../packages/metaed-core/index';
+} from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, DomainEntityExtension } from '../../../../metaed-core/index';
 import type { Element } from '../../../src/model/schema/Element';
 import type { ComplexType } from '../../../src/model/schema/ComplexType';
 import { NoComplexType } from '../../../src/model/schema/ComplexType';

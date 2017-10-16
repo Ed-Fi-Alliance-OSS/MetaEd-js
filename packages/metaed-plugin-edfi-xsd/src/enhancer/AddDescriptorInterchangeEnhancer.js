@@ -1,5 +1,6 @@
 // @flow
 import type { MetaEdEnvironment, EnhancerResult, NamespaceInfo, Descriptor } from '../../../metaed-core/index';
+import { addInterchangeItemEdfiXsdTo } from '../model/InterchangeItem';
 import { newInterchangeItem } from '../../../metaed-core/index';
 import { newMergedInterchange } from '../model/MergedInterchange';
 import type { MergedInterchange } from '../model/MergedInterchange';
@@ -40,11 +41,13 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     allDescriptors
       .filter(ad => !ad.namespaceInfo.isExtension || ad.namespaceInfo.namespace === namespaceInfo.namespace)
       .forEach(descriptor => {
-        descriptorInterchange.elements.push(Object.assign(newInterchangeItem(), {
+        const element = Object.assign(newInterchangeItem(), {
           metaEdName: descriptor.data.edfiXsd.xsd_DescriptorName,
           namespaceInfo,
           referencedEntity: descriptor,
-        }));
+        });
+        addInterchangeItemEdfiXsdTo(element);
+        descriptorInterchange.elements.push(element);
       });
 
     if (descriptorInterchange.elements.length > 0) {

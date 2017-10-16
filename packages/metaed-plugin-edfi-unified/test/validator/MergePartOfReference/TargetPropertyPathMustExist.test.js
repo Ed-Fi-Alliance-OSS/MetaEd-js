@@ -7,8 +7,8 @@ import {
   AssociationBuilder,
   AssociationExtensionBuilder,
   AssociationSubclassBuilder,
-} from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, ValidationFailure } from '../../../../../packages/metaed-core/index';
+} from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, ValidationFailure } from '../../../../metaed-core/index';
 import { validate } from '../../../src/validator/MergePartOfReference/TargetPropertyPathMustExist';
 import { CommonBuilder } from '../../../../metaed-core/src/builder/CommonBuilder';
 

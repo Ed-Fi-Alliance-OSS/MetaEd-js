@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
-import { newMetaEdEnvironment, newChoiceProperty, newChoice } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, ChoiceProperty, Choice } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newChoiceProperty, newChoice } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, ChoiceProperty, Choice } from '../../../../metaed-core/index';
 import { enhance } from '../../../src/enhancer/property/ChoiceReferenceEnhancer';
 
 describe('when enhancing choice property', () => {

@@ -1,14 +1,13 @@
 // @flow
 import type { MetaEdEnvironment, EnhancerResult, Interchange, InterchangeItem } from '../../../metaed-core/index';
-import { getEntitiesOfType } from '../../../metaed-core/index';
+import { asTopLevelEntity, getEntity, getEntitiesOfType } from '../../../metaed-core/index';
 import { asInterchange } from '../../../metaed-core/src/model/Interchange';
 
 const enhancerName: string = 'InterchangeBaseItemEnhancer';
 
 function assignReference(metaEd: MetaEdEnvironment, item: InterchangeItem) {
-  // $FlowIgnore - entity lookup by type
-  const referencedEntity = metaEd.entity[item.referencedType].get(item.metaEdName);
-  if (referencedEntity) item.referencedEntity = referencedEntity;
+  const referencedEntity = getEntity(metaEd.entity, item.metaEdName, ...item.referencedType);
+  if (referencedEntity) item.referencedEntity = asTopLevelEntity(referencedEntity);
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {

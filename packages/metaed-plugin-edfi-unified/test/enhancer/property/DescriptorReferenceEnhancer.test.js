@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
-import { newMetaEdEnvironment, newDescriptorProperty, newDescriptor } from '../../../../../packages/metaed-core/index';
-import type { MetaEdEnvironment, DescriptorProperty, Descriptor } from '../../../../../packages/metaed-core/index';
+import { newMetaEdEnvironment, newDescriptorProperty, newDescriptor } from '../../../../metaed-core/index';
+import type { MetaEdEnvironment, DescriptorProperty, Descriptor } from '../../../../metaed-core/index';
 import { enhance } from '../../../src/enhancer/property/DescriptorReferenceEnhancer';
 
 describe('when enhancing descriptor property', () => {

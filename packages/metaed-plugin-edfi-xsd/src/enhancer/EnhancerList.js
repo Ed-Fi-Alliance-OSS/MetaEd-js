@@ -48,6 +48,14 @@ import { enhance as addIntegerSimpleTypesEnhancer } from '../enhancer/schema/Add
 import { enhance as addStringSimpleTypesEnhancer } from '../enhancer/schema/AddStringSimpleTypesEnhancer';
 import { enhance as addSchemaContainerEnhancer } from '../enhancer/schema/AddSchemaContainerEnhancer';
 
+import { enhance as addLookupTypesDiminisher } from '../diminisher/AddLookupTypesDiminisher';
+import { enhance as modifyAppropriateSexOnInterventionStudyToBeMaxOccursTwoDiminisher } from '../diminisher/ModifyAppropriateSexOnInterventionStudyToBeMaxOccursTwoDiminisher';
+import { enhance as modifyDisciplineActionLengthToUseIntegerDiminisher } from '../diminisher/ModifyDisciplineActionLengthToUseIntegerDiminisher';
+import { enhance as modifyEducationContentLearningResourceToInlineSequenceDiminisher } from '../diminisher/ModifyEducationContentLearningResourceToInlineSequenceDiminisher';
+import { enhance as modifyIdentityTypeOrderToMatchLegacyOrderDiminisher } from '../diminisher/ModifyIdentityTypeOrderToMatchLegacyOrderDiminisher';
+import { enhance as modifyOrderOfPriorityToUsePositiveIntegerDiminisher } from '../diminisher/ModifyOrderOfPriorityToUsePositiveIntegerDiminisher';
+import { enhance as modifyStaffCredentialStateOfIssueStateAbbreviationElementNameDiminisher } from '../diminisher/ModifyStaffCredentialStateOfIssueStateAbbreviationElementNameDiminisher';
+import { enhance as modifyTotalInstructionalDaysToUseIntDiminisher } from '../diminisher/ModifyTotalInstructionalDaysToUseIntDiminisher';
 
 export function enhancerList(): Array<Enhancer> {
   return [
@@ -121,6 +129,16 @@ export function enhancerList(): Array<Enhancer> {
     addEnumerationSimpleTypesEnhancer,
     addIntegerSimpleTypesEnhancer,
     addStringSimpleTypesEnhancer,
+
+    // DiminisherPhase
+    addLookupTypesDiminisher,
+    modifyAppropriateSexOnInterventionStudyToBeMaxOccursTwoDiminisher,
+    modifyDisciplineActionLengthToUseIntegerDiminisher,
+    modifyEducationContentLearningResourceToInlineSequenceDiminisher,
+    modifyIdentityTypeOrderToMatchLegacyOrderDiminisher,
+    modifyOrderOfPriorityToUsePositiveIntegerDiminisher,
+    modifyStaffCredentialStateOfIssueStateAbbreviationElementNameDiminisher,
+    modifyTotalInstructionalDaysToUseIntDiminisher,
 
     // SchemaCreationPhase
     addSchemaContainerEnhancer,
