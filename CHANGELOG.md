@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0-experimental.0"></a>
+# [1.1.0-experimental.0](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v1.0.0-dev.5...v1.1.0-experimental.0) (2017-10-17)
+
+
+
 <a name="1.1.0-dev.0"></a>
 # [1.1.0-dev.0](https://github.com/tbmeador-dlp/MetaEd-js/compare/v1.0.0-dev.5...v1.1.0-dev.0) (2017-08-30)
 
