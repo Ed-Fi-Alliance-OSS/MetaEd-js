@@ -28,9 +28,13 @@ describe('when generating xsd and comparing it to data standard 2.0 authoritativ
   const complexTypeNames: Array<string> = [];
   const simpleTypeNames: Array<string> = [];
   let coreResult: GeneratedOutput;
-  let fileBaseName: string;
-  let authoritativeXsd: string;
-  let generatedXsd: string;
+  let schemaResult: GeneratedOutput;
+  let coreFileBaseName: string;
+  let schemaFileBaseName: string;
+  let authoritativeCoreXsd: string;
+  let authoritativeSchemaXsd: string;
+  let generatedCoreXsd: string;
+  let generatedSchemaXsd: string;
 
   beforeAll(async () => {
     const state: State = Object.assign(newState(), {
@@ -64,25 +68,38 @@ describe('when generating xsd and comparing it to data standard 2.0 authoritativ
         simpleTypeNames.push(section.sectionAnnotation.documentation, ...section.simpleTypes.map(y => y.name));
       }));
 
-    coreResult = R.head(R.head(endState.generatorResults).generatedOutput);
-    fileBaseName = path.basename(coreResult.fileName, '.xsd');
-    generatedXsd = `${outputDirectory}/${fileBaseName}.xsd`;
-    authoritativeXsd = `${artifactPath}/${fileBaseName}-Authoritative.xsd`;
+    coreResult = R.head(R.head(endState.generatorResults.filter(x => x.generatorName === 'XsdGenerator')).generatedOutput);
+    coreFileBaseName = path.basename(coreResult.fileName, '.xsd');
+    generatedCoreXsd = `${outputDirectory}/${coreFileBaseName}.xsd`;
+    authoritativeCoreXsd = `${artifactPath}/${coreFileBaseName}-Authoritative.xsd`;
 
-    await ffs.writeFile(generatedXsd, coreResult.resultString, 'utf-8');
+    await ffs.writeFile(generatedCoreXsd, coreResult.resultString, 'utf-8');
+
+    schemaResult = R.head(R.head(endState.generatorResults.filter(x => x.generatorName === 'SchemaAnnotationGenerator')).generatedOutput);
+    schemaFileBaseName = path.basename(schemaResult.fileName, '.xsd');
+    generatedSchemaXsd = `${outputDirectory}/${schemaFileBaseName}.xsd`;
+    authoritativeSchemaXsd = `${artifactPath}/${schemaFileBaseName}-Authoritative.xsd`;
+
+    await ffs.writeFile(generatedSchemaXsd, schemaResult.resultString, 'utf-8');
   });
 
-  it('should have no differences', async () => {
-    const gitCommand: string = `git diff --shortstat --no-index -- ${authoritativeXsd} ${generatedXsd}`;
+  it('should have core with no differences', async () => {
+    const gitCommand: string = `git diff --shortstat --no-index -- ${authoritativeCoreXsd} ${generatedCoreXsd}`;
+    const result: string = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    expect(result).toMatchSnapshot();
+  });
+
+  it('should have schema annotation with no differences', async () => {
+    const gitCommand: string = `git diff --shortstat --no-index -- ${authoritativeSchemaXsd} ${generatedSchemaXsd}`;
     const result: string = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
     expect(result).toMatchSnapshot();
   });
 
   it('should create diff files', async () => {
     const cssFile: string = `${nodeModulesPath}/diff2html/dist/diff2html.min.css`;
-    const htmlFile: string = `${outputDirectory}/${fileBaseName}.html`;
-    const diffFile: string = `${outputDirectory}/${fileBaseName}.diff`;
-    const gitDiffToFile: string = `git diff --no-index -- ${authoritativeXsd} ${generatedXsd} > ${diffFile}`;
+    const htmlFile: string = `${outputDirectory}/${coreFileBaseName}.html`;
+    const diffFile: string = `${outputDirectory}/${coreFileBaseName}.diff`;
+    const gitDiffToFile: string = `git diff --no-index -- ${authoritativeCoreXsd} ${generatedCoreXsd} > ${diffFile}`;
 
     await new Promise(resolve => exec(gitDiffToFile, () => resolve()))
       .then(() => ffs.readFile(diffFile))

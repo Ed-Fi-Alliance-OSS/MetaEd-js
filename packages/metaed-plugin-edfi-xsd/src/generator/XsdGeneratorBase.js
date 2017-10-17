@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
 import handlebars from 'handlebars';
-import prettifyXml from 'prettify-xml';
+import { html as Beautify } from 'js-beautify';
 import fs from 'fs';
 import path from 'path';
 import semverLib from 'semver';
@@ -9,16 +9,6 @@ import type { SemVer } from '../../../metaed-core/index';
 
 // Handlebars instance scoped for this plugin
 export const xsdHandlebars = handlebars.create();
-
-const prettify = R.flip(prettifyXml)({ indent: 2, newline: '\n' });
-const collapseXsd = R.compose(R.replace(/>\s</g, '><'), R.replace(/\s\s+/g, ' '));
-// const collapseXsd = R.compose(R.replace(/\s+(?=name|type|minOccurs|maxOccurs)/g, ' '), R.replace(/>\s+</g, '><'), R.replace(/[ ] +/gm, ''));
-
-// Modifications to align with authoritative xsd
-const fixEmptyDocumentation = R.replace(/<xs:documentation>\s+<\/xs:documentation>/g, '<xs:documentation></xs:documentation>');
-const removeElementWhiteSpace = R.compose(R.replace(/"\/>/g, '" />'), R.replace(/\s+>/g, '>'));
-const removeDoubleQuotes = R.replace(/""/g, '"');
-const alignXsd = R.compose(fixEmptyDocumentation, removeElementWhiteSpace, removeDoubleQuotes);
 
 function templateString(templateName: string) {
   return fs.readFileSync(path.join(__dirname, 'templates', `${templateName}.hbs`)).toString();
@@ -49,12 +39,23 @@ export const registerPartials = R.once(
     });
   });
 
+const EOL = '\n';
+const beautify = R.flip(Beautify)({
+  indent_size: 2,
+  eol: EOL,
+  end_with_newline: true,
+  content_unformatted: ['xs:documentation'],
+});
+const removeDoubleQuotes = R.replace(new RegExp(/""/g), '"');
+const removeEmptyLines = R.replace(new RegExp(`${EOL}${EOL}+`, 'g'), EOL);
+export const formatXml = R.compose(removeEmptyLines, removeDoubleQuotes, beautify);
+
 export function formatAndPrependHeader(xsdBody: string): string {
   const completeXsd = template().xsdWithHeader({
     xsdBody,
     copyrightYear: new Date().getFullYear(),
   });
-  return R.compose(alignXsd, prettify, collapseXsd)(completeXsd);
+  return formatXml(completeXsd);
 }
 
 export function formatVersionForSchema(version: SemVer): string {

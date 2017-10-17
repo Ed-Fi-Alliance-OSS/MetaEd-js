@@ -437,8 +437,13 @@ Array [
 ]
 `;
 
+<<<<<<< HEAD
 exports[`when generating xsd and comparing it to data standard 2.0 authoritative artifacts should have core with no differences 1`] = `
+" 1 file changed, 88 insertions(+), 366 deletions(-)
+=======
+exports[`when generating xsd and comparing it to data standard 2.0 authoritative artifacts should have no differences 1`] = `
 " 1 file changed, 6 insertions(+), 1 deletion(-)
+>>>>>>> xsd-integration
 "
 `;
 

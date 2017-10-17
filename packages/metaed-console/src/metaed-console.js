@@ -14,7 +14,7 @@ const argv = require('yargs')
   .alias('x', 'ext')
   .nargs('x', 1)
   .describe('x', 'The base path where extension MetaEd files will be loaded from. If provided, the directory must currently exist.')
-  .demand(['e', 'x'])
+  .demand(['e'])
   .help('h')
   .alias('h', 'help')
   .argv;
@@ -29,25 +29,28 @@ const logger = new Logger({
 });
 logger.cli();
 
-logger.info(`Executing MetaEd Console on core ${path.resolve(__dirname, argv.edfi)} and extension ${argv.ext}.`);
+logger.info(`Executing MetaEd Console on core ${argv.edfi}${argv.ext ? ` and extension ${argv.ext}.` : ''}`);
 logger.info('');
 
 const state: State = Object.assign(newState(), {
   inputDirectories: [
     {
-      path: path.resolve(__dirname, argv.edfi),
+      path: argv.edfi,
       namespace: 'edfi',
       projectExtension: '',
       isExtension: false,
     },
-    {
-      path: argv.ext,
-      namespace: 'extension',
-      projectExtension: 'EXTENSION',
-      isExtension: true,
-    },
   ],
 });
+
+if (argv.ext && state.inputDirectories) {
+  state.inputDirectories.push({
+    path: argv.ext,
+    namespace: 'extension',
+    projectExtension: 'EXTENSION',
+    isExtension: true,
+  });
+}
 
 const endState: State = build(state);
 

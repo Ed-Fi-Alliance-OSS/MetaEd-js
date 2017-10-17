@@ -19,8 +19,13 @@ export function execute(state: State): State {
   winston.info(`Output directory: ${outputDirectory}`);
   ffs.rmdirRecursiveSync(outputDirectory);
   ffs.mkdirRecursiveSync(outputDirectory);
-  if (ffs.exists(outputDirectory)) {
-    R.head(state.generatorResults).generatedOutput.map(x => ffs.writeFileSync(`${outputDirectory}/${x.fileName}`, x.resultString, 'utf-8'));
+  if (ffs.existsSync(outputDirectory)) {
+    state.generatorResults.forEach(result => {
+      result.generatedOutput.forEach(output => {
+        if (!ffs.existsSync(`${outputDirectory}/${output.folderName}`)) ffs.mkdirRecursiveSync(`${outputDirectory}/${output.folderName}`);
+        ffs.writeFileSync(`${outputDirectory}/${output.folderName}/${output.fileName}`, output.resultString, 'utf-8');
+      });
+    });
   }
   return state;
 }

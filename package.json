@@ -12,7 +12,7 @@
     "chalk": "^2.1.0",
     "final-fs": "^1.6.1",
     "handlebars": "^4.0.10",
-    "prettify-xml": "^1.2.0",
+    "js-beautify": "^1.7.4",
     "ramda": "^0.24.1",
     "semver": "^5.4.1",
     "sugar": "^2.0.4",
@@ -59,6 +59,8 @@
     ]
   },
   "scripts": {
+    "metaed": "node ./dist/metaed-commands/index.js",
+    "me": "node ./dist/metaed-commands/index.js",
     "test": "jest",
     "test:coverage": "rimraf coverage/ && jest --coverage",
     "test:watch": "jest --watch",
