@@ -26,7 +26,8 @@ export function execute(state: State): void {
     state.generatorResults.forEach(result => {
       result.generatedOutput.forEach(output => {
         if (!ffs.existsSync(`${outputDirectory}/${output.folderName}`)) ffs.mkdirRecursiveSync(`${outputDirectory}/${output.folderName}`);
-        ffs.writeFileSync(`${outputDirectory}/${output.folderName}/${output.fileName}`, output.resultString, 'utf-8');
+        if (output.resultString) ffs.writeFileSync(`${outputDirectory}/${output.folderName}/${output.fileName}`, output.resultString, 'utf-8');
+        else if (output.resultStream) ffs.writeFileSync(`${outputDirectory}/${output.folderName}/${output.fileName}`, output.resultStream);
       });
     });
   }
