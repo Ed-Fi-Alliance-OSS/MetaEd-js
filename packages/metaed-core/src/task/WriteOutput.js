@@ -6,6 +6,15 @@ import type { State } from '../State';
 
 winston.cli();
 
+function writeOutputFiles(result, outputDirectory) {
+  result.generatedOutput.forEach(output => {
+    if (!ffs.existsSync(`${outputDirectory}/${output.folderName}`)) ffs.mkdirRecursiveSync(`${outputDirectory}/${output.folderName}`);
+    if (output.resultString) ffs.writeFileSync(`${outputDirectory}/${output.folderName}/${output.fileName}`, output.resultString, 'utf-8');
+    else if (output.resultStream) ffs.writeFileSync(`${outputDirectory}/${output.folderName}/${output.fileName}`, output.resultStream);
+    else winston.info(`No output stream or string for ${result.name}`);
+  });
+}
+
 export function execute(state: State): void {
   let outputDirectory: string = '';
   if (state.outputDirectory) {
@@ -24,11 +33,14 @@ export function execute(state: State): void {
   ffs.mkdirRecursiveSync(outputDirectory);
   if (ffs.existsSync(outputDirectory)) {
     state.generatorResults.forEach(result => {
-      result.generatedOutput.forEach(output => {
-        if (!ffs.existsSync(`${outputDirectory}/${output.folderName}`)) ffs.mkdirRecursiveSync(`${outputDirectory}/${output.folderName}`);
-        if (output.resultString) ffs.writeFileSync(`${outputDirectory}/${output.folderName}/${output.fileName}`, output.resultString, 'utf-8');
-        else if (output.resultStream) ffs.writeFileSync(`${outputDirectory}/${output.folderName}/${output.fileName}`, output.resultStream);
-      });
+      // if (result is a Promise)
+      if (result.then) {
+        winston.info('Resolving Promise:');
+        // $FlowIgnore - flow was expecting a GeneratorResults not a promise
+        result.then((resolvedResult) => {
+          writeOutputFiles(resolvedResult, outputDirectory);
+        });
+      } else writeOutputFiles(result, outputDirectory);
     });
   }
 }
