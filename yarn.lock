@@ -202,6 +202,14 @@ array-slice@^1.0.0:
   version "1.1.0"
   resolved "https://www.myget.org/F/ed-fi/npm/array-slice/-/array-slice-1.1.0.tgz#e368ea15f89bc7069f7ffb89aec3a6c7d4ac22d4"
 
+array-sort@^1.0.0:
+  version "1.0.0"
+  resolved "https://www.myget.org/F/ed-fi/npm/array-sort/-/array-sort-1.0.0.tgz#e4c05356453f56f53512a7d1d6123f2c54c0a88a"
+  dependencies:
+    default-compare "^1.0.0"
+    get-value "^2.0.6"
+    kind-of "^5.0.2"
+
 array-union@^1.0.1:
   version "1.0.2"
   resolved "https://www.myget.org/F/ed-fi/npm/array-union/-/array-union-1.0.2.tgz#9a34410e4f4e3da23dea375be5be70f24778ec39"
@@ -1581,6 +1589,12 @@ deep-is@~0.1.3:
   version "0.1.3"
   resolved "https://www.myget.org/F/ed-fi/npm/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
 
+default-compare@^1.0.0:
+  version "1.0.0"
+  resolved "https://www.myget.org/F/ed-fi/npm/default-compare/-/default-compare-1.0.0.tgz#cb61131844ad84d84788fb68fd01681ca7781a2f"
+  dependencies:
+    kind-of "^5.0.2"
+
 default-require-extensions@^1.0.0:
   version "1.0.0"
   resolved "https://www.myget.org/F/ed-fi/npm/default-require-extensions/-/default-require-extensions-1.0.0.tgz#f37ea15d3e13ffd9b437d33e1a75b5fb97874cb8"
@@ -2530,6 +2544,10 @@ get-stdin@^4.0.1:
 get-stream@^3.0.0:
   version "3.0.0"
   resolved "https://www.myget.org/F/ed-fi/npm/get-stream/-/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"
+
+get-value@^2.0.6:
+  version "2.0.6"
+  resolved "https://www.myget.org/F/ed-fi/npm/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
 
 getpass@^0.1.1:
   version "0.1.7"
@@ -4045,6 +4063,10 @@ kind-of@^4.0.0:
   resolved "https://www.myget.org/F/ed-fi/npm/kind-of/-/kind-of-4.0.0.tgz#20813df3d712928b207378691a45066fae72dd57"
   dependencies:
     is-buffer "^1.1.5"
+
+kind-of@^5.0.2:
+  version "5.1.0"
+  resolved "https://www.myget.org/F/ed-fi/npm/kind-of/-/kind-of-5.1.0.tgz#729c91e2d857b7a419a1f9aa65685c4c33f5845d"
 
 klaw@^1.0.0:
   version "1.3.1"
