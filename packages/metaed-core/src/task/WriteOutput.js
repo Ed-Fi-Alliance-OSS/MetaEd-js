@@ -3,15 +3,16 @@ import ffs from 'final-fs';
 import path from 'path';
 import winston from 'winston';
 import type { State } from '../State';
+import type { GeneratorResult } from '../generator/GeneratorResult';
 
 winston.cli();
 
-function writeOutputFiles(result, outputDirectory) {
+function writeOutputFiles(result: GeneratorResult, outputDirectory: string) {
   result.generatedOutput.forEach(output => {
     if (!ffs.existsSync(`${outputDirectory}/${output.folderName}`)) ffs.mkdirRecursiveSync(`${outputDirectory}/${output.folderName}`);
     if (output.resultString) ffs.writeFileSync(`${outputDirectory}/${output.folderName}/${output.fileName}`, output.resultString, 'utf-8');
     else if (output.resultStream) ffs.writeFileSync(`${outputDirectory}/${output.folderName}/${output.fileName}`, output.resultStream);
-    else winston.info(`No output stream or string for ${result.name}`);
+    else winston.info(`No output stream or string for ${result.generatorName}`);
   });
 }
 
