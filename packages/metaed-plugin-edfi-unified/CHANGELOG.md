@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.1-dev.19"></a>
+## [1.1.1-dev.19](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v1.1.1-dev.18...v1.1.1-dev.19) (2017-12-11)
+
+
+
+
+**Note:** Version bump only for package metaed-plugin-edfi-unified
+
 <a name="1.1.1-dev.18"></a>
 ## [1.1.1-dev.18](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v1.1.1-dev.16...v1.1.1-dev.18) (2017-12-11)
 
