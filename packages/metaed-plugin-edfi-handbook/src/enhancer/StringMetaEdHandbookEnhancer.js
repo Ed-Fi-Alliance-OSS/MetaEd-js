@@ -9,7 +9,7 @@ import { createDefaultHandbookEntry } from './SimpleTypeMetaEdHandbookEnhancerBa
 import type { HandbookEntry } from '../model/HandbookEntry';
 import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
-const enhancerName = 'DecimalMetaEdHandbookEnhancer';
+const enhancerName = 'StringMetaEdHandbookEnhancer';
 
 function getTypeCharacteristsFor(entity: StringType): Array<string> {
   const results = [];
