@@ -1,0 +1,426 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>MetaEd Handbook</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.css" />
+    <!-- oprions: github, default, mono-blue, rainbow, atom-one-light -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.js"></script>
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-highlightjs/0.6.2/angular-highlightjs.min.js"></script>
+<script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+
+    // Examples here:
+    // http://highlightjs.readthedocs.io/en/latest/language-guide.html
+    // https://github.com/isagalaev/highlight.js/tree/master/src/languages
+    // Based off the SQL one located: https://github.com/isagalaev/highlight.js/blob/master/src/languages/sql.js
+    hljs.registerLanguage("edfisqlsnippet", function (e) {
+        // var COMMENT_MODE = hljs.COMMENT('--', '$');
+        var t = e.C("--", "$");
+        return {
+            // case_insensitive: true,
+            cI: !0,
+            // illegal:
+            i: /[<> {}*#]/,
+            // contains:
+            c: [{
+                // beginKeywords:
+                k: "edfi begin end start commit rollback savepoint lock alter create drop rename call delete do handler insert load replace select truncate update set show pragma grant merge describe use explain help declare prepare execute deallocate release unlock purge reset change stop analyze cache flush optimize repair kill install uninstall checksum restore check backup revoke",
+                // end: /;/
+                e: /;/,
+                // endsWithParent: true,
+                eW: !0,
+                // lexemes: /[\w\.]+/,
+                l: /[\w\.]+/,
+                // keywords:
+                k: {
+                    keyword: "primary abort abs absolute acc acce accep accept access accessed accessible account acos action activate add addtime admin administer advanced advise aes_decrypt aes_encrypt after agent aggregate ali alia alias allocate allow alter always analyze ancillary and any anydata anydataset anyschema anytype apply archive archived archivelog are as asc ascii asin assembly assertion associate asynchronous at atan atn2 attr attri attrib attribu attribut attribute attributes audit authenticated authentication authid authors auto autoallocate autodblink autoextend automatic availability avg backup badfile basicfile before begin beginning benchmark between bfile bfile_base big bigfile bin binary_double binary_float binlog bit_and bit_count bit_length bit_or bit_xor bitmap blob_base block blocksize body both bound buffer_cache buffer_pool build bulk by byte byteordermark bytes cache caching call calling cancel capacity cascade cascaded case cast catalog category ceil ceiling chain change changed char_base char_length character_length characters characterset charindex charset charsetform charsetid check checksum checksum_agg child choose chr chunk class cleanup clear client clob clob_base clone close cluster_id cluster_probability cluster_set clustering coalesce coercibility col collate collation collect colu colum column column_value columns columns_updated comment commit compact compatibility compiled complete composite_limit compound compress compute concat concat_ws concurrent confirm conn connec connect connect_by_iscycle connect_by_isleaf connect_by_root connect_time connection consider consistent constant constraint constraints constructor container content contents context contributors controlfile conv convert convert_tz corr corr_k corr_s corresponding corruption cos cost count count_big counted covar_pop covar_samp cpu_per_call cpu_per_session crc32 create creation critical cross cube cume_dist curdate current current_date current_time current_timestamp current_user cursor curtime customdatum cycle data database databases datafile datafiles datalength date_add date_cache date_format date_sub dateadd datediff datefromparts datename datepart datetime2fromparts day day_to_second dayname dayofmonth dayofweek dayofyear days db_role_change dbtimezone ddl deallocate declare decode decompose decrement decrypt deduplicate def defa defau defaul default defaults deferred defi defin define degrees delayed delegate delete delete_all delimited demand dense_rank depth dequeue des_decrypt des_encrypt des_key_file desc descr descri describ describe descriptor deterministic diagnostics difference dimension direct_load directory disable disable_all disallow disassociate discardfile disconnect diskgroup distinct distinctrow distribute distributed div do document domain dotnet double downgrade drop dumpfile duplicate duration each edition editionable editions element ellipsis else elsif elt empty enable enable_all enclosed encode encoding encrypt end end-exec endian enforced engine engines enqueue enterprise entityescaping eomonth error errors escaped evalname evaluate event eventdata events except exception exceptions exchange exclude excluding execu execut execute exempt exists exit exp expire explain export export_set extended extent external external_1 external_2 externally extract failed failed_login_attempts failover failure far fast feature_set feature_value fetch field fields file file_name_convert filesystem_like_logging final finish first first_value fixed flash_cache flashback floor flush following follows for forall force form forma format found found_rows freelist freelists freepools fresh from from_base64 from_days ftp full function general generated get get_format get_lock getdate getutcdate global global_name globally go goto grant grants greatest group group_concat group_id grouping grouping_id groups gtid_subtract guarantee guard handler hash hashkeys having hea head headi headin heading heap help hex hierarchy high high_priority hosts hour http ident_current ident_incr ident_seed identified identity idle_time if ifnull ignore iif ilike ilm immediate import in include including increment index indexes indexing indextype indicator indices inet6_aton inet6_ntoa inet_aton inet_ntoa infile initial initialized initially initrans inmemory inner innodb input insert install instance instantiable instr interface interleaved intersect into invalidate invisible is is_free_lock is_ipv4 is_ipv4_compat is_not is_not_null is_used_lock isdate isnull isolation iterate java join json json_exists keep keep_duplicates key keys kill language large last last_day last_insert_id last_value lax lcase lead leading least leaves left len lenght length less level levels library like like2 like4 likec limit lines link list listagg little ln load load_file lob lobs local localtime localtimestamp locate locator lock locked log log10 log2 logfile logfiles logging logical logical_reads_per_call logoff logon logs long loop low low_priority lower lpad lrtrim ltrim main make_set makedate maketime managed management manual map mapping mask master master_pos_wait match matched materialized max maxextents maximize maxinstances maxlen maxlogfiles maxloghistory maxlogmembers maxsize maxtrans md5 measures median medium member memcompress memory merge microsecond mid migration min minextents minimum mining minus minute minvalue missing mod mode model modification modify module monitoring month months mount move movement multiset mutex name name_const names nan national native natural nav nchar nclob nested never new newline next nextval no no_write_to_binlog noarchivelog noaudit nobadfile nocheck nocompress nocopy nocycle nodelay nodiscardfile noentityescaping noguarantee nokeep nologfile nomapping nomaxvalue nominimize nominvalue nomonitoring none noneditionable nonschema noorder nopr nopro noprom nopromp noprompt norely noresetlogs noreverse normal norowdependencies noschemacheck noswitch not nothing notice notrim novalidate now nowait nth_value nullif nulls num numb numbe nvarchar nvarchar2 object ocicoll ocidate ocidatetime ociduration ociinterval ociloblocator ocinumber ociref ocirefcursor ocirowid ocistring ocitype oct octet_length of off offline offset oid oidindex old on online only opaque open operations operator optimal optimize option optionally or oracle oracle_date oradata ord ordaudio orddicom orddoc order ordimage ordinality ordvideo organization orlany orlvary out outer outfile outline output over overflow overriding package pad parallel parallel_enable parameters parent parse partial partition partitions pascal passing password password_grace_time password_lock_time password_reuse_max password_reuse_time password_verify_function patch path patindex pctincrease pctthreshold pctused pctversion percent percent_rank percentile_cont percentile_disc performance period period_add period_diff permanent physical pi pipe pipelined pivot pluggable plugin policy position post_transaction pow power pragma prebuilt precedes preceding precision prediction prediction_cost prediction_details prediction_probability prediction_set prepare present preserve prior priority private private_sga privileges procedural procedure procedure_analyze processlist profiles project prompt protection public publishingservername purge quarter query quick quiesce quota quotename radians raise rand range rank raw read reads readsize rebuild record records recover recovery recursive recycle redo reduced ref reference referenced references referencing refresh regexp_like register regr_avgx regr_avgy regr_count regr_intercept regr_r2 regr_slope regr_sxx regr_sxy reject rekey relational relative relaylog release release_lock relies_on relocate rely rem remainder rename repair repeat replace replicate replication required reset resetlogs resize resource respect restore restricted result result_cache resumable resume retention return returning returns reuse reverse revoke right rlike role roles rollback rolling rollup round row row_count rowdependencies rowid rownum rows rtrim rules safe salt sample save savepoint sb1 sb2 sb4 scan schema schemacheck scn scope scroll sdo_georaster sdo_topo_geometry search sec_to_time second section securefile security seed segment select self sequence sequential serializable server servererror session session_user sessions_per_user set sets settings sha sha1 sha2 share shared shared_pool short show shrink shutdown si_averagecolor si_colorhistogram si_featurelist si_positionalcolor si_stillimage si_texture siblings sid sign sin size size_t sizes skip slave sleep smalldatetimefromparts smallfile snapshot some soname sort soundex source space sparse spfile split sql sql_big_result sql_buffer_result sql_cache sql_calc_found_rows sql_small_result sql_variant_property sqlcode sqldata sqlerror sqlname sqlstate sqrt square standalone standby start starting startup statement static statistics stats_binomial_test stats_crosstab stats_ks_test stats_mode stats_mw_test stats_one_way_anova stats_t_test_ stats_t_test_indep stats_t_test_one stats_t_test_paired stats_wsr_test status std stddev stddev_pop stddev_samp stdev stop storage store stored str str_to_date straight_join strcmp strict string struct stuff style subdate subpartition subpartitions substitutable substr substring subtime subtring_index subtype success sum suspend switch switchoffset switchover sync synchronous synonym sys sys_xmlagg sysasm sysaux sysdate sysdatetimeoffset sysdba sysoper system system_user sysutcdatetime table tables tablespace tan tdo template temporary terminated tertiary_weights test than then thread through tier ties time time_format time_zone timediff timefromparts timeout timestamp timestampadd timestampdiff timezone_abbr timezone_minute timezone_region to to_base64 to_date to_days to_seconds todatetimeoffset trace tracking transaction transactional translate translation treat trigger trigger_nestlevel triggers trim truncate try_cast try_convert try_parse type ub1 ub2 ub4 ucase unarchived unbounded uncompress under undo unhex unicode uniform uninstall union unique unix_timestamp unknown unlimited unlock unpivot unrecoverable unsafe unsigned until untrusted unusable unused update updated upgrade upped upper upsert url urowid usable usage use use_stored_outlines user user_data user_resources users using utc_date utc_timestamp uuid uuid_short validate validate_password_strength validation valist value values var var_samp varcharc vari varia variab variabl variable variables variance varp varraw varrawc varray verify version versions view virtual visible void wait wallet warning warnings week weekday weekofyear wellformed when whene whenev wheneve whenever where while whitespace with within without work wrapped xdb xml xmlagg xmlattributes xmlcast xmlcolattval xmlelement xmlexists xmlforest xmlindex xmlnamespaces xmlpi xmlquery xmlroot xmlschema xmlserialize xmltable xmltype xor year year_to_month years yearweek",
+                    literal: "true false null",
+                    built_in: "uniqueidentifier datetime nvarchar array bigint binary bit blob boolean char character date dec decimal float int int8 integer interval number numeric real record serial serial8 smallint text varchar varying void"
+                },
+                // contains: [
+                c: [
+                    // className:, begin:, end:, contains:
+                    { cN: "string", b: "'", e: "'", c: [e.BE, { b: "''" }] },
+                    { cN: "string", b: '"', e: '"', c: [e.BE, { b: '""' }] },
+                    { cN: "string", b: "`", e: "`", c: [e.BE] },
+                    { cN: "type", b: "edfi.", e: "\n", c: [e.BE] },
+
+                    //hljs.C_NUMBER_MODE, hljs.C_BLOCK_COMMENT_MODE, COMMENT_MODE
+                    e.CNM, e.CBCM, t]
+            }
+            , e.CBCM, t]
+        }
+    }
+);
+    //console.log(hljs.listLanguages());
+</script>
+
+<style type="text/css">
+        html,body,.container {
+            height:100%;
+        }
+
+        .navbar-brand {
+            padding: 0;
+        }
+        .navbar-brand-text {
+            padding-top: 15px;
+        }
+        .navbar-default {
+            background-color: #fff;
+            border-bottom: 1px solid #cacaca;
+            background-image: none;
+        }
+
+        .container {
+            display: table;
+            width: 100%;
+            margin-top: -20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .header {
+            height: 48px;
+            border-bottom: 1px solid #cacaca;
+            overflow: hidden;
+        }
+
+        .ed-fi-logo {
+            display: inline-block;
+            background-image: url('http://www.ed-fi.org/assets/2013/03/ed-fi-alliance-logo-white-bg-400x400-for-social.png');
+            background-size: 100px 100px;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: 68px -27px;
+            width: 96px;
+            height: 50px;
+            margin:0;
+        }
+
+        .row {
+            height: 100%;
+            display: table-row;
+        }
+
+        .row .no-float {
+          display: table-cell;
+          float: none;
+        }
+
+        .sidebar-container {
+            padding-top: 15px;
+            padding-bottom: 118px;
+            vertical-align: top;
+            padding-right: 0;
+            background-color: #f5f5f5;
+            border-right: 1px solid #cacaca;
+        }
+
+        .sidebar {
+          height:100%;
+          width:100%;
+          overflow-y:auto;
+          overflow-x:hidden;
+          background-color: #f5f5f5;
+        }
+
+        .sidebar a {
+           position:relative;
+            width:250px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            display:inline-block;
+        }
+
+        .search {
+            padding-right: 15px;
+        }
+
+        a {
+            text-decoration: underline;
+        }
+        .nav > li > a.menu {
+            padding: 5px 15px;
+            text-decoration: underline;
+        }
+
+        .nav > li > a.active,
+        .nav > li > a.menu:active,
+        .nav > li > a.menu:focus {
+          color: #fff;
+          background-color: #428bca;
+        }
+
+        .nav > li > a.menu:hover {
+            color: #fff;
+          background-color: #77BFFD;
+        }
+
+        .inline-header {
+            display: inline-block;
+            vertical-align: baseline;
+        }
+
+        .filterCount {
+            color: #cacaca;
+        }
+        .ui-select-multiple.ui-select-bootstrap input.ui-select-search {
+            height: 27px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var app = angular.module('app', ['ngRoute', 'ui.select', 'hljs']);
+
+        app.config(function($routeProvider) {
+            $routeProvider
+                .when('/',
+                {
+                    controller: 'detailController',
+                    controllerAs: 'ctrl',
+                    template: "{ detailTemplate }" //This gets replaced with injected data from the generator.
+                })
+                .when('/:entityUniqueId',
+                {
+                    controller: 'detailController',
+                    controllerAs: 'ctrl',
+                    template: "{ detailTemplate }" //This gets replaced with injected data from the generator.
+                }).otherwise({ redirectTo: '/' });
+        });
+
+        app.filter('byNameOrId',
+            function() {
+                return function(entries, filter) {
+                    // If no filter applied then return all.
+                    if (!filter)
+                        return entries;
+
+                    var out = [];
+
+                    angular.forEach(entries,
+                        function (value, key) {
+                            if (value.EdFiId) {
+                                if (value.Name.toLowerCase().indexOf(filter.toLowerCase()) !== -1 ||
+                                    value.EdFiId.toLowerCase().indexOf(filter.toLowerCase()) !== -1)
+                                    out.push(value);
+                            } else {
+                                if (value.Name.toLowerCase().indexOf(filter.toLowerCase()) !== -1)
+                                    out.push(value);
+                            }
+                        });
+                    return out;
+                };
+            });
+
+        app.filter('trueFalseToYesNo', function () {
+            return function (text, length, end) {
+                if (text) {
+                    return 'Yes';
+                }
+                return 'No';
+            }
+        });
+
+        app.filter('highlight', function($sce) {
+            return function(text, phrase) {
+                if (phrase)
+                    text = text.replace(new RegExp('(' + phrase + ')', 'gi'), '<b>$1</b>');
+
+                return $sce.trustAsHtml(text);
+            }
+        });
+
+        app.filter('byEntityType', function () {
+            return function (items, filter) {
+
+                // If no filters then return everything.
+                if (filter.length === 0)
+                    return items;
+
+                var out = [];
+
+                angular.forEach(items, function (value, key) {
+                    if (filter.indexOf(value.EntityType) > -1) {
+                        out.push(value);
+                    }
+                });
+
+                return out;
+            };
+        });
+
+        app.service('dataService', function() {
+            return {
+                get: function () {
+                    return { JSONData }; //This gets replaced with injected data from the generator.
+                }
+            };
+        });
+
+        app.factory('sharedContext', function () {
+            return {
+                // Callback to be set by consuming controller
+                selectEntityCallback: function(entity) {},
+                selectEntity: function(entity) {
+                    this.selectEntityCallback(entity);
+                },
+                resetSearchCallback: function () { },
+                resetSearch: function() {
+                    this.resetSearchCallback();
+                }
+            };
+        });
+
+        app.controller('indexController', function (sharedContext, dataService, $routeParams, $timeout, $scope, $location) {
+            var ctrl = this;
+            ctrl.selectedEntityTypes = ["Domain Entity"];
+            ctrl.entityFilterTypes = ["Association", "Descriptor", "Domain Entity", "Enumeration"];
+
+            ctrl.entries = dataService.get();
+
+            // By default select the first one in the list.
+            ctrl.selected = ctrl.entries[0];
+
+            ctrl.selecteEntity = function(entity) {
+                ctrl.selected = entity;
+                // Scroll the pane to the selected item.
+                var entityUniqueId = entity.UniqueIdentifier;
+                var item = angular.element(document.querySelector('#entity' + entityUniqueId));
+                var sidebarContent = angular.element(document.querySelector('#sidebarContent'));
+                var itemOffset = item.offset();
+                if (itemOffset)
+                    sidebarContent.scrollTop(itemOffset.top - sidebarContent.offset().top + sidebarContent.scrollTop());
+            }
+
+            ctrl.resetSearch = function() {
+                ctrl.selectedEntityTypes = [];
+                ctrl.search = "";
+            };
+
+            sharedContext.selectEntityCallback = ctrl.selecteEntity;
+            sharedContext.resetSearchCallback = ctrl.resetSearch;
+
+            ctrl.toggleSidebar = function() {
+                var sidebar = angular.element(document.querySelector('#sidebar'));
+                var menuButtonIcon = angular.element(document.querySelector('#menuToggleIcon'));
+                if (sidebar.hasClass('hidden')) {
+                    sidebar.removeClass('hidden');
+                    menuButtonIcon.removeClass('glyphicon-chevron-right');
+                    menuButtonIcon.addClass('glyphicon-chevron-left');
+                }
+                else {
+                    sidebar.addClass('hidden');
+                    menuButtonIcon.removeClass('glyphicon-chevron-left');
+                    menuButtonIcon.addClass('glyphicon-chevron-right');
+                }
+            }
+
+            $scope.$watch('ctrl.selectedEntityTypes',
+                function() {
+                    $timeout(function() {
+                        var filteredItems = $scope.$eval("ctrl.entries | byNameOrId:ctrl.search | byEntityType:ctrl.selectedEntityTypes");
+                        var entity = filteredItems.find(function(element) {
+                            return element.UniqueIdentifier === ctrl.selected.UniqueIdentifier;
+                        });
+                        if (!entity)
+                            entity = filteredItems[0];
+
+                        ctrl.selecteEntity(entity);
+                        $location.path('/' + entity.UniqueIdentifier);
+                    });
+                });
+        });
+
+        app.controller('detailController', function (sharedContext, $routeParams, dataService) {
+            var ctrl = this;
+
+            ctrl.entries = dataService.get();
+
+            // By default select the first entity
+            ctrl.selected = ctrl.entries[0];
+
+            var entityUniqueId = $routeParams.entityUniqueId;
+
+            ctrl.entityExists = function (entityUniqueIdentifier) {
+                if (ctrl.findEntity(entityUniqueIdentifier))
+                    return true;
+                return false;
+            }
+
+            ctrl.findEntity = function (entityUniqueIdentifier) {
+                for (var i = 0; i < ctrl.entries.length; i++)
+                    if (ctrl.entries[i].UniqueIdentifier === entityUniqueIdentifier)
+                        return ctrl.entries[i];
+                return undefined;
+            }
+
+            ctrl.resetSearch = function() {
+                sharedContext.resetSearch();
+            }
+
+            if (entityUniqueId) {
+                ctrl.selected = ctrl.findEntity(entityUniqueId);
+                sharedContext.selectEntity(ctrl.selected);
+            }
+        });
+    </script>
+</head>
+<body ng-app="app" ng-controller="indexController as ctrl">
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="navbar-header">
+        <form class="navbar-form navbar-left">
+            <button class="btn btn-default" ng-click="ctrl.toggleSidebar()" title="Menu collapse toggle"><span id="menuToggleIcon" class="glyphicon glyphicon-chevron-left"></span></button>
+        </form>
+        <span class="navbar-text ed-fi-logo"></span>
+        <span class="navbar-text">Ed-Fi Data Handbook</span>
+
+    </div><!-- /.navbar-collapse -->
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div id="sidebar" class="col-md-2 col-sm-2 col-xs-2 no-float sidebar-container">
+            <div class="form-group search">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                    <input type="text" class="form-control" placeholder="Search by name" ng-model="ctrl.search">
+                </div>
+            </div>
+            <div class="form-group search">
+                <ui-select multiple ng-model="ctrl.selectedEntityTypes" theme="bootstrap" close-on-select="true" title="Choose an entity type">
+                    <ui-select-match placeholder="Filter by Entity Type">{{$item}}</ui-select-match>
+                    <ui-select-choices repeat="et in ctrl.entityFilterTypes | filter:$select.search">
+                        {{et}}
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <span class="filterCount">[Displaying {{filteredResults.length}} of {{ctrl.entries.length}}]</span>
+            <div id="sidebarContent" class="sidebar">
+                <ul class="nav nav-sidebar">
+                    <li ng-repeat="entry in ctrl.entries | byNameOrId:ctrl.search | byEntityType:ctrl.selectedEntityTypes as filteredResults">
+                        <a id="entity{{entry.UniqueIdentifier}}" ng-click="ctrl.selecteEntity(entry)" href="#/{{entry.UniqueIdentifier}}" class="menu" ng-class="{active: (ctrl.selected.UniqueIdentifier) == (entry.UniqueIdentifier)}" title="{{entry.EdFiId}} - {{entry.Name}}" ng-bind-html="entry.Name | highlight:ctrl.search"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <ng-view />
+
+    </div>
+</div>
+
+</body>
+</html>

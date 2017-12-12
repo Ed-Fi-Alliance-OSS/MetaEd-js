@@ -1,0 +1,58 @@
+﻿<div class="col-md-10 col-sm-10 col-xs-1 no-float">
+    <h1 class="page-header">{{ctrl.selected.Name}}</h1>
+    <h3 class="inline-header">Entity Type: {{ctrl.selected.EntityType}}</h3>
+    <p ng-if="ctrl.selected.EdFiId">Ed-Fi ID: {{ctrl.selected.EdFiId}}</p>
+    <h3>Definition</h3>
+    <p>{{ctrl.selected.Definition}}</p>
+    <div ng-if="ctrl.selected.TypeCharacteristics.length>0">
+        <h3>Type Characteristics:</h3>
+        <div>
+            <ul>
+                <li ng-repeat="t in ctrl.selected.TypeCharacteristics">{{t}}</li>
+            </ul>
+        </div>
+    </div>
+    <div ng-if="ctrl.selected.OptionList.length>0">
+        <h3>Option List</h3>
+        <div>
+            <ul>
+                <li ng-repeat="o in ctrl.selected.OptionList">{{o}}</li>
+            </ul>
+        </div>
+    </div>
+    <h3 ng-if="ctrl.selected.ModelReferencesExist">References</h3>
+    <div ng-if="ctrl.selected.ModelReferencesContains.length>0" class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr><th>Property</th><th>Datatype</th><th>Identity</th><th>Cardinality</th><th>Definition</th></tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="r in ctrl.selected.ModelReferencesContainsProperties">
+                <td ng-if="!ctrl.entityExists(r.ReferenceUniqueIdentifier)" title="{{r.EdFiId}} - {{r.Name}}">{{r.Name}}</td>
+                <td ng-if="ctrl.entityExists(r.ReferenceUniqueIdentifier)">
+                    <a href="#/{{r.ReferenceUniqueIdentifier}}" ng-click="ctrl.resetSearch()"  title="{{r.EdFiId}} - {{r.Name}}">{{r.Name}}</a>
+                </td>
+
+                <td>{{r.DataType}}</td>
+                <td>{{r.IsIdentity | trueFalseToYesNo}}</td>
+                <td>{{r.Cardinality}}</td>
+                <td>{{r.Definition}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-if="ctrl.selected.ModelReferencesUsedBy.length>0">
+        <h4>Used By</h4>
+        <ul>
+            <li ng-repeat="rub in ctrl.selected.ModelReferencesUsedBy">{{rub}}</li>
+        </ul>
+    </div>
+    <div ng-if="ctrl.selected.XsdFragment">
+        <h3>XSD</h3>
+        <div hljs hljs-source="ctrl.selected.XsdFragment" hljs-language="xml"></div>
+    </div>
+    <div ng-if="ctrl.selected.OdsFragment">
+        <h3>SQL Snippet</h3>
+        <div ng-repeat="x in ctrl.selected.OdsFragment track by $index" hljs hljs-source="x" hljs-language="edfisqlsnippet"></div>
+    </div>
+</div>
