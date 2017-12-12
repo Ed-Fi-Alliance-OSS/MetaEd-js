@@ -11,7 +11,7 @@ import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 const enhancerName = 'EnumerationMetaEdHandbookEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const results: Array<HandbookEntry> = Array.from(metaEd.entity.enumeration.values()).map(entity => createDefaultHandbookEntry(entity, 'Enumeration'));
+  const results: Array<HandbookEntry> = Array.from(metaEd.entity.enumeration.values()).map(entity => createDefaultHandbookEntry(entity, 'Enumeration', metaEd));
   (((metaEd.plugin.get('edfiHandbook'): any): PluginEnvironment).entity: EdfiHandbookRepository).handbookEntries.push(...results);
 
   return {

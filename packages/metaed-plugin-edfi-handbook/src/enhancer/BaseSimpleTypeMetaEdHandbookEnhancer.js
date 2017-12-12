@@ -14,10 +14,10 @@ function generatedTableSqlFor(property: SimpleType): Array<string> {
 }
 
 function getTemplateString(templateName: string): string {
-  return fs.readFileSync(path.join(__dirname, './template/', templateName), 'utf8');
+  return fs.readFileSync(path.join(__dirname, './template/', `${templateName}.hbs`), 'utf8');
 }
 
-const getSimpleTypeTemplate = ramda.memoize(() => handlbars.compile(getTemplateString('simpleType')));
+const getSimpleTypeTemplate = ramda.once(() => handlbars.compile(getTemplateString('simpleType')));
 
 function generatedXsdFor(entity: SimpleType): string {
   const template = getSimpleTypeTemplate();

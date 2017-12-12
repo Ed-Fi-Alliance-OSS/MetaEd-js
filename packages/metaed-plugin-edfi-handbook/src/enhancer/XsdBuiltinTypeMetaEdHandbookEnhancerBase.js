@@ -2,7 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import ramda from 'ramda';
-import handlbars from 'handlebars';
+import handlebars from 'handlebars';
 import { newComplexType, newAnnotation } from 'metaed-plugin-edfi-xsd';
 import type { ComplexType } from 'metaed-plugin-edfi-xsd';
 import type { EntityProperty } from 'metaed-core';
@@ -40,10 +40,18 @@ function generatedTableSqlFor(property: EntityProperty): Array<string> {
 }
 
 function getTemplateString(templateName: string): string {
-  return fs.readFileSync(path.join(__dirname, './template/', templateName), 'utf8');
+  return fs.readFileSync(path.join(__dirname, './template/', `${templateName}.hbs`), 'utf8');
 }
 
-const getComplexTypeTemplate = ramda.memoize(() => handlbars.compile(getTemplateString('complexType')));
+const registerPartials = ramda.once(
+  () => {
+    handlebars.registerPartial({
+      complexTypeItem: getTemplateString('complexTypeItem'),
+      annotation: getTemplateString('annotation'),
+    });
+  });
+
+const getComplexTypeTemplate = ramda.once(() => handlebars.compile(getTemplateString('complexType')));
 
 function calculateMinOccurs(property: EntityProperty, minOccursOverride: string): string {
   return minOccursOverride || (property.isOptional || property.isOptionalCollection) ? '0' : '';
@@ -67,6 +75,7 @@ function createXsdElementFromProperty(property: EntityProperty, minOccursOverrid
 }
 
 function generatedXsdFor(property: EntityProperty): string {
+  registerPartials();
   const element: ComplexType = createXsdElementFromProperty(property);
   const template = getComplexTypeTemplate();
   return template(element);

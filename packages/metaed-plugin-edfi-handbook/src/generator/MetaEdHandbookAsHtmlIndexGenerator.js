@@ -1,4 +1,5 @@
 // @flow
+import path from 'path';
 import fs from 'fs';
 import type { MetaEdEnvironment, GeneratorResult, GeneratedOutput, PluginEnvironment } from 'metaed-core';
 import type { HandbookEntry } from '../model/HandbookEntry';
@@ -7,8 +8,12 @@ import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
 export function generate(metaEd: MetaEdEnvironment): GeneratorResult {
   const handbookEntries: Array<HandbookEntry> = (((metaEd.plugin.get('edfiHandbook'): any): PluginEnvironment).entity: EdfiHandbookRepository).handbookEntries;
-  const detail: string = fs.readFileSync('./template/MetaEdHandbookAsHtmlSPADetail.html', 'utf8');
-  const index: string = fs.readFileSync('./template/MetaEdHandbookAsHtmlSPAIndex.html', 'utf8').replace('{ JSONData }', handbookEntries.toString()).replace('{ detailTemplate }', detail);
+  let detail: string = fs.readFileSync(path.join(__dirname, './template/MetaEdHandbookAsHtmlSPADetail.html'), 'utf8');
+  detail = detail.replace(/\n/g, ' ');
+  detail = detail.replace(/>\s+</g, '><');
+  detail = detail.replace(/\s{2,}/g, ' ');
+  detail = detail.replace(/"/g, '\'');
+  const index: string = fs.readFileSync(path.join(__dirname, './template/MetaEdHandbookAsHtmlSPAIndex.html'), 'utf8').replace(/\{ JSONData \}/g, JSON.stringify(handbookEntries)).replace(/\{ detailTemplate \}/g, detail);
 
   const results: Array<GeneratedOutput> = [];
   results.push({

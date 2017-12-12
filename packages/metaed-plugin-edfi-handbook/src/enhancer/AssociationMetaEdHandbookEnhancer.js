@@ -11,7 +11,7 @@ import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 const enhancerName = 'AssociationMetaEdHandbookEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const results: Array<HandbookEntry> = Array.from(metaEd.entity.association.values()).map(association => createDefaultHandbookEntry(association, 'Association'));
+  const results: Array<HandbookEntry> = Array.from(metaEd.entity.association.values()).map(association => createDefaultHandbookEntry(association, 'Association', metaEd));
   (((metaEd.plugin.get('edfiHandbook'): any): PluginEnvironment).entity: EdfiHandbookRepository).handbookEntries.push(...results);
 
   return {

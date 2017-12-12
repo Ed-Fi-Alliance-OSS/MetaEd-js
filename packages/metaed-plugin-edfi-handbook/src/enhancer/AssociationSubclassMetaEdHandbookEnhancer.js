@@ -13,7 +13,7 @@ const enhancerName = 'AssociationSubclassMetaEdHandbookEnhancer';
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const results: Array<HandbookEntry> = Array.from(metaEd.entity.association.values())
   .map(association =>
-    Object.assign(createDefaultHandbookEntry(association, 'Association Subclass'), { entityType: `Association Subclass extending ${association.baseEntityName}` }));
+    Object.assign(createDefaultHandbookEntry(association, 'Association Subclass', metaEd), { entityType: `Association Subclass extending ${association.baseEntityName}` }));
 
   (((metaEd.plugin.get('edfiHandbook'): any): PluginEnvironment).entity: EdfiHandbookRepository).handbookEntries.push(...results);
 

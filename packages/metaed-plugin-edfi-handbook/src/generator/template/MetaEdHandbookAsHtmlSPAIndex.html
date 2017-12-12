@@ -212,12 +212,12 @@
 
                     angular.forEach(entries,
                         function (value, key) {
-                            if (value.EdFiId) {
-                                if (value.Name.toLowerCase().indexOf(filter.toLowerCase()) !== -1 ||
-                                    value.EdFiId.toLowerCase().indexOf(filter.toLowerCase()) !== -1)
+                            if (value.edFiId) {
+                                if (value.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1 ||
+                                    value.edFiId.toLowerCase().indexOf(filter.toLowerCase()) !== -1)
                                     out.push(value);
                             } else {
-                                if (value.Name.toLowerCase().indexOf(filter.toLowerCase()) !== -1)
+                                if (value.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1)
                                     out.push(value);
                             }
                         });
@@ -253,7 +253,7 @@
                 var out = [];
 
                 angular.forEach(items, function (value, key) {
-                    if (filter.indexOf(value.EntityType) > -1) {
+                    if (filter.indexOf(value.entityType) > -1) {
                         out.push(value);
                     }
                 });
@@ -297,7 +297,7 @@
             ctrl.selecteEntity = function(entity) {
                 ctrl.selected = entity;
                 // Scroll the pane to the selected item.
-                var entityUniqueId = entity.UniqueIdentifier;
+                var entityUniqueId = entity.uniqueIdentifier;
                 var item = angular.element(document.querySelector('#entity' + entityUniqueId));
                 var sidebarContent = angular.element(document.querySelector('#sidebarContent'));
                 var itemOffset = item.offset();
@@ -333,13 +333,13 @@
                     $timeout(function() {
                         var filteredItems = $scope.$eval("ctrl.entries | byNameOrId:ctrl.search | byEntityType:ctrl.selectedEntityTypes");
                         var entity = filteredItems.find(function(element) {
-                            return element.UniqueIdentifier === ctrl.selected.UniqueIdentifier;
+                            return element.uniqueIdentifier === ctrl.selected.uniqueIdentifier;
                         });
                         if (!entity)
                             entity = filteredItems[0];
 
                         ctrl.selecteEntity(entity);
-                        $location.path('/' + entity.UniqueIdentifier);
+                        $location.path('/' + entity.uniqueIdentifier);
                     });
                 });
         });
@@ -362,7 +362,7 @@
 
             ctrl.findEntity = function (entityUniqueIdentifier) {
                 for (var i = 0; i < ctrl.entries.length; i++)
-                    if (ctrl.entries[i].UniqueIdentifier === entityUniqueIdentifier)
+                    if (ctrl.entries[i].uniqueIdentifier === entityUniqueIdentifier)
                         return ctrl.entries[i];
                 return undefined;
             }
@@ -411,7 +411,7 @@
             <div id="sidebarContent" class="sidebar">
                 <ul class="nav nav-sidebar">
                     <li ng-repeat="entry in ctrl.entries | byNameOrId:ctrl.search | byEntityType:ctrl.selectedEntityTypes as filteredResults">
-                        <a id="entity{{entry.UniqueIdentifier}}" ng-click="ctrl.selecteEntity(entry)" href="#/{{entry.UniqueIdentifier}}" class="menu" ng-class="{active: (ctrl.selected.UniqueIdentifier) == (entry.UniqueIdentifier)}" title="{{entry.EdFiId}} - {{entry.Name}}" ng-bind-html="entry.Name | highlight:ctrl.search"></a>
+                        <a id="entity{{entry.uniqueIdentifier}}" ng-click="ctrl.selecteEntity(entry)" href="#/{{entry.uniqueIdentifier}}" class="menu" ng-class="{active: (ctrl.selected.uniqueIdentifier) == (entry.uniqueIdentifier)}" title="{{entry.edFiId}} - {{entry.name}}" ng-bind-html="entry.name | highlight:ctrl.search"></a>
                     </li>
                 </ul>
             </div>

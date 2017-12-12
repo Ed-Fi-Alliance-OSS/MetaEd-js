@@ -1,0 +1,13 @@
+<xs:annotation>
+  <xs:documentation>{{{documentation}}}</xs:documentation>
+  {{#if hasAppInfo}}
+  <xs:appinfo>
+    {{#if hasTypeGroup}}
+    <ann:TypeGroup>{{{typeGroup}}}</ann:TypeGroup>
+    {{/if}}
+    {{#if hasDescriptorName}}
+    <ann:Descriptor>{{{descriptorName}}}</ann:Descriptor>
+    {{/if}}
+  </xs:appinfo>
+  {{/if}}
+</xs:annotation>
