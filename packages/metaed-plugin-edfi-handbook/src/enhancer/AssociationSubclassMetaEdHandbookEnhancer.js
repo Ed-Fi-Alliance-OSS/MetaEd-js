@@ -11,7 +11,7 @@ import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 const enhancerName = 'AssociationSubclassMetaEdHandbookEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const results: Array<HandbookEntry> = Array.from(metaEd.entity.association.values())
+  const results: Array<HandbookEntry> = Array.from(metaEd.entity.associationSubclass.values())
   .map(association =>
     Object.assign(createDefaultHandbookEntry(association, 'Association Subclass', metaEd), { entityType: `Association Subclass extending ${association.baseEntityName}` }));
 

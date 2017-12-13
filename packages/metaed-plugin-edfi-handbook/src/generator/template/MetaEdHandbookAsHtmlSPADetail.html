@@ -20,7 +20,7 @@
             </ul>
         </div>
     </div>
-    <h3 ng-if="ctrl.selected.ModelReferencesExist">References</h3>
+    <h3 ng-if="ctrl.selected.modelReferencesContains.length>0">References</h3>
     <div ng-if="ctrl.selected.modelReferencesContains.length>0" class="table-responsive">
         <table class="table table-striped table-bordered table-hover">
             <thead>

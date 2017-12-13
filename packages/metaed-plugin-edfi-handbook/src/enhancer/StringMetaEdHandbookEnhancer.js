@@ -21,7 +21,7 @@ function getTypeCharacteristsFor(entity: StringType): Array<string> {
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const results: Array<HandbookEntry> = Array.from(metaEd.entity.stringType.values()).map(entity =>
-    Object.assign(createDefaultHandbookEntry(entity, 'Decimal Type'), { typeCharacteristics: getTypeCharacteristsFor(entity) }));
+    Object.assign(createDefaultHandbookEntry(entity, 'String Type', metaEd), { typeCharacteristics: getTypeCharacteristsFor(entity) }));
 
   (((metaEd.plugin.get('edfiHandbook'): any): PluginEnvironment).entity: EdfiHandbookRepository).handbookEntries.push(...results);
 

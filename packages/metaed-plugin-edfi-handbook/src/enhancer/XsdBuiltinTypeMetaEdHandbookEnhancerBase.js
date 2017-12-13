@@ -29,14 +29,15 @@ function parentNameAndPropertyCardinality(property: EntityProperty): string {
 
 function getPropertyName(property: EntityProperty): string {
   const nameRuleExeptions = ['BeginDate', 'AsOfDate', 'EndDate'];
-  if (nameRuleExeptions.includes(property.metaEdName)) return `${property.metaEdName} ( ${property.parentEntity.metaEdName} )`;
+  if (nameRuleExeptions.includes(property.metaEdName)) return `${property.metaEdName} (${property.parentEntity.metaEdName})`;
   return property.metaEdName;
 }
 
 // TODO: finish once ods is up and running.
 // eslint-disable-next-line
 function generatedTableSqlFor(property: EntityProperty): Array<string> {
-  return [];
+  // $FlowIgnore
+  return null;
 }
 
 function getTemplateString(templateName: string): string {

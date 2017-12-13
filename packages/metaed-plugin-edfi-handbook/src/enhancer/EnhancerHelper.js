@@ -1,5 +1,6 @@
 // @flow
-import type { MetaEdEnvironment, EntityProperty } from 'metaed-core';
+import type { MetaEdEnvironment, EntityProperty, ReferentialProperty } from 'metaed-core';
+import { asReferentialProperty } from 'metaed-core';
 
 export function getAllProperties(metaEd: MetaEdEnvironment): Array<EntityProperty> {
   const results: Array<EntityProperty> = [];
@@ -16,6 +17,10 @@ export function getAllProperties(metaEd: MetaEdEnvironment): Array<EntityPropert
   metaEd.entity.domainEntitySubclass.forEach(item => results.push(...item.properties));
   metaEd.entity.enumeration.forEach(item => results.push(...item.properties));
   metaEd.entity.mapTypeEnumeration.forEach(item => results.push(...item.properties));
-  metaEd.entity.subdomain.forEach(item => results.push(...item.properties));
   return results;
+}
+
+export function getAllReferentialProperties(metaEd: MetaEdEnvironment): Array<ReferentialProperty> {
+  const allProperties: Array<EntityProperty> = getAllProperties(metaEd);
+  return ((allProperties.filter((x) => asReferentialProperty(x).referencedEntity): any): Array<ReferentialProperty>);
 }

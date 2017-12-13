@@ -10,7 +10,8 @@ import { newHandbookEntry } from '../model/HandbookEntry';
 // TODO: finish once ods is up and running.
 // eslint-disable-next-line
 function generatedTableSqlFor(property: SimpleType): Array<string> {
-  return [];
+  // $FlowIgnore
+  return null;
 }
 
 function getTemplateString(templateName: string): string {

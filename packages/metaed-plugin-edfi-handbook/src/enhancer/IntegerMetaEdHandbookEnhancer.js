@@ -21,7 +21,7 @@ function getTypeCharacteristsFor(entity: IntegerType): Array<string> {
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const results: Array<HandbookEntry> = Array.from(metaEd.entity.integerType.values()).map(entity =>
-    Object.assign(createDefaultHandbookEntry(entity, ''),
+    Object.assign(createDefaultHandbookEntry(entity, '', metaEd),
       {
         entityType: entity.isShort ? 'ShortType' : 'IntegerType',
         typeCharacteristics: getTypeCharacteristsFor(entity),
