@@ -19,11 +19,11 @@ function getTemplateString(templateName: string): string {
   return fs.readFileSync(path.join(__dirname, './template/', `${templateName}.hbs`), 'utf8');
 }
 
-const getSimpleTypeTemplate: () => string = ramda.memoize(() => handlbars.compile(getTemplateString('simpleType')));
+const getSimpleTypeTemplate: () => (any) => string = ramda.memoize(() => handlbars.compile(getTemplateString('simpleType')));
 
 function generatedXsdFor(entity: ModelBase): string {
   if (!entity.data.edfiXsd.xsd_SimpleType) return '';
-  const template: string = getSimpleTypeTemplate();
+  const template: (any) => string = getSimpleTypeTemplate();
   return template(entity.data.edfiXsd.xsd_SimpleType);
 }
 

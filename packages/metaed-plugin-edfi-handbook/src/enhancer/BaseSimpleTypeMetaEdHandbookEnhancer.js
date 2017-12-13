@@ -18,10 +18,10 @@ function getTemplateString(templateName: string): string {
   return fs.readFileSync(path.join(__dirname, './template/', `${templateName}.hbs`), 'utf8');
 }
 
-const getSimpleTypeTemplate: () => () => string = ramda.once(() => handlbars.compile(getTemplateString('simpleType')));
+const getSimpleTypeTemplate: () => (any) => string = ramda.once(() => handlbars.compile(getTemplateString('simpleType')));
 
 function generatedXsdFor(entity: SimpleType): string {
-  const template: () => string = getSimpleTypeTemplate();
+  const template: (any) => string = getSimpleTypeTemplate();
   return template(entity);
 }
 

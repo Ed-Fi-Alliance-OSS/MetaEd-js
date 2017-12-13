@@ -25,7 +25,7 @@ export function getAllReferentialProperties(metaEd: MetaEdEnvironment): Array<Re
   return ((allProperties.filter((x) => asReferentialProperty(x).referencedEntity): any): Array<ReferentialProperty>);
 }
 
-export function getAllEntities(metaEd: MetaEdEnvironment) {
+export function getAllEntities(metaEd: MetaEdEnvironment): Array<ModelBase> {
   const results: Array<ModelBase> = [];
   if (metaEd) {
     results.push(...metaEd.entity.association.values());
