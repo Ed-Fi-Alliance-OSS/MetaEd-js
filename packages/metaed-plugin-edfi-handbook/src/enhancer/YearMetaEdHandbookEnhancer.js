@@ -8,7 +8,7 @@ import { createDefaultHandbookEntry } from './XsdBuiltinTypeMetaEdHandbookEnhanc
 import type { HandbookEntry } from '../model/HandbookEntry';
 import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
-const enhancerName = 'YearMetaEdHandbookEnhancer';
+const enhancerName: string = 'YearMetaEdHandbookEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const results: Array<HandbookEntry> = metaEd.propertyIndex.year.map(property => createDefaultHandbookEntry(property, 'Year Type'));

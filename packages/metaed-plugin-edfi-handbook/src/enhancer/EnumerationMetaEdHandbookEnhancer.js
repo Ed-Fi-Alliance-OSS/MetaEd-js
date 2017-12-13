@@ -8,7 +8,7 @@ import { createDefaultHandbookEntry } from './TopLevelEntityMetaEdHandbookEnhanc
 import type { HandbookEntry } from '../model/HandbookEntry';
 import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
-const enhancerName = 'EnumerationMetaEdHandbookEnhancer';
+const enhancerName: string = 'EnumerationMetaEdHandbookEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const enumerationResults: Array<HandbookEntry> = Array.from(metaEd.entity.enumeration.values()).map(entity => createDefaultHandbookEntry(entity, 'Enumeration', metaEd));

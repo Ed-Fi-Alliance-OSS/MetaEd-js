@@ -8,7 +8,7 @@ import { createDefaultHandbookEntry } from './TopLevelEntityMetaEdHandbookEnhanc
 import type { HandbookEntry } from '../model/HandbookEntry';
 import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
-const enhancerName = 'DomainEntitySubclassMetaEdHandbookEnhancer';
+const enhancerName: string = 'DomainEntitySubclassMetaEdHandbookEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const results: Array<HandbookEntry> = Array.from(metaEd.entity.domainEntitySubclass.values()).map(entity =>

@@ -8,7 +8,7 @@ import { createDefaultHandbookEntry } from './XsdBuiltinTypeMetaEdHandbookEnhanc
 import type { HandbookEntry } from '../model/HandbookEntry';
 import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
-const enhancerName = 'TimeMetaEdHandbookEnhancer';
+const enhancerName: string = 'TimeMetaEdHandbookEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const results: Array<HandbookEntry> = metaEd.propertyIndex.time.map(property => createDefaultHandbookEntry(property, 'Time Type'));

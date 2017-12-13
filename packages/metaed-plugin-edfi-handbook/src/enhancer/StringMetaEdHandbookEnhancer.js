@@ -9,13 +9,12 @@ import { createDefaultHandbookEntry } from './SimpleTypeMetaEdHandbookEnhancerBa
 import type { HandbookEntry } from '../model/HandbookEntry';
 import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
-const enhancerName = 'StringMetaEdHandbookEnhancer';
+const enhancerName: string = 'StringMetaEdHandbookEnhancer';
 
 function getTypeCharacteristsFor(entity: StringType): Array<string> {
-  const results = [];
+  const results: Array<string> = [];
   if (entity.minLength) results.push(`min length: ${entity.minLength}`);
   if (entity.maxLength) results.push(`max length: ${entity.maxLength}`);
-
   return results;
 }
 

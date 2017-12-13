@@ -9,10 +9,10 @@ import { createDefaultHandbookEntry } from './SimpleTypeMetaEdHandbookEnhancerBa
 import type { HandbookEntry } from '../model/HandbookEntry';
 import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
-const enhancerName = 'DecimalMetaEdHandbookEnhancer';
+const enhancerName: string = 'DecimalMetaEdHandbookEnhancer';
 
 function getTypeCharacteristsFor(entity: DecimalType): Array<string> {
-  const results = [];
+  const results: Array<string> = [];
   if (entity.totalDigits) results.push(`total digits: ${entity.totalDigits}`);
   if (entity.decimalPlaces) results.push(`decimal places: ${entity.decimalPlaces}`);
 

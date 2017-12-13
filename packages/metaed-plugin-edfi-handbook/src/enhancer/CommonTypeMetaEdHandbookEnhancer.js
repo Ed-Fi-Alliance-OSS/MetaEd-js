@@ -9,7 +9,7 @@ import { createDefaultHandbookEntry } from './TopLevelEntityMetaEdHandbookEnhanc
 import type { HandbookEntry } from '../model/HandbookEntry';
 import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
-const enhancerName = 'CommonMetaEdHandbookEnhancer';
+const enhancerName: string = 'CommonMetaEdHandbookEnhancer';
 
 function notInlineCommon(entity: Common): boolean {
   return !entity.inlineInOds;

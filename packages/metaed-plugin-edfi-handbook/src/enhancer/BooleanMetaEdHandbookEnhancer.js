@@ -8,7 +8,7 @@ import { createDefaultHandbookEntry } from './XsdBuiltinTypeMetaEdHandbookEnhanc
 import type { HandbookEntry } from '../model/HandbookEntry';
 import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
-const enhancerName = 'BooleanMetaEdHandbookEnhancer';
+const enhancerName: string = 'BooleanMetaEdHandbookEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const results: Array<HandbookEntry> = metaEd.propertyIndex.boolean.map(property => createDefaultHandbookEntry(property, 'Boolean Type'));

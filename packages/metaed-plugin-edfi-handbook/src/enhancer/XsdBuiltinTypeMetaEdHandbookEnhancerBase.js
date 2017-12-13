@@ -28,7 +28,7 @@ function parentNameAndPropertyCardinality(property: EntityProperty): string {
 }
 
 function getPropertyName(property: EntityProperty): string {
-  const nameRuleExeptions = ['BeginDate', 'AsOfDate', 'EndDate'];
+  const nameRuleExeptions: Array<string> = ['BeginDate', 'AsOfDate', 'EndDate'];
   if (nameRuleExeptions.includes(property.metaEdName)) return `${property.metaEdName} (${property.parentEntity.metaEdName})`;
   return property.metaEdName;
 }
@@ -44,7 +44,7 @@ function getTemplateString(templateName: string): string {
   return fs.readFileSync(path.join(__dirname, './template/', `${templateName}.hbs`), 'utf8');
 }
 
-const registerPartials = ramda.once(
+const registerPartials: () => void = ramda.once(
   () => {
     handlebars.registerPartial({
       complexTypeItem: getTemplateString('complexTypeItem'),
@@ -52,7 +52,7 @@ const registerPartials = ramda.once(
     });
   });
 
-const getComplexTypeTemplate = ramda.once(() => handlebars.compile(getTemplateString('complexType')));
+const getComplexTypeTemplate: () => ()=> string = ramda.once(() => handlebars.compile(getTemplateString('complexType')));
 
 function calculateMinOccurs(property: EntityProperty, minOccursOverride: string): string {
   return minOccursOverride || (property.isOptional || property.isOptionalCollection) ? '0' : '';
@@ -78,7 +78,7 @@ function createXsdElementFromProperty(property: EntityProperty, minOccursOverrid
 function generatedXsdFor(property: EntityProperty): string {
   registerPartials();
   const element: ComplexType = createXsdElementFromProperty(property);
-  const template = getComplexTypeTemplate();
+  const template: (any) => string = getComplexTypeTemplate();
   return template(element);
 }
 
