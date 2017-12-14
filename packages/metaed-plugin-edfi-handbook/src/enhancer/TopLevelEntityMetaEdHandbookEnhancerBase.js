@@ -6,9 +6,10 @@ import path from 'path';
 import ramda from 'ramda';
 import handlebars from 'handlebars';
 import type { TopLevelEntity, EntityProperty, Enumeration, ReferentialProperty, Descriptor, MetaEdEnvironment, ModelBase } from 'metaed-core';
+import { getAllEntities } from 'metaed-core';
 import type { HandbookEntry, HandbookEntityReferenceProperty } from '../model/HandbookEntry';
 import { newHandbookEntry } from '../model/HandbookEntry';
-import { getAllReferentialProperties, getAllEntities } from './EnhancerHelper';
+import { getAllReferentialProperties } from './EnhancerHelper';
 
 function generateUniqueId(entity: TopLevelEntity): string {
   return entity.metaEdName + entity.metaEdId;
@@ -96,10 +97,10 @@ function getReferenceUniqueIdentifier(allEntities: Array<ModelBase>, property: E
   // 1) First deal with reference enties that are matching.
   if (findEntityByUniqueId(allEntities, uniqueIdCandidate)) return uniqueIdCandidate;
 
-  // Seach to see if we find one in top level entities.
-  const referencialProperty: ReferentialProperty = ((property: any): ReferentialProperty);
-  if (referencialProperty.referencedEntity) {
-    const referencedEntity = referencialProperty.referencedEntity;
+  // Search to see if we find one in top level entities.
+  const referentialProperty: ReferentialProperty = ((property: any): ReferentialProperty);
+  if (referentialProperty.referencedEntity) {
+    const referencedEntity = referentialProperty.referencedEntity;
     const uniqueIdReferenced: string = referencedEntity.metaEdName + referencedEntity.metaEdId;
     if (findEntityByUniqueId(allEntities, uniqueIdReferenced)) return uniqueIdReferenced;
   }
@@ -141,7 +142,7 @@ function referringProperties(allReferentialProperties: Array<ReferentialProperty
 }
 
 export function createDefaultHandbookEntry(entity: TopLevelEntity, entityTypeName: string, metaEd: MetaEdEnvironment): HandbookEntry {
-  const allEntities: Array<ModelBase> = getAllEntities(metaEd);
+  const allEntities: Array<ModelBase> = getAllEntities(metaEd.entity);
   const allReferentialProperties: Array<ReferentialProperty> = getAllReferentialProperties(metaEd);
   return Object.assign(newHandbookEntry(), {
     definition: entity.documentation,

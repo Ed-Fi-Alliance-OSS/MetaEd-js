@@ -6,7 +6,7 @@ import type { HandbookEntry } from '../model/HandbookEntry';
 import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
 
-export function generate(metaEd: MetaEdEnvironment): GeneratorResult {
+export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const handbookEntries: Array<HandbookEntry> = (((metaEd.plugin.get('edfiHandbook'): any): PluginEnvironment).entity: EdfiHandbookRepository).handbookEntries;
   let detail: string = fs.readFileSync(path.join(__dirname, './template/MetaEdHandbookAsHtmlSPADetail.html'), 'utf8');
   detail = detail.replace(/\n/g, ' ');

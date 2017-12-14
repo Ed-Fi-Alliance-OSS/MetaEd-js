@@ -30,6 +30,7 @@ export { newComplexType } from './model/schema/ComplexType';
 export { newAnnotation } from './model/schema/Annotation';
 export { newDecimalSimpleType } from './model/schema/DecimalSimpleType';
 export { newStringSimpleType } from './model/schema/StringSimpleType';
+export { createCurrencySimpleType, createPercentSimpleType, createTimeIntervalSimpleType } from './enhancer/schema/BaseSimpleTypeCreator';
 
 export function initialize(): MetaEdPlugin {
   return {

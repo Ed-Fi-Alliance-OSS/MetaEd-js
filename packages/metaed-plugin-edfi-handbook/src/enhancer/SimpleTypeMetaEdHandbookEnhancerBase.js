@@ -11,8 +11,7 @@ import { getAllReferentialProperties } from './EnhancerHelper';
 // TODO: finish once ods is up and running.
 // eslint-disable-next-line
 function generatedTableSqlFor(property: ModelBase): Array<string> {
-  // $FlowIgnore
-  return null;
+  return [];
 }
 
 function getTemplateString(templateName: string): string {

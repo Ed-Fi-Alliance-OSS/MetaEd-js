@@ -4,8 +4,7 @@ import type {
   MetaEdEnvironment,
   PluginEnvironment,
 } from 'metaed-core';
-import type { DecimalSimpleType } from 'metaed-plugin-edfi-xsd';
-import { newAnnotation, newDecimalSimpleType } from 'metaed-plugin-edfi-xsd';
+import { createCurrencySimpleType } from 'metaed-plugin-edfi-xsd';
 import { createDefaultHandbookEntry } from './BaseSimpleTypeMetaEdHandbookEnhancer';
 import type { HandbookEntry } from '../model/HandbookEntry';
 import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
@@ -15,16 +14,8 @@ const currencyName: string = 'Currency';
 const currencyDocumentation: string = 'U.S. currency in dollars and cents.';
 const currencyEdfiId: string = '36';
 
-function createCurrentySimpleType(name: string, documentation: string): DecimalSimpleType {
-  return Object.assign(newDecimalSimpleType(), {
-    name,
-    annotation: Object.assign(newAnnotation(), { documentation, typeGroup: 'Simple' }),
-    baseType: 'xs:decimal',
-  });
-}
-
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const result: HandbookEntry = createDefaultHandbookEntry(createCurrentySimpleType(currencyName, currencyDocumentation), currencyEdfiId, currencyName, currencyDocumentation);
+  const result: HandbookEntry = createDefaultHandbookEntry(createCurrencySimpleType(), currencyEdfiId, currencyName, currencyDocumentation);
   (((metaEd.plugin.get('edfiHandbook'): any): PluginEnvironment).entity: EdfiHandbookRepository).handbookEntries.push(result);
 
   return {

@@ -11,7 +11,7 @@ import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
 const enhancerName: string = 'DecimalMetaEdHandbookEnhancer';
 
-function getTypeCharacteristsFor(entity: DecimalType): Array<string> {
+function getTypeCharacteristicsFor(entity: DecimalType): Array<string> {
   const results: Array<string> = [];
   if (entity.totalDigits) results.push(`total digits: ${entity.totalDigits}`);
   if (entity.decimalPlaces) results.push(`decimal places: ${entity.decimalPlaces}`);
@@ -24,7 +24,7 @@ function getTypeCharacteristsFor(entity: DecimalType): Array<string> {
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const results: Array<HandbookEntry> = Array.from(metaEd.entity.decimalType.values()).map(entity =>
-    Object.assign(createDefaultHandbookEntry(entity, 'Decimal Type', metaEd), { typeCharacteristics: getTypeCharacteristsFor(entity) }));
+    Object.assign(createDefaultHandbookEntry(entity, 'Decimal Type', metaEd), { typeCharacteristics: getTypeCharacteristicsFor(entity) }));
 
   (((metaEd.plugin.get('edfiHandbook'): any): PluginEnvironment).entity: EdfiHandbookRepository).handbookEntries.push(...results);
 

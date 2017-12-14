@@ -11,7 +11,7 @@ import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
 const enhancerName: string = 'StringMetaEdHandbookEnhancer';
 
-function getTypeCharacteristsFor(entity: StringType): Array<string> {
+function getTypeCharacteristicsFor(entity: StringType): Array<string> {
   const results: Array<string> = [];
   if (entity.minLength) results.push(`min length: ${entity.minLength}`);
   if (entity.maxLength) results.push(`max length: ${entity.maxLength}`);
@@ -20,7 +20,7 @@ function getTypeCharacteristsFor(entity: StringType): Array<string> {
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const results: Array<HandbookEntry> = Array.from(metaEd.entity.stringType.values()).map(entity =>
-    Object.assign(createDefaultHandbookEntry(entity, 'String Type', metaEd), { typeCharacteristics: getTypeCharacteristsFor(entity) }));
+    Object.assign(createDefaultHandbookEntry(entity, 'String Type', metaEd), { typeCharacteristics: getTypeCharacteristicsFor(entity) }));
 
   (((metaEd.plugin.get('edfiHandbook'): any): PluginEnvironment).entity: EdfiHandbookRepository).handbookEntries.push(...results);
 
