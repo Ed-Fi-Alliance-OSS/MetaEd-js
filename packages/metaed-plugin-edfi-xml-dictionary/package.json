@@ -1,7 +1,7 @@
 {
   "name": "metaed-plugin-edfi-xml-dictionary",
   "main": "dist/index.js",
-  "version": "1.1.1-dev.23",
+  "version": "1.1.1-dev.24",
   "description": "Ed-Fi Alliance XSD plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -22,8 +22,8 @@
   "dependencies": {
     "handlebars": "^4.0.10",
     "js-beautify": "^1.7.4",
-    "metaed-core": "1.1.1-dev.23",
-    "metaed-plugin-edfi-xsd": "1.1.1-dev.23",
+    "metaed-core": "1.1.1-dev.24",
+    "metaed-plugin-edfi-xsd": "1.1.1-dev.24",
     "winston": "^2.4.0",
     "xlsx": "^0.11.8",
     "xmldom": "^0.1.27"
@@ -42,7 +42,7 @@
     "flow-bin": "^0.52.0",
     "flow-typed": "^2.1.5",
     "jest": "20.0.4",
-    "metaed-plugin-edfi-unified": "1.1.1-dev.23",
+    "metaed-plugin-edfi-unified": "1.1.1-dev.24",
     "rimraf": "^2.6.1"
   },
   "scripts": {
