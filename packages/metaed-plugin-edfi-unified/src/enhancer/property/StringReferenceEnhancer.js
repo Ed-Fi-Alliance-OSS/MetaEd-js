@@ -1,23 +1,37 @@
 // @flow
-import type { MetaEdEnvironment, EnhancerResult } from 'metaed-core';
-import { getReferencedEntity } from './SimpleReferenceHelper';
+import type {
+  EnhancerResult,
+  MetaEdEnvironment,
+  SharedString,
+  SharedStringProperty,
+  StringType,
+} from 'metaed-core';
 
 const enhancerName: string = 'StringReferenceEnhancer';
 
-// When string type is moved to XSD specific, this should be a SharedStringProperty referencing SharedString enhancer
-export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const stringProperties = [];
-  // Note right now we point shared string properties to the StringType
-  // this is a legacy from before we had SharedSimple properties at all
-  stringProperties.push(...metaEd.propertyIndex.string, ...metaEd.propertyIndex.sharedString);
+// NOTE:
+// referringSimpleProperties is only used by MetaEdHandbook
+// stringType is only used by XSD
+// this functionality should be moved to MetaEdHandbook
+// referringSimpleProperties should be moved to SharedSimple instead of StringType
+function addReferringSimplePropertiesToStringType(metaEd: MetaEdEnvironment): void {
+  metaEd.propertyIndex.sharedString.forEach((property: SharedStringProperty) => {
+    const referencedEntity: ?StringType = metaEd.entity.stringType.get(property.referencedType);
+    if (referencedEntity == null) return;
 
-  stringProperties.forEach(property => {
-    const referencedEntity = getReferencedEntity(metaEd.entity.stringType, property);
-    if (referencedEntity) {
-      property.referencedEntity = referencedEntity;
-      referencedEntity.referringSimpleProperties.push(property);
-    }
+    referencedEntity.referringSimpleProperties.push(property);
   });
+}
+
+export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
+  metaEd.propertyIndex.sharedString.forEach((property: SharedStringProperty) => {
+    const referencedEntity: ?SharedString = metaEd.entity.sharedString.get(property.referencedType);
+    if (referencedEntity == null) return;
+
+    property.referencedEntity = referencedEntity;
+  });
+
+  addReferringSimplePropertiesToStringType(metaEd);
 
   return {
     enhancerName,

@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
-import { newMetaEdEnvironment, newSharedDecimalProperty, newDecimalType, addProperty } from 'metaed-core';
 import type { MetaEdEnvironment } from 'metaed-core';
+import { addProperty, newMetaEdEnvironment, newSharedDecimal, newSharedDecimalProperty } from 'metaed-core';
 import { enhance } from '../../src/enhancer/SharedDecimalPropertyEnhancer';
 
 describe('when shared decimal property refers to a shared decimal', () => {
@@ -14,7 +14,7 @@ describe('when shared decimal property refers to a shared decimal', () => {
   const minValue = '1';
 
   beforeAll(() => {
-    const referencedEntity = Object.assign(newDecimalType(), {
+    const referencedEntity = Object.assign(newSharedDecimal(), {
       metaEdName, totalDigits, decimalPlaces, maxValue, minValue,
     });
 

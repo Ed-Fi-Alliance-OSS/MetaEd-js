@@ -1,22 +1,37 @@
 // @flow
-import type { MetaEdEnvironment, EnhancerResult } from 'metaed-core';
-import { getReferencedEntity } from './SimpleReferenceHelper';
+import type {
+  EnhancerResult,
+  MetaEdEnvironment,
+  SharedDecimal,
+  SharedDecimalProperty,
+  DecimalType,
+} from 'metaed-core';
 
 const enhancerName: string = 'DecimalReferenceEnhancer';
 
-// When decimal type is moved to XSD specific, this should be a SharedDecimalProperty referencing SharedDecimal enhancer
-export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const decimalProperties = [];
-  // Note right now we point shared decimal properties to the DecimalType
-  // this is a legacy from before we had SharedSimple properties at all
-  decimalProperties.push(...metaEd.propertyIndex.decimal, ...metaEd.propertyIndex.sharedDecimal);
-  decimalProperties.forEach(property => {
-    const referencedEntity = getReferencedEntity(metaEd.entity.decimalType, property);
-    if (referencedEntity) {
-      property.referencedEntity = referencedEntity;
-      referencedEntity.referringSimpleProperties.push(property);
-    }
+// NOTE:
+// referringSimpleProperties is only used by MetaEdHandbook
+// decimalType is only used by XSD
+// this functionality should be moved to MetaEdHandbook
+// referringSimpleProperties should be moved to SharedSimple instead of DecimalType
+function addReferringSimplePropertiesToDecimalType(metaEd: MetaEdEnvironment): void {
+  metaEd.propertyIndex.sharedDecimal.forEach((property: SharedDecimalProperty) => {
+    const referencedEntity: ?DecimalType = metaEd.entity.decimalType.get(property.referencedType);
+    if (referencedEntity == null) return;
+
+    referencedEntity.referringSimpleProperties.push(property);
   });
+}
+
+export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
+  metaEd.propertyIndex.sharedDecimal.forEach((property: SharedDecimalProperty) => {
+    const referencedEntity: ?SharedDecimal = metaEd.entity.sharedDecimal.get(property.referencedType);
+    if (referencedEntity == null) return;
+
+    property.referencedEntity = referencedEntity;
+  });
+
+  addReferringSimplePropertiesToDecimalType(metaEd);
 
   return {
     enhancerName,

@@ -1,0 +1,13 @@
+{{#triggers}}
+/****** Trigger: [{{{schema}}}].[{{{name}}}] ******/
+
+CREATE TRIGGER [{{{schema}}}].[{{{name}}}]
+    ON [{{{tableSchema}}}].[{{{tableName}}}]
+    {{#if isAfter}}AFTER {{else}}INSTEAD OF {{/if}}{{#each insertUpdateDelete}}{{this}}{{#unless @last}},{{/unless}}{{/each}}
+AS
+BEGIN
+{{{body}}}
+END
+GO
+
+{{/triggers}}

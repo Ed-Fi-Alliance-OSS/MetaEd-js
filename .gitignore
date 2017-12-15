@@ -18,9 +18,12 @@ lerna-debug.log
 ## Babel target directory
 dist/
 
-## Xsd test artifacts
-/packages/metaed-plugin-edfi-xsd/test/integration/artifact/Ed-Fi-Core-Generated.xsd
-/packages/metaed-plugin-edfi-xsd/test/integration/artifact/Ed-Fi-Core.diff
-/packages/metaed-plugin-edfi-xsd/test/integration/artifact/Ed-Fi-Core.html
+## Test artifacts
+/packages/metaed-plugin-edfi-xsd/test/integration/artifact/*.diff
+/packages/metaed-plugin-edfi-xsd/test/integration/artifact/*.html
 /packages/metaed-plugin-edfi-xsd/test/integration/artifact/Ed-Fi-Core.xsd
 /packages/metaed-plugin-edfi-xsd/test/integration/artifact/SchemaAnnotation.xsd
+
+/packages/metaed-plugin-edfi-ods/test/integration/artifact/*.diff
+/packages/metaed-plugin-edfi-ods/test/integration/artifact/*.html
+/packages/metaed-plugin-edfi-ods/test/integration/artifact/0004-Tables.sql

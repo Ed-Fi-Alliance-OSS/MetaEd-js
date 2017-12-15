@@ -1,7 +1,17 @@
 // @flow
 import type { MetaEdEnvironment } from 'metaed-core';
-import { newMetaEdEnvironment, MetaEdTextBuilder, NamespaceInfoBuilder, StringTypeBuilder, DecimalTypeBuilder, IntegerTypeBuilder, DomainEntityBuilder, DomainEntityExtensionBuilder } from 'metaed-core';
-import { xpathSelect, enhanceAndGenerate } from './IntegrationTestHelper';
+import {
+  DecimalTypeBuilder,
+  DomainEntityBuilder,
+  DomainEntityExtensionBuilder,
+  IntegerTypeBuilder,
+  MetaEdTextBuilder,
+  NamespaceInfoBuilder,
+  newMetaEdEnvironment,
+  SharedStringBuilder,
+  StringTypeBuilder,
+} from 'metaed-core';
+import { enhanceAndGenerate, xpathSelect } from './IntegrationTestHelper';
 
 describe('when generating xsd for domain entity in both namespaces sharing a simple type', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
@@ -114,22 +124,27 @@ describe('when generating xsd for common string', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct type annotation', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:annotation/xs:appinfo/ann:TypeGroup", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct documentation', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:annotation/xs:documentation", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate restriction of corrext xsd base type', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:string']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct min length', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:string']/xs:minLength[@value='10']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct max length', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:string']/xs:maxLength[@value='100']", coreResult);
     expect(elements).toHaveLength(1);
@@ -172,35 +187,43 @@ describe('when generating xsd for common decimal', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct type annotation', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:annotation/xs:appinfo/ann:TypeGroup", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct documentation', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:annotation/xs:documentation", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate restriction of correct xsd base type', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:decimal']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate restriction of correct total digits', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:decimal']/xs:totalDigits[@value='5']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate restriction of correct decimal places', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:decimal']/xs:fractionDigits[@value='4']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct min value', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:decimal']/xs:minInclusive[@value='10']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct max value', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:decimal']/xs:maxInclusive[@value='100']", coreResult);
     expect(elements).toHaveLength(1);
   });
 });
+
 describe('when generating xsd for common integer', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
 
@@ -235,27 +258,33 @@ describe('when generating xsd for common integer', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct type annotation', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:annotation/xs:appinfo/ann:TypeGroup", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct documentation', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:annotation/xs:documentation", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate restriction of correct xsd base type', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:int']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct min value', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:int']/xs:minInclusive[@value='10']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct max value', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:int']/xs:maxInclusive[@value='100']", coreResult);
     expect(elements).toHaveLength(1);
   });
 });
+
 describe('when generating xsd for common short', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
 
@@ -290,27 +319,33 @@ describe('when generating xsd for common short', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct type annotation', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:annotation/xs:appinfo/ann:TypeGroup", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct documentation', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:annotation/xs:documentation", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate restriction of correct xsd base type', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:short']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct min value', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:short']/xs:minInclusive[@value='10']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate correct max value', () => {
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='SimpleTypeEntity']/xs:restriction[@base='xs:short']/xs:maxInclusive[@value='100']", coreResult);
     expect(elements).toHaveLength(1);
   });
 });
+
 describe('when generating xsd for shared simpel property in extension namespace with reference to core simple common type', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
 
@@ -358,15 +393,18 @@ describe('when generating xsd for shared simpel property in extension namespace 
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='CoreSharedString']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate extension domain entity', () => {
     const elements = xpathSelect("/xs:schema/xs:complexType[@name='EXTENSION-ExtensionEntity']", extensionResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate extension domain entity reference to core shared type', () => {
     const elements = xpathSelect("/xs:schema/xs:complexType[@name='EXTENSION-ExtensionEntity']/xs:complexContent/xs:extension/xs:sequence/xs:element[@name='CoreSharedString'][@type='CoreSharedString']", extensionResult);
     expect(elements).toHaveLength(1);
   });
 });
+
 describe('when generating xsd for renamed shared simple property in extension namespace with reference to core simple common type', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
 
@@ -416,15 +454,18 @@ describe('when generating xsd for renamed shared simple property in extension na
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='CoreSharedString']", coreResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate extension domain entity', () => {
     const elements = xpathSelect("/xs:schema/xs:complexType[@name='EXTENSION-ExtensionEntity']", extensionResult);
     expect(elements).toHaveLength(1);
   });
+
   it('should generate extension domain entity reference to core shared type', () => {
     const elements = xpathSelect("/xs:schema/xs:complexType[@name='EXTENSION-ExtensionEntity']/xs:complexContent/xs:extension/xs:sequence/xs:element[@name='DifferentName'][@type='CoreSharedString']", extensionResult);
     expect(elements).toHaveLength(1);
   });
 });
+
 describe('when generating xsd for shared simple property in extension namespace with reference to extension simple common type', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
 
@@ -440,6 +481,7 @@ describe('when generating xsd for shared simple property in extension namespace 
     const domainEntityExtensionBuilder = new DomainEntityExtensionBuilder(metaEd, []);
     const domainEntityBuilder = new DomainEntityBuilder(metaEd, []);
     const stringTypeBuilder = new StringTypeBuilder(metaEd, []);
+    const sharedStringBuilder = new SharedStringBuilder(metaEd, []);
 
     MetaEdTextBuilder.build()
 
@@ -458,6 +500,7 @@ describe('when generating xsd for shared simple property in extension namespace 
     .withDocumentation('doc')
     .withIntegerIdentity(coreEntityPk, 'doc')
     .withSharedStringProperty(coreSharedString, coreSharedString, 'doc', true, false)
+    .withEndDomainEntity()
 
     .withStartSharedString(coreSharedString)
     .withDocumentation('doc')
@@ -468,6 +511,7 @@ describe('when generating xsd for shared simple property in extension namespace 
 
     .sendToListener(namespaceInfoBuilder)
     .sendToListener(stringTypeBuilder)
+    .sendToListener(sharedStringBuilder)
     .sendToListener(domainEntityBuilder)
     .sendToListener(domainEntityExtensionBuilder);
 
@@ -478,7 +522,8 @@ describe('when generating xsd for shared simple property in extension namespace 
     const elements = xpathSelect("/xs:schema/xs:simpleType[@name='EXTENSION-CoreSharedString']", extensionResult);
     expect(elements).toHaveLength(1);
   });
-  it('should generate extension deomain entity reference to core shared type', () => {
+
+  it('should generate extension domain entity reference to core shared type', () => {
     const elements = xpathSelect("/xs:schema/xs:complexType[@name='EXTENSION-ExtensionEntity']/xs:complexContent/xs:extension/xs:sequence/xs:element[@name='CoreSharedString'][@type='EXTENSION-CoreSharedString']", extensionResult);
     expect(elements).toHaveLength(1);
   });

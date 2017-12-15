@@ -1,6 +1,12 @@
 // @flow
 import R from 'ramda';
-import { newMetaEdEnvironment, newSharedIntegerProperty, newIntegerType, addProperty, newSharedShortProperty } from 'metaed-core';
+import {
+  addProperty,
+  newMetaEdEnvironment,
+  newSharedInteger,
+  newSharedIntegerProperty,
+  newSharedShortProperty,
+} from 'metaed-core';
 import type { MetaEdEnvironment } from 'metaed-core';
 import { enhance } from '../../src/enhancer/SharedIntegerPropertyEnhancer';
 
@@ -12,7 +18,7 @@ describe('when shared integer property refers to a shared integer', () => {
   const minValue = '1';
 
   beforeAll(() => {
-    const referencedEntity = Object.assign(newIntegerType(), {
+    const referencedEntity = Object.assign(newSharedInteger(), {
       metaEdName, maxValue, minValue,
     });
 
@@ -40,7 +46,7 @@ describe('when shared short property refers to a shared short', () => {
   const minValue = '1';
 
   beforeAll(() => {
-    const referencedEntity = Object.assign(newIntegerType(), {
+    const referencedEntity = Object.assign(newSharedInteger(), {
       metaEdName, maxValue, minValue,
     });
 

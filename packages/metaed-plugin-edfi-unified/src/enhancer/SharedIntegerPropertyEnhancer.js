@@ -1,6 +1,6 @@
 // @flow
 import type { MetaEdEnvironment, EnhancerResult } from 'metaed-core';
-import { asIntegerType } from 'metaed-core';
+import { asIntegerType, NoSharedSimple } from 'metaed-core';
 
 const enhancerName: string = 'SharedIntegerPropertyEnhancer';
 
@@ -12,12 +12,12 @@ function copyRestrictions(property) {
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.propertyIndex.sharedInteger.forEach(property => {
-    if (!property.referencedEntity) return;
+    if (property.referencedEntity === NoSharedSimple) return;
     copyRestrictions(property);
   });
 
   metaEd.propertyIndex.sharedShort.forEach(property => {
-    if (!property.referencedEntity) return;
+    if (property.referencedEntity === NoSharedSimple) return;
     copyRestrictions(property);
   });
 

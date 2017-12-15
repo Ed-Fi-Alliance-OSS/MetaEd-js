@@ -438,7 +438,7 @@ Array [
 `;
 
 exports[`when generating xsd and comparing it to data standard 2.0 authoritative artifacts should have core with no differences 1`] = `
-" 1 file changed, 7 insertions(+), 2 deletions(-)
+" 1 file changed, 6 insertions(+), 1 deletion(-)
 "
 `;
 

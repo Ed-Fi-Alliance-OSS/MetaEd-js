@@ -1,0 +1,18 @@
+{{#foreignKeys}}
+ALTER TABLE [{{{parentTableSchema}}}].[{{{parentTableName}}}] WITH CHECK ADD CONSTRAINT [{{{name}}}] FOREIGN KEY ([{{#each parentTableColumnNames}}{{this}}{{#unless @last}}], [{{/unless}}{{/each}}])
+REFERENCES [{{{foreignTableSchema}}}].[{{{foreignTableName}}}] ([{{#each foreignTableColumnNames}}{{this}}{{#unless @last}}], [{{/unless}}{{/each}}])
+{{#if withDeleteCascade}}
+ON DELETE CASCADE
+{{/if}}
+{{#if withUpdateCascade}}
+ON UPDATE CASCADE
+{{/if}}
+GO
+
+{{#if withReverseForeignKeyIndex}}
+CREATE NONCLUSTERED INDEX [{{{name}}}]
+ON [{{{parentTableSchema}}}].[{{{parentTableName}}}] ([{{#each parentTableColumnNames}}{{this}}{{#unless @last}}] ASC, [{{/unless}}{{/each}}] ASC)
+GO
+
+{{/if}}
+{{/foreignKeys}}

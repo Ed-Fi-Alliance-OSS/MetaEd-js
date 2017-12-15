@@ -1,0 +1,14 @@
+CREATE TABLE [dbo].[DeleteEvent] (
+    [Id] [UNIQUEIDENTIFIER] NOT NULL,
+    [DeletionDate] [DATETIME] NOT NULL,
+    [TableName] [NVARCHAR](200) NOT NULL,
+    [SchemaName] [NVARCHAR](200) NOT NULL
+)
+GO
+
+ALTER TABLE [dbo].[DeleteEvent] ADD CONSTRAINT [DeleteEvent_DF_DeletionDate] DEFAULT (getutcdate()) FOR DeletionDate
+GO
+
+CREATE CLUSTERED INDEX DeleteEvent_CX ON dbo.[DeleteEvent] ([TableName], [DeletionDate]);
+GO
+

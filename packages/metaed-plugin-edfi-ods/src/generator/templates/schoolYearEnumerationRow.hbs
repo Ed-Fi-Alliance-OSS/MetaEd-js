@@ -1,0 +1,4 @@
+{{#schoolYearEnumerationRows}}
+INSERT INTO [{{{schemaName}}}].[{{{tableName}}}] ([SchoolYear], [SchoolYearDescription], [CurrentSchoolYear]) VALUES ('{{{schoolYear}}}', '{{{schoolYearDescription}}}', 'false')
+GO
+{{/schoolYearEnumerationRows}}

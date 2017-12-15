@@ -1,0 +1,53 @@
+{{#tables}}
+/****** Table: [{{{schema}}}].[{{{name}}}] ******/
+
+CREATE TABLE [{{{schema}}}].[{{{name}}}] (
+{{#columns}}
+    {{> column}}
+{{/columns}}
+{{#if includeCreateDateColumn}}
+    [CreateDate] [DATETIME] NOT NULL,
+{{/if}}
+{{#if includeLastModifiedDateAndIdColumn}}
+    [LastModifiedDate] [DATETIME] NOT NULL,
+    [Id] [UNIQUEIDENTIFIER] NOT NULL,
+{{/if}}
+    CONSTRAINT [{{{name}}}_PK] PRIMARY KEY CLUSTERED (
+{{#primaryKeys}}
+        [{{{name}}}] ASC{{#unless @last}},{{/unless}}
+{{/primaryKeys}}
+    ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]{{#if hasAlternateKeys}},{{/if}}
+{{#if hasAlternateKeys}}
+    CONSTRAINT [{{name}}_AK] UNIQUE NONCLUSTERED (
+{{#alternateKeys}}
+        [{{{name}}}] ASC{{#unless @last}},{{/unless}}
+{{/alternateKeys}}
+    ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+{{/if}}
+) ON [PRIMARY]
+GO
+{{#uniqueIndexes}}
+CREATE UNIQUE NONCLUSTERED INDEX [{{{../name}}}_UI_{{{name}}}] ON [{{{../schema}}}].[{{{../name}}}] (
+    [{{{name}}}] ASC
+) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+{{/uniqueIndexes}}
+{{#if includeCreateDateColumn}}
+ALTER TABLE [{{{schema}}}].[{{{name}}}] ADD CONSTRAINT [{{{name}}}_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
+GO
+{{/if}}
+{{#if includeLastModifiedDateAndIdColumn}}
+ALTER TABLE [{{{schema}}}].[{{{name}}}] ADD CONSTRAINT [{{{name}}}_DF_Id] DEFAULT (newid()) FOR [Id]
+GO
+ALTER TABLE [{{{schema}}}].[{{{name}}}] ADD CONSTRAINT [{{{name}}}_DF_LastModifiedDate] DEFAULT (getdate()) FOR [LastModifiedDate]
+GO
+{{/if}}
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'{{{sqlEscapedDescription}}}', @level0type=N'SCHEMA', @level0name=N'{{{schema}}}', @level1type=N'TABLE', @level1name=N'{{{name}}}'
+GO
+{{#columns}}
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'{{{sqlEscapedDescription}}}', @level0type=N'SCHEMA', @level0name=N'{{{../schema}}}', @level1type=N'TABLE',@level1name=N'{{{../name}}}', @level2type=N'COLUMN', @level2name=N'{{{name}}}'
+GO
+{{/columns}}
+
+{{/tables}}

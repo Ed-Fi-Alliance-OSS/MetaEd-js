@@ -1015,7 +1015,7 @@ describe('when building and enhancing shared decimal property', () => {
 
       .withStartDomainEntity(domainEntityName1)
       .withDocumentation('DomainEntityDocumentation')
-      .withSharedDecimalProperty(sharedDecimalPropertyName1, sharedDecimalName1, 'inherited', false, false, contextName)
+      .withSharedDecimalProperty(sharedDecimalName1, sharedDecimalPropertyName1, 'inherited', false, false, contextName)
       .withEndDomainEntity()
       .withEndNamespace()
 
@@ -1039,21 +1039,21 @@ describe('when building and enhancing shared decimal property', () => {
   });
 
   it('should enhance property path name with context', () => {
-    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalName1));
+    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalPropertyName1));
     expect(property).toBeDefined();
-    expect(property.propertyPathName).toBe(`${contextName}${sharedDecimalName1}`);
+    expect(property.propertyPathName).toBe(`${contextName}${sharedDecimalPropertyName1}`);
   });
 
   it('should enhance referenced entity', () => {
-    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalName1));
-    const referencedEntity = metaEd.entity.decimalType.get(sharedDecimalName1);
+    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalPropertyName1));
+    const referencedEntity = metaEd.entity.sharedDecimal.get(sharedDecimalName1);
     expect(property).toBeDefined();
     expect(referencedEntity).toBeDefined();
     expect(property.referencedEntity).toBe(referencedEntity);
   });
 
   it('should enhance referenced entity with referring simple property', () => {
-    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalName1));
+    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalPropertyName1));
     const referencedEntity = metaEd.entity.decimalType.get(sharedDecimalName1);
     expect(property).toBeDefined();
     expect(referencedEntity).toBeDefined();
@@ -1062,32 +1062,32 @@ describe('when building and enhancing shared decimal property', () => {
   });
 
   it('should enhance inherited documentation', () => {
-    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalName1));
+    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalPropertyName1));
     expect(property).toBeDefined();
     expect(property.documentationInherited).toBe(true);
     expect(property.documentation).toBe(sharedDecimalDocumentation);
   });
 
   it('should enhance total digits', () => {
-    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalName1));
+    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalPropertyName1));
     expect(property).toBeDefined();
     expect(property.totalDigits).toBe(totalDigits);
   });
 
   it('should enhance decimal places', () => {
-    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalName1));
+    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalPropertyName1));
     expect(property).toBeDefined();
     expect(property.decimalPlaces).toBe(decimalPlaces);
   });
 
   it('should enhance min value', () => {
-    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalName1));
+    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalPropertyName1));
     expect(property).toBeDefined();
     expect(property.minValue).toBe(minValue);
   });
 
   it('should enhance max value', () => {
-    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalName1));
+    const property = R.head(metaEd.propertyIndex.sharedDecimal.filter(x => x.metaEdName === sharedDecimalPropertyName1));
     expect(property).toBeDefined();
     expect(property.maxValue).toBe(maxValue);
   });
@@ -1113,7 +1113,7 @@ describe('when building and enhancing shared integer property', () => {
 
       .withStartDomainEntity(domainEntityName1)
       .withDocumentation('DomainEntityDocumentation')
-      .withSharedIntegerProperty(sharedIntegerPropertyName1, sharedIntegerName1, 'inherited', false, false, contextName)
+      .withSharedIntegerProperty(sharedIntegerName1, sharedIntegerPropertyName1, 'inherited', false, false, contextName)
       .withEndDomainEntity()
       .withEndNamespace()
 
@@ -1137,21 +1137,21 @@ describe('when building and enhancing shared integer property', () => {
   });
 
   it('should enhance property path name with context', () => {
-    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(x => x.metaEdName === sharedIntegerName1));
+    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(x => x.metaEdName === sharedIntegerPropertyName1));
     expect(property).toBeDefined();
-    expect(property.propertyPathName).toBe(`${contextName}${sharedIntegerName1}`);
+    expect(property.propertyPathName).toBe(`${contextName}${sharedIntegerPropertyName1}`);
   });
 
   it('should enhance referenced entity', () => {
-    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(x => x.metaEdName === sharedIntegerName1));
-    const referencedEntity = metaEd.entity.integerType.get(sharedIntegerName1);
+    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(x => x.metaEdName === sharedIntegerPropertyName1));
+    const referencedEntity = metaEd.entity.sharedInteger.get(sharedIntegerName1);
     expect(property).toBeDefined();
     expect(referencedEntity).toBeDefined();
     expect(property.referencedEntity).toBe(referencedEntity);
   });
 
   it('should enhance referenced entity with referring simple property', () => {
-    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(x => x.metaEdName === sharedIntegerName1));
+    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(x => x.metaEdName === sharedIntegerPropertyName1));
     const referencedEntity = metaEd.entity.integerType.get(sharedIntegerName1);
     expect(property).toBeDefined();
     expect(referencedEntity).toBeDefined();
@@ -1160,20 +1160,20 @@ describe('when building and enhancing shared integer property', () => {
   });
 
   it('should enhance inherited documentation', () => {
-    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(x => x.metaEdName === sharedIntegerName1));
+    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(x => x.metaEdName === sharedIntegerPropertyName1));
     expect(property).toBeDefined();
     expect(property.documentationInherited).toBe(true);
     expect(property.documentation).toBe(sharedIntegerDocumentation);
   });
 
   it('should enhance min value', () => {
-    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(x => x.metaEdName === sharedIntegerName1));
+    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(x => x.metaEdName === sharedIntegerPropertyName1));
     expect(property).toBeDefined();
     expect(property.minValue).toBe(minValue);
   });
 
   it('should enhance max value', () => {
-    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(x => x.metaEdName === sharedIntegerName1));
+    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(x => x.metaEdName === sharedIntegerPropertyName1));
     expect(property).toBeDefined();
     expect(property.maxValue).toBe(maxValue);
   });
@@ -1199,7 +1199,7 @@ describe('when building and enhancing shared short property', () => {
 
       .withStartDomainEntity(domainEntityName1)
       .withDocumentation('DomainEntityDocumentation')
-      .withSharedShortProperty(sharedShortPropertyName1, sharedShortName1, 'inherited', false, false, contextName)
+      .withSharedShortProperty(sharedShortName1, sharedShortPropertyName1, 'inherited', false, false, contextName)
       .withEndDomainEntity()
       .withEndNamespace()
 
@@ -1223,21 +1223,21 @@ describe('when building and enhancing shared short property', () => {
   });
 
   it('should enhance property path name with context', () => {
-    const property = R.head(metaEd.propertyIndex.sharedShort.filter(x => x.metaEdName === sharedShortName1));
+    const property = R.head(metaEd.propertyIndex.sharedShort.filter(x => x.metaEdName === sharedShortPropertyName1));
     expect(property).toBeDefined();
-    expect(property.propertyPathName).toBe(`${contextName}${sharedShortName1}`);
+    expect(property.propertyPathName).toBe(`${contextName}${sharedShortPropertyName1}`);
   });
 
   it('should enhance referenced entity', () => {
-    const property = R.head(metaEd.propertyIndex.sharedShort.filter(x => x.metaEdName === sharedShortName1));
-    const referencedEntity = metaEd.entity.integerType.get(sharedShortName1);
+    const property = R.head(metaEd.propertyIndex.sharedShort.filter(x => x.metaEdName === sharedShortPropertyName1));
+    const referencedEntity = metaEd.entity.sharedInteger.get(sharedShortName1);
     expect(property).toBeDefined();
     expect(referencedEntity).toBeDefined();
     expect(property.referencedEntity).toBe(referencedEntity);
   });
 
   it('should enhance referenced entity with referring simple property', () => {
-    const property = R.head(metaEd.propertyIndex.sharedShort.filter(x => x.metaEdName === sharedShortName1));
+    const property = R.head(metaEd.propertyIndex.sharedShort.filter(x => x.metaEdName === sharedShortPropertyName1));
     const referencedEntity = metaEd.entity.integerType.get(sharedShortName1);
     expect(property).toBeDefined();
     expect(referencedEntity).toBeDefined();
@@ -1246,20 +1246,20 @@ describe('when building and enhancing shared short property', () => {
   });
 
   it('should enhance inherited documentation', () => {
-    const property = R.head(metaEd.propertyIndex.sharedShort.filter(x => x.metaEdName === sharedShortName1));
+    const property = R.head(metaEd.propertyIndex.sharedShort.filter(x => x.metaEdName === sharedShortPropertyName1));
     expect(property).toBeDefined();
     expect(property.documentationInherited).toBe(true);
     expect(property.documentation).toBe(sharedShortDocumentation);
   });
 
   it('should enhance min value', () => {
-    const property = R.head(metaEd.propertyIndex.sharedShort.filter(x => x.metaEdName === sharedShortName1));
+    const property = R.head(metaEd.propertyIndex.sharedShort.filter(x => x.metaEdName === sharedShortPropertyName1));
     expect(property).toBeDefined();
     expect(property.minValue).toBe(minValue);
   });
 
   it('should enhance max value', () => {
-    const property = R.head(metaEd.propertyIndex.sharedShort.filter(x => x.metaEdName === sharedShortName1));
+    const property = R.head(metaEd.propertyIndex.sharedShort.filter(x => x.metaEdName === sharedShortPropertyName1));
     expect(property).toBeDefined();
     expect(property.maxValue).toBe(maxValue);
   });
@@ -1285,7 +1285,7 @@ describe('when building and enhancing shared string property', () => {
 
       .withStartDomainEntity(domainEntityName1)
       .withDocumentation('DomainEntityDocumentation')
-      .withSharedStringProperty(sharedStringPropertyName1, sharedStringName1, 'inherited', false, false, contextName)
+      .withSharedStringProperty(sharedStringName1, sharedStringPropertyName1, 'inherited', false, false, contextName)
       .withEndDomainEntity()
       .withEndNamespace()
 
@@ -1309,21 +1309,21 @@ describe('when building and enhancing shared string property', () => {
   });
 
   it('should enhance property path name with context', () => {
-    const property = R.head(metaEd.propertyIndex.sharedString.filter(x => x.metaEdName === sharedStringName1));
+    const property = R.head(metaEd.propertyIndex.sharedString.filter(x => x.metaEdName === sharedStringPropertyName1));
     expect(property).toBeDefined();
-    expect(property.propertyPathName).toBe(`${contextName}${sharedStringName1}`);
+    expect(property.propertyPathName).toBe(`${contextName}${sharedStringPropertyName1}`);
   });
 
   it('should enhance referenced entity', () => {
-    const property = R.head(metaEd.propertyIndex.sharedString.filter(x => x.metaEdName === sharedStringName1));
-    const referencedEntity = metaEd.entity.stringType.get(sharedStringName1);
+    const property = R.head(metaEd.propertyIndex.sharedString.filter(x => x.metaEdName === sharedStringPropertyName1));
+    const referencedEntity = metaEd.entity.sharedString.get(sharedStringName1);
     expect(property).toBeDefined();
     expect(referencedEntity).toBeDefined();
     expect(property.referencedEntity).toBe(referencedEntity);
   });
 
   it('should enhance referenced entity with referring simple property', () => {
-    const property = R.head(metaEd.propertyIndex.sharedString.filter(x => x.metaEdName === sharedStringName1));
+    const property = R.head(metaEd.propertyIndex.sharedString.filter(x => x.metaEdName === sharedStringPropertyName1));
     const referencedEntity = metaEd.entity.stringType.get(sharedStringName1);
     expect(property).toBeDefined();
     expect(referencedEntity).toBeDefined();
@@ -1332,20 +1332,20 @@ describe('when building and enhancing shared string property', () => {
   });
 
   it('should enhance inherited documentation', () => {
-    const property = R.head(metaEd.propertyIndex.sharedString.filter(x => x.metaEdName === sharedStringName1));
+    const property = R.head(metaEd.propertyIndex.sharedString.filter(x => x.metaEdName === sharedStringPropertyName1));
     expect(property).toBeDefined();
     expect(property.documentationInherited).toBe(true);
     expect(property.documentation).toBe(sharedStringDocumentation);
   });
 
   it('should enhance min length', () => {
-    const property = R.head(metaEd.propertyIndex.sharedString.filter(x => x.metaEdName === sharedStringName1));
+    const property = R.head(metaEd.propertyIndex.sharedString.filter(x => x.metaEdName === sharedStringPropertyName1));
     expect(property).toBeDefined();
     expect(property.minLength).toBe(minLength);
   });
 
   it('should enhance max length', () => {
-    const property = R.head(metaEd.propertyIndex.sharedString.filter(x => x.metaEdName === sharedStringName1));
+    const property = R.head(metaEd.propertyIndex.sharedString.filter(x => x.metaEdName === sharedStringPropertyName1));
     expect(property).toBeDefined();
     expect(property.maxLength).toBe(maxLength);
   });

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`when DeleteTriggerEnhancer enhances association should have body that matches snapshot 1`] = `
+"    SET NOCOUNT ON
+
+    INSERT INTO [dbo].[DeleteEvent] ([Id], [DeletionDate], [TableName], [SchemaName])
+    SELECT [Id], getutcdate(), N'EntityName', N'namespace'
+    FROM [deleted]"
+`;
+
+exports[`when DeleteTriggerEnhancer enhances association subclass should have body that matches snapshot 1`] = `
+"    SET NOCOUNT ON
+
+    INSERT INTO [dbo].[DeleteEvent] ([Id], [DeletionDate], [TableName], [SchemaName])
+    SELECT [Id], getutcdate(), N'EntitySubclassName', N'namespace'
+    FROM [deleted] d
+    INNER JOIN [namespace].[BaseEntityName] base
+        ON
+            [d].[PropertyName1] = [base].[PropertyName1]
+            AND [d].[PropertyName2] = [base].[PropertyName2]
+;"
+`;
+
+exports[`when DeleteTriggerEnhancer enhances domain entity should have body that matches snapshot 1`] = `
+"    SET NOCOUNT ON
+
+    INSERT INTO [dbo].[DeleteEvent] ([Id], [DeletionDate], [TableName], [SchemaName])
+    SELECT [Id], getutcdate(), N'EntityName', N'namespace'
+    FROM [deleted]"
+`;
+
+exports[`when DeleteTriggerEnhancer enhances domain entity subclass should have body that matches snapshot 1`] = `
+"    SET NOCOUNT ON
+
+    INSERT INTO [dbo].[DeleteEvent] ([Id], [DeletionDate], [TableName], [SchemaName])
+    SELECT [Id], getutcdate(), N'EntitySubclassName', N'namespace'
+    FROM [deleted] d
+    INNER JOIN [namespace].[BaseEntityName] base
+        ON
+            [d].[PropertyRename] = [base].[PropertyName]
+;"
+`;

@@ -102,6 +102,7 @@
     "metaed-core": "1.1.1-dev.23",
     "metaed-csharp": "1.1.0",
     "metaed-plugin-edfi-interchange-brief": "1.1.1-dev.23",
+    "metaed-plugin-edfi-ods": "1.1.1-dev.23",
     "metaed-plugin-edfi-odsapi": "1.1.1-dev.23",
     "metaed-plugin-edfi-unified": "1.1.1-dev.23",
     "metaed-plugin-edfi-xml-dictionary": "1.1.1-dev.23",

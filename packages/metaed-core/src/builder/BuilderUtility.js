@@ -1,6 +1,6 @@
 // @flow
 function quoteCorrection(rawDocumentation: string): string {
-  return rawDocumentation.substr(1, rawDocumentation.length - 2).replace('""', '"');
+  return rawDocumentation.substr(1, rawDocumentation.length - 2).replace(/""/g, '"');
 }
 
 export function squareBracketRemoval(metaEdIdWithBrackets: string) {

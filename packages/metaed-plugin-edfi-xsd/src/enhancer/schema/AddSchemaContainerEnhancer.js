@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
 import type { MetaEdEnvironment, EnhancerResult, TopLevelEntity } from 'metaed-core';
-import { getEntitiesOfType } from 'metaed-core';
+import { getEntitiesOfType, orderByProp } from 'metaed-core';
 import type { TopLevelEntityEdfiXsd } from '../../model/TopLevelEntity';
 import type { NamespaceInfoEdfiXsd } from '../../model/NamespaceInfo';
 import type { EnumerationBase, EnumerationBaseEdfiXsd } from '../../model/EnumerationBase';
@@ -38,7 +38,6 @@ const removeNoComplexType = R.filter(x => x !== NoComplexType);
 const removeNoSimpleType = R.filter(x => x !== NoSimpleType);
 const removeNoEnumerationSimpleType = R.filter(x => x !== NoEnumerationSimpleType);
 
-export const orderByName = R.sortBy(R.compose(R.toLower, R.prop('name')));
 const inNamespace = namespaceInfo => R.filter(x => x.namespaceInfo.namespace === namespaceInfo.namespace);
 
 function baseSchemaSection() {
@@ -203,7 +202,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       inNamespace(namespaceInfo),
       complexTypesFrom,
       removeNoComplexType,
-      orderByName,
+      orderByProp('name'),
     );
 
     // Domain Entities
@@ -242,7 +241,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       inNamespace(namespaceInfo),
       manyReferenceTypesFrom,
       removeNoComplexType,
-      orderByName,
+      orderByProp('name'),
     );
 
     const extendedReferencesSection: SchemaSection = Object.assign(newSchemaSection(), {
@@ -259,7 +258,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       inNamespace(namespaceInfo),
       referenceTypesFrom,
       removeNoComplexType,
-      orderByName,
+      orderByProp('name'),
     );
 
     const descriptorExtendedReferencesSection: SchemaSection = Object.assign(newSchemaSection(), {
@@ -285,7 +284,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       inNamespace(namespaceInfo),
       enumerationSimpleTypesFrom,
       removeNoEnumerationSimpleType,
-      orderByName,
+      orderByProp('name'),
     );
 
     const enumerationsSection: SchemaSection = Object.assign(newSchemaSection(), {
@@ -313,7 +312,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       sectionAnnotation: Object.assign(newAnnotation(), {
         documentation: '===== String Simple Types =====',
       }),
-      simpleTypes: orderByName(stringSimpleTypes),
+      simpleTypes: orderByProp('name')(stringSimpleTypes),
     });
 
     schemaContainer.sections.push(stringSimpleTypesSection);
@@ -328,7 +327,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       sectionAnnotation: Object.assign(newAnnotation(), {
         documentation: '===== Numeric Simple Types =====',
       }),
-      simpleTypes: orderByName(numericSimpleTypes),
+      simpleTypes: orderByProp('name')(numericSimpleTypes),
     });
 
     schemaContainer.sections.push(numericSimpleTypesSection);

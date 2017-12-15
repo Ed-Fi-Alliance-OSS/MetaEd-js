@@ -1,6 +1,6 @@
 // @flow
 import R from 'ramda';
-import { newMetaEdEnvironment, newSharedStringProperty, newStringType, addProperty } from 'metaed-core';
+import { addProperty, newMetaEdEnvironment, newSharedString, newSharedStringProperty } from 'metaed-core';
 import type { MetaEdEnvironment } from 'metaed-core';
 import { enhance } from '../../src/enhancer/SharedStringPropertyEnhancer';
 
@@ -12,8 +12,10 @@ describe('when shared string property refers to a shared string', () => {
   const minLength = '1';
 
   beforeAll(() => {
-    const referencedEntity = Object.assign(newStringType(), {
-      metaEdName, maxLength, minLength,
+    const referencedEntity = Object.assign(newSharedString(), {
+      metaEdName,
+      maxLength,
+      minLength,
     });
 
     const property = Object.assign(newSharedStringProperty(), {

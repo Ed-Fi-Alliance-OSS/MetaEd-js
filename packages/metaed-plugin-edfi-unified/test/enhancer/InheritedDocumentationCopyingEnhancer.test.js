@@ -1,13 +1,13 @@
 // @flow
 import R from 'ramda';
 import {
-  newMetaEdEnvironment,
-  newDomainEntity,
-  newDomainEntityProperty,
-  newIntegerType,
-  newSharedIntegerProperty,
   addEntity,
   addProperty,
+  newDomainEntity,
+  newDomainEntityProperty,
+  newMetaEdEnvironment,
+  newSharedInteger,
+  newSharedIntegerProperty,
 } from 'metaed-core';
 import type { MetaEdEnvironment } from 'metaed-core';
 import { enhance } from '../../src/enhancer/InheritedDocumentationCopyingEnhancer';
@@ -19,7 +19,7 @@ describe('when enhancing shared integer property with inherited documentation', 
   const referencedEntityName: string = 'ReferencedEntityName';
 
   beforeAll(() => {
-    const referencedEntity = Object.assign(newIntegerType(), {
+    const referencedEntity = Object.assign(newSharedInteger(), {
       metaEdName: referencedEntityName,
       documentation: referencedEntityDocumentation,
     });
@@ -43,7 +43,7 @@ describe('when enhancing shared integer property with inherited documentation', 
     enhance(metaEd);
   });
 
-  it('should have correct referenced entity()', () => {
+  it('should have correct referenced entity', () => {
     const property = R.head(metaEd.propertyIndex.sharedInteger.filter(p => p.metaEdName === referencedEntityName));
     expect(property.documentation).toBe(referencedEntityDocumentation);
   });
@@ -80,7 +80,7 @@ describe('when enhancing domain entity property with inherited documentation', (
     enhance(metaEd);
   });
 
-  it('should have correct referenced entity()', () => {
+  it('should have correct referenced entity', () => {
     const property = R.head(metaEd.propertyIndex.domainEntity.filter(p => p.metaEdName === referencedEntityName));
     expect(property.documentation).toBe(referencedEntityDocumentation);
   });

@@ -1,22 +1,37 @@
 // @flow
-import type { MetaEdEnvironment, EnhancerResult } from 'metaed-core';
-import { getReferencedEntity } from './SimpleReferenceHelper';
+import type {
+  EnhancerResult,
+  IntegerType,
+  MetaEdEnvironment,
+  SharedInteger,
+  SharedShortProperty,
+} from 'metaed-core';
 
 const enhancerName: string = 'ShortReferenceEnhancer';
 
-// When short type is moved to XSD specific, this should be a SharedShortProperty referencing SharedShort enhancer
-export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const shortProperties = [];
-  // Note right now we point shared short properties to the ShortType-equivalent IntegerType
-  // this is a legacy from before we had SharedSimple properties at all
-  shortProperties.push(...metaEd.propertyIndex.short, ...metaEd.propertyIndex.sharedShort);
-  shortProperties.forEach(property => {
-    const referencedEntity = getReferencedEntity(metaEd.entity.integerType, property);
-    if (referencedEntity) {
-      property.referencedEntity = referencedEntity;
-      referencedEntity.referringSimpleProperties.push(property);
-    }
+// NOTE:
+// referringSimpleProperties is only used by MetaEdHandbook
+// integerType is only used by XSD
+// this functionality should be moved to MetaEdHandbook
+// referringSimpleProperties should be moved to SharedSimple instead of IntegerType
+function addReferringSimplePropertiesToShortType(metaEd: MetaEdEnvironment): void {
+  metaEd.propertyIndex.sharedShort.forEach((property: SharedShortProperty) => {
+    const referencedEntity: ?IntegerType = metaEd.entity.integerType.get(property.referencedType);
+    if (referencedEntity == null) return;
+
+    referencedEntity.referringSimpleProperties.push(property);
   });
+}
+
+export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
+  metaEd.propertyIndex.sharedShort.forEach((property: SharedShortProperty) => {
+    const referencedEntity: ?SharedInteger = metaEd.entity.sharedInteger.get(property.referencedType);
+    if (referencedEntity == null) return;
+
+    property.referencedEntity = referencedEntity;
+  });
+
+  addReferringSimplePropertiesToShortType(metaEd);
 
   return {
     enhancerName,

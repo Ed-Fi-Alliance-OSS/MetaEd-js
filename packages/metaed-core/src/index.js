@@ -2,7 +2,7 @@
 
 // Functions
 
-export { deepFreeze, deepFreezeAssign, prependIndefiniteArticle } from './Utility';
+export { deepFreeze, deepFreezeAssign, prependIndefiniteArticle, orderByProp } from './Utility';
 export { executePipeline } from './task/Pipeline';
 export { createMetaEdFile } from './task/MetaEdFile';
 export { loadCoreBufferedFiles, loadExtensionBufferedFiles } from './task/BufferFileLoader';
@@ -133,6 +133,7 @@ export type { TopLevelEntity, TopLevelEntitySourceMap } from './model/TopLevelEn
 // Null Objects
 export { NoMapTypeEnumeration } from './model/MapTypeEnumeration';
 export { NoTopLevelEntity } from './model/TopLevelEntity';
+export { NoSharedSimple } from './model/SharedSimple';
 
 // Factories
 export { newMetaEdEnvironment, newPluginEnvironment } from './MetaEdEnvironment';

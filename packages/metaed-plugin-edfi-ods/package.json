@@ -1,0 +1,52 @@
+{
+  "name": "metaed-plugin-edfi-ods",
+  "main": "dist/index.js",
+  "version": "1.1.1-dev.23",
+  "description": "Ed-Fi Alliance unified plugin for ODS",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "publishConfig": {
+    "registry": "https://www.myget.org/F/ed-fi/npm/"
+  },
+  "metaed-plugin": {
+    "artifact-specific": {
+      "shortName": "edfiOds",
+      "authorName": "Ed-Fi Alliance",
+      "metaEdVersion": "1.x",
+      "technologyVersion": "2.x",
+      "dependencies": [
+        "metaed-plugin-edfi-unified"
+      ]
+    }
+  },
+  "dependencies": {
+    "diff2html": "^2.3.2",
+    "final-fs": "^1.6.1",
+    "handlebars": "^4.0.11",
+    "metaed-core": "1.1.1-dev.23",
+    "ramda": "^0.24.1",
+    "sugar": "^2.0.4",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-flow-strip-types": "^6.18.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-flowtype": "^2.34.0",
+    "eslint-plugin-import": "^2.6.0",
+    "flow-bin": "^0.52.0",
+    "flow-typed": "^2.1.5",
+    "jest": "20.0.4",
+    "rimraf": "^2.6.1"
+  },
+  "scripts": {
+    "build": "yarn build:clean && yarn build:dist && yarn build:flow",
+    "build:clean": "rimraf dist",
+    "build:flow": "flow-copy-source -v src dist",
+    "build:dist": "rimraf dist && babel src -d dist --source-maps --copy-files"
+  }
+}

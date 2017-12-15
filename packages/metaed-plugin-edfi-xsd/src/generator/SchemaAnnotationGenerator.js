@@ -1,14 +1,13 @@
 // @flow
 import type { MetaEdEnvironment, GeneratorResult, GeneratedOutput } from 'metaed-core';
-import { getEntitiesOfType } from 'metaed-core';
+import { getEntitiesOfType, orderByProp } from 'metaed-core';
 import { formatAndPrependHeader, template } from './XsdGeneratorBase';
-import { orderByName } from '../enhancer/schema/AddSchemaContainerEnhancer';
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: Array<GeneratedOutput> = [];
 
   const descriptors: Array<{name: string}> =
-    orderByName(getEntitiesOfType(metaEd.entity, 'descriptor').map(x => ({ name: x.data.edfiXsd.xsd_DescriptorName })));
+    orderByProp('name')(getEntitiesOfType(metaEd.entity, 'descriptor').map(x => ({ name: x.data.edfiXsd.xsd_DescriptorName })));
   const formattedGeneratedResult = formatAndPrependHeader(template().schemaAnnotation({ descriptors }));
   results.push({
     name: 'Core XSD Schema Annotation',

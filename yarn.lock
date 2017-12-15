@@ -1795,7 +1795,7 @@ detect-libc@^1.0.2:
   version "1.0.3"
   resolved "https://www.myget.org/F/ed-fi/npm/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
 
-diff2html@^2.3.1:
+diff2html@^2.3.1, diff2html@^2.3.2:
   version "2.3.2"
   resolved "https://www.myget.org/F/ed-fi/npm/diff2html/-/diff2html-2.3.2.tgz#1c5864266d437148bc66fdd66d4ad750102d7fed"
   dependencies:
@@ -3079,7 +3079,7 @@ gulplog@^1.0.0:
   dependencies:
     glogg "^1.0.0"
 
-handlebars@^4.0.10, handlebars@^4.0.2, handlebars@^4.0.3:
+handlebars@^4.0.10, handlebars@^4.0.11, handlebars@^4.0.2, handlebars@^4.0.3:
   version "4.0.11"
   resolved "https://www.myget.org/F/ed-fi/npm/handlebars/-/handlebars-4.0.11.tgz#630a35dfe0294bc281edae6ffc5d329fc7982dcc"
   dependencies:
