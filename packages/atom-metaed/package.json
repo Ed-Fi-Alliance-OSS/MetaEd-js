@@ -101,6 +101,7 @@
     "metaed-console": "1.1.1-dev.23",
     "metaed-core": "1.1.1-dev.23",
     "metaed-csharp": "1.1.0",
+    "metaed-plugin-edfi-handbook": "1.1.1-dev.23",
     "metaed-plugin-edfi-interchange-brief": "1.1.1-dev.23",
     "metaed-plugin-edfi-ods": "1.1.1-dev.23",
     "metaed-plugin-edfi-odsapi": "1.1.1-dev.23",
