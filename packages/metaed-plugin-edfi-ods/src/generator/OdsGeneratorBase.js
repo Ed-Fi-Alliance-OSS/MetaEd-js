@@ -24,6 +24,8 @@ export const template = R.memoize(
       trigger: templateNamed('trigger'),
       enumerationRow: templateNamed('enumerationRow'),
       schoolYearEnumerationRow: templateNamed('schoolYearEnumerationRow'),
+      coreSchema: templateNamed('coreSchema'),
+      extensionSchema: templateNamed('extensionSchema'),
     }),
   );
 

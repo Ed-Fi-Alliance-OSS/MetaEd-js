@@ -36,7 +36,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   });
 
   return {
-    generatorName: 'OdsGenerator',
+    generatorName: 'edfiOds.OdsGenerator',
     generatedOutput: results,
   };
 }

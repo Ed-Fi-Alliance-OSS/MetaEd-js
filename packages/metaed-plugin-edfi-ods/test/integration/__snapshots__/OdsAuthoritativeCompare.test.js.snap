@@ -2101,6 +2101,27 @@ Array [
 ]
 `;
 
+exports[`when generating ods and comparing it to data standard 2.0 authoritative artifacts should have correct schema 1`] = `
+Object {
+  "fileName": "0001-Schemas.sql",
+  "folderName": "ODS-SQLServer",
+  "name": "Schema SQL",
+  "resultStream": null,
+  "resultString": "﻿IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'auth')
+EXEC sys.sp_executesql N'CREATE SCHEMA [auth]'
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'edfi')
+EXEC sys.sp_executesql N'CREATE SCHEMA [edfi]'
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'util')
+EXEC sys.sp_executesql N'CREATE SCHEMA [util]'
+GO
+",
+}
+`;
+
 exports[`when generating ods and comparing it to data standard 2.0 authoritative artifacts should have correct table order 1`] = `
 Array [
   "AcademicHonorCategoryType",

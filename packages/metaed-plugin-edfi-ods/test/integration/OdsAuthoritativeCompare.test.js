@@ -30,6 +30,7 @@ describe('when generating ods and comparing it to data standard 2.0 authoritativ
   const nodeModulesPath: string = `${projectRootPath}/node_modules`;
   const outputDirectory: string = `${artifactPath}`;
   let coreResult: GeneratedOutput;
+  let schemaResult: GeneratedOutput;
   let coreFileBaseName: string;
   let authoritativeCoreOds: string;
   let generatedCoreOds: string;
@@ -76,7 +77,8 @@ describe('when generating ods and comparing it to data standard 2.0 authoritativ
     rowOrder = orderRows([...pluginEnvironment(state.metaEd).entity.row.values()])
       .map(x => x.name + (x.type === 'enumerationRow' ? x.description : ''));
 
-    coreResult = R.head(R.head(state.generatorResults.filter(x => x.generatorName === 'OdsGenerator')).generatedOutput);
+    coreResult = R.head(R.head(state.generatorResults.filter(x => x.generatorName === 'edfiOds.OdsGenerator')).generatedOutput);
+    schemaResult = R.head(R.head(state.generatorResults.filter(x => x.generatorName === 'edfiOds.SchemaGenerator')).generatedOutput);
     coreFileBaseName = path.basename(coreResult.fileName, '.sql');
     generatedCoreOds = `${outputDirectory}/${coreFileBaseName}.sql`;
     authoritativeCoreOds = `${artifactPath}/${coreFileBaseName}-Authoritative.sql`;
@@ -98,6 +100,10 @@ describe('when generating ods and comparing it to data standard 2.0 authoritativ
 
   it('should have correct row order', () => {
     expect(rowOrder).toMatchSnapshot();
+  });
+
+  it('should have correct schema', () => {
+    expect(schemaResult).toMatchSnapshot();
   });
 
   it('should have core with no differences', async () => {
