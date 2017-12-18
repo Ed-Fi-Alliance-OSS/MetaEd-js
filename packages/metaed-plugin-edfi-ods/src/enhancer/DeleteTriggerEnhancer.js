@@ -67,6 +67,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       schema: entity.namespaceInfo.namespace,
       tableName: entity.data.edfiOds.ods_TableName,
       tableSchema: entity.namespaceInfo.namespace,
+      namespace: entity.namespaceInfo.namespace,
       isAfter: true,
       onDelete: true,
       body: Sugar.String.format(

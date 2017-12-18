@@ -6,6 +6,7 @@ import { enhance as commonExtension } from '../model/CommonExtension';
 import { enhance as descriptor } from '../model/Descriptor';
 import { enhance as domainEntityExtension } from '../model/DomainEntityExtension';
 import { enhance as edFiOdsEntityRepository } from '../model/EdFiOdsEntityRepository';
+import { enhance as namespaceInfo } from '../model/NamespaceInfo';
 import { enhance as topLevelEntity } from '../model/TopLevelEntity';
 
 import { enhance as descriptorProperty } from '../model/property/DescriptorProperty';
@@ -24,6 +25,7 @@ import { enhance as domainEntityTableEnhancer } from '../enhancer/table/DomainEn
 import { enhance as enumerationTableEnhancer } from '../enhancer/table/EnumerationTableEnhancer';
 import { enhance as schoolYearEnumerationTableEnhancer } from '../enhancer/table/SchoolYearEnumerationTableEnhancer';
 
+import { enhance as addSchemaContainerEnhancer } from '../enhancer/AddSchemaContainerEnhancer';
 import { enhance as createUsisFromUniqueIdsEnhancer } from '../enhancer/CreateUsisFromUniqueIdsEnhancer';
 import { enhance as deleteTriggerEnhancer } from '../enhancer/DeleteTriggerEnhancer';
 import { enhance as descriptorMapTypeRowEnhancer } from '../enhancer/DescriptorMapTypeRowEnhancer';
@@ -138,5 +140,8 @@ export function enhancerList(): Array<Enhancer> {
 
     primaryKeyOrderDiminisher,
     foreignKeyOrderDiminisher,
+
+    namespaceInfo,
+    addSchemaContainerEnhancer,
   ];
 }

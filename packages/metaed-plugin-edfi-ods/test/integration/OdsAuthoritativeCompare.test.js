@@ -5,16 +5,24 @@ import ffs from 'final-fs';
 import { exec } from 'child_process';
 import diff2html from 'diff2html';
 import type { GeneratedOutput, State } from 'metaed-core';
-import { newState, loadPlugins, loadFiles, loadFileIndex, buildParseTree, buildMetaEd, walkBuilders, runEnhancers, runGenerators, fileMapForFailure } from 'metaed-core';
-
+import {
+  buildMetaEd,
+  buildParseTree,
+  fileMapForFailure,
+  loadFileIndex,
+  loadFiles,
+  loadPlugins,
+  newState,
+  orderByProp,
+  runEnhancers,
+  runGenerators,
+  walkBuilders,
+} from 'metaed-core';
 import { pluginEnvironment } from '../../src/enhancer/EnhancerHelper';
-
-import { orderByProp } from '../../../metaed-core/src/Utility';
-import { orderRows } from '../../src/generator/OdsGenerator';
+import { orderRows } from '../../src/enhancer/AddSchemaContainerEnhancer';
 
 jest.unmock('final-fs');
-jest.setTimeout(20000);
-
+jest.setTimeout(30000);
 
 describe('when generating ods and comparing it to data standard 2.0 authoritative artifacts', () => {
   const artifactPath: string = path.resolve(__dirname, './artifact');
@@ -65,9 +73,8 @@ describe('when generating ods and comparing it to data standard 2.0 authoritativ
 
     triggerOrder = (orderByProp('name')([...pluginEnvironment(state.metaEd).entity.trigger.values()])).map(table => table.name);
 
-    rowOrder = orderRows([...pluginEnvironment(state.metaEd).entity.row.values()].filter(
-      row => row.type === 'enumerationRow',
-    )).map(x => x.name);
+    rowOrder = orderRows([...pluginEnvironment(state.metaEd).entity.row.values()])
+      .map(x => x.name + (x.type === 'enumerationRow' ? x.description : ''));
 
     coreResult = R.head(R.head(state.generatorResults.filter(x => x.generatorName === 'OdsGenerator')).generatedOutput);
     coreFileBaseName = path.basename(coreResult.fileName, '.sql');
@@ -76,7 +83,6 @@ describe('when generating ods and comparing it to data standard 2.0 authoritativ
 
     await ffs.writeFile(generatedCoreOds, coreResult.resultString, 'utf-8');
   });
-
 
   it('should have correct table order', () => {
     expect(tableOrder).toMatchSnapshot();
