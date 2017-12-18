@@ -1,9 +1,9 @@
-﻿{{#tables}}BEGIN TRANSACTION
-GO
-IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'{{{Schema}}}.{{{Name}}}') AND name = N'UX_{{{Name}}}_Id')
-CREATE UNIQUE NONCLUSTERED INDEX UX_{{{Name}}}_Id ON {{{Schema}}}.{{{Name}}}
-(Id) WITH( PAD_INDEX = ON, FILLFACTOR = {{#if IsTypeTable}}100{{else}}75{{/if}}, STATISTICS_NORECOMPUTE = OFF) ON [PRIMARY]
-GO
+﻿{{#tables}}
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'{{{schema}}}.{{{name}}}') AND name = N'UX_{{{name}}}_Id')
+    CREATE UNIQUE NONCLUSTERED INDEX UX_{{{name}}}_Id ON [{{{schema}}}].[{{{name}}}]
+    (Id) WITH (PAD_INDEX = ON, FILLFACTOR = {{#if isTypeTable}}100{{else}}75{{/if}}, STATISTICS_NORECOMPUTE = OFF) ON [PRIMARY]
+    GO
 COMMIT
 
 {{/tables}}

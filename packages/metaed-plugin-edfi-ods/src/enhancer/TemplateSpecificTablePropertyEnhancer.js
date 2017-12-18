@@ -45,6 +45,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       foreignKeys: getForeignKeys(table),
       primaryKeys: getPrimaryKeys(table),
       uniqueIndexes: getUniqueIndexes(table),
+      isTypeTable: table.name.endsWith('Type'),
     });
   });
 

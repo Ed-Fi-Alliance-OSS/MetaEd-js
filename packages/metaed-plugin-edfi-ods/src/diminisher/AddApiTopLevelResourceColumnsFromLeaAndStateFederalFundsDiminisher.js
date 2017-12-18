@@ -9,7 +9,7 @@ import type { Table } from '../model/database/Table';
 // LocalEducationAgencyFederalFunds has API top level resource columns
 // StateEducationAgencyFederalFunds has API top level resource columns
 const enhancerName: string = 'AddApiTopLevelResourceColumnsFromLeaAndStateFederalFundsDiminisher';
-const targetVersions: string = '2.0.x';
+// const targetVersions: string = '2.0.x';
 
 const localEducationAgencyFederalFunds: string = 'LocalEducationAgencyFederalFunds';
 const stateEducationAgencyFederalFunds: string = 'StateEducationAgencyFederalFunds';
@@ -29,7 +29,7 @@ function addApiTopLevelResourceColumnsToStateFederalFundsTable(repository: EdFiO
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (metaEd.dataStandardVersion !== targetVersions) return { enhancerName, success: true };
+  // if (metaEd.dataStandardVersion !== targetVersions) return { enhancerName, success: true };
 
   const repository: EdFiOdsEntityRepository = pluginEnvironment(metaEd).entity;
   addApiTopLevelResourceColumnsToLocalEducationAgencyFederalFundsTable(repository);

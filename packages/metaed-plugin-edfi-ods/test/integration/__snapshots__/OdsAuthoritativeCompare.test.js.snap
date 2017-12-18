@@ -1,5 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`when generating ods and comparing it to data standard 2.0 authoritative artifacts should create diff files 1`] = `
+" 1 file changed, 0 insertions(+), 0 deletions(-)
+"
+`;
+
 exports[`when generating ods and comparing it to data standard 2.0 authoritative artifacts should have core with no differences 1`] = `
 " 1 file changed, 0 insertions(+), 0 deletions(-)
 "

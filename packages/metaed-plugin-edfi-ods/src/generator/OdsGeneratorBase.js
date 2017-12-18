@@ -26,6 +26,7 @@ export const template = R.memoize(
       schoolYearEnumerationRow: templateNamed('schoolYearEnumerationRow'),
       coreSchema: templateNamed('coreSchema'),
       extensionSchema: templateNamed('extensionSchema'),
+      idIndexes: templateNamed('idIndexes'),
     }),
   );
 
