@@ -2,7 +2,6 @@
 
 export type ModelType =
   | 'unknown'
-  | 'abstractEntity'
   | 'association'
   | 'associationExtension'
   | 'associationSubclass'

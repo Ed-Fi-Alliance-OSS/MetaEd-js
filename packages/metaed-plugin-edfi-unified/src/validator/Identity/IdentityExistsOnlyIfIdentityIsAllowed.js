@@ -2,7 +2,7 @@
 import type { ModelType, MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { excludedModelTypes } from '../ValidatorShared/ExcludedModelTypes';
 
-const validTypes: ModelType[] = ['abstractEntity', 'association', 'common', 'domainEntity', 'inlineCommon'];
+const validTypes: ModelType[] = ['association', 'common', 'domainEntity', 'inlineCommon'];
 const ignoredTypes: ModelType[] = ['integerType', 'stringType', 'decimalType'];
 const validTypeNames: string = ['Abstract Entity', 'Association', 'Common', 'Domain Entity', 'InlineCommon'].join(', ');
 

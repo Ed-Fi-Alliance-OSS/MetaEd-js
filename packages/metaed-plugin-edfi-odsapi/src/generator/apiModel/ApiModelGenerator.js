@@ -12,9 +12,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const namespaces: Array<NamespaceInfo> = metaEd.entity.namespaceInfo;
 
   namespaces.forEach((namespaceInfo: NamespaceInfo) => {
-    const structuredOutput = {
-      domainModelDefinitions: ((namespaceInfo.data.edfiOdsApi: any): NamespaceInfoEdfiOdsApi).domainModelDefinition,
-    };
+    const structuredOutput = ((namespaceInfo.data.edfiOdsApi: any): NamespaceInfoEdfiOdsApi).domainModelDefinition;
 
     results.push({
       name: 'Domain Metadata',

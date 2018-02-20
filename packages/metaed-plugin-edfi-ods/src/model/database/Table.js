@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
 import winston from 'winston';
-import { orderByProp } from 'metaed-core';
+import { orderByProp, NoTopLevelEntity } from 'metaed-core';
 import type { TopLevelEntity, EntityProperty } from 'metaed-core';
 import { columnConstraintMerge, cloneColumn } from './Column';
 import { addColumnNamePair, newForeignKey, foreignKeySourceReferenceFrom } from './ForeignKey';
@@ -34,7 +34,7 @@ export type Table = {
   alternateKeys: Array<Column>,
   uniqueIndexes: Array<Column>,
   // only main tables have a parentEntity
-  parentEntity: ?TopLevelEntity,
+  parentEntity: TopLevelEntity,
 };
 
 export function newTable(): Table {
@@ -56,7 +56,7 @@ export function newTable(): Table {
     foreignKeys: [],
     alternateKeys: [],
     uniqueIndexes: [],
-    parentEntity: null,
+    parentEntity: NoTopLevelEntity,
   };
 }
 

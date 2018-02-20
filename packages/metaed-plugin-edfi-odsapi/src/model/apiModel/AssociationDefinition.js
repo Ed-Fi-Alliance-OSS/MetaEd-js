@@ -7,7 +7,8 @@ export type AssociationDefinitionCardinality =
   | 'OneToOneInheritance'
   | 'OneToOneExtension'
   | 'OneToOneOrMore'
-  | 'OneToZeroOrMore';
+  | 'OneToZeroOrMore'
+  | 'Unknown';
 
 export type AssociationDefinition = {
   fullName: ApiFullName,

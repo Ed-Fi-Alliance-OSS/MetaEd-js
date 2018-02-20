@@ -2,7 +2,7 @@
 import R from 'ramda';
 import winston from 'winston';
 import { orderByProp, isReferenceProperty } from 'metaed-core';
-import type { EntityProperty } from 'metaed-core';
+import type { EntityProperty, PropertyType } from 'metaed-core';
 import type { ReferencePropertyEdfiOds } from '../property/ReferenceProperty';
 import { NoTable, getPrimaryKeys } from './Table';
 import type { ColumnNamePair } from './ColumnNamePair';
@@ -20,6 +20,7 @@ export type ForeignKeySourceReference = {
   isSubclassRelationship: boolean,
   isExtensionRelationship: boolean,
   isSyntheticRelationship: boolean,
+  propertyType: PropertyType,
 };
 
 export type ForeignKey = {
@@ -49,6 +50,7 @@ export function newForeignKeySourceReference(): ForeignKeySourceReference {
     isSubclassRelationship: false,
     isExtensionRelationship: false,
     isSyntheticRelationship: false,
+    propertyType: 'unknown',
   };
 }
 
@@ -66,6 +68,7 @@ export function foreignKeySourceReferenceFrom(property: EntityProperty): Foreign
       ? ((property.data.edfiOds: any): ReferencePropertyEdfiOds).ods_IsReferenceToExtensionParent
       : false,
     isSyntheticRelationship: false,
+    propertyType: property.type,
   };
 }
 

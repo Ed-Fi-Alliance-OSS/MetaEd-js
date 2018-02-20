@@ -2,8 +2,8 @@
 import R from 'ramda';
 import { getAllTopLevelEntities } from 'metaed-core';
 import type { MetaEdEnvironment, EnhancerResult, NamespaceInfo, PluginEnvironment, TopLevelEntity } from 'metaed-core';
-import type { EdFiOdsEntityRepository } from 'metaed-plugin-edfi-ods';
-import { buildEntityDefinitions } from './BuildEntityDefinitions';
+import type { EdFiOdsEntityRepository, Table } from 'metaed-plugin-edfi-ods';
+import { buildEntityDefinitions, buildSingleEntityDefinitionFrom } from './BuildEntityDefinitions';
 import { buildAssociationDefinitions } from './BuildAssociationDefinitions';
 import type { NamespaceInfoEdfiOdsApi } from '../../model/NamespaceInfo';
 import type { AggregateDefinition } from '../../model/apiModel/AggregateDefinition';
@@ -95,12 +95,33 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const entitiesInNamespace: Array<TopLevelEntity> = topLevelEntities.filter(
       x => x.namespaceInfo.namespace === namespaceInfo.namespace,
     );
+
+    const additionalEntityDefinitions = [];
+    if (!namespaceInfo.isExtension) {
+      // the descriptor base table is a hardcoded table not associated with an entity in the core model
+      const descriptorBaseTable: ?Table = edFiOdsEntityRepository.table.get('Descriptor');
+      if (descriptorBaseTable) {
+        additionalEntityDefinitions.push(
+          buildSingleEntityDefinitionFrom(descriptorBaseTable, {
+            isAbstract: true,
+            includeAlternateKeys: true,
+          }),
+        );
+      }
+    }
+
+    const domainMetadataAggregatesForNamespace: Array<Aggregate> = ((namespaceInfo.data
+      .edfiOdsApi: any): NamespaceInfoEdfiOdsApi).aggregates;
+
     const domainModelDefinition: DomainModelDefinition = {
       schemaDefinition: buildSchemaDefinition(namespaceInfo),
       aggregateDefinitions: buildAggregateDefinitions(namespaceInfo),
       aggregateExtensionDefinitions: buildAggregateExtensionDefinitions(namespaceInfo),
-      entityDefinitions: buildEntityDefinitions(entitiesInNamespace),
-      associationDefinitions: buildAssociationDefinitions(edFiOdsEntityRepository.table),
+      entityDefinitions: buildEntityDefinitions(entitiesInNamespace, additionalEntityDefinitions),
+      associationDefinitions: buildAssociationDefinitions(
+        edFiOdsEntityRepository.table,
+        domainMetadataAggregatesForNamespace,
+      ),
     };
 
     ((namespaceInfo.data.edfiOdsApi: any): NamespaceInfoEdfiOdsApi).domainModelDefinition = domainModelDefinition;
