@@ -285,6 +285,14 @@ export function activate(state: any) {
 
   subscriptions.add(
     atom.commands.add('atom-workspace', {
+      'atom-metaed:settings': () => {
+        atom.workspace.open('atom://config/packages/atom-metaed');
+      },
+    }),
+  );
+
+  subscriptions.add(
+    atom.commands.add('atom-workspace', {
       'atom-metaed:build': () => {
         if (metaEdConsole != null) metaEdConsole.build(!allianceMode());
       },

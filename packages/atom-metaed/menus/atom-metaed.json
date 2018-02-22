@@ -17,6 +17,11 @@
         }
         ,
         {
+          "label": "Settings...",
+          "command": "atom-metaed:settings"
+        }
+        ,
+        {
           "label": "About",
           "command": "atom-metaed:about"
         }
