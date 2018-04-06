@@ -1,19 +1,28 @@
 // @flow
-import { ReferentialProperty, ReferentialPropertySourceMap, newReferentialProperty } from './ReferentialProperty';
-import type { EntityPropertySourceMap, EntityProperty } from './EntityProperty';
+import type { ReferentialProperty, ReferentialPropertySourceMap } from './ReferentialProperty';
+import { newReferentialProperty, newReferentialPropertySourceMap } from './ReferentialProperty';
+import type { EntityProperty } from './EntityProperty';
 
-export class EnumerationPropertySourceMap extends ReferentialPropertySourceMap {}
+export type EnumerationPropertySourceMap = ReferentialPropertySourceMap;
 
-export class EnumerationProperty extends ReferentialProperty {
-  sourceMap: EntityPropertySourceMap | ReferentialPropertySourceMap | EnumerationPropertySourceMap;
+export function newEnumerationPropertySourceMap(): EnumerationPropertySourceMap {
+  return {
+    ...newReferentialPropertySourceMap(),
+  };
 }
 
+export type EnumerationProperty = {
+  sourceMap: EnumerationPropertySourceMap,
+  ...$Exact<ReferentialProperty>,
+};
+
 export function newEnumerationProperty(): EnumerationProperty {
-  return Object.assign(new EnumerationProperty(), newReferentialProperty(), {
+  return {
+    ...newReferentialProperty(),
     type: 'enumeration',
     typeHumanizedName: 'Enumeration Property',
-    sourceMap: new EnumerationPropertySourceMap(),
-  });
+    sourceMap: newEnumerationPropertySourceMap(),
+  };
 }
 
 export const asEnumerationProperty = (x: EntityProperty): EnumerationProperty => ((x: any): EnumerationProperty);

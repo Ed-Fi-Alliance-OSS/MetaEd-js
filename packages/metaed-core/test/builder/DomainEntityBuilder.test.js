@@ -1685,12 +1685,10 @@ describe('when building domain entity source map', () => {
 
   it('should have metaEdName', () => {
     expect(getDomainEntity(metaEd.entity, entityName).sourceMap.metaEdName).toBeDefined();
-    // $FlowIgnore - metaEdName could be null
     expect(getDomainEntity(metaEd.entity, entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
   });
   it('should have metaEdId', () => {
     expect(getDomainEntity(metaEd.entity, entityName).sourceMap.metaEdId).toBeDefined();
-    // $FlowIgnore - metaEdId could be null
     expect(getDomainEntity(metaEd.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
   });
 
@@ -1703,7 +1701,7 @@ describe('when building domain entity source map', () => {
   });
 
   it('should have isAbstract', () => {
-    expect(((getDomainEntity(metaEd.entity, entityName).sourceMap: any): DomainEntitySourceMap).isAbstract).toBeUndefined();
+    expect(((getDomainEntity(metaEd.entity, entityName).sourceMap: any): DomainEntitySourceMap).isAbstract).toBeDefined();
   });
 
   it('should have line, column, text for each property', () => {
@@ -1750,13 +1748,11 @@ describe('when building domain entity namespace info source map', () => {
 
   it('should have namespace', () => {
     expect(getDomainEntity(metaEd.entity, entityName).namespaceInfo.sourceMap.namespace).toBeDefined();
-    // $FlowIgnore - namespace could be null
     expect(getDomainEntity(metaEd.entity, entityName).namespaceInfo.sourceMap.namespace.tokenText).toBe(namespace);
   });
 
   it('should have projectExtension', () => {
     expect(getDomainEntity(metaEd.entity, entityName).namespaceInfo.sourceMap.projectExtension).toBeDefined();
-    // $FlowIgnore - projectExtension could be null
     expect(getDomainEntity(metaEd.entity, entityName).namespaceInfo.sourceMap.projectExtension.tokenText).toBe(
       projectExtension,
     );
@@ -1764,7 +1760,6 @@ describe('when building domain entity namespace info source map', () => {
 
   it('should have isExtension', () => {
     expect(getDomainEntity(metaEd.entity, entityName).namespaceInfo.sourceMap.isExtension).toBeDefined();
-    // $FlowIgnore - isExtension could be null
     expect(getDomainEntity(metaEd.entity, entityName).namespaceInfo.sourceMap.isExtension.tokenText).toBe(projectExtension);
   });
 
@@ -1807,12 +1802,10 @@ describe('when building abstract entity source map', () => {
 
   it('should have metaEdName', () => {
     expect(getDomainEntity(metaEd.entity, entityName).sourceMap.metaEdName).toBeDefined();
-    // $FlowIgnore - metaEdName could be null
     expect(getDomainEntity(metaEd.entity, entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
   });
   it('should have metaEdId', () => {
     expect(getDomainEntity(metaEd.entity, entityName).sourceMap.metaEdId).toBeDefined();
-    // $FlowIgnore - metaEdId could be null
     expect(getDomainEntity(metaEd.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
   });
 
@@ -1821,7 +1814,7 @@ describe('when building abstract entity source map', () => {
   });
 
   it('should have allowPrimaryKeyUpdates', () => {
-    expect(getDomainEntity(metaEd.entity, entityName).sourceMap.allowPrimaryKeyUpdates).toBeUndefined();
+    expect(getDomainEntity(metaEd.entity, entityName).sourceMap.allowPrimaryKeyUpdates).toBeDefined();
   });
 
   it('should have isAbstract', () => {

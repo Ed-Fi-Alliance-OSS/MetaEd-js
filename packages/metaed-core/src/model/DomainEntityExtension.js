@@ -1,19 +1,26 @@
 // @flow
-import { TopLevelEntity, TopLevelEntitySourceMap, newTopLevelEntity } from './TopLevelEntity';
+import type { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
+import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
 import type { ModelBase } from './ModelBase';
 
-export class DomainEntityExtensionSourceMap extends TopLevelEntitySourceMap {}
+export type DomainEntityExtensionSourceMap = TopLevelEntitySourceMap;
 
-export class DomainEntityExtension extends TopLevelEntity {
-  sourceMap: TopLevelEntitySourceMap | DomainEntityExtensionSourceMap;
+export function newDomainEntityExtensionSourceMap(): DomainEntityExtensionSourceMap {
+  return newTopLevelEntitySourceMap();
 }
 
+export type DomainEntityExtension = {
+  sourceMap: DomainEntityExtensionSourceMap,
+  ...$Exact<TopLevelEntity>,
+};
+
 export function newDomainEntityExtension(): DomainEntityExtension {
-  return Object.assign(new DomainEntityExtension(), newTopLevelEntity(), {
+  return {
+    ...newTopLevelEntity(),
     type: 'domainEntityExtension',
     typeHumanizedName: 'Domain Entity Extension',
-    sourceMap: new DomainEntityExtensionSourceMap(),
-  });
+    sourceMap: newDomainEntityExtensionSourceMap(),
+  };
 }
 
 export const asDomainEntityExtension = (x: ModelBase): DomainEntityExtension => ((x: any): DomainEntityExtension);

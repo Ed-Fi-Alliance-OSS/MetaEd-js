@@ -1,7 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when building domain source map should have line, column, text 1`] = `
-DomainSourceMap {
+Object {
+  "allowPrimaryKeyUpdates": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntityName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 4,
     "line": 3,
@@ -104,7 +119,22 @@ Object {
 `;
 
 exports[`when building subdomain source map should have line, column, text 1`] = `
-SubdomainSourceMap {
+Object {
+  "allowPrimaryKeyUpdates": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntityName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 4,
     "line": 3,

@@ -827,13 +827,11 @@ describe('when building shared decimal source map', () => {
 
   it('should have metaEdName', () => {
     expect(getSharedDecimal(metaEd.entity, entityName).sourceMap.metaEdName).toBeDefined();
-    // $FlowIgnore = metaEdName could be null
     expect(getSharedDecimal(metaEd.entity, entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
   });
 
   it('should have metaEdId', () => {
     expect(getSharedDecimal(metaEd.entity, entityName).sourceMap.metaEdId).toBeDefined();
-    // $FlowIgnore = metaEdName could be null
     expect(getSharedDecimal(metaEd.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
   });
 

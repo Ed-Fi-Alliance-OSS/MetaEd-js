@@ -1,19 +1,28 @@
 // @flow
-import { ReferentialProperty, ReferentialPropertySourceMap, newReferentialProperty } from './ReferentialProperty';
-import type { EntityPropertySourceMap, EntityProperty } from './EntityProperty';
+import type { ReferentialProperty, ReferentialPropertySourceMap } from './ReferentialProperty';
+import { newReferentialProperty, newReferentialPropertySourceMap } from './ReferentialProperty';
+import type { EntityProperty } from './EntityProperty';
 
-export class SchoolYearEnumerationPropertySourceMap extends ReferentialPropertySourceMap {}
+export type SchoolYearEnumerationPropertySourceMap = ReferentialPropertySourceMap;
 
-export class SchoolYearEnumerationProperty extends ReferentialProperty {
-  sourceMap: EntityPropertySourceMap | ReferentialPropertySourceMap | SchoolYearEnumerationPropertySourceMap;
+export function newSchoolYearEnumerationPropertySourceMap(): SchoolYearEnumerationPropertySourceMap {
+  return {
+    ...newReferentialPropertySourceMap(),
+  };
 }
 
+export type SchoolYearEnumerationProperty = {
+  sourceMap: SchoolYearEnumerationPropertySourceMap,
+  ...$Exact<ReferentialProperty>,
+};
+
 export function newSchoolYearEnumerationProperty(): SchoolYearEnumerationProperty {
-  return Object.assign(new SchoolYearEnumerationProperty(), newReferentialProperty(), {
+  return {
+    ...newReferentialProperty(),
     type: 'schoolYearEnumeration',
     typeHumanizedName: 'School Year Enumeration Property',
-    sourceMap: new SchoolYearEnumerationPropertySourceMap(),
-  });
+    sourceMap: newSchoolYearEnumerationPropertySourceMap(),
+  };
 }
 
 export const asSchoolYearEnumerationProperty = (x: EntityProperty): SchoolYearEnumerationProperty =>

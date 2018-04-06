@@ -21,11 +21,16 @@ Object {
 `;
 
 exports[`when building shared integer source map should have line, column, text for each property 1`] = `
-SharedIntegerSourceMap {
+Object {
   "documentation": Object {
     "column": 4,
     "line": 3,
     "tokenText": "documentation",
+  },
+  "isShort": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "maxValue": Object {
     "column": 6,
@@ -97,7 +102,7 @@ Array [
 `;
 
 exports[`when building shared short source map should have line, column, text for each property 1`] = `
-SharedIntegerSourceMap {
+Object {
   "documentation": Object {
     "column": 4,
     "line": 3,

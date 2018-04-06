@@ -2,7 +2,10 @@
 import type { EntityProperty, MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 
 const hasDuplicateUniqueIds = (properties: Array<EntityProperty>) =>
-  properties.reduce((count, property) => (property.metaEdName === 'UniqueId' ? count + 1 : count), 0) > 1;
+  properties.reduce(
+    (count: number, property: EntityProperty) => (property.metaEdName === 'UniqueId' ? count + 1 : count),
+    0,
+  ) > 1;
 
 // eslint-disable-next-line no-unused-vars
 export function validate(metaEd: MetaEdEnvironment): Array<ValidationFailure> {

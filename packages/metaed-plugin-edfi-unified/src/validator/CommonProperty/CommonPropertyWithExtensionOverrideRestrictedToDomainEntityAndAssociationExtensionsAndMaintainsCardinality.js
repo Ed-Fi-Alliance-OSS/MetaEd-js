@@ -1,6 +1,12 @@
 // @flow
-import type { EntityProperty, EntityRepository, MetaEdEnvironment, ModelType, ValidationFailure } from 'metaed-core';
-import { CommonPropertySourceMap } from 'metaed-core';
+import type {
+  CommonPropertySourceMap,
+  EntityProperty,
+  EntityRepository,
+  MetaEdEnvironment,
+  ModelType,
+  ValidationFailure,
+} from 'metaed-core';
 
 const validEntityTypes: ModelType[] = ['domainEntityExtension', 'associationExtension'];
 

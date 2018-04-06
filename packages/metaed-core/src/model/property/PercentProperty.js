@@ -1,19 +1,26 @@
 // @flow
-import { SimpleProperty, SimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
-import type { EntityPropertySourceMap, EntityProperty } from './EntityProperty';
+import type { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
+import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
+import type { EntityProperty } from './EntityProperty';
 
-export class PercentPropertySourceMap extends SimplePropertySourceMap {}
+export type PercentPropertySourceMap = SimplePropertySourceMap;
 
-export class PercentProperty extends SimpleProperty {
-  sourceMap: EntityPropertySourceMap | SimplePropertySourceMap | PercentPropertySourceMap;
+export function newPercentPropertySourceMap(): PercentPropertySourceMap {
+  return newSimplePropertySourceMap();
 }
 
+export type PercentProperty = {
+  sourceMap: PercentPropertySourceMap,
+  ...$Exact<SimpleProperty>,
+};
+
 export function newPercentProperty(): PercentProperty {
-  return Object.assign(new PercentProperty(), newSimpleProperty(), {
+  return {
+    ...newSimpleProperty(),
     type: 'percent',
     typeHumanizedName: 'Percent Property',
-    sourceMap: new PercentPropertySourceMap(),
-  });
+    sourceMap: newPercentPropertySourceMap(),
+  };
 }
 
 export const asPercentProperty = (x: EntityProperty): PercentProperty => ((x: any): PercentProperty);

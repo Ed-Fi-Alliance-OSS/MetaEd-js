@@ -2,7 +2,7 @@
 import R from 'ramda';
 import { getEntitiesOfType, asTopLevelEntity, normalizeEnumerationSuffix } from 'metaed-core';
 import type { MetaEdEnvironment, ModelBase, EnhancerResult, TopLevelEntity, NamespaceInfo } from 'metaed-core';
-import type { Table, TopLevelEntityEdfiOds } from 'metaed-plugin-edfi-ods';
+import type { Table, TopLevelEntityEdfiOds, DescriptorEdfiOds } from 'metaed-plugin-edfi-ods';
 import type { DescriptorEdfiOdsApi } from '../../model/Descriptor';
 import type { TopLevelEntityEdfiOdsApi } from '../../model/TopLevelEntity';
 import type { EntityTable } from '../../model/domainMetadata/EntityTable';
@@ -25,7 +25,7 @@ function generateAggregate(entity: TopLevelEntity, namespaceInfo: NamespaceInfo)
   };
 
   let typeAggregate: Aggregate = NoAggregate;
-  if (((entity.data.edfiOds: any): TopLevelEntityEdfiOds).ods_IsMapType) {
+  if (entity.type === 'descriptor' && ((entity.data.edfiOds: any): DescriptorEdfiOds).ods_IsMapType) {
     typeAggregate = {
       root: normalizeEnumerationSuffix(entity.metaEdName),
       schema: entity.namespaceInfo.namespace,

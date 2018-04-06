@@ -1,19 +1,26 @@
 // @flow
-import { SimpleProperty, SimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
-import type { EntityPropertySourceMap, EntityProperty } from './EntityProperty';
+import type { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
+import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
+import type { EntityProperty } from './EntityProperty';
 
-export class TimePropertySourceMap extends SimplePropertySourceMap {}
+export type TimePropertySourceMap = SimplePropertySourceMap;
 
-export class TimeProperty extends SimpleProperty {
-  sourceMap: EntityPropertySourceMap | SimplePropertySourceMap | TimePropertySourceMap;
+export function newTimePropertySourceMap(): TimePropertySourceMap {
+  return newSimplePropertySourceMap();
 }
 
+export type TimeProperty = {
+  sourceMap: TimePropertySourceMap,
+  ...$Exact<SimpleProperty>,
+};
+
 export function newTimeProperty(): TimeProperty {
-  return Object.assign(new TimeProperty(), newSimpleProperty(), {
+  return {
+    ...newSimpleProperty(),
     type: 'time',
     typeHumanizedName: 'Time Property',
-    sourceMap: new TimePropertySourceMap(),
-  });
+    sourceMap: newTimePropertySourceMap(),
+  };
 }
 
 export const asTimeProperty = (x: EntityProperty): TimeProperty => ((x: any): TimeProperty);

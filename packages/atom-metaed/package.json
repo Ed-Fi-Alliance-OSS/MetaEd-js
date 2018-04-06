@@ -142,7 +142,6 @@
     "eslint-plugin-jasmine": "^2.2.0",
     "eslint-plugin-json": "^1.2.0",
     "eslint-plugin-prettier": "^2.3.1",
-    "flow-bin": "^0.46.0",
     "mock-fs": "^4.3.0",
     "prettier": "^1.9.2",
     "proxyquire": "^1.8.0",

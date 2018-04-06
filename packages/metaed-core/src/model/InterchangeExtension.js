@@ -1,29 +1,16 @@
 // @flow
-import { Interchange, InterchangeSourceMap } from './Interchange';
+import type { Interchange } from './Interchange';
+import { newInterchange } from './Interchange';
 import type { ModelBase } from './ModelBase';
-import { newNamespaceInfo } from './NamespaceInfo';
 
-export class InterchangeExtension extends Interchange {}
+export type InterchangeExtension = Interchange;
 
 export function newInterchangeExtension(): InterchangeExtension {
-  return Object.assign(new InterchangeExtension(), {
+  return {
+    ...newInterchange(),
     type: 'interchangeExtension',
     typeHumanizedName: 'Interchange Extension',
-    documentation: '',
-    metaEdName: '',
-    metaEdId: '',
-    namespaceInfo: newNamespaceInfo(),
-
-    elements: [],
-    identityTemplates: [],
-    extendedDocumentation: '',
-    useCaseDocumentation: '',
-    baseEntityName: '',
-    baseEntity: null,
-
-    sourceMap: new InterchangeSourceMap(),
-    data: {},
-  });
+  };
 }
 
 export const asInterchangeExtension = (x: ModelBase): InterchangeExtension => ((x: any): InterchangeExtension);

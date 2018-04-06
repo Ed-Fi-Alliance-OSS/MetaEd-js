@@ -1,6 +1,6 @@
 // @flow
-import { ReferentialProperty, isReferentialProperty } from 'metaed-core';
-import type { TopLevelEntity, PropertyType } from 'metaed-core';
+import { isReferentialProperty } from 'metaed-core';
+import type { ReferentialProperty, TopLevelEntity, PropertyType, InterchangeItem } from 'metaed-core';
 import type { MergedInterchange } from 'metaed-plugin-edfi-xsd';
 import { escapeForMarkdownTableContent } from './Shared';
 import type { ReferenceUsageInfo } from '../model/ReferenceUsageInfo';
@@ -98,13 +98,16 @@ function getPropertiesToScan(topLevelEntity: TopLevelEntity, identityOnly: boole
 }
 
 export function topLevelEntitiesFrom(mergedInterchange: MergedInterchange): Array<TopLevelEntity> {
-  const interchangeTopLevelEntities: Array<TopLevelEntity> = mergedInterchange.elements.reduce((array, element) => {
-    array.push(...getEntityAndParents(element.referencedEntity));
-    return array;
-  }, []);
+  const interchangeTopLevelEntities: Array<TopLevelEntity> = mergedInterchange.elements.reduce(
+    (array: Array<TopLevelEntity>, element: InterchangeItem) => {
+      array.push(...getEntityAndParents(element.referencedEntity));
+      return array;
+    },
+    [],
+  );
 
   const identityTemplatesTopLevelEntities: Array<TopLevelEntity> = mergedInterchange.identityTemplates.reduce(
-    (array, element) => {
+    (array: Array<TopLevelEntity>, element: InterchangeItem) => {
       array.push(...getEntityAndParents(element.referencedEntity));
       return array;
     },
@@ -116,7 +119,7 @@ export function topLevelEntitiesFrom(mergedInterchange: MergedInterchange): Arra
 
 export function topLevelReferencePropertiesFrom(mergedInterchange: MergedInterchange): Array<ReferentialProperty> {
   const interchangeTopLevelReferenceProperties: Array<ReferentialProperty> = mergedInterchange.elements.reduce(
-    (array, element) => {
+    (array: Array<ReferentialProperty>, element: InterchangeItem) => {
       array.push(...getPropertiesToScan(element.referencedEntity, false));
       return array;
     },
@@ -124,8 +127,8 @@ export function topLevelReferencePropertiesFrom(mergedInterchange: MergedInterch
   );
 
   // eslint-disable-next-line prettier/prettier
-  const identityTemplatesTopLevelReferenceProperties: Array<ReferentialProperty> = mergedInterchange.identityTemplates
-  .reduce((array, element) => {
+  const identityTemplatesTopLevelReferenceProperties: Array<ReferentialProperty> =
+   mergedInterchange.identityTemplates.reduce((array: Array<ReferentialProperty>, element: InterchangeItem) => {
     array.push(...getPropertiesToScan(element.referencedEntity, true));
     return array;
   }, []);

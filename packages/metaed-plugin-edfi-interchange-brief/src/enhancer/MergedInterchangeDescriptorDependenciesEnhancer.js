@@ -1,7 +1,6 @@
 // @flow
 import R from 'ramda';
-import { ReferentialProperty } from 'metaed-core';
-import type { MetaEdEnvironment, TopLevelEntity, PropertyType } from 'metaed-core';
+import type { ReferentialProperty, MetaEdEnvironment, TopLevelEntity, PropertyType } from 'metaed-core';
 import type { EdFiXsdEntityRepository } from 'metaed-plugin-edfi-xsd';
 import type { ReferenceUsageInfo } from '../model/ReferenceUsageInfo';
 import type { MergedInterchangeEdfiInterchangeBrief } from '../model/MergedInterchange';
@@ -30,7 +29,7 @@ export function enhance(metaEd: MetaEdEnvironment) {
       .map(x => x.metaEdName);
 
     const allDescriptorDependencies: Array<ReferenceUsageInfo> = topLevelReferenceProperties.reduce(
-      (referencedUsageInfos: Array<ReferenceUsageInfo>, tlrp) => {
+      (referencedUsageInfos: Array<ReferenceUsageInfo>, tlrp: ReferentialProperty) => {
         const extendedReferencesFromProperty: Array<ReferenceUsageInfo> = [
           ...getReferenceUsageInfoList([descriptorType], descriptorExclusionList, previouslyMatchedProperties, tlrp),
         ];

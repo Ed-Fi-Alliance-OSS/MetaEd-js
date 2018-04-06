@@ -1,14 +1,16 @@
 // @flow
-import { DecimalProperty, newDecimalProperty } from './DecimalProperty';
+import type { DecimalProperty } from './DecimalProperty';
+import { newDecimalProperty } from './DecimalProperty';
 import type { EntityProperty } from './EntityProperty';
 
-export class SharedDecimalProperty extends DecimalProperty {}
+export type SharedDecimalProperty = DecimalProperty;
 
 export function newSharedDecimalProperty(): SharedDecimalProperty {
-  return Object.assign(new SharedDecimalProperty(), newDecimalProperty(), {
+  return {
+    ...newDecimalProperty(),
     type: 'sharedDecimal',
     typeHumanizedName: 'Shared Decimal Property',
-  });
+  };
 }
 
 export const asSharedDecimalProperty = (x: EntityProperty): SharedDecimalProperty => ((x: any): SharedDecimalProperty);

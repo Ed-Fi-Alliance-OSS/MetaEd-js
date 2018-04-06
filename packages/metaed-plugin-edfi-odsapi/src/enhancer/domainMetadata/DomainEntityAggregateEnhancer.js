@@ -1,6 +1,6 @@
 // @flow
-import { getEntitiesOfType, asTopLevelEntity } from 'metaed-core';
-import type { MetaEdEnvironment, ModelBase, EnhancerResult, TopLevelEntity } from 'metaed-core';
+import { getEntitiesOfType, asTopLevelEntity, asDomainEntity } from 'metaed-core';
+import type { MetaEdEnvironment, ModelBase, EnhancerResult, TopLevelEntity, DomainEntity } from 'metaed-core';
 import type { Table, TopLevelEntityEdfiOds } from 'metaed-plugin-edfi-ods';
 import { enhanceSingleEntity } from './AggregateEnhancerBase';
 import type { EntityTable } from '../../model/domainMetadata/EntityTable';
@@ -8,7 +8,8 @@ import type { EntityTable } from '../../model/domainMetadata/EntityTable';
 const enhancerName: string = 'DomainEntityAggregateEnhancer';
 
 export function enhanceEntityTable(entity: TopLevelEntity, table: Table, entityTable: EntityTable): void {
-  if (((entity.data.edfiOds: any): TopLevelEntityEdfiOds).ods_TableName === table.name && entity.isAbstract) {
+  const domainEntity: DomainEntity = asDomainEntity(entity);
+  if (((domainEntity.data.edfiOds: any): TopLevelEntityEdfiOds).ods_TableName === table.name && domainEntity.isAbstract) {
     entityTable.isAbstract = true;
   }
 }

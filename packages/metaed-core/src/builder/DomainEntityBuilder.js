@@ -1,9 +1,8 @@
 // @flow
 import type { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
 import { TopLevelEntityBuilder } from './TopLevelEntityBuilder';
-import { newDomainEntity, asDomainEntity } from '../model/DomainEntity';
-import { newAbstractEntity } from '../model/AbstractEntity';
-import type { AbstractEntitySourceMap } from '../model/AbstractEntity';
+import { newDomainEntity, newAbstractEntity, asDomainEntity } from '../model/DomainEntity';
+import type { DomainEntitySourceMap } from '../model/DomainEntity';
 import { sourceMapFrom } from '../model/SourceMap';
 import { NoTopLevelEntity } from '../model/TopLevelEntity';
 import { isErrorText } from './BuilderUtility';
@@ -13,7 +12,7 @@ export class DomainEntityBuilder extends TopLevelEntityBuilder {
     this.enteringEntity(newAbstractEntity);
     if (this.currentTopLevelEntity !== NoTopLevelEntity) {
       asDomainEntity(this.currentTopLevelEntity).isAbstract = true;
-      Object.assign(((this.currentTopLevelEntity.sourceMap: any): AbstractEntitySourceMap), {
+      Object.assign(((this.currentTopLevelEntity.sourceMap: any): DomainEntitySourceMap), {
         type: sourceMapFrom(context),
         isAbstract: sourceMapFrom(context),
         namespaceInfo: this.currentTopLevelEntity.namespaceInfo.sourceMap.type,

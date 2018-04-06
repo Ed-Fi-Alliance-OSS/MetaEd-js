@@ -75,6 +75,7 @@ function elementsByComplexType(complexTypes: Array<ComplexType>): Array<ElementB
   const result: Array<ElementByComplexType> = [];
   complexTypes.forEach((complexType: ComplexType) => {
     complexType.items.forEach((item: ComplexTypeItem) => {
+      // $FlowIgnore - using items existence to determine if subtype is ElementGroup
       if (item.items) {
         const elements: Array<Element> = [];
         elementFromElementGroupCollector(((item.items: any): Array<AnyComplexTypeItem>), elements);

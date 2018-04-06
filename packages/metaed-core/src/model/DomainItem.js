@@ -1,21 +1,34 @@
 // @flow
-import { ModelBase, ModelBaseSourceMap } from './ModelBase';
+import type { ModelBase, ModelBaseSourceMap } from './ModelBase';
+import { newModelBaseSourceMap } from './ModelBase';
 import { newNamespaceInfo } from './NamespaceInfo';
 import type { ModelType } from './ModelType';
 import type { SourceMap } from './SourceMap';
+import { NoSourceMap } from './SourceMap';
 
-export class DomainItemSourceMap extends ModelBaseSourceMap {
-  referencedType: ?SourceMap;
+export type DomainItemSourceMap = {
+  ...$Exact<ModelBaseSourceMap>,
+  referencedType: SourceMap,
+  typeHumanizedName: SourceMap,
+};
+
+export function newDomainItemSourceMap(): DomainItemSourceMap {
+  return {
+    ...newModelBaseSourceMap(),
+    referencedType: NoSourceMap,
+    typeHumanizedName: NoSourceMap,
+  };
 }
 
-export class DomainItem extends ModelBase {
-  typeHumanizedName: string;
-  referencedType: ModelType;
-  sourceMap: DomainItemSourceMap;
-}
+export type DomainItem = {
+  sourceMap: DomainItemSourceMap,
+  ...$Exact<ModelBase>,
+  referencedType: ModelType,
+  typeHumanizedName: string,
+};
 
 export function newDomainItem(): DomainItem {
-  return Object.assign(new DomainItem(), {
+  return {
     type: 'domainItem',
     typeHumanizedName: 'Domain Item',
     documentation: '',
@@ -23,13 +36,15 @@ export function newDomainItem(): DomainItem {
     metaEdId: '',
     namespaceInfo: newNamespaceInfo(),
     referencedType: 'unknown',
-    sourceMap: new DomainItemSourceMap(),
+    sourceMap: newDomainItemSourceMap(),
     data: {},
-  });
+    config: {},
+  };
 }
 
-export const NoDomainItem: DomainItem = Object.assign(newDomainItem(), {
+export const NoDomainItem: DomainItem = {
+  ...newDomainItem(),
   metaEdName: 'NoDomainItem',
-});
+};
 
 export const asDomainItem = (x: ModelBase): DomainItem => ((x: any): DomainItem);

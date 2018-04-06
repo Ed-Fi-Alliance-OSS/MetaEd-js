@@ -1,28 +1,33 @@
 // @flow
-import { EntityProperty, EntityPropertySourceMap, newEntityPropertyFields } from './EntityProperty';
+import type { EntityProperty, EntityPropertySourceMap } from './EntityProperty';
+import { newEntityPropertySourceMap, newEntityProperty } from './EntityProperty';
 import { NoSharedSimple } from '../SharedSimple';
-import type { SharedDecimal } from '../SharedDecimal';
-import type { SharedInteger } from '../SharedInteger';
 import type { SharedSimple } from '../SharedSimple';
-import type { SharedString } from '../SharedString';
 import type { SourceMap } from './../SourceMap';
+import { NoSourceMap } from './../SourceMap';
 
-export class SimplePropertySourceMap extends EntityPropertySourceMap {
-  referencedEntity: ?SourceMap;
+export type SimplePropertySourceMap = {
+  ...$Exact<EntityPropertySourceMap>,
+  referencedEntity: SourceMap,
+};
+
+export function newSimplePropertySourceMap(): SimplePropertySourceMap {
+  return {
+    ...newEntityPropertySourceMap(),
+    referencedEntity: NoSourceMap,
+  };
 }
 
-export class SimpleProperty extends EntityProperty {
-  referencedEntity: SharedDecimal | SharedInteger | SharedString | SharedSimple;
-}
+export type SimpleProperty = {
+  ...$Exact<EntityProperty>,
+  referencedEntity: SharedSimple,
+};
 
-export function newSimplePropertyFields() {
-  return Object.assign({}, newEntityPropertyFields(), {
+export function newSimpleProperty() {
+  return {
+    ...newEntityProperty(),
     referencedEntity: NoSharedSimple,
-  });
-}
-
-export function newSimpleProperty(): SimpleProperty {
-  return Object.assign(new SimpleProperty(), newSimplePropertyFields());
+  };
 }
 
 export const asSimpleProperty = (x: EntityProperty): SimpleProperty => ((x: any): SimpleProperty);

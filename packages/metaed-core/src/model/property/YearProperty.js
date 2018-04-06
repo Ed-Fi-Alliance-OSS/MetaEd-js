@@ -1,19 +1,26 @@
 // @flow
-import { SimpleProperty, SimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
-import type { EntityPropertySourceMap, EntityProperty } from './EntityProperty';
+import type { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
+import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
+import type { EntityProperty } from './EntityProperty';
 
-export class YearPropertySourceMap extends SimplePropertySourceMap {}
+export type YearPropertySourceMap = SimplePropertySourceMap;
 
-export class YearProperty extends SimpleProperty {
-  sourceMap: EntityPropertySourceMap | SimplePropertySourceMap | YearPropertySourceMap;
+export function newYearPropertySourceMap(): YearPropertySourceMap {
+  return newSimplePropertySourceMap();
 }
 
+export type YearProperty = {
+  sourceMap: YearPropertySourceMap,
+  ...$Exact<SimpleProperty>,
+};
+
 export function newYearProperty(): YearProperty {
-  return Object.assign(new YearProperty(), newSimpleProperty(), {
+  return {
+    ...newSimpleProperty(),
     type: 'year',
     typeHumanizedName: 'Year Property',
-    sourceMap: new YearPropertySourceMap(),
-  });
+    sourceMap: newYearPropertySourceMap(),
+  };
 }
 
 export const asYearProperty = (x: EntityProperty): YearProperty => ((x: any): YearProperty);

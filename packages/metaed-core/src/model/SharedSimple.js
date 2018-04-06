@@ -1,34 +1,48 @@
 // @flow
 import { newNamespaceInfo } from './NamespaceInfo';
-import { ModelBase } from './ModelBase';
+import type { ModelBase } from './ModelBase';
 import type { SourceMap } from './SourceMap';
+import { NoSourceMap } from './SourceMap';
 
-export class SharedSimpleSourceMap {
-  type: ?SourceMap;
-  documentation: ?SourceMap;
-  metaEdName: ?SourceMap;
-  metaEdId: ?SourceMap;
-  namespaceInfo: ?SourceMap;
+export type SharedSimpleSourceMap = {
+  type: SourceMap,
+  documentation: SourceMap,
+  metaEdName: SourceMap,
+  metaEdId: SourceMap,
+  namespaceInfo: SourceMap,
+};
+
+export function newSharedSimpleSourceMap(): SharedSimpleSourceMap {
+  return {
+    type: NoSourceMap,
+    documentation: NoSourceMap,
+    metaEdName: NoSourceMap,
+    metaEdId: NoSourceMap,
+    namespaceInfo: NoSourceMap,
+  };
 }
 
-export class SharedSimple extends ModelBase {
-  typeHumanizedName: string;
-  sourceMap: SharedSimpleSourceMap;
-}
+export type SharedSimple = {
+  ...$Exact<ModelBase>,
+  typeHumanizedName: string,
+  sourceMap: SharedSimpleSourceMap,
+};
 
-export function defaultSharedSimple(): SharedSimple {
-  return Object.assign(new SharedSimple(), {
+export function newSharedSimple(): SharedSimple {
+  return {
     type: 'unknown',
     typeHumanizedName: 'unknown',
     documentation: '',
     metaEdName: '',
     metaEdId: '',
     namespaceInfo: newNamespaceInfo(),
-    sourceMap: new SharedSimpleSourceMap(),
+    sourceMap: newSharedSimpleSourceMap(),
     data: {},
-  });
+    config: {},
+  };
 }
 
-export const NoSharedSimple: SharedSimple = Object.assign(defaultSharedSimple(), {
+export const NoSharedSimple: SharedSimple = {
+  ...newSharedSimple(),
   metaEdName: 'NoSharedSimple',
-});
+};

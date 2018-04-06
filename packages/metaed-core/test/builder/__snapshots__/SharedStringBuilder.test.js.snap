@@ -21,7 +21,7 @@ Object {
 `;
 
 exports[`when building shared string source map should have line, column, text for each property 1`] = `
-SharedStringSourceMap {
+Object {
   "documentation": Object {
     "column": 4,
     "line": 3,

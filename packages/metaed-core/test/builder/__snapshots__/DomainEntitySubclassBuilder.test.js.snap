@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when building domain entity subclass source map should have line, column, text for each property 1`] = `
-DomainEntitySubclassSourceMap {
+Object {
+  "allowPrimaryKeyUpdates": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "baseEntity": Object {
     "column": 36,
     "line": 2,

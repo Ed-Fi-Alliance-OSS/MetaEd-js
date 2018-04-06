@@ -115,7 +115,6 @@ export type { TimeProperty, TimePropertySourceMap } from './model/property/TimeP
 export type { YearProperty, YearPropertySourceMap } from './model/property/YearProperty';
 
 // Entities
-export type { AbstractEntity, AbstractEntitySourceMap } from './model/AbstractEntity';
 export type { Association, AssociationSourceMap } from './model/Association';
 export type { AssociationExtension, AssociationExtensionSourceMap } from './model/AssociationExtension';
 export type { AssociationSubclass, AssociationSubclassSourceMap } from './model/AssociationSubclass';
@@ -192,7 +191,6 @@ export { asStringProperty, newStringProperty } from './model/property/StringProp
 export { asTimeProperty, newTimeProperty } from './model/property/TimeProperty';
 export { asYearProperty, newYearProperty } from './model/property/YearProperty';
 
-export { asAbstractEntity, newAbstractEntity } from './model/AbstractEntity';
 export { asAssociation, newAssociation } from './model/Association';
 export { asAssociationExtension, newAssociationExtension } from './model/AssociationExtension';
 export { asAssociationSubclass, newAssociationSubclass } from './model/AssociationSubclass';

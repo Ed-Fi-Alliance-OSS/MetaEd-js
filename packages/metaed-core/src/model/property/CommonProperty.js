@@ -1,24 +1,36 @@
 // @flow
-import { ReferentialProperty, ReferentialPropertySourceMap, newReferentialProperty } from './ReferentialProperty';
+import type { ReferentialProperty, ReferentialPropertySourceMap } from './ReferentialProperty';
+import { newReferentialProperty, newReferentialPropertySourceMap } from './ReferentialProperty';
 import type { SourceMap } from './../SourceMap';
-import type { EntityPropertySourceMap, EntityProperty } from './EntityProperty';
+import { NoSourceMap } from './../SourceMap';
+import type { EntityProperty } from './EntityProperty';
 
-export class CommonPropertySourceMap extends ReferentialPropertySourceMap {
-  isExtensionOverride: ?SourceMap;
+export type CommonPropertySourceMap = {
+  ...$Exact<ReferentialPropertySourceMap>,
+  isExtensionOverride: SourceMap,
+};
+
+export function newCommonPropertySourceMap(): CommonPropertySourceMap {
+  return {
+    ...newReferentialPropertySourceMap(),
+    isExtensionOverride: NoSourceMap,
+  };
 }
 
-export class CommonProperty extends ReferentialProperty {
-  isExtensionOverride: boolean;
-  sourceMap: EntityPropertySourceMap | ReferentialPropertySourceMap | CommonPropertySourceMap;
-}
+export type CommonProperty = {
+  sourceMap: CommonPropertySourceMap,
+  ...$Exact<ReferentialProperty>,
+  isExtensionOverride: boolean,
+};
 
 export function newCommonProperty(): CommonProperty {
-  return Object.assign(new CommonProperty(), newReferentialProperty(), {
+  return {
+    ...newReferentialProperty(),
     type: 'common',
     typeHumanizedName: 'Common Property',
     isExtensionOverride: false,
-    sourceMap: new CommonPropertySourceMap(),
-  });
+    sourceMap: newCommonPropertySourceMap(),
+  };
 }
 
 export const asCommonProperty = (x: EntityProperty): CommonProperty => ((x: any): CommonProperty);

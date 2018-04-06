@@ -1,19 +1,26 @@
 // @flow
-import { TopLevelEntity, TopLevelEntitySourceMap, newTopLevelEntity } from './TopLevelEntity';
+import type { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
+import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
 import type { ModelBase } from './ModelBase';
 
-export class ChoiceSourceMap extends TopLevelEntitySourceMap {}
+export type ChoiceSourceMap = TopLevelEntitySourceMap;
 
-export class Choice extends TopLevelEntity {
-  sourceMap: TopLevelEntitySourceMap | ChoiceSourceMap;
+export function newChoiceSourceMap(): ChoiceSourceMap {
+  return newTopLevelEntitySourceMap();
 }
 
+export type Choice = {
+  sourceMap: ChoiceSourceMap,
+  ...$Exact<TopLevelEntity>,
+};
+
 export function newChoice(): Choice {
-  return Object.assign(new Choice(), newTopLevelEntity(), {
+  return {
+    ...newTopLevelEntity(),
     type: 'choice',
     typeHumanizedName: 'Choice',
-    sourceMap: new ChoiceSourceMap(),
-  });
+    sourceMap: newChoiceSourceMap(),
+  };
 }
 
 export const asChoice = (x: ModelBase): Choice => ((x: any): Choice);

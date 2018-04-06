@@ -21,7 +21,6 @@ export function failInterchangeItemNotMatchingBaseClassProperty(
 ) {
   entity.interchange.forEach(interchange => {
     if (interchange.elements.length === 0) return;
-    // $FlowIgnore - allowing interchangeItemType to specify either elements or identityTemplates property
     interchange[interchangeItemType].forEach(item => {
       // $FlowIgnore - allowing type to specify the entityRepository Map property
       if (validTypes.some(type => entity[type].has(item.metaEdName))) return;

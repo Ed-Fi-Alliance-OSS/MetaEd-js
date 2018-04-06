@@ -3,51 +3,48 @@ import R from 'ramda';
 
 import type { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
 import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
-import { EntityProperty, NoEntityProperty } from '../model/property/EntityProperty';
-import {
-  newMergedProperty,
-  MergedProperty,
-  NoMergedProperty,
-  MergedPropertySourceMap,
-} from '../model/property/MergedProperty';
-import { TopLevelEntity, NoTopLevelEntity } from '../model/TopLevelEntity';
+import type { EntityProperty } from '../model/property/EntityProperty';
+import { NoEntityProperty } from '../model/property/EntityProperty';
+import { newMergedProperty, NoMergedProperty } from '../model/property/MergedProperty';
+import type { MergedProperty, MergedPropertySourceMap } from '../model/property/MergedProperty';
+import type { TopLevelEntity } from '../model/TopLevelEntity';
+import { NoTopLevelEntity } from '../model/TopLevelEntity';
 import type { EntityRepository } from '../model/EntityRepository';
 import type { MetaEdEnvironment } from '../MetaEdEnvironment';
-import { NamespaceInfo, newNamespaceInfo, NoNamespaceInfo } from '../model/NamespaceInfo';
+import type { NamespaceInfo } from '../model/NamespaceInfo';
+import { newNamespaceInfo, NoNamespaceInfo } from '../model/NamespaceInfo';
 import { isSharedProperty } from '../model/property/PropertyType';
 import { enteringNamespaceName, enteringNamespaceType } from './NamespaceInfoBuilder';
 import { extractDocumentation, isErrorText, squareBracketRemoval } from './BuilderUtility';
 import { newBooleanProperty } from '../model/property/BooleanProperty';
 import { newCurrencyProperty } from '../model/property/CurrencyProperty';
 import { newDateProperty } from '../model/property/DateProperty';
-import { DecimalProperty, newDecimalProperty, DecimalPropertySourceMap } from '../model/property/DecimalProperty';
+import { newDecimalProperty } from '../model/property/DecimalProperty';
+import type { DecimalProperty, DecimalPropertySourceMap } from '../model/property/DecimalProperty';
 import { newDescriptorProperty } from '../model/property/DescriptorProperty';
 import { newDurationProperty } from '../model/property/DurationProperty';
 import { newEnumerationProperty } from '../model/property/EnumerationProperty';
-import { CommonProperty, newCommonProperty } from '../model/property/CommonProperty';
-import type { CommonPropertySourceMap } from '../model/property/CommonProperty';
+import { newCommonProperty } from '../model/property/CommonProperty';
+import type { CommonProperty, CommonPropertySourceMap } from '../model/property/CommonProperty';
 import { newInlineCommonProperty } from '../model/property/InlineCommonProperty';
 import { newChoiceProperty } from '../model/property/ChoiceProperty';
-import { IntegerProperty, newIntegerProperty, IntegerPropertySourceMap } from '../model/property/IntegerProperty';
+import { newIntegerProperty } from '../model/property/IntegerProperty';
+import type { IntegerProperty, IntegerPropertySourceMap } from '../model/property/IntegerProperty';
 import { newPercentProperty } from '../model/property/PercentProperty';
-import {
-  AssociationProperty,
-  newAssociationProperty,
-  AssociationPropertySourceMap,
-} from '../model/property/AssociationProperty';
-import {
-  DomainEntityProperty,
-  newDomainEntityProperty,
-  DomainEntityPropertySourceMap,
-} from '../model/property/DomainEntityProperty';
+import { newAssociationProperty } from '../model/property/AssociationProperty';
+import type { AssociationProperty, AssociationPropertySourceMap } from '../model/property/AssociationProperty';
+import { newDomainEntityProperty } from '../model/property/DomainEntityProperty';
+import type { DomainEntityProperty, DomainEntityPropertySourceMap } from '../model/property/DomainEntityProperty';
 import { newSharedDecimalProperty } from '../model/property/SharedDecimalProperty';
 import { newSharedIntegerProperty } from '../model/property/SharedIntegerProperty';
 import { newSharedStringProperty } from '../model/property/SharedStringProperty';
-import { StringProperty, newStringProperty, StringPropertySourceMap } from '../model/property/StringProperty';
+import { newStringProperty } from '../model/property/StringProperty';
+import type { StringProperty, StringPropertySourceMap } from '../model/property/StringProperty';
 import { newTimeProperty } from '../model/property/TimeProperty';
 import { newYearProperty } from '../model/property/YearProperty';
-import { ReferentialProperty, ReferentialPropertySourceMap } from '../model/property/ReferentialProperty';
-import { ShortProperty, newShortProperty, ShortPropertySourceMap } from '../model/property/ShortProperty';
+import type { ReferentialProperty, ReferentialPropertySourceMap } from '../model/property/ReferentialProperty';
+import { newShortProperty } from '../model/property/ShortProperty';
+import type { ShortProperty, ShortPropertySourceMap } from '../model/property/ShortProperty';
 import { newSharedShortProperty } from '../model/property/SharedShortProperty';
 import { sourceMapFrom } from '../model/SourceMap';
 import type { ValidationFailure } from '../validator/ValidationFailure';

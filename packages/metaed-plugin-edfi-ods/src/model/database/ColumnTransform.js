@@ -56,10 +56,8 @@ export class ColumnTransform {
 
     const currentStrategy = strategyStack.pop();
 
-    const newColumns = originalColumns.map(x => cloneColumn(x)).reduce((acc, column) => {
-      currentStrategy.transformSingle(column);
-      return acc.concat(column);
-    }, []);
+    const newColumns: Array<Column> = originalColumns.map(x => cloneColumn(x));
+    newColumns.forEach((column: Column) => currentStrategy.transformSingle(column));
 
     return ColumnTransform._transformTopOfStack(strategyStack, newColumns);
   }

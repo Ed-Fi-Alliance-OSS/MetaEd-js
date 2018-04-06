@@ -1,6 +1,6 @@
 // @flow
 import R from 'ramda';
-import { asReferentialProperty } from 'metaed-core';
+import { asCommonProperty } from 'metaed-core';
 import type { CommonExtension, EntityProperty, MergedProperty, ReferentialProperty } from 'metaed-core';
 import {
   addColumns,
@@ -133,7 +133,7 @@ export function commonPropertyTableBuilder(
       tables: Array<Table>,
       parentIsRequired: ?boolean,
     ): void {
-      const commonProperty = asReferentialProperty(property);
+      const commonProperty = asCommonProperty(property);
       let strategy: BuildStrategy = buildStrategy;
 
       if (commonProperty.mergedProperties.length > 0) {

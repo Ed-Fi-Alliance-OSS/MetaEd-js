@@ -1,8 +1,8 @@
 // @flow
 
 // 2.x - METAED-711 - ODS-1732
-import { asReferentialProperty, EntityProperty } from 'metaed-core';
-import type { TopLevelEntity } from 'metaed-core';
+import { asReferentialProperty } from 'metaed-core';
+import type { TopLevelEntity, EntityProperty } from 'metaed-core';
 
 export function collectSingleEntity(
   entity: TopLevelEntity,

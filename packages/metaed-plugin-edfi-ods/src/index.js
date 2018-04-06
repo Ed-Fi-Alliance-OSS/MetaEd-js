@@ -18,6 +18,7 @@ export type { SchoolYearEnumerationRow } from './model/database/SchoolYearEnumer
 export type { Table } from './model/database/Table';
 export type { EdFiOdsEntityRepository } from './model/EdFiOdsEntityRepository';
 export type { TopLevelEntityEdfiOds } from './model/TopLevelEntity';
+export type { DescriptorEdfiOds } from './model/Descriptor';
 export type { AssociationExtensionEdfiOds } from './model/AssociationExtension';
 export type { DomainEntityExtensionEdfiOds } from './model/DomainEntityExtension';
 export type { ReferencePropertyEdfiOds } from './model/property/ReferenceProperty';

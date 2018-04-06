@@ -1,19 +1,26 @@
 // @flow
-import { SimpleProperty, SimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
-import type { EntityPropertySourceMap, EntityProperty } from './EntityProperty';
+import type { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
+import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
+import type { EntityProperty } from './EntityProperty';
 
-export class BooleanPropertySourceMap extends SimplePropertySourceMap {}
+export type BooleanPropertySourceMap = SimplePropertySourceMap;
 
-export class BooleanProperty extends SimpleProperty {
-  sourceMap: EntityPropertySourceMap | SimplePropertySourceMap | BooleanPropertySourceMap;
+export function newBooleanPropertySourceMap(): BooleanPropertySourceMap {
+  return newSimplePropertySourceMap();
 }
 
+export type BooleanProperty = {
+  sourceMap: BooleanPropertySourceMap,
+  ...$Exact<SimpleProperty>,
+};
+
 export function newBooleanProperty(): BooleanProperty {
-  return Object.assign(new BooleanProperty(), newSimpleProperty(), {
+  return {
+    ...newSimpleProperty(),
     type: 'boolean',
     typeHumanizedName: 'Boolean Property',
-    sourceMap: new BooleanPropertySourceMap(),
-  });
+    sourceMap: newBooleanPropertySourceMap(),
+  };
 }
 
 export const asBooleanProperty = (x: EntityProperty): BooleanProperty => ((x: any): BooleanProperty);

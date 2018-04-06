@@ -1,14 +1,16 @@
 // @flow
-import { ShortProperty, newShortProperty } from './ShortProperty';
+import type { ShortProperty } from './ShortProperty';
+import { newShortProperty } from './ShortProperty';
 import type { EntityProperty } from './EntityProperty';
 
-export class SharedShortProperty extends ShortProperty {}
+export type SharedShortProperty = ShortProperty;
 
 export function newSharedShortProperty(): SharedShortProperty {
-  return Object.assign(new SharedShortProperty(), newShortProperty(), {
+  return {
+    ...newShortProperty(),
     type: 'sharedShort',
     typeHumanizedName: 'Shared Short Property',
-  });
+  };
 }
 
 export const asSharedShortProperty = (x: EntityProperty): SharedShortProperty => ((x: any): SharedShortProperty);

@@ -1,30 +1,44 @@
 // @flow
-import { SharedSimple, SharedSimpleSourceMap, defaultSharedSimple } from './SharedSimple';
+import type { SharedSimple, SharedSimpleSourceMap } from './SharedSimple';
+import { newSharedSimpleSourceMap, newSharedSimple } from './SharedSimple';
 import type { ModelBase } from './ModelBase';
 import type { SourceMap } from './SourceMap';
+import { NoSourceMap } from './SourceMap';
 
-export class SharedIntegerSourceMap extends SharedSimpleSourceMap {
-  isShort: ?SourceMap;
-  minValue: ?SourceMap;
-  maxValue: ?SourceMap;
+export type SharedIntegerSourceMap = {
+  ...$Exact<SharedSimpleSourceMap>,
+  isShort: ?SourceMap,
+  minValue: ?SourceMap,
+  maxValue: ?SourceMap,
+};
+
+export function newSharedIntegerSourceMap(): SharedIntegerSourceMap {
+  return {
+    ...newSharedSimpleSourceMap(),
+    isShort: NoSourceMap,
+    minValue: NoSourceMap,
+    maxValue: NoSourceMap,
+  };
 }
 
-export class SharedInteger extends SharedSimple {
-  isShort: boolean;
-  minValue: string;
-  maxValue: string;
-  sourceMap: SharedSimpleSourceMap | SharedIntegerSourceMap;
-}
+export type SharedInteger = {
+  sourceMap: SharedIntegerSourceMap,
+  ...$Exact<SharedSimple>,
+  isShort: boolean,
+  minValue: string,
+  maxValue: string,
+};
 
 export function newSharedInteger(): SharedInteger {
-  return Object.assign(new SharedInteger(), defaultSharedSimple(), {
+  return {
+    ...newSharedSimple(),
     type: 'sharedInteger',
     typeHumanizedName: 'Shared Integer',
     isShort: false,
     minValue: '',
     maxValue: '',
-    sourceMap: new SharedIntegerSourceMap(),
-  });
+    sourceMap: newSharedIntegerSourceMap(),
+  };
 }
 
 export const asSharedInteger = (x: ModelBase): SharedInteger => ((x: any): SharedInteger);

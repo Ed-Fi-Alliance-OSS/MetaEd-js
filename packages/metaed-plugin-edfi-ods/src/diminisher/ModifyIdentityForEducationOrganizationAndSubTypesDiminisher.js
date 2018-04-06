@@ -7,6 +7,7 @@ import type {
   EntityProperty,
   EntityRepository,
   IntegerProperty,
+  DomainEntitySubclass,
   MetaEdEnvironment,
   ModelBase,
 } from 'metaed-core';
@@ -24,7 +25,8 @@ const surrogateKeyNameTemplate: string = '{0}Id';
 const educationOrganizationSurrogateKeyName: string = sugar.format(surrogateKeyNameTemplate, educationOrganization);
 
 function modifyIdentityForEducationOrganizationSubclasses(repository: EntityRepository): void {
-  getEntitiesOfType(repository, 'domainEntitySubclass').forEach((entitySubclass: ModelBase) => {
+  getEntitiesOfType(repository, 'domainEntitySubclass').forEach(entity => {
+    const entitySubclass: DomainEntitySubclass = ((entity: any): DomainEntitySubclass);
     if (entitySubclass.baseEntityName !== educationOrganization && entitySubclass.namespaceInfo.namespace !== coreNamespace)
       return;
 

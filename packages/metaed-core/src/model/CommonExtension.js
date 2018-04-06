@@ -1,19 +1,26 @@
 // @flow
-import { TopLevelEntity, TopLevelEntitySourceMap, newTopLevelEntity } from './TopLevelEntity';
+import type { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
+import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
 import type { ModelBase } from './ModelBase';
 
-export class CommonExtensionSourceMap extends TopLevelEntitySourceMap {}
+export type CommonExtensionSourceMap = TopLevelEntitySourceMap;
 
-export class CommonExtension extends TopLevelEntity {
-  sourceMap: TopLevelEntitySourceMap | CommonExtensionSourceMap;
+export function newCommonExtensionSourceMap(): CommonExtensionSourceMap {
+  return newTopLevelEntitySourceMap();
 }
 
+export type CommonExtension = {
+  sourceMap: CommonExtensionSourceMap,
+  ...$Exact<TopLevelEntity>,
+};
+
 export function newCommonExtension(): CommonExtension {
-  return Object.assign(new CommonExtension(), newTopLevelEntity(), {
+  return {
+    ...newTopLevelEntity(),
     type: 'commonExtension',
     typeHumanizedName: 'Common Extension',
-    sourceMap: new CommonExtensionSourceMap(),
-  });
+    sourceMap: newCommonExtensionSourceMap(),
+  };
 }
 
 export const asCommonExtension = (x: ModelBase): CommonExtension => ((x: any): CommonExtension);

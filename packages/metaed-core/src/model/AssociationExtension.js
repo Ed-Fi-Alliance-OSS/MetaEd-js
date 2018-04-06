@@ -1,19 +1,26 @@
 // @flow
-import { TopLevelEntity, TopLevelEntitySourceMap, newTopLevelEntity } from './TopLevelEntity';
+import type { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
+import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
 import type { ModelBase } from './ModelBase';
 
-export class AssociationExtensionSourceMap extends TopLevelEntitySourceMap {}
+export type AssociationExtensionSourceMap = TopLevelEntitySourceMap;
 
-export class AssociationExtension extends TopLevelEntity {
-  sourceMap: TopLevelEntitySourceMap | AssociationExtensionSourceMap;
+export function newAssociationExtensionSourceMap(): AssociationExtensionSourceMap {
+  return newTopLevelEntitySourceMap();
 }
 
+export type AssociationExtension = {
+  sourceMap: AssociationExtensionSourceMap,
+  ...$Exact<TopLevelEntity>,
+};
+
 export function newAssociationExtension(): AssociationExtension {
-  return Object.assign(new AssociationExtension(), newTopLevelEntity(), {
+  return {
+    ...newTopLevelEntity(),
     type: 'associationExtension',
     typeHumanizedName: 'Association Extension',
-    sourceMap: new AssociationExtensionSourceMap(),
-  });
+    sourceMap: newAssociationExtensionSourceMap(),
+  };
 }
 
 export const asAssociationExtension = (x: ModelBase): AssociationExtension => ((x: any): AssociationExtension);

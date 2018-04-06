@@ -60,6 +60,7 @@ export function execute(state: State): boolean {
     ffs.mkdirRecursiveSync(outputDirectory);
     state.generatorResults.forEach(result => {
       // if (result is a Promise)
+      // $FlowIgnore --- This is wrong, generatorresults should just all be promises to await on
       if (result.then) {
         winston.info('Resolving Promise:');
         // $FlowIgnore - flow was expecting a GeneratorResults not a promise

@@ -1,7 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when building association extension source map should have source map data 1`] = `
-AssociationExtensionSourceMap {
+Object {
+  "allowPrimaryKeyUpdates": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntityName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "documentation": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "identityProperties": Array [],
   "metaEdId": Object {
     "column": 35,
@@ -12,6 +32,11 @@ AssociationExtensionSourceMap {
     "column": 14,
     "line": 2,
     "tokenText": "EntityName",
+  },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "properties": Array [],
   "queryableFields": Array [],

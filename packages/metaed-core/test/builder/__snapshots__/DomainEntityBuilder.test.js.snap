@@ -1,7 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when building abstract entity source map should have line, column, text for each property 1`] = `
-AbstractEntitySourceMap {
+Object {
+  "allowPrimaryKeyUpdates": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntityName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 4,
     "line": 3,
@@ -39,7 +54,12 @@ AbstractEntitySourceMap {
 `;
 
 exports[`when building domain entity namespace info source map should have line, column, text for each property 1`] = `
-NamespaceInfoSourceMap {
+Object {
+  "extensionEntitySuffix": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "isExtension": Object {
     "column": 26,
     "line": 1,
@@ -55,6 +75,11 @@ NamespaceInfoSourceMap {
     "line": 1,
     "tokenText": "ProjectExtension",
   },
+  "projectName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "type": Object {
     "column": 0,
     "line": 1,
@@ -64,11 +89,21 @@ NamespaceInfoSourceMap {
 `;
 
 exports[`when building domain entity source map should have line, column, text for each property 1`] = `
-DomainEntitySourceMap {
+Object {
   "allowPrimaryKeyUpdates": Object {
     "column": 4,
     "line": 5,
     "tokenText": "allow primary key updates",
+  },
+  "baseEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntityName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "documentation": Object {
     "column": 4,
@@ -76,6 +111,11 @@ DomainEntitySourceMap {
     "tokenText": "documentation",
   },
   "identityProperties": Array [],
+  "isAbstract": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "metaEdId": Object {
     "column": 27,
     "line": 2,
@@ -175,22 +215,87 @@ Array [
 `;
 
 exports[`when building domain entity with shared integer reference should have correct sourcemap 1`] = `
-IntegerPropertySourceMap {
+Object {
+  "baseKeyName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 6,
     "line": 6,
     "tokenText": "documentation",
   },
+  "documentationInherited": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "hasRestriction": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isIdentityRename": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptional": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptionalCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isPartOfIdentity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isQueryableOnly": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "isRequired": Object {
     "column": 6,
     "line": 8,
     "tokenText": "is required",
+  },
+  "isRequiredCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "maxValue": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "metaEdId": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "metaEdName": Object {
     "column": 44,
     "line": 5,
     "tokenText": "PropertyName",
   },
+  "minValue": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "parentEntity": Object {
     "column": 2,
     "line": 2,
@@ -201,35 +306,120 @@ IntegerPropertySourceMap {
     "line": 2,
     "tokenText": "EntityName",
   },
+  "propertyPathName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "referencedType": Object {
     "column": 19,
     "line": 5,
     "tokenText": "SharedPropertyType",
+  },
+  "shortenTo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "type": Object {
     "column": 4,
     "line": 5,
     "tokenText": "shared integer",
   },
+  "withContext": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
 }
 `;
 
 exports[`when building domain entity with shared integer reference without name should have correct sourcemap 1`] = `
-IntegerPropertySourceMap {
+Object {
+  "baseKeyName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 6,
     "line": 6,
     "tokenText": "documentation",
+  },
+  "documentationInherited": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "hasRestriction": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isIdentityRename": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptional": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptionalCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isPartOfIdentity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isQueryableOnly": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "isRequired": Object {
     "column": 6,
     "line": 8,
     "tokenText": "is required",
   },
+  "isRequiredCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "maxValue": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "metaEdId": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "metaEdName": Object {
     "column": 19,
     "line": 5,
     "tokenText": "SharedPropertyType",
+  },
+  "minValue": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "parentEntity": Object {
     "column": 2,
@@ -241,15 +431,35 @@ IntegerPropertySourceMap {
     "line": 2,
     "tokenText": "EntityName",
   },
+  "propertyPathName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "referencedType": Object {
     "column": 19,
     "line": 5,
     "tokenText": "SharedPropertyType",
   },
+  "shortenTo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "type": Object {
     "column": 4,
     "line": 5,
     "tokenText": "shared integer",
+  },
+  "withContext": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
 }
 `;

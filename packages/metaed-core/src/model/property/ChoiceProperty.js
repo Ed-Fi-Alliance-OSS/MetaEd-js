@@ -1,19 +1,28 @@
 // @flow
-import { ReferentialProperty, ReferentialPropertySourceMap, newReferentialProperty } from './ReferentialProperty';
-import { EntityPropertySourceMap, EntityProperty } from './EntityProperty';
+import type { ReferentialProperty, ReferentialPropertySourceMap } from './ReferentialProperty';
+import { newReferentialProperty, newReferentialPropertySourceMap } from './ReferentialProperty';
+import type { EntityProperty } from './EntityProperty';
 
-export class ChoicePropertySourceMap extends ReferentialPropertySourceMap {}
+export type ChoicePropertySourceMap = ReferentialPropertySourceMap;
 
-export class ChoiceProperty extends ReferentialProperty {
-  sourceMap: EntityPropertySourceMap | ReferentialPropertySourceMap | ChoicePropertySourceMap;
+export function newChoicePropertySourceMap(): ChoicePropertySourceMap {
+  return {
+    ...newReferentialPropertySourceMap(),
+  };
 }
 
+export type ChoiceProperty = {
+  sourceMap: ChoicePropertySourceMap,
+  ...$Exact<ReferentialProperty>,
+};
+
 export function newChoiceProperty(): ChoiceProperty {
-  return Object.assign(new ChoiceProperty(), newReferentialProperty(), {
+  return {
+    ...newReferentialProperty(),
     type: 'choice',
     typeHumanizedName: 'Choice Property',
-    sourceMap: new ChoicePropertySourceMap(),
-  });
+    sourceMap: newChoicePropertySourceMap(),
+  };
 }
 
 export const asChoiceProperty = (x: EntityProperty): ChoiceProperty => ((x: any): ChoiceProperty);

@@ -342,19 +342,16 @@ describe('when building domain entity extension source map', () => {
 
   it('should have metaEdName', () => {
     expect(getDomainEntityExtension(metaEd.entity, entityName).sourceMap.metaEdName).toBeDefined();
-    // $FlowIgnore - metaEdName could be null
     expect(getDomainEntityExtension(metaEd.entity, entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
   });
 
   it('should have baseEntityName', () => {
     expect(getDomainEntityExtension(metaEd.entity, entityName).sourceMap.baseEntityName).toBeDefined();
-    // $FlowIgnore - baseEntityName could be null
     expect(getDomainEntityExtension(metaEd.entity, entityName).sourceMap.baseEntityName.tokenText).toBe(entityName);
   });
 
   it('should have metaEdId', () => {
     expect(getDomainEntityExtension(metaEd.entity, entityName).sourceMap.metaEdId).toBeDefined();
-    // $FlowIgnore - metaEdId could be null
     expect(getDomainEntityExtension(metaEd.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
   });
 

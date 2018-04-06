@@ -1,24 +1,36 @@
 // @flow
-import { ReferentialProperty, ReferentialPropertySourceMap, newReferentialProperty } from './ReferentialProperty';
+import type { ReferentialProperty, ReferentialPropertySourceMap } from './ReferentialProperty';
+import { newReferentialProperty, newReferentialPropertySourceMap } from './ReferentialProperty';
 import type { SourceMap } from './../SourceMap';
-import type { EntityProperty, EntityPropertySourceMap } from './EntityProperty';
+import { NoSourceMap } from './../SourceMap';
+import type { EntityProperty } from './EntityProperty';
 
-export class AssociationPropertySourceMap extends ReferentialPropertySourceMap {
-  isWeak: ?SourceMap;
+export type AssociationPropertySourceMap = {
+  ...$Exact<ReferentialPropertySourceMap>,
+  isWeak: SourceMap,
+};
+
+export function newAssociationPropertySourceMap(): AssociationPropertySourceMap {
+  return {
+    ...newReferentialPropertySourceMap(),
+    isWeak: NoSourceMap,
+  };
 }
 
-export class AssociationProperty extends ReferentialProperty {
-  isWeak: boolean;
-  sourceMap: EntityPropertySourceMap | ReferentialPropertySourceMap | AssociationPropertySourceMap;
-}
+export type AssociationProperty = {
+  sourceMap: AssociationPropertySourceMap,
+  ...$Exact<ReferentialProperty>,
+  isWeak: boolean,
+};
 
 export function newAssociationProperty(): AssociationProperty {
-  return Object.assign(new AssociationProperty(), newReferentialProperty(), {
+  return {
+    ...newReferentialProperty(),
     type: 'association',
     typeHumanizedName: 'Association Property',
     isWeak: false,
-    sourceMap: new AssociationPropertySourceMap(),
-  });
+    sourceMap: newAssociationPropertySourceMap(),
+  };
 }
 
 export const asAssociationProperty = (x: EntityProperty): AssociationProperty => ((x: any): AssociationProperty);

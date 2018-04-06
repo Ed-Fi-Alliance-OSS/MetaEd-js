@@ -1,14 +1,16 @@
 // @flow
-import { StringProperty, newStringProperty } from './StringProperty';
+import { newStringProperty } from './StringProperty';
+import type { StringProperty } from './StringProperty';
 import type { EntityProperty } from './EntityProperty';
 
-export class SharedStringProperty extends StringProperty {}
+export type SharedStringProperty = StringProperty;
 
 export function newSharedStringProperty(): SharedStringProperty {
-  return Object.assign(new SharedStringProperty(), newStringProperty(), {
+  return {
+    ...newStringProperty(),
     type: 'sharedString',
     typeHumanizedName: 'Shared String Property',
-  });
+  };
 }
 
 export const asSharedStringProperty = (x: EntityProperty): SharedStringProperty => ((x: any): SharedStringProperty);

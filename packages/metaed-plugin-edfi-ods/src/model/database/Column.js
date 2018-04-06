@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
 import winston from 'winston';
-import { EntityProperty } from 'metaed-core';
+import type { EntityProperty } from 'metaed-core';
 import { ColumnDataTypes } from './ColumnDataTypes';
 import type { ColumnType } from './ColumnType';
 import type { ColumnNamer } from './ColumnNamer';

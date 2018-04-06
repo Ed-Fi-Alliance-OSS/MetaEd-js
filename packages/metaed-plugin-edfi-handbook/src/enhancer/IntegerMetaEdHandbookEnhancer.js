@@ -6,7 +6,7 @@ import type { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
 const enhancerName: string = 'IntegerMetaEdHandbookEnhancer';
 
-function getTypeCharacteristsFor(entity: IntegerType): Array<string> {
+function getTypeCharacteristicsFor(entity: IntegerType): Array<string> {
   const results = [];
   if (entity.minValue) results.push(`min value: ${entity.minValue}`);
   if (entity.maxValue) results.push(`max value: ${entity.maxValue}`);
@@ -18,7 +18,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const results: Array<HandbookEntry> = Array.from(metaEd.entity.integerType.values()).map(entity =>
     Object.assign(createDefaultHandbookEntry(entity, '', metaEd), {
       entityType: entity.isShort ? 'ShortType' : 'IntegerType',
-      typeCharacteristics: getTypeCharacteristsFor(entity),
+      typeCharacteristics: getTypeCharacteristicsFor(entity),
     }),
   );
 

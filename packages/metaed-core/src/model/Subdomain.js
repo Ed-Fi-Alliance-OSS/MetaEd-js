@@ -1,35 +1,46 @@
 // @flow
-import { Domain, newDomain } from './Domain';
+import { newDomain } from './Domain';
+import type { Domain } from './Domain';
 import type { SourceMap } from './SourceMap';
-import { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
-import { DomainItem } from './DomainItem';
-import { ModelBase } from './ModelBase';
+import { NoSourceMap } from './SourceMap';
+import type { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
+import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
+import type { DomainItem } from './DomainItem';
+import type { ModelBase } from './ModelBase';
 
-export class SubdomainSourceMap extends TopLevelEntitySourceMap {
-  domainItems: Array<SourceMap>;
-  entities: Array<SourceMap>;
-  parent: ?SourceMap;
-  parentMetaEdName: ?SourceMap;
-  position: ?SourceMap;
+export type SubdomainSourceMap = {
+  ...$Exact<TopLevelEntitySourceMap>,
+  domainItems: Array<SourceMap>,
+  entities: Array<SourceMap>,
+  parent: ?SourceMap,
+  parentMetaEdName: ?SourceMap,
+  position: ?SourceMap,
+};
 
-  constructor() {
-    super();
-    this.domainItems = [];
-    this.entities = [];
-  }
+export function newSubdomainSourceMap(): SubdomainSourceMap {
+  return {
+    ...newTopLevelEntitySourceMap(),
+    domainItems: [],
+    entities: [],
+    parent: NoSourceMap,
+    parentMetaEdName: NoSourceMap,
+    position: NoSourceMap,
+  };
 }
 
-export class Subdomain extends TopLevelEntity {
-  domainItems: Array<DomainItem>;
-  entities: Array<TopLevelEntity>;
-  parent: Domain;
-  parentMetaEdName: string;
-  position: number;
-  sourceMap: TopLevelEntitySourceMap | SubdomainSourceMap;
-}
+export type Subdomain = {
+  sourceMap: SubdomainSourceMap,
+  ...$Exact<TopLevelEntity>,
+  domainItems: Array<DomainItem>,
+  entities: Array<TopLevelEntity>,
+  parent: Domain,
+  parentMetaEdName: string,
+  position: number,
+};
 
 export function newSubdomain(): Subdomain {
-  return Object.assign(new Subdomain(), {
+  return {
+    ...newTopLevelEntity(),
     type: 'subdomain',
     typeHumanizedName: 'Subdomain',
     domainItems: [],
@@ -37,8 +48,8 @@ export function newSubdomain(): Subdomain {
     parent: newDomain(),
     parentMetaEdName: '',
     position: 0,
-    sourceMap: new SubdomainSourceMap(),
-  });
+    sourceMap: newSubdomainSourceMap(),
+  };
 }
 
 export const asSubdomain = (x: ModelBase): Subdomain => ((x: any): Subdomain);

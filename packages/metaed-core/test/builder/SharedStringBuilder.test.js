@@ -488,14 +488,11 @@ describe('when building shared string source map', () => {
 
   it('should have metaEdName', () => {
     expect(getSharedString(metaEd.entity, entityName).sourceMap.metaEdName).toBeDefined();
-
-    // $FlowIgnore - metaEdName could be null
     expect(getSharedString(metaEd.entity, entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
   });
 
   it('should have metaEdId', () => {
     expect(getSharedString(metaEd.entity, entityName).sourceMap.metaEdId).toBeDefined();
-    // $FlowIgnore - metaEdId could be null
     expect(getSharedString(metaEd.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
   });
 

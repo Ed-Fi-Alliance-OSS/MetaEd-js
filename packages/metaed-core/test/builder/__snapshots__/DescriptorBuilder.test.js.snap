@@ -1,7 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when building descriptor source map with optional map type should have line, column, text for each property 1`] = `
-DescriptorSourceMap {
+Object {
+  "allowPrimaryKeyUpdates": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntityName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 4,
     "line": 3,
@@ -12,6 +27,11 @@ DescriptorSourceMap {
     "column": 4,
     "line": 9,
     "tokenText": "with optional map type",
+  },
+  "isMapTypeRequired": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "mapTypeEnumeration": Object {
     "column": 4,
@@ -44,13 +64,33 @@ DescriptorSourceMap {
 `;
 
 exports[`when building descriptor source map with required map type should have source map with line, column, text for each property 1`] = `
-DescriptorSourceMap {
+Object {
+  "allowPrimaryKeyUpdates": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntityName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 4,
     "line": 3,
     "tokenText": "documentation",
   },
   "identityProperties": Array [],
+  "isMapTypeOptional": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "isMapTypeRequired": Object {
     "column": 4,
     "line": 9,
@@ -123,7 +163,7 @@ Array [
 `;
 
 exports[`when building map type enumeration item source map should have line, column, text for each property 1`] = `
-EnumerationItemSourceMap {
+Object {
   "documentation": Object {
     "column": 8,
     "line": 13,
@@ -133,6 +173,11 @@ EnumerationItemSourceMap {
     "column": 30,
     "line": 12,
     "tokenText": "[2]",
+  },
+  "metaEdName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "namespaceInfo": Object {
     "column": 0,
@@ -148,6 +193,11 @@ EnumerationItemSourceMap {
     "column": 6,
     "line": 12,
     "tokenText": "item",
+  },
+  "typeHumanizedName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
 }
 `;
@@ -173,7 +223,22 @@ Object {
 `;
 
 exports[`when building required map type enumeration source map should have line, column, text for each property 1`] = `
-EnumerationSourceMap {
+Object {
+  "allowPrimaryKeyUpdates": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntityName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 6,
     "line": 10,
@@ -191,6 +256,16 @@ EnumerationSourceMap {
     "column": 4,
     "line": 9,
     "tokenText": "with map type",
+  },
+  "metaEdId": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "metaEdName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "namespaceInfo": Object {
     "column": 0,

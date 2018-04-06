@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
-import type { SourceMap, ValidationFailure } from 'metaed-core';
-import { EntityRepository, ModelBase } from 'metaed-core';
+import type { SourceMap, ValidationFailure, ModelBase } from 'metaed-core';
+import { EntityRepository } from 'metaed-core';
 import {
   findReferencedProperty,
   matchAll,

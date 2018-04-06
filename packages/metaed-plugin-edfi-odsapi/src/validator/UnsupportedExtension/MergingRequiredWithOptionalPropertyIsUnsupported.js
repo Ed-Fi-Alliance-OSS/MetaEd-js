@@ -1,8 +1,8 @@
 // @flow
 
 // 2.x - METAED-695 - ODS-1177
-import { asTopLevelEntity, EntityProperty, getAllTopLevelEntities } from 'metaed-core';
-import type { MetaEdEnvironment, ModelBase, TopLevelEntity, ValidationFailure } from 'metaed-core';
+import { asTopLevelEntity, getAllTopLevelEntities } from 'metaed-core';
+import type { EntityProperty, MetaEdEnvironment, ModelBase, TopLevelEntity, ValidationFailure } from 'metaed-core';
 import { collectSingleEntity, propertyCollector } from '../ValidatorShared/PropertyCollector';
 
 type PropertyCollectorArray = Array<{

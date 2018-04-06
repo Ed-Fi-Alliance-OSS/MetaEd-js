@@ -1,33 +1,48 @@
 // @flow
-import { SimpleProperty, SimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
+import type { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
+import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
+import type { EntityProperty } from './EntityProperty';
 import type { SourceMap } from './../SourceMap';
-import type { EntityProperty, EntityPropertySourceMap } from './EntityProperty';
+import { NoSourceMap } from './../SourceMap';
 
-export class DecimalPropertySourceMap extends SimplePropertySourceMap {
-  minValue: ?SourceMap;
-  maxValue: ?SourceMap;
-  totalDigits: ?SourceMap;
-  decimalPlaces: ?SourceMap;
+export type DecimalPropertySourceMap = {
+  ...$Exact<SimplePropertySourceMap>,
+  minValue: SourceMap,
+  maxValue: SourceMap,
+  totalDigits: SourceMap,
+  decimalPlaces: SourceMap,
+};
+
+export function newDecimalPropertySourceMap(): DecimalPropertySourceMap {
+  return {
+    ...newSimplePropertySourceMap(),
+    minValue: NoSourceMap,
+    maxValue: NoSourceMap,
+    totalDigits: NoSourceMap,
+    decimalPlaces: NoSourceMap,
+  };
 }
 
-export class DecimalProperty extends SimpleProperty {
-  minValue: ?string;
-  maxValue: ?string;
-  totalDigits: string;
-  decimalPlaces: string;
-  sourceMap: EntityPropertySourceMap | SimplePropertySourceMap | DecimalPropertySourceMap;
-}
+export type DecimalProperty = {
+  sourceMap: DecimalPropertySourceMap,
+  ...$Exact<SimpleProperty>,
+  minValue: ?string,
+  maxValue: ?string,
+  totalDigits: string,
+  decimalPlaces: string,
+};
 
 export function newDecimalProperty(): DecimalProperty {
-  return Object.assign(new DecimalProperty(), newSimpleProperty(), {
+  return {
+    ...newSimpleProperty(),
     type: 'decimal',
     typeHumanizedName: 'Decimal Property',
     minValue: null,
     maxValue: null,
     totalDigits: '',
     decimalPlaces: '',
-    sourceMap: new DecimalPropertySourceMap(),
-  });
+    sourceMap: newDecimalPropertySourceMap(),
+  };
 }
 
 export const asDecimalProperty = (x: EntityProperty): DecimalProperty => ((x: any): DecimalProperty);

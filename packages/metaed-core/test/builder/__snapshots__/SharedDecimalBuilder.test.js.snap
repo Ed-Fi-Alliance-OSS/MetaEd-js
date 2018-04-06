@@ -21,7 +21,7 @@ Object {
 `;
 
 exports[`when building shared decimal source map should have line, column, text for each property 1`] = `
-SharedDecimalSourceMap {
+Object {
   "decimalPlaces": Object {
     "column": 6,
     "line": 6,

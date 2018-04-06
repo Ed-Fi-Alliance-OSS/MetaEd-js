@@ -1,7 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when building choice source map should have source map data 1`] = `
-ChoiceSourceMap {
+Object {
+  "allowPrimaryKeyUpdates": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntityName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 4,
     "line": 3,
@@ -17,6 +32,11 @@ ChoiceSourceMap {
     "column": 9,
     "line": 2,
     "tokenText": "EntityName",
+  },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "properties": Array [],
   "queryableFields": Array [],

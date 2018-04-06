@@ -1,19 +1,26 @@
 // @flow
-import { SimpleProperty, SimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
-import type { EntityPropertySourceMap, EntityProperty } from './EntityProperty';
+import type { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
+import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
+import type { EntityProperty } from './EntityProperty';
 
-export class CurrencyPropertySourceMap extends SimplePropertySourceMap {}
+export type CurrencyPropertySourceMap = SimplePropertySourceMap;
 
-export class CurrencyProperty extends SimpleProperty {
-  sourceMap: EntityPropertySourceMap | SimplePropertySourceMap | CurrencyPropertySourceMap;
+export function newCurrencyPropertySourceMap(): CurrencyPropertySourceMap {
+  return newSimplePropertySourceMap();
 }
 
+export type CurrencyProperty = {
+  sourceMap: CurrencyPropertySourceMap,
+  ...$Exact<SimpleProperty>,
+};
+
 export function newCurrencyProperty(): CurrencyProperty {
-  return Object.assign(new CurrencyProperty(), newSimpleProperty(), {
+  return {
+    ...newSimpleProperty(),
     type: 'currency',
     typeHumanizedName: 'Currency Property',
-    sourceMap: new CurrencyPropertySourceMap(),
-  });
+    sourceMap: newCurrencyPropertySourceMap(),
+  };
 }
 
 export const asCurrencyProperty = (x: EntityProperty): CurrencyProperty => ((x: any): CurrencyProperty);

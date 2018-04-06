@@ -20,6 +20,7 @@ import {
   validateConfiguration,
   walkBuilders,
 } from 'metaed-core';
+import type { Table } from '../../src/model/database/Table';
 import { pluginEnvironment } from '../../src/enhancer/EnhancerHelper';
 import { orderRows } from '../../src/enhancer/AddSchemaContainerEnhancer';
 
@@ -99,9 +100,9 @@ describe('when generating ods and comparing it to data standard 2.0 authoritativ
 
     fileMapForFailure(state);
 
-    const tables = orderByProp('name')([...pluginEnvironment(state.metaEd).entity.table.values()]);
+    const tables: Array<Table> = orderByProp('name')([...pluginEnvironment(state.metaEd).entity.table.values()]);
     tableOrder = tables.map(table => table.name);
-    fkOrder = tables.reduce((acc, table) => acc.concat([...table.foreignKeys.map(fk => fk.name)]), []);
+    fkOrder = tables.reduce((acc: Array<string>, table: Table) => acc.concat([...table.foreignKeys.map(fk => fk.name)]), []);
 
     rowOrder = orderRows([...pluginEnvironment(state.metaEd).entity.row.values()]).map(
       x => x.name + (x.type === 'enumerationRow' ? x.description : ''),

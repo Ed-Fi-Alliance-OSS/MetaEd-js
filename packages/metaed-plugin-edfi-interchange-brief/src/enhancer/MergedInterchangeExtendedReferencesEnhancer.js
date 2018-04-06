@@ -1,6 +1,5 @@
 // @flow
-import { ReferentialProperty } from 'metaed-core';
-import type { MetaEdEnvironment, TopLevelEntity } from 'metaed-core';
+import type { ReferentialProperty, MetaEdEnvironment, TopLevelEntity } from 'metaed-core';
 import type { EdFiXsdEntityRepository } from 'metaed-plugin-edfi-xsd';
 import type { ReferenceUsageInfo } from '../model/ReferenceUsageInfo';
 import { sortByNameThenRootEntityName } from '../model/ReferenceUsageInfo';
@@ -26,7 +25,7 @@ export function enhance(metaEd: MetaEdEnvironment) {
     const previouslyMatchedProperties: Array<ReferentialProperty> = [];
     const referenceExclusionList: Array<string> = topLevelEntities.map(i => i.metaEdName);
     const allExtendedReferences: Array<ReferenceUsageInfo> = topLevelReferenceProperties.reduce(
-      (referencedUsageInfos: Array<ReferenceUsageInfo>, tlrp) => {
+      (referencedUsageInfos: Array<ReferenceUsageInfo>, tlrp: ReferentialProperty) => {
         const extendedReferencesFromProperty: Array<ReferenceUsageInfo> = [
           ...getReferenceUsageInfoList(
             ['domainEntity', 'association'],

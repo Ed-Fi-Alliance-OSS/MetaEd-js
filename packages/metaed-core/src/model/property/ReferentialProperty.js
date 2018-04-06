@@ -1,39 +1,44 @@
 // @flow
-import { EntityProperty, EntityPropertySourceMap, newEntityPropertyFields } from './EntityProperty';
+import type { EntityProperty, EntityPropertySourceMap } from './EntityProperty';
+import { newEntityPropertySourceMap, newEntityProperty } from './EntityProperty';
 import type { SourceMap } from './../SourceMap';
-import { TopLevelEntity, NoTopLevelEntity } from './../TopLevelEntity';
-import { MergedProperty } from './MergedProperty';
+import { NoSourceMap } from './../SourceMap';
+import type { TopLevelEntity } from './../TopLevelEntity';
+import { NoTopLevelEntity } from './../TopLevelEntity';
+import type { MergedProperty } from './MergedProperty';
 
-export class ReferentialPropertySourceMap extends EntityPropertySourceMap {
-  referencedEntity: ?SourceMap;
-  mergedProperties: Array<SourceMap>;
+export type ReferentialPropertySourceMap = {
+  ...$Exact<EntityPropertySourceMap>,
+  referencedEntity: SourceMap,
+  mergedProperties: Array<SourceMap>,
+};
 
-  constructor() {
-    super();
-    this.mergedProperties = [];
-  }
+export function newReferentialPropertySourceMap(): ReferentialPropertySourceMap {
+  return {
+    ...newEntityPropertySourceMap(),
+    referencedEntity: NoSourceMap,
+    mergedProperties: [],
+  };
 }
 
-export class ReferentialProperty extends EntityProperty {
-  referencedEntity: TopLevelEntity;
-  mergedProperties: Array<MergedProperty>;
-  sourceMap: EntityPropertySourceMap | ReferentialPropertySourceMap;
-}
+export type ReferentialProperty = {
+  sourceMap: ReferentialPropertySourceMap,
+  ...$Exact<EntityProperty>,
+  referencedEntity: TopLevelEntity,
+  mergedProperties: Array<MergedProperty>,
+};
 
 export function isReferentialProperty(property: EntityProperty) {
   return Object.keys(property).includes('mergedProperties');
 }
 
-export function newReferentialPropertyFields() {
-  return Object.assign({}, newEntityPropertyFields(), {
+export function newReferentialProperty(): ReferentialProperty {
+  return {
+    ...newEntityProperty(),
     referencedEntity: NoTopLevelEntity,
     mergedProperties: [],
-    sourceMap: new ReferentialPropertySourceMap(),
-  });
-}
-
-export function newReferentialProperty(): ReferentialProperty {
-  return Object.assign(new ReferentialProperty(), newReferentialPropertyFields());
+    sourceMap: newReferentialPropertySourceMap(),
+  };
 }
 
 export const asReferentialProperty = (x: EntityProperty): ReferentialProperty => ((x: any): ReferentialProperty);

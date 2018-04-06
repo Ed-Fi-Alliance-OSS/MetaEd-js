@@ -1,13 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when building common source map should have source map data 1`] = `
-CommonSourceMap {
+Object {
+  "allowPrimaryKeyUpdates": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntityName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 4,
     "line": 3,
     "tokenText": "documentation",
   },
+  "extender": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "identityProperties": Array [],
+  "inlineInOds": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "metaEdId": Object {
     "column": 20,
     "line": 2,
@@ -17,6 +42,11 @@ CommonSourceMap {
     "column": 9,
     "line": 2,
     "tokenText": "EntityName",
+  },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "properties": Array [],
   "queryableFields": Array [],
@@ -79,13 +109,38 @@ Object {
 `;
 
 exports[`when building inline common source map should have source map data 1`] = `
-CommonSourceMap {
+Object {
+  "allowPrimaryKeyUpdates": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntityName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 4,
     "line": 3,
     "tokenText": "documentation",
   },
+  "extender": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "identityProperties": Array [],
+  "inlineInOds": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "metaEdId": Object {
     "column": 27,
     "line": 2,
@@ -95,6 +150,11 @@ CommonSourceMap {
     "column": 16,
     "line": 2,
     "tokenText": "EntityName",
+  },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "properties": Array [],
   "queryableFields": Array [],

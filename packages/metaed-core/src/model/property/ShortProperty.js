@@ -1,27 +1,40 @@
 // @flow
-import { SimpleProperty, SimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
+import type { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
+import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
+import type { EntityProperty } from './EntityProperty';
 import type { SourceMap } from './../SourceMap';
-import type { EntityPropertySourceMap, EntityProperty } from './EntityProperty';
+import { NoSourceMap } from './../SourceMap';
 
-export class ShortPropertySourceMap extends SimplePropertySourceMap {
-  minValue: ?SourceMap;
-  maxValue: ?SourceMap;
+export type ShortPropertySourceMap = {
+  ...$Exact<SimplePropertySourceMap>,
+  minValue: SourceMap,
+  maxValue: SourceMap,
+};
+
+export function newShortPropertySourceMap(): ShortPropertySourceMap {
+  return {
+    ...newSimplePropertySourceMap(),
+    minValue: NoSourceMap,
+    maxValue: NoSourceMap,
+  };
 }
 
-export class ShortProperty extends SimpleProperty {
-  minValue: ?string;
-  maxValue: ?string;
-  sourceMap: EntityPropertySourceMap | SimplePropertySourceMap | ShortPropertySourceMap;
-}
+export type ShortProperty = {
+  sourceMap: ShortPropertySourceMap,
+  ...$Exact<SimpleProperty>,
+  minValue: ?string,
+  maxValue: ?string,
+};
 
 export function newShortProperty(): ShortProperty {
-  return Object.assign(new ShortProperty(), newSimpleProperty(), {
+  return {
+    ...newSimpleProperty(),
     type: 'short',
     typeHumanizedName: 'Short Property',
     minValue: null,
     maxValue: null,
-    sourceMap: new ShortPropertySourceMap(),
-  });
+    sourceMap: newShortPropertySourceMap(),
+  };
 }
 
 export const asShortProperty = (x: EntityProperty): ShortProperty => ((x: any): ShortProperty);

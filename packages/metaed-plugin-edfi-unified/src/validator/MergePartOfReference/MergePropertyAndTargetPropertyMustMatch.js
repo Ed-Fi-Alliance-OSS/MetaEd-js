@@ -1,6 +1,12 @@
 // @flow
-import type { EntityProperty, MetaEdEnvironment, PropertyType, ValidationFailure } from 'metaed-core';
-import { asReferentialProperty, asModelType, getPropertiesOfType } from 'metaed-core';
+import type { EntityProperty, MetaEdEnvironment, PropertyType, ValidationFailure, ModelBase } from 'metaed-core';
+import {
+  asReferentialProperty,
+  asModelType,
+  getPropertiesOfType,
+  asTopLevelEntity,
+  isReferentialProperty,
+} from 'metaed-core';
 import {
   findReferencedProperty,
   getReferencedEntities,
@@ -15,18 +21,20 @@ export function validate(metaEd: MetaEdEnvironment): Array<ValidationFailure> {
   const failures: Array<ValidationFailure> = [];
 
   getPropertiesOfType(metaEd.propertyIndex, ...validPropertyTypes).forEach(property => {
-    if (!property.mergedProperties || property.mergedProperties.length === 0) return;
+    if (!isReferentialProperty(property)) return;
+    const referentialProperty = asReferentialProperty(property);
+    if (referentialProperty.mergedProperties.length === 0) return;
 
-    asReferentialProperty(property).mergedProperties.forEach(mergedProperty => {
+    referentialProperty.mergedProperties.forEach(mergedProperty => {
       const mergeProperty: ?EntityProperty = findReferencedProperty(
         metaEd.entity,
-        property.parentEntity,
+        referentialProperty.parentEntity,
         mergedProperty.mergePropertyPath,
         matchAllButFirstAsIdentityProperties(),
       );
       const targetProperty: ?EntityProperty = findReferencedProperty(
         metaEd.entity,
-        property.parentEntity,
+        referentialProperty.parentEntity,
         mergedProperty.targetPropertyPath,
         matchAllIdentityReferenceProperties(),
       );
@@ -41,11 +49,19 @@ export function validate(metaEd: MetaEdEnvironment): Array<ValidationFailure> {
             referenceTypes.includes(asModelType(mergeProperty.type)) &&
             referenceTypes.includes(asModelType(targetProperty.type))
           ) {
-            const [mergeBaseEntity] = getReferencedEntities(metaEd.entity, mergeProperty.metaEdName, mergeProperty.type);
-            const [targetBaseEntity] = getReferencedEntities(metaEd.entity, targetProperty.metaEdName, targetProperty.type);
+            const [mergeBaseEntity]: ?ModelBase = getReferencedEntities(
+              metaEd.entity,
+              mergeProperty.metaEdName,
+              mergeProperty.type,
+            );
+            const [targetBaseEntity]: ?ModelBase = getReferencedEntities(
+              metaEd.entity,
+              targetProperty.metaEdName,
+              targetProperty.type,
+            );
 
-            if (mergeBaseEntity && mergeBaseEntity.baseEntityName === targetProperty.metaEdName) return;
-            if (targetBaseEntity && targetBaseEntity.baseEntityName === mergeProperty.metaEdName) return;
+            if (mergeBaseEntity && asTopLevelEntity(mergeBaseEntity).baseEntityName === targetProperty.metaEdName) return;
+            if (targetBaseEntity && asTopLevelEntity(targetBaseEntity).baseEntityName === mergeProperty.metaEdName) return;
           }
         }
       }

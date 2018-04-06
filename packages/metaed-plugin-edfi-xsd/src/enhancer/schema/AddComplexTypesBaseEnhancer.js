@@ -44,7 +44,7 @@ function parentPropertiesWithOverriddenPropertiesFilteredOut(topLevelEntity: Top
 export function restrictionName(topLevelEntity: TopLevelEntity): string {
   const parentEntity = topLevelEntity.baseEntity;
   if (parentEntity == null) return '';
-  return topLevelEntity.projectExtension === ''
+  return topLevelEntity.namespaceInfo.projectExtension === ''
     ? parentEntity.metaEdName
     : `${topLevelEntity.namespaceInfo.projectExtension}-${parentEntity.metaEdName}${restrictionSuffix}`;
 }

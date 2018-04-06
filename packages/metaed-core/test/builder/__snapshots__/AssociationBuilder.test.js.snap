@@ -1,11 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when building association source map should have source map data 1`] = `
-AssociationSourceMap {
+Object {
   "allowPrimaryKeyUpdates": Object {
     "column": 4,
     "line": 5,
     "tokenText": "allow primary key updates",
+  },
+  "baseEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntityName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "documentation": Object {
     "column": 4,
@@ -34,6 +44,11 @@ AssociationSourceMap {
     "line": 2,
     "tokenText": "EntityName",
   },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "properties": Array [],
   "queryableFields": Array [],
   "type": Object {
@@ -45,16 +60,66 @@ AssociationSourceMap {
 `;
 
 exports[`when building association source map should have two identity properties with sourceMaps: Property 0 1`] = `
-DomainEntityPropertySourceMap {
+Object {
+  "baseKeyName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 6,
     "line": 7,
     "tokenText": "documentation",
   },
+  "documentationInherited": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "hasRestriction": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isIdentityRename": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptional": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptionalCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "isPartOfIdentity": Object {
     "column": 4,
     "line": 6,
     "tokenText": "domain entity",
+  },
+  "isQueryableOnly": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isRequired": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isRequiredCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isWeak": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "mergedProperties": Array [],
   "metaEdId": Object {
@@ -67,6 +132,11 @@ DomainEntityPropertySourceMap {
     "line": 6,
     "tokenText": "FirstDomainEntityName",
   },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "parentEntity": Object {
     "column": 2,
     "line": 2,
@@ -77,25 +147,100 @@ DomainEntityPropertySourceMap {
     "line": 2,
     "tokenText": "EntityName",
   },
+  "propertyPathName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedType": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "shortenTo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "type": Object {
     "column": 4,
     "line": 6,
     "tokenText": "domain entity",
   },
+  "withContext": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
 }
 `;
 
 exports[`when building association source map should have two identity properties with sourceMaps: Property 1 1`] = `
-DomainEntityPropertySourceMap {
+Object {
+  "baseKeyName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 6,
     "line": 10,
     "tokenText": "documentation",
   },
+  "documentationInherited": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "hasRestriction": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isIdentityRename": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptional": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptionalCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "isPartOfIdentity": Object {
     "column": 4,
     "line": 9,
     "tokenText": "domain entity",
+  },
+  "isQueryableOnly": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isRequired": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isRequiredCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isWeak": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "mergedProperties": Array [],
   "metaEdId": Object {
@@ -108,6 +253,11 @@ DomainEntityPropertySourceMap {
     "line": 9,
     "tokenText": "SecondDomainEntityName",
   },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "parentEntity": Object {
     "column": 2,
     "line": 2,
@@ -118,10 +268,35 @@ DomainEntityPropertySourceMap {
     "line": 2,
     "tokenText": "EntityName",
   },
+  "propertyPathName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedType": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "shortenTo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "type": Object {
     "column": 4,
     "line": 9,
     "tokenText": "domain entity",
+  },
+  "withContext": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
 }
 `;

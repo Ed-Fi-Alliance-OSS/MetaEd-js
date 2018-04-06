@@ -8,9 +8,9 @@ export function failInterchangeExtensionPropertyRedeclarations(
   baseEntity: Interchange,
   failures: Array<ValidationFailure>,
 ) {
-  // $FlowIgnore - allowing interchangeItemType to specify either elements or identityTemplates property
+  // $FlowIgnore - computed property
   extensionEntity[interchangeItemType].forEach(extensionItem => {
-    // $FlowIgnore - allowing interchangeItemType to specify either elements or identityTemplates property
+    // $FlowIgnore - computed property
     baseEntity[interchangeItemType].forEach(baseItem => {
       if (extensionItem.metaEdName !== baseItem.metaEdName) return;
       failures.push({

@@ -14,9 +14,9 @@ function getCardinalityStringFor(property: EntityProperty, isHandbookEntityRefer
     return 'required';
   if (property.isPartOfIdentity) return 'identity';
   if (property.isRequired) return 'required';
-  if (property.isRequiredCollectioon) return 'required collection';
+  if (property.isRequiredCollection) return 'required collection';
   if (property.isOptional) return 'optional';
-  if (property.isOptionalColelction) return 'optional collection';
+  if (property.isOptionalCollection) return 'optional collection';
   return 'UNKNOWN CARDINALITY';
 }
 

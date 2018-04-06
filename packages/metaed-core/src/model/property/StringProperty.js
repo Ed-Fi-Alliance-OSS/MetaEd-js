@@ -1,27 +1,40 @@
 // @flow
-import { SimpleProperty, SimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
+import type { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
+import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
+import type { EntityProperty } from './EntityProperty';
 import type { SourceMap } from './../SourceMap';
-import type { EntityPropertySourceMap, EntityProperty } from './EntityProperty';
+import { NoSourceMap } from './../SourceMap';
 
-export class StringPropertySourceMap extends SimplePropertySourceMap {
-  minLength: ?SourceMap;
-  maxLength: ?SourceMap;
+export type StringPropertySourceMap = {
+  ...$Exact<SimplePropertySourceMap>,
+  minLength: SourceMap,
+  maxLength: SourceMap,
+};
+
+export function newStringPropertySourceMap(): StringPropertySourceMap {
+  return {
+    ...newSimplePropertySourceMap(),
+    minLength: NoSourceMap,
+    maxLength: NoSourceMap,
+  };
 }
 
-export class StringProperty extends SimpleProperty {
-  minLength: ?string;
-  maxLength: ?string;
-  sourceMap: EntityPropertySourceMap | SimplePropertySourceMap | StringPropertySourceMap;
-}
+export type StringProperty = {
+  sourceMap: StringPropertySourceMap,
+  ...$Exact<SimpleProperty>,
+  minLength: ?string,
+  maxLength: ?string,
+};
 
 export function newStringProperty(): StringProperty {
-  return Object.assign(new StringProperty(), newSimpleProperty(), {
+  return {
+    ...newSimpleProperty(),
     type: 'string',
     typeHumanizedName: 'String Property',
     minLength: null,
     maxLength: null,
-    sourceMap: new StringPropertySourceMap(),
-  });
+    sourceMap: newStringPropertySourceMap(),
+  };
 }
 
 export const asStringProperty = (x: EntityProperty): StringProperty => ((x: any): StringProperty);

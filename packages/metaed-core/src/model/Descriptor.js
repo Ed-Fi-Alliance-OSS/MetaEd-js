@@ -1,31 +1,46 @@
 // @flow
-import { TopLevelEntity, TopLevelEntitySourceMap, newTopLevelEntity } from './TopLevelEntity';
-import { MapTypeEnumeration, NoMapTypeEnumeration } from './MapTypeEnumeration';
+import type { TopLevelEntity, TopLevelEntitySourceMap } from './TopLevelEntity';
+import { newTopLevelEntity, newTopLevelEntitySourceMap } from './TopLevelEntity';
+import type { MapTypeEnumeration } from './MapTypeEnumeration';
+import { NoMapTypeEnumeration } from './MapTypeEnumeration';
 import type { SourceMap } from './SourceMap';
+import { NoSourceMap } from './SourceMap';
 import type { ModelBase } from './ModelBase';
 
-export class DescriptorSourceMap extends TopLevelEntitySourceMap {
-  isMapTypeRequired: ?SourceMap;
-  isMapTypeOptional: ?SourceMap;
-  mapTypeEnumeration: ?SourceMap;
+export type DescriptorSourceMap = {
+  ...$Exact<TopLevelEntitySourceMap>,
+  isMapTypeRequired: SourceMap,
+  isMapTypeOptional: SourceMap,
+  mapTypeEnumeration: SourceMap,
+};
+
+export function newDescriptorSourceMap(): DescriptorSourceMap {
+  return {
+    ...newTopLevelEntitySourceMap(),
+    isMapTypeRequired: NoSourceMap,
+    isMapTypeOptional: NoSourceMap,
+    mapTypeEnumeration: NoSourceMap,
+  };
 }
 
-export class Descriptor extends TopLevelEntity {
-  isMapTypeRequired: boolean;
-  isMapTypeOptional: boolean;
-  mapTypeEnumeration: MapTypeEnumeration;
-  sourceMap: TopLevelEntitySourceMap | DescriptorSourceMap;
-}
+export type Descriptor = {
+  sourceMap: DescriptorSourceMap,
+  ...$Exact<TopLevelEntity>,
+  isMapTypeRequired: boolean,
+  isMapTypeOptional: boolean,
+  mapTypeEnumeration: MapTypeEnumeration,
+};
 
 export function newDescriptor(): Descriptor {
-  return Object.assign(new Descriptor(), newTopLevelEntity(), {
+  return {
+    ...newTopLevelEntity(),
     type: 'descriptor',
     typeHumanizedName: 'Descriptor',
     isMapTypeRequired: false,
     isMapTypeOptional: false,
     mapTypeEnumeration: NoMapTypeEnumeration,
-    sourceMap: new DescriptorSourceMap(),
-  });
+    sourceMap: newDescriptorSourceMap(),
+  };
 }
 
 export const asDescriptor = (x: ModelBase): Descriptor => ((x: any): Descriptor);

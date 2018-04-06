@@ -3,6 +3,7 @@ import type { MetaEdEnvironment, TopLevelEntity } from 'metaed-core';
 import { addEntity, newAssociation, newDomainEntity, newMetaEdEnvironment } from 'metaed-core';
 import type { ComplexType } from '../../src/model/schema/ComplexType';
 import { asElement, newElement } from '../../src/model/schema/Element';
+import type { ComplexTypeItem } from '../../src/model/schema/ComplexTypeItem';
 import { newComplexType } from '../../src/model/schema/ComplexType';
 import { enhance } from '../../src/diminisher/ModifyIdentityTypeOrderToMatchLegacyOrderDiminisher';
 
@@ -19,7 +20,10 @@ const testBase = (
 
     complexType = Object.assign(newComplexType(), {
       name: `${testEntityName}IdentityType`,
-      items: originalElementOrder.reduce((arr, x) => arr.concat([Object.assign(newElement(), { name: x })]), []),
+      items: originalElementOrder.reduce(
+        (arr: Array<ComplexTypeItem>, x: string) => arr.concat([Object.assign(newElement(), { name: x })]),
+        [],
+      ),
     });
 
     const topLevelEntity1: TopLevelEntity = Object.assign(isAssociation ? newAssociation() : newDomainEntity(), {

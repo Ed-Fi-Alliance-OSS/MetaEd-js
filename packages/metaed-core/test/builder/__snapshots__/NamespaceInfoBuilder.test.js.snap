@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when building extension namespace info source map should have line, column, text for each property 1`] = `
-NamespaceInfoSourceMap {
+Object {
+  "extensionEntitySuffix": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "isExtension": Object {
     "column": 26,
     "line": 1,
@@ -16,6 +21,11 @@ NamespaceInfoSourceMap {
     "column": 26,
     "line": 1,
     "tokenText": "ProjectExtension",
+  },
+  "projectName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "type": Object {
     "column": 0,

@@ -1,11 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when building common extension source map should have source map data 1`] = `
-CommonExtensionSourceMap {
+Object {
+  "allowPrimaryKeyUpdates": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "baseEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "baseEntityName": Object {
     "column": 9,
     "line": 2,
     "tokenText": "EntityName",
+  },
+  "documentation": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "identityProperties": Array [],
   "metaEdId": Object {
@@ -17,6 +32,11 @@ CommonExtensionSourceMap {
     "column": 9,
     "line": 2,
     "tokenText": "EntityName",
+  },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "properties": Array [],
   "queryableFields": Array [],

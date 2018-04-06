@@ -1,28 +1,40 @@
 // @flow
-import { SharedSimple, SharedSimpleSourceMap, defaultSharedSimple } from './SharedSimple';
+import type { SharedSimple, SharedSimpleSourceMap } from './SharedSimple';
+import { newSharedSimpleSourceMap, newSharedSimple } from './SharedSimple';
 import type { ModelBase } from './ModelBase';
 import type { SourceMap } from './SourceMap';
+import { NoSourceMap } from './SourceMap';
 
-export class SharedStringSourceMap extends SharedSimpleSourceMap {
-  minLength: ?SourceMap;
-  maxLength: ?SourceMap;
+export type SharedStringSourceMap = {
+  ...$Exact<SharedSimpleSourceMap>,
+  minLength: SourceMap,
+  maxLength: SourceMap,
+};
+
+export function newSharedStringSourceMap(): SharedStringSourceMap {
+  return {
+    ...newSharedSimpleSourceMap(),
+    minLength: NoSourceMap,
+    maxLength: NoSourceMap,
+  };
 }
 
-// Note these are XSD specific with the advent of SharedString, and creation should be move to XSD enhancers
-export class SharedString extends SharedSimple {
-  minLength: string;
-  maxLength: string;
-  sourceMap: SharedSimpleSourceMap | SharedStringSourceMap;
-}
+export type SharedString = {
+  sourceMap: SharedStringSourceMap,
+  ...$Exact<SharedSimple>,
+  minLength: string,
+  maxLength: string,
+};
 
 export function newSharedString(): SharedString {
-  return Object.assign(new SharedString(), defaultSharedSimple(), {
+  return {
+    ...newSharedSimple(),
     type: 'sharedString',
     typeHumanizedName: 'Shared String',
     minLength: '',
     maxLength: '',
-    sourceMap: new SharedStringSourceMap(),
-  });
+    sourceMap: newSharedStringSourceMap(),
+  };
 }
 
 export const asSharedString = (x: ModelBase): SharedString => ((x: any): SharedString);

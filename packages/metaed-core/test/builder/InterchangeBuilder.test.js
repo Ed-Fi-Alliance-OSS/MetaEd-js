@@ -817,13 +817,11 @@ describe('when building single interchange source map', () => {
 
   it('should have metaEdName', () => {
     expect(getInterchange(metaEd.entity, interchangeName).sourceMap.metaEdName).toBeDefined();
-    // $FlowIgnore - metaEdName could be null
     expect(getInterchange(metaEd.entity, interchangeName).sourceMap.metaEdName.tokenText).toBe(interchangeName);
   });
 
   it('should have metaEdId', () => {
     expect(getInterchange(metaEd.entity, interchangeName).sourceMap.metaEdId).toBeDefined();
-    // $FlowIgnore - metaEdId could be null
     expect(getInterchange(metaEd.entity, interchangeName).sourceMap.metaEdId.tokenText).toBe(`[${interchangeMetaEdId}]`);
   });
 

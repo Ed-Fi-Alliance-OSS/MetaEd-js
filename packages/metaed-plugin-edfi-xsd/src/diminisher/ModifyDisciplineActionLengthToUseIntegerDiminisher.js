@@ -26,11 +26,13 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     if (complexType != null && complexType.hasItems()) {
       const element1: any = complexType.items.find(
+        // $FlowIgnore - code is assuming item is of type Element
         x => x.name != null && x.name === elementNameType1 && x.type != null && x.type === elementNameType1,
       );
       if (element1 != null) Object.assign(element1, { type: integerType });
 
       const element2: any = complexType.items.find(
+        // $FlowIgnore - code is assuming item is of type Element
         x => x.name != null && x.name === elementName2 && x.type != null && x.type === elementNameType1,
       );
       if (element2 != null) Object.assign(element2, { type: integerType });

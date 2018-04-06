@@ -81,7 +81,12 @@ Object {
 `;
 
 exports[`when building decimal property should have source map with line, column, text 1`] = `
-DecimalPropertySourceMap {
+Object {
+  "baseKeyName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "decimalPlaces": Object {
     "column": 6,
     "line": 10,
@@ -92,20 +97,60 @@ DecimalPropertySourceMap {
     "line": 6,
     "tokenText": "documentation",
   },
+  "documentationInherited": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "hasRestriction": Object {
     "column": 6,
     "line": 12,
     "tokenText": "max value",
+  },
+  "isIdentityRename": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptional": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptionalCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isPartOfIdentity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isQueryableOnly": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "isRequired": Object {
     "column": 6,
     "line": 8,
     "tokenText": "is required",
   },
+  "isRequiredCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "maxValue": Object {
     "column": 6,
     "line": 12,
     "tokenText": "max value",
+  },
+  "metaEdId": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "metaEdName": Object {
     "column": 12,
@@ -117,6 +162,11 @@ DecimalPropertySourceMap {
     "line": 11,
     "tokenText": "min value",
   },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "parentEntity": Object {
     "column": 2,
     "line": 2,
@@ -127,6 +177,26 @@ DecimalPropertySourceMap {
     "line": 2,
     "tokenText": "EntityName",
   },
+  "propertyPathName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedType": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "shortenTo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "totalDigits": Object {
     "column": 6,
     "line": 9,
@@ -136,6 +206,11 @@ DecimalPropertySourceMap {
     "column": 4,
     "line": 5,
     "tokenText": "decimal",
+  },
+  "withContext": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
 }
 `;
@@ -239,26 +314,71 @@ Object {
 `;
 
 exports[`when building integer property should have source map with line, column, text 1`] = `
-IntegerPropertySourceMap {
+Object {
+  "baseKeyName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 6,
     "line": 6,
     "tokenText": "documentation",
+  },
+  "documentationInherited": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "hasRestriction": Object {
     "column": 6,
     "line": 10,
     "tokenText": "max value",
   },
+  "isIdentityRename": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptional": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptionalCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isPartOfIdentity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isQueryableOnly": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "isRequired": Object {
     "column": 6,
     "line": 8,
     "tokenText": "is required",
   },
+  "isRequiredCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "maxValue": Object {
     "column": 6,
     "line": 10,
     "tokenText": "max value",
+  },
+  "metaEdId": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "metaEdName": Object {
     "column": 12,
@@ -270,6 +390,11 @@ IntegerPropertySourceMap {
     "line": 9,
     "tokenText": "min value",
   },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "parentEntity": Object {
     "column": 2,
     "line": 2,
@@ -280,10 +405,35 @@ IntegerPropertySourceMap {
     "line": 2,
     "tokenText": "EntityName",
   },
+  "propertyPathName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedType": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "shortenTo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "type": Object {
     "column": 4,
     "line": 5,
     "tokenText": "integer",
+  },
+  "withContext": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
 }
 `;
@@ -309,7 +459,12 @@ Array [
 `;
 
 exports[`when building multiple merge property references should have source map for first merged property 1`] = `
-MergedPropertySourceMap {
+Object {
+  "mergeProperty": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "mergePropertyPath": Array [
     Object {
       "column": 10,
@@ -317,6 +472,11 @@ MergedPropertySourceMap {
       "tokenText": "MergePropertyPath0",
     },
   ],
+  "targetProperty": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "targetPropertyPath": Array [
     Object {
       "column": 34,
@@ -324,11 +484,21 @@ MergedPropertySourceMap {
       "tokenText": "TargetPropertyPath0",
     },
   ],
+  "type": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
 }
 `;
 
 exports[`when building multiple merge property references should have source map for second merged property 1`] = `
-MergedPropertySourceMap {
+Object {
+  "mergeProperty": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "mergePropertyPath": Array [
     Object {
       "column": 10,
@@ -336,6 +506,11 @@ MergedPropertySourceMap {
       "tokenText": "MergePropertyPath1",
     },
   ],
+  "targetProperty": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "targetPropertyPath": Array [
     Object {
       "column": 34,
@@ -343,6 +518,11 @@ MergedPropertySourceMap {
       "tokenText": "TargetPropertyPath1",
     },
   ],
+  "type": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
 }
 `;
 
@@ -423,16 +603,66 @@ Object {
 `;
 
 exports[`when building required entity properties should have source map with line, column, text for each property 1`] = `
-AssociationPropertySourceMap {
+Object {
+  "baseKeyName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 6,
     "line": 6,
     "tokenText": "documentation",
   },
+  "documentationInherited": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "hasRestriction": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isIdentityRename": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptional": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptionalCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isPartOfIdentity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isQueryableOnly": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "isRequired": Object {
     "column": 6,
     "line": 8,
     "tokenText": "is required",
+  },
+  "isRequiredCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isWeak": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "mergedProperties": Array [],
   "metaEdId": Object {
@@ -445,6 +675,11 @@ AssociationPropertySourceMap {
     "line": 5,
     "tokenText": "PropertyName",
   },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "parentEntity": Object {
     "column": 2,
     "line": 2,
@@ -455,10 +690,35 @@ AssociationPropertySourceMap {
     "line": 2,
     "tokenText": "EntityName",
   },
+  "propertyPathName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedType": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "shortenTo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "type": Object {
     "column": 4,
     "line": 5,
     "tokenText": "association",
+  },
+  "withContext": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
 }
 `;
@@ -504,26 +764,71 @@ Object {
 `;
 
 exports[`when building short property should have source map with line, column, text 1`] = `
-ShortPropertySourceMap {
+Object {
+  "baseKeyName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 6,
     "line": 6,
     "tokenText": "documentation",
+  },
+  "documentationInherited": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "hasRestriction": Object {
     "column": 6,
     "line": 10,
     "tokenText": "max value",
   },
+  "isIdentityRename": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptional": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptionalCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isPartOfIdentity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isQueryableOnly": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "isRequired": Object {
     "column": 6,
     "line": 8,
     "tokenText": "is required",
   },
+  "isRequiredCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "maxValue": Object {
     "column": 6,
     "line": 10,
     "tokenText": "max value",
+  },
+  "metaEdId": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "metaEdName": Object {
     "column": 10,
@@ -535,6 +840,11 @@ ShortPropertySourceMap {
     "line": 9,
     "tokenText": "min value",
   },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "parentEntity": Object {
     "column": 2,
     "line": 2,
@@ -545,35 +855,105 @@ ShortPropertySourceMap {
     "line": 2,
     "tokenText": "EntityName",
   },
+  "propertyPathName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedType": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "shortenTo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "type": Object {
     "column": 4,
     "line": 5,
     "tokenText": "short",
   },
+  "withContext": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
 }
 `;
 
 exports[`when building string property should have source map with line, column, text 1`] = `
-StringPropertySourceMap {
+Object {
+  "baseKeyName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "documentation": Object {
     "column": 6,
     "line": 6,
     "tokenText": "documentation",
+  },
+  "documentationInherited": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "hasRestriction": Object {
     "column": 6,
     "line": 10,
     "tokenText": "max length",
   },
+  "isIdentityRename": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptional": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isOptionalCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isPartOfIdentity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "isQueryableOnly": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "isRequired": Object {
     "column": 6,
     "line": 8,
     "tokenText": "is required",
   },
+  "isRequiredCollection": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "maxLength": Object {
     "column": 6,
     "line": 10,
     "tokenText": "max length",
+  },
+  "metaEdId": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
   "metaEdName": Object {
     "column": 11,
@@ -585,6 +965,11 @@ StringPropertySourceMap {
     "line": 9,
     "tokenText": "min length",
   },
+  "namespaceInfo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "parentEntity": Object {
     "column": 2,
     "line": 2,
@@ -595,10 +980,35 @@ StringPropertySourceMap {
     "line": 2,
     "tokenText": "EntityName",
   },
+  "propertyPathName": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedEntity": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "referencedType": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
+  "shortenTo": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
+  },
   "type": Object {
     "column": 4,
     "line": 5,
     "tokenText": "string",
+  },
+  "withContext": Object {
+    "column": 0,
+    "line": 0,
+    "tokenText": "NoSourceMap",
   },
 }
 `;

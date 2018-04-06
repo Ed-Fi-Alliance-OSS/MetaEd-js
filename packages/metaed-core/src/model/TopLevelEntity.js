@@ -1,38 +1,47 @@
 // @flow
 import type { EntityProperty } from './property/EntityProperty';
-import { ModelBase, ModelBaseSourceMap } from './ModelBase';
+import type { ModelBase, ModelBaseSourceMap } from './ModelBase';
+import { newModelBaseSourceMap } from './ModelBase';
 import { newNamespaceInfo } from './NamespaceInfo';
 import type { SourceMap } from './SourceMap';
+import { NoSourceMap } from './SourceMap';
 
-export class TopLevelEntitySourceMap extends ModelBaseSourceMap {
-  properties: Array<SourceMap>;
-  identityProperties: Array<SourceMap>;
-  queryableFields: Array<SourceMap>;
-  allowPrimaryKeyUpdates: ?SourceMap;
-  baseEntityName: ?SourceMap;
-  baseEntity: ?SourceMap;
+export type TopLevelEntitySourceMap = {
+  ...$Exact<ModelBaseSourceMap>,
+  properties: Array<SourceMap>,
+  identityProperties: Array<SourceMap>,
+  queryableFields: Array<SourceMap>,
+  allowPrimaryKeyUpdates: SourceMap,
+  baseEntityName: SourceMap,
+  baseEntity: SourceMap,
+};
 
-  constructor() {
-    super();
-    this.properties = [];
-    this.identityProperties = [];
-    this.queryableFields = [];
-  }
+export function newTopLevelEntitySourceMap() {
+  return {
+    ...newModelBaseSourceMap(),
+    properties: [],
+    identityProperties: [],
+    queryableFields: [],
+    allowPrimaryKeyUpdates: NoSourceMap,
+    baseEntityName: NoSourceMap,
+    baseEntity: NoSourceMap,
+  };
 }
 
-export class TopLevelEntity extends ModelBase {
-  properties: Array<EntityProperty>;
-  identityProperties: Array<EntityProperty>;
-  queryableFields: Array<EntityProperty>;
-  typeHumanizedName: string;
-  allowPrimaryKeyUpdates: boolean;
-  baseEntityName: string;
-  baseEntity: ?TopLevelEntity;
-  sourceMap: TopLevelEntitySourceMap;
-}
+export type TopLevelEntity = {
+  ...$Exact<ModelBase>,
+  properties: Array<EntityProperty>,
+  identityProperties: Array<EntityProperty>,
+  queryableFields: Array<EntityProperty>,
+  typeHumanizedName: string,
+  allowPrimaryKeyUpdates: boolean,
+  baseEntityName: string,
+  baseEntity: ?TopLevelEntity,
+  sourceMap: TopLevelEntitySourceMap,
+};
 
 export function newTopLevelEntity(): TopLevelEntity {
-  return Object.assign(new TopLevelEntity(), {
+  return {
     type: 'unknown',
     documentation: '',
     metaEdName: '',
@@ -47,13 +56,16 @@ export function newTopLevelEntity(): TopLevelEntity {
     allowPrimaryKeyUpdates: false,
     baseEntityName: '',
     baseEntity: null,
+    sourceMap: newTopLevelEntitySourceMap(),
 
     data: {},
-  });
+    config: {},
+  };
 }
 
-export const NoTopLevelEntity: TopLevelEntity = Object.assign(newTopLevelEntity(), {
+export const NoTopLevelEntity: TopLevelEntity = {
+  ...newTopLevelEntity(),
   metaEdName: 'NoTopLevelEntity',
-});
+};
 
 export const asTopLevelEntity = (x: ModelBase): TopLevelEntity => ((x: any): TopLevelEntity);

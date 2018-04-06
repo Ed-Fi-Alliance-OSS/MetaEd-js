@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
-import { getEntitiesOfType, ModelBase, versionSatisfies } from 'metaed-core';
-import type { EnhancerResult, MetaEdEnvironment } from 'metaed-core';
+import { getEntitiesOfType, versionSatisfies } from 'metaed-core';
+import type { ModelBase, EnhancerResult, MetaEdEnvironment } from 'metaed-core';
 import { getTable } from './DiminisherHelper';
 import { pluginEnvironment } from '../enhancer/EnhancerHelper';
 import type { EdFiOdsEntityRepository } from '../model/EdFiOdsEntityRepository';

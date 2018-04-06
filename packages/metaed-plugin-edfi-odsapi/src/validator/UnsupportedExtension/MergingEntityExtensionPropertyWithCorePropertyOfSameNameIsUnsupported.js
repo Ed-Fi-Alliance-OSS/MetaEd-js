@@ -1,8 +1,9 @@
 // @flow
 
 // 2.x - METAED-711 - ODS-1732
-import { asTopLevelEntity, EntityProperty, getEntitiesOfType, versionSatisfies } from 'metaed-core';
+import { asTopLevelEntity, getEntitiesOfType, versionSatisfies } from 'metaed-core';
 import type {
+  EntityProperty,
   MetaEdEnvironment,
   ModelBase,
   PluginEnvironment,

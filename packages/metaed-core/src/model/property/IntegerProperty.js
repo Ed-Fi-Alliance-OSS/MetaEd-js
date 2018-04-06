@@ -1,27 +1,40 @@
 // @flow
-import { SimpleProperty, SimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
+import type { SimpleProperty, SimplePropertySourceMap } from './SimpleProperty';
+import { newSimplePropertySourceMap, newSimpleProperty } from './SimpleProperty';
+import type { EntityProperty } from './EntityProperty';
 import type { SourceMap } from './../SourceMap';
-import type { EntityPropertySourceMap, EntityProperty } from './EntityProperty';
+import { NoSourceMap } from './../SourceMap';
 
-export class IntegerPropertySourceMap extends SimplePropertySourceMap {
-  minValue: ?SourceMap;
-  maxValue: ?SourceMap;
+export type IntegerPropertySourceMap = {
+  ...$Exact<SimplePropertySourceMap>,
+  minValue: SourceMap,
+  maxValue: SourceMap,
+};
+
+export function newIntegerPropertySourceMap(): IntegerPropertySourceMap {
+  return {
+    ...newSimplePropertySourceMap(),
+    minValue: NoSourceMap,
+    maxValue: NoSourceMap,
+  };
 }
 
-export class IntegerProperty extends SimpleProperty {
-  minValue: ?string;
-  maxValue: ?string;
-  sourceMap: EntityPropertySourceMap | SimplePropertySourceMap | IntegerPropertySourceMap;
-}
+export type IntegerProperty = {
+  sourceMap: IntegerPropertySourceMap,
+  ...$Exact<SimpleProperty>,
+  minValue: ?string,
+  maxValue: ?string,
+};
 
 export function newIntegerProperty(): IntegerProperty {
-  return Object.assign(new IntegerProperty(), newSimpleProperty(), {
+  return {
+    ...newSimpleProperty(),
     type: 'integer',
     typeHumanizedName: 'Integer Property',
     minValue: null,
     maxValue: null,
-    sourceMap: new IntegerPropertySourceMap(),
-  });
+    sourceMap: newIntegerPropertySourceMap(),
+  };
 }
 
 export const asIntegerProperty = (x: EntityProperty): IntegerProperty => ((x: any): IntegerProperty);
