@@ -49,19 +49,21 @@ export function validate(metaEd: MetaEdEnvironment): Array<ValidationFailure> {
             referenceTypes.includes(asModelType(mergeProperty.type)) &&
             referenceTypes.includes(asModelType(targetProperty.type))
           ) {
-            const [mergeBaseEntity]: ?ModelBase = getReferencedEntities(
+            const mergeBaseEntity: Array<ModelBase> = getReferencedEntities(
               metaEd.entity,
               mergeProperty.metaEdName,
               mergeProperty.type,
             );
-            const [targetBaseEntity]: ?ModelBase = getReferencedEntities(
+            const targetBaseEntity: Array<ModelBase> = getReferencedEntities(
               metaEd.entity,
               targetProperty.metaEdName,
               targetProperty.type,
             );
 
-            if (mergeBaseEntity && asTopLevelEntity(mergeBaseEntity).baseEntityName === targetProperty.metaEdName) return;
-            if (targetBaseEntity && asTopLevelEntity(targetBaseEntity).baseEntityName === mergeProperty.metaEdName) return;
+            if (mergeBaseEntity[0] && asTopLevelEntity(mergeBaseEntity[0]).baseEntityName === targetProperty.metaEdName)
+              return;
+            if (targetBaseEntity[0] && asTopLevelEntity(targetBaseEntity[0]).baseEntityName === mergeProperty.metaEdName)
+              return;
           }
         }
       }
