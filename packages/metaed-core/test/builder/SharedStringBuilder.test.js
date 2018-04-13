@@ -1,5 +1,6 @@
 // @flow
 import { SharedStringBuilder } from '../../src/builder/SharedStringBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getSharedString } from '../TestHelper';
@@ -28,6 +29,7 @@ describe('when building shared string in extension namespace', () => {
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -95,6 +97,7 @@ describe('when building duplicate shared strings', () => {
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -155,6 +158,7 @@ describe('when building shared string with no shared string name', () => {
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -191,6 +195,7 @@ describe('when building shared string with lowercase shared string name', () => 
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -253,6 +258,7 @@ describe('when building shared string with no documentation', () => {
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -308,6 +314,7 @@ describe('when building shared string with no min length', () => {
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -363,6 +370,7 @@ describe('when building shared string with no max length', () => {
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -420,6 +428,7 @@ describe('when building shared string with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndSharedString()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -474,6 +483,7 @@ describe('when building shared string source map', () => {
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

@@ -27,6 +27,9 @@ import { StringTypeBuilder } from '../builder/StringTypeBuilder';
 export async function execute(state: State): Promise<void> {
   const builders: Array<MetaEdGrammarListener> = [];
 
+  // NamespaceInfoBuilder goes first, all others have a dependency on it
+  builders.push(new NamespaceInfoBuilder(state.metaEd, state.validationFailure));
+
   builders.push(new AssociationBuilder(state.metaEd, state.validationFailure));
   builders.push(new AssociationExtensionBuilder(state.metaEd, state.validationFailure));
   builders.push(new AssociationSubclassBuilder(state.metaEd, state.validationFailure));
@@ -42,7 +45,6 @@ export async function execute(state: State): Promise<void> {
   builders.push(new EnumerationBuilder(state.metaEd, state.validationFailure));
   builders.push(new IntegerTypeBuilder(state.metaEd, state.validationFailure));
   builders.push(new InterchangeBuilder(state.metaEd, state.validationFailure));
-  builders.push(new NamespaceInfoBuilder(state.metaEd, state.validationFailure));
   builders.push(new SharedDecimalBuilder(state.metaEd, state.validationFailure));
   builders.push(new SharedIntegerBuilder(state.metaEd, state.validationFailure));
   builders.push(new SharedStringBuilder(state.metaEd, state.validationFailure));

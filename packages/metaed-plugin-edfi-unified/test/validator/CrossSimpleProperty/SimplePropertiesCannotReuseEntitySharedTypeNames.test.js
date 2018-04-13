@@ -3,6 +3,7 @@ import {
   newMetaEdEnvironment,
   MetaEdTextBuilder,
   DomainEntityBuilder,
+  NamespaceInfoBuilder,
   SharedDecimalBuilder,
   SharedIntegerBuilder,
 } from 'metaed-core';
@@ -33,8 +34,9 @@ describe('when building shared integer with duplicate integer property in extens
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
-
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new SharedIntegerBuilder(metaEd, []));
     validationFailures = validate(metaEd);
@@ -95,6 +97,8 @@ describe('when building shared decimal with duplicate decimal property in extens
       .withEndSharedDecimal()
 
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new SharedDecimalBuilder(metaEd, []));
     validationFailures = validate(metaEd);

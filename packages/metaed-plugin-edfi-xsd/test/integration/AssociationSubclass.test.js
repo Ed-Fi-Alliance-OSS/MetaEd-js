@@ -59,10 +59,10 @@ describe('when generating xsd for association extension in extension namespace b
       .withEndAssociationSubclass()
 
       .withEndNamespace()
+      .sendToListener(namespaceInfoBuilder)
       .sendToListener(domainEntityBuilder)
       .sendToListener(associationBuilder)
-      .sendToListener(associationSubclassBuilder)
-      .sendToListener(namespaceInfoBuilder);
+      .sendToListener(associationSubclassBuilder);
 
     ({ coreResult, extensionResult } = await enhanceAndGenerate(metaEd));
   });

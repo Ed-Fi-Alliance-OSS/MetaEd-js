@@ -1,5 +1,6 @@
 // @flow
 import { AssociationExtensionBuilder } from '../../src/builder/AssociationExtensionBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getAssociationExtension } from '../TestHelper';
@@ -24,6 +25,7 @@ describe('when building association extension in extension namespace', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -87,6 +89,7 @@ describe('when building duplicate association extensions', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -143,6 +146,7 @@ describe('when building association extension with no association extension name
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -174,6 +178,7 @@ describe('when building association extension with lowercase association extensi
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -203,6 +208,7 @@ describe('when building association extension with no property', () => {
       .withStartAssociationExtension(entityName, '1')
       .withEndAssociationExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -261,6 +267,7 @@ describe('when building association extension with invalid trailing text', () =>
       .withTrailingText(trailingText)
       .withEndAssociationExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -323,6 +330,7 @@ describe('when building association extension source map', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

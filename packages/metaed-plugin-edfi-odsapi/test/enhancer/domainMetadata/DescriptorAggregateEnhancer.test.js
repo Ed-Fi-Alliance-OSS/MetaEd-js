@@ -28,7 +28,7 @@ describe('when enhancing descriptor with no map type', () => {
   let typeAggregate: Aggregate = NoAggregate;
 
   beforeAll(() => {
-    metaEd.entity.namespaceInfo = [namespaceInfo];
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     aggregate = NoAggregate;
     typeAggregate = NoAggregate;
 
@@ -112,7 +112,7 @@ describe('when enhancing descriptor with map type', () => {
   let typeAggregate: Aggregate = NoAggregate;
 
   beforeAll(() => {
-    metaEd.entity.namespaceInfo = [namespaceInfo];
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     aggregate = NoAggregate;
     typeAggregate = NoAggregate;
 

@@ -49,7 +49,7 @@ describe('when generating schema', () => {
       },
     });
 
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     const rawXsd = (await generate(metaEd)).generatedOutput[0].resultString;
     result = xmlParser.xml2js(rawXsd);
   });

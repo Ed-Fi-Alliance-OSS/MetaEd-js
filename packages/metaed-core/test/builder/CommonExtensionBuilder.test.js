@@ -1,5 +1,6 @@
 // @flow
 import { CommonExtensionBuilder } from '../../src/builder/CommonExtensionBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getCommonExtension } from '../TestHelper';
@@ -24,6 +25,8 @@ describe('when building common extension in extension namespace', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -87,6 +90,7 @@ describe('when building multiple common extensions', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -143,6 +147,7 @@ describe('when building common extension with missing common extension name', ()
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -170,6 +175,7 @@ describe('when building common extension with lowercase common extension name', 
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -195,6 +201,7 @@ describe('when building common extension with missing property', () => {
       .withStartCommonExtension(entityName, '1')
       .withEndCommonExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -224,6 +231,7 @@ describe('when building common extension with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndCommonExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -250,6 +258,7 @@ describe('when building common extension source map', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

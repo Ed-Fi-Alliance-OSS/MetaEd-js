@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, SharedDecimalBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  DomainEntityBuilder,
+  SharedDecimalBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/ShortProperty/ShortPropertyMustNotMatchACommonDecimal';
 
@@ -25,6 +31,8 @@ describe('when validating short property does not match common decimal', () => {
       .withShortProperty('ShortProperty', 'doc', true, false, maxValue, minValue)
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new SharedDecimalBuilder(metaEd, []));
 
@@ -66,6 +74,8 @@ describe('when validating short identity matches common decimal', () => {
       .withShortIdentity(entityName, 'doc', maxValue, minValue)
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new SharedDecimalBuilder(metaEd, []));
 
@@ -111,6 +121,8 @@ describe('when validating short property matches common decimal', () => {
       .withShortProperty(entityName, 'doc', true, false, maxValue, minValue)
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new SharedDecimalBuilder(metaEd, []));
 

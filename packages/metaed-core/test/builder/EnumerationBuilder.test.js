@@ -1,5 +1,6 @@
 // @flow
 import { EnumerationBuilder } from '../../src/builder/EnumerationBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getEnumeration, getSchoolYearEnumeration } from '../TestHelper';
@@ -30,6 +31,7 @@ describe('when building single enumeration', () => {
       .withEnumerationItem(itemShortDescription, itemDocumentation, itemMetaEdId)
       .withEndEnumeration()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -104,6 +106,7 @@ describe('when building school year enumeration', () => {
       .withEnumerationItem(itemShortDescription)
       .withEndEnumeration()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -161,6 +164,7 @@ describe('when building duplicate enumerations', () => {
       .withEnumerationItem(itemShortDescription, itemDocumentation, itemMetaEdId)
       .withEndEnumeration()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -218,6 +222,7 @@ describe('when building enumeration without item documentation', () => {
       .withEnumerationItem(itemShortDescription)
       .withEndEnumeration()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -260,6 +265,7 @@ describe('when building multiple enumerations', () => {
       .withEnumerationItem('sd2')
       .withEndEnumeration()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -302,6 +308,7 @@ describe('when building enumeration with no enumeration name', () => {
       .withEnumerationItem(itemShortDescription)
       .withEndEnumeration()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -339,6 +346,7 @@ describe('when building enumeration with lowercase enumeration name', () => {
       .withEnumerationItem(itemShortDescription, itemDocumentation, itemMetaEdId)
       .withEndEnumeration()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -418,6 +426,7 @@ describe('when building enumeration with no documentation', () => {
       .withEnumerationItem(itemShortDescription, itemDocumentation, itemMetaEdId)
       .withEndEnumeration()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -495,6 +504,7 @@ describe('when building enumeration with no enumeration item', () => {
       .withDocumentation(documentation)
       .withEndEnumeration()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -563,6 +573,7 @@ describe('when building enumeration with empty enumeration item description', ()
       .withTrailingText(`\r\nitem  [${itemMetaEdId}]`)
       .withTrailingText(`documentation "${itemDocumentation}"`)
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -650,6 +661,7 @@ describe('when building enumeration with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndEnumeration()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -734,6 +746,7 @@ describe('when building enumeration source map', () => {
       .withEnumerationItem(itemShortDescription2, itemDocumentation2, itemMetaEdId2)
       .withEndEnumeration()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

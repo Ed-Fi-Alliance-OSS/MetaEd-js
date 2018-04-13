@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, CommonBuilder, CommonExtensionBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  CommonBuilder,
+  CommonExtensionBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/CommonExtension/CommonExtensionMustNotRedeclareProperties';
 
@@ -22,6 +28,8 @@ describe('when common extension correctly has different property names', () => {
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []))
       .sendToListener(new CommonExtensionBuilder(metaEd, []));
 
@@ -57,6 +65,8 @@ describe('when common extension has duplicate property name', () => {
       .withBooleanProperty(duplicatePropertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []))
       .sendToListener(new CommonExtensionBuilder(metaEd, []));
 
@@ -100,6 +110,8 @@ describe('when common extension has duplicate property name but different role n
       .withBooleanProperty(duplicatePropertyName, 'doc', true, false, 'RoleName')
       .withEndCommonExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []))
       .sendToListener(new CommonExtensionBuilder(metaEd, []));
 
@@ -136,6 +148,8 @@ describe('when common extension has multiple duplicates', () => {
       .withBooleanProperty(notDuplicatePropertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []))
       .sendToListener(new CommonExtensionBuilder(metaEd, []));
 
@@ -186,6 +200,8 @@ describe('when common extension has duplicate common property', () => {
       .withCommonProperty(duplicatePropertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []))
       .sendToListener(new CommonExtensionBuilder(metaEd, []));
 
@@ -225,6 +241,8 @@ describe('when common extension has duplicate common extension override property
       .withCommonExtensionOverrideProperty(duplicatePropertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []))
       .sendToListener(new CommonExtensionBuilder(metaEd, []));
 

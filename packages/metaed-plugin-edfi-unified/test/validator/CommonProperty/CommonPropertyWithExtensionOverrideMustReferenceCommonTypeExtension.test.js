@@ -6,6 +6,7 @@ import {
   CommonExtensionBuilder,
   DomainEntityBuilder,
   DomainEntityExtensionBuilder,
+  NamespaceInfoBuilder,
 } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/CommonProperty/CommonPropertyWithExtensionOverrideMustReferenceCommonTypeExtension';
@@ -40,6 +41,7 @@ describe('when validating common property has extension override of common type 
       .withEndDomainEntityExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []))
       .sendToListener(new CommonExtensionBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
@@ -91,6 +93,7 @@ describe('when validating common property has extension override of non common t
       .withEndDomainEntityExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));

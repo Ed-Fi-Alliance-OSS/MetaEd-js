@@ -8,18 +8,17 @@ import type { Subdomain, SubdomainSourceMap } from '../model/Subdomain';
 import type { DomainItem, DomainItemSourceMap } from '../model/DomainItem';
 import type { MetaEdEnvironment } from '../MetaEdEnvironment';
 import type { NamespaceInfo } from '../model/NamespaceInfo';
-import { NoNamespaceInfo, newNamespaceInfo } from '../model/NamespaceInfo';
 import { newDomainItem, NoDomainItem } from '../model/DomainItem';
 import { newDomain, NoDomain } from '../model/Domain';
 import { newSubdomain } from '../model/Subdomain';
-import { enteringNamespaceName, enteringNamespaceType } from './NamespaceInfoBuilder';
+import { namespaceName } from './NamespaceInfoBuilder';
 import { extractDocumentation, squareBracketRemoval, isErrorText } from './BuilderUtility';
 import type { ValidationFailure } from '../validator/ValidationFailure';
 import { sourceMapFrom } from '../model/SourceMap';
 
 export class DomainBuilder extends MetaEdGrammarListener {
   metaEd: MetaEdEnvironment;
-  namespaceInfo: NamespaceInfo;
+  currentNamespace: string;
   currentDomain: Domain | Subdomain;
   currentDomainItem: DomainItem;
   validationFailures: Array<ValidationFailure>;
@@ -27,31 +26,18 @@ export class DomainBuilder extends MetaEdGrammarListener {
   constructor(metaEd: MetaEdEnvironment, validationFailures: Array<ValidationFailure>) {
     super();
     this.metaEd = metaEd;
-    this.namespaceInfo = NoNamespaceInfo;
+    this.currentNamespace = '';
     this.currentDomain = NoDomain;
     this.currentDomainItem = NoDomainItem;
     this.validationFailures = validationFailures;
   }
 
-  enterNamespace(context: MetaEdGrammar.NamespaceContext) {
-    if (this.namespaceInfo !== NoNamespaceInfo) return;
-    this.namespaceInfo = newNamespaceInfo();
-    this.namespaceInfo.sourceMap.type = sourceMapFrom(context);
+  getNamespaceInfo(): ?NamespaceInfo {
+    return this.metaEd.entity.namespaceInfo.get(this.currentNamespace);
   }
 
   enterNamespaceName(context: MetaEdGrammar.NamespaceNameContext) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.namespaceInfo = enteringNamespaceName(context, this.namespaceInfo);
-  }
-
-  enterNamespaceType(context: MetaEdGrammar.NamespaceTypeContext) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.namespaceInfo = enteringNamespaceType(context, this.namespaceInfo);
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  exitNamespace(context: MetaEdGrammar.NamespaceContext) {
-    this.namespaceInfo = NoNamespaceInfo;
+    this.currentNamespace = namespaceName(context);
   }
 
   enterDocumentation(context: MetaEdGrammar.DocumentationContext) {
@@ -80,17 +66,19 @@ export class DomainBuilder extends MetaEdGrammarListener {
   }
 
   enterDomain(context: MetaEdGrammar.DomainContext) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.currentDomain = Object.assign(newDomain(), { namespaceInfo: this.namespaceInfo });
+    const namespaceInfo = this.getNamespaceInfo();
+    if (namespaceInfo == null) return;
+    this.currentDomain = { ...newDomain(), namespaceInfo };
     this.currentDomain.sourceMap.type = sourceMapFrom(context);
-    this.currentDomain.sourceMap.namespaceInfo = this.namespaceInfo.sourceMap.type;
+    this.currentDomain.sourceMap.namespaceInfo = namespaceInfo.sourceMap.type;
   }
 
   enterSubdomain(context: MetaEdGrammar.SubdomainContext) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.currentDomain = Object.assign(newSubdomain(), { namespaceInfo: this.namespaceInfo });
+    const namespaceInfo = this.getNamespaceInfo();
+    if (namespaceInfo == null) return;
+    this.currentDomain = { ...newSubdomain(), namespaceInfo };
     this.currentDomain.sourceMap.type = sourceMapFrom(context);
-    this.currentDomain.sourceMap.namespaceInfo = this.namespaceInfo.sourceMap.type;
+    this.currentDomain.sourceMap.namespaceInfo = namespaceInfo.sourceMap.type;
   }
 
   exitingEntity() {

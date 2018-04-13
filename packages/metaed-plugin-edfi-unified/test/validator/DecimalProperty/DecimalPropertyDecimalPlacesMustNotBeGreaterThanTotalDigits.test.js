@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/DecimalProperty/DecimalPropertyDecimalPlacesMustNotBeGreaterThanTotalDigits';
 
@@ -19,6 +19,8 @@ describe('when validating decimal property with correct total digits and decimal
       .withDecimalIdentity('DecimalProperty', 'doc', totalDigits, decimalPlaces)
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -49,6 +51,8 @@ describe('when validating decimal property with same total digits and decimal pl
       .withDecimalIdentity('DecimalProperty', 'doc', totalDigits, decimalPlaces)
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -79,6 +83,8 @@ describe('when validating decimal property with decimal places greater than tota
       .withDecimalIdentity('DecimalProperty', 'doc', totalDigits, decimalPlaces)
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);

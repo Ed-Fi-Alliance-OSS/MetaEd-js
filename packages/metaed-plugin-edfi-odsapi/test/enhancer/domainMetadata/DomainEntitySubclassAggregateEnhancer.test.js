@@ -28,7 +28,7 @@ describe('when enhancing association extensions', () => {
       },
     });
 
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
 
     const baseEntity: Association = Object.assign(newAssociation(), {
       metaEdName: baseEntityName,

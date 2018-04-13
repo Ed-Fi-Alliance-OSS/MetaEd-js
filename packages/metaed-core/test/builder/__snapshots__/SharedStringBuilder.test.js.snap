@@ -63,11 +63,13 @@ Object {
 exports[`when building shared string with invalid trailing text should have extraneous input error 1`] = `
 Array [
   "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 0, line: 7, token: TrailingText",
+  "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 0, line: 7, token: TrailingText",
 ]
 `;
 
 exports[`when building shared string with lowercase shared string name should have extraneous input error 1`] = `
 Array [
+  "extraneous input 'entity' expecting ID, column: 16, line: 2, token: entity",
   "extraneous input 'entity' expecting ID, column: 16, line: 2, token: entity",
 ]
 `;
@@ -75,11 +77,13 @@ Array [
 exports[`when building shared string with no documentation should have mismatched input error 1`] = `
 Array [
   "mismatched input 'min length' expecting 'documentation', column: 6, line: 3, token: min length",
+  "mismatched input 'min length' expecting 'documentation', column: 6, line: 3, token: min length",
 ]
 `;
 
 exports[`when building shared string with no max length should have missing unsigned int error 1`] = `
 Array [
+  "missing UNSIGNED_INT at 'End Namespace', column: 0, line: 7, token: End Namespace",
   "missing UNSIGNED_INT at 'End Namespace', column: 0, line: 7, token: End Namespace",
 ]
 `;
@@ -88,11 +92,14 @@ exports[`when building shared string with no min length should have extraneous i
 Array [
   "extraneous input 'max length' expecting UNSIGNED_INT, column: 6, line: 6, token: max length",
   "mismatched input 'End Namespace' expecting 'max length', column: 0, line: 7, token: End Namespace",
+  "extraneous input 'max length' expecting UNSIGNED_INT, column: 6, line: 6, token: max length",
+  "mismatched input 'End Namespace' expecting 'max length', column: 0, line: 7, token: End Namespace",
 ]
 `;
 
 exports[`when building shared string with no shared string name should have missing id error 1`] = `
 Array [
+  "missing ID at '[123]', column: 17, line: 2, token: [123]",
   "missing ID at '[123]', column: 17, line: 2, token: [123]",
 ]
 `;

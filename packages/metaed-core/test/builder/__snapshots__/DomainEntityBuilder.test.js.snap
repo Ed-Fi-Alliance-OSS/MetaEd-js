@@ -144,17 +144,20 @@ Object {
 exports[`when building domain entity with invalid trailing text should have extraneous input error 1`] = `
 Array [
   "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year'}, column: 0, line: 15, token: TrailingText",
+  "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year'}, column: 0, line: 15, token: TrailingText",
 ]
 `;
 
 exports[`when building domain entity with lowercase domain entity name should have no viable alternative error 1`] = `
 Array [
   "no viable alternative at input 'Domain Entityentity', column: 16, line: 2, token: entity",
+  "no viable alternative at input 'Domain Entityentity', column: 16, line: 2, token: entity",
 ]
 `;
 
 exports[`when building domain entity with lowercase project extension should have extraneous input error 1`] = `
 Array [
+  "extraneous input 'project' expecting {'core', ID}, column: 26, line: 1, token: project",
   "extraneous input 'project' expecting {'core', ID}, column: 26, line: 1, token: project",
 ]
 `;
@@ -168,11 +171,13 @@ Array [
 exports[`when building domain entity with no documentation should have mismatched input error 1`] = `
 Array [
   "mismatched input 'integer' expecting 'documentation', column: 4, line: 3, token: integer",
+  "mismatched input 'integer' expecting 'documentation', column: 4, line: 3, token: integer",
 ]
 `;
 
 exports[`when building domain entity with no domain entity name should have no viable alternative error 1`] = `
 Array [
+  "no viable alternative at input 'Domain Entity[1]', column: 17, line: 2, token: [1]",
   "no viable alternative at input 'Domain Entity[1]', column: 17, line: 2, token: [1]",
 ]
 `;
@@ -180,17 +185,20 @@ Array [
 exports[`when building domain entity with no end namespace should have extraneous input eof error 1`] = `
 Array [
   "missing 'End Namespace' at '<EOF>', column: 19, line: 14, token: <EOF>",
+  "missing 'End Namespace' at '<EOF>', column: 19, line: 14, token: <EOF>",
 ]
 `;
 
 exports[`when building domain entity with no metaed id should have token recognition error 1`] = `
 Array [
   "token recognition error at: '[]', column: 27, line: 2, token: ",
+  "token recognition error at: '[]', column: 27, line: 2, token: ",
 ]
 `;
 
 exports[`when building domain entity with no namespace should have missing namespace id error 1`] = `
 Array [
+  "missing NAMESPACE_ID at 'ProjectExtension', column: 17, line: 1, token: ProjectExtension",
   "missing NAMESPACE_ID at 'ProjectExtension', column: 17, line: 1, token: ProjectExtension",
 ]
 `;
@@ -199,17 +207,21 @@ exports[`when building domain entity with no project extension should have extra
 Array [
   "extraneous input 'Domain Entity' expecting {'core', ID}, column: 2, line: 2, token: Domain Entity",
   "mismatched input '[1]' expecting {'Abstract Entity', 'Association', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 27, line: 2, token: [1]",
+  "extraneous input 'Domain Entity' expecting {'core', ID}, column: 2, line: 2, token: Domain Entity",
+  "mismatched input '[1]' expecting {'Abstract Entity', 'Association', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 27, line: 2, token: [1]",
 ]
 `;
 
 exports[`when building domain entity with no properties should have mismatched input error 1`] = `
 Array [
   "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'allow primary key updates'}, column: 0, line: 5, token: End Namespace",
+  "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'allow primary key updates'}, column: 0, line: 5, token: End Namespace",
 ]
 `;
 
 exports[`when building domain entity with no top level entity should have mismatched input error 1`] = `
 Array [
+  "mismatched input 'documentation' expecting {'Abstract Entity', 'Association', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 2, line: 2, token: documentation",
   "mismatched input 'documentation' expecting {'Abstract Entity', 'Association', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 2, line: 2, token: documentation",
 ]
 `;
@@ -466,6 +478,8 @@ Object {
 
 exports[`when building domain entity with uppercase namespace should have missing namespace id and extraneous input error 1`] = `
 Array [
+  "missing NAMESPACE_ID at 'Namespace', column: 16, line: 1, token: Namespace",
+  "extraneous input 'ProjectExtension' expecting {'Abstract Entity', 'Association', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 26, line: 1, token: ProjectExtension",
   "missing NAMESPACE_ID at 'Namespace', column: 16, line: 1, token: Namespace",
   "extraneous input 'ProjectExtension' expecting {'Abstract Entity', 'Association', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 26, line: 1, token: ProjectExtension",
 ]

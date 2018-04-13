@@ -20,7 +20,7 @@ describe('when generating output for namespace', () => {
         },
       },
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespace, namespaceInfo);
 
     result = await generate(metaEd);
   });
@@ -51,7 +51,7 @@ describe('when generating output for core namespace', () => {
         },
       },
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespace, namespaceInfo);
 
     result = await generate(metaEd);
   });
@@ -78,7 +78,7 @@ describe('when generating output for extension namespace', () => {
         },
       },
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespace, namespaceInfo);
 
     result = await generate(metaEd);
   });

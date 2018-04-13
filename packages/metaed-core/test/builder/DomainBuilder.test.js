@@ -1,5 +1,6 @@
 // @flow
 import { DomainBuilder } from '../../src/builder/DomainBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getDomain, getSubdomain } from '../TestHelper';
@@ -32,6 +33,7 @@ describe('when building domain in extension namespace', () => {
       .withFooterDocumentation(footerDocumentation)
       .withEndDomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -96,6 +98,7 @@ describe('when building domain with association item', () => {
       .withFooterDocumentation('FooterDocumentation')
       .withEndDomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -126,6 +129,7 @@ describe('when building domain with common item', () => {
       .withFooterDocumentation('FooterDocumentation')
       .withEndDomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -156,6 +160,7 @@ describe('when building domain with inline common item', () => {
       .withFooterDocumentation('FooterDocumentation')
       .withEndDomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -186,6 +191,7 @@ describe('when building domain with descriptor item', () => {
       .withFooterDocumentation('FooterDocumentation')
       .withEndDomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -227,6 +233,7 @@ describe('when building duplicate domains', () => {
       .withFooterDocumentation(footerDocumentation)
       .withEndDomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -289,6 +296,7 @@ describe('when building subdomain in extension namespace', () => {
       .withSubdomainPosition(subdomainPosition)
       .withEndSubdomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -353,6 +361,7 @@ describe('when building domain with no domain name', () => {
       .withFooterDocumentation(footerDocumentation)
       .withEndDomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -391,6 +400,7 @@ describe('when building domain with lowercase domain name', () => {
       .withFooterDocumentation(footerDocumentation)
       .withEndDomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -462,6 +472,7 @@ describe('when building domain with no documentation', () => {
       .withFooterDocumentation(footerDocumentation)
       .withEndDomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -532,6 +543,7 @@ describe('when building domain with no domain item', () => {
       .withFooterDocumentation(footerDocumentation)
       .withEndDomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -602,6 +614,7 @@ describe('when building domain with no text in footer documentation', () => {
       .withTrailingText(footerDocumentation)
       .withEndDomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -675,6 +688,7 @@ describe('when building domain with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndDomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -744,6 +758,7 @@ describe('when building subdomain with no subdomain name', () => {
       .withSubdomainPosition(subdomainPosition)
       .withEndSubdomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -783,6 +798,7 @@ describe('when building subdomain with lowercase subdomain name', () => {
       .withSubdomainPosition(subdomainPosition)
       .withEndSubdomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -859,6 +875,7 @@ describe('when building subdomain with no parent domain name', () => {
       .withSubdomainPosition(subdomainPosition)
       .withEndSubdomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -936,6 +953,7 @@ describe('when building subdomain with lowercase parent domain name', () => {
       .withSubdomainPosition(subdomainPosition)
       .withEndSubdomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1011,6 +1029,7 @@ describe('when building subdomain with no documentation', () => {
       .withSubdomainPosition(subdomainPosition)
       .withEndSubdomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1085,6 +1104,7 @@ describe('when building subdomain with no domain item', () => {
       .withSubdomainPosition(subdomainPosition)
       .withEndSubdomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1160,6 +1180,7 @@ describe('when building subdomain with no unsigned int in position', () => {
       .withTrailingText(subdomainPosition)
       .withEndSubdomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1239,6 +1260,7 @@ describe('when building subdomain with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndSubdomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1314,6 +1336,7 @@ describe('when building domain source map', () => {
       .withFooterDocumentation(footerDocumentation)
       .withEndDomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1374,6 +1397,7 @@ describe('when building subdomain source map', () => {
       .withSubdomainPosition(subdomainPosition)
       .withEndSubdomain()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

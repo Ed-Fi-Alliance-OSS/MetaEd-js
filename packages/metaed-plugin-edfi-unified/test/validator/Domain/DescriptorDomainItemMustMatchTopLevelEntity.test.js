@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainBuilder, DescriptorBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  DomainBuilder,
+  DescriptorBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/Domain/DescriptorDomainItemMustMatchTopLevelEntity';
 
@@ -24,6 +30,8 @@ describe('when validating descriptor domain item matches top level entity', () =
       .withBooleanProperty('PropertyName', 'doc', true, false)
       .withEndDescriptor()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []))
       .sendToListener(new DescriptorBuilder(metaEd, []));
 
@@ -60,6 +68,8 @@ describe('when validating descriptor domain item does not match top level entity
       .withBooleanProperty('PropertyName', 'doc', true, false)
       .withEndDescriptor()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []))
       .sendToListener(new DescriptorBuilder(metaEd, []));
 

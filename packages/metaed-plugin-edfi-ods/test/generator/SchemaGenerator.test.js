@@ -13,7 +13,7 @@ describe('when generating schemas for core namespace', () => {
       namespace: 'edfi',
       isExtension: false,
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set('edfi', namespaceInfo);
 
     result = await generate(metaEd);
   });
@@ -39,7 +39,7 @@ describe('when generating schemas for extension namespace', () => {
       projectExtension: 'EXTENSION',
       isExtension: true,
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set('extension', namespaceInfo);
 
     result = await generate(metaEd);
   });

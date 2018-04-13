@@ -4,47 +4,29 @@ import type { MetaEdEnvironment } from '../MetaEdEnvironment';
 import type { NamespaceInfo } from '../model/NamespaceInfo';
 import type { ValidationFailure } from '../validator/ValidationFailure';
 import { newDecimalType, NoDecimalType } from '../model/DecimalType';
-import { enteringNamespaceName, enteringNamespaceType } from './NamespaceInfoBuilder';
+import { namespaceName } from './NamespaceInfoBuilder';
 import { extractDocumentation, squareBracketRemoval, isErrorText } from './BuilderUtility';
 import type { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
 import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
-import { newNamespaceInfo, NoNamespaceInfo } from '../model/NamespaceInfo';
 import { sourceMapFrom } from '../model/SourceMap';
 
 // Note DecimalType is XSD specific with the advent of SharedDecimal, and creation should be move to XSD enhancers
 export class DecimalTypeBuilder extends MetaEdGrammarListener {
   currentDecimalType: DecimalType;
   metaEd: MetaEdEnvironment;
-  namespaceInfo: NamespaceInfo;
+  currentNamespace: string;
   validationFailures: Array<ValidationFailure>;
 
   constructor(metaEd: MetaEdEnvironment, validationFailures: Array<ValidationFailure>) {
     super();
     this.metaEd = metaEd;
     this.validationFailures = validationFailures;
-    this.namespaceInfo = NoNamespaceInfo;
+    this.currentNamespace = '';
     this.currentDecimalType = NoDecimalType;
   }
 
-  enterNamespace(context: MetaEdGrammar.NamespaceContext) {
-    if (this.namespaceInfo !== NoNamespaceInfo) return;
-    this.namespaceInfo = newNamespaceInfo();
-    this.namespaceInfo.sourceMap.type = sourceMapFrom(context);
-  }
-
   enterNamespaceName(context: MetaEdGrammar.NamespaceNameContext) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.namespaceInfo = enteringNamespaceName(context, this.namespaceInfo);
-  }
-
-  enterNamespaceType(context: MetaEdGrammar.NamespaceTypeContext) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.namespaceInfo = enteringNamespaceType(context, this.namespaceInfo);
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  exitNamespace(context: MetaEdGrammar.NamespaceContext) {
-    this.namespaceInfo = NoNamespaceInfo;
+    this.currentNamespace = namespaceName(context);
   }
 
   enterSharedDecimal(context: MetaEdGrammar.SharedDecimalContext) {
@@ -59,13 +41,11 @@ export class DecimalTypeBuilder extends MetaEdGrammarListener {
     context: MetaEdGrammar.SharedDecimalContext | MetaEdGrammar.DecimalPropertyContext,
     generatedSimpleType: boolean = false,
   ) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.currentDecimalType = Object.assign(newDecimalType(), {
-      namespaceInfo: this.namespaceInfo,
-      generatedSimpleType,
-    });
+    const namespaceInfo: ?NamespaceInfo = this.metaEd.entity.namespaceInfo.get(this.currentNamespace);
+    if (namespaceInfo == null) return;
+    this.currentDecimalType = { ...newDecimalType(), namespaceInfo, generatedSimpleType };
     this.currentDecimalType.sourceMap.type = sourceMapFrom(context);
-    this.currentDecimalType.sourceMap.namespaceInfo = this.namespaceInfo.sourceMap.type;
+    this.currentDecimalType.sourceMap.namespaceInfo = namespaceInfo.sourceMap.type;
   }
 
   enterDocumentation(context: MetaEdGrammar.DocumentationContext) {

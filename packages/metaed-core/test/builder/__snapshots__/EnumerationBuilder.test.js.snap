@@ -163,11 +163,13 @@ Object {
 exports[`when building enumeration with empty enumeration item description should have extraneous input error 1`] = `
 Array [
   "missing TEXT at '[2]', column: 6, line: 5, token: [2]",
+  "missing TEXT at '[2]', column: 6, line: 5, token: [2]",
 ]
 `;
 
 exports[`when building enumeration with empty enumeration item description should have missing text error 1`] = `
 Array [
+  "missing TEXT at '[2]', column: 6, line: 5, token: [2]",
   "missing TEXT at '[2]', column: 6, line: 5, token: [2]",
 ]
 `;
@@ -175,11 +177,13 @@ Array [
 exports[`when building enumeration with invalid trailing text should have extraneous input error 1`] = `
 Array [
   "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'item'}, column: 0, line: 8, token: TrailingText",
+  "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'item'}, column: 0, line: 8, token: TrailingText",
 ]
 `;
 
 exports[`when building enumeration with lowercase enumeration name should have extraneous input error 1`] = `
 Array [
+  "extraneous input 'entity' expecting ID, column: 14, line: 2, token: entity",
   "extraneous input 'entity' expecting ID, column: 14, line: 2, token: entity",
 ]
 `;
@@ -187,17 +191,20 @@ Array [
 exports[`when building enumeration with no documentation should have mismatched input error 1`] = `
 Array [
   "mismatched input 'item' expecting 'documentation', column: 4, line: 3, token: item",
+  "mismatched input 'item' expecting 'documentation', column: 4, line: 3, token: item",
 ]
 `;
 
 exports[`when building enumeration with no enumeration item should have mismatched input error 1`] = `
 Array [
   "mismatched input 'End Namespace' expecting 'item', column: 0, line: 5, token: End Namespace",
+  "mismatched input 'End Namespace' expecting 'item', column: 0, line: 5, token: End Namespace",
 ]
 `;
 
 exports[`when building enumeration with no enumeration name should have missing id error 1`] = `
 Array [
+  "missing ID at 'documentation', column: 4, line: 3, token: documentation",
   "missing ID at 'documentation', column: 4, line: 3, token: documentation",
 ]
 `;

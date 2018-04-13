@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainBuilder, CommonBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DomainBuilder, CommonBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/Domain/InlineCommonDomainItemMustMatchTopLevelEntity';
 
@@ -25,6 +25,8 @@ describe('when validating inline common domain item matches top level entity', (
       .withInlineCommonProperty('InlineInOds', 'doc', true, false)
       .withEndCommon()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []));
 
@@ -65,6 +67,8 @@ describe('when validating inline common domain item does not match top level ent
       .withInlineCommonProperty('InlineInOds', 'doc', true, false)
       .withEndCommon()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []));
 

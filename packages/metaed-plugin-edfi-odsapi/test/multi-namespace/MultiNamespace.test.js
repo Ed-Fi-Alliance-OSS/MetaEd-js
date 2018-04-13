@@ -109,7 +109,7 @@ describe('when building a simple core and two simple extension projects', () => 
   });
 
   it('should have core entity definition', () => {
-    const namespaceInfo = state.metaEd.entity.namespaceInfo.find(n => n.namespace === 'edfi');
+    const namespaceInfo = Array.from(state.metaEd.entity.namespaceInfo.values()).find(n => n.namespace === 'edfi');
     if (namespaceInfo == null) throw new Error();
     const entityDefinition = namespaceInfo.data.edfiOdsApi.domainModelDefinition.entityDefinitions.find(
       ed => ed.name === 'EdfiDomainEntity',
@@ -118,7 +118,7 @@ describe('when building a simple core and two simple extension projects', () => 
   });
 
   it('should have gb entity definition', () => {
-    const namespaceInfo = state.metaEd.entity.namespaceInfo.find(n => n.namespace === 'gb');
+    const namespaceInfo = Array.from(state.metaEd.entity.namespaceInfo.values()).find(n => n.namespace === 'gb');
     if (namespaceInfo == null) throw new Error();
     const entityDefinition = namespaceInfo.data.edfiOdsApi.domainModelDefinition.entityDefinitions.find(
       ed => ed.name === 'GbDomainEntity',
@@ -127,7 +127,7 @@ describe('when building a simple core and two simple extension projects', () => 
   });
 
   it('should have sample entity definition', () => {
-    const namespaceInfo = state.metaEd.entity.namespaceInfo.find(n => n.namespace === 'sample');
+    const namespaceInfo = Array.from(state.metaEd.entity.namespaceInfo.values()).find(n => n.namespace === 'sample');
     if (namespaceInfo == null) throw new Error();
     const entityDefinition = namespaceInfo.data.edfiOdsApi.domainModelDefinition.entityDefinitions.find(
       ed => ed.name === 'SampleDomainEntity',

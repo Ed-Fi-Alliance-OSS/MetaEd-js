@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, CommonBuilder, DomainEntityBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  CommonBuilder,
+  DomainEntityBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/CommonProperty/CommonPropertyMustNotContainIdentity';
 
@@ -21,6 +27,7 @@ describe('when validating common property is part of identity', () => {
       .withEndDomainEntity()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []));
 

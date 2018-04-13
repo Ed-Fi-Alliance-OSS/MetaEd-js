@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, AssociationBuilder, AssociationExtensionBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  AssociationBuilder,
+  AssociationExtensionBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/AssociationExtension/AssociationExtensionMustNotRedeclareProperties';
 
@@ -24,6 +30,8 @@ describe('when association extension correctly has different property names', ()
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
@@ -61,6 +69,8 @@ describe('when association extension has duplicate property name', () => {
       .withBooleanProperty(duplicatePropertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
@@ -106,6 +116,8 @@ describe('when association extension has duplicate base property name but differ
       .withBooleanProperty(duplicatePropertyName, 'doc', true, false, 'RoleName')
       .withEndAssociationExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
@@ -144,6 +156,8 @@ describe('when association extension has multiple duplicates', () => {
       .withBooleanProperty(notDuplicatePropertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
@@ -196,6 +210,8 @@ describe('when association extension has duplicate common property', () => {
       .withCommonProperty(duplicatePropertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
@@ -229,6 +245,8 @@ describe('when association extension has duplicate common extension override pro
       .withCommonExtensionOverrideProperty(duplicatePropertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 

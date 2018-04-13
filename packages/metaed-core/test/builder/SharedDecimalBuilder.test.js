@@ -1,5 +1,6 @@
 // @flow
 import { SharedDecimalBuilder } from '../../src/builder/SharedDecimalBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getSharedDecimal } from '../TestHelper';
@@ -31,6 +32,7 @@ describe('when building shared decimal in extension namespace', () => {
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -109,6 +111,7 @@ describe('when building duplicate shared decimals', () => {
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -171,6 +174,7 @@ describe('when building shared decimal with no shared decimal name', () => {
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -209,6 +213,7 @@ describe('when building shared decimal with lowercase shared decimal name', () =
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -281,6 +286,7 @@ describe('when building shared decimal with no documentation', () => {
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -346,6 +352,7 @@ describe('when building shared decimal with no metaed id', () => {
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -412,6 +419,7 @@ describe('when building shared decimal with no total digits property', () => {
       .withMaxValue(maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -480,6 +488,7 @@ describe('when building shared decimal with no total digits value', () => {
       .withMaxValue(maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -546,6 +555,7 @@ describe('when building shared decimal with no decimal places property', () => {
       .withMaxValue(maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -614,6 +624,7 @@ describe('when building shared decimal with no min value', () => {
       .withMaxValue(maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -682,6 +693,7 @@ describe('when building shared decimal with no max value', () => {
       .withMaxValue(maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -749,6 +761,7 @@ describe('when building shared decimal with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -813,6 +826,7 @@ describe('when building shared decimal source map', () => {
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

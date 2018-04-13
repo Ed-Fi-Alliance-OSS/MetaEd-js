@@ -56,10 +56,10 @@ export class DescriptorBuilder extends TopLevelEntityBuilder {
   }
 
   enterWithMapType(context: MetaEdGrammar.WithMapTypeContext) {
-    if (this.currentTopLevelEntity === NoTopLevelEntity || this.namespaceInfo == null) return;
+    if (this.currentTopLevelEntity === NoTopLevelEntity) return;
     this.currentMapTypeEnumeration = Object.assign(newMapTypeEnumeration(), {
       metaEdName: `${this.currentTopLevelEntity.metaEdName}Map`,
-      namespaceInfo: this.namespaceInfo,
+      namespaceInfo: this.currentTopLevelEntity.namespaceInfo,
     });
     ((this.currentTopLevelEntity.sourceMap: any): DescriptorSourceMap).mapTypeEnumeration = sourceMapFrom(context);
 

@@ -73,11 +73,13 @@ Object {
 exports[`when building shared decimal with invalid trailing text should have extraneous input error 1`] = `
 Array [
   "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 0, line: 9, token: TrailingText",
+  "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 0, line: 9, token: TrailingText",
 ]
 `;
 
 exports[`when building shared decimal with lowercase shared decimal name should have extraneous input error 1`] = `
 Array [
+  "extraneous input 'entity' expecting ID, column: 17, line: 2, token: entity",
   "extraneous input 'entity' expecting ID, column: 17, line: 2, token: entity",
 ]
 `;
@@ -85,11 +87,13 @@ Array [
 exports[`when building shared decimal with no decimal places property should have mismatched input and extraneous input error 1`] = `
 Array [
   "mismatched input 'min value' expecting 'decimal places', column: 4, line: 6, token: min value",
+  "mismatched input 'min value' expecting 'decimal places', column: 4, line: 6, token: min value",
 ]
 `;
 
 exports[`when building shared decimal with no documentation should have mismatched input error 1`] = `
 Array [
+  "mismatched input 'total digits' expecting 'documentation', column: 6, line: 3, token: total digits",
   "mismatched input 'total digits' expecting 'documentation', column: 6, line: 3, token: total digits",
 ]
 `;
@@ -97,11 +101,13 @@ Array [
 exports[`when building shared decimal with no max value should have mismatched input error 1`] = `
 Array [
   "mismatched input 'End Namespace' expecting {UNSIGNED_INT, DECIMAL_VALUE, '+', '-'}, column: 0, line: 9, token: End Namespace",
+  "mismatched input 'End Namespace' expecting {UNSIGNED_INT, DECIMAL_VALUE, '+', '-'}, column: 0, line: 9, token: End Namespace",
 ]
 `;
 
 exports[`when building shared decimal with no metaed id should have token recognition error 1`] = `
 Array [
+  "token recognition error at: '[]', column: 28, line: 2, token: ",
   "token recognition error at: '[]', column: 28, line: 2, token: ",
 ]
 `;
@@ -109,11 +115,13 @@ Array [
 exports[`when building shared decimal with no min value should have extraneous input error 1`] = `
 Array [
   "extraneous input 'max value' expecting {UNSIGNED_INT, DECIMAL_VALUE, '+', '-'}, column: 4, line: 8, token: max value",
+  "extraneous input 'max value' expecting {UNSIGNED_INT, DECIMAL_VALUE, '+', '-'}, column: 4, line: 8, token: max value",
 ]
 `;
 
 exports[`when building shared decimal with no shared decimal name should have missing id error 1`] = `
 Array [
+  "missing ID at '[123]', column: 18, line: 2, token: [123]",
   "missing ID at '[123]', column: 18, line: 2, token: [123]",
 ]
 `;
@@ -121,11 +129,14 @@ Array [
 exports[`when building shared decimal with no total digits property should have extraneous input error 1`] = `
 Array [
   "mismatched input 'decimal places' expecting 'total digits', column: 4, line: 5, token: decimal places",
+  "mismatched input 'decimal places' expecting 'total digits', column: 4, line: 5, token: decimal places",
 ]
 `;
 
 exports[`when building shared decimal with no total digits value should have extraneous input and mismatched input error 1`] = `
 Array [
+  "extraneous input 'decimal places' expecting UNSIGNED_INT, column: 4, line: 6, token: decimal places",
+  "mismatched input 'min value' expecting 'decimal places', column: 4, line: 7, token: min value",
   "extraneous input 'decimal places' expecting UNSIGNED_INT, column: 4, line: 6, token: decimal places",
   "mismatched input 'min value' expecting 'decimal places', column: 4, line: 7, token: min value",
 ]

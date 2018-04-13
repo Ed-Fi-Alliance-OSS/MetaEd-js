@@ -45,7 +45,8 @@ describe('when enhancing domainEntity extensions', () => {
         },
       },
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo, extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     const baseEntity: DomainEntity = Object.assign(newDomainEntity(), {
       metaEdName: baseEntityName,

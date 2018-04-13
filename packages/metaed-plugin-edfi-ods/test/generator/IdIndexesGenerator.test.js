@@ -18,7 +18,7 @@ describe('when generating id indexes for core namespace table with no id', () =>
       namespace: coreNamespace,
       isExtension: false,
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespace, namespaceInfo);
 
     initializeEdFiOdsEntityRepository(metaEd);
     const table: Table = Object.assign(newTable(), {
@@ -47,7 +47,7 @@ describe('when generating id indexes for core namespace table with no type', () 
       namespace: coreNamespace,
       isExtension: false,
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespace, namespaceInfo);
 
     initializeEdFiOdsEntityRepository(metaEd);
     const table: Table = Object.assign(newTable(), {
@@ -83,7 +83,7 @@ describe('when generating id indexes for core namespace table with type', () => 
       namespace: coreNamespace,
       isExtension: false,
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespace, namespaceInfo);
 
     initializeEdFiOdsEntityRepository(metaEd);
     const table: Table = Object.assign(newTable(), {
@@ -120,7 +120,7 @@ describe('when generating id indexes for extension namespace table with no type'
       projectExtension: 'EXTENSION',
       isExtension: true,
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespace, namespaceInfo);
 
     initializeEdFiOdsEntityRepository(metaEd);
     const table: Table = Object.assign(newTable(), {

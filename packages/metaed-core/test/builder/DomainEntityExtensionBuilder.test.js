@@ -1,5 +1,6 @@
 // @flow
 import { DomainEntityExtensionBuilder } from '../../src/builder/DomainEntityExtensionBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getDomainEntityExtension } from '../TestHelper';
@@ -25,6 +26,7 @@ describe('when building domain entity extension in extension namespace', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -89,6 +91,7 @@ describe('when building duplicate domain entity extensions', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -147,6 +150,7 @@ describe('when building domain entity extension with no domain entity extension 
       .withIntegerProperty(propertyName, documentation, true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -180,6 +184,7 @@ describe('when building domain entity extension with lowercase domain entity ext
       .withIntegerProperty(propertyName, documentation, true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -210,6 +215,7 @@ describe('when building domain entity extension with no property', () => {
       .withStartDomainEntityExtension(entityName, MetaEdId)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -270,6 +276,7 @@ describe('when building domain entity extension with invalid trailing text', () 
       .withTrailingText(trailingText)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
   it('should build one domain entity extension', () => {
@@ -333,6 +340,7 @@ describe('when building domain entity extension source map', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

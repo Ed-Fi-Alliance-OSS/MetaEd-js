@@ -7,6 +7,7 @@ import {
   DomainEntityBuilder,
   DomainEntityExtensionBuilder,
   DomainEntitySubclassBuilder,
+  NamespaceInfoBuilder,
   MetaEdTextBuilder,
   newMetaEdEnvironment,
 } from 'metaed-core';
@@ -37,6 +38,7 @@ describe('when looking for property on current entity', () => {
       .withEndDomainEntity()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     property = findReferencedProperty(
@@ -87,6 +89,7 @@ describe('when looking for first domain entity on association', () => {
       .withEndAssociation()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []));
 
@@ -142,6 +145,7 @@ describe('when looking for second domain entity on association', () => {
       .withEndAssociation()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []));
 
@@ -186,6 +190,7 @@ describe('when looking for non identity property on current entity', () => {
       .withEndDomainEntity()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     property = findReferencedProperty(
@@ -221,6 +226,7 @@ describe('when looking for property that does not exist', () => {
       .withEndDomainEntity()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     property = findReferencedProperty(
@@ -264,6 +270,7 @@ describe('when looking for duplicated property with context', () => {
       .withEndDomainEntity()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     property = findReferencedProperty(
@@ -318,6 +325,7 @@ describe('when looking for deep property', () => {
       .withEndDomainEntity()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     property = findReferencedProperty(
@@ -363,6 +371,7 @@ describe('when looking for non primary key property', () => {
       .withEndDomainEntity()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     property = findReferencedProperty(
@@ -412,6 +421,7 @@ describe('when looking for property on parent abstract entity', () => {
       .withEndDomainEntitySubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
 
@@ -466,6 +476,7 @@ describe('when looking for property on parent domain entity from subclass', () =
       .withEndDomainEntitySubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
 
@@ -519,6 +530,7 @@ describe('when looking for property on parent domain entity from extension', () 
       .withEndDomainEntityExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
 
@@ -580,6 +592,7 @@ describe('when looking for property on parent association from subclass', () => 
       .withEndAssociationSubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));
@@ -645,6 +658,7 @@ describe('when looking for property on parent association from extension', () =>
       .withEndAssociationExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
@@ -700,6 +714,7 @@ describe('when looking for non identity property on parent domain entity from su
       .withEndDomainEntitySubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
 

@@ -10,6 +10,7 @@ import {
   DomainEntityBuilder,
   DomainEntityExtensionBuilder,
   DomainEntitySubclassBuilder,
+  NamespaceInfoBuilder,
 } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/Identity/IdentityExistsOnlyIfIdentityIsAllowed';
@@ -28,6 +29,8 @@ describe('when validating association with valid identity property', () => {
       .withStringIdentity('PropertyName3', 'PropertyDocumentation', '100')
       .withEndAssociation()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -54,6 +57,8 @@ describe('when validating domain entity with valid identity property', () => {
       .withStringIdentity('PropertyName', 'PropertyDocumentation', '100')
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -80,6 +85,8 @@ describe('when validating abstract entity with valid identity property', () => {
       .withStringIdentity('PropertyName', 'PropertyDocumentation', '100')
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -106,6 +113,8 @@ describe('when validating common type with valid identity property', () => {
       .withStringIdentity('PropertyName', 'PropertyDocumentation', '100')
       .withEndCommon()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -132,6 +141,8 @@ describe('when validating inline common type with valid identity property', () =
       .withStringIdentity('PropertyName', 'PropertyDocumentation', '100')
       .withEndInlineCommon()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -166,6 +177,7 @@ describe('when validating association extension with invalid identity property',
       .withEndAssociationExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
@@ -214,6 +226,7 @@ describe('when validating association subclass with invalid identity property', 
       .withEndAssociationSubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));
 
@@ -259,6 +272,7 @@ describe('when validating descriptor with invalid identity property', () => {
       .withEndDescriptor()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DescriptorBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -299,6 +313,7 @@ describe('when validating domain entity extension with invalid identity property
       .withEndDomainEntityExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
 
@@ -345,6 +360,7 @@ describe('when validating domain entity subclass with invalid identity property'
       .withEndDomainEntitySubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
 

@@ -21,7 +21,7 @@ function remove(array: Array<EntityTable>, element: EntityTable) {
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };
 
-  const coreNamespaceInfo = R.head(metaEd.entity.namespaceInfo.filter(n => !n.isExtension));
+  const coreNamespaceInfo = R.head(Array.from(metaEd.entity.namespaceInfo.values()).filter(n => !n.isExtension));
 
   const aggregatesToClean = ((coreNamespaceInfo.data.edfiOdsApi: any): NamespaceInfoEdfiOdsApi).aggregates.filter(
     (a: Aggregate) => a.entityTables.some((et: EntityTable) => affectedTables.includes(et.table)),

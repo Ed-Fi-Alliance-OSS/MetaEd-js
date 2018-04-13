@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, EnumerationBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, EnumerationBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/Enumeration/EnumerationItemsMustBeUnique';
 
@@ -16,6 +16,8 @@ describe('when enumeration items have different short descriptions', () => {
       .withEnumerationItem('ShortDescription2', 'EnumerationItemDocumentation2')
       .withEndEnumeration()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new EnumerationBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -43,6 +45,8 @@ describe('when enumeration items have duplicate short descriptions', () => {
       .withEnumerationItem('ShortDescription', 'EnumerationItemDocumentation2')
       .withEndEnumeration()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new EnumerationBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -80,6 +84,8 @@ describe('when enumeration items have multiple duplicate short descriptions', ()
       .withEnumerationItem('ShortDescription2', 'EnumerationItemDocumentation2')
       .withEndEnumeration()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new EnumerationBuilder(metaEd, []));
 
     failures = validate(metaEd);

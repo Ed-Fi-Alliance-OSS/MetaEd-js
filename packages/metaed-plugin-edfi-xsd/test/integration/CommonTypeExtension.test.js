@@ -43,8 +43,8 @@ describe('when generating xsd for common type extension in extension namespace b
 
       .withEndNamespace()
 
-      .sendToListener(commonExtensionBuilder)
       .sendToListener(namespaceInfoBuilder)
+      .sendToListener(commonExtensionBuilder)
       .sendToListener(commonBuilder)
       .toString();
 

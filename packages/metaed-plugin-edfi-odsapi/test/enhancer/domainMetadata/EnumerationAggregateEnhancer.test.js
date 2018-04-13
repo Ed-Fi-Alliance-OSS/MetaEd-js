@@ -26,7 +26,7 @@ describe('when enhancing enumerations', () => {
   let aggregate: Aggregate = NoAggregate;
 
   beforeAll(() => {
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
 
     const table: Table = {
       ...newTable(),

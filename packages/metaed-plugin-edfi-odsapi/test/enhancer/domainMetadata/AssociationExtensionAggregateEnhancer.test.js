@@ -45,18 +45,12 @@ describe('when enhancing association extensions', () => {
         },
       },
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo, extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     const baseEntity: Association = Object.assign(newAssociation(), {
       metaEdName: baseEntityName,
-      namespaceInfo: Object.assign(newNamespaceInfo(), {
-        namespace,
-        data: {
-          edfiOdsApi: {
-            aggregates: [],
-          },
-        },
-      }),
+      namespaceInfo,
       data: {
         edfiOds: {
           ods_TableName: baseTableName,

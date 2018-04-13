@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/DomainEntity/DomainEntityMustContainAnIdentity';
 
@@ -16,6 +16,8 @@ describe('when validating domain entity with identity fields', () => {
       .withStringIdentity('Property1', 'doc2', '100')
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -43,6 +45,8 @@ describe('when validating domain entity with no identity fields', () => {
       .withStringProperty('Property1', 'doc2', true, false, '100')
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);

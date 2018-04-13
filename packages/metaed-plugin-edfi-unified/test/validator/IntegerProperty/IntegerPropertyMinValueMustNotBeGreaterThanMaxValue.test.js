@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/IntegerProperty/IntegerPropertyMinValueMustNotBeGreaterThanMaxValue';
 
@@ -15,6 +15,8 @@ describe('when validating integer property with correct minimum value and maximu
       .withIntegerIdentity('IntegerProperty', 'PropertyDocumentation', '10', '2')
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -41,6 +43,8 @@ describe('when validating integer property with same minimum value and maximum v
       .withIntegerIdentity('IntegerProperty', 'PropertyDocumentation', '5', '5')
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -67,6 +71,8 @@ describe('when validating integer property with minimum value greater than maxim
       .withIntegerIdentity('IntegerProperty', 'PropertyDocumentation', '0', '10')
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);

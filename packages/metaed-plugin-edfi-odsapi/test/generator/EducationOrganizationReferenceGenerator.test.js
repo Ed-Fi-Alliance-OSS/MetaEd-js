@@ -26,7 +26,7 @@ describe('when generating education organization reference for core', () => {
       },
     });
 
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     result = (await generate(metaEd)).generatedOutput[0].resultString;
   });
 
@@ -58,7 +58,7 @@ describe('when generating education organization reference for extension', () =>
       },
     });
 
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     result = (await generate(metaEd)).generatedOutput[0].resultString;
   });
 
@@ -87,7 +87,7 @@ describe('when generating education organization reference for both core and ext
         },
       },
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
 
     const extensionEducationOrganizationReference: EducationOrganizationReference = {
       ...newEducationOrganizationReference(),
@@ -104,7 +104,7 @@ describe('when generating education organization reference for both core and ext
         },
       },
     });
-    metaEd.entity.namespaceInfo.push(extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     const generatedResult: GeneratorResult = await generate(metaEd);
     coreResult = generatedResult.generatedOutput[0].resultString;
@@ -139,7 +139,7 @@ describe('when generating education organization reference for both core and emp
         },
       },
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
 
     const extensionNamespaceInfo: NamespaceInfo = Object.assign(newNamespaceInfo(), {
       namespace: 'extension',
@@ -151,7 +151,7 @@ describe('when generating education organization reference for both core and emp
         },
       },
     });
-    metaEd.entity.namespaceInfo.push(extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     const generatedResult: GeneratorResult = await generate(metaEd);
     expect(generatedResult.generatedOutput).toHaveLength(1);

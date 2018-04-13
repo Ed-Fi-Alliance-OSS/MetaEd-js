@@ -5,6 +5,7 @@ import {
   DomainBuilder,
   DomainEntityBuilder,
   DomainEntitySubclassBuilder,
+  NamespaceInfoBuilder,
 } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/Domain/DomainEntityDomainItemMustMatchTopLevelEntity';
@@ -30,6 +31,8 @@ describe('when validating domain entity domain item matches top level entity', (
       .withBooleanProperty('PropertyName', 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
@@ -72,6 +75,8 @@ describe('when validating domain entity domain item matches top level entity sub
       .withBooleanProperty('Property1', 'because a property is required', true, false)
       .withEndDomainEntitySubclass()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
@@ -115,6 +120,8 @@ describe('when validating domain entity domain item does not match top level ent
       .withBooleanProperty('Property1', 'because a property is required', true, false)
       .withEndDomainEntitySubclass()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 

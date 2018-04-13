@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/DomainEntity/DomainEntityMustContainNoMoreThanOneUniqueIdColumn';
 
@@ -17,6 +17,8 @@ describe('when validating domain entity with no UniqueId fields', () => {
       .withStringProperty('Property2', 'doc', true, false, '50')
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -45,6 +47,8 @@ describe('when validating domain entity with one UniqueId field', () => {
       .withStringProperty('Property', 'doc', true, false, '50')
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -74,6 +78,8 @@ describe('when validating domain entity with two UniqueId fields', () => {
       .withStringProperty('Property', 'doc', true, false, '50')
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -107,6 +113,8 @@ describe('when validating domain entity with two UniqueId fields in extension na
       .withStringProperty('Property', 'doc', true, false, '50')
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);

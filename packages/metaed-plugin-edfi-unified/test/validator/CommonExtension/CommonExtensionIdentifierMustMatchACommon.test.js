@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, CommonBuilder, CommonExtensionBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  CommonBuilder,
+  CommonExtensionBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/CommonExtension/CommonExtensionIdentifierMustMatchACommon';
 
@@ -22,6 +28,8 @@ describe('when common extension extends common', () => {
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []))
       .sendToListener(new CommonExtensionBuilder(metaEd, []));
 
@@ -49,6 +57,8 @@ describe('when common extension extends an invalid identifier', () => {
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonExtensionBuilder(metaEd, []));
 
     failures = validate(metaEd);

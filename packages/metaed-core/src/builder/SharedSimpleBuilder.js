@@ -8,8 +8,7 @@ import type { MetaEdEnvironment } from '../MetaEdEnvironment';
 import type { NamespaceInfo } from '../model/NamespaceInfo';
 
 import { NoSharedSimple } from '../model/SharedSimple';
-import { newNamespaceInfo, NoNamespaceInfo } from '../model/NamespaceInfo';
-import { enteringNamespaceName, enteringNamespaceType } from './NamespaceInfoBuilder';
+import { namespaceName } from './NamespaceInfoBuilder';
 import { extractDocumentation, isErrorText, squareBracketRemoval } from './BuilderUtility';
 import { sourceMapFrom } from '../model/SourceMap';
 
@@ -17,42 +16,30 @@ import type { ValidationFailure } from '../validator/ValidationFailure';
 
 export class SharedSimpleBuilder extends MetaEdGrammarListener {
   entityRepository: EntityRepository;
-  namespaceInfo: NamespaceInfo;
+  currentNamespace: string;
   currentSharedSimple: SharedSimple;
   validationFailures: Array<ValidationFailure>;
 
   constructor(metaEd: MetaEdEnvironment, validationFailures: Array<ValidationFailure>) {
     super();
     this.entityRepository = metaEd.entity;
-    this.namespaceInfo = NoNamespaceInfo;
+    this.currentNamespace = '';
     this.currentSharedSimple = NoSharedSimple;
     this.validationFailures = validationFailures;
   }
 
-  enterNamespace(context: MetaEdGrammar.NamespaceContext) {
-    if (this.namespaceInfo !== NoNamespaceInfo) return;
-    this.namespaceInfo = newNamespaceInfo();
-    this.namespaceInfo.sourceMap.type = sourceMapFrom(context);
+  getNamespaceInfo(): ?NamespaceInfo {
+    return this.entityRepository.namespaceInfo.get(this.currentNamespace);
   }
 
   enterNamespaceName(context: MetaEdGrammar.NamespaceNameContext) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.namespaceInfo = enteringNamespaceName(context, this.namespaceInfo);
-  }
-
-  enterNamespaceType(context: MetaEdGrammar.NamespaceTypeContext) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.namespaceInfo = enteringNamespaceType(context, this.namespaceInfo);
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  exitNamespace(context: MetaEdGrammar.NamespaceContext) {
-    this.namespaceInfo = NoNamespaceInfo;
+    this.currentNamespace = namespaceName(context);
   }
 
   enteringSharedSimple(simpleFactory: () => SharedSimple) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.currentSharedSimple = Object.assign(simpleFactory(), { namespaceInfo: this.namespaceInfo });
+    const namespaceInfo = this.getNamespaceInfo();
+    if (namespaceInfo == null) return;
+    this.currentSharedSimple = { ...simpleFactory(), namespaceInfo };
   }
 
   exitingSharedSimple() {

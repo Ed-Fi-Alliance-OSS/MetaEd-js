@@ -61,11 +61,13 @@ Object {
 exports[`when building common with invalid trailing text should have extraneous input error 1`] = `
 Array [
   "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'is queryable field', 'min value', 'max value', 'with context'}, column: 0, line: 9, token: TrailingText",
+  "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'is queryable field', 'min value', 'max value', 'with context'}, column: 0, line: 9, token: TrailingText",
 ]
 `;
 
 exports[`when building common with lowercase common name should have no viable alternative error 1`] = `
 Array [
+  "no viable alternative at input 'Commonentity', column: 9, line: 2, token: entity",
   "no viable alternative at input 'Commonentity', column: 9, line: 2, token: entity",
 ]
 `;
@@ -73,17 +75,20 @@ Array [
 exports[`when building common with no common name should have no viable alternative error 1`] = `
 Array [
   "no viable alternative at input 'Common[1]', column: 10, line: 2, token: [1]",
+  "no viable alternative at input 'Common[1]', column: 10, line: 2, token: [1]",
 ]
 `;
 
 exports[`when building common with no documentation should have mismatched input error 1`] = `
 Array [
   "mismatched input 'integer' expecting 'documentation', column: 4, line: 3, token: integer",
+  "mismatched input 'integer' expecting 'documentation', column: 4, line: 3, token: integer",
 ]
 `;
 
 exports[`when building common with no property should have mismatched input error 1`] = `
 Array [
+  "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year'}, column: 0, line: 5, token: End Namespace",
   "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year'}, column: 0, line: 5, token: End Namespace",
 ]
 `;
@@ -169,11 +174,13 @@ Object {
 exports[`when building inline common with invalid trailing text should have mismatched input error 1`] = `
 Array [
   "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'is queryable field', 'min value', 'max value', 'with context'}, column: 0, line: 9, token: TrailingText",
+  "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'is queryable field', 'min value', 'max value', 'with context'}, column: 0, line: 9, token: TrailingText",
 ]
 `;
 
 exports[`when building inline common with lowercase inline common name should have extraneous input error 1`] = `
 Array [
+  "extraneous input 'entity' expecting ID, column: 16, line: 2, token: entity",
   "extraneous input 'entity' expecting ID, column: 16, line: 2, token: entity",
 ]
 `;
@@ -181,17 +188,20 @@ Array [
 exports[`when building inline common with no documentation should have mismatched input error 1`] = `
 Array [
   "mismatched input 'integer' expecting 'documentation', column: 4, line: 3, token: integer",
+  "mismatched input 'integer' expecting 'documentation', column: 4, line: 3, token: integer",
 ]
 `;
 
 exports[`when building inline common with no inline common name should have missing id error 1`] = `
 Array [
   "missing ID at '[1]', column: 17, line: 2, token: [1]",
+  "missing ID at '[1]', column: 17, line: 2, token: [1]",
 ]
 `;
 
 exports[`when building inline common with no property should have mismatched input error 1`] = `
 Array [
+  "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year'}, column: 0, line: 5, token: End Namespace",
   "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year'}, column: 0, line: 5, token: End Namespace",
 ]
 `;

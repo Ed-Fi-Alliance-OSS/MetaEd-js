@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, AssociationBuilder, AssociationSubclassBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  AssociationBuilder,
+  AssociationSubclassBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/AssociationSubclass/AssociationSubclassMustNotRedeclareProperties';
 
@@ -24,6 +30,7 @@ describe('when association subclass has different property name', () => {
       .withEndAssociationSubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));
 
@@ -69,6 +76,7 @@ describe('when association subclass has duplicate property name', () => {
       .withEndAssociationSubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));
 
@@ -127,6 +135,7 @@ describe('when association subclass has duplicate property name but different ro
       .withEndAssociationSubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));
 

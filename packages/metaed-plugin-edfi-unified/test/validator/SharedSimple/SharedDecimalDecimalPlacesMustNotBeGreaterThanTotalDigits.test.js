@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, SharedDecimalBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, SharedDecimalBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/SharedSimple/SharedDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits';
 
@@ -16,6 +16,8 @@ describe('when validating shared decimal with total digits greater than decimal 
       .withDecimalPlaces('2')
       .withEndSharedDecimal()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new SharedDecimalBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -39,6 +41,8 @@ describe('when validating shared decimal with same decimal places and total digi
       .withDecimalPlaces('10')
       .withEndSharedDecimal()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new SharedDecimalBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -62,6 +66,8 @@ describe('when validating shared decimal with decimal places greater than total 
       .withDecimalPlaces('11')
       .withEndSharedDecimal()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new SharedDecimalBuilder(metaEd, []));
 
     failures = validate(metaEd);

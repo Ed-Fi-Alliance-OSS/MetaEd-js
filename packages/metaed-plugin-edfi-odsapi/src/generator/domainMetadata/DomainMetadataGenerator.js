@@ -16,9 +16,8 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   registerPartials();
 
   const results: Array<GeneratedOutput> = [];
-  const namespaces: Array<NamespaceInfo> = metaEd.entity.namespaceInfo;
 
-  namespaces.forEach((namespaceInfo: NamespaceInfo) => {
+  metaEd.entity.namespaceInfo.forEach((namespaceInfo: NamespaceInfo) => {
     const schema: SchemaDefinition = {
       logicalName: logicalNameFor(namespaceInfo.namespace),
       physicalName: namespaceInfo.namespace,

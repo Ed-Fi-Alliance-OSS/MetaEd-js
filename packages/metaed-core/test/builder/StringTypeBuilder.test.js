@@ -1,6 +1,7 @@
 // @flow
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { StringTypeBuilder } from '../../src/builder/StringTypeBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { getStringType } from '../TestHelper';
 import type { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
@@ -29,6 +30,7 @@ describe('when building shared string in extension namespace', () => {
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new StringTypeBuilder(metaEd, validationFailures));
   });
 
@@ -107,6 +109,7 @@ describe('when building domain entity with string property in extension namespac
       .withStringProperty(entityName, documentation, true, false, maxLength, minLength, null, metaEdId)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new StringTypeBuilder(metaEd, validationFailures));
   });
 
@@ -193,6 +196,7 @@ describe('when building multiple shared strings in extension namespace', () => {
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new StringTypeBuilder(metaEd, validationFailures));
   });
 
@@ -236,6 +240,7 @@ describe('when building domain entity with multiple string properties in extensi
       .withStringProperty(entityName2, documentation, true, false, maxLength, minLength, null, metaEdId2)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new StringTypeBuilder(metaEd, validationFailures));
   });
 

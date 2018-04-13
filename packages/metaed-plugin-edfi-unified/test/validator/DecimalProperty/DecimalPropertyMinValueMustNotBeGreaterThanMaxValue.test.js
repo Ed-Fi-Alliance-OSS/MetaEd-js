@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/DecimalProperty/DecimalPropertyMinValueMustNotBeGreaterThanMaxValue';
 
@@ -22,6 +22,8 @@ describe('when validating decimal property with correct minimum value and maximu
       .withDecimalProperty('DecimalProperty', 'doc', true, false, totalDigits, decimalPlaces, minValue, maxValue)
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -59,6 +61,8 @@ describe('when validating decimal property with same minimum value and maximum v
       .withDecimalProperty('DecimalProperty', 'doc', true, false, totalDigits, decimalPlaces, minValue, maxValue)
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -96,6 +100,8 @@ describe('when validating decimal property with minimum value greater than maxim
       .withDecimalProperty('DecimalProperty', 'doc', true, false, totalDigits, decimalPlaces, minValue, maxValue)
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);

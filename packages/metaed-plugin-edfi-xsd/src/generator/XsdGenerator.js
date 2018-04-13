@@ -1,5 +1,5 @@
 // @flow
-import type { MetaEdEnvironment, NamespaceInfo, GeneratorResult, GeneratedOutput } from 'metaed-core';
+import type { MetaEdEnvironment, GeneratorResult, GeneratedOutput } from 'metaed-core';
 import type { NamespaceInfoEdfiXsd } from '../model/NamespaceInfo';
 import type { SchemaContainer } from '../model/schema/SchemaContainer';
 import { formatAndPrependHeader, registerPartials, template, formatVersionForSchema } from './XsdGeneratorBase';
@@ -8,9 +8,8 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   registerPartials();
 
   const results: Array<GeneratedOutput> = [];
-  const namespaces: Array<NamespaceInfo> = metaEd.entity.namespaceInfo;
 
-  namespaces.forEach(namespaceInfo => {
+  metaEd.entity.namespaceInfo.forEach(namespaceInfo => {
     const schema: SchemaContainer = ((namespaceInfo.data.edfiXsd: any): NamespaceInfoEdfiXsd).xsd_Schema;
     schema.schemaVersion = formatVersionForSchema(metaEd.dataStandardVersion);
     const formattedGeneratedResult = formatAndPrependHeader(template().schema(schema));

@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, CommonBuilder, DomainEntityBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  CommonBuilder,
+  DomainEntityBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/CommonProperty/CommonPropertyMustMatchACommon';
 
@@ -22,6 +28,8 @@ describe('when common property has identifier of common', () => {
       .withCommonProperty(entityName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []));
 
@@ -52,6 +60,8 @@ describe('when common property has invalid identifier', () => {
       .withCommonProperty(entityName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []));
 

@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, DomainEntitySubclassBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  DomainEntityBuilder,
+  DomainEntitySubclassBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/DomainEntitySubclass/DomainEntitySubclassIdentityRenameMustNotExistForMultiPropertyIdentity';
 
@@ -22,6 +28,7 @@ describe('when domain entity subclass renames base identity', () => {
       .withEndDomainEntitySubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
 
@@ -61,6 +68,7 @@ describe('when domain entity subclass does not rename identity', () => {
       .withEndDomainEntitySubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
 
@@ -101,6 +109,7 @@ describe('when domain entity subclass renames base identity more than once', () 
       .withEndDomainEntitySubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
 
@@ -140,6 +149,8 @@ describe('when domain entity subclass extends non existent entity', () => {
       .withStringIdentityRename('PropertyName2', 'PropertyName1', 'PropertyDocumentation', '100')
       .withEndDomainEntitySubclass()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
 
     failures = validate(metaEd);

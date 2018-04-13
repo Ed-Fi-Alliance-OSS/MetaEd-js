@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, SharedStringBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  DomainEntityBuilder,
+  SharedStringBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/IntegerProperty/IntegerPropertyMustNotMatchACommonString';
 
@@ -19,6 +25,8 @@ describe('when validating integer property does not match common string', () => 
       .withIntegerIdentity('PropertyName', 'PropertyDocumentation', '10', '2')
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new SharedStringBuilder(metaEd, []));
 
@@ -55,6 +63,8 @@ describe('when validating integer property matches common string', () => {
       .withIntegerIdentity(entityName, 'PropertyDocumentation', '10', '2', '0', '10')
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new SharedStringBuilder(metaEd, []));
 

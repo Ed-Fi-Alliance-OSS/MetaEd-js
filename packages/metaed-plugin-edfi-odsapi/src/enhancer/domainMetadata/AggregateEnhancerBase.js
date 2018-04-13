@@ -62,14 +62,16 @@ function generateAggregate(
 
 export function enhanceSingleEntity(
   entity: TopLevelEntity,
-  namespaceInfos: Array<NamespaceInfo>,
+  namespaceInfoMap: Map<string, NamespaceInfo>,
   {
     enhanceEntityTable = nullEnhanceEntityTable,
     isAggregateExtension = () => false,
     orderedAndUniqueTablesFor = defaultOrderedAndUniqueTablesFor,
   }: EnhanceSingleEntityOptions = {},
 ) {
-  const entityNamespaceInfo = R.head(namespaceInfos.filter(n => n.namespace === entity.namespaceInfo.namespace));
+  const entityNamespaceInfo = R.head(
+    Array.from(namespaceInfoMap.values()).filter(n => n.namespace === entity.namespaceInfo.namespace),
+  );
   const aggregate = generateAggregate(entity, entityNamespaceInfo, {
     enhanceEntityTable,
     isAggregateExtension,

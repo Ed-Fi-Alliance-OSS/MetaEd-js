@@ -39,7 +39,7 @@ describe('when EducationOrganizationReferenceEnhancer enhances namespace with no
       namespace: namespaceName,
       data: { edfiOdsApi: { api_EducationOrganizationReferences: [] } },
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
 
     const edOrgEntity: DomainEntity = Object.assign(buildEducationOrganizationEntity(coreNamespaceInfo), {
       metaEdName: 'NotEducationOrganization',
@@ -60,7 +60,7 @@ describe('when EducationOrganizationReferenceEnhancer enhances namespace with no
   });
 
   it('should have no education organization reference', () => {
-    const namespaceInfo: NamespaceInfo = metaEd.entity.namespaceInfo[0];
+    const namespaceInfo: NamespaceInfo = Array.from(metaEd.entity.namespaceInfo.values())[0];
     expect(namespaceInfo.data.edfiOdsApi.api_EducationOrganizationReferences.length).toBe(0);
   });
 });
@@ -76,7 +76,7 @@ describe('when EducationOrganizationReferenceEnhancer enhances namespace with no
       namespace: namespaceName,
       data: { edfiOdsApi: { api_EducationOrganizationReferences: [] } },
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
 
     const edOrgEntity: DomainEntity = buildEducationOrganizationEntity(coreNamespaceInfo);
     metaEd.entity.domainEntity.set(edOrgEntity.metaEdName, edOrgEntity);
@@ -85,7 +85,7 @@ describe('when EducationOrganizationReferenceEnhancer enhances namespace with no
   });
 
   it('should have no education organization reference', () => {
-    const namespaceInfo: NamespaceInfo = metaEd.entity.namespaceInfo[0];
+    const namespaceInfo: NamespaceInfo = Array.from(metaEd.entity.namespaceInfo.values())[0];
     expect(namespaceInfo.data.edfiOdsApi.api_EducationOrganizationReferences.length).toBe(0);
   });
 });
@@ -102,7 +102,7 @@ describe('when EducationOrganizationReferenceEnhancer enhances namespace with Ed
       namespace: namespaceName,
       data: { edfiOdsApi: { api_EducationOrganizationReferences: [] } },
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
 
     const edOrgEntity: DomainEntity = buildEducationOrganizationEntity(coreNamespaceInfo);
     metaEd.entity.domainEntity.set(edOrgEntity.metaEdName, edOrgEntity);
@@ -121,7 +121,7 @@ describe('when EducationOrganizationReferenceEnhancer enhances namespace with Ed
   });
 
   it('should have education organization reference', () => {
-    const namespaceInfo: NamespaceInfo = metaEd.entity.namespaceInfo[0];
+    const namespaceInfo: NamespaceInfo = Array.from(metaEd.entity.namespaceInfo.values())[0];
     expect(namespaceInfo.data.edfiOdsApi.api_EducationOrganizationReferences.length).toBe(1);
     const educationOrganizationReference = namespaceInfo.data.edfiOdsApi.api_EducationOrganizationReferences[0];
     expect(educationOrganizationReference).toBeDefined();
@@ -150,7 +150,8 @@ describe('when EducationOrganizationReferenceEnhancer enhances extension namespa
       isExtension: true,
       data: { edfiOdsApi: { api_EducationOrganizationReferences: [] } },
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo, extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     const edOrgEntity: DomainEntity = buildEducationOrganizationEntity(coreNamespaceInfo);
     metaEd.entity.domainEntity.set(edOrgEntity.metaEdName, edOrgEntity);
@@ -169,11 +170,15 @@ describe('when EducationOrganizationReferenceEnhancer enhances extension namespa
   });
 
   it('should have no core education organization reference', () => {
-    const namespaceInfo: NamespaceInfo = metaEd.entity.namespaceInfo.filter(x => x.namespace === namespaceName)[0];
+    const namespaceInfo: NamespaceInfo = Array.from(metaEd.entity.namespaceInfo.values()).filter(
+      x => x.namespace === namespaceName,
+    )[0];
     expect(namespaceInfo.data.edfiOdsApi.api_EducationOrganizationReferences.length).toBe(0);
   });
   it('should have extension education organization reference', () => {
-    const namespaceInfo: NamespaceInfo = metaEd.entity.namespaceInfo.filter(x => x.namespace === extensionNamespaceName)[0];
+    const namespaceInfo: NamespaceInfo = Array.from(metaEd.entity.namespaceInfo.values()).filter(
+      x => x.namespace === extensionNamespaceName,
+    )[0];
     expect(namespaceInfo.data.edfiOdsApi.api_EducationOrganizationReferences.length).toBe(1);
     const educationOrganizationReference = namespaceInfo.data.edfiOdsApi.api_EducationOrganizationReferences[0];
     expect(educationOrganizationReference).toBeDefined();
@@ -194,7 +199,7 @@ describe('when EducationOrganizationReferenceEnhancer enhances namespace with Ed
       namespace: namespaceName,
       data: { edfiOdsApi: { api_EducationOrganizationReferences: [] } },
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
 
     const edOrgEntity: DomainEntity = buildEducationOrganizationEntity(coreNamespaceInfo);
     metaEd.entity.domainEntity.set(edOrgEntity.metaEdName, edOrgEntity);
@@ -210,7 +215,9 @@ describe('when EducationOrganizationReferenceEnhancer enhances namespace with Ed
   });
 
   it('should have extension education organization reference', () => {
-    const namespaceInfo: NamespaceInfo = metaEd.entity.namespaceInfo.filter(x => x.namespace === namespaceName)[0];
+    const namespaceInfo: NamespaceInfo = Array.from(metaEd.entity.namespaceInfo.values()).filter(
+      x => x.namespace === namespaceName,
+    )[0];
     expect(namespaceInfo.data.edfiOdsApi.api_EducationOrganizationReferences.length).toBe(1);
     const educationOrganizationReference = namespaceInfo.data.edfiOdsApi.api_EducationOrganizationReferences[0];
     expect(educationOrganizationReference).toBeDefined();

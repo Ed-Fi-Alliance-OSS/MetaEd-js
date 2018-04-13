@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, SharedDecimalBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, SharedDecimalBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/SharedSimple/SharedDecimalMinValueMustNotBeGreaterThanMaxValue';
 
@@ -18,6 +18,8 @@ describe('when validating shared decimal with max value greater than min value',
       .withMaxValue('100')
       .withEndSharedDecimal()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new SharedDecimalBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -43,6 +45,8 @@ describe('when validating shared decimal with min value greater than max value',
       .withMaxValue('10')
       .withEndSharedDecimal()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new SharedDecimalBuilder(metaEd, []));
 
     failures = validate(metaEd);

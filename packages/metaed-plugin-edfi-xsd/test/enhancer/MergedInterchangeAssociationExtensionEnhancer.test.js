@@ -48,7 +48,8 @@ describe('when enhances MergedInterchange with association extension', () => {
       isExtension: true,
     });
 
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo, extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     const association: Association = Object.assign(newAssociation(), {
       metaEdName: association1Name,

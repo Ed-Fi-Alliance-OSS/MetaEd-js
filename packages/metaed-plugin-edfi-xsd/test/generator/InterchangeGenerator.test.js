@@ -52,7 +52,7 @@ describe('when generating single interchange', () => {
     const namespaceInfo: NamespaceInfo = Object.assign(newNamespaceInfo(), {
       namespace: 'edfi',
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
 
     const element: InterchangeItem = Object.assign(newInterchangeItem(), {
       metaEdName: elementBaseName,
@@ -156,7 +156,7 @@ describe('when generating single interchange with extension', () => {
     const namespaceInfo: NamespaceInfo = Object.assign(newNamespaceInfo(), {
       namespace: 'edfi',
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
 
     const element: InterchangeItem = Object.assign(newInterchangeItem(), {
       metaEdName: elementBaseName,

@@ -12,9 +12,8 @@ import { NoTopLevelEntity } from '../model/TopLevelEntity';
 import type { EntityRepository } from '../model/EntityRepository';
 import type { MetaEdEnvironment } from '../MetaEdEnvironment';
 import type { NamespaceInfo } from '../model/NamespaceInfo';
-import { newNamespaceInfo, NoNamespaceInfo } from '../model/NamespaceInfo';
 import { isSharedProperty } from '../model/property/PropertyType';
-import { enteringNamespaceName, enteringNamespaceType } from './NamespaceInfoBuilder';
+import { namespaceName } from './NamespaceInfoBuilder';
 import { extractDocumentation, isErrorText, squareBracketRemoval } from './BuilderUtility';
 import { newBooleanProperty } from '../model/property/BooleanProperty';
 import { newCurrencyProperty } from '../model/property/CurrencyProperty';
@@ -57,7 +56,7 @@ function propertyPathFrom(context: MetaEdGrammar.PropertyPathContext): Array<str
 
 export class TopLevelEntityBuilder extends MetaEdGrammarListener {
   entityRepository: EntityRepository;
-  namespaceInfo: NamespaceInfo;
+  currentNamespace: string;
   currentTopLevelEntity: TopLevelEntity;
   currentProperty: EntityProperty;
   currentMergedProperty: MergedProperty;
@@ -69,7 +68,7 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
   constructor(metaEd: MetaEdEnvironment, validationFailures: Array<ValidationFailure>) {
     super();
     this.entityRepository = metaEd.entity;
-    this.namespaceInfo = NoNamespaceInfo;
+    this.currentNamespace = '';
     this.currentTopLevelEntity = NoTopLevelEntity;
     this.currentProperty = NoEntityProperty;
     this.currentMergedProperty = NoMergedProperty;
@@ -79,30 +78,18 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
     this.propertyRepository = metaEd.propertyIndex;
   }
 
-  enterNamespace(context: MetaEdGrammar.NamespaceContext) {
-    if (this.namespaceInfo !== NoNamespaceInfo) return;
-    this.namespaceInfo = newNamespaceInfo();
-    this.namespaceInfo.sourceMap.type = sourceMapFrom(context);
+  getNamespaceInfo(): ?NamespaceInfo {
+    return this.entityRepository.namespaceInfo.get(this.currentNamespace);
   }
 
   enterNamespaceName(context: MetaEdGrammar.NamespaceNameContext) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.namespaceInfo = enteringNamespaceName(context, this.namespaceInfo);
-  }
-
-  enterNamespaceType(context: MetaEdGrammar.NamespaceTypeContext) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.namespaceInfo = enteringNamespaceType(context, this.namespaceInfo);
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  exitNamespace(context: MetaEdGrammar.NamespaceContext) {
-    this.namespaceInfo = NoNamespaceInfo;
+    this.currentNamespace = namespaceName(context);
   }
 
   enteringEntity(entityFactory: () => TopLevelEntity) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.currentTopLevelEntity = Object.assign(entityFactory(), { namespaceInfo: this.namespaceInfo });
+    const namespaceInfo = this.getNamespaceInfo();
+    if (namespaceInfo == null) return;
+    this.currentTopLevelEntity = { ...entityFactory(), namespaceInfo };
     this.currentTopLevelEntityPropertyLookup.clear();
   }
 
@@ -345,7 +332,7 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
 
   exitingProperty() {
     if (this.currentProperty === NoEntityProperty) return;
-    this.currentProperty.namespaceInfo = this.namespaceInfo;
+    this.currentProperty.namespaceInfo = this.currentTopLevelEntity.namespaceInfo;
 
     // Shared simple properties have propertyName as optional. If omitted, name is same as type being referenced
     if (!this.currentProperty.metaEdName && isSharedProperty(this.currentProperty)) {

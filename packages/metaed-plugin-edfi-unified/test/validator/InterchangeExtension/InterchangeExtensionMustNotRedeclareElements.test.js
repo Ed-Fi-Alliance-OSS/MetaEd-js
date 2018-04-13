@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, InterchangeBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, InterchangeBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/InterchangeExtension/InterchangeExtensionMustNotRedeclareElements';
 
@@ -15,6 +15,8 @@ describe('when validating interchange extension element has different names', ()
       .withDomainEntityElement('DomainEntityElementName2')
       .withEndInterchangeExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new InterchangeBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -42,6 +44,8 @@ describe('when validating interchange element has duplicate names', () => {
       .withDomainEntityElement(domainEntityElementName)
       .withEndInterchangeExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new InterchangeBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -80,6 +84,8 @@ describe('when validating interchange element has multiple duplicate names', () 
       .withDomainEntityElement(domainEntityElementName2)
       .withEndInterchangeExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new InterchangeBuilder(metaEd, []));
 
     failures = validate(metaEd);

@@ -9,9 +9,8 @@ function fileName(namespace: string, projectPrefix: string): string {
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: Array<GeneratedOutput> = [];
-  const namespaces: Array<NamespaceInfo> = metaEd.entity.namespaceInfo;
 
-  namespaces.forEach((namespaceInfo: NamespaceInfo) => {
+  metaEd.entity.namespaceInfo.forEach((namespaceInfo: NamespaceInfo) => {
     const structuredOutput = ((namespaceInfo.data.edfiOdsApi: any): NamespaceInfoEdfiOdsApi).domainModelDefinition;
 
     results.push({

@@ -1,5 +1,6 @@
 // @flow
 import { AssociationBuilder } from '../../src/builder/AssociationBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getAssociation } from '../TestHelper';
@@ -34,6 +35,7 @@ describe('when building association in extension namespace', () => {
       .withAssociationDomainEntityProperty(secondDomainEntityName, documentation3, null, secondDomainEntityMetaEdId)
       .withEndAssociation()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -132,6 +134,7 @@ describe('when building association without extension', () => {
       .withAssociationDomainEntityProperty(secondDomainEntityName, documentation3, null, secondDomainEntityMetaEdId)
       .withEndAssociation()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -234,6 +237,7 @@ describe('when building duplicate associations', () => {
       .withAssociationDomainEntityProperty(secondDomainEntityName, documentation3, null, secondDomainEntityMetaEdId)
       .withEndAssociation()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -292,6 +296,7 @@ describe('when building association with additional identity property', () => {
       .withDomainEntityIdentity(identityProperty, 'doc')
       .withEndAssociation()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -376,6 +381,7 @@ describe('when building association with no association name', () => {
       .withAssociationDomainEntityProperty(secondDomainEntityName, documentation3, null, secondDomainEntityMetaEdId)
       .withEndAssociation()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -454,6 +460,7 @@ describe('when building association with no documentation', () => {
       .withAssociationDomainEntityProperty(secondDomainEntityName, documentation3, null, secondDomainEntityMetaEdId)
       .withEndAssociation()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -561,6 +568,7 @@ describe('when building association with no domain entity property', () => {
       .withEndProperty()
       .withEndAssociation()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -650,6 +658,7 @@ describe('when building association with no documentation in the first domain en
       .withAssociationDomainEntityProperty(secondDomainEntityName, documentation3, null, secondDomainEntityMetaEdId)
       .withEndAssociation()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -759,6 +768,7 @@ describe('when building association with no documentation in the second domain e
       .withEndProperty()
       .withEndAssociation()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -869,6 +879,7 @@ describe('when building association with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndAssociation()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -977,6 +988,7 @@ describe('when building association source map', () => {
       .withAssociationDomainEntityProperty(secondDomainEntityName, documentation3, null, secondDomainEntityMetaEdId)
       .withEndAssociation()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

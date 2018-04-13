@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, AssociationBuilder, AssociationSubclassBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  AssociationBuilder,
+  AssociationSubclassBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/AssociationSubclass/AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClass';
 
@@ -24,6 +30,7 @@ describe('when association subclass renames base identity', () => {
       .withEndAssociationSubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));
 
@@ -64,6 +71,7 @@ describe('when association subclass does not rename identity', () => {
       .withEndAssociationSubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));
 
@@ -104,6 +112,7 @@ describe('when association subclass renames base identity that does not exist', 
       .withEndAssociationSubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));
 
@@ -152,6 +161,7 @@ describe('when association subclass renames base property that is not identity',
       .withEndAssociationSubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));
 
@@ -191,6 +201,8 @@ describe('when association subclass extends non existent entity', () => {
       .withStringIdentityRename('PropertyName2', 'PropertyName1', 'PropertyDocumentation', '100')
       .withEndAssociationSubclass()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));
 
     failures = validate(metaEd);

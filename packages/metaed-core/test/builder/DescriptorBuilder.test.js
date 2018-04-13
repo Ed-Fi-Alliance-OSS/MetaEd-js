@@ -1,5 +1,6 @@
 // @flow
 import { DescriptorBuilder } from '../../src/builder/DescriptorBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getDescriptor, getMapTypeEnumeration } from '../TestHelper';
@@ -29,6 +30,7 @@ describe('when building descriptor without map type', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -103,6 +105,7 @@ describe('when building multiple descriptors', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -167,6 +170,7 @@ describe('when building descriptor with optional map type', () => {
       .withEndMapType()
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -264,6 +268,7 @@ describe('when building descriptor with required map type', () => {
       .withEndMapType()
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -354,6 +359,7 @@ describe('when building descriptor with no descriptor name', () => {
       .withDocumentation(documentation)
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -389,6 +395,7 @@ describe('when building descriptor with lowercase descriptor name', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -461,6 +468,7 @@ describe('when building descriptor with no documentation', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -539,6 +547,7 @@ describe('when building descriptor with no documentation in map type', () => {
       .withEndMapType()
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -637,6 +646,7 @@ describe('when building descriptor with no enumeration item in map type', () => 
       .withEndMapType()
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -719,6 +729,7 @@ describe('when building descriptor with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -794,6 +805,7 @@ describe('when building descriptor source map with optional map type', () => {
       .withEndMapType()
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -849,6 +861,7 @@ describe('when building descriptor source map with required map type', () => {
       .withEndMapType()
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -894,6 +907,7 @@ describe('when building required map type enumeration source map', () => {
       .withEndMapType()
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -947,6 +961,7 @@ describe('when building map type enumeration item source map', () => {
       .withEndMapType()
       .withEndDescriptor()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

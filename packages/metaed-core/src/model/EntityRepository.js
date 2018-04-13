@@ -53,7 +53,7 @@ export class EntityRepository {
   interchange: Map<string, Interchange>;
   interchangeExtension: Map<string, InterchangeExtension>;
   mapTypeEnumeration: Map<string, MapTypeEnumeration>;
-  namespaceInfo: Array<NamespaceInfo>;
+  namespaceInfo: Map<string, NamespaceInfo>;
   schoolYearEnumeration: Map<string, SchoolYearEnumeration>;
   sharedDecimal: Map<string, SharedDecimal>;
   sharedInteger: Map<string, SharedInteger>;
@@ -82,7 +82,7 @@ export function newEntityRepository(): EntityRepository {
     interchange: new Map(),
     interchangeExtension: new Map(),
     mapTypeEnumeration: new Map(),
-    namespaceInfo: [],
+    namespaceInfo: new Map(),
     schoolYearEnumeration: new Map(),
     sharedDecimal: new Map(),
     sharedInteger: new Map(),

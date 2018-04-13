@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, AssociationBuilder, AssociationSubclassBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  AssociationBuilder,
+  AssociationSubclassBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/AssociationSubclass/AssociationSubclassIdentifierMustMatchAnAssociation';
 
@@ -23,6 +29,7 @@ describe('when association subclass has valid extendee', () => {
       .withEndAssociationExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));
 
@@ -49,12 +56,14 @@ describe('when association subclass has invalid extendee', () => {
       .withDocumentation('EntityDocumentation')
       .withBooleanProperty('PropertyName1', 'PropertyDocumentation3', true, false)
       .withEndAssociationSubclass()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));
 
     failures = validate(metaEd);
   });
 
-  it('should build one association extension', () => {
+  it('should build one association subclass', () => {
     expect(metaEd.entity.associationSubclass.size).toBe(1);
   });
 

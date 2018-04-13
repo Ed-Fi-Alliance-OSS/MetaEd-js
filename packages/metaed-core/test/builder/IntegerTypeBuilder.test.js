@@ -1,5 +1,6 @@
 // @flow
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { IntegerTypeBuilder } from '../../src/builder/IntegerTypeBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { getIntegerType } from '../TestHelper';
@@ -28,6 +29,7 @@ describe('when building shared integer in extension namespace', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new IntegerTypeBuilder(metaEd, validationFailures));
   });
 
@@ -110,6 +112,7 @@ describe('when building domain entity with integer property in extension namespa
       .withIntegerProperty(entityName, documentation, true, false, maxValue, minValue, null, metaEdId)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new IntegerTypeBuilder(metaEd, validationFailures));
   });
 
@@ -192,6 +195,7 @@ describe('when building shared short in extension namespace', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedShort()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new IntegerTypeBuilder(metaEd, validationFailures));
   });
 
@@ -274,6 +278,7 @@ describe('when building domain entity with short property in extension namespace
       .withShortProperty(entityName, documentation, true, false, maxValue, minValue, null, metaEdId)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new IntegerTypeBuilder(metaEd, validationFailures));
   });
 
@@ -364,6 +369,7 @@ describe('when building multiple shared integers in extension namespace', () => 
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new IntegerTypeBuilder(metaEd, validationFailures));
   });
 
@@ -407,6 +413,7 @@ describe('when building domain entity with multiple integer properties in extens
       .withIntegerProperty(entityName2, documentation, true, false, maxValue, minValue, null, metaEdId2)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new IntegerTypeBuilder(metaEd, validationFailures));
   });
 

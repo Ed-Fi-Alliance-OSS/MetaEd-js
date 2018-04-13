@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, AssociationBuilder, AssociationExtensionBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  AssociationBuilder,
+  AssociationExtensionBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/UpcomingImprovements/IncludingRequiredPropertiesInExtendedAssociationsProhibited';
 
@@ -22,6 +28,7 @@ describe('when an association extension extends an association with no required 
       .withEndAssociationSubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
@@ -51,6 +58,7 @@ describe('when an association extension extends an association with a required p
       .withEndAssociationSubclass()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 

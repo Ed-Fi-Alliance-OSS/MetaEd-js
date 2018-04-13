@@ -69,7 +69,7 @@ function enhanceSingleEntity(entity: TopLevelEntity, namespaceInfos: Array<Names
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getEntitiesOfType(metaEd.entity, 'descriptor').forEach((modelBase: ModelBase) => {
-    enhanceSingleEntity(asTopLevelEntity(modelBase), metaEd.entity.namespaceInfo);
+    enhanceSingleEntity(asTopLevelEntity(modelBase), Array.from(metaEd.entity.namespaceInfo.values()));
   });
 
   return {

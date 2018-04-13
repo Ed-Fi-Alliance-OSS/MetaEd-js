@@ -42,7 +42,8 @@ describe('when enhances MergedInterchange with no extension', () => {
       isExtension: true,
     });
 
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo, extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     const domainEntity: DomainEntity = Object.assign(newDomainEntity(), {
       metaEdName: domainEntity1Name,
@@ -129,7 +130,8 @@ describe('when enhances MergedInterchange with domainEntity extension', () => {
       isExtension: true,
     });
 
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo, extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     const domainEntity: DomainEntity = Object.assign(newDomainEntity(), {
       metaEdName: domainEntity1Name,
@@ -231,7 +233,8 @@ describe('when enhances existing MergedInterchange with domainEntity extension',
       isExtension: true,
     });
 
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo, extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     const domainEntity1: DomainEntity = Object.assign(newDomainEntity(), {
       metaEdName: domainEntity1Name,
@@ -380,7 +383,8 @@ describe('when enhances MergedInterchange with multiple domainEntity extension',
       isExtension: true,
     });
 
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo, extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     const domainEntity1: DomainEntity = Object.assign(newDomainEntity(), {
       metaEdName: domainEntity1Name,
@@ -546,7 +550,8 @@ describe('when enhances MergedInterchange in extension namespace with multiple d
       isExtension: true,
     });
 
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo, extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     domainEntity1 = Object.assign(newDomainEntity(), {
       metaEdName: domainEntity1Name,

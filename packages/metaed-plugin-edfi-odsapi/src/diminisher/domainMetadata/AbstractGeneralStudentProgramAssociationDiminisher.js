@@ -1,6 +1,6 @@
 // @flow
 import R from 'ramda';
-import type { MetaEdEnvironment, EnhancerResult } from 'metaed-core';
+import type { MetaEdEnvironment, EnhancerResult, NamespaceInfo } from 'metaed-core';
 import { versionSatisfies } from 'metaed-core';
 import type { NamespaceInfoEdfiOdsApi } from '../../model/NamespaceInfo';
 import type { Aggregate } from '../../model/domainMetadata/Aggregate';
@@ -15,7 +15,9 @@ const generalStudentProgramAssociation: string = 'GeneralStudentProgramAssociati
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };
 
-  const coreNamespaceInfo = R.head(metaEd.entity.namespaceInfo.filter(n => !n.isExtension));
+  const coreNamespaceInfo: NamespaceInfo = R.head(
+    Array.from(metaEd.entity.namespaceInfo.values()).filter(n => !n.isExtension),
+  );
 
   const generalStudentProgramAssociationTable = ((coreNamespaceInfo.data
     .edfiOdsApi: any): NamespaceInfoEdfiOdsApi).aggregates

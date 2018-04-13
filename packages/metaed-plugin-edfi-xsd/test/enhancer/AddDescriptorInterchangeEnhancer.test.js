@@ -22,7 +22,7 @@ describe('when running with one descriptor', () => {
     const coreNamespaceInfo: NamespaceInfo = Object.assign(newNamespaceInfo(), {
       namespace,
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
 
     const descriptor: Descriptor = Object.assign(newDescriptor(), {
       metaEdName: descriptorName,
@@ -73,14 +73,14 @@ describe('when running with one extension descriptor', () => {
     const coreNamespaceInfo: NamespaceInfo = Object.assign(newNamespaceInfo(), {
       namespace,
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
 
     const extensionNamespaceInfo: NamespaceInfo = Object.assign(newNamespaceInfo(), {
       namespace: extensionNamespace,
       projectExtension,
       isExtension: true,
     });
-    metaEd.entity.namespaceInfo.push(extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     const descriptor: Descriptor = Object.assign(newDescriptor(), {
       metaEdName: descriptorBaseName,
@@ -150,7 +150,7 @@ describe('when running with no descriptors', () => {
     const coreNamespaceInfo: NamespaceInfo = Object.assign(newNamespaceInfo(), {
       namespace,
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
 
     enhance(metaEd);
   });

@@ -45,7 +45,7 @@ type InterchangeMetadata = {
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: Array<GeneratedOutput> = [];
 
-  if (metaEd.entity.namespaceInfo.length > 0) {
+  if (metaEd.entity.namespaceInfo.size > 0) {
     let coreInterchanges: Array<InterchangeMetadata> = [];
 
     metaEd.entity.namespaceInfo.forEach((namespaceInfo: NamespaceInfo) => {

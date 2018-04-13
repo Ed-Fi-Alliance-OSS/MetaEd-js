@@ -1,16 +1,15 @@
 // @flow
 import { orderByProp, versionSatisfies } from 'metaed-core';
-import type { GeneratedOutput, GeneratorResult, MetaEdEnvironment, NamespaceInfo } from 'metaed-core';
+import type { GeneratedOutput, GeneratorResult, MetaEdEnvironment } from 'metaed-core';
 import { fileNameFor, structurePath, template } from './OdsGeneratorBase';
 import { pluginEnvironment } from '../enhancer/EnhancerHelper';
 import type { Table } from '../model/database/Table';
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: Array<GeneratedOutput> = [];
-  const namespaces: Array<NamespaceInfo> = metaEd.entity.namespaceInfo;
   const prefix: string = versionSatisfies(metaEd.dataStandardVersion, '2.x') ? '0009' : '0040';
 
-  namespaces.forEach(namespaceInfo => {
+  metaEd.entity.namespaceInfo.forEach(namespaceInfo => {
     const tables: Array<Table> = orderByProp('name')(
       [...pluginEnvironment(metaEd).entity.table.values()].filter(
         (table: Table) => table.includeLastModifiedDateAndIdColumn && table.schema === namespaceInfo.namespace,

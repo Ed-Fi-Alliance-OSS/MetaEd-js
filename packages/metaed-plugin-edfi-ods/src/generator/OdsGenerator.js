@@ -1,13 +1,12 @@
 // @flow
 import { versionSatisfies } from 'metaed-core';
-import type { GeneratedOutput, GeneratorResult, MetaEdEnvironment, NamespaceInfo } from 'metaed-core';
+import type { GeneratedOutput, GeneratorResult, MetaEdEnvironment } from 'metaed-core';
 import { dataPath, fileNameFor, registerPartials, structurePath, template } from './OdsGeneratorBase';
 
 export async function generateTables(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: Array<GeneratedOutput> = [];
-  const namespaces: Array<NamespaceInfo> = metaEd.entity.namespaceInfo;
 
-  namespaces.forEach(namespaceInfo => {
+  metaEd.entity.namespaceInfo.forEach(namespaceInfo => {
     const generatedResult: string = template().table({ tables: namespaceInfo.data.edfiOds.ods_Schema.tables });
 
     results.push({
@@ -28,9 +27,8 @@ export async function generateTables(metaEd: MetaEdEnvironment): Promise<Generat
 
 export async function generateForeignKeys(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: Array<GeneratedOutput> = [];
-  const namespaces: Array<NamespaceInfo> = metaEd.entity.namespaceInfo;
 
-  namespaces.forEach(namespaceInfo => {
+  metaEd.entity.namespaceInfo.forEach(namespaceInfo => {
     const generatedResult: string = template().foreignKey({
       foreignKeys: namespaceInfo.data.edfiOds.ods_Schema.foreignKeys,
     });
@@ -53,9 +51,8 @@ export async function generateForeignKeys(metaEd: MetaEdEnvironment): Promise<Ge
 
 export async function generateExtendedProperties(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: Array<GeneratedOutput> = [];
-  const namespaces: Array<NamespaceInfo> = metaEd.entity.namespaceInfo;
 
-  namespaces.forEach(namespaceInfo => {
+  metaEd.entity.namespaceInfo.forEach(namespaceInfo => {
     const generatedResult: string = template().extendedProperties({ tables: namespaceInfo.data.edfiOds.ods_Schema.tables });
 
     results.push({
@@ -76,9 +73,8 @@ export async function generateExtendedProperties(metaEd: MetaEdEnvironment): Pro
 
 export async function generateEnumerations(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: Array<GeneratedOutput> = [];
-  const namespaces: Array<NamespaceInfo> = metaEd.entity.namespaceInfo;
 
-  namespaces.forEach(namespaceInfo => {
+  metaEd.entity.namespaceInfo.forEach(namespaceInfo => {
     const generatedResult: string = template().enumerationRow({
       enumerationRows: namespaceInfo.data.edfiOds.ods_Schema.enumerationRows,
     });
@@ -101,9 +97,8 @@ export async function generateEnumerations(metaEd: MetaEdEnvironment): Promise<G
 
 export async function generateSchoolYears(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: Array<GeneratedOutput> = [];
-  const namespaces: Array<NamespaceInfo> = metaEd.entity.namespaceInfo;
 
-  namespaces.forEach(namespaceInfo => {
+  metaEd.entity.namespaceInfo.forEach(namespaceInfo => {
     const generatedResult: string = template().schoolYearEnumerationRow({
       schoolYearEnumerationRows: namespaceInfo.data.edfiOds.ods_Schema.schoolYearEnumerationRows,
     });
@@ -143,9 +138,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   ];
 
   if (versionSatisfies(metaEd.dataStandardVersion, '2.x')) {
-    const namespaces: Array<NamespaceInfo> = metaEd.entity.namespaceInfo;
-
-    namespaces.forEach(namespaceInfo => {
+    metaEd.entity.namespaceInfo.forEach(namespaceInfo => {
       let resultString: string = '';
       generatorResults.forEach((result: GeneratorResult) => {
         resultString += result.generatedOutput

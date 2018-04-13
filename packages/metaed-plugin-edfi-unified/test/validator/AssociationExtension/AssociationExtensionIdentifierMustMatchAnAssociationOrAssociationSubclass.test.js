@@ -5,6 +5,7 @@ import {
   AssociationBuilder,
   AssociationExtensionBuilder,
   AssociationSubclassBuilder,
+  NamespaceInfoBuilder,
 } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/AssociationExtension/AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass';
@@ -30,6 +31,8 @@ describe('when association extension extends association', () => {
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
@@ -72,6 +75,8 @@ describe('when association extension extends association subclass', () => {
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));
@@ -100,6 +105,8 @@ describe('when association extension extends an invalid identifier', () => {
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
     failures = validate(metaEd);

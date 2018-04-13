@@ -1,5 +1,6 @@
 // @flow
 import { DomainEntityBuilder } from '../../src/builder/DomainEntityBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { NoSourceMap } from '../../src/model/SourceMap';
@@ -45,6 +46,7 @@ describe('when building association property', () => {
       .withAssociationProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -85,6 +87,7 @@ describe('when building association property with weak reference', () => {
       .withIsWeakReference(true)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -141,6 +144,7 @@ describe('when building boolean property', () => {
       .withBooleanProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -181,6 +185,7 @@ describe('when building choice property', () => {
       .withChoiceProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -221,6 +226,7 @@ describe('when building common property', () => {
       .withCommonProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -260,6 +266,7 @@ describe('when building common property with extension override', () => {
       .withCommonExtensionOverrideProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -319,6 +326,7 @@ describe('when building currency property', () => {
       .withCurrencyProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -359,6 +367,7 @@ describe('when building date property', () => {
       .withDateProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -402,6 +411,7 @@ describe('when building decimal property', () => {
       .withDecimalProperty(propertyName, propertyDocumentation, true, false, totalDigits, decimalPlaces, minValue, maxValue)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(builder);
   });
 
@@ -506,6 +516,7 @@ describe('when building descriptor property', () => {
       .withDescriptorProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -547,6 +558,7 @@ describe('when building domain entity property', () => {
       .withDocumentation(propertyDocumentation)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -588,6 +600,7 @@ describe('when building domain entity property with weak reference', () => {
       .withIsWeakReference(true)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -644,6 +657,7 @@ describe('when building duration property', () => {
       .withDurationProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -686,6 +700,7 @@ describe('when building required entity properties', () => {
       .withAssociationProperty(propertyName, propertyDocumentation, true, false, false, null, metaEdId)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -790,6 +805,7 @@ describe('when building entity property with inherited documentation', () => {
       .withAssociationProperty(propertyName, inheritedDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -830,6 +846,7 @@ describe('when building identity entity property', () => {
       .withIdentityIndicator()
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -872,6 +889,7 @@ describe('when building optional entity property', () => {
       .withAssociationProperty(propertyName, propertyDocumentation, false, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -906,6 +924,7 @@ describe('when building required collection entity property', () => {
       .withAssociationProperty(propertyName, propertyDocumentation, true, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -940,6 +959,7 @@ describe('when building optional collection entity property', () => {
       .withAssociationProperty(propertyName, propertyDocumentation, false, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -976,6 +996,7 @@ describe('when building entity property with context', () => {
       .withContext(contextName)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1013,6 +1034,7 @@ describe('when building entity property with shortened context', () => {
       .withContext(contextName, shortenToName)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1053,6 +1075,7 @@ describe('when building renamed identity entity property', () => {
       .withIdentityRenameIndicator(baseName)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1105,6 +1128,7 @@ describe('when building queryable entity property ', () => {
       .withQueryableOnlyPropertyIndicator()
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1144,6 +1168,7 @@ describe('when building shared entity property', () => {
       .withDocumentation(entityDocumentation)
       .withSharedDecimalProperty(propertyName, '', propertyDocumentation, false, false)
       .withEndDomainEntity()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1184,6 +1209,7 @@ describe('when building enumeration property', () => {
       .withEnumerationProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1224,6 +1250,7 @@ describe('when building inline common property', () => {
       .withInlineCommonProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1265,6 +1292,7 @@ describe('when building integer property', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, maxValue, minValue)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(builder);
   });
 
@@ -1344,6 +1372,7 @@ describe('when building merged property reference', () => {
       .withMergePartOfReference(mergePropertyPath, targetPropertyPath)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(builder);
   });
 
@@ -1434,6 +1463,7 @@ describe('when building multiple merge property references', () => {
       .withMergePartOfReference(mergePropertyPath1, targetPropertyPath1)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(builder);
   });
 
@@ -1542,6 +1572,7 @@ describe('when building percent property', () => {
       .withPercentProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1585,6 +1616,7 @@ describe('when building referential property with merged properties', () => {
       .withDocumentation(propertyDocumentation)
       .withMergePartOfReference(mergePropertyPath, targetPropertyPath)
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1630,6 +1662,7 @@ describe('when building school year enumeration property', () => {
       .withEnumerationProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1670,6 +1703,7 @@ describe('when building shared decimal property', () => {
       .withSharedDecimalProperty(propertyName, null, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1710,6 +1744,7 @@ describe('when building shared integer property', () => {
       .withSharedIntegerProperty(propertyName, null, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1750,6 +1785,7 @@ describe('when building shared string property', () => {
       .withSharedStringProperty(propertyName, null, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1791,6 +1827,7 @@ describe('when building short property', () => {
       .withShortProperty(propertyName, propertyDocumentation, true, false, maxValue, minValue)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(builder);
   });
 
@@ -1870,6 +1907,7 @@ describe('when building string property', () => {
       .withStringProperty(propertyName, propertyDocumentation, true, false, maxLength, minLength)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(builder);
   });
 
@@ -1948,6 +1986,7 @@ describe('when building time property', () => {
       .withTimeProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1988,6 +2027,7 @@ describe('when building year property', () => {
       .withYearProperty(propertyName, propertyDocumentation, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

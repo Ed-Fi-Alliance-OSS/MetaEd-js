@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, InterchangeBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, InterchangeBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/InterchangeExtension/InterchangeExtensionMustNotRedeclareBaseInterchangeIdentityName';
 
@@ -24,6 +24,7 @@ describe('when validating interchange extension identity template has different 
       .withEndInterchangeExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new InterchangeBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -64,6 +65,7 @@ describe('when validating interchange extension identity template duplicates nam
       .withEndInterchangeExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new InterchangeBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -117,6 +119,7 @@ describe('when interchange extension identity templates duplicates multiple name
       .withEndInterchangeExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new InterchangeBuilder(metaEd, []));
 
     failures = validate(metaEd);

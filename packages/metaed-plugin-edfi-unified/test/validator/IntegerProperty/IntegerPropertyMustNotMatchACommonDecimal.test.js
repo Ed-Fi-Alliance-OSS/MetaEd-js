@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, SharedDecimalBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  DomainEntityBuilder,
+  SharedDecimalBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/IntegerProperty/IntegerPropertyMustNotMatchACommonDecimal';
 
@@ -21,6 +27,8 @@ describe('when validating integer property does not match common decimal', () =>
       .withIntegerIdentity('PropertyName', 'PropertyDocumentation', '10', '2')
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new SharedDecimalBuilder(metaEd, []));
 
@@ -59,6 +67,8 @@ describe('when validating integer property matches common decimal', () => {
       .withIntegerIdentity(entityName, 'PropertyDocumentation', '10', '2', '0', '10')
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new SharedDecimalBuilder(metaEd, []));
 

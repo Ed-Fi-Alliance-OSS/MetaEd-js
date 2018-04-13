@@ -65,11 +65,13 @@ Object {
 exports[`when building domain with invalid trailing text should have extraneous input error 1`] = `
 Array [
   "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'common', 'descriptor', 'domain entity', 'inline common', 'footer documentation'}, column: 0, line: 6, token: TrailingText",
+  "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'common', 'descriptor', 'domain entity', 'inline common', 'footer documentation'}, column: 0, line: 6, token: TrailingText",
 ]
 `;
 
 exports[`when building domain with lowercase domain name should have extraneous input error 1`] = `
 Array [
+  "extraneous input 'domain' expecting ID, column: 9, line: 2, token: domain",
   "extraneous input 'domain' expecting ID, column: 9, line: 2, token: domain",
 ]
 `;
@@ -77,11 +79,13 @@ Array [
 exports[`when building domain with no documentation should have mismatched input error 1`] = `
 Array [
   "mismatched input 'domain entity' expecting 'documentation', column: 4, line: 3, token: domain entity",
+  "mismatched input 'domain entity' expecting 'documentation', column: 4, line: 3, token: domain entity",
 ]
 `;
 
 exports[`when building domain with no domain item should have mismatched input error 1`] = `
 Array [
+  "mismatched input 'footer documentation' expecting {'association', 'common', 'descriptor', 'domain entity', 'inline common'}, column: 4, line: 5, token: footer documentation",
   "mismatched input 'footer documentation' expecting {'association', 'common', 'descriptor', 'domain entity', 'inline common'}, column: 4, line: 5, token: footer documentation",
 ]
 `;
@@ -89,11 +93,13 @@ Array [
 exports[`when building domain with no domain name should have missing id error 1`] = `
 Array [
   "missing ID at '[1]', column: 10, line: 2, token: [1]",
+  "missing ID at '[1]', column: 10, line: 2, token: [1]",
 ]
 `;
 
 exports[`when building domain with no text in footer documentation should have missing text error 1`] = `
 Array [
+  "missing TEXT at 'End Namespace', column: 0, line: 7, token: End Namespace",
   "missing TEXT at 'End Namespace', column: 0, line: 7, token: End Namespace",
 ]
 `;
@@ -192,11 +198,13 @@ Object {
 exports[`when building subdomain with invalid trailing text should have extraneous input error 1`] = `
 Array [
   "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 0, line: 7, token: TrailingText",
+  "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 0, line: 7, token: TrailingText",
 ]
 `;
 
 exports[`when building subdomain with lowercase parent domain name should have extraneous input error 1`] = `
 Array [
+  "extraneous input 'parent' expecting ID, column: 26, line: 2, token: parent",
   "extraneous input 'parent' expecting ID, column: 26, line: 2, token: parent",
 ]
 `;
@@ -204,11 +212,13 @@ Array [
 exports[`when building subdomain with lowercase subdomain name should have extraneous input error 1`] = `
 Array [
   "extraneous input 'domain' expecting ID, column: 12, line: 2, token: domain",
+  "extraneous input 'domain' expecting ID, column: 12, line: 2, token: domain",
 ]
 `;
 
 exports[`when building subdomain with no documentation should have mismatched input error 1`] = `
 Array [
+  "mismatched input 'domain entity' expecting 'documentation', column: 4, line: 3, token: domain entity",
   "mismatched input 'domain entity' expecting 'documentation', column: 4, line: 3, token: domain entity",
 ]
 `;
@@ -216,11 +226,13 @@ Array [
 exports[`when building subdomain with no domain item should have mismatched input error 1`] = `
 Array [
   "mismatched input 'position' expecting {'association', 'common', 'descriptor', 'domain entity', 'inline common'}, column: 4, line: 5, token: position",
+  "mismatched input 'position' expecting {'association', 'common', 'descriptor', 'domain entity', 'inline common'}, column: 4, line: 5, token: position",
 ]
 `;
 
 exports[`when building subdomain with no parent domain name should have missing id error 1`] = `
 Array [
+  "missing ID at '[10]', column: 27, line: 2, token: [10]",
   "missing ID at '[10]', column: 27, line: 2, token: [10]",
 ]
 `;
@@ -229,11 +241,14 @@ exports[`when building subdomain with no subdomain name should have extraneous i
 Array [
   "extraneous input 'of' expecting ID, column: 13, line: 2, token: of",
   "mismatched input '[10]' expecting 'of', column: 33, line: 2, token: [10]",
+  "extraneous input 'of' expecting ID, column: 13, line: 2, token: of",
+  "mismatched input '[10]' expecting 'of', column: 33, line: 2, token: [10]",
 ]
 `;
 
 exports[`when building subdomain with no unsigned int in position should have missing unsigned int error 1`] = `
 Array [
+  "missing UNSIGNED_INT at 'End Namespace', column: 0, line: 7, token: End Namespace",
   "missing UNSIGNED_INT at 'End Namespace', column: 0, line: 7, token: End Namespace",
 ]
 `;

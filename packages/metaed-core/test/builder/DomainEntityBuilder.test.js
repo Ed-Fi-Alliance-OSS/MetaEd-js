@@ -1,5 +1,7 @@
 // @flow
 import { DomainEntityBuilder } from '../../src/builder/DomainEntityBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
+
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getDomainEntity } from '../TestHelper';
@@ -29,6 +31,7 @@ describe('when building simple domain entity in extension namespace', () => {
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -122,6 +125,7 @@ describe('when building duplicate domain entities', () => {
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -182,6 +186,7 @@ describe('when building duplicate property names', () => {
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -233,6 +238,7 @@ describe('when building duplicate property names with different with context nam
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2', 'Context2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -264,6 +270,7 @@ describe('when building duplicate property names with same with context name', (
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2', 'Context')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -310,6 +317,7 @@ describe('when building domain entity without extension', () => {
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -370,6 +378,7 @@ describe('when building domain entity with a with context', () => {
       .withCommonProperty(propertyName, 'doc', true, false, withContextName)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -403,6 +412,7 @@ describe('when building domain entity with a with context and shorten to', () =>
       .withCommonProperty(propertyName, 'doc', true, false, withContextName, null, shortenToName)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -439,6 +449,7 @@ describe('when building domain entity with choice', () => {
       .withChoiceProperty(propertyName, documentation, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -471,6 +482,7 @@ describe('when building domain entity with inline common reference', () => {
       .withInlineCommonProperty(propertyName, documentation, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -502,6 +514,7 @@ describe('when building domain entity with queryable field', () => {
       .withStringPropertyAsQueryableField(propertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -536,6 +549,7 @@ describe('when building domain entity with queryable only property', () => {
       .withQueryableOnlyDomainEntityProperty(queryableOnlyName, 'doc')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -570,6 +584,7 @@ describe('when building domain entity with shared decimal reference', () => {
       .withSharedDecimalProperty(sharedPropertyType, propertyName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -601,6 +616,7 @@ describe('when building domain entity with shared decimal reference without name
       .withSharedDecimalProperty(sharedPropertyType, null, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -633,6 +649,7 @@ describe('when building domain entity with shared integer reference', () => {
       .withSharedIntegerProperty(sharedPropertyType, propertyName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -668,6 +685,7 @@ describe('when building domain entity with shared integer reference without name
       .withSharedIntegerProperty(sharedPropertyType, null, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -704,6 +722,7 @@ describe('when building domain entity with shared short reference', () => {
       .withSharedShortProperty(sharedPropertyType, propertyName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -735,6 +754,7 @@ describe('when building domain entity with shared short reference without name',
       .withSharedShortProperty(sharedPropertyType, null, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -767,6 +787,7 @@ describe('when building domain entity with shared string reference', () => {
       .withSharedStringProperty(sharedPropertyType, propertyName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -798,6 +819,7 @@ describe('when building domain entity with shared string reference without name'
       .withSharedStringProperty(sharedPropertyType, null, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -830,6 +852,7 @@ describe('when building domain entity with shared string reference inheriting do
       .withSharedStringProperty(sharedPropertyType, propertyName, 'inherited', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -862,6 +885,7 @@ describe('when building domain entity with domain entity reference inheriting do
       .withDomainEntityProperty(propertyName, 'inherited', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -895,6 +919,7 @@ describe('when building domain entity with cascading updates', () => {
       .withDomainEntityProperty(propertyName, 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -925,6 +950,7 @@ describe('when building abstract entity in extension namespace', () => {
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndAbstractEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1036,6 +1062,7 @@ describe('when building domain entity with no project extension', () => {
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1072,6 +1099,7 @@ describe('when building domain entity with uppercase namespace', () => {
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1143,6 +1171,7 @@ describe('when building domain entity with lowercase project extension', () => {
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1214,6 +1243,7 @@ describe('when building domain entity with no namespace', () => {
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1275,6 +1305,7 @@ describe('when building domain entity with no end namespace', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1333,6 +1364,7 @@ describe('when building domain entity with no top level entity', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1369,6 +1401,7 @@ describe('when building domain entity with no domain entity name', () => {
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1405,6 +1438,7 @@ describe('when building domain entity with lowercase domain entity name', () => 
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1441,6 +1475,7 @@ describe('when building domain entity with no metaed id', () => {
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1501,6 +1536,7 @@ describe('when building domain entity with no documentation', () => {
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1559,6 +1595,7 @@ describe('when building domain entity with no properties', () => {
       .withDocumentation(documentation)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1612,6 +1649,7 @@ describe('when building domain entity with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1672,6 +1710,7 @@ describe('when building domain entity source map', () => {
       .withIntegerProperty(propertyName, 'Doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1731,6 +1770,7 @@ describe('when building domain entity namespace info source map', () => {
       .withIntegerProperty(propertyName, 'Doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -1789,6 +1829,7 @@ describe('when building abstract entity source map', () => {
       .withIntegerProperty(propertyName, 'Doc', true, false)
       .withEndAbstractEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

@@ -1,5 +1,6 @@
 // @flow
 import { InterchangeBuilder } from '../../src/builder/InterchangeBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getInterchange, getInterchangeExtension } from '../TestHelper';
@@ -36,6 +37,7 @@ describe('when building single interchange', () => {
       .withAssociationIdentityTemplate(interchangeIdentityTemplateName, interchangeIdentityTemplateMetaEdId)
       .withEndInterchange()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -124,6 +126,7 @@ describe('when building interchange with additional element and identity types',
       .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName, '4')
       .withEndInterchange()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -187,6 +190,7 @@ describe('when building duplicate interchanges', () => {
       .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName, interchangeIdentityTemplateMetaEdId)
       .withEndInterchange()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -247,6 +251,7 @@ describe('when building single interchange extension', () => {
       .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName, interchangeIdentityTemplateMetaEdId)
       .withEndInterchangeExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -316,6 +321,7 @@ describe('when building duplicate interchange extensions', () => {
       .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName, interchangeIdentityTemplateMetaEdId)
       .withEndInterchangeExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -376,6 +382,7 @@ describe('when building interchange with no interchange name', () => {
       .withDomainEntityElement(interchangeElementName, interchangeElementMetaEdId)
       .withEndInterchange()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -411,6 +418,7 @@ describe('when building interchange with lowercase interchange name', () => {
       .withDomainEntityElement(interchangeElementName, interchangeElementMetaEdId)
       .withEndInterchange()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -444,6 +452,7 @@ describe('when building interchange with no documentation', () => {
       .withDomainEntityElement(interchangeElementName, interchangeElementMetaEdId)
       .withEndInterchange()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -503,6 +512,7 @@ describe('when building interchange with no interchange component property', () 
       .withDocumentation(interchangeDocumentation)
       .withEndInterchange()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
   it('should build one interchange', () => {
@@ -564,6 +574,7 @@ describe('when building interchange with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndInterchange()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -624,6 +635,7 @@ describe('when building interchange extension with no interchange extension name
       .withDomainEntityElement(interchangeElementName, interchangeElementMetaEdId)
       .withEndInterchangeExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -657,6 +669,7 @@ describe('when building interchange extension with lowercase interchange extensi
       .withDomainEntityElement(interchangeElementName, interchangeElementMetaEdId)
       .withEndInterchangeExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -687,6 +700,7 @@ describe('when building interchange extension with no element property', () => {
       .withStartInterchangeExtension(interchangeName, interchangeMetaEdId)
       .withEndInterchangeExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -743,6 +757,7 @@ describe('when building interchange extension with invalid trailing text', () =>
       .withTrailingText(trailingText)
       .withEndInterchangeExtension()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -803,6 +818,7 @@ describe('when building single interchange source map', () => {
       .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName, interchangeIdentityTemplateMetaEdId)
       .withEndInterchange()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

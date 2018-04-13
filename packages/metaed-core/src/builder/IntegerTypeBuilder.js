@@ -4,47 +4,29 @@ import type { MetaEdEnvironment } from '../MetaEdEnvironment';
 import type { NamespaceInfo } from '../model/NamespaceInfo';
 import type { ValidationFailure } from '../validator/ValidationFailure';
 import { newIntegerType, newShortType, NoIntegerType } from '../model/IntegerType';
-import { enteringNamespaceName, enteringNamespaceType } from './NamespaceInfoBuilder';
+import { namespaceName } from './NamespaceInfoBuilder';
 import { extractDocumentation, squareBracketRemoval, isErrorText } from './BuilderUtility';
 import type { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
 import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
-import { newNamespaceInfo, NoNamespaceInfo } from '../model/NamespaceInfo';
 import { sourceMapFrom } from '../model/SourceMap';
 
 // Note IntegerType is XSD specific with the advent of SharedInteger and SharedShort, and creation should be move to XSD enhancers
 export class IntegerTypeBuilder extends MetaEdGrammarListener {
   currentIntegerType: IntegerType;
   metaEd: MetaEdEnvironment;
-  namespaceInfo: NamespaceInfo;
+  currentNamespace: string;
   validationFailures: Array<ValidationFailure>;
 
   constructor(metaEd: MetaEdEnvironment, validationFailures: Array<ValidationFailure>) {
     super();
     this.metaEd = metaEd;
     this.validationFailures = validationFailures;
-    this.namespaceInfo = NoNamespaceInfo;
+    this.currentNamespace = '';
     this.currentIntegerType = NoIntegerType;
   }
 
-  enterNamespace(context: MetaEdGrammar.NamespaceContext) {
-    if (this.namespaceInfo !== NoNamespaceInfo) return;
-    this.namespaceInfo = newNamespaceInfo();
-    this.namespaceInfo.sourceMap.type = sourceMapFrom(context);
-  }
-
   enterNamespaceName(context: MetaEdGrammar.NamespaceNameContext) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.namespaceInfo = enteringNamespaceName(context, this.namespaceInfo);
-  }
-
-  enterNamespaceType(context: MetaEdGrammar.NamespaceTypeContext) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
-    this.namespaceInfo = enteringNamespaceType(context, this.namespaceInfo);
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  exitNamespace(context: MetaEdGrammar.NamespaceContext) {
-    this.namespaceInfo = NoNamespaceInfo;
+    this.currentNamespace = namespaceName(context);
   }
 
   enterSharedInteger(context: MetaEdGrammar.SharedIntegerContext) {
@@ -71,14 +53,13 @@ export class IntegerTypeBuilder extends MetaEdGrammarListener {
       | MetaEdGrammar.ShortPropertyContext,
     { isShort, generatedSimpleType }: { isShort: boolean, generatedSimpleType: boolean },
   ) {
-    if (this.namespaceInfo === NoNamespaceInfo) return;
+    const namespaceInfo: ?NamespaceInfo = this.metaEd.entity.namespaceInfo.get(this.currentNamespace);
+    if (namespaceInfo == null) return;
     const factory = isShort ? newShortType : newIntegerType;
-    this.currentIntegerType = Object.assign(factory(), {
-      namespaceInfo: this.namespaceInfo,
-      generatedSimpleType,
-    });
+    this.currentIntegerType = { ...factory(), namespaceInfo, generatedSimpleType };
+
     this.currentIntegerType.sourceMap.type = sourceMapFrom(context);
-    this.currentIntegerType.sourceMap.namespaceInfo = this.namespaceInfo.sourceMap.type;
+    this.currentIntegerType.sourceMap.namespaceInfo = namespaceInfo.sourceMap.type;
   }
 
   enterDocumentation(context: MetaEdGrammar.DocumentationContext) {

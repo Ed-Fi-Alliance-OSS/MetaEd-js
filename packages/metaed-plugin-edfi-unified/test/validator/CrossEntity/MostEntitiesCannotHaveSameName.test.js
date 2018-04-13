@@ -10,6 +10,7 @@ import {
   DomainEntityExtensionBuilder,
   EnumerationBuilder,
   InterchangeBuilder,
+  NamespaceInfoBuilder,
   SharedIntegerBuilder,
 } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
@@ -34,6 +35,7 @@ describe('when entities have different names', () => {
       .withEndAssociation()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []));
 
@@ -70,6 +72,7 @@ describe('when DE and Association have identical names', () => {
       .withEndAssociation()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []));
 
@@ -123,6 +126,7 @@ describe('when DE has same name as DE extension', () => {
       .withEndDomainEntityExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
 
@@ -160,6 +164,7 @@ describe('when Association has same name as Association extension', () => {
       .withEndAssociationExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
@@ -195,6 +200,7 @@ describe('when DE and SharedInteger have identical names', () => {
       .withEndSharedInteger()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new SharedIntegerBuilder(metaEd, []));
 
@@ -248,6 +254,7 @@ describe('when DE and Common have identical names', () => {
       .withEndCommon()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []));
 
@@ -301,6 +308,7 @@ describe('when DE has same name as descriptor', () => {
       .withEndDescriptor()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DescriptorBuilder(metaEd, []));
 
@@ -336,6 +344,7 @@ describe('when DE has same name as enumeration', () => {
       .withEndEnumeration()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new EnumerationBuilder(metaEd, []));
 
@@ -371,6 +380,7 @@ describe('when DE has same name as interchange', () => {
       .withEndInterchange()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new InterchangeBuilder(metaEd, []));
 

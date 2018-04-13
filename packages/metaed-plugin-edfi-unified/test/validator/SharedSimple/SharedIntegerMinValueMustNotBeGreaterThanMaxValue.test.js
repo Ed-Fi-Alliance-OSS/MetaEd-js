@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, SharedIntegerBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, SharedIntegerBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/SharedSimple/SharedIntegerMinValueMustNotBeGreaterThanMaxValue';
 
@@ -16,6 +16,8 @@ describe('when validating shared integer with max value greater than min value',
       .withMaxValue('100')
       .withEndSharedInteger()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new SharedIntegerBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -39,6 +41,8 @@ describe('when validating shared integer with min value greater than max value',
       .withMaxValue('10')
       .withEndSharedInteger()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new SharedIntegerBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -74,6 +78,8 @@ describe('when validating shared short with max value greater than min value', (
       .withMaxValue('100')
       .withEndSharedShort()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new SharedIntegerBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -97,6 +103,8 @@ describe('when validating shared short with min value greater than max value', (
       .withMaxValue('10')
       .withEndSharedShort()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new SharedIntegerBuilder(metaEd, []));
 
     failures = validate(metaEd);

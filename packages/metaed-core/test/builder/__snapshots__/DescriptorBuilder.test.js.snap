@@ -129,11 +129,13 @@ Object {
 exports[`when building descriptor with invalid trailing text should have extraneous input error 1`] = `
 Array [
   "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'is queryable field', 'min value', 'max value', 'with context', 'with optional map type', 'with map type'}, column: 0, line: 9, token: TrailingText",
+  "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'is queryable field', 'min value', 'max value', 'with context', 'with optional map type', 'with map type'}, column: 0, line: 9, token: TrailingText",
 ]
 `;
 
 exports[`when building descriptor with lowercase descriptor name should have extraneous input error 1`] = `
 Array [
+  "extraneous input 'entity' expecting ID, column: 13, line: 2, token: entity",
   "extraneous input 'entity' expecting ID, column: 13, line: 2, token: entity",
 ]
 `;
@@ -141,11 +143,13 @@ Array [
 exports[`when building descriptor with no descriptor name should have extraneous input error 1`] = `
 Array [
   "missing ID at '[1]', column: 14, line: 2, token: [1]",
+  "missing ID at '[1]', column: 14, line: 2, token: [1]",
 ]
 `;
 
 exports[`when building descriptor with no documentation in map type should have mismatched input error 1`] = `
 Array [
+  "mismatched input 'item' expecting 'documentation', column: 6, line: 6, token: item",
   "mismatched input 'item' expecting 'documentation', column: 6, line: 6, token: item",
 ]
 `;
@@ -153,11 +157,13 @@ Array [
 exports[`when building descriptor with no documentation should have mismatched input error 1`] = `
 Array [
   "mismatched input 'integer' expecting 'documentation', column: 4, line: 3, token: integer",
+  "mismatched input 'integer' expecting 'documentation', column: 4, line: 3, token: integer",
 ]
 `;
 
 exports[`when building descriptor with no enumeration item in map type should have mismatched input error 1`] = `
 Array [
+  "mismatched input 'End Namespace' expecting 'item', column: 0, line: 8, token: End Namespace",
   "mismatched input 'End Namespace' expecting 'item', column: 0, line: 8, token: End Namespace",
 ]
 `;

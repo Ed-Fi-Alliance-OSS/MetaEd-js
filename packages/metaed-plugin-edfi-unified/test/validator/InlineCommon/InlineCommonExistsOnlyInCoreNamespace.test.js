@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, CommonBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, CommonBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/InlineCommon/InlineCommonExistsOnlyInCoreNamespace';
 
@@ -15,6 +15,8 @@ describe('when validating inline common type exists in core', () => {
       .withBooleanProperty('PropertyName', 'PropertyDocumentation', true, false)
       .withEndInlineCommon()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -41,6 +43,8 @@ describe('when validating inline common type exists in extension', () => {
       .withBooleanProperty('PropertyName', 'PropertyDocumentation', true, false)
       .withEndInlineCommon()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []));
 
     failures = validate(metaEd);

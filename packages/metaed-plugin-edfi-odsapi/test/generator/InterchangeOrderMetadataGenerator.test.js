@@ -24,7 +24,7 @@ describe('when generating core interchange', () => {
     const namespaceInfo: NamespaceInfo = Object.assign(newNamespaceInfo(), {
       namespace: 'edfi',
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
 
     const element1: InterchangeItem = Object.assign(newInterchangeItem(), {
       metaEdName: elementName1,
@@ -79,7 +79,7 @@ describe('when generating extension interchange', () => {
       projectExtension: 'EXTENSION',
       isExtension: true,
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
 
     const element1: InterchangeItem = Object.assign(newInterchangeItem(), {
       metaEdName: elementName1,
@@ -135,14 +135,14 @@ describe('when generating core and extension interchange', () => {
     const coreNamespaceInfo: NamespaceInfo = Object.assign(newNamespaceInfo(), {
       namespace: 'edfi',
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
 
     const extensionNamespaceInfo: NamespaceInfo = Object.assign(newNamespaceInfo(), {
       namespace: 'extension',
       projectExtension: 'EXTENSION',
       isExtension: true,
     });
-    metaEd.entity.namespaceInfo.push(extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     const element1: InterchangeItem = Object.assign(newInterchangeItem(), {
       metaEdName: elementName1,

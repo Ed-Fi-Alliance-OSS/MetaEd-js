@@ -1,5 +1,6 @@
 // @flow
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { DecimalTypeBuilder } from '../../src/builder/DecimalTypeBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { getDecimalType } from '../TestHelper';
@@ -30,6 +31,7 @@ describe('when building shared decimal in extension namespace', () => {
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DecimalTypeBuilder(metaEd, validationFailures));
   });
 
@@ -129,6 +131,7 @@ describe('when building domain entity with decimal property in extension namespa
       )
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DecimalTypeBuilder(metaEd, validationFailures));
   });
 
@@ -225,6 +228,7 @@ describe('when building multiple shared decimals in extension namespace', () => 
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DecimalTypeBuilder(metaEd, validationFailures));
   });
 
@@ -292,6 +296,7 @@ describe('when building domain entity with multiple decimal properties in extens
       )
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DecimalTypeBuilder(metaEd, validationFailures));
   });
 

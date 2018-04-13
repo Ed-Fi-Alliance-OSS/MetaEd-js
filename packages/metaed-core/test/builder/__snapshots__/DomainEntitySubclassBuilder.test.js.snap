@@ -51,11 +51,13 @@ Object {
 exports[`when building domain entity subclass with invalid trailing text should have extraneous input error 1`] = `
 Array [
   "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'is queryable field', 'min value', 'max value', 'with context'}, column: 0, line: 9, token: TrailingText",
+  "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'is queryable field', 'min value', 'max value', 'with context'}, column: 0, line: 9, token: TrailingText",
 ]
 `;
 
 exports[`when building domain entity subclass with lowercase based on name should have extraneous input error 1`] = `
 Array [
+  "extraneous input 'base' expecting ID, column: 36, line: 2, token: base",
   "extraneous input 'base' expecting ID, column: 36, line: 2, token: base",
 ]
 `;
@@ -63,11 +65,13 @@ Array [
 exports[`when building domain entity subclass with lowercase domain entity subclass name should have no viable alternative error 1`] = `
 Array [
   "no viable alternative at input 'Domain Entityentity', column: 16, line: 2, token: entity",
+  "no viable alternative at input 'Domain Entityentity', column: 16, line: 2, token: entity",
 ]
 `;
 
 exports[`when building domain entity subclass with no based on name should have missing id error 1`] = `
 Array [
+  "missing ID at 'documentation', column: 4, line: 3, token: documentation",
   "missing ID at 'documentation', column: 4, line: 3, token: documentation",
 ]
 `;
@@ -75,17 +79,20 @@ Array [
 exports[`when building domain entity subclass with no documentation should have mismatched input error 1`] = `
 Array [
   "mismatched input 'integer' expecting {'documentation', METAED_ID}, column: 4, line: 3, token: integer",
+  "mismatched input 'integer' expecting {'documentation', METAED_ID}, column: 4, line: 3, token: integer",
 ]
 `;
 
 exports[`when building domain entity subclass with no domain entity subclass name should have no viable alternative error 1`] = `
 Array [
   "no viable alternative at input 'Domain Entitybased on', column: 17, line: 2, token: based on",
+  "no viable alternative at input 'Domain Entitybased on', column: 17, line: 2, token: based on",
 ]
 `;
 
 exports[`when building domain entity subclass with no property should have mismatched input error 1`] = `
 Array [
+  "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year'}, column: 0, line: 5, token: End Namespace",
   "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year'}, column: 0, line: 5, token: End Namespace",
 ]
 `;

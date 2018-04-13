@@ -9,10 +9,20 @@ import { sourceMapFrom } from '../model/SourceMap';
 import { isErrorText } from './BuilderUtility';
 import type { ValidationFailure } from '../validator/ValidationFailure';
 
-export function enteringNamespaceName(
-  context: MetaEdGrammar.NamespaceNameContext,
-  namespaceInfo: NamespaceInfo,
-): NamespaceInfo {
+export function namespaceName(context: MetaEdGrammar.NamespaceNameContext): string {
+  if (
+    context.exception ||
+    context.NAMESPACE_ID() == null ||
+    context.NAMESPACE_ID().exception != null ||
+    context.NAMESPACE_ID().getText() == null ||
+    isErrorText(context.NAMESPACE_ID().getText())
+  )
+    return '';
+
+  return context.NAMESPACE_ID().getText();
+}
+
+function enteringNamespaceName(context: MetaEdGrammar.NamespaceNameContext, namespaceInfo: NamespaceInfo): NamespaceInfo {
   if (namespaceInfo === NoNamespaceInfo || isErrorText(context.NAMESPACE_ID().getText())) return newNamespaceInfo();
 
   if (
@@ -28,10 +38,7 @@ export function enteringNamespaceName(
   return namespaceInfo;
 }
 
-export function enteringNamespaceType(
-  context: MetaEdGrammar.NamespaceTypeContext,
-  namespaceInfo: NamespaceInfo,
-): NamespaceInfo {
+function enteringNamespaceType(context: MetaEdGrammar.NamespaceTypeContext, namespaceInfo: NamespaceInfo): NamespaceInfo {
   if (namespaceInfo === NoNamespaceInfo) return namespaceInfo;
   if (context.exception) return namespaceInfo;
   if (context.CORE() != null) {
@@ -77,12 +84,8 @@ export class NamespaceInfoBuilder extends MetaEdGrammarListener {
   enterNamespaceType(context: MetaEdGrammar.NamespaceTypeContext) {
     if (this.currentNamespaceInfo === NoNamespaceInfo) return;
     this.currentNamespaceInfo = enteringNamespaceType(context, this.currentNamespaceInfo);
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  exitNamespace(context: MetaEdGrammar.NamespaceContext) {
-    if (this.currentNamespaceInfo === NoNamespaceInfo) return;
-    this.entityRepository.namespaceInfo.push(this.currentNamespaceInfo);
+    // we don't wait for exitNamespace to finish building NamespaceInfos
+    this.entityRepository.namespaceInfo.set(this.currentNamespaceInfo.namespace, this.currentNamespaceInfo);
     this.currentNamespaceInfo = NoNamespaceInfo;
   }
 }

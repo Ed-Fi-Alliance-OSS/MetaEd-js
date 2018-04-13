@@ -11,7 +11,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   );
   const formattedGeneratedResult = formatAndPrependHeader(template().schemaAnnotation({ descriptors }));
 
-  const coreNamespace: ?NamespaceInfo = metaEd.entity.namespaceInfo.find(
+  const coreNamespace: ?NamespaceInfo = Array.from(metaEd.entity.namespaceInfo.values()).find(
     (namespaceInfo: NamespaceInfo) => !namespaceInfo.isExtension,
   );
   results.push({

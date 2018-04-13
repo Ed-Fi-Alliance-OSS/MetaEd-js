@@ -1,5 +1,6 @@
 // @flow
 import { DomainEntityBuilder } from '../../src/builder/DomainEntityBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 
@@ -51,6 +52,7 @@ describe('when building domain entity with duplicate decimal properties in exten
       )
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -91,6 +93,7 @@ describe('when building domain entity with duplicate integer properties in exten
       .withIntegerProperty(entityName, documentation, true, false, maxValue, minValue, null, metaEdId)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -132,6 +135,7 @@ describe('when building domain entity with duplicate string properties in extens
       .withStringProperty(entityName, documentation, true, false, maxLength, minLength, null, metaEdId)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -169,6 +173,7 @@ describe('when building entities with duplicate boolean properties', () => {
       .withBooleanProperty(propertyName, documentation, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -207,6 +212,7 @@ describe('when building entities with duplicate currency properties', () => {
       .withCurrencyProperty(propertyName, documentation, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -245,6 +251,7 @@ describe('when building entities with duplicate date properties', () => {
       .withDateProperty(propertyName, documentation, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -283,6 +290,7 @@ describe('when building entities with duplicate duration properties', () => {
       .withDurationProperty(propertyName, documentation, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -321,6 +329,7 @@ describe('when building entities with duplicate enumeration properties', () => {
       .withEnumerationProperty(propertyName, documentation, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -358,6 +367,7 @@ describe('when building entities with duplicate common properties', () => {
       .withCommonProperty(propertyName, documentation, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -395,6 +405,7 @@ describe('when building entities with an association property that duplicates na
       .withAssociationProperty(propertyName, documentation, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -434,6 +445,7 @@ describe('when building entities with a short property that duplicates name of a
       .withShortProperty(propertyName, documentation, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -472,6 +484,7 @@ describe('when building entities with an shared decimal property that duplicates
       .withSharedDecimalProperty(propertyName, '', documentation, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -510,6 +523,7 @@ describe('when building entities with a time property that duplicates name of an
       .withTimeProperty(propertyName, documentation, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -548,6 +562,7 @@ describe('when building entities with a year property that duplicates name of an
       .withYearProperty(propertyName, documentation, true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -586,6 +601,7 @@ describe('when building entities with two association properties duplicate prope
       .withAssociationProperty(propertyName, documentation, true, false, false, 'Context2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -615,6 +631,7 @@ describe('when building entities with two association properties with duplicate 
       .withAssociationProperty(propertyName, documentation, true, false, false, 'Context1')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -654,6 +671,7 @@ describe('when building entities with two association properties with duplicate 
       .withContext('context1', 'Short2')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 
@@ -694,6 +712,7 @@ describe('when building entities with two association properties with duplicate 
       .withContext('context1', 'ShortOne')
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(new DomainEntityBuilder(metaEd, validationFailures));
   });
 

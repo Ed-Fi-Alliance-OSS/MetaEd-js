@@ -304,6 +304,7 @@ Object {
 exports[`when building association with invalid trailing text should have extraneous input error 1`] = `
 Array [
   "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'with context'}, column: 0, line: 11, token: TrailingText",
+  "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'with context'}, column: 0, line: 11, token: TrailingText",
 ]
 `;
 
@@ -316,11 +317,13 @@ Array [
 exports[`when building association with no association name should have no viable alternative error 1`] = `
 Array [
   "no viable alternative at input 'Association[1]', column: 15, line: 2, token: [1]",
+  "no viable alternative at input 'Association[1]', column: 15, line: 2, token: [1]",
 ]
 `;
 
 exports[`when building association with no documentation in the first domain entity should have mismatched input error 1`] = `
 Array [
+  "mismatched input 'domain entity' expecting 'documentation', column: 4, line: 6, token: domain entity",
   "mismatched input 'domain entity' expecting 'documentation', column: 4, line: 6, token: domain entity",
 ]
 `;
@@ -328,17 +331,20 @@ Array [
 exports[`when building association with no documentation in the second domain entity should have mismatched input error 1`] = `
 Array [
   "mismatched input 'End Namespace' expecting 'documentation', column: 0, line: 9, token: End Namespace",
+  "mismatched input 'End Namespace' expecting 'documentation', column: 0, line: 9, token: End Namespace",
 ]
 `;
 
 exports[`when building association with no documentation should have no viable alternative error 1`] = `
 Array [
   "mismatched input 'domain entity' expecting 'documentation', column: 4, line: 3, token: domain entity",
+  "mismatched input 'domain entity' expecting 'documentation', column: 4, line: 3, token: domain entity",
 ]
 `;
 
 exports[`when building association with no domain entity property should have mismatched input error 1`] = `
 Array [
+  "mismatched input 'End Namespace' expecting {'domain entity', 'with context'}, column: 0, line: 8, token: End Namespace",
   "mismatched input 'End Namespace' expecting {'domain entity', 'with context'}, column: 0, line: 8, token: End Namespace",
 ]
 `;

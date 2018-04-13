@@ -1,5 +1,6 @@
 // @flow
 import { DomainEntitySubclassBuilder } from '../../src/builder/DomainEntitySubclassBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getDomainEntitySubclass } from '../TestHelper';
@@ -28,6 +29,7 @@ describe('when building domain entity subclass in extension namespace', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndDomainEntitySubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -96,6 +98,7 @@ describe('when building duplicate domain entity subclasses', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndDomainEntitySubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -156,6 +159,7 @@ describe('when building domain entity subclass with no domain entity subclass na
       .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndDomainEntitySubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -191,6 +195,7 @@ describe('when building domain entity subclass with lowercase domain entity subc
       .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndDomainEntitySubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -226,6 +231,7 @@ describe('when building domain entity subclass with lowercase based on name', ()
       .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndDomainEntitySubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -293,6 +299,7 @@ describe('when building domain entity subclass with no based on name', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndDomainEntitySubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -363,6 +370,7 @@ describe('when building domain entity subclass with no documentation', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndDomainEntitySubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -424,6 +432,7 @@ describe('when building domain entity subclass with no property', () => {
       .withDocumentation(documentation)
       .withEndDomainEntitySubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -490,6 +499,7 @@ describe('when building domain entity subclass with invalid trailing text', () =
       .withTrailingText(trailingText)
       .withEndDomainEntitySubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -562,6 +572,7 @@ describe('when building domain entity subclass source map', () => {
       .withIntegerProperty(propertyName, 'Doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DescriptorBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DescriptorBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/Descriptor/DescriptorNameCannotEndInDescriptor';
 
@@ -14,6 +14,8 @@ describe('when descriptor has name ending in Descriptor', () => {
       .withDocumentation('doc')
       .withEndDescriptor()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DescriptorBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -43,6 +45,8 @@ describe('when descriptor has name not ending in Descriptor', () => {
       .withDocumentation('doc')
       .withEndDescriptor()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DescriptorBuilder(metaEd, []));
 
     failures = validate(metaEd);

@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityExtensionBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityExtensionBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/DomainEntityExtension/DomainEntityExtensionExistsOnlyInExtensionNamespace';
 
@@ -22,6 +22,8 @@ describe('when domain entity extension is in correct namespace', () => {
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -53,6 +55,8 @@ describe('when domain entity extension is in core namespace', () => {
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
 
     failures = validate(metaEd);

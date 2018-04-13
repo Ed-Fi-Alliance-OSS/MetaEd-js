@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DescriptorBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DescriptorBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/Descriptor/DescriptorMapTypeItemsMustBeUnique';
 
@@ -19,6 +19,8 @@ describe('when map type enumeration items have different short descriptions', ()
       .withEndMapType()
       .withEndDescriptor()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DescriptorBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -49,6 +51,8 @@ describe('when map type enumeration items have duplicate short descriptions', ()
       .withEndMapType()
       .withEndDescriptor()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DescriptorBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -89,6 +93,8 @@ describe('when map type enumeration items have multiple duplicate short descript
       .withEndMapType()
       .withEndDescriptor()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DescriptorBuilder(metaEd, []));
 
     failures = validate(metaEd);

@@ -1,5 +1,6 @@
 // @flow
 import { SharedIntegerBuilder } from '../../src/builder/SharedIntegerBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getSharedInteger } from '../TestHelper';
@@ -28,6 +29,7 @@ describe('when building shared integer in extension namespace', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -99,6 +101,7 @@ describe('when building duplicate shared integers', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -157,6 +160,7 @@ describe('when building shared short in extension namespace', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedShort()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -221,6 +225,7 @@ describe('when building shared integer with no shared integer name', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -257,6 +262,7 @@ describe('when building shared integer with lowercase shared integer name', () =
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -323,6 +329,7 @@ describe('when building shared integer with no documentation', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -382,6 +389,7 @@ describe('when building shared integer with no min value', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -441,6 +449,7 @@ describe('when building shared integer with no max value', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -502,6 +511,7 @@ describe('when building shared integer with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndSharedInteger()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -561,6 +571,7 @@ describe('when building shared short with no shared short name', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedShort()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -597,6 +608,7 @@ describe('when building shared short with lowercase shared short name', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedShort()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -663,6 +675,7 @@ describe('when building shared short with no documentation', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedShort()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -722,6 +735,7 @@ describe('when building shared short with no min value', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedShort()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -781,6 +795,7 @@ describe('when building shared short with no max value', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedShort()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -842,6 +857,7 @@ describe('when building shared short with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndSharedShort()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -900,6 +916,7 @@ describe('when building shared integer source map', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -967,6 +984,7 @@ describe('when building shared short source map', () => {
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

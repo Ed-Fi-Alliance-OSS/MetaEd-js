@@ -1,5 +1,6 @@
 // @flow
 import { CommonBuilder } from '../../src/builder/CommonBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getCommon } from '../TestHelper';
@@ -29,6 +30,7 @@ describe('when building common in extension namespace', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -108,6 +110,7 @@ describe('when building duplicate commons', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -168,6 +171,7 @@ describe('when building inline common in extension namespace', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndInlineCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -239,6 +243,7 @@ describe('when building common with no common name', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -275,6 +280,7 @@ describe('when building common with lowercase common name', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -309,6 +315,7 @@ describe('when building common with no documentation', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -380,6 +387,7 @@ describe('when building common with no property', () => {
       .withDocumentation(entityDocumentation)
       .withEndCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -447,6 +455,7 @@ describe('when building common with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -522,6 +531,7 @@ describe('when building inline common with no inline common name', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndInlineCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -559,6 +569,7 @@ describe('when building inline common with lowercase inline common name', () => 
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndInlineCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -632,6 +643,7 @@ describe('when building inline common with no documentation', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndInlineCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -703,6 +715,7 @@ describe('when building inline common with no property', () => {
       .withDocumentation(entityDocumentation)
       .withEndCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -770,6 +783,7 @@ describe('when building inline common with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndInlineCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -844,6 +858,7 @@ describe('when building common source map', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -891,6 +906,7 @@ describe('when building inline common source map', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndInlineCommon()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

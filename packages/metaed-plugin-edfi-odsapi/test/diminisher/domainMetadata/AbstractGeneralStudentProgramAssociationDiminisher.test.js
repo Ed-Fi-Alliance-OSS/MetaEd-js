@@ -44,7 +44,7 @@ describe('when diminishing with no matching entity tables', () => {
       },
     });
 
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     enhance(metaEd);
   });
 
@@ -163,7 +163,7 @@ describe('when diminishing with matching entity tables', () => {
       },
     });
 
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     enhance(metaEd);
   });
 

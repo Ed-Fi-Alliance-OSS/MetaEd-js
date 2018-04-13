@@ -1,5 +1,11 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, EnumerationBuilder, DomainEntityBuilder } from 'metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  EnumerationBuilder,
+  DomainEntityBuilder,
+  NamespaceInfoBuilder,
+} from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/EnumerationProperty/EnumerationPropertyMustMatchAnEnumeration';
 
@@ -22,6 +28,7 @@ describe('when enumeration property has valid identifier', () => {
       .withEndDomainEntity()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new EnumerationBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
@@ -55,6 +62,7 @@ describe('when enumeration property has invalid identifier', () => {
       .withEndDomainEntity()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);

@@ -7,7 +7,9 @@ import type { NamespaceInfoEdfiOdsApi } from '../../model/NamespaceInfo';
 const enhancerName: string = 'BaseDescriptorAggregateEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const coreNamespaceInfo: NamespaceInfo = R.head(metaEd.entity.namespaceInfo.filter(n => !n.isExtension));
+  const coreNamespaceInfo: NamespaceInfo = R.head(
+    Array.from(metaEd.entity.namespaceInfo.values()).filter(n => !n.isExtension),
+  );
   if (!coreNamespaceInfo) return { enhancerName, success: false };
 
   const aggregate: Aggregate = {

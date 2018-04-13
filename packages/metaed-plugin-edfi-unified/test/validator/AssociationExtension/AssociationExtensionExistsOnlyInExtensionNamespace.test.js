@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, AssociationExtensionBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, AssociationExtensionBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/AssociationExtension/AssociationExtensionExistsOnlyInExtensionNamespace';
 
@@ -24,6 +24,8 @@ describe('when association extension is in correct namespace', () => {
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -57,6 +59,8 @@ describe('when association extension is in core namespace', () => {
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
     failures = validate(metaEd);

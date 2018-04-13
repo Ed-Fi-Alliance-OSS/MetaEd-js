@@ -5,6 +5,7 @@ import {
   DomainEntityBuilder,
   DomainEntityExtensionBuilder,
   DomainEntitySubclassBuilder,
+  NamespaceInfoBuilder,
 } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/DomainEntityExtension/DomainEntityExtensionIdentifierMustMatchADomainEntityOrDomainEntitySubclass';
@@ -28,6 +29,8 @@ describe('when domain entity extension extends domain entity', () => {
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
 
@@ -68,6 +71,8 @@ describe('when domain entity extension extends domain entity subclass', () => {
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []))
       .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
@@ -96,6 +101,8 @@ describe('when domain entity extension extends an invalid identifier', () => {
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
 
     failures = validate(metaEd);

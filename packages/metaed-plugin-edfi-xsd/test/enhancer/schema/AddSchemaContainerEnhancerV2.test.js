@@ -39,7 +39,7 @@ describe('when enhancing namespace info for core', () => {
       namespace: namespaceName,
       data: { edfiXsd: {} },
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
 
     enhance(metaEd);
     createdSchema = ((coreNamespaceInfo.data.edfiXsd: any): NamespaceInfoEdfiXsd).xsd_Schema;
@@ -88,7 +88,8 @@ describe('when enhancing namespace info for extension', () => {
       isExtension: true,
       data: { edfiXsd: {} },
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo, extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     enhance(metaEd);
     createdSchema = ((extensionNamespaceInfo.data.edfiXsd: any): NamespaceInfoEdfiXsd).xsd_Schema;
@@ -261,7 +262,8 @@ describe('when enhancing namespace info for core with children', () => {
       isExtension: true,
       data: { edfiXsd: {} },
     });
-    metaEd.entity.namespaceInfo.push(coreNamespaceInfo, extensionNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(coreNamespaceInfo.namespace, coreNamespaceInfo);
+    metaEd.entity.namespaceInfo.set(extensionNamespaceInfo.namespace, extensionNamespaceInfo);
 
     const domainEntity1 = Object.assign(newDomainEntity(), {
       metaEdName: domainEntity1Name,

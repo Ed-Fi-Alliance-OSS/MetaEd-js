@@ -5,6 +5,7 @@ import {
   DomainEntityBuilder,
   DomainEntityExtensionBuilder,
   DomainEntitySubclassBuilder,
+  NamespaceInfoBuilder,
 } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/DomainEntityExtension/DomainEntityExtensionMustNotRedeclareProperties';
@@ -28,6 +29,8 @@ describe('when domain entity extension correctly has different property names', 
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
 
@@ -63,6 +66,8 @@ describe('when domain entity extension has duplicate property name', () => {
       .withBooleanProperty(duplicatePropertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
 
@@ -106,6 +111,8 @@ describe('when domain entity extension has duplicate property name but different
       .withBooleanProperty(duplicatePropertyName, 'doc', true, false, 'RoleName')
       .withEndDomainEntityExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
 
@@ -143,6 +150,8 @@ describe('when domain entity subclass and extension have duplicate property name
       .withBooleanProperty(duplicatePropertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntitySubclassBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
@@ -192,6 +201,8 @@ describe('when domain entity extension has multiple duplicates', () => {
       .withBooleanProperty(notDuplicatePropertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
 
@@ -242,6 +253,8 @@ describe('when domain entity extension has duplicate common property', () => {
       .withCommonProperty(duplicatePropertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
 
@@ -273,6 +286,8 @@ describe('when domain entity extension has duplicate common extension override p
       .withCommonExtensionOverrideProperty(duplicatePropertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
 

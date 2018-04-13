@@ -23,7 +23,7 @@ describe('when generating schema annotation for a single descriptor', () => {
         },
       },
     });
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
 
     const descriptor: Descriptor = Object.assign(newDescriptor(), {
       metaEdName: 'DescriptorName',

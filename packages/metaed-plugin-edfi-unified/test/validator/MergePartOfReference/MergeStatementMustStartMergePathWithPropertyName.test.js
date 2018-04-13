@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/MergePartOfReference/MergeStatementMustStartMergePathWithPropertyName';
 
@@ -18,6 +18,8 @@ describe('when validating reference property starts merge path with matching pro
       .withMergePartOfReference(`${entityName}.Property`, 'TargetPropertyName')
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -46,6 +48,8 @@ describe('when validating reference property starts merge path with mismatched p
       .withMergePartOfReference('EntityName.PropertyName', 'TargetPropertyName')
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -83,6 +87,8 @@ describe('when validating reference property starts merge path with matching pro
       .withMergePartOfReference(`${entityName}.Property`, 'TargetPropertyName')
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -113,6 +119,8 @@ describe('when validating reference property starts merge path with property nam
       .withMergePartOfReference(`${contextName}${entityName}.Property`, 'TargetPropertyName')
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -143,6 +151,8 @@ describe('when validating reference property starts merge path with property nam
       .withMergePartOfReference(`${entityName}.Property`, 'TargetPropertyName')
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);

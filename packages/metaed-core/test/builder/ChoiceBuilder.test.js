@@ -1,5 +1,6 @@
 // @flow
 import { ChoiceBuilder } from '../../src/builder/ChoiceBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getChoice } from '../TestHelper';
@@ -29,6 +30,7 @@ describe('when building choice in extension namespace', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndChoice()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -104,6 +106,7 @@ describe('when building duplicate choices', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndChoice()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -165,6 +168,7 @@ describe('when building choice with no choice name', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndChoice()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -202,6 +206,7 @@ describe('when building choice with lowercase choice name', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndChoice()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -275,6 +280,7 @@ describe('when building choice with no documentation', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndChoice()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -342,6 +348,7 @@ describe('when building choice with no property', () => {
       .withDocumentation(entityDocumentation)
       .withEndChoice()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -405,6 +412,7 @@ describe('when building choice with invalid trailing text', () => {
       .withTrailingText(trailingText)
       .withEndChoice()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -475,6 +483,7 @@ describe('when building choice source map', () => {
       .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
       .withEndChoice()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

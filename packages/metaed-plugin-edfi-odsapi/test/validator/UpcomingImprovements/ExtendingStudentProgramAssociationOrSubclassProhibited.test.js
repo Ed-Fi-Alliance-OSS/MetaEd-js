@@ -5,6 +5,7 @@ import {
   AssociationBuilder,
   AssociationSubclassBuilder,
   AssociationExtensionBuilder,
+  NamespaceInfoBuilder,
 } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/UpcomingImprovements/ExtendingStudentProgramAssociationOrSubclassProhibited';
@@ -27,6 +28,7 @@ describe('when an association extension extends a non-student program associatio
       .withEndAssociationExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
@@ -61,6 +63,7 @@ describe('when an association extension extends student program association', ()
       .withEndAssociationExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []));
 
@@ -111,6 +114,7 @@ describe('when an association extension extends a subclass of student program as
       .withEndAssociationExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []))
       .sendToListener(new AssociationExtensionBuilder(metaEd, []))
       .sendToListener(new AssociationSubclassBuilder(metaEd, []));

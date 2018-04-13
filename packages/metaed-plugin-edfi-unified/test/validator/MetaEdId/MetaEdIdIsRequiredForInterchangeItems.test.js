@@ -1,5 +1,5 @@
 // @flow
-import { InterchangeBuilder, newMetaEdEnvironment, MetaEdTextBuilder } from 'metaed-core';
+import { InterchangeBuilder, newMetaEdEnvironment, MetaEdTextBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../../metaed-plugin-edfi-unified/src/validator/MetaEdId/MetaEdIdIsRequiredForInterchangeItems';
 
@@ -15,6 +15,8 @@ describe('when validating interchange element is missing metaEdId', () => {
       .withDomainEntityElement('DomainEntityElementName')
       .withEndInterchange()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new InterchangeBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -48,6 +50,8 @@ describe('when validating interchange extension element is missing metaEdId', ()
       .withDomainEntityElement('DomainEntityElementName')
       .withEndInterchangeExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new InterchangeBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -83,6 +87,8 @@ describe('when validating interchange identity template is missing metaEdId', ()
       .withDomainEntityIdentityTemplate('DomainEntityIdentityTemplateName')
       .withEndInterchange()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new InterchangeBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -116,6 +122,8 @@ describe('when validating interchange extension identity template is missing met
       .withDomainEntityIdentityTemplate('DomainEntityIdentityTemplateName')
       .withEndInterchangeExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new InterchangeBuilder(metaEd, []));
 
     failures = validate(metaEd);

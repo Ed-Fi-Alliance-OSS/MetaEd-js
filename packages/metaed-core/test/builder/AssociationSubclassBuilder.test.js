@@ -1,6 +1,7 @@
 // @flow
 import { AssociationSubclassBuilder } from '../../src/builder/AssociationSubclassBuilder';
 import { MetaEdTextBuilder } from '../../src/grammar/MetaEdTextBuilder';
+import { NamespaceInfoBuilder } from '../../src/builder/NamespaceInfoBuilder';
 import { newMetaEdEnvironment } from '../../src/MetaEdEnvironment';
 import { getAssociationSubclass } from '../TestHelper';
 import type { MetaEdEnvironment } from '../../src/MetaEdEnvironment';
@@ -27,6 +28,7 @@ describe('when building association subclass in extension namespace', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationSubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -97,6 +99,7 @@ describe('when building duplicate association subclasses', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationSubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -156,6 +159,7 @@ describe('when building association subclass with no association subclass name',
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationSubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -190,6 +194,7 @@ describe('when building association subclass with lowercase association subclass
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationSubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -224,6 +229,7 @@ describe('when building association subclass with no based on name', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationSubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -295,6 +301,7 @@ describe('when building association subclass with lowercase based on name', () =
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationSubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -364,6 +371,7 @@ describe('when building association subclass with no documentation', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationSubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -425,6 +433,7 @@ describe('when building association subclass with no property', () => {
       .withDocumentation(documentation)
       .withEndAssociationSubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -490,6 +499,7 @@ describe('when building association subclass with invalid trailing text', () => 
       .withTrailingText(trailingText)
       .withEndAssociationSubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 
@@ -560,6 +570,7 @@ describe('when building association subclass source map', () => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationSubclass()
       .withEndNamespace()
+      .sendToListener(new NamespaceInfoBuilder(metaEd, validationFailures))
       .sendToListener(builder);
   });
 

@@ -6,6 +6,7 @@ import {
   IntegerTypeBuilder,
   StringTypeBuilder,
   DecimalTypeBuilder,
+  NamespaceInfoBuilder,
   SharedDecimalBuilder,
   SharedIntegerBuilder,
   SharedStringBuilder,
@@ -31,6 +32,7 @@ describe('when two integer properties in different DEs have the same name', () =
       .withIntegerProperty(propertyName, 'doc', true, false, '5', '2')
       .withEndDomainEntity()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new IntegerTypeBuilder(metaEd, []));
 
@@ -65,6 +67,7 @@ describe('when an integer property and a decimal property in different DEs have 
       .withDecimalProperty(propertyName, 'doc', true, false, '5', '2')
       .withEndDomainEntity()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DecimalTypeBuilder(metaEd, []))
       .sendToListener(new IntegerTypeBuilder(metaEd, []));
@@ -101,6 +104,7 @@ describe('when a integer property and a string property in different DEs have th
       .withStringProperty(propertyName, 'doc', true, false, '5', '2')
       .withEndDomainEntity()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new StringTypeBuilder(metaEd, []))
       .sendToListener(new IntegerTypeBuilder(metaEd, []));
@@ -136,6 +140,7 @@ describe('when an string property and a string property in different DEs have th
       .withStringProperty(propertyName, 'doc', true, false, '5', '2')
       .withEndDomainEntity()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new StringTypeBuilder(metaEd, []));
 
@@ -169,6 +174,7 @@ describe('when an string property and a decimal property in different DEs have t
       .withDecimalProperty(propertyName, 'doc', true, false, '5', '2')
       .withEndDomainEntity()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DecimalTypeBuilder(metaEd, []))
       .sendToListener(new StringTypeBuilder(metaEd, []));
@@ -205,6 +211,7 @@ describe('when an decimal property and a decimal property in different DEs have 
       .withDecimalProperty(propertyName, 'doc', true, false, '5', '2')
       .withEndDomainEntity()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DecimalTypeBuilder(metaEd, []));
 
@@ -239,6 +246,7 @@ describe('when a decimal property and a shared decimal property in different DEs
       .withSharedDecimalProperty(propertyName, null, 'doc', true, false)
       .withEndDomainEntity()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DecimalTypeBuilder(metaEd, []))
       .sendToListener(new SharedDecimalBuilder(metaEd, []));
@@ -274,6 +282,7 @@ describe('when a string property and a shared string property in different DEs h
       .withSharedStringProperty(propertyName, null, 'doc', true, false)
       .withEndDomainEntity()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new StringTypeBuilder(metaEd, []))
       .sendToListener(new SharedStringBuilder(metaEd, []));
@@ -310,6 +319,7 @@ describe('when an integer property and a shared integer property in different DE
       .withSharedIntegerProperty(propertyName, null, 'doc', true, false)
       .withEndDomainEntity()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new IntegerTypeBuilder(metaEd, []))
       .sendToListener(new SharedIntegerBuilder(metaEd, []));
@@ -345,6 +355,7 @@ describe('when a short property and a shared short property in different DEs hav
       .withSharedShortProperty(propertyName, null, 'doc', true, false)
       .withEndDomainEntity()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new IntegerTypeBuilder(metaEd, []))
       .sendToListener(new SharedIntegerBuilder(metaEd, []));
@@ -381,6 +392,7 @@ describe('when a string property and a shared decimal property in different DEs 
       .withSharedDecimalProperty(propertyName, null, 'doc', true, false)
       .withEndDomainEntity()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new IntegerTypeBuilder(metaEd, []))
       .sendToListener(new SharedDecimalBuilder(metaEd, []));

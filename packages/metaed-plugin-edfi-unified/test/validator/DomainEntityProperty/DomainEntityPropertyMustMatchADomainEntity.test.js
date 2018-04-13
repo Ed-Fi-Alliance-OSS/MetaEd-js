@@ -5,6 +5,7 @@ import {
   DomainEntityBuilder,
   DomainEntitySubclassBuilder,
   AssociationBuilder,
+  NamespaceInfoBuilder,
 } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/DomainEntityProperty/DomainEntityPropertyMustMatchADomainEntity';
@@ -29,6 +30,7 @@ describe('when domain entity property has identifier of domain entity', () => {
       .withEndDomainEntity()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -59,6 +61,7 @@ describe('when domain entity property has identifier of domain entity subclass',
       .withEndDomainEntity()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
 
@@ -83,6 +86,8 @@ describe('when domain entity property has invalid identifier', () => {
       .withDomainEntityProperty('UndefinedEntityName', 'doc', true, false)
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -118,6 +123,8 @@ describe('when domain entity property on association has invalid identifier', ()
       .withAssociationDomainEntityProperty('UndefinedEntityName2', 'doc')
       .withEndAssociation()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []));
 
     failures = validate(metaEd);

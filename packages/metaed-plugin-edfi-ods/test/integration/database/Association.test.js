@@ -341,8 +341,8 @@ describe('when association has additional primary key reference properties', () 
       .withEndAssociation()
       .withEndNamespace()
 
-      .sendToListener(new EnumerationBuilder(metaEd, []))
       .sendToListener(new NamespaceInfoBuilder(metaEd, []))
+      .sendToListener(new EnumerationBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []))
       .sendToListener(new AssociationBuilder(metaEd, []));
 

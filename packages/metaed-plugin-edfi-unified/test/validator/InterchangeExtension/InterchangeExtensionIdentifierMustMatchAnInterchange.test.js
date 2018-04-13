@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, InterchangeBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, InterchangeBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/InterchangeExtension/InterchangeExtensionIdentifierMustMatchAnInterchange';
 
@@ -23,6 +23,7 @@ describe('when validating interchange extension has valid extendee', () => {
       .withEndInterchangeExtension()
       .withEndNamespace()
 
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new InterchangeBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -52,6 +53,8 @@ describe('when validating interchange extension has invalid extendee', () => {
       .withDomainEntityElement('DomainEntityIdentityTemplateName')
       .withEndInterchangeExtension()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new InterchangeBuilder(metaEd, []));
 
     failures = validate(metaEd);

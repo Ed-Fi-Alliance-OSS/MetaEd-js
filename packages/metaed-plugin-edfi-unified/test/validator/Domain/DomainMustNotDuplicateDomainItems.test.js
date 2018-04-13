@@ -1,5 +1,5 @@
 // @flow
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainBuilder } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DomainBuilder, NamespaceInfoBuilder } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/Domain/DomainMustNotDuplicateDomainItems';
 
@@ -18,6 +18,8 @@ describe('when validating domain entity domain item does not duplicate domain it
       .withDomainEntityDomainItem('DomainItem2')
       .withFooterDocumentation('FooterDocumentation')
       .withEndDomain()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -48,6 +50,8 @@ describe('when validating domain entity domain item duplicates domain items', ()
       .withDomainEntityDomainItem(domainEntityName)
       .withFooterDocumentation('FooterDocumentation')
       .withEndDomain()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []));
 
     failures = validate(metaEd);
@@ -91,6 +95,8 @@ describe('when validating domain entity domain item has multiple duplicate domai
       .withDomainEntityDomainItem('NotDuplicate')
       .withFooterDocumentation('FooterDocumentation')
       .withEndDomain()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainBuilder(metaEd, []));
 
     failures = validate(metaEd);

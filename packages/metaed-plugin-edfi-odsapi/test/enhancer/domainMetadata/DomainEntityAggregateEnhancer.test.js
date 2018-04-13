@@ -27,7 +27,7 @@ describe('when enhancing a domain entity', () => {
   let aggregate: Aggregate = NoAggregate;
 
   beforeAll(() => {
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
 
     const table: Table = {
       ...newTable(),
@@ -100,7 +100,7 @@ describe('when enhancing a domain entity that allows primary key updates', () =>
   let aggregate: Aggregate = NoAggregate;
 
   beforeAll(() => {
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
 
     const table: Table = {
       ...newTable(),
@@ -167,7 +167,7 @@ describe('when enhancing a domain entity that has a required collection table', 
   let aggregate: Aggregate = NoAggregate;
 
   beforeAll(() => {
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
 
     const table: Table = {
       ...newTable(),

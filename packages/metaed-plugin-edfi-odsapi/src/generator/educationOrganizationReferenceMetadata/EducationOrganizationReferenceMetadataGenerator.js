@@ -36,7 +36,7 @@ function generateFile(input: any, namespaceInfo: NamespaceInfo): GeneratedOutput
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: Array<GeneratedOutput> = [];
 
-  if (metaEd.entity.namespaceInfo.length > 0) {
+  if (metaEd.entity.namespaceInfo.size > 0) {
     metaEd.entity.namespaceInfo.forEach((namespaceInfo: NamespaceInfo) => {
       const educationOrganizationReferences: Array<EducationOrganizationReference> = orderByProp('name')(
         namespaceInfo.data.edfiOdsApi.api_EducationOrganizationReferences,

@@ -54,9 +54,9 @@ describe('when generating xsd for association with inline common type as part of
 
       .withEndNamespace()
 
+      .sendToListener(namespaceInfoBuilder)
       .sendToListener(domainEntityBuilder)
       .sendToListener(associationBuilder)
-      .sendToListener(namespaceInfoBuilder)
       .sendToListener(commonBuilder)
       .toString();
 
@@ -129,9 +129,9 @@ describe('when generating xsd for association in extension namespace with refere
 
       .withEndNamespace()
 
+      .sendToListener(namespaceInfoBuilder)
       .sendToListener(domainEntityBuilder)
       .sendToListener(associationBuilder)
-      .sendToListener(namespaceInfoBuilder)
       .sendToListener(commonBuilder)
       .toString();
 
@@ -271,9 +271,9 @@ describe('when generating xsd for association in extension namespace with refere
 
       .withEndNamespace()
 
+      .sendToListener(namespaceInfoBuilder)
       .sendToListener(domainEntityBuilder)
       .sendToListener(associationBuilder)
-      .sendToListener(namespaceInfoBuilder)
       .sendToListener(commonBuilder)
       .toString();
 

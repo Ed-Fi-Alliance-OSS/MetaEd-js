@@ -8,6 +8,7 @@ import {
   AssociationBuilder,
   AssociationExtensionBuilder,
   AssociationSubclassBuilder,
+  NamespaceInfoBuilder,
 } from 'metaed-core';
 import type { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/MergePartOfReference/TargetPropertyPathMustExist';
@@ -34,6 +35,8 @@ describe('when validating domain entity has target property', () => {
       .withMergePartOfReference(`${domainEntityName1}.${propertyName}`, `${propertyName}`)
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, failures));
 
     failures = validate(metaEd);
@@ -71,6 +74,8 @@ describe('when validating domain entity has merge property and entity is wrong',
       .withMergePartOfReference(`${domainEntityName}.${propertyName}`, `EntityNotValid.${targetPropertyName}`)
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, failures));
 
     failures = validate(metaEd);
@@ -116,6 +121,8 @@ describe('when validating domain entity has merge property and property is wrong
       .withMergePartOfReference(`${domainEntityName}.${propertyName}`, `${targetEntityName}.NotThere`)
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, failures));
 
     failures = validate(metaEd);
@@ -168,6 +175,8 @@ describe('when validating domain entity has merge property on common type', () =
       .withMergePartOfReference(`${secondEntityName}.${domainEntityName}`, domainEntityName)
       .withEndDomainEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, failures))
       .sendToListener(new CommonBuilder(metaEd, failures));
 
@@ -211,6 +220,8 @@ describe('when validating domain entity subclass has merge property', () => {
       .withMergePartOfReference(`${domainEntityName}.${propertyName}`, `${targetPropertyName}`)
       .withEndDomainEntitySubclass()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, failures))
       .sendToListener(new DomainEntitySubclassBuilder(metaEd, failures));
 
@@ -260,6 +271,8 @@ describe('when validating association has merge property', () => {
       .withDomainEntityProperty(domainEntityName, 'Documentation', false, false)
       .withMergePartOfReference(`${domainEntityName}.${propertyName}`, `${targetAssociationName}.${targetPropertyName}`)
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, failures))
       .sendToListener(new AssociationBuilder(metaEd, failures));
 
@@ -311,6 +324,8 @@ describe('when validating association extension has merge property', () => {
       .withDomainEntityProperty(domainEntityName, 'Documentation', false, false)
       .withMergePartOfReference(`${domainEntityName}.${propertyName}`, `${targetAssociationName}.${targetPropertyName}`)
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, failures))
       .sendToListener(new AssociationBuilder(metaEd, failures))
       .sendToListener(new AssociationExtensionBuilder(metaEd, failures));
@@ -363,6 +378,8 @@ describe('when validating association subclass has merge property', () => {
       .withDomainEntityProperty(domainEntityName, 'Documentation', false, false)
       .withMergePartOfReference(`Entity2.${propertyName}`, `${domainEntityName}.${propertyName}`)
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, failures))
       .sendToListener(new AssociationBuilder(metaEd, failures))
       .sendToListener(new AssociationSubclassBuilder(metaEd, failures));
@@ -402,6 +419,8 @@ describe('when validating abstract entity has merge property', () => {
       .withMergePartOfReference(`${domainEntityName}.${propertyName}`, `${targetPropertyName}`)
       .withEndAbstractEntity()
       .withEndNamespace()
+
+      .sendToListener(new NamespaceInfoBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, failures));
 
     failures = validate(metaEd);

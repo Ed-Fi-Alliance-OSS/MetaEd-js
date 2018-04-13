@@ -48,7 +48,7 @@ describe('when generating aggregate for edfi', () => {
       },
     });
 
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     result = (await generate(metaEd)).generatedOutput[0].resultString;
   });
 
@@ -93,7 +93,7 @@ describe('when generating aggregate for extensions', () => {
       },
     });
 
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     result = (await generate(metaEd)).generatedOutput[0].resultString;
   });
 
@@ -138,7 +138,7 @@ describe('when generating aggregate with subclass for edfi', () => {
       },
     });
 
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     result = (await generate(metaEd)).generatedOutput[0].resultString;
   });
 
@@ -183,7 +183,7 @@ describe('when generating aggregate extensions', () => {
       },
     });
 
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     result = (await generate(metaEd)).generatedOutput[0].resultString;
   });
 
@@ -228,7 +228,7 @@ describe('when generating abstract aggregate for edfi', () => {
       },
     });
 
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     result = (await generate(metaEd)).generatedOutput[0].resultString;
   });
 
@@ -273,7 +273,7 @@ describe('when generating aggregate with primary key update', () => {
       },
     });
 
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     result = (await generate(metaEd)).generatedOutput[0].resultString;
   });
 
@@ -318,7 +318,7 @@ describe('when generating aggregate with required collection table', () => {
       },
     });
 
-    metaEd.entity.namespaceInfo.push(namespaceInfo);
+    metaEd.entity.namespaceInfo.set(namespaceInfo.namespace, namespaceInfo);
     result = (await generate(metaEd)).generatedOutput[0].resultString;
   });
 
