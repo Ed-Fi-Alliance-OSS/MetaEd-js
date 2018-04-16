@@ -1,66 +1,10 @@
 /** @babel */
 // @flow
 
-import fs from 'fs-extra';
 import path from 'path';
-import MetaEdConfig from './MetaEdConfig';
-import { getCoreMetaEdSourceDirectory, useTechPreview } from './Settings';
-import { metaEdConfigTemplate } from './templates/TemplateEngine';
-import type MetaEdLog from './MetaEdLog';
+import { getCoreMetaEdSourceDirectory } from './PackageSettings';
 
-export const CONFIG_NAME: string = 'metaEd.json';
-
-export function newMetaEdConfig(projectPath: string): void {
-  const targetVersion: string = useTechPreview() ? '3.0.0' : '2.0.0';
-  const corePath: string = getCoreMetaEdSourceDirectory();
-  const extensionPath: ?string = projectPath === corePath ? null : projectPath;
-  const configTemplate: string = metaEdConfigTemplate(targetVersion, corePath, extensionPath);
-  fs.writeFileSync(path.join(projectPath, CONFIG_NAME), configTemplate);
-}
-
-export function getMetaEdConfig(projectPath: string, metaEdLog: MetaEdLog): string {
-  const configPath: string = path.join(projectPath, CONFIG_NAME);
-
-  if (!fs.existsSync(configPath)) {
-    metaEdLog.addMessage(`Creating extension config: ${projectPath}`);
-    newMetaEdConfig(projectPath);
-  } else {
-    metaEdLog.addMessage(`Using existing extension config: ${configPath}`);
-  }
-
-  return configPath;
-}
-
-export function createNewExtensionProject(metaEdLog: MetaEdLog, metaEdConfig: MetaEdConfig): void {
-  // Ensure core is set up correctly
-  metaEdConfig.updateCoreMetaEdSourceDirectory();
-  const projectCount = atom.project.getPaths().length;
-  if (projectCount === 0) {
-    metaEdLog.addMessage(`Unable to set up MetaEd Core Source File Directory '${getCoreMetaEdSourceDirectory()}'.`);
-  } else if (projectCount > 0) {
-    atom.pickFolder((selectedPaths: string[]) => {
-      if (selectedPaths == null || selectedPaths.length === 0) return;
-      selectedPaths.forEach(selectedPath => {
-        atom.project.addPath(selectedPath);
-        getMetaEdConfig(selectedPath, metaEdLog);
-      });
-    });
-  }
-}
-
-export function createFromTemplate(targetPath: string, targetFileName: string, template: () => string) {
-  let targetFullFilePath = path.join(targetPath, targetFileName);
-  let counter = 1;
-  const startOfFile = path.basename(targetFullFilePath, path.extname(targetFullFilePath));
-  while (fs.existsSync(targetFullFilePath)) {
-    targetFullFilePath = path.join(
-      path.dirname(targetFullFilePath),
-      startOfFile + counter + path.extname(targetFullFilePath),
-    );
-    counter += 1;
-  }
-  fs.writeFileSync(targetFullFilePath, template());
-}
+export const CONFIG_NAME: string = 'package.json';
 
 // monkey patches a TextBuffer by removing the transact() and applyChange() function behaviors
 // to simulate read only behavior in the TextBuffer

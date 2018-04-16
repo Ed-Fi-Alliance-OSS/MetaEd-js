@@ -75,7 +75,10 @@ export async function tableColumnCount(databaseTable: DatabaseTable, databaseNam
   return firstKeyValueOf(result);
 }
 
-export async function tablePrimaryKeys(databaseTable: DatabaseTable, databaseName: string = testDatabaseName) {
+export async function tablePrimaryKeys(
+  databaseTable: DatabaseTable,
+  databaseName: string = testDatabaseName,
+): Promise<Array<*>> {
   const sql = `
     SELECT K.COLUMN_NAME
     FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS C
@@ -90,14 +93,17 @@ export async function tablePrimaryKeys(databaseTable: DatabaseTable, databaseNam
     ORDER BY K.ORDINAL_POSITION
   `;
 
-  let result = [];
+  let result: Array<any> = [];
   await database(databaseName, async db => {
     result = await query(db, 'tablePrimaryKeys', sql);
   });
-  return result.map(pk => firstKeyValueOf(pk));
+  return result.map((pk: any) => firstKeyValueOf(pk));
 }
 
-export async function tableUniqueConstraints(databaseTable: DatabaseTable, databaseName: string = testDatabaseName) {
+export async function tableUniqueConstraints(
+  databaseTable: DatabaseTable,
+  databaseName: string = testDatabaseName,
+): Promise<Array<*>> {
   const sql = `
     SELECT K.COLUMN_NAME
     FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS C

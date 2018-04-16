@@ -4,8 +4,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-dynamic-require */
 
-import R from 'ramda';
-import fs from 'fs-extra';
 import os from 'os';
 import path from 'path';
 import stackTrace from 'stack-trace';
@@ -15,37 +13,23 @@ import {
   getEdfiOdsApiSourceDirectory,
   getCmdFullPath,
   validateOnTheFly,
+  getMetaEdJsConsoleSourceDirectory,
   telemetryConsent,
   setTelemetryConsent,
   allianceMode,
-} from './Settings';
-
-const isDevEnvironment = R.memoize(() => fs.existsSync(path.resolve(__dirname, '../../../packages')));
+} from './PackageSettings';
+import { devEnviromentCorrectedPath } from './Utility';
 
 // $FlowIgnore
 const atomMetaEdPackageJson = require(path.resolve(__dirname, '../package.json'));
-const metaEdJsPackageJson = isDevEnvironment()
-  ? // $FlowIgnore
-    require(path.resolve(__dirname, '../../../node_modules/metaed-core/package.json'))
-  : // $FlowIgnore
-    require(path.resolve(__dirname, '../../metaed-core/package.json'));
-
-const metaCsharpPackageJson = isDevEnvironment()
-  ? // $FlowIgnore
-    require(path.resolve(__dirname, '../../../node_modules/metaed-csharp/package.json'))
-  : // $FlowIgnore
-    require(path.resolve(__dirname, '../../metaed-csharp/package.json'));
-
-const edFiModel20PackageJson = isDevEnvironment()
-  ? // $FlowIgnore
-    require(path.resolve(__dirname, '../../../node_modules/ed-fi-model-2.0/package.json'))
-  : // $FlowIgnore
-    require(path.resolve(__dirname, '../../ed-fi-model-2.0/package.json'));
-
-// Temporary until Ed-Fi-Model 2.1 is included
-const edFiModel21PackageJson = {
-  version: 'Not loaded',
-};
+// $FlowIgnore
+const metaEdJsPackageJson = require(devEnviromentCorrectedPath('metaed-core/package.json'));
+// $FlowIgnore
+const metaCsharpPackageJson = require(devEnviromentCorrectedPath('metaed-csharp/package.json'));
+// $FlowIgnore
+const edFiModel20PackageJson = require(devEnviromentCorrectedPath('ed-fi-model-2.0/package.json'));
+// $FlowIgnore
+const edFiModel30PackageJson = require(devEnviromentCorrectedPath('ed-fi-model-3.0/package.json'));
 
 const API_KEY = '572fefe3d435ced414e482499146e61e';
 const StackTraceCache = new WeakMap();
@@ -71,7 +55,7 @@ function normalizePath(filepath) {
     .replace(/[/]/g, '\\') // Temp switch for Windows home matching
     .replace(os.homedir(), '~') // Remove users home dir for apm-dev'ed packages
     .replace(/\\/g, '/') // Switch \ back to / for everyone
-    .replace(/.*(\/(app\.asar|packages\/).*)/, '$1'); // Remove everything before app.asar or pacakges
+    .replace(/.*(\/(app\.asar|packages\/).*)/, '$1'); // Remove everything before app.asar or packages
 }
 
 function buildStackTraceJSON(error) {
@@ -187,14 +171,15 @@ function addMetaEdIdeMetadata(error) {
     'ed-fi-model-2.0': {
       version: edFiModel20PackageJson.version,
     },
-    'ed-fi-model-2.1': {
-      version: edFiModel21PackageJson.version,
+    'ed-fi-model-3.0': {
+      version: edFiModel30PackageJson.version,
     },
   };
 
   error.metadata.metaedsettings = {
     'Core-MetaEd-Directory': getCoreMetaEdSourceDirectory(),
     'MetaEd-Console-Directory': getMetaEdConsoleSourceDirectory(),
+    'MetaEd-JS-Console-Directory': getMetaEdJsConsoleSourceDirectory(),
     'Ods-Api-Directory': getEdfiOdsApiSourceDirectory(),
     'Windows-Command-Prompt': getCmdFullPath(),
     validateOnTheFly: validateOnTheFly(),

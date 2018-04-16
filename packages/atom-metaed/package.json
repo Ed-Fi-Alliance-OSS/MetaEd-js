@@ -44,15 +44,58 @@
       "type": "boolean",
       "default": true
     },
-    "useTechPreview": {
+    "targetDsVersion": {
       "order": 7,
-      "title": "Enable Technical Preview functionality",
-      "description": "Use Technical Preview enhancements.  Requires the Ed-Fi Data Standard core .metaed directory to point to the core version used in the Technical Preview.  Requires Atom restart after changing.",
-      "type": "boolean",
-      "default": false
+      "title": "Target Ed-Fi Data Standard Version",
+      "description": "Select the target Ed-Fi Data Standard version.",
+      "type": "string",
+      "default": "2.0.1",
+      "enum": [
+        {
+          "value": "2.0.1",
+          "description": "2.0.1"
+        },
+        {
+          "value": "3.0",
+          "description": "3.0"
+        }
+      ]
+    },
+    "targetOdsApiVersion": {
+      "order": 8,
+      "title": "Target Ed-Fi ODS/API Version",
+      "description": "Select the target Ed-Fi ODS/API version.",
+      "type": "string",
+      "default": "2.3.1",
+      "enum": [
+        {
+          "value": "2.0",
+          "description": "2.0"
+        },
+        {
+          "value": "2.1",
+          "description": "2.1"
+        },
+        {
+          "value": "2.2",
+          "description": "2.2"
+        },
+        {
+          "value": "2.3",
+          "description": "2.3"
+        },
+        {
+          "value": "2.3.1",
+          "description": "2.3.1"
+        },
+        {
+          "value": "3.0",
+          "description": "3.0"
+        }
+      ]
     },
     "telemetryConsent": {
-      "order": 8,
+      "order": 9,
       "title": "Consent to anonymous usage reporting",
       "description": "Select whether you are willing to submit anonymous usage information to the Ed-Fi Alliance server. Broadly, we send things like performance metrics and exceptions.",
       "type": "string",
@@ -73,7 +116,7 @@
       ]
     },
     "alliance": {
-      "order": 9,
+      "order": 10,
       "title": "",
       "type": "object",
       "collapsed": true,
@@ -125,6 +168,7 @@
     "metaed-plugin-edfi-xsd": "1.1.6-dev.0",
     "path": "0.12.7",
     "ramda": "0.23.0",
+    "semver": "^5.5.0",
     "stack-trace": "^0.0.10",
     "stream-splitter": "0.3.2",
     "tmp-promise": "^1.0.4",

@@ -36,7 +36,7 @@
   {
     # MetaEd entity property keywords (e.g., is required, min length)
     'match': '''
-    \\b(association|allow primary key updates|additions|based on|inherited|bool|choice|common extension|common|currency|date|decimal places|decimal|descriptor|documentation|domain entity|domain item|duration|element|enumeration|extended documentation|identity template|inherited|inline common|integer|is part of identity|is optional collection|is optional|is queryable field|is queryable only|is required collection|is required|is weak|item|max length|max value|merge|min length|min value|total digits|named|percent|renames identity property|shared decimal|shared integer|shared short|shared string|short|shorten to|string|time|use case documentation|with context|with|year)\\b
+    \\b(association|association identity|allow primary key updates|additions|based on|inherited|bool|choice|common extension|common|currency|date|decimal places|decimal|descriptor|documentation|domain entity|domain entity identity|domain item|duration|element|enumeration|extended documentation|identity template|inherited|inline common|integer|is part of identity|is optional collection|is optional|is queryable field|is queryable only|is required collection|is required|is weak|item|max length|max value|merge|min length|min value|total digits|named|percent|renames identity property|shared decimal|shared integer|shared short|shared string|short|shorten to|string|time|use case documentation|with context|with|year)\\b
     '''
     'name': 'keyword.metaed'
   }

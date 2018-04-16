@@ -34,17 +34,29 @@ export function validate(metaEd: MetaEdEnvironment): Array<ValidationFailure> {
   metaEd.propertyIndex.common.forEach(common => {
     if (!common.isExtensionOverride) return;
     const parentProperty = parentEntityProperty(metaEd.entity, common);
-    if (parentProperty && cardinalitiesMatch(parentProperty, common)) return;
-    failures.push({
-      validatorName:
-        'CommonPropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality',
-      category: 'error',
-      message: `'common extension' is invalid for property ${common.metaEdName} on ${
-        common.parentEntity.typeHumanizedName
-      } ${common.parentEntity.metaEdName}. 'common extension' is only valid for referencing Common extensions.`,
-      sourceMap: ((common.sourceMap: any): CommonPropertySourceMap).isExtensionOverride,
-      fileMap: null,
-    });
+    if (!parentProperty) {
+      failures.push({
+        validatorName:
+          'CommonPropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality',
+        category: 'error',
+        message: `'common extension' is invalid for property ${common.metaEdName} on ${
+          common.parentEntity.typeHumanizedName
+        } ${common.parentEntity.metaEdName}. 'common extension' is only valid for referencing Common extensions.`,
+        sourceMap: ((common.sourceMap: any): CommonPropertySourceMap).isExtensionOverride,
+        fileMap: null,
+      });
+    } else if (!cardinalitiesMatch(parentProperty, common)) {
+      failures.push({
+        validatorName:
+          'CommonPropertyWithExtensionOverrideRestrictedToDomainEntityAndAssociationExtensionsAndMaintainsCardinality',
+        category: 'error',
+        message: `'common extension' is invalid for property ${common.metaEdName} on ${
+          common.parentEntity.typeHumanizedName
+        } ${common.parentEntity.metaEdName}. 'common extension' must maintain original cardinality.`,
+        sourceMap: ((common.sourceMap: any): CommonPropertySourceMap).isExtensionOverride,
+        fileMap: null,
+      });
+    }
   });
   return failures;
 }

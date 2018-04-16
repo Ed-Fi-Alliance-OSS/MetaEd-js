@@ -7,7 +7,6 @@
 
   // Prettier
   "prettier.eslintIntegration": true,
-  "files.autoSave": "onFocusChange",
   "eslint.autoFixOnSave": true,
   "editor.rulers": [125],
 

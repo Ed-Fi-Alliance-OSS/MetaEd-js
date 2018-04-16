@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`when validating common property has extension override on association extension with include on extendee not matching collection cardinality should have validation failure: when validating common property has extension override on association extension with include on extendee not matching collection cardinality should have validation failures -> message  1`] = `"'common extension' is invalid for property EntityName1 on Association Extension EntityName2. 'common extension' is only valid for referencing Common extensions."`;
+exports[`when validating common property has extension override on association extension with include on extendee not matching collection cardinality should have validation failure: when validating common property has extension override on association extension with include on extendee not matching collection cardinality should have validation failures -> message  1`] = `"'common extension' is invalid for property EntityName1 on Association Extension EntityName2. 'common extension' must maintain original cardinality."`;
 
 exports[`when validating common property has extension override on association extension with include on extendee not matching collection cardinality should have validation failure: when validating common property has extension override on association extension with include on extendee not matching collection cardinality should have validation failures -> sourceMap 1`] = `
 Object {
@@ -10,7 +10,7 @@ Object {
 }
 `;
 
-exports[`when validating common property has extension override on association extension with include on extendee not matching nullablility should have validation failure: when validating common property has extension override on association extension with include on extendee not matching nullablility should have validation failures -> message  1`] = `"'common extension' is invalid for property EntityName1 on Association Extension EntityName2. 'common extension' is only valid for referencing Common extensions."`;
+exports[`when validating common property has extension override on association extension with include on extendee not matching nullablility should have validation failure: when validating common property has extension override on association extension with include on extendee not matching nullablility should have validation failures -> message  1`] = `"'common extension' is invalid for property EntityName1 on Association Extension EntityName2. 'common extension' must maintain original cardinality."`;
 
 exports[`when validating common property has extension override on association extension with include on extendee not matching nullablility should have validation failure: when validating common property has extension override on association extension with include on extendee not matching nullablility should have validation failures -> sourceMap 1`] = `
 Object {
@@ -30,7 +30,7 @@ Object {
 }
 `;
 
-exports[`when validating common property has extension override on domain entity extension with include on extendee not matching collection cardinality should have validation failure: when validating common property has extension override on domain entity extension with include on extendee not matching collection cardinality should have validation failures -> message  1`] = `"'common extension' is invalid for property EntityName1 on Domain Entity Extension EntityName2. 'common extension' is only valid for referencing Common extensions."`;
+exports[`when validating common property has extension override on domain entity extension with include on extendee not matching collection cardinality should have validation failure: when validating common property has extension override on domain entity extension with include on extendee not matching collection cardinality should have validation failures -> message  1`] = `"'common extension' is invalid for property EntityName1 on Domain Entity Extension EntityName2. 'common extension' must maintain original cardinality."`;
 
 exports[`when validating common property has extension override on domain entity extension with include on extendee not matching collection cardinality should have validation failure: when validating common property has extension override on domain entity extension with include on extendee not matching collection cardinality should have validation failures -> sourceMap 1`] = `
 Object {
@@ -40,7 +40,7 @@ Object {
 }
 `;
 
-exports[`when validating common property has extension override on domain entity extension with include on extendee not matching nullablility should have validation failure: when validating common property has extension override on domain entity extension with include on extendee not matching nullablility should have validation failures -> message  1`] = `"'common extension' is invalid for property EntityName1 on Domain Entity Extension EntityName2. 'common extension' is only valid for referencing Common extensions."`;
+exports[`when validating common property has extension override on domain entity extension with include on extendee not matching nullablility should have validation failure: when validating common property has extension override on domain entity extension with include on extendee not matching nullablility should have validation failures -> message  1`] = `"'common extension' is invalid for property EntityName1 on Domain Entity Extension EntityName2. 'common extension' must maintain original cardinality."`;
 
 exports[`when validating common property has extension override on domain entity extension with include on extendee not matching nullablility should have validation failure: when validating common property has extension override on domain entity extension with include on extendee not matching nullablility should have validation failures -> sourceMap 1`] = `
 Object {

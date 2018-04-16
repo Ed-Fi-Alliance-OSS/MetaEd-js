@@ -7,7 +7,6 @@ declare module 'atom' {
     add(entry: Disposable): void;
     dispose(): void;
   }
-
   declare type NotificationType = 'success' | 'info' | 'warning' | 'error' | 'fatalerror';
 
   declare class Notification {
@@ -29,6 +28,8 @@ declare class AtomConfig {
   get(keyPath: string): string & boolean;
   set(keyPath: string, value: string | boolean): void;
   observe(keyPath: string, callback: (value: string) => void): Disposable;
+  onDidChange(keyPath: string, callback: (value: string) => void): Disposable;
+  unset(keyPath: string): void;
 }
 
 declare class AtomPackage {
@@ -39,8 +40,9 @@ declare class AtomPackage {
 }
 
 declare class AtomNotificationManager {
-  addWarning(message: string, options: any): void;
-  addInfo(message: string, options: any): void;
+  addWarning(message: string, options: any): any;
+  addInfo(message: string, options: any): any;
+  addError(message: string, options: any): any;
   addNotification(notification: any): void;
 }
 
@@ -55,6 +57,7 @@ declare class AtomProject {
   getPaths(): string[];
   setPaths(projectPaths: string[]): void;
   getDirectories(): AtomDirectory[];
+  onDidChangePaths(callback: (projectPaths: Array<string>) => void): Disposable;
 }
 
 declare class AtomDirectory {

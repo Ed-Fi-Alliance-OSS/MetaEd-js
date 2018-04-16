@@ -3,7 +3,7 @@
 
 import { MessagePanelView, PlainMessageView } from 'atom-message-panel';
 
-export default class MetaEdLog {
+export default class OutputWindow {
   _outputWindow: MessagePanelView;
 
   constructor() {

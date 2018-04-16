@@ -1,22 +1,22 @@
 /** @babel */
 // @flow
-
+/*
 import fs from 'fs-extra';
 import path from 'path';
 import * as Settings from '../lib/Settings';
 import * as coreMetaEd from '../lib/CoreMetaEd';
 import { metaEdConfigTemplate } from '../lib/templates/TemplateEngine';
-import type MetaEdLog from '../lib//MetaEdLog';
+import type OutputWindow from '../lib//OutputWindow';
 import type MetaEdConfig from '../lib/MetaEdConfig';
 
 const coreMetaEdSourceDirectory = 'coreMetaEdSourceDirectory';
 
 describe('CoreMetaEd', () => {
-  let testMetaEdLog: MetaEdLog | any;
+  let testMetaEdLog: OutputWindow | any;
   let testMetaEdConfig: MetaEdConfig | any;
 
   beforeEach(() => {
-    testMetaEdLog = jasmine.createSpyObj('MetaEdLog', ['addMessage', 'clear']);
+    testMetaEdLog = jasmine.createSpyObj('OutputWindow', ['addMessage', 'clear']);
     testMetaEdConfig = jasmine.createSpyObj('MetaEdConfig', ['updateCoreMetaEdSourceDirectory']);
     spyOn(Settings, 'getCoreMetaEdSourceDirectory').andReturn(coreMetaEdSourceDirectory);
     spyOn(atom.project, 'getPaths');
@@ -129,3 +129,4 @@ describe('CoreMetaEd', () => {
     });
   });
 });
+*/

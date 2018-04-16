@@ -14,11 +14,14 @@ import {
   getCoreMetaEdSourceDirectory,
   getCmdFullPath,
   getEdfiOdsApiSourceDirectory,
-  useTechPreview,
   allianceMode,
-} from './Settings';
-import type MetaEdLog from './MetaEdLog';
-import { namespaceFromOldMetaEdJson } from './MetaEdConsoleJs';
+  getTargetDsVersion,
+  getTargetDsVersionSemver,
+  getTargetOdsApiVersionSemver,
+} from './PackageSettings';
+import type { MetaEdProject } from './ProjectSettings';
+import type OutputWindow from './OutputWindow';
+import { projectValuesFromProjectJson, lowercaseAndNumericOnly } from './MetaEdConsoleJs';
 
 type GulpInputs = {
   taskName: string,
@@ -33,18 +36,17 @@ type GulpInputs = {
   edfiOdsApiSourceDirectory: ?string,
   edfiOdsRepoDirectory: ?string,
   edfiOdsImplementationRepoDirectory: ?string,
-  deployTargetVersion: string,
   gulpPath: string,
 };
 
 export default class MetaEdConsole {
   // this is to allow mocking of spawn in tests
   _spawn: nodeSpawn;
-  _metaEdLog: MetaEdLog;
+  _metaEdLog: OutputWindow;
 
-  constructor(metaEdLog: MetaEdLog) {
+  constructor(outputWindow: OutputWindow) {
     this._spawn = nodeSpawn;
-    this._metaEdLog = metaEdLog;
+    this._metaEdLog = outputWindow;
   }
 
   async build(isExtensionProject: boolean = false): Promise<boolean> {
@@ -70,7 +72,7 @@ export default class MetaEdConsole {
   }
 
   async _gulpTask(taskName: string, isExtensionProject: boolean = false): Promise<boolean> {
-    const gulpInputs = this._verifyGulpInputs(taskName, isExtensionProject);
+    const gulpInputs = await this._verifyGulpInputs(taskName, isExtensionProject);
     if (!gulpInputs) {
       return new Promise(resolve => resolve(false));
     }
@@ -80,7 +82,7 @@ export default class MetaEdConsole {
   }
 
   // TODO: support multiple extension projects??? This is C#
-  _verifyGulpInputs(taskName: string, isExtensionProject: boolean = false): ?GulpInputs {
+  async _verifyGulpInputs(taskName: string, isExtensionProject: boolean = false): Promise<?GulpInputs> {
     let projectPath = atom.project.getPaths()[1];
     if (!projectPath && !allianceMode()) {
       this._metaEdLog.addMessage('No Extension Project found in editor.  Please add an extension project folder.');
@@ -159,17 +161,19 @@ export default class MetaEdConsole {
 
     let extensionNamespace = 'extension';
     if (isExtensionProject) {
-      const configFile = atom.project.getDirectories()[1].getFile('metaEd.json');
+      const configFile = atom.project.getDirectories()[1].getFile('package.json');
       if (configFile.existsSync()) {
         try {
-          const namespaceFromConfigFile = namespaceFromOldMetaEdJson(configFile.getRealPathSync());
-          if (namespaceFromConfigFile != null) extensionNamespace = namespaceFromConfigFile;
+          const metaEdProject: ?MetaEdProject = await projectValuesFromProjectJson(configFile.getRealPathSync());
+          if (metaEdProject != null) {
+            const namespace = lowercaseAndNumericOnly(metaEdProject.projectName);
+            extensionNamespace = namespace != null ? namespace : extensionNamespace;
+          }
         } catch (error) {
           // Use default if file doesn't match expected format
         }
       }
     }
-    const deployTargetVersion = useTechPreview() ? '3.0.0' : '2.0.0';
 
     return {
       taskName,
@@ -183,7 +187,6 @@ export default class MetaEdConsole {
       edfiOdsApiSourceDirectory,
       edfiOdsRepoDirectory,
       edfiOdsImplementationRepoDirectory,
-      deployTargetVersion,
       extensionNamespace,
       gulpPath,
     };
@@ -197,10 +200,9 @@ export default class MetaEdConsole {
       '--artifactPath',
       gulpInputs.artifactPath,
       '--deployTargetVersion',
-      gulpInputs.deployTargetVersion,
-      // TODO: this is actually data standard version, but we are temporarily using tech version since they happen to coincide
+      getTargetOdsApiVersionSemver(),
       '--version',
-      useTechPreview() ? '3.0.0' : '2.0.0',
+      getTargetDsVersionSemver(),
       // tell C# to only to generate non-JS items
       '--artifactGeneration',
       'Non_JS',
@@ -302,7 +304,7 @@ export default class MetaEdConsole {
           );
 
           // HACK: Move InterchangeOrderMetadata from documentation to new output structure
-          if (!useTechPreview()) {
+          if (getTargetDsVersion() !== '3.0') {
             const interchangeOrderMetadataPath = path.join(
               tempArtifactDirectoryObject.path,
               'ApiMetadata',
@@ -327,7 +329,6 @@ export default class MetaEdConsole {
             }
           }
 
-          // tempArtifactDirectoryObject.cleanup();
           await fs.remove(tempArtifactDirectoryObject.path);
         } else {
           this._metaEdLog.addMessage(`Error on call to MetaEd C# task ${gulpInputs.taskName}.`);

@@ -2,6 +2,8 @@
 // @flow
 
 import R from 'ramda';
+import { $ } from 'atom-space-pen-views';
+import { isCoreMetaEdFile } from './MakeCoreTabsReadOnly';
 
 function findAll(commands: string[]) {
   const found = [];
@@ -29,7 +31,7 @@ function findAll(commands: string[]) {
 
 const sortByPosition = R.sortBy(R.prop('position'));
 
-export default class CommandGroups {
+class CommandGroups {
   name: string;
   commands: string[];
   items: any;
@@ -95,4 +97,35 @@ export default class CommandGroups {
       });
     });
   }
+}
+
+export function hideTreeViewContextMenuOperationsWhenCore() {
+  if (!atom.packages.isPackageLoaded('tree-view')) return;
+  atom.packages.activatePackage('tree-view').then(pkg => {
+    const contextMenuCommandsToHide = [
+      'tree-view:move',
+      'tree-view:duplicate',
+      'tree-view:remove',
+      // copy remains
+      'tree-view:cut',
+      'tree-view:paste',
+      'atom-metaed:createNewExtensionProject',
+      'tree-view:add-file',
+      'tree-view:add-folder',
+    ];
+    const contextMenuHider = new CommandGroups('Things', contextMenuCommandsToHide);
+
+    const treeView = pkg.mainModule.getTreeViewInstance();
+    const treeViewEl = atom.views.getView(treeView);
+
+    // TODO: how to dispose/make disposable?
+    $(treeViewEl).on('mousedown', event => {
+      if (event.which !== 3) return;
+      if (isCoreMetaEdFile(treeView.selectedPath)) {
+        contextMenuHider.hide();
+      } else {
+        contextMenuHider.show();
+      }
+    });
+  });
 }

@@ -1,14 +1,14 @@
 Coding Style Guide
 ======
 
-* Use ES6 language features.
+* Use ES2018 language features, anything stage 4 is also fine, discuss before introducing anything stage 3.
 * Use Flow.
 * Use ESLint with Airbnb presets.
+* Use Prettier.
+* Only Builders can be classes, Models are JS objects, the rest (Validators, Enhancers, etc.) are simply functions.
 * No abbreviations, no truncations of variable/method/file names.
 * Validator, Enhancer and Diminisher file names must be descriptive. Be as verbose as necessary.
-* Validators, Enhancers and Diminishers must only do one thing - truly SRP.
-* No methods on Model classes.
-* Only Builders and Models can be classes, the rest are functions.
+* Validators, Enhancers and Diminishers must do only one thing - truly SRP.
 * Minimize plurals.
 * Minimize temp variables.
 * Extract small pure functions to name behaviors. Be as verbose as necessary.
@@ -17,7 +17,7 @@ Coding Style Guide
 * You almost never need private class methods.
 * Never ever mutate data at the module level.
 * Type annotations everywhere.
-* Never suppress type errors unless you can prove you know better that the analyzer, document why.
+* Never suppress Flow errors unless you can prove you know better than Flow, document why.
 * Minimize use of ESLint ignore
   * Example where it is ok is unused method parameters for methods called by third-party libraries.
 * Tests are the documentation, make sure they are clear.

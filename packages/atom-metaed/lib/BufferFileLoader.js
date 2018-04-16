@@ -4,7 +4,7 @@ import path from 'path';
 import type { MetaEdFile, FileSet, State } from 'metaed-core';
 import { createMetaEdFile } from 'metaed-core';
 
-import { getCoreMetaEdSourceDirectory } from './Settings';
+import { getCoreMetaEdSourceDirectory } from './PackageSettings';
 
 function appendFileSet(state: State, fileSet: FileSet): State {
   const filepaths = fileSet.files.map(file => file.fullPath);

@@ -1,46 +1,49 @@
 /** @babel */
 // @flow
 
-export function metaEdConfigTemplate(
-  targetVersion: string,
-  dataStandardCoreSourceDirectory: string,
-  dataStandardExtensionSourceDirectory: ?string = null,
-): string {
+import fs from 'fs-extra';
+import path from 'path';
+import { updateCoreMetaEdSourceDirectory } from './CoreSourceDirectoryUpdater';
+import { getCoreMetaEdSourceDirectory } from './PackageSettings';
+import { newProjectJson } from './ProjectSettings';
+import type OutputWindow from './OutputWindow';
+
+export function createNewExtensionProject(outputWindow: OutputWindow): void {
+  // Ensure core is set up correctly
+  updateCoreMetaEdSourceDirectory();
+  const projectCount = atom.project.getPaths().length;
+  if (projectCount === 0) {
+    outputWindow.addMessage(`Unable to set up MetaEd Core Source File Directory '${getCoreMetaEdSourceDirectory()}'.`);
+  } else if (projectCount > 0) {
+    atom.pickFolder((selectedPaths: string[]) => {
+      if (selectedPaths == null || selectedPaths.length === 0) return;
+      selectedPaths.forEach(async selectedPath => {
+        atom.project.addPath(selectedPath);
+        await newProjectJson(selectedPath);
+      });
+    });
+  }
+}
+
+export function createFromTemplate(targetPath: string, targetFileName: string, template: () => string) {
+  let targetFullFilePath = path.join(targetPath, targetFileName);
+  let counter = 1;
+  const startOfFile = path.basename(targetFullFilePath, path.extname(targetFullFilePath));
+  while (fs.existsSync(targetFullFilePath)) {
+    targetFullFilePath = path.join(
+      path.dirname(targetFullFilePath),
+      startOfFile + counter + path.extname(targetFullFilePath),
+    );
+    counter += 1;
+  }
+  fs.writeFileSync(targetFullFilePath, template());
+}
+
+export function packageJsonTemplate(projectName: string, projectVersion: string): string {
   return `{
-  "metaEdConfiguration": {
-    "title": ${dataStandardExtensionSourceDirectory != null ? '"MetaEd Extension Project"' : '"MetaEd Core Project"'},
-    "namespace": ${dataStandardExtensionSourceDirectory != null ? '"extension"' : '"edfi"'},
-    "dataStandardCoreSourceVersion": "${targetVersion}",
-    "dataStandardCoreSourceDirectory": "${dataStandardCoreSourceDirectory.replace(/\\/g, '/')}",
-    ${
-      dataStandardExtensionSourceDirectory != null
-        ? `"dataStandardExtensionSourceDirectory": "${dataStandardExtensionSourceDirectory.replace(/\\/g, '/')}",`
-        : ''
-    }
-    "artifactDirectory": "./MetaEdOutput/",
-    "pluginConfig": {
-      "edfiUnified": {
-        "targetTechnologyVersion": "${targetVersion}"
-      },
-      "edfiOds": {
-        "targetTechnologyVersion": "${targetVersion}"
-      },
-      "edfiOdsApi": {
-        "targetTechnologyVersion": "${targetVersion}"
-      },
-      "edfiXsd": {
-        "targetTechnologyVersion": "${targetVersion}"
-      },
-      "edfiHandbook": {
-        "targetTechnologyVersion": "${targetVersion}"
-      },
-      "edfiInterchangeBrief": {
-        "targetTechnologyVersion": "${targetVersion}"
-      },
-      "edfiXmlDictionary": {
-        "targetTechnologyVersion": "${targetVersion}"
-      }
-    }
+  "metaEdProject": {
+    "projectName": "${projectName}",
+    "projectVersion": "${projectVersion}"
   }
 }`;
 }

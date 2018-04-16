@@ -10,14 +10,23 @@ import { generate as generateInterchange } from '../../src/generator/Interchange
 // This is a cheat until we determine how to access plugin dependencies for testing
 
 const parser = new DOMParser();
-const parseXml = (xmlString: string) => parser.parseFromString(xmlString);
+
+function parseXml(xmlString: string): string {
+  return parser.parseFromString(xmlString);
+}
 
 export const xpathSelect = xpath.useNamespaces({
   xs: 'http://www.w3.org/2001/XMLSchema',
   ann: 'http://ed-fi.org/annotation',
 });
 
-export async function enhanceAndGenerate(metaEd: MetaEdEnvironment) {
+type EnhanceAndGenerateResult = {
+  coreResult: string,
+  extensionResult: ?string,
+  interchangeResults: Array<string>,
+};
+
+export async function enhanceAndGenerate(metaEd: MetaEdEnvironment): Promise<EnhanceAndGenerateResult> {
   metaEd.dataStandardVersion = '2.0.0';
   initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
   initializeXsdPlugin().enhancer.forEach(enhance => enhance(metaEd));
@@ -29,6 +38,6 @@ export async function enhanceAndGenerate(metaEd: MetaEdEnvironment) {
   return {
     coreResult: parseXml(coreResultString),
     extensionResult: extensionResultString ? parseXml(extensionResultString) : null,
-    interchangeResults: interchangeGeneratorResult.map(result => parseXml(result.resultString)),
+    interchangeResults: interchangeGeneratorResult.map((result: GeneratedOutput) => parseXml(result.resultString)),
   };
 }

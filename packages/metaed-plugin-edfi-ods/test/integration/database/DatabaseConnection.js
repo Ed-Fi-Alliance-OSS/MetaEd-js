@@ -128,7 +128,7 @@ export async function scalar(connection: Connection | Transaction, action: strin
   return result.length > 0 ? result[0] : null;
 }
 
-export function firstKeyValueOf(object: any): * {
+export function firstKeyValueOf(object: any): any {
   return object[Object.keys(object)[0]];
 }
 
