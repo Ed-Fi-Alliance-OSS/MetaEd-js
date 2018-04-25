@@ -6,6 +6,7 @@
 
 // eslint-disable-next-line
 import { Notification } from 'atom';
+import R from 'ramda';
 import fs from 'fs-extra';
 import klawSync from 'klaw-sync';
 import path from 'path';
@@ -16,25 +17,24 @@ import { spawn } from 'child_process';
 import streamSplitter from 'stream-splitter';
 import ansihtml from 'ansi-html';
 import type { MetaEdConfiguration } from 'metaed-core';
-import type { MetaEdProjectFileMetadata } from './Projects';
-import { ensureProjectJsonExists } from './Projects';
+import { metaEdConfigurationFor } from './MetaEdConfigurationFactory';
+import type { MetaEdProjectMetadata } from './Projects';
+import { findMetaEdProjectMetadata } from './Projects';
 import {
   getMetaEdJsConsoleSourceDirectory,
   getEdfiOdsApiSourceDirectory,
   getCmdFullPath,
   allianceMode,
   getTargetOdsApiVersionSemver,
+  getTargetDsVersionSemver,
 } from './PackageSettings';
 import type OutputWindow from './OutputWindow';
 
 type BuildPaths = {
-  artifactDirectory: string,
   metaEdConsoleDirectory: string,
   cmdExePath: string,
   metaEdConsolePath: string,
   metaEdDeployPath: string,
-  projectJsonFilePath: string,
-  projectDirectory: string,
 };
 
 // collapse directory path in tree-view if exists (workaround for Atom GitHub issue #3365)
@@ -147,12 +147,8 @@ async function verifyBuildPaths(outputWindow: OutputWindow): Promise<?BuildPaths
   return {
     metaEdConsoleDirectory,
     cmdExePath,
-    //////////////// artifact directory should go in core for now
-    artifactDirectory: path.join(projectDirectory, 'MetaEdOutput/'),
     metaEdConsolePath,
     metaEdDeployPath,
-    projectJsonFilePath,
-    projectDirectory,
   };
 }
 
@@ -212,8 +208,71 @@ async function executeBuild(
   });
 }
 
+function validProjectMetadata(metaEdProjectMetadata: MetaEdProjectMetadata, outputWindow: OutputWindow): boolean {
+  let hasInvalidProject: boolean = false;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const pm of metaEdProjectMetadata) {
+    if (pm.invalidProject) {
+      outputWindow.addMessage(`Project file ${pm.invalidProjectReason}.`);
+      hasInvalidProject = true;
+    }
+  }
+  if (hasInvalidProject) return false;
+
+  const hasExtensionProjects: boolean = R.any((pm: MetaEdProjectMetadata) => pm.isExtensionProject, metaEdProjectMetadata);
+  const coreProjectMetadata: Array<MetaEdProjectMetadata> = R.all(
+    (pm: MetaEdProjectMetadata) => pm.isExtensionProject,
+    metaEdProjectMetadata,
+  );
+
+  if (coreProjectMetadata.length > 1) {
+    outputWindow.addMessage('MetaEd does not support multiple core MetaEd projects.');
+    return false;
+  }
+
+  // Note - we are intentionally not validating that there are multiple extension projects with the same namespace
+
+  if (coreProjectMetadata.length < 1) {
+    outputWindow.addMessage('Please set up a core MetaEd directory under MetaEd -> Settings...');
+    return false;
+  }
+
+  if (coreProjectMetadata[0].projectVersion !== getTargetDsVersionSemver()) {
+    outputWindow.addMessage(
+      'Core MetaEd project version does not match Data Standard version selected under MetaEd -> Settings...',
+    );
+    return false;
+  }
+
+  if (hasExtensionProjects && allianceMode()) {
+    outputWindow.addMessage(
+      'Extension generation is not available in Alliance mode.  Please either switch modes or remove the extension project folder.',
+    );
+    return false;
+  }
+
+  if (!hasExtensionProjects && !allianceMode()) {
+    outputWindow.addMessage('No extension project.  Please add an extension project folder.');
+    return false;
+  }
+
+  if (semver.satisfies(getTargetOdsApiVersionSemver(), '2.x')) {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const pm of metaEdProjectMetadata) {
+      if (pm.isExtensionProject && pm.namespace !== 'extension') {
+        outputWindow.addMessage(
+          `Namespace derived from projectName (all lowercased, remove special characters) is not "extension". ODS/API version 2.x only supports the namespace "extension".`,
+        );
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
 // initialConfiguration is temporary until full multi-project support
-export async function build(initialConfiguration: MetaEdConfiguration, outputWindow: OutputWindow): Promise<boolean> {
+export async function build(outputWindow: OutputWindow): Promise<boolean> {
   try {
     outputWindow.clear();
     outputWindow.addMessage(`Beginning MetaEd JS build...`);
@@ -221,118 +280,31 @@ export async function build(initialConfiguration: MetaEdConfiguration, outputWin
     const buildPaths: ?BuildPaths = await verifyBuildPaths(outputWindow);
     if (!buildPaths) return false;
 
-    const metaEdConfiguration = {
+    const metaEdProjectMetadata: Array<MetaEdProjectMetadata> = findMetaEdProjectMetadata(true);
+    if (!validProjectMetadata(metaEdProjectMetadata, outputWindow)) return false;
+
+    const initialConfiguration = metaEdConfigurationFor(getTargetOdsApiVersionSemver());
+    // last project is where output goes
+    const artifactDirectory = path.join((R.last(metaEdProjectMetadata).projectPath, 'MetaEdOutput'));
+
+    const metaEdConfiguration: MetaEdConfiguration = {
       ...initialConfiguration,
-      artifactDirectory: buildPaths.artifactDirectory,
+      artifactDirectory,
     };
 
-//////////  findMetaEdProjectMetadata(true) call around here
-
-
-////////// START -  Error conditions from findMetaEdProjectMetadata(true) call here, based on:
-
-  // TODO: support multiple extension projects
-  let projectDirectory = atom.project.getPaths()[1];
-  if (projectDirectory != null && allianceMode()) {
-    outputWindow.addMessage(
-      'Extension generation is not available in Alliance mode.  Please either switch modes or remove the extension project folder.',
-    );
-    return null;
-  }
-
-  if (projectDirectory == null && !allianceMode()) {
-    outputWindow.addMessage('No Extension Project found in editor. Please add an extension project folder.');
-    return null;
-  }
-
-  if (projectDirectory == null && allianceMode()) {
-    if (atom.project.getPaths().length < 1) {
-      outputWindow.addMessage('Please set up a core MetaEd directory under File -> Settings -> Packages -> atom-metaed.');
-      return null;
-    }
-    projectDirectory = atom.project.getPaths()[0];
-  }
-
-  const projectJsonFilePath = await ensureProjectJsonExists(projectDirectory);
-
-
-///////////////  END
-
-
-
-
-
-///////////////  START -- old code covered by findMetaEdProjectMetadata()
-    // add extension project if there
-    const metaEdProject: ?MetaEdProjectFileMetadata = await projectValuesFromProjectJson(buildPaths.projectJsonFilePath);
-    if (metaEdProject == null) {
-      outputWindow.addMessage(
-        `MetaEd project configuration file at ${
-          buildPaths.projectJsonFilePath
-        } must have both metaEdProject.projectName and metaEdProject.projectVersion definitions.`,
-      );
-      return false;
-    }
-
-    const namespace: ?string = lowercaseAndNumericOnly(metaEdProject.projectName);
-    if (namespace == null) {
-      outputWindow.addMessage(
-        `metaEdProject.projectName has no leading alphabetic character in package.json configuration file at ${
-          buildPaths.projectJsonFilePath
-        }.`,
-      );
-      return false;
-    }
-
-    const projectVersion = semver.coerce(metaEdProject.projectVersion).toString();
-    if (!semver.valid(projectVersion)) {
-      outputWindow.addMessage(
-        `metaEdProject.projectVersion is not a valid version declaration in package.json configuration file at ${
-          buildPaths.projectJsonFilePath
-        }.`,
-      );
-      return false;
-    }
-
-/////////////  END
-
-
-
-/////////////  START -- additional checks to be taken now from findMetaEdProjectMetadata
-
-    if (namespace !== 'edfi') {
-      if (allianceMode() && atom.project.getPaths().length === 1) {
-        outputWindow.addMessage(
-          `Namespace defined as ${namespace} as derived from projectName (all lowercased, remove special characters) in package.json configuration file. Alliance mode only supports the namespace "edfi".`,
-        );
-        return false;
-      }
-
-      if (namespace !== 'extension' && semver.satisfies(getTargetOdsApiVersionSemver(), '2.x')) {
-        outputWindow.addMessage(
-          `Namespace defined as ${namespace} as derived from projectName (all lowercased, remove special characters) in package.json configuration file. ODS/API version 2.x only supports the namespace "extension".`,
-        );
-        return false;
-      }
-
-
-      ///////// this becomes a loop -- check where core is involved
+    metaEdProjectMetadata.forEach(pm => {
       metaEdConfiguration.projects.push({
-        namespace,
-        projectName: metaEdProject.projectName,
-        projectVersion,
-        projectExtension: 'EXTENSION',
+        namespace: pm.namespace,
+        projectName: pm.projectName,
+        projectVersion: pm.projectVersion,
+        projectExtension: pm.projectExtension,
       });
-      metaEdConfiguration.projectPaths.push(buildPaths.projectDirectory);
-    }
+      metaEdConfiguration.projectPaths.push(pm.projectPath);
+    });
 
+    console.log('[MetaEdConsoleJS] build() using config: ', metaEdConfiguration);
 
-/////////// END
-
-//// not a single config
-    console.log(`[MetaEdConsoleJS] Using config: ${buildPaths.projectDirectory}.`, metaEdConfiguration);
-
-    if (!await cleanUpMetaEdArtifacts(buildPaths.artifactDirectory, outputWindow)) return false;
+    if (!await cleanUpMetaEdArtifacts(artifactDirectory, outputWindow)) return false;
 
     tmp.setGracefulCleanup();
     const tempConfigurationPath = await tmp.tmpName({ prefix: 'MetaEdConfig-', postfix: '.json' });
@@ -407,78 +379,38 @@ async function executeDeploy(
 }
 
 // initialConfiguration is temporary until full multi-project support
-export async function deploy(
-  initialConfiguration: MetaEdConfiguration,
-  outputWindow: OutputWindow,
-  shouldDeployCore: boolean = false,
-): Promise<boolean> {
+export async function deploy(outputWindow: OutputWindow, shouldDeployCore: boolean = false): Promise<boolean> {
   try {
     outputWindow.addMessage(`Beginning MetaEd JS Deploy...`);
 
     const buildPaths: ?BuildPaths = await verifyBuildPaths(outputWindow);
     if (!buildPaths) return false;
 
-    const metaEdConfiguration = {
+    const metaEdProjectMetadata: Array<MetaEdProjectMetadata> = findMetaEdProjectMetadata(true);
+    if (!validProjectMetadata(metaEdProjectMetadata, outputWindow)) return false;
+
+    const initialConfiguration = metaEdConfigurationFor(getTargetOdsApiVersionSemver());
+    // last project is where output goes
+    const artifactDirectory = path.join((R.last(metaEdProjectMetadata).projectPath, 'MetaEdOutput'));
+
+    const metaEdConfiguration: MetaEdConfiguration = {
       ...initialConfiguration,
-      artifactDirectory: buildPaths.artifactDirectory,
+      artifactDirectory,
     };
 
-    // add extension project if there
-    const metaEdProject: ?MetaEdProjectFileMetadata = await projectValuesFromProjectJson(buildPaths.projectJsonFilePath);
-    if (metaEdProject == null) {
-      outputWindow.addMessage(
-        `MetaEd project configuration file at ${
-          buildPaths.projectJsonFilePath
-        } must have both metaEdProject.projectName and metaEdProject.projectVersion definitions.`,
-      );
-      return false;
-    }
-
-    const namespace: ?string = lowercaseAndNumericOnly(metaEdProject.projectName);
-    if (namespace == null) {
-      outputWindow.addMessage(
-        `metaEdProject.projectName has no leading alphabetic character in package.json configuration file at ${
-          buildPaths.projectJsonFilePath
-        }.`,
-      );
-      return false;
-    }
-
-    const projectVersion = semver.coerce(metaEdProject.projectVersion).toString();
-    if (!semver.valid(projectVersion)) {
-      outputWindow.addMessage(
-        `metaEdProject.projectVersion is not a valid version declaration in package.json configuration file at ${
-          buildPaths.projectJsonFilePath
-        }.`,
-      );
-      return false;
-    }
-
-    if (namespace !== 'edfi') {
-      if (allianceMode() && atom.project.getPaths().length === 1) {
-        outputWindow.addMessage(
-          `Namespace defined as ${namespace} as derived from projectName (all lowercased, remove special characters) in package.json configuration file. Alliance mode only supports the namespace "edfi".`,
-        );
-        return false;
-      }
-
-      if (namespace !== 'extension' && semver.satisfies(getTargetOdsApiVersionSemver(), '2.x')) {
-        outputWindow.addMessage(
-          `Namespace defined as ${namespace} as derived from projectName (all lowercased, remove special characters) in package.json configuration file. ODS/API version 2.x only supports the namespace "extension".`,
-        );
-        return false;
-      }
+    metaEdProjectMetadata.forEach(pm => {
       metaEdConfiguration.projects.push({
-        namespace,
-        projectName: metaEdProject.projectName,
-        projectVersion,
-        projectExtension: 'EXTENSION',
+        namespace: pm.namespace,
+        projectName: pm.projectName,
+        projectVersion: pm.projectVersion,
+        projectExtension: pm.projectExtension,
       });
-      metaEdConfiguration.projectPaths.push(buildPaths.projectDirectory);
-    }
+      metaEdConfiguration.projectPaths.push(pm.projectPath);
+    });
+
     metaEdConfiguration.deployDirectory = getEdfiOdsApiSourceDirectory();
 
-    console.log(`[MetaEdConsoleJS] Using config: ${buildPaths.projectDirectory}.`, metaEdConfiguration);
+    console.log('[MetaEdConsoleJS] deploy() using config: ', metaEdConfiguration);
 
     tmp.setGracefulCleanup();
     const tempConfigurationPath = await tmp.tmpName({ prefix: 'MetaEdConfig-', postfix: '.json' });

@@ -3,7 +3,6 @@
 
 // eslint-disable-next-line
 import { CompositeDisposable } from 'atom';
-import type { MetaEdConfiguration } from 'metaed-core';
 import MetaEdConsole from './MetaEdConsole';
 import { build, deploy } from './MetaEdConsoleJs';
 import {
@@ -21,33 +20,11 @@ import {
   sharedIntegerTemplate,
   sharedStringTemplate,
 } from './ProjectTemplates';
-import { metaEdConfigurationFor } from './MetaEdConfigurationFactory';
 import { isCoreMetaEdFile } from './MakeCoreTabsReadOnly';
-import {
-  allianceMode,
-  getCoreMetaEdSourceDirectory,
-  getTargetOdsApiVersionSemver,
-  getTargetDsVersionSemver,
-} from './PackageSettings';
+import { allianceMode } from './PackageSettings';
 import type OutputWindow from './OutputWindow';
 
 let metaEdConsole: ?MetaEdConsole;
-
-// This is temporary until full multi-project support
-function metaEdConfigurationForCoreProject(): MetaEdConfiguration {
-  return {
-    ...metaEdConfigurationFor(getTargetOdsApiVersionSemver()),
-    projects: [
-      {
-        namespace: 'edfi',
-        projectName: 'Ed-Fi',
-        projectVersion: getTargetDsVersionSemver(),
-        projectExtension: '',
-      },
-    ],
-    projectPaths: [getCoreMetaEdSourceDirectory()],
-  };
-}
 
 function getContextPaths(commandTarget: any) {
   // console.log(commandTarget.classList);
@@ -107,7 +84,7 @@ export function initializeCommands(disposableTracker: CompositeDisposable, outpu
       'atom-metaed:build': async () => {
         if (metaEdConsole != null)
           if (outputWindow != null) {
-            const success: boolean = await build(metaEdConfigurationForCoreProject(), outputWindow); // MetaEdJsConsole
+            const success: boolean = await build(outputWindow); // MetaEdJsConsole
             if (success) await metaEdConsole.build(!allianceMode());
           }
       },
@@ -127,9 +104,9 @@ export function initializeCommands(disposableTracker: CompositeDisposable, outpu
         });
         if (result !== 0) return;
 
-        let success: boolean = await build(metaEdConfigurationForCoreProject(), outputWindow); // MetaEdJsConsole
+        let success: boolean = await build(outputWindow); // MetaEdJsConsole
         if (success) success = await metaEdConsole.build(!allianceMode());
-        if (success) await deploy(metaEdConfigurationForCoreProject(), outputWindow, allianceMode());
+        if (success) await deploy(outputWindow, allianceMode());
       },
     }),
   );
@@ -137,7 +114,7 @@ export function initializeCommands(disposableTracker: CompositeDisposable, outpu
     atom.commands.add('atom-workspace', {
       'atom-metaed:build-js': async () => {
         if (outputWindow != null) {
-          await build(metaEdConfigurationForCoreProject(), outputWindow); // MetaEdJsConsole
+          await build(outputWindow); // MetaEdJsConsole
         }
       },
     }),

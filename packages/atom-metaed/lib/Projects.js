@@ -56,7 +56,7 @@ function lowercaseAndNumericOnly(aString: string): ?string {
 
 export type MetaEdProjectMetadata = {
   projectPath: string,
-  isValidProject: boolean,
+  invalidProject: boolean,
   invalidProjectReason: string,
   projectName: string,
   projectVersion: string,
@@ -86,7 +86,7 @@ export async function findMetaEdProjectMetadata(createProjectJson: boolean = fal
         return {
           ...newMetaEdProjectMetadata(projectPath),
           invalidProject: true,
-          invalidProjectReason: 'does not exist',
+          invalidProjectReason: `does not exist at ${projectPath}`,
         };
     }
 
