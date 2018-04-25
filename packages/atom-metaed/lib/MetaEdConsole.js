@@ -19,7 +19,7 @@ import {
   getTargetDsVersionSemver,
   getTargetOdsApiVersionSemver,
 } from './PackageSettings';
-import type { MetaEdProject } from './ProjectSettings';
+import type { MetaEdProject } from './Projects';
 import type OutputWindow from './OutputWindow';
 import { projectValuesFromProjectJson, lowercaseAndNumericOnly } from './MetaEdConsoleJs';
 

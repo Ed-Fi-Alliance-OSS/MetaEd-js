@@ -5,7 +5,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import { updateCoreMetaEdSourceDirectory } from './CoreSourceDirectoryUpdater';
 import { getCoreMetaEdSourceDirectory } from './PackageSettings';
-import { newProjectJson } from './ProjectSettings';
+import { newProjectJson } from './Projects';
 import type OutputWindow from './OutputWindow';
 
 export function createNewExtensionProject(outputWindow: OutputWindow): void {

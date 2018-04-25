@@ -16,8 +16,8 @@ import { spawn } from 'child_process';
 import streamSplitter from 'stream-splitter';
 import ansihtml from 'ansi-html';
 import type { MetaEdConfiguration } from 'metaed-core';
-import type { MetaEdProject } from './ProjectSettings';
-import { ensureProjectJsonExists } from './ProjectSettings';
+import type { MetaEdProjectFileMetadata } from './Projects';
+import { ensureProjectJsonExists } from './Projects';
 import {
   getMetaEdJsConsoleSourceDirectory,
   getEdfiOdsApiSourceDirectory,
@@ -99,30 +99,6 @@ async function cleanUpMetaEdArtifacts(artifactDirectory: string, outputWindow: O
 }
 
 async function verifyBuildPaths(outputWindow: OutputWindow): Promise<?BuildPaths> {
-  // TODO: support multiple extension projects
-  let projectDirectory = atom.project.getPaths()[1];
-  if (projectDirectory != null && allianceMode()) {
-    outputWindow.addMessage(
-      'Extension generation is not available in Alliance mode.  Please either switch modes or remove the extension project folder.',
-    );
-    return null;
-  }
-
-  if (projectDirectory == null && !allianceMode()) {
-    outputWindow.addMessage('No Extension Project found in editor. Please add an extension project folder.');
-    return null;
-  }
-
-  if (projectDirectory == null && allianceMode()) {
-    if (atom.project.getPaths().length < 1) {
-      outputWindow.addMessage('Please set up a core MetaEd directory under File -> Settings -> Packages -> atom-metaed.');
-      return null;
-    }
-    projectDirectory = atom.project.getPaths()[0];
-  }
-
-  const projectJsonFilePath = await ensureProjectJsonExists(projectDirectory);
-
   // cmdExePath is for Windows
   const cmdExePath = getCmdFullPath();
   if (!await fs.exists(cmdExePath) && os.platform() === 'win32') {
@@ -171,6 +147,7 @@ async function verifyBuildPaths(outputWindow: OutputWindow): Promise<?BuildPaths
   return {
     metaEdConsoleDirectory,
     cmdExePath,
+    //////////////// artifact directory should go in core for now
     artifactDirectory: path.join(projectDirectory, 'MetaEdOutput/'),
     metaEdConsolePath,
     metaEdDeployPath,
@@ -235,22 +212,6 @@ async function executeBuild(
   });
 }
 
-export async function projectValuesFromProjectJson(verifiedPathToProjectJson: string): Promise<?MetaEdProject> {
-  const projectJson = await fs.readJson(verifiedPathToProjectJson);
-  if (projectJson.metaEdProject && projectJson.metaEdProject.projectName && projectJson.metaEdProject.projectVersion)
-    return projectJson.metaEdProject;
-  return null;
-}
-
-export function lowercaseAndNumericOnly(aString: string): ?string {
-  const alphanumericMatches: ?Array<string> = aString.match(/[a-zA-Z0-9]+/g);
-  if (alphanumericMatches == null) return null;
-  const alphanumericOnly = alphanumericMatches.join('');
-  const leadingAlphaCharacter = /^[a-zA-Z]/;
-  if (!alphanumericOnly || !alphanumericOnly.match(leadingAlphaCharacter)) return null;
-  return alphanumericOnly.toLowerCase();
-}
-
 // initialConfiguration is temporary until full multi-project support
 export async function build(initialConfiguration: MetaEdConfiguration, outputWindow: OutputWindow): Promise<boolean> {
   try {
@@ -265,8 +226,45 @@ export async function build(initialConfiguration: MetaEdConfiguration, outputWin
       artifactDirectory: buildPaths.artifactDirectory,
     };
 
+//////////  findMetaEdProjectMetadata(true) call around here
+
+
+////////// START -  Error conditions from findMetaEdProjectMetadata(true) call here, based on:
+
+  // TODO: support multiple extension projects
+  let projectDirectory = atom.project.getPaths()[1];
+  if (projectDirectory != null && allianceMode()) {
+    outputWindow.addMessage(
+      'Extension generation is not available in Alliance mode.  Please either switch modes or remove the extension project folder.',
+    );
+    return null;
+  }
+
+  if (projectDirectory == null && !allianceMode()) {
+    outputWindow.addMessage('No Extension Project found in editor. Please add an extension project folder.');
+    return null;
+  }
+
+  if (projectDirectory == null && allianceMode()) {
+    if (atom.project.getPaths().length < 1) {
+      outputWindow.addMessage('Please set up a core MetaEd directory under File -> Settings -> Packages -> atom-metaed.');
+      return null;
+    }
+    projectDirectory = atom.project.getPaths()[0];
+  }
+
+  const projectJsonFilePath = await ensureProjectJsonExists(projectDirectory);
+
+
+///////////////  END
+
+
+
+
+
+///////////////  START -- old code covered by findMetaEdProjectMetadata()
     // add extension project if there
-    const metaEdProject: ?MetaEdProject = await projectValuesFromProjectJson(buildPaths.projectJsonFilePath);
+    const metaEdProject: ?MetaEdProjectFileMetadata = await projectValuesFromProjectJson(buildPaths.projectJsonFilePath);
     if (metaEdProject == null) {
       outputWindow.addMessage(
         `MetaEd project configuration file at ${
@@ -296,6 +294,12 @@ export async function build(initialConfiguration: MetaEdConfiguration, outputWin
       return false;
     }
 
+/////////////  END
+
+
+
+/////////////  START -- additional checks to be taken now from findMetaEdProjectMetadata
+
     if (namespace !== 'edfi') {
       if (allianceMode() && atom.project.getPaths().length === 1) {
         outputWindow.addMessage(
@@ -310,6 +314,9 @@ export async function build(initialConfiguration: MetaEdConfiguration, outputWin
         );
         return false;
       }
+
+
+      ///////// this becomes a loop -- check where core is involved
       metaEdConfiguration.projects.push({
         namespace,
         projectName: metaEdProject.projectName,
@@ -319,6 +326,10 @@ export async function build(initialConfiguration: MetaEdConfiguration, outputWin
       metaEdConfiguration.projectPaths.push(buildPaths.projectDirectory);
     }
 
+
+/////////// END
+
+//// not a single config
     console.log(`[MetaEdConsoleJS] Using config: ${buildPaths.projectDirectory}.`, metaEdConfiguration);
 
     if (!await cleanUpMetaEdArtifacts(buildPaths.artifactDirectory, outputWindow)) return false;
@@ -413,7 +424,7 @@ export async function deploy(
     };
 
     // add extension project if there
-    const metaEdProject: ?MetaEdProject = await projectValuesFromProjectJson(buildPaths.projectJsonFilePath);
+    const metaEdProject: ?MetaEdProjectFileMetadata = await projectValuesFromProjectJson(buildPaths.projectJsonFilePath);
     if (metaEdProject == null) {
       outputWindow.addMessage(
         `MetaEd project configuration file at ${
