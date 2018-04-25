@@ -19,9 +19,9 @@ import {
   getTargetDsVersionSemver,
   getTargetOdsApiVersionSemver,
 } from './PackageSettings';
-import type { MetaEdProject } from './Projects';
+import type { ProjectFileData } from './Projects';
+import { projectValuesFromProjectJson } from './Projects';
 import type OutputWindow from './OutputWindow';
-import { projectValuesFromProjectJson, lowercaseAndNumericOnly } from './MetaEdConsoleJs';
 
 type GulpInputs = {
   taskName: string,
@@ -295,39 +295,9 @@ export default class MetaEdConsole {
             path.join(realArtifactDirectory, 'Documentation', 'InterchangeBrief'),
           );
           await fs.copy(
-            path.join(tempArtifactDirectoryObject.path, 'JSON'),
-            path.join(realArtifactDirectory, 'Documentation', 'JSON'),
-          );
-          await fs.copy(
             path.join(tempArtifactDirectoryObject.path, 'UDM'),
             path.join(realArtifactDirectory, 'Documentation', 'UDM'),
           );
-
-          // HACK: Move InterchangeOrderMetadata from documentation to new output structure
-          if (getTargetDsVersion() !== '3.0') {
-            const interchangeOrderMetadataPath = path.join(
-              tempArtifactDirectoryObject.path,
-              'ApiMetadata',
-              'InterchangeOrderMetadata.xml',
-            );
-            if (fs.existsSync(interchangeOrderMetadataPath)) {
-              await fs.copy(
-                interchangeOrderMetadataPath,
-                path.join(realArtifactDirectory, 'edfi', 'ApiMetadata', 'InterchangeOrderMetadata.xml'),
-              );
-            }
-            const interchangeOrderMetadataExtensionPath = path.join(
-              tempArtifactDirectoryObject.path,
-              'ApiMetadata',
-              'InterchangeOrderMetadata-EXTENSION.xml',
-            );
-            if (fs.existsSync(interchangeOrderMetadataExtensionPath)) {
-              await fs.copy(
-                interchangeOrderMetadataExtensionPath,
-                path.join(realArtifactDirectory, 'extension', 'ApiMetadata', 'InterchangeOrderMetadata-EXTENSION.xml'),
-              );
-            }
-          }
 
           await fs.remove(tempArtifactDirectoryObject.path);
         } else {
