@@ -62,6 +62,7 @@ export type MetaEdProjectMetadata = {
   projectVersion: string,
   projectNamespace: string,
   isExtensionProject: boolean,
+  projectExtension: string,
 };
 
 function newMetaEdProjectMetadata(projectPath: string): MetaEdProjectMetadata {
@@ -71,58 +72,63 @@ function newMetaEdProjectMetadata(projectPath: string): MetaEdProjectMetadata {
     invalidProjectReason: '',
     projectName: '',
     projectVersion: '',
-    namespace: '',
+    projectNamespace: '',
     isExtensionProject: false,
+    projectExtension: '',
   };
 }
 
 export async function findMetaEdProjectMetadata(createProjectJson: boolean = false): Promise<Array<MetaEdProjectMetadata>> {
-  return atom.project.getPaths().map(async (projectPath: string) => {
-    const projectJsonFilePath = path.join(projectPath, PROJECT_SETTINGS_FILE_NAME);
-    if (!await fs.exists(projectJsonFilePath)) {
-      if (createProjectJson) {
-        await newProjectJson(projectPath);
-      } else
+  const result: Array<MetaEdProjectMetadata> = await Promise.all(
+    atom.project.getPaths().map(async (projectPath: string) => {
+      const projectJsonFilePath = path.join(projectPath, PROJECT_SETTINGS_FILE_NAME);
+      if (!await fs.exists(projectJsonFilePath)) {
+        if (createProjectJson) {
+          await newProjectJson(projectPath);
+        } else
+          return {
+            ...newMetaEdProjectMetadata(projectPath),
+            invalidProject: true,
+            invalidProjectReason: `does not exist at ${projectPath}`,
+          };
+      }
+
+      const projectFileData: ?ProjectFileData = await projectValuesFromProjectJson(projectJsonFilePath);
+      if (projectFileData == null) {
         return {
           ...newMetaEdProjectMetadata(projectPath),
           invalidProject: true,
-          invalidProjectReason: `does not exist at ${projectPath}`,
+          invalidProjectReason: 'must have both metaEdProject.projectName and metaEdProject.projectVersion definitions',
         };
-    }
+      }
 
-    const projectFileData: ?ProjectFileData = await projectValuesFromProjectJson(projectJsonFilePath);
-    if (projectFileData == null) {
+      const projectNamespace: ?string = lowercaseAndNumericOnly(projectFileData.projectName);
+      if (projectNamespace == null) {
+        return {
+          ...newMetaEdProjectMetadata(projectPath),
+          invalidProject: true,
+          invalidProjectReason: 'metaEdProject.projectName definition has no leading alphabetic character',
+        };
+      }
+
+      const projectVersion = semver.coerce(projectFileData.projectVersion).toString();
+      if (!semver.valid(projectVersion)) {
+        return {
+          ...newMetaEdProjectMetadata(projectPath),
+          invalidProject: true,
+          invalidProjectReason: 'metaEdProject.projectVersion is not a valid version declaration',
+        };
+      }
+
       return {
         ...newMetaEdProjectMetadata(projectPath),
-        invalidProject: true,
-        invalidProjectReason: 'must have both metaEdProject.projectName and metaEdProject.projectVersion definitions',
+        projectName: projectFileData.projectName,
+        projectVersion,
+        projectNamespace,
+        isExtensionProject: projectNamespace !== 'edfi',
+        projectExtension: projectNamespace === 'edfi' ? '' : 'EXTENSION',
       };
-    }
-
-    const namespace: ?string = lowercaseAndNumericOnly(projectFileData.projectName);
-    if (namespace == null) {
-      return {
-        ...newMetaEdProjectMetadata(projectPath),
-        invalidProject: true,
-        invalidProjectReason: 'metaEdProject.projectName definition has no leading alphabetic character',
-      };
-    }
-
-    const projectVersion = semver.coerce(projectFileData.projectVersion).toString();
-    if (!semver.valid(projectVersion)) {
-      return {
-        ...newMetaEdProjectMetadata(projectPath),
-        invalidProject: true,
-        invalidProjectReason: 'metaEdProject.projectVersion is not a valid version declaration',
-      };
-    }
-
-    return {
-      ...newMetaEdProjectMetadata(projectPath),
-      projectName: projectFileData.projectName,
-      projectVersion,
-      namespace,
-      isExtensionProject: namespace !== 'edfi',
-    };
-  });
+    }),
+  );
+  return result;
 }

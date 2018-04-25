@@ -208,7 +208,7 @@ async function executeBuild(
   });
 }
 
-function validProjectMetadata(metaEdProjectMetadata: MetaEdProjectMetadata, outputWindow: OutputWindow): boolean {
+function validProjectMetadata(metaEdProjectMetadata: Array<MetaEdProjectMetadata>, outputWindow: OutputWindow): boolean {
   let hasInvalidProject: boolean = false;
   // eslint-disable-next-line no-restricted-syntax
   for (const pm of metaEdProjectMetadata) {
@@ -220,9 +220,8 @@ function validProjectMetadata(metaEdProjectMetadata: MetaEdProjectMetadata, outp
   if (hasInvalidProject) return false;
 
   const hasExtensionProjects: boolean = R.any((pm: MetaEdProjectMetadata) => pm.isExtensionProject, metaEdProjectMetadata);
-  const coreProjectMetadata: Array<MetaEdProjectMetadata> = R.all(
-    (pm: MetaEdProjectMetadata) => pm.isExtensionProject,
-    metaEdProjectMetadata,
+  const coreProjectMetadata: Array<MetaEdProjectMetadata> = metaEdProjectMetadata.filter(
+    (pm: MetaEdProjectMetadata) => !pm.isExtensionProject,
   );
 
   if (coreProjectMetadata.length > 1) {
@@ -259,7 +258,7 @@ function validProjectMetadata(metaEdProjectMetadata: MetaEdProjectMetadata, outp
   if (semver.satisfies(getTargetOdsApiVersionSemver(), '2.x')) {
     // eslint-disable-next-line no-restricted-syntax
     for (const pm of metaEdProjectMetadata) {
-      if (pm.isExtensionProject && pm.namespace !== 'extension') {
+      if (pm.isExtensionProject && pm.projectNamespace !== 'extension') {
         outputWindow.addMessage(
           `Namespace derived from projectName (all lowercased, remove special characters) is not "extension". ODS/API version 2.x only supports the namespace "extension".`,
         );
@@ -280,12 +279,13 @@ export async function build(outputWindow: OutputWindow): Promise<boolean> {
     const buildPaths: ?BuildPaths = await verifyBuildPaths(outputWindow);
     if (!buildPaths) return false;
 
-    const metaEdProjectMetadata: Array<MetaEdProjectMetadata> = findMetaEdProjectMetadata(true);
+    const metaEdProjectMetadata: Array<MetaEdProjectMetadata> = await findMetaEdProjectMetadata(true);
     if (!validProjectMetadata(metaEdProjectMetadata, outputWindow)) return false;
 
     const initialConfiguration = metaEdConfigurationFor(getTargetOdsApiVersionSemver());
     // last project is where output goes
-    const artifactDirectory = path.join((R.last(metaEdProjectMetadata).projectPath, 'MetaEdOutput'));
+    const lastProject: MetaEdProjectMetadata = R.last(metaEdProjectMetadata);
+    const artifactDirectory: string = path.join(lastProject.projectPath, 'MetaEdOutput');
 
     const metaEdConfiguration: MetaEdConfiguration = {
       ...initialConfiguration,
@@ -294,7 +294,7 @@ export async function build(outputWindow: OutputWindow): Promise<boolean> {
 
     metaEdProjectMetadata.forEach(pm => {
       metaEdConfiguration.projects.push({
-        namespace: pm.namespace,
+        namespace: pm.projectNamespace,
         projectName: pm.projectName,
         projectVersion: pm.projectVersion,
         projectExtension: pm.projectExtension,
@@ -343,7 +343,9 @@ async function executeDeploy(
 
     setImmediate(() => atom.notifications.addNotification(startNotification));
 
+//    const taskParams = ['/s', '/c', `node --inspect-brk "${metaEdDeployPath}"`, '--config', `"${metaEdConfigurationPath}"`];
     const taskParams = ['/s', '/c', `node "${metaEdDeployPath}"`, '--config', `"${metaEdConfigurationPath}"`];
+
     if (shouldDeployCore) taskParams.push('--core');
 
     console.log(`[MetaEdConsoleJS] Executing Deploy '${cmdExePath}' with parameters:`, taskParams);
@@ -386,12 +388,13 @@ export async function deploy(outputWindow: OutputWindow, shouldDeployCore: boole
     const buildPaths: ?BuildPaths = await verifyBuildPaths(outputWindow);
     if (!buildPaths) return false;
 
-    const metaEdProjectMetadata: Array<MetaEdProjectMetadata> = findMetaEdProjectMetadata(true);
+    const metaEdProjectMetadata: Array<MetaEdProjectMetadata> = await findMetaEdProjectMetadata(true);
     if (!validProjectMetadata(metaEdProjectMetadata, outputWindow)) return false;
 
     const initialConfiguration = metaEdConfigurationFor(getTargetOdsApiVersionSemver());
     // last project is where output goes
-    const artifactDirectory = path.join((R.last(metaEdProjectMetadata).projectPath, 'MetaEdOutput'));
+    const lastProject: MetaEdProjectMetadata = R.last(metaEdProjectMetadata);
+    const artifactDirectory: string = path.join(lastProject.projectPath, 'MetaEdOutput');
 
     const metaEdConfiguration: MetaEdConfiguration = {
       ...initialConfiguration,
@@ -400,7 +403,7 @@ export async function deploy(outputWindow: OutputWindow, shouldDeployCore: boole
 
     metaEdProjectMetadata.forEach(pm => {
       metaEdConfiguration.projects.push({
-        namespace: pm.namespace,
+        namespace: pm.projectNamespace,
         projectName: pm.projectName,
         projectVersion: pm.projectVersion,
         projectExtension: pm.projectExtension,

@@ -85,7 +85,7 @@ export function initializeCommands(disposableTracker: CompositeDisposable, outpu
         if (metaEdConsole != null)
           if (outputWindow != null) {
             const success: boolean = await build(outputWindow); // MetaEdJsConsole
-            if (success) await metaEdConsole.build(!allianceMode());
+            if (success) await metaEdConsole.build();
           }
       },
     }),
@@ -105,7 +105,7 @@ export function initializeCommands(disposableTracker: CompositeDisposable, outpu
         if (result !== 0) return;
 
         let success: boolean = await build(outputWindow); // MetaEdJsConsole
-        if (success) success = await metaEdConsole.build(!allianceMode());
+        if (success) success = await metaEdConsole.build();
         if (success) await deploy(outputWindow, allianceMode());
       },
     }),

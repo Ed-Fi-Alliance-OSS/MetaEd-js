@@ -206,7 +206,7 @@ export async function executeDeploy(
   const artifactDirectory: string = metaEdConfiguration.artifactDirectory;
   const deployDirectory: string = metaEdConfiguration.deployDirectory;
 
-  targets.forEach(target => {
+  targets.forEach((target: DeployTargets) => {
     removeSupportingArtifacts(deployDirectory, target.namespace);
 
     Object.keys(source).forEach((artifactName: string) => {
