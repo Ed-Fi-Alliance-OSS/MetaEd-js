@@ -15,6 +15,7 @@ export { createMetaEdFile } from './task/MetaEdFile';
 export { validateConfiguration } from './task/ValidateConfiguration';
 export { loadFiles } from './task/FileSystemFilenameLoader';
 export { loadPlugins, scanForPlugins } from './task/LoadPlugins';
+export { addProjectNameToNamespaceInfo } from './task/AddProjectNameToNamespaceInfo';
 export { newState } from './State';
 export { newPipelineOptions } from './task/PipelineOptions';
 export { loadFileIndex } from './task/LoadFileIndex';

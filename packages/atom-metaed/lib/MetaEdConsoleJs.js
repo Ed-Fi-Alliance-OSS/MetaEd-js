@@ -343,7 +343,7 @@ async function executeDeploy(
 
     setImmediate(() => atom.notifications.addNotification(startNotification));
 
-//    const taskParams = ['/s', '/c', `node --inspect-brk "${metaEdDeployPath}"`, '--config', `"${metaEdConfigurationPath}"`];
+    // const taskParams = ['/s', '/c', `node --inspect-brk "${metaEdDeployPath}"`, '--config', `"${metaEdConfigurationPath}"`];
     const taskParams = ['/s', '/c', `node "${metaEdDeployPath}"`, '--config', `"${metaEdConfigurationPath}"`];
 
     if (shouldDeployCore) taskParams.push('--core');

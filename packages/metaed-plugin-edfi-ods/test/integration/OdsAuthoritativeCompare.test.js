@@ -12,6 +12,7 @@ import {
   loadFileIndex,
   loadFiles,
   loadPlugins,
+  addProjectNameToNamespaceInfo,
   newMetaEdConfiguration,
   newState,
   orderByProp,
@@ -91,7 +92,7 @@ describe('when generating ods and comparing it to data standard 2.0 authoritativ
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
-
+    addProjectNameToNamespaceInfo(state);
     // eslint-disable-next-line no-restricted-syntax
     for (const pluginManifest of state.pluginManifest) {
       await runEnhancers(pluginManifest, state);

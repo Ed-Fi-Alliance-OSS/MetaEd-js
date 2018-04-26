@@ -1,4 +1,5 @@
 // @flow
+import { String as sugar } from 'sugar';
 import type { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
 import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
 import type { EntityRepository } from '../model/EntityRepository';
@@ -34,6 +35,11 @@ function enteringNamespaceName(context: MetaEdGrammar.NamespaceNameContext, name
     return namespaceInfo;
 
   Object.assign(namespaceInfo, { namespace: context.NAMESPACE_ID().getText() });
+
+  // This is a good guess -- capitalize the namespace -- given that projectName is not in the language yet,
+  // but the AddProjectNameToNamespaceInfo task sets the correct value after the builders run
+  namespaceInfo.projectName = sugar.capitalize(namespaceInfo.namespace);
+
   Object.assign(namespaceInfo.sourceMap, { namespace: sourceMapFrom(context) });
   return namespaceInfo;
 }
@@ -49,8 +55,6 @@ function enteringNamespaceType(context: MetaEdGrammar.NamespaceTypeContext, name
 
   Object.assign(namespaceInfo, {
     projectExtension: context.ID().getText(),
-    // note: currently using namespace type as friendly name also
-    projectName: context.ID().getText(),
     isExtension: true,
   });
   Object.assign(namespaceInfo.sourceMap, { projectExtension: sourceMapFrom(context), isExtension: sourceMapFrom(context) });

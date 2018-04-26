@@ -10,6 +10,7 @@ import {
   loadFileIndex,
   loadFiles,
   loadPlugins,
+  addProjectNameToNamespaceInfo,
   newMetaEdConfiguration,
   newState,
   runEnhancers,
@@ -78,6 +79,7 @@ describe('when generating api model and comparing it to data standard 3.0 author
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
+    addProjectNameToNamespaceInfo(state);
 
     // eslint-disable-next-line no-restricted-syntax
     for (const pluginManifest of state.pluginManifest) {
@@ -170,6 +172,7 @@ describe('when generating api model with simple extensions and comparing it to d
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
+    addProjectNameToNamespaceInfo(state);
 
     // eslint-disable-next-line no-restricted-syntax
     for (const pluginManifest of state.pluginManifest) {
@@ -280,6 +283,7 @@ describe('when generating api model with student transcript extensions and compa
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
+    addProjectNameToNamespaceInfo(state);
 
     // eslint-disable-next-line no-restricted-syntax
     for (const pluginManifest of state.pluginManifest) {

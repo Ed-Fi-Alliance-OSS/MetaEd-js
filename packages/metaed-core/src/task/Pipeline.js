@@ -14,6 +14,7 @@ import { execute as runEnhancers } from './RunEnhancers';
 import { execute as runGenerators } from './RunGenerators';
 import { execute as writeOutput } from './WriteOutput';
 import { loadPlugins } from './LoadPlugins';
+import { addProjectNameToNamespaceInfo } from './AddProjectNameToNamespaceInfo';
 import type { State } from '../State';
 
 winston.cli();
@@ -47,6 +48,9 @@ export async function executePipeline(state: State): Promise<{ state: State, fai
 
   winston.info('Walking builders...');
   await walkBuilders(state);
+
+  addProjectNameToNamespaceInfo(state);
+  await nextMacroTask();
 
   // eslint-disable-next-line no-restricted-syntax
   for (const pluginManifest of state.pluginManifest) {
