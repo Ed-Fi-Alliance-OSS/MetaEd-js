@@ -3,9 +3,10 @@
 import R from 'ramda';
 import path from 'path';
 import fs from 'fs-extra';
-import type { State, ValidationFailure } from 'metaed-core';
+import type { State, ValidationFailure, MetaEdConfiguration } from 'metaed-core';
 import { executePipeline, newState } from 'metaed-core';
-
+import type { MetaEdProjectMetadata } from './Projects';
+import { findMetaEdProjectMetadata } from './Projects';
 import { metaEdConfigurationFor } from './MetaEdConfigurationFactory';
 import reportException from './ExceptionReporter';
 import { loadFromModifiedEditors } from './BufferFileLoader';
@@ -21,49 +22,44 @@ let mostRecentState: State = newState();
 const limitThirty = R.take(30);
 
 // eslint-disable-next-line no-unused-vars
-function lint(textEditor: AtomTextEditor): ?Promise<?(any[])> {
-  if (!fs.existsSync(path.resolve(getCoreMetaEdSourceDirectory()))) {
+async function lint(textEditor: AtomTextEditor): ?Promise<?(any[])> {
+  if (!await fs.exists(path.resolve(getCoreMetaEdSourceDirectory()))) {
     atom.notifications.addWarning(
       'The "Ed-Fi Data Standard core .metaed directory" in your Atom-MetaEd settings is not valid.',
     );
     return null;
   }
 
-  const inputDirectories = [
-    {
-      path: getCoreMetaEdSourceDirectory(),
-      namespace: 'edfi',
-      projectExtension: '',
-      projectName: 'Ed-Fi',
-      isExtension: false,
-    },
-  ];
+  const metaEdProjectMetadata: Array<MetaEdProjectMetadata> = await findMetaEdProjectMetadata(true);
 
-  // TODO: support multiple extension projects
-  if (atom.project.getPaths().length > 1) {
-    inputDirectories.push({
-      path: atom.project.getPaths()[1],
-      namespace: 'extension',
-      projectExtension: 'EXTENSION',
-      projectName: 'Extension',
-      isExtension: true,
+  // this is from MetaEdConsoleJs - will ignore for now, but provides validations to an OutputWindow
+  // may want to do a notification equivalent...
+  // if (!validProjectMetadata(metaEdProjectMetadata, outputWindow)) return false;
+
+  const metaEdConfiguration: MetaEdConfiguration = metaEdConfigurationFor(getTargetOdsApiVersionSemver());
+
+  metaEdProjectMetadata.forEach(pm => {
+    metaEdConfiguration.projects.push({
+      namespace: pm.projectNamespace,
+      projectName: pm.projectName,
+      projectVersion: pm.projectVersion,
+      projectExtension: pm.projectExtension,
     });
-  }
+    metaEdConfiguration.projectPaths.push(pm.projectPath);
+  });
 
   mostRecentState = Object.assign(newState(), {
-    inputDirectories,
     pipelineOptions: {
       runValidators: true,
       runEnhancers: true,
       runGenerators: false,
       stopOnValidationFailure: false,
     },
-    metaEdConfiguration: metaEdConfigurationFor(getTargetOdsApiVersionSemver()),
+    metaEdConfiguration,
   });
 
-  // temporary set of data standard version until lookup from project package.json is ready
   mostRecentState.metaEd.dataStandardVersion = getTargetDsVersionSemver();
-  if (validateOnTheFly()) mostRecentState = loadFromModifiedEditors(mostRecentState);
+  if (validateOnTheFly()) loadFromModifiedEditors(mostRecentState, metaEdProjectMetadata);
 
   const linterMessages: Promise<?(any[])> = executePipeline(mostRecentState)
     .then((stateAndFailure: { state: State, failure: boolean }) => {
