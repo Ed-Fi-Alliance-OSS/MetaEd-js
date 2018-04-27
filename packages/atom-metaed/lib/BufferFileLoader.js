@@ -21,13 +21,15 @@ export function loadFromModifiedEditors(state: State, metaEdProjectMetadata: Arr
     .filter(editor => editor.isModified() && editor.getPath() && editor.getPath().endsWith('.metaed'));
 
   metaEdProjectMetadata.forEach(({ projectPath, projectNamespace, projectExtension, projectName, isExtensionProject }) => {
-    const files: MetaEdFile[] = filesFrom(editors.filter(editor => editor.getPath().startsWith(projectPath)));
+    const modifiedFiles: MetaEdFile[] = filesFrom(editors.filter(editor => editor.getPath().startsWith(projectPath)));
+    if (modifiedFiles.length === 0) return;
+
     const fileSetForProject: FileSet = {
       namespace: projectNamespace,
       projectExtension,
       projectName,
       isExtension: isExtensionProject,
-      files,
+      files: modifiedFiles,
     };
     addFileSet(state, fileSetForProject);
   });

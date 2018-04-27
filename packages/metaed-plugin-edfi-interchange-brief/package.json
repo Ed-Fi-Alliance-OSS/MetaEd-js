@@ -52,6 +52,6 @@
     "build": "yarn build:clean && yarn build:dist && yarn build:flow",
     "build:clean": "rimraf dist",
     "build:flow": "flow-copy-source -v src dist",
-    "build:dist": "rimraf dist && babel src -d dist --source-maps --copy-files"
+    "build:dist": "rimraf dist && babel src -d dist --source-maps inline --copy-files"
   }
 }

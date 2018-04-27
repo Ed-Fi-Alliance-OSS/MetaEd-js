@@ -50,10 +50,16 @@ export function loadFiles(state: State): boolean {
       files: [],
     };
 
-    const filenames: string[] = ffs.readdirRecursiveSync(inputDirectory.path, true, inputDirectory.path);
-    const filenamesToLoad: string[] = filenames.filter(
-      filename => filename.endsWith('.metaed') && !state.filePathsToExclude.has(filename),
-    );
+    const filenames: string[] = ffs
+      .readdirRecursiveSync(inputDirectory.path, true, inputDirectory.path)
+      .filter(filename => filename.endsWith('.metaed'));
+
+    if (filenames.length === 0) {
+      winston.error(`No MetaEd files found in input directory ${inputDirectory.path}.`);
+      success = false;
+    }
+
+    const filenamesToLoad: string[] = filenames.filter(filename => !state.filePathsToExclude.has(filename));
 
     filenamesToLoad.forEach(filename => {
       const contents = ffs.readFileSync(filename, 'utf-8');
@@ -61,14 +67,9 @@ export function loadFiles(state: State): boolean {
       fileSet.files.push(metaEdFile);
     });
 
-    if (fileSet.files.length === 0) {
-      winston.error(`No MetaEd files found in input directory ${inputDirectory.path}.`);
-      success = false;
-    } else {
-      winston.info(
-        `  ${inputDirectory.path} (${filenamesToLoad.length} .metaed file${filenamesToLoad.length > 1 ? 's' : ''} loaded)`,
-      );
-    }
+    winston.info(
+      `  ${inputDirectory.path} (${filenamesToLoad.length} .metaed file${filenamesToLoad.length > 1 ? 's' : ''} loaded)`,
+    );
 
     fileSets.push(fileSet);
   });
