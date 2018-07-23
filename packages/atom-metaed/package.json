@@ -21,8 +21,16 @@
           "description": "2.0.1"
         },
         {
+          "value": "2.2",
+          "description": "2.2"
+        },
+        {
           "value": "3.0",
           "description": "3.0"
+        },
+        {
+          "value": "3.1",
+          "description": "3.1"
         }
       ]
     },
@@ -56,6 +64,10 @@
         {
           "value": "2.4",
           "description": "2.4"
+        },
+        {
+          "value": "2.5",
+          "description": "2.5"
         },
         {
           "value": "3.0",
@@ -153,7 +165,9 @@
     "axios": "0.18.0",
     "babel-polyfill": "^6.26.0",
     "ed-fi-model-2.0": "1.0.3",
+    "ed-fi-model-2.2": "1.0.0",
     "ed-fi-model-3.0": "1.0.0",
+    "ed-fi-model-3.1": "1.0.0",
     "fs-extra": "^3.0.1",
     "klaw-sync": "^3.0.2",
     "metaed-console": "1.2.1-dev.5",

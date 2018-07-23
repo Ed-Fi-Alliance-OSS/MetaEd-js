@@ -23,15 +23,18 @@ const odsApiVersionSupport: Map<string, Array<string>> = new Map([
   ['2.3', ['2.0.1']],
   ['2.3.1', ['2.0.1']],
   ['2.4', ['2.0.1']],
+  ['2.5', ['2.2']],
   ['3.0', ['3.0']],
-  ['3.1', ['3.0']],
+  ['3.1', ['3.1']],
 ]);
 
 export function switchCoreDsProjectOnDsChange(disposableTracker: CompositeDisposable) {
   disposableTracker.add(
     atom.config.onDidChange('atom-metaed.targetDsVersion', ({ newValue }: { oldValue: string, newValue: string }) => {
       if (newValue === '2.0.1') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('ed-fi-model-2.0'));
+      if (newValue === '2.2') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('ed-fi-model-2.2'));
       if (newValue === '3.0') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('ed-fi-model-3.0'));
+      if (newValue === '3.1') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('ed-fi-model-3.1'));
     }),
   );
 }

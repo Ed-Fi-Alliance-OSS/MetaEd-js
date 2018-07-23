@@ -2194,9 +2194,17 @@ ed-fi-model-2.0@1.0.3:
   version "1.0.3"
   resolved "https://www.myget.org/F/ed-fi/npm/ed-fi-model-2.0/-/ed-fi-model-2.0-1.0.3.tgz#c08c25ef91c50501b7cf72343635b678a9dbd9ef"
 
+ed-fi-model-2.2@1.0.0:
+  version "1.0.0"
+  resolved "https://www.myget.org/F/ed-fi/npm/ed-fi-model-2.2/-/ed-fi-model-2.2-1.0.0.tgz#840215b53b03fe9ebf8f85642bfcd4ca5ac33e47"
+
 ed-fi-model-3.0@1.0.0:
   version "1.0.0"
   resolved "https://www.myget.org/F/ed-fi/npm/ed-fi-model-3.0/-/ed-fi-model-3.0-1.0.0.tgz#862c7bedebdfd9acd2ec0c712f23ae9e3b1b36f5"
+
+ed-fi-model-3.1@1.0.0:
+  version "1.0.0"
+  resolved "https://www.myget.org/F/ed-fi/npm/ed-fi-model-3.1/-/ed-fi-model-3.1-1.0.0.tgz#658a8974c1b0d1d6d0d7cf969d39b78da7051be1"
 
 editor@~1.0.0:
   version "1.0.0"
