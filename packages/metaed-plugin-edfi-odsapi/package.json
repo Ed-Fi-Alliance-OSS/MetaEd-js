@@ -1,7 +1,7 @@
 {
   "name": "metaed-plugin-edfi-odsapi",
   "main": "dist/index.js",
-  "version": "1.2.1-dev.5",
+  "version": "1.2.1-dev.6",
   "description": "Ed-Fi Alliance ODS/API plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -24,10 +24,10 @@
     "@dagrejs/graphlib": "^2.1.4",
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.0.11",
-    "metaed-core": "1.2.1-dev.5",
-    "metaed-plugin-edfi-ods": "1.2.1-dev.5",
-    "metaed-plugin-edfi-unified": "1.2.1-dev.5",
-    "metaed-plugin-edfi-xsd": "1.2.1-dev.5",
+    "metaed-core": "1.2.1-dev.6",
+    "metaed-plugin-edfi-ods": "1.2.1-dev.6",
+    "metaed-plugin-edfi-unified": "1.2.1-dev.6",
+    "metaed-plugin-edfi-xsd": "1.2.1-dev.6",
     "ramda": "^0.25.0",
     "sugar": "^2.0.4",
     "winston": "3.0.0"
