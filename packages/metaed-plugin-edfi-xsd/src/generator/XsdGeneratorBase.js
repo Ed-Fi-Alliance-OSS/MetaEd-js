@@ -1,7 +1,7 @@
 // @flow
 import R from 'ramda';
 import handlebars from 'handlebars';
-import { html as Beautify } from 'js-beautify';
+import { html as beautify } from 'js-beautify';
 import fs from 'fs';
 import path from 'path';
 import semverLib from 'semver';
@@ -35,26 +35,26 @@ export const registerPartials = R.once(() => {
   });
 });
 
-const EOL = '\n';
-const beautify = R.flip(Beautify)({
-  indent_size: 2,
-  eol: EOL,
-  end_with_newline: true,
-  content_unformatted: ['xs:documentation'],
-});
-const removeDoubleQuotes = R.replace(new RegExp(/""/g), '"');
-const removeEmptyLines = R.replace(new RegExp(`${EOL}${EOL}+`, 'g'), EOL);
-export const formatXml = R.compose(
-  removeEmptyLines,
-  removeDoubleQuotes,
-  beautify,
-);
+function formatXml(unformattedXml: string): string {
+  const EOL = '\n';
+
+  const beautifiedXml: string = beautify(unformattedXml, {
+    indent_size: 2,
+    eol: EOL,
+    end_with_newline: true,
+    content_unformatted: ['xs:documentation'],
+  });
+  const doubleQuoteRemovedXsd: string = beautifiedXml.replace(new RegExp(/""/g), '"');
+  const emptyLinesRemovedXsd: string = doubleQuoteRemovedXsd.replace(new RegExp(`${EOL}${EOL}+`, 'g'), EOL);
+  return emptyLinesRemovedXsd;
+}
 
 export function formatAndPrependHeader(xsdBody: string): string {
-  const completeXsd = template().xsdWithHeader({
+  const completeXsd: string = template().xsdWithHeader({
     xsdBody,
     copyrightYear: new Date().getFullYear(),
   });
+
   return formatXml(completeXsd);
 }
 
