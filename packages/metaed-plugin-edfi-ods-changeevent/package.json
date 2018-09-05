@@ -1,7 +1,7 @@
 {
   "name": "metaed-plugin-edfi-ods-changeevent",
   "main": "dist/index.js",
-  "version": "1.2.1",
+  "version": "1.2.2-delaware.0",
   "description": "Ed-Fi Alliance ODS/API Change Event plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -21,9 +21,9 @@
   },
   "dependencies": {
     "handlebars": "^4.0.11",
-    "metaed-core": "1.2.1",
-    "metaed-plugin-edfi-ods": "1.2.1",
-    "metaed-plugin-edfi-unified": "1.2.1",
+    "metaed-core": "1.2.2-delaware.0",
+    "metaed-plugin-edfi-ods": "1.2.2-delaware.0",
+    "metaed-plugin-edfi-unified": "1.2.2-delaware.0",
     "ramda": "^0.25.0",
     "winston": "3.0.0"
   },
