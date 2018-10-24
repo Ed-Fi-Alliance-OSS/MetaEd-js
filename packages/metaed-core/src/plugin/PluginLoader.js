@@ -53,6 +53,11 @@ export function scanDirectories(directories: string | Array<string>): Array<Plug
   // eslint-disable-next-line no-param-reassign
   if (!Array.isArray(directories)) directories = [directories];
 
+  // if this looks like a development environment, add those directories
+  if (path.resolve(__dirname, '../../../..').match(/\/metaed-plugin[^/]*$/)) {
+    directories.push(path.resolve(__dirname, '../../../../..'));
+  }
+
   const pluginOrdering: Topo = new Topo();
 
   directories.forEach(directory => {
