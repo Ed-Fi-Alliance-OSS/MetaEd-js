@@ -1,7 +1,7 @@
 {
   "name": "metaed-plugin-edfi-sql-dictionary",
   "main": "dist/index.js",
-  "version": "1.3.1-dev.12",
+  "version": "1.3.1-dev.13",
   "description": "Ed-Fi Alliance SQL Data Dictionary plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -20,9 +20,9 @@
   },
   "dependencies": {
     "handlebars": "^4.0.10",
-    "metaed-core": "1.3.1-dev.12",
-    "metaed-plugin-edfi-ods": "1.3.1-dev.12",
-    "metaed-plugin-edfi-unified": "1.3.1-dev.12",
+    "metaed-core": "1.3.1-dev.13",
+    "metaed-plugin-edfi-ods": "1.3.1-dev.13",
+    "metaed-plugin-edfi-unified": "1.3.1-dev.13",
     "winston": "3.0.0",
     "xlsx": "0.11.19"
   },

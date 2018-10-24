@@ -1,7 +1,7 @@
 {
   "name": "metaed-core",
   "main": "dist/index.js",
-  "version": "1.3.1-dev.12",
+  "version": "1.3.1-dev.13",
   "description": "MetaEd core functionality plugin",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
