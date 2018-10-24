@@ -54,7 +54,7 @@ export function scanDirectories(directories: string | Array<string>): Array<Plug
   if (!Array.isArray(directories)) directories = [directories];
 
   // if this looks like a development environment, add those directories
-  if (path.resolve(__dirname, '../../../..').match(/\/metaed-plugin[^/]*$/)) {
+  if (path.resolve(__dirname, '../../../..').match(`\${path.sep}metaed-plugin[^\${path.sep}]*$`)) {
     directories.push(path.resolve(__dirname, '../../../../..'));
   }
 
