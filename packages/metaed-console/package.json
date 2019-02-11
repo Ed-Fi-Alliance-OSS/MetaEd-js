@@ -1,7 +1,7 @@
 {
   "name": "metaed-console",
   "main": "dist/index.js",
-  "version": "1.4.1-dev.7",
+  "version": "1.4.1-dev.8",
   "description": "MetaEd for JavaScript",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -16,7 +16,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "chalk": "^2.3.0",
-    "metaed-core": "1.4.1-dev.7",
+    "metaed-core": "1.4.1-dev.8",
     "semver": "^5.4.1",
     "winston": "3.0.0",
     "yargs": "^8.0.2"
