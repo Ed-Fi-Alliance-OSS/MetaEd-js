@@ -157,6 +157,7 @@
     "build:clean": "rimraf ./build/dist",
     "build:dist": "mkdir .\\build\\dist && babel ./build/build.js -o ./build/dist/build.js --source-maps inline",
     "build": "yarn build:clean && yarn build:dist",
+    "build:ci": "yarn ci",
     "ci": "node ./build/dist/build.js",
     "test": "apm test"
   },
