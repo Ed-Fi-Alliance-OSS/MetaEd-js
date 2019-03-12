@@ -8,7 +8,7 @@ function dbTypeFrom(column: Column): DbType {
   if (column.type === 'boolean') return 'Boolean';
   if (column.type === 'currency') return 'Currency';
   if (column.type === 'date') return 'Date';
-  if (column.type === 'datetime') return 'DateTime';
+  if (column.type === 'datetime') return 'DateTime2';
   if (column.type === 'decimal') return 'Decimal';
   if (column.type === 'duration') return 'String';
   if (column.type === 'integer') return 'Int32';
