@@ -1,0 +1,8 @@
+{{#tables}}
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'{{{schema}}}.{{{tableName}}}') AND name = N'UX_{{{tableName}}}_ChangeVersion')
+    CREATE INDEX [UX_{{{tableName}}}_ChangeVersion] ON [{{{schema}}}].[{{{tableName}}}] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+{{/tables}}

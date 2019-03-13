@@ -22,4 +22,5 @@ export const template = R.memoizeWith(R.identity, () => ({
   deleteTrackingTable: templateNamed('deleteTrackingTable'),
   deleteTrackingTrigger: templateNamed('deleteTrackingTrigger'),
   createTriggerUpdateChangeVersion: templateNamed('createTriggerUpdateChangeVersion'),
+  addIndexChangeVersion: templateNamed('addIndexChangeVersion'),
 }));

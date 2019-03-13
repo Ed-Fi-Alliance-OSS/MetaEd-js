@@ -10,6 +10,7 @@ import { generate as CreateChangeVersionSequenceGenerator } from './generator/Cr
 import { generate as CreateChangesSchemaGenerator } from './generator/CreateChangesSchemaGenerator';
 import { generate as CreateTriggerUpdateChangeVersionGenerator } from './generator/CreateTriggerUpdateChangeVersionGenerator';
 import { generate as AddColumnChangeVersionForTableGenerator } from './generator/AddColumnChangeVersionForTableGenerator';
+import { generate as AddIndexChangeVersionForTableGenerator } from './generator/AddIndexChangeVersionForTableGenerator';
 
 import { enhance as edFiOdsChangeQueryEntityRepository } from './model/EdFiOdsChangeQueryEntityRepository';
 
@@ -45,6 +46,7 @@ export function initialize(): MetaEdPlugin {
       CreateChangesSchemaGenerator,
       CreateTriggerUpdateChangeVersionGenerator,
       AddColumnChangeVersionForTableGenerator,
+      AddIndexChangeVersionForTableGenerator,
     ],
   });
 }
