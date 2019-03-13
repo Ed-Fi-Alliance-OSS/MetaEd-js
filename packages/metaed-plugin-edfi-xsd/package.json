@@ -1,7 +1,7 @@
 {
   "name": "metaed-plugin-edfi-xsd",
   "main": "dist/index.js",
-  "version": "1.4.1-dev.9",
+  "version": "1.4.1-dev.10",
   "description": "Ed-Fi Alliance XSD plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -21,8 +21,8 @@
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.0.10",
     "js-beautify": "^1.7.4",
-    "metaed-core": "1.4.1-dev.9",
-    "metaed-plugin-edfi-unified": "1.4.1-dev.9",
+    "metaed-core": "1.4.1-dev.10",
+    "metaed-plugin-edfi-unified": "1.4.1-dev.10",
     "ramda": "^0.25.0",
     "semver": "^5.4.1",
     "sugar": "^2.0.4",

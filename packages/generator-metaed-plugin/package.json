@@ -1,6 +1,6 @@
 {
   "name": "generator-metaed-plugin",
-  "version": "1.4.1-dev.9",
+  "version": "1.4.1-dev.10",
   "description": "Yeoman generator for MetaEd plugins",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
