@@ -10,7 +10,10 @@ export function addProjectNameToNamespace(state: State): void {
 
   namespaces.forEach((namespace: Namespace) => {
     const matchingProject: ?MetaEdProject = projects.find((p: MetaEdProject) => p.namespaceName === namespace.namespaceName);
-    if (matchingProject) namespace.projectName = matchingProject.projectName;
+    if (matchingProject) {
+      namespace.projectName = matchingProject.projectName;
+      namespace.projectVersion = matchingProject.projectVersion;
+    }
   });
 }
 

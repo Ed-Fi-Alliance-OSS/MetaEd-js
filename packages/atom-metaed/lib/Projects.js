@@ -103,7 +103,7 @@ export async function findMetaEdProjectMetadata(createProjectJson: boolean = fal
         };
       }
 
-      const projectVersion = semver.coerce(projectFileData.projectVersion).toString();
+      const projectVersion = projectFileData.projectVersion || '';
       if (!semver.valid(projectVersion)) {
         return {
           ...newMetaEdProjectMetadata(projectPath),

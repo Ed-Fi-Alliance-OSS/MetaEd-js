@@ -106,8 +106,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const odsApiVersion: string =
       ((metaEd.plugin.get('edfiOds'): any): PluginEnvironment).targetTechnologyVersion || '3.0.0';
 
+    const version: string = namespace.projectVersion;
     const domainModelDefinition: DomainModelDefinition = {
       odsApiVersion,
+      version,
       schemaDefinition: buildSchemaDefinition(namespace),
       aggregateDefinitions: buildAggregateDefinitions(namespace),
       aggregateExtensionDefinitions: buildAggregateExtensionDefinitions(namespace),
