@@ -1,3 +1,5 @@
+// @flow
+
 import type { MetaEdEnvironment, EnhancerResult, Namespace, SemVer } from 'metaed-core';
 import { versionSatisfies } from 'metaed-core';
 import type { NamespaceEdfiOdsApi } from '../../model/Namespace';
