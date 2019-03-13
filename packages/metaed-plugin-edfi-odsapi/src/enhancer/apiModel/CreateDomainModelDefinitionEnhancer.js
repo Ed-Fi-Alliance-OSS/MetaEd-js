@@ -3,7 +3,7 @@ import R from 'ramda';
 import type { MetaEdEnvironment, EnhancerResult, Namespace, PluginEnvironment } from 'metaed-core';
 import { buildEntityDefinitions } from './BuildEntityDefinitions';
 import { buildAssociationDefinitions } from './BuildAssociationDefinitions';
-import { deriveLogicalNameFromProjectName } from '../../model/apiModel/SchemaDefinition';
+import { deriveLogicalNameFromProjectName, NoSchemaDefinition } from '../../model/apiModel/SchemaDefinition';
 import type { NamespaceEdfiOdsApi } from '../../model/Namespace';
 import type { AggregateDefinition } from '../../model/apiModel/AggregateDefinition';
 import type { AggregateExtensionDefinition } from '../../model/apiModel/AggregateExtensionDefinition';
@@ -20,6 +20,7 @@ export function buildSchemaDefinition(namespace: Namespace): SchemaDefinition {
   return {
     logicalName: deriveLogicalNameFromProjectName(namespace.projectName),
     physicalName: namespace.namespaceName,
+    version: namespace.projectVersion,
   };
 }
 
@@ -106,11 +107,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const odsApiVersion: string =
       ((metaEd.plugin.get('edfiOds'): any): PluginEnvironment).targetTechnologyVersion || '3.0.0';
 
-    const version: string = namespace.projectVersion;
     const domainModelDefinition: DomainModelDefinition = {
       odsApiVersion,
-      version,
-      schemaDefinition: buildSchemaDefinition(namespace),
+      schemaDefinition: NoSchemaDefinition,
       aggregateDefinitions: buildAggregateDefinitions(namespace),
       aggregateExtensionDefinitions: buildAggregateExtensionDefinitions(namespace),
       entityDefinitions: buildEntityDefinitions(metaEd, namespace, additionalEntityDefinitions),

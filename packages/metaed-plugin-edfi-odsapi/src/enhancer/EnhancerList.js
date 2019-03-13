@@ -21,6 +21,8 @@ import { enhance as namespaceSetupEnhancer } from '../model/Namespace';
 import { enhance as topLevelEntitySetupEnhancer } from '../model/TopLevelEntity';
 
 import { enhance as createDomainModelDefinitionEnhancer } from './apiModel/CreateDomainModelDefinitionEnhancer';
+import { enhance as buildSchemaDefinitionEnhancerV3 } from './apiModel/BuildSchemaDefinitionEnhancerV3';
+import { enhance as buildSchemaDefinitionEnhancer } from './apiModel/BuildSchemaDefinitionEnhancer';
 
 import { enhance as moveFederalFundsDiminisher } from '../diminisher/domainMetadata/MoveFederalFundsDiminisher';
 
@@ -52,6 +54,8 @@ export function enhancerList(): Array<Enhancer> {
     educationOrganizationReferenceEnhancer,
     // API Model
     createDomainModelDefinitionEnhancer,
+    buildSchemaDefinitionEnhancerV3,
+    buildSchemaDefinitionEnhancer,
 
     // **************************
     // API Metadata Diminish Phase
