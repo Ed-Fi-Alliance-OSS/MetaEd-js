@@ -107,7 +107,7 @@ describe('when generating api model targeting tech version 3.1.1 and comparing i
           projectName: 'Ed-Fi',
           namespaceName: 'edfi',
           projectExtension: '',
-          projectVersion: '3.1.1',
+          projectVersion: '3.1.0',
         },
       ],
     };
@@ -116,7 +116,7 @@ describe('when generating api model targeting tech version 3.1.1 and comparing i
       ...newState(),
       metaEdConfiguration,
     };
-    state.metaEd.dataStandardVersion = '3.1.1';
+    state.metaEd.dataStandardVersion = '3.1.0';
 
     validateConfiguration(state);
     loadPlugins(state);

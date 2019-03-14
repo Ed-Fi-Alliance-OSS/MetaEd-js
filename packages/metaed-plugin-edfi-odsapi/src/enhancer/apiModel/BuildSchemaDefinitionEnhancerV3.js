@@ -1,6 +1,5 @@
 // @flow
-
-import type { MetaEdEnvironment, EnhancerResult, Namespace, SemVer } from 'metaed-core';
+import type { MetaEdEnvironment, PluginEnvironment, EnhancerResult, Namespace, SemVer } from 'metaed-core';
 import { versionSatisfies } from 'metaed-core';
 import type { NamespaceEdfiOdsApi } from '../../model/Namespace';
 import { deriveLogicalNameFromProjectName } from '../../model/apiModel/SchemaDefinition';
@@ -10,7 +9,9 @@ const targetVersions: SemVer = '<3.1.1';
 
 // Schema definition is the database schema and project name for a namespace
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };
+  const edfiOdsPlugin: ?PluginEnvironment = metaEd.plugin.get('edfiOds');
+  if (edfiOdsPlugin == null || !versionSatisfies(edfiOdsPlugin.targetTechnologyVersion, targetVersions))
+    return { enhancerName, success: true };
 
   metaEd.namespace.forEach((namespace: Namespace) => {
     ((namespace.data.edfiOdsApi: any): NamespaceEdfiOdsApi).domainModelDefinition.schemaDefinition = {

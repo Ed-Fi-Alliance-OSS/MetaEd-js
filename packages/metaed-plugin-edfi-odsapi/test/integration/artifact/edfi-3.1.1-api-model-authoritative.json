@@ -3,7 +3,7 @@
   "schemaDefinition": {
     "logicalName": "Ed-Fi",
     "physicalName": "edfi",
-    "version": "3.1.1"
+    "version": "3.1.0"
   },
   "aggregateDefinitions": [
     {
