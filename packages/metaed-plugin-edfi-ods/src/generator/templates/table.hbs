@@ -8,10 +8,10 @@ CREATE TABLE [{{{schema}}}].[{{{name}}}] (
     [Discriminator] [NVARCHAR](128) NULL,
 {{/if}}
 {{#if includeCreateDateColumn}}
-    [CreateDate] [DATETIME] NOT NULL,
+    [CreateDate] {{#if ../useDatetime2}}[DATETIME2]{{else}}[DATETIME]{{/if}} NOT NULL,
 {{/if}}
 {{#if includeLastModifiedDateAndIdColumn}}
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [LastModifiedDate] {{#if ../useDatetime2}}[DATETIME2]{{else}}[DATETIME]{{/if}} NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
 {{/if}}
     CONSTRAINT [{{{name}}}_PK] PRIMARY KEY CLUSTERED (

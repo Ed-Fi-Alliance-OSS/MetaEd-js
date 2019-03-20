@@ -76,6 +76,10 @@
         {
           "value": "3.1",
           "description": "3.1"
+        },
+        {
+          "value": "3.1.1",
+          "description": "3.1.1"
         }
       ]
     },

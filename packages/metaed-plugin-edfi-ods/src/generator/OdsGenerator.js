@@ -1,16 +1,21 @@
 // @flow
 import winston from 'winston';
 import { versionSatisfies } from 'metaed-core';
-import type { GeneratedOutput, GeneratorResult, MetaEdEnvironment } from 'metaed-core';
+import type { GeneratedOutput, GeneratorResult, MetaEdEnvironment, PluginEnvironment } from 'metaed-core';
 import { dataPath, fileNameFor, registerPartials, structurePath, template } from './OdsGeneratorBase';
 
 winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 
 export async function generateTables(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
+  const { targetTechnologyVersion } = ((metaEd.plugin.get('edfiOds'): any): PluginEnvironment);
+
   const results: Array<GeneratedOutput> = [];
 
   metaEd.namespace.forEach(namespace => {
-    const generatedResult: string = template().table({ tables: namespace.data.edfiOds.ods_Schema.tables });
+    const generatedResult: string = template().table({
+      tables: namespace.data.edfiOds.ods_Schema.tables,
+      useDatetime2: versionSatisfies(targetTechnologyVersion, '>=3.1.1'),
+    });
 
     results.push({
       name: 'ODS Tables',
