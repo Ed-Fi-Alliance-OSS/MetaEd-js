@@ -54,6 +54,6 @@
     "test:atom": "yarn workspace atom-metaed test",
     "test:code-duplication": "yarn jsinspect -t 50 --ignore \"test|gen|dist\" ./packages",
     "prep-for-publish": "yarn test && yarn build",
-    "publish-dev": "yarn lerna publish prerelease --exact --conventional-commits --preid=dev --npm-tag=dev --yes --force-publish=* --npm-client=npm"
+    "publish-dev": "yarn lerna publish prerelease --exact --conventional-commits --preid=dev --dist-tag=dev --yes --force-publish=* --npm-client=npm"
   }
 }
