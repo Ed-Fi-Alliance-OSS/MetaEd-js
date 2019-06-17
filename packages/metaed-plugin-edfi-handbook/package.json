@@ -1,7 +1,7 @@
 {
   "name": "metaed-plugin-edfi-handbook",
   "main": "dist/index.js",
-  "version": "2.0.0-dev.14",
+  "version": "2.0.0-dev.15",
   "description": "Ed-Fi MetaEd Handbook plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -27,10 +27,10 @@
   "dependencies": {
     "handlebars": "^4.0.10",
     "js-beautify": "^1.7.5",
-    "metaed-core": "2.0.0-dev.14",
-    "metaed-plugin-edfi-ods": "2.0.0-dev.14",
-    "metaed-plugin-edfi-unified": "2.0.0-dev.14",
-    "metaed-plugin-edfi-xsd": "2.0.0-dev.14",
+    "metaed-core": "2.0.0-dev.15",
+    "metaed-plugin-edfi-ods": "2.0.0-dev.15",
+    "metaed-plugin-edfi-unified": "2.0.0-dev.15",
+    "metaed-plugin-edfi-xsd": "2.0.0-dev.15",
     "ramda": "^0.25.0",
     "sort-array": "^2.0.0",
     "winston": "3.0.0",

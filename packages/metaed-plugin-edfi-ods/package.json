@@ -1,7 +1,7 @@
 {
   "name": "metaed-plugin-edfi-ods",
   "main": "dist/index.js",
-  "version": "2.0.0-dev.14",
+  "version": "2.0.0-dev.15",
   "description": "Ed-Fi Alliance ODS plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -28,9 +28,9 @@
     "diff2html": "^2.3.2",
     "handlebars": "^4.0.11",
     "hash.js": "^1.1.7",
-    "metaed-core": "2.0.0-dev.14",
-    "metaed-plugin-edfi-unified": "2.0.0-dev.14",
-    "metaed-plugin-edfi-unified-advanced": "2.0.0-dev.14",
+    "metaed-core": "2.0.0-dev.15",
+    "metaed-plugin-edfi-unified": "2.0.0-dev.15",
+    "metaed-plugin-edfi-unified-advanced": "2.0.0-dev.15",
     "ramda": "^0.25.0",
     "sugar": "^2.0.4",
     "winston": "3.0.0"
