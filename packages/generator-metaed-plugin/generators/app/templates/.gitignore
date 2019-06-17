@@ -7,5 +7,4 @@ node_modules/
 dist/
 
 ## Installer error log files
-yarn-error.log
 npm-debug.log

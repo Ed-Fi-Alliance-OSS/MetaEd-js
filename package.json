@@ -33,33 +33,32 @@
   ],
   "husky": {
     "hooks": {
-      "pre-push": "yarn test:pre-push"
+      "pre-push": "npm run test:pre-push"
     }
   },
   "scripts": {
     "antlr-gen": "java -jar ./antlr/antlr-4.6-complete.jar -Dlanguage=JavaScript -o ./packages/metaed-core/src/grammar/gen ./packages/metaed-core/src/grammar/language/BaseLexer.g4 ./packages/metaed-core/src/grammar/language/MetaEdGrammar.g4",
-    "doc-gen": "yarn rimraf docs/ && yarn documentation build packages/metaed-core/src/** --sort-order alpha -f html -o docs",
+    "doc-gen": "npx rimraf docs/ && npx documentation build packages/metaed-core/src/** --sort-order alpha -f html -o docs",
     "metaed:build": "node ./packages/metaed-console/dist/index.js",
     "metaed:deploy": "node ./packages/metaed-odsapi-deploy/dist/index.js",
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build --stream",
     "build:clean": "lerna run build:clean --stream",
-    "test": "yarn build:clean && yarn test:lint && yarn test:unit && yarn test:unit:ods-db && yarn test:atom",
-    "test:pre-push": "yarn build:clean && yarn test:lint",
+    "test": "npm run build:clean && npm run test:lint && npm run test:unit && npm run test:unit:ods-db",
+    "test:pre-push": "npm run build:clean && npm run test:lint",
     "test:coverage": "rimraf coverage/ && jest --coverage",
-    "test:lint": "yarn test:lint:ts && yarn test:lint:eslint",
+    "test:lint": "npm run test:lint:ts && npm run test:lint:eslint",
     "test:lint:eslint": "eslint --ext .js,.ts .",
     "test:lint:ts": "tsc -p . --noEmit",
-    "test:unit": "yarn test:unit:non-ods-prefixed && yarn test:unit:odsapi && yarn test:unit:ods-changequery && yarn test:unit:ods-non-db",
-    "test:unit:non-ods-prefixed": "yarn jest \"packages/(?!metaed-plugin-edfi-ods)\"",
-    "test:unit:odsapi": "yarn jest packages/metaed-plugin-edfi-odsapi/test",
-    "test:unit:ods-changequery": "yarn jest packages/metaed-plugin-edfi-ods-changequery/test",
-    "test:unit:ods-non-db": "yarn jest \"packages/metaed-plugin-edfi-ods/test/(?!database)\"",
-    "test:unit:ods-db": "yarn ts-node packages/metaed-plugin-edfi-ods/test/database/InitializeOdsIntegrationTestDatabase.ts && yarn jest packages/metaed-plugin-edfi-ods/test/database -i",
+    "test:unit": "npm run test:unit:non-ods-prefixed && npm run test:unit:odsapi && npm run test:unit:ods-changequery && npm run test:unit:ods-non-db",
+    "test:unit:non-ods-prefixed": "npx jest \"packages/(?!metaed-plugin-edfi-ods)\"",
+    "test:unit:odsapi": "npx jest packages/metaed-plugin-edfi-odsapi/test",
+    "test:unit:ods-changequery": "npx jest packages/metaed-plugin-edfi-ods-changequery/test",
+    "test:unit:ods-non-db": "npx jest \"packages/metaed-plugin-edfi-ods/test/(?!database)\"",
+    "test:unit:ods-db": "npx ts-node packages/metaed-plugin-edfi-ods/test/database/InitializeOdsIntegrationTestDatabase.ts && npx jest packages/metaed-plugin-edfi-ods/test/database -i",
     "test:unit:debug": "node --inspect-brk ./node_modules/.bin/jest --runInBand",
-    "test:atom": "yarn workspace atom-metaed test",
-    "test:code-duplication": "yarn jsinspect -t 50 --ignore \"test|gen|dist\" ./packages",
-    "prep-for-publish": "yarn test && yarn build",
-    "publish-dev": "yarn lerna publish prerelease --exact --conventional-commits --preid=dev --dist-tag=dev --yes --force-publish=* --npm-client=npm --no-verify-access"
+    "test:code-duplication": "npx jsinspect -t 50 --ignore \"test|gen|dist\" ./packages",
+    "prep-for-publish": "npm test && npm run build",
+    "publish-dev": "npx lerna publish prerelease --exact --conventional-commits --preid=dev --dist-tag=dev --yes --force-publish=* --npm-client=npm --no-verify-access"
   }
 }

@@ -2,7 +2,7 @@
 {
   // ESlint
   "eslint.enable": true,
-  "eslint.packageManager": "yarn",
+  "eslint.packageManager": "npm",
   "eslint.provideLintTask": true,
   "eslint.validate": [
     "javascript",
@@ -19,7 +19,7 @@
   "typescript.tsdk": "./node_modules/typescript/lib",
 
   // NPM
-  "npm.packageManager": "yarn",
+  "npm.packageManager": "npm",
   "npm.enableScriptExplorer": true,
 
   // File Explorer

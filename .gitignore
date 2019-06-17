@@ -59,4 +59,4 @@ sample-TriggerUpdateChangeVersion-v3.1.sql
 MetaEdOutput-Experimental/
 MetaEdOutput/
 
-yarn-error.log
+npm-error.log
