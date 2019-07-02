@@ -1,7 +1,7 @@
 {
   "name": "metaed-odsapi-deploy",
   "main": "dist/index.js",
-  "version": "2.0.0-dev.20",
+  "version": "2.0.0-beta.3",
   "description": "MetaEd for JavaScript",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -17,7 +17,7 @@
     "babel-polyfill": "^6.26.0",
     "chalk": "^2.3.0",
     "fs-extra": "^5.0.0",
-    "metaed-core": "2.0.0-dev.20",
+    "metaed-core": "2.0.0-beta.3",
     "ramda": "^0.25.0",
     "semver": "^5.4.1",
     "sugar": "^2.0.4",

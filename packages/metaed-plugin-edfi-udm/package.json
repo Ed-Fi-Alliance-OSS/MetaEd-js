@@ -1,7 +1,7 @@
 {
   "name": "metaed-plugin-edfi-udm",
   "main": "dist/index.js",
-  "version": "2.0.0-dev.20",
+  "version": "2.0.0-beta.3",
   "description": "Ed-Fi UDM plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -29,10 +29,10 @@
     "handlebars": "^4.0.10",
     "js-beautify": "^1.7.5",
     "marked": "^0.4.0",
-    "metaed-core": "2.0.0-dev.20",
-    "metaed-plugin-edfi-ods": "2.0.0-dev.20",
-    "metaed-plugin-edfi-unified-advanced": "2.0.0-dev.20",
-    "metaed-plugin-edfi-xsd": "2.0.0-dev.20",
+    "metaed-core": "2.0.0-beta.3",
+    "metaed-plugin-edfi-ods": "2.0.0-beta.3",
+    "metaed-plugin-edfi-unified-advanced": "2.0.0-beta.3",
+    "metaed-plugin-edfi-xsd": "2.0.0-beta.3",
     "ramda": "^0.25.0",
     "sort-array": "^2.0.0",
     "sugar": "^2.0.4",
