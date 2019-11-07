@@ -124,10 +124,10 @@ describe('when generating xsd for domain entity', () => {
       'MyAddressLine, MyAddressLine, DomainEntityName, , An address line.',
     );
     expect(workbook.sheets[0].rows[8].values.reduce(rowToString)).toBe(
-      'Namespace, URI, DescriptorType, , A globally unique identifier for this descriptor.',
+      'Namespace, URI, DescriptorReferenceType, minOccurs: 0, An optional globally unique namespace that identifies this descriptor set. If supplied, the author is strongly encouraged to use the Universal Resource Identifier (http, ftp, file, etc.) for the source of the descriptor definition. Best practice is for this source to be the descriptor file itself, so that it can be machine-readable and be fetched in real-time, if necessary. Actual usage of this element for matching descriptors will be system-specific.',
     );
     expect(workbook.sheets[0].rows[9].values.reduce(rowToString)).toBe(
-      'Namespace, URI, DescriptorReferenceType, minOccurs: 0, An optional globally unique namespace that identifies this descriptor set. If supplied, the author is strongly encouraged to use the Universal Resource Identifier (http, ftp, file, etc.) for the source of the descriptor definition. Best practice is for this source to be the descriptor file itself, so that it can be machine-readable and be fetched in real-time, if necessary. Actual usage of this element for matching descriptors will be system-specific.',
+      'Namespace, URI, DescriptorType, , A globally unique identifier for this descriptor.',
     );
     expect(workbook.sheets[0].rows[10].values.reduce(rowToString)).toBe(
       'PriorDescriptor, DescriptorReferenceType, DescriptorType, minOccurs: 0, Immediately prior to the date in Effective Date, the reference to the equivalent descriptor.',
