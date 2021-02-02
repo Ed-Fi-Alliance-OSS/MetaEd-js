@@ -1,4 +1,4 @@
-name: Build and Test MetaEd
+name: Lint and Test
 on:
   push:
     branches:
