@@ -71,3 +71,4 @@ MetaEdOutput-Experimental/
 MetaEdOutput/
 
 yarn-error.log
+.secrets

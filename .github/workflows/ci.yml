@@ -1,0 +1,26 @@
+name: Build and Test MetaEd
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  lint-and-test:
+    name: Run Lint and Unit Tests
+    # Windows is required for some of the unit tests to run properly
+    runs-on: windows-2019
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
+      - name: Install
+        run: yarn install --ignore-scripts
+      
+      - name: Bootstrap
+        run: yarn bootstrap --ignore-scripts
+
+      - name: Lint
+        run: yarn test:lint
+
+      - name: Unit tests
+        run: yarn test:unit --ci

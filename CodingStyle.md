@@ -24,4 +24,4 @@ Coding Style Guide
 * We'll start failing builds with poor coverage soon.
 * Snapshots in tests should be used only where there is complex text comparison going on.
 * Snapshots should always be accompanied with regular test case assertions.
-* In tests, strings for MetaEdNames should be the same as the variable name. 
+* In tests, strings for MetaEdNames should be the same as the variable name.

@@ -3,7 +3,111 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.4.1-dev.0](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v2.4.0...v2.4.1-dev.0) (2020-11-06)
+## [0.0.2-dev.4](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v0.0.2-dev.3...v0.0.2-dev.4) (2021-02-01)
+
+**Note:** Version bump only for package metaed-core
+
+
+
+
+
+## [0.0.2-dev.3](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v0.0.2-dev.2...v0.0.2-dev.3) (2021-02-01)
+
+**Note:** Version bump only for package metaed-core
+
+
+
+
+
+## [0.0.2-dev.2](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v0.0.2-dev.1...v0.0.2-dev.2) (2021-02-01)
+
+**Note:** Version bump only for package metaed-core
+
+
+
+
+
+## [0.0.2-dev.1](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v0.0.2-dev.0...v0.0.2-dev.1) (2021-02-01)
+
+**Note:** Version bump only for package metaed-core
+
+
+
+
+
+## [0.0.2-dev.0](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v0.0.1...v0.0.2-dev.0) (2021-02-01)
+
+**Note:** Version bump only for package metaed-core
+
+
+
+
+
+## [0.0.1](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v0.0.0...v0.0.1) (2021-01-29)
+
+**Note:** Version bump only for package metaed-core
+
+
+
+
+
+# [0.0.0](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v0.0.0-dev.6...v0.0.0) (2021-01-29)
+
+**Note:** Version bump only for package metaed-core
+
+
+
+
+
+# [0.0.0-dev.6](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v0.0.0-dev.5...v0.0.0-dev.6) (2021-01-29)
+
+**Note:** Version bump only for package metaed-core
+
+
+
+
+
+# [0.0.0-dev.5](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v0.0.0-dev.4...v0.0.0-dev.5) (2021-01-29)
+
+**Note:** Version bump only for package metaed-core
+
+
+
+
+
+# [0.0.0-dev.4](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v0.0.0-dev.3...v0.0.0-dev.4) (2021-01-29)
+
+**Note:** Version bump only for package metaed-core
+
+
+
+
+
+# [0.0.0-dev.3](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v0.0.0-dev.1...v0.0.0-dev.3) (2021-01-29)
+
+**Note:** Version bump only for package metaed-core
+
+
+
+
+
+# [0.0.0-dev.2](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v0.0.0-dev.1...v0.0.0-dev.2) (2021-01-29)
+
+**Note:** Version bump only for package metaed-core
+
+
+
+
+
+# [0.0.0-dev.1](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v2.4.1-dev.0...v0.0.0-dev.1) (2021-01-29)
+
+**Note:** Version bump only for package metaed-core
+
+
+
+
+
+## [0.0.0-dev.0](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v2.4.0...v0.0.0-dev.0) (2020-11-06)
 
 **Note:** Version bump only for package metaed-core
 

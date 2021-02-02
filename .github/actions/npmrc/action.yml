@@ -1,0 +1,16 @@
+name: 'npmrc'
+description: 'Creates a .npmrc file appropriate for use with Azure Artifacts'
+inputs:
+  feed-url:
+    description: 'URL of the npm feed'
+    required: true
+  personal-access-token:
+    description: 'Base64-encoded PAT with r/w Packaging permission'
+    required: true
+  is-windows:
+    description: 'Is this process running in a Windows container?'
+    required: false
+    default: false
+runs:
+  using: 'node12'
+  main: 'index.js'

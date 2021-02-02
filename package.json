@@ -62,6 +62,9 @@
     "test:atom": "yarn workspace atom-metaed test",
     "test:code-duplication": "yarn jsinspect -t 50 --ignore \"test|gen|dist\" ./packages",
     "prep-for-publish": "yarn test && yarn build",
-    "publish-dev": "yarn lerna publish prerelease --exact --conventional-commits --preid=dev --dist-tag=dev --yes --force-publish=* --npm-client=npm --no-verify-access"
+    "publish:dev": "yarn lerna publish prerelease --exact --conventional-commits --preid=dev --dist-tag=dev --yes --force-publish=* --npm-client=npm --no-verify-access",
+    "publish:patch": "yarn lerna publish patch --conventional-commits --create-release github --exact --force-publish=* ---no-push --yes --no-verify-access",
+    "publish:minor": "yarn lerna publish minor --conventional-commits --create-release github --exact --force-publish=* ---no-push --yes --no-verify-access",
+    "publish:major": "yarn lerna publish major --conventional-commits --create-release github --exact --force-publish=* ---no-push --yes --no-verify-access"
   }
 }

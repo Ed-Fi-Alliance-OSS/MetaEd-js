@@ -1,0 +1,31 @@
+name: Build and publish pre-release
+on:
+  workflow_dispatch:
+    # All input comes from secrets
+jobs:
+  publish-prerelease:
+    name: Build and publish pre-release
+    # Must run on Windows
+    runs-on: windows-2019
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+        
+      - uses: actions/setup-node@c46424eee26de4078d34105d3de3cc4992202b1e
+        with:
+          node-version: '14.x'
+          registry-url: 'https://www.myget.org/F/ed-fi/npm/'
+
+      - name: Install
+        run: yarn install --ignore-scripts
+      
+      - name: Bootstrap
+        run: yarn bootstrap --ignore-scripts
+
+      - name: Build
+        run: yarn build
+
+      - name: Publish Pre-release
+        run: yarn publish:dev
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_MYGET_ACCESS_TOKEN }}
