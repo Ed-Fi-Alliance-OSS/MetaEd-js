@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2-dev.0](https://github.com/Ed-Fi-Closed/MetaEd-js/compare/v2.4.1-dev.0...v2.4.2-dev.0) (2021-02-02)
+
+**Note:** Version bump only for package metaed-plugin-edfi-xml-dictionary
+
+
+
+
+
 ## [0.0.2-dev.7](https://github.com/Ed-Fi-Alliance/MetaEd-js/compare/v2.4.1-dev.0...v0.0.2-dev.7) (2021-02-02)
 
 **Note:** Version bump only for package metaed-plugin-edfi-xml-dictionary
