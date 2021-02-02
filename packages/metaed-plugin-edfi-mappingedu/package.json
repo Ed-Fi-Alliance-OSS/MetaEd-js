@@ -1,7 +1,7 @@
 {
   "name": "metaed-plugin-edfi-mappingedu",
   "main": "dist/index.js",
-  "version": "0.0.2-dev.6",
+  "version": "0.0.2-dev.7",
   "description": "Ed-Fi MappingEDU plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -26,9 +26,9 @@
     "enabled": false
   },
   "dependencies": {
-    "metaed-core": "0.0.2-dev.6",
-    "metaed-plugin-edfi-unified-advanced": "0.0.2-dev.6",
-    "metaed-plugin-edfi-xsd": "0.0.2-dev.6",
+    "metaed-core": "0.0.2-dev.7",
+    "metaed-plugin-edfi-unified-advanced": "0.0.2-dev.7",
+    "metaed-plugin-edfi-xsd": "0.0.2-dev.7",
     "xlsx": "^0.14.0"
   },
   "devDependencies": {
