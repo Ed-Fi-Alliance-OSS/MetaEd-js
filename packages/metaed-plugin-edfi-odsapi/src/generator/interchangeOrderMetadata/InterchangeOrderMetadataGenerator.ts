@@ -50,7 +50,7 @@ interface InterchangeMetadata {
   elements: ElementMetadata[];
 }
 
-const targetTechnologyVersion: SemVer = '>=5.0.0';
+const targetTechnologyVersion: SemVer = '<5.0.0';
 
 function getInterchangeMetadataFor(interchange: MergedInterchange): InterchangeMetadata {
   const elements: ElementMetadata[] = interchange.data.edfiOdsApi.apiOrderedElements.map(
@@ -65,7 +65,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const results: GeneratedOutput[] = [];
 
   if (
-    versionSatisfies((metaEd.plugin.get('edfiOdsApi') as PluginEnvironment).targetTechnologyVersion, targetTechnologyVersion)
+    !versionSatisfies((metaEd.plugin.get('edfiOdsApi') as PluginEnvironment).targetTechnologyVersion, targetTechnologyVersion)
   ) {
     return { generatorName, generatedOutput: results };
   }
