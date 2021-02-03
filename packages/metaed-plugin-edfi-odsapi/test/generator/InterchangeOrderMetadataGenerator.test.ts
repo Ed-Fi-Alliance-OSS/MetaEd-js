@@ -16,6 +16,12 @@ describe('when generating core interchange', (): void => {
   const namespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
   metaEd.namespace.set(namespace.namespaceName, namespace);
   addEdFiXsdEntityRepositoryTo(metaEd);
+  metaEd.plugin.set(
+    'edfiOdsApi',
+    Object.assign(newPluginEnvironment(), {
+      targetTechnologyVersion: '3.0.0',
+    }),
+  );
 
   const elementName1 = 'ElementName1';
   const elementName2 = 'ElementName2';
@@ -61,6 +67,12 @@ describe('when generating core interchange on DS 3.0', (): void => {
   const namespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
   metaEd.namespace.set(namespace.namespaceName, namespace);
   addEdFiXsdEntityRepositoryTo(metaEd);
+  metaEd.plugin.set(
+    'edfiOdsApi',
+    Object.assign(newPluginEnvironment(), {
+      targetTechnologyVersion: '3.0.0',
+    }),
+  );
 
   const elementName1 = 'ElementName1';
   const elementName2 = 'ElementName2';
@@ -113,6 +125,12 @@ describe('when generating extension interchange', (): void => {
   metaEd.namespace.set(extensionNamespace.namespaceName, extensionNamespace);
   extensionNamespace.dependencies.push(coreNamespace);
   addEdFiXsdEntityRepositoryTo(metaEd);
+  metaEd.plugin.set(
+    'edfiOdsApi',
+    Object.assign(newPluginEnvironment(), {
+      targetTechnologyVersion: '3.0.0',
+    }),
+  );
 
   const elementName1 = 'ElementName1';
   const elementName2 = 'ElementName2';
@@ -166,6 +184,12 @@ describe('when generating core and extension interchange', (): void => {
   metaEd.namespace.set(extensionNamespace.namespaceName, extensionNamespace);
   extensionNamespace.dependencies.push(coreNamespace);
   addEdFiXsdEntityRepositoryTo(metaEd);
+  metaEd.plugin.set(
+    'edfiOdsApi',
+    Object.assign(newPluginEnvironment(), {
+      targetTechnologyVersion: '3.0.0',
+    }),
+  );
 
   const elementName1 = 'ElementName1';
   const elementName2 = 'ElementName2';
@@ -260,6 +284,12 @@ describe('when generating core and extension interchange with same interchange n
   metaEd.namespace.set(extensionNamespace.namespaceName, extensionNamespace);
   extensionNamespace.dependencies.push(coreNamespace);
   addEdFiXsdEntityRepositoryTo(metaEd);
+  metaEd.plugin.set(
+    'edfiOdsApi',
+    Object.assign(newPluginEnvironment(), {
+      targetTechnologyVersion: '3.0.0',
+    }),
+  );
 
   const elementName1 = 'ElementName1';
   const elementName2 = 'ElementName2';
@@ -381,28 +411,19 @@ describe('when generating core and extension interchange with same interchange n
 });
 
 describe('when generating in targetTechnologyVersion >= 5.0.0', (): void => {
-  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '2.0.0' });
-  const namespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '2.0.0' };
+  const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
   metaEd.namespace.set(namespace.namespaceName, namespace);
+  addEdFiXsdEntityRepositoryTo(metaEd);
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
       targetTechnologyVersion: '5.0.1',
     }),
   );
-  addEdFiXsdEntityRepositoryTo(metaEd);
-  const interchangeName = 'InterchangeName';
-  const interchangeOrder = 10;
   let result: GeneratorResult;
 
   beforeAll(async () => {
-    const mergedInterchange: MergedInterchange = Object.assign(newMergedInterchange(), {
-      namespace,
-      metaEdName: interchangeName,
-      data: { edfiOdsApi: { apiOrderedElements: [], apiOrder: interchangeOrder } },
-    });
-    addMergedInterchangeToRepository(metaEd, mergedInterchange);
-
     result = await generate(metaEd);
   });
 
