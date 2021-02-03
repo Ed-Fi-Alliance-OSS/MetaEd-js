@@ -65,8 +65,8 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const results: GeneratedOutput[] = [];
 
   if (
-    !versionSatisfies((
-      metaEd.plugin.get('edfiOdsApi') as PluginEnvironment).targetTechnologyVersion,
+    !versionSatisfies(
+      (metaEd.plugin.get('edfiOdsApi') as PluginEnvironment).targetTechnologyVersion,
       targetTechnologyVersion,
     )
   ) {
