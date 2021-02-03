@@ -2,7 +2,15 @@ import fs from 'fs';
 import R from 'ramda';
 import path from 'path';
 import handlebars from 'handlebars';
-import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from 'metaed-core';
+import {
+  MetaEdEnvironment,
+  GeneratedOutput,
+  GeneratorResult,
+  Namespace,
+  SemVer,
+  versionSatisfies,
+  PluginEnvironment,
+} from 'metaed-core';
 import { EdFiXsdEntityRepository, MergedInterchange, edfiXsdRepositoryForNamespace } from 'metaed-plugin-edfi-xsd';
 
 const generatorName = 'edfiOdsApi.InterchangeOrderMetadataGeneratorV2';
@@ -42,6 +50,8 @@ interface InterchangeMetadata {
   elements: ElementMetadata[];
 }
 
+const targetTechnologyVersion: SemVer = '>=5.0.0';
+
 function getInterchangeMetadataFor(interchange: MergedInterchange): InterchangeMetadata {
   const elements: ElementMetadata[] = interchange.data.edfiOdsApi.apiOrderedElements.map(
     (element: { name: string; globalDependencyOrder: number }) => ({
@@ -53,6 +63,12 @@ function getInterchangeMetadataFor(interchange: MergedInterchange): InterchangeM
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
+
+  if (
+    versionSatisfies((metaEd.plugin.get('edfiOdsApi') as PluginEnvironment).targetTechnologyVersion, targetTechnologyVersion)
+  ) {
+    return { generatorName, generatedOutput: results };
+  }
 
   if (metaEd.namespace.size > 0) {
     const coreNamespace: Namespace | undefined = metaEd.namespace.get('EdFi');

@@ -1,6 +1,6 @@
 import R from 'ramda';
 import xmlParser from 'xml-js';
-import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
+import { GeneratorResult, newMetaEdEnvironment, newNamespace, newPluginEnvironment } from 'metaed-core';
 import { MetaEdEnvironment, Namespace, GeneratedOutput } from 'metaed-core';
 import {
   addEdFiXsdEntityRepositoryTo,
@@ -377,5 +377,36 @@ describe('when generating core and extension interchange with same interchange n
 
     const sharedElement3 = R.view(nextThird, sharedInterchange);
     expect(R.view(xsdAttributeName, sharedElement3)).toBe(elementName3);
+  });
+});
+
+describe('when generating in targetTechnologyVersion >= 5.0.0', (): void => {
+  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '2.0.0' });
+  const namespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
+  metaEd.namespace.set(namespace.namespaceName, namespace);
+  metaEd.plugin.set(
+    'edfiOdsApi',
+    Object.assign(newPluginEnvironment(), {
+      targetTechnologyVersion: '5.0.1',
+    }),
+  );
+  addEdFiXsdEntityRepositoryTo(metaEd);
+  const interchangeName = 'InterchangeName';
+  const interchangeOrder = 10;
+  let result: GeneratorResult;
+
+  beforeAll(async () => {
+    const mergedInterchange: MergedInterchange = Object.assign(newMergedInterchange(), {
+      namespace,
+      metaEdName: interchangeName,
+      data: { edfiOdsApi: { apiOrderedElements: [], apiOrder: interchangeOrder } },
+    });
+    addMergedInterchangeToRepository(metaEd, mergedInterchange);
+
+    result = await generate(metaEd);
+  });
+
+  it('should return empty generatedOutput', (): void => {
+    expect(result.generatedOutput.length === 0);
   });
 });
