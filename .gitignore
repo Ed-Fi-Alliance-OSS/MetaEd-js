@@ -72,3 +72,4 @@ MetaEdOutput/
 
 yarn-error.log
 .secrets
+metaed.conf.json
