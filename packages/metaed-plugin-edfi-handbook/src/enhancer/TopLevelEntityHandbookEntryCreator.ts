@@ -114,7 +114,6 @@ function entityPropertyToHandbookEntityReferenceProperty(
     extensionParentNamespaceName: isPropertyOnExtensionEntity ? property.parentEntity.namespace.namespaceName : '',
     umlDatatype: umlDatatypeMatrix[property.type],
     jsonDatatype: jsonDatatypeMatrix[property.type],
-    xsdDatatype: property.data.edfiXsd ? property.data.edfiXsd.xsdType : '',
     metaEdDatatype: getMetaEdDatatype(property),
     sqlDatatype: getSqlDatatype(property),
     isIdentity: property.isPartOfIdentity || property.isIdentityRename,

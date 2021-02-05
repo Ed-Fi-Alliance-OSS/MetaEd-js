@@ -31,7 +31,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           extensionParentNamespaceName: '',
           umlDatatype: '',
           jsonDatatype: '',
-          xsdDatatype: '',
           metaEdDatatype: '',
           sqlDatatype: '',
           isIdentity: false,

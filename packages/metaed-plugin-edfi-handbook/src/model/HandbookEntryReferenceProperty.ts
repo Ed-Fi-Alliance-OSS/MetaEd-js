@@ -14,7 +14,6 @@ export interface HandbookEntityReferenceProperty {
   extensionParentNamespaceName: string;
   umlDatatype: string;
   jsonDatatype: string;
-  xsdDatatype: string;
   metaEdDatatype: string;
   sqlDatatype: string;
   isIdentity: boolean;
