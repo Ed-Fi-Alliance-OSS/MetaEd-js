@@ -27,7 +27,7 @@
       "title": "Target Ed-Fi ODS/API Version",
       "description": "Select the target Ed-Fi ODS/API version.",
       "type": "string",
-      "default": "5.1.0",
+      "default": "5.2.0",
       "enum": [
         {
           "value": "2.0.0",
@@ -92,6 +92,10 @@
         {
           "value": "5.1.0",
           "description": "5.1"
+        },
+        {
+          "value": "5.2.0",
+          "description": "5.2"
         }
       ]
     },
@@ -203,6 +207,7 @@
     "ed-fi-model-3.2a": "2.0.1",
     "ed-fi-model-3.2b": "2.0.1",
     "ed-fi-model-3.2c": "2.0.1",
+    "ed-fi-model-3.3a": "2.0.0",
     "fs-extra": "^3.0.1",
     "klaw-sync": "^3.0.2",
     "metaed-console": "2.4.2-dev.0",

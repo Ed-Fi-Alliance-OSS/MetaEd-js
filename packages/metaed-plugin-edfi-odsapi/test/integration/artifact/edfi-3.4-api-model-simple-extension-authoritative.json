@@ -887,7 +887,6 @@
       ],
       "isIdentifying": true,
       "isRequired": true,
-      "potentiallyLogical": false,
       "constraintNames": {
         "sqlServer": "FK_StaffEvaluation_SchoolYearType",
         "postgreSql": "FK_5f5473_SchoolYearType"
@@ -981,7 +980,6 @@
       ],
       "isIdentifying": true,
       "isRequired": true,
-      "potentiallyLogical": false,
       "constraintNames": {
         "sqlServer": "FK_StaffEvaluationComponent_StaffEvaluation",
         "postgreSql": "FK_60e7ab_StaffEvaluation"
@@ -1117,7 +1115,6 @@
       ],
       "isIdentifying": true,
       "isRequired": true,
-      "potentiallyLogical": false,
       "constraintNames": {
         "sqlServer": "FK_StaffEvaluationComponentStaffRatingLevel_StaffEvaluationComponent",
         "postgreSql": "FK_c002a7_StaffEvaluationComponent"
@@ -1177,7 +1174,6 @@
       ],
       "isIdentifying": true,
       "isRequired": true,
-      "potentiallyLogical": false,
       "constraintNames": {
         "sqlServer": "FK_StaffEvaluationRating_Staff",
         "postgreSql": "FK_e34e81_Staff"
@@ -1271,7 +1267,6 @@
       ],
       "isIdentifying": true,
       "isRequired": true,
-      "potentiallyLogical": false,
       "constraintNames": {
         "sqlServer": "FK_StaffEvaluationRating_StaffEvaluation",
         "postgreSql": "FK_e34e81_StaffEvaluation"
@@ -1365,7 +1360,6 @@
       ],
       "isIdentifying": true,
       "isRequired": true,
-      "potentiallyLogical": false,
       "constraintNames": {
         "sqlServer": "FK_StaffEvaluationStaffRatingLevel_StaffEvaluation",
         "postgreSql": "FK_090e45_StaffEvaluation"
@@ -1425,7 +1419,6 @@
       ],
       "isIdentifying": true,
       "isRequired": true,
-      "potentiallyLogical": false,
       "constraintNames": {
         "sqlServer": "FK_StaffMyCollection_Staff",
         "postgreSql": "FK_c9dedb_Staff"
@@ -1485,7 +1478,6 @@
       ],
       "isIdentifying": true,
       "isRequired": true,
-      "potentiallyLogical": false,
       "constraintNames": {
         "sqlServer": "FK_StaffRatingLevel_Staff",
         "postgreSql": "FK_b375f5_Staff"

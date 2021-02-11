@@ -23,7 +23,8 @@ import { enhance as createDomainModelDefinitionEnhancer } from './apiModel/Creat
 import { enhance as buildSchemaDefinitionEnhancerV3 } from './apiModel/BuildSchemaDefinitionEnhancerV3';
 import { enhance as buildSchemaDefinitionEnhancer } from './apiModel/BuildSchemaDefinitionEnhancer';
 import { enhance as associationDefinitionEnhancer } from './apiModel/AssociationDefinitionEnhancer';
-import { enhance as associationDefinitionEnhancerV3 } from './apiModel/AssociationDefinitionEnhancerV3dot2';
+import { enhance as associationDefinitionEnhancerV3dot2 } from './apiModel/AssociationDefinitionEnhancerV3dot2';
+import { enhance as associationDefinitionEnhancerV5dot1 } from './apiModel/AssociationDefinitionEnhancerV5dot1';
 import { enhance as associationDefinitionIsIdentifyingEnhancer } from './apiModel/AssociationDefinitionIsIdentifyingEnhancer';
 import { enhance as associationDefinitionCardinalityEnhancer } from './apiModel/AssociationDefinitionCardinalityEnhancer';
 import { enhance as associationDefinitionIsRequiredEnhancer } from './apiModel/AssociationDefinitionIsRequiredEnhancer';
@@ -76,7 +77,8 @@ export function enhancerList(): Enhancer[] {
     buildSchemaDefinitionEnhancerV3,
     buildSchemaDefinitionEnhancer,
     associationDefinitionEnhancer,
-    associationDefinitionEnhancerV3,
+    associationDefinitionEnhancerV3dot2,
+    associationDefinitionEnhancerV5dot1,
     associationDefinitionIsIdentifyingEnhancer,
     associationDefinitionCardinalityEnhancer,
     associationDefinitionIsRequiredEnhancer,

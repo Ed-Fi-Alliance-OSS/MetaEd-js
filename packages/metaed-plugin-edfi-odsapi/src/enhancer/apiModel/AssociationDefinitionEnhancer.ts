@@ -8,7 +8,7 @@ import { newAssociationDefinition } from '../../model/apiModel/AssociationDefini
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 
 const enhancerName = 'AssociationDefinitionEnhancer';
-const targetVersions: SemVer = '>=3.3.0';
+const targetVersions: SemVer = '>=5.2.0';
 
 const sortByName = R.sortBy(
   R.pipe(
