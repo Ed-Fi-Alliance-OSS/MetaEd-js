@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, PluginEnvironment, SemVer, ValidationFailure, versionSatisfies } from 'metaed-core';
+import { DescriptorSourceMap, MetaEdEnvironment, Namespace, PluginEnvironment, SemVer, ValidationFailure, versionSatisfies } from 'metaed-core';
 
 const targetTechnologyVersion: SemVer = '=<5.2';
 
@@ -14,14 +14,19 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
 
   const failures: ValidationFailure[] = [];
 
-  // metaEd.propertyIndex.descriptor.forEach(descriptorProperty => {
-  //   failures.push({
-  //     validatorName: 'DescriptorPropertyMustNotHaveAttributes',
-  //     category: 'error',
-  //     message: `Descriptor property ${descriptorProperty.metaEdName} name is invalid.  Descriptor names cannot be suffixed with 'Descriptor'.`,
-  //     sourceMap: descriptorProperty.sourceMap.metaEdName,
-  //     fileMap: null,
-  //   });
-  // });
+  metaEd.namespace.forEach((namespace: Namespace) => {
+    namespace.entity.descriptor.forEach(descriptor => {
+      if (descriptor.properties.length > 0) {
+        failures.push({
+          validatorName: 'DescriptorPropertyMustNotHaveAttributes',
+          category: 'error',
+          message: `Disallowed as of ODS/API v5.2. The recommended pattern for descriptors that require additional attributes is to model as common entities.`,
+          sourceMap: (descriptor.sourceMap as DescriptorSourceMap).metaEdName,
+          fileMap: null,
+        });
+      }
+    });
+  })
+
   return failures;
 }
