@@ -8,7 +8,7 @@ import {
   versionSatisfies,
 } from 'metaed-core';
 
-const targetTechnologyVersion: SemVer = '=<5.2';
+const targetTechnologyVersion: SemVer = '>=5.2';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   if (

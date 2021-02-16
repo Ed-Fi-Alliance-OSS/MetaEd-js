@@ -40,6 +40,7 @@ import { validate as decimalPropertyMustNotMatchASharedString } from './validato
 import { validate as descriptorMapTypeItemsMustBeUnique } from './validator/Descriptor/DescriptorMapTypeItemsMustBeUnique';
 import { validate as descriptorNameCannotEndInDescriptor } from './validator/Descriptor/DescriptorNameCannotEndInDescriptor';
 import { validate as descriptorNamesMustBeUnique } from './validator/Descriptor/DescriptorNamesMustBeUnique';
+import { validate as descriptorMustNotHaveAttributes } from './validator/Descriptor/DescriptorMustNotHaveAttributes';
 
 import { validate as descriptorPropertyMustMatchADescriptor } from './validator/DescriptorProperty/DescriptorPropertyMustMatchADescriptor';
 import { validate as descriptorPropertyNameCannotEndInDescriptor } from './validator/DescriptorProperty/DescriptorPropertyNameCannotEndInDescriptor';
@@ -246,6 +247,7 @@ function validatorList(): Validator[] {
     descriptorMapTypeItemsMustBeUnique,
     descriptorNameCannotEndInDescriptor,
     descriptorNamesMustBeUnique,
+    descriptorMustNotHaveAttributes,
 
     descriptorPropertyMustMatchADescriptor,
     descriptorPropertyNameCannotEndInDescriptor,
