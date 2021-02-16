@@ -37,34 +37,35 @@ describe('when descriptor does not have properties', (): void => {
   });
 });
 
-// describe('when descriptor has properties', (): void => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   let failures: ValidationFailure[];
-//   metaEd.plugin.set(
-//     'edfiUnified',
-//     Object.assign(newPluginEnvironment(), {
-//       targetTechnologyVersion: '5.2.1',
-//     }),
-//   );
+describe('when descriptor has properties', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  let failures: ValidationFailure[];
+  metaEd.plugin.set(
+    'edfiUnified',
+    Object.assign(newPluginEnvironment(), {
+      targetTechnologyVersion: '5.2.1',
+    }),
+  );
 
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace('EdFi')
-//       .withStartDescriptor('ValidName')
-//       .withDocumentation('doc')
-//       .withEndDescriptor()
-//       .withEndNamespace()
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDescriptor('ValidName')
+      .withDocumentation('doc')
+      .withStringProperty('Property1', 'doc', true, false, '100')
+      .withEndDescriptor()
+      .withEndNamespace()
 
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DescriptorBuilder(metaEd, []));
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []));
 
-//     failures = validate(metaEd);
-//   });
+    failures = validate(metaEd);
+  });
 
-//   it('should have validation errors', (): void => {
-//     expect(failures.length).toBeGreaterThan(0);
-//   });
-// });
+  it('should have validation errors', (): void => {
+    expect(failures.length).toBeGreaterThan(0);
+  });
+});
 
 describe('when version does not satisfy >= 5.2.0', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
