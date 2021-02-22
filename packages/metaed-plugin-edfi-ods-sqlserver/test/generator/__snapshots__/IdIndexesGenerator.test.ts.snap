@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when generating id indexes for core namespace table with no type should generate correct id index 1`] = `
-"BEGIN TRANSACTION
+"-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
+
+BEGIN TRANSACTION
     IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.TableName') AND name = N'UX_TableName_Id')
     CREATE UNIQUE NONCLUSTERED INDEX UX_TableName_Id ON [edfi].[TableName]
     (Id) WITH (PAD_INDEX = ON, FILLFACTOR = 75, STATISTICS_NORECOMPUTE = OFF) ON [PRIMARY]
@@ -12,7 +17,12 @@ COMMIT
 `;
 
 exports[`when generating id indexes for core namespace table with type should generate correct id index 1`] = `
-"BEGIN TRANSACTION
+"-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
+
+BEGIN TRANSACTION
     IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.TableNameType') AND name = N'UX_TableNameType_Id')
     CREATE UNIQUE NONCLUSTERED INDEX UX_TableNameType_Id ON [edfi].[TableNameType]
     (Id) WITH (PAD_INDEX = ON, FILLFACTOR = 100, STATISTICS_NORECOMPUTE = OFF) ON [PRIMARY]
@@ -23,7 +33,12 @@ COMMIT
 `;
 
 exports[`when generating id indexes for extension namespace table with no type should generate correct id index 1`] = `
-"BEGIN TRANSACTION
+"-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
+
+BEGIN TRANSACTION
     IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'extension.TableName') AND name = N'UX_TableName_Id')
     CREATE UNIQUE NONCLUSTERED INDEX UX_TableName_Id ON [extension].[TableName]
     (Id) WITH (PAD_INDEX = ON, FILLFACTOR = 75, STATISTICS_NORECOMPUTE = OFF) ON [PRIMARY]

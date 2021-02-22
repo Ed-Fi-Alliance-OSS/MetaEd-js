@@ -25,7 +25,12 @@ describe('when generating schemas for core namespace', (): void => {
     expect(result.generatedOutput[0].name).toBe('ODS PostgreSQL Schema');
     expect(result.generatedOutput[0].resultStream).toBeNull();
     expect(result.generatedOutput[0].resultString).toMatchInlineSnapshot(`
-      "CREATE SCHEMA IF NOT EXISTS auth AUTHORIZATION postgres;
+      "-- SPDX-License-Identifier: Apache-2.0
+      -- Licensed to the Ed-Fi Alliance under one or more agreements.
+      -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+      -- See the LICENSE and NOTICES files in the project root for more information.
+
+      CREATE SCHEMA IF NOT EXISTS auth AUTHORIZATION postgres;
       CREATE SCHEMA IF NOT EXISTS edfi AUTHORIZATION postgres;
       CREATE SCHEMA IF NOT EXISTS util AUTHORIZATION postgres;
       "

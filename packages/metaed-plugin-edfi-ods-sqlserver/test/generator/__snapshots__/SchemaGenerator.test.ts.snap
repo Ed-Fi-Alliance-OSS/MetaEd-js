@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when generating schemas for core namespace should generate correct schema 1`] = `
-"IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'auth')
+"-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
+
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'auth')
 EXEC sys.sp_executesql N'CREATE SCHEMA [auth]'
 GO
 
@@ -16,7 +21,12 @@ GO
 `;
 
 exports[`when generating schemas for extension namespace should generate correct schema 1`] = `
-"IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'extension')
+"-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
+
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'extension')
 EXEC sys.sp_executesql N'CREATE SCHEMA [extension]'
 GO
 "

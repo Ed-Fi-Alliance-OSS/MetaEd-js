@@ -17,11 +17,11 @@ winston.level = 'info';
 let client: Client | null = null;
 
 export const testDbDefinition = {
-  host: 'localhost',
-  port: 5432,
-  database: testDatabaseName,
-  user: 'postgres',
-  password: 'docker',
+  host: process.env.PGHOST || 'localhost',
+  port: Number(process.env.PGPORT || 5432),
+  database: process.env.PGDATABASE || testDatabaseName,
+  user: process.env.PGUSER || 'postgres',
+  password: process.env.PGPASSWORD || 'docker',
 };
 
 async function executeGeneratedSql(generatedSql: string): Promise<Db | null> {

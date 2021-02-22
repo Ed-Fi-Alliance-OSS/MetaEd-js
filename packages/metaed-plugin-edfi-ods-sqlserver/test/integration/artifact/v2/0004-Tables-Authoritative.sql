@@ -1,3 +1,8 @@
+-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
+
 -- Table [edfi].[AcademicHonorCategoryType] --
 CREATE TABLE [edfi].[AcademicHonorCategoryType] (
     [AcademicHonorCategoryTypeId] [INT] IDENTITY(1,1) NOT NULL,
@@ -8986,6 +8991,11 @@ ALTER TABLE [edfi].[WeaponType] ADD CONSTRAINT [WeaponType_DF_Id] DEFAULT (newid
 GO
 ALTER TABLE [edfi].[WeaponType] ADD CONSTRAINT [WeaponType_DF_LastModifiedDate] DEFAULT (getdate()) FOR [LastModifiedDate]
 GO
+
+-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
 
 ALTER TABLE [edfi].[AcademicSubjectDescriptor] WITH CHECK ADD CONSTRAINT [FK_AcademicSubjectDescriptor_AcademicSubjectType] FOREIGN KEY ([AcademicSubjectTypeId])
 REFERENCES [edfi].[AcademicSubjectType] ([AcademicSubjectTypeId])
@@ -24720,6 +24730,11 @@ INSERT INTO [edfi].[WeaponType] ([CodeValue], [Description], [ShortDescription])
 GO
 INSERT INTO [edfi].[WeaponType] ([CodeValue], [Description], [ShortDescription]) VALUES ('', 'Unknown', 'Unknown')
 GO
+-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
+
 INSERT INTO [edfi].[SchoolYearType] ([SchoolYear], [SchoolYearDescription], [CurrentSchoolYear]) VALUES ('1991', '1990-1991', 'false')
 GO
 INSERT INTO [edfi].[SchoolYearType] ([SchoolYear], [SchoolYearDescription], [CurrentSchoolYear]) VALUES ('1992', '1991-1992', 'false')
