@@ -15241,6 +15241,11 @@ CREATE NONCLUSTERED INDEX [FK_WeaponDescriptor_WeaponType]
 ON [edfi].[WeaponDescriptor] ([WeaponTypeId] ASC)
 GO
 
+-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
+
 -- Extended Properties [edfi].[AcademicHonorCategoryType] --
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'A designation of the type of academic distinctions earned by or awarded to the student.', @level0type=N'SCHEMA', @level0name=N'edfi', @level1type=N'TABLE', @level1name=N'AcademicHonorCategoryType'
 GO
