@@ -32,6 +32,8 @@ export function performColumnChangeVersionForTableGeneration(
   databaseFolderName: string,
 ): GeneratedOutput[] {
   const results: GeneratedOutput[] = [];
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+  const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -50,7 +52,7 @@ export function performColumnChangeVersionForTableGeneration(
           },
         );
 
-        const generatedResult: string = template().addColumnChangeVersion({ tables });
+        const generatedResult: string = template().addColumnChangeVersion({ tables, useLicenseHeader });
 
         results.push({
           name: 'ODS Change Event: AddColumnChangeVersionForTable',
@@ -78,11 +80,13 @@ export function performCreateTrackedDeleteSchemasGeneration(
   if (versionSatisfies(targetTechnologyVersion, '<3.4.0')) {
     return results;
   }
+  const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   if (changeQueryIndicated(metaEd)) {
     metaEd.namespace.forEach(namespace => {
       const generatedResult: string = template().deleteTrackingSchema({
         schema: `tracked_deletes_${namespace.namespaceName.toLowerCase()}`,
+        useLicenseHeader,
       });
 
       results.push({
@@ -105,6 +109,8 @@ export function performCreateTrackedDeleteTablesGeneration(
   databaseFolderName: string,
 ) {
   const results: GeneratedOutput[] = [];
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+  const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -123,7 +129,7 @@ export function performCreateTrackedDeleteTablesGeneration(
           },
         );
 
-        const generatedResult: string = template().deleteTrackingTable({ tables });
+        const generatedResult: string = template().deleteTrackingTable({ tables, useLicenseHeader });
 
         results.push({
           name: 'ODS Change Event: CreateTrackedDeleteTables',
@@ -146,6 +152,8 @@ export function performAddIndexChangeVersionForTableGeneration(
   databaseFolderName: string,
 ) {
   const results: GeneratedOutput[] = [];
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+  const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -165,7 +173,7 @@ export function performAddIndexChangeVersionForTableGeneration(
           },
         );
 
-        const generatedResult: string = template().addIndexChangeVersion({ tables });
+        const generatedResult: string = template().addIndexChangeVersion({ tables, useLicenseHeader });
 
         results.push({
           name: 'ODS Change Event: AddIndexChangeVersionForTable',
@@ -232,6 +240,8 @@ export function performCreateDeletedForTrackingTriggerGeneration(
   databaseFolderName: string,
 ) {
   const results: GeneratedOutput[] = [];
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+  const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -250,7 +260,7 @@ export function performCreateDeletedForTrackingTriggerGeneration(
           },
         );
 
-        const generatedResult: string = template().deleteTrackingTrigger({ triggers });
+        const generatedResult: string = template().deleteTrackingTrigger({ triggers, useLicenseHeader });
 
         results.push({
           name: 'ODS Change Event: CreateDeletedForTrackingTriggers',
@@ -273,6 +283,8 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
   databaseFolderName: any,
 ) {
   const results: GeneratedOutput[] = [];
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+  const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -291,7 +303,7 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
           },
         );
 
-        const generatedResult: string = template().createTriggerUpdateChangeVersion({ triggers });
+        const generatedResult: string = template().createTriggerUpdateChangeVersion({ triggers, useLicenseHeader });
 
         results.push({
           name: 'ODS Change Event: CreateTriggerUpdateChangeVersion',

@@ -6,14 +6,15 @@ import { NamespaceEdfiOdsPostgresql } from '../model/Namespace';
 winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 
 export async function generateTables(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment;
-
   const results: GeneratedOutput[] = [];
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment;
+  const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {
     const generatedResult: string = template().table({
       tables: (namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema.tables,
       useDatetime2: versionSatisfies(targetTechnologyVersion, '>=3.1.1'),
+      useLicenseHeader,
     });
 
     results.push({
@@ -34,10 +35,13 @@ export async function generateTables(metaEd: MetaEdEnvironment): Promise<Generat
 
 export async function generateForeignKeys(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment;
+  const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {
     const generatedResult: string = template().foreignKey({
       foreignKeys: (namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema.foreignKeys,
+      useLicenseHeader,
     });
 
     results.push({
@@ -58,10 +62,13 @@ export async function generateForeignKeys(metaEd: MetaEdEnvironment): Promise<Ge
 
 export async function generateExtendedProperties(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment;
+  const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {
     const generatedResult: string = template().extendedProperties({
       tables: (namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema.tables,
+      useLicenseHeader,
     });
 
     results.push({
@@ -82,11 +89,14 @@ export async function generateExtendedProperties(metaEd: MetaEdEnvironment): Pro
 
 export async function generateEnumerations(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment;
+  const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {
     if ((namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema.enumerationRows.length === 0) return;
     const generatedResult: string = template().enumerationRow({
       enumerationRows: (namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema.enumerationRows,
+      useLicenseHeader,
     });
 
     results.push({
@@ -107,6 +117,8 @@ export async function generateEnumerations(metaEd: MetaEdEnvironment): Promise<G
 
 export async function generateSchoolYears(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment;
+  const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {
     if ((namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema.schoolYearEnumerationRows.length === 0)
@@ -114,6 +126,7 @@ export async function generateSchoolYears(metaEd: MetaEdEnvironment): Promise<Ge
     const generatedResult: string = template().schoolYearEnumerationRow({
       schoolYearEnumerationRows: (namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema
         .schoolYearEnumerationRows,
+      useLicenseHeader,
     });
 
     results.push({
