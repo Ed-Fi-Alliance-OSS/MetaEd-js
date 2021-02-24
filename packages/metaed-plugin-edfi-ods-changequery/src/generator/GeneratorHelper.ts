@@ -1,4 +1,10 @@
-import { GeneratedOutput, MetaEdEnvironment, PluginEnvironment, versionSatisfies } from 'metaed-core';
+import {
+  GeneratedOutput,
+  MetaEdEnvironment,
+  PluginEnvironment,
+  versionSatisfies,
+  shouldApplyLicenseHeader,
+} from 'metaed-core';
 import { changeQueryIndicated } from '../enhancer/ChangeQueryIndicator';
 import {
   addColumnChangeVersionForTableEntities,
@@ -16,10 +22,7 @@ function prefixWithLicenseHeaderForVersion5PlusInAllianceMode(
   metaEd: MetaEdEnvironment,
   literalOutputContent: string,
 ): string {
-  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment) || {
-    targetTechnologyVersion: '2.0.0',
-  };
-  const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
+  const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
 
   if (useLicenseHeader) {
     return `-- SPDX-License-Identifier: Apache-2.0

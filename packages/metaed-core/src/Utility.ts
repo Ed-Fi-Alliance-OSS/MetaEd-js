@@ -1,6 +1,7 @@
 import R from 'ramda';
 import semver from 'semver';
-import { SemVer } from './MetaEdEnvironment';
+import { PluginEnvironment } from './plugin/PluginEnvironment';
+import { SemVer, MetaEdEnvironment } from './MetaEdEnvironment';
 
 export const nextMacroTask = (): Promise<void> => new Promise(resolve => setImmediate(resolve));
 
@@ -83,4 +84,16 @@ export function normalizeDescriptorSuffix(base: string) {
  */
 export function normalizeEnumerationSuffix(base: string) {
   return normalizeSuffix(base, type);
+}
+
+/**
+ * Determines if the Apache-2.0 license header should be applied in a template.
+ */
+export function shouldApplyLicenseHeader(metaEd: MetaEdEnvironment): Boolean {
+  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment) ||
+    (metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment) ||
+    (metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment) || {
+      targetTechnologyVersion: '2.0.0',
+    };
+  return metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 }
