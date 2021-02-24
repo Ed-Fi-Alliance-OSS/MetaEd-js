@@ -5,7 +5,9 @@ import { dataPath, fileNameFor, registerPartials, structurePath, template } from
 winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 
 export async function generateTables(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment;
+  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment) || {
+    targetTechnologyVersion: '2.0.0',
+  };
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   const results: GeneratedOutput[] = [];
@@ -35,7 +37,9 @@ export async function generateTables(metaEd: MetaEdEnvironment): Promise<Generat
 
 export async function generateForeignKeys(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment;
+  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment) || {
+    targetTechnologyVersion: '2.0.0',
+  };
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {
@@ -89,7 +93,9 @@ export async function generateExtendedProperties(metaEd: MetaEdEnvironment): Pro
 
 export async function generateEnumerations(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment;
+  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment) || {
+    targetTechnologyVersion: '2.0.0',
+  };
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {
@@ -116,7 +122,9 @@ export async function generateEnumerations(metaEd: MetaEdEnvironment): Promise<G
 
 export async function generateSchoolYears(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment;
+  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment) || {
+    targetTechnologyVersion: '2.0.0',
+  };
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {
