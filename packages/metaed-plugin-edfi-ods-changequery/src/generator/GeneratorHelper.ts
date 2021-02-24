@@ -12,6 +12,27 @@ import { DeleteTrackingTable } from '../model/DeleteTrackingTable';
 import { CreateTriggerUpdateChangeVersion } from '../model/CreateTriggerUpdateChangeVersion';
 import { DeleteTrackingTrigger } from '../model/DeleteTrackingTrigger';
 
+function prefixWithLicenseHeaderForVersion5PlusInAllianceMode(
+  metaEd: MetaEdEnvironment,
+  literalOutputContent: string,
+): string {
+  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment) || {
+    targetTechnologyVersion: '2.0.0',
+  };
+  const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
+
+  if (useLicenseHeader) {
+    return `-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
+
+${literalOutputContent}`;
+  }
+
+  return literalOutputContent;
+}
+
 export interface ChangeQueryTemplates {
   addColumnChangeVersion: any;
   deleteTrackingSchema: any;
@@ -195,6 +216,7 @@ export function performCreateChangesSchemaGeneration(
   databaseFolderName: string,
 ) {
   const results: GeneratedOutput[] = [];
+  const resultString = prefixWithLicenseHeaderForVersion5PlusInAllianceMode(metaEd, literalOutputContent);
 
   if (changeQueryIndicated(metaEd)) {
     metaEd.namespace.forEach(namespace => {
@@ -203,7 +225,7 @@ export function performCreateChangesSchemaGeneration(
         namespace: namespace.namespaceName,
         folderName: changeQueryPath(databaseFolderName),
         fileName: '0010-CreateChangesSchema.sql',
-        resultString: literalOutputContent,
+        resultString,
         resultStream: null,
       });
     });
@@ -218,6 +240,8 @@ export function performCreateChangeVersionSequenceGeneration(
 ) {
   const results: GeneratedOutput[] = [];
 
+  const resultString = prefixWithLicenseHeaderForVersion5PlusInAllianceMode(metaEd, literalOutputContent);
+
   if (changeQueryIndicated(metaEd)) {
     metaEd.namespace.forEach(namespace => {
       results.push({
@@ -225,7 +249,7 @@ export function performCreateChangeVersionSequenceGeneration(
         namespace: namespace.namespaceName,
         folderName: changeQueryPath(databaseFolderName),
         fileName: '0020-CreateChangeVersionSequence.sql',
-        resultString: literalOutputContent,
+        resultString,
         resultStream: null,
       });
     });
