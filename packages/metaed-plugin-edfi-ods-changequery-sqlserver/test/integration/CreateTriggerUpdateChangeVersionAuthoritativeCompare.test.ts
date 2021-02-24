@@ -510,13 +510,13 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
           targetTechnologyVersion: '5.0.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.0/'],
+      projectPaths: ['./node_modules/ed-fi-model-3.2a/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.0.0',
+          projectVersion: '3.2.0',
         },
       ],
     };
@@ -526,7 +526,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
       metaEdConfiguration,
     };
     state.metaEd.allianceMode = true;
-    state.metaEd.dataStandardVersion = '3.0.0';
+    state.metaEd.dataStandardVersion = '3.2.0';
 
     validateConfiguration(state);
     loadPlugins(state);
@@ -614,19 +614,19 @@ describe('when generating change event scripts with simple extensions and compar
           targetTechnologyVersion: '5.0.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.0/', sampleExtensionPath],
+      projectPaths: ['./node_modules/ed-fi-model-3.2a/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.0.0',
+          projectVersion: '3.2.0',
         },
         {
           projectName: 'Sample',
           namespaceName: 'Sample',
           projectExtension: 'Sample',
-          projectVersion: '3.0.0',
+          projectVersion: '3.2.0',
         },
       ],
     };
@@ -636,7 +636,7 @@ describe('when generating change event scripts with simple extensions and compar
       metaEdConfiguration,
     };
     state.metaEd.allianceMode = true;
-    state.metaEd.dataStandardVersion = '3.0.0';
+    state.metaEd.dataStandardVersion = '3.2.0';
 
     validateConfiguration(state);
     loadPlugins(state);

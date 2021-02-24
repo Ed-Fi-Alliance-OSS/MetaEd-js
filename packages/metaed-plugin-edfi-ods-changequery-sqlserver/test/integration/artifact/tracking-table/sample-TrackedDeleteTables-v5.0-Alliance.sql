@@ -10,7 +10,6 @@ CREATE TABLE [tracked_deletes_sample].[InstitutionControlDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_InstitutionControlDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_sample].[InstitutionLevelDescriptor]
 (
        InstitutionLevelDescriptorId [INT] NOT NULL,
@@ -18,7 +17,6 @@ CREATE TABLE [tracked_deletes_sample].[InstitutionLevelDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_InstitutionLevelDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_sample].[PostSecondaryOrganization]
 (
        NameOfInstitution [NVARCHAR](75) NOT NULL,
@@ -26,7 +24,6 @@ CREATE TABLE [tracked_deletes_sample].[PostSecondaryOrganization]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_PostSecondaryOrganization PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_sample].[SpecialEducationGraduationStatusDescriptor]
 (
        SpecialEducationGraduationStatusDescriptorId [INT] NOT NULL,
@@ -34,7 +31,6 @@ CREATE TABLE [tracked_deletes_sample].[SpecialEducationGraduationStatusDescripto
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_SpecialEducationGraduationStatusDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_sample].[SubmissionCertificationDescriptor]
 (
        SubmissionCertificationDescriptorId [INT] NOT NULL,
@@ -42,4 +38,3 @@ CREATE TABLE [tracked_deletes_sample].[SubmissionCertificationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_SubmissionCertificationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-

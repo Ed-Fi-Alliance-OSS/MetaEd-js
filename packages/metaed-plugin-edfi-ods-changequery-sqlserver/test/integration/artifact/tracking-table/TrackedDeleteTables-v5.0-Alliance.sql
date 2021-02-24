@@ -10,7 +10,6 @@ CREATE TABLE [tracked_deletes_edfi].[AbsenceEventCategoryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AbsenceEventCategoryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AcademicHonorCategoryDescriptor]
 (
        AcademicHonorCategoryDescriptorId [INT] NOT NULL,
@@ -18,7 +17,6 @@ CREATE TABLE [tracked_deletes_edfi].[AcademicHonorCategoryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AcademicHonorCategoryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AcademicSubjectDescriptor]
 (
        AcademicSubjectDescriptorId [INT] NOT NULL,
@@ -26,7 +24,6 @@ CREATE TABLE [tracked_deletes_edfi].[AcademicSubjectDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AcademicSubjectDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AcademicWeek]
 (
        SchoolId [INT] NOT NULL,
@@ -35,7 +32,6 @@ CREATE TABLE [tracked_deletes_edfi].[AcademicWeek]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AcademicWeek PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AccommodationDescriptor]
 (
        AccommodationDescriptorId [INT] NOT NULL,
@@ -43,7 +39,6 @@ CREATE TABLE [tracked_deletes_edfi].[AccommodationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AccommodationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Account]
 (
        AccountIdentifier [NVARCHAR](50) NOT NULL,
@@ -53,7 +48,6 @@ CREATE TABLE [tracked_deletes_edfi].[Account]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Account PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AccountClassificationDescriptor]
 (
        AccountClassificationDescriptorId [INT] NOT NULL,
@@ -61,7 +55,6 @@ CREATE TABLE [tracked_deletes_edfi].[AccountClassificationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AccountClassificationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AccountCode]
 (
        AccountClassificationDescriptorId [INT] NOT NULL,
@@ -72,7 +65,6 @@ CREATE TABLE [tracked_deletes_edfi].[AccountCode]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AccountCode PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AccountabilityRating]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -82,7 +74,6 @@ CREATE TABLE [tracked_deletes_edfi].[AccountabilityRating]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AccountabilityRating PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AchievementCategoryDescriptor]
 (
        AchievementCategoryDescriptorId [INT] NOT NULL,
@@ -90,7 +81,6 @@ CREATE TABLE [tracked_deletes_edfi].[AchievementCategoryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AchievementCategoryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Actual]
 (
        AccountIdentifier [NVARCHAR](50) NOT NULL,
@@ -101,7 +91,6 @@ CREATE TABLE [tracked_deletes_edfi].[Actual]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Actual PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AdditionalCreditTypeDescriptor]
 (
        AdditionalCreditTypeDescriptorId [INT] NOT NULL,
@@ -109,7 +98,6 @@ CREATE TABLE [tracked_deletes_edfi].[AdditionalCreditTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AdditionalCreditTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AddressTypeDescriptor]
 (
        AddressTypeDescriptorId [INT] NOT NULL,
@@ -117,7 +105,6 @@ CREATE TABLE [tracked_deletes_edfi].[AddressTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AddressTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AdministrationEnvironmentDescriptor]
 (
        AdministrationEnvironmentDescriptorId [INT] NOT NULL,
@@ -125,7 +112,6 @@ CREATE TABLE [tracked_deletes_edfi].[AdministrationEnvironmentDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AdministrationEnvironmentDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AdministrativeFundingControlDescriptor]
 (
        AdministrativeFundingControlDescriptorId [INT] NOT NULL,
@@ -133,7 +119,6 @@ CREATE TABLE [tracked_deletes_edfi].[AdministrativeFundingControlDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AdministrativeFundingControlDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Assessment]
 (
        AssessmentIdentifier [NVARCHAR](60) NOT NULL,
@@ -142,7 +127,6 @@ CREATE TABLE [tracked_deletes_edfi].[Assessment]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Assessment PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AssessmentCategoryDescriptor]
 (
        AssessmentCategoryDescriptorId [INT] NOT NULL,
@@ -150,7 +134,6 @@ CREATE TABLE [tracked_deletes_edfi].[AssessmentCategoryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AssessmentCategoryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AssessmentIdentificationSystemDescriptor]
 (
        AssessmentIdentificationSystemDescriptorId [INT] NOT NULL,
@@ -158,7 +141,6 @@ CREATE TABLE [tracked_deletes_edfi].[AssessmentIdentificationSystemDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AssessmentIdentificationSystemDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AssessmentItem]
 (
        AssessmentIdentifier [NVARCHAR](60) NOT NULL,
@@ -168,7 +150,6 @@ CREATE TABLE [tracked_deletes_edfi].[AssessmentItem]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AssessmentItem PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AssessmentItemCategoryDescriptor]
 (
        AssessmentItemCategoryDescriptorId [INT] NOT NULL,
@@ -176,7 +157,6 @@ CREATE TABLE [tracked_deletes_edfi].[AssessmentItemCategoryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AssessmentItemCategoryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AssessmentItemResultDescriptor]
 (
        AssessmentItemResultDescriptorId [INT] NOT NULL,
@@ -184,7 +164,6 @@ CREATE TABLE [tracked_deletes_edfi].[AssessmentItemResultDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AssessmentItemResultDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AssessmentPeriodDescriptor]
 (
        AssessmentPeriodDescriptorId [INT] NOT NULL,
@@ -192,7 +171,6 @@ CREATE TABLE [tracked_deletes_edfi].[AssessmentPeriodDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AssessmentPeriodDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AssessmentReportingMethodDescriptor]
 (
        AssessmentReportingMethodDescriptorId [INT] NOT NULL,
@@ -200,7 +178,6 @@ CREATE TABLE [tracked_deletes_edfi].[AssessmentReportingMethodDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AssessmentReportingMethodDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AttemptStatusDescriptor]
 (
        AttemptStatusDescriptorId [INT] NOT NULL,
@@ -208,7 +185,6 @@ CREATE TABLE [tracked_deletes_edfi].[AttemptStatusDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AttemptStatusDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[AttendanceEventCategoryDescriptor]
 (
        AttendanceEventCategoryDescriptorId [INT] NOT NULL,
@@ -216,7 +192,6 @@ CREATE TABLE [tracked_deletes_edfi].[AttendanceEventCategoryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_AttendanceEventCategoryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[BehaviorDescriptor]
 (
        BehaviorDescriptorId [INT] NOT NULL,
@@ -224,7 +199,6 @@ CREATE TABLE [tracked_deletes_edfi].[BehaviorDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_BehaviorDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[BellSchedule]
 (
        BellScheduleName [NVARCHAR](60) NOT NULL,
@@ -233,7 +207,6 @@ CREATE TABLE [tracked_deletes_edfi].[BellSchedule]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_BellSchedule PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Budget]
 (
        AccountIdentifier [NVARCHAR](50) NOT NULL,
@@ -244,7 +217,6 @@ CREATE TABLE [tracked_deletes_edfi].[Budget]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Budget PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CTEProgramServiceDescriptor]
 (
        CTEProgramServiceDescriptorId [INT] NOT NULL,
@@ -252,7 +224,6 @@ CREATE TABLE [tracked_deletes_edfi].[CTEProgramServiceDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CTEProgramServiceDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Calendar]
 (
        CalendarCode [NVARCHAR](60) NOT NULL,
@@ -262,7 +233,6 @@ CREATE TABLE [tracked_deletes_edfi].[Calendar]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Calendar PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CalendarDate]
 (
        CalendarCode [NVARCHAR](60) NOT NULL,
@@ -273,7 +243,6 @@ CREATE TABLE [tracked_deletes_edfi].[CalendarDate]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CalendarDate PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CalendarEventDescriptor]
 (
        CalendarEventDescriptorId [INT] NOT NULL,
@@ -281,7 +250,6 @@ CREATE TABLE [tracked_deletes_edfi].[CalendarEventDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CalendarEventDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CalendarTypeDescriptor]
 (
        CalendarTypeDescriptorId [INT] NOT NULL,
@@ -289,7 +257,6 @@ CREATE TABLE [tracked_deletes_edfi].[CalendarTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CalendarTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CareerPathwayDescriptor]
 (
        CareerPathwayDescriptorId [INT] NOT NULL,
@@ -297,7 +264,6 @@ CREATE TABLE [tracked_deletes_edfi].[CareerPathwayDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CareerPathwayDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CharterApprovalAgencyTypeDescriptor]
 (
        CharterApprovalAgencyTypeDescriptorId [INT] NOT NULL,
@@ -305,7 +271,6 @@ CREATE TABLE [tracked_deletes_edfi].[CharterApprovalAgencyTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CharterApprovalAgencyTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CharterStatusDescriptor]
 (
        CharterStatusDescriptorId [INT] NOT NULL,
@@ -313,7 +278,6 @@ CREATE TABLE [tracked_deletes_edfi].[CharterStatusDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CharterStatusDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CitizenshipStatusDescriptor]
 (
        CitizenshipStatusDescriptorId [INT] NOT NULL,
@@ -321,7 +285,6 @@ CREATE TABLE [tracked_deletes_edfi].[CitizenshipStatusDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CitizenshipStatusDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ClassPeriod]
 (
        ClassPeriodName [NVARCHAR](60) NOT NULL,
@@ -330,7 +293,6 @@ CREATE TABLE [tracked_deletes_edfi].[ClassPeriod]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ClassPeriod PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ClassroomPositionDescriptor]
 (
        ClassroomPositionDescriptorId [INT] NOT NULL,
@@ -338,7 +300,6 @@ CREATE TABLE [tracked_deletes_edfi].[ClassroomPositionDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ClassroomPositionDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Cohort]
 (
        CohortIdentifier [NVARCHAR](20) NOT NULL,
@@ -347,7 +308,6 @@ CREATE TABLE [tracked_deletes_edfi].[Cohort]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Cohort PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CohortScopeDescriptor]
 (
        CohortScopeDescriptorId [INT] NOT NULL,
@@ -355,7 +315,6 @@ CREATE TABLE [tracked_deletes_edfi].[CohortScopeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CohortScopeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CohortTypeDescriptor]
 (
        CohortTypeDescriptorId [INT] NOT NULL,
@@ -363,7 +322,6 @@ CREATE TABLE [tracked_deletes_edfi].[CohortTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CohortTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CohortYearTypeDescriptor]
 (
        CohortYearTypeDescriptorId [INT] NOT NULL,
@@ -371,7 +329,6 @@ CREATE TABLE [tracked_deletes_edfi].[CohortYearTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CohortYearTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CommunityOrganization]
 (
        CommunityOrganizationId [INT] NOT NULL,
@@ -379,7 +336,6 @@ CREATE TABLE [tracked_deletes_edfi].[CommunityOrganization]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CommunityOrganization PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CommunityProvider]
 (
        CommunityProviderId [INT] NOT NULL,
@@ -387,7 +343,6 @@ CREATE TABLE [tracked_deletes_edfi].[CommunityProvider]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CommunityProvider PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CommunityProviderLicense]
 (
        CommunityProviderId [INT] NOT NULL,
@@ -397,7 +352,6 @@ CREATE TABLE [tracked_deletes_edfi].[CommunityProviderLicense]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CommunityProviderLicense PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CompetencyLevelDescriptor]
 (
        CompetencyLevelDescriptorId [INT] NOT NULL,
@@ -405,7 +359,6 @@ CREATE TABLE [tracked_deletes_edfi].[CompetencyLevelDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CompetencyLevelDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CompetencyObjective]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -415,7 +368,6 @@ CREATE TABLE [tracked_deletes_edfi].[CompetencyObjective]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CompetencyObjective PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ContactTypeDescriptor]
 (
        ContactTypeDescriptorId [INT] NOT NULL,
@@ -423,7 +375,6 @@ CREATE TABLE [tracked_deletes_edfi].[ContactTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ContactTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ContentClassDescriptor]
 (
        ContentClassDescriptorId [INT] NOT NULL,
@@ -431,7 +382,6 @@ CREATE TABLE [tracked_deletes_edfi].[ContentClassDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ContentClassDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ContinuationOfServicesReasonDescriptor]
 (
        ContinuationOfServicesReasonDescriptorId [INT] NOT NULL,
@@ -439,7 +389,6 @@ CREATE TABLE [tracked_deletes_edfi].[ContinuationOfServicesReasonDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ContinuationOfServicesReasonDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ContractedStaff]
 (
        AccountIdentifier [NVARCHAR](50) NOT NULL,
@@ -451,7 +400,6 @@ CREATE TABLE [tracked_deletes_edfi].[ContractedStaff]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ContractedStaff PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CostRateDescriptor]
 (
        CostRateDescriptorId [INT] NOT NULL,
@@ -459,7 +407,6 @@ CREATE TABLE [tracked_deletes_edfi].[CostRateDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CostRateDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CountryDescriptor]
 (
        CountryDescriptorId [INT] NOT NULL,
@@ -467,7 +414,6 @@ CREATE TABLE [tracked_deletes_edfi].[CountryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CountryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Course]
 (
        CourseCode [NVARCHAR](60) NOT NULL,
@@ -476,7 +422,6 @@ CREATE TABLE [tracked_deletes_edfi].[Course]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Course PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CourseAttemptResultDescriptor]
 (
        CourseAttemptResultDescriptorId [INT] NOT NULL,
@@ -484,7 +429,6 @@ CREATE TABLE [tracked_deletes_edfi].[CourseAttemptResultDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CourseAttemptResultDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CourseDefinedByDescriptor]
 (
        CourseDefinedByDescriptorId [INT] NOT NULL,
@@ -492,7 +436,6 @@ CREATE TABLE [tracked_deletes_edfi].[CourseDefinedByDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CourseDefinedByDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CourseGPAApplicabilityDescriptor]
 (
        CourseGPAApplicabilityDescriptorId [INT] NOT NULL,
@@ -500,7 +443,6 @@ CREATE TABLE [tracked_deletes_edfi].[CourseGPAApplicabilityDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CourseGPAApplicabilityDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CourseIdentificationSystemDescriptor]
 (
        CourseIdentificationSystemDescriptorId [INT] NOT NULL,
@@ -508,7 +450,6 @@ CREATE TABLE [tracked_deletes_edfi].[CourseIdentificationSystemDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CourseIdentificationSystemDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CourseLevelCharacteristicDescriptor]
 (
        CourseLevelCharacteristicDescriptorId [INT] NOT NULL,
@@ -516,7 +457,6 @@ CREATE TABLE [tracked_deletes_edfi].[CourseLevelCharacteristicDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CourseLevelCharacteristicDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CourseOffering]
 (
        LocalCourseCode [NVARCHAR](60) NOT NULL,
@@ -527,7 +467,6 @@ CREATE TABLE [tracked_deletes_edfi].[CourseOffering]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CourseOffering PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CourseRepeatCodeDescriptor]
 (
        CourseRepeatCodeDescriptorId [INT] NOT NULL,
@@ -535,7 +474,6 @@ CREATE TABLE [tracked_deletes_edfi].[CourseRepeatCodeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CourseRepeatCodeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CourseTranscript]
 (
        CourseAttemptResultDescriptorId [INT] NOT NULL,
@@ -549,7 +487,6 @@ CREATE TABLE [tracked_deletes_edfi].[CourseTranscript]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CourseTranscript PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Credential]
 (
        CredentialIdentifier [NVARCHAR](60) NOT NULL,
@@ -558,7 +495,6 @@ CREATE TABLE [tracked_deletes_edfi].[Credential]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Credential PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CredentialFieldDescriptor]
 (
        CredentialFieldDescriptorId [INT] NOT NULL,
@@ -566,7 +502,6 @@ CREATE TABLE [tracked_deletes_edfi].[CredentialFieldDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CredentialFieldDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CredentialTypeDescriptor]
 (
        CredentialTypeDescriptorId [INT] NOT NULL,
@@ -574,7 +509,6 @@ CREATE TABLE [tracked_deletes_edfi].[CredentialTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CredentialTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CreditTypeDescriptor]
 (
        CreditTypeDescriptorId [INT] NOT NULL,
@@ -582,7 +516,6 @@ CREATE TABLE [tracked_deletes_edfi].[CreditTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CreditTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[CurriculumUsedDescriptor]
 (
        CurriculumUsedDescriptorId [INT] NOT NULL,
@@ -590,7 +523,6 @@ CREATE TABLE [tracked_deletes_edfi].[CurriculumUsedDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_CurriculumUsedDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[DeliveryMethodDescriptor]
 (
        DeliveryMethodDescriptorId [INT] NOT NULL,
@@ -598,7 +530,6 @@ CREATE TABLE [tracked_deletes_edfi].[DeliveryMethodDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_DeliveryMethodDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Descriptor]
 (
        DescriptorId [INT] NOT NULL,
@@ -606,7 +537,6 @@ CREATE TABLE [tracked_deletes_edfi].[Descriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Descriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[DiagnosisDescriptor]
 (
        DiagnosisDescriptorId [INT] NOT NULL,
@@ -614,7 +544,6 @@ CREATE TABLE [tracked_deletes_edfi].[DiagnosisDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_DiagnosisDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[DiplomaLevelDescriptor]
 (
        DiplomaLevelDescriptorId [INT] NOT NULL,
@@ -622,7 +551,6 @@ CREATE TABLE [tracked_deletes_edfi].[DiplomaLevelDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_DiplomaLevelDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[DiplomaTypeDescriptor]
 (
        DiplomaTypeDescriptorId [INT] NOT NULL,
@@ -630,7 +558,6 @@ CREATE TABLE [tracked_deletes_edfi].[DiplomaTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_DiplomaTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[DisabilityDescriptor]
 (
        DisabilityDescriptorId [INT] NOT NULL,
@@ -638,7 +565,6 @@ CREATE TABLE [tracked_deletes_edfi].[DisabilityDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_DisabilityDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[DisabilityDesignationDescriptor]
 (
        DisabilityDesignationDescriptorId [INT] NOT NULL,
@@ -646,7 +572,6 @@ CREATE TABLE [tracked_deletes_edfi].[DisabilityDesignationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_DisabilityDesignationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[DisabilityDeterminationSourceTypeDescriptor]
 (
        DisabilityDeterminationSourceTypeDescriptorId [INT] NOT NULL,
@@ -654,7 +579,6 @@ CREATE TABLE [tracked_deletes_edfi].[DisabilityDeterminationSourceTypeDescriptor
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_DisabilityDeterminationSourceTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[DisciplineAction]
 (
        DisciplineActionIdentifier [NVARCHAR](20) NOT NULL,
@@ -664,7 +588,6 @@ CREATE TABLE [tracked_deletes_edfi].[DisciplineAction]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_DisciplineAction PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[DisciplineActionLengthDifferenceReasonDescriptor]
 (
        DisciplineActionLengthDifferenceReasonDescriptorId [INT] NOT NULL,
@@ -672,7 +595,6 @@ CREATE TABLE [tracked_deletes_edfi].[DisciplineActionLengthDifferenceReasonDescr
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_DisciplineActionLengthDifferenceReasonDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[DisciplineDescriptor]
 (
        DisciplineDescriptorId [INT] NOT NULL,
@@ -680,7 +602,6 @@ CREATE TABLE [tracked_deletes_edfi].[DisciplineDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_DisciplineDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[DisciplineIncident]
 (
        IncidentIdentifier [NVARCHAR](20) NOT NULL,
@@ -689,7 +610,6 @@ CREATE TABLE [tracked_deletes_edfi].[DisciplineIncident]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_DisciplineIncident PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[DisciplineIncidentParticipationCodeDescriptor]
 (
        DisciplineIncidentParticipationCodeDescriptorId [INT] NOT NULL,
@@ -697,7 +617,6 @@ CREATE TABLE [tracked_deletes_edfi].[DisciplineIncidentParticipationCodeDescript
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_DisciplineIncidentParticipationCodeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EducationContent]
 (
        ContentIdentifier [NVARCHAR](225) NOT NULL,
@@ -705,7 +624,6 @@ CREATE TABLE [tracked_deletes_edfi].[EducationContent]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EducationContent PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EducationOrganization]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -713,7 +631,6 @@ CREATE TABLE [tracked_deletes_edfi].[EducationOrganization]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EducationOrganization PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EducationOrganizationCategoryDescriptor]
 (
        EducationOrganizationCategoryDescriptorId [INT] NOT NULL,
@@ -721,7 +638,6 @@ CREATE TABLE [tracked_deletes_edfi].[EducationOrganizationCategoryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EducationOrganizationCategoryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EducationOrganizationIdentificationSystemDescriptor]
 (
        EducationOrganizationIdentificationSystemDescriptorId [INT] NOT NULL,
@@ -729,7 +645,6 @@ CREATE TABLE [tracked_deletes_edfi].[EducationOrganizationIdentificationSystemDe
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EducationOrganizationIdentificationSystemDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EducationOrganizationInterventionPrescriptionAssociation]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -739,7 +654,6 @@ CREATE TABLE [tracked_deletes_edfi].[EducationOrganizationInterventionPrescripti
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EducationOrganizationInterventionPrescriptionAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EducationOrganizationNetwork]
 (
        EducationOrganizationNetworkId [INT] NOT NULL,
@@ -747,7 +661,6 @@ CREATE TABLE [tracked_deletes_edfi].[EducationOrganizationNetwork]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EducationOrganizationNetwork PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EducationOrganizationNetworkAssociation]
 (
        EducationOrganizationNetworkId [INT] NOT NULL,
@@ -756,7 +669,6 @@ CREATE TABLE [tracked_deletes_edfi].[EducationOrganizationNetworkAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EducationOrganizationNetworkAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EducationOrganizationPeerAssociation]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -765,7 +677,6 @@ CREATE TABLE [tracked_deletes_edfi].[EducationOrganizationPeerAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EducationOrganizationPeerAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EducationPlanDescriptor]
 (
        EducationPlanDescriptorId [INT] NOT NULL,
@@ -773,7 +684,6 @@ CREATE TABLE [tracked_deletes_edfi].[EducationPlanDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EducationPlanDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EducationServiceCenter]
 (
        EducationServiceCenterId [INT] NOT NULL,
@@ -781,7 +691,6 @@ CREATE TABLE [tracked_deletes_edfi].[EducationServiceCenter]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EducationServiceCenter PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EducationalEnvironmentDescriptor]
 (
        EducationalEnvironmentDescriptorId [INT] NOT NULL,
@@ -789,7 +698,6 @@ CREATE TABLE [tracked_deletes_edfi].[EducationalEnvironmentDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EducationalEnvironmentDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ElectronicMailTypeDescriptor]
 (
        ElectronicMailTypeDescriptorId [INT] NOT NULL,
@@ -797,7 +705,6 @@ CREATE TABLE [tracked_deletes_edfi].[ElectronicMailTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ElectronicMailTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EmploymentStatusDescriptor]
 (
        EmploymentStatusDescriptorId [INT] NOT NULL,
@@ -805,7 +712,6 @@ CREATE TABLE [tracked_deletes_edfi].[EmploymentStatusDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EmploymentStatusDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EntryGradeLevelReasonDescriptor]
 (
        EntryGradeLevelReasonDescriptorId [INT] NOT NULL,
@@ -813,7 +719,6 @@ CREATE TABLE [tracked_deletes_edfi].[EntryGradeLevelReasonDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EntryGradeLevelReasonDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EntryTypeDescriptor]
 (
        EntryTypeDescriptorId [INT] NOT NULL,
@@ -821,7 +726,6 @@ CREATE TABLE [tracked_deletes_edfi].[EntryTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EntryTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[EventCircumstanceDescriptor]
 (
        EventCircumstanceDescriptorId [INT] NOT NULL,
@@ -829,7 +733,6 @@ CREATE TABLE [tracked_deletes_edfi].[EventCircumstanceDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_EventCircumstanceDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ExitWithdrawTypeDescriptor]
 (
        ExitWithdrawTypeDescriptorId [INT] NOT NULL,
@@ -837,7 +740,6 @@ CREATE TABLE [tracked_deletes_edfi].[ExitWithdrawTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ExitWithdrawTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[FeederSchoolAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -847,7 +749,6 @@ CREATE TABLE [tracked_deletes_edfi].[FeederSchoolAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_FeederSchoolAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[GeneralStudentProgramAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -860,7 +761,6 @@ CREATE TABLE [tracked_deletes_edfi].[GeneralStudentProgramAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_GeneralStudentProgramAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Grade]
 (
        BeginDate [DATE] NOT NULL,
@@ -878,7 +778,6 @@ CREATE TABLE [tracked_deletes_edfi].[Grade]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Grade PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[GradeLevelDescriptor]
 (
        GradeLevelDescriptorId [INT] NOT NULL,
@@ -886,7 +785,6 @@ CREATE TABLE [tracked_deletes_edfi].[GradeLevelDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_GradeLevelDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[GradePointAverageWeightSystemDescriptor]
 (
        GradePointAverageWeightSystemDescriptorId [INT] NOT NULL,
@@ -894,7 +792,6 @@ CREATE TABLE [tracked_deletes_edfi].[GradePointAverageWeightSystemDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_GradePointAverageWeightSystemDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[GradeTypeDescriptor]
 (
        GradeTypeDescriptorId [INT] NOT NULL,
@@ -902,7 +799,6 @@ CREATE TABLE [tracked_deletes_edfi].[GradeTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_GradeTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[GradebookEntry]
 (
        DateAssigned [DATE] NOT NULL,
@@ -916,7 +812,6 @@ CREATE TABLE [tracked_deletes_edfi].[GradebookEntry]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_GradebookEntry PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[GradebookEntryTypeDescriptor]
 (
        GradebookEntryTypeDescriptorId [INT] NOT NULL,
@@ -924,7 +819,6 @@ CREATE TABLE [tracked_deletes_edfi].[GradebookEntryTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_GradebookEntryTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[GradingPeriod]
 (
        GradingPeriodDescriptorId [INT] NOT NULL,
@@ -935,7 +829,6 @@ CREATE TABLE [tracked_deletes_edfi].[GradingPeriod]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_GradingPeriod PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[GradingPeriodDescriptor]
 (
        GradingPeriodDescriptorId [INT] NOT NULL,
@@ -943,7 +836,6 @@ CREATE TABLE [tracked_deletes_edfi].[GradingPeriodDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_GradingPeriodDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[GraduationPlan]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -953,7 +845,6 @@ CREATE TABLE [tracked_deletes_edfi].[GraduationPlan]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_GraduationPlan PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[GraduationPlanTypeDescriptor]
 (
        GraduationPlanTypeDescriptorId [INT] NOT NULL,
@@ -961,7 +852,6 @@ CREATE TABLE [tracked_deletes_edfi].[GraduationPlanTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_GraduationPlanTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[GunFreeSchoolsActReportingStatusDescriptor]
 (
        GunFreeSchoolsActReportingStatusDescriptorId [INT] NOT NULL,
@@ -969,7 +859,6 @@ CREATE TABLE [tracked_deletes_edfi].[GunFreeSchoolsActReportingStatusDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_GunFreeSchoolsActReportingStatusDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[HomelessPrimaryNighttimeResidenceDescriptor]
 (
        HomelessPrimaryNighttimeResidenceDescriptorId [INT] NOT NULL,
@@ -977,7 +866,6 @@ CREATE TABLE [tracked_deletes_edfi].[HomelessPrimaryNighttimeResidenceDescriptor
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_HomelessPrimaryNighttimeResidenceDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[HomelessProgramServiceDescriptor]
 (
        HomelessProgramServiceDescriptorId [INT] NOT NULL,
@@ -985,7 +873,6 @@ CREATE TABLE [tracked_deletes_edfi].[HomelessProgramServiceDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_HomelessProgramServiceDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[IdentificationDocumentUseDescriptor]
 (
        IdentificationDocumentUseDescriptorId [INT] NOT NULL,
@@ -993,7 +880,6 @@ CREATE TABLE [tracked_deletes_edfi].[IdentificationDocumentUseDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_IdentificationDocumentUseDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[IncidentLocationDescriptor]
 (
        IncidentLocationDescriptorId [INT] NOT NULL,
@@ -1001,7 +887,6 @@ CREATE TABLE [tracked_deletes_edfi].[IncidentLocationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_IncidentLocationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[InstitutionTelephoneNumberTypeDescriptor]
 (
        InstitutionTelephoneNumberTypeDescriptorId [INT] NOT NULL,
@@ -1009,7 +894,6 @@ CREATE TABLE [tracked_deletes_edfi].[InstitutionTelephoneNumberTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_InstitutionTelephoneNumberTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[InteractivityStyleDescriptor]
 (
        InteractivityStyleDescriptorId [INT] NOT NULL,
@@ -1017,7 +901,6 @@ CREATE TABLE [tracked_deletes_edfi].[InteractivityStyleDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_InteractivityStyleDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[InternetAccessDescriptor]
 (
        InternetAccessDescriptorId [INT] NOT NULL,
@@ -1025,7 +908,6 @@ CREATE TABLE [tracked_deletes_edfi].[InternetAccessDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_InternetAccessDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Intervention]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -1034,7 +916,6 @@ CREATE TABLE [tracked_deletes_edfi].[Intervention]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Intervention PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[InterventionClassDescriptor]
 (
        InterventionClassDescriptorId [INT] NOT NULL,
@@ -1042,7 +923,6 @@ CREATE TABLE [tracked_deletes_edfi].[InterventionClassDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_InterventionClassDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[InterventionEffectivenessRatingDescriptor]
 (
        InterventionEffectivenessRatingDescriptorId [INT] NOT NULL,
@@ -1050,7 +930,6 @@ CREATE TABLE [tracked_deletes_edfi].[InterventionEffectivenessRatingDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_InterventionEffectivenessRatingDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[InterventionPrescription]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -1059,7 +938,6 @@ CREATE TABLE [tracked_deletes_edfi].[InterventionPrescription]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_InterventionPrescription PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[InterventionStudy]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -1068,7 +946,6 @@ CREATE TABLE [tracked_deletes_edfi].[InterventionStudy]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_InterventionStudy PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LanguageDescriptor]
 (
        LanguageDescriptorId [INT] NOT NULL,
@@ -1076,7 +953,6 @@ CREATE TABLE [tracked_deletes_edfi].[LanguageDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LanguageDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LanguageInstructionProgramServiceDescriptor]
 (
        LanguageInstructionProgramServiceDescriptorId [INT] NOT NULL,
@@ -1084,7 +960,6 @@ CREATE TABLE [tracked_deletes_edfi].[LanguageInstructionProgramServiceDescriptor
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LanguageInstructionProgramServiceDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LanguageUseDescriptor]
 (
        LanguageUseDescriptorId [INT] NOT NULL,
@@ -1092,7 +967,6 @@ CREATE TABLE [tracked_deletes_edfi].[LanguageUseDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LanguageUseDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LearningObjective]
 (
        LearningObjectiveId [NVARCHAR](60) NOT NULL,
@@ -1101,7 +975,6 @@ CREATE TABLE [tracked_deletes_edfi].[LearningObjective]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LearningObjective PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LearningStandard]
 (
        LearningStandardId [NVARCHAR](60) NOT NULL,
@@ -1109,7 +982,6 @@ CREATE TABLE [tracked_deletes_edfi].[LearningStandard]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LearningStandard PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LearningStandardCategoryDescriptor]
 (
        LearningStandardCategoryDescriptorId [INT] NOT NULL,
@@ -1117,7 +989,6 @@ CREATE TABLE [tracked_deletes_edfi].[LearningStandardCategoryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LearningStandardCategoryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LearningStandardEquivalenceAssociation]
 (
        Namespace [NVARCHAR](255) NOT NULL,
@@ -1127,7 +998,6 @@ CREATE TABLE [tracked_deletes_edfi].[LearningStandardEquivalenceAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LearningStandardEquivalenceAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LearningStandardEquivalenceStrengthDescriptor]
 (
        LearningStandardEquivalenceStrengthDescriptorId [INT] NOT NULL,
@@ -1135,7 +1005,6 @@ CREATE TABLE [tracked_deletes_edfi].[LearningStandardEquivalenceStrengthDescript
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LearningStandardEquivalenceStrengthDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LearningStandardScopeDescriptor]
 (
        LearningStandardScopeDescriptorId [INT] NOT NULL,
@@ -1143,7 +1012,6 @@ CREATE TABLE [tracked_deletes_edfi].[LearningStandardScopeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LearningStandardScopeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LevelOfEducationDescriptor]
 (
        LevelOfEducationDescriptorId [INT] NOT NULL,
@@ -1151,7 +1019,6 @@ CREATE TABLE [tracked_deletes_edfi].[LevelOfEducationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LevelOfEducationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LicenseStatusDescriptor]
 (
        LicenseStatusDescriptorId [INT] NOT NULL,
@@ -1159,7 +1026,6 @@ CREATE TABLE [tracked_deletes_edfi].[LicenseStatusDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LicenseStatusDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LicenseTypeDescriptor]
 (
        LicenseTypeDescriptorId [INT] NOT NULL,
@@ -1167,7 +1033,6 @@ CREATE TABLE [tracked_deletes_edfi].[LicenseTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LicenseTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LimitedEnglishProficiencyDescriptor]
 (
        LimitedEnglishProficiencyDescriptorId [INT] NOT NULL,
@@ -1175,7 +1040,6 @@ CREATE TABLE [tracked_deletes_edfi].[LimitedEnglishProficiencyDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LimitedEnglishProficiencyDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LocalEducationAgency]
 (
        LocalEducationAgencyId [INT] NOT NULL,
@@ -1183,7 +1047,6 @@ CREATE TABLE [tracked_deletes_edfi].[LocalEducationAgency]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LocalEducationAgency PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LocalEducationAgencyCategoryDescriptor]
 (
        LocalEducationAgencyCategoryDescriptorId [INT] NOT NULL,
@@ -1191,7 +1054,6 @@ CREATE TABLE [tracked_deletes_edfi].[LocalEducationAgencyCategoryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LocalEducationAgencyCategoryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[LocaleDescriptor]
 (
        LocaleDescriptorId [INT] NOT NULL,
@@ -1199,7 +1061,6 @@ CREATE TABLE [tracked_deletes_edfi].[LocaleDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_LocaleDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Location]
 (
        ClassroomIdentificationCode [NVARCHAR](60) NOT NULL,
@@ -1208,7 +1069,6 @@ CREATE TABLE [tracked_deletes_edfi].[Location]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Location PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[MagnetSpecialProgramEmphasisSchoolDescriptor]
 (
        MagnetSpecialProgramEmphasisSchoolDescriptorId [INT] NOT NULL,
@@ -1216,7 +1076,6 @@ CREATE TABLE [tracked_deletes_edfi].[MagnetSpecialProgramEmphasisSchoolDescripto
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_MagnetSpecialProgramEmphasisSchoolDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[MediumOfInstructionDescriptor]
 (
        MediumOfInstructionDescriptorId [INT] NOT NULL,
@@ -1224,7 +1083,6 @@ CREATE TABLE [tracked_deletes_edfi].[MediumOfInstructionDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_MediumOfInstructionDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[MethodCreditEarnedDescriptor]
 (
        MethodCreditEarnedDescriptorId [INT] NOT NULL,
@@ -1232,7 +1090,6 @@ CREATE TABLE [tracked_deletes_edfi].[MethodCreditEarnedDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_MethodCreditEarnedDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[MigrantEducationProgramServiceDescriptor]
 (
        MigrantEducationProgramServiceDescriptorId [INT] NOT NULL,
@@ -1240,7 +1097,6 @@ CREATE TABLE [tracked_deletes_edfi].[MigrantEducationProgramServiceDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_MigrantEducationProgramServiceDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[MonitoredDescriptor]
 (
        MonitoredDescriptorId [INT] NOT NULL,
@@ -1248,7 +1104,6 @@ CREATE TABLE [tracked_deletes_edfi].[MonitoredDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_MonitoredDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[NeglectedOrDelinquentProgramDescriptor]
 (
        NeglectedOrDelinquentProgramDescriptorId [INT] NOT NULL,
@@ -1256,7 +1111,6 @@ CREATE TABLE [tracked_deletes_edfi].[NeglectedOrDelinquentProgramDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_NeglectedOrDelinquentProgramDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[NeglectedOrDelinquentProgramServiceDescriptor]
 (
        NeglectedOrDelinquentProgramServiceDescriptorId [INT] NOT NULL,
@@ -1264,7 +1118,6 @@ CREATE TABLE [tracked_deletes_edfi].[NeglectedOrDelinquentProgramServiceDescript
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_NeglectedOrDelinquentProgramServiceDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[NetworkPurposeDescriptor]
 (
        NetworkPurposeDescriptorId [INT] NOT NULL,
@@ -1272,7 +1125,6 @@ CREATE TABLE [tracked_deletes_edfi].[NetworkPurposeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_NetworkPurposeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ObjectiveAssessment]
 (
        AssessmentIdentifier [NVARCHAR](60) NOT NULL,
@@ -1282,7 +1134,6 @@ CREATE TABLE [tracked_deletes_edfi].[ObjectiveAssessment]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ObjectiveAssessment PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[OldEthnicityDescriptor]
 (
        OldEthnicityDescriptorId [INT] NOT NULL,
@@ -1290,7 +1141,6 @@ CREATE TABLE [tracked_deletes_edfi].[OldEthnicityDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_OldEthnicityDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[OpenStaffPosition]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -1299,7 +1149,6 @@ CREATE TABLE [tracked_deletes_edfi].[OpenStaffPosition]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_OpenStaffPosition PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[OperationalStatusDescriptor]
 (
        OperationalStatusDescriptorId [INT] NOT NULL,
@@ -1307,7 +1156,6 @@ CREATE TABLE [tracked_deletes_edfi].[OperationalStatusDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_OperationalStatusDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[OtherNameTypeDescriptor]
 (
        OtherNameTypeDescriptorId [INT] NOT NULL,
@@ -1315,7 +1163,6 @@ CREATE TABLE [tracked_deletes_edfi].[OtherNameTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_OtherNameTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Parent]
 (
        ParentUSI [INT] NOT NULL,
@@ -1323,7 +1170,6 @@ CREATE TABLE [tracked_deletes_edfi].[Parent]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Parent PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ParticipationDescriptor]
 (
        ParticipationDescriptorId [INT] NOT NULL,
@@ -1331,7 +1177,6 @@ CREATE TABLE [tracked_deletes_edfi].[ParticipationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ParticipationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ParticipationStatusDescriptor]
 (
        ParticipationStatusDescriptorId [INT] NOT NULL,
@@ -1339,7 +1184,6 @@ CREATE TABLE [tracked_deletes_edfi].[ParticipationStatusDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ParticipationStatusDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Payroll]
 (
        AccountIdentifier [NVARCHAR](50) NOT NULL,
@@ -1351,7 +1195,6 @@ CREATE TABLE [tracked_deletes_edfi].[Payroll]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Payroll PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[PerformanceBaseConversionDescriptor]
 (
        PerformanceBaseConversionDescriptorId [INT] NOT NULL,
@@ -1359,7 +1202,6 @@ CREATE TABLE [tracked_deletes_edfi].[PerformanceBaseConversionDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_PerformanceBaseConversionDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[PerformanceLevelDescriptor]
 (
        PerformanceLevelDescriptorId [INT] NOT NULL,
@@ -1367,7 +1209,6 @@ CREATE TABLE [tracked_deletes_edfi].[PerformanceLevelDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_PerformanceLevelDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[PersonalInformationVerificationDescriptor]
 (
        PersonalInformationVerificationDescriptorId [INT] NOT NULL,
@@ -1375,7 +1216,6 @@ CREATE TABLE [tracked_deletes_edfi].[PersonalInformationVerificationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_PersonalInformationVerificationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[PlatformTypeDescriptor]
 (
        PlatformTypeDescriptorId [INT] NOT NULL,
@@ -1383,7 +1223,6 @@ CREATE TABLE [tracked_deletes_edfi].[PlatformTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_PlatformTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[PopulationServedDescriptor]
 (
        PopulationServedDescriptorId [INT] NOT NULL,
@@ -1391,7 +1230,6 @@ CREATE TABLE [tracked_deletes_edfi].[PopulationServedDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_PopulationServedDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[PostSecondaryEvent]
 (
        EventDate [DATE] NOT NULL,
@@ -1401,7 +1239,6 @@ CREATE TABLE [tracked_deletes_edfi].[PostSecondaryEvent]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_PostSecondaryEvent PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[PostSecondaryEventCategoryDescriptor]
 (
        PostSecondaryEventCategoryDescriptorId [INT] NOT NULL,
@@ -1409,7 +1246,6 @@ CREATE TABLE [tracked_deletes_edfi].[PostSecondaryEventCategoryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_PostSecondaryEventCategoryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[PostSecondaryInstitution]
 (
        PostSecondaryInstitutionId [INT] NOT NULL,
@@ -1417,7 +1253,6 @@ CREATE TABLE [tracked_deletes_edfi].[PostSecondaryInstitution]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_PostSecondaryInstitution PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[PostSecondaryInstitutionLevelDescriptor]
 (
        PostSecondaryInstitutionLevelDescriptorId [INT] NOT NULL,
@@ -1425,7 +1260,6 @@ CREATE TABLE [tracked_deletes_edfi].[PostSecondaryInstitutionLevelDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_PostSecondaryInstitutionLevelDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[PostingResultDescriptor]
 (
        PostingResultDescriptorId [INT] NOT NULL,
@@ -1433,7 +1267,6 @@ CREATE TABLE [tracked_deletes_edfi].[PostingResultDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_PostingResultDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ProficiencyDescriptor]
 (
        ProficiencyDescriptorId [INT] NOT NULL,
@@ -1441,7 +1274,6 @@ CREATE TABLE [tracked_deletes_edfi].[ProficiencyDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ProficiencyDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Program]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -1451,7 +1283,6 @@ CREATE TABLE [tracked_deletes_edfi].[Program]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Program PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ProgramAssignmentDescriptor]
 (
        ProgramAssignmentDescriptorId [INT] NOT NULL,
@@ -1459,7 +1290,6 @@ CREATE TABLE [tracked_deletes_edfi].[ProgramAssignmentDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ProgramAssignmentDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ProgramCharacteristicDescriptor]
 (
        ProgramCharacteristicDescriptorId [INT] NOT NULL,
@@ -1467,7 +1297,6 @@ CREATE TABLE [tracked_deletes_edfi].[ProgramCharacteristicDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ProgramCharacteristicDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ProgramSponsorDescriptor]
 (
        ProgramSponsorDescriptorId [INT] NOT NULL,
@@ -1475,7 +1304,6 @@ CREATE TABLE [tracked_deletes_edfi].[ProgramSponsorDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ProgramSponsorDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ProgramTypeDescriptor]
 (
        ProgramTypeDescriptorId [INT] NOT NULL,
@@ -1483,7 +1311,6 @@ CREATE TABLE [tracked_deletes_edfi].[ProgramTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ProgramTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ProgressDescriptor]
 (
        ProgressDescriptorId [INT] NOT NULL,
@@ -1491,7 +1318,6 @@ CREATE TABLE [tracked_deletes_edfi].[ProgressDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ProgressDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ProgressLevelDescriptor]
 (
        ProgressLevelDescriptorId [INT] NOT NULL,
@@ -1499,7 +1325,6 @@ CREATE TABLE [tracked_deletes_edfi].[ProgressLevelDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ProgressLevelDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ProviderCategoryDescriptor]
 (
        ProviderCategoryDescriptorId [INT] NOT NULL,
@@ -1507,7 +1332,6 @@ CREATE TABLE [tracked_deletes_edfi].[ProviderCategoryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ProviderCategoryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ProviderProfitabilityDescriptor]
 (
        ProviderProfitabilityDescriptorId [INT] NOT NULL,
@@ -1515,7 +1339,6 @@ CREATE TABLE [tracked_deletes_edfi].[ProviderProfitabilityDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ProviderProfitabilityDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ProviderStatusDescriptor]
 (
        ProviderStatusDescriptorId [INT] NOT NULL,
@@ -1523,7 +1346,6 @@ CREATE TABLE [tracked_deletes_edfi].[ProviderStatusDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ProviderStatusDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[PublicationStatusDescriptor]
 (
        PublicationStatusDescriptorId [INT] NOT NULL,
@@ -1531,7 +1353,6 @@ CREATE TABLE [tracked_deletes_edfi].[PublicationStatusDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_PublicationStatusDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[RaceDescriptor]
 (
        RaceDescriptorId [INT] NOT NULL,
@@ -1539,7 +1360,6 @@ CREATE TABLE [tracked_deletes_edfi].[RaceDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_RaceDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ReasonExitedDescriptor]
 (
        ReasonExitedDescriptorId [INT] NOT NULL,
@@ -1547,7 +1367,6 @@ CREATE TABLE [tracked_deletes_edfi].[ReasonExitedDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ReasonExitedDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ReasonNotTestedDescriptor]
 (
        ReasonNotTestedDescriptorId [INT] NOT NULL,
@@ -1555,7 +1374,6 @@ CREATE TABLE [tracked_deletes_edfi].[ReasonNotTestedDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ReasonNotTestedDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[RecognitionTypeDescriptor]
 (
        RecognitionTypeDescriptorId [INT] NOT NULL,
@@ -1563,7 +1381,6 @@ CREATE TABLE [tracked_deletes_edfi].[RecognitionTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_RecognitionTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[RelationDescriptor]
 (
        RelationDescriptorId [INT] NOT NULL,
@@ -1571,7 +1388,6 @@ CREATE TABLE [tracked_deletes_edfi].[RelationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_RelationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[RepeatIdentifierDescriptor]
 (
        RepeatIdentifierDescriptorId [INT] NOT NULL,
@@ -1579,7 +1395,6 @@ CREATE TABLE [tracked_deletes_edfi].[RepeatIdentifierDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_RepeatIdentifierDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ReportCard]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -1592,7 +1407,6 @@ CREATE TABLE [tracked_deletes_edfi].[ReportCard]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ReportCard PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ReporterDescriptionDescriptor]
 (
        ReporterDescriptionDescriptorId [INT] NOT NULL,
@@ -1600,7 +1414,6 @@ CREATE TABLE [tracked_deletes_edfi].[ReporterDescriptionDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ReporterDescriptionDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ResidencyStatusDescriptor]
 (
        ResidencyStatusDescriptorId [INT] NOT NULL,
@@ -1608,7 +1421,6 @@ CREATE TABLE [tracked_deletes_edfi].[ResidencyStatusDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ResidencyStatusDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ResponseIndicatorDescriptor]
 (
        ResponseIndicatorDescriptorId [INT] NOT NULL,
@@ -1616,7 +1428,6 @@ CREATE TABLE [tracked_deletes_edfi].[ResponseIndicatorDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ResponseIndicatorDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ResponsibilityDescriptor]
 (
        ResponsibilityDescriptorId [INT] NOT NULL,
@@ -1624,7 +1435,6 @@ CREATE TABLE [tracked_deletes_edfi].[ResponsibilityDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ResponsibilityDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[RestraintEvent]
 (
        RestraintEventIdentifier [NVARCHAR](20) NOT NULL,
@@ -1634,7 +1444,6 @@ CREATE TABLE [tracked_deletes_edfi].[RestraintEvent]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_RestraintEvent PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[RestraintEventReasonDescriptor]
 (
        RestraintEventReasonDescriptorId [INT] NOT NULL,
@@ -1642,7 +1451,6 @@ CREATE TABLE [tracked_deletes_edfi].[RestraintEventReasonDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_RestraintEventReasonDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ResultDatatypeTypeDescriptor]
 (
        ResultDatatypeTypeDescriptorId [INT] NOT NULL,
@@ -1650,7 +1458,6 @@ CREATE TABLE [tracked_deletes_edfi].[ResultDatatypeTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ResultDatatypeTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[RetestIndicatorDescriptor]
 (
        RetestIndicatorDescriptorId [INT] NOT NULL,
@@ -1658,7 +1465,6 @@ CREATE TABLE [tracked_deletes_edfi].[RetestIndicatorDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_RetestIndicatorDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[School]
 (
        SchoolId [INT] NOT NULL,
@@ -1666,7 +1472,6 @@ CREATE TABLE [tracked_deletes_edfi].[School]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_School PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[SchoolCategoryDescriptor]
 (
        SchoolCategoryDescriptorId [INT] NOT NULL,
@@ -1674,7 +1479,6 @@ CREATE TABLE [tracked_deletes_edfi].[SchoolCategoryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_SchoolCategoryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[SchoolChoiceImplementStatusDescriptor]
 (
        SchoolChoiceImplementStatusDescriptorId [INT] NOT NULL,
@@ -1682,7 +1486,6 @@ CREATE TABLE [tracked_deletes_edfi].[SchoolChoiceImplementStatusDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_SchoolChoiceImplementStatusDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[SchoolFoodServiceProgramServiceDescriptor]
 (
        SchoolFoodServiceProgramServiceDescriptorId [INT] NOT NULL,
@@ -1690,7 +1493,6 @@ CREATE TABLE [tracked_deletes_edfi].[SchoolFoodServiceProgramServiceDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_SchoolFoodServiceProgramServiceDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[SchoolTypeDescriptor]
 (
        SchoolTypeDescriptorId [INT] NOT NULL,
@@ -1698,7 +1500,6 @@ CREATE TABLE [tracked_deletes_edfi].[SchoolTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_SchoolTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Section]
 (
        LocalCourseCode [NVARCHAR](60) NOT NULL,
@@ -1710,7 +1511,6 @@ CREATE TABLE [tracked_deletes_edfi].[Section]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Section PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[SectionAttendanceTakenEvent]
 (
        CalendarCode [NVARCHAR](60) NOT NULL,
@@ -1724,7 +1524,6 @@ CREATE TABLE [tracked_deletes_edfi].[SectionAttendanceTakenEvent]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_SectionAttendanceTakenEvent PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[SectionCharacteristicDescriptor]
 (
        SectionCharacteristicDescriptorId [INT] NOT NULL,
@@ -1732,7 +1531,6 @@ CREATE TABLE [tracked_deletes_edfi].[SectionCharacteristicDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_SectionCharacteristicDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[SeparationDescriptor]
 (
        SeparationDescriptorId [INT] NOT NULL,
@@ -1740,7 +1538,6 @@ CREATE TABLE [tracked_deletes_edfi].[SeparationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_SeparationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[SeparationReasonDescriptor]
 (
        SeparationReasonDescriptorId [INT] NOT NULL,
@@ -1748,7 +1545,6 @@ CREATE TABLE [tracked_deletes_edfi].[SeparationReasonDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_SeparationReasonDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[ServiceDescriptor]
 (
        ServiceDescriptorId [INT] NOT NULL,
@@ -1756,7 +1552,6 @@ CREATE TABLE [tracked_deletes_edfi].[ServiceDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_ServiceDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Session]
 (
        SchoolId [INT] NOT NULL,
@@ -1766,7 +1561,6 @@ CREATE TABLE [tracked_deletes_edfi].[Session]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Session PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[SexDescriptor]
 (
        SexDescriptorId [INT] NOT NULL,
@@ -1774,7 +1568,6 @@ CREATE TABLE [tracked_deletes_edfi].[SexDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_SexDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[SpecialEducationProgramServiceDescriptor]
 (
        SpecialEducationProgramServiceDescriptorId [INT] NOT NULL,
@@ -1782,7 +1575,6 @@ CREATE TABLE [tracked_deletes_edfi].[SpecialEducationProgramServiceDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_SpecialEducationProgramServiceDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[SpecialEducationSettingDescriptor]
 (
        SpecialEducationSettingDescriptorId [INT] NOT NULL,
@@ -1790,7 +1582,6 @@ CREATE TABLE [tracked_deletes_edfi].[SpecialEducationSettingDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_SpecialEducationSettingDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Staff]
 (
        StaffUSI [INT] NOT NULL,
@@ -1798,7 +1589,6 @@ CREATE TABLE [tracked_deletes_edfi].[Staff]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Staff PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StaffAbsenceEvent]
 (
        AbsenceEventCategoryDescriptorId [INT] NOT NULL,
@@ -1808,7 +1598,6 @@ CREATE TABLE [tracked_deletes_edfi].[StaffAbsenceEvent]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StaffAbsenceEvent PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StaffClassificationDescriptor]
 (
        StaffClassificationDescriptorId [INT] NOT NULL,
@@ -1816,7 +1605,6 @@ CREATE TABLE [tracked_deletes_edfi].[StaffClassificationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StaffClassificationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StaffCohortAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -1827,7 +1615,6 @@ CREATE TABLE [tracked_deletes_edfi].[StaffCohortAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StaffCohortAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StaffDisciplineIncidentAssociation]
 (
        IncidentIdentifier [NVARCHAR](20) NOT NULL,
@@ -1837,7 +1624,6 @@ CREATE TABLE [tracked_deletes_edfi].[StaffDisciplineIncidentAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StaffDisciplineIncidentAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StaffEducationOrganizationAssignmentAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -1848,7 +1634,6 @@ CREATE TABLE [tracked_deletes_edfi].[StaffEducationOrganizationAssignmentAssocia
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StaffEducationOrganizationAssignmentAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StaffEducationOrganizationContactAssociation]
 (
        ContactTitle [NVARCHAR](75) NOT NULL,
@@ -1858,7 +1643,6 @@ CREATE TABLE [tracked_deletes_edfi].[StaffEducationOrganizationContactAssociatio
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StaffEducationOrganizationContactAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StaffEducationOrganizationEmploymentAssociation]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -1869,7 +1653,6 @@ CREATE TABLE [tracked_deletes_edfi].[StaffEducationOrganizationEmploymentAssocia
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StaffEducationOrganizationEmploymentAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StaffIdentificationSystemDescriptor]
 (
        StaffIdentificationSystemDescriptorId [INT] NOT NULL,
@@ -1877,7 +1660,6 @@ CREATE TABLE [tracked_deletes_edfi].[StaffIdentificationSystemDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StaffIdentificationSystemDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StaffLeave]
 (
        BeginDate [DATE] NOT NULL,
@@ -1887,7 +1669,6 @@ CREATE TABLE [tracked_deletes_edfi].[StaffLeave]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StaffLeave PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StaffLeaveEventCategoryDescriptor]
 (
        StaffLeaveEventCategoryDescriptorId [INT] NOT NULL,
@@ -1895,7 +1676,6 @@ CREATE TABLE [tracked_deletes_edfi].[StaffLeaveEventCategoryDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StaffLeaveEventCategoryDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StaffProgramAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -1907,7 +1687,6 @@ CREATE TABLE [tracked_deletes_edfi].[StaffProgramAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StaffProgramAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StaffSchoolAssociation]
 (
        ProgramAssignmentDescriptorId [INT] NOT NULL,
@@ -1917,7 +1696,6 @@ CREATE TABLE [tracked_deletes_edfi].[StaffSchoolAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StaffSchoolAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StaffSectionAssociation]
 (
        LocalCourseCode [NVARCHAR](60) NOT NULL,
@@ -1930,7 +1708,6 @@ CREATE TABLE [tracked_deletes_edfi].[StaffSectionAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StaffSectionAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StateAbbreviationDescriptor]
 (
        StateAbbreviationDescriptorId [INT] NOT NULL,
@@ -1938,7 +1715,6 @@ CREATE TABLE [tracked_deletes_edfi].[StateAbbreviationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StateAbbreviationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StateEducationAgency]
 (
        StateEducationAgencyId [INT] NOT NULL,
@@ -1946,7 +1722,6 @@ CREATE TABLE [tracked_deletes_edfi].[StateEducationAgency]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StateEducationAgency PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[Student]
 (
        StudentUSI [INT] NOT NULL,
@@ -1954,7 +1729,6 @@ CREATE TABLE [tracked_deletes_edfi].[Student]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_Student PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentAcademicRecord]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -1965,7 +1739,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentAcademicRecord]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentAcademicRecord PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentAssessment]
 (
        AssessmentIdentifier [NVARCHAR](60) NOT NULL,
@@ -1976,7 +1749,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentAssessment]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentAssessment PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentCTEProgramAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -1989,7 +1761,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentCTEProgramAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentCTEProgramAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentCharacteristicDescriptor]
 (
        StudentCharacteristicDescriptorId [INT] NOT NULL,
@@ -1997,7 +1768,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentCharacteristicDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentCharacteristicDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentCohortAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -2008,7 +1778,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentCohortAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentCohortAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentCompetencyObjective]
 (
        GradingPeriodDescriptorId [INT] NOT NULL,
@@ -2023,7 +1792,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentCompetencyObjective]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentCompetencyObjective PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentDisciplineIncidentAssociation]
 (
        IncidentIdentifier [NVARCHAR](20) NOT NULL,
@@ -2033,7 +1801,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentDisciplineIncidentAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentDisciplineIncidentAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentEducationOrganizationAssociation]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -2042,7 +1809,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentEducationOrganizationAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentEducationOrganizationAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentEducationOrganizationResponsibilityAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -2053,7 +1819,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentEducationOrganizationResponsibilityA
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentEducationOrganizationResponsibilityAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentGradebookEntry]
 (
        BeginDate [DATE] NOT NULL,
@@ -2069,7 +1834,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentGradebookEntry]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentGradebookEntry PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentHomelessProgramAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -2082,7 +1846,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentHomelessProgramAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentHomelessProgramAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentIdentificationSystemDescriptor]
 (
        StudentIdentificationSystemDescriptorId [INT] NOT NULL,
@@ -2090,7 +1853,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentIdentificationSystemDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentIdentificationSystemDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentInterventionAssociation]
 (
        EducationOrganizationId [INT] NOT NULL,
@@ -2100,7 +1862,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentInterventionAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentInterventionAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentInterventionAttendanceEvent]
 (
        AttendanceEventCategoryDescriptorId [INT] NOT NULL,
@@ -2112,7 +1873,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentInterventionAttendanceEvent]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentInterventionAttendanceEvent PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentLanguageInstructionProgramAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -2125,7 +1885,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentLanguageInstructionProgramAssociatio
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentLanguageInstructionProgramAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentLearningObjective]
 (
        GradingPeriodDescriptorId [INT] NOT NULL,
@@ -2139,7 +1898,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentLearningObjective]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentLearningObjective PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentMigrantEducationProgramAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -2152,7 +1910,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentMigrantEducationProgramAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentMigrantEducationProgramAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentNeglectedOrDelinquentProgramAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -2165,7 +1922,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentNeglectedOrDelinquentProgramAssociat
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentNeglectedOrDelinquentProgramAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentParentAssociation]
 (
        ParentUSI [INT] NOT NULL,
@@ -2174,7 +1930,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentParentAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentParentAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentParticipationCodeDescriptor]
 (
        StudentParticipationCodeDescriptorId [INT] NOT NULL,
@@ -2182,7 +1937,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentParticipationCodeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentParticipationCodeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentProgramAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -2195,7 +1949,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentProgramAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentProgramAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentProgramAttendanceEvent]
 (
        AttendanceEventCategoryDescriptorId [INT] NOT NULL,
@@ -2209,7 +1962,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentProgramAttendanceEvent]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentProgramAttendanceEvent PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentSchoolAssociation]
 (
        EntryDate [DATE] NOT NULL,
@@ -2219,7 +1971,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentSchoolAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentSchoolAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentSchoolAttendanceEvent]
 (
        AttendanceEventCategoryDescriptorId [INT] NOT NULL,
@@ -2232,7 +1983,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentSchoolAttendanceEvent]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentSchoolAttendanceEvent PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentSchoolFoodServiceProgramAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -2245,7 +1995,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentSchoolFoodServiceProgramAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentSchoolFoodServiceProgramAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentSectionAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -2259,7 +2008,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentSectionAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentSectionAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentSectionAttendanceEvent]
 (
        AttendanceEventCategoryDescriptorId [INT] NOT NULL,
@@ -2274,7 +2022,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentSectionAttendanceEvent]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentSectionAttendanceEvent PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentSpecialEducationProgramAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -2287,7 +2034,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentSpecialEducationProgramAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentSpecialEducationProgramAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[StudentTitleIPartAProgramAssociation]
 (
        BeginDate [DATE] NOT NULL,
@@ -2300,7 +2046,6 @@ CREATE TABLE [tracked_deletes_edfi].[StudentTitleIPartAProgramAssociation]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_StudentTitleIPartAProgramAssociation PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[TeachingCredentialBasisDescriptor]
 (
        TeachingCredentialBasisDescriptorId [INT] NOT NULL,
@@ -2308,7 +2053,6 @@ CREATE TABLE [tracked_deletes_edfi].[TeachingCredentialBasisDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_TeachingCredentialBasisDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[TeachingCredentialDescriptor]
 (
        TeachingCredentialDescriptorId [INT] NOT NULL,
@@ -2316,7 +2060,6 @@ CREATE TABLE [tracked_deletes_edfi].[TeachingCredentialDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_TeachingCredentialDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[TechnicalSkillsAssessmentDescriptor]
 (
        TechnicalSkillsAssessmentDescriptorId [INT] NOT NULL,
@@ -2324,7 +2067,6 @@ CREATE TABLE [tracked_deletes_edfi].[TechnicalSkillsAssessmentDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_TechnicalSkillsAssessmentDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[TelephoneNumberTypeDescriptor]
 (
        TelephoneNumberTypeDescriptorId [INT] NOT NULL,
@@ -2332,7 +2074,6 @@ CREATE TABLE [tracked_deletes_edfi].[TelephoneNumberTypeDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_TelephoneNumberTypeDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[TermDescriptor]
 (
        TermDescriptorId [INT] NOT NULL,
@@ -2340,7 +2081,6 @@ CREATE TABLE [tracked_deletes_edfi].[TermDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_TermDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[TitleIPartAParticipantDescriptor]
 (
        TitleIPartAParticipantDescriptorId [INT] NOT NULL,
@@ -2348,7 +2088,6 @@ CREATE TABLE [tracked_deletes_edfi].[TitleIPartAParticipantDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_TitleIPartAParticipantDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[TitleIPartAProgramServiceDescriptor]
 (
        TitleIPartAProgramServiceDescriptorId [INT] NOT NULL,
@@ -2356,7 +2095,6 @@ CREATE TABLE [tracked_deletes_edfi].[TitleIPartAProgramServiceDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_TitleIPartAProgramServiceDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[TitleIPartASchoolDesignationDescriptor]
 (
        TitleIPartASchoolDesignationDescriptorId [INT] NOT NULL,
@@ -2364,7 +2102,6 @@ CREATE TABLE [tracked_deletes_edfi].[TitleIPartASchoolDesignationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_TitleIPartASchoolDesignationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[TribalAffiliationDescriptor]
 (
        TribalAffiliationDescriptorId [INT] NOT NULL,
@@ -2372,7 +2109,6 @@ CREATE TABLE [tracked_deletes_edfi].[TribalAffiliationDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_TribalAffiliationDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[VisaDescriptor]
 (
        VisaDescriptorId [INT] NOT NULL,
@@ -2380,7 +2116,6 @@ CREATE TABLE [tracked_deletes_edfi].[VisaDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_VisaDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
 CREATE TABLE [tracked_deletes_edfi].[WeaponDescriptor]
 (
        WeaponDescriptorId [INT] NOT NULL,
@@ -2388,4 +2123,3 @@ CREATE TABLE [tracked_deletes_edfi].[WeaponDescriptor]
        ChangeVersion bigint NOT NULL,
        CONSTRAINT PK_WeaponDescriptor PRIMARY KEY CLUSTERED (ChangeVersion)
 )
-
