@@ -13,8 +13,8 @@ CREATE TABLE [extension].[BalanceSheetDimension] (
     [FiscalYear] [SMALLINT] NOT NULL,
     [CodeName] [NVARCHAR](100) NULL,
     [Discriminator] [NVARCHAR](128) NULL,
-    [CreateDate] [DATETIME] NOT NULL,
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    [LastModifiedDate] [DATETIME2] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
     CONSTRAINT [BalanceSheetDimension_PK] PRIMARY KEY CLUSTERED (
         [BalanceSheetCode] ASC,
@@ -34,7 +34,7 @@ CREATE TABLE [extension].[BalanceSheetDimensionReportingTag] (
     [BalanceSheetCode] [NVARCHAR](16) NOT NULL,
     [FiscalYear] [SMALLINT] NOT NULL,
     [ReportingTagDescriptorId] [INT] NOT NULL,
-    [CreateDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [BalanceSheetDimensionReportingTag_PK] PRIMARY KEY CLUSTERED (
         [BalanceSheetCode] ASC,
         [FiscalYear] ASC,
@@ -61,8 +61,8 @@ CREATE TABLE [extension].[ChartOfAccount] (
     [ProjectCode] [NVARCHAR](16) NULL,
     [SourceCode] [NVARCHAR](16) NULL,
     [Discriminator] [NVARCHAR](128) NULL,
-    [CreateDate] [DATETIME] NOT NULL,
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    [LastModifiedDate] [DATETIME2] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
     CONSTRAINT [ChartOfAccount_PK] PRIMARY KEY CLUSTERED (
         [AccountIdentifier] ASC,
@@ -84,7 +84,7 @@ CREATE TABLE [extension].[ChartOfAccountReportingTag] (
     [EducationOrganizationId] [INT] NOT NULL,
     [FiscalYear] [SMALLINT] NOT NULL,
     [ReportingTagDescriptorId] [INT] NOT NULL,
-    [CreateDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [ChartOfAccountReportingTag_PK] PRIMARY KEY CLUSTERED (
         [AccountIdentifier] ASC,
         [EducationOrganizationId] ASC,
@@ -111,8 +111,8 @@ CREATE TABLE [extension].[FunctionDimension] (
     [FunctionCode] [NVARCHAR](16) NOT NULL,
     [CodeName] [NVARCHAR](100) NULL,
     [Discriminator] [NVARCHAR](128) NULL,
-    [CreateDate] [DATETIME] NOT NULL,
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    [LastModifiedDate] [DATETIME2] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
     CONSTRAINT [FunctionDimension_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
@@ -132,7 +132,7 @@ CREATE TABLE [extension].[FunctionDimensionReportingTag] (
     [FiscalYear] [SMALLINT] NOT NULL,
     [FunctionCode] [NVARCHAR](16) NOT NULL,
     [ReportingTagDescriptorId] [INT] NOT NULL,
-    [CreateDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [FunctionDimensionReportingTag_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
         [FunctionCode] ASC,
@@ -149,8 +149,8 @@ CREATE TABLE [extension].[FundDimension] (
     [FundCode] [NVARCHAR](16) NOT NULL,
     [CodeName] [NVARCHAR](100) NULL,
     [Discriminator] [NVARCHAR](128) NULL,
-    [CreateDate] [DATETIME] NOT NULL,
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    [LastModifiedDate] [DATETIME2] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
     CONSTRAINT [FundDimension_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
@@ -170,7 +170,7 @@ CREATE TABLE [extension].[FundDimensionReportingTag] (
     [FiscalYear] [SMALLINT] NOT NULL,
     [FundCode] [NVARCHAR](16) NOT NULL,
     [ReportingTagDescriptorId] [INT] NOT NULL,
-    [CreateDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [FundDimensionReportingTag_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
         [FundCode] ASC,
@@ -190,8 +190,8 @@ CREATE TABLE [extension].[LocalAccount] (
     [ChartOfAccountIdentifier] [NVARCHAR](50) NOT NULL,
     [ChartOfAccountEducationOrganizationId] [INT] NOT NULL,
     [Discriminator] [NVARCHAR](128) NULL,
-    [CreateDate] [DATETIME] NOT NULL,
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    [LastModifiedDate] [DATETIME2] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
     CONSTRAINT [LocalAccount_PK] PRIMARY KEY CLUSTERED (
         [AccountIdentifier] ASC,
@@ -213,7 +213,7 @@ CREATE TABLE [extension].[LocalAccountReportingTag] (
     [EducationOrganizationId] [INT] NOT NULL,
     [FiscalYear] [SMALLINT] NOT NULL,
     [ReportingTagDescriptorId] [INT] NOT NULL,
-    [CreateDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [LocalAccountReportingTag_PK] PRIMARY KEY CLUSTERED (
         [AccountIdentifier] ASC,
         [EducationOrganizationId] ASC,
@@ -234,8 +234,8 @@ CREATE TABLE [extension].[LocalActual] (
     [Amount] [MONEY] NOT NULL,
     [FinancialCollectionDescriptorId] [INT] NULL,
     [Discriminator] [NVARCHAR](128) NULL,
-    [CreateDate] [DATETIME] NOT NULL,
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    [LastModifiedDate] [DATETIME2] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
     CONSTRAINT [LocalActual_PK] PRIMARY KEY CLUSTERED (
         [AccountIdentifier] ASC,
@@ -261,8 +261,8 @@ CREATE TABLE [extension].[LocalBudget] (
     [Amount] [MONEY] NOT NULL,
     [FinancialCollectionDescriptorId] [INT] NULL,
     [Discriminator] [NVARCHAR](128) NULL,
-    [CreateDate] [DATETIME] NOT NULL,
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    [LastModifiedDate] [DATETIME2] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
     CONSTRAINT [LocalBudget_PK] PRIMARY KEY CLUSTERED (
         [AccountIdentifier] ASC,
@@ -285,8 +285,8 @@ CREATE TABLE [extension].[ObjectDimension] (
     [ObjectCode] [NVARCHAR](16) NOT NULL,
     [CodeName] [NVARCHAR](100) NULL,
     [Discriminator] [NVARCHAR](128) NULL,
-    [CreateDate] [DATETIME] NOT NULL,
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    [LastModifiedDate] [DATETIME2] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
     CONSTRAINT [ObjectDimension_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
@@ -306,7 +306,7 @@ CREATE TABLE [extension].[ObjectDimensionReportingTag] (
     [FiscalYear] [SMALLINT] NOT NULL,
     [ObjectCode] [NVARCHAR](16) NOT NULL,
     [ReportingTagDescriptorId] [INT] NOT NULL,
-    [CreateDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [ObjectDimensionReportingTag_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
         [ObjectCode] ASC,
@@ -323,8 +323,8 @@ CREATE TABLE [extension].[OperationalUnitDimension] (
     [OperationalUnitCode] [NVARCHAR](16) NOT NULL,
     [CodeName] [NVARCHAR](100) NULL,
     [Discriminator] [NVARCHAR](128) NULL,
-    [CreateDate] [DATETIME] NOT NULL,
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    [LastModifiedDate] [DATETIME2] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
     CONSTRAINT [OperationalUnitDimension_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
@@ -344,7 +344,7 @@ CREATE TABLE [extension].[OperationalUnitDimensionReportingTag] (
     [FiscalYear] [SMALLINT] NOT NULL,
     [OperationalUnitCode] [NVARCHAR](16) NOT NULL,
     [ReportingTagDescriptorId] [INT] NOT NULL,
-    [CreateDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [OperationalUnitDimensionReportingTag_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
         [OperationalUnitCode] ASC,
@@ -361,8 +361,8 @@ CREATE TABLE [extension].[ProgramDimension] (
     [ProgramCode] [NVARCHAR](16) NOT NULL,
     [CodeName] [NVARCHAR](100) NULL,
     [Discriminator] [NVARCHAR](128) NULL,
-    [CreateDate] [DATETIME] NOT NULL,
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    [LastModifiedDate] [DATETIME2] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
     CONSTRAINT [ProgramDimension_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
@@ -382,7 +382,7 @@ CREATE TABLE [extension].[ProgramDimensionReportingTag] (
     [FiscalYear] [SMALLINT] NOT NULL,
     [ProgramCode] [NVARCHAR](16) NOT NULL,
     [ReportingTagDescriptorId] [INT] NOT NULL,
-    [CreateDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [ProgramDimensionReportingTag_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
         [ProgramCode] ASC,
@@ -399,8 +399,8 @@ CREATE TABLE [extension].[ProjectDimension] (
     [ProjectCode] [NVARCHAR](16) NOT NULL,
     [CodeName] [NVARCHAR](100) NULL,
     [Discriminator] [NVARCHAR](128) NULL,
-    [CreateDate] [DATETIME] NOT NULL,
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    [LastModifiedDate] [DATETIME2] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
     CONSTRAINT [ProjectDimension_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
@@ -420,7 +420,7 @@ CREATE TABLE [extension].[ProjectDimensionReportingTag] (
     [FiscalYear] [SMALLINT] NOT NULL,
     [ProjectCode] [NVARCHAR](16) NOT NULL,
     [ReportingTagDescriptorId] [INT] NOT NULL,
-    [CreateDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [ProjectDimensionReportingTag_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
         [ProjectCode] ASC,
@@ -446,8 +446,8 @@ CREATE TABLE [extension].[SourceDimension] (
     [SourceCode] [NVARCHAR](16) NOT NULL,
     [CodeName] [NVARCHAR](100) NULL,
     [Discriminator] [NVARCHAR](128) NULL,
-    [CreateDate] [DATETIME] NOT NULL,
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    [LastModifiedDate] [DATETIME2] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
     CONSTRAINT [SourceDimension_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
@@ -467,7 +467,7 @@ CREATE TABLE [extension].[SourceDimensionReportingTag] (
     [FiscalYear] [SMALLINT] NOT NULL,
     [ReportingTagDescriptorId] [INT] NOT NULL,
     [SourceCode] [NVARCHAR](16) NOT NULL,
-    [CreateDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [SourceDimensionReportingTag_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
         [ReportingTagDescriptorId] ASC,

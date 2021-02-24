@@ -23,8 +23,8 @@ CREATE TABLE [extension].[PostSecondaryOrganization] (
     [InstitutionControlDescriptorId] [INT] NOT NULL,
     [AcceptanceIndicator] [BIT] NOT NULL,
     [Discriminator] [NVARCHAR](128) NULL,
-    [CreateDate] [DATETIME] NOT NULL,
-    [LastModifiedDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
+    [LastModifiedDate] [DATETIME2] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
     CONSTRAINT [PostSecondaryOrganization_PK] PRIMARY KEY CLUSTERED (
         [NameOfInstitution] ASC
@@ -54,7 +54,7 @@ CREATE TABLE [extension].[StudentAcademicRecordClassRankingExtension] (
     [StudentUSI] [INT] NOT NULL,
     [TermDescriptorId] [INT] NOT NULL,
     [SpecialEducationGraduationStatusDescriptorId] [INT] NOT NULL,
-    [CreateDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [StudentAcademicRecordClassRankingExtension_PK] PRIMARY KEY CLUSTERED (
         [EducationOrganizationId] ASC,
         [SchoolYear] ASC,
@@ -74,7 +74,7 @@ CREATE TABLE [extension].[StudentAcademicRecordExtension] (
     [TermDescriptorId] [INT] NOT NULL,
     [NameOfInstitution] [NVARCHAR](75) NULL,
     [SubmissionCertificationDescriptorId] [INT] NULL,
-    [CreateDate] [DATETIME] NOT NULL,
+    [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [StudentAcademicRecordExtension_PK] PRIMARY KEY CLUSTERED (
         [EducationOrganizationId] ASC,
         [SchoolYear] ASC,

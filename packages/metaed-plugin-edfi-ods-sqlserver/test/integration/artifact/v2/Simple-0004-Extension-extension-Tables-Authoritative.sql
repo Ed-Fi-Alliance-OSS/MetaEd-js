@@ -1,8 +1,3 @@
--- SPDX-License-Identifier: Apache-2.0
--- Licensed to the Ed-Fi Alliance under one or more agreements.
--- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
--- See the LICENSE and NOTICES files in the project root for more information.
-
 -- Table [extension].[StaffEvaluation] --
 CREATE TABLE [extension].[StaffEvaluation] (
     [SchoolYear] [SMALLINT] NOT NULL,
@@ -165,11 +160,6 @@ GO
 ALTER TABLE [extension].[StaffRatingLevel] ADD CONSTRAINT [StaffRatingLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
--- SPDX-License-Identifier: Apache-2.0
--- Licensed to the Ed-Fi Alliance under one or more agreements.
--- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
--- See the LICENSE and NOTICES files in the project root for more information.
-
 ALTER TABLE [extension].[StaffEvaluation] WITH CHECK ADD CONSTRAINT [FK_StaffEvaluation_SchoolYearType] FOREIGN KEY ([SchoolYear])
 REFERENCES [edfi].[SchoolYearType] ([SchoolYear])
 GO
@@ -239,11 +229,6 @@ ALTER TABLE [extension].[StaffRatingLevel] WITH CHECK ADD CONSTRAINT [FK_StaffRa
 REFERENCES [edfi].[Staff] ([StaffUSI])
 ON DELETE CASCADE
 GO
-
--- SPDX-License-Identifier: Apache-2.0
--- Licensed to the Ed-Fi Alliance under one or more agreements.
--- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
--- See the LICENSE and NOTICES files in the project root for more information.
 
 -- Extended Properties [extension].[StaffEvaluation] --
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'TBD', @level0type=N'SCHEMA', @level0name=N'extension', @level1type=N'TABLE', @level1name=N'StaffEvaluation'

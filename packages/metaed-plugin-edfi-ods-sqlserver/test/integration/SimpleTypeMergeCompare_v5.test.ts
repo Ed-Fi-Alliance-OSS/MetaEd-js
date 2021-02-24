@@ -37,19 +37,19 @@ describe('when generating ods tables file with simple merges for ODS/API 5.0', (
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '5.0.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.0/', sampleExtensionPath],
+      projectPaths: ['./node_modules/ed-fi-model-3.2a/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.0.0',
+          projectVersion: '3.2.0',
         },
         {
           projectName: 'Extension',
           namespaceName: 'Extension',
           projectExtension: 'Extension',
-          projectVersion: '3.0.0',
+          projectVersion: '3.2.0',
         },
       ],
     };
@@ -58,7 +58,7 @@ describe('when generating ods tables file with simple merges for ODS/API 5.0', (
       ...newState(),
       metaEdConfiguration,
     };
-    state.metaEd.dataStandardVersion = '3.0.0';
+    state.metaEd.dataStandardVersion = '3.2.0';
 
     validateConfiguration(state);
     loadPlugins(state);
@@ -98,9 +98,9 @@ describe('when generating ods tables file with simple merges for ODS/API 5.0', (
 
   it('should have core with no differences', async () => {
     expect(generatedCoreOutput).toBeDefined();
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCoreOdsFilename} ${generatedCoreOdsFilename}`;
-    // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const gitCommand = `git diff --shortstat --no-index --ignore-cr-at-eol --ignore-space-at-eol -- ${authoritativeCoreOdsFilename} ${generatedCoreOdsFilename}`;
+    const result = await new Promise(resolve => exec(gitCommand, (_, stdout) => resolve(stdout)));
+
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -109,8 +109,8 @@ describe('when generating ods tables file with simple merges for ODS/API 5.0', (
   it('should have extension with no differences', async () => {
     expect(generatedExtensionOutput).toBeDefined();
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtensionOdsFilename} ${generatedExtensionOdsFilename}`;
-    // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+
+    const result = await new Promise(resolve => exec(gitCommand, (_, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -134,19 +134,19 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '5.0.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.0/', sampleExtensionPath],
+      projectPaths: ['./node_modules/ed-fi-model-3.2a/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.0.0',
+          projectVersion: '3.2.0',
         },
         {
           projectName: 'Extension',
           namespaceName: 'Extension',
           projectExtension: 'Extension',
-          projectVersion: '3.0.0',
+          projectVersion: '3.2.0',
         },
       ],
     };
@@ -155,7 +155,7 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
       ...newState(),
       metaEdConfiguration,
     };
-    state.metaEd.dataStandardVersion = '3.0.0';
+    state.metaEd.dataStandardVersion = '3.2.0';
 
     validateConfiguration(state);
     loadPlugins(state);
