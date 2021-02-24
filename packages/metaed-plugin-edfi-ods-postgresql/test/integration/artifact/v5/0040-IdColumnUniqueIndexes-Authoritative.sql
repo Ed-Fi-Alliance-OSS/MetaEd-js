@@ -76,6 +76,8 @@ CREATE UNIQUE INDEX IF NOT EXISTS UX_588d15_Id ON edfi.LearningObjective(Id);
 
 CREATE UNIQUE INDEX IF NOT EXISTS UX_8ceb4c_Id ON edfi.LearningStandard(Id);
 
+CREATE UNIQUE INDEX IF NOT EXISTS UX_17c02a_Id ON edfi.LearningStandardEquivalenceAssociation(Id);
+
 CREATE UNIQUE INDEX IF NOT EXISTS UX_15b619_Id ON edfi.Location(Id);
 
 CREATE UNIQUE INDEX IF NOT EXISTS UX_269e10_Id ON edfi.ObjectiveAssessment(Id);
@@ -107,6 +109,8 @@ CREATE UNIQUE INDEX IF NOT EXISTS UX_681927_Id ON edfi.Staff(Id);
 CREATE UNIQUE INDEX IF NOT EXISTS UX_b13bbd_Id ON edfi.StaffAbsenceEvent(Id);
 
 CREATE UNIQUE INDEX IF NOT EXISTS UX_170747_Id ON edfi.StaffCohortAssociation(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_af86db_Id ON edfi.StaffDisciplineIncidentAssociation(Id);
 
 CREATE UNIQUE INDEX IF NOT EXISTS UX_b9be24_Id ON edfi.StaffEducationOrganizationAssignmentAssociation(Id);
 

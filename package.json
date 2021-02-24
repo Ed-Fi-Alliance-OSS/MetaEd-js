@@ -60,6 +60,7 @@
     "test:unit:ro:sqlserver": "jest packages/metaed-plugin-edfi-ods-recordownership-sqlserver -i",
     "_question_about_removing": "will be answered by Brad in the PR",
     "test:unit:ods-sqlserver": "yarn ts-node packages/metaed-plugin-edfi-ods-sqlserver/test/database/InitializeOdsIntegrationTestDatabase.ts && yarn jest packages/metaed-plugin-edfi-ods-sqlserver -i",
+    "test:unit:ods-sqlserver:db": "jest packages/metaed-plugin-edfi-ods-sqlserver/test/database -i",
     "test:unit:ods-sqlserver:non-db": "jest \"packages/metaed-plugin-edfi-ods-sqlserver/test/(enhancer|generator|integration|diminisher)\"",
     "test:unit:ods-postgresql:db": "jest packages/metaed-plugin-edfi-ods-postgresql/test/database -i",
     "test:unit:ods-postgresql:non-db": "jest \"packages/metaed-plugin-edfi-ods-postgresql/test/(enhancer|generator|integration)\"",
