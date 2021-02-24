@@ -1,6 +1,5 @@
 import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
 import { GeneratorResult, MetaEdEnvironment, Namespace } from 'metaed-core';
-import { pluginEnvironment } from 'metaed-plugin-edfi-ods-relational/dist/enhancer/EnhancerHelper';
 import { generate } from '../../src/generator/SchemaGenerator';
 
 describe('when generating schemas for core namespace', (): void => {
@@ -14,6 +13,12 @@ describe('when generating schemas for core namespace', (): void => {
       isExtension: false,
     };
     metaEd.namespace.set('EdFi', namespace);
+    metaEd.plugin.set('edfiOdsPostgresql', {
+      targetTechnologyVersion: '3.0.0',
+      shortName: '',
+      namespace: new Map(),
+      config: {},
+    });
 
     result = await generate(metaEd);
   });

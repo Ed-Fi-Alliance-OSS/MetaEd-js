@@ -12,7 +12,10 @@ import { fileNameFor, structurePath, template } from './OdsGeneratorBase';
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
   const prefix: string = versionSatisfies(metaEd.dataStandardVersion, '2.x') ? '0009' : '0040';
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+
+  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment) || {
+    targetTechnologyVersion: '2.0.0',
+  };
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {

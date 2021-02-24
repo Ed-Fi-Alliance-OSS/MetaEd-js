@@ -7,7 +7,9 @@ winston.configure({ transports: [new winston.transports.Console()], format: wins
 
 export async function generateTables(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment;
+  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment) || {
+    targetTechnologyVersion: '2.0.0',
+  };
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {
@@ -35,7 +37,9 @@ export async function generateTables(metaEd: MetaEdEnvironment): Promise<Generat
 
 export async function generateForeignKeys(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment;
+  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment) || {
+    targetTechnologyVersion: '2.0.0',
+  };
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {
@@ -62,7 +66,9 @@ export async function generateForeignKeys(metaEd: MetaEdEnvironment): Promise<Ge
 
 export async function generateExtendedProperties(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment;
+  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment) || {
+    targetTechnologyVersion: '2.0.0',
+  };
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {
@@ -89,7 +95,9 @@ export async function generateExtendedProperties(metaEd: MetaEdEnvironment): Pro
 
 export async function generateEnumerations(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment;
+  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment) || {
+    targetTechnologyVersion: '2.0.0',
+  };
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {
@@ -117,7 +125,9 @@ export async function generateEnumerations(metaEd: MetaEdEnvironment): Promise<G
 
 export async function generateSchoolYears(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment;
+  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment) || {
+    targetTechnologyVersion: '2.0.0',
+  };
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   metaEd.namespace.forEach(namespace => {

@@ -14,6 +14,12 @@ describe('when generating id indexes for core namespace table with no id', (): v
     const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
     metaEd.namespace.set(namespace.namespaceName, namespace);
+    metaEd.plugin.set('edfiOdsPostgresql', {
+      targetTechnologyVersion: '2.0.0',
+      shortName: '',
+      namespace: new Map(),
+      config: {},
+    });
 
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     const table: Table = {
@@ -64,12 +70,7 @@ describe('when generating id indexes for core namespace table with no type', ():
     expect(result.generatedOutput[0].name).toBe('ODS PostgreSQL Id Indexes');
     expect(result.generatedOutput[0].resultStream).toBeNull();
     expect(result.generatedOutput[0].resultString).toMatchInlineSnapshot(`
-      "-- SPDX-License-Identifier: Apache-2.0
-      -- Licensed to the Ed-Fi Alliance under one or more agreements.
-      -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
-      -- See the LICENSE and NOTICES files in the project root for more information.
-
-      CREATE UNIQUE INDEX IF NOT EXISTS UX_abcdefabcdef_Id ON edfi.TableName(Id);
+      "CREATE UNIQUE INDEX IF NOT EXISTS UX_abcdefabcdef_Id ON edfi.TableName(Id);
 
       "
     `);
@@ -106,12 +107,7 @@ describe('when generating id indexes for core namespace table with type', (): vo
     expect(result.generatedOutput[0].name).toBe('ODS PostgreSQL Id Indexes');
     expect(result.generatedOutput[0].resultStream).toBeNull();
     expect(result.generatedOutput[0].resultString).toMatchInlineSnapshot(`
-      "-- SPDX-License-Identifier: Apache-2.0
-      -- Licensed to the Ed-Fi Alliance under one or more agreements.
-      -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
-      -- See the LICENSE and NOTICES files in the project root for more information.
-
-      CREATE UNIQUE INDEX IF NOT EXISTS UX_abcdefabcdef_Id ON edfi.TableNameType(Id);
+      "CREATE UNIQUE INDEX IF NOT EXISTS UX_abcdefabcdef_Id ON edfi.TableNameType(Id);
 
       "
     `);
@@ -130,6 +126,12 @@ describe('when generating id indexes for extension namespace table with no type'
     };
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
     metaEd.namespace.set(namespace.namespaceName, namespace);
+    metaEd.plugin.set('edfiOdsPostgresql', {
+      targetTechnologyVersion: '3.0.0',
+      shortName: '',
+      namespace: new Map(),
+      config: {},
+    });
 
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     const table: Table = {
@@ -153,12 +155,7 @@ describe('when generating id indexes for extension namespace table with no type'
     expect(result.generatedOutput[0].name).toBe('ODS PostgreSQL Id Indexes');
     expect(result.generatedOutput[0].resultStream).toBeNull();
     expect(result.generatedOutput[0].resultString).toMatchInlineSnapshot(`
-      "-- SPDX-License-Identifier: Apache-2.0
-      -- Licensed to the Ed-Fi Alliance under one or more agreements.
-      -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
-      -- See the LICENSE and NOTICES files in the project root for more information.
-
-      CREATE UNIQUE INDEX IF NOT EXISTS UX_abcdefabcdef_Id ON extension.TableName(Id);
+      "CREATE UNIQUE INDEX IF NOT EXISTS UX_abcdefabcdef_Id ON extension.TableName(Id);
 
       "
     `);
