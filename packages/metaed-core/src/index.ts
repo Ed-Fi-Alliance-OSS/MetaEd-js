@@ -252,7 +252,7 @@ export { asSubdomain, newSubdomain } from './model/Subdomain';
 export { asTopLevelEntity, newTopLevelEntity } from './model/TopLevelEntity';
 
 // utilities
-export { normalizeDescriptorSuffix, normalizeEnumerationSuffix, shouldApplyLicenseHeader } from './Utility';
+export { normalizeDescriptorSuffix, normalizeEnumerationSuffix } from './Utility';
 export { isDataStandard, findDataStandardVersions } from './project/ProjectTypes';
 export { scanForProjects, overrideProjectNameAndNamespace } from './project/ProjectLoader';
 

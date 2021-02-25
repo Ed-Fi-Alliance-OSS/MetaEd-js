@@ -1,12 +1,6 @@
 import winston from 'winston';
-import {
-  versionSatisfies,
-  GeneratedOutput,
-  GeneratorResult,
-  MetaEdEnvironment,
-  PluginEnvironment,
-  shouldApplyLicenseHeader,
-} from 'metaed-core';
+import { versionSatisfies, GeneratedOutput, GeneratorResult, MetaEdEnvironment, PluginEnvironment } from 'metaed-core';
+import { shouldApplyLicenseHeader } from 'metaed-plugin-edfi-ods-relational';
 import { dataPath, fileNameFor, registerPartials, structurePath, template } from './OdsGeneratorBase';
 
 winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });

@@ -1,11 +1,5 @@
-import {
-  orderByProp,
-  GeneratedOutput,
-  GeneratorResult,
-  MetaEdEnvironment,
-  versionSatisfies,
-  shouldApplyLicenseHeader,
-} from 'metaed-core';
+import { orderByProp, GeneratedOutput, GeneratorResult, MetaEdEnvironment, versionSatisfies } from 'metaed-core';
+import { shouldApplyLicenseHeader } from 'metaed-plugin-edfi-ods-relational';
 import { tableEntities, Table } from 'metaed-plugin-edfi-ods-relational';
 import { fileNameFor, structurePath, template } from './OdsGeneratorBase';
 

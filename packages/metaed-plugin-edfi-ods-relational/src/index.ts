@@ -67,6 +67,7 @@ export {
   appendOverlapCollapsing,
   simpleTableNameGroupCollapse,
   constructCollapsedNameFrom,
+  shouldApplyLicenseHeader,
 } from './shared/Utility';
 
 // Enhancer for testing

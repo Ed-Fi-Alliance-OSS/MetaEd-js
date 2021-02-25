@@ -1,4 +1,5 @@
-import { versionSatisfies, shouldApplyLicenseHeader } from 'metaed-core';
+import { versionSatisfies } from 'metaed-core';
+import { shouldApplyLicenseHeader } from 'metaed-plugin-edfi-ods-relational';
 import { GeneratedOutput, GeneratorResult, MetaEdEnvironment } from 'metaed-core';
 import { fileNameFor, structurePath, template } from './OdsGeneratorBase';
 

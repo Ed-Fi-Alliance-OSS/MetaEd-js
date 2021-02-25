@@ -1,3 +1,4 @@
+import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from 'metaed-core';
 import { TableNameGroup, isTableNameGroup, isTableNameComponent, TableNameComponent } from '../model/database/Table';
 import { flattenNameComponentsFromGroup } from '../model/database/TableNameGroupHelper';
 
@@ -53,4 +54,16 @@ export function constructCollapsedNameFrom(nameGroup: TableNameGroup): string {
     name += simpleTableNameGroupCollapse(nameGroup);
   }
   return name;
+}
+
+/**
+ * Determines if the Apache-2.0 license header should be applied in a template.
+ */
+export function shouldApplyLicenseHeader(metaEd: MetaEdEnvironment): Boolean {
+  const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment) ||
+    (metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment) ||
+    (metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment) || {
+      targetTechnologyVersion: '2.0.0',
+    };
+  return metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 }

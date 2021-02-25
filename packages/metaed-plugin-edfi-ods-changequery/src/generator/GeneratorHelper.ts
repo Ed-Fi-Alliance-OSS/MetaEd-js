@@ -1,10 +1,5 @@
-import {
-  GeneratedOutput,
-  MetaEdEnvironment,
-  PluginEnvironment,
-  versionSatisfies,
-  shouldApplyLicenseHeader,
-} from 'metaed-core';
+import { GeneratedOutput, MetaEdEnvironment, PluginEnvironment, versionSatisfies } from 'metaed-core';
+import { shouldApplyLicenseHeader } from 'metaed-plugin-edfi-ods-relational';
 import { changeQueryIndicated } from '../enhancer/ChangeQueryIndicator';
 import {
   addColumnChangeVersionForTableEntities,

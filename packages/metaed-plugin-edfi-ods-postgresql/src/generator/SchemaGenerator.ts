@@ -1,10 +1,5 @@
-import {
-  GeneratedOutput,
-  GeneratorResult,
-  MetaEdEnvironment,
-  versionSatisfies,
-  shouldApplyLicenseHeader,
-} from 'metaed-core';
+import { GeneratedOutput, GeneratorResult, MetaEdEnvironment, versionSatisfies } from 'metaed-core';
+import { shouldApplyLicenseHeader } from 'metaed-plugin-edfi-ods-relational';
 import { fileNameFor, structurePath, template } from './OdsGeneratorBase';
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
