@@ -104,7 +104,6 @@
       "title": "Target Ed-Fi Data Standard Version",
       "description": "Select the target Ed-Fi Data Standard version.",
       "type": "string",
-      "default": "3.2.0-c",
       "enum": []
     },
     "edfiOdsApiSourceDirectory": {

@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import { v4 as newUuid } from 'uuid';
 // eslint-disable-next-line import/no-unresolved
-import { CompositeDisposable } from 'atom';
+import { CompositeDisposable, Emitter } from 'atom';
 import {
   getCoreMetaEdSourceDirectory,
   setCoreMetaEdSourceDirectory,
@@ -34,26 +34,33 @@ const odsApiVersionSupport: Map<string, any[]> = new Map([
   ['5.2.0', [{ value: '3.3.0-a', description: '3.3a' }]],
 ]);
 
-async function updateDsVersionEnumsToMatch(targetOdsApiVersion: string) {
-  const dsVersionEnums = odsApiVersionSupport.get(targetOdsApiVersion);
-  const [dsVersion] = dsVersionEnums == null ? [{ value: '3.0.0', description: '3.0' }] : dsVersionEnums;
-  // using any type because this is not an official path
+// Used to schedule an update to the DS version in the settings after the DS version dropdown is re-written
+const updateDsVersionEmitter = new Emitter();
+updateDsVersionEmitter.on('did-update-ds-version-dropdown', (dsVersionSemver: string) => {
+  setTargetDsVersion(dsVersionSemver);
+});
+
+async function updateDsVersionEnumsToMatch(odsApiVersion: string) {
+  const dsVersionEnums = odsApiVersionSupport.get(odsApiVersion);
+  if (dsVersionEnums == null) return;
+  const [dsVersion] = dsVersionEnums;
+
+  // atom.config.schema is not an official path in the typings file
   (atom.config as any).schema.properties['atom-metaed'].properties.targetDsVersion.enum = [dsVersion];
 
   // to refresh the settings panel with enum changes, need to close and reopen - refresh() and update() aren't enough
   await atom.workspace.getActivePane().destroyActiveItem();
   await atom.workspace.open('atom://config/packages/atom-metaed');
-  setTargetDsVersion(dsVersion.value);
+
+  // schedule update to config settings - can't be done in this "thread"
+  updateDsVersionEmitter.emit('did-update-ds-version-dropdown', dsVersion.value);
 }
 
 export function switchCoreDsProjectOptionsOnOdsApiChange(disposableTracker: CompositeDisposable) {
   disposableTracker.add(
-    atom.config.onDidChange(
-      'atom-metaed.targetOdsApiVersion',
-      async ({ newValue }: { oldValue: string; newValue: string }) => {
-        await updateDsVersionEnumsToMatch(newValue);
-      },
-    ),
+    atom.config.onDidChange('atom-metaed.targetOdsApiVersion', async valueChanges => {
+      await updateDsVersionEnumsToMatch(valueChanges.newValue);
+    }),
   );
 }
 
@@ -72,20 +79,20 @@ export function switchCoreDsProjectOnDsChange(disposableTracker: CompositeDispos
   );
 }
 
-async function setCoreToThreeDotX() {
-  setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('ed-fi-model-3.0'));
-  setTargetDsVersion('3.0.0');
-  setTargetOdsApiVersion('3.0.0');
+async function setCoreToFiveDotX() {
+  setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('ed-fi-model-3.3a'));
+  setTargetDsVersion('3.3.0-a');
+  setTargetOdsApiVersion('5.2.0');
   await nextMacroTask();
 }
 
 // initialize package settings if invalid
 export async function initializePackageSettings() {
   if (!getTargetDsVersion()) {
-    await setCoreToThreeDotX();
+    await setCoreToFiveDotX();
   }
   if (!getCoreMetaEdSourceDirectory() || !(await fs.exists(path.resolve(getCoreMetaEdSourceDirectory())))) {
-    await setCoreToThreeDotX();
+    await setCoreToFiveDotX();
   }
   if (!atom.config.get('metaed-exception-report.user')) {
     atom.config.set('metaed-exception-report.user', newUuid());
@@ -130,7 +137,7 @@ export function manageLegacyIssues(disposableTracker: CompositeDisposable) {
   // remove tech preview flag left behind by 1.1.x versions of MetaEd
   if (atom.config.get('atom-metaed.useTechPreview')) {
     atom.config.unset('atom-metaed.useTechPreview');
-    setCoreToThreeDotX();
+    setCoreToFiveDotX();
   }
 
   // remove obsolete path to C# console
