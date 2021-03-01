@@ -88,11 +88,17 @@ export function buildAggregateExtensionDefinitions(namespace: Namespace): Aggreg
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const vFiveTwo: SemVer = '=5.2.x';
+  const shortenVersion = (version: string): string =>
+    version
+      .split('.')
+      .slice(0, 2)
+      .join('.');
+
+  const vFiveTwoOrGreater: SemVer = '>=5.2';
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsApi') as PluginEnvironment;
-  const odsApiVersion: string = versionSatisfies(targetTechnologyVersion, vFiveTwo)
-    ? '5.2'
-    : (metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment).targetTechnologyVersion || '3.0.0';
+  const odsApiVersion: string = versionSatisfies(targetTechnologyVersion, vFiveTwoOrGreater)
+    ? shortenVersion(targetTechnologyVersion)
+    : targetTechnologyVersion || '3.0.0';
 
   metaEd.namespace.forEach((namespace: Namespace) => {
     const domainModelDefinition: DomainModelDefinition = {
