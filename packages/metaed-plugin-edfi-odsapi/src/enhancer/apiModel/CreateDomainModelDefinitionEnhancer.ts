@@ -1,5 +1,6 @@
 import R from 'ramda';
 import { MetaEdEnvironment, EnhancerResult, Namespace, PluginEnvironment, SemVer, versionSatisfies } from 'metaed-core';
+import { parse } from 'semver';
 import { NoSchemaDefinition } from '../../model/apiModel/SchemaDefinition';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 import { AggregateDefinition } from '../../model/apiModel/AggregateDefinition';
@@ -88,17 +89,18 @@ export function buildAggregateExtensionDefinitions(namespace: Namespace): Aggreg
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const shortenVersion = (version: string): string =>
-    version
-      .split('.')
-      .slice(0, 2)
-      .join('.');
-
   const vFiveTwoOrGreater: SemVer = '>=5.2';
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsApi') as PluginEnvironment;
-  const odsApiVersion: string = versionSatisfies(targetTechnologyVersion, vFiveTwoOrGreater)
-    ? shortenVersion(targetTechnologyVersion)
-    : targetTechnologyVersion || '3.0.0';
+
+  const defaultVersion: string = '3.0.0';
+  const semverParsedVersion = parse(targetTechnologyVersion);
+  let odsApiVersion: string = defaultVersion;
+
+  if (versionSatisfies(targetTechnologyVersion, vFiveTwoOrGreater)) {
+    odsApiVersion = semverParsedVersion ? `${semverParsedVersion.major}.${semverParsedVersion.minor}` : defaultVersion;
+  } else {
+    odsApiVersion = targetTechnologyVersion || defaultVersion;
+  }
 
   metaEd.namespace.forEach((namespace: Namespace) => {
     const domainModelDefinition: DomainModelDefinition = {
