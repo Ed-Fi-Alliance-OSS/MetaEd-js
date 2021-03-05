@@ -1,9 +1,4 @@
-import {
-  newMetaEdEnvironment,
-  MetaEdTextBuilder,
-  NamespaceBuilder,
-  DomainEntityBuilder,
-} from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, NamespaceBuilder, DomainEntityBuilder } from 'metaed-core';
 import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { validate } from '../../../src/validator/Deprecated/IsWeakDeprecated';
 
@@ -70,7 +65,7 @@ describe('when isWeak property is false', (): void => {
 describe('when DS version does not satisfy >= 3.3.0-a', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   let failures: ValidationFailure[];
-  metaEd.dataStandardVersion= '3.0.1';
+  metaEd.dataStandardVersion = '3.0.1';
 
   beforeAll(() => {
     const builder = new DomainEntityBuilder(metaEd, []);
