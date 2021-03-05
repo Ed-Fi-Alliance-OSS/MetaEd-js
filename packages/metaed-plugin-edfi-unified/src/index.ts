@@ -37,7 +37,7 @@ import { validate as decimalPropertyMustNotMatchASharedDecimal } from './validat
 import { validate as decimalPropertyMustNotMatchASharedInteger } from './validator/DecimalProperty/DecimalPropertyMustNotMatchASharedInteger';
 import { validate as decimalPropertyMustNotMatchASharedString } from './validator/DecimalProperty/DecimalPropertyMustNotMatchASharedString';
 
-import { validate as IsWeakDeprecated } from './validator/Deprecated/IsWeakDeprecated';
+import { validate as isWeakDeprecated } from './validator/Deprecated/IsWeakDeprecated';
 
 import { validate as descriptorMapTypeItemsMustBeUnique } from './validator/Descriptor/DescriptorMapTypeItemsMustBeUnique';
 import { validate as descriptorNameCannotEndInDescriptor } from './validator/Descriptor/DescriptorNameCannotEndInDescriptor';
@@ -246,7 +246,7 @@ function validatorList(): Validator[] {
     decimalPropertyMustNotMatchASharedInteger,
     decimalPropertyMustNotMatchASharedString,
 
-    IsWeakDeprecated,
+    isWeakDeprecated,
 
     descriptorMapTypeItemsMustBeUnique,
     descriptorNameCannotEndInDescriptor,

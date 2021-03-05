@@ -9,8 +9,6 @@ describe('when isWeak property is true', (): void => {
   metaEd.dataStandardVersion = '3.3.2';
 
   beforeAll(() => {
-    const builder = new DomainEntityBuilder(metaEd, []);
-
     MetaEdTextBuilder.build()
       .withBeginNamespace('NamespaceName')
       .withStartDomainEntity('EntityName')
@@ -21,14 +19,25 @@ describe('when isWeak property is true', (): void => {
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
-      .sendToListener(new DomainEntityBuilder(metaEd, []))
-      .sendToListener(builder);
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
   });
 
-  it('should have validation errors', (): void => {
-    expect(failures.length).toBeGreaterThan(0);
+  it('should have one validation error', (): void => {
+    expect(failures.length).toBe(1);
+    expect(failures[0].validatorName).toBe('IsWeakDeprecated');
+    expect(failures[0].category).toBe('error');
+    expect(failures[0].message).toMatchInlineSnapshot(
+      `"The 'is weak' keyword has been deprecated, as it is not compatible with data standard versions > 3.2.x"`,
+    );
+    expect(failures[0].sourceMap).toMatchInlineSnapshot(`
+      Object {
+        "column": 4,
+        "line": 8,
+        "tokenText": "is weak",
+      }
+    `);
   });
 });
 
@@ -39,8 +48,6 @@ describe('when isWeak property is false', (): void => {
   metaEd.dataStandardVersion = '3.3.2';
 
   beforeAll(() => {
-    const builder = new DomainEntityBuilder(metaEd, []);
-
     MetaEdTextBuilder.build()
       .withBeginNamespace('NamespaceName')
       .withStartDomainEntity('EntityName')
@@ -51,8 +58,7 @@ describe('when isWeak property is false', (): void => {
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
-      .sendToListener(new DomainEntityBuilder(metaEd, []))
-      .sendToListener(builder);
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
   });
@@ -68,20 +74,16 @@ describe('when DS version does not satisfy >= 3.3.0-a', (): void => {
   metaEd.dataStandardVersion = '3.0.1';
 
   beforeAll(() => {
-    const builder = new DomainEntityBuilder(metaEd, []);
-
     MetaEdTextBuilder.build()
       .withBeginNamespace('NamespaceName')
       .withStartDomainEntity('EntityName')
       .withDocumentation('EntityDocumentation')
       .withDomainEntityElement('PropertyName')
-      .withDocumentation('PropertyDocumentation')
       .withIsWeakReference(true)
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
-      .sendToListener(new DomainEntityBuilder(metaEd, []))
-      .sendToListener(builder);
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     failures = validate(metaEd);
   });
