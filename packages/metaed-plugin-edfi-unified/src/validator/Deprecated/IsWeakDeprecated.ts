@@ -1,10 +1,10 @@
 import { MetaEdEnvironment, ValidationFailure, versionSatisfies } from 'metaed-core';
 
-const targetVersion: string = '>=3.3.0-a';
+const targetDataStandardVersion: string = '>=3.3.0-a';
 
 export function validate(metaed: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  if (!versionSatisfies(metaed.dataStandardVersion, targetVersion)) return failures;
+  if (!versionSatisfies(metaed.dataStandardVersion, targetDataStandardVersion)) return failures;
 
   metaed.propertyIndex.domainEntity.forEach(property => {
     if (property.isWeak) {
