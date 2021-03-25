@@ -21,21 +21,7 @@ describe('when building domain entity with is weak property', (): void => {
   });
 
   it('should have validation failures', (): void => {
-    expect(validationFailures).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "category": "warning",
-          "fileMap": null,
-          "message": "The 'is weak' keyword will be deprecated in a future version of MetaEd.",
-          "sourceMap": Object {
-            "column": 6,
-            "line": 9,
-            "tokenText": "is weak",
-          },
-          "validatorName": "SyntaxValidatingBuilder",
-        },
-      ]
-    `);
+    expect(validationFailures).toMatchInlineSnapshot(`Array []`);
   });
 });
 

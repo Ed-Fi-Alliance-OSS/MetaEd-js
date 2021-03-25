@@ -49,13 +49,6 @@ export class SyntaxValidatingBuilder extends MetaEdGrammarListener {
     this.currentNamespace = namespace == null ? NoNamespace : namespace;
   }
 
-  // Deprecate 'is weak'
-  enterIsWeakReference(context: MetaEdGrammar.IsWeakReferenceContext) {
-    if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
-      this.validationFailures.push(deprecationWarning(context, `The 'is weak' keyword`));
-    }
-  }
-
   // Deprecate 'is queryable only'
   enterIsQueryableOnly(context: MetaEdGrammar.IsQueryableOnlyContext) {
     if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
