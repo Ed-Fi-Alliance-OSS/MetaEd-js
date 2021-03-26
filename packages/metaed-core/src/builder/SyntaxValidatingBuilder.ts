@@ -54,18 +54,18 @@ export class SyntaxValidatingBuilder extends MetaEdGrammarListener {
 
   // Deprecate 'is weak'
   enterIsWeakReference(context: MetaEdGrammar.IsWeakReferenceContext) {
-    if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
-      if (versionSatisfies(this.metaEd.dataStandardVersion, targetDataStandardVersion330a)) {
-        this.validationFailures.push({
-          validatorName,
-          category: 'error',
-          message: "The 'is weak' keyword has been deprecated, as it is not compatible with data standard versions > 3.2.x",
-          sourceMap: sourceMapFrom(context),
-          fileMap: null,
-        });
-        return;
-      }
+    if (versionSatisfies(this.metaEd.dataStandardVersion, targetDataStandardVersion330a)) {
+      this.validationFailures.push({
+        validatorName,
+        category: 'error',
+        message: "The 'is weak' keyword has been deprecated, as it is not compatible with data standard versions > 3.2.x",
+        sourceMap: sourceMapFrom(context),
+        fileMap: null,
+      });
+      return;
+    }
 
+    if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
       this.validationFailures.push(deprecationWarning(context, `The 'is weak' keyword`));
     }
   }
