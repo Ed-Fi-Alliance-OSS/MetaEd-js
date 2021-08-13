@@ -1,7 +1,7 @@
 {
   "name": "metaed-plugin-edfi-ods-recordownership-postgresql",
   "main": "dist/index.js",
-  "version": "2.5.1",
+  "version": "2.5.2-dev.0",
   "description": "Ed-Fi ODS/API Record Ownership for PostgreSQL plugin",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -28,11 +28,11 @@
   },
   "dependencies": {
     "handlebars": "^4.0.11",
-    "metaed-core": "2.5.1",
-    "metaed-plugin-edfi-ods-recordownership": "2.5.1",
-    "metaed-plugin-edfi-ods-relational": "2.5.1",
-    "metaed-plugin-edfi-ods-sqlserver": "2.5.1",
-    "metaed-plugin-edfi-unified-advanced": "2.5.1"
+    "metaed-core": "2.5.2-dev.0",
+    "metaed-plugin-edfi-ods-recordownership": "2.5.2-dev.0",
+    "metaed-plugin-edfi-ods-relational": "2.5.2-dev.0",
+    "metaed-plugin-edfi-ods-sqlserver": "2.5.2-dev.0",
+    "metaed-plugin-edfi-unified-advanced": "2.5.2-dev.0"
   },
   "devDependencies": {
     "final-fs": "^1.6.1"

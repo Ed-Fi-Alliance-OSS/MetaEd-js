@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2-dev.0](https://github.com/Ed-Fi-Closed/MetaEd-js/compare/v2.4.2-dev.2...v2.5.2-dev.0) (2021-08-13)
+
+**Note:** Version bump only for package metaed-plugin-edfi-ods-recordownership-postgresql
+
+
+
+
+
 ## [2.5.1](https://github.com/Ed-Fi-Closed/MetaEd-js/compare/v2.4.2-dev.2...v2.5.1) (2021-03-26)
 
 **Note:** Version bump only for package metaed-plugin-edfi-ods-recordownership-postgresql
