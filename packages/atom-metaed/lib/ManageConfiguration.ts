@@ -32,6 +32,7 @@ const odsApiVersionSupport: Map<string, any[]> = new Map([
   ['5.0.0', [{ value: '3.2.0-c', description: '3.2c' }]],
   ['5.1.0', [{ value: '3.2.0-c', description: '3.2c' }]],
   ['5.2.0', [{ value: '3.3.0-a', description: '3.3a' }]],
+  ['5.3.0', [{ value: '3.3.0-b', description: '3.3b' }]],
 ]);
 
 // Used to schedule an update to the DS version in the settings after the DS version dropdown is re-written
@@ -75,14 +76,15 @@ export function switchCoreDsProjectOnDsChange(disposableTracker: CompositeDispos
       if (newValue === '3.2.0-b') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('ed-fi-model-3.2b'));
       if (newValue === '3.2.0-c') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('ed-fi-model-3.2c'));
       if (newValue === '3.3.0-a') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('ed-fi-model-3.3a'));
+      if (newValue === '3.3.0-b') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('ed-fi-model-3.3b'));
     }),
   );
 }
 
 async function setCoreToFiveDotX() {
-  setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('ed-fi-model-3.3a'));
-  setTargetDsVersion('3.3.0-a');
-  setTargetOdsApiVersion('5.2.0');
+  setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('ed-fi-model-3.3b'));
+  setTargetDsVersion('3.3.0-b');
+  setTargetOdsApiVersion('5.3.0');
   await nextMacroTask();
 }
 
