@@ -52,7 +52,7 @@
     "test:lint:eslint": "eslint --max-warnings 0 --ext .js,.ts .",
     "test:lint:ts": "tsc -p . --noEmit",
     "test:unit": "set NODE_OPTIONS=--max-old-space-size=4096 && yarn test:unit:unified && yarn test:unit:everything-else && yarn test:unit:ods-postgresql:non-db",
-    "test:unit:unified": "yarn jest packages/metaed-plugin-edfi-unified",    
+    "test:unit:unified": "yarn jest packages/metaed-plugin-edfi-unified",
     "test:unit:change:postgresql": "jest packages/metaed-plugin-edfi-ods-changequery-postgresql -i",
     "test:unit:change:sqlserver": "jest packages/metaed-plugin-edfi-ods-changequery-sqlserver -i",
     "test:unit:ro:postgresql": "jest packages/metaed-plugin-edfi-ods-recordownership-postgresql -i",
@@ -69,7 +69,7 @@
     "test:code-duplication": "yarn jsinspect -t 50 --ignore \"test|gen|dist\" ./packages",
     "prep-for-publish": "yarn test && yarn build",
     "publish-all": "yarn lerna exec --no-private npm publish",
-    "version:dev":   "yarn lerna version prerelease --conventional-commits --exact --force-publish=* --no-push --no-verify-access --npm-client=npm --sign-git-commit --yes --preid=dev --dist-tag=dev",
+    "version:dev": "yarn lerna version prerelease --conventional-commits --exact --force-publish=* --no-push --no-verify-access --npm-client=npm --sign-git-commit --yes --preid=dev --dist-tag=dev",
     "version:patch": "yarn lerna version patch      --conventional-commits --exact --force-publish=* --no-push --no-verify-access --npm-client=npm --sign-git-commit --yes",
     "version:minor": "yarn lerna version minor      --conventional-commits --exact --force-publish=* --no-push --no-verify-access --npm-client=npm --sign-git-commit --yes",
     "version:major": "yarn lerna version major      --conventional-commits --exact --force-publish=* --no-push --no-verify-access --npm-client=npm --sign-git-commit --yes"
