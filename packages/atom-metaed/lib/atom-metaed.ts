@@ -14,7 +14,7 @@ import {
   switchCoreDsProjectOnDsChange,
   switchCoreDsProjectOptionsOnOdsApiChange,
 } from './ManageConfiguration';
-import { MetaEdAboutModel, metaEdAboutView } from './MetaEdAbout';
+import { MetaEdAboutModel, metaEdAboutView, LICENSE_URL } from './MetaEdAbout';
 import { updateEditorIfCore, addCopyBackToCore } from './MakeCoreTabsReadOnly';
 import { linterConfiguration } from './LinterProvider';
 import { allianceMode } from './PackageSettings';
@@ -49,7 +49,7 @@ export async function activate() {
   atom.notifications.addInfo(
     `<b>MetaEd ${
       packageJson != null ? `v${packageJson.version}` : ''
-    }</b><br />MetaEd is ©2021 Ed-Fi Alliance, LLC.<br />Click <a href="https://www.ed-fi.org/getting-started/license-ed-fi-technology/">here</a> for license information.`,
+    }</b><br />MetaEd is ©2021 Ed-Fi Alliance, LLC.<br />Click <a href="${LICENSE_URL}">here</a> for license information.`,
     {
       dismissable: true,
       icon: 'info',

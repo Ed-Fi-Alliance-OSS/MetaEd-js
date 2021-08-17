@@ -2,6 +2,8 @@ import path from 'path';
 import { scanForPlugins, newState } from 'metaed-core';
 import { atomMetaEdPackageJson } from './Utility';
 
+export const LICENSE_URL = 'https://techdocs.ed-fi.org/pages/viewpage.action?pageId=58725565';
+
 const metaedAboutBackground = path.resolve(__dirname, '../static/MetaEd-About-Background.png');
 
 export class MetaEdAboutModel {
@@ -26,7 +28,7 @@ export function metaEdAboutView(): () => HTMLElement {
           <img src='${metaedAboutBackground}' alt=''/>
 
           <p class='metaed-info' style='position:absolute; bottom:0; font-size:11px; font-family:"Arial"; color:#dcdcdc; padding:0px 37px; width:100%; height:185px; text-align:left; overflow-y:scroll'>
-            MetaEd is ©2021 Ed-Fi Alliance, LLC. Click <a href="https://www.ed-fi.org/getting-started/license-ed-fi-technology/">here</a> for license information.
+            MetaEd is ©2021 Ed-Fi Alliance, LLC. Click <a href="${LICENSE_URL}">here</a> for license information.
             <br/>
             atom-metaed${version}
             <br/>
