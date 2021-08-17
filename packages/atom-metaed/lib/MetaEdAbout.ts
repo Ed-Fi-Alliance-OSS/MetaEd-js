@@ -2,7 +2,7 @@ import path from 'path';
 import { scanForPlugins, newState } from 'metaed-core';
 import { atomMetaEdPackageJson } from './Utility';
 
-export const LICENSE_URL = 'https://techdocs.ed-fi.org/pages/viewpage.action?pageId=58725565';
+export const LICENSE_URL = 'https://techdocs.ed-fi.org/x/vRSAAw';
 
 const metaedAboutBackground = path.resolve(__dirname, '../static/MetaEd-About-Background.png');
 
