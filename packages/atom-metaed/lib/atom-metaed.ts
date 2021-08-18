@@ -39,6 +39,41 @@ function reportError(error) {
 }
 
 export async function activate() {
+  // Enforce license acceptance
+  if (!atom.config.get('metaed-license.accepted')) {
+    const dialog = atom.notifications.addInfo(
+      `Usage of the MetaEd IDE requires acceptance of the Ed-Fi License. <br />Click <a href="${LICENSE_URL}">here</a> for license information.`,
+      {
+        description: 'Select whether you agree with the license terms.',
+        dismissable: true,
+        buttons: [
+          {
+            text: 'Agree',
+            onDidClick: async () => {
+              if (dialog) dialog.dismiss();
+              atom.config.set('metaed-license.accepted', true);
+
+              if (atom.packages.isPackageDisabled('atom-metaed')) {
+                atom.packages.enablePackage('atom-metaed');
+              }
+              // eslint-disable-next-line no-use-before-define
+              await activate();
+            },
+          },
+          {
+            text: 'Do not agree',
+            onDidClick: () => {
+              if (dialog) dialog.dismiss();
+              atom.packages.disablePackage('atom-metaed');
+            },
+          },
+        ],
+      },
+    );
+    dialog.onDidDismiss(() => atom.packages.disablePackage('atom-metaed'));
+    return;
+  }
+
   // ensure our Atom package dependencies are installed
   await packageDepsInstall('atom-metaed', true);
 
