@@ -53,8 +53,9 @@ export async function activate() {
               if (dialog) dialog.dismiss();
               atom.config.set('metaed-license.accepted', true);
 
-              // eslint-disable-next-line no-use-before-define
-              await activate();
+              // restart Atom
+              const workspaceView = atom.views.getView(atom.workspace);
+              atom.commands.dispatch(workspaceView, 'window:reload');
             },
           },
           {
