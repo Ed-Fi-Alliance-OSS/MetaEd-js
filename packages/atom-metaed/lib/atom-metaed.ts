@@ -53,9 +53,6 @@ export async function activate() {
               if (dialog) dialog.dismiss();
               atom.config.set('metaed-license.accepted', true);
 
-              if (atom.packages.isPackageDisabled('atom-metaed')) {
-                atom.packages.enablePackage('atom-metaed');
-              }
               // eslint-disable-next-line no-use-before-define
               await activate();
             },
@@ -64,13 +61,11 @@ export async function activate() {
             text: 'Do not agree',
             onDidClick: () => {
               if (dialog) dialog.dismiss();
-              atom.packages.disablePackage('atom-metaed');
             },
           },
         ],
       },
     );
-    dialog.onDidDismiss(() => atom.packages.disablePackage('atom-metaed'));
     return;
   }
 
