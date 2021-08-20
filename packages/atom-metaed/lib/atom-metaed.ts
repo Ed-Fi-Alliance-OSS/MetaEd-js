@@ -17,7 +17,7 @@ import {
 import { MetaEdAboutModel, metaEdAboutView, LICENSE_URL } from './MetaEdAbout';
 import { updateEditorIfCore, addCopyBackToCore } from './MakeCoreTabsReadOnly';
 import { linterConfiguration } from './LinterProvider';
-import { allianceMode } from './PackageSettings';
+import { allianceMode, acceptedLicense, setAcceptedLicense } from './PackageSettings';
 import { initializeCommands } from './CommandInitializer';
 import { atomMetaEdPackageJson } from './Utility';
 
@@ -40,26 +40,23 @@ function reportError(error) {
 
 export async function activate() {
   // Enforce license acceptance
-  if (!atom.config.get('metaed-license.accepted')) {
+  if (!acceptedLicense()) {
     const dialog = atom.notifications.addInfo(
       `Usage of the MetaEd IDE requires acceptance of the Ed-Fi License. <br />Click <a href="${LICENSE_URL}">here</a> for license information.`,
       {
-        description: 'Select whether you agree with the license terms.',
+        description: 'Select whether you accept the license terms.',
         dismissable: true,
         buttons: [
           {
-            text: 'Agree',
+            text: 'Accept',
             onDidClick: async () => {
               if (dialog) dialog.dismiss();
-              atom.config.set('metaed-license.accepted', true);
-
-              // restart Atom
-              const workspaceView = atom.views.getView(atom.workspace);
-              atom.commands.dispatch(workspaceView, 'window:reload');
+              setAcceptedLicense();
+              setImmediate(() => activate());
             },
           },
           {
-            text: 'Do not agree',
+            text: 'Do not accept',
             onDidClick: () => {
               if (dialog) dialog.dismiss();
             },
@@ -67,6 +64,7 @@ export async function activate() {
         ],
       },
     );
+    // Terminate activate() here
     return;
   }
 

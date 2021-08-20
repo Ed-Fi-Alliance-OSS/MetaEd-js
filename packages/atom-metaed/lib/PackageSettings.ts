@@ -61,6 +61,17 @@ export function setTelemetryConsent(consent: string) {
   return atom.config.set('atom-metaed.telemetryConsent', consent);
 }
 
+export function acceptedLicense(): boolean {
+  return atom.config.get('atom-metaed.acceptedLicense');
+}
+
+export function setAcceptedLicense() {
+  // This is the permament recording
+  atom.config.set('metaed-license.accepted', true);
+  // This is the toggle checked for activation
+  return atom.config.set('atom-metaed.acceptedLicense', true);
+}
+
 export function allianceMode(): boolean {
   return atom.config.get('atom-metaed.alliance.allianceMode');
 }

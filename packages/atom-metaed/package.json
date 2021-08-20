@@ -166,8 +166,15 @@
       "type": "string",
       "default": "C:\\Windows\\System32\\cmd.exe"
     },
-    "alliance": {
+    "acceptedLicense": {
       "order": 9,
+      "title": "Usage of the MetaEd IDE requires acceptance of the Ed-Fi License.",
+      "description": "Select whether you accept the license terms.",
+      "type": "boolean",
+      "default": false
+    },    
+    "alliance": {
+      "order": 10,
       "title": "",
       "type": "object",
       "collapsed": true,
