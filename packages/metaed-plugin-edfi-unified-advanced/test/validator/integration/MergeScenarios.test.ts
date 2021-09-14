@@ -29,6 +29,7 @@ describe('when generating api model and comparing it to data standard 3.1 author
         namespaceName: 'EdFi',
         projectExtension: '',
         projectVersion: '3.1.0',
+        description: '',
       },
     ],
   };

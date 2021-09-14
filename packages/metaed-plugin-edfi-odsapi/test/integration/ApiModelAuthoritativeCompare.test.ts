@@ -40,6 +40,7 @@ describe('when generating api model and comparing it to data standard 3.1 author
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.1.0',
+          description: '',
         },
       ],
     };
@@ -109,6 +110,7 @@ describe('when generating api model targeting tech version 3.1.1 and comparing i
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.1.0',
+          description: '',
         },
       ],
     };
@@ -178,6 +180,7 @@ describe('when generating api model and comparing it to data standard 3.0 author
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.0.0',
+          description: '',
         },
       ],
     };
@@ -251,12 +254,14 @@ describe('when generating api model with simple extensions and comparing it to d
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.0.0',
+          description: '',
         },
         {
           projectName: 'Sample',
           namespaceName: 'Sample',
           projectExtension: 'Sample',
           projectVersion: '3.0.0',
+          description: '',
         },
       ],
     };
@@ -348,12 +353,14 @@ describe('when generating api model with student transcript extensions and compa
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.0.0',
+          description: '',
         },
         {
           projectName: 'ExtTwo',
           namespaceName: 'Exttwo',
           projectExtension: 'ExtTwo',
           projectVersion: '3.0.0',
+          description: '',
         },
       ],
     };
@@ -446,12 +453,14 @@ describe('when generating api model with simple type merge extensions and compar
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.1.0',
+          description: '',
         },
         {
           projectName: 'Sample',
           namespaceName: 'Sample',
           projectExtension: 'Sample',
           projectVersion: '3.1.0',
+          description: '',
         },
       ],
     };
@@ -539,6 +548,7 @@ describe('when generating api model targeting tech version 3.3 and comparing it 
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0-a',
+          description: '',
         },
       ],
     };
@@ -613,12 +623,14 @@ describe('when generating api model targeting tech version 3.4 with simple exten
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0-b',
+          description: '',
         },
         {
           projectName: 'Sample',
           namespaceName: 'Sample',
           projectExtension: 'Sample',
           projectVersion: '3.0.0',
+          description: '',
         },
       ],
     };
@@ -707,6 +719,7 @@ describe('when generating api model targeting tech version 5.2 with comparing it
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.3.0-a',
+          description: '',
         },
       ],
     };

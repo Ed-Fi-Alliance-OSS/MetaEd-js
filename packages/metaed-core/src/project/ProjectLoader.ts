@@ -32,7 +32,7 @@ async function findProjects(directories: string | string[]): Promise<MetaEdProje
         const json = await fs.readJson(packageToTry);
 
         if (json != null && json.metaEdProject != null) {
-          projects.push({ path: directory, project: json.metaEdProject });
+          projects.push({ path: directory, project: { ...json.metaEdProject, description: json.description } });
         }
       }
     } catch (err) {

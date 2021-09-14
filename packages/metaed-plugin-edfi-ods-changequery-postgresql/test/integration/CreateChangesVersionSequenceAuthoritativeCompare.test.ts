@@ -69,6 +69,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.0.0',
+          description: '',
         },
       ],
     };
@@ -167,6 +168,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0',
+          description: '',
         },
       ],
     };
@@ -265,6 +267,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0',
+          description: '',
         },
       ],
     };

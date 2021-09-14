@@ -35,12 +35,14 @@ describe('when running enhancers and validators against DS 3.1 and a simple exte
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.1.0',
+          description: '',
         },
         {
           projectName: 'Sample',
           namespaceName: 'Sample',
           projectExtension: 'Sample',
           projectVersion: '3.0.0',
+          description: '',
         },
       ],
     };

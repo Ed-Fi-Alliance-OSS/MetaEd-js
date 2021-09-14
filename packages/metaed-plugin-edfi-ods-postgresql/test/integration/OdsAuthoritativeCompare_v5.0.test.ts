@@ -87,6 +87,7 @@ describe('when generating ods and comparing it to data standard 3.2 authoritativ
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0',
+          description: '',
         },
       ],
     };
@@ -258,12 +259,14 @@ describe('when generating ods with simple extensions and comparing it to data st
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0',
+          description: '',
         },
         {
           projectName: 'Extension',
           namespaceName: 'Extension',
           projectExtension: 'Extension',
           projectVersion: '3.2.0',
+          description: '',
         },
       ],
     };
@@ -355,12 +358,14 @@ describe('when generating ods with student transcript extensions and comparing i
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0',
+          description: '',
         },
         {
           projectName: 'Extension',
           namespaceName: 'Extension',
           projectExtension: 'Extension',
           projectVersion: '3.21.0',
+          description: '',
         },
       ],
     };

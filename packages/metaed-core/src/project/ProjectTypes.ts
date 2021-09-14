@@ -5,6 +5,7 @@ export interface MetaEdProject {
   namespaceName: string;
   projectName: string;
   projectVersion: SemVer;
+  description: string;
   projectExtension?: string;
 }
 
@@ -17,6 +18,7 @@ export const newMetaEdProject: () => MetaEdProject = () => ({
   namespaceName: '',
   projectName: '',
   projectVersion: '0.0.0',
+  description: '',
   projectExtension: '',
 });
 

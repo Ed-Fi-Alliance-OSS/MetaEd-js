@@ -19,18 +19,21 @@ const metaEdConfiguration = {
       namespaceName: 'EdFi',
       projectExtension: '',
       projectVersion: '3.0.0',
+      description: '',
     },
     {
       projectName: 'Grand Bend',
       namespaceName: 'Gb',
       projectExtension: 'GrandBend',
       projectVersion: '1.0.0',
+      description: '',
     },
     {
       projectName: 'Sample',
       namespaceName: 'Sample',
       projectExtension: 'Sample',
       projectVersion: '1.0.0',
+      description: '',
     },
   ],
 };

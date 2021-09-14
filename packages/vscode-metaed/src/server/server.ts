@@ -43,6 +43,7 @@ async function createMetaEdConfiguration(
       projectName: pm.projectName,
       projectVersion: pm.projectVersion,
       projectExtension: pm.projectExtension,
+      description: pm.projectDescription,
     });
     metaEdConfiguration.projectPaths.push(pm.projectPath);
   });

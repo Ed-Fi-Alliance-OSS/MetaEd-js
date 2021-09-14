@@ -44,12 +44,14 @@ describe('when generating ods tables file with simple merges for ODS/API 5.0 in 
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0',
+          description: '',
         },
         {
           projectName: 'Extension',
           namespaceName: 'Extension',
           projectExtension: 'Extension',
           projectVersion: '3.2.0',
+          description: '',
         },
       ],
     };
@@ -142,12 +144,14 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0',
+          description: '',
         },
         {
           projectName: 'Extension',
           namespaceName: 'Extension',
           projectExtension: 'Extension',
           projectVersion: '3.2.0',
+          description: '',
         },
       ],
     };

@@ -34,12 +34,14 @@ describe('when loading a project with two invalid plugin configuration files', (
         namespaceName: 'EdFi',
         projectExtension: '',
         projectVersion: '3.0.0',
+        description: '',
       },
       {
         projectName: 'Sample',
         namespaceName: 'sample',
         projectExtension: 'Sample',
         projectVersion: '3.0.0',
+        description: '',
       },
     ],
   };
@@ -110,12 +112,14 @@ describe('when loading a project with one invalid and one valid plugin configura
         namespaceName: 'EdFi',
         projectExtension: '',
         projectVersion: '3.0.0',
+        description: '',
       },
       {
         projectName: 'Sample',
         namespaceName: 'sample',
         projectExtension: 'Sample',
         projectVersion: '3.0.0',
+        description: '',
       },
     ],
   };

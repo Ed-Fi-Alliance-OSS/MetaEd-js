@@ -29,6 +29,7 @@ async function createMetaEdConfiguration(): Promise<MetaEdConfiguration | undefi
       projectName: pm.projectName,
       projectVersion: pm.projectVersion,
       projectExtension: pm.projectExtension,
+      description: pm.projectDescription,
     });
     metaEdConfiguration.projectPaths.push(pm.projectPath);
   });

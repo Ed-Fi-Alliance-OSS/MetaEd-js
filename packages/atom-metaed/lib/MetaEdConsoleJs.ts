@@ -292,6 +292,7 @@ export async function build(outputWindow: OutputWindow): Promise<boolean> {
         projectName: pm.projectName,
         projectVersion: pm.projectVersion,
         projectExtension: pm.projectExtension,
+        description: pm.projectDescription,
       });
       metaEdConfiguration.projectPaths.push(pm.projectPath);
     });
@@ -403,6 +404,7 @@ export async function deploy(outputWindow: OutputWindow, shouldDeployCore: boole
         projectName: pm.projectName,
         projectVersion: pm.projectVersion,
         projectExtension: pm.projectExtension,
+        description: pm.projectDescription,
       });
       metaEdConfiguration.projectPaths.push(pm.projectPath);
     });

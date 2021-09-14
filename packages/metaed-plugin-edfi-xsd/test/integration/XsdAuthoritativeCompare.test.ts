@@ -49,6 +49,7 @@ describe('when generating xsd and comparing it to data standard 2.0 authoritativ
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '2.0.0',
+          description: '',
         },
       ],
     };
@@ -177,6 +178,7 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.1.0',
+          description: '',
         },
       ],
     };
@@ -305,12 +307,14 @@ describe('when generating xsd with extension and comparing it to data standard 3
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.1.0',
+          description: '',
         },
         {
           projectName: 'EdFiXFinance',
           namespaceName: 'EdFiXFinance',
           projectExtension: 'EdFiXFinance',
           projectVersion: '1.0.0',
+          description: '',
         },
       ],
     };

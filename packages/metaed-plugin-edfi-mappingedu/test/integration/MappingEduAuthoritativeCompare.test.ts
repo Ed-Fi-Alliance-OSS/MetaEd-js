@@ -60,6 +60,7 @@ describe.each([['2.0.0', 'ed-fi-model-2.0'], ['2.2.0', 'ed-fi-model-2.2'], ['3.0
             namespaceName: 'EdFi',
             projectExtension: '',
             projectVersion: dataStandardVersion,
+            description: '',
           },
         ],
       };

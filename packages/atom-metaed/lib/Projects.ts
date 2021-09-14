@@ -34,12 +34,13 @@ export async function newProjectJson(projectPath: string): Promise<void> {
 interface ProjectFileData {
   projectName: string;
   projectVersion: string;
+  projectDescription: string;
 }
 
 async function projectValuesFromProjectJson(verifiedPathToProjectJson: string): Promise<ProjectFileData | null> {
   const projectJson = await fs.readJson(verifiedPathToProjectJson);
   if (projectJson.metaEdProject && projectJson.metaEdProject.projectName && projectJson.metaEdProject.projectVersion)
-    return projectJson.metaEdProject;
+    return { ...projectJson.metaEdProject, projectDescription: projectJson.description || null };
   return null;
 }
 
@@ -52,6 +53,7 @@ export interface MetaEdProjectMetadata {
   projectNamespace: string;
   isExtensionProject: boolean;
   projectExtension: string;
+  projectDescription: string;
 }
 
 function newMetaEdProjectMetadata(projectPath: string): MetaEdProjectMetadata {
@@ -64,6 +66,7 @@ function newMetaEdProjectMetadata(projectPath: string): MetaEdProjectMetadata {
     projectNamespace: '',
     isExtensionProject: false,
     projectExtension: '',
+    projectDescription: '',
   };
 }
 

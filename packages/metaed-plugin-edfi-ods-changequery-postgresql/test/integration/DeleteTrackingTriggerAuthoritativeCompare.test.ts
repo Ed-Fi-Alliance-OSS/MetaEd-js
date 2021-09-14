@@ -69,6 +69,7 @@ describe('when generating change event scripts and comparing to ODS/API 3.4 auth
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0',
+          description: '',
         },
       ],
     };
@@ -172,12 +173,14 @@ describe('when generating change event scripts with simple extensions and compar
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0',
+          description: '',
         },
         {
           projectName: 'Sample',
           namespaceName: 'Sample',
           projectExtension: 'Sample',
           projectVersion: '3.2.0',
+          description: '',
         },
       ],
     };
@@ -293,6 +296,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0',
+          description: '',
         },
       ],
     };
@@ -396,12 +400,14 @@ describe('when generating change event scripts with simple extensions and compar
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0',
+          description: '',
         },
         {
           projectName: 'Sample',
           namespaceName: 'Sample',
           projectExtension: 'Sample',
           projectVersion: '3.2.0',
+          description: '',
         },
       ],
     };
@@ -517,6 +523,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0',
+          description: '',
         },
       ],
     };
@@ -621,12 +628,14 @@ describe('when generating change event scripts with simple extensions and compar
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0',
+          description: '',
         },
         {
           projectName: 'Sample',
           namespaceName: 'Sample',
           projectExtension: 'Sample',
           projectVersion: '3.2.0',
+          description: '',
         },
       ],
     };

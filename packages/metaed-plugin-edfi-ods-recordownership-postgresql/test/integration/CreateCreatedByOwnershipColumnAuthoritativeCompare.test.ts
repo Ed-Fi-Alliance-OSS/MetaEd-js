@@ -70,6 +70,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 3.
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0-a',
+          description: '',
         },
       ],
     };
@@ -170,6 +171,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0-a',
+          description: '',
         },
       ],
     };
@@ -270,6 +272,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.2.0-a',
+          description: '',
         },
       ],
       allianceMode: true,

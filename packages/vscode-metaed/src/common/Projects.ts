@@ -8,6 +8,7 @@ const PROJECT_SETTINGS_FILE_NAME = 'package.json';
 interface ProjectFileData {
   projectName: string;
   projectVersion: string;
+  projectDescription: string;
 }
 
 async function projectValuesFromProjectJson(verifiedPathToProjectJson: string): Promise<ProjectFileData | null> {
@@ -26,6 +27,7 @@ export interface MetaEdProjectMetadata {
   projectNamespace: string;
   isExtensionProject: boolean;
   projectExtension: string;
+  projectDescription: string;
 }
 
 function newMetaEdProjectMetadata(projectPath: string): MetaEdProjectMetadata {
@@ -38,6 +40,7 @@ function newMetaEdProjectMetadata(projectPath: string): MetaEdProjectMetadata {
     projectNamespace: '',
     isExtensionProject: false,
     projectExtension: '',
+    projectDescription: '',
   };
 }
 

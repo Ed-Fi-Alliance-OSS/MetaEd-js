@@ -55,6 +55,7 @@ async function lint(_textEditor: TextEditor): Promise<any[] | null> {
       projectName: pm.projectName,
       projectVersion: pm.projectVersion,
       projectExtension: pm.projectExtension,
+      description: '',
     });
     metaEdConfiguration.projectPaths.push(pm.projectPath);
   });
