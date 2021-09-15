@@ -49,7 +49,7 @@ function enteringNamespaceType(context: MetaEdGrammar.NamespaceTypeContext, name
   if (namespace === NoNamespace) return namespace;
   if (context.exception) return namespace;
   if (context.CORE() != null) {
-    Object.assign(namespace, { projectExtension: '', projectName: 'EdFi', projectDescription: '', isExtension: false });
+    Object.assign(namespace, { projectExtension: '', projectName: 'EdFi', isExtension: false });
     return namespace;
   }
   if (context.ID() == null || context.ID().exception != null || isErrorText(context.ID().getText())) return namespace;

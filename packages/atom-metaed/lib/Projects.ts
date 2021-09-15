@@ -40,7 +40,7 @@ interface ProjectFileData {
 async function projectValuesFromProjectJson(verifiedPathToProjectJson: string): Promise<ProjectFileData | null> {
   const projectJson = await fs.readJson(verifiedPathToProjectJson);
   if (projectJson.metaEdProject && projectJson.metaEdProject.projectName && projectJson.metaEdProject.projectVersion)
-    return { ...projectJson.metaEdProject, projectDescription: projectJson.description || null };
+    return { ...projectJson.metaEdProject, projectDescription: projectJson.description || '' };
   return null;
 }
 
