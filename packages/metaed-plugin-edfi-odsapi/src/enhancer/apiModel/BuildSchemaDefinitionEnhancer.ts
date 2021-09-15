@@ -2,7 +2,7 @@ import semver from 'semver';
 import { MetaEdEnvironment, EnhancerResult, Namespace, SemVer, PluginEnvironment } from 'metaed-core';
 import { versionSatisfies } from 'metaed-core';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
-import { deriveLogicalNameFromProjectName } from '../../model/apiModel/SchemaDefinition';
+import { deriveLogicalNameFromProjectName, newSchemaDefinition } from '../../model/apiModel/SchemaDefinition';
 
 const enhancerName = 'BuildSchemaDefinitionEnhancer';
 const targetVersions: SemVer = '>=3.1.1';
@@ -20,8 +20,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
   metaEd.namespace.forEach((namespace: Namespace) => {
     (namespace.data.edfiOdsApi as NamespaceEdfiOdsApi).domainModelDefinition.schemaDefinition = {
+      ...newSchemaDefinition(),
       logicalName: deriveLogicalNameFromProjectName(namespace.projectName),
       physicalName: namespace.namespaceName.toLowerCase(),
+      projectDescription: versionSatisfies(targetTechnologyVersion, '5.3+') ? namespace.projectDescription : undefined,
       // ODS/API version 3.3.0 paired with DS 3.2a but wanted DS semver to be 3.2.0 not 3.2.0-a
       version: versionSatisfies(targetTechnologyVersion, '3.3.0')
         ? truncatePrereleaseIfExists(namespace.projectVersion)

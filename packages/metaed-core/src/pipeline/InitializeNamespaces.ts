@@ -14,6 +14,7 @@ export function addProjectNameToNamespace(state: State): void {
     if (matchingProject) {
       namespace.projectName = matchingProject.projectName;
       namespace.projectVersion = matchingProject.projectVersion;
+      namespace.projectDescription = matchingProject.description;
     }
   });
 }

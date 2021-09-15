@@ -4,7 +4,7 @@ import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 import { Aggregate } from '../../model/domainMetadata/Aggregate';
 import { registerPartials, template } from './DomainMetadataGeneratorBase';
 import { deriveLogicalNameFromProjectName } from '../../model/apiModel/SchemaDefinition';
-import { SchemaDefinition } from '../../model/apiModel/SchemaDefinition';
+import { SchemaDefinition, newSchemaDefinition } from '../../model/apiModel/SchemaDefinition';
 
 function fileName(projectPrefix: string): string {
   const prefix: string = !projectPrefix ? '' : `-${projectPrefix}`;
@@ -18,6 +18,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
 
   metaEd.namespace.forEach((namespace: Namespace) => {
     const schema: SchemaDefinition = {
+      ...newSchemaDefinition(),
       logicalName: deriveLogicalNameFromProjectName(namespace.projectName),
       physicalName: namespace.namespaceName.toLowerCase(),
     };
