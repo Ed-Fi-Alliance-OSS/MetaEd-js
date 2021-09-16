@@ -3,7 +3,7 @@ import deepFreeze from 'deep-freeze';
 export interface SchemaDefinition {
   logicalName: string;
   physicalName: string;
-  projectDescription?: string; // only used in 3.1.1+
+  description?: string; // only used in 3.1.1+
   version?: string; // only used in 5.3+
 }
 
@@ -13,11 +13,11 @@ export const deriveLogicalNameFromProjectName = (projectName: string): string =>
 export const NoSchemaDefinition: SchemaDefinition = deepFreeze({
   logicalName: '',
   physicalName: '',
-  projectDescription: '',
+  description: '',
 });
 
 export const newSchemaDefinition = () => ({
   logicalName: '',
   physicalName: '',
-  projectDescription: '',
+  description: '',
 });

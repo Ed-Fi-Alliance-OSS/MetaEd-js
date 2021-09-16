@@ -117,6 +117,7 @@ export async function findMetaEdProjectMetadata(createProjectJson: boolean = fal
       return {
         ...newMetaEdProjectMetadata(projectPath),
         projectName: projectFileData.projectName,
+        projectDescription: projectFileData.projectDescription || '',
         projectVersion,
         projectNamespace,
         isExtensionProject: projectNamespace !== 'EdFi',
