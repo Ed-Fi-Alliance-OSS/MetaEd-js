@@ -3872,10 +3872,10 @@ ed-fi-model-3.3a@2.0.1:
   resolved "https://www.myget.org/F/ed-fi/npm/ed-fi-model-3.3a/-/ed-fi-model-3.3a-2.0.1.tgz#e6a73b7390c2f7592f10263fc578fab7bfbc881f"
   integrity sha1-5qc7c5DC91kvECY/xXj6t7+8iB8=
 
-ed-fi-model-3.3b@2.0.0:
-  version "2.0.0"
-  resolved "https://www.myget.org/F/ed-fi/npm/ed-fi-model-3.3b/-/ed-fi-model-3.3b-2.0.0.tgz#d156b1c2541c52a575eac9080be9adb38eb78eac"
-  integrity sha1-0VaxwlQcUqV16skIC+mts463jqw=
+ed-fi-model-3.3b@2.0.1:
+  version "2.0.1"
+  resolved "https://www.myget.org/F/ed-fi/npm/ed-fi-model-3.3b/-/ed-fi-model-3.3b-2.0.1.tgz#04fcf4946e7322ad9ca3ff7183e06ae3ff8f991e"
+  integrity sha1-BPz0lG5zIq2co/9xg+Bq4/+PmR4=
 
 editions@^2.0.2, editions@^2.1.2:
   version "2.1.3"

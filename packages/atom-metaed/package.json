@@ -218,7 +218,7 @@
     "ed-fi-model-3.2b": "2.0.1",
     "ed-fi-model-3.2c": "2.0.1",
     "ed-fi-model-3.3a": "2.0.1",
-    "ed-fi-model-3.3b": "2.0.0",
+    "ed-fi-model-3.3b": "2.0.1",
     "fs-extra": "^3.0.1",
     "klaw-sync": "^3.0.2",
     "metaed-console": "2.5.2-dev.0",

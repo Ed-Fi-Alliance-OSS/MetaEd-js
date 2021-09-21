@@ -42,6 +42,7 @@
     "ed-fi-model-3.0": "2.0.3",
     "ed-fi-model-3.1": "2.0.3",
     "ed-fi-model-3.2a": "2.0.1",
+    "ed-fi-model-3.3b": "2.0.1",
     "final-fs": "^1.6.1",
     "msnodesqlv8": "0.8.3",
     "mssql": "5.1.0"
