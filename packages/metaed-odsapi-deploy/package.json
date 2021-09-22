@@ -1,7 +1,7 @@
 {
   "name": "metaed-odsapi-deploy",
   "main": "dist/index.js",
-  "version": "2.5.2-dev.0",
+  "version": "2.5.2-dev.1",
   "description": "MetaEd for JavaScript",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -16,7 +16,7 @@
   "dependencies": {
     "chalk": "^2.3.0",
     "fs-extra": "^5.0.0",
-    "metaed-core": "2.5.2-dev.0",
+    "metaed-core": "2.5.2-dev.1",
     "ramda": "^0.25.0",
     "semver": "^5.4.1",
     "sugar": "^2.0.4",
