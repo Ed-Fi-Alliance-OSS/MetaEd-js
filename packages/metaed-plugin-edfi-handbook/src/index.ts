@@ -20,7 +20,7 @@ import { enhance as stringEnhancer } from './enhancer/StringEnhancer';
 import { enhance as timeIntervalEnhancer } from './enhancer/TimeIntervalEnhancer';
 import { enhance as timeEnhancer } from './enhancer/TimeEnhancer';
 import { enhance as yearEnhancer } from './enhancer/YearEnhancer';
-import { enhance as handbookEntryModelReferencesEnhancer } from './enhancer/HandbookEntryModelReferencesEnhancer';
+import { enhance as modelReferencesUsedByEnhancer } from './enhancer/ModelReferencesUsedByEnhancer';
 import { generate as htmlGenerator } from './generator/EdFiDataHandbookAsHtmlIndexGenerator';
 import { generate as excelGenerator } from './generator/EdFiDataHandbookAsExcelGenerator';
 
@@ -49,7 +49,7 @@ export function initialize(): MetaEdPlugin {
       timeIntervalEnhancer,
       timeEnhancer,
       yearEnhancer,
-      handbookEntryModelReferencesEnhancer,
+      modelReferencesUsedByEnhancer,
     ],
     generator: [htmlGenerator, excelGenerator],
     configurationSchemas: new Map(),

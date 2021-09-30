@@ -12,7 +12,8 @@ import {
 import { HandbookEntry } from '../model/HandbookEntry';
 import { newHandbookEntry } from '../model/HandbookEntry';
 import { getAllReferentialProperties } from './EnhancerHelper';
-import { HandbookMergeProperty, HandbookEntityReferenceProperty } from '../model/HandbookEntryReferenceProperty';
+import { HandbookEntityReferenceProperty } from '../model/HandbookEntryReferenceProperty';
+import { HandbookMergeProperty } from '../model/HandbookMergeProperty';
 import { umlDatatypeMatrix, jsonDatatypeMatrix, getSqlDatatype, getMetaEdDatatype } from './DatatypeLookup';
 
 function generateUniqueId(entity: TopLevelEntity): string {

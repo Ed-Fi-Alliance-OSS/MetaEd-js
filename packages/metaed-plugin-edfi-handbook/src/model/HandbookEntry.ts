@@ -1,4 +1,5 @@
 import { HandbookEntityReferenceProperty } from './HandbookEntryReferenceProperty';
+import { HandbookUsedByProperty } from './HandbookUsedByProperty';
 
 export interface HandbookEntry {
   definition: string;
@@ -16,7 +17,7 @@ export interface HandbookEntry {
   modelReferencesContains: string[];
   modelReferencesContainsProperties: HandbookEntityReferenceProperty[];
   modelReferencesUsedBy: string[];
-  modelReferencesUsedByProperties: HandbookEntityReferenceProperty[];
+  modelReferencesUsedByProperties: HandbookUsedByProperty[];
   hasDeprecatedProperty: boolean;
   name: string;
   optionList: string[];

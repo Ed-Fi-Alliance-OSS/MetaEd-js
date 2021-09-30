@@ -1,7 +1,4 @@
-export interface HandbookMergeProperty {
-  propertyPath: string[];
-  targetPath: string[];
-}
+import { HandbookMergeProperty } from './HandbookMergeProperty';
 
 export interface HandbookEntityReferenceProperty {
   metaEdId: string;
