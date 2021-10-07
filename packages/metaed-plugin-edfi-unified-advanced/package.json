@@ -32,7 +32,8 @@
     "build": "yarn build:clean && yarn build:copy-non-ts && yarn build:dist",
     "build:clean": "rimraf dist",
     "build:dist": "tsc",
-    "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose"
+    "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose",
+    "test": "yarn build && yarn jest"
   },
   "devDependencies": {
     "ed-fi-model-3.0": "2.0.3",
