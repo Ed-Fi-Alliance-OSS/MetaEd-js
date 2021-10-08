@@ -8,7 +8,7 @@ import {
   ValidationFailure,
   CommonSubclassBuilder,
 } from 'metaed-core';
-import { commonReferenceEnhancer } from 'metaed-plugin-edfi-unified';
+import { commonReferenceEnhancer, commonSubclassBaseClassEnhancer } from 'metaed-plugin-edfi-unified';
 import { validate } from '../../../src/validator/CommonProperty/CommonPropertyCollectionTargetMustContainIdentity';
 
 describe('when validating collection common property target', (): void => {
@@ -102,6 +102,7 @@ describe('when validating collection common property target', (): void => {
 
         coreNamespace = metaEd.namespace.get('EdFi');
         commonReferenceEnhancer(metaEd);
+        commonSubclassBaseClassEnhancer(metaEd);
 
         failures = validate(metaEd);
       });
@@ -166,6 +167,7 @@ describe('when validating collection common property target', (): void => {
 
         coreNamespace = metaEd.namespace.get('EdFi');
         commonReferenceEnhancer(metaEd);
+        commonSubclassBaseClassEnhancer(metaEd);
 
         failures = validate(metaEd);
       });
