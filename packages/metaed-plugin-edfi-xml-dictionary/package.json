@@ -1,7 +1,7 @@
 {
   "name": "metaed-plugin-edfi-xml-dictionary",
   "main": "dist/index.js",
-  "version": "2.5.2-dev.1",
+  "version": "2.5.2-dev.2",
   "description": "Ed-Fi XML Data Dictionary plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -27,10 +27,10 @@
   "dependencies": {
     "handlebars": "^4.0.10",
     "js-beautify": "^1.7.4",
-    "metaed-core": "2.5.2-dev.1",
-    "metaed-plugin-edfi-unified": "2.5.2-dev.1",
-    "metaed-plugin-edfi-unified-advanced": "2.5.2-dev.1",
-    "metaed-plugin-edfi-xsd": "2.5.2-dev.1",
+    "metaed-core": "2.5.2-dev.2",
+    "metaed-plugin-edfi-unified": "2.5.2-dev.2",
+    "metaed-plugin-edfi-unified-advanced": "2.5.2-dev.2",
+    "metaed-plugin-edfi-xsd": "2.5.2-dev.2",
     "winston": "3.0.0",
     "xlsx": "^0.11.8",
     "xmldom": "^0.1.27"
