@@ -1,10 +1,10 @@
 import { MetaEdEnvironment, ValidationFailure, CommonProperty } from 'metaed-core';
 
-function hasIdentity(commonProperty: CommonProperty): Boolean {
+function hasIdentity(commonProperty: CommonProperty): boolean {
   return (
     commonProperty.referencedEntity.identityProperties.length > 0 ||
-    (commonProperty.referencedEntity.baseEntity !== null &&
-      commonProperty.referencedEntity.baseEntity!.properties.some(property => property.isPartOfIdentity))
+    (commonProperty.referencedEntity.baseEntity != null &&
+      commonProperty.referencedEntity.baseEntity.identityProperties.length > 0)
   );
 }
 
