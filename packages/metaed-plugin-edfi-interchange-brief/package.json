@@ -1,7 +1,7 @@
 {
   "name": "metaed-plugin-edfi-interchange-brief",
   "main": "dist/index.js",
-  "version": "2.5.2-dev.2",
+  "version": "2.6.0",
   "description": "Ed-Fi Interchange Brief plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -26,8 +26,8 @@
   "dependencies": {
     "handlebars": "^4.0.10",
     "marked": "^0.4.0",
-    "metaed-core": "2.5.2-dev.2",
-    "metaed-plugin-edfi-xsd": "2.5.2-dev.2",
+    "metaed-core": "2.6.0",
+    "metaed-plugin-edfi-xsd": "2.6.0",
     "node-horseman": "^3.3.0",
     "phantomjs-prebuilt": "^2.1.16",
     "ramda": "^0.25.0",

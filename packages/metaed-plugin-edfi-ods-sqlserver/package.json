@@ -1,7 +1,7 @@
 {
   "name": "metaed-plugin-edfi-ods-sqlserver",
   "main": "dist/index.js",
-  "version": "2.5.2-dev.2",
+  "version": "2.6.0",
   "description": "Ed-Fi SQL Server ODS plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -28,10 +28,10 @@
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.0.11",
     "hash.js": "^1.1.7",
-    "metaed-core": "2.5.2-dev.2",
-    "metaed-plugin-edfi-ods-relational": "2.5.2-dev.2",
-    "metaed-plugin-edfi-unified": "2.5.2-dev.2",
-    "metaed-plugin-edfi-unified-advanced": "2.5.2-dev.2",
+    "metaed-core": "2.6.0",
+    "metaed-plugin-edfi-ods-relational": "2.6.0",
+    "metaed-plugin-edfi-unified": "2.6.0",
+    "metaed-plugin-edfi-unified-advanced": "2.6.0",
     "ramda": "^0.25.0",
     "sugar": "^2.0.4",
     "winston": "3.0.0"
