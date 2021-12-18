@@ -190,8 +190,6 @@
     }
   },
   "scripts": {
-    "postinstall": "apm link",
-    "postuninstall": "apm unlink atom-metaed",
     "build": "yarn build:clean && yarn build:dist",
     "build:clean": "rimraf dist && rimraf build/dist",
     "build:dist": "tsc",

@@ -33,7 +33,7 @@ export const registerPartials = R.once(() => {
     complexType: templateString('complexType'),
     complexTypeItem: templateString('complexTypeItem'),
     simpleType: templateString('simpleType'),
-  });
+  } as any);
 });
 
 function formatXml(unformattedXml: string): string {

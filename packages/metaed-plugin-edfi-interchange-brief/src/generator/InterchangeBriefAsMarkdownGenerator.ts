@@ -29,7 +29,7 @@ export const template = R.memoizeWith(R.identity, () => ({
 export const registerPartials = R.once(() => {
   markdownHandlebars.registerPartial({
     interchangeBrief: templateString('InterchangeBriefAsMarkdown'),
-  });
+  } as any);
 });
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {

@@ -22,5 +22,5 @@ export const template = R.memoizeWith(R.identity, () => ({
 export const registerPartials = R.once(() => {
   domainMetadataHandlebars.registerPartial({
     entityTable: templateString('entityTable'),
-  });
+  } as any);
 });

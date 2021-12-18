@@ -73,5 +73,6 @@
     "version:patch": "yarn lerna version patch      --conventional-commits --exact --force-publish=* --no-push --no-verify-access --npm-client=npm --sign-git-commit --yes",
     "version:minor": "yarn lerna version minor      --conventional-commits --exact --force-publish=* --no-push --no-verify-access --npm-client=npm --sign-git-commit --yes",
     "version:major": "yarn lerna version major      --conventional-commits --exact --force-publish=* --no-push --no-verify-access --npm-client=npm --sign-git-commit --yes"
-  }
+  },
+  "packageManager": "yarn@3.1.1"
 }

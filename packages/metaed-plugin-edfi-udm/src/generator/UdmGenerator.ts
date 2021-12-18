@@ -25,7 +25,7 @@ export const template = R.memoizeWith(R.identity, () => ({
 export const registerPartials = R.once(() => {
   markdownHandlebars.registerPartial({
     interchangeBrief: templateString('UdmAsMarkdown'),
-  });
+  } as any);
 });
 
 export interface DomainMarkdown {
