@@ -28,7 +28,28 @@
   },
 
   "cSpell.words": [
-    "metaed"
+    "antlr",
+    "autosave",
+    "changequery",
+    "copyfiles",
+    "createdbjs",
+    "diminisher",
+    "Dlanguage",
+    "dropdbjs",
+    "edfi",
+    "jsinspect",
+    "keymaps",
+    "klaw",
+    "metaed",
+    "odsapi",
+    "pgtools",
+    "preid",
+    "psql",
+    "recordownership",
+    "semverified",
+    "sqlserver",
+    "teamcity",
+    "yarnpkg"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
