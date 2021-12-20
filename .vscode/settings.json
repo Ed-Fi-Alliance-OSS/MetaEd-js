@@ -47,8 +47,10 @@
     "psql",
     "recordownership",
     "semverified",
+    "shortstat",
     "sqlserver",
     "teamcity",
+    "unmock",
     "yarnpkg"
   ],
   "editor.codeActionsOnSave": {

@@ -52,7 +52,7 @@
     "test:lint": "yarn test:lint:ts && yarn test:lint:eslint",
     "test:lint:eslint": "eslint --max-warnings 0 --ext .js,.ts .",
     "test:lint:ts": "tsc -p . --noEmit",
-    "test:unit": "cross-env NODE_OPTIONS=--max-old-space-size=4096 && yarn test:unit:unified && yarn test:unit:everything-else && yarn test:unit:ods-postgresql:non-db",
+    "test:unit": "cross-env NODE_OPTIONS=--max-old-space-size=4096 yarn test:unit:unified && yarn test:unit:everything-else && yarn test:unit:ods-postgresql:non-db",
     "test:unit:unified": "yarn jest packages/metaed-plugin-edfi-unified",
     "test:unit:change:postgresql": "jest packages/metaed-plugin-edfi-ods-changequery-postgresql -i",
     "test:unit:change:sqlserver": "jest packages/metaed-plugin-edfi-ods-changequery-sqlserver -i",
