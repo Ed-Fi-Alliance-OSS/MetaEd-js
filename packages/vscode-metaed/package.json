@@ -104,7 +104,6 @@
 		"@types/vscode": "^1.41.0",
 		"glob": "^7.1.5",
 		"mocha": "^6.2.2",
-		"tslint": "^5.20.0",
 		"typescript": "^4.5.4",
 		"vscode-test": "^1.2.2"
 	}
