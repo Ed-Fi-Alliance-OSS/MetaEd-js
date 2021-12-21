@@ -23,12 +23,12 @@
     "jest-teamcity-reporter": "^0.9.0",
     "jsinspect": "^0.12.7",
     "lerna": "^3.1.4",
-    "pgtools": "^0.3.0",
+    "pgtools": "^0.3.2",
     "prettier": "1.18.2",
     "rimraf": "^2.6.1",
     "ts-jest": "24.1.0",
     "ts-node": "8.4.1",
-    "typescript": "3.7.2"
+    "typescript": "4.5.4"
   },
   "workspaces": [
     "packages/*"
@@ -39,7 +39,7 @@
     }
   },
   "scripts": {
-    "antlr-gen": "java -jar ./antlr/antlr-4.6-complete.jar -Dlanguage=JavaScript -o ./packages/metaed-core/src/grammar/gen ./packages/metaed-core/src/grammar/language/BaseLexer.g4 ./packages/metaed-core/src/grammar/language/MetaEdGrammar.g4",
+    "antlr-gen": "java -jar ./antlr/antlr-4.9.3-complete.jar -Dlanguage=JavaScript -o ./packages/metaed-core/src/grammar/gen ./packages/metaed-core/src/grammar/language/BaseLexer.g4 ./packages/metaed-core/src/grammar/language/MetaEdGrammar.g4",
     "doc-gen": "yarn rimraf docs/ && yarn documentation build packages/metaed-core/src/** --sort-order alpha -f html -o docs",
     "metaed:build": "node ./packages/metaed-console/dist/index.js",
     "metaed:deploy": "node ./packages/metaed-odsapi-deploy/dist/index.js",

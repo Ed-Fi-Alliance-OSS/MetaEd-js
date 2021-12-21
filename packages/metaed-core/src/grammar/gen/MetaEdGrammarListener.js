@@ -1,1266 +1,1260 @@
-// Generated from ./packages/metaed-core/src/grammar/language/MetaEdGrammar.g4 by ANTLR 4.6
+// Generated from ./packages/metaed-core/src/grammar/language/MetaEdGrammar.g4 by ANTLR 4.9.3
 // jshint ignore: start
-var antlr4 = require('antlr4/index');
+import antlr4 from 'antlr4';
 
 // This class defines a complete listener for a parse tree produced by MetaEdGrammar.
-function MetaEdGrammarListener() {
-	antlr4.tree.ParseTreeListener.call(this);
-	return this;
+export default class MetaEdGrammarListener extends antlr4.tree.ParseTreeListener {
+
+	// Enter a parse tree produced by MetaEdGrammar#metaEd.
+	enterMetaEd(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#metaEd.
+	exitMetaEd(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#namespace.
+	enterNamespace(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#namespace.
+	exitNamespace(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#namespaceType.
+	enterNamespaceType(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#namespaceType.
+	exitNamespaceType(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#topLevelEntity.
+	enterTopLevelEntity(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#topLevelEntity.
+	exitTopLevelEntity(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#deprecated.
+	enterDeprecated(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#deprecated.
+	exitDeprecated(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#propertyDeprecated.
+	enterPropertyDeprecated(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#propertyDeprecated.
+	exitPropertyDeprecated(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#documentation.
+	enterDocumentation(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#documentation.
+	exitDocumentation(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#enumerationItemDocumentation.
+	enterEnumerationItemDocumentation(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#enumerationItemDocumentation.
+	exitEnumerationItemDocumentation(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#mapTypeDocumentation.
+	enterMapTypeDocumentation(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#mapTypeDocumentation.
+	exitMapTypeDocumentation(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#propertyDocumentation.
+	enterPropertyDocumentation(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#propertyDocumentation.
+	exitPropertyDocumentation(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#abstractEntity.
+	enterAbstractEntity(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#abstractEntity.
+	exitAbstractEntity(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#entityConfiguration.
+	enterEntityConfiguration(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#entityConfiguration.
+	exitEntityConfiguration(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#cascadeUpdate.
+	enterCascadeUpdate(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#cascadeUpdate.
+	exitCascadeUpdate(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#association.
+	enterAssociation(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#association.
+	exitAssociation(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#definingDomainEntity.
+	enterDefiningDomainEntity(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#definingDomainEntity.
+	exitDefiningDomainEntity(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#associationExtension.
+	enterAssociationExtension(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#associationExtension.
+	exitAssociationExtension(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#associationSubclass.
+	enterAssociationSubclass(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#associationSubclass.
+	exitAssociationSubclass(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#choice.
+	enterChoice(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#choice.
+	exitChoice(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedDecimal.
+	enterSharedDecimal(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedDecimal.
+	exitSharedDecimal(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedInteger.
+	enterSharedInteger(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedInteger.
+	exitSharedInteger(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedShort.
+	enterSharedShort(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedShort.
+	exitSharedShort(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedString.
+	enterSharedString(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedString.
+	exitSharedString(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#common.
+	enterCommon(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#common.
+	exitCommon(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#commonExtension.
+	enterCommonExtension(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#commonExtension.
+	exitCommonExtension(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#commonSubclass.
+	enterCommonSubclass(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#commonSubclass.
+	exitCommonSubclass(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#descriptor.
+	enterDescriptor(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#descriptor.
+	exitDescriptor(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#withMapType.
+	enterWithMapType(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#withMapType.
+	exitWithMapType(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#requiredMapType.
+	enterRequiredMapType(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#requiredMapType.
+	exitRequiredMapType(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#optionalMapType.
+	enterOptionalMapType(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#optionalMapType.
+	exitOptionalMapType(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#domain.
+	enterDomain(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#domain.
+	exitDomain(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#domainItem.
+	enterDomainItem(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#domainItem.
+	exitDomainItem(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#footerDocumentation.
+	enterFooterDocumentation(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#footerDocumentation.
+	exitFooterDocumentation(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#domainEntity.
+	enterDomainEntity(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#domainEntity.
+	exitDomainEntity(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#domainEntityExtension.
+	enterDomainEntityExtension(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#domainEntityExtension.
+	exitDomainEntityExtension(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#domainEntitySubclass.
+	enterDomainEntitySubclass(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#domainEntitySubclass.
+	exitDomainEntitySubclass(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#enumeration.
+	enterEnumeration(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#enumeration.
+	exitEnumeration(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#enumerationItem.
+	enterEnumerationItem(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#enumerationItem.
+	exitEnumerationItem(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#shortDescription.
+	enterShortDescription(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#shortDescription.
+	exitShortDescription(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#inlineCommon.
+	enterInlineCommon(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#inlineCommon.
+	exitInlineCommon(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#interchange.
+	enterInterchange(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#interchange.
+	exitInterchange(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#extendedDocumentation.
+	enterExtendedDocumentation(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#extendedDocumentation.
+	exitExtendedDocumentation(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#useCaseDocumentation.
+	enterUseCaseDocumentation(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#useCaseDocumentation.
+	exitUseCaseDocumentation(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#interchangeComponent.
+	enterInterchangeComponent(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#interchangeComponent.
+	exitInterchangeComponent(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#interchangeElement.
+	enterInterchangeElement(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#interchangeElement.
+	exitInterchangeElement(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#interchangeIdentity.
+	enterInterchangeIdentity(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#interchangeIdentity.
+	exitInterchangeIdentity(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#interchangeExtension.
+	enterInterchangeExtension(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#interchangeExtension.
+	exitInterchangeExtension(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#interchangeExtensionComponent.
+	enterInterchangeExtensionComponent(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#interchangeExtensionComponent.
+	exitInterchangeExtensionComponent(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#subdomain.
+	enterSubdomain(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#subdomain.
+	exitSubdomain(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#subdomainPosition.
+	enterSubdomainPosition(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#subdomainPosition.
+	exitSubdomainPosition(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#minValue.
+	enterMinValue(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#minValue.
+	exitMinValue(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#maxValue.
+	enterMaxValue(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#maxValue.
+	exitMaxValue(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#minValueDecimal.
+	enterMinValueDecimal(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#minValueDecimal.
+	exitMinValueDecimal(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#maxValueDecimal.
+	enterMaxValueDecimal(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#maxValueDecimal.
+	exitMaxValueDecimal(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#decimalValue.
+	enterDecimalValue(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#decimalValue.
+	exitDecimalValue(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#totalDigits.
+	enterTotalDigits(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#totalDigits.
+	exitTotalDigits(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#decimalPlaces.
+	enterDecimalPlaces(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#decimalPlaces.
+	exitDecimalPlaces(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#commonExtensionOverride.
+	enterCommonExtensionOverride(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#commonExtensionOverride.
+	exitCommonExtensionOverride(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#propertyAnnotation.
+	enterPropertyAnnotation(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#propertyAnnotation.
+	exitPropertyAnnotation(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#identity.
+	enterIdentity(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#identity.
+	exitIdentity(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#identityRename.
+	enterIdentityRename(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#identityRename.
+	exitIdentityRename(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#required.
+	enterRequired(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#required.
+	exitRequired(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#optional.
+	enterOptional(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#optional.
+	exitOptional(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#collection.
+	enterCollection(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#collection.
+	exitCollection(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#requiredCollection.
+	enterRequiredCollection(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#requiredCollection.
+	exitRequiredCollection(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#optionalCollection.
+	enterOptionalCollection(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#optionalCollection.
+	exitOptionalCollection(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#isQueryableOnly.
+	enterIsQueryableOnly(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#isQueryableOnly.
+	exitIsQueryableOnly(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#propertyComponents.
+	enterPropertyComponents(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#propertyComponents.
+	exitPropertyComponents(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#isQueryableField.
+	enterIsQueryableField(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#isQueryableField.
+	exitIsQueryableField(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#roleName.
+	enterRoleName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#roleName.
+	exitRoleName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#minLength.
+	enterMinLength(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#minLength.
+	exitMinLength(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#maxLength.
+	enterMaxLength(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#maxLength.
+	exitMaxLength(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#property.
+	enterProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#property.
+	exitProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#booleanProperty.
+	enterBooleanProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#booleanProperty.
+	exitBooleanProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#currencyProperty.
+	enterCurrencyProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#currencyProperty.
+	exitCurrencyProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#dateProperty.
+	enterDateProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#dateProperty.
+	exitDateProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#datetimeProperty.
+	enterDatetimeProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#datetimeProperty.
+	exitDatetimeProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#decimalProperty.
+	enterDecimalProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#decimalProperty.
+	exitDecimalProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#descriptorProperty.
+	enterDescriptorProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#descriptorProperty.
+	exitDescriptorProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#durationProperty.
+	enterDurationProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#durationProperty.
+	exitDurationProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#enumerationProperty.
+	enterEnumerationProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#enumerationProperty.
+	exitEnumerationProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#commonProperty.
+	enterCommonProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#commonProperty.
+	exitCommonProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#inlineCommonProperty.
+	enterInlineCommonProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#inlineCommonProperty.
+	exitInlineCommonProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#choiceProperty.
+	enterChoiceProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#choiceProperty.
+	exitChoiceProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#integerProperty.
+	enterIntegerProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#integerProperty.
+	exitIntegerProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#percentProperty.
+	enterPercentProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#percentProperty.
+	exitPercentProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#associationProperty.
+	enterAssociationProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#associationProperty.
+	exitAssociationProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#domainEntityProperty.
+	enterDomainEntityProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#domainEntityProperty.
+	exitDomainEntityProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedDecimalProperty.
+	enterSharedDecimalProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedDecimalProperty.
+	exitSharedDecimalProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedIntegerProperty.
+	enterSharedIntegerProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedIntegerProperty.
+	exitSharedIntegerProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedShortProperty.
+	enterSharedShortProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedShortProperty.
+	exitSharedShortProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedStringProperty.
+	enterSharedStringProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedStringProperty.
+	exitSharedStringProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#shortProperty.
+	enterShortProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#shortProperty.
+	exitShortProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#stringProperty.
+	enterStringProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#stringProperty.
+	exitStringProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#timeProperty.
+	enterTimeProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#timeProperty.
+	exitTimeProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#yearProperty.
+	enterYearProperty(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#yearProperty.
+	exitYearProperty(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#isWeakReference.
+	enterIsWeakReference(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#isWeakReference.
+	exitIsWeakReference(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#potentiallyLogical.
+	enterPotentiallyLogical(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#potentiallyLogical.
+	exitPotentiallyLogical(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#mergeDirective.
+	enterMergeDirective(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#mergeDirective.
+	exitMergeDirective(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sourcePropertyPath.
+	enterSourcePropertyPath(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sourcePropertyPath.
+	exitSourcePropertyPath(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#targetPropertyPath.
+	enterTargetPropertyPath(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#targetPropertyPath.
+	exitTargetPropertyPath(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#propertyPath.
+	enterPropertyPath(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#propertyPath.
+	exitPropertyPath(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#signed_int.
+	enterSigned_int(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#signed_int.
+	exitSigned_int(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#unaryOperator.
+	enterUnaryOperator(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#unaryOperator.
+	exitUnaryOperator(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#abstractEntityName.
+	enterAbstractEntityName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#abstractEntityName.
+	exitAbstractEntityName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#associationName.
+	enterAssociationName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#associationName.
+	exitAssociationName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#baseKeyName.
+	enterBaseKeyName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#baseKeyName.
+	exitBaseKeyName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#baseName.
+	enterBaseName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#baseName.
+	exitBaseName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#baseNamespace.
+	enterBaseNamespace(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#baseNamespace.
+	exitBaseNamespace(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#choiceName.
+	enterChoiceName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#choiceName.
+	exitChoiceName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedDecimalName.
+	enterSharedDecimalName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedDecimalName.
+	exitSharedDecimalName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedIntegerName.
+	enterSharedIntegerName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedIntegerName.
+	exitSharedIntegerName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#commonName.
+	enterCommonName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#commonName.
+	exitCommonName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedShortName.
+	enterSharedShortName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedShortName.
+	exitSharedShortName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedStringName.
+	enterSharedStringName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedStringName.
+	exitSharedStringName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#descriptorName.
+	enterDescriptorName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#descriptorName.
+	exitDescriptorName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#domainName.
+	enterDomainName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#domainName.
+	exitDomainName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#entityName.
+	enterEntityName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#entityName.
+	exitEntityName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#enumerationName.
+	enterEnumerationName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#enumerationName.
+	exitEnumerationName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#extendeeName.
+	enterExtendeeName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#extendeeName.
+	exitExtendeeName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#extendeeNamespace.
+	enterExtendeeNamespace(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#extendeeNamespace.
+	exitExtendeeNamespace(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#inlineCommonName.
+	enterInlineCommonName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#inlineCommonName.
+	exitInlineCommonName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#interchangeName.
+	enterInterchangeName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#interchangeName.
+	exitInterchangeName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#localBaseName.
+	enterLocalBaseName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#localBaseName.
+	exitLocalBaseName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#localDomainItemName.
+	enterLocalDomainItemName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#localDomainItemName.
+	exitLocalDomainItemName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#localExtendeeName.
+	enterLocalExtendeeName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#localExtendeeName.
+	exitLocalExtendeeName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#localInterchangeItemName.
+	enterLocalInterchangeItemName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#localInterchangeItemName.
+	exitLocalInterchangeItemName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#localPropertyName.
+	enterLocalPropertyName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#localPropertyName.
+	exitLocalPropertyName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#localPropertyType.
+	enterLocalPropertyType(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#localPropertyType.
+	exitLocalPropertyType(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#parentDomainName.
+	enterParentDomainName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#parentDomainName.
+	exitParentDomainName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#propertyName.
+	enterPropertyName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#propertyName.
+	exitPropertyName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#propertyNamespace.
+	enterPropertyNamespace(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#propertyNamespace.
+	exitPropertyNamespace(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#roleNameName.
+	enterRoleNameName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#roleNameName.
+	exitRoleNameName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedPropertyName.
+	enterSharedPropertyName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedPropertyName.
+	exitSharedPropertyName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#sharedPropertyType.
+	enterSharedPropertyType(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#sharedPropertyType.
+	exitSharedPropertyType(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#shortenToName.
+	enterShortenToName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#shortenToName.
+	exitShortenToName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#simplePropertyName.
+	enterSimplePropertyName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#simplePropertyName.
+	exitSimplePropertyName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#subdomainName.
+	enterSubdomainName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#subdomainName.
+	exitSubdomainName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#namespaceName.
+	enterNamespaceName(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#namespaceName.
+	exitNamespaceName(ctx) {
+	}
+
+
+	// Enter a parse tree produced by MetaEdGrammar#metaEdId.
+	enterMetaEdId(ctx) {
+	}
+
+	// Exit a parse tree produced by MetaEdGrammar#metaEdId.
+	exitMetaEdId(ctx) {
+	}
+
+
+
 }
-
-MetaEdGrammarListener.prototype = Object.create(antlr4.tree.ParseTreeListener.prototype);
-MetaEdGrammarListener.prototype.constructor = MetaEdGrammarListener;
-
-// Enter a parse tree produced by MetaEdGrammar#metaEd.
-MetaEdGrammarListener.prototype.enterMetaEd = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#metaEd.
-MetaEdGrammarListener.prototype.exitMetaEd = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#namespace.
-MetaEdGrammarListener.prototype.enterNamespace = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#namespace.
-MetaEdGrammarListener.prototype.exitNamespace = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#namespaceType.
-MetaEdGrammarListener.prototype.enterNamespaceType = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#namespaceType.
-MetaEdGrammarListener.prototype.exitNamespaceType = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#topLevelEntity.
-MetaEdGrammarListener.prototype.enterTopLevelEntity = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#topLevelEntity.
-MetaEdGrammarListener.prototype.exitTopLevelEntity = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#deprecated.
-MetaEdGrammarListener.prototype.enterDeprecated = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#deprecated.
-MetaEdGrammarListener.prototype.exitDeprecated = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#propertyDeprecated.
-MetaEdGrammarListener.prototype.enterPropertyDeprecated = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#propertyDeprecated.
-MetaEdGrammarListener.prototype.exitPropertyDeprecated = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#documentation.
-MetaEdGrammarListener.prototype.enterDocumentation = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#documentation.
-MetaEdGrammarListener.prototype.exitDocumentation = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#enumerationItemDocumentation.
-MetaEdGrammarListener.prototype.enterEnumerationItemDocumentation = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#enumerationItemDocumentation.
-MetaEdGrammarListener.prototype.exitEnumerationItemDocumentation = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#mapTypeDocumentation.
-MetaEdGrammarListener.prototype.enterMapTypeDocumentation = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#mapTypeDocumentation.
-MetaEdGrammarListener.prototype.exitMapTypeDocumentation = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#propertyDocumentation.
-MetaEdGrammarListener.prototype.enterPropertyDocumentation = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#propertyDocumentation.
-MetaEdGrammarListener.prototype.exitPropertyDocumentation = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#abstractEntity.
-MetaEdGrammarListener.prototype.enterAbstractEntity = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#abstractEntity.
-MetaEdGrammarListener.prototype.exitAbstractEntity = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#entityConfiguration.
-MetaEdGrammarListener.prototype.enterEntityConfiguration = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#entityConfiguration.
-MetaEdGrammarListener.prototype.exitEntityConfiguration = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#cascadeUpdate.
-MetaEdGrammarListener.prototype.enterCascadeUpdate = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#cascadeUpdate.
-MetaEdGrammarListener.prototype.exitCascadeUpdate = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#association.
-MetaEdGrammarListener.prototype.enterAssociation = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#association.
-MetaEdGrammarListener.prototype.exitAssociation = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#definingDomainEntity.
-MetaEdGrammarListener.prototype.enterDefiningDomainEntity = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#definingDomainEntity.
-MetaEdGrammarListener.prototype.exitDefiningDomainEntity = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#associationExtension.
-MetaEdGrammarListener.prototype.enterAssociationExtension = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#associationExtension.
-MetaEdGrammarListener.prototype.exitAssociationExtension = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#associationSubclass.
-MetaEdGrammarListener.prototype.enterAssociationSubclass = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#associationSubclass.
-MetaEdGrammarListener.prototype.exitAssociationSubclass = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#choice.
-MetaEdGrammarListener.prototype.enterChoice = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#choice.
-MetaEdGrammarListener.prototype.exitChoice = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedDecimal.
-MetaEdGrammarListener.prototype.enterSharedDecimal = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedDecimal.
-MetaEdGrammarListener.prototype.exitSharedDecimal = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedInteger.
-MetaEdGrammarListener.prototype.enterSharedInteger = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedInteger.
-MetaEdGrammarListener.prototype.exitSharedInteger = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedShort.
-MetaEdGrammarListener.prototype.enterSharedShort = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedShort.
-MetaEdGrammarListener.prototype.exitSharedShort = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedString.
-MetaEdGrammarListener.prototype.enterSharedString = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedString.
-MetaEdGrammarListener.prototype.exitSharedString = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#common.
-MetaEdGrammarListener.prototype.enterCommon = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#common.
-MetaEdGrammarListener.prototype.exitCommon = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#commonExtension.
-MetaEdGrammarListener.prototype.enterCommonExtension = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#commonExtension.
-MetaEdGrammarListener.prototype.exitCommonExtension = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#commonSubclass.
-MetaEdGrammarListener.prototype.enterCommonSubclass = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#commonSubclass.
-MetaEdGrammarListener.prototype.exitCommonSubclass = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#descriptor.
-MetaEdGrammarListener.prototype.enterDescriptor = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#descriptor.
-MetaEdGrammarListener.prototype.exitDescriptor = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#withMapType.
-MetaEdGrammarListener.prototype.enterWithMapType = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#withMapType.
-MetaEdGrammarListener.prototype.exitWithMapType = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#requiredMapType.
-MetaEdGrammarListener.prototype.enterRequiredMapType = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#requiredMapType.
-MetaEdGrammarListener.prototype.exitRequiredMapType = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#optionalMapType.
-MetaEdGrammarListener.prototype.enterOptionalMapType = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#optionalMapType.
-MetaEdGrammarListener.prototype.exitOptionalMapType = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#domain.
-MetaEdGrammarListener.prototype.enterDomain = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#domain.
-MetaEdGrammarListener.prototype.exitDomain = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#domainItem.
-MetaEdGrammarListener.prototype.enterDomainItem = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#domainItem.
-MetaEdGrammarListener.prototype.exitDomainItem = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#footerDocumentation.
-MetaEdGrammarListener.prototype.enterFooterDocumentation = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#footerDocumentation.
-MetaEdGrammarListener.prototype.exitFooterDocumentation = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#domainEntity.
-MetaEdGrammarListener.prototype.enterDomainEntity = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#domainEntity.
-MetaEdGrammarListener.prototype.exitDomainEntity = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#domainEntityExtension.
-MetaEdGrammarListener.prototype.enterDomainEntityExtension = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#domainEntityExtension.
-MetaEdGrammarListener.prototype.exitDomainEntityExtension = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#domainEntitySubclass.
-MetaEdGrammarListener.prototype.enterDomainEntitySubclass = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#domainEntitySubclass.
-MetaEdGrammarListener.prototype.exitDomainEntitySubclass = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#enumeration.
-MetaEdGrammarListener.prototype.enterEnumeration = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#enumeration.
-MetaEdGrammarListener.prototype.exitEnumeration = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#enumerationItem.
-MetaEdGrammarListener.prototype.enterEnumerationItem = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#enumerationItem.
-MetaEdGrammarListener.prototype.exitEnumerationItem = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#shortDescription.
-MetaEdGrammarListener.prototype.enterShortDescription = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#shortDescription.
-MetaEdGrammarListener.prototype.exitShortDescription = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#inlineCommon.
-MetaEdGrammarListener.prototype.enterInlineCommon = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#inlineCommon.
-MetaEdGrammarListener.prototype.exitInlineCommon = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#interchange.
-MetaEdGrammarListener.prototype.enterInterchange = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#interchange.
-MetaEdGrammarListener.prototype.exitInterchange = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#extendedDocumentation.
-MetaEdGrammarListener.prototype.enterExtendedDocumentation = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#extendedDocumentation.
-MetaEdGrammarListener.prototype.exitExtendedDocumentation = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#useCaseDocumentation.
-MetaEdGrammarListener.prototype.enterUseCaseDocumentation = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#useCaseDocumentation.
-MetaEdGrammarListener.prototype.exitUseCaseDocumentation = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#interchangeComponent.
-MetaEdGrammarListener.prototype.enterInterchangeComponent = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#interchangeComponent.
-MetaEdGrammarListener.prototype.exitInterchangeComponent = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#interchangeElement.
-MetaEdGrammarListener.prototype.enterInterchangeElement = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#interchangeElement.
-MetaEdGrammarListener.prototype.exitInterchangeElement = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#interchangeIdentity.
-MetaEdGrammarListener.prototype.enterInterchangeIdentity = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#interchangeIdentity.
-MetaEdGrammarListener.prototype.exitInterchangeIdentity = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#interchangeExtension.
-MetaEdGrammarListener.prototype.enterInterchangeExtension = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#interchangeExtension.
-MetaEdGrammarListener.prototype.exitInterchangeExtension = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#interchangeExtensionComponent.
-MetaEdGrammarListener.prototype.enterInterchangeExtensionComponent = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#interchangeExtensionComponent.
-MetaEdGrammarListener.prototype.exitInterchangeExtensionComponent = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#subdomain.
-MetaEdGrammarListener.prototype.enterSubdomain = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#subdomain.
-MetaEdGrammarListener.prototype.exitSubdomain = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#subdomainPosition.
-MetaEdGrammarListener.prototype.enterSubdomainPosition = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#subdomainPosition.
-MetaEdGrammarListener.prototype.exitSubdomainPosition = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#minValue.
-MetaEdGrammarListener.prototype.enterMinValue = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#minValue.
-MetaEdGrammarListener.prototype.exitMinValue = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#maxValue.
-MetaEdGrammarListener.prototype.enterMaxValue = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#maxValue.
-MetaEdGrammarListener.prototype.exitMaxValue = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#minValueDecimal.
-MetaEdGrammarListener.prototype.enterMinValueDecimal = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#minValueDecimal.
-MetaEdGrammarListener.prototype.exitMinValueDecimal = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#maxValueDecimal.
-MetaEdGrammarListener.prototype.enterMaxValueDecimal = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#maxValueDecimal.
-MetaEdGrammarListener.prototype.exitMaxValueDecimal = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#decimalValue.
-MetaEdGrammarListener.prototype.enterDecimalValue = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#decimalValue.
-MetaEdGrammarListener.prototype.exitDecimalValue = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#totalDigits.
-MetaEdGrammarListener.prototype.enterTotalDigits = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#totalDigits.
-MetaEdGrammarListener.prototype.exitTotalDigits = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#decimalPlaces.
-MetaEdGrammarListener.prototype.enterDecimalPlaces = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#decimalPlaces.
-MetaEdGrammarListener.prototype.exitDecimalPlaces = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#commonExtensionOverride.
-MetaEdGrammarListener.prototype.enterCommonExtensionOverride = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#commonExtensionOverride.
-MetaEdGrammarListener.prototype.exitCommonExtensionOverride = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#propertyAnnotation.
-MetaEdGrammarListener.prototype.enterPropertyAnnotation = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#propertyAnnotation.
-MetaEdGrammarListener.prototype.exitPropertyAnnotation = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#identity.
-MetaEdGrammarListener.prototype.enterIdentity = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#identity.
-MetaEdGrammarListener.prototype.exitIdentity = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#identityRename.
-MetaEdGrammarListener.prototype.enterIdentityRename = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#identityRename.
-MetaEdGrammarListener.prototype.exitIdentityRename = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#required.
-MetaEdGrammarListener.prototype.enterRequired = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#required.
-MetaEdGrammarListener.prototype.exitRequired = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#optional.
-MetaEdGrammarListener.prototype.enterOptional = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#optional.
-MetaEdGrammarListener.prototype.exitOptional = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#collection.
-MetaEdGrammarListener.prototype.enterCollection = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#collection.
-MetaEdGrammarListener.prototype.exitCollection = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#requiredCollection.
-MetaEdGrammarListener.prototype.enterRequiredCollection = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#requiredCollection.
-MetaEdGrammarListener.prototype.exitRequiredCollection = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#optionalCollection.
-MetaEdGrammarListener.prototype.enterOptionalCollection = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#optionalCollection.
-MetaEdGrammarListener.prototype.exitOptionalCollection = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#isQueryableOnly.
-MetaEdGrammarListener.prototype.enterIsQueryableOnly = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#isQueryableOnly.
-MetaEdGrammarListener.prototype.exitIsQueryableOnly = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#propertyComponents.
-MetaEdGrammarListener.prototype.enterPropertyComponents = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#propertyComponents.
-MetaEdGrammarListener.prototype.exitPropertyComponents = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#isQueryableField.
-MetaEdGrammarListener.prototype.enterIsQueryableField = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#isQueryableField.
-MetaEdGrammarListener.prototype.exitIsQueryableField = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#roleName.
-MetaEdGrammarListener.prototype.enterRoleName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#roleName.
-MetaEdGrammarListener.prototype.exitRoleName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#minLength.
-MetaEdGrammarListener.prototype.enterMinLength = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#minLength.
-MetaEdGrammarListener.prototype.exitMinLength = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#maxLength.
-MetaEdGrammarListener.prototype.enterMaxLength = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#maxLength.
-MetaEdGrammarListener.prototype.exitMaxLength = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#property.
-MetaEdGrammarListener.prototype.enterProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#property.
-MetaEdGrammarListener.prototype.exitProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#booleanProperty.
-MetaEdGrammarListener.prototype.enterBooleanProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#booleanProperty.
-MetaEdGrammarListener.prototype.exitBooleanProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#currencyProperty.
-MetaEdGrammarListener.prototype.enterCurrencyProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#currencyProperty.
-MetaEdGrammarListener.prototype.exitCurrencyProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#dateProperty.
-MetaEdGrammarListener.prototype.enterDateProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#dateProperty.
-MetaEdGrammarListener.prototype.exitDateProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#datetimeProperty.
-MetaEdGrammarListener.prototype.enterDatetimeProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#datetimeProperty.
-MetaEdGrammarListener.prototype.exitDatetimeProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#decimalProperty.
-MetaEdGrammarListener.prototype.enterDecimalProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#decimalProperty.
-MetaEdGrammarListener.prototype.exitDecimalProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#descriptorProperty.
-MetaEdGrammarListener.prototype.enterDescriptorProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#descriptorProperty.
-MetaEdGrammarListener.prototype.exitDescriptorProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#durationProperty.
-MetaEdGrammarListener.prototype.enterDurationProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#durationProperty.
-MetaEdGrammarListener.prototype.exitDurationProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#enumerationProperty.
-MetaEdGrammarListener.prototype.enterEnumerationProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#enumerationProperty.
-MetaEdGrammarListener.prototype.exitEnumerationProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#commonProperty.
-MetaEdGrammarListener.prototype.enterCommonProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#commonProperty.
-MetaEdGrammarListener.prototype.exitCommonProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#inlineCommonProperty.
-MetaEdGrammarListener.prototype.enterInlineCommonProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#inlineCommonProperty.
-MetaEdGrammarListener.prototype.exitInlineCommonProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#choiceProperty.
-MetaEdGrammarListener.prototype.enterChoiceProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#choiceProperty.
-MetaEdGrammarListener.prototype.exitChoiceProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#integerProperty.
-MetaEdGrammarListener.prototype.enterIntegerProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#integerProperty.
-MetaEdGrammarListener.prototype.exitIntegerProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#percentProperty.
-MetaEdGrammarListener.prototype.enterPercentProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#percentProperty.
-MetaEdGrammarListener.prototype.exitPercentProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#associationProperty.
-MetaEdGrammarListener.prototype.enterAssociationProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#associationProperty.
-MetaEdGrammarListener.prototype.exitAssociationProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#domainEntityProperty.
-MetaEdGrammarListener.prototype.enterDomainEntityProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#domainEntityProperty.
-MetaEdGrammarListener.prototype.exitDomainEntityProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedDecimalProperty.
-MetaEdGrammarListener.prototype.enterSharedDecimalProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedDecimalProperty.
-MetaEdGrammarListener.prototype.exitSharedDecimalProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedIntegerProperty.
-MetaEdGrammarListener.prototype.enterSharedIntegerProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedIntegerProperty.
-MetaEdGrammarListener.prototype.exitSharedIntegerProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedShortProperty.
-MetaEdGrammarListener.prototype.enterSharedShortProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedShortProperty.
-MetaEdGrammarListener.prototype.exitSharedShortProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedStringProperty.
-MetaEdGrammarListener.prototype.enterSharedStringProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedStringProperty.
-MetaEdGrammarListener.prototype.exitSharedStringProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#shortProperty.
-MetaEdGrammarListener.prototype.enterShortProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#shortProperty.
-MetaEdGrammarListener.prototype.exitShortProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#stringProperty.
-MetaEdGrammarListener.prototype.enterStringProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#stringProperty.
-MetaEdGrammarListener.prototype.exitStringProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#timeProperty.
-MetaEdGrammarListener.prototype.enterTimeProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#timeProperty.
-MetaEdGrammarListener.prototype.exitTimeProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#yearProperty.
-MetaEdGrammarListener.prototype.enterYearProperty = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#yearProperty.
-MetaEdGrammarListener.prototype.exitYearProperty = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#isWeakReference.
-MetaEdGrammarListener.prototype.enterIsWeakReference = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#isWeakReference.
-MetaEdGrammarListener.prototype.exitIsWeakReference = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#potentiallyLogical.
-MetaEdGrammarListener.prototype.enterPotentiallyLogical = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#potentiallyLogical.
-MetaEdGrammarListener.prototype.exitPotentiallyLogical = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#mergeDirective.
-MetaEdGrammarListener.prototype.enterMergeDirective = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#mergeDirective.
-MetaEdGrammarListener.prototype.exitMergeDirective = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sourcePropertyPath.
-MetaEdGrammarListener.prototype.enterSourcePropertyPath = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sourcePropertyPath.
-MetaEdGrammarListener.prototype.exitSourcePropertyPath = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#targetPropertyPath.
-MetaEdGrammarListener.prototype.enterTargetPropertyPath = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#targetPropertyPath.
-MetaEdGrammarListener.prototype.exitTargetPropertyPath = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#propertyPath.
-MetaEdGrammarListener.prototype.enterPropertyPath = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#propertyPath.
-MetaEdGrammarListener.prototype.exitPropertyPath = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#signed_int.
-MetaEdGrammarListener.prototype.enterSigned_int = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#signed_int.
-MetaEdGrammarListener.prototype.exitSigned_int = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#unaryOperator.
-MetaEdGrammarListener.prototype.enterUnaryOperator = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#unaryOperator.
-MetaEdGrammarListener.prototype.exitUnaryOperator = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#abstractEntityName.
-MetaEdGrammarListener.prototype.enterAbstractEntityName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#abstractEntityName.
-MetaEdGrammarListener.prototype.exitAbstractEntityName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#associationName.
-MetaEdGrammarListener.prototype.enterAssociationName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#associationName.
-MetaEdGrammarListener.prototype.exitAssociationName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#baseKeyName.
-MetaEdGrammarListener.prototype.enterBaseKeyName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#baseKeyName.
-MetaEdGrammarListener.prototype.exitBaseKeyName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#baseName.
-MetaEdGrammarListener.prototype.enterBaseName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#baseName.
-MetaEdGrammarListener.prototype.exitBaseName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#baseNamespace.
-MetaEdGrammarListener.prototype.enterBaseNamespace = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#baseNamespace.
-MetaEdGrammarListener.prototype.exitBaseNamespace = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#choiceName.
-MetaEdGrammarListener.prototype.enterChoiceName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#choiceName.
-MetaEdGrammarListener.prototype.exitChoiceName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedDecimalName.
-MetaEdGrammarListener.prototype.enterSharedDecimalName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedDecimalName.
-MetaEdGrammarListener.prototype.exitSharedDecimalName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedIntegerName.
-MetaEdGrammarListener.prototype.enterSharedIntegerName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedIntegerName.
-MetaEdGrammarListener.prototype.exitSharedIntegerName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#commonName.
-MetaEdGrammarListener.prototype.enterCommonName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#commonName.
-MetaEdGrammarListener.prototype.exitCommonName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedShortName.
-MetaEdGrammarListener.prototype.enterSharedShortName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedShortName.
-MetaEdGrammarListener.prototype.exitSharedShortName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedStringName.
-MetaEdGrammarListener.prototype.enterSharedStringName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedStringName.
-MetaEdGrammarListener.prototype.exitSharedStringName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#descriptorName.
-MetaEdGrammarListener.prototype.enterDescriptorName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#descriptorName.
-MetaEdGrammarListener.prototype.exitDescriptorName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#domainName.
-MetaEdGrammarListener.prototype.enterDomainName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#domainName.
-MetaEdGrammarListener.prototype.exitDomainName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#entityName.
-MetaEdGrammarListener.prototype.enterEntityName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#entityName.
-MetaEdGrammarListener.prototype.exitEntityName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#enumerationName.
-MetaEdGrammarListener.prototype.enterEnumerationName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#enumerationName.
-MetaEdGrammarListener.prototype.exitEnumerationName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#extendeeName.
-MetaEdGrammarListener.prototype.enterExtendeeName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#extendeeName.
-MetaEdGrammarListener.prototype.exitExtendeeName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#extendeeNamespace.
-MetaEdGrammarListener.prototype.enterExtendeeNamespace = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#extendeeNamespace.
-MetaEdGrammarListener.prototype.exitExtendeeNamespace = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#inlineCommonName.
-MetaEdGrammarListener.prototype.enterInlineCommonName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#inlineCommonName.
-MetaEdGrammarListener.prototype.exitInlineCommonName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#interchangeName.
-MetaEdGrammarListener.prototype.enterInterchangeName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#interchangeName.
-MetaEdGrammarListener.prototype.exitInterchangeName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#localBaseName.
-MetaEdGrammarListener.prototype.enterLocalBaseName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#localBaseName.
-MetaEdGrammarListener.prototype.exitLocalBaseName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#localDomainItemName.
-MetaEdGrammarListener.prototype.enterLocalDomainItemName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#localDomainItemName.
-MetaEdGrammarListener.prototype.exitLocalDomainItemName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#localExtendeeName.
-MetaEdGrammarListener.prototype.enterLocalExtendeeName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#localExtendeeName.
-MetaEdGrammarListener.prototype.exitLocalExtendeeName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#localInterchangeItemName.
-MetaEdGrammarListener.prototype.enterLocalInterchangeItemName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#localInterchangeItemName.
-MetaEdGrammarListener.prototype.exitLocalInterchangeItemName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#localPropertyName.
-MetaEdGrammarListener.prototype.enterLocalPropertyName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#localPropertyName.
-MetaEdGrammarListener.prototype.exitLocalPropertyName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#localPropertyType.
-MetaEdGrammarListener.prototype.enterLocalPropertyType = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#localPropertyType.
-MetaEdGrammarListener.prototype.exitLocalPropertyType = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#parentDomainName.
-MetaEdGrammarListener.prototype.enterParentDomainName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#parentDomainName.
-MetaEdGrammarListener.prototype.exitParentDomainName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#propertyName.
-MetaEdGrammarListener.prototype.enterPropertyName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#propertyName.
-MetaEdGrammarListener.prototype.exitPropertyName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#propertyNamespace.
-MetaEdGrammarListener.prototype.enterPropertyNamespace = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#propertyNamespace.
-MetaEdGrammarListener.prototype.exitPropertyNamespace = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#roleNameName.
-MetaEdGrammarListener.prototype.enterRoleNameName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#roleNameName.
-MetaEdGrammarListener.prototype.exitRoleNameName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedPropertyName.
-MetaEdGrammarListener.prototype.enterSharedPropertyName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedPropertyName.
-MetaEdGrammarListener.prototype.exitSharedPropertyName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#sharedPropertyType.
-MetaEdGrammarListener.prototype.enterSharedPropertyType = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#sharedPropertyType.
-MetaEdGrammarListener.prototype.exitSharedPropertyType = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#shortenToName.
-MetaEdGrammarListener.prototype.enterShortenToName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#shortenToName.
-MetaEdGrammarListener.prototype.exitShortenToName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#simplePropertyName.
-MetaEdGrammarListener.prototype.enterSimplePropertyName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#simplePropertyName.
-MetaEdGrammarListener.prototype.exitSimplePropertyName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#subdomainName.
-MetaEdGrammarListener.prototype.enterSubdomainName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#subdomainName.
-MetaEdGrammarListener.prototype.exitSubdomainName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#namespaceName.
-MetaEdGrammarListener.prototype.enterNamespaceName = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#namespaceName.
-MetaEdGrammarListener.prototype.exitNamespaceName = function(ctx) {
-};
-
-
-// Enter a parse tree produced by MetaEdGrammar#metaEdId.
-MetaEdGrammarListener.prototype.enterMetaEdId = function(ctx) {
-};
-
-// Exit a parse tree produced by MetaEdGrammar#metaEdId.
-MetaEdGrammarListener.prototype.exitMetaEdId = function(ctx) {
-};
-
-
-
-exports.MetaEdGrammarListener = MetaEdGrammarListener;
