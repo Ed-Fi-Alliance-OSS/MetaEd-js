@@ -4,7 +4,7 @@ import { getAllEntitiesOfType, getEntityFromNamespaceChain } from 'metaed-core';
 const enhancerName = 'AssociationSubclassBaseClassEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  (getAllEntitiesOfType(metaEd, 'associationSubclass') as AssociationSubclass[]).forEach(childEntity => {
+  (getAllEntitiesOfType(metaEd, 'associationSubclass') as AssociationSubclass[]).forEach((childEntity) => {
     const referencedEntity: TopLevelEntity | null = getEntityFromNamespaceChain(
       childEntity.baseEntityName,
       childEntity.baseEntityNamespaceName,

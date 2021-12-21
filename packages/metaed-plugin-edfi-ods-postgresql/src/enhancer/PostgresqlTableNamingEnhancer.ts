@@ -28,12 +28,9 @@ export function postgresqlPrimaryKeyName(collapsedName: string, truncatedTableNa
 
 function tableNameHash(nameGroup: TableNameGroup): string {
   const untruncatedName = flattenNameComponentsFromGroup(nameGroup)
-    .map(nameComponent => nameComponent.name)
+    .map((nameComponent) => nameComponent.name)
     .join('');
-  return hash
-    .sha256()
-    .update(untruncatedName)
-    .digest('hex');
+  return hash.sha256().update(untruncatedName).digest('hex');
 }
 
 export function constructNameFrom(nameGroup: TableNameGroup): TableNaming {

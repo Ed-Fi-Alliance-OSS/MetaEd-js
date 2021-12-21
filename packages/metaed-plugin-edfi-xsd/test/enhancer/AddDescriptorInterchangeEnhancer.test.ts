@@ -35,10 +35,9 @@ describe('when running with one descriptor', (): void => {
   });
 
   it('should create only the one descriptor interchange element', (): void => {
-    const entity: MergedInterchange = (edfiXsdRepositoryForNamespace(
-      metaEd,
-      namespace,
-    ) as EdFiXsdEntityRepository).mergedInterchange.get(descriptorInterchangeName) as MergedInterchange;
+    const entity: MergedInterchange = (
+      edfiXsdRepositoryForNamespace(metaEd, namespace) as EdFiXsdEntityRepository
+    ).mergedInterchange.get(descriptorInterchangeName) as MergedInterchange;
     expect(entity.elements.length).toBe(1);
     expect(entity.elements[0].metaEdName).toBe(descriptorName);
   });
@@ -113,21 +112,17 @@ describe('when running with one extension descriptor', (): void => {
   });
 
   it('should create one core descriptor interchange element', (): void => {
-    const entity: MergedInterchange = (edfiXsdRepositoryForNamespace(
-      metaEd,
-      namespace,
-    ) as EdFiXsdEntityRepository).mergedInterchange.get(descriptorInterchangeName) as MergedInterchange;
+    const entity: MergedInterchange = (
+      edfiXsdRepositoryForNamespace(metaEd, namespace) as EdFiXsdEntityRepository
+    ).mergedInterchange.get(descriptorInterchangeName) as MergedInterchange;
     expect(entity.elements.length).toBe(1);
     expect(entity.elements[0].metaEdName).toBe(descriptorName);
   });
 
   it('should create one extension descriptor interchange element', (): void => {
-    const entity: MergedInterchange = (edfiXsdRepositoryForNamespace(
-      metaEd,
-      extensionNamespace,
-    ) as EdFiXsdEntityRepository).mergedInterchange.get(
-      `${projectExtension}-${descriptorInterchangeName}`,
-    ) as MergedInterchange;
+    const entity: MergedInterchange = (
+      edfiXsdRepositoryForNamespace(metaEd, extensionNamespace) as EdFiXsdEntityRepository
+    ).mergedInterchange.get(`${projectExtension}-${descriptorInterchangeName}`) as MergedInterchange;
     expect(entity.namespace.isExtension).toBe(true);
     expect(entity.elements.length).toBe(2);
     expect(entity.elements[0].metaEdName).toBe(descriptorName);

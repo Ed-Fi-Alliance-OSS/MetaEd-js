@@ -49,7 +49,7 @@ describe('when enhancing shared integer property with inherited documentation', 
   });
 
   it('should have correct referenced entity', (): void => {
-    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(p => p.metaEdName === referencedEntityName));
+    const property = R.head(metaEd.propertyIndex.sharedInteger.filter((p) => p.metaEdName === referencedEntityName));
     expect(property.documentation).toBe(referencedEntityDocumentation);
   });
 });
@@ -91,7 +91,7 @@ describe('when enhancing domain entity property with inherited documentation', (
   });
 
   it('should have correct referenced entity', (): void => {
-    const property = R.head(metaEd.propertyIndex.domainEntity.filter(p => p.metaEdName === referencedEntityName));
+    const property = R.head(metaEd.propertyIndex.domainEntity.filter((p) => p.metaEdName === referencedEntityName));
     expect(property.documentation).toBe(referencedEntityDocumentation);
   });
 });

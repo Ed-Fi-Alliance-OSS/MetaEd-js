@@ -48,7 +48,7 @@ function normalizePath(filepath) {
 }
 
 function buildStackTraceJSON(error) {
-  return parseStackTrace(error).map(callSite =>
+  return parseStackTrace(error).map((callSite) =>
     // eslint-disable-line arrow-body-style
     ({
       file: normalizePath(callSite.getFileName()),
@@ -146,7 +146,7 @@ function addAtomMetadata(error) {
 
 function addPreviousErrorsMetadata(error) {
   if (!reportPreviousErrors) return;
-  error.metadata.previousErrors = reportedErrors.map(reportedError => reportedError.message);
+  error.metadata.previousErrors = reportedErrors.map((reportedError) => reportedError.message);
 }
 
 function addMetaEdIdeMetadata(error) {

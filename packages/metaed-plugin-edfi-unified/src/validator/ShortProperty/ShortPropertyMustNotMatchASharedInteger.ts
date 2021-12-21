@@ -4,7 +4,7 @@ import { findFirstEntity } from 'metaed-core';
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
-  metaEd.propertyIndex.short.forEach(property => {
+  metaEd.propertyIndex.short.forEach((property) => {
     const referencedEntity: ModelBase | null = findFirstEntity(property.metaEdName, [property.namespace], 'sharedInteger');
 
     if (referencedEntity != null) {

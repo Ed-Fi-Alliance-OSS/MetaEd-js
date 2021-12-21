@@ -14,7 +14,7 @@ const ffs: any = jest.genMockFromModule('final-fs');
 
 const mockFiles: any[] = [];
 
-ffs.addMockFile = mockFile => {
+ffs.addMockFile = (mockFile) => {
   mockFiles.push(mockFile);
 };
 
@@ -22,10 +22,10 @@ ffs.clearMockFiles = () => {
   mockFiles.length = 0;
 };
 
-ffs.readdirRecursiveSync = () => mockFiles.sort(sortFiles).map(file => file.path);
+ffs.readdirRecursiveSync = () => mockFiles.sort(sortFiles).map((file) => file.path);
 
-ffs.readFileSync = fileToReadPath => {
-  const returnFile: any = mockFiles.find(f => f.path === fileToReadPath);
+ffs.readFileSync = (fileToReadPath) => {
+  const returnFile: any = mockFiles.find((f) => f.path === fileToReadPath);
   if (returnFile) return returnFile.content;
   return undefined;
 };

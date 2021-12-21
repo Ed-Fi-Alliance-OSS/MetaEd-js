@@ -10,11 +10,11 @@ import { PluginConfiguration } from './PluginConfiguration';
 import { PluginEnvironment } from './PluginEnvironment';
 
 function extensionNamespaces(namespaceRepository: Map<string, Namespace>): Namespace[] {
-  return [...namespaceRepository.values()].filter(n => n.isExtension);
+  return [...namespaceRepository.values()].filter((n) => n.isExtension);
 }
 
 function coreNamespaces(namespaceRepository: Map<string, Namespace>): Namespace[] {
-  return [...namespaceRepository.values()].filter(n => !n.isExtension);
+  return [...namespaceRepository.values()].filter((n) => !n.isExtension);
 }
 
 function findMatchingNamespaces(

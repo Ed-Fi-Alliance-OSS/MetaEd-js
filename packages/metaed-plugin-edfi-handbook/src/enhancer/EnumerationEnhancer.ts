@@ -11,11 +11,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const handbookRepository: EdfiHandbookRepository | null = edfiHandbookRepositoryForNamespace(metaEd, namespace);
     if (handbookRepository == null) return;
 
-    (getEntitiesOfTypeForNamespaces([namespace], 'enumeration') as Enumeration[]).forEach(entity => {
+    (getEntitiesOfTypeForNamespaces([namespace], 'enumeration') as Enumeration[]).forEach((entity) => {
       handbookRepository.handbookEntries.push(createDefaultHandbookEntry(entity, 'Enumeration', 'Enumeration', metaEd));
     });
 
-    (getEntitiesOfTypeForNamespaces([namespace], 'mapTypeEnumeration') as Enumeration[]).forEach(entity => {
+    (getEntitiesOfTypeForNamespaces([namespace], 'mapTypeEnumeration') as Enumeration[]).forEach((entity) => {
       handbookRepository.handbookEntries.push(createDefaultHandbookEntry(entity, 'Enumeration', 'Enumeration', metaEd));
     });
   });

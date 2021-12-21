@@ -56,7 +56,7 @@ describe('when running enhancers and validators against DS 3.1 and a simple exte
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiUnifiedAdvanced',
+      (manifest) => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiUnifiedAdvanced',
     );
     loadFiles(state);
     loadFileIndex(state);

@@ -20,7 +20,7 @@ function propertiesNeedingChecking(properties: PropertyIndex): EntityProperty[] 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
-  propertiesNeedingChecking(metaEd.propertyIndex).forEach(property => {
+  propertiesNeedingChecking(metaEd.propertyIndex).forEach((property) => {
     if (property.referencedNamespaceName && !metaEd.namespace.has(property.referencedNamespaceName)) {
       failures.push({
         validatorName: 'PropertiesMustReferToValidNamespace',

@@ -23,18 +23,18 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   handbookEntries.forEach((handbookEntry: HandbookEntry) => {
     handbookEntry.modelReferencesUsedByProperties = handbookEntries
       .filter(
-        entry =>
+        (entry) =>
           entry.modelReferencesContainsProperties != null &&
           entry.modelReferencesContainsProperties.filter(
-            containsProperty => handbookEntry.uniqueIdentifier === containsProperty.referenceUniqueIdentifier,
+            (containsProperty) => handbookEntry.uniqueIdentifier === containsProperty.referenceUniqueIdentifier,
           ).length,
       )
-      .map(entry => ({
+      .map((entry) => ({
         metaEdId: entry.metaEdId,
         referenceUniqueIdentifier: entry.uniqueIdentifier,
         name: entry.name,
         cardinality: entry.modelReferencesContainsProperties.filter(
-          containsProperty => handbookEntry.uniqueIdentifier === containsProperty.referenceUniqueIdentifier,
+          (containsProperty) => handbookEntry.uniqueIdentifier === containsProperty.referenceUniqueIdentifier,
         )[0].cardinality,
       }));
   });

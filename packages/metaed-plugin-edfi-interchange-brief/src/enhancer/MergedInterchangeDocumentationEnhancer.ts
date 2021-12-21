@@ -10,11 +10,10 @@ export function enhance(metaEd: MetaEdEnvironment) {
   metaEd.namespace.forEach((namespace: Namespace) => {
     const xsdRepository: EdFiXsdEntityRepository | null = edfiXsdRepositoryForNamespace(metaEd, namespace);
     if (xsdRepository == null) return;
-    xsdRepository.mergedInterchange.forEach(mergedInterchange => {
-      (mergedInterchange.data
-        .edfiInterchangeBrief as MergedInterchangeEdfiInterchangeBrief).interchangeBriefMarkdownEscapedDocumentation = escapeForMarkdownNewLine(
-        mergedInterchange.documentation,
-      );
+    xsdRepository.mergedInterchange.forEach((mergedInterchange) => {
+      (
+        mergedInterchange.data.edfiInterchangeBrief as MergedInterchangeEdfiInterchangeBrief
+      ).interchangeBriefMarkdownEscapedDocumentation = escapeForMarkdownNewLine(mergedInterchange.documentation);
     });
   });
   return {

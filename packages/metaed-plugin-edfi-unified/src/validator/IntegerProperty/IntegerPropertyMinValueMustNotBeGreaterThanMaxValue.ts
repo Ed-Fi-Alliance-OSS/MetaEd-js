@@ -3,7 +3,7 @@ import { asIntegerProperty } from 'metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  metaEd.propertyIndex.integer.forEach(integer => {
+  metaEd.propertyIndex.integer.forEach((integer) => {
     const integerProperty: IntegerProperty = asIntegerProperty(integer);
     const minValue: number = Number.parseInt(integerProperty.minValue || '0', 10);
     const maxValue: number = Number.parseInt(integerProperty.maxValue || '0', 10);

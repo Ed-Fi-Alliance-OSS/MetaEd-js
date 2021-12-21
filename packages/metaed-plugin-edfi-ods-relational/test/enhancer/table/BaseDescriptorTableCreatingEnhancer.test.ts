@@ -22,7 +22,7 @@ describe('when BaseDescriptorTableEnhancer enhances', (): void => {
   it('should have eight descriptor columns', (): void => {
     const descriptorTable: Table = tableEntities(metaEd, namespace).get('Descriptor') as Table;
     expect(descriptorTable.columns).toHaveLength(8);
-    expect(descriptorTable.columns.map(x => x.columnId)).toEqual([
+    expect(descriptorTable.columns.map((x) => x.columnId)).toEqual([
       'DescriptorId',
       'Namespace',
       'CodeValue',
@@ -32,7 +32,7 @@ describe('when BaseDescriptorTableEnhancer enhances', (): void => {
       'EffectiveBeginDate',
       'EffectiveEndDate',
     ]);
-    expect(descriptorTable.columns.map(x => x.type)).toEqual([
+    expect(descriptorTable.columns.map((x) => x.type)).toEqual([
       'integer',
       'string',
       'string',

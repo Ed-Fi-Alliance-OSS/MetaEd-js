@@ -47,7 +47,7 @@ export function createSchemaComplexTypeItems(
   maxOccursIsUnboundedOverride?: boolean,
 ): ComplexTypeItem[] {
   const complexTypeItems: ComplexTypeItem[] = [];
-  complexTypeItemProperties.forEach(complexTypeItemProperty => {
+  complexTypeItemProperties.forEach((complexTypeItemProperty) => {
     if (complexTypeItemProperty.type === 'choice') {
       const choiceElement: ElementGroup = {
         ...newElementGroup(),

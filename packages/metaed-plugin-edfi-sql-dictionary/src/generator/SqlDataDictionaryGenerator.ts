@@ -24,7 +24,7 @@ function byTableAndColumnNameAscending(a: Record<string, any>, b: Record<string,
 }
 
 function isForeignKey(table: Table, column: Column) {
-  return table.foreignKeys.some(fk => fk.columnPairs.some(cnp => cnp.parentTableColumnId === column.columnId));
+  return table.foreignKeys.some((fk) => fk.columnPairs.some((cnp) => cnp.parentTableColumnId === column.columnId));
 }
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {

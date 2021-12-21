@@ -4,7 +4,7 @@ import { getEntityFromNamespaceChain } from 'metaed-core';
 const enhancerName = 'SchoolYearEnumerationReferenceEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  metaEd.propertyIndex.schoolYearEnumeration.forEach(property => {
+  metaEd.propertyIndex.schoolYearEnumeration.forEach((property) => {
     const referencedEntity: TopLevelEntity | null = getEntityFromNamespaceChain(
       property.metaEdName,
       property.referencedNamespaceName,

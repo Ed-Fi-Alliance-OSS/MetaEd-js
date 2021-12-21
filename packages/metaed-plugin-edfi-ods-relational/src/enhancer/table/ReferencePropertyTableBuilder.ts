@@ -21,21 +21,23 @@ import { Table, newTableNameComponent } from '../../model/database/Table';
 import { TableBuilder } from './TableBuilder';
 import { TableStrategy } from '../../model/database/TableStrategy';
 
-const referenceColumnBuilder = (
-  referenceProperty: ReferentialProperty,
-  parentTableStrategy: TableStrategy,
-  buildStrategy: BuildStrategy,
-  factory: ColumnCreatorFactory,
-) => (columnStrategy: ColumnTransform): void => {
-  const primaryKeys: Column[] = collectPrimaryKeys(referenceProperty.referencedEntity, buildStrategy, factory);
+const referenceColumnBuilder =
+  (
+    referenceProperty: ReferentialProperty,
+    parentTableStrategy: TableStrategy,
+    buildStrategy: BuildStrategy,
+    factory: ColumnCreatorFactory,
+  ) =>
+  (columnStrategy: ColumnTransform): void => {
+    const primaryKeys: Column[] = collectPrimaryKeys(referenceProperty.referencedEntity, buildStrategy, factory);
 
-  primaryKeys.forEach((pk: Column) => {
-    pk.referenceContext = referenceProperty.data.edfiOdsRelational.odsName + pk.referenceContext;
-    addMergedReferenceContext(pk, pk.referenceContext);
-    addSourceEntityProperty(pk, referenceProperty);
-  });
-  addColumns(parentTableStrategy.table, primaryKeys, columnStrategy);
-};
+    primaryKeys.forEach((pk: Column) => {
+      pk.referenceContext = referenceProperty.data.edfiOdsRelational.odsName + pk.referenceContext;
+      addMergedReferenceContext(pk, pk.referenceContext);
+      addSourceEntityProperty(pk, referenceProperty);
+    });
+    addColumns(parentTableStrategy.table, primaryKeys, columnStrategy);
+  };
 
 export function referencePropertyTableBuilder(factory: ColumnCreatorFactory): TableBuilder {
   return {
@@ -75,7 +77,7 @@ export function referencePropertyTableBuilder(factory: ColumnCreatorFactory): Ta
         parentTableStrategy.tableId + strategy.parentContext() + propertyRoleName + referenceProperty.metaEdName;
       const nameComponents: TableNameComponent[] = [];
 
-      strategy.parentContextProperties().forEach(parentContextProperty => {
+      strategy.parentContextProperties().forEach((parentContextProperty) => {
         if (parentContextProperty.data.edfiOdsRelational.odsContextPrefix !== '') {
           nameComponents.push({
             ...newTableNameComponent(),

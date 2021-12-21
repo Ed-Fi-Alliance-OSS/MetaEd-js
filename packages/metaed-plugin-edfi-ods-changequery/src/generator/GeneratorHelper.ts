@@ -57,7 +57,7 @@ export function performColumnChangeVersionForTableGeneration(
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
 
-    metaEd.namespace.forEach(namespace => {
+    metaEd.namespace.forEach((namespace) => {
       const tables: AddColumnChangeVersionForTable[] = addColumnChangeVersionForTableEntities(plugin, namespace);
       if (tables.length > 0) {
         tables.sort(
@@ -102,7 +102,7 @@ export function performCreateTrackedDeleteSchemasGeneration(
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 
   if (changeQueryIndicated(metaEd)) {
-    metaEd.namespace.forEach(namespace => {
+    metaEd.namespace.forEach((namespace) => {
       const generatedResult: string = template().deleteTrackingSchema({
         schema: `tracked_deletes_${namespace.namespaceName.toLowerCase()}`,
         useLicenseHeader,
@@ -134,7 +134,7 @@ export function performCreateTrackedDeleteTablesGeneration(
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
 
-    metaEd.namespace.forEach(namespace => {
+    metaEd.namespace.forEach((namespace) => {
       const tables: DeleteTrackingTable[] = deleteTrackingTableEntities(plugin, namespace);
       if (tables.length > 0) {
         tables.sort(
@@ -177,7 +177,7 @@ export function performAddIndexChangeVersionForTableGeneration(
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
 
-    metaEd.namespace.forEach(namespace => {
+    metaEd.namespace.forEach((namespace) => {
       const tables: AddColumnChangeVersionForTable[] = addColumnChangeVersionForTableEntities(plugin, namespace);
 
       if (tables.length > 0) {
@@ -217,7 +217,7 @@ export function performCreateChangesSchemaGeneration(
   const resultString = prefixWithLicenseHeaderForVersion5PlusInAllianceMode(metaEd, literalOutputContent);
 
   if (changeQueryIndicated(metaEd)) {
-    metaEd.namespace.forEach(namespace => {
+    metaEd.namespace.forEach((namespace) => {
       results.push({
         name: 'ODS Change Event: CreateChangesSchema',
         namespace: namespace.namespaceName,
@@ -241,7 +241,7 @@ export function performCreateChangeVersionSequenceGeneration(
   const resultString = prefixWithLicenseHeaderForVersion5PlusInAllianceMode(metaEd, literalOutputContent);
 
   if (changeQueryIndicated(metaEd)) {
-    metaEd.namespace.forEach(namespace => {
+    metaEd.namespace.forEach((namespace) => {
       results.push({
         name: 'ODS Change Event: CreateChangeVersionSequence',
         namespace: namespace.namespaceName,
@@ -268,7 +268,7 @@ export function performCreateDeletedForTrackingTriggerGeneration(
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
 
-    metaEd.namespace.forEach(namespace => {
+    metaEd.namespace.forEach((namespace) => {
       const triggers: DeleteTrackingTrigger[] = deleteTrackingTriggerEntities(plugin, namespace);
       if (triggers.length > 0) {
         triggers.sort(
@@ -311,7 +311,7 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
 
-    metaEd.namespace.forEach(namespace => {
+    metaEd.namespace.forEach((namespace) => {
       const triggers: CreateTriggerUpdateChangeVersion[] = createTriggerUpdateChangeVersionEntities(plugin, namespace);
       if (triggers.length > 0) {
         triggers.sort(

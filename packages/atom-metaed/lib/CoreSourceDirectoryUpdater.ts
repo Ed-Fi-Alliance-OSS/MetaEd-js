@@ -14,7 +14,7 @@ export function updateCoreMetaEdSourceDirectory() {
   }
   const projectPaths = atom.project
     .getPaths()
-    .filter(projectPath => path.normalize(projectPath) !== path.normalize(coreMetaEdSourceDirectory));
+    .filter((projectPath) => path.normalize(projectPath) !== path.normalize(coreMetaEdSourceDirectory));
   projectPaths.unshift(newCoreMetaEdSourceDirectory);
   atom.project.setPaths(projectPaths);
   coreMetaEdSourceDirectory = newCoreMetaEdSourceDirectory;

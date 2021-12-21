@@ -7,7 +7,7 @@ export function schoolYearEnumerationPropertyColumnCreator(): ColumnCreator {
   return {
     createColumns: (property: EntityProperty, strategy: BuildStrategy): Column[] => {
       const nameComponents: ColumnNameComponent[] = [];
-      strategy.parentContextProperties().forEach(parentContextProperty => {
+      strategy.parentContextProperties().forEach((parentContextProperty) => {
         if (parentContextProperty.data.edfiOdsRelational.odsContextPrefix !== '') {
           nameComponents.push({
             ...newColumnNameComponent(),

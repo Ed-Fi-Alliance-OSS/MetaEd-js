@@ -36,7 +36,7 @@ function whereClause(index: DatabaseIndex): string {
 export async function indexExists(databaseIndex: DatabaseIndex, databaseName: string = testDatabaseName): Promise<boolean> {
   const sql = existsSelect + fromBody + whereClause(databaseIndex);
   let result;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'indexExists', sql);
   });
   return firstKeyValueOf(result) === databaseIndex.columns.length;
@@ -48,7 +48,7 @@ export async function indexIsUnique(
 ): Promise<boolean> {
   const sql = isUniqueSelect + fromBody + whereClause(databaseIndex);
   let result: boolean | null = null;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'indexIsUnique', sql);
   });
   return firstKeyValueOf(result);

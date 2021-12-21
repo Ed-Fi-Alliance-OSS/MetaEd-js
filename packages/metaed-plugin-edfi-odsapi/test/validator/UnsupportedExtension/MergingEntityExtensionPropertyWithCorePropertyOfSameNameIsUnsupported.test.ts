@@ -61,7 +61,7 @@ describe('when merging property of an extension entity with a core property of t
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     initializeNamespaceDependencies(metaEd, 'EdFi', 'Extension');
-    initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
+    initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     metaEd.plugin.set(
       'edfiOdsApi',
       Object.assign(newPluginEnvironment(), {
@@ -133,7 +133,7 @@ describe('when merging property of an extension entity with a core property of t
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     initializeNamespaceDependencies(metaEd, 'EdFi', 'Extension');
-    initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
+    initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     metaEd.plugin.set(
       'edfiOdsApi',
       Object.assign(newPluginEnvironment(), {
@@ -197,7 +197,7 @@ describe('when merging property of an extension entity with a core property of t
       .sendToListener(new AssociationExtensionBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
     initializeNamespaceDependencies(metaEd, 'EdFi', 'Extension');
-    initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
+    initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     metaEd.plugin.set(
       'edfiOdsApi',
       Object.assign(newPluginEnvironment(), {

@@ -23,11 +23,11 @@ export function joinTableNamer(
     ...buildStrategyForParentContext
       .parentContextProperties()
       .filter(
-        parentContextProperty =>
+        (parentContextProperty) =>
           parentContextProperty.data.edfiOdsRelational.odsContextPrefix != null &&
           parentContextProperty.data.edfiOdsRelational.odsContextPrefix !== '',
       )
-      .map(parentContextProperty => ({
+      .map((parentContextProperty) => ({
         ...newTableNameComponent(),
         name: parentContextProperty.data.edfiOdsRelational.odsContextPrefix,
         isParentPropertyContext: true,

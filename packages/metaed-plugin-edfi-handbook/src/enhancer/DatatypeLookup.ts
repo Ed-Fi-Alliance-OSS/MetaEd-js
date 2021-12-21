@@ -77,9 +77,9 @@ const sqlDatatypes: { [type in PropertyType]: any } = {
   sharedDecimal: (precision, scale) => `DECIMAL(${precision}, ${scale})`,
   sharedInteger: 'INT',
   sharedShort: 'SMALLINT',
-  sharedString: length => `VARCHAR(${length})`,
+  sharedString: (length) => `VARCHAR(${length})`,
   short: 'SMALLINT',
-  string: length => `VARCHAR(${length})`,
+  string: (length) => `VARCHAR(${length})`,
   time: 'TIME',
   year: 'SMALLINT',
 };

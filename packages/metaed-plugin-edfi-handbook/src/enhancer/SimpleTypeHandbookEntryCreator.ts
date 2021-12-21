@@ -16,8 +16,8 @@ function getCardinalityStringFor(property: EntityProperty, isHandbookEntityRefer
 
 function referringProperties(metaEd: MetaEdEnvironment, entity: ModelBase): string[] {
   return getAllReferentialProperties(metaEd)
-    .filter(x => x.referencedEntity.metaEdName === entity.metaEdName)
-    .map(x => `${x.parentEntityName}.${x.metaEdName} (as ${getCardinalityStringFor(x)})`);
+    .filter((x) => x.referencedEntity.metaEdName === entity.metaEdName)
+    .map((x) => `${x.parentEntityName}.${x.metaEdName} (as ${getCardinalityStringFor(x)})`);
 }
 
 export function createDefaultHandbookEntry(

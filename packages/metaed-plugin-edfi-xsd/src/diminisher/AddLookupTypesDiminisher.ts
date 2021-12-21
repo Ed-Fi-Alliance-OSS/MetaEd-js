@@ -58,8 +58,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (coreNamespace == null) return { enhancerName, success: false };
 
   getAllTopLevelEntitiesForNamespaces([coreNamespace])
-    .filter(x => lookupTypeNames.includes(x.metaEdName))
-    .forEach(entity => {
+    .filter((x) => lookupTypeNames.includes(x.metaEdName))
+    .forEach((entity) => {
       const lookupType: ComplexType = createLookupType(entity);
       entity.data.edfiXsd.xsdLookupType = lookupType;
 

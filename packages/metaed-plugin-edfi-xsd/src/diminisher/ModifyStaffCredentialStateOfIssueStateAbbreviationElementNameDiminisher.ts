@@ -24,7 +24,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const complexType: ComplexType | null = common != null ? R.head(common.data.edfiXsd.xsdComplexTypes) : null;
   const element: Element | undefined | null =
     complexType != null
-      ? complexType.items.map(x => (x as unknown) as Element).find(x => x.name === elementName && x.type === elementType)
+      ? complexType.items.map((x) => x as unknown as Element).find((x) => x.name === elementName && x.type === elementType)
       : null;
 
   if (element != null) element.name = newElementName;

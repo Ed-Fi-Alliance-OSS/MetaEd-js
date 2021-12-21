@@ -15,7 +15,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const generatorName = 'edfiXsd.XsdGenerator';
   const generatedOutput: GeneratedOutput[] = [];
 
-  metaEd.namespace.forEach(namespace => {
+  metaEd.namespace.forEach((namespace) => {
     // METAED-997
     if (hasDuplicateEntityNameInNamespace(metaEd, namespace)) return;
 

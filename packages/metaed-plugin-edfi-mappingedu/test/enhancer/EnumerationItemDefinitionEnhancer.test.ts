@@ -49,7 +49,11 @@ describe('when enhancing enumeration element', (): void => {
     expect(pluginNamespace.enumerationItemDefinitions).toHaveLength(3);
   });
 
-  it.each([[enumerationName, value1, 0], [enumerationName, value2, 1], [enumerationName, value3, 2]])(
+  it.each([
+    [enumerationName, value1, 0],
+    [enumerationName, value2, 1],
+    [enumerationName, value3, 2],
+  ])(
     `should create core enumeration item definition with name: '%s' and value: '%s'`,
     (enumeration, value: string, index: number) => {
       const enumerationItemDefinition: EnumerationItemDefinition = pluginNamespace.enumerationItemDefinitions[index];

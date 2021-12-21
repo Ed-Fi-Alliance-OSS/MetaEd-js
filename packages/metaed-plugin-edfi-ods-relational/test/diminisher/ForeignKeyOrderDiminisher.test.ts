@@ -92,16 +92,16 @@ describe('when ForeignKeyOrderDiminisher diminishes matching table', (): void =>
   it('should have correct foreign key order', (): void => {
     const { foreignKeys } = tableEntities(metaEd, namespace).get(parentTableName) as Table;
     expect(foreignKeys).toHaveLength(1);
-    expect(foreignKeys[0].columnPairs.map(cp => cp.parentTableColumnId)).toEqual(primaryKeyOrder);
+    expect(foreignKeys[0].columnPairs.map((cp) => cp.parentTableColumnId)).toEqual(primaryKeyOrder);
   });
 
   it('should have order parity with foreign table primary keys', (): void => {
-    const primaryKeyNamesOnForeignTable: string[] = (tableEntities(metaEd, namespace).get(
-      gradebookEntryLearningObjective,
-    ) as Table).primaryKeys.map((pk: Column) => pk.columnId);
+    const primaryKeyNamesOnForeignTable: string[] = (
+      tableEntities(metaEd, namespace).get(gradebookEntryLearningObjective) as Table
+    ).primaryKeys.map((pk: Column) => pk.columnId);
 
     const { foreignKeys } = tableEntities(metaEd, namespace).get(parentTableName) as Table;
-    const foreignKeyNames = foreignKeys[0].columnPairs.map(cp => cp.foreignTableColumnId);
+    const foreignKeyNames = foreignKeys[0].columnPairs.map((cp) => cp.foreignTableColumnId);
     expect(primaryKeyNamesOnForeignTable).toEqual(foreignKeyNames);
   });
 });
@@ -163,7 +163,7 @@ describe('when ForeignKeyOrderDiminisher diminishes non matching table', (): voi
   it('should have correct foreign key order', (): void => {
     const { foreignKeys } = tableEntities(metaEd, namespace).get(parentTableName) as Table;
     expect(foreignKeys).toHaveLength(1);
-    expect(foreignKeys[0].columnPairs.map(cp => cp.parentTableColumnId)).toEqual(primaryKeyNames);
+    expect(foreignKeys[0].columnPairs.map((cp) => cp.parentTableColumnId)).toEqual(primaryKeyNames);
   });
 
   it('should have order parity with foreign table primary keys', (): void => {
@@ -172,7 +172,7 @@ describe('when ForeignKeyOrderDiminisher diminishes non matching table', (): voi
     );
 
     const { foreignKeys } = tableEntities(metaEd, namespace).get(parentTableName) as Table;
-    const foreignKeyNames = foreignKeys[0].columnPairs.map(cp => cp.foreignTableColumnId);
+    const foreignKeyNames = foreignKeys[0].columnPairs.map((cp) => cp.foreignTableColumnId);
     expect(primaryKeyNamesOnForeignTable).toEqual(foreignKeyNames);
   });
 });

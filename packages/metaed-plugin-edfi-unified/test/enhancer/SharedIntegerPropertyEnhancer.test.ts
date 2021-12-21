@@ -33,7 +33,7 @@ describe('when shared integer property refers to a shared integer', (): void => 
   });
 
   it('should have the shared integer restrictions', (): void => {
-    const property = R.head(metaEd.propertyIndex.sharedInteger.filter(p => p.metaEdName === metaEdName));
+    const property = R.head(metaEd.propertyIndex.sharedInteger.filter((p) => p.metaEdName === metaEdName));
     expect(property.maxValue).toBe(maxValue);
     expect(property.minValue).toBe(minValue);
   });
@@ -63,7 +63,7 @@ describe('when shared short property refers to a shared short', (): void => {
   });
 
   it('should have the shared integer restrictions', (): void => {
-    const property = R.head(metaEd.propertyIndex.sharedShort.filter(p => p.metaEdName === metaEdName));
+    const property = R.head(metaEd.propertyIndex.sharedShort.filter((p) => p.metaEdName === metaEdName));
     expect(property.maxValue).toBe(maxValue);
     expect(property.minValue).toBe(minValue);
   });

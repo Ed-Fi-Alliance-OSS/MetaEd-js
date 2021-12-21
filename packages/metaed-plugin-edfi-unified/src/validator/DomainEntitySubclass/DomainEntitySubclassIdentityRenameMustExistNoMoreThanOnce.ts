@@ -4,8 +4,8 @@ import { failSubclassIdentityRenamingMoreThanOnce } from '../ValidatorShared/Fai
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
-  metaEd.namespace.forEach(namespace => {
-    namespace.entity.domainEntitySubclass.forEach(domainEntitySubclass => {
+  metaEd.namespace.forEach((namespace) => {
+    namespace.entity.domainEntitySubclass.forEach((domainEntitySubclass) => {
       failSubclassIdentityRenamingMoreThanOnce(
         'DomainEntitySubclassIdenitityRenameMustExistNoMoreThanOnce',
         domainEntitySubclass,

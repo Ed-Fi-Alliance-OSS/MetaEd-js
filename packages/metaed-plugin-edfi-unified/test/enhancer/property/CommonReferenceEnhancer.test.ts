@@ -46,7 +46,7 @@ describe('when enhancing common property', (): void => {
   });
 
   it('should have no validation failures()', (): void => {
-    const property = R.head(metaEd.propertyIndex.common.filter(p => p.metaEdName === referencedEntityName));
+    const property = R.head(metaEd.propertyIndex.common.filter((p) => p.metaEdName === referencedEntityName));
     expect(property).toBeDefined();
     expect(property.referencedEntity.metaEdName).toBe(referencedEntityName);
     expect(property.referencedEntity.inReferences).toContain(property);
@@ -81,7 +81,7 @@ describe('when enhancing common property referring to common subclass', (): void
   });
 
   it('should have no validation failures()', (): void => {
-    const property = metaEd.propertyIndex.common.filter(p => p.metaEdName === referencedEntityName)[0];
+    const property = metaEd.propertyIndex.common.filter((p) => p.metaEdName === referencedEntityName)[0];
     expect(property).toBeDefined();
     expect(property.referencedEntity.metaEdName).toBe(referencedEntityName);
     expect(property.referencedEntity.inReferences).toContain(property);
@@ -123,7 +123,7 @@ describe('when enhancing common property referring to deprecated common', (): vo
   });
 
   it('should have deprecation flag set', (): void => {
-    const property = R.head(metaEd.propertyIndex.common.filter(p => p.metaEdName === referencedEntityName));
+    const property = R.head(metaEd.propertyIndex.common.filter((p) => p.metaEdName === referencedEntityName));
     expect(property).toBeDefined();
     expect(property.referencedEntityDeprecated).toBe(true);
   });
@@ -164,7 +164,7 @@ describe('when enhancing common property across namespaces', (): void => {
   });
 
   it('should have no validation failures()', (): void => {
-    const property = R.head(metaEd.propertyIndex.common.filter(p => p.metaEdName === referencedEntityName));
+    const property = R.head(metaEd.propertyIndex.common.filter((p) => p.metaEdName === referencedEntityName));
     expect(property).toBeDefined();
     expect(property.referencedEntity.metaEdName).toBe(referencedEntityName);
     expect(property.referencedEntity.inReferences).toContain(property);

@@ -22,8 +22,8 @@ let mostRecentState: State = newState();
 const limitThirty = R.take(30);
 
 function notifyPipelineFailures(pipelineFailures: PipelineFailure[]) {
-  if (pipelineFailures.find(pipelineFailure => pipelineFailure.message)) {
-    const message: string = pipelineFailures.map(pipelineFailure => pipelineFailure.message).join('<br/><br/>');
+  if (pipelineFailures.find((pipelineFailure) => pipelineFailure.message)) {
+    const message: string = pipelineFailures.map((pipelineFailure) => pipelineFailure.message).join('<br/><br/>');
     atom.notifications.addError(message, {
       dismissable: true,
       icon: 'shield',
@@ -49,7 +49,7 @@ async function lint(_textEditor: TextEditor): Promise<any[] | null> {
 
   const metaEdConfiguration: MetaEdConfiguration = metaEdConfigurationFor(getTargetOdsApiVersionSemver(), allianceMode());
 
-  metaEdProjectMetadata.forEach(pm => {
+  metaEdProjectMetadata.forEach((pm) => {
     metaEdConfiguration.projects.push({
       namespaceName: pm.projectNamespace,
       projectName: pm.projectName,
@@ -90,12 +90,15 @@ async function lint(_textEditor: TextEditor): Promise<any[] | null> {
           excerpt: errorMessage.message,
           location: {
             file: errorMessage.fileMap ? errorMessage.fileMap.fullPath : '',
-            position: [[adjustedLine, characterPosition], [adjustedLine, characterPosition + tokenLength]],
+            position: [
+              [adjustedLine, characterPosition],
+              [adjustedLine, characterPosition + tokenLength],
+            ],
           },
         };
       });
     })
-    .catch(exception => {
+    .catch((exception) => {
       reportException(exception);
       console.error(exception);
       if (atom.inDevMode()) throw exception;

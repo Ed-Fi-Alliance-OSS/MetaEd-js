@@ -34,8 +34,8 @@ describe('when an entity has a role named collection of entities with role named
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     metaEd.dataStandardVersion = '3.0.0';
-    initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
-    initializeOdsPlugin().enhancer.forEach(enhance => enhance(metaEd));
+    initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
+    initializeOdsPlugin().enhancer.forEach((enhance) => enhance(metaEd));
   });
 
   it('should not crash, because ForeignKeyCreatingTableEnhancer correctly matches foreign key columns', (): void => {

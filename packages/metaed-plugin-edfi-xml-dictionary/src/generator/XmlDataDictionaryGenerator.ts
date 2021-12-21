@@ -98,7 +98,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const allComplexTypes: ComplexType[] = [];
   const allSimpleTypes: AnySimpleType[] = [];
 
-  metaEd.namespace.forEach(namespace => {
+  metaEd.namespace.forEach((namespace) => {
     const schemaContainer: SchemaContainer = (namespace.data.edfiXsd as NamespaceEdfiXsd).xsdSchema;
     schemaContainer.sections.forEach((section: SchemaSection) => {
       allComplexTypes.push(...section.complexTypes);
@@ -126,7 +126,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   });
 
   const complexSheet: Worksheet = newWorksheet('Complex Types');
-  allComplexTypes.forEach(complexType => {
+  allComplexTypes.forEach((complexType) => {
     const eRow: Row = newRow();
     setRow(eRow, 'Name', complexType.name);
     setRow(eRow, 'Description', complexType.annotation.documentation);
@@ -136,7 +136,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   });
 
   const simpleSheet: Worksheet = newWorksheet('Simple Types');
-  allSimpleTypes.forEach(simpleType => {
+  allSimpleTypes.forEach((simpleType) => {
     const eRow: Row = newRow();
     setRow(eRow, 'Name', simpleType.name);
     setRow(eRow, 'Restrictions', formatRestrictions(simpleType));

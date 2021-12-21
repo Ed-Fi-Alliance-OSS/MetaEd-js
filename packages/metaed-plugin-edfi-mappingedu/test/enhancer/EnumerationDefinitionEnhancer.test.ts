@@ -125,7 +125,10 @@ describe('when enhancing descriptor and enumeration elements', (): void => {
     expect(pluginNamespace.enumerationDefinitions).toHaveLength(2);
   });
 
-  it.each([[descriptorName, descriptorDocumentation, 0], [enumerationName, enumerationDocumentation, 1]])(
+  it.each([
+    [descriptorName, descriptorDocumentation, 0],
+    [enumerationName, enumerationDocumentation, 1],
+  ])(
     `should create core enumeration definition with name: '%s' and definition: '%s'`,
     (enumeration: string, definition: string, index: number) => {
       const enumerationDefinition: EnumerationDefinition = pluginNamespace.enumerationDefinitions[index];

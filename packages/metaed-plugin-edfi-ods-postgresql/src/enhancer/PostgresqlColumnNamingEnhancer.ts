@@ -14,7 +14,7 @@ import { ColumnEdfiOdsPostgresql } from '../model/Column';
 const enhancerName = 'PostgresqlTableNamingEnhancer';
 
 function simpleColumnNameComponentCollapse(columnNameComponent: ColumnNameComponent[]): string {
-  return columnNameComponent.map(nameComponent => nameComponent.name).reduce(appendOverlapCollapsing, '');
+  return columnNameComponent.map((nameComponent) => nameComponent.name).reduce(appendOverlapCollapsing, '');
 }
 
 export function constructNameFrom(columnNameComponent: ColumnNameComponent[]): string {

@@ -6,8 +6,8 @@ const enhancerName = 'DomainBaseEntityEnhancer';
 type DomainBase = Domain | Subdomain;
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllEntitiesOfType(metaEd, 'domain', 'subdomain').forEach(entity => {
-    (entity as DomainBase).domainItems.forEach(domainItem => {
+  getAllEntitiesOfType(metaEd, 'domain', 'subdomain').forEach((entity) => {
+    (entity as DomainBase).domainItems.forEach((domainItem) => {
       const referencedEntity: TopLevelEntity | null = getEntityFromNamespaceChain(
         domainItem.metaEdName,
         domainItem.referencedNamespaceName,

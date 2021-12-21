@@ -222,7 +222,7 @@ describe('when DescriptorTableEnhancer enhances descriptor with required map typ
 
   it('should have code value column', (): void => {
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
-    const column = R.head(table.columns.filter(x => x.columnId === 'CodeValue'));
+    const column = R.head(table.columns.filter((x) => x.columnId === 'CodeValue'));
     expect(column).toBeDefined();
     expect(column.length).toBe('50');
     expect(column.isPartOfPrimaryKey).toBe(false);
@@ -232,7 +232,7 @@ describe('when DescriptorTableEnhancer enhances descriptor with required map typ
 
   it('should have description column', (): void => {
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
-    const column = R.head(table.columns.filter(x => x.columnId === 'Description'));
+    const column = R.head(table.columns.filter((x) => x.columnId === 'Description'));
     expect(column).toBeDefined();
     expect(column.length).toBe('1024');
     expect(column.isPartOfPrimaryKey).toBe(false);
@@ -242,7 +242,7 @@ describe('when DescriptorTableEnhancer enhances descriptor with required map typ
 
   it('should have short description column', (): void => {
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
-    const column = R.head(table.columns.filter(x => x.columnId === 'ShortDescription'));
+    const column = R.head(table.columns.filter((x) => x.columnId === 'ShortDescription'));
     expect(column).toBeDefined();
     expect(column.length).toBe('450');
     expect(column.isPartOfPrimaryKey).toBe(false);
@@ -379,7 +379,7 @@ describe('when DescriptorTableEnhancer enhances descriptor with optional map typ
 
   it('should have code value column', (): void => {
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
-    const column = R.head(table.columns.filter(x => x.columnId === 'CodeValue'));
+    const column = R.head(table.columns.filter((x) => x.columnId === 'CodeValue'));
     expect(column).toBeDefined();
     expect(column.length).toBe('50');
     expect(column.isPartOfPrimaryKey).toBe(false);
@@ -389,7 +389,7 @@ describe('when DescriptorTableEnhancer enhances descriptor with optional map typ
 
   it('should have description column', (): void => {
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
-    const column = R.head(table.columns.filter(x => x.columnId === 'Description'));
+    const column = R.head(table.columns.filter((x) => x.columnId === 'Description'));
     expect(column).toBeDefined();
     expect(column.length).toBe('1024');
     expect(column.isPartOfPrimaryKey).toBe(false);
@@ -399,7 +399,7 @@ describe('when DescriptorTableEnhancer enhances descriptor with optional map typ
 
   it('should have short description column', (): void => {
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
-    const column = R.head(table.columns.filter(x => x.columnId === 'ShortDescription'));
+    const column = R.head(table.columns.filter((x) => x.columnId === 'ShortDescription'));
     expect(column).toBeDefined();
     expect(column.length).toBe('450');
     expect(column.isPartOfPrimaryKey).toBe(false);
@@ -536,7 +536,7 @@ describe("when DescriptorTableEnhancer enhances descriptor with map type name en
 
   it('should have code value column', (): void => {
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
-    const column = R.head(table.columns.filter(x => x.columnId === 'CodeValue'));
+    const column = R.head(table.columns.filter((x) => x.columnId === 'CodeValue'));
     expect(column).toBeDefined();
     expect(column.length).toBe('50');
     expect(column.isPartOfPrimaryKey).toBe(false);
@@ -546,7 +546,7 @@ describe("when DescriptorTableEnhancer enhances descriptor with map type name en
 
   it('should have description column', (): void => {
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
-    const column = R.head(table.columns.filter(x => x.columnId === 'Description'));
+    const column = R.head(table.columns.filter((x) => x.columnId === 'Description'));
     expect(column).toBeDefined();
     expect(column.length).toBe('1024');
     expect(column.isPartOfPrimaryKey).toBe(false);
@@ -556,7 +556,7 @@ describe("when DescriptorTableEnhancer enhances descriptor with map type name en
 
   it('should have short description column', (): void => {
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
-    const column = R.head(table.columns.filter(x => x.columnId === 'ShortDescription'));
+    const column = R.head(table.columns.filter((x) => x.columnId === 'ShortDescription'));
     expect(column).toBeDefined();
     expect(column.length).toBe('450');
     expect(column.isPartOfPrimaryKey).toBe(false);

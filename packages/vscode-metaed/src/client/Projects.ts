@@ -4,7 +4,7 @@ import { findMetaEdProjectMetadata, MetaEdProjectMetadata } from '../common/Proj
 
 export async function findMetaEdProjectMetadataForClient(): Promise<MetaEdProjectMetadata[]> {
   const projectPaths: string[] = vscode.workspace.workspaceFolders
-    ? vscode.workspace.workspaceFolders.map(wf => wf.uri.fsPath)
+    ? vscode.workspace.workspaceFolders.map((wf) => wf.uri.fsPath)
     : [];
   return findMetaEdProjectMetadata(projectPaths);
 }

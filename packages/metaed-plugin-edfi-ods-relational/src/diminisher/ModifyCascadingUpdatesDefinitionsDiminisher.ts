@@ -11,18 +11,18 @@ import { Table } from '../model/database/Table';
 const enhancerName = 'ModifyCascadingUpdatesDefinitionsDiminisher';
 const targetVersions = '2.x';
 
-const modifyCascadingUpdates = (tablesForCoreNamespace: Map<string, Table>) => (
-  parentTableId: string,
-  foreignTableId: string,
-  withUpdateCascade: boolean = false,
-): void => {
-  const table: Table | undefined = tablesForCoreNamespace.get(parentTableId);
-  if (table == null) return;
+const modifyCascadingUpdates =
+  (tablesForCoreNamespace: Map<string, Table>) =>
+  (parentTableId: string, foreignTableId: string, withUpdateCascade: boolean = false): void => {
+    const table: Table | undefined = tablesForCoreNamespace.get(parentTableId);
+    if (table == null) return;
 
-  const foreignKey: ForeignKey | undefined = table.foreignKeys.find((x: ForeignKey) => x.foreignTableId === foreignTableId);
-  if (foreignKey == null) return;
-  foreignKey.withUpdateCascade = withUpdateCascade;
-};
+    const foreignKey: ForeignKey | undefined = table.foreignKeys.find(
+      (x: ForeignKey) => x.foreignTableId === foreignTableId,
+    );
+    if (foreignKey == null) return;
+    foreignKey.withUpdateCascade = withUpdateCascade;
+  };
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };

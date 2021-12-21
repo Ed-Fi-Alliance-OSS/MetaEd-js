@@ -28,12 +28,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (entity != null && entity.data.edfiXsd.xsdComplexTypes.length === 1) {
     const entityComplexType: ComplexType = R.head(entity.data.edfiXsd.xsdComplexTypes);
     const entityElementGroup: ElementGroup | undefined = entityComplexType.items.find(
-      x => ((x as unknown) as ElementGroup).isChoice === true,
+      (x) => (x as unknown as ElementGroup).isChoice === true,
     ) as ElementGroup | undefined;
 
     if (entityElementGroup != null) {
       const learningResourceElement: Element | undefined = entityElementGroup.items.find(
-        x => ((x as unknown) as Element).name === elementName,
+        (x) => (x as unknown as Element).name === elementName,
       ) as Element | undefined;
       const inlineCommon: ModelBase | null = getEntityFromNamespace(elementName, coreNamespace, elementType);
 
@@ -48,9 +48,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         inlineCommon.data.edfiXsd.xsdComplexTypes = [];
 
         // Build new element group to replace element
-        const elementIndex: number = entityElementGroup.items.indexOf(
-          (learningResourceElement as unknown) as ComplexTypeItem,
-        );
+        const elementIndex: number = entityElementGroup.items.indexOf(learningResourceElement as unknown as ComplexTypeItem);
         entityElementGroup.items[elementIndex] = {
           ...newElementGroup(),
           items: [...propertyComplexTypeItems],

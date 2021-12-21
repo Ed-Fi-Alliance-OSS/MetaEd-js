@@ -21,7 +21,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const template = handlebars.create().compile(templateFile);
 
   if (recordOwnershipIndicated(metaEd)) {
-    metaEd.namespace.forEach(namespace => {
+    metaEd.namespace.forEach((namespace) => {
       const tables: Table[] = Array.from(tableEntities(metaEd, namespace).values()).filter(hasOwnershipTokenColumn);
       if (tables.length > 0) {
         const generatedResult: string = template({

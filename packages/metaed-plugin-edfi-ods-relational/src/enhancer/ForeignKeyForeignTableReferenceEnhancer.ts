@@ -10,7 +10,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {
     const tables: Map<string, Table> = tableEntities(metaEd, namespace);
     tables.forEach((table: Table) => {
-      table.foreignKeys.forEach(foreignKey => {
+      table.foreignKeys.forEach((foreignKey) => {
         const foreignTable: Table | undefined = tableEntities(metaEd, foreignKey.foreignTableNamespace).get(
           foreignKey.foreignTableId,
         );

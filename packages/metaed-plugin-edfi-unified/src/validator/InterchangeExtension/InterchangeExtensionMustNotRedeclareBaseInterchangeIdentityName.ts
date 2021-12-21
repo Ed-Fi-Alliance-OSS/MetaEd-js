@@ -5,7 +5,7 @@ import { failInterchangeExtensionPropertyRedeclarations } from '../ValidatorShar
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
   metaEd.namespace.forEach((namespace: Namespace) => {
-    namespace.entity.interchangeExtension.forEach(interchangeExtension => {
+    namespace.entity.interchangeExtension.forEach((interchangeExtension) => {
       const extendedEntity: Interchange | null = getEntityFromNamespaceChain(
         interchangeExtension.baseEntityName,
         interchangeExtension.baseEntityNamespaceName,

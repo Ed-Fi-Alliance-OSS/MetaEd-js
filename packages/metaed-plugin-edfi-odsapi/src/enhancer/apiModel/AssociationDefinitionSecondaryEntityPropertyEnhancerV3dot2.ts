@@ -57,7 +57,7 @@ function secondaryEntityPropertiesFrom(
 
   // maintain foreign key column order
   return foreignKey.data.edfiOdsSqlServer.parentTableColumnNames
-    .map((columnName: string) => parentTable.columns.filter(c => c.data.edfiOdsSqlServer.columnName === columnName))
+    .map((columnName: string) => parentTable.columns.filter((c) => c.data.edfiOdsSqlServer.columnName === columnName))
     .map((columnArray: Column[]) => columnArray[0])
     .map((column: Column) =>
       buildApiPropertyWithServerAssignedOverride(column, foreignKey, schemasTables, associationDefinition),

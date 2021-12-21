@@ -35,83 +35,25 @@ describe('when generating complex type item', (): void => {
   });
 
   it('should have element complex type name', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdAttributeName,
-        ),
-        result,
-      ),
-    ).toBe(complexTypeName);
+    expect(R.view(R.compose(complexTypeItem, xsdAttributeName), result)).toBe(complexTypeName);
   });
 
   it('should have element complex type type', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdAttributeType,
-        ),
-        result,
-      ),
-    ).toBe(type);
+    expect(R.view(R.compose(complexTypeItem, xsdAttributeType), result)).toBe(type);
   });
 
   it('should have annotation only', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextLength,
-        ),
-        result,
-      ),
-    ).toBe(1);
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextHeadName,
-        ),
-        result,
-      ),
-    ).toBe('xs:annotation');
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextHead,
-          nextHead,
-          nextHeadText,
-        ),
-        result,
-      ),
-    ).toBe(documentation);
+    expect(R.view(R.compose(complexTypeItem, nextLength), result)).toBe(1);
+    expect(R.view(R.compose(complexTypeItem, nextHeadName), result)).toBe('xs:annotation');
+    expect(R.view(R.compose(complexTypeItem, nextHead, nextHead, nextHeadText), result)).toBe(documentation);
   });
 
   it('should not have min occurs', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdMinOccurs,
-        ),
-        result,
-      ),
-    ).not.toBeDefined();
+    expect(R.view(R.compose(complexTypeItem, xsdMinOccurs), result)).not.toBeDefined();
   });
 
   it('should not have max occurs', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdMaxOccurs,
-        ),
-        result,
-      ),
-    ).not.toBeDefined();
+    expect(R.view(R.compose(complexTypeItem, xsdMaxOccurs), result)).not.toBeDefined();
   });
 });
 
@@ -136,83 +78,25 @@ describe('when generating complex type item with min occurs', (): void => {
   });
 
   it('should have element complex type name', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdAttributeName,
-        ),
-        result,
-      ),
-    ).toBe(complexTypeName);
+    expect(R.view(R.compose(complexTypeItem, xsdAttributeName), result)).toBe(complexTypeName);
   });
 
   it('should have element complex type type', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdAttributeType,
-        ),
-        result,
-      ),
-    ).toBe(type);
+    expect(R.view(R.compose(complexTypeItem, xsdAttributeType), result)).toBe(type);
   });
 
   it('should have annotation only', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextLength,
-        ),
-        result,
-      ),
-    ).toBe(1);
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextHeadName,
-        ),
-        result,
-      ),
-    ).toBe('xs:annotation');
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextHead,
-          nextHead,
-          nextHeadText,
-        ),
-        result,
-      ),
-    ).toBe(documentation);
+    expect(R.view(R.compose(complexTypeItem, nextLength), result)).toBe(1);
+    expect(R.view(R.compose(complexTypeItem, nextHeadName), result)).toBe('xs:annotation');
+    expect(R.view(R.compose(complexTypeItem, nextHead, nextHead, nextHeadText), result)).toBe(documentation);
   });
 
   it('should have min occurs', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdMinOccurs,
-        ),
-        result,
-      ),
-    ).toBe(minOccurs);
+    expect(R.view(R.compose(complexTypeItem, xsdMinOccurs), result)).toBe(minOccurs);
   });
 
   it('should not have max occurs', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdMaxOccurs,
-        ),
-        result,
-      ),
-    ).not.toBeDefined();
+    expect(R.view(R.compose(complexTypeItem, xsdMaxOccurs), result)).not.toBeDefined();
   });
 });
 
@@ -236,83 +120,25 @@ describe('when generating complex type item with max occurs unbounded', (): void
   });
 
   it('should have element complex type name', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdAttributeName,
-        ),
-        result,
-      ),
-    ).toBe(complexTypeName);
+    expect(R.view(R.compose(complexTypeItem, xsdAttributeName), result)).toBe(complexTypeName);
   });
 
   it('should have element complex type type', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdAttributeType,
-        ),
-        result,
-      ),
-    ).toBe(type);
+    expect(R.view(R.compose(complexTypeItem, xsdAttributeType), result)).toBe(type);
   });
 
   it('should have annotation only', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextLength,
-        ),
-        result,
-      ),
-    ).toBe(1);
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextHeadName,
-        ),
-        result,
-      ),
-    ).toBe('xs:annotation');
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextHead,
-          nextHead,
-          nextHeadText,
-        ),
-        result,
-      ),
-    ).toBe(documentation);
+    expect(R.view(R.compose(complexTypeItem, nextLength), result)).toBe(1);
+    expect(R.view(R.compose(complexTypeItem, nextHeadName), result)).toBe('xs:annotation');
+    expect(R.view(R.compose(complexTypeItem, nextHead, nextHead, nextHeadText), result)).toBe(documentation);
   });
 
   it('should not have min occurs', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdMinOccurs,
-        ),
-        result,
-      ),
-    ).not.toBeDefined();
+    expect(R.view(R.compose(complexTypeItem, xsdMinOccurs), result)).not.toBeDefined();
   });
 
   it('should not have max occurs', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdMaxOccurs,
-        ),
-        result,
-      ),
-    ).toBe('unbounded');
+    expect(R.view(R.compose(complexTypeItem, xsdMaxOccurs), result)).toBe('unbounded');
   });
 });
 
@@ -338,48 +164,16 @@ describe('when generating complex type item with element item', (): void => {
   });
 
   it('should not have element complex type name', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdAttributeName,
-        ),
-        result,
-      ),
-    ).not.toBeDefined();
+    expect(R.view(R.compose(complexTypeItem, xsdAttributeName), result)).not.toBeDefined();
   });
 
   it('should not have element complex type type', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdAttributeType,
-        ),
-        result,
-      ),
-    ).not.toBeDefined();
+    expect(R.view(R.compose(complexTypeItem, xsdAttributeType), result)).not.toBeDefined();
   });
 
   it('should not have annotation, but element instead', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextLength,
-        ),
-        result,
-      ),
-    ).toBe(1);
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextHeadName,
-        ),
-        result,
-      ),
-    ).toBe('xs:element');
+    expect(R.view(R.compose(complexTypeItem, nextLength), result)).toBe(1);
+    expect(R.view(R.compose(complexTypeItem, nextHeadName), result)).toBe('xs:element');
   });
 });
 
@@ -405,48 +199,16 @@ describe('when generating element group complex type item is choice with element
   });
 
   it('should not have element complex type name', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdAttributeName,
-        ),
-        result,
-      ),
-    ).not.toBeDefined();
+    expect(R.view(R.compose(complexTypeItem, xsdAttributeName), result)).not.toBeDefined();
   });
 
   it('should not have element complex type type', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdAttributeType,
-        ),
-        result,
-      ),
-    ).not.toBeDefined();
+    expect(R.view(R.compose(complexTypeItem, xsdAttributeType), result)).not.toBeDefined();
   });
 
   it('should not have annotation, but element instead', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextLength,
-        ),
-        result,
-      ),
-    ).toBe(1);
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextHeadName,
-        ),
-        result,
-      ),
-    ).toBe('xs:element');
+    expect(R.view(R.compose(complexTypeItem, nextLength), result)).toBe(1);
+    expect(R.view(R.compose(complexTypeItem, nextHeadName), result)).toBe('xs:element');
   });
 });
 
@@ -474,57 +236,16 @@ describe('when generating element group complex type item with element group ite
   });
 
   it('should not have element complex type name', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdAttributeName,
-        ),
-        result,
-      ),
-    ).not.toBeDefined();
+    expect(R.view(R.compose(complexTypeItem, xsdAttributeName), result)).not.toBeDefined();
   });
 
   it('should not have element complex type type', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          xsdAttributeType,
-        ),
-        result,
-      ),
-    ).not.toBeDefined();
+    expect(R.view(R.compose(complexTypeItem, xsdAttributeType), result)).not.toBeDefined();
   });
 
   it('should not have annotation, but sequqence followed by element instead', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextLength,
-        ),
-        result,
-      ),
-    ).toBe(1);
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextHeadName,
-        ),
-        result,
-      ),
-    ).toBe('xs:sequence');
-    expect(
-      R.view(
-        R.compose(
-          complexTypeItem,
-          nextHead,
-          nextHeadName,
-        ),
-        result,
-      ),
-    ).toBe('xs:element');
+    expect(R.view(R.compose(complexTypeItem, nextLength), result)).toBe(1);
+    expect(R.view(R.compose(complexTypeItem, nextHeadName), result)).toBe('xs:sequence');
+    expect(R.view(R.compose(complexTypeItem, nextHead, nextHeadName), result)).toBe('xs:element');
   });
 });

@@ -5,19 +5,9 @@ import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 
 const enhancerName = 'EntityDefinitionPropertyOrderEnhancer';
 
-const sortByPropertyName = R.sortBy(
-  R.pipe(
-    R.prop('propertyName'),
-    R.toLower,
-  ),
-);
+const sortByPropertyName = R.sortBy(R.pipe(R.prop('propertyName'), R.toLower));
 
-const sortByIdentifierName = R.sortBy(
-  R.pipe(
-    R.prop('identifierName'),
-    R.toLower,
-  ),
-);
+const sortByIdentifierName = R.sortBy(R.pipe(R.prop('identifierName'), R.toLower));
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {

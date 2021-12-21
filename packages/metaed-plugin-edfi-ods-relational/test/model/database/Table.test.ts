@@ -259,14 +259,14 @@ describe('when using table column getters', (): void => {
     ];
     const columns = getAllColumns(table);
     expect(columns).toHaveLength(11);
-    expect(columns.map(x => x.columnId)).toEqual(expectedOrder);
+    expect(columns.map((x) => x.columnId)).toEqual(expectedOrder);
   });
 
   it('should get all alternate keys', (): void => {
     const expectedOrder = [booleanColumnName, currencyColumnName, dateColumnName, timeColumnName];
-    const columns = table.columns.filter(x => x.isPartOfAlternateKey);
+    const columns = table.columns.filter((x) => x.isPartOfAlternateKey);
     expect(columns).toHaveLength(4);
-    expect(columns.map(x => x.columnId)).toEqual(expectedOrder);
+    expect(columns.map((x) => x.columnId)).toEqual(expectedOrder);
   });
 
   it('should get column view with primary keys first', (): void => {
@@ -284,14 +284,14 @@ describe('when using table column getters', (): void => {
       yearColumnName,
     ];
     expect(table.columns).toHaveLength(11);
-    expect(table.columns.map(x => x.columnId)).toEqual(expectedOrder);
+    expect(table.columns.map((x) => x.columnId)).toEqual(expectedOrder);
   });
 
   it('should get all foreign keys', (): void => {
     const expectedOrder = [ForeignKeyName1, ForeignKeyName2];
     const columns = table.foreignKeys;
     expect(columns).toHaveLength(2);
-    expect(columns.map(x => x.name)).toEqual(expectedOrder);
+    expect(columns.map((x) => x.name)).toEqual(expectedOrder);
   });
 
   it('should get all non primary keys', (): void => {
@@ -305,21 +305,21 @@ describe('when using table column getters', (): void => {
     ];
     const columns = getNonPrimaryKeys(table);
     expect(columns).toHaveLength(6);
-    expect(columns.map(x => x.columnId)).toEqual(expectedOrder);
+    expect(columns.map((x) => x.columnId)).toEqual(expectedOrder);
   });
 
   it('should get all primary keys', (): void => {
     const expectedOrder = [decimalColumnName, durationColumnName, integerColumnName, timeColumnName, yearColumnName];
     const columns = getPrimaryKeys(table);
     expect(columns).toHaveLength(5);
-    expect(columns.map(x => x.columnId)).toEqual(expectedOrder);
+    expect(columns.map((x) => x.columnId)).toEqual(expectedOrder);
   });
 
   it('should get all unique indexes', (): void => {
     const expectedOrder = [percentColumnName, shortColumnName, stringColumnName, yearColumnName];
-    const columns = table.columns.filter(x => x.isUniqueIndex);
+    const columns = table.columns.filter((x) => x.isUniqueIndex);
     expect(columns).toHaveLength(4);
-    expect(columns.map(x => x.columnId)).toEqual(expectedOrder);
+    expect(columns.map((x) => x.columnId)).toEqual(expectedOrder);
   });
 });
 
@@ -332,7 +332,7 @@ describe('when using has alternate keys on table with no alternate keys', (): vo
       { ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName', isPartOfAlternateKey: false },
       { ...newColumn(), type: 'currency', columnId: 'CurrencyColumnName', isPartOfAlternateKey: true },
     );
-    result = table.columns.some(x => x.isPartOfAlternateKey);
+    result = table.columns.some((x) => x.isPartOfAlternateKey);
   });
 
   it('should return true', (): void => {
@@ -349,7 +349,7 @@ describe('when using has alternate keys on table with no alternate keys', (): vo
       { ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName', isPartOfAlternateKey: false },
       { ...newColumn(), type: 'currency', columnId: 'CurrencyColumnName', isPartOfAlternateKey: false },
     );
-    result = table.columns.some(x => x.isPartOfAlternateKey);
+    result = table.columns.some((x) => x.isPartOfAlternateKey);
   });
 
   it('should return false', (): void => {

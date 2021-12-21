@@ -64,7 +64,7 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table with alterna
   it('should have correct alternate key order', (): void => {
     const { alternateKeys } = tableEntities(metaEd, namespace).get(tableName) as Table;
     expect(alternateKeys).toHaveLength(2);
-    expect(alternateKeys.map(x => x.columnId)).toEqual([alternateKeyName1, alternateKeyName2]);
+    expect(alternateKeys.map((x) => x.columnId)).toEqual([alternateKeyName1, alternateKeyName2]);
   });
 });
 
@@ -110,7 +110,7 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table with primary
   it('should have correct primary key order', (): void => {
     const { primaryKeys } = tableEntities(metaEd, namespace).get(tableName) as Table;
     expect(primaryKeys).toHaveLength(2);
-    expect(primaryKeys.map(x => x.columnId)).toEqual([primaryKeyName1, primaryKeyName2]);
+    expect(primaryKeys.map((x) => x.columnId)).toEqual([primaryKeyName1, primaryKeyName2]);
   });
 });
 
@@ -217,15 +217,13 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table with foreign
   });
 
   it('should have correct foreign key column order', (): void => {
-    const { parentTableColumnNames } = R.last(
-      (tableEntities(metaEd, namespace).get(parentTableName) as Table).foreignKeys,
-    ).data.edfiOdsSqlServer;
+    const { parentTableColumnNames } = R.last((tableEntities(metaEd, namespace).get(parentTableName) as Table).foreignKeys)
+      .data.edfiOdsSqlServer;
     expect(parentTableColumnNames).toHaveLength(1);
     expect(parentTableColumnNames).toEqual([parentTableColumnName2]);
 
-    const { foreignTableColumnNames } = R.last(
-      (tableEntities(metaEd, namespace).get(parentTableName) as Table).foreignKeys,
-    ).data.edfiOdsSqlServer;
+    const { foreignTableColumnNames } = R.last((tableEntities(metaEd, namespace).get(parentTableName) as Table).foreignKeys)
+      .data.edfiOdsSqlServer;
     expect(foreignTableColumnNames).toHaveLength(1);
     expect(foreignTableColumnNames).toEqual([foreignTableColumnName2]);
   });
@@ -272,7 +270,7 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table with unique 
   it('should have correct unique index order', (): void => {
     const { uniqueIndexes } = tableEntities(metaEd, namespace).get(tableName) as Table;
     expect(uniqueIndexes).toHaveLength(2);
-    expect(uniqueIndexes.map(x => x.columnId)).toEqual([uniqueIndexName1, uniqueIndexName2]);
+    expect(uniqueIndexes.map((x) => x.columnId)).toEqual([uniqueIndexName1, uniqueIndexName2]);
   });
 });
 
@@ -328,7 +326,7 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table with primary
   it('should have correct column order with primary keys first', (): void => {
     const { columns } = tableEntities(metaEd, namespace).get(tableName) as Table;
     expect(columns).toHaveLength(5);
-    expect(columns.map(x => x.columnId)).toEqual([
+    expect(columns.map((x) => x.columnId)).toEqual([
       primaryKeyName1,
       primaryKeyName2,
       primaryKeyName3,
@@ -354,7 +352,10 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table and columns 
       tableId: tableName,
       schema: namespace.namespaceName,
       description,
-      columns: [{ ...newColumn(), description }, { ...newColumn(), description }],
+      columns: [
+        { ...newColumn(), description },
+        { ...newColumn(), description },
+      ],
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
@@ -373,6 +374,6 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table and columns 
   it('should have correct sql escaped descriptions for columns', (): void => {
     const { columns } = tableEntities(metaEd, namespace).get(tableName) as Table;
     expect(columns).toHaveLength(2);
-    expect(columns.map(x => x.sqlEscapedDescription)).toEqual([expectedDescription, expectedDescription]);
+    expect(columns.map((x) => x.sqlEscapedDescription)).toEqual([expectedDescription, expectedDescription]);
   });
 });

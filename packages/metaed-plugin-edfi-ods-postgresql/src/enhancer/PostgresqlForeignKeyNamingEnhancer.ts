@@ -21,9 +21,9 @@ function suffixDuplicates(foreignKeysWithDuplicateForeignTables: ForeignKey[]) {
 }
 
 function generateSuffixes(foreignKeys: ForeignKey[]) {
-  foreignKeys.forEach(foreignKey => {
+  foreignKeys.forEach((foreignKey) => {
     const foreignKeysWithDuplicateForeignTables: ForeignKey[] = foreignKeys.filter(
-      fk =>
+      (fk) =>
         fk.foreignTableId === foreignKey.foreignTableId &&
         (foreignKey.data.edfiOdsPostgresql as ForeignKeyEdfiOdsPostgresql).nameSuffix === '',
     );
@@ -40,7 +40,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       generateSuffixes(table.foreignKeys);
 
       // add column names
-      table.foreignKeys.forEach(foreignKey => {
+      table.foreignKeys.forEach((foreignKey) => {
         (foreignKey.data.edfiOdsPostgresql as ForeignKeyEdfiOdsPostgresql).foreignKeyName = `FK_${
           (foreignKey.parentTable.data.edfiOdsPostgresql as TableEdfiOdsPostgresql).truncatedTableNameHash
         }_${(foreignKey.foreignTable.data.edfiOdsPostgresql as TableEdfiOdsPostgresql).tableName}${

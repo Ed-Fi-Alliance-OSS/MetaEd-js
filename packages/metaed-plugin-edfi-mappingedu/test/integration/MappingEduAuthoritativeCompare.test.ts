@@ -36,7 +36,11 @@ function objectValues(obj: any): any[] {
   return vals;
 }
 
-describe.each([['2.0.0', 'ed-fi-model-2.0'], ['2.2.0', 'ed-fi-model-2.2'], ['3.0.0', 'ed-fi-model-3.0']])(
+describe.each([
+  ['2.0.0', 'ed-fi-model-2.0'],
+  ['2.2.0', 'ed-fi-model-2.2'],
+  ['3.0.0', 'ed-fi-model-3.0'],
+])(
   'when generating mapping edu and comparing it to data standard %s authoritative artifacts',
   (dataStandardVersion: SemVer, npmPackageName: string) => {
     const artifactPath: string = path.resolve(__dirname, './artifact');
@@ -72,7 +76,7 @@ describe.each([['2.0.0', 'ed-fi-model-2.0'], ['2.2.0', 'ed-fi-model-2.2'], ['3.0
       validateConfiguration(state);
       loadPlugins(state);
       state.pluginManifest = state.pluginManifest.filter(
-        manifest => ['edfiUnified', 'edfiXsd', 'edfiMappingedu'].includes(manifest.shortName),
+        (manifest) => ['edfiUnified', 'edfiXsd', 'edfiMappingedu'].includes(manifest.shortName),
         7,
       );
       loadFiles(state);
@@ -88,7 +92,7 @@ describe.each([['2.0.0', 'ed-fi-model-2.0'], ['2.2.0', 'ed-fi-model-2.2'], ['3.0
 
       fileMapForValidationFailure(state);
 
-      const coreResult = state.generatorResults.filter(x => x.generatorName === 'edfiMappingedu.MappingEduGenerator')[0]
+      const coreResult = state.generatorResults.filter((x) => x.generatorName === 'edfiMappingedu.MappingEduGenerator')[0]
         .generatedOutput[0];
 
       authoritativeCoreMappingEdu = `${artifactPath}/${baseName}-${authoritativeSuffix}.${xlsxSuffix}`;
@@ -140,7 +144,7 @@ describe.each([['2.0.0', 'ed-fi-model-2.0'], ['2.2.0', 'ed-fi-model-2.2'], ['3.0
 
       const gitCommand = `git diff --shortstat --no-index -- ${authoritativeCSV} ${generatedCSV}`;
       // @ts-ignore - error is unused
-      const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+      const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
       expect(result).toMatchSnapshot();
     });
   },

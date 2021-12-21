@@ -13,7 +13,7 @@ import {
 const enhancerName = 'MergedInterchangeElementOrderEnhancer';
 
 function orderExtensionElements(coreInterchanges: MergedInterchange[], extensionInterchanges: MergedInterchange[]) {
-  extensionInterchanges.forEach(extension => {
+  extensionInterchanges.forEach((extension) => {
     const initialExtensionElements = combinedElementsAndIdentityTemplatesFor(extension);
     const matchingCoreInterchange = R.find(R.eqProps('metaEdName', extension), coreInterchanges);
     if (matchingCoreInterchange) {

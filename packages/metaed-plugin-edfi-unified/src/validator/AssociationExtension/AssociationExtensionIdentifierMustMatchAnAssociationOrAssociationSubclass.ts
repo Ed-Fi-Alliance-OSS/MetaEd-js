@@ -4,7 +4,7 @@ import { getEntityFromNamespaceChain } from 'metaed-core';
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
   metaEd.namespace.forEach((namespace: Namespace) => {
-    namespace.entity.associationExtension.forEach(entity => {
+    namespace.entity.associationExtension.forEach((entity) => {
       if (
         getEntityFromNamespaceChain(
           entity.metaEdName,

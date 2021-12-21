@@ -59,12 +59,12 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
       const optionalProperties: PropertyCollectorArray = [];
       const requiredProperties: PropertyCollectorArray = [];
 
-      requiredProperties.push(...result.properties.filter(property => !property.isOptional));
-      optionalProperties.push(...result.properties.filter(property => property.isOptional));
-      result.referencedEntities.forEach(referencedEntity => {
+      requiredProperties.push(...result.properties.filter((property) => !property.isOptional));
+      optionalProperties.push(...result.properties.filter((property) => property.isOptional));
+      result.referencedEntities.forEach((referencedEntity) => {
         if (referencedEntity.isOptional)
           optionalProperties.push(
-            ...propertyCollector(referencedEntity.entity).map(property => ({
+            ...propertyCollector(referencedEntity.entity).map((property) => ({
               roleName: referencedEntity.roleName,
               isOptional: referencedEntity.isOptional,
               property,
@@ -72,7 +72,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
           );
         else {
           requiredProperties.push(
-            ...propertyCollector(referencedEntity.entity).map(property => ({
+            ...propertyCollector(referencedEntity.entity).map((property) => ({
               roleName: referencedEntity.roleName,
               isOptional: referencedEntity.isOptional,
               property,
@@ -82,9 +82,9 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
       });
 
       const requiredPropertiesNames: string[] = requiredProperties.map(
-        x => x.roleName + x.property.roleName + x.property.metaEdName,
+        (x) => x.roleName + x.property.roleName + x.property.metaEdName,
       );
-      const duplicateProperties: PropertyCollectorArray = optionalProperties.filter(x =>
+      const duplicateProperties: PropertyCollectorArray = optionalProperties.filter((x) =>
         requiredPropertiesNames.includes(x.roleName + x.property.roleName + x.property.metaEdName),
       );
 
@@ -97,9 +97,9 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
           category: 'warning',
           message: `[ODS-1177] ${entity.typeHumanizedName} ${
             entity.metaEdName
-          } has both a required and optional property path to property ${duplicate.roleName +
-            duplicate.property
-              .metaEdName}. Merging required properties with optional properties of the same name is currently unsupported by the ODS/API.`,
+          } has both a required and optional property path to property ${
+            duplicate.roleName + duplicate.property.metaEdName
+          }. Merging required properties with optional properties of the same name is currently unsupported by the ODS/API.`,
           sourceMap: duplicate.property.sourceMap.metaEdName,
           fileMap: null,
         });
@@ -108,9 +108,9 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
           category: 'warning',
           message: `[ODS-1177] ${entity.typeHumanizedName} ${
             entity.metaEdName
-          } has both a required and optional property path to property ${duplicate.roleName +
-            duplicate.property
-              .metaEdName}. Merging required properties with optional properties of the same name is currently unsupported by the ODS/API.`,
+          } has both a required and optional property path to property ${
+            duplicate.roleName + duplicate.property.metaEdName
+          }. Merging required properties with optional properties of the same name is currently unsupported by the ODS/API.`,
           sourceMap: entity.sourceMap.metaEdName,
           fileMap: null,
         });

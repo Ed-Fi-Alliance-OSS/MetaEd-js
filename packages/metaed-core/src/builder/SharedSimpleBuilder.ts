@@ -43,9 +43,8 @@ export class SharedSimpleBuilder extends MetaEdGrammarListener {
     if (this.currentSharedSimple === NoSharedSimple) return;
 
     if (this.currentSharedSimple.metaEdName) {
-      const currentSharedSimpleRepository: Map<string, SharedSimple> = this.currentNamespace.entity[
-        this.currentSharedSimple.type
-      ];
+      const currentSharedSimpleRepository: Map<string, SharedSimple> =
+        this.currentNamespace.entity[this.currentSharedSimple.type];
       if (currentSharedSimpleRepository.has(this.currentSharedSimple.metaEdName)) {
         this.validationFailures.push({
           validatorName: 'SharedSimpleBuilder',

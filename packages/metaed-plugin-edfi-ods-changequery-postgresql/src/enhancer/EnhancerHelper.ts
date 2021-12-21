@@ -5,11 +5,7 @@ import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from 'metaed-c
 export const TARGET_DATABASE_PLUGIN_NAME = 'edfiOdsPostgresql';
 
 function createHashLength6(text: string): string {
-  return hash
-    .sha256()
-    .update(text)
-    .digest('hex')
-    .substr(0, 6);
+  return hash.sha256().update(text).digest('hex').substr(0, 6);
 }
 
 export function postgresqlTriggerName(table: Table, triggerSuffix: string): string {
@@ -17,7 +13,7 @@ export function postgresqlTriggerName(table: Table, triggerSuffix: string): stri
   const separator = '_';
 
   const tableName = flattenNameComponentsFromGroup(table.nameGroup)
-    .map(nameComponent => nameComponent.name)
+    .map((nameComponent) => nameComponent.name)
     .join('');
 
   const proposedTriggerName = `${tableName}${separator}${triggerSuffix}`;

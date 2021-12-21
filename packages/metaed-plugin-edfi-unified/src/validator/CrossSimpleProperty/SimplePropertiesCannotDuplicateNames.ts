@@ -15,14 +15,14 @@ type SimpleProperties = ShortProperty | DecimalProperty | IntegerProperty | Stri
 function propertiesNeedingDuplicateChecking(properties: PropertyIndex, namespace: Namespace): SimpleProperties[] {
   const result: SimpleProperties[] = [];
 
-  result.push(...properties.string.filter(property => property.namespace === namespace));
-  result.push(...properties.decimal.filter(property => property.namespace === namespace));
-  result.push(...properties.integer.filter(property => property.namespace === namespace));
-  result.push(...properties.short.filter(property => property.namespace === namespace));
-  result.push(...properties.sharedString.filter(property => property.namespace === namespace));
-  result.push(...properties.sharedDecimal.filter(property => property.namespace === namespace));
-  result.push(...properties.sharedInteger.filter(property => property.namespace === namespace));
-  result.push(...properties.sharedShort.filter(property => property.namespace === namespace));
+  result.push(...properties.string.filter((property) => property.namespace === namespace));
+  result.push(...properties.decimal.filter((property) => property.namespace === namespace));
+  result.push(...properties.integer.filter((property) => property.namespace === namespace));
+  result.push(...properties.short.filter((property) => property.namespace === namespace));
+  result.push(...properties.sharedString.filter((property) => property.namespace === namespace));
+  result.push(...properties.sharedDecimal.filter((property) => property.namespace === namespace));
+  result.push(...properties.sharedInteger.filter((property) => property.namespace === namespace));
+  result.push(...properties.sharedShort.filter((property) => property.namespace === namespace));
   return result;
 }
 
@@ -31,7 +31,7 @@ function generateValidationErrorsForDuplicates(metaEdProperty: SimpleProperties[
 
   groupByMetaEdName(metaEdProperty).forEach((properties, metaEdName) => {
     if (properties.length > 1) {
-      properties.forEach(property => {
+      properties.forEach((property) => {
         failures.push({
           validatorName: 'SimplePropertiesCannotDuplicateNames',
           category: 'error',
@@ -48,7 +48,7 @@ function generateValidationErrorsForDuplicates(metaEdProperty: SimpleProperties[
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
-  metaEd.namespace.forEach(namespace => {
+  metaEd.namespace.forEach((namespace) => {
     failures.push(
       ...generateValidationErrorsForDuplicates(propertiesNeedingDuplicateChecking(metaEd.propertyIndex, namespace)),
     );

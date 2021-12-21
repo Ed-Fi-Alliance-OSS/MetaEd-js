@@ -3,7 +3,7 @@ import { getEntityFromNamespaceChain } from 'metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  metaEd.propertyIndex.association.forEach(property => {
+  metaEd.propertyIndex.association.forEach((property) => {
     const referencedEntity: ModelBase | null = getEntityFromNamespaceChain(
       property.metaEdName,
       property.referencedNamespaceName,

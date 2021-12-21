@@ -40,7 +40,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     'sharedString',
     'stringType',
     'subdomain',
-  ).forEach(entity => {
+  ).forEach((entity) => {
     addModelBaseEdfiUdmTo(entity);
   });
 

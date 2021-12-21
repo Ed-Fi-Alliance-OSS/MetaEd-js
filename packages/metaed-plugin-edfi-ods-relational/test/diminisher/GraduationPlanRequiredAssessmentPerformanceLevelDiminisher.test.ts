@@ -20,7 +20,10 @@ describe('when GraduationPlanRequiredAssessmentPerformanceLevelDiminisher dimini
     initializeEdFiOdsRelationalEntityRepository(metaEd);
 
     const table: Table = { ...newTable(), tableId: graduationPlanRequiredAssessmentRequiredAssessmentPerformanceLevel };
-    table.foreignKeys = [{ ...newForeignKey(), parentTable: table }, { ...newForeignKey(), parentTable: table }];
+    table.foreignKeys = [
+      { ...newForeignKey(), parentTable: table },
+      { ...newForeignKey(), parentTable: table },
+    ];
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
     metaEd.dataStandardVersion = '2.0.0';
@@ -42,7 +45,9 @@ describe('when GraduationPlanRequiredAssessmentPerformanceLevelDiminisher dimini
       graduationPlanRequiredAssessmentRequiredAssessmentPerformanceLevel,
     ) as Table;
     expect(
-      foreignKeys.every(fk => fk.parentTable.tableId === graduationPlanRequiredAssessmentRequiredAssessmentPerformanceLevel),
+      foreignKeys.every(
+        (fk) => fk.parentTable.tableId === graduationPlanRequiredAssessmentRequiredAssessmentPerformanceLevel,
+      ),
     ).toBe(true);
   });
 });

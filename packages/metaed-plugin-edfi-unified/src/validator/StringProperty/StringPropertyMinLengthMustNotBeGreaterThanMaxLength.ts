@@ -3,7 +3,7 @@ import { asStringProperty } from 'metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  metaEd.propertyIndex.string.forEach(string => {
+  metaEd.propertyIndex.string.forEach((string) => {
     const stringProperty: StringProperty = asStringProperty(string);
     const minLength: number = Number.parseInt(stringProperty.minLength || '0', 10);
     const maxLength: number = Number.parseInt(stringProperty.maxLength || '0', 10);

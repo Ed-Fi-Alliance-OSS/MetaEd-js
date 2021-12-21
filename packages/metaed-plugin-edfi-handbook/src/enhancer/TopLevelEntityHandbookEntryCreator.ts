@@ -33,7 +33,7 @@ function getCardinalityStringFor(property: EntityProperty, isHandbookEntityRefer
 
 function getPropertyNames(entity: TopLevelEntity): string[] {
   return entity.properties
-    .map(p => {
+    .map((p) => {
       const roleNameName: string = p.roleName ? p.metaEdName : p.roleName + p.metaEdName;
       const cardinalityString: string = getCardinalityStringFor(p);
       return `${roleNameName} (${cardinalityString})`;
@@ -42,7 +42,7 @@ function getPropertyNames(entity: TopLevelEntity): string[] {
 }
 
 function getEnumerationItemsFor(enumeration: Enumeration): string[] {
-  return enumeration.enumerationItems.map(e => e.shortDescription).sort();
+  return enumeration.enumerationItems.map((e) => e.shortDescription).sort();
 }
 
 function enumerationShortDescriptionsFor(entity: TopLevelEntity): string[] {
@@ -54,11 +54,11 @@ function enumerationShortDescriptionsFor(entity: TopLevelEntity): string[] {
 }
 
 function findEntityByMetaEdName(allEntities: ModelBase[], metaEdName: string): boolean {
-  return allEntities.some(x => x.metaEdName === metaEdName);
+  return allEntities.some((x) => x.metaEdName === metaEdName);
 }
 
 function findEntityByUniqueId(allEntities: ModelBase[], uniqueId: string): boolean {
-  return allEntities.some(x => x.metaEdName + x.metaEdId === uniqueId);
+  return allEntities.some((x) => x.metaEdName + x.metaEdId === uniqueId);
 }
 
 function getReferenceUniqueIdentifier(allEntities: ModelBase[], property: EntityProperty): string {
@@ -90,7 +90,7 @@ function getReferenceUniqueIdentifier(allEntities: ModelBase[], property: Entity
 function getMergedProperties(property: ReferentialProperty): HandbookMergeProperty[] {
   if (!property.mergeDirectives) return [];
 
-  return property.mergeDirectives.map(x => ({
+  return property.mergeDirectives.map((x) => ({
     propertyPath: x.sourcePropertyPathStrings,
     targetPath: x.targetPropertyPathStrings,
   }));
@@ -126,7 +126,7 @@ function entityPropertyToHandbookEntityReferenceProperty(
 }
 
 function propertyMetadataFor(allEntities: ModelBase[], entity: TopLevelEntity): HandbookEntityReferenceProperty[] {
-  let results: HandbookEntityReferenceProperty[] = entity.properties.map(x =>
+  let results: HandbookEntityReferenceProperty[] = entity.properties.map((x) =>
     entityPropertyToHandbookEntityReferenceProperty(allEntities, x),
   );
   results = sort(results, ['isIdentity', 'name'], { isIdentity: [true, false] });
@@ -135,14 +135,14 @@ function propertyMetadataFor(allEntities: ModelBase[], entity: TopLevelEntity): 
 
 function extensionPropertyMetadataFor(allEntities: ModelBase[], entity: TopLevelEntity): HandbookEntityReferenceProperty[] {
   const results: HandbookEntityReferenceProperty[] = [];
-  entity.extendedBy.forEach(extensionEntity => results.push(...propertyMetadataFor(allEntities, extensionEntity)));
+  entity.extendedBy.forEach((extensionEntity) => results.push(...propertyMetadataFor(allEntities, extensionEntity)));
   return results;
 }
 
 function referringProperties(allReferentialProperties: ReferentialProperty[], entity: TopLevelEntity): string[] {
   return allReferentialProperties
-    .filter(x => x.referencedEntity.metaEdName === entity.metaEdName)
-    .map(x => `${x.parentEntityName}.${x.metaEdName} (as ${getCardinalityStringFor(x)})`);
+    .filter((x) => x.referencedEntity.metaEdName === entity.metaEdName)
+    .map((x) => `${x.parentEntityName}.${x.metaEdName} (as ${getCardinalityStringFor(x)})`);
 }
 
 export function createDefaultHandbookEntry(
@@ -174,7 +174,7 @@ export function createDefaultHandbookEntry(
     projectName: entity.namespace.projectName,
     deprecationText: entity.isDeprecated ? ' - DEPRECATED' : '',
     deprecationReason: entity.deprecationReason,
-    hasDeprecatedProperty: entity.properties.some(p => p.isDeprecated),
+    hasDeprecatedProperty: entity.properties.some((p) => p.isDeprecated),
     optionList: enumerationShortDescriptionsFor(entity),
     typeCharacteristics: [],
   };

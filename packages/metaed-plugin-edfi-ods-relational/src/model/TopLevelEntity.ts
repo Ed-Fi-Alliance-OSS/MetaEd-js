@@ -28,7 +28,7 @@ export function addTopLevelEntityEdfiOdsTo(topLevelEntity: TopLevelEntity) {
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllTopLevelEntitiesForNamespaces(Array.from(metaEd.namespace.values())).forEach(entity => {
+  getAllTopLevelEntitiesForNamespaces(Array.from(metaEd.namespace.values())).forEach((entity) => {
     addTopLevelEntityEdfiOdsTo(asTopLevelEntity(entity));
   });
 

@@ -5,7 +5,7 @@ import { EnumerationBaseEdfiXsd } from '../model/EnumerationBase';
 const enhancerName = 'EnumerationBasePropertiesEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllEntitiesOfType(metaEd, 'enumeration', 'mapTypeEnumeration', 'schoolYearEnumeration').forEach(enumerationBase => {
+  getAllEntitiesOfType(metaEd, 'enumeration', 'mapTypeEnumeration', 'schoolYearEnumeration').forEach((enumerationBase) => {
     const enumerationName = enumerationBase.metaEdName.endsWith('Type')
       ? enumerationBase.metaEdName
       : `${enumerationBase.metaEdName}Type`;

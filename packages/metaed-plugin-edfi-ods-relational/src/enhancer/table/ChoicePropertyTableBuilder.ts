@@ -34,7 +34,7 @@ export function choicePropertyTableBuilder(factory: TableBuilderFactory): TableB
         tableBuilder.buildTables(
           odsProperty,
           parentTableStrategy,
-          parentPrimaryKeys.map(pk => cloneColumn(pk)),
+          parentPrimaryKeys.map((pk) => cloneColumn(pk)),
           strategy.makeLeafColumnsNullable(),
           tables,
           choice.isRequired,

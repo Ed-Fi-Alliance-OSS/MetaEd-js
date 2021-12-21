@@ -4,7 +4,7 @@ import { asDecimalType, NoSharedSimple } from 'metaed-core';
 const enhancerName = 'SharedDecimalPropertyEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  metaEd.propertyIndex.sharedDecimal.forEach(property => {
+  metaEd.propertyIndex.sharedDecimal.forEach((property) => {
     if (property.referencedEntity === NoSharedSimple) return;
 
     const referencedEntity = asDecimalType(property.referencedEntity);

@@ -981,7 +981,13 @@ function modifyPrimaryKeyColumnOrder(tablesForCoreNamespace: Map<string, Table>)
 
     // ignore table if primary keys have been modified
     const primaryKeys: Column[] = getPrimaryKeys(table);
-    if (R.symmetricDifference(primaryKeyOrder, primaryKeys.map(x => x.columnId)).length > 0) return;
+    if (
+      R.symmetricDifference(
+        primaryKeyOrder,
+        primaryKeys.map((x) => x.columnId),
+      ).length > 0
+    )
+      return;
 
     const primaryKeyLookup: { [primaryKeyName: string]: Column } = R.groupBy(R.prop('columnId'), primaryKeys);
     table.primaryKeys = R.chain((pkName: string) => primaryKeyLookup[pkName], primaryKeyOrder);

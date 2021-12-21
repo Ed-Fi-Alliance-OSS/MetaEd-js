@@ -5,7 +5,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
   metaEd.namespace.forEach((namespace: Namespace) => {
-    namespace.entity.enumeration.forEach(enumeration => {
+    namespace.entity.enumeration.forEach((enumeration) => {
       if (enumeration.enumerationItems.length > 1) {
         failEnumerationItemRedeclarations(
           'EnumerationItemsMustBeUnique',

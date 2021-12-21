@@ -27,7 +27,7 @@ describe('when shared string property refers to a shared string', (): void => {
   });
 
   it('should have the shared string restrictions', (): void => {
-    const property = R.head(metaEd.propertyIndex.sharedString.filter(p => p.metaEdName === metaEdName));
+    const property = R.head(metaEd.propertyIndex.sharedString.filter((p) => p.metaEdName === metaEdName));
     expect(property.maxLength).toBe(maxLength);
     expect(property.minLength).toBe(minLength);
   });

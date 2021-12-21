@@ -97,11 +97,11 @@ function addDependenciesToGraph(graph: Graph, elementDependencies: Dependency[])
 export function sortGraph(graph: Graph, removeRequiredCycles: boolean = false): string[] {
   if (graphlib.alg.isAcyclic(graph)) return graphlib.alg.topsort(graph);
 
-  graphlib.alg.findCycles(graph).forEach(cycle => {
-    cycle.reverse().forEach(vertex => {
+  graphlib.alg.findCycles(graph).forEach((cycle) => {
+    cycle.reverse().forEach((vertex) => {
       if (graphlib.alg.isAcyclic(graph)) return;
 
-      graph.outEdges(vertex).forEach(edge => {
+      graph.outEdges(vertex).forEach((edge) => {
         if (graphlib.alg.isAcyclic(graph)) return;
 
         if (!graph.edge(edge).isRequired || removeRequiredCycles) graph.removeEdge(edge);
@@ -183,13 +183,13 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
       interchange.data.edfiOdsApi.apiOrder = sortedInterchange.apiOrder;
       interchange.data.edfiOdsApi.apiOrderedElements = sortedEntities
-        .map(entity => ({
+        .map((entity) => ({
           element:
-            interchange.elements.find(element => element.referencedEntity.metaEdName === entity.name) || NoInterchangeItem,
+            interchange.elements.find((element) => element.referencedEntity.metaEdName === entity.name) || NoInterchangeItem,
           globalDependencyOrder: entity.globalDependencyOrder,
         }))
-        .filter(entity => entity.element != null && entity.element !== NoInterchangeItem)
-        .map(entity => ({ name: entity.element.metaEdName, globalDependencyOrder: entity.globalDependencyOrder }));
+        .filter((entity) => entity.element != null && entity.element !== NoInterchangeItem)
+        .map((entity) => ({ name: entity.element.metaEdName, globalDependencyOrder: entity.globalDependencyOrder }));
     });
   });
 

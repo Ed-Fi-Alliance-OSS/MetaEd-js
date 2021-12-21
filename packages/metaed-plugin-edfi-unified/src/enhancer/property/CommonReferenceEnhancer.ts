@@ -4,7 +4,7 @@ import { getEntityFromNamespaceChain } from 'metaed-core';
 const enhancerName = 'CommonReferenceEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  metaEd.propertyIndex.common.forEach(property => {
+  metaEd.propertyIndex.common.forEach((property) => {
     const referencedEntity: Common | null = getEntityFromNamespaceChain(
       property.metaEdName,
       property.referencedNamespaceName,

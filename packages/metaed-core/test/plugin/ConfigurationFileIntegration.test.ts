@@ -56,7 +56,7 @@ describe('when loading a project with two invalid plugin configuration files', (
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiXsd',
+      (manifest) => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiXsd',
     );
     loadFiles(state);
     loadFileIndex(state);
@@ -76,7 +76,7 @@ describe('when loading a project with two invalid plugin configuration files', (
 
 function applyConfigFileRuleOnXsdPlugin(state: State) {
   const xsdPluginManifest: PluginManifest | undefined = state.pluginManifest.find(
-    manifest => manifest.shortName === 'edfiXsd',
+    (manifest) => manifest.shortName === 'edfiXsd',
   );
   if (xsdPluginManifest == null) return;
   const configurationSchemas: ConfigurationSchema = new Map();
@@ -134,7 +134,7 @@ describe('when loading a project with one invalid and one valid plugin configura
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiXsd',
+      (manifest) => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiXsd',
     );
 
     applyConfigFileRuleOnXsdPlugin(state);

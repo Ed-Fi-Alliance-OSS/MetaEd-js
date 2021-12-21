@@ -13,7 +13,7 @@ import { State, MetaEdConfiguration, executePipeline, newState, newMetaEdConfigu
 import { MetaEdProjectMetadata, validProjectMetadata, findMetaEdProjectMetadata } from '../common/Projects';
 
 export async function findMetaEdProjectMetadataForServer(workspaceFolders: string[]): Promise<MetaEdProjectMetadata[]> {
-  return findMetaEdProjectMetadata(workspaceFolders.map(folderUri => URI.parse(folderUri).fsPath));
+  return findMetaEdProjectMetadata(workspaceFolders.map((folderUri) => URI.parse(folderUri).fsPath));
 }
 
 const connection = createConnection(ProposedFeatures.all);
@@ -37,7 +37,7 @@ async function createMetaEdConfiguration(
     allianceMode: false,
   };
 
-  metaEdProjectMetadata.forEach(pm => {
+  metaEdProjectMetadata.forEach((pm) => {
     metaEdConfiguration.projects.push({
       namespaceName: pm.projectNamespace,
       projectName: pm.projectName,
@@ -74,7 +74,7 @@ async function validateFiles(): Promise<void> {
 
   const filesWithFailure: Map<string, Diagnostic[]> = new Map();
 
-  validationFailure.forEach(failure => {
+  validationFailure.forEach((failure) => {
     if (failure.fileMap != null) {
       const fileUri = URI.file(failure.fileMap.fullPath);
       if (!filesWithFailure.has(fileUri.toString())) {
@@ -109,8 +109,8 @@ async function validateFiles(): Promise<void> {
   });
 
   // clear resolved failures
-  const resolvedFailures = [...currentFilesWithFailures].filter(fileUri => filesWithFailure.has(fileUri));
-  resolvedFailures.forEach(uri => {
+  const resolvedFailures = [...currentFilesWithFailures].filter((fileUri) => filesWithFailure.has(fileUri));
+  resolvedFailures.forEach((uri) => {
     connection.sendDiagnostics({ uri, diagnostics: [] });
   });
   currentFilesWithFailures = Array.from(filesWithFailure.keys());
@@ -157,18 +157,18 @@ connection.onInitialized(async () => {
     connection.client.register(DidChangeConfigurationNotification.type, undefined);
   }
   if (hasWorkspaceFolderCapability) {
-    connection.workspace.onDidChangeWorkspaceFolders(event => {
+    connection.workspace.onDidChangeWorkspaceFolders((event) => {
       connection.console.log('Workspace folder change event received.');
-      event.removed.forEach(workspaceFolder => {
+      event.removed.forEach((workspaceFolder) => {
         workspaceFolders.delete(workspaceFolder.uri);
       });
-      event.added.forEach(workspaceFolder => {
+      event.added.forEach((workspaceFolder) => {
         workspaceFolders.add(workspaceFolder.uri);
       });
     });
     const currentWorkspaceFolders = await connection.workspace.getWorkspaceFolders();
     if (currentWorkspaceFolders != null) {
-      currentWorkspaceFolders.forEach(workspaceFolder => {
+      currentWorkspaceFolders.forEach((workspaceFolder) => {
         workspaceFolders.add(workspaceFolder.uri);
       });
     }
@@ -177,7 +177,7 @@ connection.onInitialized(async () => {
 });
 
 function clearDiagnostics() {
-  currentFilesWithFailures.forEach(uri => {
+  currentFilesWithFailures.forEach((uri) => {
     connection.sendDiagnostics({ uri, diagnostics: [] });
   });
   currentFilesWithFailures = [];

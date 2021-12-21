@@ -10,7 +10,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {
     const handbookRepository: EdfiHandbookRepository | null = edfiHandbookRepositoryForNamespace(metaEd, namespace);
     if (handbookRepository == null) return;
-    (getEntitiesOfTypeForNamespaces([namespace], 'choice') as Choice[]).forEach(entity => {
+    (getEntitiesOfTypeForNamespaces([namespace], 'choice') as Choice[]).forEach((entity) => {
       const handbookEntry = createDefaultHandbookEntry(entity, 'Choice', 'Composite Part', metaEd);
       handbookEntry.showIdentityColumn = false;
       handbookRepository.handbookEntries.push(handbookEntry);

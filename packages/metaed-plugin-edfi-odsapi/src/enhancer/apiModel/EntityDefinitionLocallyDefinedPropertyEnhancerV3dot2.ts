@@ -33,7 +33,7 @@ function includeColumn(column: Column, table: Table, foreignKeyColumnIdsOnTable:
 
 function locallyDefinedPropertiesFrom(table: Table): ApiProperty[] {
   const foreignKeyColumnIdsOnTable: string[] = R.chain(
-    fk => fk.columnPairs.map(cp => cp.parentTableColumnId),
+    (fk) => fk.columnPairs.map((cp) => cp.parentTableColumnId),
     table.foreignKeys,
   );
 

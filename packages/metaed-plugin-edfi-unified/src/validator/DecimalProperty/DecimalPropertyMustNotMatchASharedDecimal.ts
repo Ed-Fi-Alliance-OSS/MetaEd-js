@@ -3,7 +3,7 @@ import { findFirstEntity } from 'metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  metaEd.propertyIndex.decimal.forEach(property => {
+  metaEd.propertyIndex.decimal.forEach((property) => {
     const referencedEntity: ModelBase | null = findFirstEntity(property.metaEdName, [property.namespace], 'sharedDecimal');
 
     if (referencedEntity != null) {

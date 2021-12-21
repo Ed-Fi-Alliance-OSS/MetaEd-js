@@ -5,13 +5,7 @@ import { NamespaceEdfiOdsPostgresql } from '../model/Namespace';
 
 const enhancerName = 'AddSchemaContainerEnhancer';
 
-export const orderRows = R.sortBy(
-  R.compose(
-    R.toLower,
-    R.join(''),
-    R.props(['name', 'description']),
-  ),
-);
+export const orderRows = R.sortBy(R.compose(R.toLower, R.join(''), R.props(['name', 'description'])));
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {
@@ -23,7 +17,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         (table: Table) => table.schema === namespace.namespaceName.toLowerCase(),
       ),
     );
-    const foreignKeys: ForeignKey[] = R.chain(table => table.foreignKeys)(tables);
+    const foreignKeys: ForeignKey[] = R.chain((table) => table.foreignKeys)(tables);
     const enumerationRows: EnumerationRowBase[] = orderRows(
       rows.filter((row: EnumerationRowBase) => row.type === 'enumerationRow'),
     );

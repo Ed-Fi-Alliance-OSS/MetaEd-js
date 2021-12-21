@@ -9,18 +9,18 @@ import { Table } from '../model/database/Table';
 const enhancerName = 'ModifyCascadingDeletesDefinitionsDiminisher';
 const targetVersions = '2.x';
 
-const modifyCascadingDeletes = (tablesForCoreNamespace: Map<string, Table>) => (
-  parentTableId: string,
-  foreignTableId: string,
-  withDeleteCascade: boolean = false,
-): void => {
-  const table: Table | undefined = tablesForCoreNamespace.get(parentTableId);
-  if (table == null) return;
+const modifyCascadingDeletes =
+  (tablesForCoreNamespace: Map<string, Table>) =>
+  (parentTableId: string, foreignTableId: string, withDeleteCascade: boolean = false): void => {
+    const table: Table | undefined = tablesForCoreNamespace.get(parentTableId);
+    if (table == null) return;
 
-  const foreignKey: ForeignKey | undefined = table.foreignKeys.find((x: ForeignKey) => x.foreignTableId === foreignTableId);
-  if (foreignKey == null) return;
-  foreignKey.withDeleteCascade = withDeleteCascade;
-};
+    const foreignKey: ForeignKey | undefined = table.foreignKeys.find(
+      (x: ForeignKey) => x.foreignTableId === foreignTableId,
+    );
+    if (foreignKey == null) return;
+    foreignKey.withDeleteCascade = withDeleteCascade;
+  };
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };

@@ -9,7 +9,7 @@ import { typeGroupEnumeration } from './AddComplexTypesBaseEnhancer';
 const enhancerName = 'AddEnumerationSimpleTypesEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllEntitiesOfType(metaEd, 'enumeration', 'mapTypeEnumeration', 'schoolYearEnumeration').forEach(enumeration => {
+  getAllEntitiesOfType(metaEd, 'enumeration', 'mapTypeEnumeration', 'schoolYearEnumeration').forEach((enumeration) => {
     const enumerationBase = enumeration as EnumerationBase;
     const enumerationBaseEdfiXsd = enumerationBase.data.edfiXsd as EnumerationBaseEdfiXsd;
     enumerationBaseEdfiXsd.xsdEnumerationSimpleType = {
@@ -17,7 +17,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       name: enumerationBaseEdfiXsd.xsdEnumerationNameWithExtension,
       annotation: { ...newAnnotation(), documentation: enumerationBase.documentation, typeGroup: typeGroupEnumeration },
       baseType: 'xs:token',
-      enumerationTokens: enumerationBase.enumerationItems.map(item => ({
+      enumerationTokens: enumerationBase.enumerationItems.map((item) => ({
         ...newEnumerationToken(),
         annotation: { ...newAnnotation(), documentation: item.documentation },
         value: item.shortDescription,

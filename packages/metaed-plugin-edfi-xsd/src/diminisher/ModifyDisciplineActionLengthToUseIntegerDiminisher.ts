@@ -25,16 +25,16 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
   const entity: ModelBase | null = getEntityFromNamespace(entityName1, coreNamespace, entityType1);
   if (entity != null && !R.isEmpty(entity.data.edfiXsd.xsdComplexTypes)) {
-    const complexType: ComplexType = entity.data.edfiXsd.xsdComplexTypes.find(x => x.name === entityName1);
+    const complexType: ComplexType = entity.data.edfiXsd.xsdComplexTypes.find((x) => x.name === entityName1);
 
     if (complexType != null && complexType.hasItems()) {
-      const element1: any = ((complexType.items as unknown) as Element[]).find(
-        x => x.name != null && x.name === elementNameType1 && x.type != null && x.type === elementNameType1,
+      const element1: any = (complexType.items as unknown as Element[]).find(
+        (x) => x.name != null && x.name === elementNameType1 && x.type != null && x.type === elementNameType1,
       );
       if (element1 != null) Object.assign(element1, { type: integerType });
 
-      const element2: any = ((complexType.items as unknown) as Element[]).find(
-        x => x.name != null && x.name === elementName2 && x.type != null && x.type === elementNameType1,
+      const element2: any = (complexType.items as unknown as Element[]).find(
+        (x) => x.name != null && x.name === elementName2 && x.type != null && x.type === elementNameType1,
       );
       if (element2 != null) Object.assign(element2, { type: integerType });
     }

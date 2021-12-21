@@ -69,12 +69,12 @@ export async function rollbackAndEnd() {
 
 export async function enhanceGenerateAndExecuteSql(metaEd: MetaEdEnvironment): Promise<Db | null> {
   metaEd.dataStandardVersion = metaEd.dataStandardVersion === '0.0.0' ? '3.0.0' : metaEd.dataStandardVersion;
-  initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
-  initializeOdsRelationalPlugin().enhancer.forEach(enhance => enhance(metaEd));
-  initializeOdsPostgresqlPlugin().enhancer.forEach(enhance => enhance(metaEd));
+  initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
+  initializeOdsRelationalPlugin().enhancer.forEach((enhance) => enhance(metaEd));
+  initializeOdsPostgresqlPlugin().enhancer.forEach((enhance) => enhance(metaEd));
 
   const sql: string[] = [];
-  (await schemaGenerate(metaEd)).generatedOutput.forEach(result => sql.push(result.resultString));
-  (await odsGenerate(metaEd)).generatedOutput.forEach(result => sql.push(result.resultString));
+  (await schemaGenerate(metaEd)).generatedOutput.forEach((result) => sql.push(result.resultString));
+  (await odsGenerate(metaEd)).generatedOutput.forEach((result) => sql.push(result.resultString));
   return executeGeneratedSql(sql.join(''));
 }

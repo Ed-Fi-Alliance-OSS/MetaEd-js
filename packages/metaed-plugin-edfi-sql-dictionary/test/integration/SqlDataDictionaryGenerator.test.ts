@@ -53,9 +53,9 @@ describe('when generating a simple sql data dictionary', (): void => {
       .sendToListener(enumerationBuilder)
       .sendToListener(domainEntityBuilder);
 
-    initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
-    initializeOdsRelationalPlugin().enhancer.forEach(enhance => enhance(metaEd));
-    initializeOdsSqlServerPlugin().enhancer.forEach(enhance => enhance(metaEd));
+    initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
+    initializeOdsRelationalPlugin().enhancer.forEach((enhance) => enhance(metaEd));
+    initializeOdsSqlServerPlugin().enhancer.forEach((enhance) => enhance(metaEd));
 
     generatorResults = await generate(metaEd);
     workbook = readWorkbook(generatorResults.generatedOutput[0].resultStream, 'buffer');

@@ -14,8 +14,8 @@ function getFailure(domainItem: DomainItem, name: string, failureMessage: string
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
   metaEd.namespace.forEach((namespace: Namespace) => {
-    namespace.entity.domain.forEach(domain => {
-      domain.domainItems.forEach(domainItem => {
+    namespace.entity.domain.forEach((domain) => {
+      domain.domainItems.forEach((domainItem) => {
         if (domainItem.referencedType !== 'association') return;
         if (
           getEntityFromNamespaceChain(

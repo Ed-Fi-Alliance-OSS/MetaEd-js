@@ -98,7 +98,7 @@ export function newEntityRepository(): EntityRepository {
  */
 export function getAllEntities(repository: EntityRepository): ModelBase[] {
   const result: ModelBase[] = [];
-  allEntityModelTypes.forEach(modelType => result.push(...repository[modelType].values()));
+  allEntityModelTypes.forEach((modelType) => result.push(...repository[modelType].values()));
   return result;
 }
 
@@ -118,7 +118,7 @@ export function getAllEntitiesForNamespaces(namespaces: Namespace[]): ModelBase[
  */
 export function getAllTopLevelEntities(repository: EntityRepository): TopLevelEntity[] {
   const result: TopLevelEntity[] = [];
-  allTopLevelEntityModelTypes.forEach(modelType => result.push(...repository[modelType].values()));
+  allTopLevelEntityModelTypes.forEach((modelType) => result.push(...repository[modelType].values()));
   return result;
 }
 
@@ -138,7 +138,7 @@ export function getAllTopLevelEntitiesForNamespaces(namespaces: Namespace[]): To
  */
 export function getAllEntitiesNoSimpleTypes(repository: EntityRepository): ModelBase[] {
   const result: ModelBase[] = [];
-  allEntityModelTypesNoSimpleTypes.forEach(modelType => result.push(...repository[modelType].values()));
+  allEntityModelTypesNoSimpleTypes.forEach((modelType) => result.push(...repository[modelType].values()));
   return result;
 }
 
@@ -158,7 +158,7 @@ export function getAllEntitiesNoSimpleTypesForNamespaces(namespaces: Namespace[]
  */
 export function getEntitiesOfType(repository: EntityRepository, ...modelTypes: ModelType[]): ModelBase[] {
   const result: ModelBase[] = [];
-  modelTypes.forEach(modelType => result.push(...repository[modelType].values()));
+  modelTypes.forEach((modelType) => result.push(...repository[modelType].values()));
   return result;
 }
 

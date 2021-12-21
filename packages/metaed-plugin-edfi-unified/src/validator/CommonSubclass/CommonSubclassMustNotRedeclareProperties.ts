@@ -5,7 +5,7 @@ import { failExtensionPropertyRedeclarations } from '../ValidatorShared/FailExte
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
   metaEd.namespace.forEach((namespace: Namespace) => {
-    namespace.entity.commonSubclass.forEach(commonSubclass => {
+    namespace.entity.commonSubclass.forEach((commonSubclass) => {
       const extendedEntity: Common | null = getEntityFromNamespaceChain(
         commonSubclass.baseEntityName,
         commonSubclass.baseEntityNamespaceName,

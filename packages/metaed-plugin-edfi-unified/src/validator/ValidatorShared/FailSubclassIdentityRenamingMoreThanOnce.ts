@@ -5,11 +5,11 @@ export function failSubclassIdentityRenamingMoreThanOnce(
   subclassEntity: TopLevelEntity,
   failures: ValidationFailure[],
 ) {
-  const identityRenames: EntityProperty[] = subclassEntity.properties.filter(x => x.isIdentityRename === true);
+  const identityRenames: EntityProperty[] = subclassEntity.properties.filter((x) => x.isIdentityRename === true);
   if (identityRenames.length <= 1) return;
 
-  const baseKeyNames: string = identityRenames.map(x => x.baseKeyName).join(', ');
-  identityRenames.forEach(identityRename => {
+  const baseKeyNames: string = identityRenames.map((x) => x.baseKeyName).join(', ');
+  identityRenames.forEach((identityRename) => {
     failures.push({
       validatorName,
       category: 'error',

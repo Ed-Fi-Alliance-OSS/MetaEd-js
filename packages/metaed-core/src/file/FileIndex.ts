@@ -18,12 +18,12 @@ export interface FileIndex {
 
 export function getAllContents(fileIndex: FileIndex | null): string {
   if (fileIndex == null) return '';
-  return fileIndex.fileAndLineNumbersSorted.map(x => x.file.contents).join('');
+  return fileIndex.fileAndLineNumbersSorted.map((x) => x.file.contents).join('');
 }
 
 export function getFilenameAndLineNumber(fileIndex: FileIndex, concatenatedLineNumber: number): FileMap {
   const matchingFileAndLineNumber = R.findLast(
-    x => x.lineNumber <= concatenatedLineNumber,
+    (x) => x.lineNumber <= concatenatedLineNumber,
     fileIndex.fileAndLineNumbersSorted,
   );
 
@@ -38,7 +38,7 @@ export function getFilenameAndLineNumber(fileIndex: FileIndex, concatenatedLineN
 export function createFileIndex(metaEdFiles: MetaEdFile[]): FileIndex {
   const fileAndLineNumbers: FileAndLineNumber[] = [];
   let lineNumber = 1;
-  metaEdFiles.forEach(file => {
+  metaEdFiles.forEach((file) => {
     fileAndLineNumbers.push({ file, lineNumber });
     lineNumber += file.lineCount;
   });

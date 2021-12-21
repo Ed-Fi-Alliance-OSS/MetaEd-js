@@ -87,7 +87,7 @@ export function enhanceSingleEntity(
   orderedAndUniqueTablesFor: OrderedAndUniqueTablesFor = defaultOrderedAndUniqueTablesFor,
 ) {
   const entityNamespace = R.head(
-    Array.from(namespaceMap.values()).filter(n => n.namespaceName === entity.namespace.namespaceName),
+    Array.from(namespaceMap.values()).filter((n) => n.namespaceName === entity.namespace.namespaceName),
   );
   const aggregate = generateAggregate(
     metaEd,

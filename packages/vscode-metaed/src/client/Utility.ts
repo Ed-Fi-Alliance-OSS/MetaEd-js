@@ -18,4 +18,4 @@ export function devEnvironmentCorrectedPath(pathStartingWithPackageDirectory: st
     : path.resolve(__dirname, '../../..', pathStartingWithPackageDirectory);
 }
 
-export const nextMacroTask = (): Promise<void> => new Promise(resolve => setImmediate(resolve));
+export const nextMacroTask = (): Promise<void> => new Promise((resolve) => setImmediate(resolve));

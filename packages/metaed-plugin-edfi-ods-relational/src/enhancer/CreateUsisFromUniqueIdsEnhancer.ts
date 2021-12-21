@@ -8,8 +8,8 @@ const enhancerName = 'CreateUsisFromUniqueIdsEnhancer';
 // UniqueId properties become unique indexes, but demoted from primary key
 // As of METAED-1134, all other identity properties are demoted and made unique indexes as well
 function demoteIdentityPropertiesAndAddToUniqueIndex(topLevelEntityEdfiOds: TopLevelEntityEdfiOds) {
-  topLevelEntityEdfiOds.odsProperties = topLevelEntityEdfiOds.odsProperties.filter(x => !x.isPartOfIdentity);
-  topLevelEntityEdfiOds.odsIdentityProperties.forEach(identityProperty => {
+  topLevelEntityEdfiOds.odsProperties = topLevelEntityEdfiOds.odsProperties.filter((x) => !x.isPartOfIdentity);
+  topLevelEntityEdfiOds.odsIdentityProperties.forEach((identityProperty) => {
     const formerIdentityProperty: EntityProperty = { ...identityProperty };
     formerIdentityProperty.data.edfiOdsRelational.odsIsUniqueIndex = true;
     formerIdentityProperty.isPartOfIdentity = false;
@@ -25,7 +25,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
   getEntitiesOfTypeForNamespaces([coreNamespace], 'domainEntity').forEach((entity: ModelBase) => {
     const uniqueIdProperty: EntityProperty | null = entity.data.edfiOdsRelational.odsIdentityProperties.find(
-      x => x.metaEdName === 'UniqueId',
+      (x) => x.metaEdName === 'UniqueId',
     );
     if (uniqueIdProperty == null) return;
 

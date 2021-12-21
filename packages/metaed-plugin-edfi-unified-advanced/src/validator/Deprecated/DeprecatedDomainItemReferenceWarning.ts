@@ -3,7 +3,7 @@ import { getAllEntitiesOfType } from 'metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  (getAllEntitiesOfType(metaEd, 'domain', 'subdomain') as (Domain | Subdomain)[]).forEach(domain => {
+  (getAllEntitiesOfType(metaEd, 'domain', 'subdomain') as (Domain | Subdomain)[]).forEach((domain) => {
     // ignore data standard domain item deprecations unless in alliance mode
     if (!domain.namespace.isExtension && !metaEd.allianceMode) return;
 

@@ -7,8 +7,8 @@ export function failInterchangeExtensionPropertyRedeclarations(
   baseEntity: Interchange,
   failures: ValidationFailure[],
 ) {
-  extensionEntity[interchangeItemType].forEach(extensionItem => {
-    baseEntity[interchangeItemType].forEach(baseItem => {
+  extensionEntity[interchangeItemType].forEach((extensionItem) => {
+    baseEntity[interchangeItemType].forEach((baseItem) => {
       if (extensionItem.metaEdName !== baseItem.metaEdName) return;
       failures.push({
         validatorName,

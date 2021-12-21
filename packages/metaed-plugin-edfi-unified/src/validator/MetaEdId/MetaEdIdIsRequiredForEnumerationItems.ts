@@ -3,11 +3,11 @@ import { getEntitiesOfTypeForNamespaces, asEnumeration } from 'metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  const namespaces: Namespace[] = Array.from(metaEd.namespace.values()).filter(n => !n.isExtension);
-  getEntitiesOfTypeForNamespaces(namespaces, 'enumeration', 'schoolYearEnumeration').forEach(entity => {
+  const namespaces: Namespace[] = Array.from(metaEd.namespace.values()).filter((n) => !n.isExtension);
+  getEntitiesOfTypeForNamespaces(namespaces, 'enumeration', 'schoolYearEnumeration').forEach((entity) => {
     const domain: Enumeration | SchoolYearEnumeration = asEnumeration(entity);
     if (domain.enumerationItems.length === 0) return;
-    domain.enumerationItems.forEach(enumerationItem => {
+    domain.enumerationItems.forEach((enumerationItem) => {
       if (enumerationItem.metaEdId) return;
       failures.push({
         validatorName: 'MetaEdIdIsRequiredForEnumerationItems',

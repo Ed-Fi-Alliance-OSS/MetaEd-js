@@ -87,11 +87,8 @@ export async function connect(databaseName: string, retry: number = retryCount):
       retry > 0 &&
       RegExp('TCP Provider: An existing connection was forcibly closed by the remote host.').test(error.message)
     ) {
-      await new Promise(resolve => setTimeout(resolve, 500));
-      pool = await connect(
-        databaseName,
-        retry - 1,
-      );
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      pool = await connect(databaseName, retry - 1);
     } else {
       throw error;
     }
@@ -165,7 +162,7 @@ export async function executeGeneratedSql(generatedSql: string, databaseName: st
   const sqlStatements: string[] = generatedSql.split('\nGO\n');
   await database(
     databaseName,
-    async db => {
+    async (db) => {
       winston.verbose(`[${databaseName}] executeGeneratedSql`);
       // eslint-disable-next-line no-restricted-syntax
       for (const sql of sqlStatements) {

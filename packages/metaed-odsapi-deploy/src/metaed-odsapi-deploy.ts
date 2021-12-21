@@ -46,7 +46,7 @@ export function dataStandardVersionFor(projects: MetaEdProject[]): SemVer {
     return dataStandardVersions[0];
   }
   if (errorMessage.length > 0) {
-    errorMessage.forEach(err => winston.error(err));
+    errorMessage.forEach((err) => winston.error(err));
     process.exit(1);
   }
   return '0.0.0';
@@ -135,7 +135,7 @@ export async function metaEdDeploy() {
 
     try {
       const { failure } = await executePipeline(state);
-      process.exitCode = !state.validationFailure.some(vf => vf.category === 'error') && !failure ? 0 : 1;
+      process.exitCode = !state.validationFailure.some((vf) => vf.category === 'error') && !failure ? 0 : 1;
     } catch (error) {
       winston.error(error);
       process.exitCode = 1;

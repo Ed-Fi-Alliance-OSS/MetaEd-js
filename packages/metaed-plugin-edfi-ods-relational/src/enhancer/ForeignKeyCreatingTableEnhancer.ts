@@ -23,7 +23,7 @@ export interface PropertyColumnPair {
 
 export function getReferencePropertiesAndAssociatedColumns(table: Table): PropertyColumnPair[] {
   return R.compose(
-    R.map((pair: PropertyColumnPair) => ({ property: R.head(pair).property, columns: R.chain(x => x.columns)(pair) })),
+    R.map((pair: PropertyColumnPair) => ({ property: R.head(pair).property, columns: R.chain((x) => x.columns)(pair) })),
     R.values,
     R.groupBy((pair: PropertyColumnPair) => pair.property.roleName + pair.property.metaEdName),
     R.chain((column: Column) =>

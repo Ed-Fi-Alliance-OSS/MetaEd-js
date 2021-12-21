@@ -6,7 +6,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   metaEd.namespace.forEach((namespace: Namespace) => {
     if (namespace.isExtension) return;
 
-    getAllEntitiesNoSimpleTypesForNamespaces([namespace]).forEach(entity => {
+    getAllEntitiesNoSimpleTypesForNamespaces([namespace]).forEach((entity) => {
       if (entity.metaEdId) return;
       const topLevelEntity = asTopLevelEntity(entity);
       failures.push({

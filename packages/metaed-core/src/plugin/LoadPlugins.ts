@@ -45,7 +45,7 @@ export function scanForPlugins(state: State): PluginManifest[] {
     // eslint-disable-next-line no-restricted-syntax
     for (const dependencyName of pluginManifest.dependencies) {
       // eslint-disable-line
-      if (foundPlugins.find(plugin => plugin.npmName === dependencyName) == null) {
+      if (foundPlugins.find((plugin) => plugin.npmName === dependencyName) == null) {
         const message = `Plugin ${pluginManifest.shortName} requires a plugin named ${dependencyName} which was not found. Plugin not loaded.`;
         winston.info(`  ${message}`);
         state.pipelineFailure.push({ category: 'error', message });

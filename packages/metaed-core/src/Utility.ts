@@ -2,7 +2,7 @@ import R from 'ramda';
 import semver from 'semver';
 import { SemVer } from './MetaEdEnvironment';
 
-export const nextMacroTask = (): Promise<void> => new Promise(resolve => setImmediate(resolve));
+export const nextMacroTask = (): Promise<void> => new Promise((resolve) => setImmediate(resolve));
 
 export function uppercaseThenAlphanumericOnly(aString: string): string | null {
   const alphanumericMatches: string[] | null = aString.match(/[a-zA-Z0-9]+/g);
@@ -22,21 +22,9 @@ export function prependIndefiniteArticle(phrase: string): string {
   return `a ${phrase}`;
 }
 
-export const orderByProp = (prop: string) =>
-  R.sortBy(
-    R.compose(
-      R.toLower,
-      R.prop(prop),
-    ),
-  );
+export const orderByProp = (prop: string) => R.sortBy(R.compose(R.toLower, R.prop(prop)));
 
-export const orderByPath = (path: string[]) =>
-  R.sortBy(
-    R.compose(
-      R.toLower,
-      R.path(path),
-    ),
-  );
+export const orderByPath = (path: string[]) => R.sortBy(R.compose(R.toLower, R.path(path)));
 
 /**
  *

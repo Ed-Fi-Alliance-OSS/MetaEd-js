@@ -10,7 +10,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {
     const handbookRepository: EdfiHandbookRepository | null = edfiHandbookRepositoryForNamespace(metaEd, namespace);
     if (handbookRepository == null) return;
-    (getEntitiesOfTypeForNamespaces([namespace], 'associationSubclass') as AssociationSubclass[]).forEach(entity => {
+    (getEntitiesOfTypeForNamespaces([namespace], 'associationSubclass') as AssociationSubclass[]).forEach((entity) => {
       handbookRepository.handbookEntries.push({
         ...createDefaultHandbookEntry(entity, 'Association Subclass', 'Subclass', metaEd),
         baseMetaEdType: entity.baseEntityName,

@@ -4,8 +4,8 @@ import { failExtensionPropertyRedeclarations } from '../ValidatorShared/FailExte
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  metaEd.namespace.forEach(namespace => {
-    namespace.entity.associationExtension.forEach(associationExtension => {
+  metaEd.namespace.forEach((namespace) => {
+    namespace.entity.associationExtension.forEach((associationExtension) => {
       const extendedEntity: TopLevelEntity | null = getEntityFromNamespaceChain(
         associationExtension.metaEdName,
         associationExtension.baseEntityNamespaceName,

@@ -59,7 +59,7 @@ async function updateDsVersionEnumsToMatch(odsApiVersion: string) {
 
 export function switchCoreDsProjectOptionsOnOdsApiChange(disposableTracker: CompositeDisposable) {
   disposableTracker.add(
-    atom.config.onDidChange('atom-metaed.targetOdsApiVersion', async valueChanges => {
+    atom.config.onDidChange('atom-metaed.targetOdsApiVersion', async (valueChanges) => {
       await updateDsVersionEnumsToMatch(valueChanges.newValue);
     }),
   );
@@ -155,14 +155,14 @@ export function manageLegacyIssues(disposableTracker: CompositeDisposable) {
   // warn that MetaEdOutput-Experimental folder from 1.1.x versions is no longer used
   disposableTracker.add(
     atom.project.onDidChangePaths((projectPaths: string[]) => {
-      projectPaths.forEach(async projectPath => warnOnExperimentalFolderExistence(projectPath));
+      projectPaths.forEach(async (projectPath) => warnOnExperimentalFolderExistence(projectPath));
     }),
   );
 
   // warn that metaEd.json from pre-1.2 versions is obsolete
   disposableTracker.add(
     atom.project.onDidChangePaths((projectPaths: string[]) => {
-      projectPaths.forEach(async projectPath => warnOnMetaEdJsonExistence(projectPath));
+      projectPaths.forEach(async (projectPath) => warnOnMetaEdJsonExistence(projectPath));
     }),
   );
 }

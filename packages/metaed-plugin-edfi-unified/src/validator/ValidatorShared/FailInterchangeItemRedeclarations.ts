@@ -8,11 +8,11 @@ export function failInterchangeItemRedeclarations(
   interchangeItems: InterchangeItem[],
   failures: ValidationFailure[],
 ) {
-  const itemNames: string[] = interchangeItems.map(x => x.metaEdName);
+  const itemNames: string[] = interchangeItems.map((x) => x.metaEdName);
   const duplicates: string[] = findDuplicates(itemNames);
 
-  duplicates.forEach(duplicate => {
-    const interchangeItem: InterchangeItem | void = interchangeItems.find(x => x.metaEdName === duplicate);
+  duplicates.forEach((duplicate) => {
+    const interchangeItem: InterchangeItem | void = interchangeItems.find((x) => x.metaEdName === duplicate);
     if (!interchangeItem) return;
 
     failures.push({

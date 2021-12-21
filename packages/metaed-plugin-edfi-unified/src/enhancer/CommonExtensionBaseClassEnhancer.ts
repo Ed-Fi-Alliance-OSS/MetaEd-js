@@ -4,7 +4,7 @@ import { getAllEntitiesOfType, getEntityFromNamespaceChain } from 'metaed-core';
 const enhancerName = 'CommonExtensionBaseClassEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  (getAllEntitiesOfType(metaEd, 'commonExtension') as CommonExtension[]).forEach(childEntity => {
+  (getAllEntitiesOfType(metaEd, 'commonExtension') as CommonExtension[]).forEach((childEntity) => {
     const referencedEntity: TopLevelEntity | null = getEntityFromNamespaceChain(
       childEntity.baseEntityName,
       childEntity.baseEntityNamespaceName,

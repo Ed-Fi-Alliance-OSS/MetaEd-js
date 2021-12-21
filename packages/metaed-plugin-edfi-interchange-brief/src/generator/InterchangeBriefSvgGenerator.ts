@@ -18,17 +18,17 @@ function getModel(metaEd: MetaEdEnvironment): SvgElement[] {
     const xsdRepository: EdFiXsdEntityRepository | null = edfiXsdRepositoryForNamespace(metaEd, namespace);
     if (xsdRepository == null) return;
 
-    xsdRepository.mergedInterchange.forEach(interchange => {
+    xsdRepository.mergedInterchange.forEach((interchange) => {
       const svgElement: SvgElement = {
         name: interchange.interchangeName,
         children: [{ name: '<xs:choice>', children: [] }],
       };
-      interchange.identityTemplates.forEach(identityTemplate => {
+      interchange.identityTemplates.forEach((identityTemplate) => {
         const identityTemplateEntity = { name: identityTemplate.data.edfiXsd.xsd_Name };
         // @ts-ignore: thinks svgElement.children[0] could be undefined, but it was defined above.
         if (svgElement.children[0].children) svgElement.children[0].children.push(identityTemplateEntity);
       });
-      interchange.elements.forEach(element => {
+      interchange.elements.forEach((element) => {
         const elementEntity = { name: element.data.edfiXsd.xsd_Name };
         // @ts-ignore: thinks svgElement.children[0] could be undefined, but it was defined above.
         if (svgElement.children[0].children) svgElement.children[0].children.push(elementEntity);
@@ -45,17 +45,17 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const generatedOutput: GeneratedOutput[] = [];
   const allInterchangeModels: SvgElement[] = getModel(metaEd);
   await Promise.all(
-    allInterchangeModels.map(async interchange =>
+    allInterchangeModels.map(async (interchange) =>
       new Horseman({ phantomPath })
         .viewport(1000, 1000)
         .open(`file:///${path.join(__dirname, './svg/InterchangeBriefSvg.html')}`)
         .injectJs(path.join(__dirname, './svg/treeLayout.js'))
-        .evaluate(model => {
+        .evaluate((model) => {
           // @ts-ignore: draw() will be called within phantom, where it will be defined.
           draw(model); // eslint-disable-line no-undef
         }, interchange)
         .cropBase64('g', 'PNG')
-        .then(imageBase64 =>
+        .then((imageBase64) =>
           generatedOutput.push({
             name: `${interchange.name}-InterchangeBrief`,
             namespace: 'Documentation',

@@ -18,14 +18,14 @@ export function enhance(metaEd: MetaEdEnvironment) {
     const xsdRepository: EdFiXsdEntityRepository | null = edfiXsdRepositoryForNamespace(metaEd, namespace);
     if (xsdRepository == null) return;
 
-    xsdRepository.mergedInterchange.forEach(mergedInterchange => {
+    xsdRepository.mergedInterchange.forEach((mergedInterchange) => {
       addMergedInterchangeEdfiInterchangeBriefTo(mergedInterchange);
 
       const topLevelEntities: TopLevelEntity[] = topLevelEntitiesFrom(mergedInterchange);
       const topLevelReferenceProperties: ReferentialProperty[] = topLevelReferencePropertiesFrom(mergedInterchange);
 
       const previouslyMatchedProperties: ReferentialProperty[] = [];
-      const referenceExclusionList: string[] = topLevelEntities.map(i => i.metaEdName);
+      const referenceExclusionList: string[] = topLevelEntities.map((i) => i.metaEdName);
       const allExtendedReferences: ReferenceUsageInfo[] = topLevelReferenceProperties.reduce(
         (referencedUsageInfos: ReferenceUsageInfo[], tlrp: ReferentialProperty) => {
           const extendedReferencesFromProperty: ReferenceUsageInfo[] = [
@@ -44,10 +44,9 @@ export function enhance(metaEd: MetaEdEnvironment) {
         [],
       );
       allExtendedReferences.sort(sortByNameThenRootEntityName);
-      (mergedInterchange.data
-        .edfiInterchangeBrief as MergedInterchangeEdfiInterchangeBrief).interchangeBriefExtendedReferences.push(
-        ...allExtendedReferences,
-      );
+      (
+        mergedInterchange.data.edfiInterchangeBrief as MergedInterchangeEdfiInterchangeBrief
+      ).interchangeBriefExtendedReferences.push(...allExtendedReferences);
     });
   });
   return {

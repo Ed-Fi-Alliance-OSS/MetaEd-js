@@ -53,9 +53,10 @@ function loadPluginManifest(directory: string): PluginManifest | null {
 /**
  * Scans the immediate subdirectories for plugins, and return manifests in dependency order. Requires absolute path.
  */
-export function scanDirectories(
-  directories: string | string[],
-): { manifests: PluginManifest[]; pipelineFailures: PipelineFailure[] } {
+export function scanDirectories(directories: string | string[]): {
+  manifests: PluginManifest[];
+  pipelineFailures: PipelineFailure[];
+} {
   const pipelineFailures: PipelineFailure[] = [];
 
   // eslint-disable-next-line no-param-reassign
@@ -68,18 +69,18 @@ export function scanDirectories(
 
   const pluginOrdering: Topo = new Topo();
 
-  directories.forEach(directory => {
+  directories.forEach((directory) => {
     let subdirectories: string[] | null = null;
 
     try {
-      subdirectories = fs.readdirSync(directory).filter(file => fs.statSync(path.join(directory, file)).isDirectory());
+      subdirectories = fs.readdirSync(directory).filter((file) => fs.statSync(path.join(directory, file)).isDirectory());
     } catch (err) {
       // ignore invalid directories
       return;
     }
     if (!subdirectories) return;
 
-    subdirectories.forEach(subdirectory => {
+    subdirectories.forEach((subdirectory) => {
       if (!subdirectory.startsWith('metaed-plugin-')) return;
       const directoryToTry: string = path.join(directory, subdirectory);
       const manifest: PluginManifest | null = loadPluginManifest(directoryToTry);

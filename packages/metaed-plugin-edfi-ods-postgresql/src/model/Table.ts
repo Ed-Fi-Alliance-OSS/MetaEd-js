@@ -25,7 +25,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         if (column.data.edfiOdsPostgresql == null) column.data.edfiOdsPostgresql = { columnName: '', dataType: 'unknown' };
       });
 
-      table.foreignKeys.forEach(foreignKey => {
+      table.foreignKeys.forEach((foreignKey) => {
         if (foreignKey.data.edfiOdsPostgresql == null)
           foreignKey.data.edfiOdsPostgresql = {
             nameSuffix: '',

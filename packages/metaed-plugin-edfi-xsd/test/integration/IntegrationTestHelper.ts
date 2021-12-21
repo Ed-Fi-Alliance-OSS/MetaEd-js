@@ -40,8 +40,8 @@ export function initializeNamespaceDependencies(
 export async function enhanceAndGenerate(metaEd: MetaEdEnvironment): Promise<EnhanceAndGenerateResult> {
   metaEd.dataStandardVersion = '2.0.0';
 
-  initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
-  initializeXsdPlugin().enhancer.forEach(enhance => enhance(metaEd));
+  initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
+  initializeXsdPlugin().enhancer.forEach((enhance) => enhance(metaEd));
 
   const generatorResult: GeneratedOutput[] = (await generate(metaEd)).generatedOutput;
   const interchangeGeneratorResult: GeneratedOutput[] = (await generateInterchange(metaEd)).generatedOutput || [];

@@ -13,7 +13,7 @@ import { ColumnDataTypes } from '../model/ColumnDataTypes';
 const enhancerName = 'SqlServerTableNamingEnhancer';
 
 function simpleColumnNameComponentCollapse(columnNameComponent: ColumnNameComponent[]): string {
-  return columnNameComponent.map(nameComponent => nameComponent.name).reduce(appendOverlapCollapsing, '');
+  return columnNameComponent.map((nameComponent) => nameComponent.name).reduce(appendOverlapCollapsing, '');
 }
 
 export function constructNameFrom(columnNameComponent: ColumnNameComponent[]): string {

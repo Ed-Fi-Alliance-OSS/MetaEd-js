@@ -167,7 +167,7 @@ describe('when ModifyIdentityForEducationOrganizationAndSubTypesDiminisher dimin
     expect(R.head(entitySubclass.data.edfiOdsRelational.odsIdentityProperties).metaEdName).not.toBe(
       educationOrganizationIdentifier,
     );
-    expect(entitySubclass.data.edfiOdsRelational.odsProperties.map(x => x.metaEdName)).not.toContain(
+    expect(entitySubclass.data.edfiOdsRelational.odsProperties.map((x) => x.metaEdName)).not.toContain(
       educationOrganizationIdentifier,
     );
   });
@@ -298,7 +298,7 @@ describe('when ModifyIdentityForEducationOrganizationAndSubTypesDiminisher dimin
     expect(R.head(entitySubclass.data.edfiOdsRelational.odsIdentityProperties).metaEdName).not.toBe(
       educationOrganizationIdentifier,
     );
-    expect(entitySubclass.data.edfiOdsRelational.odsProperties.map(x => x.metaEdName)).not.toContain(
+    expect(entitySubclass.data.edfiOdsRelational.odsProperties.map((x) => x.metaEdName)).not.toContain(
       educationOrganizationIdentifier,
     );
   });

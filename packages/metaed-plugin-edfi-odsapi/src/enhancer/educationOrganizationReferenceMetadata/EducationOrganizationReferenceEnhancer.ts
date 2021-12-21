@@ -19,9 +19,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const coreNamespace: Namespace | undefined = metaEd.namespace.get('EdFi');
   if (coreNamespace == null) return { enhancerName, success: false };
 
-  const educationOrganizationAbstractEntity: DomainEntity | undefined = coreNamespace.entity.domainEntity.get(
-    educationOrganizationEntityName,
-  );
+  const educationOrganizationAbstractEntity: DomainEntity | undefined =
+    coreNamespace.entity.domainEntity.get(educationOrganizationEntityName);
   if (educationOrganizationAbstractEntity == null || educationOrganizationAbstractEntity.identityProperties.length !== 1)
     return { enhancerName, success: true };
 

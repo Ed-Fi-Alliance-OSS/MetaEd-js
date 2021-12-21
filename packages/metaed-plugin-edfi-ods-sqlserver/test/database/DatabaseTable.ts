@@ -16,7 +16,7 @@ export async function tableExists(databaseTable: DatabaseTable, databaseName: st
     ELSE SELECT 0
   `;
   let result = false;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await queryWithBoolResult(db, 'tableExists', sql);
   });
 
@@ -39,7 +39,7 @@ export async function tableMSDescription(
   `;
 
   let result;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'tableMSDescription', sql);
   });
   return firstKeyValueOf(result);
@@ -52,7 +52,7 @@ export async function tableRowCount(databaseTable: DatabaseTable, databaseName: 
   `;
 
   let result;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'tableRowCount', sql);
   });
   return firstKeyValueOf(result);
@@ -67,7 +67,7 @@ export async function tableColumnCount(databaseTable: DatabaseTable, databaseNam
   `;
 
   let result;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'tableColumnCount', sql);
   });
   return firstKeyValueOf(result);
@@ -92,7 +92,7 @@ export async function tablePrimaryKeys(
   `;
 
   let result: any[] = [];
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await query(db, 'tablePrimaryKeys', sql);
   });
   return result.map((pk: any) => firstKeyValueOf(pk));
@@ -117,8 +117,8 @@ export async function tableUniqueConstraints(
   `;
 
   let result = [];
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await query(db, 'tableUniqueConstraints', sql);
   });
-  return result.map(column => firstKeyValueOf(column));
+  return result.map((column) => firstKeyValueOf(column));
 }

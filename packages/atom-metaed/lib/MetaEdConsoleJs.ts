@@ -48,8 +48,8 @@ async function collapseTreeViewDirectory(pathString: string): Promise<void> {
 async function cleanUpMetaEdArtifacts(artifactDirectory: string, outputWindow: OutputWindow): Promise<boolean> {
   // close all MetaEdOutput tabs
   const panes = atom.workspace.getPanes();
-  panes.forEach(pane => {
-    pane.getItems().forEach(editor => {
+  panes.forEach((pane) => {
+    pane.getItems().forEach((editor) => {
       if (typeof (editor as TextEditor).getPath === 'function') {
         const editorPath: string | undefined = (editor as TextEditor).getPath();
         if (editorPath && editorPath.startsWith(artifactDirectory)) {
@@ -73,7 +73,7 @@ async function cleanUpMetaEdArtifacts(artifactDirectory: string, outputWindow: O
   try {
     if (await fs.exists(artifactDirectory)) {
       const metaEdFilePaths: string[] = klawSync(artifactDirectory, {
-        filter: item => ['.metaed', '.metaEd', '.MetaEd', '.METAED'].includes(path.extname(item.path)),
+        filter: (item) => ['.metaed', '.metaEd', '.MetaEd', '.METAED'].includes(path.extname(item.path)),
       });
       if (metaEdFilePaths.length > 0) {
         outputWindow.addMessage(
@@ -155,7 +155,7 @@ async function executeBuild(
   metaEdConfigurationPath,
   outputWindow: OutputWindow,
 ): Promise<any> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const startNotification = new Notification('info', 'Building MetaEd...', { dismissable: true });
     const failNotification = new Notification('error', 'MetaEd Build Failed!', { dismissable: true });
     const buildErrorsNotification = new Notification('warning', 'MetaEd Build Errors Detected!', { dismissable: true });
@@ -163,7 +163,7 @@ async function executeBuild(
 
     startNotification.onDidDisplay(() => setTimeout(() => startNotification.dismiss(), 10000));
 
-    [resultNotification, failNotification, buildErrorsNotification].forEach(notification =>
+    [resultNotification, failNotification, buildErrorsNotification].forEach((notification) =>
       notification.onDidDisplay(() => {
         startNotification.dismiss();
         setTimeout(() => notification.dismiss(), 3000);
@@ -185,16 +185,16 @@ async function executeBuild(
 
     const outputSplitter: any = childProcess.stdout.pipe(streamSplitter('\n'));
     outputSplitter.encoding = 'utf8';
-    outputSplitter.on('token', token => {
+    outputSplitter.on('token', (token) => {
       outputWindow.addMessage(ansihtml(token), true);
     });
 
-    childProcess.stderr.on('data', data => {
+    childProcess.stderr.on('data', (data) => {
       outputWindow.addMessage(ansihtml(data.toString()).replace(/(?:\r\n|\r|\n)/g, '<br />'), true);
       resultNotification = buildErrorsNotification;
     });
 
-    childProcess.on('close', code => {
+    childProcess.on('close', (code) => {
       console.log(`child process exited with code ${code}`);
       if (code === 0) {
         outputWindow.addMessage(`MetaEd build complete.`);
@@ -286,7 +286,7 @@ export async function build(outputWindow: OutputWindow): Promise<boolean> {
       artifactDirectory,
     };
 
-    metaEdProjectMetadata.forEach(pm => {
+    metaEdProjectMetadata.forEach((pm) => {
       metaEdConfiguration.projects.push({
         namespaceName: pm.projectNamespace,
         projectName: pm.projectName,
@@ -321,7 +321,7 @@ async function executeDeploy(
   outputWindow: OutputWindow,
   shouldDeployCore: boolean = false,
 ): Promise<any> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const startNotification = new Notification('info', 'Deploying MetaEd...', { dismissable: true });
     const failNotification = new Notification('error', 'MetaEd Deploy Failed!', { dismissable: true });
     const buildErrorsNotification = new Notification('warning', 'MetaEd Deploy Errors Detected!', { dismissable: true });
@@ -329,7 +329,7 @@ async function executeDeploy(
 
     startNotification.onDidDisplay(() => setTimeout(() => startNotification.dismiss(), 10000));
 
-    [resultNotification, failNotification, buildErrorsNotification].forEach(notification =>
+    [resultNotification, failNotification, buildErrorsNotification].forEach((notification) =>
       notification.onDidDisplay(() => {
         startNotification.dismiss();
         setTimeout(() => notification.dismiss(), 3000);
@@ -354,16 +354,16 @@ async function executeDeploy(
 
     const outputSplitter: any = childProcess.stdout.pipe(streamSplitter('\n'));
     outputSplitter.encoding = 'utf8';
-    outputSplitter.on('token', token => {
+    outputSplitter.on('token', (token) => {
       outputWindow.addMessage(ansihtml(token), true);
     });
 
-    childProcess.stderr.on('data', data => {
+    childProcess.stderr.on('data', (data) => {
       outputWindow.addMessage(ansihtml(data.toString()).replace(/(?:\r\n|\r|\n)/g, '<br />'), true);
       resultNotification = buildErrorsNotification;
     });
 
-    childProcess.on('close', code => {
+    childProcess.on('close', (code) => {
       console.log(`child process exited with code ${code}`);
       if (code === 0) {
         outputWindow.addMessage(`MetaEd Deploy complete.`);
@@ -398,7 +398,7 @@ export async function deploy(outputWindow: OutputWindow, shouldDeployCore: boole
       artifactDirectory,
     };
 
-    metaEdProjectMetadata.forEach(pm => {
+    metaEdProjectMetadata.forEach((pm) => {
       metaEdConfiguration.projects.push({
         namespaceName: pm.projectNamespace,
         projectName: pm.projectName,

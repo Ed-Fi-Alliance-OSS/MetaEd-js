@@ -2,8 +2,8 @@ import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  metaEd.namespace.forEach(namespace => {
-    namespace.entity.associationExtension.forEach(entity => {
+  metaEd.namespace.forEach((namespace) => {
+    namespace.entity.associationExtension.forEach((entity) => {
       if (entity.baseEntityNamespaceName === namespace.namespaceName) {
         failures.push({
           validatorName: 'AssociationExtensionMustNotBeInSameNamespaceAsBase',

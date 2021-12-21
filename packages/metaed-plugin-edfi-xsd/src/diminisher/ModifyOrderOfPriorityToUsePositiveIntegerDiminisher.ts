@@ -26,7 +26,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
   const element: Element | undefined | null =
     complexType != null
-      ? complexType.items.map(x => (x as unknown) as Element).find(x => x.name === nameType && x.type === nameType)
+      ? complexType.items.map((x) => x as unknown as Element).find((x) => x.name === nameType && x.type === nameType)
       : null;
   if (element != null) element.type = positiveIntegerType;
 

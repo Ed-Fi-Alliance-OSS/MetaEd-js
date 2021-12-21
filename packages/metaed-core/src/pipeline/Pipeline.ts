@@ -78,7 +78,10 @@ export async function executePipeline(state: State): Promise<{ state: State; fai
           }
           runValidators(pluginManifest, state);
           await nextMacroTask();
-          if (state.validationFailure.some(vf => vf.category === 'error') && state.pipelineOptions.stopOnValidationFailure) {
+          if (
+            state.validationFailure.some((vf) => vf.category === 'error') &&
+            state.pipelineOptions.stopOnValidationFailure
+          ) {
             failure = true;
             break;
           }

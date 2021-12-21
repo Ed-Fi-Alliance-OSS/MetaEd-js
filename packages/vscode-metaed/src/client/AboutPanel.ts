@@ -68,7 +68,7 @@ export class AboutPanel {
 
     // Handle messages from the webview
     this.myPanel.webview.onDidReceiveMessage(
-      message => {
+      (message) => {
         switch (message.command) {
           case 'alert':
             vscode.window.showErrorMessage(message.text);
@@ -97,7 +97,7 @@ export class AboutPanel {
   }
 
   private update() {
-    const pluginList: string[] = scanForPlugins(newState()).map(pm => `${pm.npmName} ${pm.version}`);
+    const pluginList: string[] = scanForPlugins(newState()).map((pm) => `${pm.npmName} ${pm.version}`);
     const version: string = vscodeMetaEdPackageJson() != null ? ` v${vscodeMetaEdPackageJson().version}` : '';
     const backgroundUri = this.myPanel.webview.asWebviewUri(
       vscode.Uri.file(path.resolve(this.extensionPath, './static/MetaEd-About-Background.png')),

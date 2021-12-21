@@ -8,8 +8,8 @@ const enhancerName = 'AddInlineIdentityEnhancer';
 
 function addInlineIdentities(topLevelEntity: TopLevelEntity, properties: EntityProperty[], namespace: Namespace) {
   properties
-    .filter(p => p.type === 'inlineCommon')
-    .forEach(commonProperty => {
+    .filter((p) => p.type === 'inlineCommon')
+    .forEach((commonProperty) => {
       const common: Common | null = getEntityFromNamespaceChain(
         commonProperty.metaEdName,
         commonProperty.referencedNamespaceName,
@@ -18,8 +18,8 @@ function addInlineIdentities(topLevelEntity: TopLevelEntity, properties: EntityP
       ) as Common | null;
       if (common == null || common.inlineInOds == null) return;
       common.properties
-        .filter(p => p.isPartOfIdentity)
-        .forEach(identityProperty => {
+        .filter((p) => p.isPartOfIdentity)
+        .forEach((identityProperty) => {
           const topLevelEntityEdfiXsd: TopLevelEntityEdfiXsd = topLevelEntity.data.edfiXsd as TopLevelEntityEdfiXsd;
           topLevelEntityEdfiXsd.xsdIdentityProperties.push(identityProperty);
         });
@@ -36,7 +36,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     'domainEntity',
     'domainEntityExtension',
     'domainEntitySubclass',
-  ).forEach(entity => {
+  ).forEach((entity) => {
     const topLevelEntity: TopLevelEntity = entity as TopLevelEntity;
     addInlineIdentities(topLevelEntity, topLevelEntity.properties, topLevelEntity.namespace);
   });

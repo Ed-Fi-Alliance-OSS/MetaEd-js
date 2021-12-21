@@ -22,11 +22,11 @@ function reorderIdentityType(
   if (
     identityType == null ||
     !identityType.hasItems() ||
-    identityType.items.some(x => !newElementOrder.includes(((x as unknown) as Element).name))
+    identityType.items.some((x) => !newElementOrder.includes((x as unknown as Element).name))
   )
     return;
 
-  identityType.items = R.sortBy(x => newElementOrder.indexOf(((x as unknown) as Element).name))(identityType.items);
+  identityType.items = R.sortBy((x) => newElementOrder.indexOf((x as unknown as Element).name))(identityType.items);
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {

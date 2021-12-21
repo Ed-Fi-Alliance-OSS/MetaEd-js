@@ -77,12 +77,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     multipleCascadePathVertices.forEach((multipleCascadeTopLevelEntity: TopLevelEntity) => {
       const edgesToPrune: Edge<TopLevelEntity>[] = R.compose(
         R.tail,
-        R.sortBy(
-          R.compose(
-            R.toLower,
-            R.path(['source', 'data', 'edfiOdsRelational', 'odsTableId']),
-          ),
-        ),
+        R.sortBy(R.compose(R.toLower, R.path(['source', 'data', 'edfiOdsRelational', 'odsTableId']))),
       )(inEdges(cascadeGraph, multipleCascadeTopLevelEntity));
 
       edgesToPrune.forEach((edge: Edge<TopLevelEntity>) => {
@@ -90,7 +85,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           if (!isOdsReferenceProperty(property) || asReferentialProperty(property).referencedEntity !== edge.source) return;
 
           property.data.edfiOdsRelational.odsCausesCyclicUpdateCascade = true;
-          cascadeGraph.edges = R.reject(x => x.edge === edge)(cascadeGraph).edges;
+          cascadeGraph.edges = R.reject((x) => x.edge === edge)(cascadeGraph).edges;
         });
       });
     });

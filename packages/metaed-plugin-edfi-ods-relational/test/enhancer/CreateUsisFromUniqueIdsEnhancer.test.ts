@@ -51,7 +51,7 @@ describe('when enhancing entity with unique id property', (): void => {
   it('should add unique id copy as not part of identity', (): void => {
     const domainEntity: any = namespace.entity.domainEntity.get(domainEntityName);
     const property: any = domainEntity.data.edfiOdsRelational.odsProperties.find(
-      x => x.metaEdName === integerProperty.metaEdName,
+      (x) => x.metaEdName === integerProperty.metaEdName,
     );
     expect(property).toBeDefined();
     expect(property.metaEdName).toBe(integerProperty.metaEdName);
@@ -65,7 +65,7 @@ describe('when enhancing entity with unique id property', (): void => {
 
   it('should add usi property', (): void => {
     const domainEntity: any = namespace.entity.domainEntity.get(domainEntityName);
-    const property: any = domainEntity.data.edfiOdsRelational.odsProperties.find(x => x.metaEdName === 'USI');
+    const property: any = domainEntity.data.edfiOdsRelational.odsProperties.find((x) => x.metaEdName === 'USI');
     expect(property).toBeDefined();
     expect(property.metaEdName).toBe('USI');
     expect(property.roleName).toBe(integerProperty.roleName);
@@ -154,7 +154,7 @@ describe('when enhancing entity with unique id property and additional identity 
   it('should add unique id copy as not part of identity', (): void => {
     const domainEntity: any = namespace.entity.domainEntity.get(domainEntityName);
     const property: any = domainEntity.data.edfiOdsRelational.odsProperties.find(
-      x => x.metaEdName === uniqueIdProperty.metaEdName,
+      (x) => x.metaEdName === uniqueIdProperty.metaEdName,
     );
     expect(property).toBeDefined();
     expect(property.metaEdName).toBe(uniqueIdProperty.metaEdName);
@@ -169,7 +169,7 @@ describe('when enhancing entity with unique id property and additional identity 
   it('should add integer identity copy as not part of identity', (): void => {
     const domainEntity: any = namespace.entity.domainEntity.get(domainEntityName);
     const property: any = domainEntity.data.edfiOdsRelational.odsProperties.find(
-      x => x.metaEdName === integerIdentityProperty.metaEdName,
+      (x) => x.metaEdName === integerIdentityProperty.metaEdName,
     );
     expect(property).toBeDefined();
     expect(property.metaEdName).toBe(integerIdentityProperty.metaEdName);
@@ -181,7 +181,7 @@ describe('when enhancing entity with unique id property and additional identity 
 
   it('should add usi property', (): void => {
     const domainEntity: any = namespace.entity.domainEntity.get(domainEntityName);
-    const property: any = domainEntity.data.edfiOdsRelational.odsProperties.find(x => x.metaEdName === 'USI');
+    const property: any = domainEntity.data.edfiOdsRelational.odsProperties.find((x) => x.metaEdName === 'USI');
     expect(property).toBeDefined();
     expect(property.metaEdName).toBe('USI');
     expect(property.roleName).toBe(uniqueIdProperty.roleName);

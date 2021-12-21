@@ -16,7 +16,7 @@ export const buildParseTree = R.curry((parseTreeBuilder: ParseTreeBuilder, state
     winston.error('BuildParseTree: parse tree builder returned null for state metaEdFileIndex contents');
   }
 
-  validationFailures.forEach(failure => {
+  validationFailures.forEach((failure) => {
     if (failure.sourceMap && state.fileIndex) {
       failure.fileMap = getFilenameAndLineNumber(state.fileIndex, failure.sourceMap.line);
     }

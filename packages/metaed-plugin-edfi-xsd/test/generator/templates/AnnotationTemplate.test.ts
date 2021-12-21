@@ -22,34 +22,9 @@ describe('when generating schema', (): void => {
   });
 
   it('should have correct documentation', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          annotation,
-          nextLength,
-        ),
-        result,
-      ),
-    ).toBe(1);
-    expect(
-      R.view(
-        R.compose(
-          annotation,
-          nextHeadName,
-        ),
-        result,
-      ),
-    ).toBe('xs:documentation');
-    expect(
-      R.view(
-        R.compose(
-          annotation,
-          nextHead,
-          nextHeadText,
-        ),
-        result,
-      ),
-    ).toBe(documentation);
+    expect(R.view(R.compose(annotation, nextLength), result)).toBe(1);
+    expect(R.view(R.compose(annotation, nextHeadName), result)).toBe('xs:documentation');
+    expect(R.view(R.compose(annotation, nextHead, nextHeadText), result)).toBe(documentation);
   });
 });
 
@@ -70,74 +45,21 @@ describe('when generating annotation with type group', (): void => {
   });
 
   it('should be annotation only', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          annotation,
-          nextLength,
-        ),
-        result,
-      ),
-    ).toBe(2);
+    expect(R.view(R.compose(annotation, nextLength), result)).toBe(2);
   });
 
   it('should have correct documentation', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          annotation,
-          nextHeadName,
-        ),
-        result,
-      ),
-    ).toBe('xs:documentation');
-    expect(
-      R.view(
-        R.compose(
-          annotation,
-          nextHead,
-          nextHeadText,
-        ),
-        result,
-      ),
-    ).toBe(documentation);
+    expect(R.view(R.compose(annotation, nextHeadName), result)).toBe('xs:documentation');
+    expect(R.view(R.compose(annotation, nextHead, nextHeadText), result)).toBe(documentation);
   });
 
   it('should have appinfo', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          annotation,
-          nextSecondName,
-        ),
-        result,
-      ),
-    ).toBe('xs:appinfo');
+    expect(R.view(R.compose(annotation, nextSecondName), result)).toBe('xs:appinfo');
   });
 
   it('should have type group only', (): void => {
-    const appinfo = R.compose(
-      annotation,
-      nextSecond,
-    );
-    expect(
-      R.view(
-        R.compose(
-          appinfo,
-          nextLength,
-        ),
-        result,
-      ),
-    ).toBe(1);
-    expect(
-      R.view(
-        R.compose(
-          appinfo,
-          nextHead,
-          nextHeadText,
-        ),
-        result,
-      ),
-    ).toBe(typeGroup);
+    const appinfo = R.compose(annotation, nextSecond);
+    expect(R.view(R.compose(appinfo, nextLength), result)).toBe(1);
+    expect(R.view(R.compose(appinfo, nextHead, nextHeadText), result)).toBe(typeGroup);
   });
 });

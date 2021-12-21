@@ -51,8 +51,8 @@ import { ValidationFailure } from '../validator/ValidationFailure';
 import { PropertyIndex } from '../model/property/PropertyRepository';
 
 function propertyPathFrom(context: MetaEdGrammar.PropertyPathContext): string[] {
-  if (R.any(token => token.exception)(context.ID())) return [];
-  return R.map(token => token.getText())(context.ID());
+  if (R.any((token) => token.exception)(context.ID())) return [];
+  return R.map((token) => token.getText())(context.ID());
 }
 
 /**
@@ -103,9 +103,8 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
   exitingEntity() {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
     if (this.currentTopLevelEntity.metaEdName) {
-      const currentTopLevelEntityRepository: Map<string, TopLevelEntity> = this.currentNamespace.entity[
-        this.currentTopLevelEntity.type
-      ];
+      const currentTopLevelEntityRepository: Map<string, TopLevelEntity> =
+        this.currentNamespace.entity[this.currentTopLevelEntity.type];
       if (currentTopLevelEntityRepository.has(this.currentTopLevelEntity.metaEdName)) {
         this.validationFailures.push({
           validatorName: 'TopLevelEntityBuilder',
@@ -803,17 +802,15 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
   enterIsWeakReference(context: MetaEdGrammar.IsWeakReferenceContext) {
     if (this.currentProperty === NoEntityProperty) return;
     (this.currentProperty as DomainEntityProperty | AssociationProperty).isWeak = true;
-    (this.currentProperty.sourceMap as DomainEntityPropertySourceMap | AssociationPropertySourceMap).isWeak = sourceMapFrom(
-      context,
-    );
+    (this.currentProperty.sourceMap as DomainEntityPropertySourceMap | AssociationPropertySourceMap).isWeak =
+      sourceMapFrom(context);
   }
 
   enterPotentiallyLogical(context: MetaEdGrammar.PotentiallyLogicalContext) {
     if (this.currentProperty === NoEntityProperty) return;
     (this.currentProperty as DomainEntityProperty | AssociationProperty).potentiallyLogical = true;
-    (this.currentProperty.sourceMap as
-      | DomainEntityPropertySourceMap
-      | AssociationPropertySourceMap).potentiallyLogical = sourceMapFrom(context);
+    (this.currentProperty.sourceMap as DomainEntityPropertySourceMap | AssociationPropertySourceMap).potentiallyLogical =
+      sourceMapFrom(context);
   }
 
   // @ts-ignore

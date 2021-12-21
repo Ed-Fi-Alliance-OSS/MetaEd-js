@@ -4,7 +4,7 @@ import { MetaEdEnvironment, ValidationFailure, SharedIntegerSourceMap, Namespace
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
   metaEd.namespace.forEach((namespace: Namespace) => {
-    namespace.entity.sharedInteger.forEach(entity => {
+    namespace.entity.sharedInteger.forEach((entity) => {
       if (
         entity.minValue &&
         entity.maxValue &&

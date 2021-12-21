@@ -37,7 +37,7 @@ export async function generateMarkdownForDomains(metaEd: MetaEdEnvironment): Pro
   const result: DomainMarkdown[] = [];
   const domains: ModelBase[] = getAllEntitiesOfType(metaEd, 'domain');
 
-  domains.forEach(domain => {
+  domains.forEach((domain) => {
     const markdown: string = template().interchangeBrief({ domain });
     result.push({
       domainName: domain.metaEdName,
@@ -61,7 +61,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const results: GeneratedOutput[] = [];
   const domainMarkdowns: DomainMarkdown[] = await generateMarkdownForDomains(metaEd);
 
-  domainMarkdowns.forEach(domainMarkdown => {
+  domainMarkdowns.forEach((domainMarkdown) => {
     results.push({
       name: 'UDM Markdown',
       namespace: 'Documentation',

@@ -27,7 +27,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {
     const xsdRepository: EdFiXsdEntityRepository | null = edfiXsdRepositoryForNamespace(metaEd, namespace);
     if (xsdRepository == null) return;
-    xsdRepository.mergedInterchange.forEach(mergedInterchange => {
+    xsdRepository.mergedInterchange.forEach((mergedInterchange) => {
       addMergedInterchangeEdfiInterchangeBriefTo(mergedInterchange);
     });
   });

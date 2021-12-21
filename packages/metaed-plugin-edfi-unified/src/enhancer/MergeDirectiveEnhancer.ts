@@ -36,14 +36,14 @@ function findProperty(
   if (propertyName == null) return null;
 
   // first, look for property on the entity
-  let property: EntityProperty | undefined = entity.properties.find(x => x.fullPropertyName === propertyName);
+  let property: EntityProperty | undefined = entity.properties.find((x) => x.fullPropertyName === propertyName);
 
   if (property == null) {
     // look for property on a parallel extension entity
-    entity.extendedBy.forEach(extensionEntity => {
+    entity.extendedBy.forEach((extensionEntity) => {
       // currently limiting to extensions in the same namespace
       if (extensionEntity.namespace === entity.namespace) {
-        property = extensionEntity.properties.find(x => x.fullPropertyName === propertyName);
+        property = extensionEntity.properties.find((x) => x.fullPropertyName === propertyName);
       }
     });
   }
@@ -51,7 +51,7 @@ function findProperty(
   if (property == null) {
     // look for property on immediate superclass of this entity
     if (entity.baseEntity != null) {
-      property = entity.baseEntity.properties.find(x => x.fullPropertyName === propertyName);
+      property = entity.baseEntity.properties.find((x) => x.fullPropertyName === propertyName);
     }
   }
 
@@ -75,10 +75,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getPropertiesOfType(metaEd.propertyIndex, ...referenceTypes)
     // TODO: As of METAED-881, the current property here could also be one of the shared simple properties, which
     // are not currently extensions of ReferentialProperty but have an equivalent mergeDirectives field
-    .map(x => asReferentialProperty(x))
-    .filter(x => !R.isEmpty(x.mergeDirectives))
-    .forEach(property => {
-      property.mergeDirectives.forEach(mergeDirective => {
+    .map((x) => asReferentialProperty(x))
+    .filter((x) => !R.isEmpty(x.mergeDirectives))
+    .forEach((property) => {
+      property.mergeDirectives.forEach((mergeDirective) => {
         const sourcePropertyChain: EntityProperty[] = [];
         const targetPropertyChain: EntityProperty[] = [];
 

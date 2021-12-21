@@ -4,7 +4,7 @@ import { getAllEntitiesOfType, getEntityFromNamespaceChain } from 'metaed-core';
 const enhancerName = 'SubdomainParentEntityEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  (getAllEntitiesOfType(metaEd, 'subdomain') as Subdomain[]).forEach(childEntity => {
+  (getAllEntitiesOfType(metaEd, 'subdomain') as Subdomain[]).forEach((childEntity) => {
     const parent: Domain | null = getEntityFromNamespaceChain(
       childEntity.parentMetaEdName,
       childEntity.namespace.namespaceName,

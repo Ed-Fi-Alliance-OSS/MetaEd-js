@@ -31,8 +31,8 @@ function noMergeDirectives(
   outPaths: (ReferentialProperty | SimpleProperty)[][],
 ): (ReferentialProperty | SimpleProperty)[][] {
   const result: (ReferentialProperty | SimpleProperty)[][] = [];
-  outPaths.forEach(outPath => {
-    if (outPath.every(property => (property as ReferentialProperty).mergeDirectives.length === 0)) result.push(outPath);
+  outPaths.forEach((outPath) => {
+    if (outPath.every((property) => (property as ReferentialProperty).mergeDirectives.length === 0)) result.push(outPath);
   });
   return result;
 }
@@ -41,7 +41,7 @@ function addOutPathsForEntitiesWithSharedSimples(
   outPaths: (ReferentialProperty | SimpleProperty)[][],
 ): (ReferentialProperty | SimpleProperty)[][] {
   const result: (ReferentialProperty | SimpleProperty)[][] = [...outPaths];
-  outPaths.forEach(outPath => {
+  outPaths.forEach((outPath) => {
     const outPathEndpoint = outPath[outPath.length - 1];
     if (isSharedProperty(outPathEndpoint)) result.push(outPath.slice(0, outPath.length - 1));
   });
@@ -61,14 +61,14 @@ function targetDiffersByFullNameOnDirectReference(
 ): (ReferentialProperty | SimpleProperty)[][] {
   const fullNamesMap: Map<string, (ReferentialProperty | SimpleProperty)[][]> = new Map();
 
-  outPaths.forEach(outPath => {
+  outPaths.forEach((outPath) => {
     const { fullPropertyName } = outPath[outPath.length - 1];
     if (!fullNamesMap.has(fullPropertyName)) fullNamesMap.set(fullPropertyName, []);
     (fullNamesMap.get(fullPropertyName) as (ReferentialProperty | SimpleProperty)[][]).push(outPath);
   });
 
   // Ramda unnest === flatten a single level
-  return R.unnest(Array.from(fullNamesMap.values()).filter(outPathArray => outPathArray.length > 1));
+  return R.unnest(Array.from(fullNamesMap.values()).filter((outPathArray) => outPathArray.length > 1));
 }
 
 function startOfPathIsIdentity(outPath: (ReferentialProperty | SimpleProperty)[]): boolean {
@@ -89,7 +89,7 @@ function mergeOutReferenceEntityEndpointsMap(
 }
 
 const pathStringReducer = (finalString, currentOutPath) =>
-  `${finalString} [${currentOutPath.map(p => p.metaEdName).join('.')}]`;
+  `${finalString} [${currentOutPath.map((p) => p.metaEdName).join('.')}]`;
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
@@ -103,7 +103,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
     'domainEntity',
     'domainEntityExtension',
     'domainEntitySubclass',
-  ).forEach(entity => {
+  ).forEach((entity) => {
     // combine outReferenceEntitiesMap if this entity has a base
     const outReferenceEntityEndpointsMap: Map<ModelBase, (ReferentialProperty | SimpleProperty)[][]> = new Map(
       (entity as TopLevelEntity).outReferenceEntityEndpointsMap,
@@ -151,7 +151,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
       const problemPathsAsString = possibleProblemOutPaths4.reduce(pathStringReducer, '');
 
       // Using outpaths 3 for individual errors but outpaths 4 for path listing
-      possibleProblemOutPaths3.forEach(outPath => {
+      possibleProblemOutPaths3.forEach((outPath) => {
         failures.push({
           validatorName: 'OutPathsToSameEntityMustHaveMergeDirectiveOrRoleName',
           category: 'error',

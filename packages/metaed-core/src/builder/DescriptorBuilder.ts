@@ -67,9 +67,7 @@ export class DescriptorBuilder extends TopLevelEntityBuilder {
     (this.currentTopLevelEntity.sourceMap as DescriptorSourceMap).mapTypeEnumeration = sourceMapFrom(context);
 
     this.currentMapTypeEnumeration.sourceMap.type = sourceMapFrom(context);
-    ((this.currentMapTypeEnumeration.sourceMap as unknown) as DescriptorSourceMap).mapTypeEnumeration = sourceMapFrom(
-      context,
-    );
+    (this.currentMapTypeEnumeration.sourceMap as unknown as DescriptorSourceMap).mapTypeEnumeration = sourceMapFrom(context);
   }
 
   enterMapTypeDocumentation(context: MetaEdGrammar.MapTypeDocumentationContext) {

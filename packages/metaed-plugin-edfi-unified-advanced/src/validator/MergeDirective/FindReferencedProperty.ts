@@ -27,7 +27,7 @@ function possibleModelTypesReferencedByProperty(propertyType: ModelType | Proper
     result.push(`${propertyType}${extensionSuffix}`);
   if (allEntityModelTypesUntyped.includes(`${propertyType}${subclassSuffix}`))
     result.push(`${propertyType}${subclassSuffix}`);
-  return result.map(x => asModelType(x));
+  return result.map((x) => asModelType(x));
 }
 
 export function getReferencedEntities(
@@ -56,20 +56,22 @@ function getBaseEntity(namespace: Namespace, entity: TopLevelEntity): ModelBase 
 
 export const matchAll = () => (): boolean => true;
 
-export const matchAllIdentityReferenceProperties = () => (property: EntityProperty, parentContext: ModelBase): boolean =>
-  ['choice', 'inlineCommon'].includes(parentContext.type) ||
-  ((property.isPartOfIdentity || property.isIdentityRename) &&
-    [
-      'association',
-      'descriptor',
-      'domainEntity',
-      'enumeration',
-      'schoolYearEnumeration',
-      'sharedDecimal',
-      'sharedInteger',
-      'sharedShort',
-      'sharedString',
-    ].includes(property.type));
+export const matchAllIdentityReferenceProperties =
+  () =>
+  (property: EntityProperty, parentContext: ModelBase): boolean =>
+    ['choice', 'inlineCommon'].includes(parentContext.type) ||
+    ((property.isPartOfIdentity || property.isIdentityRename) &&
+      [
+        'association',
+        'descriptor',
+        'domainEntity',
+        'enumeration',
+        'schoolYearEnumeration',
+        'sharedDecimal',
+        'sharedInteger',
+        'sharedShort',
+        'sharedString',
+      ].includes(property.type));
 
 export const matchAllButFirstAsIdentityProperties = () => {
   let firstProperty: EntityProperty;
@@ -98,7 +100,7 @@ export function findReferencedProperty(
   let currentEntity: ModelBase | undefined;
   let currentProperty: EntityProperty | undefined;
 
-  propertyPath.some(pathSegment => {
+  propertyPath.some((pathSegment) => {
     currentProperty = undefined;
     let currentFilter = filter;
 

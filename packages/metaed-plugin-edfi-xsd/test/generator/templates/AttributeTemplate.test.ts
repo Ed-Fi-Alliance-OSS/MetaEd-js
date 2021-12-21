@@ -34,71 +34,21 @@ describe('when generating attribute', (): void => {
   });
 
   it('should have attribute name', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          attribute,
-          xsdAttributeName,
-        ),
-        result,
-      ),
-    ).toBe(attributeName);
+    expect(R.view(R.compose(attribute, xsdAttributeName), result)).toBe(attributeName);
   });
 
   it('should have attribute type', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          attribute,
-          xsdAttributeType,
-        ),
-        result,
-      ),
-    ).toBe(attributeType);
+    expect(R.view(R.compose(attribute, xsdAttributeType), result)).toBe(attributeType);
   });
 
   it('should have annotation', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          attribute,
-          nextLength,
-        ),
-        result,
-      ),
-    ).toBe(1);
-    expect(
-      R.view(
-        R.compose(
-          attribute,
-          nextHeadName,
-        ),
-        result,
-      ),
-    ).toBe('xs:annotation');
-    expect(
-      R.view(
-        R.compose(
-          attribute,
-          nextHead,
-          nextHead,
-          nextHeadText,
-        ),
-        result,
-      ),
-    ).toBe(documentation);
+    expect(R.view(R.compose(attribute, nextLength), result)).toBe(1);
+    expect(R.view(R.compose(attribute, nextHeadName), result)).toBe('xs:annotation');
+    expect(R.view(R.compose(attribute, nextHead, nextHead, nextHeadText), result)).toBe(documentation);
   });
 
   it('should not have use required', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          attribute,
-          xsdAttributeUse,
-        ),
-        result,
-      ),
-    ).not.toBeDefined();
+    expect(R.view(R.compose(attribute, xsdAttributeUse), result)).not.toBeDefined();
   });
 });
 
@@ -122,70 +72,20 @@ describe('when generating attribute with use required', (): void => {
   });
 
   it('should have attribute name', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          attribute,
-          xsdAttributeName,
-        ),
-        result,
-      ),
-    ).toBe(attributeName);
+    expect(R.view(R.compose(attribute, xsdAttributeName), result)).toBe(attributeName);
   });
 
   it('should have attribute type', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          attribute,
-          xsdAttributeType,
-        ),
-        result,
-      ),
-    ).toBe(attributeType);
+    expect(R.view(R.compose(attribute, xsdAttributeType), result)).toBe(attributeType);
   });
 
   it('should have annotation', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          attribute,
-          nextLength,
-        ),
-        result,
-      ),
-    ).toBe(1);
-    expect(
-      R.view(
-        R.compose(
-          attribute,
-          nextHeadName,
-        ),
-        result,
-      ),
-    ).toBe('xs:annotation');
-    expect(
-      R.view(
-        R.compose(
-          attribute,
-          nextHead,
-          nextHead,
-          nextHeadText,
-        ),
-        result,
-      ),
-    ).toBe(documentation);
+    expect(R.view(R.compose(attribute, nextLength), result)).toBe(1);
+    expect(R.view(R.compose(attribute, nextHeadName), result)).toBe('xs:annotation');
+    expect(R.view(R.compose(attribute, nextHead, nextHead, nextHeadText), result)).toBe(documentation);
   });
 
   it('should not have use required', (): void => {
-    expect(
-      R.view(
-        R.compose(
-          attribute,
-          xsdAttributeUse,
-        ),
-        result,
-      ),
-    ).toBe('required');
+    expect(R.view(R.compose(attribute, xsdAttributeUse), result)).toBe('required');
   });
 });

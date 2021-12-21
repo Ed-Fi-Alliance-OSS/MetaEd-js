@@ -39,12 +39,12 @@ function hasCommonSuperClass(entity1: TopLevelEntity, entity2: TopLevelEntity): 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
-  getPropertiesOfType(metaEd.propertyIndex, ...validPropertyTypes).forEach(property => {
+  getPropertiesOfType(metaEd.propertyIndex, ...validPropertyTypes).forEach((property) => {
     if (!isReferentialProperty(property)) return;
     const referentialProperty = asReferentialProperty(property);
     if (referentialProperty.mergeDirectives.length === 0) return;
 
-    referentialProperty.mergeDirectives.forEach(mergeDirective => {
+    referentialProperty.mergeDirectives.forEach((mergeDirective) => {
       if (!mergeDirective.sourceProperty || !mergeDirective.targetProperty) return;
 
       if (mergeDirective.sourceProperty.type !== mergeDirective.targetProperty.type) {

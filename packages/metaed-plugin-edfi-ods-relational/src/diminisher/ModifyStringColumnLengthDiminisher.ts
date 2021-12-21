@@ -9,18 +9,16 @@ import { Table } from '../model/database/Table';
 const enhancerName = 'ModifyStringColumnLengthDiminisher';
 const targetVersions = '2.x';
 
-const modifyStringColumnLength = (tablesForCoreNamespace: Map<string, Table>) => (
-  tableName: string,
-  columnName: string,
-  length: string,
-): void => {
-  const table: Table | undefined = tablesForCoreNamespace.get(tableName);
-  if (table == null) return;
+const modifyStringColumnLength =
+  (tablesForCoreNamespace: Map<string, Table>) =>
+  (tableName: string, columnName: string, length: string): void => {
+    const table: Table | undefined = tablesForCoreNamespace.get(tableName);
+    if (table == null) return;
 
-  const column: Column | undefined = table.columns.find((x: Column) => x.columnId === columnName);
-  if (column == null) return;
-  (column as StringColumn).length = length;
-};
+    const column: Column | undefined = table.columns.find((x: Column) => x.columnId === columnName);
+    if (column == null) return;
+    (column as StringColumn).length = length;
+  };
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };

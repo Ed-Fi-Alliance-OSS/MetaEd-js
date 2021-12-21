@@ -71,9 +71,9 @@ class CommandGroups {
 
     this.reset();
 
-    this.itemsByOriginMenu.forEach(itemsForOriginMenu => {
+    this.itemsByOriginMenu.forEach((itemsForOriginMenu) => {
       const itemsForOriginMenuSorted = R.reverse(sortByPosition(itemsForOriginMenu));
-      itemsForOriginMenuSorted.forEach(item => {
+      itemsForOriginMenuSorted.forEach((item) => {
         item.originMenu.items.splice(item.position, 1);
         // eslint-disable-next-line no-param-reassign
         item.currentParent = null;
@@ -88,9 +88,9 @@ class CommandGroups {
   reset() {
     if (!this.items) return;
 
-    this.itemsByOriginMenu.forEach(itemsForOriginMenu => {
+    this.itemsByOriginMenu.forEach((itemsForOriginMenu) => {
       const itemsForOriginMenuSorted = sortByPosition(itemsForOriginMenu);
-      itemsForOriginMenuSorted.forEach(item => {
+      itemsForOriginMenuSorted.forEach((item) => {
         const origin = item.originMenu;
         if (item.currentParent !== origin) {
           // eslint-disable-next-line no-param-reassign
@@ -123,7 +123,7 @@ export function hideTreeViewContextMenuOperationsWhenCore() {
     const treeViewEl = atom.views.getView(treeView);
 
     // TODO: how to dispose/make disposable?
-    $(treeViewEl).on('mousedown', event => {
+    $(treeViewEl).on('mousedown', (event) => {
       if (event.which !== 3) return;
       if (isCoreMetaEdFile(treeView.selectedPath)) {
         contextMenuHider.hide();

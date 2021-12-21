@@ -4,7 +4,7 @@ import { MetaEdEnvironment, ValidationFailure, SharedDecimalSourceMap, Namespace
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
   metaEd.namespace.forEach((namespace: Namespace) => {
-    namespace.entity.sharedDecimal.forEach(entity => {
+    namespace.entity.sharedDecimal.forEach((entity) => {
       if (
         entity.decimalPlaces &&
         entity.totalDigits &&

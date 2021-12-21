@@ -21,14 +21,10 @@ describe('when deploying 2.0 extension artifacts', (): void => {
 
     DeployExtensionV2(metaEdConfiguration, true, false);
 
-    const normalizePath = (x: string) =>
-      path
-        .relative(deployDirectory, x)
-        .split(path.sep)
-        .join('/');
+    const normalizePath = (x: string) => path.relative(deployDirectory, x).split(path.sep).join('/');
 
     result = klawSync(deployDirectory, { nodir: true })
-      .map(x => normalizePath(x.path))
+      .map((x) => normalizePath(x.path))
       .sort();
   });
 

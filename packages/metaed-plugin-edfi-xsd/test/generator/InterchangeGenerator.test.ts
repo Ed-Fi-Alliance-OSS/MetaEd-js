@@ -112,99 +112,27 @@ describe('when generating single interchange', (): void => {
 
     const schemaDocumentationAnnotation = R.view(nextSecond, xsSchema);
     expect(R.view(nameOf, schemaDocumentationAnnotation)).toBe('xs:annotation');
-    expect(
-      R.view(
-        R.compose(
-          nextHead,
-          nameOf,
-        ),
-        schemaDocumentationAnnotation,
-      ),
-    ).toBe('xs:documentation');
-    expect(
-      R.view(
-        R.compose(
-          nextHead,
-          nextHead,
-          textOf,
-        ),
-        schemaDocumentationAnnotation,
-      ),
-    ).toBe(schemaDocumentation);
+    expect(R.view(R.compose(nextHead, nameOf), schemaDocumentationAnnotation)).toBe('xs:documentation');
+    expect(R.view(R.compose(nextHead, nextHead, textOf), schemaDocumentationAnnotation)).toBe(schemaDocumentation);
 
     const interchangeElement = R.view(nextThird, xsSchema);
     expect(R.view(nameOf, interchangeElement)).toBe('xs:element');
     expect(R.view(xsdAttributeName, interchangeElement)).toBe(interchangeName);
-    expect(
-      R.view(
-        R.compose(
-          nextHead,
-          nameOf,
-        ),
-        interchangeElement,
-      ),
-    ).toBe('xs:annotation');
-    expect(
-      R.view(
-        R.compose(
-          nextHead,
-          nextHead,
-          nameOf,
-        ),
-        interchangeElement,
-      ),
-    ).toBe('xs:documentation');
-    expect(
-      R.view(
-        R.compose(
-          nextHead,
-          nextHead,
-          nextHead,
-          textOf,
-        ),
-        interchangeElement,
-      ),
-    ).toBe(interchangeDocumentation);
+    expect(R.view(R.compose(nextHead, nameOf), interchangeElement)).toBe('xs:annotation');
+    expect(R.view(R.compose(nextHead, nextHead, nameOf), interchangeElement)).toBe('xs:documentation');
+    expect(R.view(R.compose(nextHead, nextHead, nextHead, textOf), interchangeElement)).toBe(interchangeDocumentation);
 
     const complexType = R.view(nextSecond, interchangeElement);
     expect(R.view(nameOf, complexType)).toBe('xs:complexType');
-    expect(
-      R.view(
-        R.compose(
-          nextHead,
-          nameOf,
-        ),
-        complexType,
-      ),
-    ).toBe('xs:choice');
-    expect(
-      R.view(
-        R.compose(
-          nextHead,
-          xsdMaxOccurs,
-        ),
-        complexType,
-      ),
-    ).toBe('unbounded');
+    expect(R.view(R.compose(nextHead, nameOf), complexType)).toBe('xs:choice');
+    expect(R.view(R.compose(nextHead, xsdMaxOccurs), complexType)).toBe('unbounded');
 
-    const identityElement = R.view(
-      R.compose(
-        nextHead,
-        nextHead,
-      ),
-      complexType,
-    );
+    const identityElement = R.view(R.compose(nextHead, nextHead), complexType);
     expect(R.view(nameOf, identityElement)).toBe('xs:element');
     expect(R.view(xsdAttributeName, identityElement)).toBe(identityTemplateBaseName);
     expect(R.view(xsdAttributeType, identityElement)).toBe(identityTemplateTypeName);
 
-    const element = R.view(
-      R.compose(
-        nextHead,
-        nextSecond,
-      ),
-      complexType,
-    );
+    const element = R.view(R.compose(nextHead, nextSecond), complexType);
     expect(R.view(nameOf, element)).toBe('xs:element');
     expect(R.view(xsdAttributeName, element)).toBe(elementBaseName);
     expect(R.view(xsdAttributeType, element)).toBe(elementTypeName);

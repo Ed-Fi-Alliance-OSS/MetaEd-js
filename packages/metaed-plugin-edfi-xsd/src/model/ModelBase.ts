@@ -38,7 +38,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     'sharedInteger',
     'sharedString',
     'stringType',
-  ).forEach(entity => {
+  ).forEach((entity) => {
     addModelBaseEdfiXsdTo(entity);
   });
 

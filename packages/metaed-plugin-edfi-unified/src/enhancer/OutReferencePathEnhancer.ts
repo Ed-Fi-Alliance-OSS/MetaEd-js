@@ -26,7 +26,7 @@ function addToOutReferenceEntitiesMap(
   outReferenceEntitiesMap: Map<ModelBase, (ReferentialProperty | SimpleProperty)[][]>,
   outReferencePath: (ReferentialProperty | SimpleProperty)[],
 ) {
-  outReferencePath.forEach(property => {
+  outReferencePath.forEach((property) => {
     if (!outReferenceEntitiesMap.has(property.referencedEntity)) {
       outReferenceEntitiesMap.set(property.referencedEntity, []);
     }
@@ -41,7 +41,7 @@ function buildUpPaths(
   pathSoFar: (ReferentialProperty | SimpleProperty)[],
   visitList: ModelBase[],
 ) {
-  inReferences.forEach(inReference => {
+  inReferences.forEach((inReference) => {
     // avoid cycles
     if (visitList.includes(inReference.parentEntity)) return;
 
@@ -55,13 +55,13 @@ function buildUpPaths(
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllTopLevelEntitiesForNamespaces([...metaEd.namespace.values()]).forEach(entity => {
+  getAllTopLevelEntitiesForNamespaces([...metaEd.namespace.values()]).forEach((entity) => {
     // only leaf entities
     if (entity.outReferences.length > 0) return;
     buildUpPaths(entity.inReferences, [], []);
   });
 
-  getAllEntitiesOfType(metaEd, 'sharedInteger', 'sharedDecimal', 'sharedString').forEach(entity => {
+  getAllEntitiesOfType(metaEd, 'sharedInteger', 'sharedDecimal', 'sharedString').forEach((entity) => {
     const sharedSimpleEntity = entity as SharedSimple;
     buildUpPaths(sharedSimpleEntity.inReferences, [], []);
   });

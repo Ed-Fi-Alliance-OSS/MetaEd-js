@@ -142,7 +142,7 @@ function setupRepository() {
     namespace,
     documentation: referencedInlineCommonTypeDocumentation,
   });
-  referencedChoiceCommonType = Object.assign((newChoiceProperty() as unknown) as Common, newCommon(), {
+  referencedChoiceCommonType = Object.assign(newChoiceProperty() as unknown as Common, newCommon(), {
     metaEdName: referencedChoiceCommonTypeName,
     namespace,
     documentation: referencedChoiceCommonTypeDocumentation,

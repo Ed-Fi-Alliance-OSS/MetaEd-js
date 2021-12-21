@@ -51,11 +51,11 @@ function makeFailure(failures: ValidationFailure[], mergeDirective: MergeDirecti
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
-  getPropertiesOfType(metaEd.propertyIndex, ...validPropertyTypes).forEach(property => {
+  getPropertiesOfType(metaEd.propertyIndex, ...validPropertyTypes).forEach((property) => {
     // TODO: As of METAED-881, the current property here could also be one of the shared simple properties, which
     // are not currently extensions of ReferentialProperty but have an equivalent mergeDirectives field
     const referentialProperty = asReferentialProperty(property);
-    referentialProperty.mergeDirectives.forEach(mergeDirective => {
+    referentialProperty.mergeDirectives.forEach((mergeDirective) => {
       if (mergeDirective.sourceProperty == null) {
         makeFailure(failures, mergeDirective);
         return;
@@ -72,7 +72,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
         makeFailure(failures, mergeDirective);
         return;
       }
-      R.tail(mergeDirective.sourcePropertyChain).forEach(propertyInChain => {
+      R.tail(mergeDirective.sourcePropertyChain).forEach((propertyInChain) => {
         if (!isIdentityLikeProperty(propertyInChain)) makeFailure(failures, mergeDirective);
       });
     });

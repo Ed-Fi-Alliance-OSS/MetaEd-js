@@ -11,7 +11,7 @@ function hasIdentity(commonProperty: CommonProperty): boolean {
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
-  metaEd.propertyIndex.common.forEach(commonProperty => {
+  metaEd.propertyIndex.common.forEach((commonProperty) => {
     if (!commonProperty.isOptionalCollection && !commonProperty.isRequiredCollection) return;
 
     if (!hasIdentity(commonProperty)) {

@@ -23,7 +23,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
 
   orderedInterchange
     .filter((interchange: MergedInterchange) => !interchange.namespace.isExtension)
-    .forEach(interchange => {
+    .forEach((interchange) => {
       const templateData = {
         schemaVersion: formatVersionForSchema(metaEd),
         interchange,

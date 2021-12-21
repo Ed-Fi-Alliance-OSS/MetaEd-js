@@ -69,13 +69,13 @@ describe('when enhancing top level entity with nested reference to top level ref
   });
 
   it('should have correct merge property', (): void => {
-    const property = metaEd.propertyIndex.domainEntity.filter(p => p.metaEdName === domainEntityName3)[0];
+    const property = metaEd.propertyIndex.domainEntity.filter((p) => p.metaEdName === domainEntityName3)[0];
     expect(property).toBeDefined();
     expect(property.mergeDirectives[0].sourceProperty).toBe(domainEntity3Property1);
   });
 
   it('should have correct target property', (): void => {
-    const property = metaEd.propertyIndex.domainEntity.filter(p => p.metaEdName === domainEntityName3)[0];
+    const property = metaEd.propertyIndex.domainEntity.filter((p) => p.metaEdName === domainEntityName3)[0];
     expect(property).toBeDefined();
     expect(property.mergeDirectives[0].targetProperty).toBe(domainEntity1Property1);
   });
@@ -138,13 +138,13 @@ describe('when enhancing top level entity with top level reference to nested ref
   });
 
   it('should have correct merge property', (): void => {
-    const property = metaEd.propertyIndex.sharedInteger.filter(p => p.metaEdName === sharedIntegerName3)[0];
+    const property = metaEd.propertyIndex.sharedInteger.filter((p) => p.metaEdName === sharedIntegerName3)[0];
     expect(property).toBeDefined();
     expect(property.mergeDirectives[0].sourceProperty).toBe(domainEntity1Property2);
   });
 
   it('should have correct target property', (): void => {
-    const property = metaEd.propertyIndex.sharedInteger.filter(p => p.metaEdName === sharedIntegerName3)[0];
+    const property = metaEd.propertyIndex.sharedInteger.filter((p) => p.metaEdName === sharedIntegerName3)[0];
     expect(property).toBeDefined();
     expect(property.mergeDirectives[0].targetProperty).toBe(domainEntity2Property1);
   });
@@ -220,13 +220,13 @@ describe('when enhancing top level entity with nested reference to nested refere
   });
 
   it('should have correct merge property', (): void => {
-    const property = metaEd.propertyIndex.domainEntity.filter(p => p.metaEdName === domainEntityName3)[0];
+    const property = metaEd.propertyIndex.domainEntity.filter((p) => p.metaEdName === domainEntityName3)[0];
     expect(property).toBeDefined();
     expect(property.mergeDirectives[0].sourceProperty).toBe(domainEntity3Property1);
   });
 
   it('should have correct target property', (): void => {
-    const property = metaEd.propertyIndex.domainEntity.filter(p => p.metaEdName === domainEntityName3)[0];
+    const property = metaEd.propertyIndex.domainEntity.filter((p) => p.metaEdName === domainEntityName3)[0];
     expect(property).toBeDefined();
     expect(property.mergeDirectives[0].targetProperty).toBe(domainEntity2Property1);
   });
@@ -329,13 +329,13 @@ describe('when enhancing top level entity with deep nested reference to deep nes
   });
 
   it('should have correct merge property', (): void => {
-    const property = metaEd.propertyIndex.domainEntity.filter(p => p.metaEdName === domainEntityName3)[0];
+    const property = metaEd.propertyIndex.domainEntity.filter((p) => p.metaEdName === domainEntityName3)[0];
     expect(property).toBeDefined();
     expect(property.mergeDirectives[0].sourceProperty).toBe(domainEntity4Property1);
   });
 
   it('should have correct target property', (): void => {
-    const property = metaEd.propertyIndex.domainEntity.filter(p => p.metaEdName === domainEntityName3)[0];
+    const property = metaEd.propertyIndex.domainEntity.filter((p) => p.metaEdName === domainEntityName3)[0];
     expect(property).toBeDefined();
     expect(property.mergeDirectives[0].targetProperty).toBe(domainEntity5Property1);
   });

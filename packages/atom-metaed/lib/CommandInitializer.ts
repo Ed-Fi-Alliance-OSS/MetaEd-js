@@ -129,64 +129,67 @@ export function initializeCommands(disposableTracker: CompositeDisposable, outpu
   );
   disposableTracker.add(
     atom.commands.add('atom-workspace', {
-      'atom-metaed:addAssociationTemplate': commandEvent =>
+      'atom-metaed:addAssociationTemplate': (commandEvent) =>
         fileFromTemplateEvent(commandEvent, 'Association.metaed', associationTemplate),
     }),
   );
   disposableTracker.add(
     atom.commands.add('atom-workspace', {
-      'atom-metaed:addChoiceTemplate': commandEvent => fileFromTemplateEvent(commandEvent, 'Choice.metaed', choiceTemplate),
+      'atom-metaed:addChoiceTemplate': (commandEvent) =>
+        fileFromTemplateEvent(commandEvent, 'Choice.metaed', choiceTemplate),
     }),
   );
   disposableTracker.add(
     atom.commands.add('atom-workspace', {
-      'atom-metaed:addSharedDecimalTemplate': commandEvent =>
+      'atom-metaed:addSharedDecimalTemplate': (commandEvent) =>
         fileFromTemplateEvent(commandEvent, 'SharedDecimal.metaed', sharedDecimalTemplate),
     }),
   );
   disposableTracker.add(
     atom.commands.add('atom-workspace', {
-      'atom-metaed:addSharedIntegerTemplate': commandEvent =>
+      'atom-metaed:addSharedIntegerTemplate': (commandEvent) =>
         fileFromTemplateEvent(commandEvent, 'SharedInteger.metaed', sharedIntegerTemplate),
     }),
   );
   disposableTracker.add(
     atom.commands.add('atom-workspace', {
-      'atom-metaed:addSharedStringTemplate': commandEvent =>
+      'atom-metaed:addSharedStringTemplate': (commandEvent) =>
         fileFromTemplateEvent(commandEvent, 'SharedString.metaed', sharedStringTemplate),
     }),
   );
   disposableTracker.add(
     atom.commands.add('atom-workspace', {
-      'atom-metaed:addCommonTemplate': commandEvent => fileFromTemplateEvent(commandEvent, 'Common.metaed', commonTemplate),
+      'atom-metaed:addCommonTemplate': (commandEvent) =>
+        fileFromTemplateEvent(commandEvent, 'Common.metaed', commonTemplate),
     }),
   );
   disposableTracker.add(
     atom.commands.add('atom-workspace', {
-      'atom-metaed:addDescriptorTemplate': commandEvent =>
+      'atom-metaed:addDescriptorTemplate': (commandEvent) =>
         fileFromTemplateEvent(commandEvent, 'Descriptor.metaed', descriptorTemplate),
     }),
   );
   disposableTracker.add(
     atom.commands.add('atom-workspace', {
-      'atom-metaed:addDomainEntityTemplate': commandEvent =>
+      'atom-metaed:addDomainEntityTemplate': (commandEvent) =>
         fileFromTemplateEvent(commandEvent, 'DomainEntity.metaed', domainEntityTemplate),
     }),
   );
   disposableTracker.add(
     atom.commands.add('atom-workspace', {
-      'atom-metaed:addDomainTemplate': commandEvent => fileFromTemplateEvent(commandEvent, 'Domain.metaed', domainTemplate),
+      'atom-metaed:addDomainTemplate': (commandEvent) =>
+        fileFromTemplateEvent(commandEvent, 'Domain.metaed', domainTemplate),
     }),
   );
   disposableTracker.add(
     atom.commands.add('atom-workspace', {
-      'atom-metaed:addEnumerationTemplate': commandEvent =>
+      'atom-metaed:addEnumerationTemplate': (commandEvent) =>
         fileFromTemplateEvent(commandEvent, 'Enumeration.metaed', enumerationTemplate),
     }),
   );
   disposableTracker.add(
     atom.commands.add('atom-workspace', {
-      'atom-metaed:addInterchangeTemplate': commandEvent =>
+      'atom-metaed:addInterchangeTemplate': (commandEvent) =>
         fileFromTemplateEvent(commandEvent, 'Interchange.metaed', interchangeTemplate),
     }),
   );

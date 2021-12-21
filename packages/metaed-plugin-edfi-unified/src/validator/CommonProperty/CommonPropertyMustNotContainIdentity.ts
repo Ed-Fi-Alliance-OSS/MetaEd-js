@@ -3,7 +3,7 @@ import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
-  metaEd.propertyIndex.common.forEach(common => {
+  metaEd.propertyIndex.common.forEach((common) => {
     if (!common.isPartOfIdentity) return;
     failures.push({
       validatorName: 'CommonPropertyMustNotContainIdentity',

@@ -20,7 +20,7 @@ NOUNLOAD, REPLACE, STATS = 5
 
   await database(
     'master',
-    async db => {
+    async (db) => {
       await query(db, `DatabaseTestUtility.restoreDatabaseFromBackup  ${databaseName}`, sql);
     },
     false,
@@ -35,7 +35,7 @@ SET COMPATIBILITY_LEVEL = ${level}
 
   await database(
     'master',
-    async db => {
+    async (db) => {
       await query(db, `DatabaseTestUtility.setCompatibilityLevel  ${databaseName}`, sql);
     },
     false,

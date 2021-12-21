@@ -18,7 +18,7 @@ export async function columnExists(
   `;
 
   let result = false;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await queryWithBoolResult(db, 'columnExists', sql);
   });
   return result;
@@ -44,7 +44,7 @@ export async function columnMSDescription(
   `;
 
   let result;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'columnMSDescription', sql);
   });
   return firstKeyValueOf(result);
@@ -60,7 +60,7 @@ export async function columnDataType(databaseColumn: DatabaseColumn, databaseNam
   `;
 
   let result;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'columnDataType', sql);
   });
   return firstKeyValueOf(result);
@@ -76,7 +76,7 @@ export async function columnLength(databaseColumn: DatabaseColumn, databaseName:
   `;
 
   let result;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'columnLength', sql);
   });
   return firstKeyValueOf(result);
@@ -94,7 +94,7 @@ export async function columnIsIdentity(
     )`;
 
   let result = false;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await queryWithBoolResult(db, 'columnIsIdentity', sql);
   });
   return result;
@@ -113,7 +113,7 @@ export async function columnIsNullable(
   `;
 
   let result = false;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await queryWithBoolResult(db, 'columnIsNullable', sql);
   });
   return result;
@@ -132,7 +132,7 @@ export async function columnPrecision(
   `;
 
   let result;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'columnPrecision', sql);
   });
   return firstKeyValueOf(result);
@@ -148,7 +148,7 @@ export async function columnScale(databaseColumn: DatabaseColumn, databaseName: 
   `;
 
   let result;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'columnScale', sql);
   });
   return firstKeyValueOf(result);
@@ -167,7 +167,7 @@ export async function columnDefaultConstraint(
   `;
 
   let result;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'columnDefaultConstraint', sql);
   });
   return firstKeyValueOf(result);
@@ -183,7 +183,7 @@ export async function columnFirstRowValue(
   `;
 
   let result;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'columnFirstRowValue', sql);
   });
   return firstKeyValueOf(result);
@@ -204,7 +204,7 @@ export async function columnNthRowValue(
   `;
 
   let result;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'columnNthRowValue', sql);
   });
   return firstKeyValueOf(result);

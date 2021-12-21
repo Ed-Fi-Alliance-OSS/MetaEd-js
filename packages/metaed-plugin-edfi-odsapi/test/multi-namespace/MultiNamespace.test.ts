@@ -106,7 +106,7 @@ describe('when building a simple core and two simple extension projects', (): vo
     const namespace: Namespace | undefined = state.metaEd.namespace.get('EdFi');
     if (namespace == null) throw new Error();
     const entityDefinition = namespace.data.edfiOdsApi.domainModelDefinition.entityDefinitions.find(
-      ed => ed.name === 'EdfiDomainEntity',
+      (ed) => ed.name === 'EdfiDomainEntity',
     );
     expect(entityDefinition.schema).toBe('edfi');
   });
@@ -115,7 +115,7 @@ describe('when building a simple core and two simple extension projects', (): vo
     const namespace: Namespace | undefined = state.metaEd.namespace.get('Gb');
     if (namespace == null) throw new Error();
     const entityDefinition = namespace.data.edfiOdsApi.domainModelDefinition.entityDefinitions.find(
-      ed => ed.name === 'GbDomainEntity',
+      (ed) => ed.name === 'GbDomainEntity',
     );
     expect(entityDefinition.schema).toBe('gb');
   });
@@ -124,7 +124,7 @@ describe('when building a simple core and two simple extension projects', (): vo
     const namespace: Namespace | undefined = state.metaEd.namespace.get('Sample');
     if (namespace == null) throw new Error();
     const entityDefinition = namespace.data.edfiOdsApi.domainModelDefinition.entityDefinitions.find(
-      ed => ed.name === 'SampleDomainEntity',
+      (ed) => ed.name === 'SampleDomainEntity',
     );
     expect(entityDefinition.schema).toBe('sample');
   });

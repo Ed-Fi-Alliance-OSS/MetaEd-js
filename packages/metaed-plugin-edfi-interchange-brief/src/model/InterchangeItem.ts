@@ -19,11 +19,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   (getAllEntitiesOfType(metaEd, 'interchange') as Interchange[]).forEach((interchange: Interchange) => {
     if (interchange.elements.length === 0) return;
 
-    interchange.elements.forEach(item => {
+    interchange.elements.forEach((item) => {
       addInterchangeItemEdfiInterchangeBriefTo(item);
     });
 
-    interchange.identityTemplates.forEach(item => {
+    interchange.identityTemplates.forEach((item) => {
       addInterchangeItemEdfiInterchangeBriefTo(item);
     });
   });

@@ -81,12 +81,12 @@ export async function enhanceGenerateAndExecuteSql(
   databaseName: string = testDatabaseName,
 ): Promise<any> {
   metaEd.dataStandardVersion = metaEd.dataStandardVersion === '0.0.0' ? '2.0.0' : metaEd.dataStandardVersion;
-  initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
-  initializeOdsRelationalPlugin().enhancer.forEach(enhance => enhance(metaEd));
-  initializeOdsSqlServerPlugin().enhancer.forEach(enhance => enhance(metaEd));
+  initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
+  initializeOdsRelationalPlugin().enhancer.forEach((enhance) => enhance(metaEd));
+  initializeOdsSqlServerPlugin().enhancer.forEach((enhance) => enhance(metaEd));
 
   const sql: string[] = [];
-  (await schemaGenerate(metaEd)).generatedOutput.forEach(result => sql.push(result.resultString));
-  (await odsGenerate(metaEd)).generatedOutput.forEach(result => sql.push(result.resultString));
+  (await schemaGenerate(metaEd)).generatedOutput.forEach((result) => sql.push(result.resultString));
+  (await odsGenerate(metaEd)).generatedOutput.forEach((result) => sql.push(result.resultString));
   await executeGeneratedSql(sql.join(''), databaseName);
 }

@@ -14,7 +14,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   )
     return failures;
 
-  getAllProperties(metaEd.propertyIndex).forEach(property => {
+  getAllProperties(metaEd.propertyIndex).forEach((property) => {
     if (property.metaEdName === 'Discriminator') {
       failures.push({
         validatorName: 'BlockPropertiesNamedDiscriminator',

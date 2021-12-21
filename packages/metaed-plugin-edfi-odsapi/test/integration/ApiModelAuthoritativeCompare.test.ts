@@ -54,7 +54,7 @@ describe('when generating api model and comparing it to data standard 3.1 author
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsSqlServer' ||
@@ -73,7 +73,7 @@ describe('when generating api model and comparing it to data standard 3.1 author
     }
 
     generatedOutput = R.head(
-      R.head(state.generatorResults.filter(x => x.generatorName === 'edfiOdsApi.ApiModelGenerator')).generatedOutput,
+      R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator')).generatedOutput,
     );
 
     await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
@@ -84,7 +84,7 @@ describe('when generating api model and comparing it to data standard 3.1 author
     const generated: string = path.resolve(artifactPath, generatedFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -124,7 +124,7 @@ describe('when generating api model targeting tech version 3.1.1 and comparing i
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsSqlServer' ||
@@ -143,7 +143,7 @@ describe('when generating api model targeting tech version 3.1.1 and comparing i
     }
 
     generatedOutput = R.head(
-      R.head(state.generatorResults.filter(x => x.generatorName === 'edfiOdsApi.ApiModelGenerator')).generatedOutput,
+      R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator')).generatedOutput,
     );
 
     await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
@@ -154,7 +154,7 @@ describe('when generating api model targeting tech version 3.1.1 and comparing i
     const generated: string = path.resolve(artifactPath, generatedFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -194,7 +194,7 @@ describe('when generating api model and comparing it to data standard 3.0 author
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsSqlServer' ||
@@ -213,7 +213,7 @@ describe('when generating api model and comparing it to data standard 3.0 author
     }
 
     generatedOutput = R.head(
-      R.head(state.generatorResults.filter(x => x.generatorName === 'edfiOdsApi.ApiModelGenerator')).generatedOutput,
+      R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator')).generatedOutput,
     );
 
     await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
@@ -224,7 +224,7 @@ describe('when generating api model and comparing it to data standard 3.0 author
     const generated: string = path.resolve(artifactPath, generatedFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -275,7 +275,7 @@ describe('when generating api model with simple extensions and comparing it to d
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsSqlServer' ||
@@ -294,7 +294,7 @@ describe('when generating api model with simple extensions and comparing it to d
     }
 
     const generatorResult: GeneratorResult = R.head(
-      state.generatorResults.filter(x => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
+      state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
     );
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
@@ -312,7 +312,7 @@ describe('when generating api model with simple extensions and comparing it to d
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -323,7 +323,7 @@ describe('when generating api model with simple extensions and comparing it to d
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -374,7 +374,7 @@ describe('when generating api model with student transcript extensions and compa
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsSqlServer' ||
@@ -393,7 +393,7 @@ describe('when generating api model with student transcript extensions and compa
     }
 
     const generatorResult: GeneratorResult = R.head(
-      state.generatorResults.filter(x => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
+      state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
     );
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
@@ -412,7 +412,7 @@ describe('when generating api model with student transcript extensions and compa
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -423,7 +423,7 @@ describe('when generating api model with student transcript extensions and compa
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -474,7 +474,7 @@ describe('when generating api model with simple type merge extensions and compar
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsSqlServer' ||
@@ -493,7 +493,7 @@ describe('when generating api model with simple type merge extensions and compar
     }
 
     const generatorResult: GeneratorResult = R.head(
-      state.generatorResults.filter(x => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
+      state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
     );
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
@@ -511,7 +511,7 @@ describe('when generating api model with simple type merge extensions and compar
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -522,7 +522,7 @@ describe('when generating api model with simple type merge extensions and compar
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -562,7 +562,7 @@ describe('when generating api model targeting tech version 3.3 and comparing it 
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsPostgresql' ||
@@ -582,7 +582,7 @@ describe('when generating api model targeting tech version 3.3 and comparing it 
     }
 
     generatedOutput = R.head(
-      R.head(state.generatorResults.filter(x => x.generatorName === 'edfiOdsApi.ApiModelGenerator')).generatedOutput,
+      R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator')).generatedOutput,
     );
 
     await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
@@ -593,7 +593,7 @@ describe('when generating api model targeting tech version 3.3 and comparing it 
     const generated: string = path.resolve(artifactPath, generatedFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -644,7 +644,7 @@ describe('when generating api model targeting tech version 3.4 with simple exten
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsPostgresql' ||
@@ -664,7 +664,7 @@ describe('when generating api model targeting tech version 3.4 with simple exten
     }
 
     const generatorResult: GeneratorResult = R.head(
-      state.generatorResults.filter(x => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
+      state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
     );
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
@@ -682,7 +682,7 @@ describe('when generating api model targeting tech version 3.4 with simple exten
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -693,7 +693,7 @@ describe('when generating api model targeting tech version 3.4 with simple exten
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -733,7 +733,7 @@ describe('when generating api model targeting tech version 5.2 with comparing it
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsPostgresql' ||
@@ -753,7 +753,7 @@ describe('when generating api model targeting tech version 5.2 with comparing it
     }
 
     const generatorResult: GeneratorResult = R.head(
-      state.generatorResults.filter(x => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
+      state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
     );
 
     [generatedCoreOutput] = generatorResult.generatedOutput;
@@ -766,7 +766,7 @@ describe('when generating api model targeting tech version 5.2 with comparing it
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -806,7 +806,7 @@ describe('when generating api model targeting tech version 5.3 with comparing it
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsPostgresql' ||
@@ -826,7 +826,7 @@ describe('when generating api model targeting tech version 5.3 with comparing it
     }
 
     const generatorResult: GeneratorResult = R.head(
-      state.generatorResults.filter(x => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
+      state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
     );
 
     [generatedCoreOutput] = generatorResult.generatedOutput;
@@ -839,7 +839,7 @@ describe('when generating api model targeting tech version 5.3 with comparing it
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);

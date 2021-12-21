@@ -7,19 +7,17 @@ import { tableEntities, Column, Table } from 'metaed-plugin-edfi-ods-relational'
 const enhancerName = 'ModifyColumnDateTimeDiminisher';
 const targetVersions = '2.x';
 
-const modifyColumnDataTypes = (tablesForCoreNamespace: Map<string, Table>) => (
-  tableName: string,
-  columnId: string,
-  dataType: string,
-): void => {
-  const table: Table | undefined = tablesForCoreNamespace.get(tableName);
-  if (table == null) return;
+const modifyColumnDataTypes =
+  (tablesForCoreNamespace: Map<string, Table>) =>
+  (tableName: string, columnId: string, dataType: string): void => {
+    const table: Table | undefined = tablesForCoreNamespace.get(tableName);
+    if (table == null) return;
 
-  const column: Column | undefined = table.columns.find((x: Column) => x.columnId === columnId);
-  if (column == null) return;
-  if (column.data.edfiOdsSqlServer == null) column.data.edfiOdsSqlServer = {};
-  column.data.edfiOdsSqlServer.dataType = dataType;
-};
+    const column: Column | undefined = table.columns.find((x: Column) => x.columnId === columnId);
+    if (column == null) return;
+    if (column.data.edfiOdsSqlServer == null) column.data.edfiOdsSqlServer = {};
+    column.data.edfiOdsSqlServer.dataType = dataType;
+  };
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };

@@ -17,7 +17,7 @@ function isIdentifyingForeignKey(foreignKey: ForeignKey, schemasTables: Map<stri
     throw new Error(`BuildAssociationDefinitions: could not find table '${foreignKey.parentTable.tableId}'.`);
 
   const primaryKeyColumnNames: string[] = parentTable.primaryKeys.map((c: Column) => c.data.edfiOdsSqlServer.columnName);
-  return foreignKey.data.edfiOdsSqlServer.parentTableColumnNames.every(foreignKeyColumnName =>
+  return foreignKey.data.edfiOdsSqlServer.parentTableColumnNames.every((foreignKeyColumnName) =>
     primaryKeyColumnNames.includes(foreignKeyColumnName),
   );
 }

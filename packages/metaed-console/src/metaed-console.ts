@@ -16,7 +16,7 @@ winston.configure({ transports: [new winston.transports.Console()], format: wins
 
 export async function metaEdConsole() {
   const { argv } = Yargs.usage('Usage: $0 [options]')
-    .config('config', configPath => JSON.parse(fs.readFileSync(path.resolve(__dirname, configPath), 'utf-8')))
+    .config('config', (configPath) => JSON.parse(fs.readFileSync(path.resolve(__dirname, configPath), 'utf-8')))
     .option('config', {
       alias: 'c',
     })
@@ -61,7 +61,7 @@ export async function metaEdConsole() {
     state.metaEd.dataStandardVersion = dataStandardVersions[0];
     try {
       const { failure } = await executePipeline(state);
-      process.exitCode = !state.validationFailure.some(vf => vf.category === 'error') && !failure ? 0 : 1;
+      process.exitCode = !state.validationFailure.some((vf) => vf.category === 'error') && !failure ? 0 : 1;
     } catch (e) {
       winston.error(e);
       process.exitCode = 1;

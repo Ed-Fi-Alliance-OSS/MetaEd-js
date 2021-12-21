@@ -13,7 +13,7 @@ export function pluginEnvironment(metaEd: MetaEdEnvironment, pluginName: string)
 }
 
 export function getPrimaryKeys(table: Table, targetDatabasePluginName: string): Column[] {
-  return orderByPath(['data', targetDatabasePluginName, 'columnName'])(table.columns.filter(x => x.isPartOfPrimaryKey));
+  return orderByPath(['data', targetDatabasePluginName, 'columnName'])(table.columns.filter((x) => x.isPartOfPrimaryKey));
 }
 
 export function edfiOdsChangeQueryRepositoryForNamespace(

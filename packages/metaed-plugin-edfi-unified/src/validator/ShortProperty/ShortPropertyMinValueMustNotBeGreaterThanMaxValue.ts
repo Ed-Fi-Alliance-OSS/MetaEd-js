@@ -3,7 +3,7 @@ import { asShortProperty } from 'metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  metaEd.propertyIndex.short.forEach(short => {
+  metaEd.propertyIndex.short.forEach((short) => {
     const shortProperty: ShortProperty = asShortProperty(short);
     const minValue: number = Number.parseInt(shortProperty.minValue || '0', 10);
     const maxValue: number = Number.parseInt(shortProperty.maxValue || '0', 10);

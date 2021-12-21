@@ -6,10 +6,10 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   metaEd.namespace.forEach((namespace: Namespace) => {
     if (namespace.isExtension) return;
 
-    getEntitiesOfTypeForNamespaces([namespace], 'domain', 'subdomain').forEach(entity => {
+    getEntitiesOfTypeForNamespaces([namespace], 'domain', 'subdomain').forEach((entity) => {
       const domain: Domain | Subdomain = asDomainBase(entity);
       if (domain.domainItems.length === 0) return;
-      domain.domainItems.forEach(domainItem => {
+      domain.domainItems.forEach((domainItem) => {
         if (domainItem.metaEdId) return;
         failures.push({
           validatorName: 'MetaEdIdIsRequiredForDomainItems',

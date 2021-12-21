@@ -25,7 +25,7 @@ export const ColumnDataTypes: ColumnData = {
   integer: '[INT]',
   percent: '[DECIMAL](5, 4)',
   short: '[SMALLINT]',
-  string: length => `[NVARCHAR](${length})`,
+  string: (length) => `[NVARCHAR](${length})`,
   time: '[TIME](7)',
   year: '[SMALLINT]',
 };

@@ -49,7 +49,7 @@ describe('when building a DE with a common property but no common declaration', 
   });
 
   it('should have validation error', (): void => {
-    expect(state.validationFailure.filter(message => message.category === 'error')[0].validatorName).toBe(
+    expect(state.validationFailure.filter((message) => message.category === 'error')[0].validatorName).toBe(
       'CommonPropertyMustMatchACommon',
     );
   });

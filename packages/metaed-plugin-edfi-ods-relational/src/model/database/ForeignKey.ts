@@ -112,9 +112,8 @@ export function getOrderedColumnPairs(foreignKey: ForeignKey, foreignTable: Tabl
     return orderByProp('foreignTableColumnId')(foreignKey.columnPairs);
   }
 
-  const primaryKeyOrder: string[] = (foreignTable.primaryKeys.length === 0
-    ? getPrimaryKeys(foreignTable)
-    : foreignTable.primaryKeys
+  const primaryKeyOrder: string[] = (
+    foreignTable.primaryKeys.length === 0 ? getPrimaryKeys(foreignTable) : foreignTable.primaryKeys
   ).map((pk: Column) => pk.columnId);
   const foreignKeyColumnPairLookup: { [foreignKeyName: string]: ColumnPair } = R.groupBy(
     R.prop('foreignTableColumnId'),
@@ -186,7 +185,7 @@ function createForeignKeyInternal(
     sourceReference,
   };
 
-  foreignKeyColumns.forEach(column =>
+  foreignKeyColumns.forEach((column) =>
     addColumnPair(foreignKey, {
       ...newColumnPair(),
       parentTableColumnId: strategy.parentColumnId(column),

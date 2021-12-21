@@ -22,7 +22,7 @@ const atomZip: string = path.join(rootDirectory, '/atom.zip');
 const apmTestPackages: string[] = [];
 
 const execCommand = (command: string, options: Record<string, any> = {}) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     exec(command, options, (error, stdout) => {
       if (error) {
         winston.error(error);

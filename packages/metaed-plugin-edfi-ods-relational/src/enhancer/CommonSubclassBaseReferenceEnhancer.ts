@@ -3,7 +3,7 @@ import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, CommonSubclass
 const enhancerName = 'CommonSubclassBaseReferenceEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllEntitiesOfType(metaEd, 'commonSubclass').forEach(entity => {
+  getAllEntitiesOfType(metaEd, 'commonSubclass').forEach((entity) => {
     const commonSubclass = entity as CommonSubclass;
     if (commonSubclass.baseEntity == null) return;
     commonSubclass.data.edfiOdsRelational.odsProperties.push(

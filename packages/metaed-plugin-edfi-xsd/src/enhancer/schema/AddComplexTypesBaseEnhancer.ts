@@ -37,18 +37,18 @@ function parentPropertyNotInExtensionOverridePropertyList(
   extensionOverrideProperties: EntityProperty[],
 ): boolean {
   return !extensionOverrideProperties.some(
-    x => x.metaEdName === parentProperty.metaEdName && x.roleName === parentProperty.roleName,
+    (x) => x.metaEdName === parentProperty.metaEdName && x.roleName === parentProperty.roleName,
   );
 }
 
 function parentPropertiesWithOverriddenPropertiesFilteredOut(topLevelEntity: TopLevelEntity): EntityProperty[] {
   const extensionOverrideProperties = topLevelEntity.data.edfiXsd
     .xsdProperties()
-    .filter(x => x.type === 'common' && (x as CommonProperty).isExtensionOverride);
+    .filter((x) => x.type === 'common' && (x as CommonProperty).isExtensionOverride);
   if (topLevelEntity.baseEntity == null) return [];
   const parentProperties = topLevelEntity.baseEntity.data.edfiXsd.xsdProperties();
   return parentProperties.filter(
-    x => x.type !== 'common' || parentPropertyNotInExtensionOverridePropertyList(x, extensionOverrideProperties),
+    (x) => x.type !== 'common' || parentPropertyNotInExtensionOverridePropertyList(x, extensionOverrideProperties),
   );
 }
 

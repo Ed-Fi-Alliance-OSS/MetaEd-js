@@ -7,11 +7,11 @@ export function failEnumerationItemRedeclarations(
   enumerationItems: EnumerationItem[],
   failures: ValidationFailure[],
 ) {
-  const shortDescriptions: string[] = enumerationItems.map(x => x.shortDescription);
+  const shortDescriptions: string[] = enumerationItems.map((x) => x.shortDescription);
   const duplicates: string[] = findDuplicates(shortDescriptions);
 
-  duplicates.forEach(duplicate => {
-    const enumerationItem = enumerationItems.find(x => x.shortDescription === duplicate);
+  duplicates.forEach((duplicate) => {
+    const enumerationItem = enumerationItems.find((x) => x.shortDescription === duplicate);
     if (enumerationItem == null) return;
 
     failures.push({

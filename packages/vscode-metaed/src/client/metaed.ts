@@ -23,7 +23,7 @@ async function createMetaEdConfiguration(): Promise<MetaEdConfiguration | undefi
     artifactDirectory: path.join(lastProjectPath, 'MetaEdOutput'),
   };
 
-  metaEdProjectMetadata.forEach(pm => {
+  metaEdProjectMetadata.forEach((pm) => {
     metaEdConfiguration.projects.push({
       namespaceName: pm.projectNamespace,
       projectName: pm.projectName,

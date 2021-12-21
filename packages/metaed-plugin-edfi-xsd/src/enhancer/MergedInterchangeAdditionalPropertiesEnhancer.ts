@@ -9,7 +9,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const edFiXsdEntityRepository: EdFiXsdEntityRepository | null = edfiXsdRepositoryForNamespace(metaEd, namespace);
     if (edFiXsdEntityRepository == null) return;
 
-    Array.from(edFiXsdEntityRepository.mergedInterchange.values()).forEach(mergedInterchange => {
+    Array.from(edFiXsdEntityRepository.mergedInterchange.values()).forEach((mergedInterchange) => {
       mergedInterchange.interchangeName = `Interchange${mergedInterchange.metaEdName}`;
       mergedInterchange.schemaLocation = mergedInterchange.namespace.isExtension
         ? `${mergedInterchange.namespace.projectExtension}-Ed-Fi-Extended-Core.xsd`

@@ -30,7 +30,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     // Include all core descriptors and all descriptors for the current namespace
     allDescriptors
-      .filter(ad => !ad.namespace.isExtension || ad.namespace.namespaceName === namespace.namespaceName)
+      .filter((ad) => !ad.namespace.isExtension || ad.namespace.namespaceName === namespace.namespaceName)
       .forEach((descriptor: Descriptor) => {
         const element: InterchangeItem = {
           ...newInterchangeItem(),

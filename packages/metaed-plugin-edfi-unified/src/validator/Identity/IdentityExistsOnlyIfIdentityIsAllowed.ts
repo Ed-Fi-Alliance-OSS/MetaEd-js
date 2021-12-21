@@ -25,9 +25,9 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   metaEd.namespace.forEach((namespace: Namespace) => {
     invalidTypes.forEach((invalidType: ModelType) => {
       const entities: TopLevelEntity[] = Array.from(namespace.entity[invalidType].values());
-      entities.forEach(entity => {
+      entities.forEach((entity) => {
         if (!entity.identityProperties || entity.identityProperties.length === 0) return;
-        entity.identityProperties.forEach(property => {
+        entity.identityProperties.forEach((property) => {
           if (property.isIdentityRename) return;
           failures.push({
             validatorName: 'IdentityExistsOnlyIfIdentityIsAllowed',

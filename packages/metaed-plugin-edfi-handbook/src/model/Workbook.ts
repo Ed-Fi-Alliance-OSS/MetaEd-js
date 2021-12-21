@@ -21,7 +21,7 @@ export function exportWorkbook(workbook: Workbook, type: string): any {
     SheetNames: [],
     Sheets: {},
   };
-  workbook.sheets.forEach(sheet => {
+  workbook.sheets.forEach((sheet) => {
     wb.SheetNames.push(sheet.name);
     wb.Sheets[sheet.name] = xlsx.utils.json_to_sheet(sheet.rows);
     wb.Sheets[sheet.name]['!cols'] = sheet['!cols'];
@@ -44,7 +44,7 @@ export function readWorkbook(input: any, type: string): Workbook {
     const worksheet: Worksheet = newWorksheet(wb.SheetNames[i]);
     const parsedWorksheet: any = xlsx.utils.sheet_to_json(sheet as WorkSheet, { header: 1 });
     const headers: string[] = parsedWorksheet.shift();
-    parsedWorksheet.forEach(row => {
+    parsedWorksheet.forEach((row) => {
       worksheet.rows.push({
         ...newRow(),
         headers,

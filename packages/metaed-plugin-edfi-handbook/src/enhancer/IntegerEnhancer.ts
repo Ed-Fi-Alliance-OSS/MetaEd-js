@@ -18,7 +18,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {
     const handbookRepository: EdfiHandbookRepository | null = edfiHandbookRepositoryForNamespace(metaEd, namespace);
     if (handbookRepository == null) return;
-    (getEntitiesOfTypeForNamespaces([namespace], 'integerType') as IntegerType[]).forEach(entity => {
+    (getEntitiesOfTypeForNamespaces([namespace], 'integerType') as IntegerType[]).forEach((entity) => {
       handbookRepository.handbookEntries.push({
         ...createDefaultHandbookEntry(entity, entity.isShort ? 'Short' : 'Integer', 'Number', metaEd),
         typeCharacteristics: getTypeCharacteristicsFor(entity),

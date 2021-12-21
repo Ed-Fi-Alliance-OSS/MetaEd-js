@@ -11,7 +11,7 @@ winston.configure({ transports: [new winston.transports.Console()], format: wins
 
 function findDirectories(directory: string): string[] {
   try {
-    return klawSync(directory, { nofile: true }).map(x => x.path);
+    return klawSync(directory, { nofile: true }).map((x) => x.path);
   } catch (err) {
     winston.error(`ProjectLoader: Attempted to find directories in ${directory} failed due to issue: ${err.message}`);
   }

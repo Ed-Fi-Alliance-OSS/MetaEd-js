@@ -23,7 +23,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           (column.data.edfiOdsSqlServer as ColumnEdfiOdsSqlServer) = { columnName: '', dataType: 'unknown' };
       });
 
-      table.foreignKeys.forEach(foreignKey => {
+      table.foreignKeys.forEach((foreignKey) => {
         // initialize foreign key
         if (foreignKey.data.edfiOdsSqlServer == null)
           (foreignKey.data.edfiOdsSqlServer as ForeignKeyEdfiOdsSqlServer) = {

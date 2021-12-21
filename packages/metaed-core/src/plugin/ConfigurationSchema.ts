@@ -42,21 +42,13 @@ export const configurationStructureSchema: JoiSchema = Joi.object().keys({
             Joi.object()
               .keys({
                 entity: Joi.array()
-                  .items(
-                    Joi.string()
-                      .only(allTopLevelEntityModelTypes)
-                      .disallow('unknown'),
-                  )
+                  .items(Joi.string().only(allTopLevelEntityModelTypes).disallow('unknown'))
                   .single()
                   .required(),
-                namespace: Joi.array()
-                  .items(Joi.string())
-                  .single(),
+                namespace: Joi.array().items(Joi.string()).single(),
                 core: Joi.boolean(),
                 extensions: Joi.boolean(),
-                entityName: Joi.array()
-                  .items(Joi.string())
-                  .single(),
+                entityName: Joi.array().items(Joi.string()).single(),
               })
               .without('namespace', ['core', 'extensions'])
               .with('entityName', ['entity']),

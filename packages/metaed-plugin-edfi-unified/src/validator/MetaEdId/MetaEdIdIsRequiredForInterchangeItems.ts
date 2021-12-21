@@ -3,11 +3,11 @@ import { getEntitiesOfTypeForNamespaces, asInterchange } from 'metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  const namespaces: Namespace[] = Array.from(metaEd.namespace.values()).filter(n => !n.isExtension);
-  getEntitiesOfTypeForNamespaces(namespaces, 'interchange', 'interchangeExtension').forEach(entity => {
+  const namespaces: Namespace[] = Array.from(metaEd.namespace.values()).filter((n) => !n.isExtension);
+  getEntitiesOfTypeForNamespaces(namespaces, 'interchange', 'interchangeExtension').forEach((entity) => {
     const interchange: Interchange | InterchangeExtension = asInterchange(entity);
     if (interchange.elements.length === 0 && interchange.identityTemplates.length === 0) return;
-    [...interchange.elements, ...interchange.identityTemplates].forEach(interchangeItem => {
+    [...interchange.elements, ...interchange.identityTemplates].forEach((interchangeItem) => {
       if (interchangeItem.metaEdId) return;
       failures.push({
         validatorName: 'MetaEdIdIsRequiredForInterchangeItems',

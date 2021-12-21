@@ -54,7 +54,7 @@ describe('when SchoolYearEnumerationTableEnhancer enhances schoolYearEnumeration
 
   it('should have school year description column', (): void => {
     const table = tableEntities(metaEd, namespace).get(schoolYearType) as any;
-    const column = table.columns.filter(x => x.columnId === 'SchoolYearDescription')[0];
+    const column = table.columns.filter((x) => x.columnId === 'SchoolYearDescription')[0];
     expect(column).toBeDefined();
     expect(column.length).toBe('50');
     expect(column.isPartOfPrimaryKey).toBe(false);
@@ -64,7 +64,7 @@ describe('when SchoolYearEnumerationTableEnhancer enhances schoolYearEnumeration
 
   it('should have current school year column', (): void => {
     const table = tableEntities(metaEd, namespace).get(schoolYearType) as any;
-    const column = table.columns.filter(x => x.columnId === 'CurrentSchoolYear')[0];
+    const column = table.columns.filter((x) => x.columnId === 'CurrentSchoolYear')[0];
     expect(column).toBeDefined();
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);

@@ -22,7 +22,7 @@ function allMergedInterchanges(metaEd: MetaEdEnvironment, namespace: Namespace):
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   Array.from(metaEd.namespace.values())
-    .filter(n => n.isExtension)
+    .filter((n) => n.isExtension)
     .forEach((extensionNamespace: Namespace) => {
       const extensionEntities: ModelBase[] = getEntitiesOfTypeForNamespaces(
         [extensionNamespace],
@@ -41,13 +41,13 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
       // Need to extend any interchange that contains an entity that has an extension in the current namespace
       const interchangesToExtend: MergedInterchange[] = allMergedInterchanges(metaEd, extensionNamespace).filter(
-        (mi: MergedInterchange) => mi.elements.some(e => extensionEntities.some(ee => ee.metaEdName === e.metaEdName)),
+        (mi: MergedInterchange) => mi.elements.some((e) => extensionEntities.some((ee) => ee.metaEdName === e.metaEdName)),
       );
 
-      interchangesToExtend.forEach(interchangeToExtend => {
+      interchangesToExtend.forEach((interchangeToExtend) => {
         // Check to see if the interchange has already been extended
         let extensionInterchange: MergedInterchange = R.find(
-          ei => ei.metaEdName === interchangeToExtend.metaEdName,
+          (ei) => ei.metaEdName === interchangeToExtend.metaEdName,
           extensionInterchanges,
         );
         if (!extensionInterchange) {
@@ -62,7 +62,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
             namespace: extensionNamespace,
           };
 
-          interchangeToExtend.elements.forEach(item => {
+          interchangeToExtend.elements.forEach((item) => {
             const interchangeItem = {
               ...newInterchangeItem(),
               metaEdName: item.metaEdName,
@@ -73,7 +73,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
             addInterchangeItemEdfiXsdTo(interchangeItem);
             extensionInterchange.elements.push(interchangeItem);
           });
-          interchangeToExtend.identityTemplates.forEach(item => {
+          interchangeToExtend.identityTemplates.forEach((item) => {
             const interchangeItem = {
               ...newInterchangeItem(),
               metaEdName: item.metaEdName,
@@ -88,15 +88,15 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         }
 
         const elementsToExtend = interchangeToExtend.elements
-          .map(e => ({
+          .map((e) => ({
             element: e,
-            extensionElement: R.find(ee => ee.metaEdName === e.metaEdName, extensionEntities),
+            extensionElement: R.find((ee) => ee.metaEdName === e.metaEdName, extensionEntities),
           }))
-          .filter(elementPair => elementPair.extensionElement);
+          .filter((elementPair) => elementPair.extensionElement);
 
         // TODO: refactor this, it's an abuse of map() as is
-        extensionInterchange.elements = extensionInterchange.elements.map(e => {
-          const elementToExtend = elementsToExtend.find(i => i.element.metaEdName === e.metaEdName);
+        extensionInterchange.elements = extensionInterchange.elements.map((e) => {
+          const elementToExtend = elementsToExtend.find((i) => i.element.metaEdName === e.metaEdName);
           if (elementToExtend) {
             const interchangeItem = {
               ...newInterchangeItem(),

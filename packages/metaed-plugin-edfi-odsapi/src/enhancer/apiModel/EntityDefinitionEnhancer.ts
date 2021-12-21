@@ -10,12 +10,7 @@ import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 const enhancerName = 'EntityDefinitionEnhancer';
 const targetVersions: SemVer = '>=3.3.0';
 
-const sortByName = R.sortBy(
-  R.pipe(
-    R.prop('name'),
-    R.toLower,
-  ),
-);
+const sortByName = R.sortBy(R.pipe(R.prop('name'), R.toLower));
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;

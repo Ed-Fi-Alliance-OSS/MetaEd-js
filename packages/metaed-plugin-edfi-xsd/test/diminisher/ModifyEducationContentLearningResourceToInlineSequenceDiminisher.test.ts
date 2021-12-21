@@ -84,14 +84,14 @@ describe('when ModifyEducationContentLearningResourceToInlineSequenceDiminisher 
     const entityComplexTypes = (getEntityFromNamespace(educationContentName, namespace, 'domainEntity') as any).data.edfiXsd
       .xsdComplexTypes;
     expect(entityComplexTypes).toBeDefined();
-    expect(R.head(R.head(entityComplexTypes).items).items.some(x => x.name === learningResourceName)).toBe(false);
+    expect(R.head(R.head(entityComplexTypes).items).items.some((x) => x.name === learningResourceName)).toBe(false);
   });
 
   it('should copy items from property and place them in the domain entity under EducationContent choice', (): void => {
     const entityComplexTypes = (getEntityFromNamespace(educationContentName, namespace, 'domainEntity') as any).data.edfiXsd
       .xsdComplexTypes;
     expect(entityComplexTypes).toBeDefined();
-    const newItemGroup: ElementGroup = R.head(entityComplexTypes).items.find(x => x.isChoice != null);
+    const newItemGroup: ElementGroup = R.head(entityComplexTypes).items.find((x) => x.isChoice != null);
     expect(newItemGroup).toBeTruthy();
     expect(newItemGroup.items.length).toBeGreaterThan(0);
 

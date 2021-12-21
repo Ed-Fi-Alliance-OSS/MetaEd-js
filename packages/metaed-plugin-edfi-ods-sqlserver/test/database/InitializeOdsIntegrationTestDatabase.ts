@@ -18,7 +18,7 @@ END
 
   await database(
     'master',
-    async db => {
+    async (db) => {
       await query(db, `InitializeTestDatabase.dropDatabaseIfExists ${databaseName}`, sql);
     },
     false,
@@ -37,7 +37,7 @@ CREATE DATABASE [${databaseName}]
 
   await database(
     'master',
-    async db => {
+    async (db) => {
       await query(db, `InitializeTestDatabase.createDatabase ${databaseName}`, sql);
     },
     false,
@@ -48,6 +48,6 @@ CREATE DATABASE [${databaseName}]
   await dropDatabaseIfExists(testDatabaseName);
   await createDatabaseIfNotExists(testDatabaseName);
   await disconnect('master');
-})().catch(e => {
+})().catch((e) => {
   winston.error(`InitializeTestDatabase: ${e.message} ${e.stack}`);
 });

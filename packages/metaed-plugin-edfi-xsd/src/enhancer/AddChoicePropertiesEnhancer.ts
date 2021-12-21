@@ -6,8 +6,8 @@ const enhancerName = 'AddChoicePropertiesEnhancer';
 
 function addChoiceProperties(namespace: Namespace, properties: EntityProperty[]) {
   properties
-    .filter(p => p.type === 'choice')
-    .forEach(choiceProperty => {
+    .filter((p) => p.type === 'choice')
+    .forEach((choiceProperty) => {
       const referencedChoice: Choice | null = getEntityFromNamespaceChain(
         choiceProperty.metaEdName,
         choiceProperty.referencedNamespaceName,
@@ -23,7 +23,7 @@ function addChoiceProperties(namespace: Namespace, properties: EntityProperty[])
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllTopLevelEntitiesForNamespaces(Array.from(metaEd.namespace.values())).forEach(entity => {
+  getAllTopLevelEntitiesForNamespaces(Array.from(metaEd.namespace.values())).forEach((entity) => {
     addChoiceProperties(entity.namespace, entity.properties);
   });
 

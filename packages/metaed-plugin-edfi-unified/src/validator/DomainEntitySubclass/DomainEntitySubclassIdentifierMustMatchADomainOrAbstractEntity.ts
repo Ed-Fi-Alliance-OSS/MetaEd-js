@@ -5,7 +5,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
   metaEd.namespace.forEach((namespace: Namespace) => {
-    namespace.entity.domainEntitySubclass.forEach(entity => {
+    namespace.entity.domainEntitySubclass.forEach((entity) => {
       if (
         getEntityFromNamespaceChain(
           entity.baseEntityName,

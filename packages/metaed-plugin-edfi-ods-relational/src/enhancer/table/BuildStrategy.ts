@@ -14,7 +14,7 @@ function defaultColumnNamer(
 ): () => ColumnNaming {
   return () => {
     const nameComponents: ColumnNameComponent[] = [];
-    parentContextProperties.forEach(parentContextProperty => {
+    parentContextProperties.forEach((parentContextProperty) => {
       if (parentContextProperty.data.edfiOdsRelational.odsContextPrefix !== '') {
         nameComponents.push({
           ...newColumnNameComponent(),
@@ -41,7 +41,7 @@ function roleNameIgnoringColumnNamer(
 ): () => ColumnNaming {
   return () => {
     const nameComponents: ColumnNameComponent[] = [];
-    parentContextProperties.forEach(parentContextProperty => {
+    parentContextProperties.forEach((parentContextProperty) => {
       if (parentContextProperty.data.edfiOdsRelational.odsContextPrefix !== '') {
         nameComponents.push({
           ...newColumnNameComponent(),
@@ -222,14 +222,19 @@ class SkipPathStrategy extends BuildStrategy {
   }
 
   buildColumns(property: EntityProperty): boolean {
-    this.onPathPropertyPaths = this.myEligiblePropertyPaths.filter(x => x.length > 0 && x[0] === property.fullPropertyName);
-    return this.onPathPropertyPaths.length === 0 || this.onPathPropertyPaths.some(x => x.length > 1);
+    this.onPathPropertyPaths = this.myEligiblePropertyPaths.filter(
+      (x) => x.length > 0 && x[0] === property.fullPropertyName,
+    );
+    return this.onPathPropertyPaths.length === 0 || this.onPathPropertyPaths.some((x) => x.length > 1);
   }
 
   // #region strategy configuration methods
   getDecoratedStrategy(): BuildStrategy | null {
     return this.onPathPropertyPaths != null && this.onPathPropertyPaths.length > 0
-      ? new SkipPathStrategy(this.myDecoratedStrategy, this.onPathPropertyPaths.map(x => x.slice(1)))
+      ? new SkipPathStrategy(
+          this.myDecoratedStrategy,
+          this.onPathPropertyPaths.map((x) => x.slice(1)),
+        )
       : this.myDecoratedStrategy;
   }
 

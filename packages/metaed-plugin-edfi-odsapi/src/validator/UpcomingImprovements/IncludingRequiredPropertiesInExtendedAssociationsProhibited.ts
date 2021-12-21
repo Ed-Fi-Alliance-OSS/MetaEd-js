@@ -17,7 +17,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
 
   (getAllEntitiesOfType(metaEd, 'associationExtension') as AssociationExtension[]).forEach(
     (associationExtension: AssociationExtension) => {
-      associationExtension.properties.forEach(property => {
+      associationExtension.properties.forEach((property) => {
         if (property.isRequired) {
           failures.push({
             validatorName: 'IncludingRequiredPropertiesInExtendedAssociationsProhibited',

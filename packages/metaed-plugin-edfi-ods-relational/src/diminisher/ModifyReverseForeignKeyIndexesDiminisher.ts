@@ -9,18 +9,18 @@ import { Table } from '../model/database/Table';
 const enhancerName = 'ModifyReverseForeignKeyIndexesDiminisher';
 const targetVersions = '2.x';
 
-const modifyReverseForeignKeyIndex = (tablesForCoreNamespace: Map<string, Table>) => (
-  parentTableId: string,
-  foreignTableId: string,
-  withReverseForeignKeyIndex: boolean = true,
-): void => {
-  const table: Table | undefined = tablesForCoreNamespace.get(parentTableId);
-  if (table == null) return;
+const modifyReverseForeignKeyIndex =
+  (tablesForCoreNamespace: Map<string, Table>) =>
+  (parentTableId: string, foreignTableId: string, withReverseForeignKeyIndex: boolean = true): void => {
+    const table: Table | undefined = tablesForCoreNamespace.get(parentTableId);
+    if (table == null) return;
 
-  const foreignKey: ForeignKey | undefined = table.foreignKeys.find((x: ForeignKey) => x.foreignTableId === foreignTableId);
-  if (foreignKey == null) return;
-  foreignKey.withReverseForeignKeyIndex = withReverseForeignKeyIndex;
-};
+    const foreignKey: ForeignKey | undefined = table.foreignKeys.find(
+      (x: ForeignKey) => x.foreignTableId === foreignTableId,
+    );
+    if (foreignKey == null) return;
+    foreignKey.withReverseForeignKeyIndex = withReverseForeignKeyIndex;
+  };
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };

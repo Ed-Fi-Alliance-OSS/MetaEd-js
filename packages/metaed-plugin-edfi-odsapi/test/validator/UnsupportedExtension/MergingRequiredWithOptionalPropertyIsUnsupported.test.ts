@@ -41,7 +41,7 @@ describe('when a domain entity has both a required and optional reference to a p
       .sendToListener(new NamespaceBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
-    initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
+    initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     metaEd.plugin.set(
       'edfiOdsApi',
       Object.assign(newPluginEnvironment(), {
@@ -90,7 +90,7 @@ describe('when a domain entity has both a required and optional reference to a p
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     initializeNamespaceDependencies(metaEd, 'EdFi', 'Extension');
-    initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
+    initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     metaEd.plugin.set(
       'edfiOdsApi',
       Object.assign(newPluginEnvironment(), {
@@ -160,7 +160,7 @@ describe('when a domain entity has both a required and optional reference to dom
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     initializeNamespaceDependencies(metaEd, 'EdFi', 'Extension');
-    initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
+    initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     metaEd.plugin.set(
       'edfiOdsApi',
       Object.assign(newPluginEnvironment(), {
@@ -225,7 +225,7 @@ describe('when a domain entity has both a required and optional reference to a p
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     initializeNamespaceDependencies(metaEd, 'EdFi', 'Extension');
-    initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
+    initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     metaEd.plugin.set(
       'edfiOdsApi',
       Object.assign(newPluginEnvironment(), {
@@ -289,7 +289,7 @@ describe('when a domain entity has both a required and optional reference to a p
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     initializeNamespaceDependencies(metaEd, 'EdFi', 'Extension');
-    initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
+    initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     metaEd.plugin.set(
       'edfiOdsApi',
       Object.assign(newPluginEnvironment(), {
@@ -333,7 +333,7 @@ describe('when a domain entity has both a required and optional reference to a p
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     initializeNamespaceDependencies(metaEd, 'EdFi', 'Extension');
-    initializeUnifiedPlugin().enhancer.forEach(enhance => enhance(metaEd));
+    initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     metaEd.plugin.set(
       'edfiOdsApi',
       Object.assign(newPluginEnvironment(), {

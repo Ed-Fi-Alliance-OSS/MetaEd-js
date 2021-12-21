@@ -3,9 +3,9 @@ import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
-  metaEd.namespace.forEach(namespace => {
+  metaEd.namespace.forEach((namespace) => {
     if (!namespace.isExtension) return;
-    namespace.entity.enumeration.forEach(enumeration => {
+    namespace.entity.enumeration.forEach((enumeration) => {
       failures.push({
         validatorName: 'EnumerationExistsOnlyInCoreNamespace',
         category: 'warning',

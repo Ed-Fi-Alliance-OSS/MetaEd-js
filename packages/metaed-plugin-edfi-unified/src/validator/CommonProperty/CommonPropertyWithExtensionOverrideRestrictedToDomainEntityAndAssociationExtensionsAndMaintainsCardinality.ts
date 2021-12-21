@@ -37,7 +37,7 @@ function baseEntityMatchingProperty(namespace: Namespace, overrideProperty: Enti
   if (baseEntity == null) return undefined;
 
   return baseEntity.properties.find(
-    property =>
+    (property) =>
       property.metaEdName === overrideProperty.metaEdName &&
       property.referencedNamespaceName === overrideProperty.referencedNamespaceName &&
       property.type === overrideProperty.type,
@@ -46,7 +46,7 @@ function baseEntityMatchingProperty(namespace: Namespace, overrideProperty: Enti
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  metaEd.propertyIndex.common.forEach(commonProperty => {
+  metaEd.propertyIndex.common.forEach((commonProperty) => {
     if (!commonProperty.isExtensionOverride) return;
     const baseMatchingProperty: EntityProperty | undefined = baseEntityMatchingProperty(
       commonProperty.namespace,

@@ -7,7 +7,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
     if (!property.isIdentityRename) return;
     if (property.parentEntity.baseEntity == null) return;
     const baseProperty: EntityProperty | undefined = property.parentEntity.baseEntity.properties.find(
-      p => p.metaEdName === property.baseKeyName,
+      (p) => p.metaEdName === property.baseKeyName,
     );
     if (baseProperty == null) {
       failures.push({

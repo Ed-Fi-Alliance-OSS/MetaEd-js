@@ -43,7 +43,7 @@ export function getReferenceUsageInfoList(
 
   if (
     matchingPropertyTypes.includes(referentialProperty.type) &&
-    !entityExclusionList.some(i => i === referentialProperty.referencedEntity.metaEdName) &&
+    !entityExclusionList.some((i) => i === referentialProperty.referencedEntity.metaEdName) &&
     !previouslyMatchedProperties.includes(referentialProperty)
   ) {
     results.push(buildReferencedUsageInfo(referentialProperty, rootEntityName, isOptional));
@@ -81,9 +81,8 @@ function getEntityAndParents(topLevelEntity: TopLevelEntity): TopLevelEntity[] {
 
 function getPropertiesToScan(topLevelEntity: TopLevelEntity, identityOnly: boolean = false): ReferentialProperty[] {
   const results: ReferentialProperty[] = [];
-  const propertiesToAdd: ReferentialProperty[] = (identityOnly
-    ? topLevelEntity.identityProperties
-    : topLevelEntity.properties
+  const propertiesToAdd: ReferentialProperty[] = (
+    identityOnly ? topLevelEntity.identityProperties : topLevelEntity.properties
   ).filter(isReferentialProperty) as ReferentialProperty[];
   results.push(...propertiesToAdd);
 

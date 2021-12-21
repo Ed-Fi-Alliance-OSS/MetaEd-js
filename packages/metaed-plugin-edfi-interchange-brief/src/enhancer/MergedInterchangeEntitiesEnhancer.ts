@@ -16,11 +16,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       xsdRepository.mergedInterchange.values(),
     ) as MergedInterchange[];
 
-    mergedInterchanges.forEach(mergedInterchange => {
+    mergedInterchanges.forEach((mergedInterchange) => {
       const entities: InterchangeItem[] = mergedInterchange.identityTemplates.concat(
         mergedInterchange.elements,
       ) as InterchangeItem[];
-      entities.forEach(entity => {
+      entities.forEach((entity) => {
         if (entity.referencedEntity.type === 'domainEntityExtension') {
           entity.data.edfiInterchangeBrief = {
             ...entity.data.edfiInterchangeBrief,

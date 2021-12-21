@@ -12,7 +12,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
 
   const failures: ValidationFailure[] = [];
 
-  metaEd.namespace.forEach(namespace => {
+  metaEd.namespace.forEach((namespace) => {
     namespace.entity.associationExtension.forEach((extensionEntity: AssociationExtension) => {
       if (extensionEntity.metaEdName !== generalStudentProgramAssociationName) return;
 

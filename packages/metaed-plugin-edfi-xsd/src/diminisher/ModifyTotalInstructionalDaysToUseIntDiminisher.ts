@@ -19,14 +19,14 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const coreNamespace: Namespace | undefined = metaEd.namespace.get('EdFi');
   if (coreNamespace == null) return { enhancerName, success: false };
 
-  domainEntityNames.forEach(domainEntityName => {
+  domainEntityNames.forEach((domainEntityName) => {
     const entity: ModelBase | null = getEntityFromNamespace(domainEntityName, coreNamespace, domainEntityType);
     const complexType: ComplexType | null = entity != null ? R.head(entity.data.edfiXsd.xsdComplexTypes) : null;
     const element: Element | null | undefined =
       complexType != null
         ? complexType.items
-            .map(x => (x as unknown) as Element)
-            .find(x => x.name === elementNameType && x.type === elementNameType)
+            .map((x) => x as unknown as Element)
+            .find((x) => x.name === elementNameType && x.type === elementNameType)
         : null;
 
     if (element != null) element.type = intType;

@@ -31,7 +31,7 @@ export function appendOverlapCollapsing(accumulated: string, current: string): s
 
 export function simpleTableNameGroupCollapse(nameGroup: TableNameGroup): string {
   return flattenNameComponentsFromGroup(nameGroup)
-    .map(nameComponent => nameComponent.name)
+    .map((nameComponent) => nameComponent.name)
     .reduce(appendOverlapCollapsing, '');
 }
 
@@ -45,7 +45,7 @@ export function constructCollapsedNameFrom(nameGroup: TableNameGroup): string {
     nameGroup.sourceProperty != null &&
     (nameGroup.sourceProperty.type === 'association' || nameGroup.sourceProperty.type === 'domainEntity')
   ) {
-    nameGroup.nameElements.forEach(element => {
+    nameGroup.nameElements.forEach((element) => {
       if (isTableNameGroup(element)) name += constructCollapsedNameFrom(element as TableNameGroup);
       if (isTableNameComponent(element)) name += (element as TableNameComponent).name;
     });

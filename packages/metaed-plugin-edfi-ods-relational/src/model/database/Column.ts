@@ -222,7 +222,7 @@ export function columnConstraintMerge(existing: Column, received: Column): Colum
 
 export function addSourceEntityProperty(column: Column, property: EntityProperty): void {
   const existingProperty = column.sourceEntityProperties.find(
-    x => x.metaEdName === property.metaEdName && x.type === property.type,
+    (x) => x.metaEdName === property.metaEdName && x.type === property.type,
   );
   if (existingProperty == null) {
     column.sourceEntityProperties.push(property);
@@ -234,7 +234,7 @@ export function addSourceEntityProperty(column: Column, property: EntityProperty
 }
 
 export function addMergedReferenceContext(column: Column, referenceContext: string): void {
-  const existingProperty: string | undefined = column.mergedReferenceContexts.find(x => x === referenceContext);
+  const existingProperty: string | undefined = column.mergedReferenceContexts.find((x) => x === referenceContext);
   if (existingProperty == null) {
     column.mergedReferenceContexts.push(referenceContext);
   } else {

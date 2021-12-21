@@ -77,7 +77,7 @@ export async function foreignKeyExists(
   const sql = existsSelect + fromBody + whereClause(foreignKey);
 
   let result = false;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'foreignKeyExists', sql);
   });
   return firstKeyValueOf(result) === foreignKey.parentColumns.length;
@@ -90,7 +90,7 @@ export async function foreignKeyDeleteCascades(
   const sql = deleteCascadeSelect + fromBody + whereClause(foreignKey);
 
   let result = false;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'foreignKeyDeleteCascades', sql);
   });
   return firstKeyValueOf(result) === 'CASCADE';
@@ -103,7 +103,7 @@ export async function foreignKeyUpdateCascades(
   const sql = updateCascadeSelect + fromBody + whereClause(foreignKey);
 
   let result = false;
-  await database(databaseName, async db => {
+  await database(databaseName, async (db) => {
     result = await scalar(db, 'foreignKeyUpdateCascades', sql);
   });
   return firstKeyValueOf(result) === 'CASCADE';

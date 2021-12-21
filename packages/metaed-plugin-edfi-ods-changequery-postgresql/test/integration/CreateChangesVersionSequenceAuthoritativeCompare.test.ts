@@ -83,7 +83,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsPostgresql' ||
@@ -102,7 +102,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
     }
 
     generatedOutput = R.head(
-      R.head(state.generatorResults.filter(x => x.generatorName === `${PLUGIN_NAME}.CreateChangeVersionSequenceGenerator`))
+      R.head(state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateChangeVersionSequenceGenerator`))
         .generatedOutput,
     );
 
@@ -114,7 +114,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
     const generated: string = path.resolve(artifactPath, generatedFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -182,7 +182,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsPostgresql' ||
@@ -201,7 +201,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
     }
 
     generatedOutput = R.head(
-      R.head(state.generatorResults.filter(x => x.generatorName === `${PLUGIN_NAME}.CreateChangeVersionSequenceGenerator`))
+      R.head(state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateChangeVersionSequenceGenerator`))
         .generatedOutput,
     );
 
@@ -213,7 +213,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
     const generated: string = path.resolve(artifactPath, generatedFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -282,7 +282,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsPostgresql' ||
@@ -301,7 +301,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
     }
 
     generatedOutput = R.head(
-      R.head(state.generatorResults.filter(x => x.generatorName === `${PLUGIN_NAME}.CreateChangeVersionSequenceGenerator`))
+      R.head(state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateChangeVersionSequenceGenerator`))
         .generatedOutput,
     );
 
@@ -313,7 +313,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
     const generated: string = path.resolve(artifactPath, generatedFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);

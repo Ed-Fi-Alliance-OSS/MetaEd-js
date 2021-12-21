@@ -125,14 +125,14 @@ export async function activate() {
     );
     disposableTracker.add(
       atom.commands.add('atom-text-editor', {
-        'core:copy': commandEvent => addCopyBackToCore(commandEvent),
+        'core:copy': (commandEvent) => addCopyBackToCore(commandEvent),
       }),
     );
   }
 
   disposableTracker.add(atom.views.addViewProvider(MetaEdAboutModel, metaEdAboutView()));
   disposableTracker.add(
-    atom.workspace.addOpener(uri => {
+    atom.workspace.addOpener((uri) => {
       if (uri !== 'atom-metaed://about') return undefined;
       return new MetaEdAboutModel();
     }),

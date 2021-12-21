@@ -4,7 +4,7 @@ import { getEntityFromNamespaceChain } from 'metaed-core';
 const enhancerName = 'ChoiceReferenceEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  metaEd.propertyIndex.choice.forEach(property => {
+  metaEd.propertyIndex.choice.forEach((property) => {
     const referencedEntity: TopLevelEntity | null = getEntityFromNamespaceChain(
       property.metaEdName,
       property.referencedNamespaceName,

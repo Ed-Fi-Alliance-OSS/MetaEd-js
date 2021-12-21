@@ -129,12 +129,12 @@ function applyXsdNameAndType(property: EntityProperty) {
 // this assumes all properties in propertyIndex **and** all queryable fields have been edfiXsd initialized
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const allProperties: EntityProperty[] = getAllProperties(metaEd.propertyIndex);
-  allProperties.forEach(property => applyXsdNameAndType(property));
+  allProperties.forEach((property) => applyXsdNameAndType(property));
 
   const allQueryableFields: EntityProperty[] = queryableFieldsFrom(
     getAllTopLevelEntitiesForNamespaces(Array.from(metaEd.namespace.values())),
   );
-  allQueryableFields.forEach(property => applyXsdNameAndType(property));
+  allQueryableFields.forEach((property) => applyXsdNameAndType(property));
 
   return {
     enhancerName,

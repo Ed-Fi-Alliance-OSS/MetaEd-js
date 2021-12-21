@@ -44,7 +44,7 @@ const testBase = (
   });
 
   it('should have diminished order', (): void => {
-    expect(complexType.items.map(x => (x as Element).name)).toEqual(diminishedElementOrder);
+    expect(complexType.items.map((x) => (x as Element).name)).toEqual(diminishedElementOrder);
   });
 };
 

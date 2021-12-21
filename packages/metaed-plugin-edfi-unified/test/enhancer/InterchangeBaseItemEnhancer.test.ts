@@ -41,7 +41,7 @@ describe('when enhancing interchange in core', (): void => {
     const interchange = Object.assign(newInterchange(), { metaEdName: interchangeMetaEdName, namespace });
     addEntityForNamespace(interchange);
 
-    elementEntities.forEach(entity => {
+    elementEntities.forEach((entity) => {
       interchange.elements.push(
         Object.assign(newInterchangeItem(), {
           metaEdName: entity.metaEdName,
@@ -53,7 +53,7 @@ describe('when enhancing interchange in core', (): void => {
       addEntityForNamespace(entity);
     });
 
-    identityTemplateEntities.forEach(entity => {
+    identityTemplateEntities.forEach((entity) => {
       interchange.identityTemplates.push(
         Object.assign(newInterchangeItem(), {
           metaEdName: entity.metaEdName,

@@ -42,7 +42,7 @@ describe('when enhancing association property referring to association', (): voi
   });
 
   it('should have no validation failures()', (): void => {
-    const property = R.head(metaEd.propertyIndex.association.filter(p => p.metaEdName === referencedEntityName));
+    const property = R.head(metaEd.propertyIndex.association.filter((p) => p.metaEdName === referencedEntityName));
     expect(property).toBeDefined();
     expect(property.referencedEntity.metaEdName).toBe(referencedEntityName);
     expect(property.referencedEntity.inReferences).toContain(property);
@@ -84,7 +84,7 @@ describe('when enhancing association property referring to deprecated associatio
   });
 
   it('should have deprecation flag set', (): void => {
-    const property = R.head(metaEd.propertyIndex.association.filter(p => p.metaEdName === referencedEntityName));
+    const property = R.head(metaEd.propertyIndex.association.filter((p) => p.metaEdName === referencedEntityName));
     expect(property).toBeDefined();
     expect(property.referencedEntityDeprecated).toBe(true);
   });
@@ -123,7 +123,7 @@ describe('when enhancing association property referring to subclass', (): void =
   });
 
   it('should have no validation failures()', (): void => {
-    const property = R.head(metaEd.propertyIndex.association.filter(p => p.metaEdName === referencedEntityName));
+    const property = R.head(metaEd.propertyIndex.association.filter((p) => p.metaEdName === referencedEntityName));
     expect(property).toBeDefined();
     expect(property.referencedEntity.metaEdName).toBe(referencedEntityName);
     expect(property.referencedEntity.inReferences).toContain(property);
@@ -165,7 +165,7 @@ describe('when enhancing association property referring to deprecated subclass',
   });
 
   it('should have deprecation flag set', (): void => {
-    const property = R.head(metaEd.propertyIndex.association.filter(p => p.metaEdName === referencedEntityName));
+    const property = R.head(metaEd.propertyIndex.association.filter((p) => p.metaEdName === referencedEntityName));
     expect(property).toBeDefined();
     expect(property.referencedEntityDeprecated).toBe(true);
   });
@@ -206,7 +206,7 @@ describe('when enhancing association property referring to association across na
   });
 
   it('should have no validation failures()', (): void => {
-    const property = R.head(metaEd.propertyIndex.association.filter(p => p.metaEdName === referencedEntityName));
+    const property = R.head(metaEd.propertyIndex.association.filter((p) => p.metaEdName === referencedEntityName));
     expect(property).toBeDefined();
     expect(property.referencedEntity.metaEdName).toBe(referencedEntityName);
     expect(property.referencedEntity.inReferences).toContain(property);

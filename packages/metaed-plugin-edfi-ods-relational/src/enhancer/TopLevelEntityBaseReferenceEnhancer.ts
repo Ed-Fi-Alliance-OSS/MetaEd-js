@@ -27,9 +27,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     'domainEntityExtension',
     'domainEntitySubclass',
   )
-    .map(x => asTopLevelEntity(x))
+    .map((x) => asTopLevelEntity(x))
     .forEach((entity: TopLevelEntity) => {
-      if (entity.data.edfiOdsRelational.odsProperties.some(x => x.isIdentityRename)) return;
+      if (entity.data.edfiOdsRelational.odsProperties.some((x) => x.isIdentityRename)) return;
 
       const referenceToBase: ReferentialProperty = {
         ...newReferentialProperty(),

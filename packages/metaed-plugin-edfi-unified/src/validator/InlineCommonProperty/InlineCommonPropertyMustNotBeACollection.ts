@@ -3,7 +3,7 @@ import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
-  metaEd.propertyIndex.inlineCommon.forEach(property => {
+  metaEd.propertyIndex.inlineCommon.forEach((property) => {
     if (property.isRequiredCollection || property.isOptionalCollection) {
       failures.push({
         validatorName: 'InlineCommonPropertyMustNotBeACollection',

@@ -13,7 +13,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const generatedOutput: GeneratedOutput[] = [];
 
   const descriptors: { name: string }[] = orderByProp('name')(
-    getAllEntitiesOfType(metaEd, 'descriptor').map(x => ({ name: x.data.edfiXsd.xsdDescriptorName })),
+    getAllEntitiesOfType(metaEd, 'descriptor').map((x) => ({ name: x.data.edfiXsd.xsdDescriptorName })),
   );
   const formattedGeneratedResult = formatAndPrependHeader(template().schemaAnnotation({ descriptors }));
 

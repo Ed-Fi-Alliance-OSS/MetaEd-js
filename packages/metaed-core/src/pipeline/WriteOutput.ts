@@ -9,7 +9,7 @@ winston.configure({ transports: [new winston.transports.Console()], format: wins
 export const METAED_OUTPUT = 'MetaEdOutput';
 
 function writeOutputFiles(result: GeneratorResult, outputDirectory: string) {
-  result.generatedOutput.forEach(output => {
+  result.generatedOutput.forEach((output) => {
     const folderName: string =
       output.namespace != null && output.namespace !== '' ? `${output.namespace}/${output.folderName}` : output.folderName;
     if (!ffs.existsSync(`${outputDirectory}/${folderName}`)) ffs.mkdirRecursiveSync(`${outputDirectory}/${folderName}`);
@@ -45,7 +45,7 @@ export function execute(state: State): boolean {
       }
 
       const testForMetaEdFilePaths: string[] = klawSync(outputDirectory, {
-        filter: item => ['.metaed', '.metaEd', '.MetaEd', '.METAED'].includes(path.extname(item.path)),
+        filter: (item) => ['.metaed', '.metaEd', '.MetaEd', '.METAED'].includes(path.extname(item.path)),
       });
       if (testForMetaEdFilePaths.length > 0) {
         winston.error(`WriteOutput: MetaEd files found in output location '${outputDirectory}'. Not writing files.`);
@@ -57,11 +57,11 @@ export function execute(state: State): boolean {
     ffs.mkdirRecursiveSync(outputDirectory);
 
     // TODO: change this to use async/await
-    state.generatorResults.forEach(result => {
+    state.generatorResults.forEach((result) => {
       // if (result is a Promise)
       if ((result as any).then) {
         winston.debug('Resolving Promise:');
-        (result as any).then(resolvedResult => {
+        (result as any).then((resolvedResult) => {
           writeOutputFiles(resolvedResult, outputDirectory);
         });
       } else writeOutputFiles(result, outputDirectory);

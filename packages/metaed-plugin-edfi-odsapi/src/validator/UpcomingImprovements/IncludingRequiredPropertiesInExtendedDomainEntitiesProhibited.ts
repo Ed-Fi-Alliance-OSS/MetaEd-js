@@ -17,7 +17,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
 
   (getAllEntitiesOfType(metaEd, 'domainEntityExtension') as DomainEntityExtension[]).forEach(
     (domainEntityExtension: DomainEntityExtension) => {
-      domainEntityExtension.properties.forEach(property => {
+      domainEntityExtension.properties.forEach((property) => {
         if (property.isRequired) {
           failures.push({
             validatorName: 'IncludingRequiredPropertiesInExtendedDomainEntitiesProhibited',

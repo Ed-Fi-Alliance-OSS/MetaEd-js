@@ -87,37 +87,37 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
       const baseProperties: { roleName: string; property: EntityProperty }[] = [];
       const extensionProperties: { roleName: string; property: EntityProperty }[] = [];
 
-      baseEntityResult.properties.forEach(result => {
+      baseEntityResult.properties.forEach((result) => {
         baseProperties.push({ roleName: result.roleName, property: result.property });
       });
-      baseEntityResult.referencedEntities.forEach(result => {
+      baseEntityResult.referencedEntities.forEach((result) => {
         baseProperties.push(
-          ...propertyCollector(result.entity).map(property => ({
+          ...propertyCollector(result.entity).map((property) => ({
             roleName: result.roleName,
             property,
           })),
         );
       });
 
-      extensionEntityResult.properties.forEach(result => {
+      extensionEntityResult.properties.forEach((result) => {
         baseProperties.push({ roleName: result.roleName, property: result.property });
       });
-      extensionEntityResult.referencedEntities.forEach(referencedEntity => {
+      extensionEntityResult.referencedEntities.forEach((referencedEntity) => {
         extensionProperties.push(
-          ...propertyCollector(referencedEntity.entity).map(property => ({
+          ...propertyCollector(referencedEntity.entity).map((property) => ({
             roleName: referencedEntity.roleName,
             property,
           })),
         );
       });
       const extensionPropertyNames: string[] = extensionProperties.map(
-        x => x.roleName + x.property.roleName + x.property.metaEdName,
+        (x) => x.roleName + x.property.roleName + x.property.metaEdName,
       );
 
       const duplicateProperties: {
         roleName: string;
         property: EntityProperty;
-      }[] = baseProperties.filter(x =>
+      }[] = baseProperties.filter((x) =>
         extensionPropertyNames.includes(x.roleName + x.property.roleName + x.property.metaEdName),
       );
 

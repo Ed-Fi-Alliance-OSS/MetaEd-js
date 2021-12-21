@@ -39,16 +39,16 @@ describe('when AddRoleNameFromEducationContentDSLRMUriDiminisher diminishes Educ
   });
 
   it('should rename DerivativeSourceLearningResourceMetadataURI column to LearningResourceMetadataURI', (): void => {
-    const column: Column = (tableEntities(metaEd, namespace).get(
-      educationContentDerivativeSourceLearningResourceMetadataURI,
-    ) as Table).columns[0];
+    const column: Column = (
+      tableEntities(metaEd, namespace).get(educationContentDerivativeSourceLearningResourceMetadataURI) as Table
+    ).columns[0];
     expect(column.columnId).toBe(learningResourceMetadataURI);
   });
 
   it('should set column length', (): void => {
-    const column: Column = (tableEntities(metaEd, namespace).get(
-      educationContentDerivativeSourceLearningResourceMetadataURI,
-    ) as Table).columns[0];
+    const column: Column = (
+      tableEntities(metaEd, namespace).get(educationContentDerivativeSourceLearningResourceMetadataURI) as Table
+    ).columns[0];
     expect(column.type).toBe('string');
     expect((column as StringColumn).length).toBe('225');
   });

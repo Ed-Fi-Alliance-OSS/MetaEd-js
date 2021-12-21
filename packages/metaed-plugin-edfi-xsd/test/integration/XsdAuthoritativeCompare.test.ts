@@ -62,7 +62,7 @@ describe('when generating xsd and comparing it to data standard 2.0 authoritativ
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiXsd',
+      (manifest) => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiXsd',
     );
     loadFiles(state);
     loadFileIndex(state);
@@ -77,15 +77,15 @@ describe('when generating xsd and comparing it to data standard 2.0 authoritativ
 
     fileMapForValidationFailure(state);
 
-    state.metaEd.namespace.forEach(namespace =>
-      namespace.data.edfiXsd.xsdSchema.sections.forEach(section => {
-        complexTypeNames.push(section.sectionAnnotation.documentation, ...section.complexTypes.map(y => y.name));
-        simpleTypeNames.push(section.sectionAnnotation.documentation, ...section.simpleTypes.map(y => y.name));
+    state.metaEd.namespace.forEach((namespace) =>
+      namespace.data.edfiXsd.xsdSchema.sections.forEach((section) => {
+        complexTypeNames.push(section.sectionAnnotation.documentation, ...section.complexTypes.map((y) => y.name));
+        simpleTypeNames.push(section.sectionAnnotation.documentation, ...section.simpleTypes.map((y) => y.name));
       }),
     );
 
     coreResult = R.head(
-      R.head(state.generatorResults.filter(x => x.generatorName === 'edfiXsd.XsdGenerator')).generatedOutput,
+      R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiXsd.XsdGenerator')).generatedOutput,
     );
     coreFileBaseName = path.basename(coreResult.fileName, '.xsd');
     generatedCoreXsd = `${outputDirectory}/${coreFileBaseName}.xsd`;
@@ -94,7 +94,7 @@ describe('when generating xsd and comparing it to data standard 2.0 authoritativ
     await ffs.writeFile(generatedCoreXsd, coreResult.resultString, 'utf-8');
 
     schemaResult = R.head(
-      R.head(state.generatorResults.filter(x => x.generatorName === 'edfiXsd.SchemaAnnotationGenerator')).generatedOutput,
+      R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiXsd.SchemaAnnotationGenerator')).generatedOutput,
     );
     schemaFileBaseName = path.basename(schemaResult.fileName, '.xsd');
     generatedSchemaXsd = `${outputDirectory}/${schemaFileBaseName}.xsd`;
@@ -107,7 +107,7 @@ describe('when generating xsd and comparing it to data standard 2.0 authoritativ
     expect(generatedCoreXsd).toBeDefined();
     const gitCommand = `git diff --shortstat --no-index -- ${authoritativeCoreXsd} ${generatedCoreXsd}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     expect(result).toMatchSnapshot();
   });
 
@@ -115,7 +115,7 @@ describe('when generating xsd and comparing it to data standard 2.0 authoritativ
     const gitCommand = `git diff --shortstat --no-index -- ${authoritativeSchemaXsd} ${generatedSchemaXsd}`;
     expect(generatedCoreXsd).toBeDefined();
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     expect(result).toMatchSnapshot();
   });
 
@@ -191,7 +191,7 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiXsd',
+      (manifest) => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiXsd',
     );
     loadFiles(state);
     loadFileIndex(state);
@@ -206,15 +206,15 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
 
     fileMapForValidationFailure(state);
 
-    state.metaEd.namespace.forEach(namespace =>
-      namespace.data.edfiXsd.xsdSchema.sections.forEach(section => {
-        complexTypeNames.push(section.sectionAnnotation.documentation, ...section.complexTypes.map(y => y.name));
-        simpleTypeNames.push(section.sectionAnnotation.documentation, ...section.simpleTypes.map(y => y.name));
+    state.metaEd.namespace.forEach((namespace) =>
+      namespace.data.edfiXsd.xsdSchema.sections.forEach((section) => {
+        complexTypeNames.push(section.sectionAnnotation.documentation, ...section.complexTypes.map((y) => y.name));
+        simpleTypeNames.push(section.sectionAnnotation.documentation, ...section.simpleTypes.map((y) => y.name));
       }),
     );
 
     coreResult = R.head(
-      R.head(state.generatorResults.filter(x => x.generatorName === 'edfiXsd.XsdGenerator')).generatedOutput,
+      R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiXsd.XsdGenerator')).generatedOutput,
     );
     coreFileBaseName = path.basename(coreResult.fileName, '.xsd');
     generatedCoreXsd = `${outputDirectory}/${coreFileBaseName}.xsd`;
@@ -223,7 +223,7 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
     await ffs.writeFile(generatedCoreXsd, coreResult.resultString, 'utf-8');
 
     schemaResult = R.head(
-      R.head(state.generatorResults.filter(x => x.generatorName === 'edfiXsd.SchemaAnnotationGenerator')).generatedOutput,
+      R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiXsd.SchemaAnnotationGenerator')).generatedOutput,
     );
     schemaFileBaseName = path.basename(schemaResult.fileName, '.xsd');
     generatedSchemaXsd = `${outputDirectory}/${schemaFileBaseName}.xsd`;
@@ -236,7 +236,7 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
     expect(generatedCoreXsd).toBeDefined();
     const gitCommand = `git diff --shortstat --no-index -- ${authoritativeCoreXsd} ${generatedCoreXsd}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     expect(result).toMatchSnapshot();
   });
 
@@ -244,7 +244,7 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
     const gitCommand = `git diff --shortstat --no-index -- ${authoritativeSchemaXsd} ${generatedSchemaXsd}`;
     expect(generatedCoreXsd).toBeDefined();
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     expect(result).toMatchSnapshot();
   });
 
@@ -327,7 +327,7 @@ describe('when generating xsd with extension and comparing it to data standard 3
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiXsd',
+      (manifest) => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiXsd',
     );
     loadFiles(state);
     loadFileIndex(state);
@@ -342,15 +342,15 @@ describe('when generating xsd with extension and comparing it to data standard 3
 
     fileMapForValidationFailure(state);
 
-    state.metaEd.namespace.forEach(namespace =>
-      namespace.data.edfiXsd.xsdSchema.sections.forEach(section => {
-        complexTypeNames.push(section.sectionAnnotation.documentation, ...section.complexTypes.map(y => y.name));
-        simpleTypeNames.push(section.sectionAnnotation.documentation, ...section.simpleTypes.map(y => y.name));
+    state.metaEd.namespace.forEach((namespace) =>
+      namespace.data.edfiXsd.xsdSchema.sections.forEach((section) => {
+        complexTypeNames.push(section.sectionAnnotation.documentation, ...section.complexTypes.map((y) => y.name));
+        simpleTypeNames.push(section.sectionAnnotation.documentation, ...section.simpleTypes.map((y) => y.name));
       }),
     );
 
     coreResult = R.head(
-      R.head(state.generatorResults.filter(x => x.generatorName === 'edfiXsd.XsdGenerator')).generatedOutput,
+      R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiXsd.XsdGenerator')).generatedOutput,
     );
     coreFileBaseName = path.basename(coreResult.fileName, '.xsd');
     generatedCoreXsd = `${outputDirectory}/${coreFileBaseName}.xsd`;
@@ -359,7 +359,7 @@ describe('when generating xsd with extension and comparing it to data standard 3
     await ffs.writeFile(generatedCoreXsd, coreResult.resultString, 'utf-8');
 
     schemaResult = R.head(
-      R.head(state.generatorResults.filter(x => x.generatorName === 'edfiXsd.SchemaAnnotationGenerator')).generatedOutput,
+      R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiXsd.SchemaAnnotationGenerator')).generatedOutput,
     );
     schemaFileBaseName = path.basename(schemaResult.fileName, '.xsd');
     generatedSchemaXsd = `${outputDirectory}/${schemaFileBaseName}.xsd`;
@@ -372,7 +372,7 @@ describe('when generating xsd with extension and comparing it to data standard 3
     expect(generatedCoreXsd).toBeDefined();
     const gitCommand = `git diff --shortstat --no-index -- ${authoritativeCoreXsd} ${generatedCoreXsd}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     expect(result).toMatchSnapshot();
   });
 
@@ -380,7 +380,7 @@ describe('when generating xsd with extension and comparing it to data standard 3
     const gitCommand = `git diff --shortstat --no-index -- ${authoritativeSchemaXsd} ${generatedSchemaXsd}`;
     expect(generatedCoreXsd).toBeDefined();
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     expect(result).toMatchSnapshot();
   });
 

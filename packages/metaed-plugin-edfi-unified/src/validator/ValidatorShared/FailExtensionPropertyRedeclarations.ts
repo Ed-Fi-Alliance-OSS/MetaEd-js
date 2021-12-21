@@ -11,8 +11,8 @@ export function failExtensionPropertyRedeclarations(
   baseEntity: TopLevelEntity,
   failures: ValidationFailure[],
 ) {
-  extensionEntity.properties.forEach(extensionProperty => {
-    baseEntity.properties.forEach(baseProperty => {
+  extensionEntity.properties.forEach((extensionProperty) => {
+    baseEntity.properties.forEach((baseProperty) => {
       if (
         extensionProperty.metaEdName === baseProperty.metaEdName &&
         extensionProperty.roleName === baseProperty.roleName &&

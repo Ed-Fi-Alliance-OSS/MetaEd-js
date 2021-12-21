@@ -3,9 +3,9 @@ import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
   Array.from(metaEd.namespace.values())
-    .filter(n => !n.isExtension)
-    .forEach(namespace => {
-      namespace.entity.commonExtension.forEach(entity => {
+    .filter((n) => !n.isExtension)
+    .forEach((namespace) => {
+      namespace.entity.commonExtension.forEach((entity) => {
         failures.push({
           validatorName: 'CommonExtensionExistsOnlyInExtensionNamespace',
           category: 'error',

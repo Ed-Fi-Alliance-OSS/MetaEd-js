@@ -34,18 +34,20 @@ const normalizeDefinition = (definition: string): string =>
 const normalizeEntityPath = (entityPath: string[]): string => entityPath.join('.');
 const normalizeDataType = (string: string): string => string.replace('xs:', '');
 
-const sortBy = (...props: string[]) => (a: Record<string, any>, b: Record<string, any>): number => {
-  // eslint-disable-next-line no-restricted-syntax
-  for (const prop of props) {
-    // eslint-disable-next-line no-continue
-    if (a[prop] == null || b[prop] == null) continue;
-    const aa = a[prop].toLowerCase() || '';
-    const bb = b[prop].toLowerCase() || '';
-    if (aa < bb) return -1;
-    if (aa > bb) return 1;
-  }
-  return 0;
-};
+const sortBy =
+  (...props: string[]) =>
+  (a: Record<string, any>, b: Record<string, any>): number => {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const prop of props) {
+      // eslint-disable-next-line no-continue
+      if (a[prop] == null || b[prop] == null) continue;
+      const aa = a[prop].toLowerCase() || '';
+      const bb = b[prop].toLowerCase() || '';
+      if (aa < bb) return -1;
+      if (aa > bb) return 1;
+    }
+    return 0;
+  };
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const workbook: Workbook = newWorkbook();

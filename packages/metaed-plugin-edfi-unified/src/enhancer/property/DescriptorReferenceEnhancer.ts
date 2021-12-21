@@ -4,7 +4,7 @@ import { getEntityFromNamespaceChain } from 'metaed-core';
 const enhancerName = 'DescriptorReferenceEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  metaEd.propertyIndex.descriptor.forEach(property => {
+  metaEd.propertyIndex.descriptor.forEach((property) => {
     const referencedEntity: TopLevelEntity | null = getEntityFromNamespaceChain(
       property.metaEdName,
       property.referencedNamespaceName,

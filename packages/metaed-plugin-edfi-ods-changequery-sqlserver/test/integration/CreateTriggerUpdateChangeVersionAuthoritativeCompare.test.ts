@@ -83,7 +83,7 @@ describe('when generating change event scripts and comparing to ODS/API 3.1 auth
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsSqlServer' ||
@@ -103,7 +103,7 @@ describe('when generating change event scripts and comparing to ODS/API 3.1 auth
 
     generatedOutput = R.head(
       R.head(
-        state.generatorResults.filter(x => x.generatorName === `${PLUGIN_NAME}.CreateTriggerUpdateChangeVersionGenerator`),
+        state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateTriggerUpdateChangeVersionGenerator`),
       ).generatedOutput,
     );
 
@@ -115,7 +115,7 @@ describe('when generating change event scripts and comparing to ODS/API 3.1 auth
     const generated: string = path.resolve(artifactPath, generatedFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -194,7 +194,7 @@ describe('when generating change event scripts with simple extensions and compar
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsSqlServer' ||
@@ -213,7 +213,7 @@ describe('when generating change event scripts with simple extensions and compar
     }
 
     const generatorResult: GeneratorResult = R.head(
-      state.generatorResults.filter(x => x.generatorName === `${PLUGIN_NAME}.CreateTriggerUpdateChangeVersionGenerator`),
+      state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateTriggerUpdateChangeVersionGenerator`),
     );
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
@@ -231,7 +231,7 @@ describe('when generating change event scripts with simple extensions and compar
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -242,7 +242,7 @@ describe('when generating change event scripts with simple extensions and compar
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -310,7 +310,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsSqlServer' ||
@@ -330,7 +330,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
 
     generatedOutput = R.head(
       R.head(
-        state.generatorResults.filter(x => x.generatorName === `${PLUGIN_NAME}.CreateTriggerUpdateChangeVersionGenerator`),
+        state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateTriggerUpdateChangeVersionGenerator`),
       ).generatedOutput,
     );
 
@@ -342,7 +342,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
     const generated: string = path.resolve(artifactPath, generatedFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -421,7 +421,7 @@ describe('when generating change event scripts with simple extensions and compar
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsSqlServer' ||
@@ -440,7 +440,7 @@ describe('when generating change event scripts with simple extensions and compar
     }
 
     const generatorResult: GeneratorResult = R.head(
-      state.generatorResults.filter(x => x.generatorName === `${PLUGIN_NAME}.CreateTriggerUpdateChangeVersionGenerator`),
+      state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateTriggerUpdateChangeVersionGenerator`),
     );
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
@@ -458,7 +458,7 @@ describe('when generating change event scripts with simple extensions and compar
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -469,7 +469,7 @@ describe('when generating change event scripts with simple extensions and compar
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -538,7 +538,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsSqlServer' ||
@@ -558,7 +558,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
 
     generatedOutput = R.head(
       R.head(
-        state.generatorResults.filter(x => x.generatorName === `${PLUGIN_NAME}.CreateTriggerUpdateChangeVersionGenerator`),
+        state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateTriggerUpdateChangeVersionGenerator`),
       ).generatedOutput,
     );
 
@@ -570,7 +570,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
     const generated: string = path.resolve(artifactPath, generatedFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -650,7 +650,7 @@ describe('when generating change event scripts with simple extensions and compar
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest =>
+      (manifest) =>
         manifest.shortName === 'edfiUnified' ||
         manifest.shortName === 'edfiOdsRelational' ||
         manifest.shortName === 'edfiOdsSqlServer' ||
@@ -669,7 +669,7 @@ describe('when generating change event scripts with simple extensions and compar
     }
 
     const generatorResult: GeneratorResult = R.head(
-      state.generatorResults.filter(x => x.generatorName === `${PLUGIN_NAME}.CreateTriggerUpdateChangeVersionGenerator`),
+      state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateTriggerUpdateChangeVersionGenerator`),
     );
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
@@ -687,7 +687,7 @@ describe('when generating change event scripts with simple extensions and compar
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -698,7 +698,7 @@ describe('when generating change event scripts with simple extensions and compar
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
-    const result = await new Promise(resolve => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);

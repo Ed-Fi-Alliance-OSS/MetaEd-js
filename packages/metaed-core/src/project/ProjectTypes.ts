@@ -28,5 +28,5 @@ export const deriveNamespaceFromProjectName = (projectName: string): string | nu
 export const isDataStandard = (project: MetaEdProject): boolean => project.namespaceName === 'EdFi';
 
 export function findDataStandardVersions(projects: MetaEdProject[]): SemVer[] {
-  return projects.filter(project => isDataStandard(project)).map(project => project.projectVersion);
+  return projects.filter((project) => isDataStandard(project)).map((project) => project.projectVersion);
 }

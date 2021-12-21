@@ -5,7 +5,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
   metaEd.namespace.forEach((namespace: Namespace) => {
-    namespace.entity.descriptor.forEach(descriptor => {
+    namespace.entity.descriptor.forEach((descriptor) => {
       if (descriptor.mapTypeEnumeration.enumerationItems.length > 1) {
         failEnumerationItemRedeclarations(
           'DescriptorMapTypeItemsMustBeUnique',

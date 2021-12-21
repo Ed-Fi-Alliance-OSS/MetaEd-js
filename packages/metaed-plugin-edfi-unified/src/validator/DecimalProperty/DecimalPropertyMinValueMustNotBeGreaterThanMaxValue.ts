@@ -3,7 +3,7 @@ import { asDecimalProperty } from 'metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  metaEd.propertyIndex.decimal.forEach(decimal => {
+  metaEd.propertyIndex.decimal.forEach((decimal) => {
     const decimalProperty: DecimalProperty = asDecimalProperty(decimal);
     const minValue: number = Number.parseInt(decimalProperty.minValue || '0', 10);
     const maxValue: number = Number.parseInt(decimalProperty.maxValue || '0', 10);

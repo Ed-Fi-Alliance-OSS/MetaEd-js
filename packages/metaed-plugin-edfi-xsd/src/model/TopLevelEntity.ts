@@ -22,7 +22,7 @@ function xsdProperties(topLevelEntity: TopLevelEntity): () => EntityProperty[] {
 
 function xsdHasExtensionOverrideProperties(topLevelEntity: TopLevelEntity): () => boolean {
   return (): boolean =>
-    topLevelEntity.properties.filter(p => p.type === 'common').some(p => (p as CommonProperty).isExtensionOverride);
+    topLevelEntity.properties.filter((p) => p.type === 'common').some((p) => (p as CommonProperty).isExtensionOverride);
 }
 
 export function addTopLevelEntityEdfiXsdTo(topLevelEntity: TopLevelEntity) {

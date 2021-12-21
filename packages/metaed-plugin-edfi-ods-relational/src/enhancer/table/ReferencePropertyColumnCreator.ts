@@ -16,7 +16,7 @@ export function referencePropertyColumnCreator(factory: ColumnCreatorFactory): C
       // NOTE: Add test coverage here once we understand how skip path should work? see SkipPathStrategy class in BuildStrategy
       buildStrategy =
         referentialProperty.mergeDirectives.length > 0
-          ? buildStrategy.skipPath(referentialProperty.mergeDirectives.map(x => x.sourcePropertyPathStrings.slice(1)))
+          ? buildStrategy.skipPath(referentialProperty.mergeDirectives.map((x) => x.sourcePropertyPathStrings.slice(1)))
           : buildStrategy;
 
       const columns: Column[] = collectPrimaryKeys(referentialProperty.referencedEntity, buildStrategy, factory);

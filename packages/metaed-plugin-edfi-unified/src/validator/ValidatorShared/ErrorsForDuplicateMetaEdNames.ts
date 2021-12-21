@@ -10,7 +10,7 @@ export function generateValidationErrorsForDuplicates(
 
   groupByMetaEdName(metaEdEntity).forEach((entities, metaEdName) => {
     if (entities.length > 1) {
-      entities.forEach(entity => {
+      entities.forEach((entity) => {
         failures.push({
           validatorName,
           category: 'error',

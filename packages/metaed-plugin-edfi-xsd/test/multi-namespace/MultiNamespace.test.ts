@@ -41,19 +41,17 @@ const metaEdConfiguration = {
 describe('when building a simple core and two simple extension projects', (): void => {
   let state: State = newState();
 
-  beforeAll(
-    async (): Promise<void> => {
-      state = {
-        ...newState(),
-        metaEdConfiguration,
-        pipelineOptions: { ...newPipelineOptions(), runValidators: true, runEnhancers: true },
-      };
+  beforeAll(async (): Promise<void> => {
+    state = {
+      ...newState(),
+      metaEdConfiguration,
+      pipelineOptions: { ...newPipelineOptions(), runValidators: true, runEnhancers: true },
+    };
 
-      state.metaEd.dataStandardVersion = '3.0.0';
-      state.pluginScanDirectory = path.resolve(__dirname, '../../..');
-      await executePipeline(state);
-    },
-  );
+    state.metaEd.dataStandardVersion = '3.0.0';
+    state.pluginScanDirectory = path.resolve(__dirname, '../../..');
+    await executePipeline(state);
+  });
 
   it('should have no validation errors', (): void => {
     expect(state.validationFailure.length).toBe(0);
@@ -81,7 +79,7 @@ describe('when building a simple core and two simple extension projects', (): vo
     const namespace: Namespace | undefined = state.metaEd.namespace.get('EdFi');
     if (namespace == null) throw new Error();
     const schemaSection = namespace.data.edfiXsd.xsdSchema.sections.find(
-      s => s.complexTypes[0] && s.complexTypes[0].name === 'EdfiDomainEntity',
+      (s) => s.complexTypes[0] && s.complexTypes[0].name === 'EdfiDomainEntity',
     );
     expect(schemaSection).toBeDefined();
   });
@@ -90,7 +88,7 @@ describe('when building a simple core and two simple extension projects', (): vo
     const namespace: Namespace | undefined = state.metaEd.namespace.get('Gb');
     if (namespace == null) throw new Error();
     const schemaSection = namespace.data.edfiXsd.xsdSchema.sections.find(
-      s => s.complexTypes[0] && s.complexTypes[0].name === 'GrandBend-GbDomainEntity',
+      (s) => s.complexTypes[0] && s.complexTypes[0].name === 'GrandBend-GbDomainEntity',
     );
     expect(schemaSection).toBeDefined();
   });
@@ -99,7 +97,7 @@ describe('when building a simple core and two simple extension projects', (): vo
     const namespace: Namespace | undefined = state.metaEd.namespace.get('Sample');
     if (namespace == null) throw new Error();
     const schemaSection = namespace.data.edfiXsd.xsdSchema.sections.find(
-      s => s.complexTypes[0] && s.complexTypes[0].name === 'Sample-SampleDomainEntity',
+      (s) => s.complexTypes[0] && s.complexTypes[0].name === 'Sample-SampleDomainEntity',
     );
     expect(schemaSection).toBeDefined();
   });

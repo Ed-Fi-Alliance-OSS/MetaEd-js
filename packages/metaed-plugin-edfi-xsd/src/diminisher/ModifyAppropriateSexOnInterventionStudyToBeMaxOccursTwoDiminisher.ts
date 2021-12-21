@@ -22,10 +22,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
   const entity: ModelBase | null = getEntityFromNamespace(entityName, coreNamespace, entityType);
   if (entity != null && !R.isEmpty(entity.data.edfiXsd.xsdComplexTypes)) {
-    const complexType: ComplexType = entity.data.edfiXsd.xsdComplexTypes.find(x => x.name === entityName);
+    const complexType: ComplexType = entity.data.edfiXsd.xsdComplexTypes.find((x) => x.name === entityName);
     if (complexType != null && complexType.hasItems()) {
-      const element: Element | undefined = ((complexType.items as unknown) as Element[]).find(
-        x => x.name != null && x.name === elementName && x.type != null && x.type === elementType,
+      const element: Element | undefined = (complexType.items as unknown as Element[]).find(
+        (x) => x.name != null && x.name === elementName && x.type != null && x.type === elementType,
       );
       if (element != null) {
         Object.assign(element, {

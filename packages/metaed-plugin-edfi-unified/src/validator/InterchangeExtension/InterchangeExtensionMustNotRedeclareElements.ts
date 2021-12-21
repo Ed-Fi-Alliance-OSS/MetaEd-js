@@ -4,7 +4,7 @@ import { failInterchangeItemRedeclarations } from '../ValidatorShared/FailInterc
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
   metaEd.namespace.forEach((namespace: Namespace) => {
-    namespace.entity.interchangeExtension.forEach(interchangeExtension => {
+    namespace.entity.interchangeExtension.forEach((interchangeExtension) => {
       if (interchangeExtension.elements.length === 0) return;
       failInterchangeItemRedeclarations(
         'InterchangeExtensionMustNotRedeclareElements',

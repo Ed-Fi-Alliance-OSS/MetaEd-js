@@ -3,7 +3,7 @@ import { MetaEdEnvironment, ValidationFailure, ModelBase, Common, getEntityFromN
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
 
-  metaEd.propertyIndex.common.forEach(property => {
+  metaEd.propertyIndex.common.forEach((property) => {
     const referencedEntity: ModelBase | null = getEntityFromNamespaceChain(
       property.metaEdName,
       property.referencedNamespaceName,

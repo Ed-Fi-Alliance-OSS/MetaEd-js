@@ -43,7 +43,7 @@ describe('when generating api model and comparing it to data standard 3.1 author
     validateConfiguration(state);
     loadPlugins(state);
     state.pluginManifest = state.pluginManifest.filter(
-      manifest => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiUnifiedAdvanced',
+      (manifest) => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiUnifiedAdvanced',
     );
     loadFiles(state);
     loadFileIndex(state);

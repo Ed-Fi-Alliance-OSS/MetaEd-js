@@ -26,7 +26,7 @@ function primaryEntityPropertiesFrom(
 
   // maintain foreign key column order
   return foreignKey.data.edfiOdsSqlServer.foreignTableColumnNames
-    .map((columnName: string) => foreignTable.columns.filter(c => c.data.edfiOdsSqlServer.columnName === columnName))
+    .map((columnName: string) => foreignTable.columns.filter((c) => c.data.edfiOdsSqlServer.columnName === columnName))
     .map((columnArray: Column[]) => columnArray[0])
     .map((column: Column) => ({ ...buildApiProperty(column), isIdentifying }));
 }

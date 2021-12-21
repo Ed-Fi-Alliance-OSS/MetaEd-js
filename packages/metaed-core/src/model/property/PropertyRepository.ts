@@ -118,7 +118,7 @@ export function newPropertyIndex(): PropertyIndex {
  */
 export function getPropertiesOfType(propertyIndex: PropertyIndex, ...propertyTypes: PropertyType[]): EntityProperty[] {
   const result: EntityProperty[] = [];
-  propertyTypes.forEach(propertyType => result.push(...propertyIndex[propertyType]));
+  propertyTypes.forEach((propertyType) => result.push(...propertyIndex[propertyType]));
   return result;
 }
 
@@ -132,7 +132,7 @@ export function getPropertiesOfTypeForNamespaces(
 ): EntityProperty[] {
   const result: EntityProperty[] = [];
 
-  propertyTypes.forEach(propertyType => {
+  propertyTypes.forEach((propertyType) => {
     const propertiesInNamespaces = propertyIndex[propertyType].filter((property: EntityProperty) =>
       namespaces.includes(property.namespace),
     );

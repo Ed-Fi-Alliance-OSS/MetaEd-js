@@ -25,7 +25,7 @@ export const ColumnDataTypes: ColumnData = {
   integer: 'INT',
   percent: 'DECIMAL(5, 4)',
   short: 'SMALLINT',
-  string: length => `VARCHAR(${length})`,
+  string: (length) => `VARCHAR(${length})`,
   time: 'TIME',
   year: 'SMALLINT',
 };

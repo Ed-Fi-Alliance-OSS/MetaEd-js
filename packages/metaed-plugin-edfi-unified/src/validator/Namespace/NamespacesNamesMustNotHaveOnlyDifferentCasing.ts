@@ -13,7 +13,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const namespaceNames: string[] = Array.from(metaEd.namespace.keys());
   const duplicateNames: string[] = Array.from(namespaceNames.filter(differOnlyInCaseFunction));
 
-  duplicateNames.forEach(duplicateName => {
+  duplicateNames.forEach((duplicateName) => {
     failures.push({
       validatorName: 'NamespacesNamesMustNotHaveOnlyDifferentCasing',
       category: 'error',

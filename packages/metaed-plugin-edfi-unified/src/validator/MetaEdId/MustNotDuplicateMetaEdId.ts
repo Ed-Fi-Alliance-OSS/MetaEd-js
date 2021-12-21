@@ -14,8 +14,8 @@ import { getAllEntitiesNoSimpleTypesForNamespaces, getAllPropertiesForNamespaces
 
 function getDomainItems(entity: EntityRepository): DomainItem[] {
   const result: DomainItem[] = [];
-  entity.domain.forEach(domain => result.push(...domain.domainItems));
-  entity.subdomain.forEach(subdomain => result.push(...subdomain.domainItems));
+  entity.domain.forEach((domain) => result.push(...domain.domainItems));
+  entity.subdomain.forEach((subdomain) => result.push(...subdomain.domainItems));
   return result;
 }
 
@@ -29,9 +29,9 @@ function getDomainItemsForNamespaces(namespaces: Namespace[]): DomainItem[] {
 
 function getEnumerationItems(entity: EntityRepository): EnumerationItem[] {
   const result: EnumerationItem[] = [];
-  entity.enumeration.forEach(enumeration => result.push(...enumeration.enumerationItems));
-  entity.mapTypeEnumeration.forEach(mapType => result.push(...mapType.enumerationItems));
-  entity.schoolYearEnumeration.forEach(schoolYear => result.push(...schoolYear.enumerationItems));
+  entity.enumeration.forEach((enumeration) => result.push(...enumeration.enumerationItems));
+  entity.mapTypeEnumeration.forEach((mapType) => result.push(...mapType.enumerationItems));
+  entity.schoolYearEnumeration.forEach((schoolYear) => result.push(...schoolYear.enumerationItems));
   return result;
 }
 
@@ -45,8 +45,8 @@ function getEnumerationItemsForNamespaces(namespaces: Namespace[]): EnumerationI
 
 function getInterchangeItems(entity: EntityRepository): InterchangeItem[] {
   const result: InterchangeItem[] = [];
-  entity.interchange.forEach(interchange => result.push(...interchange.elements, ...interchange.identityTemplates));
-  entity.interchangeExtension.forEach(extension => result.push(...extension.elements, ...extension.identityTemplates));
+  entity.interchange.forEach((interchange) => result.push(...interchange.elements, ...interchange.identityTemplates));
+  entity.interchangeExtension.forEach((extension) => result.push(...extension.elements, ...extension.identityTemplates));
   return result;
 }
 
@@ -70,15 +70,15 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   ];
 
   const metaEdIdMap: Record<string, any> = {};
-  index.forEach(item => {
+  index.forEach((item) => {
     if (!item.metaEdId) return;
     metaEdIdMap[item.metaEdId] = metaEdIdMap[item.metaEdId] || [];
     metaEdIdMap[item.metaEdId].push(item);
   });
 
-  Object.keys(metaEdIdMap).forEach(metaEdId => {
+  Object.keys(metaEdIdMap).forEach((metaEdId) => {
     if (metaEdIdMap[metaEdId].length <= 1) return;
-    metaEdIdMap[metaEdId].forEach(entity => {
+    metaEdIdMap[metaEdId].forEach((entity) => {
       const metaEdName: string = entity.metaEdName ? entity.metaEdName : entity.shortDescription;
       failures.push({
         validatorName: 'MustNotDuplicateMetaEdId',

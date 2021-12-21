@@ -962,7 +962,7 @@ describe('when DomainEntityTableEnhancer enhances entity with collection enumera
 
   it('should have join table with foreign key to enumeration table', (): void => {
     const table: Table = tableEntities(metaEd, namespace).get(entityName + enumerationName) as Table;
-    const foreignKey: ForeignKey = R.head(table.foreignKeys.filter(x => x.foreignTableId !== entityName));
+    const foreignKey: ForeignKey = R.head(table.foreignKeys.filter((x) => x.foreignTableId !== entityName));
     expect(foreignKey).toBeDefined();
     expect(foreignKey.foreignTableId).toBe(`${enumerationName}Type`);
   });
@@ -1159,7 +1159,7 @@ describe('when DomainEntityTableEnhancer enhances entity with descriptor collect
 
   it('should have join table with foreign key to descriptor table', (): void => {
     const table: Table = tableEntities(metaEd, namespace).get(entityName + descriptorName) as Table;
-    const foreignKey: ForeignKey = R.head(table.foreignKeys.filter(x => x.foreignTableId !== entityName));
+    const foreignKey: ForeignKey = R.head(table.foreignKeys.filter((x) => x.foreignTableId !== entityName));
     expect(foreignKey).toBeDefined();
     expect(foreignKey.foreignTableId).toBe(`${descriptorName}Descriptor`);
   });

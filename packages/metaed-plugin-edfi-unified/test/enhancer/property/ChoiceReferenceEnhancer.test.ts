@@ -36,7 +36,7 @@ describe('when enhancing choice property', (): void => {
   });
 
   it('should have no validation failures()', (): void => {
-    const property = R.head(metaEd.propertyIndex.choice.filter(p => p.metaEdName === referencedEntityName));
+    const property = R.head(metaEd.propertyIndex.choice.filter((p) => p.metaEdName === referencedEntityName));
     expect(property).toBeDefined();
     expect(property.referencedEntity.metaEdName).toBe(referencedEntityName);
     expect(property.referencedEntity.inReferences).toContain(property);
@@ -78,7 +78,7 @@ describe('when enhancing choice property referring to deprecated choice', (): vo
   });
 
   it('should have deprecation flag set', (): void => {
-    const property = R.head(metaEd.propertyIndex.choice.filter(p => p.metaEdName === referencedEntityName));
+    const property = R.head(metaEd.propertyIndex.choice.filter((p) => p.metaEdName === referencedEntityName));
     expect(property).toBeDefined();
     expect(property.referencedEntityDeprecated).toBe(true);
   });
@@ -119,7 +119,7 @@ describe('when enhancing choice property across namespaces', (): void => {
   });
 
   it('should have no validation failures()', (): void => {
-    const property = R.head(metaEd.propertyIndex.choice.filter(p => p.metaEdName === referencedEntityName));
+    const property = R.head(metaEd.propertyIndex.choice.filter((p) => p.metaEdName === referencedEntityName));
     expect(property).toBeDefined();
     expect(property.referencedEntity.metaEdName).toBe(referencedEntityName);
     expect(property.referencedEntity.inReferences).toContain(property);

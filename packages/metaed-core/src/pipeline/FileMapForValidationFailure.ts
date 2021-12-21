@@ -25,7 +25,7 @@ function logValidationFailures(state: State): void {
 export function fileMapForValidationFailure(state: State): void {
   if (state.validationFailure.length === 0) return;
 
-  state.validationFailure.forEach(failure => {
+  state.validationFailure.forEach((failure) => {
     if (!failure.fileMap && failure.sourceMap && state.fileIndex) {
       failure.fileMap = getFilenameAndLineNumber(state.fileIndex, failure.sourceMap.line);
     }

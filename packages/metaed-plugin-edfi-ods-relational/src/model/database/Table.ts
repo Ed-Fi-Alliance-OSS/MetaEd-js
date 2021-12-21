@@ -212,7 +212,7 @@ export function getColumnWithStrongestConstraint(
   column: Column,
   constraintStrategy: (existing: Column, received: Column) => Column,
 ): Column {
-  const existingColumn = table.columns.find(x => x.columnId === column.columnId);
+  const existingColumn = table.columns.find((x) => x.columnId === column.columnId);
   if (existingColumn == null) return column;
 
   winston.debug(`  Duplicate column ${column.columnId} on table ${simpleTableNameGroupConcat(table.nameGroup)}.`);
@@ -226,15 +226,15 @@ export function addColumn(table: Table, column: Column): void {
 }
 
 export function addColumns(table: Table, columns: Column[], strategy: ColumnTransform): void {
-  strategy.transform(columns).forEach(column => addColumn(table, column));
+  strategy.transform(columns).forEach((column) => addColumn(table, column));
 }
 
 export function getPrimaryKeys(table: Table): Column[] {
-  return orderByProp('columnId')(table.columns.filter(x => x.isPartOfPrimaryKey));
+  return orderByProp('columnId')(table.columns.filter((x) => x.isPartOfPrimaryKey));
 }
 
 export function getNonPrimaryKeys(table: Table): Column[] {
-  return table.columns.filter(x => !x.isPartOfPrimaryKey);
+  return table.columns.filter((x) => !x.isPartOfPrimaryKey);
 }
 
 export function getAllColumns(table: Table): Column[] {

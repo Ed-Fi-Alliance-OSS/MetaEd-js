@@ -42,12 +42,12 @@ const manyReferenceTypesFrom = R.chain((x: TopLevelEntity) => {
   return [edfiXsd.xsdIdentityType, edfiXsd.xsdLookupType, edfiXsd.xsdReferenceType];
 });
 
-const removeNoComplexType = R.filter(x => x !== NoComplexType);
-const removeNoSimpleType = R.filter(x => x !== NoSimpleType);
-const removeNoEnumerationSimpleType = R.filter(x => x !== NoEnumerationSimpleType);
-const removeNoStringSimpleType = R.filter(x => x !== NoStringSimpleType);
+const removeNoComplexType = R.filter((x) => x !== NoComplexType);
+const removeNoSimpleType = R.filter((x) => x !== NoSimpleType);
+const removeNoEnumerationSimpleType = R.filter((x) => x !== NoEnumerationSimpleType);
+const removeNoStringSimpleType = R.filter((x) => x !== NoStringSimpleType);
 
-const inNamespace = namespace => R.filter(x => x.namespace.namespaceName === namespace.namespaceName);
+const inNamespace = (namespace) => R.filter((x) => x.namespace.namespaceName === namespace.namespaceName);
 
 function baseSchemaSection() {
   const schemaSection: SchemaSection = {
@@ -173,7 +173,7 @@ function baseSchemaSection() {
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };
 
-  metaEd.namespace.forEach(namespace => {
+  metaEd.namespace.forEach((namespace) => {
     const versionString = metaEd.dataStandardVersion;
     const schemaContainer: SchemaContainer = {
       ...newSchemaContainer(),

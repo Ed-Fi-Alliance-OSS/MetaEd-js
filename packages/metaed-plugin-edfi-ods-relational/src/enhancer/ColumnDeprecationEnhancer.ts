@@ -11,7 +11,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     tables.forEach((table: Table) => {
       table.columns.forEach((column: Column) => {
-        column.sourceEntityProperties.forEach(property => {
+        column.sourceEntityProperties.forEach((property) => {
           if (property.isDeprecated) {
             column.isDeprecated = true;
             column.deprecationReasons.push(property.deprecationReason);

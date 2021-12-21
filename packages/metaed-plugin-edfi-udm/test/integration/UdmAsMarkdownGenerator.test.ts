@@ -71,7 +71,7 @@ describe('When generating interchange brief with no extended references or descr
     addModelBaseEdfiUdmTo(domain2);
 
     const domainMarkdowns: DomainMarkdown[] = await generateMarkdownForDomains(metaEd);
-    generatedResults = domainMarkdowns.map(x => x.markdown);
+    generatedResults = domainMarkdowns.map((x) => x.markdown);
   });
 
   it('Should include entities', (): void => {

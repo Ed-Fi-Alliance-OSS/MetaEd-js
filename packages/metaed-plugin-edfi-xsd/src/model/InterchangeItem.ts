@@ -27,8 +27,8 @@ export function addInterchangeItemEdfiXsdTo(interchangeItem: InterchangeItem) {
 }
 
 function addInterchangeItemEdfiXsdToInterchange(interchange: Interchange | InterchangeExtension) {
-  interchange.elements.forEach(interchangeItem => addInterchangeItemEdfiXsdTo(interchangeItem));
-  interchange.identityTemplates.forEach(interchangeItem => addInterchangeItemEdfiXsdTo(interchangeItem));
+  interchange.elements.forEach((interchangeItem) => addInterchangeItemEdfiXsdTo(interchangeItem));
+  interchange.identityTemplates.forEach((interchangeItem) => addInterchangeItemEdfiXsdTo(interchangeItem));
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {

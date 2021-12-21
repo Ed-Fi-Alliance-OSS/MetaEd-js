@@ -2,7 +2,7 @@ import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  metaEd.propertyIndex.descriptor.forEach(descriptorProperty => {
+  metaEd.propertyIndex.descriptor.forEach((descriptorProperty) => {
     if (descriptorProperty.metaEdName.endsWith('Descriptor')) {
       failures.push({
         validatorName: 'DescriptorPropertyNameCannotEndInDescriptor',

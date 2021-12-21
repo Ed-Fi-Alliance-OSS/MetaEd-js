@@ -2,7 +2,7 @@ import { TableNameGroup, TableNameComponent, isTableNameComponent } from './Tabl
 
 export function flattenNameComponentsFromGroup(nameGroup: TableNameGroup): TableNameComponent[] {
   const result: TableNameComponent[] = [];
-  nameGroup.nameElements.forEach(nameElement => {
+  nameGroup.nameElements.forEach((nameElement) => {
     if (isTableNameComponent(nameElement)) {
       result.push(nameElement as TableNameComponent);
     } else {
@@ -14,6 +14,6 @@ export function flattenNameComponentsFromGroup(nameGroup: TableNameGroup): Table
 
 export function simpleTableNameGroupConcat(nameGroup: TableNameGroup): string {
   return flattenNameComponentsFromGroup(nameGroup)
-    .map(nameComponent => nameComponent.name)
+    .map((nameComponent) => nameComponent.name)
     .reduce((a, b) => a + b, '');
 }

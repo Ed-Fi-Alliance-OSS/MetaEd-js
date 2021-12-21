@@ -23,7 +23,7 @@ const surrogateKeyNameTemplate = '{0}Id';
 const educationOrganizationSurrogateKeyName: string = sugar.format(surrogateKeyNameTemplate, educationOrganization);
 
 function modifyIdentityForEducationOrganizationSubclasses(namespace: Namespace): void {
-  getEntitiesOfTypeForNamespaces([namespace], 'domainEntitySubclass').forEach(entity => {
+  getEntitiesOfTypeForNamespaces([namespace], 'domainEntitySubclass').forEach((entity) => {
     const entitySubclass: DomainEntitySubclass = entity as DomainEntitySubclass;
     if (entitySubclass.baseEntityName !== educationOrganization) return;
 

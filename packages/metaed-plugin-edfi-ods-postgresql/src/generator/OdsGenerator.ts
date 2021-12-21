@@ -13,7 +13,7 @@ export async function generateTables(metaEd: MetaEdEnvironment): Promise<Generat
   };
   const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
 
-  metaEd.namespace.forEach(namespace => {
+  metaEd.namespace.forEach((namespace) => {
     const generatedResult: string = template().table({
       tables: (namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema.tables,
       useDatetime2: versionSatisfies(targetTechnologyVersion, '>=3.1.1'),
@@ -40,7 +40,7 @@ export async function generateForeignKeys(metaEd: MetaEdEnvironment): Promise<Ge
   const results: GeneratedOutput[] = [];
   const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
 
-  metaEd.namespace.forEach(namespace => {
+  metaEd.namespace.forEach((namespace) => {
     const generatedResult: string = template().foreignKey({
       foreignKeys: (namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema.foreignKeys,
       useLicenseHeader,
@@ -66,7 +66,7 @@ export async function generateExtendedProperties(metaEd: MetaEdEnvironment): Pro
   const results: GeneratedOutput[] = [];
   const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
 
-  metaEd.namespace.forEach(namespace => {
+  metaEd.namespace.forEach((namespace) => {
     const generatedResult: string = template().extendedProperties({
       tables: (namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema.tables,
       useLicenseHeader,
@@ -92,7 +92,7 @@ export async function generateEnumerations(metaEd: MetaEdEnvironment): Promise<G
   const results: GeneratedOutput[] = [];
   const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
 
-  metaEd.namespace.forEach(namespace => {
+  metaEd.namespace.forEach((namespace) => {
     if ((namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema.enumerationRows.length === 0) return;
     const generatedResult: string = template().enumerationRow({
       enumerationRows: (namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema.enumerationRows,
@@ -119,7 +119,7 @@ export async function generateSchoolYears(metaEd: MetaEdEnvironment): Promise<Ge
   const results: GeneratedOutput[] = [];
   const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
 
-  metaEd.namespace.forEach(namespace => {
+  metaEd.namespace.forEach((namespace) => {
     if ((namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema.schoolYearEnumerationRows.length === 0)
       return;
     const generatedResult: string = template().schoolYearEnumerationRow({
@@ -163,7 +163,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   ];
 
   if (versionSatisfies(metaEd.dataStandardVersion, '2.x')) {
-    metaEd.namespace.forEach(namespace => {
+    metaEd.namespace.forEach((namespace) => {
       let resultString = '';
       generatorResults.forEach((result: GeneratorResult) => {
         resultString += result.generatedOutput

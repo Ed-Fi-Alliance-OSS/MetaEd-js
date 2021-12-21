@@ -41,7 +41,7 @@ export function addEntityPropertyEdfiOdsTo(property: EntityProperty) {
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   [
     ...getAllProperties(metaEd.propertyIndex),
-    ...R.chain(x => x.queryableFields, getAllTopLevelEntitiesForNamespaces(Array.from(metaEd.namespace.values()))),
+    ...R.chain((x) => x.queryableFields, getAllTopLevelEntitiesForNamespaces(Array.from(metaEd.namespace.values()))),
   ].forEach((property: EntityProperty) => {
     addEntityPropertyEdfiOdsTo(property);
   });
