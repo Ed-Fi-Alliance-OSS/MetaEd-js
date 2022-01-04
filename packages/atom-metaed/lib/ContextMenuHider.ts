@@ -32,9 +32,9 @@ function findAll(commands: string[]) {
 const sortByPosition = R.sortBy(R.prop('position'));
 
 class CommandGroups {
-  name?: string;
+  name: string;
 
-  commands?: string[];
+  commands: string[];
 
   items: any;
 

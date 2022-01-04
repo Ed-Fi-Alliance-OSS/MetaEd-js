@@ -2053,7 +2053,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/pg@npm:^7.14.1":
+"@types/pg@npm:^7.14.1, @types/pg@npm:^7.14.3":
   version: 7.14.11
   resolution: "@types/pg@npm:7.14.11::__archiveUrl=https%3A%2F%2Fwww.myget.org%2FF%2Fed-fi%2Fnpm%2F%40types%2Fpg%2F-%2F%40types%2Fpg-7.14.11.tgz"
   dependencies:
@@ -2541,10 +2541,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"antlr4@npm:4.9.3":
-  version: 4.9.3
-  resolution: "antlr4@npm:4.9.3"
-  checksum: 2e3b7bcf3b79686311182dac71a4d320abbb7e7bca5fb0e47585771130f4f07489fb4012339bb9a45c1bb0e724d4e185b7a6995111b3b86abfbdfc89b4f92bb1
+"antlr4@npm:4.6.1-patched.0":
+  version: 4.6.1-patched.0
+  resolution: "antlr4@npm:4.6.1-patched.0"
+  checksum: 1bf331c7becd9f138439d3e57fdf6e0101e9a6a7c8b4ad39a2ffd5ab2afeb8d0c099bdd0a655c255ae805d50ecde335cd2ba1299043477f7299a89450e4ed398
   languageName: node
   linkType: hard
 
@@ -6100,13 +6100,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^8.2.0":
-  version: 8.6.0
-  resolution: "dotenv@npm:8.6.0"
-  checksum: 38e902c80b0666ab59e9310a3d24ed237029a7ce34d976796349765ac96b8d769f6df19090f1f471b77a25ca391971efde8a1ea63bb83111bd8bec8e5cc9b2cd
-  languageName: node
-  linkType: hard
-
 "download-stats@npm:^0.3.4":
   version: 0.3.4
   resolution: "download-stats@npm:0.3.4"
@@ -6221,10 +6214,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ed-fi-model-3.3a@npm:2.0.0":
+  version: 2.0.0
+  resolution: "ed-fi-model-3.3a@npm:2.0.0"
+  checksum: b11e87470a9c8071b385ff595b1be875a8aa2b026fd9f96d9f7026f86129449f6dad3bb00dea4ec4386af33825de753842440a48bf23d3a31ad0766835dd13bf
+  languageName: node
+  linkType: hard
+
 "ed-fi-model-3.3a@npm:2.0.1":
   version: 2.0.1
   resolution: "ed-fi-model-3.3a@npm:2.0.1"
   checksum: 0550ebc3af30e21473d2726b8a768562b7ca6ab6c0297aef492ce442351d34a88dc76f674a67ad2d6987a7c8eb1a88a2ffa791667cb532b857d8880813bed41f
+  languageName: node
+  linkType: hard
+
+"ed-fi-model-3.3b@npm:2.0.1":
+  version: 2.0.1
+  resolution: "ed-fi-model-3.3b@npm:2.0.1"
+  checksum: e939e213b95a1c89873d5fdbd4ec02b9b9152856adf1d05f8cd311264c5de3bbc05f463281bad9b90de8be95ddf9bf37bbfe41e7b2a3a43293b79c7700118f0e
   languageName: node
   linkType: hard
 
@@ -8740,14 +8747,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"indexable-array@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "indexable-array@npm:0.7.0"
+"indexable-array@npm:^0.6.4":
+  version: 0.6.4
+  resolution: "indexable-array@npm:0.6.4"
   dependencies:
     lodash.set: ^4.3.2
     sorted-array-functions: ^1.2.0
-    tslib: ^2.1.0
-  checksum: 301f114ca093d605350af9dc12ec8059f9f51a9b7fdb96f52411d5ae7bf2b20092650445c0129e89d715ad58315986e2e37593f8b0982a6fa848fa80f8f63e3d
+  checksum: 91ed449d792178fd7144565f15d1d1a90cb8176682dca44ecf9c8a6dfd3e314fa0f41762a60b2d2ea56a2f7183e8a5a415db138d6a305238602d94af1ed113e5
   languageName: node
   linkType: hard
 
@@ -11383,7 +11389,7 @@ __metadata:
     metaed-core: 2.6.0
     semver: ^5.4.1
     winston: 3.0.0
-    yargs: ^17.3.0
+    yargs: ^8.0.2
   languageName: unknown
   linkType: soft
 
@@ -11392,7 +11398,7 @@ __metadata:
   resolution: "metaed-core@workspace:packages/metaed-core"
   dependencies:
     ajv: ^6.0.0
-    antlr4: 4.9.3
+    antlr4: 4.6.1-patched.0
     chalk: ^2.3.0
     cosmiconfig: ^5.0.5
     deep-freeze: ^0.0.1
@@ -11439,7 +11445,7 @@ __metadata:
     rimraf: ^2.6.1
     ts-jest: 24.1.0
     ts-node: 8.4.1
-    typescript: 4.5.4
+    typescript: 3.7.2
   languageName: unknown
   linkType: soft
 
@@ -11456,7 +11462,7 @@ __metadata:
     sugar: ^2.0.4
     touch: ^3.1.0
     winston: 3.0.0
-    yargs: 17.3.0
+    yargs: 8.0.2
   languageName: unknown
   linkType: soft
 
@@ -11579,8 +11585,8 @@ __metadata:
     metaed-plugin-edfi-ods-relational: 2.6.0
     metaed-plugin-edfi-unified: 2.6.0
     metaed-plugin-edfi-unified-advanced: 2.6.0
-    pg: ^8.7.1
-    pg-structure: ^7.13.0
+    pg: ^7.18.2
+    pg-structure: ^5.10.7
     ramda: ^0.25.0
     sugar: ^2.0.4
     winston: 3.0.0
@@ -11658,7 +11664,7 @@ __metadata:
     ed-fi-model-3.0: 2.0.3
     ed-fi-model-3.1: 2.0.3
     ed-fi-model-3.2a: 2.0.1
-    ed-fi-model-3.3b: 2.0.2
+    ed-fi-model-3.3b: 2.0.1
     final-fs: ^1.6.1
     handlebars: ^4.0.11
     hash.js: ^1.1.7
@@ -11684,7 +11690,7 @@ __metadata:
     ed-fi-model-3.0: 2.0.3
     ed-fi-model-3.1: 2.0.3
     ed-fi-model-3.2a: 2.0.1
-    ed-fi-model-3.3a: 2.0.1
+    ed-fi-model-3.3a: 2.0.0
     final-fs: ^1.6.1
     handlebars: ^4.0.11
     metaed-core: 2.6.0
@@ -13577,6 +13583,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pg-connection-string@npm:0.1.3":
+  version: 0.1.3
+  resolution: "pg-connection-string@npm:0.1.3"
+  checksum: 0ec5612a9c59b22fe2353165eea2f98d403bfe216678a88549610a27f23d60f922db19969e1b7c020904b6d15499674f69e078566d14c7969e54a8b720acd932
+  languageName: node
+  linkType: hard
+
 "pg-connection-string@npm:^2.2.1, pg-connection-string@npm:^2.4.0, pg-connection-string@npm:^2.5.0":
   version: 2.5.0
   resolution: "pg-connection-string@npm:2.5.0"
@@ -13588,6 +13601,22 @@ __metadata:
   version: 1.0.1
   resolution: "pg-int8@npm:1.0.1"
   checksum: a1e3a05a69005ddb73e5f324b6b4e689868a447c5fa280b44cd4d04e6916a344ac289e0b8d2695d66e8e89a7fba023affb9e0e94778770ada5df43f003d664c9
+  languageName: node
+  linkType: hard
+
+"pg-packet-stream@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "pg-packet-stream@npm:1.1.0"
+  checksum: 5da0fcb7c878a46f299543b098b67243d20bcd845f5eb46afd1dcef9782a7a8759fab3ac13b1b4b40646f534dc301327be9084e3bfbb07f312cac4c81e22a1b9
+  languageName: node
+  linkType: hard
+
+"pg-pool@npm:^2.0.10":
+  version: 2.0.10
+  resolution: "pg-pool@npm:2.0.10"
+  peerDependencies:
+    pg: ">5.0"
+  checksum: 5913584d3d1611747f445dae8ae1595140be4ef6eedc8164b45fe7ee48aed99f83853d93ec75b21021b2f593983a624ad6cf8e1dbed759590a3e04459e39171e
   languageName: node
   linkType: hard
 
@@ -13607,20 +13636,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pg-structure@npm:^7.13.0":
-  version: 7.13.0
-  resolution: "pg-structure@npm:7.13.0"
+"pg-structure@npm:^5.10.7":
+  version: 5.10.13
+  resolution: "pg-structure@npm:5.10.13"
   dependencies:
+    "@types/pg": ^7.14.3
     "@typescript-plus/fast-memoize-decorator": ^0.1.0
-    dotenv: ^8.2.0
     fast-memoize: ^2.5.2
-    indexable-array: ^0.7.0
+    indexable-array: ^0.6.4
     inflection: ^1.12.0
     json5: ^2.1.3
     lodash.get: ^4.4.2
     pg: ^8.0.3
     pg-connection-string: ^2.2.1
-  checksum: 0eaed28682ba78e03bfc75efe410658d0fea46b1a4fa3981539f5f6e95f070e0b2b6145865df41fa2005eda88d3e9b1cd00db0a9aed5f06191f6c211c28f80a8
+  checksum: b0c6222f1448fd6c6ce8d49818495e8a8466841d3f5a672722a43eb9ac2f374b5fd008d95041c65668655184987461cbe6dbb022f70a51b00a51720bcd5d3a9e
   languageName: node
   linkType: hard
 
@@ -13637,7 +13666,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pg@npm:^8.0.3, pg@npm:^8.4.0, pg@npm:^8.7.1":
+"pg@npm:^7.18.2":
+  version: 7.18.2
+  resolution: "pg@npm:7.18.2"
+  dependencies:
+    buffer-writer: 2.0.0
+    packet-reader: 1.0.0
+    pg-connection-string: 0.1.3
+    pg-packet-stream: ^1.1.0
+    pg-pool: ^2.0.10
+    pg-types: ^2.1.0
+    pgpass: 1.x
+    semver: 4.3.2
+  checksum: aa4906baa14406aa07f2e3c7ef4c835f9be1836d7f1764cdc45d0aa8bc1baaf36aff05a0b1ad766f58b93055936de7f50a6755e6eed26c369f33b725d116fad0
+  languageName: node
+  linkType: hard
+
+"pg@npm:^8.0.3, pg@npm:^8.4.0":
   version: 8.7.1
   resolution: "pg@npm:8.7.1"
   dependencies:
@@ -13666,7 +13711,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pgtools@npm:^0.3.2":
+"pgtools@npm:^0.3.0":
   version: 0.3.2
   resolution: "pgtools@npm:0.3.2"
   dependencies:
@@ -16793,7 +16838,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.1.0, tslib@npm:^2.2.0":
+"tslib@npm:^2.0.0, tslib@npm:^2.2.0":
   version: 2.3.1
   resolution: "tslib@npm:2.3.1"
   checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
@@ -16922,23 +16967,43 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.5.4, typescript@npm:^4.5.4":
-  version: 4.5.4
-  resolution: "typescript@npm:4.5.4"
+"typescript@npm:3.7.2":
+  version: 3.7.2
+  resolution: "typescript@npm:3.7.2"
   bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 59f3243f9cd6fe3161e6150ff6bf795fc843b4234a655dbd938a310515e0d61afd1ac942799e7415e4334255e41c2c49b7dd5d9fd38a17acd25a6779ca7e0961
+    tsc: ./bin/tsc
+    tsserver: ./bin/tsserver
+  checksum: 0cf415189463d7452265abbf1841393c2c693006d7659cefbb76ca651d7f443475f32129e3c87a4bf17be40eb5c2bbc4f4974013330baee044e265017b9cdc78
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.5.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.5.4#~builtin<compat/typescript>":
-  version: 4.5.4
-  resolution: "typescript@patch:typescript@npm%3A4.5.4#~builtin<compat/typescript>::version=4.5.4&hash=493e53"
+"typescript@npm:^3.6.4":
+  version: 3.9.10
+  resolution: "typescript@npm:3.9.10"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 2e488dde7d2c4a2fa2e79cf2470600f8ce81bc0563c276b72df8ff412d74456ae532ba824650ae936ce207440c79720ddcfaa25e3cb4477572b8534fa4e34d49
+  checksum: 46c842e2cd4797b88b66ef06c9c41dd21da48b95787072ccf39d5f2aa3124361bc4c966aa1c7f709fae0509614d76751455b5231b12dbb72eb97a31369e1ff92
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@3.7.2#~builtin<compat/typescript>":
+  version: 3.7.2
+  resolution: "typescript@patch:typescript@npm%3A3.7.2#~builtin<compat/typescript>::version=3.7.2&hash=493e53"
+  bin:
+    tsc: ./bin/tsc
+    tsserver: ./bin/tsserver
+  checksum: d89b64698d002296d4c518731ea82046ad6be10bff6cb8100ce7b5cf50d7823b76292ac2ab3496844564dcd92f278792c5f50dc588a961739dd9d0b9cc3f5bfb
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^3.6.4#~builtin<compat/typescript>":
+  version: 3.9.10
+  resolution: "typescript@patch:typescript@npm%3A3.9.10#~builtin<compat/typescript>::version=3.9.10&hash=493e53"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: dc7141ab555b23a8650a6787f98845fc11692063d02b75ff49433091b3af2fe3d773650dea18389d7c21f47d620fb3b110ea363dab4ab039417a6ccbbaf96fc2
   languageName: node
   linkType: hard
 
@@ -18201,13 +18266,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs-parser@npm:^21.0.0":
-  version: 21.0.0
-  resolution: "yargs-parser@npm:21.0.0"
-  checksum: 1e205fca1cb7a36a1585e2b94a64e641c12741b53627d338e12747f4dca3c3610cdd9bb235040621120548dd74c3ef03a8168d52a1eabfedccbe4a62462b6731
-  languageName: node
-  linkType: hard
-
 "yargs-parser@npm:^3.2.0":
   version: 3.2.0
   resolution: "yargs-parser@npm:3.2.0"
@@ -18265,18 +18323,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs@npm:17.3.0, yargs@npm:^17.3.0":
-  version: 17.3.0
-  resolution: "yargs@npm:17.3.0"
+"yargs@npm:8.0.2, yargs@npm:^8.0.2":
+  version: 8.0.2
+  resolution: "yargs@npm:8.0.2"
   dependencies:
-    cliui: ^7.0.2
-    escalade: ^3.1.1
-    get-caller-file: ^2.0.5
+    camelcase: ^4.1.0
+    cliui: ^3.2.0
+    decamelize: ^1.1.1
+    get-caller-file: ^1.0.1
+    os-locale: ^2.0.0
+    read-pkg-up: ^2.0.0
     require-directory: ^2.1.1
-    string-width: ^4.2.3
-    y18n: ^5.0.5
-    yargs-parser: ^21.0.0
-  checksum: 2b687338684bf9645e9389ffdbe813fc5a2ddfede299d46fbe5ac80eb9a391e558b97861ba44d2256936ebe9d7f8135f6a38af1c76a5685eac4061008b2df57a
+    require-main-filename: ^1.0.1
+    set-blocking: ^2.0.0
+    string-width: ^2.0.0
+    which-module: ^2.0.0
+    y18n: ^3.2.1
+    yargs-parser: ^7.0.0
+  checksum: ee4b8a568ba00be3dad638540e4cf0b0cc809ca4d4c61ef9cb57830ee4e802178a5ca86234365398554a52452fc0921c357594e3a2d050546e3f83fcd6c8287b
   languageName: node
   linkType: hard
 

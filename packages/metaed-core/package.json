@@ -13,10 +13,9 @@
     "/LICENSE.md",
     "/package.json"
   ],
-  "type": "module",
   "dependencies": {
     "ajv": "^6.0.0",
-    "antlr4": "4.9.3",
+    "antlr4": "4.6.1-patched.0",
     "chalk": "^2.3.0",
     "cosmiconfig": "^5.0.5",
     "deep-freeze": "^0.0.1",
