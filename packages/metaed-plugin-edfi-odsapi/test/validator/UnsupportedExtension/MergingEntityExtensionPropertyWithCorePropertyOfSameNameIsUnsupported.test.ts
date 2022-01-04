@@ -5,12 +5,12 @@ import {
   MetaEdTextBuilder,
   NamespaceBuilder,
   newMetaEdEnvironment,
+  newPluginEnvironment,
 } from 'metaed-core';
 import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
 import { initialize as initializeUnifiedPlugin } from 'metaed-plugin-edfi-unified';
 import { initializeNamespaceDependencies } from '../ValidationTestHelper';
 import { validate } from '../../../src/validator/UnsupportedExtension/MergingEntityExtensionPropertyWithCorePropertyOfSameNameIsUnsupported';
-import { newPluginEnvironment } from '../../../../metaed-core/src/plugin/PluginEnvironment';
 
 describe('when merging property of an extension entity with a core property of the same name', (): void => {
   let failures: ValidationFailure[];

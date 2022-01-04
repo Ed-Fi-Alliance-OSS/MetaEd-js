@@ -41,6 +41,9 @@ module.exports = {
       },
     ],
 
+    // unhappy with our one-liner Promise constructor arrow functions
+    'no-promise-executor-return': 'off',
+
     // prettier issues are warnings here
     'prettier/prettier': 'warn',
   },

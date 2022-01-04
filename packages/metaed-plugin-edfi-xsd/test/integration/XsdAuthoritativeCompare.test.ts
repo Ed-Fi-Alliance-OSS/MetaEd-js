@@ -91,7 +91,7 @@ describe('when generating xsd and comparing it to data standard 2.0 authoritativ
     generatedCoreXsd = `${outputDirectory}/${coreFileBaseName}.xsd`;
     authoritativeCoreXsd = `${artifactPath}/${coreFileBaseName}-Authoritative.xsd`;
 
-    await ffs.writeFile(generatedCoreXsd, coreResult.resultString, 'utf-8');
+    await ffs.writeFile(generatedCoreXsd, coreResult.resultString, { encoding: 'utf-8'});
 
     schemaResult = R.head(
       R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiXsd.SchemaAnnotationGenerator')).generatedOutput,
@@ -100,7 +100,7 @@ describe('when generating xsd and comparing it to data standard 2.0 authoritativ
     generatedSchemaXsd = `${outputDirectory}/${schemaFileBaseName}.xsd`;
     authoritativeSchemaXsd = `${artifactPath}/${schemaFileBaseName}-Authoritative.xsd`;
 
-    await ffs.writeFile(generatedSchemaXsd, schemaResult.resultString, 'utf-8');
+    await ffs.writeFile(generatedSchemaXsd, schemaResult.resultString, { encoding: 'utf-8'});
   });
 
   it('should have core with no differences', async () => {
@@ -220,7 +220,7 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
     generatedCoreXsd = `${outputDirectory}/${coreFileBaseName}.xsd`;
     authoritativeCoreXsd = `${artifactPath}/${coreFileBaseName}-Authoritative.xsd`;
 
-    await ffs.writeFile(generatedCoreXsd, coreResult.resultString, 'utf-8');
+    await ffs.writeFile(generatedCoreXsd, coreResult.resultString, { encoding: 'utf-8'});
 
     schemaResult = R.head(
       R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiXsd.SchemaAnnotationGenerator')).generatedOutput,
@@ -229,7 +229,7 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
     generatedSchemaXsd = `${outputDirectory}/${schemaFileBaseName}.xsd`;
     authoritativeSchemaXsd = `${artifactPath}/${schemaFileBaseName}-Authoritative.xsd`;
 
-    await ffs.writeFile(generatedSchemaXsd, schemaResult.resultString, 'utf-8');
+    await ffs.writeFile(generatedSchemaXsd, schemaResult.resultString, { encoding: 'utf-8'});
   });
 
   it('should have core with no differences', async () => {
@@ -356,7 +356,7 @@ describe('when generating xsd with extension and comparing it to data standard 3
     generatedCoreXsd = `${outputDirectory}/${coreFileBaseName}.xsd`;
     authoritativeCoreXsd = `${artifactPath}/${coreFileBaseName}-Authoritative.xsd`;
 
-    await ffs.writeFile(generatedCoreXsd, coreResult.resultString, 'utf-8');
+    await ffs.writeFile(generatedCoreXsd, coreResult.resultString, { encoding: 'utf-8'});
 
     schemaResult = R.head(
       R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiXsd.SchemaAnnotationGenerator')).generatedOutput,
@@ -365,7 +365,7 @@ describe('when generating xsd with extension and comparing it to data standard 3
     generatedSchemaXsd = `${outputDirectory}/${schemaFileBaseName}.xsd`;
     authoritativeSchemaXsd = `${artifactPath}/${schemaFileBaseName}-Authoritative.xsd`;
 
-    await ffs.writeFile(generatedSchemaXsd, schemaResult.resultString, 'utf-8');
+    await ffs.writeFile(generatedSchemaXsd, schemaResult.resultString, { encoding: 'utf-8'});
   });
 
   it('should have core with no differences', async () => {

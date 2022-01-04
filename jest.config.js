@@ -4,7 +4,6 @@ module.exports = {
   testEnvironment: 'node',
   transformIgnorePatterns: ['<rootDir>.*(node_modules)(?!.*metaed-.*).*$'],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
-  moduleFileExtensions: ['js', 'ts'],
   collectCoverageFrom: ['packages/**/src/**/*.ts'],
   coverageThreshold: {
     global: {
