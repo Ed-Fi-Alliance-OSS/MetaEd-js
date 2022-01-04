@@ -4,11 +4,12 @@ import * as path from 'path';
 import { scanForPlugins, newState } from 'metaed-core';
 import { vscodeMetaEdPackageJson } from './Utility';
 
-// TODO: this class is using TypeScript-only directives (e.g. "private")
+// TODO: this class shouldn't be using TypeScript-only directives (e.g. "private")
 export class AboutPanel {
   /**
    * Only allow a single panel to exist at a time.
    */
+  // eslint-disable-next-line no-use-before-define
   public static currentPanel: AboutPanel | undefined;
 
   public static readonly viewType = 'aboutPanel';

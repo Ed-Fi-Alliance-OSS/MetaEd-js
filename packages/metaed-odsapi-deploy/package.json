@@ -22,7 +22,7 @@
     "sugar": "^2.0.4",
     "touch": "^3.1.0",
     "winston": "3.0.0",
-    "yargs": "8.0.2"
+    "yargs": "17.3.1"
   },
   "devDependencies": {
     "klaw-sync": "^3.0.2"

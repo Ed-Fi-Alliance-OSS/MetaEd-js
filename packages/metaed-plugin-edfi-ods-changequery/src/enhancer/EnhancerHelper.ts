@@ -83,7 +83,7 @@ export function applyCreateDeleteTrackingTableEnhancement(
   namespace: Namespace,
   pluginName: string,
   mainTable: Table,
-  createDeleteTrackingTableModel: (metaEd: MetaEdEnvironment, table: Table) => DeleteTrackingTable,
+  createDeleteTrackingTableModel: (me: MetaEdEnvironment, table: Table) => DeleteTrackingTable,
 ) {
   if (!changeQueryIndicated(metaEd)) return;
   if (mainTable == null) return;
@@ -102,8 +102,8 @@ export function performAssociationChangeQueryEnhancement(
   metaEd: MetaEdEnvironment,
   pluginName: string,
   targetDatabasePluginName: string,
-  createDeleteTrackingTableModel: (metaEd: MetaEdEnvironment, table: Table) => DeleteTrackingTable,
-  createDeleteTrackingTriggerModel: (metaEd: MetaEdEnvironment, table: Table) => DeleteTrackingTrigger,
+  createDeleteTrackingTableModel: (me: MetaEdEnvironment, table: Table) => DeleteTrackingTable,
+  createDeleteTrackingTriggerModel: (me: MetaEdEnvironment, table: Table) => DeleteTrackingTrigger,
 ) {
   if (changeQueryIndicated(metaEd)) {
     getAllEntitiesOfType(metaEd, 'association').forEach((modelBase: ModelBase) => {
@@ -148,8 +148,8 @@ export function performEnumerationChangeQueryEnhancement(
   metaEd: MetaEdEnvironment,
   pluginName: string,
   targetDatabasePluginName: string,
-  createDeleteTrackingTableModel: (metaEd: MetaEdEnvironment, table: Table) => DeleteTrackingTable,
-  createDeleteTrackingTriggerModel: (metaEd: MetaEdEnvironment, table: Table) => DeleteTrackingTrigger,
+  createDeleteTrackingTableModel: (me: MetaEdEnvironment, table: Table) => DeleteTrackingTable,
+  createDeleteTrackingTriggerModel: (me: MetaEdEnvironment, table: Table) => DeleteTrackingTrigger,
 ) {
   if (changeQueryIndicated(metaEd)) {
     getAllEntitiesOfType(metaEd, 'enumeration').forEach((modelBase: ModelBase) => {

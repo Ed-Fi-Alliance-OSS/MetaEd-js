@@ -7,11 +7,6 @@ import { NoTable, Table } from './Table';
 
 winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 
-export interface ColumnNaming {
-  columnId: string;
-  nameComponents: ColumnNameComponent[];
-}
-
 /** A single component of the name of the column used by dependent plugins to construct the actual name */
 export interface ColumnNameComponent {
   /** the string name component itself */
@@ -44,6 +39,11 @@ export function newColumnNameComponent(): ColumnNameComponent {
     isParentPropertyContext: false,
     isSynthetic: false,
   };
+}
+
+export interface ColumnNaming {
+  columnId: string;
+  nameComponents: ColumnNameComponent[];
 }
 
 /** The reason why this column exists */

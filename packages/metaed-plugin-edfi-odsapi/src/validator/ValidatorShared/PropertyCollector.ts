@@ -5,8 +5,8 @@ import { TopLevelEntity, EntityProperty } from 'metaed-core';
 export function collectSingleEntity(
   entity: TopLevelEntity,
   includeAllProperties: boolean,
-  entityStrategy: (entity: TopLevelEntity, property: EntityProperty) => any,
-  propertyStrategy: (entity: TopLevelEntity, property: EntityProperty) => any,
+  entityStrategy: (ent: TopLevelEntity, property: EntityProperty) => any,
+  propertyStrategy: (ent: TopLevelEntity, property: EntityProperty) => any,
 ): { referencedEntities: any[]; properties: any[] } {
   if (entity == null) return { referencedEntities: [], properties: [] };
   const referencedEntities: any[] = [];

@@ -146,27 +146,27 @@ describe('when generating ods and comparing it to data standard 3.1 authoritativ
     const tableFileBaseName = path.basename(tablesResult.fileName, '.sql');
     generatedTablesFile = `${outputDirectory}/${tableFileBaseName}.sql`;
     authoritativeTablesFile = `${artifactPath}/${tableFileBaseName}-Authoritative.sql`;
-    await ffs.writeFile(generatedTablesFile, tablesResult.resultString, { encoding: 'utf-8'});
+    await ffs.writeFile(generatedTablesFile, tablesResult.resultString, { encoding: 'utf-8' });
 
     const foreignKeysFileBaseName = path.basename(foreignKeysResult.fileName, '.sql');
     generatedForeignKeysFile = `${outputDirectory}/${foreignKeysFileBaseName}.sql`;
     authoritativeForeignKeysFile = `${artifactPath}/${foreignKeysFileBaseName}-Authoritative.sql`;
-    await ffs.writeFile(generatedForeignKeysFile, foreignKeysResult.resultString, { encoding: 'utf-8'});
+    await ffs.writeFile(generatedForeignKeysFile, foreignKeysResult.resultString, { encoding: 'utf-8' });
 
     const extendedPropertiesFileBaseName = path.basename(extendedPropertiesResult.fileName, '.sql');
     generatedExtendedPropertiesFile = `${outputDirectory}/${extendedPropertiesFileBaseName}.sql`;
     authoritativeExtendedPropertiesFile = `${artifactPath}/${extendedPropertiesFileBaseName}-Authoritative.sql`;
-    await ffs.writeFile(generatedExtendedPropertiesFile, extendedPropertiesResult.resultString, { encoding: 'utf-8'});
+    await ffs.writeFile(generatedExtendedPropertiesFile, extendedPropertiesResult.resultString, { encoding: 'utf-8' });
 
     const schoolYearsFileBaseName = path.basename(schoolYearsResult.fileName, '.sql');
     generatedSchoolYearsFile = `${outputDirectory}/${schoolYearsFileBaseName}.sql`;
     authoritativeSchoolYearsFile = `${artifactPath}/${schoolYearsFileBaseName}-Authoritative.sql`;
-    await ffs.writeFile(generatedSchoolYearsFile, schoolYearsResult.resultString, { encoding: 'utf-8'});
+    await ffs.writeFile(generatedSchoolYearsFile, schoolYearsResult.resultString, { encoding: 'utf-8' });
 
     const idIndexFileBaseName = path.basename(idIndexResult.fileName, '.sql');
     generatedIdIndexFile = `${outputDirectory}/${idIndexFileBaseName}.sql`;
     authoritativeIdIndexFile = `${artifactPath}/${idIndexFileBaseName}-Authoritative.sql`;
-    await ffs.writeFile(generatedIdIndexFile, idIndexResult.resultString, { encoding: 'utf-8'});
+    await ffs.writeFile(generatedIdIndexFile, idIndexResult.resultString, { encoding: 'utf-8' });
   });
 
   it('should have correct table order', (): void => {
@@ -309,8 +309,8 @@ describe('when generating ods with simple extensions and comparing it to data st
     generatedExtensionOdsFilename = `${artifactPath}/Simple-${extensionFileBaseName}.sql`;
     authoritativeExtensionOdsFilename = `${artifactPath}/Simple-${extensionFileBaseName}-Authoritative.sql`;
 
-    await ffs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString, { encoding: 'utf-8'});
-    await ffs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString, { encoding: 'utf-8'});
+    await ffs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString, { encoding: 'utf-8' });
+    await ffs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString, { encoding: 'utf-8' });
   });
 
   it('should have core with no differences', async () => {
@@ -408,8 +408,8 @@ describe('when generating ods with student transcript extensions and comparing i
     generatedExtensionOdsFilename = `${artifactPath}/Transcript-${extensionFileBaseName}.sql`;
     authoritativeExtensionOdsFilename = `${artifactPath}/Transcript-${extensionFileBaseName}-Authoritative.sql`;
 
-    await ffs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString, { encoding: 'utf-8'});
-    await ffs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString, { encoding: 'utf-8'});
+    await ffs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString, { encoding: 'utf-8' });
+    await ffs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString, { encoding: 'utf-8' });
   });
 
   it('should have core with no differences', async () => {

@@ -76,6 +76,7 @@ export async function metaEdDeploy() {
       describe: 'The deploy target directory',
       type: 'string',
       conflicts: 'config',
+      // @ts-ignore
       requiresArg: 'source',
     })
     .option('projectNames', {
@@ -83,6 +84,7 @@ export async function metaEdDeploy() {
       describe: 'The artifact source projectNames to override',
       type: 'string',
       array: true,
+      // @ts-ignore
       requiresArg: ['source', 'target'],
     })
     .option('defaultPluginTechVersion', {
@@ -139,7 +141,7 @@ export async function metaEdDeploy() {
       process.exitCode = 1;
     }
   } else {
-    metaEdConfiguration = { ...yargs.argv.metaEdConfiguration };
+    metaEdConfiguration = { ...(yargs.argv.metaEdConfiguration as any) };
     if (yargs.argv.defaultPluginTechVersion != null) {
       metaEdConfiguration.defaultPluginTechVersion = yargs.argv.defaultPluginTechVersion;
     }

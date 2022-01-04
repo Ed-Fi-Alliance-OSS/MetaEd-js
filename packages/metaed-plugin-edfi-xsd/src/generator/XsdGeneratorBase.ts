@@ -45,7 +45,7 @@ function formatXml(unformattedXml: string): string {
     end_with_newline: true,
     content_unformatted: ['xs:documentation'],
   });
-  const doubleQuoteRemovedXsd: string = beautifiedXml.replace(new RegExp(/""/g), '"');
+  const doubleQuoteRemovedXsd: string = beautifiedXml.replace(/""/g, '"');
   const emptyLinesRemovedXsd: string = doubleQuoteRemovedXsd.replace(new RegExp(`${EOL}${EOL}+`, 'g'), EOL);
   return emptyLinesRemovedXsd;
 }

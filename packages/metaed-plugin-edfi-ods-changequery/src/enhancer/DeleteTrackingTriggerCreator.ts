@@ -24,7 +24,7 @@ export function applyCreateDeleteTrackingTriggerEnhancements(
   namespace: Namespace,
   pluginName: string,
   mainTable: Table,
-  createDeleteTrackingTriggerModel: (metaEd: MetaEdEnvironment, table: Table) => DeleteTrackingTrigger,
+  createDeleteTrackingTriggerModel: (me: MetaEdEnvironment, table: Table) => DeleteTrackingTrigger,
   targetDatabasePluginName: string,
   superclassForeignKeyFinder: SuperclassForeignKeyFinder = defaultSuperclassForeignKeyFinder,
 ) {

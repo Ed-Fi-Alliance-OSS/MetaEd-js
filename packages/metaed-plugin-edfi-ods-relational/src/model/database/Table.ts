@@ -17,6 +17,7 @@ import { simpleTableNameGroupConcat } from './TableNameGroupHelper';
 
 winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 
+// eslint-disable-next-line no-use-before-define
 export type TableNameElement = TableNameComponent | TableNameGroup;
 
 /** A grouping of TableNameComponents derived from a property or entity */
@@ -42,65 +43,6 @@ export function newTableNameGroup(): TableNameGroup {
 }
 
 export const NoTableNameGroup: TableNameGroup = deepFreeze(newTableNameGroup());
-
-/** A single component of the name of the table used by dependent plugins to construct the actual name */
-export interface TableNameComponent {
-  /** the string name component string itself */
-  name: string;
-  /** is the source of the name component an entity MetaEdName */
-  isEntityMetaEdName: boolean;
-  /** is the source of the name component derived from an entity MetaEdName (e.g. MetaEdName plus 'Descriptor' suffix for a Descriptor entity) */
-  isDerivedFromEntityMetaEdName: boolean;
-  /** is the source of the name component a property 'shorten to' directive */
-  isShortenToRename: boolean;
-  /** is the source of the name component a property 'role name' directive */
-  isPropertyRoleName: boolean;
-  /** is the source of the name component a property ods name */
-  isPropertyOdsName: boolean;
-  /** is the source of the name component a property MetaEdName */
-  isPropertyMetaEdName: boolean;
-  /** is the source of the name component a property 'role name' or 'shorten to' directive from further up the chain */
-  isParentPropertyContext: boolean;
-  /** is the source of the name component the parent table name */
-  isParentTableName: boolean;
-  /** is the source of the name component an extension suffix */
-  isExtensionSuffix: boolean;
-  /** is the source of the name component hardcoded and/or made up from somewhere */
-  isSynthetic: boolean;
-  /** the source property for the name component, if applicable */
-  sourceProperty?: EntityProperty;
-  /** the source entity for the name component, if applicable */
-  sourceEntity?: TopLevelEntity;
-  /** the source table for the name component, if applicable */
-  sourceTable?: Table;
-  /** flag indicating this is a TableNameComponent object */
-  isComponent: boolean;
-}
-
-export function newTableNameComponent(): TableNameComponent {
-  return {
-    name: '',
-    isEntityMetaEdName: false,
-    isDerivedFromEntityMetaEdName: false,
-    isShortenToRename: false,
-    isPropertyRoleName: false,
-    isPropertyOdsName: false,
-    isPropertyMetaEdName: false,
-    isParentPropertyContext: false,
-    isParentTableName: false,
-    isExtensionSuffix: false,
-    isSynthetic: false,
-    isComponent: true,
-  };
-}
-
-export function isTableNameGroup(nameElement: TableNameElement): nameElement is TableNameGroup {
-  return (nameElement as TableNameGroup).isGroup;
-}
-
-export function isTableNameComponent(nameElement: TableNameElement): nameElement is TableNameComponent {
-  return (nameElement as TableNameComponent).isComponent;
-}
 
 /** The reason why this table exists */
 export interface TableExistenceReason {
@@ -206,6 +148,65 @@ export function newTable(): Table {
 }
 
 export const NoTable: Table = deepFreeze({ ...newTable(), tableId: 'NoTable' });
+
+/** A single component of the name of the table used by dependent plugins to construct the actual name */
+export interface TableNameComponent {
+  /** the string name component string itself */
+  name: string;
+  /** is the source of the name component an entity MetaEdName */
+  isEntityMetaEdName: boolean;
+  /** is the source of the name component derived from an entity MetaEdName (e.g. MetaEdName plus 'Descriptor' suffix for a Descriptor entity) */
+  isDerivedFromEntityMetaEdName: boolean;
+  /** is the source of the name component a property 'shorten to' directive */
+  isShortenToRename: boolean;
+  /** is the source of the name component a property 'role name' directive */
+  isPropertyRoleName: boolean;
+  /** is the source of the name component a property ods name */
+  isPropertyOdsName: boolean;
+  /** is the source of the name component a property MetaEdName */
+  isPropertyMetaEdName: boolean;
+  /** is the source of the name component a property 'role name' or 'shorten to' directive from further up the chain */
+  isParentPropertyContext: boolean;
+  /** is the source of the name component the parent table name */
+  isParentTableName: boolean;
+  /** is the source of the name component an extension suffix */
+  isExtensionSuffix: boolean;
+  /** is the source of the name component hardcoded and/or made up from somewhere */
+  isSynthetic: boolean;
+  /** the source property for the name component, if applicable */
+  sourceProperty?: EntityProperty;
+  /** the source entity for the name component, if applicable */
+  sourceEntity?: TopLevelEntity;
+  /** the source table for the name component, if applicable */
+  sourceTable?: Table;
+  /** flag indicating this is a TableNameComponent object */
+  isComponent: boolean;
+}
+
+export function newTableNameComponent(): TableNameComponent {
+  return {
+    name: '',
+    isEntityMetaEdName: false,
+    isDerivedFromEntityMetaEdName: false,
+    isShortenToRename: false,
+    isPropertyRoleName: false,
+    isPropertyOdsName: false,
+    isPropertyMetaEdName: false,
+    isParentPropertyContext: false,
+    isParentTableName: false,
+    isExtensionSuffix: false,
+    isSynthetic: false,
+    isComponent: true,
+  };
+}
+
+export function isTableNameGroup(nameElement: TableNameElement): nameElement is TableNameGroup {
+  return (nameElement as TableNameGroup).isGroup;
+}
+
+export function isTableNameComponent(nameElement: TableNameElement): nameElement is TableNameComponent {
+  return (nameElement as TableNameComponent).isComponent;
+}
 
 export function getColumnWithStrongestConstraint(
   table: Table,

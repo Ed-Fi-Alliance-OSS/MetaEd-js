@@ -125,7 +125,7 @@ export class MetaEdTextBuilder {
 
   withTrailingText(text: string): MetaEdTextBuilder {
     const idx = this.textLines.length - 1;
-    this.textLines[idx] = this.textLines[idx] + text;
+    this.textLines[idx] += text;
     return this;
   }
 
