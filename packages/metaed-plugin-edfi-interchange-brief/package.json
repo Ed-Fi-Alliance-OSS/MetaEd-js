@@ -37,7 +37,7 @@
     "ed-fi-model-2.0": "2.0.2",
     "final-fs": "^1.6.1",
     "xmldom": "^0.1.31",
-    "xpath": "^0.0.27"
+    "xpath": "^0.0.32"
   },
   "scripts": {
     "build": "yarn build:clean && yarn build:copy-non-ts && yarn build:dist",

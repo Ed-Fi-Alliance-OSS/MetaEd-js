@@ -14,9 +14,9 @@
     "/package.json"
   ],
   "dependencies": {
-    "ajv": "^6.0.0",
+    "ajv": "^6.12.6",
     "antlr4": "4.6.1-patched.0",
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.2",
     "cosmiconfig": "^5.2.1",
     "deep-freeze": "^0.0.1",
     "deepmerge": "^2.2.1",

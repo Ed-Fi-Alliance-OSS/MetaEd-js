@@ -14,7 +14,7 @@
     "/package.json"
   ],
   "dependencies": {
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.2",
     "metaed-core": "2.6.0",
     "semver": "^5.7.1",
     "winston": "3.3.3",

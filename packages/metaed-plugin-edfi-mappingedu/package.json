@@ -29,7 +29,7 @@
     "metaed-core": "2.6.0",
     "metaed-plugin-edfi-unified-advanced": "2.6.0",
     "metaed-plugin-edfi-xsd": "2.6.0",
-    "xlsx": "^0.14.0"
+    "xlsx": "^0.14.5"
   },
   "devDependencies": {
     "ed-fi-model-2.0": "2.0.2",
