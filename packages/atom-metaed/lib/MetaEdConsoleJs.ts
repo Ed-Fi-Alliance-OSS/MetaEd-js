@@ -173,8 +173,20 @@ async function executeBuild(
     // @ts-ignore: TODO: addNotification() is old and should be replaced by addXXX functions
     setImmediate(() => atom.notifications.addNotification(startNotification));
 
-    // const taskParams = ['/s', '/c', `node  --inspect-brk "${metaEdConsolePath}"`, '--config', `"${metaEdConfigurationPath}"`];
-    const taskParams = ['/s', '/c', `node "${metaEdConsolePath}"`, '--config', `"${metaEdConfigurationPath}"`];
+    // const taskParams = [
+    //   '/s',
+    //   '/c',
+    //   `node --no-deprecation --inspect-brk "${metaEdConsolePath}"`,
+    //   '--config',
+    //   `"${metaEdConfigurationPath}"`,
+    // ];
+    const taskParams = [
+      '/s',
+      '/c',
+      `node --no-deprecation "${metaEdConsolePath}"`,
+      '--config',
+      `"${metaEdConfigurationPath}"`,
+    ];
 
     console.log(`Executing Build '${cmdExePath}' with parameters:`, taskParams);
 
@@ -190,6 +202,14 @@ async function executeBuild(
     });
 
     childProcess.stderr.on('data', (data) => {
+      const stderrAsString: string = data.toString();
+      if (
+        stderrAsString.includes(
+          "Warning: Accessing non-existent property 'INVALID_ALT_NUMBER' of module exports inside circular dependency",
+        )
+      ) {
+        return;
+      }
       outputWindow.addMessage(ansihtml(data.toString()).replace(/(?:\r\n|\r|\n)/g, '<br />'), true);
       resultNotification = buildErrorsNotification;
     });
@@ -339,8 +359,14 @@ async function executeDeploy(
     // @ts-ignore: TODO: addNotification() is old and should be replaced by addXXX functions
     setImmediate(() => atom.notifications.addNotification(startNotification));
 
-    // const taskParams = ['/s', '/c', `node --inspect-brk "${metaEdDeployPath}"`, '--config', `"${metaEdConfigurationPath}"`];
-    const taskParams = ['/s', '/c', `node "${metaEdDeployPath}"`, '--config', `"${metaEdConfigurationPath}"`];
+    // const taskParams = ['/s', '/c', `node --no-deprecation --inspect-brk "${metaEdDeployPath}"`, '--config', `"${metaEdConfigurationPath}"`];
+    const taskParams = [
+      '/s',
+      '/c',
+      `node --no-deprecation "${metaEdDeployPath}"`,
+      '--config',
+      `"${metaEdConfigurationPath}"`,
+    ];
 
     if (shouldDeployCore) taskParams.push('--core');
     if (suppressDeleteOnDeploy()) taskParams.push('--suppressDelete');
@@ -359,6 +385,14 @@ async function executeDeploy(
     });
 
     childProcess.stderr.on('data', (data) => {
+      const stderrAsString: string = data.toString();
+      if (
+        stderrAsString.includes(
+          "Warning: Accessing non-existent property 'INVALID_ALT_NUMBER' of module exports inside circular dependency",
+        )
+      ) {
+        return;
+      }
       outputWindow.addMessage(ansihtml(data.toString()).replace(/(?:\r\n|\r|\n)/g, '<br />'), true);
       resultNotification = buildErrorsNotification;
     });
