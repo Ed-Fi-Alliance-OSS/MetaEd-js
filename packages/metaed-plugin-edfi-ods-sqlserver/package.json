@@ -26,23 +26,23 @@
   },
   "dependencies": {
     "deep-freeze": "^0.0.1",
-    "handlebars": "^4.0.11",
+    "handlebars": "^4.7.7",
     "hash.js": "^1.1.7",
     "metaed-core": "2.6.0",
     "metaed-plugin-edfi-ods-relational": "2.6.0",
     "metaed-plugin-edfi-unified": "2.6.0",
     "metaed-plugin-edfi-unified-advanced": "2.6.0",
-    "ramda": "^0.25.0",
-    "sugar": "^2.0.4",
-    "winston": "3.0.0"
+    "ramda": "^0.27.1",
+    "sugar": "^2.0.6",
+    "winston": "3.3.3"
   },
   "devDependencies": {
-    "cli-highlight": "^1.2.3",
+    "cli-highlight": "^2.1.11",
     "ed-fi-model-2.0": "2.0.2",
     "ed-fi-model-3.0": "2.0.3",
     "ed-fi-model-3.1": "2.0.3",
     "ed-fi-model-3.2a": "2.0.1",
-    "ed-fi-model-3.3b": "2.0.1",
+    "ed-fi-model-3.3b": "2.0.2",
     "final-fs": "^1.6.1",
     "msnodesqlv8": "2.4.4",
     "mssql": "7.3.0"

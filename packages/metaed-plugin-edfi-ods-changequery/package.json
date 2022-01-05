@@ -26,13 +26,13 @@
     ]
   },
   "dependencies": {
-    "handlebars": "^4.0.11",
+    "handlebars": "^4.7.7",
     "metaed-core": "2.6.0",
     "metaed-plugin-edfi-ods-relational": "2.6.0",
     "metaed-plugin-edfi-ods-sqlserver": "2.6.0",
     "metaed-plugin-edfi-unified-advanced": "2.6.0",
-    "ramda": "^0.25.0",
-    "winston": "3.0.0"
+    "ramda": "^0.27.1",
+    "winston": "3.3.3"
   },
   "devDependencies": {
     "final-fs": "^1.6.1"

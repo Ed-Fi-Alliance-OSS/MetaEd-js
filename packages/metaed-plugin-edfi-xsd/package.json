@@ -25,16 +25,16 @@
   },
   "dependencies": {
     "deep-freeze": "^0.0.1",
-    "handlebars": "^4.0.10",
-    "js-beautify": "^1.7.4",
+    "handlebars": "^4.7.7",
+    "js-beautify": "^1.14.0",
     "metaed-core": "2.6.0",
     "metaed-plugin-edfi-unified": "2.6.0",
     "metaed-plugin-edfi-unified-advanced": "2.6.0",
-    "ramda": "^0.25.0",
-    "semver": "^5.4.1",
-    "sugar": "^2.0.4",
-    "winston": "3.0.0",
-    "xml-js": "^1.4.2"
+    "ramda": "^0.27.1",
+    "semver": "^5.7.1",
+    "sugar": "^2.0.6",
+    "winston": "3.3.3",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "ed-fi-model-2.0": "2.0.2",
@@ -42,7 +42,7 @@
     "ed-fi-model-3.1": "2.0.3",
     "ed-fi-model-3.2a": "2.0.1",
     "final-fs": "^1.6.1",
-    "xmldom": "^0.1.27",
+    "xmldom": "^0.1.31",
     "xpath": "^0.0.27"
   },
   "scripts": {

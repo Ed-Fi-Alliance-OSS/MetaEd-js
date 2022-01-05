@@ -26,17 +26,17 @@
     ]
   },
   "dependencies": {
-    "handlebars": "^4.0.10",
-    "js-beautify": "^1.7.5",
+    "handlebars": "^4.7.7",
+    "js-beautify": "^1.14.0",
     "marked": "^0.4.0",
     "metaed-core": "2.6.0",
     "metaed-plugin-edfi-ods-relational": "2.6.0",
     "metaed-plugin-edfi-unified-advanced": "2.6.0",
     "metaed-plugin-edfi-xsd": "2.6.0",
-    "ramda": "^0.25.0",
+    "ramda": "^0.27.1",
     "sort-array": "^2.0.0",
-    "sugar": "^2.0.4",
-    "winston": "3.0.0"
+    "sugar": "^2.0.6",
+    "winston": "3.3.3"
   },
   "scripts": {
     "build": "yarn build:clean && yarn build:copy-non-ts && yarn build:dist",

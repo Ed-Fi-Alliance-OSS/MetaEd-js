@@ -14,14 +14,14 @@
     "/package.json"
   ],
   "dependencies": {
-    "chalk": "^2.3.0",
+    "chalk": "^4.0.0",
     "fs-extra": "^5.0.0",
     "metaed-core": "2.6.0",
-    "ramda": "^0.25.0",
-    "semver": "^5.4.1",
-    "sugar": "^2.0.4",
+    "ramda": "^0.27.1",
+    "semver": "^5.7.1",
+    "sugar": "^2.0.6",
     "touch": "^3.1.0",
-    "winston": "3.0.0",
+    "winston": "3.3.3",
     "yargs": "17.3.1"
   },
   "devDependencies": {

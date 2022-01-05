@@ -203,6 +203,9 @@ async function executeBuild(
 
     childProcess.stderr.on('data', (data) => {
       const stderrAsString: string = data.toString();
+      // This is a hardcoded check for a Nodejs warning with ANTLR 4.6.x on Node 14+, and can be removed if/when we are able
+      // to upgrade ANTLR.
+      // See METAED-1206 for more info
       if (
         stderrAsString.includes(
           "Warning: Accessing non-existent property 'INVALID_ALT_NUMBER' of module exports inside circular dependency",
@@ -386,6 +389,9 @@ async function executeDeploy(
 
     childProcess.stderr.on('data', (data) => {
       const stderrAsString: string = data.toString();
+      // This is a hardcoded check for a Nodejs warning with ANTLR 4.6.x on Node 14+, and can be removed if/when we are able
+      // to upgrade ANTLR.
+      // See METAED-1206 for more info
       if (
         stderrAsString.includes(
           "Warning: Accessing non-existent property 'INVALID_ALT_NUMBER' of module exports inside circular dependency",
