@@ -43,7 +43,6 @@
     "doc-gen": "yarn rimraf docs/ && yarn documentation build packages/metaed-core/src/** --sort-order alpha -f html -o docs",
     "metaed:build": "node ./packages/metaed-console/dist/index.js",
     "metaed:deploy": "node ./packages/metaed-odsapi-deploy/dist/index.js",
-    "bootstrap": "lerna bootstrap",
     "build": "lerna run build --stream",
     "build:clean": "lerna run build:clean --stream",
     "test": "yarn build:clean && yarn test:lint && yarn test:unit && yarn test:unit:ods-sqlserver && yarn test:atom",

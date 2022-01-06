@@ -1,5 +1,6 @@
 name: Lint and Test
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -13,11 +14,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
+      - name: Setup node
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561
+        with:
+          node-version: '16'
+          check-latest: true
+          registry-url: 'https://www.myget.org/F/ed-fi/npm/'
+
       - name: Install
-        run: yarn install --ignore-scripts
-      
-      - name: Bootstrap
-        run: yarn bootstrap --ignore-scripts
+        run: yarn install
 
       - name: Lint
         run: yarn test:lint
