@@ -54,11 +54,14 @@
     "test:lint": "yarn test:lint:ts && yarn test:lint:eslint",
     "test:lint:eslint": "eslint --max-warnings 0 --ext .js,.ts .",
     "test:lint:ts": "tsc -p . --noEmit",
+
     "test:unit": "yarn test:unit:unified && yarn test:unit:ods && yarn test:unit:everything-else",
-  
+    "test:unit:ci": "yarn test:unit:unified && yarn test:unit:ods:ci && yarn test:unit:everything-else",
+    
     "test:unit:unified": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest packages/metaed-plugin-edfi-unified",
 
     "test:unit:ods": "yarn test:unit:ods:changequery:all && yarn test:unit:ods:postgresql:non-db && yarn test:unit:ods:ro:all && yarn test:unit:ods:relational && yarn test:unit:ods:sqlserver:all && yarn test:unit:odsapi",
+    "test:unit:ods:ci": "yarn test:unit:ods:changequery:all && yarn test:unit:ods:postgresql:non-db && yarn test:unit:ods:ro:all && yarn test:unit:ods:relational && yarn test:unit:ods:sqlserver:non-db && yarn test:unit:odsapi",
 
     "test:unit:ods:changequery:all": "yarn test:unit:ods:changequery && yarn test:unit:ods:changequery:postgresql && yarn test:unit:ods:changequery:sqlserver",
     "test:unit:ods:changequery": "cross-env NODE_OPTIONS=--max-old-space-size=4096 yarn jest packages/metaed-plugin-edfi-ods-changequery",

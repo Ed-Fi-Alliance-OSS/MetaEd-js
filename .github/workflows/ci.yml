@@ -28,4 +28,4 @@ jobs:
         run: yarn test:lint
 
       - name: Unit tests
-        run: yarn test:unit --ci
+        run: yarn test:unit:ci --ci
