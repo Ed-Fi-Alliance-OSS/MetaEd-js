@@ -5,15 +5,16 @@ on:
 jobs:
   build-and-publish:
     name: Build and publish
-    # Must run on Windows
+    # Windows is required for some of the unit tests to run properly
     runs-on: windows-2019
     steps:
       - name: Checkout code   
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
         
       - uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561
         with:
           node-version: '16'
+          check-latest: true          
           registry-url: 'https://www.myget.org/F/ed-fi/npm/'
 
       - name: Install
