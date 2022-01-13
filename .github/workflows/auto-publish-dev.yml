@@ -36,10 +36,11 @@ jobs:
         run: yarn build
 
       - name: Import GPG key
-        id: import_gpg
+        id: import-gpg
         uses: crazy-max/ghaction-import-gpg@cb4264d3319acaa2bea23d51ef67f80b4f775013 # v4.1.0
         with:
           gpg_private_key: ${{ secrets.EDFIBUILDAGENT_PRIVATE_KEY }}
+          passphrase: ${{ secrets.EDFIBUILDAGENT_PASSPHRASE }}
           git_user_signingkey: true
           git_commit_gpgsign: true
 
