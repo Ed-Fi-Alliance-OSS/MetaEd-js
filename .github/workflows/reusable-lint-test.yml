@@ -2,7 +2,7 @@ on:
   workflow_call:
 jobs:
   reusable-lint-and-test:
-    name: Lint and Unit Test
+    name: Reusable Lint and Test
     # Windows is required for some of the unit tests to run properly
     runs-on: windows-2019
     steps:
@@ -22,5 +22,5 @@ jobs:
       - name: Lint
         run: yarn test:lint
 
-      # - name: Unit tests
-      #   run: yarn test:unit:ci --ci
+      - name: Unit tests
+        run: yarn test:unit:ci --ci
