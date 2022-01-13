@@ -1,10 +1,9 @@
-name: Build and Publish
+name: Legacy Publish
 on:
   workflow_dispatch:
-    # All input comes from secrets
 jobs:
-  build-and-publish:
-    name: Build and publish
+  legacy-publish:
+    name: Legacy publish
     # Windows is required for some of the unit tests to run properly
     runs-on: windows-2019
     steps:

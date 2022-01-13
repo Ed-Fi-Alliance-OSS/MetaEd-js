@@ -1,20 +1,22 @@
 name: Auto Publish Dev
 on:
-  # TODO: workflow_dispatch is temporary for testing
-  workflow_dispatch:
   pull_request:
     types: [closed]
     branches:
       - main
 jobs:
+  lint-and-test:
+    name: Lint and Test
+    uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-lint-test.yml@main
+  
   auto-publish-dev:
+    needs: lint-and-test
     name: Auto Publish Dev
 
     # Only if closed due to merge
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
 
-    # Windows is the required OS for some of the unit test libraries
-    runs-on: windows-2019
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout   

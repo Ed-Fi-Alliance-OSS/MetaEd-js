@@ -1,31 +1,8 @@
 name: Lint and Test
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
   pull_request:
 jobs:
   lint-and-test:
-    name: Run Lint and Unit Tests
-    # Windows is required for some of the unit tests to run properly
-    runs-on: windows-2019
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
-
-      - name: Set up Node
-        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # v2.5.1
-        with:
-          node-version: '16'
-          check-latest: true
-          registry-url: 'https://www.myget.org/F/ed-fi/npm/'
-
-      - name: Install
-        run: yarn install
-
-      - name: Lint
-        run: yarn test:lint
-
-      - name: Unit tests
-        run: yarn test:unit:ci --ci
+    name: Lint and Test
+    uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-lint-test.yml@main
