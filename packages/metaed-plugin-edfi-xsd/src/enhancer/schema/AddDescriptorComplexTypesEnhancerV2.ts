@@ -1,6 +1,6 @@
 import { String as sugar } from 'sugar';
-import { MetaEdEnvironment, EnhancerResult, Descriptor, SemVer } from 'metaed-core';
-import { NoMapTypeEnumeration, versionSatisfies, V2Only, getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Descriptor, SemVer } from '@edfi/metaed-core';
+import { NoMapTypeEnumeration, versionSatisfies, V2Only, getAllEntitiesOfType } from '@edfi/metaed-core';
 import { ComplexType } from '../../model/schema/ComplexType';
 import { newComplexType } from '../../model/schema/ComplexType';
 import { newAnnotation } from '../../model/schema/Annotation';

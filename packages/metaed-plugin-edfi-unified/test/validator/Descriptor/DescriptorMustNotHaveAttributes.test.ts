@@ -4,8 +4,8 @@ import {
   DescriptorBuilder,
   NamespaceBuilder,
   newPluginEnvironment,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/Descriptor/DescriptorMustNotHaveAttributes';
 
 describe('when descriptor does not have properties', (): void => {

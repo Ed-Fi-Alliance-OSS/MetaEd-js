@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, EnumerationProperty } from 'metaed-core';
-import { normalizeEnumerationSuffix } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, EnumerationProperty } from '@edfi/metaed-core';
+import { normalizeEnumerationSuffix } from '@edfi/metaed-core';
 import { prependRoleNameToMetaEdName } from '../../shared/Utility';
 import { EntityPropertyEdfiOds } from './EntityProperty';
 

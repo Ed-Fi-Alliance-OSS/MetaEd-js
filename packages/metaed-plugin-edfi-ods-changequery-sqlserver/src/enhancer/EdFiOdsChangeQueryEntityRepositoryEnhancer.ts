@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult } from 'metaed-core';
-import { addEdFiOdsChangeQueryEntityRepositoryTo } from 'metaed-plugin-edfi-ods-changequery';
+import { MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
+import { addEdFiOdsChangeQueryEntityRepositoryTo } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { PLUGIN_NAME } from '../PluginHelper';
 
 const enhancerName = 'EdFiOdsChangeQueryEntityRepositorySetupEnhancer';

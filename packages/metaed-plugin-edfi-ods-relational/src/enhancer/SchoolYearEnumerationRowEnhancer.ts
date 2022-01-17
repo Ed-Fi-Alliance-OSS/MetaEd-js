@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { getAllEntitiesOfType } from 'metaed-core';
-import { EnhancerResult, EnumerationItem, MetaEdEnvironment, ModelBase } from 'metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
+import { EnhancerResult, EnumerationItem, MetaEdEnvironment, ModelBase } from '@edfi/metaed-core';
 import { escapeSqlSingleQuote } from '../shared/Utility';
 import { newSchoolYearEnumerationRow } from '../model/database/SchoolYearEnumerationRow';
 import { rowEntities } from './EnhancerHelper';

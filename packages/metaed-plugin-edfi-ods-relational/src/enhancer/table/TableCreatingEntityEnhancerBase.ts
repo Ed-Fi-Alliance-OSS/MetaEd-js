@@ -1,4 +1,4 @@
-import { EntityProperty, MetaEdEnvironment, TopLevelEntity } from 'metaed-core';
+import { EntityProperty, MetaEdEnvironment, TopLevelEntity } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from './BuildStrategy';
 import { cloneColumn } from '../../model/database/Column';
 import { collectPrimaryKeys } from './PrimaryKeyCollector';

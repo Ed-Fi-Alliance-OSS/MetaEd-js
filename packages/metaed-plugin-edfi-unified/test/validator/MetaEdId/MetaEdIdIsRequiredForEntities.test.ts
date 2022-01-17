@@ -18,8 +18,8 @@ import {
   SharedStringBuilder,
   newMetaEdEnvironment,
   MetaEdTextBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/MetaEdId/MetaEdIdIsRequiredForEntities';
 
 describe('when validating abstract entity is missing metaEdId for entity', (): void => {

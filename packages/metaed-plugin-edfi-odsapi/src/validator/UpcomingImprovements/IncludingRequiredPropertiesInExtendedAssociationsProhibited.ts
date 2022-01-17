@@ -1,6 +1,6 @@
 // 2.2.X.2 - METAED-701
-import { MetaEdEnvironment, ValidationFailure, AssociationExtension, SemVer, PluginEnvironment } from 'metaed-core';
-import { getAllEntitiesOfType, versionSatisfies } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, AssociationExtension, SemVer, PluginEnvironment } from '@edfi/metaed-core';
+import { getAllEntitiesOfType, versionSatisfies } from '@edfi/metaed-core';
 
 const targetTechnologyVersion: SemVer = '<3.1';
 

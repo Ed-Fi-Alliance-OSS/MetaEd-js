@@ -1,4 +1,4 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import R from 'ramda';
 import { EntityDefinition } from '../../model/apiModel/EntityDefinition';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';

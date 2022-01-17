@@ -6,7 +6,7 @@ import {
   DomainEntityExtensionBuilder,
   NamespaceBuilder,
   MetaEdEnvironment,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/HasDuplicateEntityNameInDependencyNamespaceEnhancer';
 import { edfiXsdRepositoryForNamespace } from '../../src/enhancer/EnhancerHelper';
 import { EdFiXsdEntityRepository, addEdFiXsdEntityRepositoryTo } from '../../src/model/EdFiXsdEntityRepository';

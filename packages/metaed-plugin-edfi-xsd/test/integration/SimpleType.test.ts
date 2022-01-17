@@ -9,7 +9,7 @@ import {
   newMetaEdEnvironment,
   SharedStringBuilder,
   StringTypeBuilder,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { enhanceAndGenerate, xpathSelect, initializeNamespaceDependencies } from './IntegrationTestHelper';
 
 describe('when generating xsd for domain entity in extension namespace with a simple type', (): void => {

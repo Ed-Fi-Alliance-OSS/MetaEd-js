@@ -1,11 +1,11 @@
-import { MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
-import { Table } from 'metaed-plugin-edfi-ods-relational';
-import { tableEntities } from 'metaed-plugin-edfi-ods-relational';
+import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
+import { Table } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { tableEntities } from '@edfi/metaed-plugin-edfi-ods-relational';
 import {
   changeQueryIndicated,
   applyCreateDeleteTrackingTableEnhancement,
   applyCreateDeleteTrackingTriggerEnhancements,
-} from 'metaed-plugin-edfi-ods-changequery';
+} from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { createDeleteTrackingTableModel } from './DeleteTrackingTableCreator';
 import { createDeleteTrackingTriggerModel } from './DeleteTrackingTriggerCreator';
 import { TARGET_DATABASE_PLUGIN_NAME, versionSatisfiesForPostgresChangeQuerySupport } from './EnhancerHelper';

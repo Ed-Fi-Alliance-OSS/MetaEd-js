@@ -1,5 +1,5 @@
-import { DomainItem, MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
-import { getEntityFromNamespaceChain } from 'metaed-core';
+import { DomainItem, MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
+import { getEntityFromNamespaceChain } from '@edfi/metaed-core';
 
 function getFailure(domainItem: DomainItem, name: string, failureMessage: string): ValidationFailure {
   return {

@@ -1,12 +1,12 @@
-import { newMetaEdEnvironment, newDomainEntity, newInterchangeItem, newNamespace } from 'metaed-core';
-import { EdFiXsdEntityRepository } from 'metaed-plugin-edfi-xsd';
+import { newMetaEdEnvironment, newDomainEntity, newInterchangeItem, newNamespace } from '@edfi/metaed-core';
+import { EdFiXsdEntityRepository } from '@edfi/metaed-plugin-edfi-xsd';
 import {
   addEdFiXsdEntityRepositoryTo,
   newMergedInterchange,
   MergedInterchange,
   edfiXsdRepositoryForNamespace,
-} from 'metaed-plugin-edfi-xsd';
-import { GeneratedOutput, Namespace, MetaEdEnvironment } from 'metaed-core';
+} from '@edfi/metaed-plugin-edfi-xsd';
+import { GeneratedOutput, Namespace, MetaEdEnvironment } from '@edfi/metaed-core';
 import { addMergedInterchangeEdfiInterchangeBriefTo } from '../../src/model/MergedInterchange';
 import { generate as InterchangeBriefAsMarkdownGenerator } from '../../src/generator/InterchangeBriefAsMarkdownGenerator';
 import { ReferenceUsageInfo } from '../../src/model/ReferenceUsageInfo';

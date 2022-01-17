@@ -8,8 +8,8 @@ import {
   newSharedInteger,
   newSharedIntegerProperty,
   newNamespace,
-} from 'metaed-core';
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/InheritedDocumentationCopyingEnhancer';
 
 describe('when enhancing shared integer property with inherited documentation', (): void => {

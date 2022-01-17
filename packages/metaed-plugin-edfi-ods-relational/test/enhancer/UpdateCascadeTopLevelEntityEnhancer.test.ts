@@ -7,7 +7,7 @@ import {
   newIntegerProperty,
   newMetaEdEnvironment,
   newNamespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   Association,
   AssociationProperty,
@@ -16,7 +16,7 @@ import {
   IntegerProperty,
   MetaEdEnvironment,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/UpdateCascadeTopLevelEntityEnhancer';
 
 describe('when UpdateCascadeTopLevelEntityEnhancer enhances domain entity with allow primary key updates', (): void => {

@@ -4,8 +4,8 @@ import {
   AssociationBuilder,
   AssociationSubclassBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/AssociationSubclass/AssociationSubclassIdentityRenameMustMatchIdentityPropertyInBaseClass';
 
 describe('when association subclass renames base identity', (): void => {

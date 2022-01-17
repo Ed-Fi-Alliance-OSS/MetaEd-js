@@ -4,8 +4,8 @@ import {
   CommonBuilder,
   CommonSubclassBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/CommonSubclass/CommonSubclassMustNotRedeclareProperties';
 
 describe('when common subclass has different property name', (): void => {

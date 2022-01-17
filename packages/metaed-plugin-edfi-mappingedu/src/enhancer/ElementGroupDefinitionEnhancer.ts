@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
 import { newElementGroupDefinition } from '../model/ElementGroupDefinition';
 import { elementGroupNameFor, isDataStandard, pluginElementGroupDefinitionsForNamespace } from './EnhancerHelper';
 

@@ -1,5 +1,5 @@
-import { GeneratorResult, MetaEdEnvironment, GeneratedOutput } from 'metaed-core';
-import { performColumnChangeVersionForTableGeneration } from 'metaed-plugin-edfi-ods-changequery';
+import { GeneratorResult, MetaEdEnvironment, GeneratedOutput } from '@edfi/metaed-core';
+import { performColumnChangeVersionForTableGeneration } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { PLUGIN_NAME } from '../PluginHelper';
 import { template, databaseSpecificFolderName } from './ChangeQueryGeneratorBase';
 

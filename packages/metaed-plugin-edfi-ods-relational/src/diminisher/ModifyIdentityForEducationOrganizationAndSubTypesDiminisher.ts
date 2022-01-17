@@ -1,6 +1,6 @@
 import R from 'ramda';
 import { String as sugar } from 'sugar';
-import { asTopLevelEntity, getEntitiesOfTypeForNamespaces, newIntegerProperty, versionSatisfies } from 'metaed-core';
+import { asTopLevelEntity, getEntitiesOfTypeForNamespaces, newIntegerProperty, versionSatisfies } from '@edfi/metaed-core';
 import {
   EnhancerResult,
   EntityProperty,
@@ -9,7 +9,7 @@ import {
   MetaEdEnvironment,
   ModelBase,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { addEntityPropertyEdfiOdsTo } from '../model/property/EntityProperty';
 
 // METAED-498

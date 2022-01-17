@@ -1,5 +1,5 @@
-import { MetaEdPlugin } from 'metaed-core';
-import { newMetaEdPlugin } from 'metaed-core';
+import { MetaEdPlugin } from '@edfi/metaed-core';
+import { newMetaEdPlugin } from '@edfi/metaed-core';
 
 import { validate as noDomainEntityNamesThatStartWithExample } from './validator/NoDomainEntityNamesThatStartWithExample';
 

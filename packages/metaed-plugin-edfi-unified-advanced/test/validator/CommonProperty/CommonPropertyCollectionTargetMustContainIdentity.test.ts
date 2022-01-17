@@ -7,8 +7,8 @@ import {
   MetaEdEnvironment,
   ValidationFailure,
   CommonSubclassBuilder,
-} from 'metaed-core';
-import { commonReferenceEnhancer, commonSubclassBaseClassEnhancer } from 'metaed-plugin-edfi-unified';
+} from '@edfi/metaed-core';
+import { commonReferenceEnhancer, commonSubclassBaseClassEnhancer } from '@edfi/metaed-plugin-edfi-unified';
 import { validate } from '../../../src/validator/CommonProperty/CommonPropertyCollectionTargetMustContainIdentity';
 
 describe('when validating collection common property target', (): void => {

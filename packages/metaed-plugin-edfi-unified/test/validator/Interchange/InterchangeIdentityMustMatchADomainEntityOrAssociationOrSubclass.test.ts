@@ -7,8 +7,8 @@ import {
   DomainEntitySubclassBuilder,
   InterchangeBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/Interchange/InterchangeIdentityMustMatchADomainEntityOrAssociationOrSubclass';
 
 describe('when validating interchange identity template is an abstract entity', (): void => {

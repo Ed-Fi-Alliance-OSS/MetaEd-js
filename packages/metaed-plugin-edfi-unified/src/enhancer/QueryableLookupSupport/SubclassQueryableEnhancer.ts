@@ -1,5 +1,5 @@
-import { EnhancerResult, EntityProperty, MetaEdEnvironment, TopLevelEntity } from 'metaed-core';
-import { asTopLevelEntity, getAllEntitiesForNamespaces } from 'metaed-core';
+import { EnhancerResult, EntityProperty, MetaEdEnvironment, TopLevelEntity } from '@edfi/metaed-core';
+import { asTopLevelEntity, getAllEntitiesForNamespaces } from '@edfi/metaed-core';
 
 const enhancerName = 'SubclassQueryableEnhancer';
 

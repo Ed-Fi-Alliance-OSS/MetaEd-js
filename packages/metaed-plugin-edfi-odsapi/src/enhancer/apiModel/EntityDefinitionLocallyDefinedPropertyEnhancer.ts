@@ -1,7 +1,7 @@
 import R from 'ramda';
-import { EnhancerResult, EntityProperty, MetaEdEnvironment, Namespace, PluginEnvironment, SemVer } from 'metaed-core';
-import { isSharedProperty, versionSatisfies } from 'metaed-core';
-import { Column, Table } from 'metaed-plugin-edfi-ods-relational';
+import { EnhancerResult, EntityProperty, MetaEdEnvironment, Namespace, PluginEnvironment, SemVer } from '@edfi/metaed-core';
+import { isSharedProperty, versionSatisfies } from '@edfi/metaed-core';
+import { Column, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { ApiProperty } from '../../model/apiModel/ApiProperty';
 import { EntityDefinition } from '../../model/apiModel/EntityDefinition';
 import { PhysicalNames } from '../../model/apiModel/PhysicalNames';

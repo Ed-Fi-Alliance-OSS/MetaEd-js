@@ -9,7 +9,7 @@ import {
   MetaEdEnvironment,
   newNamespace,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/CommonSubclassBaseReferenceEnhancer';
 
 describe('when enhancing common subclass', (): void => {

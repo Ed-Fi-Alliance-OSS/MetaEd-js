@@ -1,5 +1,5 @@
-import { versionSatisfies, V3OrGreater } from 'metaed-core';
-import { MetaEdEnvironment, Namespace, GeneratorResult, GeneratedOutput } from 'metaed-core';
+import { versionSatisfies, V3OrGreater } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace, GeneratorResult, GeneratedOutput } from '@edfi/metaed-core';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 
 function fileName(projectPrefix: string): string {

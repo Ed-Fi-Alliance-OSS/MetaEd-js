@@ -6,8 +6,8 @@ import {
   DomainEntityBuilder,
   DomainEntityExtensionBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/CommonProperty/CommonPropertyWithExtensionOverrideMustReferenceCommonTypeExtension';
 
 describe('when validating common property has extension override of common type extension', (): void => {

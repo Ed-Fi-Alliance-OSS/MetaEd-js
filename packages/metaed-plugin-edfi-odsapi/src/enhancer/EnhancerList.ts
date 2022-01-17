@@ -1,4 +1,4 @@
-import { Enhancer } from 'metaed-core';
+import { Enhancer } from '@edfi/metaed-core';
 
 import { enhance as associationAggregateEnhancer } from './domainMetadata/AssociationAggregateEnhancer';
 import { enhance as associationExtensionAggregateEnhancer } from './domainMetadata/AssociationExtensionAggregateEnhancer';

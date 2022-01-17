@@ -1,6 +1,12 @@
 import xmlParser from 'xml-js';
-import { addEntityForNamespace, newBooleanProperty, newDescriptor, newMetaEdEnvironment, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, Descriptor } from 'metaed-core';
+import {
+  addEntityForNamespace,
+  newBooleanProperty,
+  newDescriptor,
+  newMetaEdEnvironment,
+  newNamespace,
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, Descriptor } from '@edfi/metaed-core';
 import { addEdFiXsdEntityRepositoryTo } from '../../src/model/EdFiXsdEntityRepository';
 import { createSchema } from './GeneratorTestBase';
 import { generate } from '../../src/generator/SchemaAnnotationGenerator';

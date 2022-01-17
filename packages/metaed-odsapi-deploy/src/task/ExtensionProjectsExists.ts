@@ -1,4 +1,4 @@
-import { MetaEdConfiguration, versionSatisfies } from 'metaed-core';
+import { MetaEdConfiguration, versionSatisfies } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
 import Sugar from 'sugar';

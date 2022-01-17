@@ -8,7 +8,7 @@ import {
   newAssociation,
   addEntityForNamespace,
   newNamespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/DomainEntityExampleNameEnhancer';
 import { enhance as initialize } from '../../src/model/TopLevelEntity';
 

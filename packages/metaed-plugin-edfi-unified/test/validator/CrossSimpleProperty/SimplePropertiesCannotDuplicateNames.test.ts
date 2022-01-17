@@ -9,8 +9,8 @@ import {
   SharedDecimalBuilder,
   SharedIntegerBuilder,
   SharedStringBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/CrossSimpleProperty/SimplePropertiesCannotDuplicateNames';
 
 describe('when two integer properties in different DEs have the same name', (): void => {

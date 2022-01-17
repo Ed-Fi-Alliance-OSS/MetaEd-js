@@ -5,8 +5,8 @@ import {
   DomainEntityBuilder,
   NamespaceBuilder,
   CommonSubclassBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/CommonProperty/CommonPropertyMustMatchACommon';
 
 describe('when common property has identifier of common', (): void => {

@@ -1,11 +1,11 @@
 {
-  "name": "metaed-plugin-edfi-ods-recordownership-postgresql",
+  "name": "@edfi/metaed-plugin-edfi-ods-recordownership-postgresql",
   "main": "dist/index.js",
   "version": "3.0.0-dev.3",
   "description": "Ed-Fi ODS/API Record Ownership for PostgreSQL plugin",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
-    "registry": "https://www.myget.org/F/ed-fi/npm/"
+    "@edfi:registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/"
   },
   "files": [
     "/dist",
@@ -17,22 +17,22 @@
     "pluginType": "artifact-specific",
     "shortName": "edfiOdsRecordOwnershipPostgresql",
     "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "2.x",
+    "metaEdVersion": "3.x",
     "technologyVersion": ">=3.3.0",
     "dependencies": [
-      "metaed-plugin-edfi-unified-advanced",
-      "metaed-plugin-edfi-ods-relational",
-      "metaed-plugin-edfi-ods-recordownership",
-      "metaed-plugin-edfi-ods-postgresql"
+      "@edfi/metaed-plugin-edfi-unified-advanced",
+      "@edfi/metaed-plugin-edfi-ods-relational",
+      "@edfi/metaed-plugin-edfi-ods-recordownership",
+      "@edfi/metaed-plugin-edfi-ods-postgresql"
     ]
   },
   "dependencies": {
     "handlebars": "^4.7.7",
-    "metaed-core": "3.0.0-dev.3",
-    "metaed-plugin-edfi-ods-recordownership": "3.0.0-dev.3",
-    "metaed-plugin-edfi-ods-relational": "3.0.0-dev.3",
-    "metaed-plugin-edfi-ods-sqlserver": "3.0.0-dev.3",
-    "metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3"
+    "@edfi/metaed-core": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-ods-recordownership": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-ods-relational": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3"
   },
   "devDependencies": {
     "final-fs": "^1.6.1"

@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
 import { failEnumerationItemRedeclarations } from '../ValidatorShared/FailEnumerationItemRedeclarations';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {

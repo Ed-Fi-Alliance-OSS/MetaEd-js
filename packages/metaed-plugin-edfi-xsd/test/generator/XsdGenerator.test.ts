@@ -1,5 +1,5 @@
 import xmlParser from 'xml-js';
-import { newMetaEdEnvironment, newNamespace, MetaEdEnvironment } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace, MetaEdEnvironment } from '@edfi/metaed-core';
 import {
   createElementComplexTypeItem,
   createComplexType,

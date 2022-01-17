@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { getEntitiesOfTypeForNamespaces, newInterchangeItem } from 'metaed-core';
-import { MetaEdEnvironment, EnhancerResult, ModelBase, Namespace } from 'metaed-core';
+import { getEntitiesOfTypeForNamespaces, newInterchangeItem } from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, ModelBase, Namespace } from '@edfi/metaed-core';
 import { newMergedInterchange, addMergedInterchangeToRepository } from '../model/MergedInterchange';
 import { addInterchangeItemEdfiXsdTo } from '../model/InterchangeItem';
 import { edfiXsdRepositoryForNamespace } from './EnhancerHelper';

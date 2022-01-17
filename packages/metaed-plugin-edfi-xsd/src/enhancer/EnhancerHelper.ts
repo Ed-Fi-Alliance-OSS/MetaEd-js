@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, PluginEnvironment, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, PluginEnvironment, Namespace } from '@edfi/metaed-core';
 import { EdFiXsdEntityRepository } from '../model/EdFiXsdEntityRepository';
 
 export function pluginEnvironment(metaEd: MetaEdEnvironment): PluginEnvironment | undefined {

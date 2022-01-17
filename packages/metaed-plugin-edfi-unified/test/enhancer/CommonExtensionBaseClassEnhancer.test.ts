@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newCommon, newCommonExtension, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, Common, CommonExtension, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newCommon, newCommonExtension, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Common, CommonExtension, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/CommonExtensionBaseClassEnhancer';
 
 describe('when enhancing common extension referring to common', (): void => {

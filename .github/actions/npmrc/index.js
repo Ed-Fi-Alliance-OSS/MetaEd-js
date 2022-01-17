@@ -7,8 +7,8 @@ async function run() {
     const personalAccessToken = core.getInput('personal-access-token');
     const isWindows = core.getInput('is-windows');
 
-    fileContents = `registry=https://www.myget.org/F/ed-fi/npm/
-    //www.myget.org/F/ed-fi/npm/:_authToken=${personalAccessToken}
+    fileContents = `@edfi/registry=https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/
+    :_password=${personalAccessToken}
 `;
 
     var filePath = `${process.env.HOME}/.npmrc`;

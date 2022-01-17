@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { MetaEdEnvironment, EnhancerResult, TopLevelEntity, SemVer } from 'metaed-core';
-import { getAllEntitiesOfType, orderByProp, V2Only, versionSatisfies } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, TopLevelEntity, SemVer } from '@edfi/metaed-core';
+import { getAllEntitiesOfType, orderByProp, V2Only, versionSatisfies } from '@edfi/metaed-core';
 import { TopLevelEntityEdfiXsd } from '../../model/TopLevelEntity';
 import { NamespaceEdfiXsd } from '../../model/Namespace';
 import { EnumerationBase, EnumerationBaseEdfiXsd } from '../../model/EnumerationBase';

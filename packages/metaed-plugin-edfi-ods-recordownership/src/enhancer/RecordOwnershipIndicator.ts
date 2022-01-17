@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, PluginEnvironment } from 'metaed-core';
-import { versionSatisfies } from 'metaed-core';
+import { MetaEdEnvironment, PluginEnvironment } from '@edfi/metaed-core';
+import { versionSatisfies } from '@edfi/metaed-core';
 
 export function recordOwnershipIndicated(metaEd: MetaEdEnvironment): boolean {
   const edfiOdsPlugin: PluginEnvironment | undefined = metaEd.plugin.get('edfiOdsRecordOwnership');

@@ -5,8 +5,8 @@ import {
   AssociationExtensionBuilder,
   AssociationSubclassBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/AssociationExtension/AssociationExtensionIdentifierMustMatchAnAssociationOrAssociationSubclass';
 
 describe('when association extension extends association', (): void => {

@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { MetaEdEnvironment, PluginEnvironment, Namespace } from 'metaed-core';
-import { Table, ForeignKey } from 'metaed-plugin-edfi-ods-relational';
+import { MetaEdEnvironment, PluginEnvironment, Namespace } from '@edfi/metaed-core';
+import { Table, ForeignKey } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { DeleteTrackingTrigger } from '../model/DeleteTrackingTrigger';
 import { PairedForeignKeyColumnName } from '../model/PairedForeignKeyColumnName';
 import { changeQueryIndicated } from './ChangeQueryIndicator';

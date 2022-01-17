@@ -1,5 +1,5 @@
-import { Interchange, InterchangeExtension, MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
-import { getEntitiesOfTypeForNamespaces, asInterchange } from 'metaed-core';
+import { Interchange, InterchangeExtension, MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
+import { getEntitiesOfTypeForNamespaces, asInterchange } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];

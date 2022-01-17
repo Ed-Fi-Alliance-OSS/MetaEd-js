@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newIntegerType, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, IntegerType, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newIntegerType, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, IntegerType, Namespace } from '@edfi/metaed-core';
 import { IntegerSimpleType } from '../../../src/model/schema/IntegerSimpleType';
 import { NoSimpleType } from '../../../src/model/schema/SimpleType';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';

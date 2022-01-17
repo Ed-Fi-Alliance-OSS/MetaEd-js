@@ -8,8 +8,8 @@ import {
   newIntegerProperty,
   newMetaEdEnvironment,
   newNamespace,
-} from 'metaed-core';
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/QueryableLookupSupport/SubclassQueryableEnhancer';
 
 describe('when enhancing domain entity subclass queryables', (): void => {

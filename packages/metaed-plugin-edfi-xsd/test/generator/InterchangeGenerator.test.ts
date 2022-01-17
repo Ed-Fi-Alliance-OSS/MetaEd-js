@@ -6,7 +6,7 @@ import {
   newInterchange,
   newInterchangeExtension,
   newInterchangeItem,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   MetaEdEnvironment,
   Namespace,
@@ -14,7 +14,7 @@ import {
   InterchangeItem,
   InterchangeExtension,
   GeneratedOutput,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   nameOf,
   textOf,

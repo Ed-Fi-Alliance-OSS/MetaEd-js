@@ -5,8 +5,8 @@ import {
   AssociationBuilder,
   AssociationSubclassBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/Domain/AssociationDomainItemMustMatchTopLevelEntity';
 
 describe('when validating association domain item matches top level entity', (): void => {

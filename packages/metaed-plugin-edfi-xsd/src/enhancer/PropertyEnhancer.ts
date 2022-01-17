@@ -20,8 +20,8 @@ import {
   DescriptorProperty,
   AssociationProperty,
   DomainEntityProperty,
-} from 'metaed-core';
-import { NoTopLevelEntity, NoSharedSimple, getAllProperties, getAllTopLevelEntitiesForNamespaces } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { NoTopLevelEntity, NoSharedSimple, getAllProperties, getAllTopLevelEntitiesForNamespaces } from '@edfi/metaed-core';
 import { EntityPropertyEdfiXsd } from '../model/property/EntityProperty';
 
 const enhancerName = 'PropertyEnhancer';

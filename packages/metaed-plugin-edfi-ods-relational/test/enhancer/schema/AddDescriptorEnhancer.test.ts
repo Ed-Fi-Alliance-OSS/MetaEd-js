@@ -1,5 +1,5 @@
-import { newDescriptor, newMetaEdEnvironment, newNamespace } from 'metaed-core';
-import { Descriptor, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newDescriptor, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { Descriptor, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/model/Descriptor';
 
 describe('when Descriptor enhances descriptor entity', (): void => {

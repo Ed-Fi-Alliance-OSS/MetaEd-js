@@ -9,13 +9,13 @@ import {
   AssociationSubclassBuilder,
   CommonBuilder,
   CommonSubclassBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import {
   associationSubclassBaseClassEnhancer,
   domainEntitySubclassBaseClassEnhancer,
   commonSubclassBaseClassEnhancer,
-} from 'metaed-plugin-edfi-unified';
+} from '@edfi/metaed-plugin-edfi-unified';
 import { validate } from '../../../src/validator/Deprecated/DeprecatedEntitySubclassWarning';
 
 describe('when domain entity is not deprecated', (): void => {

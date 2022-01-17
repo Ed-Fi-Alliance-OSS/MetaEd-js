@@ -1,5 +1,5 @@
-import { getAllEntitiesOfType, MetaEdEnvironment, ModelBase, Namespace, orderByPath, PluginEnvironment } from 'metaed-core';
-import { Column, Table, tableEntities, TopLevelEntityEdfiOds } from 'metaed-plugin-edfi-ods-relational';
+import { getAllEntitiesOfType, MetaEdEnvironment, ModelBase, Namespace, orderByPath, PluginEnvironment } from '@edfi/metaed-core';
+import { Column, Table, tableEntities, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { DeleteTrackingTable } from '../model/DeleteTrackingTable';
 import { DeleteTrackingTrigger } from '../model/DeleteTrackingTrigger';
 import { AddColumnChangeVersionForTable } from '../model/AddColumnChangeVersionForTable';

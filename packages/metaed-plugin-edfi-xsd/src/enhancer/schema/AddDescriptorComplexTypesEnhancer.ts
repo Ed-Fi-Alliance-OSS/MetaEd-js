@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, Descriptor, SemVer } from 'metaed-core';
-import { NoMapTypeEnumeration, versionSatisfies, V3OrGreater, getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Descriptor, SemVer } from '@edfi/metaed-core';
+import { NoMapTypeEnumeration, versionSatisfies, V3OrGreater, getAllEntitiesOfType } from '@edfi/metaed-core';
 import { ComplexType } from '../../model/schema/ComplexType';
 import { newComplexType } from '../../model/schema/ComplexType';
 import { newAnnotation } from '../../model/schema/Annotation';

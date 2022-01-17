@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
 import { SchemaContainer } from './schema/SchemaContainer';
 import { newSchemaContainer } from './schema/SchemaContainer';
 

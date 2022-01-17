@@ -10,7 +10,7 @@ import {
   newPipelineOptions,
   newMetaEdEnvironment,
   findDataStandardVersions,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   SemVer,
   MetaEdConfiguration,
@@ -19,7 +19,7 @@ import {
   MetaEdEnvironment,
   MetaEdProjectPathPairs,
   MetaEdProject,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { execute as DeployCore } from './task/DeployCore';
 import { execute as DeployCoreV2 } from './task/DeployCoreV2';
 import { execute as DeployCoreV3 } from './task/DeployCoreV3';

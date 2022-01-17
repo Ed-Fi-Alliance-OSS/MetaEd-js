@@ -4,8 +4,8 @@ import {
   newAssociationProperty,
   newAssociationSubclass,
   newNamespace,
-} from 'metaed-core';
-import { MetaEdEnvironment, Association, AssociationSubclass, AssociationProperty, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, Association, AssociationSubclass, AssociationProperty, Namespace } from '@edfi/metaed-core';
 import { enhance as initializeTopLevelEntities } from '../../src/model/TopLevelEntity';
 import { enhance as copyPropertiesEnhance } from '../../src/enhancer/CopyPropertiesEnhancer';
 import { enhance } from '../../src/enhancer/SubclassIdentityEnhancer';

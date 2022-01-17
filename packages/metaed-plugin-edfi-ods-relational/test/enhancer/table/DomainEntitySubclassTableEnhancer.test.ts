@@ -5,8 +5,8 @@ import {
   newIntegerProperty,
   newMetaEdEnvironment,
   newNamespace,
-} from 'metaed-core';
-import { DomainEntity, DomainEntitySubclass, IntegerProperty, MetaEdEnvironment, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { DomainEntity, DomainEntitySubclass, IntegerProperty, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { tableEntities } from '../../../src/enhancer/EnhancerHelper';
 import { enhance } from '../../../src/enhancer/table/DomainEntitySubclassTableEnhancer';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../../src/model/EdFiOdsRelationalEntityRepository';

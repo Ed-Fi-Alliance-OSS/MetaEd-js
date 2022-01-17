@@ -1,5 +1,5 @@
-import { newPluginEnvironment } from 'metaed-core';
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newPluginEnvironment } from '@edfi/metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { EnumerationRow } from './database/EnumerationRow';
 import { SchoolYearEnumerationRow } from './database/SchoolYearEnumerationRow';
 import { Table } from './database/Table';

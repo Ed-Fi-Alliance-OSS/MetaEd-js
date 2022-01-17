@@ -1,5 +1,5 @@
-import { Namespace, MetaEdEnvironment } from 'metaed-core';
-import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
+import { Namespace, MetaEdEnvironment } from '@edfi/metaed-core';
+import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import {
   baseTypeDescriptor,
   baseTypeDescriptorReference,
@@ -11,7 +11,7 @@ import {
   newElement,
   referenceTypeSuffix,
   typeGroupSimple,
-} from 'metaed-plugin-edfi-xsd';
+} from '@edfi/metaed-plugin-edfi-xsd';
 import { enhance } from '../../src/enhancer/ElementDefinitionEnhancer';
 import {
   dataStandardElementGroupName,

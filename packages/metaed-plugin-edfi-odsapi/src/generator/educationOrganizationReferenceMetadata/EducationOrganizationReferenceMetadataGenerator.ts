@@ -2,8 +2,8 @@ import fs from 'fs';
 import R from 'ramda';
 import path from 'path';
 import handlebars from 'handlebars';
-import { orderByProp } from 'metaed-core';
-import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from 'metaed-core';
+import { orderByProp } from '@edfi/metaed-core';
+import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from '@edfi/metaed-core';
 import { EducationOrganizationReference } from '../../model/educationOrganizationReferenceMetadata/EducationOrganizationReference';
 
 const generatorName = 'edfiOdsApi.EducationOrganizationReferenceMetadataGenerator';

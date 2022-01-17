@@ -1,5 +1,5 @@
-import { Enhancer, Validator, MetaEdPlugin } from 'metaed-core';
-import { newMetaEdPlugin } from 'metaed-core';
+import { Enhancer, Validator, MetaEdPlugin } from '@edfi/metaed-core';
+import { newMetaEdPlugin } from '@edfi/metaed-core';
 
 import { validate as abstractEntityMustContainAnIdentity } from './validator/AbstractEntity/AbstractEntityMustContainAnIdentity';
 import { validate as abstractEntityMustNotBeExtended } from './validator/AbstractEntity/AbstractEntityMustNotBeExtended';

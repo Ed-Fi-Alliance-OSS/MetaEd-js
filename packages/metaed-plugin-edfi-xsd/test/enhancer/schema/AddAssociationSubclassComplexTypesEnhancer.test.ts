@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newAssociation, newAssociationSubclass, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, AssociationSubclass, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newAssociation, newAssociationSubclass, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, AssociationSubclass, Namespace } from '@edfi/metaed-core';
 import { ComplexType } from '../../../src/model/schema/ComplexType';
 import { NoComplexType } from '../../../src/model/schema/ComplexType';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';

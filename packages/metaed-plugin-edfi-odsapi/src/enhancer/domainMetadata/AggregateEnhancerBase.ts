@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { Namespace, TopLevelEntity, MetaEdEnvironment } from 'metaed-core';
-import { Table, TopLevelEntityEdfiOds, tableEntity } from 'metaed-plugin-edfi-ods-relational';
+import { Namespace, TopLevelEntity, MetaEdEnvironment } from '@edfi/metaed-core';
+import { Table, TopLevelEntityEdfiOds, tableEntity } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { TopLevelEntityEdfiOdsApi } from '../../model/TopLevelEntity';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 import { Aggregate } from '../../model/domainMetadata/Aggregate';

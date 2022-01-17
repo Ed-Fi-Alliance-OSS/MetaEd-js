@@ -1,19 +1,19 @@
-import { MetaEdEnvironment, Namespace, PluginEnvironment } from 'metaed-core';
+import { MetaEdEnvironment, Namespace, PluginEnvironment } from '@edfi/metaed-core';
 import {
   baseDescriptorTableCreatingEnhancer,
   addEdFiOdsRelationalEntityRepositoryTo,
-} from 'metaed-plugin-edfi-ods-relational';
+} from '@edfi/metaed-plugin-edfi-ods-relational';
 import {
   sqlServerTableSetupEnhancer,
   sqlServerTableNamingEnhancer,
   sqlServerColumnNamingEnhancer,
-} from 'metaed-plugin-edfi-ods-sqlserver';
+} from '@edfi/metaed-plugin-edfi-ods-sqlserver';
 import {
   addEdFiOdsChangeQueryEntityRepositoryTo,
   deleteTrackingTableEntities,
   deleteTrackingTriggerEntities,
   pluginEnvironment,
-} from 'metaed-plugin-edfi-ods-changequery';
+} from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { enhance } from '../../src/enhancer/BaseDescriptorChangeQueryEnhancer';
 import { metaEdEnvironmentForApiVersion, newCoreNamespace } from './TestHelper';
 import { PLUGIN_NAME } from '../../src/PluginHelper';

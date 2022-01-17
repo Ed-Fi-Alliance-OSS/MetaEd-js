@@ -1,5 +1,5 @@
-import { newDomainEntityProperty } from 'metaed-core';
-import { DomainEntityProperty } from 'metaed-core';
+import { newDomainEntityProperty } from '@edfi/metaed-core';
+import { DomainEntityProperty } from '@edfi/metaed-core';
 import {
   addMergedReferenceContext,
   addSourceEntityProperty,

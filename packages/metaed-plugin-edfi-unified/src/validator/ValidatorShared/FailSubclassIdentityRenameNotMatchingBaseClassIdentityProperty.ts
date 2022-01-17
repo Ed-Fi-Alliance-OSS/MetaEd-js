@@ -1,4 +1,4 @@
-import { TopLevelEntity, EntityProperty, ValidationFailure } from 'metaed-core';
+import { TopLevelEntity, EntityProperty, ValidationFailure } from '@edfi/metaed-core';
 
 export function failSubclassIdentityRenameNotMatchingBaseClassIdentityProperty(
   validatorName: string,

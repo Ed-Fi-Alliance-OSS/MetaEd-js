@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newDomainEntity, newStringProperty, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, DomainEntity, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newDomainEntity, newStringProperty, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, DomainEntity, Namespace } from '@edfi/metaed-core';
 import { enhance as initializeTopLevelEntities } from '../../src/model/TopLevelEntity';
 import { enhance } from '../../src/enhancer/CopyPropertiesEnhancer';
 

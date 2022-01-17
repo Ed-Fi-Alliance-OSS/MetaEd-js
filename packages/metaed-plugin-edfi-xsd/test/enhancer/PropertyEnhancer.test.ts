@@ -10,8 +10,8 @@ import {
   newCommonProperty,
   newDescriptorProperty,
   newEnumerationProperty,
-} from 'metaed-core';
-import { MetaEdEnvironment, Namespace, EntityProperty } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace, EntityProperty } from '@edfi/metaed-core';
 import { enhance as initializeTopLevelEntities } from '../../src/model/TopLevelEntity';
 import { enhance } from '../../src/enhancer/PropertyEnhancer';
 import { enhance as addModelBaseEdfiXsd } from '../../src/model/ModelBase';

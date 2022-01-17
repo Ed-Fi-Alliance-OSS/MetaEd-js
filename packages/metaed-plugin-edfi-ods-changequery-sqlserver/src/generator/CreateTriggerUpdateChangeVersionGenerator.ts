@@ -1,5 +1,5 @@
-import { GeneratorResult, MetaEdEnvironment } from 'metaed-core';
-import { performCreateTriggerUpdateChangeVersionGeneration } from 'metaed-plugin-edfi-ods-changequery';
+import { GeneratorResult, MetaEdEnvironment } from '@edfi/metaed-core';
+import { performCreateTriggerUpdateChangeVersionGeneration } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { template, databaseSpecificFolderName } from './ChangeQueryGeneratorBase';
 import { PLUGIN_NAME } from '../PluginHelper';
 

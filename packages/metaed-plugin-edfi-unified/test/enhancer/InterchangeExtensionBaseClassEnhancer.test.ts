@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newInterchange, newInterchangeExtension, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, Interchange, InterchangeExtension, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newInterchange, newInterchangeExtension, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Interchange, InterchangeExtension, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/InterchangeExtensionBaseClassEnhancer';
 
 describe('when enhancing interchange extension referring to interchange', (): void => {

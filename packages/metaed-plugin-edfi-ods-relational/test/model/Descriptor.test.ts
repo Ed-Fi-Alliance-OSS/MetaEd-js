@@ -4,9 +4,9 @@ import {
   MetaEdTextBuilder,
   NamespaceBuilder,
   newMetaEdEnvironment,
-} from 'metaed-core';
-import { MetaEdEnvironment } from 'metaed-core';
-import { initialize as initializeUnifiedPlugin } from 'metaed-plugin-edfi-unified';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
+import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
 import { initialize as initializeOdsPlugin } from '../../index';
 
 describe('when descriptor is required property of domain entity', (): void => {

@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, GeneratedOutput, GeneratorResult } from 'metaed-core';
+import { MetaEdEnvironment, GeneratedOutput, GeneratorResult } from '@edfi/metaed-core';
 import {
   SchemaContainer,
   SchemaSection,
@@ -12,7 +12,7 @@ import {
   Element,
   ElementGroup,
   NamespaceEdfiXsd,
-} from 'metaed-plugin-edfi-xsd';
+} from '@edfi/metaed-plugin-edfi-xsd';
 
 import { Workbook } from '../model/Workbook';
 import { newWorkbook, exportWorkbook } from '../model/Workbook';

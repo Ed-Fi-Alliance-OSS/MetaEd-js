@@ -6,7 +6,7 @@ import {
   Namespace,
   PropertyType,
   getAllProperties,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 
 const referenceProperty: PropertyType[] = ['choice', 'common', 'descriptor', 'association', 'domainEntity'];

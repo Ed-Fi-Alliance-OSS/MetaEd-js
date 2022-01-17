@@ -1,5 +1,5 @@
-import { newDomainEntity, newIntegerProperty, newMetaEdEnvironment, newNamespace } from 'metaed-core';
-import { DomainEntity, IntegerProperty, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newDomainEntity, newIntegerProperty, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { DomainEntity, IntegerProperty, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/model/TopLevelEntity';
 import { NoTable } from '../../../src/model/database/Table';
 

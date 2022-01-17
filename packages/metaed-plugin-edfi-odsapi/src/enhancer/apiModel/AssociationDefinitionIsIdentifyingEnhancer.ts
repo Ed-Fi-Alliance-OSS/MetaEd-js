@@ -1,5 +1,5 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
-import { Column, ForeignKey, Table } from 'metaed-plugin-edfi-ods-relational';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { Column, ForeignKey, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { AssociationDefinition } from '../../model/apiModel/AssociationDefinition';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 import { allTablesInNamespacesBySchema, foreignKeyFor } from './EnhancerHelper';

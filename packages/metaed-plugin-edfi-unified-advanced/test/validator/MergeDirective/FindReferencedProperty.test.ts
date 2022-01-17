@@ -1,4 +1,4 @@
-import { EntityProperty, MetaEdEnvironment } from 'metaed-core';
+import { EntityProperty, MetaEdEnvironment } from '@edfi/metaed-core';
 import {
   AssociationBuilder,
   AssociationExtensionBuilder,
@@ -9,7 +9,7 @@ import {
   NamespaceBuilder,
   MetaEdTextBuilder,
   newMetaEdEnvironment,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   findReferencedProperty,
   matchAllButFirstAsIdentityProperties,

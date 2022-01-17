@@ -1,4 +1,4 @@
-import { newMetaEdEnvironment, newNamespace, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/diminisher/ModifyStringColumnLengthDiminisher';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../src/model/EdFiOdsRelationalEntityRepository';
 import { newTable, Table } from '../../src/model/database/Table';

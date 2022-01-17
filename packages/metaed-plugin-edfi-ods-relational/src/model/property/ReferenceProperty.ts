@@ -1,5 +1,5 @@
-import { EnhancerResult, EntityProperty, MetaEdEnvironment } from 'metaed-core';
-import { getPropertiesOfType } from 'metaed-core';
+import { EnhancerResult, EntityProperty, MetaEdEnvironment } from '@edfi/metaed-core';
+import { getPropertiesOfType } from '@edfi/metaed-core';
 
 export interface ReferencePropertyEdfiOds {
   odsDeleteCascadePrimaryKey: boolean;

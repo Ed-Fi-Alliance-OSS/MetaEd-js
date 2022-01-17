@@ -1,12 +1,12 @@
 import hash from 'hash.js';
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import {
   tableEntities,
   Table,
   TableNameGroup,
   flattenNameComponentsFromGroup,
   constructCollapsedNameFrom,
-} from 'metaed-plugin-edfi-ods-relational';
+} from '@edfi/metaed-plugin-edfi-ods-relational';
 import { TableEdfiOdsPostgresql } from '../model/Table';
 
 const enhancerName = 'PostgresqlTableNamingEnhancer';

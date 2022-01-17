@@ -1,4 +1,4 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { createDefaultHandbookEntry } from './BaseSimpleTypeHandbookEntryCreator';
 import { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 import { edfiHandbookRepositoryForNamespace } from './EnhancerHelper';

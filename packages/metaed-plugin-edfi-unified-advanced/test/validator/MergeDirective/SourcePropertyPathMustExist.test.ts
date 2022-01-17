@@ -12,7 +12,7 @@ import {
   EnumerationBuilder,
   NamespaceBuilder,
   SharedStringBuilder,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   mergeDirectiveEnhancer,
   associationExtensionBaseClassEnhancer,
@@ -25,8 +25,8 @@ import {
   domainEntitySubclassBaseClassEnhancer,
   domainEntityExtensionBaseClassEnhancer,
   stringReferenceEnhancer,
-} from 'metaed-plugin-edfi-unified';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-plugin-edfi-unified';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/MergeDirective/SourcePropertyPathMustExist';
 
 describe('when validating domain entity has merge property', (): void => {

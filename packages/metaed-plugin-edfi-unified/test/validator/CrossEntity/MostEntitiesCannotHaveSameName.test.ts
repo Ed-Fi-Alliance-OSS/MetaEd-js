@@ -11,8 +11,8 @@ import {
   InterchangeBuilder,
   NamespaceBuilder,
   SharedIntegerBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/CrossEntity/MostEntitiesCannotHaveSameName';
 
 describe('when entities have different names', (): void => {

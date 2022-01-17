@@ -14,8 +14,8 @@ import {
   newDecimalType,
   newIntegerType,
   newStringType,
-} from 'metaed-core';
-import { MetaEdEnvironment, SemVer, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, SemVer, Namespace } from '@edfi/metaed-core';
 import { NoSimpleType } from '../../../src/model/schema/SimpleType';
 import { newComplexType, NoComplexType } from '../../../src/model/schema/ComplexType';
 import { newEnumerationSimpleType, NoEnumerationSimpleType } from '../../../src/model/schema/EnumerationSimpleType';

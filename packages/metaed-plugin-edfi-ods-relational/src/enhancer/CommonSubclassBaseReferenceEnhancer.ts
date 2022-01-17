@@ -1,4 +1,4 @@
-import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, CommonSubclass } from 'metaed-core';
+import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, CommonSubclass } from '@edfi/metaed-core';
 
 const enhancerName = 'CommonSubclassBaseReferenceEnhancer';
 

@@ -1,6 +1,6 @@
-import { versionSatisfies } from 'metaed-core';
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
-import { tableEntities, Column, Table } from 'metaed-plugin-edfi-ods-relational';
+import { versionSatisfies } from '@edfi/metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { tableEntities, Column, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 
 // METAED-261
 // Datatype mismatches

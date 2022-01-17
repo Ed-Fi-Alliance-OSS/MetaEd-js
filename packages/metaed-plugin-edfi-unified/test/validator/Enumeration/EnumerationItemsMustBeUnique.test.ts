@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, MetaEdTextBuilder, EnumerationBuilder, NamespaceBuilder } from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, EnumerationBuilder, NamespaceBuilder } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/Enumeration/EnumerationItemsMustBeUnique';
 
 describe('when enumeration items have different short descriptions', (): void => {

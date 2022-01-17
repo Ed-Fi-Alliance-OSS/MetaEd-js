@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, DomainEntity, EntityProperty } from 'metaed-core';
-import { getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, DomainEntity, EntityProperty } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 
 export interface DomainEntityEdfiXsd {
   xsdProperties: () => EntityProperty[];

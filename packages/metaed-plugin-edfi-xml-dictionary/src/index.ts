@@ -1,4 +1,4 @@
-import { MetaEdPlugin } from 'metaed-core';
+import { MetaEdPlugin } from '@edfi/metaed-core';
 import { generate as xmlDataDictionaryGenerator } from './generator/XmlDataDictionaryGenerator';
 
 export function initialize(): MetaEdPlugin {

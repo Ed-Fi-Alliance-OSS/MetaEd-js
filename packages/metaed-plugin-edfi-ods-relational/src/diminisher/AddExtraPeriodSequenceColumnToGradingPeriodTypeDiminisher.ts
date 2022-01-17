@@ -1,5 +1,5 @@
-import { versionSatisfies } from 'metaed-core';
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { versionSatisfies } from '@edfi/metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { addColumn } from '../model/database/Table';
 import { newColumn, newColumnNameComponent } from '../model/database/Column';
 import { tableEntities } from '../enhancer/EnhancerHelper';

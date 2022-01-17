@@ -1,5 +1,5 @@
-import { EnumerationItem } from 'metaed-core';
-import { normalizeEnumerationSuffix } from 'metaed-core';
+import { EnumerationItem } from '@edfi/metaed-core';
+import { normalizeEnumerationSuffix } from '@edfi/metaed-core';
 import { escapeSqlSingleQuote } from '../shared/Utility';
 import { newEnumerationRow } from '../model/database/EnumerationRow';
 import { EnumerationRow } from '../model/database/EnumerationRow';

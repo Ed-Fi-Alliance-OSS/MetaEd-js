@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
-import { ComplexType, EnumerationSimpleType } from 'metaed-plugin-edfi-xsd';
+import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
+import { ComplexType, EnumerationSimpleType } from '@edfi/metaed-plugin-edfi-xsd';
 import { newEnumerationDefinition } from '../model/EnumerationDefinition';
 import {
   elementGroupNameFor,

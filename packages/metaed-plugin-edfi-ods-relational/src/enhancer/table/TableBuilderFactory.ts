@@ -1,5 +1,5 @@
-import { EntityProperty, PropertyType } from 'metaed-core';
-import { asCommonProperty } from 'metaed-core';
+import { EntityProperty, PropertyType } from '@edfi/metaed-core';
+import { asCommonProperty } from '@edfi/metaed-core';
 import { columnCreatorFactory } from './ColumnCreatorFactory';
 import { choicePropertyTableBuilder } from './ChoicePropertyTableBuilder';
 import { commonExtensionPropertyTableBuilder } from './CommonExtensionPropertyTableBuilder';

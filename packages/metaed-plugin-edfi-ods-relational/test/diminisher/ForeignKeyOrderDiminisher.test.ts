@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/diminisher/ForeignKeyOrderDiminisher';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../src/model/EdFiOdsRelationalEntityRepository';
 import { newColumn } from '../../src/model/database/Column';

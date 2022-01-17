@@ -8,7 +8,7 @@ import {
   newIntegerProperty,
   newMetaEdEnvironment,
   newNamespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   Association,
   AssociationExtension,
@@ -19,7 +19,7 @@ import {
   IntegerProperty,
   MetaEdEnvironment,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/TopLevelEntityBaseReferenceEnhancer';
 
 describe('when enhancing domain entity subclass base entity reference', (): void => {

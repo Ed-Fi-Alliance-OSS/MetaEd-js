@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, PluginEnvironment, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, PluginEnvironment, Namespace } from '@edfi/metaed-core';
 import { EdFiOdsRelationalEntityRepository } from '../model/EdFiOdsRelationalEntityRepository';
 import { Table } from '../model/database/Table';
 import { EnumerationRow } from '../model/database/EnumerationRow';

@@ -8,8 +8,8 @@ import {
   newCommonExtension,
   newCommonProperty,
   newStringProperty,
-} from 'metaed-core';
-import { MetaEdEnvironment, AssociationExtension, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, AssociationExtension, Namespace } from '@edfi/metaed-core';
 import { Element } from '../../../src/model/schema/Element';
 import { ComplexType } from '../../../src/model/schema/ComplexType';
 import { NoComplexType } from '../../../src/model/schema/ComplexType';

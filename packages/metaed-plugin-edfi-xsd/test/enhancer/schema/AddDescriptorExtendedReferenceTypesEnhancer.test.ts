@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newDescriptor, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, Descriptor, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newDescriptor, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Descriptor, Namespace } from '@edfi/metaed-core';
 import { StringSimpleType } from '../../../src/model/schema/StringSimpleType';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';
 import { enhance as initializeTopLevelEntities } from '../../../src/model/TopLevelEntity';

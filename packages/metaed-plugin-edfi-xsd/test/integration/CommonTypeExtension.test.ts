@@ -1,11 +1,11 @@
-import { MetaEdEnvironment } from 'metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
 import {
   newMetaEdEnvironment,
   MetaEdTextBuilder,
   NamespaceBuilder,
   CommonBuilder,
   CommonExtensionBuilder,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { xpathSelect, enhanceAndGenerate, initializeNamespaceDependencies } from './IntegrationTestHelper';
 
 describe('when generating xsd for common type extension in extension namespace based on core common type', (): void => {

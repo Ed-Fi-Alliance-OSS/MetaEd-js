@@ -1,5 +1,5 @@
-import { EnhancerResult, MetaEdEnvironment, SharedIntegerProperty, IntegerType, SharedInteger } from 'metaed-core';
-import { getEntityFromNamespaceChain } from 'metaed-core';
+import { EnhancerResult, MetaEdEnvironment, SharedIntegerProperty, IntegerType, SharedInteger } from '@edfi/metaed-core';
+import { getEntityFromNamespaceChain } from '@edfi/metaed-core';
 
 const enhancerName = 'IntegerReferenceEnhancer';
 

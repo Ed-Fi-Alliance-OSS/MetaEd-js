@@ -1,14 +1,14 @@
-import { MetaEdEnvironment, GeneratorResult, SemVer } from 'metaed-core';
+import { MetaEdEnvironment, GeneratorResult, SemVer } from '@edfi/metaed-core';
 import {
   newMetaEdEnvironment,
   MetaEdTextBuilder,
   NamespaceBuilder,
   DomainEntityBuilder,
   EnumerationBuilder,
-} from 'metaed-core';
-import { initialize as initializeUnifiedPlugin } from 'metaed-plugin-edfi-unified';
-import { initialize as initializeOdsRelationalPlugin } from 'metaed-plugin-edfi-ods-relational';
-import { initialize as initializeOdsSqlServerPlugin } from 'metaed-plugin-edfi-ods-sqlserver';
+} from '@edfi/metaed-core';
+import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
+import { initialize as initializeOdsRelationalPlugin } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { initialize as initializeOdsSqlServerPlugin } from '@edfi/metaed-plugin-edfi-ods-sqlserver';
 import { initialize as initializeHandbookPlugin } from '../../src/index';
 import { generate } from '../../src/generator/EdFiDataHandbookAsExcelGenerator';
 import { readWorkbook } from '../../src/model/Workbook';

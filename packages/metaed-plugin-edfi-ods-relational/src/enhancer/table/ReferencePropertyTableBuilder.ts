@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { asReferentialProperty } from 'metaed-core';
-import { EntityProperty, MergeDirective, ReferentialProperty } from 'metaed-core';
+import { asReferentialProperty } from '@edfi/metaed-core';
+import { EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
 import {
   addColumns,
   addForeignKey,

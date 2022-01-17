@@ -6,8 +6,8 @@ import {
   MetaEdTextBuilder,
   NamespaceBuilder,
   newMetaEdEnvironment,
-} from 'metaed-core';
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import {
   column,
   foreignKey,

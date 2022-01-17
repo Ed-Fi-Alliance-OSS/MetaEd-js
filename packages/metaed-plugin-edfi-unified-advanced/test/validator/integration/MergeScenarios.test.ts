@@ -12,7 +12,7 @@ import {
   runValidators,
   runEnhancers,
   buildMetaEd,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 jest.unmock('final-fs');
 jest.setTimeout(40000);

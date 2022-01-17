@@ -1,5 +1,5 @@
-import { getEntitiesOfTypeForNamespaces, newIntegerProperty } from 'metaed-core';
-import { EnhancerResult, EntityProperty, IntegerProperty, MetaEdEnvironment, ModelBase, Namespace } from 'metaed-core';
+import { getEntitiesOfTypeForNamespaces, newIntegerProperty } from '@edfi/metaed-core';
+import { EnhancerResult, EntityProperty, IntegerProperty, MetaEdEnvironment, ModelBase, Namespace } from '@edfi/metaed-core';
 import { addEntityPropertyEdfiOdsTo } from '../model/property/EntityProperty';
 import { TopLevelEntityEdfiOds } from '../model/TopLevelEntity';
 

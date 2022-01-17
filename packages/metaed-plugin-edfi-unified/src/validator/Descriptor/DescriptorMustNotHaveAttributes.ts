@@ -6,7 +6,7 @@ import {
   SemVer,
   ValidationFailure,
   versionSatisfies,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 const targetTechnologyVersion: SemVer = '>=5.2';
 

@@ -4,8 +4,8 @@ import {
   CommonBuilder,
   CommonExtensionBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/CommonExtension/CommonExtensionMustNotRedeclareProperties';
 
 describe('when common extension correctly has different property names', (): void => {

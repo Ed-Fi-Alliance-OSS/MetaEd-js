@@ -1,13 +1,13 @@
 import R from 'ramda';
 import xmlParser from 'xml-js';
-import { GeneratorResult, newMetaEdEnvironment, newNamespace, newPluginEnvironment } from 'metaed-core';
-import { MetaEdEnvironment, Namespace, GeneratedOutput } from 'metaed-core';
+import { GeneratorResult, newMetaEdEnvironment, newNamespace, newPluginEnvironment } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace, GeneratedOutput } from '@edfi/metaed-core';
 import {
   addEdFiXsdEntityRepositoryTo,
   newMergedInterchange,
   addMergedInterchangeToRepository,
-} from 'metaed-plugin-edfi-xsd';
-import { MergedInterchange } from 'metaed-plugin-edfi-xsd';
+} from '@edfi/metaed-plugin-edfi-xsd';
+import { MergedInterchange } from '@edfi/metaed-plugin-edfi-xsd';
 import { nextHead, nextSecond, nextThird, nextLength, xsdAttributeName, xsdAttributeOrder } from './TemplateTestHelper';
 import { generate } from '../../src/generator/interchangeOrderMetadata/InterchangeOrderMetadataGenerator';
 

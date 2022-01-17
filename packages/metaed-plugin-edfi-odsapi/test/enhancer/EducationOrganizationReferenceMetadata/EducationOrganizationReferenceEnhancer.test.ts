@@ -4,8 +4,8 @@ import {
   newMetaEdEnvironment,
   newNamespace,
   newDomainEntitySubclass,
-} from 'metaed-core';
-import { Namespace, DomainEntity, MetaEdEnvironment, DomainEntitySubclass } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { Namespace, DomainEntity, MetaEdEnvironment, DomainEntitySubclass } from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/educationOrganizationReferenceMetadata/EducationOrganizationReferenceEnhancer';
 
 const educationOrganizationName = 'EducationOrganization';

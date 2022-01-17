@@ -1,6 +1,6 @@
-import { getAllEntitiesOfType, asTopLevelEntity, normalizeEnumerationSuffix } from 'metaed-core';
-import { MetaEdEnvironment, ModelBase, EnhancerResult, TopLevelEntity, Namespace } from 'metaed-core';
-import { Table, TopLevelEntityEdfiOds, DescriptorEdfiOds, tableEntity } from 'metaed-plugin-edfi-ods-relational';
+import { getAllEntitiesOfType, asTopLevelEntity, normalizeEnumerationSuffix } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ModelBase, EnhancerResult, TopLevelEntity, Namespace } from '@edfi/metaed-core';
+import { Table, TopLevelEntityEdfiOds, DescriptorEdfiOds, tableEntity } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { DescriptorEdfiOdsApi } from '../../model/Descriptor';
 import { TopLevelEntityEdfiOdsApi } from '../../model/TopLevelEntity';
 import { EntityTable } from '../../model/domainMetadata/EntityTable';

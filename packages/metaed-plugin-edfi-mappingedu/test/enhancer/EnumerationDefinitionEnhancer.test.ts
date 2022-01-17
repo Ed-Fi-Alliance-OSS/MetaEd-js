@@ -1,6 +1,6 @@
-import { Namespace, MetaEdEnvironment } from 'metaed-core';
-import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
-import { newAnnotation, newComplexType, newEnumerationSimpleType } from 'metaed-plugin-edfi-xsd';
+import { Namespace, MetaEdEnvironment } from '@edfi/metaed-core';
+import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { newAnnotation, newComplexType, newEnumerationSimpleType } from '@edfi/metaed-plugin-edfi-xsd';
 import {
   dataStandardElementGroupName,
   dataStandardNamespaceName,

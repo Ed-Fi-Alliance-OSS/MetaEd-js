@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { getEntityFromNamespace, versionSatisfies } from 'metaed-core';
-import { EnhancerResult, Namespace, MetaEdEnvironment, ModelBase, ModelType } from 'metaed-core';
+import { getEntityFromNamespace, versionSatisfies } from '@edfi/metaed-core';
+import { EnhancerResult, Namespace, MetaEdEnvironment, ModelBase, ModelType } from '@edfi/metaed-core';
 import { ComplexType } from '../model/schema/ComplexType';
 import { Element } from '../model/schema/Element';
 

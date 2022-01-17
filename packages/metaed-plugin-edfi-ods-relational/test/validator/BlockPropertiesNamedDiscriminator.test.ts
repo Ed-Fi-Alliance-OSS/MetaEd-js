@@ -4,8 +4,8 @@ import {
   MetaEdTextBuilder,
   DomainEntityBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../src/validator/BlockPropertiesNamedDiscriminator';
 
 describe('when domain entity has no properties named Discriminator on tech version 3.1', (): void => {

@@ -7,8 +7,8 @@ import {
   TopLevelEntity,
   ReferentialProperty,
   isReferentialProperty,
-} from 'metaed-core';
-import { getPropertiesOfType, asReferentialProperty } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { getPropertiesOfType, asReferentialProperty } from '@edfi/metaed-core';
 
 const enhancerName = 'MergeDirectiveEnhancer';
 

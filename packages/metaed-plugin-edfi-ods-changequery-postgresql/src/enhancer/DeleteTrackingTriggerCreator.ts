@@ -1,6 +1,6 @@
-import { DeleteTrackingTrigger, getPrimaryKeys } from 'metaed-plugin-edfi-ods-changequery';
-import { Table, Column } from 'metaed-plugin-edfi-ods-relational';
-import { MetaEdEnvironment } from 'metaed-core';
+import { DeleteTrackingTrigger, getPrimaryKeys } from '@edfi/metaed-plugin-edfi-ods-changequery';
+import { Table, Column } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
 import { TARGET_DATABASE_PLUGIN_NAME, postgresqlTriggerName } from './EnhancerHelper';
 
 export function createDeleteTrackingTriggerModel(_metaEd: MetaEdEnvironment, mainTable: Table): DeleteTrackingTrigger {

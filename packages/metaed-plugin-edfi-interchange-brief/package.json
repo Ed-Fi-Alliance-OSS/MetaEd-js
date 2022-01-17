@@ -1,11 +1,11 @@
 {
-  "name": "metaed-plugin-edfi-interchange-brief",
+  "name": "@edfi/metaed-plugin-edfi-interchange-brief",
   "main": "dist/index.js",
   "version": "3.0.0-dev.3",
   "description": "Ed-Fi Interchange Brief plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
-    "registry": "https://www.myget.org/F/ed-fi/npm/"
+    "@edfi:registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/"
   },
   "files": [
     "/dist",
@@ -17,24 +17,24 @@
     "pluginType": "artifact-specific",
     "shortName": "edfiInterchangeBrief",
     "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "2.x",
+    "metaEdVersion": "3.x",
     "technologyVersion": "*",
     "dependencies": [
-      "metaed-plugin-edfi-xsd"
+      "@edfi/metaed-plugin-edfi-xsd"
     ]
   },
   "dependencies": {
     "handlebars": "^4.7.7",
     "marked": "^0.4.0",
-    "metaed-core": "3.0.0-dev.3",
-    "metaed-plugin-edfi-xsd": "3.0.0-dev.3",
+    "@edfi/metaed-core": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-xsd": "3.0.0-dev.3",
     "node-horseman": "^3.3.0",
     "phantomjs-prebuilt": "^2.1.16",
     "ramda": "^0.27.1",
     "sugar": "^2.0.6"
   },
   "devDependencies": {
-    "ed-fi-model-2.0": "2.0.2",
+    "@edfi/ed-fi-model-2.0": "2.0.2",
     "final-fs": "^1.6.1",
     "xmldom": "^0.1.31",
     "xpath": "^0.0.32"

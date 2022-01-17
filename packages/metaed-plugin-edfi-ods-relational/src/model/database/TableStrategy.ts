@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { Namespace } from 'metaed-core';
+import { Namespace } from '@edfi/metaed-core';
 import { TableNameGroup, Table } from './Table';
 
 export class TableStrategy {

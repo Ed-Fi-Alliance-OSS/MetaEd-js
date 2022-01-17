@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
-import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/diminisher/AddRoleNameFromEducationContentDSLRMUriDiminisher';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../src/model/EdFiOdsRelationalEntityRepository';
 import { newColumn, StringColumn } from '../../src/model/database/Column';

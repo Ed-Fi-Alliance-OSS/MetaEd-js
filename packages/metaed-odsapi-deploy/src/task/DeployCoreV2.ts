@@ -1,5 +1,5 @@
-import { MetaEdConfiguration, V2Only } from 'metaed-core';
-import { versionSatisfies } from 'metaed-core';
+import { MetaEdConfiguration, V2Only } from '@edfi/metaed-core';
+import { versionSatisfies } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
 import winston from 'winston';

@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
-import { versionSatisfies } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
+import { versionSatisfies } from '@edfi/metaed-core';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 import { Aggregate } from '../../model/domainMetadata/Aggregate';
 import { EntityTable } from '../../model/domainMetadata/EntityTable';

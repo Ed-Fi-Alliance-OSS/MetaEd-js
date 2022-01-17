@@ -1,5 +1,5 @@
-import { ShortProperty, ShortPropertySourceMap, MetaEdEnvironment, ValidationFailure } from 'metaed-core';
-import { asShortProperty } from 'metaed-core';
+import { ShortProperty, ShortPropertySourceMap, MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
+import { asShortProperty } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];

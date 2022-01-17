@@ -13,7 +13,7 @@ import tmp from 'tmp-promise';
 import { spawn } from 'child_process';
 import streamSplitter from 'stream-splitter';
 import ansihtml from 'ansi-html';
-import { MetaEdConfiguration } from 'metaed-core';
+import { MetaEdConfiguration } from '@edfi/metaed-core';
 import { metaEdConfigurationFor } from './MetaEdConfigurationFactory';
 import { MetaEdProjectMetadata } from './Projects';
 import { findMetaEdProjectMetadata } from './Projects';

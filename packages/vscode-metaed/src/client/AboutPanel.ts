@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import * as vscode from 'vscode';
 import * as path from 'path';
-import { scanForPlugins, newState } from 'metaed-core';
+import { scanForPlugins, newState } from '@edfi/metaed-core';
 import { vscodeMetaEdPackageJson } from './Utility';
 
 // TODO: this class shouldn't be using TypeScript-only directives (e.g. "private")

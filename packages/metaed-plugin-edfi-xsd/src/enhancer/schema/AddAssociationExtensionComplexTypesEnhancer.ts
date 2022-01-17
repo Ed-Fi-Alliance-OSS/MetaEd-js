@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, AssociationExtension } from 'metaed-core';
-import { getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, AssociationExtension } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 import { TopLevelEntityEdfiXsd } from '../../model/TopLevelEntity';
 import {
   typeGroupAssociation,

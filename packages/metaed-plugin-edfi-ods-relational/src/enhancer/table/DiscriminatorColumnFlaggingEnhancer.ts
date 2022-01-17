@@ -1,5 +1,5 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace, SemVer, PluginEnvironment } from 'metaed-core';
-import { versionSatisfies, NoTopLevelEntity } from 'metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace, SemVer, PluginEnvironment } from '@edfi/metaed-core';
+import { versionSatisfies, NoTopLevelEntity } from '@edfi/metaed-core';
 import { tableEntities } from '../EnhancerHelper';
 import { Table } from '../../model/database/Table';
 

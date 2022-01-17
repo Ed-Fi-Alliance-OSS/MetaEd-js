@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, ValidationFailure, Interchange, Namespace } from 'metaed-core';
-import { getEntityFromNamespaceChain } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, Interchange, Namespace } from '@edfi/metaed-core';
+import { getEntityFromNamespaceChain } from '@edfi/metaed-core';
 import { failInterchangeExtensionPropertyRedeclarations } from '../ValidatorShared/FailInterchangeExtensionPropertyRedeclarations';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {

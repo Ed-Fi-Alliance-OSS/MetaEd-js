@@ -7,8 +7,8 @@ import {
   NamespaceBuilder,
   newMetaEdEnvironment,
   MetaEdTextBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/MetaEdId/MustNotDuplicateMetaEdId';
 
 describe('when validating two entities have different metaEdId', (): void => {

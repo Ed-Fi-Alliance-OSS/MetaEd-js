@@ -1,5 +1,5 @@
-import { orderByPath } from 'metaed-core';
-import { Table, getNonPrimaryKeys, Column } from 'metaed-plugin-edfi-ods-relational';
+import { orderByPath } from '@edfi/metaed-core';
+import { Table, getNonPrimaryKeys, Column } from '@edfi/metaed-plugin-edfi-ods-relational';
 
 export function hasAlternateKeys(table: Table): boolean {
   return table.columns.some((x) => x.isPartOfAlternateKey);

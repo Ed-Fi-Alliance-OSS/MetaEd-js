@@ -7,7 +7,7 @@ import {
   TopLevelEntity,
   allEntityModelTypesNoSimpleTypes,
   asTopLevelEntity,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 export type FailureCollector = (
   failures: ValidationFailure[],

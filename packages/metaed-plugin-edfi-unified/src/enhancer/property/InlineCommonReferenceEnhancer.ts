@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, Common } from 'metaed-core';
-import { getEntityFromNamespaceChain } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Common } from '@edfi/metaed-core';
+import { getEntityFromNamespaceChain } from '@edfi/metaed-core';
 
 const enhancerName = 'InlineCommonReferenceEnhancer';
 

@@ -1,5 +1,5 @@
-import { getEntitiesOfTypeForNamespaces, SchoolYearEnumeration } from 'metaed-core';
-import { EnhancerResult, MetaEdEnvironment, ModelBase } from 'metaed-core';
+import { getEntitiesOfTypeForNamespaces, SchoolYearEnumeration } from '@edfi/metaed-core';
+import { EnhancerResult, MetaEdEnvironment, ModelBase } from '@edfi/metaed-core';
 import { addTables } from './TableCreatingEntityEnhancerBase';
 import {
   Table,

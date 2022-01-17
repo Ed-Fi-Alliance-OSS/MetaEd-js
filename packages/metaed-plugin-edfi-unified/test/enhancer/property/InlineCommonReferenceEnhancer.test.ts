@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { newMetaEdEnvironment, newInlineCommonProperty, newInlineCommon, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, InlineCommonProperty, Common, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newInlineCommonProperty, newInlineCommon, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, InlineCommonProperty, Common, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/property/InlineCommonReferenceEnhancer';
 
 describe('when enhancing inlineCommon property', (): void => {

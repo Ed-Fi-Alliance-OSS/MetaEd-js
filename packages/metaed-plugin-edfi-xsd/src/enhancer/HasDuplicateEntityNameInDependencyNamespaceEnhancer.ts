@@ -5,7 +5,7 @@ import {
   Namespace,
   ModelBase,
   allEntityModelTypesNoSimpleTypes,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { EdFiXsdEntityRepository } from '../model/EdFiXsdEntityRepository';
 import { edfiXsdRepositoryForNamespace } from './EnhancerHelper';
 

@@ -7,7 +7,7 @@ import {
   SimpleProperty,
   ModelBase,
   SharedSimple,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 const enhancerName = 'OutReferencePathEnhancer';
 

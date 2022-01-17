@@ -1,5 +1,5 @@
-import { newEnumerationProperty, newMetaEdEnvironment } from 'metaed-core';
-import { EnumerationProperty, MetaEdEnvironment } from 'metaed-core';
+import { newEnumerationProperty, newMetaEdEnvironment } from '@edfi/metaed-core';
+import { EnumerationProperty, MetaEdEnvironment } from '@edfi/metaed-core';
 import { enhance } from '../../../src/model/property/EnumerationProperty';
 
 describe('when EnumerationProperty enhances enumeration property', (): void => {

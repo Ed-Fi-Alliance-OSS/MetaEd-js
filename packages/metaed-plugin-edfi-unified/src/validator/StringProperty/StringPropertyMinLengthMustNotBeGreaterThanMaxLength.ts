@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, ValidationFailure, StringProperty, StringPropertySourceMap } from 'metaed-core';
-import { asStringProperty } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, StringProperty, StringPropertySourceMap } from '@edfi/metaed-core';
+import { asStringProperty } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];

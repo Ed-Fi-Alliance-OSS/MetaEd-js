@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult } from 'metaed-core';
-import { getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 import { EnumerationBase, EnumerationBaseEdfiXsd } from '../../model/EnumerationBase';
 import { newEnumerationToken } from '../../model/schema/EnumerationToken';
 import { newEnumerationSimpleType } from '../../model/schema/EnumerationSimpleType';

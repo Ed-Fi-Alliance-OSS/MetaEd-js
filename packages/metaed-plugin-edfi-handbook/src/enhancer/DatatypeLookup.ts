@@ -1,4 +1,4 @@
-import { PropertyType, EntityProperty, StringProperty, DecimalProperty } from 'metaed-core';
+import { PropertyType, EntityProperty, StringProperty, DecimalProperty } from '@edfi/metaed-core';
 
 export const umlDatatypeMatrix: { [type in PropertyType]: string } = {
   unknown: '',

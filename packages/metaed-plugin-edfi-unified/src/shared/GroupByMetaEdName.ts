@@ -1,4 +1,4 @@
-import { ModelBase, EntityProperty } from 'metaed-core';
+import { ModelBase, EntityProperty } from '@edfi/metaed-core';
 
 export function groupByMetaEdName<T extends ModelBase | EntityProperty>(modelItems: T[]): Map<string, T[]> {
   return modelItems.reduce((structure: Map<string, T[]>, modelItem: T) => {

@@ -5,8 +5,8 @@ import {
   newBooleanProperty,
   newDescriptorProperty,
   newNamespace,
-} from 'metaed-core';
-import { MetaEdEnvironment, Descriptor, MapTypeEnumeration, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, Descriptor, MapTypeEnumeration, Namespace } from '@edfi/metaed-core';
 import { ComplexType } from '../../../src/model/schema/ComplexType';
 import { Element } from '../../../src/model/schema/Element';
 import { NoComplexType } from '../../../src/model/schema/ComplexType';

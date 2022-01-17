@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this, no-use-before-define, max-classes-per-file */
-import { EntityProperty } from 'metaed-core';
+import { EntityProperty } from '@edfi/metaed-core';
 import { ColumnTransformMakeNull } from '../../model/database/ColumnTransform';
 import { ColumnTransform } from '../../model/database/ColumnTransform';
 import { ColumnNameComponent, newColumnNameComponent, ColumnNaming } from '../../model/database/Column';

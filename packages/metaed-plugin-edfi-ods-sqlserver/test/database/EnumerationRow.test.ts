@@ -1,5 +1,5 @@
-import { EnumerationBuilder, MetaEdTextBuilder, NamespaceBuilder, newMetaEdEnvironment } from 'metaed-core';
-import { MetaEdEnvironment } from 'metaed-core';
+import { EnumerationBuilder, MetaEdTextBuilder, NamespaceBuilder, newMetaEdEnvironment } from '@edfi/metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
 import { column, enhanceGenerateAndExecuteSql, table, testTearDown, testSuiteAfterAll } from './DatabaseTestBase';
 import { columnExists, columnFirstRowValue, columnMSDescription, columnNthRowValue } from './DatabaseColumn';
 import { tableExists } from './DatabaseTable';

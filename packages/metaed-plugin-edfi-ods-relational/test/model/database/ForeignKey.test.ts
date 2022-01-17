@@ -1,5 +1,5 @@
-import { DomainEntityProperty } from 'metaed-core';
-import { newDomainEntityProperty } from 'metaed-core';
+import { DomainEntityProperty } from '@edfi/metaed-core';
+import { newDomainEntityProperty } from '@edfi/metaed-core';
 import { addColumnPair, newForeignKey, foreignKeySourceReferenceFrom } from '../../../src/model/database/ForeignKey';
 import { newColumnPair } from '../../../src/model/database/ColumnPair';
 import { ForeignKey, ForeignKeySourceReference } from '../../../src/model/database/ForeignKey';

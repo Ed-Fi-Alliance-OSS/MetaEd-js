@@ -1,5 +1,5 @@
-import { Namespace, MetaEdEnvironment } from 'metaed-core';
-import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
+import { Namespace, MetaEdEnvironment } from '@edfi/metaed-core';
+import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import {
   descriptorReferenceTypeSuffix,
   identityTypeSuffix,
@@ -13,7 +13,7 @@ import {
   mapTypeSuffix,
   typeGroupSimple,
   newAnnotation,
-} from 'metaed-plugin-edfi-xsd';
+} from '@edfi/metaed-plugin-edfi-xsd';
 import {
   dataStandardElementGroupName,
   dataStandardNamespaceName,

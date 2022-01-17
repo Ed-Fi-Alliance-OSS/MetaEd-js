@@ -1,11 +1,11 @@
 {
-  "name": "metaed-plugin-edfi-xml-dictionary",
+  "name": "@edfi/metaed-plugin-edfi-xml-dictionary",
   "main": "dist/index.js",
   "version": "3.0.0-dev.3",
   "description": "Ed-Fi XML Data Dictionary plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
-    "registry": "https://www.myget.org/F/ed-fi/npm/"
+    "@edfi:registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/"
   },
   "files": [
     "/dist",
@@ -17,20 +17,20 @@
     "pluginType": "artifact-specific",
     "shortName": "edfiXmlDictionary",
     "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "2.x",
+    "metaEdVersion": "3.x",
     "technologyVersion": "*",
     "dependencies": [
-      "metaed-plugin-edfi-unified-advanced",
-      "metaed-plugin-edfi-xsd"
+      "@edfi/metaed-plugin-edfi-unified-advanced",
+      "@edfi/metaed-plugin-edfi-xsd"
     ]
   },
   "dependencies": {
     "handlebars": "^4.7.7",
     "js-beautify": "^1.14.0",
-    "metaed-core": "3.0.0-dev.3",
-    "metaed-plugin-edfi-unified": "3.0.0-dev.3",
-    "metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3",
-    "metaed-plugin-edfi-xsd": "3.0.0-dev.3",
+    "@edfi/metaed-core": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-unified": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-xsd": "3.0.0-dev.3",
     "winston": "3.3.3",
     "xlsx": "^0.11.19",
     "xmldom": "^0.1.31"

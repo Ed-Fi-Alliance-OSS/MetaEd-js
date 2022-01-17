@@ -8,7 +8,7 @@ import {
   SimpleProperty,
   ModelBase,
   isSharedProperty,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 function allPropertiesAfterTheFirstAreIdentity(outPath: (ReferentialProperty | SimpleProperty)[]): boolean {
   // eslint-disable-next-line no-restricted-syntax

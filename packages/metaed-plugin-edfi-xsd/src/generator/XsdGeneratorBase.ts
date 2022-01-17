@@ -4,7 +4,7 @@ import { html as beautify } from 'js-beautify';
 import fs from 'fs';
 import path from 'path';
 import semver from 'semver';
-import { SemVer, MetaEdEnvironment, Namespace, versionSatisfies, PluginEnvironment, V5OrGreater } from 'metaed-core';
+import { SemVer, MetaEdEnvironment, Namespace, versionSatisfies, PluginEnvironment, V5OrGreater } from '@edfi/metaed-core';
 import { edfiXsdRepositoryForNamespace } from '../enhancer/EnhancerHelper';
 import { EdFiXsdEntityRepository } from '../model/EdFiXsdEntityRepository';
 

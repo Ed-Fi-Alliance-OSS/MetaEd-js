@@ -1,6 +1,6 @@
 import winston from 'winston';
-import { versionSatisfies, GeneratedOutput, GeneratorResult, MetaEdEnvironment, PluginEnvironment } from 'metaed-core';
-import { shouldApplyLicenseHeader } from 'metaed-plugin-edfi-ods-relational';
+import { versionSatisfies, GeneratedOutput, GeneratorResult, MetaEdEnvironment, PluginEnvironment } from '@edfi/metaed-core';
+import { shouldApplyLicenseHeader } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { dataPath, fileNameFor, registerPartials, structurePath, template } from './OdsGeneratorBase';
 import { NamespaceEdfiOdsPostgresql } from '../model/Namespace';
 

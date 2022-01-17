@@ -5,8 +5,8 @@ import {
   DomainEntitySubclassBuilder,
   AssociationBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/DomainEntityProperty/DomainEntityPropertyMustMatchADomainEntity';
 
 describe('when domain entity property has identifier of domain entity', (): void => {

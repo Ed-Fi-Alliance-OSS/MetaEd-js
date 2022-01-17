@@ -1,6 +1,6 @@
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
-import { EdFiOdsRelationalEntityRepository, ForeignKey, Table } from 'metaed-plugin-edfi-ods-relational';
-import { edfiOdsRepositoryForNamespace, tableEntities } from 'metaed-plugin-edfi-ods-relational';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { EdFiOdsRelationalEntityRepository, ForeignKey, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { edfiOdsRepositoryForNamespace, tableEntities } from '@edfi/metaed-plugin-edfi-ods-relational';
 
 export function tablesFor(metaEd: MetaEdEnvironment, namespace: Namespace): Map<string, Table> {
   const repository: EdFiOdsRelationalEntityRepository | null = edfiOdsRepositoryForNamespace(metaEd, namespace);

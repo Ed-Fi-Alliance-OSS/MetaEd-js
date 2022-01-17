@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this, no-use-before-define, max-classes-per-file */
-import { EntityProperty } from 'metaed-core';
+import { EntityProperty } from '@edfi/metaed-core';
 import { addMergedReferenceContext, cloneColumn, ColumnNameComponent, newColumnNameComponent } from './Column';
 import { Column } from './Column';
 

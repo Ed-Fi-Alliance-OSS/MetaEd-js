@@ -27,13 +27,13 @@ import {
   newStringProperty,
   newTimeProperty,
   newNamespace,
-} from 'metaed-core';
-import { Common, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { Common, Namespace } from '@edfi/metaed-core';
 import {
   newMergedInterchange,
   addEdFiXsdEntityRepositoryTo,
   addMergedInterchangeToRepository,
-} from 'metaed-plugin-edfi-xsd';
+} from '@edfi/metaed-plugin-edfi-xsd';
 import { enhance as mergedInterchangeExtendedReferencesEnhancer } from '../../src/enhancer/MergedInterchangeExtendedReferencesEnhancer';
 
 function byReferenceName(a, b): number {

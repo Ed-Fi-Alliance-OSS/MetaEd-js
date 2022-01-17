@@ -9,7 +9,7 @@ import {
   newIntegerProperty,
   newMetaEdEnvironment,
   newNamespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   Common,
   CommonExtension,
@@ -20,7 +20,7 @@ import {
   IntegerProperty,
   MetaEdEnvironment,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { tableEntities } from '../../../src/enhancer/EnhancerHelper';
 import { enhance } from '../../../src/enhancer/table/DomainEntityExtensionTableEnhancerV2';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../../src/model/EdFiOdsRelationalEntityRepository';

@@ -5,7 +5,7 @@ import {
   newMetaEdEnvironment,
   newNamespace,
   newBooleanProperty,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/ColumnDeprecationEnhancer';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../src/model/EdFiOdsRelationalEntityRepository';
 import { newTable } from '../../src/model/database/Table';

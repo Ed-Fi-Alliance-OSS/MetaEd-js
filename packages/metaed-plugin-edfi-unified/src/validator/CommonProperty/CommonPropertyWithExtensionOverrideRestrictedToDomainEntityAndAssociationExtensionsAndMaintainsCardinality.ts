@@ -6,8 +6,8 @@ import {
   ModelType,
   ValidationFailure,
   Namespace,
-} from 'metaed-core';
-import { getEntityFromNamespaceChain } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { getEntityFromNamespaceChain } from '@edfi/metaed-core';
 
 const validEntityTypes: ModelType[] = ['domainEntityExtension', 'associationExtension'];
 

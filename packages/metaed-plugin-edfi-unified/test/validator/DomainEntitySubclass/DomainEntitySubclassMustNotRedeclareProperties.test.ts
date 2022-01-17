@@ -4,8 +4,8 @@ import {
   DomainEntityBuilder,
   DomainEntitySubclassBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/DomainEntitySubclass/DomainEntitySubclassMustNotRedeclareProperties';
 
 describe('when domain entity subclass has different property name', (): void => {

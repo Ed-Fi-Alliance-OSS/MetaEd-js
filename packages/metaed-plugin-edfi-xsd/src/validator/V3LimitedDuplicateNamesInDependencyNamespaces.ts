@@ -6,7 +6,7 @@ import {
   TopLevelEntity,
   versionSatisfies,
   V3OrGreater,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { duplicateNameFinder } from './DuplicateNameFinder';
 
 function isTargetTechnologyVersion(metaEd: MetaEdEnvironment): boolean {

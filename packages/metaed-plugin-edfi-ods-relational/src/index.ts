@@ -1,4 +1,4 @@
-import { MetaEdPlugin } from 'metaed-core';
+import { MetaEdPlugin } from '@edfi/metaed-core';
 import { enhancerList } from './enhancer/EnhancerList';
 import { validate as blockPropertiesNamedDiscriminator } from './validator/BlockPropertiesNamedDiscriminator';
 

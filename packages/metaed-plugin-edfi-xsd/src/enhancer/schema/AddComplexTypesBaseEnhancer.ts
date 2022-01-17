@@ -1,6 +1,6 @@
 import { String as sugar } from 'sugar';
-import { TopLevelEntity, EntityProperty, CommonProperty } from 'metaed-core';
-import { prependIndefiniteArticle } from 'metaed-core';
+import { TopLevelEntity, EntityProperty, CommonProperty } from '@edfi/metaed-core';
+import { prependIndefiniteArticle } from '@edfi/metaed-core';
 import { ComplexType } from '../../model/schema/ComplexType';
 import { newComplexType, NoComplexType } from '../../model/schema/ComplexType';
 import { newAnnotation } from '../../model/schema/Annotation';

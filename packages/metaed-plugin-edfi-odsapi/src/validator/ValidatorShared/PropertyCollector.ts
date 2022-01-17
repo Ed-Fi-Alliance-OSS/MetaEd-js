@@ -1,6 +1,6 @@
 // 2.x - METAED-711 - ODS-1732
-import { asReferentialProperty } from 'metaed-core';
-import { TopLevelEntity, EntityProperty } from 'metaed-core';
+import { asReferentialProperty } from '@edfi/metaed-core';
+import { TopLevelEntity, EntityProperty } from '@edfi/metaed-core';
 
 export function collectSingleEntity(
   entity: TopLevelEntity,

@@ -1,5 +1,5 @@
-import { PropertyType, MetaEdEnvironment, ValidationFailure } from 'metaed-core';
-import { getPropertiesOfType, asReferentialProperty } from 'metaed-core';
+import { PropertyType, MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
+import { getPropertiesOfType, asReferentialProperty } from '@edfi/metaed-core';
 import { failReferencedPropertyDoesNotExist } from './FailReferencedPropertyDoesNotExist';
 
 const validPropertyTypes: PropertyType[] = [

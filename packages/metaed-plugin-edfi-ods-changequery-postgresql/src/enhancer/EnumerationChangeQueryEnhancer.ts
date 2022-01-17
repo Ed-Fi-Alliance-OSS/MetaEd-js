@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult } from 'metaed-core';
-import { performEnumerationChangeQueryEnhancement } from 'metaed-plugin-edfi-ods-changequery';
+import { MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
+import { performEnumerationChangeQueryEnhancement } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { createDeleteTrackingTableModel } from './DeleteTrackingTableCreator';
 import { createDeleteTrackingTriggerModel } from './DeleteTrackingTriggerCreator';
 import { PLUGIN_NAME } from '../PluginHelper';

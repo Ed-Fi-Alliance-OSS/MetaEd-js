@@ -1,4 +1,4 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace, orderByPath } from 'metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace, orderByPath } from '@edfi/metaed-core';
 import {
   tableEntities,
   Table,
@@ -6,7 +6,7 @@ import {
   getParentTableColumns,
   getForeignTableColumns,
   Column,
-} from 'metaed-plugin-edfi-ods-relational';
+} from '@edfi/metaed-plugin-edfi-ods-relational';
 import { ForeignKeyEdfiOdsPostgresql } from '../model/ForeignKey';
 import { TableEdfiOdsPostgresql } from '../model/Table';
 

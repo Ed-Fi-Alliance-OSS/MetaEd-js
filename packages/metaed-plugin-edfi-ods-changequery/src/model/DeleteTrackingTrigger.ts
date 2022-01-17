@@ -1,4 +1,4 @@
-import { ForeignKey } from 'metaed-plugin-edfi-ods-relational';
+import { ForeignKey } from '@edfi/metaed-plugin-edfi-ods-relational';
 
 export interface DeleteTrackingTrigger {
   triggerSchema: string;

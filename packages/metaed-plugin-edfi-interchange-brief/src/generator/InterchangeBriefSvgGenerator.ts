@@ -1,8 +1,8 @@
 import Horseman from 'node-horseman';
 import { path as phantomPath } from 'phantomjs-prebuilt';
 import path from 'path';
-import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from 'metaed-core';
-import { edfiXsdRepositoryForNamespace, EdFiXsdEntityRepository } from 'metaed-plugin-edfi-xsd';
+import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from '@edfi/metaed-core';
+import { edfiXsdRepositoryForNamespace, EdFiXsdEntityRepository } from '@edfi/metaed-plugin-edfi-xsd';
 
 interface SvgElement {
   name: string;

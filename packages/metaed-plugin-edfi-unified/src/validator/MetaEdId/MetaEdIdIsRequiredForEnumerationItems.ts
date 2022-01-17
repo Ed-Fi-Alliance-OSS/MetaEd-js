@@ -1,5 +1,5 @@
-import { Enumeration, SchoolYearEnumeration, MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
-import { getEntitiesOfTypeForNamespaces, asEnumeration } from 'metaed-core';
+import { Enumeration, SchoolYearEnumeration, MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
+import { getEntitiesOfTypeForNamespaces, asEnumeration } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];

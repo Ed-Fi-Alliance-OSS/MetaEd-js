@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { asReferentialProperty } from 'metaed-core';
-import { EnhancerResult, EntityProperty, MergeDirective, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { asReferentialProperty } from '@edfi/metaed-core';
+import { EnhancerResult, EntityProperty, MergeDirective, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { getAllColumns, getPrimaryKeys, addForeignKey } from '../model/database/Table';
 import { newColumnPair } from '../model/database/ColumnPair';
 import { newForeignKey, addColumnPair, foreignKeySourceReferenceFrom } from '../model/database/ForeignKey';

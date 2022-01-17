@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityExtensionBuilder, NamespaceBuilder } from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, DomainEntityExtensionBuilder, NamespaceBuilder } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/DomainEntityExtension/DomainEntityExtensionNamesMustBeUnique';
 
 describe('when entities in same namespace have different names', (): void => {

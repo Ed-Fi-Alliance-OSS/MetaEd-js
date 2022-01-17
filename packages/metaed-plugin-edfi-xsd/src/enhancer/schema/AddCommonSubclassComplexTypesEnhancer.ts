@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, CommonSubclass } from 'metaed-core';
-import { getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, CommonSubclass } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 import { typeGroupCommon, createDefaultComplexType } from './AddComplexTypesBaseEnhancer';
 
 const enhancerName = 'AddCommonSubclassComplexTypesEnhancer';

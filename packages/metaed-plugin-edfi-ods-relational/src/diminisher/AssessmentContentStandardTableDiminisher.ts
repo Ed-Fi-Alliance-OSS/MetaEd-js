@@ -1,5 +1,5 @@
-import { newIntegerProperty, versionSatisfies } from 'metaed-core';
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newIntegerProperty, versionSatisfies } from '@edfi/metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { addColumn } from '../model/database/Table';
 import { rewriteColumnId } from './DiminisherHelper';
 import { initializeColumn, newColumn, newColumnNameComponent } from '../model/database/Column';

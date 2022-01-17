@@ -9,7 +9,7 @@ import {
   TopLevelEntity,
   EntityProperty,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { columnConstraintMerge, Column, NoColumn } from './Column';
 import { ColumnTransform } from './ColumnTransform';
 import { ForeignKey } from './ForeignKey';

@@ -1,4 +1,4 @@
-import { versionSatisfies, V3OrGreater, MetaEdEnvironment, ValidationFailure, DomainEntity } from 'metaed-core';
+import { versionSatisfies, V3OrGreater, MetaEdEnvironment, ValidationFailure, DomainEntity } from '@edfi/metaed-core';
 
 // Validator that disallows DomainEntities from having a name that starts with "Example"
 // Validator is named after its kind of validation

@@ -1,5 +1,5 @@
-import { getAllEntitiesOfType, asTopLevelEntity } from 'metaed-core';
-import { MetaEdEnvironment, ModelBase, EnhancerResult } from 'metaed-core';
+import { getAllEntitiesOfType, asTopLevelEntity } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ModelBase, EnhancerResult } from '@edfi/metaed-core';
 import { enhanceSingleEntity } from './AggregateEnhancerBase';
 
 const enhancerName = 'SchoolYearEnumerationAggregateEnhancer';

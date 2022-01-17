@@ -1,4 +1,4 @@
-import { MetaEdPlugin } from 'metaed-core';
+import { MetaEdPlugin } from '@edfi/metaed-core';
 /*
 import { enhance as interchangeItemSetupEnhancer } from './model/InterchangeItem';
 import { enhance as mergedInterchangeSetupEnhancer } from './model/MergedInterchange';

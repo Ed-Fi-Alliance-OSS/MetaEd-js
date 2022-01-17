@@ -1,6 +1,6 @@
-import { isReferentialProperty } from 'metaed-core';
-import { ReferentialProperty, TopLevelEntity, PropertyType, InterchangeItem } from 'metaed-core';
-import { MergedInterchange } from 'metaed-plugin-edfi-xsd';
+import { isReferentialProperty } from '@edfi/metaed-core';
+import { ReferentialProperty, TopLevelEntity, PropertyType, InterchangeItem } from '@edfi/metaed-core';
+import { MergedInterchange } from '@edfi/metaed-plugin-edfi-xsd';
 import { escapeForMarkdownTableContent } from './Shared';
 import { ReferenceUsageInfo } from '../model/ReferenceUsageInfo';
 

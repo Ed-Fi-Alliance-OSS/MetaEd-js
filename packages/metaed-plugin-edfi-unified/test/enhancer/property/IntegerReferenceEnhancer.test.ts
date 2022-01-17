@@ -6,7 +6,7 @@ import {
   newSharedInteger,
   newNamespace,
   NoSharedSimple,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 import {
   IntegerProperty,
@@ -15,7 +15,7 @@ import {
   SharedInteger,
   SharedIntegerProperty,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 import { enhance } from '../../../src/enhancer/property/IntegerReferenceEnhancer';
 

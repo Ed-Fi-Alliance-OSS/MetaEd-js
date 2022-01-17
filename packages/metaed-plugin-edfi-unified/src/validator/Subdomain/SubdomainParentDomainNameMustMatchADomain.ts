@@ -1,5 +1,5 @@
-import { Subdomain, SubdomainSourceMap, MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
-import { getEntityFromNamespaceChain } from 'metaed-core';
+import { Subdomain, SubdomainSourceMap, MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
+import { getEntityFromNamespaceChain } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];

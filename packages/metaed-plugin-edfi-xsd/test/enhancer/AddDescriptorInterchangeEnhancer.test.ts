@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newNamespace, newDescriptor } from 'metaed-core';
-import { MetaEdEnvironment, Namespace, Descriptor } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace, newDescriptor } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace, Descriptor } from '@edfi/metaed-core';
 import { enhance, descriptorInterchangeName } from '../../src/enhancer/AddDescriptorInterchangeEnhancer';
 import { addEdFiXsdEntityRepositoryTo, EdFiXsdEntityRepository } from '../../src/model/EdFiXsdEntityRepository';
 import { edfiXsdRepositoryForNamespace } from '../../src/enhancer/EnhancerHelper';

@@ -1,5 +1,5 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
-import { tableEntities, Table } from 'metaed-plugin-edfi-ods-relational';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { tableEntities, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 
 export interface TableEdfiOdsRecordOwnership {
   /** For ODS/API 3.3+ record level ownership support */

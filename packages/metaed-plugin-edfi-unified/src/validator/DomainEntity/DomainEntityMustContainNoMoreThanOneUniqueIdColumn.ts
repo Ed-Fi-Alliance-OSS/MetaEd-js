@@ -1,4 +1,4 @@
-import { EntityProperty, MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { EntityProperty, MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 
 const hasDuplicateUniqueIds = (properties: EntityProperty[]) =>
   properties.reduce(

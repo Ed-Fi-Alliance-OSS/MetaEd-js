@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
 import { DomainModelDefinition } from './apiModel/DomainModelDefinition';
 import { newDomainModelDefinition } from './apiModel/DomainModelDefinition';
 import { Aggregate } from './domainMetadata/Aggregate';

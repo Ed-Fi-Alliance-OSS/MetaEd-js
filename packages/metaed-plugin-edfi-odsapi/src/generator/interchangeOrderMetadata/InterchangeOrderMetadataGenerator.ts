@@ -10,8 +10,8 @@ import {
   SemVer,
   versionSatisfies,
   PluginEnvironment,
-} from 'metaed-core';
-import { EdFiXsdEntityRepository, MergedInterchange, edfiXsdRepositoryForNamespace } from 'metaed-plugin-edfi-xsd';
+} from '@edfi/metaed-core';
+import { EdFiXsdEntityRepository, MergedInterchange, edfiXsdRepositoryForNamespace } from '@edfi/metaed-plugin-edfi-xsd';
 
 const generatorName = 'edfiOdsApi.InterchangeOrderMetadataGeneratorV2';
 const outputName = 'Interchange Order Metadata';

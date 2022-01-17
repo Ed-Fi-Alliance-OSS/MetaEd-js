@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { EntityProperty, MergeDirective } from 'metaed-core';
-import { isSharedProperty, asReferentialProperty } from 'metaed-core';
+import { EntityProperty, MergeDirective } from '@edfi/metaed-core';
+import { isSharedProperty, asReferentialProperty } from '@edfi/metaed-core';
 import { addColumns, addForeignKey, newTable, newTableExistenceReason } from '../../model/database/Table';
 import { joinTableNamer } from './TableNaming';
 import { ColumnTransform, ColumnTransformPrimaryKey, ColumnTransformUnchanged } from '../../model/database/ColumnTransform';

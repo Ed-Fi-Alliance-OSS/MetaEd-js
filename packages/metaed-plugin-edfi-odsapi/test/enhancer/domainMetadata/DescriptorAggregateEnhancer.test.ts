@@ -1,7 +1,7 @@
-import { newMetaEdEnvironment, newDescriptor, newNamespace, normalizeEnumerationSuffix } from 'metaed-core';
-import { MetaEdEnvironment, Descriptor, Namespace } from 'metaed-core';
-import { newTable, initializeEdFiOdsRelationalEntityRepository, tableEntities } from 'metaed-plugin-edfi-ods-relational';
-import { Table } from 'metaed-plugin-edfi-ods-relational';
+import { newMetaEdEnvironment, newDescriptor, newNamespace, normalizeEnumerationSuffix } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Descriptor, Namespace } from '@edfi/metaed-core';
+import { newTable, initializeEdFiOdsRelationalEntityRepository, tableEntities } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { enhance } from '../../../src/enhancer/domainMetadata/DescriptorAggregateEnhancer';
 import { NamespaceEdfiOdsApi } from '../../../src/model/Namespace';
 import { NoAggregate } from '../../../src/model/domainMetadata/Aggregate';

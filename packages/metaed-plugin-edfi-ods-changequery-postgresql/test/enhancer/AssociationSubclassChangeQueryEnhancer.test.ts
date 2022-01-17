@@ -1,5 +1,5 @@
-import { newAssociationSubclass, PluginEnvironment } from 'metaed-core';
-import { MetaEdEnvironment, AssociationSubclass, Namespace } from 'metaed-core';
+import { newAssociationSubclass, PluginEnvironment } from '@edfi/metaed-core';
+import { MetaEdEnvironment, AssociationSubclass, Namespace } from '@edfi/metaed-core';
 import {
   newTable,
   newColumn,
@@ -8,13 +8,13 @@ import {
   TableNameGroup,
   newTableNameGroup,
   newTableNameComponent,
-} from 'metaed-plugin-edfi-ods-relational';
+} from '@edfi/metaed-plugin-edfi-ods-relational';
 import {
   addEdFiOdsChangeQueryEntityRepositoryTo,
   deleteTrackingTableEntities,
   deleteTrackingTriggerEntities,
   pluginEnvironment,
-} from 'metaed-plugin-edfi-ods-changequery';
+} from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { enhance } from '../../src/enhancer/AssociationSubclassChangeQueryEnhancer';
 import { metaEdEnvironmentForApiVersion, newCoreNamespace, newExtensionNamespace } from './TestHelper';
 import { PLUGIN_NAME } from '../../src/PluginHelper';

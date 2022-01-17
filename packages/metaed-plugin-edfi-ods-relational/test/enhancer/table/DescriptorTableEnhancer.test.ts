@@ -6,8 +6,8 @@ import {
   newMapTypeEnumeration,
   newMetaEdEnvironment,
   newNamespace,
-} from 'metaed-core';
-import { MetaEdEnvironment, Descriptor, IntegerProperty, MapTypeEnumeration, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, Descriptor, IntegerProperty, MapTypeEnumeration, Namespace } from '@edfi/metaed-core';
 import { tableEntities } from '../../../src/enhancer/EnhancerHelper';
 import { enhance } from '../../../src/enhancer/table/DescriptorTableEnhancer';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../../src/model/EdFiOdsRelationalEntityRepository';

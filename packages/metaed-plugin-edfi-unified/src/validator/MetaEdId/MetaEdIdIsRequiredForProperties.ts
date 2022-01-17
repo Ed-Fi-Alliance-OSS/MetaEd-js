@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
-import { getAllProperties } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
+import { getAllProperties } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];

@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { generate } from '../../src/generator/domainMetadata/DomainMetadataGenerator';
 import { Aggregate } from '../../src/model/domainMetadata/Aggregate';
 

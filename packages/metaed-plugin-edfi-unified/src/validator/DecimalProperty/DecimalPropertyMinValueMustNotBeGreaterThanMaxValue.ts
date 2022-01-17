@@ -1,5 +1,5 @@
-import { DecimalProperty, MetaEdEnvironment, ValidationFailure, DecimalPropertySourceMap } from 'metaed-core';
-import { asDecimalProperty } from 'metaed-core';
+import { DecimalProperty, MetaEdEnvironment, ValidationFailure, DecimalPropertySourceMap } from '@edfi/metaed-core';
+import { asDecimalProperty } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];

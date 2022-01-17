@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, Namespace, GeneratorResult } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace, GeneratorResult } from '@edfi/metaed-core';
 import { newEducationOrganizationReference } from '../../src/model/educationOrganizationReferenceMetadata/EducationOrganizationReference';
 import { EducationOrganizationReference } from '../../src/model/educationOrganizationReferenceMetadata/EducationOrganizationReference';
 import { generate } from '../../src/generator/educationOrganizationReferenceMetadata/EducationOrganizationReferenceMetadataGenerator';

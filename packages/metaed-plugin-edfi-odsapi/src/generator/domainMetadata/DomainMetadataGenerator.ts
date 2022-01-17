@@ -1,5 +1,5 @@
 import R from 'ramda';
-import { MetaEdEnvironment, Namespace, GeneratorResult, GeneratedOutput } from 'metaed-core';
+import { MetaEdEnvironment, Namespace, GeneratorResult, GeneratedOutput } from '@edfi/metaed-core';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 import { Aggregate } from '../../model/domainMetadata/Aggregate';
 import { registerPartials, template } from './DomainMetadataGeneratorBase';

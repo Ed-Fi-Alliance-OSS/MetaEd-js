@@ -5,8 +5,8 @@ import {
   AssociationSubclassBuilder,
   DomainEntityBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/AssociationProperty/AssociationPropertyMustMatchAnAssociation';
 
 describe('when association property has identifier of association', (): void => {

@@ -1,4 +1,4 @@
-import { EntityProperty } from 'metaed-core';
+import { EntityProperty } from '@edfi/metaed-core';
 import { TableNameGroup, newTableNameComponent, newTableNameGroup, TableNameComponent } from '../../model/database/Table';
 import { TableStrategy } from '../../model/database/TableStrategy';
 import { BuildStrategy } from './BuildStrategy';

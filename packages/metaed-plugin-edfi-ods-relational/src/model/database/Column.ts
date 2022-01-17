@@ -1,7 +1,7 @@
 import deepFreeze from 'deep-freeze';
 import R from 'ramda';
 import winston from 'winston';
-import { EntityProperty, TopLevelEntity } from 'metaed-core';
+import { EntityProperty, TopLevelEntity } from '@edfi/metaed-core';
 import { ColumnType } from './ColumnType';
 import { NoTable, Table } from './Table';
 

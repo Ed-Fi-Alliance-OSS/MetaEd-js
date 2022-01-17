@@ -1,5 +1,5 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace, PluginEnvironment, versionSatisfies } from 'metaed-core';
-import { ForeignKey, Table } from 'metaed-plugin-edfi-ods-relational';
+import { EnhancerResult, MetaEdEnvironment, Namespace, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
+import { ForeignKey, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { AssociationDefinition, AssociationDefinitionCardinality } from '../../model/apiModel/AssociationDefinition';
 import { Aggregate } from '../../model/domainMetadata/Aggregate';
 import { EntityTable } from '../../model/domainMetadata/EntityTable';

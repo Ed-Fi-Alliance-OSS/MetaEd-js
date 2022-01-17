@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newDomainEntity, newDomain, newNamespace, addEntityForNamespace } from 'metaed-core';
-import { Namespace, MetaEdEnvironment } from 'metaed-core';
+import { newMetaEdEnvironment, newDomainEntity, newDomain, newNamespace, addEntityForNamespace } from '@edfi/metaed-core';
+import { Namespace, MetaEdEnvironment } from '@edfi/metaed-core';
 import { addModelBaseEdfiUdmTo } from '../../src/model/ModelBase';
 import { generateMarkdownForDomains } from '../../src/generator/UdmGenerator';
 import { DomainMarkdown } from '../../src/generator/UdmGenerator';

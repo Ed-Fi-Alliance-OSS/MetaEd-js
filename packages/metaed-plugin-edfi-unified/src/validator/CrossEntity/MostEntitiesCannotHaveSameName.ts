@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, EntityRepository, ValidationFailure, Namespace, ModelBase } from 'metaed-core';
+import { MetaEdEnvironment, EntityRepository, ValidationFailure, Namespace, ModelBase } from '@edfi/metaed-core';
 import { generateValidationErrorsForDuplicates } from '../ValidatorShared/ErrorsForDuplicateMetaEdNames';
 
 // Domains, Subdomains, Interchanges, Enumerations and Descriptors don't have standard cross entity naming issues

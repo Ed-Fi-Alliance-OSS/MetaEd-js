@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, Descriptor, SemVer } from 'metaed-core';
-import { versionSatisfies, V3OrGreater, getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Descriptor, SemVer } from '@edfi/metaed-core';
+import { versionSatisfies, V3OrGreater, getAllEntitiesOfType } from '@edfi/metaed-core';
 import { newAnnotation } from '../../model/schema/Annotation';
 import { newStringSimpleType } from '../../model/schema/StringSimpleType';
 import { StringSimpleType } from '../../model/schema/StringSimpleType';

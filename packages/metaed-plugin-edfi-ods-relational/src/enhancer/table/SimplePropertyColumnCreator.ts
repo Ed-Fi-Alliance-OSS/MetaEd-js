@@ -1,4 +1,4 @@
-import { EntityProperty, DecimalProperty, StringProperty, SimpleProperty } from 'metaed-core';
+import { EntityProperty, DecimalProperty, StringProperty, SimpleProperty } from '@edfi/metaed-core';
 import {
   initializeColumn,
   newColumn,

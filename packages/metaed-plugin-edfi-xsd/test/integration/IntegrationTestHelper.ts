@@ -1,7 +1,7 @@
 import { DOMParser } from 'xmldom';
 import xpath from 'xpath';
-import { MetaEdEnvironment, GeneratedOutput, Namespace } from 'metaed-core';
-import { initialize as initializeUnifiedPlugin } from 'metaed-plugin-edfi-unified';
+import { MetaEdEnvironment, GeneratedOutput, Namespace } from '@edfi/metaed-core';
+import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
 import { initialize as initializeXsdPlugin } from '../../index';
 import { generate } from '../../src/generator/XsdGenerator';
 import { generate as generateInterchange } from '../../src/generator/InterchangeGenerator';

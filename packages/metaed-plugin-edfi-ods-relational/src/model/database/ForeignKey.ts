@@ -1,7 +1,7 @@
 import R from 'ramda';
 import winston from 'winston';
-import { orderByProp, asCommonProperty, NoNamespace, DomainEntityProperty, AssociationProperty } from 'metaed-core';
-import { EntityProperty, PropertyType, Namespace } from 'metaed-core';
+import { orderByProp, asCommonProperty, NoNamespace, DomainEntityProperty, AssociationProperty } from '@edfi/metaed-core';
+import { EntityProperty, PropertyType, Namespace } from '@edfi/metaed-core';
 import { ReferencePropertyEdfiOds } from '../property/ReferenceProperty';
 import { NoTable, getPrimaryKeys, getColumn } from './Table';
 import { ColumnPair, newColumnPair } from './ColumnPair';

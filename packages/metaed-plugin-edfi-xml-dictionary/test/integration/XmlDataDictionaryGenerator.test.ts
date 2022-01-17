@@ -1,13 +1,13 @@
-import { MetaEdEnvironment, GeneratorResult, SemVer } from 'metaed-core';
+import { MetaEdEnvironment, GeneratorResult, SemVer } from '@edfi/metaed-core';
 import {
   newMetaEdEnvironment,
   MetaEdTextBuilder,
   NamespaceBuilder,
   DomainEntityBuilder,
   EnumerationBuilder,
-} from 'metaed-core';
-import { initialize as initializeXsdPlugin } from 'metaed-plugin-edfi-xsd';
-import { initialize as initializeUnifiedPlugin } from 'metaed-plugin-edfi-unified';
+} from '@edfi/metaed-core';
+import { initialize as initializeXsdPlugin } from '@edfi/metaed-plugin-edfi-xsd';
+import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
 import { generate } from '../../src/generator/XmlDataDictionaryGenerator';
 import { readWorkbook } from '../../src/model/Workbook';
 import { Workbook } from '../../src/model/Workbook';

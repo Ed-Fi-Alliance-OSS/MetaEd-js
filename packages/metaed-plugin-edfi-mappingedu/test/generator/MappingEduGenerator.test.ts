@@ -1,5 +1,5 @@
-import { GeneratorResult, MetaEdEnvironment, Namespace } from 'metaed-core';
-import { newNamespace, newMetaEdEnvironment } from 'metaed-core';
+import { GeneratorResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { newNamespace, newMetaEdEnvironment } from '@edfi/metaed-core';
 import { addEdFiMappingEduRepositoryTo } from '../../src/model/EdFiMappingEduRepository';
 import { generate } from '../../src/generator/MappingEduGenerator';
 

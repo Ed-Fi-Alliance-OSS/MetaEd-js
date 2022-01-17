@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { MetaEdEnvironment, DomainEntity, EnhancerResult, IntegerType, Namespace } from 'metaed-core';
-import { newDomainEntity, newIntegerType, newMetaEdEnvironment, newNamespace } from 'metaed-core';
+import { MetaEdEnvironment, DomainEntity, EnhancerResult, IntegerType, Namespace } from '@edfi/metaed-core';
+import { newDomainEntity, newIntegerType, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import { newComplexType } from '../../src/model/schema/ComplexType';
 import { newElement } from '../../src/model/schema/Element';
 import { enhance } from '../../src/diminisher/ModifyAppropriateSexOnInterventionStudyToBeMaxOccursTwoDiminisher';

@@ -1,5 +1,5 @@
 // 2.x - METAED-695 - ODS-1177
-import { asTopLevelEntity, getAllTopLevelEntitiesForNamespaces, versionSatisfies, V2Only } from 'metaed-core';
+import { asTopLevelEntity, getAllTopLevelEntitiesForNamespaces, versionSatisfies, V2Only } from '@edfi/metaed-core';
 import {
   EntityProperty,
   MetaEdEnvironment,
@@ -8,7 +8,7 @@ import {
   ValidationFailure,
   SemVer,
   PluginEnvironment,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { collectSingleEntity, propertyCollector } from '../ValidatorShared/PropertyCollector';
 
 type PropertyCollectorArray = {

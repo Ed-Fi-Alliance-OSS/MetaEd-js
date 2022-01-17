@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { newMetaEdEnvironment, newNamespace, newEnumerationProperty, newEnumeration } from 'metaed-core';
-import { MetaEdEnvironment, EnumerationProperty, Enumeration, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace, newEnumerationProperty, newEnumeration } from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnumerationProperty, Enumeration, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/property/EnumerationReferenceEnhancer';
 
 describe('when enhancing enumeration property', (): void => {

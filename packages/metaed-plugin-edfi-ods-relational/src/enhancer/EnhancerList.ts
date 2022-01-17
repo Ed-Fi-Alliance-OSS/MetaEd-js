@@ -1,4 +1,4 @@
-import { Enhancer } from 'metaed-core';
+import { Enhancer } from '@edfi/metaed-core';
 
 import { enhance as descriptor } from '../model/Descriptor';
 import { enhance as edFiOdsEntityRepository } from '../model/EdFiOdsRelationalEntityRepository';

@@ -5,7 +5,7 @@ import {
   MapTypeEnumeration,
   SchoolYearEnumeration,
   getAllEntitiesOfType,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { EnumerationSimpleType, NoEnumerationSimpleType } from './schema/EnumerationSimpleType';
 
 export interface EnumerationBaseEdfiXsd {

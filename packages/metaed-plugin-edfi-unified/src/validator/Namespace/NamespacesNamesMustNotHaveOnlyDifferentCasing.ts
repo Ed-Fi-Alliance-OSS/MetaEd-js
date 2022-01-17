@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 
 const differOnlyInCaseFunction = (name: string, index: number, array: string[]) => {
   const found: string | undefined = array.find(

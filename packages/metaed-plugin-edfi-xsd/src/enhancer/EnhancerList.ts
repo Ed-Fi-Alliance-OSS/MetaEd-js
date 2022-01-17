@@ -1,4 +1,4 @@
-import { Enhancer } from 'metaed-core';
+import { Enhancer } from '@edfi/metaed-core';
 
 import { enhance as edFiXsdEntityRepositorySetupEnhancer } from '../model/EdFiXsdEntityRepository';
 import { enhance as choicePropertySetupEnhancer } from '../model/property/ChoiceProperty';

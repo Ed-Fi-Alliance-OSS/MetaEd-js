@@ -9,8 +9,8 @@ import {
   newNamespace,
   newIntegerProperty,
   IntegerProperty,
-} from 'metaed-core';
-import { DomainEntityProperty, MetaEdEnvironment, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { DomainEntityProperty, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/MergeDirectiveEnhancer';
 
 describe('when enhancing top level entity with no merge directives', (): void => {

@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { orderByProp } from 'metaed-core';
-import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from 'metaed-core';
+import { orderByProp } from '@edfi/metaed-core';
+import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from '@edfi/metaed-core';
 
 import { edfiHandbookRepositoryForNamespace } from '../enhancer/EnhancerHelper';
 import { createRow, newRow, setRow } from '../model/Row';

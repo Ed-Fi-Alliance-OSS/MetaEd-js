@@ -6,7 +6,7 @@ import {
   asChoiceProperty,
   asReferentialProperty,
   NoInterchangeItem,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   ChoiceProperty,
   EnhancerResult,
@@ -17,9 +17,9 @@ import {
   Namespace,
   ReferentialProperty,
   TopLevelEntity,
-} from 'metaed-core';
-import { EdFiXsdEntityRepository, MergedInterchange } from 'metaed-plugin-edfi-xsd';
-import { edfiXsdRepositoryForNamespace } from 'metaed-plugin-edfi-xsd';
+} from '@edfi/metaed-core';
+import { EdFiXsdEntityRepository, MergedInterchange } from '@edfi/metaed-plugin-edfi-xsd';
+import { edfiXsdRepositoryForNamespace } from '@edfi/metaed-plugin-edfi-xsd';
 import graphlib, { Graph } from '@dagrejs/graphlib';
 
 winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });

@@ -4,8 +4,8 @@ import R from 'ramda';
 import fs from 'fs';
 import handlebars from 'handlebars';
 
-import { MetaEdEnvironment, GeneratorResult, GeneratedOutput, ModelBase } from 'metaed-core';
-import { getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, GeneratorResult, GeneratedOutput, ModelBase } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 
 // Handlebars instance scoped for this plugin
 export const markdownHandlebars = handlebars.create();

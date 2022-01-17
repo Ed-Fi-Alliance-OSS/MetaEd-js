@@ -1,4 +1,4 @@
-import { MetaEdPlugin } from 'metaed-core';
+import { MetaEdPlugin } from '@edfi/metaed-core';
 
 import { enhance as EdFiMappingEDURepositorySetupEnhancer } from './model/EdFiMappingEduRepository';
 import { enhance as XsdElementGroupEnhancer } from './enhancer/XsdElementGroupEnhancer';

@@ -1,5 +1,5 @@
-import { newSchoolYearEnumerationProperty, EntityProperty, newBooleanProperty } from 'metaed-core';
-import { SchoolYearEnumerationProperty } from 'metaed-core';
+import { newSchoolYearEnumerationProperty, EntityProperty, newBooleanProperty } from '@edfi/metaed-core';
+import { SchoolYearEnumerationProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { Column } from '../../../src/model/database/Column';

@@ -8,8 +8,8 @@ import {
   newDescriptor,
   newDomainEntity,
   newNamespace,
-} from 'metaed-core';
-import { MetaEdEnvironment, Association, Choice, Common, Descriptor, DomainEntity, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, Association, Choice, Common, Descriptor, DomainEntity, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/AddChoicePropertiesEnhancer';
 
 describe('when enhancing association with choice', (): void => {

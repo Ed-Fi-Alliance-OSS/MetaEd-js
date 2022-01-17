@@ -1,5 +1,5 @@
-import { EnhancerResult, MetaEdEnvironment, SharedDecimalProperty, DecimalType, SharedDecimal } from 'metaed-core';
-import { getEntityFromNamespaceChain } from 'metaed-core';
+import { EnhancerResult, MetaEdEnvironment, SharedDecimalProperty, DecimalType, SharedDecimal } from '@edfi/metaed-core';
+import { getEntityFromNamespaceChain } from '@edfi/metaed-core';
 
 const enhancerName = 'DecimalReferenceEnhancer';
 

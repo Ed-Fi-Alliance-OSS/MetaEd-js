@@ -1,11 +1,11 @@
 {
-  "name": "metaed-plugin-edfi-xsd",
+  "name": "@edfi/metaed-plugin-edfi-xsd",
   "main": "dist/index.js",
   "version": "3.0.0-dev.3",
   "description": "Ed-Fi XSD plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
-    "registry": "https://www.myget.org/F/ed-fi/npm/"
+    "@edfi:registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/"
   },
   "files": [
     "/dist",
@@ -17,19 +17,19 @@
     "pluginType": "artifact-specific",
     "shortName": "edfiXsd",
     "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "2.x",
+    "metaEdVersion": "3.x",
     "technologyVersion": "*",
     "dependencies": [
-      "metaed-plugin-edfi-unified-advanced"
+      "@edfi/metaed-plugin-edfi-unified-advanced"
     ]
   },
   "dependencies": {
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.7.7",
     "js-beautify": "^1.14.0",
-    "metaed-core": "3.0.0-dev.3",
-    "metaed-plugin-edfi-unified": "3.0.0-dev.3",
-    "metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3",
+    "@edfi/metaed-core": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-unified": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3",
     "ramda": "^0.27.1",
     "semver": "^5.7.1",
     "sugar": "^2.0.6",
@@ -37,10 +37,10 @@
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "ed-fi-model-2.0": "2.0.2",
-    "ed-fi-model-3.0": "2.0.3",
-    "ed-fi-model-3.1": "2.0.3",
-    "ed-fi-model-3.2a": "2.0.1",
+    "@edfi/ed-fi-model-2.0": "2.0.2",
+    "@edfi/ed-fi-model-3.0": "2.0.3",
+    "@edfi/ed-fi-model-3.1": "2.0.3",
+    "@edfi/ed-fi-model-3.2a": "2.0.1",
     "final-fs": "^1.6.1",
     "xmldom": "^0.1.31",
     "xpath": "^0.0.32"

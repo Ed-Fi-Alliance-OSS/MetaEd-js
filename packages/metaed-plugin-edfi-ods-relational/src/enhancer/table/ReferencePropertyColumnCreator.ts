@@ -1,5 +1,5 @@
-import { EntityProperty, ReferentialProperty } from 'metaed-core';
-import { asReferentialProperty } from 'metaed-core';
+import { EntityProperty, ReferentialProperty } from '@edfi/metaed-core';
+import { asReferentialProperty } from '@edfi/metaed-core';
 import { collectPrimaryKeys } from './PrimaryKeyCollector';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';

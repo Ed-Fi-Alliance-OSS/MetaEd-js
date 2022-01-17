@@ -1,5 +1,5 @@
-import { getAllTopLevelEntitiesForNamespaces, normalizeEnumerationSuffix } from 'metaed-core';
-import { EnhancerResult, MetaEdEnvironment, ModelBase } from 'metaed-core';
+import { getAllTopLevelEntitiesForNamespaces, normalizeEnumerationSuffix } from '@edfi/metaed-core';
+import { EnhancerResult, MetaEdEnvironment, ModelBase } from '@edfi/metaed-core';
 import { DescriptorEdfiOds } from '../model/Descriptor';
 
 const enhancerName = 'OdsTableIdEnhancer';

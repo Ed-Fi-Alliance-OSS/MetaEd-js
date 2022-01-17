@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, ValidationFailure, CommonProperty } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, CommonProperty } from '@edfi/metaed-core';
 
 function hasIdentity(commonProperty: CommonProperty): boolean {
   return (

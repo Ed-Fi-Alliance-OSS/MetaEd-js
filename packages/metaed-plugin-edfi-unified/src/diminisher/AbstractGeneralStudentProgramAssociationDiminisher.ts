@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { MetaEdEnvironment, EnhancerResult, Association, ModelBase, Namespace } from 'metaed-core';
-import { versionSatisfies, V3OrGreater, getEntitiesOfType, asAssociation } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Association, ModelBase, Namespace } from '@edfi/metaed-core';
+import { versionSatisfies, V3OrGreater, getEntitiesOfType, asAssociation } from '@edfi/metaed-core';
 
 // METAED-769
 // Forces GeneralStudentProgramAssociation to be abstract

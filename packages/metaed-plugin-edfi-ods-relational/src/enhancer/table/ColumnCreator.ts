@@ -1,4 +1,4 @@
-import { EntityProperty } from 'metaed-core';
+import { EntityProperty } from '@edfi/metaed-core';
 import { Column } from '../../model/database/Column';
 import { BuildStrategy } from './BuildStrategy';
 

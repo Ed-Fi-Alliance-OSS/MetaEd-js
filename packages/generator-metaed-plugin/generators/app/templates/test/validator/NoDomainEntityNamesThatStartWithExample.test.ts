@@ -7,7 +7,7 @@ import {
   MetaEdEnvironment,
   ValidationFailure,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { validate } from '../../src/validator/NoDomainEntityNamesThatStartWithExample';
 
 // Unit test using MetaEdTextBuilder - multiple namespaces and data standard 3.0

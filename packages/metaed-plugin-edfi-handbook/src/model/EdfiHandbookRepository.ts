@@ -1,5 +1,5 @@
-import { newPluginEnvironment } from 'metaed-core';
-import { MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
+import { newPluginEnvironment } from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
 import { HandbookEntry } from './HandbookEntry';
 
 export interface EdfiHandbookRepository {

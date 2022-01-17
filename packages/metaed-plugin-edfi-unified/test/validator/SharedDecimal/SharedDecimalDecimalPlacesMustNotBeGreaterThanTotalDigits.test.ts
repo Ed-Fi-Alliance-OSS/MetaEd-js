@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, MetaEdTextBuilder, SharedDecimalBuilder, NamespaceBuilder } from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, SharedDecimalBuilder, NamespaceBuilder } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/SharedDecimal/SharedDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits';
 
 describe('when validating shared decimal with total digits greater than decimal places', (): void => {

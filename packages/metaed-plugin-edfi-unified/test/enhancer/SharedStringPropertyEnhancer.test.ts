@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { addProperty, newMetaEdEnvironment, newSharedString, newSharedStringProperty } from 'metaed-core';
-import { MetaEdEnvironment } from 'metaed-core';
+import { addProperty, newMetaEdEnvironment, newSharedString, newSharedStringProperty } from '@edfi/metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/SharedStringPropertyEnhancer';
 
 describe('when shared string property refers to a shared string', (): void => {

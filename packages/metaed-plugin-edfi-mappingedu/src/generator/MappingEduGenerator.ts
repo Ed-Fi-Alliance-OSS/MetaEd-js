@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from '@edfi/metaed-core';
 import { Workbook } from '../model/sheet/Workbook';
 import { Row } from '../model/sheet/Row';
 import { Worksheet } from '../model/sheet/Worksheet';

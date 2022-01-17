@@ -1,9 +1,9 @@
-import { MetaEdEnvironment, EnhancerResult } from 'metaed-core';
-import { Table } from 'metaed-plugin-edfi-ods-relational';
+import { MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
+import { Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import {
   AddColumnChangeVersionForTable,
   performAddColumnChangeVersionForTableEnhancement,
-} from 'metaed-plugin-edfi-ods-changequery';
+} from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { PLUGIN_NAME } from '../PluginHelper';
 import { versionSatisfiesForPostgresChangeQuerySupport } from './EnhancerHelper';
 

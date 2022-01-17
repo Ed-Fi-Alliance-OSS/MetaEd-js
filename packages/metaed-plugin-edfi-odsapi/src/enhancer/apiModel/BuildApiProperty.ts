@@ -1,4 +1,4 @@
-import { Column, DecimalColumn, StringColumn } from 'metaed-plugin-edfi-ods-relational';
+import { Column, DecimalColumn, StringColumn } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { ApiProperty } from '../../model/apiModel/ApiProperty';
 import { ApiPropertyType } from '../../model/apiModel/ApiPropertyType';
 import { DbType } from '../../model/apiModel/DbType';

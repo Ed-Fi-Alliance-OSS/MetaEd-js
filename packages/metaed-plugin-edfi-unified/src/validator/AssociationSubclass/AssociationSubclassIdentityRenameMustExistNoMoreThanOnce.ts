@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { failSubclassIdentityRenamingMoreThanOnce } from '../ValidatorShared/FailSubclassIdentityRenamingMoreThanOnce';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {

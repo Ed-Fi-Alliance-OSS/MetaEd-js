@@ -1,5 +1,5 @@
-import { ModelBase, ValidationFailure } from 'metaed-core';
-import { asTopLevelEntity } from 'metaed-core';
+import { ModelBase, ValidationFailure } from '@edfi/metaed-core';
+import { asTopLevelEntity } from '@edfi/metaed-core';
 import { groupByMetaEdName } from '../../shared/GroupByMetaEdName';
 
 export function generateValidationErrorsForDuplicates(

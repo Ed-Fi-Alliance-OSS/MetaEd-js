@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { DomainEntity, Common, MetaEdEnvironment, Namespace } from 'metaed-core';
-import { newDomainEntity, newCommon, getEntityFromNamespace, newMetaEdEnvironment, newNamespace } from 'metaed-core';
+import { DomainEntity, Common, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { newDomainEntity, newCommon, getEntityFromNamespace, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import { ComplexType } from '../../src/model/schema/ComplexType';
 import { ElementGroup } from '../../src/model/schema/ElementGroup';
 import { enhance } from '../../src/diminisher/ModifyEducationContentLearningResourceToInlineSequenceDiminisher';

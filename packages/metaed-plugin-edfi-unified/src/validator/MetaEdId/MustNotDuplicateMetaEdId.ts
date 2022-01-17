@@ -9,8 +9,8 @@ import {
   ValidationFailure,
   TopLevelEntity,
   Namespace,
-} from 'metaed-core';
-import { getAllEntitiesNoSimpleTypesForNamespaces, getAllPropertiesForNamespaces } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { getAllEntitiesNoSimpleTypesForNamespaces, getAllPropertiesForNamespaces } from '@edfi/metaed-core';
 
 function getDomainItems(entity: EntityRepository): DomainItem[] {
   const result: DomainItem[] = [];

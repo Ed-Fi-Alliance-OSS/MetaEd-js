@@ -11,7 +11,7 @@ import {
   IntegerProperty,
   MetaEdEnvironment,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../src/model/EdFiOdsRelationalEntityRepository';
 import { newTable, Table } from '../../src/model/database/Table';
 import { newColumn, Column } from '../../src/model/database/Column';

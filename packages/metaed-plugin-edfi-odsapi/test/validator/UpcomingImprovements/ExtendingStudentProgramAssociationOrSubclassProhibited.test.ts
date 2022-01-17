@@ -6,8 +6,8 @@ import {
   AssociationExtensionBuilder,
   NamespaceBuilder,
   newPluginEnvironment,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/UpcomingImprovements/ExtendingStudentProgramAssociationOrSubclassProhibited';
 
 describe('when an association extension extends a non-student program association', (): void => {

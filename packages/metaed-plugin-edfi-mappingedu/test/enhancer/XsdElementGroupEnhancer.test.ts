@@ -1,5 +1,5 @@
-import { Namespace, MetaEdEnvironment } from 'metaed-core';
-import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
+import { Namespace, MetaEdEnvironment } from '@edfi/metaed-core';
+import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import {
   newComplexType,
   newSchemaContainer,
@@ -16,8 +16,8 @@ import {
   typeGroupIdentity,
   typeGroupLookup,
   typeGroupSimple,
-} from 'metaed-plugin-edfi-xsd';
-import { ComplexType, SimpleType } from 'metaed-plugin-edfi-xsd';
+} from '@edfi/metaed-plugin-edfi-xsd';
+import { ComplexType, SimpleType } from '@edfi/metaed-plugin-edfi-xsd';
 import { dataStandardNamespaceName, pluginEnvironmentRepositoryForNamespace } from '../../src/enhancer/EnhancerHelper';
 import { enhance } from '../../src/enhancer/XsdElementGroupEnhancer';
 import { addEdFiMappingEduRepositoryTo } from '../../src/model/EdFiMappingEduRepository';

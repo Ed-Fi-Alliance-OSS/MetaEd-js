@@ -4,8 +4,8 @@ import {
   NamespaceBuilder,
   AssociationBuilder,
   AssociationExtensionBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/AbstractEntity/AbstractGeneralStudentProgramAssociationMustNotBeExtended';
 
 describe('when validating association additions', (): void => {

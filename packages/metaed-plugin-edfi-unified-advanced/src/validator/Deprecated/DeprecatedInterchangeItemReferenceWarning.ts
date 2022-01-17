@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, ValidationFailure, Interchange, InterchangeItem, InterchangeExtension } from 'metaed-core';
-import { getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, Interchange, InterchangeItem, InterchangeExtension } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 
 function addFailure(
   interchange: Interchange | InterchangeExtension,

@@ -1,6 +1,6 @@
-import { getAllEntitiesOfType, asAssociation } from 'metaed-core';
-import { MetaEdEnvironment, ModelBase, EnhancerResult, Association } from 'metaed-core';
-import { Table, TopLevelEntityEdfiOds } from 'metaed-plugin-edfi-ods-relational';
+import { getAllEntitiesOfType, asAssociation } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ModelBase, EnhancerResult, Association } from '@edfi/metaed-core';
+import { Table, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { enhanceSingleEntity } from './AggregateEnhancerBase';
 import { EntityTable } from '../../model/domainMetadata/EntityTable';
 

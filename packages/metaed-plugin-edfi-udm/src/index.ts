@@ -1,4 +1,4 @@
-import { MetaEdPlugin } from 'metaed-core';
+import { MetaEdPlugin } from '@edfi/metaed-core';
 import { enhance as modelBaseSetup } from './model/ModelBase';
 import { generate as udmGenerator } from './generator/UdmGenerator';
 

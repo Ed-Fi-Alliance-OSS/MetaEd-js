@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, EnhancerResult, DescriptorProperty } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, DescriptorProperty } from '@edfi/metaed-core';
 import { EntityPropertyEdfiXsd } from './EntityProperty';
 
 export type DescriptorPropertyEdfiXsd = EntityPropertyEdfiXsd & {

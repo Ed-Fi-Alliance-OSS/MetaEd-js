@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
-import { getEntitiesOfTypeForNamespaces } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
+import { getEntitiesOfTypeForNamespaces } from '@edfi/metaed-core';
 import { generateValidationErrorsForDuplicates } from '../ValidatorShared/ErrorsForDuplicateMetaEdNames';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {

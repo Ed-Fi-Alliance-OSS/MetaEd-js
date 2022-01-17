@@ -14,7 +14,6 @@ jobs:
         with:
           node-version: '16'
           check-latest: true
-          registry-url: 'https://www.myget.org/F/ed-fi/npm/'
 
       - name: Install
         run: yarn install

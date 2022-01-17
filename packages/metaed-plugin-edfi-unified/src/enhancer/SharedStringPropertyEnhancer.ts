@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult } from 'metaed-core';
-import { asStringType, NoSharedSimple } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
+import { asStringType, NoSharedSimple } from '@edfi/metaed-core';
 
 const enhancerName = 'SharedStringPropertyEnhancer';
 

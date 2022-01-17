@@ -1,11 +1,11 @@
-import { newMetaEdEnvironment, newNamespace, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import {
   initializeEdFiOdsRelationalEntityRepository,
   newTable,
   Table,
   tableEntities,
   newColumn,
-} from 'metaed-plugin-edfi-ods-relational';
+} from '@edfi/metaed-plugin-edfi-ods-relational';
 import { enhance } from '../../src/diminisher/ModifyColumnDateTimeDiminisher';
 
 describe('when ModifyColumnDateTimeDiminisher diminishes data types for matching table', (): void => {

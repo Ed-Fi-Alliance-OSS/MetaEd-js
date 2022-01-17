@@ -1,7 +1,7 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace, PluginEnvironment, SemVer } from 'metaed-core';
-import { versionSatisfies } from 'metaed-core';
-import { Table } from 'metaed-plugin-edfi-ods-relational';
-import { tableEntities } from 'metaed-plugin-edfi-ods-relational';
+import { EnhancerResult, MetaEdEnvironment, Namespace, PluginEnvironment, SemVer } from '@edfi/metaed-core';
+import { versionSatisfies } from '@edfi/metaed-core';
+import { Table } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { tableEntities } from '@edfi/metaed-plugin-edfi-ods-relational';
 import R from 'ramda';
 import { EntityDefinition } from '../../model/apiModel/EntityDefinition';
 import { newEntityDefinition } from '../../model/apiModel/EntityDefinition';

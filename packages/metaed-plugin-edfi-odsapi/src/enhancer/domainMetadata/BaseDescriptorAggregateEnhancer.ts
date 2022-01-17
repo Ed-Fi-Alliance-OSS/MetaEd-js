@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, Namespace, EnhancerResult } from 'metaed-core';
+import { MetaEdEnvironment, Namespace, EnhancerResult } from '@edfi/metaed-core';
 import { Aggregate } from '../../model/domainMetadata/Aggregate';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 

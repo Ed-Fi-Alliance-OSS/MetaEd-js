@@ -1,5 +1,5 @@
-import { GeneratorResult, MetaEdEnvironment } from 'metaed-core';
-import { performCreateTrackedDeleteTablesGeneration } from 'metaed-plugin-edfi-ods-changequery';
+import { GeneratorResult, MetaEdEnvironment } from '@edfi/metaed-core';
+import { performCreateTrackedDeleteTablesGeneration } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { template, databaseSpecificFolderName } from './ChangeQueryGeneratorBase';
 import { PLUGIN_NAME } from '../PluginHelper';
 

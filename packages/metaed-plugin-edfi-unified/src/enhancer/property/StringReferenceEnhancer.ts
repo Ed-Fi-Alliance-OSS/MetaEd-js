@@ -1,5 +1,5 @@
-import { EnhancerResult, MetaEdEnvironment, SharedStringProperty, StringType, SharedString } from 'metaed-core';
-import { getEntityFromNamespaceChain } from 'metaed-core';
+import { EnhancerResult, MetaEdEnvironment, SharedStringProperty, StringType, SharedString } from '@edfi/metaed-core';
+import { getEntityFromNamespaceChain } from '@edfi/metaed-core';
 
 const enhancerName = 'StringReferenceEnhancer';
 

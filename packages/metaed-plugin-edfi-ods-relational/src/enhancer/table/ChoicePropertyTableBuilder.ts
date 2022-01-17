@@ -1,5 +1,5 @@
-import { EntityProperty, MergeDirective, ReferentialProperty } from 'metaed-core';
-import { asReferentialProperty } from 'metaed-core';
+import { EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
+import { asReferentialProperty } from '@edfi/metaed-core';
 import { cloneColumn } from '../../model/database/Column';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';

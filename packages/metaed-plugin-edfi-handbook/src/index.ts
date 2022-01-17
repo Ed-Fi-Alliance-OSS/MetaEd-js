@@ -1,4 +1,4 @@
-import { MetaEdPlugin } from 'metaed-core';
+import { MetaEdPlugin } from '@edfi/metaed-core';
 import { enhance as edfiHandbookRepositorySetup } from './model/EdfiHandbookRepository';
 import { enhance as associationEnhancer } from './enhancer/AssociationEnhancer';
 import { enhance as associationSubclassEnhancer } from './enhancer/AssociationSubclassEnhancer';

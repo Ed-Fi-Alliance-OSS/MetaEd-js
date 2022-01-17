@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { EnhancerResult, MetaEdEnvironment, ModelBase } from 'metaed-core';
-import { getAllEntitiesOfType } from 'metaed-core';
+import { EnhancerResult, MetaEdEnvironment, ModelBase } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 import { enumerationRowCreator } from './EnumerationRowCreator';
 import { rowEntities } from './EnhancerHelper';
 import { EnumerationRow } from '../model/database/EnumerationRow';

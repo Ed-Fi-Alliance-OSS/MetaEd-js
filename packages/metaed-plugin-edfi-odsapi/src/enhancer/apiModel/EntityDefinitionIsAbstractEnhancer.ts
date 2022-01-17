@@ -1,6 +1,6 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
-import { asAssociation, asDomainEntity } from 'metaed-core';
-import { Table } from 'metaed-plugin-edfi-ods-relational';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { asAssociation, asDomainEntity } from '@edfi/metaed-core';
+import { Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { EntityDefinition } from '../../model/apiModel/EntityDefinition';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 import { tableFor } from './EnhancerHelper';

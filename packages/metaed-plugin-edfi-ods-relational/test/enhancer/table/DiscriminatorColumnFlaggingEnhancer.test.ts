@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
-import { newMetaEdEnvironment, newNamespace, newDomainEntity, newPluginEnvironment } from 'metaed-core';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { newMetaEdEnvironment, newNamespace, newDomainEntity, newPluginEnvironment } from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/table/DiscriminatorColumnFlaggingEnhancer';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../../src/model/EdFiOdsRelationalEntityRepository';
 import { newTable } from '../../../src/model/database/Table';

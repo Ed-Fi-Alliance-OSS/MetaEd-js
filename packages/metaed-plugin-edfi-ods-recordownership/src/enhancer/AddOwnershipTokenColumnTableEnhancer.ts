@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
-import { tableEntities, Table } from 'metaed-plugin-edfi-ods-relational';
+import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
+import { tableEntities, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { TableEdfiOdsRecordOwnership } from '../model/Table';
 import { recordOwnershipIndicated } from './RecordOwnershipIndicator';
 

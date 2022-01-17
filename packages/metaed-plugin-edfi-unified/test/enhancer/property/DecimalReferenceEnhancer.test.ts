@@ -6,7 +6,7 @@ import {
   newSharedDecimal,
   newNamespace,
   NoSharedSimple,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 import {
   DecimalProperty,
@@ -15,7 +15,7 @@ import {
   SharedDecimal,
   SharedDecimalProperty,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 import { enhance } from '../../../src/enhancer/property/DecimalReferenceEnhancer';
 

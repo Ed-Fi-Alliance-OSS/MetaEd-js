@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newEnumeration, newEnumerationItem, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, Enumeration, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newEnumeration, newEnumerationItem, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Enumeration, Namespace } from '@edfi/metaed-core';
 import { EnumerationSimpleType } from '../../../src/model/schema/EnumerationSimpleType';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';
 import { enhance } from '../../../src/enhancer/schema/AddEnumerationSimpleTypesEnhancer';

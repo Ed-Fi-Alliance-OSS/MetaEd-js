@@ -4,8 +4,8 @@ import {
   newEnumerationItem,
   newMetaEdEnvironment,
   newNamespace,
-} from 'metaed-core';
-import { EnumerationItem, MetaEdEnvironment, SchoolYearEnumeration, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { EnumerationItem, MetaEdEnvironment, SchoolYearEnumeration, Namespace } from '@edfi/metaed-core';
 import { rowEntities } from '../../src/enhancer/EnhancerHelper';
 import { enhance } from '../../src/enhancer/SchoolYearEnumerationRowEnhancer';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../src/model/EdFiOdsRelationalEntityRepository';

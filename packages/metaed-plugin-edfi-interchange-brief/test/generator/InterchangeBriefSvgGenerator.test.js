@@ -2,15 +2,15 @@
  *  Horseman is obsolete anyway, and this plugin is completely disabled in src/index.ts
  *  This file maintains a .js extension to prevent it from being found by the Jest test runner
  * 
-import { newMetaEdEnvironment, newDomainEntity, newInterchangeItem, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
-import { EdFiXsdEntityRepository } from 'metaed-plugin-edfi-xsd';
+import { newMetaEdEnvironment, newDomainEntity, newInterchangeItem, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { EdFiXsdEntityRepository } from '@edfi/metaed-plugin-edfi-xsd';
 import {
   addEdFiXsdEntityRepositoryTo,
   newMergedInterchange,
   MergedInterchange,
   edfiXsdRepositoryForNamespace,
-} from 'metaed-plugin-edfi-xsd';
+} from '@edfi/metaed-plugin-edfi-xsd';
 import { generate as InterchangeBriefSvgGenerator } from '../../src/generator/InterchangeBriefSvgGenerator';
 
 jest.setTimeout(10000);

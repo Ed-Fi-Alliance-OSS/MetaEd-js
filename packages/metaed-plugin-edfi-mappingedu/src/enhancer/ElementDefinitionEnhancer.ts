@@ -1,6 +1,6 @@
-import { MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
-import { ComplexType, ComplexTypeItem, SimpleType, Element, ElementGroup } from 'metaed-plugin-edfi-xsd';
-import { baseTypeDescriptorReference, baseTypeReference, baseTypeTopLevelEntity } from 'metaed-plugin-edfi-xsd';
+import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
+import { ComplexType, ComplexTypeItem, SimpleType, Element, ElementGroup } from '@edfi/metaed-plugin-edfi-xsd';
+import { baseTypeDescriptorReference, baseTypeReference, baseTypeTopLevelEntity } from '@edfi/metaed-plugin-edfi-xsd';
 import { ElementDefinition } from '../model/ElementDefinition';
 import { newElementDefinition } from '../model/ElementDefinition';
 import {

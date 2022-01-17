@@ -1,5 +1,5 @@
-import { addEntityForNamespace, newMetaEdEnvironment, newNamespace, newSchoolYearEnumeration } from 'metaed-core';
-import { MetaEdEnvironment, SchoolYearEnumeration, Namespace } from 'metaed-core';
+import { addEntityForNamespace, newMetaEdEnvironment, newNamespace, newSchoolYearEnumeration } from '@edfi/metaed-core';
+import { MetaEdEnvironment, SchoolYearEnumeration, Namespace } from '@edfi/metaed-core';
 import { tableEntities } from '../../../src/enhancer/EnhancerHelper';
 import { enhance } from '../../../src/enhancer/table/SchoolYearEnumerationTableEnhancer';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../../src/model/EdFiOdsRelationalEntityRepository';

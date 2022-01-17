@@ -1,6 +1,6 @@
 import { String as sugar } from 'sugar';
-import { newNamespace } from 'metaed-core';
-import { Namespace, Interchange, InterchangeItem, MetaEdEnvironment } from 'metaed-core';
+import { newNamespace } from '@edfi/metaed-core';
+import { Namespace, Interchange, InterchangeItem, MetaEdEnvironment } from '@edfi/metaed-core';
 import { unionOfInterchangeItems } from './InterchangeItem';
 import { EdFiXsdEntityRepository } from './EdFiXsdEntityRepository';
 import { edfiXsdRepositoryForNamespace } from '../enhancer/EnhancerHelper';

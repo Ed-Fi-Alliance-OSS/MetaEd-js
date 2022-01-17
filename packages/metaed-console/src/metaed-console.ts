@@ -9,8 +9,8 @@ import {
   newMetaEdConfiguration,
   MetaEdConfiguration,
   findDataStandardVersions,
-} from 'metaed-core';
-import { State, SemVer } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { State, SemVer } from '@edfi/metaed-core';
 
 winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 

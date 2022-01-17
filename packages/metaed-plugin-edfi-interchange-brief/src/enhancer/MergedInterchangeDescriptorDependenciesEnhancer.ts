@@ -1,7 +1,7 @@
 import R from 'ramda';
-import { ReferentialProperty, MetaEdEnvironment, TopLevelEntity, PropertyType, Namespace } from 'metaed-core';
-import { EdFiXsdEntityRepository } from 'metaed-plugin-edfi-xsd';
-import { edfiXsdRepositoryForNamespace } from 'metaed-plugin-edfi-xsd';
+import { ReferentialProperty, MetaEdEnvironment, TopLevelEntity, PropertyType, Namespace } from '@edfi/metaed-core';
+import { EdFiXsdEntityRepository } from '@edfi/metaed-plugin-edfi-xsd';
+import { edfiXsdRepositoryForNamespace } from '@edfi/metaed-plugin-edfi-xsd';
 import { ReferenceUsageInfo } from '../model/ReferenceUsageInfo';
 import { MergedInterchangeEdfiInterchangeBrief } from '../model/MergedInterchange';
 import { addMergedInterchangeEdfiInterchangeBriefTo } from '../model/MergedInterchange';

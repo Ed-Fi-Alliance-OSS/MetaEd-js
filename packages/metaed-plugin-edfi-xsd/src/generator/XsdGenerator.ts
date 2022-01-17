@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, GeneratorResult, GeneratedOutput } from 'metaed-core';
+import { MetaEdEnvironment, GeneratorResult, GeneratedOutput } from '@edfi/metaed-core';
 import { NamespaceEdfiXsd } from '../model/Namespace';
 import { SchemaContainer } from '../model/schema/SchemaContainer';
 import {

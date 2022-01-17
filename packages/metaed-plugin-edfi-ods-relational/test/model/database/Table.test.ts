@@ -1,4 +1,4 @@
-import { newNamespace, Namespace } from 'metaed-core';
+import { newNamespace, Namespace } from '@edfi/metaed-core';
 import {
   addColumn,
   addColumns,

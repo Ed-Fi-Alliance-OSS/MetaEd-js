@@ -2,7 +2,7 @@ import fs from 'fs';
 import handlebars from 'handlebars';
 import path from 'path';
 import R from 'ramda';
-import { Namespace } from 'metaed-core';
+import { Namespace } from '@edfi/metaed-core';
 
 export const odsPath = '/Database/PostgreSQL/ODS/';
 export const dataPath = `${odsPath}Data/`;

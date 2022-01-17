@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, Namespace, SemVer, PluginEnvironment } from 'metaed-core';
-import { versionSatisfies } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Namespace, SemVer, PluginEnvironment } from '@edfi/metaed-core';
+import { versionSatisfies } from '@edfi/metaed-core';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 import { deriveLogicalNameFromProjectName } from '../../model/apiModel/SchemaDefinition';
 

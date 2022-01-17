@@ -1,10 +1,10 @@
 import fs from 'fs';
 import handlebars from 'handlebars';
 import path from 'path';
-import { GeneratedOutput, GeneratorResult, MetaEdEnvironment } from 'metaed-core';
-import { shouldApplyLicenseHeader } from 'metaed-plugin-edfi-ods-relational';
-import { tableEntities, Table } from 'metaed-plugin-edfi-ods-relational';
-import { TableEdfiOdsRecordOwnership, recordOwnershipIndicated } from 'metaed-plugin-edfi-ods-recordownership';
+import { GeneratedOutput, GeneratorResult, MetaEdEnvironment } from '@edfi/metaed-core';
+import { shouldApplyLicenseHeader } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { tableEntities, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { TableEdfiOdsRecordOwnership, recordOwnershipIndicated } from '@edfi/metaed-plugin-edfi-ods-recordownership';
 
 const generatorName = 'edfiOdsRecordOwnershipSqlServer.AddCreatedByOwnershipColumnForTableGenerator';
 

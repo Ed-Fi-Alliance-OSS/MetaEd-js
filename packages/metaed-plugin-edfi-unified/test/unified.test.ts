@@ -1,5 +1,5 @@
 import R from 'ramda';
-import { MetaEdEnvironment } from 'metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
 import {
   AssociationBuilder,
   AssociationExtensionBuilder,
@@ -23,7 +23,7 @@ import {
   StringTypeBuilder,
   MetaEdTextBuilder,
   newMetaEdEnvironment,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { initialize } from '../index';
 
 describe('when building and enhancing domain item', (): void => {

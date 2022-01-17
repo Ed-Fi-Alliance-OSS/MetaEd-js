@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, MetaEdTextBuilder, CommonBuilder, NamespaceBuilder, DomainEntityBuilder } from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, CommonBuilder, NamespaceBuilder, DomainEntityBuilder } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/InlineCommon/InlineCommonExistsOnlyInCoreNamespace';
 
 describe('when validating inline common type exists in core', (): void => {

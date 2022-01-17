@@ -1,5 +1,5 @@
-import { versionSatisfies, V3OrGreater } from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure, AssociationExtension } from 'metaed-core';
+import { versionSatisfies, V3OrGreater } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure, AssociationExtension } from '@edfi/metaed-core';
 
 // METAED-805
 const validatorName = 'AbstractGeneralStudentProgramAssociationMustNotBeExtended';

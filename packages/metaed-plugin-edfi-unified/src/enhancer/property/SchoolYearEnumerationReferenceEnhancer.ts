@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, TopLevelEntity } from 'metaed-core';
-import { getEntityFromNamespaceChain } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, TopLevelEntity } from '@edfi/metaed-core';
+import { getEntityFromNamespaceChain } from '@edfi/metaed-core';
 
 const enhancerName = 'SchoolYearEnumerationReferenceEnhancer';
 

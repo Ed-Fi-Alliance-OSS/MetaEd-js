@@ -1,6 +1,6 @@
-import { MetaEdEnvironment, EnhancerResult, InterchangeItem, Namespace } from 'metaed-core';
-import { EdFiXsdEntityRepository, MergedInterchange } from 'metaed-plugin-edfi-xsd';
-import { edfiXsdRepositoryForNamespace } from 'metaed-plugin-edfi-xsd';
+import { MetaEdEnvironment, EnhancerResult, InterchangeItem, Namespace } from '@edfi/metaed-core';
+import { EdFiXsdEntityRepository, MergedInterchange } from '@edfi/metaed-plugin-edfi-xsd';
+import { edfiXsdRepositoryForNamespace } from '@edfi/metaed-plugin-edfi-xsd';
 
 export interface InterchangeItemEdfiOdsApi extends InterchangeItem {
   globalDependencyOrder: number;

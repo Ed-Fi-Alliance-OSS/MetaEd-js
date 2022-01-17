@@ -1,5 +1,5 @@
 import R from 'ramda';
-import { MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
 import { EdFiXsdEntityRepository } from '../model/EdFiXsdEntityRepository';
 import { MergedInterchange } from '../model/MergedInterchange';
 import { edfiXsdRepositoryForNamespace } from './EnhancerHelper';

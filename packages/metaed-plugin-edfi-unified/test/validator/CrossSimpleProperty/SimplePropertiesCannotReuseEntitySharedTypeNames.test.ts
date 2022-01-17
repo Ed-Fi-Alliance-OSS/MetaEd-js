@@ -6,8 +6,8 @@ import {
   SharedDecimalBuilder,
   SharedIntegerBuilder,
   SharedStringBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/CrossSimpleProperty/SimplePropertiesCannotReuseEntitySharedTypeNames';
 
 describe('when building shared integer with duplicate integer property in core namespace', (): void => {

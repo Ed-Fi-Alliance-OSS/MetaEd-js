@@ -1,5 +1,5 @@
-import { EntityProperty, ModelBase, ModelType, PropertyType, Namespace, TopLevelEntity } from 'metaed-core';
-import { asModelType, getEntityFromNamespaceChain, allEntityModelTypes } from 'metaed-core';
+import { EntityProperty, ModelBase, ModelType, PropertyType, Namespace, TopLevelEntity } from '@edfi/metaed-core';
+import { asModelType, getEntityFromNamespaceChain, allEntityModelTypes } from '@edfi/metaed-core';
 
 const referenceTypes: ModelType[] = [
   'association',

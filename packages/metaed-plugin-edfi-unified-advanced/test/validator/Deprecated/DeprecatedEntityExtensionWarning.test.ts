@@ -7,10 +7,10 @@ import {
   Namespace,
   AssociationExtensionBuilder,
   AssociationBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
-import { associationExtensionBaseClassEnhancer } from 'metaed-plugin-edfi-unified';
-import { domainEntityExtensionBaseClassEnhancer } from 'metaed-plugin-edfi-unified';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
+import { associationExtensionBaseClassEnhancer } from '@edfi/metaed-plugin-edfi-unified';
+import { domainEntityExtensionBaseClassEnhancer } from '@edfi/metaed-plugin-edfi-unified';
 import { validate } from '../../../src/validator/Deprecated/DeprecatedEntityExtensionWarning';
 
 describe('when domain entity is not deprecated', (): void => {

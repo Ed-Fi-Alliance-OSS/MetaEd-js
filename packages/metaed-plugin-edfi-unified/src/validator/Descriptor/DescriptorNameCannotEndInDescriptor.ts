@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, ValidationFailure, DescriptorSourceMap, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, DescriptorSourceMap, Namespace } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];

@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { DomainEntity, MetaEdEnvironment, Namespace } from 'metaed-core';
-import { newDomainEntity, newMetaEdEnvironment, newNamespace } from 'metaed-core';
+import { DomainEntity, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { newDomainEntity, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/diminisher/IdentificationDocumentTableDiminisher';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../src/model/EdFiOdsRelationalEntityRepository';
 import { newForeignKey } from '../../src/model/database/ForeignKey';

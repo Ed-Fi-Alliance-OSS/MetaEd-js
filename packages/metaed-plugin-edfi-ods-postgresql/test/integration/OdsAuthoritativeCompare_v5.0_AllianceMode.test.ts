@@ -21,8 +21,8 @@ import {
   walkBuilders,
   GeneratedOutput,
   GeneratorResult,
-} from 'metaed-core';
-import { Table, tableEntities, rowEntities } from 'metaed-plugin-edfi-ods-relational';
+} from '@edfi/metaed-core';
+import { Table, tableEntities, rowEntities } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { orderRows } from '../../src/enhancer/AddSchemaContainerEnhancer';
 
 jest.unmock('final-fs');

@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { DomainEntity, MetaEdEnvironment, Namespace } from 'metaed-core';
-import { newBooleanProperty, newDomainEntity, newMetaEdEnvironment, newNamespace } from 'metaed-core';
+import { DomainEntity, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { newBooleanProperty, newDomainEntity, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import { newComplexType, NoComplexType } from '../../src/model/schema/ComplexType';
 import { enhance as initializeTopLevelEntities } from '../../src/model/TopLevelEntity';
 import { enhance as addModelBaseEdfiXsd } from '../../src/model/ModelBase';

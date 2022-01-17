@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { MetaEdEnvironment, EnhancerResult, Interchange, InterchangeExtension, InterchangeItem } from 'metaed-core';
-import { getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Interchange, InterchangeExtension, InterchangeItem } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 
 export interface InterchangeItemEdfiXsd {
   xsdName: string;

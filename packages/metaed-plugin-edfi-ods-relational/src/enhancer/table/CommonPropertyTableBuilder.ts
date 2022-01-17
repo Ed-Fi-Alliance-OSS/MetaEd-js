@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { asCommonProperty } from 'metaed-core';
-import { EntityProperty, MergeDirective, ReferentialProperty, Namespace } from 'metaed-core';
+import { asCommonProperty } from '@edfi/metaed-core';
+import { EntityProperty, MergeDirective, ReferentialProperty, Namespace } from '@edfi/metaed-core';
 import {
   TableNameGroup,
   addColumns,

@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import handlebars from 'handlebars';
 
-import { MetaEdEnvironment, GeneratorResult, GeneratedOutput, ModelBase, getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, GeneratorResult, GeneratedOutput, ModelBase, getAllEntitiesOfType } from '@edfi/metaed-core';
 
 // node 8.0+ wrapper to enable async/await on file read
 const readFile = promisify(fs.readFile);

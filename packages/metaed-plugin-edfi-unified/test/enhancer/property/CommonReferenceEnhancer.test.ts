@@ -10,7 +10,7 @@ import {
   CommonProperty,
   Common,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/property/CommonReferenceEnhancer';
 
 describe('when enhancing common property', (): void => {

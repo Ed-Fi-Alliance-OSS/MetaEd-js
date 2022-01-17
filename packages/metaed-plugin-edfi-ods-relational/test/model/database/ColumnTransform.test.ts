@@ -1,4 +1,4 @@
-import { EntityProperty, newBooleanProperty } from 'metaed-core';
+import { EntityProperty, newBooleanProperty } from '@edfi/metaed-core';
 import { newColumn } from '../../../src/model/database/Column';
 import {
   ColumnTransform,

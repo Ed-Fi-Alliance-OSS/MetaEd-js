@@ -1,5 +1,5 @@
-import { EnhancerResult, MetaEdEnvironment, Association, Namespace } from 'metaed-core';
-import { getEntitiesOfTypeForNamespaces } from 'metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Association, Namespace } from '@edfi/metaed-core';
+import { getEntitiesOfTypeForNamespaces } from '@edfi/metaed-core';
 import { createDefaultHandbookEntry } from './TopLevelEntityHandbookEntryCreator';
 import { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 import { edfiHandbookRepositoryForNamespace } from './EnhancerHelper';

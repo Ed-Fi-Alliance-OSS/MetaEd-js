@@ -5,9 +5,9 @@ import {
   DomainEntityBuilder,
   Namespace,
   DomainBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
-import { domainBaseEntityEnhancer } from 'metaed-plugin-edfi-unified';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
+import { domainBaseEntityEnhancer } from '@edfi/metaed-plugin-edfi-unified';
 import { validate } from '../../../src/validator/Deprecated/DeprecatedDomainItemReferenceWarning';
 
 describe('when domain item references no deprecated entity', (): void => {

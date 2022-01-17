@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, MetaEdTextBuilder, CommonBuilder, DomainEntityBuilder, NamespaceBuilder } from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, CommonBuilder, DomainEntityBuilder, NamespaceBuilder } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/InlineCommonProperty/InlineCommonPropertyMustMatchAnInlineCommon';
 
 describe('when inline common property has identifier of inline common', (): void => {

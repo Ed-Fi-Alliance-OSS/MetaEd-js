@@ -7,8 +7,8 @@ import {
   InterchangeBuilder,
   MetaEdEnvironment,
   ValidationFailure,
-} from 'metaed-core';
-import { interchangeBaseItemEnhancer } from 'metaed-plugin-edfi-unified';
+} from '@edfi/metaed-core';
+import { interchangeBaseItemEnhancer } from '@edfi/metaed-plugin-edfi-unified';
 import { validate } from '../../../src/validator/Deprecated/DeprecatedInterchangeItemReferenceWarning';
 
 describe('when domain item references no deprecated entity', (): void => {

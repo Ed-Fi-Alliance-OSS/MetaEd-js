@@ -1,4 +1,4 @@
-import { MetaEdPlugin } from 'metaed-core';
+import { MetaEdPlugin } from '@edfi/metaed-core';
 import { generate as OdsGenerator } from './generator/OdsGenerator';
 import { generate as SchemaGenerator } from './generator/SchemaGenerator';
 import { generate as IdIndexesGenerator } from './generator/IdIndexesGenerator';

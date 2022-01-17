@@ -11,7 +11,7 @@ import {
   SemVer,
   TopLevelEntity,
   ValidationFailure,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { collectSingleEntity, propertyCollector } from '../ValidatorShared/PropertyCollector';
 
 const validatorName = 'MergingEntityExtensionPropertyWithCorePropertyOfSameNameIsUnsupported';

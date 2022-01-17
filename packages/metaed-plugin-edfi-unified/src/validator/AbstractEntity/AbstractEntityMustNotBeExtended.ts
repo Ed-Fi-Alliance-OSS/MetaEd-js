@@ -5,7 +5,7 @@ import {
   ValidationFailure,
   DomainEntityExtension,
   TopLevelEntity,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 // METAED-805
 const validatorName = 'AbstractEntityMustNotBeExtended';

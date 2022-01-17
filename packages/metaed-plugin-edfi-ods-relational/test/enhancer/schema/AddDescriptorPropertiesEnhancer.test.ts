@@ -1,5 +1,5 @@
-import { newDescriptorProperty, newMetaEdEnvironment } from 'metaed-core';
-import { DescriptorProperty, MetaEdEnvironment } from 'metaed-core';
+import { newDescriptorProperty, newMetaEdEnvironment } from '@edfi/metaed-core';
+import { DescriptorProperty, MetaEdEnvironment } from '@edfi/metaed-core';
 import { enhance } from '../../../src/model/property/DescriptorProperty';
 
 describe('when DescriptorProperty enhances descriptor property', (): void => {

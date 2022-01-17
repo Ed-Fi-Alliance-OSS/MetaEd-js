@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { Common, MetaEdEnvironment, IntegerType, Namespace } from 'metaed-core';
-import { addEntityForNamespace, newCommon, newMetaEdEnvironment, newIntegerType, newNamespace } from 'metaed-core';
+import { Common, MetaEdEnvironment, IntegerType, Namespace } from '@edfi/metaed-core';
+import { addEntityForNamespace, newCommon, newMetaEdEnvironment, newIntegerType, newNamespace } from '@edfi/metaed-core';
 import { newComplexType } from '../../src/model/schema/ComplexType';
 import { newElement } from '../../src/model/schema/Element';
 import { newIntegerSimpleType } from '../../src/model/schema/IntegerSimpleType';

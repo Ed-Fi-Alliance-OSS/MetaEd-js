@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace, orderByPath } from 'metaed-core';
-import { tableEntities, Table, Column } from 'metaed-plugin-edfi-ods-relational';
+import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace, orderByPath } from '@edfi/metaed-core';
+import { tableEntities, Table, Column } from '@edfi/metaed-plugin-edfi-ods-relational';
 
 import { Workbook } from '../model/Workbook';
 import { newWorkbook, exportWorkbook } from '../model/Workbook';

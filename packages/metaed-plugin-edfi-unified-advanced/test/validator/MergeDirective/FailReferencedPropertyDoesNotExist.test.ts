@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import {
   ChoiceBuilder,
   CommonBuilder,
@@ -7,7 +7,7 @@ import {
   MetaEdTextBuilder,
   newMetaEdEnvironment,
   newSourceMap,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { failReferencedPropertyDoesNotExist } from '../../../src/validator/MergeDirective/FailReferencedPropertyDoesNotExist';
 
 describe('when validating merge property path', (): void => {

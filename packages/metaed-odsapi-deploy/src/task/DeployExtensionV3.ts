@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
-import { MetaEdConfiguration } from 'metaed-core';
-import { versionSatisfies } from 'metaed-core';
+import { MetaEdConfiguration } from '@edfi/metaed-core';
+import { versionSatisfies } from '@edfi/metaed-core';
 import path from 'path';
 import winston from 'winston';
 import Sugar from 'sugar';

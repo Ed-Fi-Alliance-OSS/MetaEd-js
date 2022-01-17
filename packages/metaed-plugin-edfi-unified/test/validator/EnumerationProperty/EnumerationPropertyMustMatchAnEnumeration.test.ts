@@ -4,8 +4,8 @@ import {
   EnumerationBuilder,
   DomainEntityBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/EnumerationProperty/EnumerationPropertyMustMatchAnEnumeration';
 
 describe('when enumeration property has valid identifier', (): void => {

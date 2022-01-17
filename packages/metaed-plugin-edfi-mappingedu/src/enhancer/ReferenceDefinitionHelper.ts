@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
-import { ComplexType, SimpleType, Element, ElementGroup } from 'metaed-plugin-edfi-xsd';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { ComplexType, SimpleType, Element, ElementGroup } from '@edfi/metaed-plugin-edfi-xsd';
 import {
   baseTypeDescriptorReference,
   descriptorReferenceTypeSuffix,
@@ -9,7 +9,7 @@ import {
   referenceTypeSuffix,
   typeGroupEnumeration,
   typeGroupSimple,
-} from 'metaed-plugin-edfi-xsd';
+} from '@edfi/metaed-plugin-edfi-xsd';
 import {
   pluginAssociationsForNamespace,
   pluginBasesForNamespace,

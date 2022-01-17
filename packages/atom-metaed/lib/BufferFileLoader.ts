@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-unresolved
 import { TextEditor } from 'atom';
 import path from 'path';
-import { MetaEdFile, FileSet, State } from 'metaed-core';
-import { createMetaEdFile } from 'metaed-core';
+import { MetaEdFile, FileSet, State } from '@edfi/metaed-core';
+import { createMetaEdFile } from '@edfi/metaed-core';
 import { MetaEdProjectMetadata } from './Projects';
 
 function addFileSet(state: State, fileSet: FileSet): void {

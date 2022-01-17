@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newDomain, newSubdomain, addEntityForNamespace, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, Domain, Subdomain, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newDomain, newSubdomain, addEntityForNamespace, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Domain, Subdomain, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/SubdomainParentEntityEnhancer';
 
 describe('when enhancing subdomain with parent', (): void => {

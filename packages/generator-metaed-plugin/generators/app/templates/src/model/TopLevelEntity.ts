@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, EnhancerResult, TopLevelEntity, getAllTopLevelEntitiesForNamespaces } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, TopLevelEntity, getAllTopLevelEntitiesForNamespaces } from '@edfi/metaed-core';
 
 // Model that defines a new data element that hangs off of a TopLevelEntity
 // File named the same as the parent object type

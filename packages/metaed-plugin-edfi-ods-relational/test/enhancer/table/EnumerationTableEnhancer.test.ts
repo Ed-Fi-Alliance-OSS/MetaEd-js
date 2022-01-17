@@ -1,5 +1,5 @@
-import { Enumeration, MetaEdEnvironment, Namespace } from 'metaed-core';
-import { addEntityForNamespace, newEnumeration, newMetaEdEnvironment, newNamespace } from 'metaed-core';
+import { Enumeration, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { addEntityForNamespace, newEnumeration, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import { tableEntities } from '../../../src/enhancer/EnhancerHelper';
 import { enhance } from '../../../src/enhancer/table/EnumerationTableEnhancer';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../../src/model/EdFiOdsRelationalEntityRepository';

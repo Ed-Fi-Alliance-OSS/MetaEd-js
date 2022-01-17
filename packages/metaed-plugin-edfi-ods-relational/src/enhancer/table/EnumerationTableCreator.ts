@@ -1,5 +1,5 @@
 import R from 'ramda';
-import { MetaEdEnvironment, Enumeration, Descriptor, normalizeEnumerationSuffix } from 'metaed-core';
+import { MetaEdEnvironment, Enumeration, Descriptor, normalizeEnumerationSuffix } from '@edfi/metaed-core';
 import {
   addColumns,
   newTable,

@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newDomainEntity, newDomainEntitySubclass, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, DomainEntity, DomainEntitySubclass, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newDomainEntity, newDomainEntitySubclass, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, DomainEntity, DomainEntitySubclass, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/DomainEntitySubclassBaseClassEnhancer';
 
 describe('when enhancing domainEntity subclass referring to domainEntity', (): void => {

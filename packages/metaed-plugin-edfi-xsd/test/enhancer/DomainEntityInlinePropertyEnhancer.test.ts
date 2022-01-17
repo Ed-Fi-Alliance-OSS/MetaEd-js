@@ -6,8 +6,8 @@ import {
   newStringProperty,
   newNamespace,
   EntityProperty,
-} from 'metaed-core';
-import { MetaEdEnvironment, Common, DomainEntity, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, Common, DomainEntity, Namespace } from '@edfi/metaed-core';
 import { enhance as initializeTopLevelEntities } from '../../src/model/TopLevelEntity';
 import { enhance } from '../../src/enhancer/AddInlineIdentityEnhancer';
 

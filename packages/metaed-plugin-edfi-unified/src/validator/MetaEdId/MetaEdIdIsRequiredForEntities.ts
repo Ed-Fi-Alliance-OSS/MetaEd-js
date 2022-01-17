@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
-import { getAllEntitiesNoSimpleTypesForNamespaces, asTopLevelEntity } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
+import { getAllEntitiesNoSimpleTypesForNamespaces, asTopLevelEntity } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];

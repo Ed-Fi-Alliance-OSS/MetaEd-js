@@ -1,4 +1,4 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace, NoTopLevelEntity } from 'metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace, NoTopLevelEntity } from '@edfi/metaed-core';
 import { tableEntities } from './EnhancerHelper';
 import { Table } from '../model/database/Table';
 

@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { MetaEdEnvironment, EnhancerResult, Interchange, InterchangeExtension } from 'metaed-core';
-import { getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Interchange, InterchangeExtension } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 import { MergedInterchange } from '../model/MergedInterchange';
 import { newMergedInterchange, addMergedInterchangeToRepository } from '../model/MergedInterchange';
 import { ModelBaseEdfiXsd } from '../model/ModelBase';

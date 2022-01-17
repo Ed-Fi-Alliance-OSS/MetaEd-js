@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, MetaEdTextBuilder, SharedStringBuilder, NamespaceBuilder } from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, SharedStringBuilder, NamespaceBuilder } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/SharedString/SharedStringMinLengthMustNotBeGreaterThanMaxLength';
 
 describe('when validating shared string with max length greater than min length', (): void => {

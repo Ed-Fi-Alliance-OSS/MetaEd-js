@@ -1,5 +1,5 @@
 import path from 'path';
-import { scanForPlugins, newState } from 'metaed-core';
+import { scanForPlugins, newState } from '@edfi/metaed-core';
 import { atomMetaEdPackageJson } from './Utility';
 
 export const LICENSE_URL = 'https://techdocs.ed-fi.org/x/vRSAAw';

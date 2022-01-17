@@ -6,7 +6,7 @@ import {
   SharedSimple,
   ValidationFailure,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 function sharedSimpleNeedingDuplicateChecking(namespace: Namespace): SharedSimple[] {
   const result: SharedSimple[] = [];

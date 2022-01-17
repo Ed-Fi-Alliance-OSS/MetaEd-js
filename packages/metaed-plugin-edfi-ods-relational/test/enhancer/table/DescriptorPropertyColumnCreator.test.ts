@@ -1,5 +1,5 @@
-import { DescriptorProperty, EntityProperty, newBooleanProperty } from 'metaed-core';
-import { newDescriptorProperty } from 'metaed-core';
+import { DescriptorProperty, EntityProperty, newBooleanProperty } from '@edfi/metaed-core';
+import { newDescriptorProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { Column } from '../../../src/model/database/Column';

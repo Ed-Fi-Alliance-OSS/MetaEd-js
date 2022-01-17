@@ -5,7 +5,7 @@ import {
   EntityProperty,
   getAllProperties,
   getAllTopLevelEntitiesForNamespaces,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 export interface EntityPropertyEdfiXsd {
   xsdName: string;

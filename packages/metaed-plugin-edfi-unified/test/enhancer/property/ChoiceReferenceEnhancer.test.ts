@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { newMetaEdEnvironment, newNamespace, newChoiceProperty, newChoice } from 'metaed-core';
-import { MetaEdEnvironment, ChoiceProperty, Choice, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace, newChoiceProperty, newChoice } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ChoiceProperty, Choice, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/property/ChoiceReferenceEnhancer';
 
 describe('when enhancing choice property', (): void => {

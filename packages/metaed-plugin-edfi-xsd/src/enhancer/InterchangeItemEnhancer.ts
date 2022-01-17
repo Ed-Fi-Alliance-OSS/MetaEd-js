@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, EnhancerResult, InterchangeItem, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, InterchangeItem, Namespace } from '@edfi/metaed-core';
 import { edfiXsdRepositoryForNamespace } from './EnhancerHelper';
 import { EdFiXsdEntityRepository } from '../model/EdFiXsdEntityRepository';
 import { InterchangeItemEdfiXsd } from '../model/InterchangeItem';

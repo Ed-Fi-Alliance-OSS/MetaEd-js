@@ -1,5 +1,5 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
-import { tableEntities, Table, Column } from 'metaed-plugin-edfi-ods-relational';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { tableEntities, Table, Column } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { ColumnEdfiOdsSqlServer } from './Column';
 import { ForeignKeyEdfiOdsSqlServer } from './ForeignKey';
 

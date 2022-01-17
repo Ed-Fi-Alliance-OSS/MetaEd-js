@@ -8,7 +8,7 @@ import {
   NamespaceBuilder,
   ValidationFailure,
   SharedStringBuilder,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   outReferencePathEnhancer,
   domainEntityReferenceEnhancer,
@@ -16,7 +16,7 @@ import {
   domainEntitySubclassBaseClassEnhancer,
   sharedStringPropertyEnhancer,
   stringReferenceEnhancer,
-} from 'metaed-plugin-edfi-unified';
+} from '@edfi/metaed-plugin-edfi-unified';
 import { validate } from '../../../src/validator/MergeScenarios/OutPathsToSameEntityMustHaveMergeDirectiveOrRoleName';
 
 describe('when domain entity has no multiple out paths to the same entity', (): void => {

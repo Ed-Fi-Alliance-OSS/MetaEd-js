@@ -1,4 +1,4 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import {
   appendOverlapCollapsing,
   tableEntities,
@@ -7,7 +7,7 @@ import {
   ColumnNameComponent,
   DecimalColumn,
   StringColumn,
-} from 'metaed-plugin-edfi-ods-relational';
+} from '@edfi/metaed-plugin-edfi-ods-relational';
 import { ColumnDataTypes } from '../model/ColumnDataTypes';
 
 const enhancerName = 'SqlServerTableNamingEnhancer';

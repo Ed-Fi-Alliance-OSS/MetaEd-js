@@ -1,10 +1,10 @@
-import { newMetaEdEnvironment, newNamespace, GeneratorResult, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace, GeneratorResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import {
   newTable,
   tableEntities,
   initializeEdFiOdsRelationalEntityRepository,
   Table,
-} from 'metaed-plugin-edfi-ods-relational';
+} from '@edfi/metaed-plugin-edfi-ods-relational';
 import { generate } from '../../src/generator/IdIndexesGenerator';
 
 describe('when generating id indexes for core namespace table with no id', (): void => {

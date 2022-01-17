@@ -1,7 +1,7 @@
 import path from 'path';
 import ffs from 'final-fs';
 import { exec } from 'child_process';
-import { GeneratedOutput, State } from 'metaed-core';
+import { GeneratedOutput, State } from '@edfi/metaed-core';
 import {
   buildMetaEd,
   buildParseTree,
@@ -15,7 +15,7 @@ import {
   runGenerators,
   validateConfiguration,
   walkBuilders,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 jest.unmock('final-fs');
 jest.setTimeout(40000);

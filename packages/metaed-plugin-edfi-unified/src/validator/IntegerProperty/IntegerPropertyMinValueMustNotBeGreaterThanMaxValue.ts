@@ -1,5 +1,5 @@
-import { IntegerProperty, IntegerPropertySourceMap, MetaEdEnvironment, ValidationFailure } from 'metaed-core';
-import { asIntegerProperty } from 'metaed-core';
+import { IntegerProperty, IntegerPropertySourceMap, MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
+import { asIntegerProperty } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];

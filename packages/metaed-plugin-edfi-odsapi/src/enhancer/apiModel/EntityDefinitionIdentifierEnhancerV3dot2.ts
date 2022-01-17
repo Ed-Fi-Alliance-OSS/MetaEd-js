@@ -1,6 +1,6 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace, PluginEnvironment, SemVer } from 'metaed-core';
-import { versionSatisfies } from 'metaed-core';
-import { Column, Table } from 'metaed-plugin-edfi-ods-relational';
+import { EnhancerResult, MetaEdEnvironment, Namespace, PluginEnvironment, SemVer } from '@edfi/metaed-core';
+import { versionSatisfies } from '@edfi/metaed-core';
+import { Column, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { EntityDefinition } from '../../model/apiModel/EntityDefinition';
 import { EntityIdentifier } from '../../model/apiModel/EntityIdentifier';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';

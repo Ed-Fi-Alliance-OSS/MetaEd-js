@@ -4,8 +4,8 @@ import {
   getEntitiesOfTypeForNamespaces,
   versionSatisfies,
   NoNamespace,
-} from 'metaed-core';
-import { EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, TopLevelEntity } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, TopLevelEntity } from '@edfi/metaed-core';
 import { addTables } from './TableCreatingEntityEnhancerBase';
 import { BuildStrategyDefault } from './BuildStrategy';
 import { collectPrimaryKeys } from './PrimaryKeyCollector';

@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newStringType, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, StringType, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newStringType, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, StringType, Namespace } from '@edfi/metaed-core';
 import { StringSimpleType } from '../../../src/model/schema/StringSimpleType';
 import { NoSimpleType } from '../../../src/model/schema/SimpleType';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';

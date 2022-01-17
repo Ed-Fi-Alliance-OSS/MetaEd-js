@@ -1,4 +1,4 @@
-import { TopLevelEntity, EntityProperty, CommonProperty, ValidationFailure } from 'metaed-core';
+import { TopLevelEntity, EntityProperty, CommonProperty, ValidationFailure } from '@edfi/metaed-core';
 
 function isNotCommonExtensionOverride(entityProperty: EntityProperty): boolean {
   if (entityProperty.type !== 'common') return true;

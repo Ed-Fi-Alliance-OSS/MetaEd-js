@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newNamespace, newAssociation } from 'metaed-core';
-import { MetaEdEnvironment, Namespace, Association } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace, newAssociation } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace, Association } from '@edfi/metaed-core';
 import { enhance } from '../../src/diminisher/AbstractGeneralStudentProgramAssociationDiminisher';
 
 describe('when diminishing with no matching entity', (): void => {

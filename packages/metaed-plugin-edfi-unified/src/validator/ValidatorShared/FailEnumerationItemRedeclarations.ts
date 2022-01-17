@@ -1,4 +1,4 @@
-import { Descriptor, Enumeration, EnumerationItem, ValidationFailure } from 'metaed-core';
+import { Descriptor, Enumeration, EnumerationItem, ValidationFailure } from '@edfi/metaed-core';
 import { findDuplicates } from './FindDuplicates';
 
 export function failEnumerationItemRedeclarations(

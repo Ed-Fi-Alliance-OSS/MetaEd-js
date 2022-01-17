@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 import semver from 'semver';
-import { deriveNamespaceFromProjectName } from 'metaed-core';
+import { deriveNamespaceFromProjectName } from '@edfi/metaed-core';
 import { packageJsonTemplate } from './ProjectTemplates';
 
 const PROJECT_SETTINGS_FILE_NAME = 'package.json';

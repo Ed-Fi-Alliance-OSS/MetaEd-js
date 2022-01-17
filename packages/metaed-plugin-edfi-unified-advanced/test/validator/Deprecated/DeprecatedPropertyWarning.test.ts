@@ -1,6 +1,6 @@
-import { newMetaEdEnvironment, MetaEdTextBuilder, NamespaceBuilder, DomainEntityBuilder, Namespace } from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
-import { domainEntityReferenceEnhancer } from 'metaed-plugin-edfi-unified';
+import { newMetaEdEnvironment, MetaEdTextBuilder, NamespaceBuilder, DomainEntityBuilder, Namespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
+import { domainEntityReferenceEnhancer } from '@edfi/metaed-plugin-edfi-unified';
 import { validate } from '../../../src/validator/Deprecated/DeprecatedPropertyWarning';
 
 describe('when property is not deprecated', (): void => {

@@ -1,5 +1,5 @@
-import { newIntegerProperty, newMetaEdEnvironment, newNamespace } from 'metaed-core';
-import { IntegerProperty, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newIntegerProperty, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { IntegerProperty, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/model/property/EntityProperty';
 
 describe('when PropertyEnhancer enhances integer property', (): void => {

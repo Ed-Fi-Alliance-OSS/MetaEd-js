@@ -4,8 +4,8 @@ import {
   DomainEntityBuilder,
   NamespaceBuilder,
   SharedDecimalBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/SharedDecimalProperty/SharedDecimalPropertyMustMatchASharedDecimal';
 
 describe('when shared decimal property has identifier of shared decimal', (): void => {

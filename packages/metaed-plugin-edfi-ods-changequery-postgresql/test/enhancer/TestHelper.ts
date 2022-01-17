@@ -1,5 +1,5 @@
-import { SemVer, MetaEdEnvironment, Namespace } from 'metaed-core';
-import { newMetaEdEnvironment, newNamespace, newPluginEnvironment } from 'metaed-core';
+import { SemVer, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { newMetaEdEnvironment, newNamespace, newPluginEnvironment } from '@edfi/metaed-core';
 
 export function metaEdEnvironmentForApiVersion(targetTechnologyVersion: SemVer): MetaEdEnvironment {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();

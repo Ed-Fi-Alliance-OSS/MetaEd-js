@@ -5,8 +5,8 @@ import {
   CommonBuilder,
   NamespaceBuilder,
   CommonSubclassBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/Domain/CommonDomainItemMustMatchTopLevelEntity';
 
 describe('when validating common domain item matches top level entity', (): void => {

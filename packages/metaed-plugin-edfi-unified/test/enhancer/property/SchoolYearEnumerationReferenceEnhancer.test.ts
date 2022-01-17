@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { newMetaEdEnvironment, newNamespace, newSchoolYearEnumerationProperty, newSchoolYearEnumeration } from 'metaed-core';
-import { MetaEdEnvironment, SchoolYearEnumerationProperty, SchoolYearEnumeration, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace, newSchoolYearEnumerationProperty, newSchoolYearEnumeration } from '@edfi/metaed-core';
+import { MetaEdEnvironment, SchoolYearEnumerationProperty, SchoolYearEnumeration, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/property/SchoolYearEnumerationReferenceEnhancer';
 
 describe('when enhancing schoolYearEnumeration property', (): void => {

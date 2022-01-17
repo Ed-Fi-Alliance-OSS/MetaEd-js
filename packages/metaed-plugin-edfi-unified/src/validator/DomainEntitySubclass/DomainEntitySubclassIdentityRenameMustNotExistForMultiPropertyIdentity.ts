@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, ValidationFailure, Namespace, TopLevelEntity } from 'metaed-core';
-import { getEntityFromNamespaceChain } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, Namespace, TopLevelEntity } from '@edfi/metaed-core';
+import { getEntityFromNamespaceChain } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];

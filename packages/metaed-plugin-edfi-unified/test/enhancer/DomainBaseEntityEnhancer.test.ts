@@ -9,7 +9,7 @@ import {
   newAssociationSubclass,
   addEntityForNamespace,
   newNamespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 import {
   MetaEdEnvironment,
@@ -20,7 +20,7 @@ import {
   Association,
   AssociationSubclass,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 import { enhance } from '../../src/enhancer/DomainBaseEntityEnhancer';
 

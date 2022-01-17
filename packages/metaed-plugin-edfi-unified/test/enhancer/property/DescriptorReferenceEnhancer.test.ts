@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { newMetaEdEnvironment, newDescriptorProperty, newDescriptor, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, DescriptorProperty, Descriptor, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newDescriptorProperty, newDescriptor, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, DescriptorProperty, Descriptor, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/property/DescriptorReferenceEnhancer';
 
 describe('when enhancing descriptor property', (): void => {

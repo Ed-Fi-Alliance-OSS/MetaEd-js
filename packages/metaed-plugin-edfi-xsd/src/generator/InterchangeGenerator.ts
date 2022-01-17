@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, GeneratorResult, GeneratedOutput, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, GeneratorResult, GeneratedOutput, Namespace } from '@edfi/metaed-core';
 import { formatAndPrependHeader, template, formatVersionForSchema } from './XsdGeneratorBase';
 import { edfiXsdRepositoryForNamespace } from '../enhancer/EnhancerHelper';
 import { MergedInterchange } from '../model/MergedInterchange';

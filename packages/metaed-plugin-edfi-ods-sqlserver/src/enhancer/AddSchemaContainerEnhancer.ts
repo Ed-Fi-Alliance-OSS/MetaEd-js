@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { orderByPath, orderByProp, MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
-import { tableEntities, rowEntities, EnumerationRowBase, ForeignKey, Table } from 'metaed-plugin-edfi-ods-relational';
+import { orderByPath, orderByProp, MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
+import { tableEntities, rowEntities, EnumerationRowBase, ForeignKey, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 
 const enhancerName = 'AddSchemaContainerEnhancer';
 

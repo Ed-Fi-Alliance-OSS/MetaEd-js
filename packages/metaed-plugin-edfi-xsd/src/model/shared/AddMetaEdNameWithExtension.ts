@@ -1,4 +1,4 @@
-import { ModelBase, TopLevelEntity } from 'metaed-core';
+import { ModelBase, TopLevelEntity } from '@edfi/metaed-core';
 
 export function metaEdNameWithExtension(extensionEntity: ModelBase): () => string {
   return () => {

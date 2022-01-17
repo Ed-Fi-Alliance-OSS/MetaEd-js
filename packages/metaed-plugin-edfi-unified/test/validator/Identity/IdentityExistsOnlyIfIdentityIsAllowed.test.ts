@@ -10,8 +10,8 @@ import {
   DomainEntityExtensionBuilder,
   DomainEntitySubclassBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/Identity/IdentityExistsOnlyIfIdentityIsAllowed';
 
 describe('when validating association with valid identity property', (): void => {

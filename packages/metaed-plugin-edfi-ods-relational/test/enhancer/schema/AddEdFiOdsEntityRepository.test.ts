@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/model/EdFiOdsRelationalEntityRepository';
 
 describe('when BaseDescriptorTableEnhancer enhances', (): void => {

@@ -6,8 +6,8 @@ import {
   NamespaceBuilder,
   AssociationBuilder,
   AssociationSubclassBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/UnsupportedExtension/SubclassingAnythingInExtensionsIsUnsupported';
 
 describe('when a domain entity subclass in an extension project subclasses a domain entity', (): void => {

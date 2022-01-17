@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult } from 'metaed-core';
-import { getAllTopLevelEntitiesForNamespaces } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
+import { getAllTopLevelEntitiesForNamespaces } from '@edfi/metaed-core';
 import { TopLevelEntityEdfiXsd } from '../model/TopLevelEntity';
 
 const enhancerName = 'CopyPropertiesEnhancer';

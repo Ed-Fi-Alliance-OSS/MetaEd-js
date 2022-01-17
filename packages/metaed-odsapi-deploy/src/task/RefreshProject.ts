@@ -1,4 +1,4 @@
-import { MetaEdConfiguration } from 'metaed-core';
+import { MetaEdConfiguration } from '@edfi/metaed-core';
 import chalk from 'chalk';
 import fs from 'fs-extra';
 import touch from 'touch';

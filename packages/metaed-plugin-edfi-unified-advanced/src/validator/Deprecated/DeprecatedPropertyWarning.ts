@@ -5,7 +5,7 @@ import {
   SimpleProperty,
   getAllProperties,
   EntityProperty,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 function hasReferencedEntityDeprecated(property: EntityProperty): property is ReferentialProperty | SimpleProperty {
   return (property as ReferentialProperty | SimpleProperty).referencedEntityDeprecated !== undefined;

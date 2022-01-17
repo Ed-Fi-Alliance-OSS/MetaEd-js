@@ -1,4 +1,4 @@
-import { ReferentialProperty, TopLevelEntity } from 'metaed-core';
+import { ReferentialProperty, TopLevelEntity } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
 import { ColumnCreator } from './ColumnCreator';

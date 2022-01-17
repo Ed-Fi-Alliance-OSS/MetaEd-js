@@ -1,5 +1,5 @@
-import { EnumerationProperty } from 'metaed-core';
-import { newEnumerationProperty } from 'metaed-core';
+import { EnumerationProperty } from '@edfi/metaed-core';
+import { newEnumerationProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { Column } from '../../../src/model/database/Column';

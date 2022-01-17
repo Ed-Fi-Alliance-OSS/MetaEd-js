@@ -1,11 +1,11 @@
 {
-  "name": "metaed-plugin-edfi-unified",
+  "name": "@edfi/metaed-plugin-edfi-unified",
   "main": "dist/index.js",
   "version": "3.0.0-dev.3",
   "description": "Ed-Fi Unified plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
-    "registry": "https://www.myget.org/F/ed-fi/npm/"
+    "@edfi:registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/"
   },
   "files": [
     "/dist",
@@ -17,12 +17,12 @@
     "pluginType": "artifact-specific",
     "shortName": "edfiUnified",
     "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "2.x",
+    "metaEdVersion": "3.x",
     "technologyVersion": "*",
     "dependencies": []
   },
   "dependencies": {
-    "metaed-core": "3.0.0-dev.3",
+    "@edfi/metaed-core": "3.0.0-dev.3",
     "ramda": "^0.27.1",
     "winston": "3.3.3"
   },

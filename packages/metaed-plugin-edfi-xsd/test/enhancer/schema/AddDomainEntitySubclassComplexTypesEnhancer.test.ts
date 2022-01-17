@@ -6,7 +6,7 @@ import {
   newDomainEntity,
   newDomainEntitySubclass,
   newNamespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { ComplexType, NoComplexType } from '../../../src/model/schema/ComplexType';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';
 import { enhance as initializeTopLevelEntities } from '../../../src/model/TopLevelEntity';

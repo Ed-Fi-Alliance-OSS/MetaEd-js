@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newCommon, newCommonSubclass, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, Common, CommonSubclass, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newCommon, newCommonSubclass, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Common, CommonSubclass, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/CommonSubclassBaseClassEnhancer';
 
 describe('when enhancing common subclass referring to common', (): void => {

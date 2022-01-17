@@ -1,6 +1,6 @@
 // 3.1.X.12 - METAED-701 - METAED-761
-import { MetaEdEnvironment, ValidationFailure, SemVer, AssociationSubclass } from 'metaed-core';
-import { versionSatisfies, V3OrGreater, getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, SemVer, AssociationSubclass } from '@edfi/metaed-core';
+import { versionSatisfies, V3OrGreater, getAllEntitiesOfType } from '@edfi/metaed-core';
 
 const validatorName = 'SubclassingAnyAssociationExceptGeneralStudentProgramAssociationIsUnsupported';
 const targetVersions: SemVer = V3OrGreater;

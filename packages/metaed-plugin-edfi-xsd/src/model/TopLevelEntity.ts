@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, EntityProperty, TopLevelEntity, CommonProperty } from 'metaed-core';
-import { getAllTopLevelEntitiesForNamespaces } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, EntityProperty, TopLevelEntity, CommonProperty } from '@edfi/metaed-core';
+import { getAllTopLevelEntitiesForNamespaces } from '@edfi/metaed-core';
 import { NoComplexType } from './schema/ComplexType';
 import { ComplexType } from './schema/ComplexType';
 

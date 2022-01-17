@@ -6,9 +6,9 @@ import {
   newSharedInteger,
   newNamespace,
   NoSharedSimple,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
-import { IntegerType, MetaEdEnvironment, SharedInteger, SharedShortProperty, ShortProperty, Namespace } from 'metaed-core';
+import { IntegerType, MetaEdEnvironment, SharedInteger, SharedShortProperty, ShortProperty, Namespace } from '@edfi/metaed-core';
 
 import { enhance } from '../../../src/enhancer/property/ShortReferenceEnhancer';
 

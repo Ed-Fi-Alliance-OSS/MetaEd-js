@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, Choice, EntityProperty, Namespace } from 'metaed-core';
-import { getAllTopLevelEntitiesForNamespaces, getEntityFromNamespaceChain } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Choice, EntityProperty, Namespace } from '@edfi/metaed-core';
+import { getAllTopLevelEntitiesForNamespaces, getEntityFromNamespaceChain } from '@edfi/metaed-core';
 import { ChoicePropertyEdfiXsd } from '../model/property/ChoiceProperty';
 
 const enhancerName = 'AddChoicePropertiesEnhancer';

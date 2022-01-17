@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newDecimalType, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, DecimalType, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newDecimalType, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, DecimalType, Namespace } from '@edfi/metaed-core';
 import { DecimalSimpleType } from '../../../src/model/schema/DecimalSimpleType';
 import { NoSimpleType } from '../../../src/model/schema/SimpleType';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';

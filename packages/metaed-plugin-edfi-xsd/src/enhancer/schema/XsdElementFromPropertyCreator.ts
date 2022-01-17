@@ -1,4 +1,4 @@
-import { EntityProperty } from 'metaed-core';
+import { EntityProperty } from '@edfi/metaed-core';
 import { ComplexTypeItem } from '../../model/schema/ComplexTypeItem';
 import { DescriptorPropertyEdfiXsd } from '../../model/property/DescriptorProperty';
 import { ElementGroup, newElementGroup } from '../../model/schema/ElementGroup';

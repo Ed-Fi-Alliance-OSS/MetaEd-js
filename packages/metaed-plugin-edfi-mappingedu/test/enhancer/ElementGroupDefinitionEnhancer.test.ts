@@ -1,5 +1,5 @@
-import { Namespace, MetaEdEnvironment } from 'metaed-core';
-import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
+import { Namespace, MetaEdEnvironment } from '@edfi/metaed-core';
+import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/ElementGroupDefinitionEnhancer';
 import {
   dataStandardElementGroupName,

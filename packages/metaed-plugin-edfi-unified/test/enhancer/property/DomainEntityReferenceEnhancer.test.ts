@@ -5,8 +5,8 @@ import {
   newDomainEntityProperty,
   newDomainEntity,
   newDomainEntitySubclass,
-} from 'metaed-core';
-import { MetaEdEnvironment, DomainEntityProperty, DomainEntity, DomainEntitySubclass, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, DomainEntityProperty, DomainEntity, DomainEntitySubclass, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/property/DomainEntityReferenceEnhancer';
 
 describe('when enhancing domainEntity property referring to domainEntity', (): void => {

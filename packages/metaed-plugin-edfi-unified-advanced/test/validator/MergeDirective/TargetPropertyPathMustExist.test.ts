@@ -9,8 +9,8 @@ import {
   AssociationSubclassBuilder,
   NamespaceBuilder,
   SharedStringBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/MergeDirective/TargetPropertyPathMustExist';
 
 describe('when validating domain entity has target property', (): void => {

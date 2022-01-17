@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, TopLevelEntity } from 'metaed-core';
-import { getAllTopLevelEntitiesForNamespaces } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, TopLevelEntity } from '@edfi/metaed-core';
+import { getAllTopLevelEntitiesForNamespaces } from '@edfi/metaed-core';
 import { NoAggregate } from './domainMetadata/Aggregate';
 import { Aggregate } from './domainMetadata/Aggregate';
 

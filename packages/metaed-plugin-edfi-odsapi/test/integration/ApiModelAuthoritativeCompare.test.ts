@@ -2,7 +2,7 @@ import R from 'ramda';
 import path from 'path';
 import ffs from 'final-fs';
 import { exec } from 'child_process';
-import { GeneratedOutput, State, GeneratorResult } from 'metaed-core';
+import { GeneratedOutput, State, GeneratorResult } from '@edfi/metaed-core';
 import {
   buildMetaEd,
   buildParseTree,
@@ -16,7 +16,7 @@ import {
   runGenerators,
   validateConfiguration,
   walkBuilders,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 jest.unmock('final-fs');
 jest.setTimeout(40000);

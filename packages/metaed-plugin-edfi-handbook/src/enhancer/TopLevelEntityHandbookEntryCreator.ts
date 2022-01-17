@@ -8,7 +8,7 @@ import {
   MetaEdEnvironment,
   ModelBase,
   getAllEntitiesForNamespaces,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { HandbookEntry } from '../model/HandbookEntry';
 import { newHandbookEntry } from '../model/HandbookEntry';
 import { getAllReferentialProperties } from './EnhancerHelper';

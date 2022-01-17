@@ -1,4 +1,4 @@
-import { MetaEdEnvironment } from 'metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
 import {
   newMetaEdEnvironment,
   MetaEdTextBuilder,
@@ -6,7 +6,7 @@ import {
   AssociationBuilder,
   AssociationSubclassBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { xpathSelect, enhanceAndGenerate, initializeNamespaceDependencies } from './IntegrationTestHelper';
 
 describe('when generating xsd for association extension in extension namespace based on core association', (): void => {

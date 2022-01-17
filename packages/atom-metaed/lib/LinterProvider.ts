@@ -3,7 +3,7 @@ import { TextEditor } from 'atom';
 import R from 'ramda';
 import path from 'path';
 import fs from 'fs-extra';
-import { State, ValidationFailure, MetaEdConfiguration, PipelineFailure, executePipeline, newState } from 'metaed-core';
+import { State, ValidationFailure, MetaEdConfiguration, PipelineFailure, executePipeline, newState } from '@edfi/metaed-core';
 import { MetaEdProjectMetadata } from './Projects';
 import { findMetaEdProjectMetadata } from './Projects';
 import { metaEdConfigurationFor } from './MetaEdConfigurationFactory';

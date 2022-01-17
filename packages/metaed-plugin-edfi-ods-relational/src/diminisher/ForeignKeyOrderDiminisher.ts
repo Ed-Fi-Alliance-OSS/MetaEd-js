@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { versionSatisfies } from 'metaed-core';
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { versionSatisfies } from '@edfi/metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { tableEntities } from '../enhancer/EnhancerHelper';
 import { Column } from '../model/database/Column';
 import { ColumnPair } from '../model/database/ColumnPair';

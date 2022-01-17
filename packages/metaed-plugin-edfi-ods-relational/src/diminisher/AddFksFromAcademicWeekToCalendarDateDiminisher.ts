@@ -1,5 +1,5 @@
-import { versionSatisfies } from 'metaed-core';
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { versionSatisfies } from '@edfi/metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { addColumnPairs, newForeignKey, newForeignKeySourceReference } from '../model/database/ForeignKey';
 import { addForeignKey } from '../model/database/Table';
 import { newColumnPair } from '../model/database/ColumnPair';

@@ -5,8 +5,8 @@ import {
   newSharedInteger,
   newSharedIntegerProperty,
   newSharedShortProperty,
-} from 'metaed-core';
-import { MetaEdEnvironment } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/SharedIntegerPropertyEnhancer';
 
 describe('when shared integer property refers to a shared integer', (): void => {

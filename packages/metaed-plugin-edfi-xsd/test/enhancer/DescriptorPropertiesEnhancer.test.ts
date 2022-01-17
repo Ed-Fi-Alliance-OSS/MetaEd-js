@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newDescriptor, newNamespace, newStringProperty } from 'metaed-core';
-import { MetaEdEnvironment, Descriptor, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newDescriptor, newNamespace, newStringProperty } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Descriptor, Namespace } from '@edfi/metaed-core';
 import { enhance as initializeTopLevelEntities } from '../../src/model/TopLevelEntity';
 import { enhance } from '../../src/enhancer/DescriptorPropertiesEnhancer';
 

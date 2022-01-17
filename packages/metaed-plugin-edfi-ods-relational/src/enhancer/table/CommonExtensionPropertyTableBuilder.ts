@@ -1,5 +1,5 @@
-import { asCommonProperty, getEntityFromNamespaceChain, Namespace } from 'metaed-core';
-import { ModelBase, EntityProperty, MergeDirective, ReferentialProperty } from 'metaed-core';
+import { asCommonProperty, getEntityFromNamespaceChain, Namespace } from '@edfi/metaed-core';
+import { ModelBase, EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
 import {
   TableNameGroup,
   addColumns,

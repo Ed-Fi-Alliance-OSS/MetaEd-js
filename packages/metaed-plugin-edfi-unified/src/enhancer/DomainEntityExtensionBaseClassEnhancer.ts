@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, DomainEntityExtension, TopLevelEntity } from 'metaed-core';
-import { getAllEntitiesOfType, getEntityFromNamespaceChain } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, DomainEntityExtension, TopLevelEntity } from '@edfi/metaed-core';
+import { getAllEntitiesOfType, getEntityFromNamespaceChain } from '@edfi/metaed-core';
 
 const enhancerName = 'DomainEntityExtensionBaseClassEnhancer';
 

@@ -1,4 +1,4 @@
-import { ForeignKey, Table, EnumerationRow, SchoolYearEnumerationRow } from 'metaed-plugin-edfi-ods-relational';
+import { ForeignKey, Table, EnumerationRow, SchoolYearEnumerationRow } from '@edfi/metaed-plugin-edfi-ods-relational';
 
 export interface SchemaContainer {
   tables: Table[];

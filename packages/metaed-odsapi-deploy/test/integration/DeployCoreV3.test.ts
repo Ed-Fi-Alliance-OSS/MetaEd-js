@@ -1,5 +1,5 @@
-import { newMetaEdConfiguration } from 'metaed-core';
-import { MetaEdConfiguration } from 'metaed-core';
+import { newMetaEdConfiguration } from '@edfi/metaed-core';
+import { MetaEdConfiguration } from '@edfi/metaed-core';
 import klawSync from 'klaw-sync';
 import fs from 'fs-extra';
 import path from 'path';

@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { getAllProperties, getAllTopLevelEntitiesForNamespaces } from 'metaed-core';
-import { MetaEdEnvironment, EnhancerResult, EntityProperty } from 'metaed-core';
+import { getAllProperties, getAllTopLevelEntitiesForNamespaces } from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, EntityProperty } from '@edfi/metaed-core';
 import { prependRoleNameToMetaEdName } from '../../shared/Utility';
 
 export interface EntityPropertyEdfiOds {

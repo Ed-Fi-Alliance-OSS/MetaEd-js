@@ -7,8 +7,8 @@ import {
   newMergeDirective,
   newMetaEdEnvironment,
   newNamespace,
-} from 'metaed-core';
-import { SharedIntegerProperty, MetaEdEnvironment, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { SharedIntegerProperty, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/MergeDirectiveEnhancer';
 
 describe('when enhancing top level entity with nested reference to top level reference', (): void => {

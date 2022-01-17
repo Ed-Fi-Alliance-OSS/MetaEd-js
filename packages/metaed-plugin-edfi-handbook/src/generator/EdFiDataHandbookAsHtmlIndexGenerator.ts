@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import { MetaEdEnvironment, GeneratorResult, GeneratedOutput, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, GeneratorResult, GeneratedOutput, Namespace } from '@edfi/metaed-core';
 import { edfiHandbookRepositoryForNamespace } from '../enhancer/EnhancerHelper';
 import { HandbookEntry } from '../model/HandbookEntry';
 import { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';

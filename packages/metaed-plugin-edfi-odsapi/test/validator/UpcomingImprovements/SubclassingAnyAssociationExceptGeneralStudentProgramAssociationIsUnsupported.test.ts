@@ -4,8 +4,8 @@ import {
   AssociationBuilder,
   AssociationSubclassBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/UpcomingImprovements/SubclassingAnyAssociationExceptGeneralStudentProgramAssociationIsUnsupported';
 
 describe('when an association subclass subclasses GeneralStudentProgramAssociation', (): void => {

@@ -1,4 +1,4 @@
-import { Validator } from 'metaed-core';
+import { Validator } from '@edfi/metaed-core';
 
 import { validate as mergingEntityExtensionPropertyWithCorePropertyOfSameNameIsUnsupported } from './UnsupportedExtension/MergingEntityExtensionPropertyWithCorePropertyOfSameNameIsUnsupported';
 import { validate as mergingRequiredWithOptionalPropertyIsUnsupported } from './UnsupportedExtension/MergingRequiredWithOptionalPropertyIsUnsupported';

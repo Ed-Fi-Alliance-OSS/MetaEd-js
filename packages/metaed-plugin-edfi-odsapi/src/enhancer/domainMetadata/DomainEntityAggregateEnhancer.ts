@@ -1,6 +1,6 @@
-import { getAllEntitiesOfType, asTopLevelEntity, asDomainEntity } from 'metaed-core';
-import { MetaEdEnvironment, ModelBase, EnhancerResult, TopLevelEntity, DomainEntity } from 'metaed-core';
-import { Table, TopLevelEntityEdfiOds } from 'metaed-plugin-edfi-ods-relational';
+import { getAllEntitiesOfType, asTopLevelEntity, asDomainEntity } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ModelBase, EnhancerResult, TopLevelEntity, DomainEntity } from '@edfi/metaed-core';
+import { Table, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { enhanceSingleEntity } from './AggregateEnhancerBase';
 import { EntityTable } from '../../model/domainMetadata/EntityTable';
 

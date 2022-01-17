@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newCommon, newCommonExtension, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, CommonExtension, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newCommon, newCommonExtension, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, CommonExtension, Namespace } from '@edfi/metaed-core';
 import { ComplexType } from '../../../src/model/schema/ComplexType';
 import { NoComplexType } from '../../../src/model/schema/ComplexType';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';

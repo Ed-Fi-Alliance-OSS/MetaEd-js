@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { failInterchangeItemRedeclarations } from '../ValidatorShared/FailInterchangeItemRedeclarations';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {

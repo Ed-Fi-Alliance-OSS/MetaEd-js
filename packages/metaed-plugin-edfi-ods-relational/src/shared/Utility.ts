@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from 'metaed-core';
+import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
 import { TableNameGroup, isTableNameGroup, isTableNameComponent, TableNameComponent } from '../model/database/Table';
 import { flattenNameComponentsFromGroup } from '../model/database/TableNameGroupHelper';
 

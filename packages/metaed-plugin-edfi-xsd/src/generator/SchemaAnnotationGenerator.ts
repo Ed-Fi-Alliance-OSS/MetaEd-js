@@ -5,7 +5,7 @@ import {
   Namespace,
   getAllEntitiesOfType,
   orderByProp,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { formatAndPrependHeader, template } from './XsdGeneratorBase';
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {

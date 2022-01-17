@@ -1,4 +1,4 @@
-import { Interchange, ValidationFailure } from 'metaed-core';
+import { Interchange, ValidationFailure } from '@edfi/metaed-core';
 
 export function failInterchangeExtensionPropertyRedeclarations(
   validatorName: string,

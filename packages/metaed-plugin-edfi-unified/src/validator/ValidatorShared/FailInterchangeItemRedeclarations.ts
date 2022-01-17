@@ -1,4 +1,4 @@
-import { Interchange, InterchangeItem, ValidationFailure } from 'metaed-core';
+import { Interchange, InterchangeItem, ValidationFailure } from '@edfi/metaed-core';
 import { findDuplicates } from './FindDuplicates';
 
 export function failInterchangeItemRedeclarations(

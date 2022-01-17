@@ -1,11 +1,11 @@
 {
-  "name": "metaed-plugin-edfi-ods-recordownership",
+  "name": "@edfi/metaed-plugin-edfi-ods-recordownership",
   "main": "dist/index.js",
   "version": "3.0.0-dev.3",
   "description": "Ed-Fi ODS/API Record Ownership plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
-    "registry": "https://www.myget.org/F/ed-fi/npm/"
+    "@edfi:registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/"
   },
   "files": [
     "/dist",
@@ -17,17 +17,17 @@
     "pluginType": "artifact-specific",
     "shortName": "edfiOdsRecordOwnership",
     "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "2.x",
+    "metaEdVersion": "3.x",
     "technologyVersion": ">=3.3.0",
     "dependencies": [
-      "metaed-plugin-edfi-unified-advanced",
-      "metaed-plugin-edfi-ods-relational"
+      "@edfi/metaed-plugin-edfi-unified-advanced",
+      "@edfi/metaed-plugin-edfi-ods-relational"
     ]
   },
   "dependencies": {
-    "metaed-core": "3.0.0-dev.3",
-    "metaed-plugin-edfi-ods-relational": "3.0.0-dev.3",
-    "metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3"
+    "@edfi/metaed-core": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-ods-relational": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3"
   },
   "devDependencies": {
     "final-fs": "^1.6.1"

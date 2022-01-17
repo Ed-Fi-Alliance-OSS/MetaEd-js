@@ -1,11 +1,11 @@
 {
-  "name": "metaed-odsapi-deploy",
+  "name": "@edfi/metaed-odsapi-deploy",
   "main": "dist/index.js",
   "version": "3.0.0-dev.3",
   "description": "MetaEd for JavaScript",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
-    "registry": "https://www.myget.org/F/ed-fi/npm/"
+    "@edfi:registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/"
   },
   "files": [
     "/dist",
@@ -16,7 +16,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "fs-extra": "^5.0.0",
-    "metaed-core": "3.0.0-dev.3",
+    "@edfi/metaed-core": "3.0.0-dev.3",
     "ramda": "^0.27.1",
     "semver": "^5.7.1",
     "sugar": "^2.0.6",

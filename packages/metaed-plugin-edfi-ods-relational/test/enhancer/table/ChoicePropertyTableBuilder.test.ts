@@ -1,5 +1,5 @@
-import { DomainEntity, Choice, ChoiceProperty, IntegerProperty } from 'metaed-core';
-import { newDomainEntity, newChoice, newChoiceProperty, newIntegerProperty } from 'metaed-core';
+import { DomainEntity, Choice, ChoiceProperty, IntegerProperty } from '@edfi/metaed-core';
+import { newDomainEntity, newChoice, newChoiceProperty, newIntegerProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { newTable } from '../../../src/model/database/Table';

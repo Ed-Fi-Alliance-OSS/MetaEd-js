@@ -1,5 +1,5 @@
-import { InterchangeBuilder, newMetaEdEnvironment, MetaEdTextBuilder, NamespaceBuilder } from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { InterchangeBuilder, newMetaEdEnvironment, MetaEdTextBuilder, NamespaceBuilder } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/MetaEdId/MetaEdIdIsRequiredForInterchangeItems';
 
 describe('when validating interchange element is missing metaEdId', (): void => {

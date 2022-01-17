@@ -1,11 +1,11 @@
 {
-  "name": "metaed-plugin-edfi-mappingedu",
+  "name": "@edfi/metaed-plugin-edfi-mappingedu",
   "main": "dist/index.js",
   "version": "3.0.0-dev.3",
   "description": "Ed-Fi MappingEDU plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
-    "registry": "https://www.myget.org/F/ed-fi/npm/"
+    "@edfi:registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/"
   },
   "files": [
     "/dist",
@@ -17,25 +17,25 @@
     "pluginType": "artifact-specific",
     "shortName": "edfiMappingedu",
     "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "2.x",
+    "metaEdVersion": "3.x",
     "technologyVersion": "*",
     "dependencies": [
-      "metaed-plugin-edfi-unified-advanced",
-      "metaed-plugin-edfi-xsd"
+      "@edfi/metaed-plugin-edfi-unified-advanced",
+      "@edfi/metaed-plugin-edfi-xsd"
     ],
     "enabled": false
   },
   "dependencies": {
-    "metaed-core": "3.0.0-dev.3",
-    "metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3",
-    "metaed-plugin-edfi-xsd": "3.0.0-dev.3",
+    "@edfi/metaed-core": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-xsd": "3.0.0-dev.3",
     "xlsx": "^0.14.5"
   },
   "devDependencies": {
-    "ed-fi-model-2.0": "2.0.2",
-    "ed-fi-model-2.2": "2.0.2",
-    "ed-fi-model-3.0": "2.0.3",
-    "ed-fi-model-3.1": "2.0.3",
+    "@edfi/ed-fi-model-2.0": "2.0.2",
+    "@edfi/ed-fi-model-2.2": "2.0.2",
+    "@edfi/ed-fi-model-3.0": "2.0.3",
+    "@edfi/ed-fi-model-3.1": "2.0.3",
     "final-fs": "^1.6.1"
   },
   "scripts": {

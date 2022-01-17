@@ -1,4 +1,4 @@
-import { ModelBase, MetaEdEnvironment, EntityProperty } from 'metaed-core';
+import { ModelBase, MetaEdEnvironment, EntityProperty } from '@edfi/metaed-core';
 import { HandbookEntry } from '../model/HandbookEntry';
 import { newHandbookEntry } from '../model/HandbookEntry';
 import { getAllReferentialProperties } from './EnhancerHelper';

@@ -1,6 +1,6 @@
 import hash from 'hash.js';
-import { Table, flattenNameComponentsFromGroup } from 'metaed-plugin-edfi-ods-relational';
-import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from 'metaed-core';
+import { Table, flattenNameComponentsFromGroup } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
 
 export const TARGET_DATABASE_PLUGIN_NAME = 'edfiOdsPostgresql';
 

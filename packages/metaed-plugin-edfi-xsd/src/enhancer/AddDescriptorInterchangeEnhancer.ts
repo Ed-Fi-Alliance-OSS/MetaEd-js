@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, Namespace, Descriptor, InterchangeItem } from 'metaed-core';
-import { getAllEntitiesOfType, newInterchangeItem } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Namespace, Descriptor, InterchangeItem } from '@edfi/metaed-core';
+import { getAllEntitiesOfType, newInterchangeItem } from '@edfi/metaed-core';
 import { addInterchangeItemEdfiXsdTo } from '../model/InterchangeItem';
 import { newMergedInterchange, addMergedInterchangeToRepository } from '../model/MergedInterchange';
 import { MergedInterchange } from '../model/MergedInterchange';

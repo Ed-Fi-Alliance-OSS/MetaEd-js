@@ -6,8 +6,8 @@ import {
   DomainEntityBuilder,
   DomainEntityExtensionBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/CrossNamespace/V2CannotDuplicateNamesInDependencyNamespaces';
 
 describe('when DEs have different names across dependency-linked namespaces', (): void => {

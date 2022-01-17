@@ -1,6 +1,6 @@
-import { MetaEdEnvironment, PluginEnvironment, Namespace } from 'metaed-core';
-import { SchemaContainer, ComplexType, EnumerationSimpleType, SimpleType } from 'metaed-plugin-edfi-xsd';
-import { newSchemaContainer } from 'metaed-plugin-edfi-xsd';
+import { MetaEdEnvironment, PluginEnvironment, Namespace } from '@edfi/metaed-core';
+import { SchemaContainer, ComplexType, EnumerationSimpleType, SimpleType } from '@edfi/metaed-plugin-edfi-xsd';
+import { newSchemaContainer } from '@edfi/metaed-plugin-edfi-xsd';
 import { EdFiMappingEduRepository } from '../model/EdFiMappingEduRepository';
 import { ElementGroupDefinition } from '../model/ElementGroupDefinition';
 import { EntityDefinition } from '../model/EntityDefinition';

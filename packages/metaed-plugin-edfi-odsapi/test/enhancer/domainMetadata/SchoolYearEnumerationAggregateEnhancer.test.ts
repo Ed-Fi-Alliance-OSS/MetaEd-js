@@ -1,7 +1,7 @@
-import { newMetaEdEnvironment, newSchoolYearEnumeration, newNamespace } from 'metaed-core';
-import { MetaEdEnvironment, SchoolYearEnumeration, Namespace } from 'metaed-core';
-import { newTable, initializeEdFiOdsRelationalEntityRepository, tableEntities } from 'metaed-plugin-edfi-ods-relational';
-import { Table } from 'metaed-plugin-edfi-ods-relational';
+import { newMetaEdEnvironment, newSchoolYearEnumeration, newNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, SchoolYearEnumeration, Namespace } from '@edfi/metaed-core';
+import { newTable, initializeEdFiOdsRelationalEntityRepository, tableEntities } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { enhance } from '../../../src/enhancer/domainMetadata/SchoolYearEnumerationAggregateEnhancer';
 import { NoAggregate } from '../../../src/model/domainMetadata/Aggregate';
 import { Aggregate } from '../../../src/model/domainMetadata/Aggregate';

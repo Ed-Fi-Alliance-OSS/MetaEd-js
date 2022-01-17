@@ -14,10 +14,10 @@ import {
   runGenerators,
   validateConfiguration,
   walkBuilders,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import path from 'path';
 import xlsx from 'xlsx';
-import { State, SemVer } from 'metaed-core';
+import { State, SemVer } from '@edfi/metaed-core';
 
 jest.unmock('final-fs');
 jest.setTimeout(40000);

@@ -12,7 +12,7 @@ import {
   newIntegerProperty,
   newMetaEdEnvironment,
   newNamespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   Association,
   AssociationProperty,
@@ -25,7 +25,7 @@ import {
   IntegerProperty,
   MetaEdEnvironment,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { tableEntities } from '../../../src/enhancer/EnhancerHelper';
 import { enhance } from '../../../src/enhancer/table/AssociationTableEnhancer';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../../src/model/EdFiOdsRelationalEntityRepository';

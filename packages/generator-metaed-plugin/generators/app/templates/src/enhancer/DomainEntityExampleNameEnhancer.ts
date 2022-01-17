@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, EnhancerResult, getAllEntitiesOfType, versionSatisfies, V3OrGreater } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, getAllEntitiesOfType, versionSatisfies, V3OrGreater } from '@edfi/metaed-core';
 
 // Enhancer that populates example names for DomainEntities as their metaEdName with an 'Example' prefix
 const enhancerName = 'DomainEntityExampleNameEnhancer';

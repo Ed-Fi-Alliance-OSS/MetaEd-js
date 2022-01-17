@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { MetaEdEnvironment } from 'metaed-core';
-import { addProperty, newMetaEdEnvironment, newSharedDecimal, newSharedDecimalProperty } from 'metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
+import { addProperty, newMetaEdEnvironment, newSharedDecimal, newSharedDecimalProperty } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/SharedDecimalPropertyEnhancer';
 
 describe('when shared decimal property refers to a shared decimal', (): void => {

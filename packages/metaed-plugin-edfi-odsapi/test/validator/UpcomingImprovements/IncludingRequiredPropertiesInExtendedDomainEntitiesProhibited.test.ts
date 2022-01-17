@@ -5,8 +5,8 @@ import {
   DomainEntityBuilder,
   DomainEntityExtensionBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/UpcomingImprovements/IncludingRequiredPropertiesInExtendedDomainEntitiesProhibited';
 
 describe('when a domain entity extension extends a domain entity with no required properties', (): void => {

@@ -1,5 +1,5 @@
-import { asTopLevelEntity, getAllEntitiesOfType, newReferentialProperty, NoTopLevelEntity } from 'metaed-core';
-import { EnhancerResult, MetaEdEnvironment, PropertyType, ReferentialProperty, TopLevelEntity } from 'metaed-core';
+import { asTopLevelEntity, getAllEntitiesOfType, newReferentialProperty, NoTopLevelEntity } from '@edfi/metaed-core';
+import { EnhancerResult, MetaEdEnvironment, PropertyType, ReferentialProperty, TopLevelEntity } from '@edfi/metaed-core';
 import { addEntityPropertyEdfiOdsTo } from '../model/property/EntityProperty';
 
 const enhancerName = 'TopLevelEntityBaseReferenceEnhancer';

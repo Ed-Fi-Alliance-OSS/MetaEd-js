@@ -1,4 +1,4 @@
-import { MetaEdPlugin } from 'metaed-core';
+import { MetaEdPlugin } from '@edfi/metaed-core';
 import { enhancerList } from './enhancer/EnhancerList';
 import { generate as generateXsd } from './generator/XsdGenerator';
 import { generate as generateSchemaAnnotation } from './generator/SchemaAnnotationGenerator';

@@ -1,5 +1,5 @@
-import { newDomainEntity, newInlineCommon, newInlineCommonProperty, newIntegerProperty } from 'metaed-core';
-import { Common, DomainEntity, InlineCommonProperty, IntegerProperty } from 'metaed-core';
+import { newDomainEntity, newInlineCommon, newInlineCommonProperty, newIntegerProperty } from '@edfi/metaed-core';
+import { Common, DomainEntity, InlineCommonProperty, IntegerProperty } from '@edfi/metaed-core';
 import { Column } from '../../../src/model/database/Column';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { collectPrimaryKeys } from '../../../src/enhancer/table/PrimaryKeyCollector';

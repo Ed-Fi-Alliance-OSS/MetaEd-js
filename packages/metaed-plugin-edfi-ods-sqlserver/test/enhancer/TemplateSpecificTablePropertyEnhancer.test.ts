@@ -1,5 +1,5 @@
 import R from 'ramda';
-import { MetaEdEnvironment, Namespace, newMetaEdEnvironment, newNamespace } from 'metaed-core';
+import { MetaEdEnvironment, Namespace, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import {
   initializeEdFiOdsRelationalEntityRepository,
   newColumn,
@@ -11,7 +11,7 @@ import {
   newTableNameComponent,
   tableEntities,
   Table,
-} from 'metaed-plugin-edfi-ods-relational';
+} from '@edfi/metaed-plugin-edfi-ods-relational';
 import { enhance } from '../../src/enhancer/TemplateSpecificTablePropertyEnhancer';
 import { enhance as tableSetupEnhancer } from '../../src/model/Table';
 import { enhance as sqlServerTableNamingEnhancer } from '../../src/enhancer/SqlServerTableNamingEnhancer';

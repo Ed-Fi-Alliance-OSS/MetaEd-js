@@ -1,5 +1,5 @@
 // 2.2.X.1 - METAED-701 - ODS-827
-import { versionSatisfies, V2Only, getAllEntitiesOfType } from 'metaed-core';
+import { versionSatisfies, V2Only, getAllEntitiesOfType } from '@edfi/metaed-core';
 import {
   MetaEdEnvironment,
   ValidationFailure,
@@ -7,7 +7,7 @@ import {
   PluginEnvironment,
   SemVer,
   AssociationExtension,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 function isStudentProgramAssociationOrSubclass(topLevelEntity: TopLevelEntity): boolean {
   if (topLevelEntity.metaEdName === 'StudentProgramAssociation') return true;

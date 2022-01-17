@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, EnhancerResult, Descriptor, getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Descriptor, getAllEntitiesOfType } from '@edfi/metaed-core';
 import { StringSimpleType, NoStringSimpleType } from './schema/StringSimpleType';
 
 export interface DescriptorEdfiXsd {

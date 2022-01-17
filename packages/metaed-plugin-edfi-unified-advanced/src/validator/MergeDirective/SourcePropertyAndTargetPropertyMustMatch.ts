@@ -7,7 +7,7 @@ import {
   getPropertiesOfType,
   isReferentialProperty,
   TopLevelEntity,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 
 const validPropertyTypes: PropertyType[] = [
   'association',

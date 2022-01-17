@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, ValidationFailure, SemVer, PluginEnvironment } from 'metaed-core';
-import { getAllProperties, versionSatisfies } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, SemVer, PluginEnvironment } from '@edfi/metaed-core';
+import { getAllProperties, versionSatisfies } from '@edfi/metaed-core';
 
 const targetTechnologyVersion: SemVer = '>=3.1';
 

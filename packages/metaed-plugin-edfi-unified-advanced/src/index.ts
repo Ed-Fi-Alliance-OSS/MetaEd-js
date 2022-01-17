@@ -1,4 +1,4 @@
-import { MetaEdPlugin, newMetaEdPlugin } from 'metaed-core';
+import { MetaEdPlugin, newMetaEdPlugin } from '@edfi/metaed-core';
 
 import { validate as sourcePropertyAndTargetPropertyMustMatch } from './validator/MergeDirective/SourcePropertyAndTargetPropertyMustMatch';
 import { validate as sourcePropertyPathStringsMustExist } from './validator/MergeDirective/SourcePropertyPathMustExist';

@@ -1,6 +1,6 @@
-import { Column, newColumn, Table } from 'metaed-plugin-edfi-ods-relational';
-import { DeleteTrackingTable, getPrimaryKeys } from 'metaed-plugin-edfi-ods-changequery';
-import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from 'metaed-core';
+import { Column, newColumn, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { DeleteTrackingTable, getPrimaryKeys } from '@edfi/metaed-plugin-edfi-ods-changequery';
+import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
 import { TARGET_DATABASE_PLUGIN_NAME } from './EnhancerHelper';
 
 function createDeleteTrackingTableModelV3dot3(mainTable: Table): DeleteTrackingTable {

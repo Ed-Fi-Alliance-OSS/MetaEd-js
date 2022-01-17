@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
-import { GeneratorResult, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { GeneratorResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { newSchemaContainer } from '../../src/model/SchemaContainer';
 import { generate } from '../../src/generator/OdsGenerator';
 

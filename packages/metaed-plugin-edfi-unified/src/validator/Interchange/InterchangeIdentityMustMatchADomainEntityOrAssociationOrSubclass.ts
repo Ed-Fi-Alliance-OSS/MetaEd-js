@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, ValidationFailure, Interchange, InterchangeItem, ModelType } from 'metaed-core';
-import { getAllEntitiesOfType, getEntityFromNamespaceChain } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, Interchange, InterchangeItem, ModelType } from '@edfi/metaed-core';
+import { getAllEntitiesOfType, getEntityFromNamespaceChain } from '@edfi/metaed-core';
 
 const validTypes: ModelType[] = ['association', 'associationSubclass', 'descriptor', 'domainEntity', 'domainEntitySubclass'];
 

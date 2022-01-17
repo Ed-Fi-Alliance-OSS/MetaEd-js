@@ -1,12 +1,12 @@
-import { newAssociation } from 'metaed-core';
-import { MetaEdEnvironment, Association, Namespace } from 'metaed-core';
-import { newTable, newColumn } from 'metaed-plugin-edfi-ods-relational';
+import { newAssociation } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Association, Namespace } from '@edfi/metaed-core';
+import { newTable, newColumn } from '@edfi/metaed-plugin-edfi-ods-relational';
 import {
   addEdFiOdsChangeQueryEntityRepositoryTo,
   deleteTrackingTableEntities,
   deleteTrackingTriggerEntities,
   pluginEnvironment,
-} from 'metaed-plugin-edfi-ods-changequery';
+} from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { enhance } from '../../src/enhancer/AssociationChangeQueryEnhancer';
 import { metaEdEnvironmentForApiVersion, newCoreNamespace, newExtensionNamespace } from './TestHelper';
 import { PLUGIN_NAME } from '../../src/PluginHelper';

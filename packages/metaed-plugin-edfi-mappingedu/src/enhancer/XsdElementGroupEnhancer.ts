@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
-import { SchemaSection, ComplexType, EnumerationSimpleType, SimpleType } from 'metaed-plugin-edfi-xsd';
+import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
+import { SchemaSection, ComplexType, EnumerationSimpleType, SimpleType } from '@edfi/metaed-plugin-edfi-xsd';
 import {
   typeGroupAssociation,
   typeGroupBase,
@@ -12,7 +12,7 @@ import {
   typeGroupIdentity,
   typeGroupLookup,
   typeGroupSimple,
-} from 'metaed-plugin-edfi-xsd';
+} from '@edfi/metaed-plugin-edfi-xsd';
 import {
   pluginAssociationsForNamespace,
   pluginBasesForNamespace,

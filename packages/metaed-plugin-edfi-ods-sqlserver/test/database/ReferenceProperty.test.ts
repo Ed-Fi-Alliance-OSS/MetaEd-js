@@ -6,8 +6,8 @@ import {
   MetaEdTextBuilder,
   NamespaceBuilder,
   newMetaEdEnvironment,
-} from 'metaed-core';
-import { MetaEdEnvironment } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
 import {
   column,
   enhanceGenerateAndExecuteSql,

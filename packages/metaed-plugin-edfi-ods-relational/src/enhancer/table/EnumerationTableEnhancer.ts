@@ -1,5 +1,5 @@
-import { getEntitiesOfTypeForNamespaces, Enumeration } from 'metaed-core';
-import { EnhancerResult, MetaEdEnvironment, ModelBase } from 'metaed-core';
+import { getEntitiesOfTypeForNamespaces, Enumeration } from '@edfi/metaed-core';
+import { EnhancerResult, MetaEdEnvironment, ModelBase } from '@edfi/metaed-core';
 import { addTables } from './TableCreatingEntityEnhancerBase';
 import { enumerationTableCreator } from './EnumerationTableCreator';
 import { Table } from '../../model/database/Table';

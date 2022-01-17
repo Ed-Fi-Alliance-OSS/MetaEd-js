@@ -8,7 +8,7 @@ import {
   MetaEdEnvironment,
   SharedStringBuilder,
   DomainEntitySubclassBuilder,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { enhance as outReferencePathEnhancer } from '../../src/enhancer/OutReferencePathEnhancer';
 import { enhance as domainEntityReferenceEnhancer } from '../../src/enhancer/property/DomainEntityReferenceEnhancer';
 import { enhance as stringReferenceEnhancer } from '../../src/enhancer/property/StringReferenceEnhancer';

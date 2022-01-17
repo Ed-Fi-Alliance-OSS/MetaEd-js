@@ -6,7 +6,7 @@ import {
   AssociationBuilder,
   NamespaceBuilder,
   CommonBuilder,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { xpathSelect, enhanceAndGenerate, initializeNamespaceDependencies } from './IntegrationTestHelper';
 
 describe('when generating xsd for association with inline common type as part of identity', (): void => {

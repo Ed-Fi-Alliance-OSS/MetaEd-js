@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, Descriptor } from 'metaed-core';
-import { getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Descriptor } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 import { NoAggregate } from './domainMetadata/Aggregate';
 import { Aggregate } from './domainMetadata/Aggregate';
 

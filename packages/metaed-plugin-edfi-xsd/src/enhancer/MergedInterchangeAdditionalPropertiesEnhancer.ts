@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
 import { edfiXsdRepositoryForNamespace } from './EnhancerHelper';
 import { EdFiXsdEntityRepository } from '../model/EdFiXsdEntityRepository';
 

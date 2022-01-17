@@ -1,5 +1,5 @@
-import { getAllEntitiesOfType } from 'metaed-core';
-import { MetaEdEnvironment, EnhancerResult } from 'metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
 import { EnumerationBaseEdfiXsd } from '../model/EnumerationBase';
 
 const enhancerName = 'EnumerationBasePropertiesEnhancer';

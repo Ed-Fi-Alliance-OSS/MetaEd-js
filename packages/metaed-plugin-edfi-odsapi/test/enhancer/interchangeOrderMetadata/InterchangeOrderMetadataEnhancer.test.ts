@@ -7,14 +7,14 @@ import {
   newDomainEntityProperty,
   newIntegerProperty,
   newDomainEntityExtension,
-} from 'metaed-core';
-import { MetaEdEnvironment, Namespace, DomainEntity, InterchangeItem, DomainEntityExtension } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace, DomainEntity, InterchangeItem, DomainEntityExtension } from '@edfi/metaed-core';
 import {
   newMergedInterchange,
   addMergedInterchangeToRepository,
   addEdFiXsdEntityRepositoryTo,
-} from 'metaed-plugin-edfi-xsd';
-import { MergedInterchange } from 'metaed-plugin-edfi-xsd';
+} from '@edfi/metaed-plugin-edfi-xsd';
+import { MergedInterchange } from '@edfi/metaed-plugin-edfi-xsd';
 import { addMergedInterchangeEdfiOdsApiTo } from '../../../src/model/MergedInterchange';
 import { addInterchangeItemEdfiOdsApiTo } from '../../../src/model/InterchangeItem';
 import { enhance, sortGraph } from '../../../src/enhancer/interchangeOrderMetadata/InterchangeOrderMetadataEnhancer';

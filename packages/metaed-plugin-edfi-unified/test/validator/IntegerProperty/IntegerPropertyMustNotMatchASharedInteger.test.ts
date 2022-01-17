@@ -4,8 +4,8 @@ import {
   DomainEntityBuilder,
   SharedIntegerBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/IntegerProperty/IntegerPropertyMustNotMatchASharedInteger';
 
 describe('when validating integer property does not match shared integer', (): void => {

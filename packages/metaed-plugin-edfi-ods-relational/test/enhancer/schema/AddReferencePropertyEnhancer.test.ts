@@ -1,5 +1,5 @@
-import { newAssociationProperty, newDomainEntityProperty, newMetaEdEnvironment } from 'metaed-core';
-import { AssociationProperty, DomainEntityProperty, MetaEdEnvironment } from 'metaed-core';
+import { newAssociationProperty, newDomainEntityProperty, newMetaEdEnvironment } from '@edfi/metaed-core';
+import { AssociationProperty, DomainEntityProperty, MetaEdEnvironment } from '@edfi/metaed-core';
 import { enhance } from '../../../src/model/property/ReferenceProperty';
 
 describe('when ReferenceProperty enhances association property', (): void => {

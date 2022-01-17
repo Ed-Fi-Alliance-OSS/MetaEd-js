@@ -1,5 +1,5 @@
 import R from 'ramda';
-import { EntityProperty, ReferentialProperty, asReferentialProperty } from 'metaed-core';
+import { EntityProperty, ReferentialProperty, asReferentialProperty } from '@edfi/metaed-core';
 import { addColumns, addForeignKey, newTable, newTableExistenceReason } from '../../model/database/Table';
 import { joinTableNamer } from './TableNaming';
 import { ColumnTransform, ColumnTransformPrimaryKey, ColumnTransformUnchanged } from '../../model/database/ColumnTransform';

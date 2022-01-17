@@ -5,8 +5,8 @@ import {
   addEntityForNamespace,
   getEntityFromNamespace,
   newNamespace,
-} from 'metaed-core';
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/DomainSubdomainEnhancer';
 
 describe('when enhancing domain', (): void => {

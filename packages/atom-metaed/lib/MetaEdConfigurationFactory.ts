@@ -1,5 +1,5 @@
-import { newMetaEdConfiguration } from 'metaed-core';
-import { MetaEdConfiguration } from 'metaed-core';
+import { newMetaEdConfiguration } from '@edfi/metaed-core';
+import { MetaEdConfiguration } from '@edfi/metaed-core';
 
 export function metaEdConfigurationFor(defaultPluginTechVersion: string, allianceMode: boolean): MetaEdConfiguration {
   return {

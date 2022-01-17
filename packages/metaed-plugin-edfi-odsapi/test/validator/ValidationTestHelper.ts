@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 
 export function initializeNamespaceDependencies(
   metaEd: MetaEdEnvironment,

@@ -9,7 +9,7 @@ import {
   InitializeParams,
   DidChangeConfigurationNotification,
 } from 'vscode-languageserver';
-import { State, MetaEdConfiguration, executePipeline, newState, newMetaEdConfiguration } from 'metaed-core';
+import { State, MetaEdConfiguration, executePipeline, newState, newMetaEdConfiguration } from '@edfi/metaed-core';
 import { MetaEdProjectMetadata, validProjectMetadata, findMetaEdProjectMetadata } from '../common/Projects';
 
 export async function findMetaEdProjectMetadataForServer(workspaceFolders: string[]): Promise<MetaEdProjectMetadata[]> {

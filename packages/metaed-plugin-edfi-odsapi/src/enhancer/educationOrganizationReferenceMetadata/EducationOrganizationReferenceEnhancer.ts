@@ -5,8 +5,8 @@ import {
   EntityProperty,
   MetaEdEnvironment,
   Namespace,
-} from 'metaed-core';
-import { getAllEntitiesOfType } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 import { newEducationOrganizationReference } from '../../model/educationOrganizationReferenceMetadata/EducationOrganizationReference';
 import { EducationOrganizationReference } from '../../model/educationOrganizationReferenceMetadata/EducationOrganizationReference';
 

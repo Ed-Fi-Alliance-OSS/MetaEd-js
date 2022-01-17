@@ -7,7 +7,7 @@ import {
   PropertyIndex,
   ValidationFailure,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { groupByMetaEdName } from '../../shared/GroupByMetaEdName';
 
 type SimpleProperties = ShortProperty | DecimalProperty | IntegerProperty | StringProperty;

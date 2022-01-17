@@ -1,7 +1,7 @@
 import R from 'ramda';
-import { getAllEntitiesOfType, asTopLevelEntity } from 'metaed-core';
-import { MetaEdEnvironment, ModelBase, EnhancerResult, TopLevelEntity, Namespace } from 'metaed-core';
-import { Table, TopLevelEntityEdfiOds } from 'metaed-plugin-edfi-ods-relational';
+import { getAllEntitiesOfType, asTopLevelEntity } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ModelBase, EnhancerResult, TopLevelEntity, Namespace } from '@edfi/metaed-core';
+import { Table, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { enhanceSingleEntity } from './AggregateEnhancerBase';
 
 const enhancerName = 'AssociationExtensionAggregateEnhancer';

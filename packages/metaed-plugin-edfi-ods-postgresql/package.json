@@ -1,11 +1,11 @@
 {
-  "name": "metaed-plugin-edfi-ods-postgresql",
+  "name": "@edfi/metaed-plugin-edfi-ods-postgresql",
   "main": "dist/index.js",
   "version": "3.0.0-dev.3",
   "description": "Ed-Fi PostgreSQL ODS plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
-    "registry": "https://www.myget.org/F/ed-fi/npm/"
+    "@edfi:registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/"
   },
   "files": [
     "/dist",
@@ -17,21 +17,21 @@
     "pluginType": "artifact-specific",
     "shortName": "edfiOdsPostgresql",
     "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "2.x",
+    "metaEdVersion": "3.x",
     "technologyVersion": "*",
     "dependencies": [
-      "metaed-plugin-edfi-unified-advanced",
-      "metaed-plugin-edfi-ods-relational"
+      "@edfi/metaed-plugin-edfi-unified-advanced",
+      "@edfi/metaed-plugin-edfi-ods-relational"
     ]
   },
   "dependencies": {
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.7.7",
     "hash.js": "^1.1.7",
-    "metaed-core": "3.0.0-dev.3",
-    "metaed-plugin-edfi-ods-relational": "3.0.0-dev.3",
-    "metaed-plugin-edfi-unified": "3.0.0-dev.3",
-    "metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3",
+    "@edfi/metaed-core": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-ods-relational": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-unified": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3",
     "pg": "^7.18.2",
     "ramda": "^0.27.1",
     "sugar": "^2.0.6",
@@ -40,10 +40,10 @@
   "devDependencies": {
     "@types/pg": "^7.14.11",
     "cli-highlight": "^2.1.11",
-    "ed-fi-model-2.0": "2.0.2",
-    "ed-fi-model-3.0": "2.0.3",
-    "ed-fi-model-3.1": "2.0.3",
-    "ed-fi-model-3.2a": "2.0.1",
+    "@edfi/ed-fi-model-2.0": "2.0.2",
+    "@edfi/ed-fi-model-3.0": "2.0.3",
+    "@edfi/ed-fi-model-3.1": "2.0.3",
+    "@edfi/ed-fi-model-3.2a": "2.0.1",
     "final-fs": "^1.6.1",
     "pg-structure": "^7.13.0"
   },

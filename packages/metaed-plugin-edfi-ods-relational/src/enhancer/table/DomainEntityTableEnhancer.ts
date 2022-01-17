@@ -1,5 +1,5 @@
-import { asTopLevelEntity, getEntitiesOfTypeForNamespaces } from 'metaed-core';
-import { TopLevelEntity, EnhancerResult, MetaEdEnvironment, ModelBase } from 'metaed-core';
+import { asTopLevelEntity, getEntitiesOfTypeForNamespaces } from '@edfi/metaed-core';
+import { TopLevelEntity, EnhancerResult, MetaEdEnvironment, ModelBase } from '@edfi/metaed-core';
 import { addTables, buildMainTable, buildTablesFromProperties } from './TableCreatingEntityEnhancerBase';
 import { Table } from '../../model/database/Table';
 

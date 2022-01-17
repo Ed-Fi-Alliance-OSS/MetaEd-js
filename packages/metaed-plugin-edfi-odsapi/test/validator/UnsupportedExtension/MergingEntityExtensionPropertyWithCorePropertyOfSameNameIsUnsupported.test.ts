@@ -6,9 +6,9 @@ import {
   NamespaceBuilder,
   newMetaEdEnvironment,
   newPluginEnvironment,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
-import { initialize as initializeUnifiedPlugin } from 'metaed-plugin-edfi-unified';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
+import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
 import { initializeNamespaceDependencies } from '../ValidationTestHelper';
 import { validate } from '../../../src/validator/UnsupportedExtension/MergingEntityExtensionPropertyWithCorePropertyOfSameNameIsUnsupported';
 

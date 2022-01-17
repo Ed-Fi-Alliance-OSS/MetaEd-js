@@ -1,6 +1,6 @@
-import { newPluginEnvironment } from 'metaed-core';
-import { MetaEdEnvironment, EnhancerResult, Namespace } from 'metaed-core';
-import { SimpleType, ComplexType, EnumerationSimpleType } from 'metaed-plugin-edfi-xsd';
+import { newPluginEnvironment } from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
+import { SimpleType, ComplexType, EnumerationSimpleType } from '@edfi/metaed-plugin-edfi-xsd';
 import { ElementGroupDefinition } from './ElementGroupDefinition';
 import { EntityDefinition } from './EntityDefinition';
 import { ElementDefinition } from './ElementDefinition';

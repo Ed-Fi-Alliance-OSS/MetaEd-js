@@ -1,4 +1,4 @@
-import { EntityProperty, PropertyType } from 'metaed-core';
+import { EntityProperty, PropertyType } from '@edfi/metaed-core';
 import { choicePropertyColumnCreator } from './ChoicePropertyColumnCreator';
 import { commonPropertyColumnCreator } from './CommonPropertyColumnCreator';
 import { descriptorPropertyColumnCreator } from './DescriptorPropertyColumnCreator';

@@ -1,11 +1,11 @@
 {
-  "name": "metaed-plugin-edfi-ods-changequery-postgresql",
+  "name": "@edfi/metaed-plugin-edfi-ods-changequery-postgresql",
   "main": "dist/index.js",
   "version": "3.0.0-dev.3",
   "description": "Ed-Fi ODS/API Change Queries plugin for MetaEd supporting PostgreSQL",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
-    "registry": "https://www.myget.org/F/ed-fi/npm/"
+    "@edfi:registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/"
   },
   "files": [
     "/dist",
@@ -17,23 +17,23 @@
     "pluginType": "artifact-specific",
     "shortName": "edfiOdsChangeQueryPostgresql",
     "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "2.x",
+    "metaEdVersion": "3.x",
     "technologyVersion": ">=3.4.0",
     "dependencies": [
-      "metaed-plugin-edfi-unified-advanced",
-      "metaed-plugin-edfi-ods-relational",
-      "metaed-plugin-edfi-ods-postgresql",
-      "metaed-plugin-edfi-ods-changequery"
+      "@edfi/metaed-plugin-edfi-unified-advanced",
+      "@edfi/metaed-plugin-edfi-ods-relational",
+      "@edfi/metaed-plugin-edfi-ods-postgresql",
+      "@edfi/metaed-plugin-edfi-ods-changequery"
     ]
   },
   "dependencies": {
     "handlebars": "^4.7.7",
     "hash.js": "^1.1.7",
-    "metaed-core": "3.0.0-dev.3",
-    "metaed-plugin-edfi-ods-changequery": "3.0.0-dev.3",
-    "metaed-plugin-edfi-ods-postgresql": "3.0.0-dev.3",
-    "metaed-plugin-edfi-ods-relational": "3.0.0-dev.3",
-    "metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3",
+    "@edfi/metaed-core": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-ods-changequery": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-ods-postgresql": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-ods-relational": "3.0.0-dev.3",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "3.0.0-dev.3",
     "ramda": "^0.27.1",
     "winston": "3.3.3"
   },

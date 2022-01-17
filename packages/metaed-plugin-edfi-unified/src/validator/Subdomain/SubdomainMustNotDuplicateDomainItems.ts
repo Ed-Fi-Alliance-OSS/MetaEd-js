@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
 import { findDuplicates } from '../ValidatorShared/FindDuplicates';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {

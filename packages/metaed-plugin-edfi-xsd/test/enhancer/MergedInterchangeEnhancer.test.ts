@@ -4,8 +4,8 @@ import {
   newInterchangeItem,
   newNamespace,
   newInterchangeExtension,
-} from 'metaed-core';
-import { MetaEdEnvironment, InterchangeItem, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, InterchangeItem, Namespace } from '@edfi/metaed-core';
 import { enhance as initializeTopLevelEntities } from '../../src/model/TopLevelEntity';
 import { enhance } from '../../src/enhancer/MergedInterchangeEnhancer';
 import { edfiXsdRepositoryForNamespace } from '../../src/enhancer/EnhancerHelper';

@@ -6,8 +6,8 @@ import {
   DomainEntityExtensionBuilder,
   NamespaceBuilder,
   newPluginEnvironment,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/UpcomingImprovements/ExtendingSubclassOfEducationOrganizationProhibited';
 
 describe('when a domain entity extension extends a non-education organization domain entity', (): void => {

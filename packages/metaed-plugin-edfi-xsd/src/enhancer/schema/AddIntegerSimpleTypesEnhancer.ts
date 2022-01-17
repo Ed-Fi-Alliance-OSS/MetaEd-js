@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, IntegerType } from 'metaed-core';
-import { getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, IntegerType } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 import { SimpleTypeBaseEdfiXsd } from '../../model/SimpleTypeBase';
 import { ModelBaseEdfiXsd } from '../../model/ModelBase';
 import { NoSimpleType } from '../../model/schema/SimpleType';

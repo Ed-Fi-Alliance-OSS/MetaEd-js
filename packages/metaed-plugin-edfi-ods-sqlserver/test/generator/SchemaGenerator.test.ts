@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, newNamespace } from 'metaed-core';
-import { GeneratorResult, MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { GeneratorResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { generate } from '../../src/generator/SchemaGenerator';
 
 describe('when generating schemas for core namespace', (): void => {

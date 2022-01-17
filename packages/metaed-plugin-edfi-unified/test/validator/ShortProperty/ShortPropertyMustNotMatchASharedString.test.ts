@@ -4,8 +4,8 @@ import {
   DomainEntityBuilder,
   SharedStringBuilder,
   NamespaceBuilder,
-} from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+} from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/ShortProperty/ShortPropertyMustNotMatchASharedString';
 
 describe('when validating short property does not match shared string', (): void => {

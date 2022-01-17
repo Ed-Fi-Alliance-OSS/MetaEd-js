@@ -16,7 +16,7 @@ import {
   newStringProperty,
   newTimeProperty,
   newYearProperty,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   BooleanProperty,
   CurrencyProperty,
@@ -34,7 +34,7 @@ import {
   StringProperty,
   TimeProperty,
   YearProperty,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { Column, DecimalColumn, StringColumn } from '../../../src/model/database/Column';

@@ -1,6 +1,6 @@
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
-import { EdFiXsdEntityRepository } from 'metaed-plugin-edfi-xsd';
-import { edfiXsdRepositoryForNamespace } from 'metaed-plugin-edfi-xsd';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { EdFiXsdEntityRepository } from '@edfi/metaed-plugin-edfi-xsd';
+import { edfiXsdRepositoryForNamespace } from '@edfi/metaed-plugin-edfi-xsd';
 import { escapeForMarkdownNewLine } from './Shared';
 import { MergedInterchangeEdfiInterchangeBrief } from '../model/MergedInterchange';
 

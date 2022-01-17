@@ -1,4 +1,4 @@
-import { MetaEdEnvironment } from 'metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
 import {
   newMetaEdEnvironment,
   MetaEdTextBuilder,
@@ -6,7 +6,7 @@ import {
   DescriptorBuilder,
   EnumerationBuilder,
   DomainEntityBuilder,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { xpathSelect, enhanceAndGenerate, initializeNamespaceDependencies } from './IntegrationTestHelper';
 
 describe('when generating xsd for enumeration', (): void => {

@@ -1,5 +1,5 @@
-import { DomainEntity, Enumeration, EnumerationProperty, IntegerProperty } from 'metaed-core';
-import { newDomainEntity, newEnumeration, newEnumerationProperty, newIntegerProperty } from 'metaed-core';
+import { DomainEntity, Enumeration, EnumerationProperty, IntegerProperty } from '@edfi/metaed-core';
+import { newDomainEntity, newEnumeration, newEnumerationProperty, newIntegerProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { newTable } from '../../../src/model/database/Table';

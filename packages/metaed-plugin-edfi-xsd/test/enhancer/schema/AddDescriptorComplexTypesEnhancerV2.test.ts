@@ -9,7 +9,7 @@ import {
   newBooleanProperty,
   newDescriptorProperty,
   newNamespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { ComplexType, NoComplexType } from '../../../src/model/schema/ComplexType';
 import { Element } from '../../../src/model/schema/Element';
 import { addModelBaseEdfiXsdTo } from '../../../src/model/ModelBase';

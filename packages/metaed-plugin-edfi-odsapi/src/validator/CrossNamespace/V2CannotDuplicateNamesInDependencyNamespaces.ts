@@ -7,7 +7,7 @@ import {
   SemVer,
   V2Only,
   versionSatisfies,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { duplicateNameFinder } from './DuplicateNameFinder';
 
 const targetTechnologyVersion: SemVer = V2Only;

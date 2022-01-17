@@ -1,5 +1,5 @@
-import { DomainEntityBuilder, MetaEdTextBuilder, NamespaceBuilder, newMetaEdEnvironment } from 'metaed-core';
-import { MetaEdEnvironment } from 'metaed-core';
+import { DomainEntityBuilder, MetaEdTextBuilder, NamespaceBuilder, newMetaEdEnvironment } from '@edfi/metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
 import {
   column,
   columnDataTypes,

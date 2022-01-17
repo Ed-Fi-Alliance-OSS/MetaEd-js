@@ -1,5 +1,5 @@
-import { newMetaEdEnvironment, MetaEdTextBuilder, EnumerationBuilder, NamespaceBuilder } from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { newMetaEdEnvironment, MetaEdTextBuilder, EnumerationBuilder, NamespaceBuilder } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/Enumeration/EnumerationExistsOnlyInCoreNamespace';
 
 describe('when validating enumeration type exists in core', (): void => {

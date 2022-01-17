@@ -1,5 +1,5 @@
-import { newColumn, StringColumn, DecimalColumn } from 'metaed-plugin-edfi-ods-relational';
-import { Column } from 'metaed-plugin-edfi-ods-relational';
+import { newColumn, StringColumn, DecimalColumn } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { Column } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { buildApiProperty } from '../../../src/enhancer/apiModel/BuildApiProperty';
 import { ApiProperty } from '../../../src/model/apiModel/ApiProperty';
 

@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { newMetaEdEnvironment, newNamespace, NoNamespace } from 'metaed-core';
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newMetaEdEnvironment, newNamespace, NoNamespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/diminisher/domainMetadata/MoveFederalFundsDiminisher';
 import { NoAggregate } from '../../../src/model/domainMetadata/Aggregate';
 import { Aggregate } from '../../../src/model/domainMetadata/Aggregate';

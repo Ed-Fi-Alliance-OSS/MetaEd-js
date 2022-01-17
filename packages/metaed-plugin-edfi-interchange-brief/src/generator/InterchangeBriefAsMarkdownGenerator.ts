@@ -3,9 +3,9 @@ import R from 'ramda';
 import handlebars from 'handlebars';
 import fs from 'fs';
 import path from 'path';
-import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from 'metaed-core';
-import { EdFiXsdEntityRepository, MergedInterchange } from 'metaed-plugin-edfi-xsd';
-import { edfiXsdRepositoryForNamespace } from 'metaed-plugin-edfi-xsd';
+import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from '@edfi/metaed-core';
+import { EdFiXsdEntityRepository, MergedInterchange } from '@edfi/metaed-plugin-edfi-xsd';
+import { edfiXsdRepositoryForNamespace } from '@edfi/metaed-plugin-edfi-xsd';
 
 const generatorName = 'Interchange Brief Markdown Generator';
 const header =

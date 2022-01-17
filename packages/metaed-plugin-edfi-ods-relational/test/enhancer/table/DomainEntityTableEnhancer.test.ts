@@ -13,7 +13,7 @@ import {
   newMetaEdEnvironment,
   newNamespace,
   NoTopLevelEntity,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   Common,
   CommonProperty,
@@ -27,7 +27,7 @@ import {
   MetaEdEnvironment,
   TopLevelEntity,
   Namespace,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { tableEntities } from '../../../src/enhancer/EnhancerHelper';
 import { enhance } from '../../../src/enhancer/table/DomainEntityTableEnhancer';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../../src/model/EdFiOdsRelationalEntityRepository';

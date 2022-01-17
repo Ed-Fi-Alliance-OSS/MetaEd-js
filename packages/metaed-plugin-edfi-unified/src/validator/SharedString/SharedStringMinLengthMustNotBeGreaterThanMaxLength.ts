@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, ValidationFailure, SharedStringSourceMap, Namespace } from 'metaed-core';
+import { MetaEdEnvironment, ValidationFailure, SharedStringSourceMap, Namespace } from '@edfi/metaed-core';
 
 // @ts-ignore
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {

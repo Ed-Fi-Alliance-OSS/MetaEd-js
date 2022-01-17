@@ -1,5 +1,5 @@
-import { getEntitiesOfTypeForNamespaces } from 'metaed-core';
-import { Descriptor, EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, Namespace } from 'metaed-core';
+import { getEntitiesOfTypeForNamespaces } from '@edfi/metaed-core';
+import { Descriptor, EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, Namespace } from '@edfi/metaed-core';
 import {
   addColumns,
   addForeignKey,

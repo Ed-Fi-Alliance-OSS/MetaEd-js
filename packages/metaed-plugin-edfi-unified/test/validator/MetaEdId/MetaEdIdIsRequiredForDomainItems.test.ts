@@ -1,5 +1,5 @@
-import { DomainBuilder, newMetaEdEnvironment, MetaEdTextBuilder, NamespaceBuilder } from 'metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from 'metaed-core';
+import { DomainBuilder, newMetaEdEnvironment, MetaEdTextBuilder, NamespaceBuilder } from '@edfi/metaed-core';
+import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/MetaEdId/MetaEdIdIsRequiredForDomainItems';
 
 describe('when validating domain item is missing metaEdId', (): void => {

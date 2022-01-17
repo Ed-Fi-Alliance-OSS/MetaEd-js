@@ -1,4 +1,4 @@
-import { MetaEdEnvironment } from 'metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
 import {
   newMetaEdEnvironment,
   MetaEdTextBuilder,
@@ -10,7 +10,7 @@ import {
   DomainEntityExtensionBuilder,
   AssociationBuilder,
   AssociationExtensionBuilder,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { xpathSelect, enhanceAndGenerate, initializeNamespaceDependencies } from './IntegrationTestHelper';
 
 describe('when generating xsd for domain entity in both namespaces sharing a simple type', (): void => {

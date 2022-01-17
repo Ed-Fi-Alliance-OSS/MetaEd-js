@@ -1,6 +1,6 @@
-import { DomainEntityBuilder, MetaEdTextBuilder, NamespaceBuilder, newMetaEdEnvironment } from 'metaed-core';
-import { MetaEdEnvironment } from 'metaed-core';
-import { initialize as initializeUnifiedPlugin } from 'metaed-plugin-edfi-unified';
+import { DomainEntityBuilder, MetaEdTextBuilder, NamespaceBuilder, newMetaEdEnvironment } from '@edfi/metaed-core';
+import { MetaEdEnvironment } from '@edfi/metaed-core';
+import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
 import { initialize as initializeOdsPlugin } from '../../index';
 
 // METAED-1180 - Fix FK gen issue with rolenamed collection of entities themselves having rolenamed properties

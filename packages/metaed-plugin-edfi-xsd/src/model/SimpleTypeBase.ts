@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, DecimalType, IntegerType, StringType } from 'metaed-core';
-import { getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, DecimalType, IntegerType, StringType } from '@edfi/metaed-core';
+import { getAllEntitiesOfType } from '@edfi/metaed-core';
 import { SimpleType } from './schema/SimpleType';
 import { NoSimpleType } from './schema/SimpleType';
 

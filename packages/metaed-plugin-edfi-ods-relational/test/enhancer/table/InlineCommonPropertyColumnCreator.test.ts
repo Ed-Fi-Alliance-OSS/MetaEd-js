@@ -1,5 +1,5 @@
-import { newInlineCommon, newInlineCommonProperty, newStringProperty, newIntegerProperty } from 'metaed-core';
-import { Common, InlineCommonProperty, StringProperty, IntegerProperty } from 'metaed-core';
+import { newInlineCommon, newInlineCommonProperty, newStringProperty, newIntegerProperty } from '@edfi/metaed-core';
+import { Common, InlineCommonProperty, StringProperty, IntegerProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { Column, StringColumn } from '../../../src/model/database/Column';

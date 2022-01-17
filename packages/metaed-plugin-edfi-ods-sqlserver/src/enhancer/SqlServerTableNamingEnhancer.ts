@@ -1,5 +1,5 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace } from 'metaed-core';
-import { tableEntities, Table, constructCollapsedNameFrom } from 'metaed-plugin-edfi-ods-relational';
+import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { tableEntities, Table, constructCollapsedNameFrom } from '@edfi/metaed-plugin-edfi-ods-relational';
 
 const enhancerName = 'SqlServerTableNamingEnhancer';
 

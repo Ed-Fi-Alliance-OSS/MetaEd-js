@@ -1,4 +1,4 @@
-import { MetaEdPlugin, newMetaEdPlugin } from 'metaed-core';
+import { MetaEdPlugin, newMetaEdPlugin } from '@edfi/metaed-core';
 import { validate as NamespaceMustNotBeNamedChanges } from './validator/NamespaceMustNotBeNamedChanges';
 
 export { changeQueryIndicated } from './enhancer/ChangeQueryIndicator';

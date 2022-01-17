@@ -1,5 +1,5 @@
-import { newPluginEnvironment } from 'metaed-core';
-import { MetaEdEnvironment, Namespace } from 'metaed-core';
+import { newPluginEnvironment } from '@edfi/metaed-core';
+import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { DeleteTrackingTable } from './DeleteTrackingTable';
 import { DeleteTrackingTrigger } from './DeleteTrackingTrigger';
 import { AddColumnChangeVersionForTable } from './AddColumnChangeVersionForTable';

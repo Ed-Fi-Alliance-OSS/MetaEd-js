@@ -6,12 +6,12 @@ import {
   MetaEdTextBuilder,
   MetaEdEnvironment,
   ValidationFailure,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import {
   mergeDirectiveEnhancer,
   domainEntityReferenceEnhancer,
   domainEntitySubclassBaseClassEnhancer,
-} from 'metaed-plugin-edfi-unified';
+} from '@edfi/metaed-plugin-edfi-unified';
 import { validate } from '../../../src/validator/MergeDirective/SourcePropertyAndTargetPropertyMustMatch';
 
 describe('when validating merge property name and types match', (): void => {

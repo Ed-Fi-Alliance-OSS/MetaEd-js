@@ -1,10 +1,10 @@
-import { MetaEdEnvironment, ModelBase, EnhancerResult, getAllEntitiesOfType } from 'metaed-core';
+import { MetaEdEnvironment, ModelBase, EnhancerResult, getAllEntitiesOfType } from '@edfi/metaed-core';
 import {
   changeQueryIndicated,
   tableForModel,
   applyCreateDeleteTrackingTableEnhancement,
   applyCreateDeleteTrackingTriggerEnhancements,
-} from 'metaed-plugin-edfi-ods-changequery';
+} from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { createDeleteTrackingTriggerModel } from './DeleteTrackingTriggerCreator';
 import { createDeleteTrackingTableModel } from './DeleteTrackingTableCreator';
 import { TARGET_DATABASE_PLUGIN_NAME, versionSatisfiesForPostgresChangeQuerySupport } from './EnhancerHelper';

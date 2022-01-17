@@ -8,7 +8,7 @@ import {
   DomainEntitySubclassBuilder,
   CommonBuilder,
   DescriptorBuilder,
-} from 'metaed-core';
+} from '@edfi/metaed-core';
 import { enhanceGenerateAndExecuteSql, rollbackAndEnd } from './DatabaseTestBase';
 
 jest.setTimeout(40000);

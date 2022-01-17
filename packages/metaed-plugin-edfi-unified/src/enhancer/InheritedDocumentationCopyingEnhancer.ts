@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, EntityProperty } from 'metaed-core';
-import { getAllProperties } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, EntityProperty } from '@edfi/metaed-core';
+import { getAllProperties } from '@edfi/metaed-core';
 
 const enhancerName = 'InheritedDocumentationCopyingEnhancer';
 

@@ -1,4 +1,4 @@
-import { newIntegerProperty, EntityProperty, newBooleanProperty } from 'metaed-core';
+import { newIntegerProperty, EntityProperty, newBooleanProperty } from '@edfi/metaed-core';
 import { ColumnTransformUnchanged, ColumnTransformMakeNull } from '../../../src/model/database/ColumnTransform';
 import { BuildStrategy, BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { newColumnNameComponent } from '../../../src/model/database/Column';

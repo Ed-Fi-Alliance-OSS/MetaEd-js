@@ -1,5 +1,5 @@
-import { asTopLevelEntity, getAllTopLevelEntitiesForNamespaces } from 'metaed-core';
-import { MetaEdEnvironment, EnhancerResult, EntityProperty, TopLevelEntity } from 'metaed-core';
+import { asTopLevelEntity, getAllTopLevelEntitiesForNamespaces } from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, EntityProperty, TopLevelEntity } from '@edfi/metaed-core';
 import { NoTable } from './database/Table';
 import { Table } from './database/Table';
 

@@ -1,5 +1,5 @@
-import { MetaEdEnvironment, EnhancerResult, TopLevelEntity, EntityProperty, Namespace, Common } from 'metaed-core';
-import { getAllEntitiesOfType, getEntityFromNamespaceChain } from 'metaed-core';
+import { MetaEdEnvironment, EnhancerResult, TopLevelEntity, EntityProperty, Namespace, Common } from '@edfi/metaed-core';
+import { getAllEntitiesOfType, getEntityFromNamespaceChain } from '@edfi/metaed-core';
 import { TopLevelEntityEdfiXsd } from '../model/TopLevelEntity';
 
 // This enhancer covers both the original AssociationBaseInlineIdentityEnhancer and DomainEntityBaseInlineIdentityEnhancer

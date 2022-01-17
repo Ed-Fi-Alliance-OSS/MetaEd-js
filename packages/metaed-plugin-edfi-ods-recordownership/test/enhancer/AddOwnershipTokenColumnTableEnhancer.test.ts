@@ -1,10 +1,10 @@
-import { MetaEdEnvironment, Namespace, newMetaEdEnvironment, newNamespace, newPluginEnvironment } from 'metaed-core';
+import { MetaEdEnvironment, Namespace, newMetaEdEnvironment, newNamespace, newPluginEnvironment } from '@edfi/metaed-core';
 import {
   initializeEdFiOdsRelationalEntityRepository,
   newTable,
   tableEntities,
   Table,
-} from 'metaed-plugin-edfi-ods-relational';
+} from '@edfi/metaed-plugin-edfi-ods-relational';
 import { enhance } from '../../src/enhancer/AddOwnershipTokenColumnTableEnhancer';
 import { enhance as tableSetupEnhancer, TableEdfiOdsRecordOwnership } from '../../src/model/Table';
 

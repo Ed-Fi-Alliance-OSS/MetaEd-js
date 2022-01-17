@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, Namespace, newDomainEntity, newMetaEdEnvironment, newNamespace } from 'metaed-core';
+import { MetaEdEnvironment, Namespace, newDomainEntity, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/TableDeprecationEnhancer';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../src/model/EdFiOdsRelationalEntityRepository';
 import { newTable, Table } from '../../src/model/database/Table';

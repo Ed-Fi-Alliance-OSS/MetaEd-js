@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, PropertyIndex, ValidationFailure, EntityProperty } from 'metaed-core';
+import { MetaEdEnvironment, PropertyIndex, ValidationFailure, EntityProperty } from '@edfi/metaed-core';
 
 function propertiesNeedingChecking(properties: PropertyIndex): EntityProperty[] {
   const result: EntityProperty[] = [];

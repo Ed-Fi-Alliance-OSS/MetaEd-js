@@ -1,5 +1,5 @@
-import { DomainEntity, MetaEdEnvironment, ValidationFailure, Namespace } from 'metaed-core';
-import { getEntityFromNamespaceChain } from 'metaed-core';
+import { DomainEntity, MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-core';
+import { getEntityFromNamespaceChain } from '@edfi/metaed-core';
 import { failSubclassIdentityRenameNotMatchingBaseClassIdentityProperty } from '../ValidatorShared/FailSubclassIdentityRenameNotMatchingBaseClassIdentityProperty';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
