@@ -1,6 +1,12 @@
 import R from 'ramda';
 import { DomainEntity, IntegerType, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
-import { addEntityForNamespace, newDomainEntity, newIntegerType, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import {
+  addEntityForNamespace,
+  newDomainEntity,
+  newIntegerType,
+  newMetaEdEnvironment,
+  newNamespace,
+} from '@edfi/metaed-core';
 import { newComplexType } from '../../src/model/schema/ComplexType';
 import { newElement } from '../../src/model/schema/Element';
 import { newIntegerSimpleType } from '../../src/model/schema/IntegerSimpleType';

@@ -1,6 +1,16 @@
-import { newMetaEdEnvironment, newDomainEntity, newDomainEntityExtension, newNamespace, NoNamespace } from '@edfi/metaed-core';
+import {
+  newMetaEdEnvironment,
+  newDomainEntity,
+  newDomainEntityExtension,
+  newNamespace,
+  NoNamespace,
+} from '@edfi/metaed-core';
 import { MetaEdEnvironment, DomainEntity, DomainEntityExtension, Namespace } from '@edfi/metaed-core';
-import { newTable, initializeEdFiOdsRelationalEntityRepository, tableEntities } from '@edfi/metaed-plugin-edfi-ods-relational';
+import {
+  newTable,
+  initializeEdFiOdsRelationalEntityRepository,
+  tableEntities,
+} from '@edfi/metaed-plugin-edfi-ods-relational';
 import { Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { enhance } from '../../../src/enhancer/domainMetadata/DomainEntityExtensionAggregateEnhancer';
 import { NamespaceEdfiOdsApi } from '../../../src/model/Namespace';

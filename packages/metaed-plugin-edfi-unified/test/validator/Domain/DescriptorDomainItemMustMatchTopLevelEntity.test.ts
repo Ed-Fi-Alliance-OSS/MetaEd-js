@@ -1,4 +1,10 @@
-import { newMetaEdEnvironment, MetaEdTextBuilder, DomainBuilder, DescriptorBuilder, NamespaceBuilder } from '@edfi/metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  DomainBuilder,
+  DescriptorBuilder,
+  NamespaceBuilder,
+} from '@edfi/metaed-core';
 import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/Domain/DescriptorDomainItemMustMatchTopLevelEntity';
 

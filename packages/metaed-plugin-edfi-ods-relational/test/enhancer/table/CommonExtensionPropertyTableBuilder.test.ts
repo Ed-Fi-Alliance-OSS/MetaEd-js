@@ -7,7 +7,14 @@ import {
   newNamespace,
   addEntityForNamespace,
 } from '@edfi/metaed-core';
-import { Common, CommonExtension, CommonProperty, DomainEntityExtension, IntegerProperty, Namespace } from '@edfi/metaed-core';
+import {
+  Common,
+  CommonExtension,
+  CommonProperty,
+  DomainEntityExtension,
+  IntegerProperty,
+  Namespace,
+} from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { newTable } from '../../../src/model/database/Table';

@@ -1,7 +1,7 @@
 {
   "metaEdConfiguration": {
     "title": "Development 2.0.0",
-    "dataStandardCoreSourceDirectory": "./node_modules/ed-fi-model-2.0/",
+    "dataStandardCoreSourceDirectory": "./node_modules/@edfi/ed-fi-model-2.0/",
     "dataStandardCoreSourceVersion": "2.0.0",
     "dataStandardExtensionSourceDirectory": "C:/Projects/MetaEd/MetaEd-CSharp/SampleMetaEd/extension/",
     "artifactDirectory": "./MetaEdOutput/",

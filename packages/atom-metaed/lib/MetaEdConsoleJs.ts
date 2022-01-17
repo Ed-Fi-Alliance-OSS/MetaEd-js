@@ -120,7 +120,7 @@ async function verifyBuildPaths(outputWindow: OutputWindow): Promise<BuildPaths 
 
   let metaEdConsolePath = path.resolve(metaEdConsoleDirectory, '../metaed-console/dist/index.js');
   if (!(await fs.exists(metaEdConsolePath))) {
-    metaEdConsolePath = path.resolve(__dirname, '../node_modules/metaed-console/dist/index.js');
+    metaEdConsolePath = path.resolve(__dirname, '../node_modules/@edfi/metaed-console/dist/index.js');
     if (!(await fs.exists(metaEdConsolePath))) {
       outputWindow.addMessage(metaEdConsolePath);
       outputWindow.addMessage(
@@ -132,7 +132,7 @@ async function verifyBuildPaths(outputWindow: OutputWindow): Promise<BuildPaths 
 
   let metaEdDeployPath = path.resolve(metaEdConsoleDirectory, '../metaed-odsapi-deploy/dist/index.js');
   if (!(await fs.exists(metaEdDeployPath))) {
-    metaEdDeployPath = path.resolve(__dirname, '../node_modules/metaed-odsapi-deploy/dist/index.js');
+    metaEdDeployPath = path.resolve(__dirname, '../node_modules/@edfi/metaed-odsapi-deploy/dist/index.js');
     if (!(await fs.exists(metaEdDeployPath))) {
       outputWindow.addMessage(metaEdDeployPath);
       outputWindow.addMessage(

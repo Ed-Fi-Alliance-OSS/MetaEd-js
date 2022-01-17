@@ -1,4 +1,10 @@
-import { MetaEdEnvironment, EnhancerResult, Descriptor, normalizeDescriptorSuffix, getAllEntitiesOfType } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  EnhancerResult,
+  Descriptor,
+  normalizeDescriptorSuffix,
+  getAllEntitiesOfType,
+} from '@edfi/metaed-core';
 
 export interface DescriptorEdfiOds {
   odsDescriptorName: string;

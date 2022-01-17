@@ -1,4 +1,11 @@
-import { ModelType, MetaEdEnvironment, ValidationFailure, Namespace, EntityProperty, TopLevelEntity } from '@edfi/metaed-core';
+import {
+  ModelType,
+  MetaEdEnvironment,
+  ValidationFailure,
+  Namespace,
+  EntityProperty,
+  TopLevelEntity,
+} from '@edfi/metaed-core';
 
 const invalidTypes: ModelType[] = [
   'association',

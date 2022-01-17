@@ -1,4 +1,10 @@
-import { newMetaEdEnvironment, MetaEdTextBuilder, ChoiceBuilder, DomainEntityBuilder, NamespaceBuilder } from '@edfi/metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  ChoiceBuilder,
+  DomainEntityBuilder,
+  NamespaceBuilder,
+} from '@edfi/metaed-core';
 import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/ChoiceProperty/ChoicePropertyMustMatchAChoice';
 

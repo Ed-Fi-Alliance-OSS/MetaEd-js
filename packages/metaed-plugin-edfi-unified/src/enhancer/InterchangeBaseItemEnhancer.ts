@@ -1,4 +1,11 @@
-import { MetaEdEnvironment, EnhancerResult, Interchange, InterchangeItem, Namespace, TopLevelEntity } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  EnhancerResult,
+  Interchange,
+  InterchangeItem,
+  Namespace,
+  TopLevelEntity,
+} from '@edfi/metaed-core';
 import { getEntityFromNamespaceChain, getAllEntitiesOfType, asInterchange } from '@edfi/metaed-core';
 
 const enhancerName = 'InterchangeBaseItemEnhancer';

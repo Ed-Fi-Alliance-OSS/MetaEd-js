@@ -33,7 +33,7 @@ describe('when generating api model and comparing it to data standard 3.1 author
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '3.1.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.1/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.1/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -103,7 +103,7 @@ describe('when generating api model targeting tech version 3.1.1 and comparing i
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '3.1.1',
-      projectPaths: ['./node_modules/ed-fi-model-3.1/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.1/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -173,7 +173,7 @@ describe('when generating api model and comparing it to data standard 3.0 author
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '3.0.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.0/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.0/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -247,7 +247,7 @@ describe('when generating api model with simple extensions and comparing it to d
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '3.0.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.0/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.0/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -346,7 +346,7 @@ describe('when generating api model with student transcript extensions and compa
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '3.0.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.0/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.0/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -446,7 +446,7 @@ describe('when generating api model with simple type merge extensions and compar
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '3.1.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.1/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.1/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -541,7 +541,7 @@ describe('when generating api model targeting tech version 3.3 and comparing it 
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '3.3.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.2a/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -616,7 +616,7 @@ describe('when generating api model targeting tech version 3.4 with simple exten
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '3.4.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.2b/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2b/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -712,7 +712,7 @@ describe('when generating api model targeting tech version 5.2 with comparing it
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '5.2.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.3a/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.3a/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -785,7 +785,7 @@ describe('when generating api model targeting tech version 5.3 with comparing it
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '5.3.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.3b/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.3b/'],
       projects: [
         {
           projectName: 'Ed-Fi',

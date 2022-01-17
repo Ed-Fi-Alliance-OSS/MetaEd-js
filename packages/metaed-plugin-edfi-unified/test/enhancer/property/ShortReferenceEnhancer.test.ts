@@ -8,7 +8,14 @@ import {
   NoSharedSimple,
 } from '@edfi/metaed-core';
 
-import { IntegerType, MetaEdEnvironment, SharedInteger, SharedShortProperty, ShortProperty, Namespace } from '@edfi/metaed-core';
+import {
+  IntegerType,
+  MetaEdEnvironment,
+  SharedInteger,
+  SharedShortProperty,
+  ShortProperty,
+  Namespace,
+} from '@edfi/metaed-core';
 
 import { enhance } from '../../../src/enhancer/property/ShortReferenceEnhancer';
 

@@ -44,7 +44,7 @@ describe('when generating ods and comparing it to data standard 2.0 authoritativ
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '2.0.0',
-      projectPaths: ['./node_modules/ed-fi-model-2.0/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-2.0/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -153,7 +153,7 @@ describe('when generating ods with simple extensions and comparing it to data st
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '2.0.0',
-      projectPaths: ['./node_modules/ed-fi-model-2.0/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-2.0/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -252,7 +252,7 @@ describe('when generating ods with student transcript extensions and comparing i
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '2.0.0',
-      projectPaths: ['./node_modules/ed-fi-model-2.0/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-2.0/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',

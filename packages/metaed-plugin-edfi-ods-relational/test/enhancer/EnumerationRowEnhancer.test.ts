@@ -1,4 +1,10 @@
-import { addEntityForNamespace, newEnumeration, newEnumerationItem, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import {
+  addEntityForNamespace,
+  newEnumeration,
+  newEnumerationItem,
+  newMetaEdEnvironment,
+  newNamespace,
+} from '@edfi/metaed-core';
 import { Enumeration, EnumerationItem, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { rowEntities } from '../../src/enhancer/EnhancerHelper';
 import { enhance } from '../../src/enhancer/EnumerationRowEnhancer';

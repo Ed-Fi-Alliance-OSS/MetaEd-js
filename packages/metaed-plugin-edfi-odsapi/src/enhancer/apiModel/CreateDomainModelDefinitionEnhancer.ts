@@ -1,5 +1,12 @@
 import R from 'ramda';
-import { MetaEdEnvironment, EnhancerResult, Namespace, PluginEnvironment, SemVer, versionSatisfies } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  EnhancerResult,
+  Namespace,
+  PluginEnvironment,
+  SemVer,
+  versionSatisfies,
+} from '@edfi/metaed-core';
 import { parse } from 'semver';
 import { NoSchemaDefinition } from '../../model/apiModel/SchemaDefinition';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';

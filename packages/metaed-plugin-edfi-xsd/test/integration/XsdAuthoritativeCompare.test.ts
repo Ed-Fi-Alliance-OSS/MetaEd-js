@@ -42,7 +42,7 @@ describe('when generating xsd and comparing it to data standard 2.0 authoritativ
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '2.0.0',
-      projectPaths: ['./node_modules/ed-fi-model-2.0/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-2.0/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -171,7 +171,7 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
           targetTechnologyVersion: '3.1.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.1/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.1/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -300,7 +300,7 @@ describe('when generating xsd with extension and comparing it to data standard 3
           targetTechnologyVersion: '3.1.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.1/', path.resolve(__dirname, 'artifact', 'EdFiXFinance')],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.1/', path.resolve(__dirname, 'artifact', 'EdFiXFinance')],
       projects: [
         {
           projectName: 'Ed-Fi',

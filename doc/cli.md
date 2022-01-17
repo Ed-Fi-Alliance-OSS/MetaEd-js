@@ -40,7 +40,7 @@ directory paths:
             "projectExtension": "",
             "projectVersion": "3.0.0"
             }],
-        "projectPaths": ["./node_modules/ed-fi-model-3.0/" ],
+        "projectPaths": ["./node_modules/@edfi/ed-fi-model-3.0/" ],
         "pluginConfigDirectories": [],
         "defaultPluginTechVersion": "3.0.0",
         "allianceMode": false

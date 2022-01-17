@@ -1,4 +1,10 @@
-import { MetaEdEnvironment, getAllEntitiesForNamespaces, ValidationFailure, ModelBase, TopLevelEntity } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  getAllEntitiesForNamespaces,
+  ValidationFailure,
+  ModelBase,
+  TopLevelEntity,
+} from '@edfi/metaed-core';
 
 // type guard claiming type is TopLevelEntity if sourceMap present - could be other types with sourceMap but that's okay here
 function hasSourceMap(entity: ModelBase): entity is TopLevelEntity {

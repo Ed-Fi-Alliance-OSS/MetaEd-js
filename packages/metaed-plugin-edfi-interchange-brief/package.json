@@ -24,17 +24,17 @@
     ]
   },
   "dependencies": {
-    "handlebars": "^4.7.7",
-    "marked": "^0.4.0",
     "@edfi/metaed-core": "3.0.0-dev.3",
     "@edfi/metaed-plugin-edfi-xsd": "3.0.0-dev.3",
+    "handlebars": "^4.7.7",
+    "marked": "^0.4.0",
     "node-horseman": "^3.3.0",
     "phantomjs-prebuilt": "^2.1.16",
     "ramda": "^0.27.1",
     "sugar": "^2.0.6"
   },
   "devDependencies": {
-    "@edfi/ed-fi-model-2.0": "2.0.2",
+    "@edfi/ed-fi-model-2.0": "3.0.0",
     "final-fs": "^1.6.1",
     "xmldom": "^0.1.31",
     "xpath": "^0.0.32"

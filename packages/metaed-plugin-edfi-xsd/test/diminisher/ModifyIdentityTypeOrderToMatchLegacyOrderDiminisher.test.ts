@@ -1,5 +1,11 @@
 import { MetaEdEnvironment, TopLevelEntity, Namespace } from '@edfi/metaed-core';
-import { addEntityForNamespace, newAssociation, newDomainEntity, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import {
+  addEntityForNamespace,
+  newAssociation,
+  newDomainEntity,
+  newMetaEdEnvironment,
+  newNamespace,
+} from '@edfi/metaed-core';
 import { ComplexType } from '../../src/model/schema/ComplexType';
 import { newElement, Element } from '../../src/model/schema/Element';
 import { ComplexTypeItem } from '../../src/model/schema/ComplexTypeItem';

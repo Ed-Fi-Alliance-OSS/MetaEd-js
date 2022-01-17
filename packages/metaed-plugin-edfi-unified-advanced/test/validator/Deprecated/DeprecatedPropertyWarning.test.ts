@@ -1,4 +1,10 @@
-import { newMetaEdEnvironment, MetaEdTextBuilder, NamespaceBuilder, DomainEntityBuilder, Namespace } from '@edfi/metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  NamespaceBuilder,
+  DomainEntityBuilder,
+  Namespace,
+} from '@edfi/metaed-core';
 import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { domainEntityReferenceEnhancer } from '@edfi/metaed-plugin-edfi-unified';
 import { validate } from '../../../src/validator/Deprecated/DeprecatedPropertyWarning';

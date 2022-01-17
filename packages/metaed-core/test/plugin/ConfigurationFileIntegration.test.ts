@@ -27,7 +27,7 @@ describe('when loading a project with two invalid plugin configuration files', (
     ...newMetaEdConfiguration(),
     artifactDirectory: './MetaEdOutput/',
     defaultPluginTechVersion: '3.0.0',
-    projectPaths: ['./node_modules/ed-fi-model-3.0/', simpleExtensionPath],
+    projectPaths: ['./node_modules/@edfi/ed-fi-model-3.0/', simpleExtensionPath],
     projects: [
       {
         projectName: 'Ed-Fi',
@@ -105,7 +105,7 @@ describe('when loading a project with one invalid and one valid plugin configura
     ...newMetaEdConfiguration(),
     artifactDirectory: './MetaEdOutput/',
     defaultPluginTechVersion: '3.0.0',
-    projectPaths: ['./node_modules/ed-fi-model-3.0/', simpleExtensionPath],
+    projectPaths: ['./node_modules/@edfi/ed-fi-model-3.0/', simpleExtensionPath],
     projects: [
       {
         projectName: 'Ed-Fi',

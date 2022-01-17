@@ -1,6 +1,10 @@
 import { newMetaEdEnvironment, newAssociation, newNamespace } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Association, Namespace } from '@edfi/metaed-core';
-import { newTable, initializeEdFiOdsRelationalEntityRepository, tableEntities } from '@edfi/metaed-plugin-edfi-ods-relational';
+import {
+  newTable,
+  initializeEdFiOdsRelationalEntityRepository,
+  tableEntities,
+} from '@edfi/metaed-plugin-edfi-ods-relational';
 import { Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { enhance } from '../../../src/enhancer/domainMetadata/AssociationAggregateEnhancer';
 import { NoAggregate } from '../../../src/model/domainMetadata/Aggregate';

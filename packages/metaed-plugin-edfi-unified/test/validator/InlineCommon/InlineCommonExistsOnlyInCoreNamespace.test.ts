@@ -1,4 +1,10 @@
-import { newMetaEdEnvironment, MetaEdTextBuilder, CommonBuilder, NamespaceBuilder, DomainEntityBuilder } from '@edfi/metaed-core';
+import {
+  newMetaEdEnvironment,
+  MetaEdTextBuilder,
+  CommonBuilder,
+  NamespaceBuilder,
+  DomainEntityBuilder,
+} from '@edfi/metaed-core';
 import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/InlineCommon/InlineCommonExistsOnlyInCoreNamespace';
 

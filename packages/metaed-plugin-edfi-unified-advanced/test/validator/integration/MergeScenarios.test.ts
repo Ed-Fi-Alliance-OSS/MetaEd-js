@@ -15,14 +15,14 @@ import {
 } from '@edfi/metaed-core';
 
 jest.unmock('final-fs');
-jest.setTimeout(40000);
+jest.setTimeout(100000);
 
 describe('when generating api model and comparing it to data standard 3.1 authoritative artifacts', (): void => {
   const metaEdConfiguration = {
     ...newMetaEdConfiguration(),
     artifactDirectory: './MetaEdOutput/',
     defaultPluginTechVersion: '3.1.0',
-    projectPaths: ['./node_modules/ed-fi-model-3.1/'],
+    projectPaths: ['./node_modules/@edfi/ed-fi-model-3.1/'],
     projects: [
       {
         projectName: 'Ed-Fi',

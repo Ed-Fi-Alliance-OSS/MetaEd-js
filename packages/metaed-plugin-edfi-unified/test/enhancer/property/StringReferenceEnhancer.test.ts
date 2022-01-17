@@ -8,7 +8,14 @@ import {
   NoSharedSimple,
 } from '@edfi/metaed-core';
 
-import { MetaEdEnvironment, SharedString, SharedStringProperty, StringProperty, StringType, Namespace } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  SharedString,
+  SharedStringProperty,
+  StringProperty,
+  StringType,
+  Namespace,
+} from '@edfi/metaed-core';
 
 import { enhance } from '../../../src/enhancer/property/StringReferenceEnhancer';
 

@@ -62,7 +62,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
           targetTechnologyVersion: '3.1.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.0/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.0/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -161,7 +161,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
           targetTechnologyVersion: '5.0.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.2a/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -260,7 +260,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
           targetTechnologyVersion: '5.0.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.2a/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
       projects: [
         {
           projectName: 'Ed-Fi',

@@ -37,7 +37,7 @@ describe('when generating ods tables file with simple merges for ODS/API 5.0 in 
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '5.0.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.2a/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -137,7 +137,7 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '5.0.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.2a/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',

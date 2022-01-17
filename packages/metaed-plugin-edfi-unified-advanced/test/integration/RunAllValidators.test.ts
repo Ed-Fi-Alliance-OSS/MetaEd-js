@@ -17,7 +17,7 @@ import {
 } from '@edfi/metaed-core';
 
 jest.unmock('final-fs');
-jest.setTimeout(40000);
+jest.setTimeout(100000);
 
 describe('when running enhancers and validators against DS 3.1 and a simple extension', (): void => {
   const sampleExtensionPath: string = path.resolve(__dirname, './simple-extension-project');
@@ -28,7 +28,7 @@ describe('when running enhancers and validators against DS 3.1 and a simple exte
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '3.1.0',
-      projectPaths: ['./node_modules/ed-fi-model-3.1/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.1/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',

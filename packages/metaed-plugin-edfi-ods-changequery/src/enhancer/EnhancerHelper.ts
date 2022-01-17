@@ -1,4 +1,11 @@
-import { getAllEntitiesOfType, MetaEdEnvironment, ModelBase, Namespace, orderByPath, PluginEnvironment } from '@edfi/metaed-core';
+import {
+  getAllEntitiesOfType,
+  MetaEdEnvironment,
+  ModelBase,
+  Namespace,
+  orderByPath,
+  PluginEnvironment,
+} from '@edfi/metaed-core';
 import { Column, Table, tableEntities, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { DeleteTrackingTable } from '../model/DeleteTrackingTable';
 import { DeleteTrackingTrigger } from '../model/DeleteTrackingTrigger';

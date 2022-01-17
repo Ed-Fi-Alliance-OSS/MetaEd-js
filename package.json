@@ -75,7 +75,7 @@
     "test:unit:odsapi": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest packages/metaed-plugin-edfi-odsapi",
     "test:unit:everything-else": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest \"packages/(?!metaed-plugin-edfi-ods|metaed-plugin-edfi-unified)\"",
     "test:unit:debug": "node --inspect-brk ./node_modules/.bin/jest --runInBand",
-    "test:atom": "yarn workspace atom-metaed test",
+    "test:atom": "yarn workspace @edfi/atom-metaed test",
     "test:code-duplication": "yarn jsinspect -t 50 --ignore \"test|gen|dist\" ./packages",
     "version": "yarn install --no-immutable && git stage yarn.lock",
     "prep-for-publish": "yarn test && yarn build",

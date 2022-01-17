@@ -1,6 +1,10 @@
 import { newMetaEdEnvironment, newDomainEntity, newInterchangeItem, newNamespace } from '@edfi/metaed-core';
 import { MetaEdEnvironment, InterchangeItem, DomainEntity, Namespace } from '@edfi/metaed-core';
-import { addEdFiXsdEntityRepositoryTo, newMergedInterchange, edfiXsdRepositoryForNamespace } from '@edfi/metaed-plugin-edfi-xsd';
+import {
+  addEdFiXsdEntityRepositoryTo,
+  newMergedInterchange,
+  edfiXsdRepositoryForNamespace,
+} from '@edfi/metaed-plugin-edfi-xsd';
 import { EdFiXsdEntityRepository, MergedInterchange } from '@edfi/metaed-plugin-edfi-xsd';
 import { enhance } from '../../src/enhancer/MergedInterchangeEntitiesEnhancer';
 import { addMergedInterchangeEdfiInterchangeBriefTo } from '../../src/model/MergedInterchange';

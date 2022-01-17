@@ -62,7 +62,7 @@ describe('when generating change event scripts and comparing to ODS/API 3.1 auth
           targetTechnologyVersion: '3.1.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.0/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.0/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -166,7 +166,7 @@ describe('when generating change event scripts with simple extensions and compar
           targetTechnologyVersion: '3.1.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.0/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.0/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -289,7 +289,7 @@ describe('when generating change event scripts and comparing to ODS/API 3.4 auth
           targetTechnologyVersion: '3.4.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.2a/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -393,7 +393,7 @@ describe('when generating change event scripts with simple extensions and compar
           targetTechnologyVersion: '3.4.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.2a/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -516,7 +516,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
           targetTechnologyVersion: '5.0.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.2a/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -620,7 +620,7 @@ describe('when generating change event scripts with simple extensions and compar
           targetTechnologyVersion: '5.0.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.2a/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -743,7 +743,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
           targetTechnologyVersion: '5.0.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.2a/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -848,7 +848,7 @@ describe('when generating change event scripts with simple extensions and compar
           targetTechnologyVersion: '5.0.0',
         },
       },
-      projectPaths: ['./node_modules/ed-fi-model-3.2a/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
