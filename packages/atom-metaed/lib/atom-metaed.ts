@@ -69,7 +69,7 @@ export async function activate() {
   }
 
   // ensure our Atom package dependencies are installed
-  await packageDepsInstall('atom-metaed', true);
+  await packageDepsInstall('@edfi/atom-metaed', true);
 
   disposableTracker = new CompositeDisposable();
   outputWindow = new OutputWindow();
@@ -78,7 +78,7 @@ export async function activate() {
   atom.notifications.addInfo(
     `<b>MetaEd ${
       packageJson != null ? `v${packageJson.version}` : ''
-    }</b><br />MetaEd is &copy; 2021 Ed-Fi Alliance, LLC.<br />Click <a href="${LICENSE_URL}">here</a> for license information.`,
+    }</b><br />MetaEd is &copy; 2022 Ed-Fi Alliance, LLC.<br />Click <a href="${LICENSE_URL}">here</a> for license information.`,
     {
       dismissable: true,
       icon: 'info',

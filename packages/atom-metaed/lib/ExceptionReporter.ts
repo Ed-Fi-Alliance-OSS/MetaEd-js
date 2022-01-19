@@ -16,9 +16,9 @@ import {
 import { devEnvironmentCorrectedPath } from './Utility';
 
 const atomMetaEdPackageJson = require(path.resolve(__dirname, '../package.json'));
-const metaEdJsPackageJson = require(devEnvironmentCorrectedPath('metaed-core/package.json'));
-const edFiModel20PackageJson = require(devEnvironmentCorrectedPath('ed-fi-model-2.0/package.json'));
-const edFiModel30PackageJson = require(devEnvironmentCorrectedPath('ed-fi-model-3.0/package.json'));
+const metaEdJsPackageJson = require(devEnvironmentCorrectedPath('@edfi/metaed-core/package.json'));
+const edFiModel20PackageJson = require(devEnvironmentCorrectedPath('@edfi/ed-fi-model-2.0/package.json'));
+const edFiModel30PackageJson = require(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.0/package.json'));
 
 const API_KEY = '572fefe3d435ced414e482499146e61e';
 const StackTraceCache = new WeakMap();
