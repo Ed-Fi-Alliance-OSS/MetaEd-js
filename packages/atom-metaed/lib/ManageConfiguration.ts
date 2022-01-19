@@ -137,19 +137,19 @@ async function warnOnMetaEdJsonExistence(projectPath: string) {
 
 export function manageLegacyIssues(disposableTracker: CompositeDisposable) {
   // remove tech preview flag left behind by 1.1.x versions of MetaEd
-  if (atom.config.get('atom-metaed.useTechPreview')) {
-    atom.config.unset('atom-metaed.useTechPreview');
+  if (atom.config.get('@edfi/atom-metaed.useTechPreview')) {
+    atom.config.unset('@edfi/atom-metaed.useTechPreview');
     setCoreToFiveDotX();
   }
 
   // remove obsolete path to C# console
-  if (atom.config.get('atom-metaed.metaEdConsoleSourceDirectory')) {
-    atom.config.unset('atom-metaed.metaEdConsoleSourceDirectory');
+  if (atom.config.get('@edfi/atom-metaed.metaEdConsoleSourceDirectory')) {
+    atom.config.unset('@edfi/atom-metaed.metaEdConsoleSourceDirectory');
   }
 
   // remove obsolete path to JS console - it's hardcoded now
-  if (atom.config.get('atom-metaed.metaEdJsConsoleSourceDirectory')) {
-    atom.config.unset('atom-metaed.metaEdJsConsoleSourceDirectory');
+  if (atom.config.get('@edfi/atom-metaed.metaEdJsConsoleSourceDirectory')) {
+    atom.config.unset('@edfi/atom-metaed.metaEdJsConsoleSourceDirectory');
   }
 
   // warn that MetaEdOutput-Experimental folder from 1.1.x versions is no longer used
