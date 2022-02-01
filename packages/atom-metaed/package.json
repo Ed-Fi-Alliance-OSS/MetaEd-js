@@ -1,12 +1,12 @@
 {
-  "name": "@edfi/atom-metaed",
+  "name": "atom-metaed",
   "main": "./dist/atom-metaed",
   "version": "3.0.0-dev.3",
   "description": "A MetaEd plugin for Atom",
   "keywords": [],
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
-    "@edfi:registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/"
+    "registry": "https://www.myget.org/F/ed-fi/npm/"
   },
   "files": [
     "/dist",

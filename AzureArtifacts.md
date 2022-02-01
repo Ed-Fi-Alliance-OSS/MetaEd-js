@@ -1,4 +1,4 @@
-Publishing to Azure Artifacts with Yarn 2 requires a very different set up from the Azure Artifacts
+As of Feb 2022, publishing to Azure Artifacts with Yarn 2 requires a very different set up from the Azure Artifacts
 instructions for publishing with NPM. Short version:
 
 1. Generate a Personal Access Token.

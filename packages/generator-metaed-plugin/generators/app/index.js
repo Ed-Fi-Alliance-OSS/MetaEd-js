@@ -105,7 +105,7 @@ module.exports = class extends Generator {
         dependencies: this.props.dependencies,
       },
       publishConfig: {
-        '@edfi:registry': 'https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/',
+        registry: 'https://www.myget.org/F/ed-fi/npm/',
       },
       dependencies: {
         handlebars: 'latest',

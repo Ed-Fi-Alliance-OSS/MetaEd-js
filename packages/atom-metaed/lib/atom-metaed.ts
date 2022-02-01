@@ -69,7 +69,7 @@ export async function activate() {
   }
 
   // ensure our Atom package dependencies are installed
-  await packageDepsInstall('@edfi/atom-metaed', true);
+  await packageDepsInstall('atom-metaed', true);
 
   disposableTracker = new CompositeDisposable();
   outputWindow = new OutputWindow();

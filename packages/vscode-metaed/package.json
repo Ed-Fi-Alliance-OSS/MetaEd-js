@@ -4,7 +4,7 @@
 	"description": "MetaEd for VS Code",
 	"version": "3.0.0-dev.3",
 	"publishConfig": {
-		"@edfi:registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-Closed/_packaging/edfi-metaed/npm/registry/"
+		"registry": "https://www.myget.org/F/ed-fi/npm/"
 	},
 	"publisher": "edfi-test",
 	"engines": {
