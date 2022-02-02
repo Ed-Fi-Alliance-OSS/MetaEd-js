@@ -8,7 +8,8 @@ import {
   ProposedFeatures,
   InitializeParams,
   DidChangeConfigurationNotification,
-} from 'vscode-languageserver';
+} from 'vscode-languageserver/node';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { State, MetaEdConfiguration, executePipeline, newState, newMetaEdConfiguration } from '@edfi/metaed-core';
 import { MetaEdProjectMetadata, validProjectMetadata, findMetaEdProjectMetadata } from '../common/Projects';
 
@@ -21,7 +22,7 @@ const connection = createConnection(ProposedFeatures.all);
 let hasConfigurationCapability: boolean = false;
 let hasWorkspaceFolderCapability: boolean = false;
 
-const documents: TextDocuments = new TextDocuments();
+const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
 const workspaceFolders: Set<string> = new Set();
 let currentFilesWithFailures: string[] = [];

@@ -3,7 +3,7 @@ import { commands, workspace, window, ExtensionContext } from 'vscode';
 import R from 'ramda';
 import path from 'path';
 import { MetaEdConfiguration, newMetaEdConfiguration } from '@edfi/metaed-core';
-import { LanguageClient, LanguageClientOptions, ServerOptions, TransportKind } from 'vscode-languageclient';
+import { LanguageClient, LanguageClientOptions, ServerOptions, TransportKind } from 'vscode-languageclient/node';
 import { findMetaEdProjectMetadataForClient } from './Projects';
 import { AboutPanel } from './AboutPanel';
 import { MetaEdProjectMetadata, validProjectMetadata } from '../common/Projects';

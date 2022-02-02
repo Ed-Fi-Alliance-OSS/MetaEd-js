@@ -17,13 +17,16 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "semver": "^5.7.1",
-    "yeoman-generator": "^2.0.5",
+    "yeoman-generator": "^5.6.1",
     "yosay": "^2.0.2"
   },
   "devDependencies": {
     "@edfi/metaed-core": "3.0.0-dev.7",
+    "@octokit/core": "^3.5.1",
+    "mem-fs": "^2.2.1",
     "yeoman-assert": "^3.1.1",
-    "yeoman-test": "^1.9.1"
+    "yeoman-environment": "^3.9.1",
+    "yeoman-test": "^6.3.0"
   },
   "scripts": {
     "build": "yarn build:clean && yarn build:dist",
