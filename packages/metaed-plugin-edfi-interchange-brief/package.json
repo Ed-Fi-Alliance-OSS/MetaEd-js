@@ -30,13 +30,13 @@
     "marked": "^0.4.0",
     "node-horseman": "^3.3.0",
     "phantomjs-prebuilt": "^2.1.16",
-    "ramda": "^0.27.1",
+    "ramda": "^0.28.0",
     "sugar": "^2.0.6"
   },
   "devDependencies": {
     "@edfi/ed-fi-model-2.0": "3.0.1",
     "final-fs": "^1.6.1",
-    "xmldom": "^0.1.31",
+    "xmldom": "^0.6.0",
     "xpath": "^0.0.32"
   },
   "scripts": {

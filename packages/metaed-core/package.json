@@ -24,11 +24,11 @@
     "fs-extra": "^5.0.0",
     "joi": "12.0.0",
     "klaw-sync": "^3.0.2",
-    "ramda": "^0.27.1",
+    "ramda": "^0.28.0",
     "semver": "^7.3.5",
     "sugar": "^2.0.6",
     "topo": "2.0.2",
-    "winston": "3.3.3"
+    "winston": "3.5.1"
   },
   "devDependencies": {
     "normalize-path": "^2.1.1"

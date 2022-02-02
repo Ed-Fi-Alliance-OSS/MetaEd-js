@@ -26,7 +26,7 @@
   "dependencies": {
     "@edfi/metaed-core": "3.0.0-dev.7",
     "@edfi/metaed-plugin-edfi-unified": "3.0.0-dev.7",
-    "ramda": "^0.27.1"
+    "ramda": "^0.28.0"
   },
   "scripts": {
     "build": "yarn build:clean && yarn build:copy-non-ts && yarn build:dist",

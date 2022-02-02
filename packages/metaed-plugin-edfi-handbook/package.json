@@ -33,10 +33,10 @@
     "@edfi/metaed-plugin-edfi-unified-advanced": "3.0.0-dev.7",
     "handlebars": "^4.7.7",
     "js-beautify": "^1.14.0",
-    "ramda": "^0.27.1",
+    "ramda": "^0.28.0",
     "sort-array": "^2.0.0",
-    "winston": "3.3.3",
-    "xlsx": "0.11.19"
+    "winston": "3.5.1",
+    "xlsx": "0.18.0"
   },
   "scripts": {
     "build": "yarn build:clean && yarn build:copy-non-ts && yarn build:dist",
