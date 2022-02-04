@@ -2,6 +2,8 @@
 
 import { execSync } from 'child_process';
 
+console.info('Command arguments: ', process.argv);
+
 try {
   execSync('npm install atom-metaed@dev');
 } catch (err) {

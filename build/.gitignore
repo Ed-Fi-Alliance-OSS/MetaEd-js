@@ -10,5 +10,4 @@
 node_modules/*
 
 # Custom for this project
-.Deploy/*
-
+.target/*
