@@ -1,0 +1,6 @@
+{
+  "name": "metaed-model-builder",
+  "version": "3.0.0-dev.0",
+  "description": "Build script for the Ed-Fi Model and extensions",
+  "type": "module"
+}
