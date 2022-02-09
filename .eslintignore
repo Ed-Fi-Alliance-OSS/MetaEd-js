@@ -4,3 +4,4 @@ docs/
 packages/**/node_modules/*
 packages/metaed-core/src/grammar/gen/
 packages/generator-metaed-plugin/
+build/
