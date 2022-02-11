@@ -17,6 +17,12 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
     allHandbookEntries.push(...handbookEntriesForNamespace(metaEd, namespace));
   });
 
+  // Move Student to the front so it is displayed in the handbook on page load
+  allHandbookEntries.sort((a, b) => {
+    if (a.name === 'Student') return -1;
+    return b.name === 'Student' ? 1 : 0;
+  });
+
   let detail: string = fs.readFileSync(path.join(__dirname, './template/EdFiDataHandbookAsHtmlSPADetail.html'), 'utf8');
   detail = detail.replace(/\n/g, ' ');
   detail = detail.replace(/>\s+</g, '><');
