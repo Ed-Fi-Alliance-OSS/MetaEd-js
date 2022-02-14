@@ -17,8 +17,8 @@ jobs:
           node-version: '16'
           check-latest: true
           registry-url: 'https://www.myget.org/F/ed-fi/npm/'
-          # cache: 'yarn'
-          # cache-dependency-path: '**/yarn-lock.json'
+          cache: 'yarn'
+          cache-dependency-path: '**/yarn-lock.json'
 
       # Get the yarn cache path.
       # - name: Get yarn cache directory path
