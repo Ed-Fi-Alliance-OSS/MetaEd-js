@@ -15,8 +15,22 @@ jobs:
           node-version: '16'
           check-latest: true
           registry-url: 'https://www.myget.org/F/ed-fi/npm/'
-          cache: 'yarn'
-          cache-dependency-path: '**/yarn-lock.json'
+          #cache: 'yarn'
+          #cache-dependency-path: '**/yarn-lock.json'
+
+      # Get the yarn cache path.
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+    
+      - name: Restore yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: yarn-cache-folder-${{ hashFiles('**/yarn.lock', '.yarnrc.yml') }}
+          restore-keys: |
+            yarn-cache-folder-
 
       - name: Install
         run: yarn install
