@@ -1,7 +1,9 @@
+name: Cache Test
 on:
-  workflow_call:
+  workflow_dispatch:
+  pull_request:
 jobs:
-  reusable-lint-and-test:
+  cache-test:
     name: Cache Test
     # Windows is required for some of the unit tests to run properly
     runs-on: windows-2019
@@ -15,8 +17,8 @@ jobs:
           node-version: '16'
           check-latest: true
           registry-url: 'https://www.myget.org/F/ed-fi/npm/'
-          cache: 'yarn'
-          cache-dependency-path: '**/yarn-lock.json'
+          # cache: 'yarn'
+          # cache-dependency-path: '**/yarn-lock.json'
 
       # Get the yarn cache path.
       # - name: Get yarn cache directory path
