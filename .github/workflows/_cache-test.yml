@@ -34,4 +34,4 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install
-        run: yarn install
+        run: yarn install --prefer-offline
