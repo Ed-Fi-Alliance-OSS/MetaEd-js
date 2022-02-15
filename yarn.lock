@@ -10635,6 +10635,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jest-junit@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "jest-junit@npm:13.0.0"
+  dependencies:
+    mkdirp: ^1.0.4
+    strip-ansi: ^6.0.1
+    uuid: ^8.3.2
+    xml: ^1.0.1
+  checksum: d3a1bf6e98250837d1a9939cd54f29a7bd4fb835af30e92d0d544300fbe634eb86d2b018c79a7a35b123d933bf3e6c96ba13c0161cdefbf66fc3ab771707572e
+  languageName: node
+  linkType: hard
+
 "jest-leak-detector@npm:^27.4.6":
   version: 27.4.6
   resolution: "jest-leak-detector@npm:27.4.6"
@@ -10829,13 +10841,6 @@ __metadata:
     pretty-format: ^27.4.6
     semver: ^7.3.2
   checksum: c7a1ae993ae7334277c61e6d645efedefce53ca212498ae766ea28efa46287559a56d2bd2edaaead8476191a45adbb1354df5367dfd223763b5a66751bfbda14
-  languageName: node
-  linkType: hard
-
-"jest-teamcity-reporter@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "jest-teamcity-reporter@npm:0.9.0"
-  checksum: 50f7262c70523be7c3e83d1976cffc460ef0ba517bc6f1b02f92602f215b16d0fd149e9aa958edb954891297075e688a20573113e43de04f29b3dd92965b643c
   languageName: node
   linkType: hard
 
@@ -12234,7 +12239,7 @@ __metadata:
     eslint-plugin-prettier: 4.0.0
     husky: ^2.7.0
     jest: 27.4.7
-    jest-teamcity-reporter: ^0.9.0
+    jest-junit: ^13.0.0
     jsinspect: ^0.12.7
     lerna: ^3.22.1
     pgtools: ^0.3.2
@@ -18719,6 +18724,13 @@ __metadata:
     sax: ">=0.6.0"
     xmlbuilder: ~11.0.0
   checksum: ca0cf2dfbf6deeaae878a891c8fbc0db6fd04398087084edf143cdc83d0509ad0fe199b890f62f39c4415cf60268a27a6aed0d343f0658f8779bd7add690fa98
+  languageName: node
+  linkType: hard
+
+"xml@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "xml@npm:1.0.1"
+  checksum: 11b5545ef3f8fec3fa29ce251f50ad7b6c97c103ed4d851306ec23366f5fa4699dd6a942262df52313a0cd1840ab26256da253c023bad3309d8ce46fe6020ca0
   languageName: node
   linkType: hard
 
