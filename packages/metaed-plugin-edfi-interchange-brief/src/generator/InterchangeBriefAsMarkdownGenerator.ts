@@ -1,4 +1,4 @@
-import marked from 'marked';
+import { marked } from 'marked';
 import R from 'ramda';
 import handlebars from 'handlebars';
 import fs from 'fs';
@@ -47,7 +47,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
         namespace: 'Documentation',
         folderName: 'InterchangeBrief',
         fileName: `${interchange.metaEdName}-InterchangeBrief.html`,
-        resultString: `${header}${marked(markdown)}`,
+        resultString: `${header}${marked.parse(markdown)}`,
         resultStream: null,
       });
     });
