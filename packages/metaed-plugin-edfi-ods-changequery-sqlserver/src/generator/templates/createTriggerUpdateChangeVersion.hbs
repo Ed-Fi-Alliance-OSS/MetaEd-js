@@ -15,6 +15,20 @@ BEGIN
     SET ChangeVersion = (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM [{{{schema}}}].[{{{tableName}}}] u
     WHERE EXISTS (SELECT 1 FROM inserted i WHERE i.id = u.id);
+{{#if includeKeyChanges}}
+
+    INSERT INTO tracked_changes_edfi.{{{tableName}}}(
+        {{#each primaryKeyColumnNames}}Old{{{this}}}, {{/each}}
+        {{#each primaryKeyColumnNames}}New{{{this}}}, {{/each}}
+        Id, ChangeVersion)
+    SELECT
+        {{#each primaryKeyColumnNames}}d.{{{this}}}, {{/each}}
+        {{#each primaryKeyColumnNames}}i.{{{this}}}, {{/each}}
+        d.Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    FROM deleted d INNER JOIN inserted i ON d.Id = i.Id
+    WHERE
+        {{#each primaryKeyColumnNames}}{{#if @first}}d.{{{this}}} <> i.{{{this}}}{{else}} OR d.{{{this}}} <> i.{{{this}}}{{/if}}{{/each}};
+{{/if}}
 END	
 GO
 

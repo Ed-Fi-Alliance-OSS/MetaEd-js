@@ -5,6 +5,7 @@ import {
   Namespace,
   orderByPath,
   PluginEnvironment,
+  SemVer,
 } from '@edfi/metaed-core';
 import { Column, Table, tableEntities, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { DeleteTrackingTable } from '../model/DeleteTrackingTable';
@@ -136,14 +137,18 @@ export function performAssociationChangeQueryEnhancement(
 export function performCreateTriggerUpdateChangeVersionEnhancement(
   metaEd: MetaEdEnvironment,
   pluginName: string,
-  createModel: (table: Table) => CreateTriggerUpdateChangeVersion,
+  createModel: (table: Table, targetTechnologyVersion: SemVer) => CreateTriggerUpdateChangeVersion,
 ) {
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
     metaEd.namespace.forEach((namespace: Namespace) => {
       tableEntities(metaEd, namespace).forEach((table: Table) => {
         if (table.isAggregateRootTable) {
-          const createTriggerUpdateChangeVersion: CreateTriggerUpdateChangeVersion = createModel(table);
+          const createTriggerUpdateChangeVersion: CreateTriggerUpdateChangeVersion = createModel(
+            table,
+            targetTechnologyVersion,
+          );
           createTriggerUpdateChangeVersionEntities(plugin, namespace).push(createTriggerUpdateChangeVersion);
         }
       });

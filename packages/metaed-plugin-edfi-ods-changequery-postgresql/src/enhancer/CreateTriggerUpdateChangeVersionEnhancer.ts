@@ -14,6 +14,8 @@ function createModel(table: Table): CreateTriggerUpdateChangeVersion {
     schema: table.schema,
     tableName: table.data.edfiOdsPostgresql.tableName,
     triggerName: 'UpdateChangeVersion',
+    primaryKeyColumnNames: [],
+    includeKeyChanges: false,
   };
 }
 

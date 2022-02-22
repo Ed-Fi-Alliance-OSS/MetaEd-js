@@ -60,8 +60,10 @@ sample-DeleteTrackingTrigger-v3.1.sql
 sample-DeleteTrackingTrigger-v3.4.sql
 TriggerUpdateChangeVersion-v3.1.sql
 TriggerUpdateChangeVersion-v3.4.sql
+TriggerUpdateChangeVersion-v5.4.sql
 sample-TriggerUpdateChangeVersion-v3.1.sql
 sample-TriggerUpdateChangeVersion-v3.4.sql
+sample-TriggerUpdateChangeVersion-v5.4.sql
 
 CreatedByOwnership-v3.3.sql
 

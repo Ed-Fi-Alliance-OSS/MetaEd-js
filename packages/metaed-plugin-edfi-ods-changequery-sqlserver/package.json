@@ -37,6 +37,9 @@
     "winston": "3.5.1"
   },
   "devDependencies": {
+    "@edfi/ed-fi-model-3.0": "3.0.1",
+    "@edfi/ed-fi-model-3.3a": "3.0.1",
+    "@edfi/ed-fi-model-3.3b": "3.0.1",
     "final-fs": "^1.6.1"
   },
   "scripts": {

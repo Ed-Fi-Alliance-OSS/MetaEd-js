@@ -108,6 +108,7 @@ export interface Table {
   isAggregateRootTable: boolean;
   hideFromApiMetadata: boolean;
   hasDiscriminatorColumn: boolean;
+  hasUpdateCascadingForeignKey: boolean;
   isDeprecated: boolean;
   deprecationReasons: string[];
   data: any;
@@ -141,6 +142,7 @@ export function newTable(): Table {
     isAggregateRootTable: false,
     hideFromApiMetadata: false,
     hasDiscriminatorColumn: false,
+    hasUpdateCascadingForeignKey: false,
     isDeprecated: false,
     deprecationReasons: [],
     data: {},
@@ -245,6 +247,7 @@ export function getAllColumns(table: Table): Column[] {
 export function addForeignKey(table: Table, foreignKey: ForeignKey): void {
   foreignKey.parentTable = table;
   table.foreignKeys.push(foreignKey);
+  if (foreignKey.withUpdateCascade) table.hasUpdateCascadingForeignKey = true;
 }
 
 export function getColumn(table: Table, columnId: string): Column {

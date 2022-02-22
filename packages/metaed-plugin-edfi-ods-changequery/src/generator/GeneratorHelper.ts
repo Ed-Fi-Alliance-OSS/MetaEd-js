@@ -325,7 +325,10 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
           },
         );
 
-        const generatedResult: string = template().createTriggerUpdateChangeVersion({ triggers, useLicenseHeader });
+        const generatedResult: string = template().createTriggerUpdateChangeVersion({
+          triggers,
+          useLicenseHeader,
+        });
 
         results.push({
           name: 'ODS Change Event: CreateTriggerUpdateChangeVersion',
