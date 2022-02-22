@@ -929,22 +929,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-mappingedu@workspace:packages/metaed-plugin-edfi-mappingedu":
-  version: 0.0.0-use.local
-  resolution: "@edfi/metaed-plugin-edfi-mappingedu@workspace:packages/metaed-plugin-edfi-mappingedu"
-  dependencies:
-    "@edfi/ed-fi-model-2.0": 3.0.1
-    "@edfi/ed-fi-model-2.2": 3.0.1
-    "@edfi/ed-fi-model-3.0": 3.0.1
-    "@edfi/ed-fi-model-3.1": 3.0.1
-    "@edfi/metaed-core": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-xsd": 3.0.0-dev.11
-    final-fs: ^1.6.1
-    xlsx: ^0.18.0
-  languageName: unknown
-  linkType: soft
-
 "@edfi/metaed-plugin-edfi-ods-changequery-postgresql@3.0.0-dev.11, @edfi/metaed-plugin-edfi-ods-changequery-postgresql@workspace:packages/metaed-plugin-edfi-ods-changequery-postgresql":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-ods-changequery-postgresql@workspace:packages/metaed-plugin-edfi-ods-changequery-postgresql"
@@ -1145,24 +1129,6 @@ __metadata:
     handlebars: ^4.7.7
     winston: 3.5.1
     xlsx: 0.18.0
-  languageName: unknown
-  linkType: soft
-
-"@edfi/metaed-plugin-edfi-udm@workspace:packages/metaed-plugin-edfi-udm":
-  version: 0.0.0-use.local
-  resolution: "@edfi/metaed-plugin-edfi-udm@workspace:packages/metaed-plugin-edfi-udm"
-  dependencies:
-    "@edfi/metaed-core": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-xsd": 3.0.0-dev.11
-    handlebars: ^4.7.7
-    js-beautify: ^1.14.0
-    marked: ^0.4.0
-    ramda: ^0.28.0
-    sort-array: ^2.0.0
-    sugar: ^2.0.6
-    winston: 3.5.1
   languageName: unknown
   linkType: soft
 
@@ -11246,15 +11212,6 @@ __metadata:
   bin:
     marked: bin/marked.js
   checksum: 7575117f85a8986652f3ac8b8a7b95056c4c5fce01a1fc76dc4c7960412cb4c9bd9da8133487159b6b3ff84f52b543dfe9a36f826a5f358892b5ec4b6824f192
-  languageName: node
-  linkType: hard
-
-"marked@npm:^0.4.0":
-  version: 0.4.0
-  resolution: "marked@npm:0.4.0"
-  bin:
-    marked: ./bin/marked
-  checksum: 7f7f6dc7e9e2a8c645e1f80277e421cb31e476aa38799b02b646a19e206fb89111656df94a85bf8a6857273adc09706d09558bfe13ff9b13871219d2dad3fd6e
   languageName: node
   linkType: hard
 
