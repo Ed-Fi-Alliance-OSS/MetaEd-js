@@ -1148,7 +1148,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-udm@3.0.0-dev.11, @edfi/metaed-plugin-edfi-udm@workspace:packages/metaed-plugin-edfi-udm":
+"@edfi/metaed-plugin-edfi-udm@workspace:packages/metaed-plugin-edfi-udm":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-udm@workspace:packages/metaed-plugin-edfi-udm"
   dependencies:
@@ -1253,7 +1253,6 @@ __metadata:
     "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-odsapi": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-sql-dictionary": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-udm": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-unified": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-xml-dictionary": 3.0.0-dev.11
@@ -4045,7 +4044,6 @@ __metadata:
     "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-odsapi": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-sql-dictionary": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-udm": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-unified": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-xml-dictionary": 3.0.0-dev.11

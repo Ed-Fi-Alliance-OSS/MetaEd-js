@@ -226,7 +226,6 @@
     "@edfi/metaed-plugin-edfi-ods-sqlserver": "3.0.0-dev.11",
     "@edfi/metaed-plugin-edfi-odsapi": "3.0.0-dev.11",
     "@edfi/metaed-plugin-edfi-sql-dictionary": "3.0.0-dev.11",
-    "@edfi/metaed-plugin-edfi-udm": "3.0.0-dev.11",
     "@edfi/metaed-plugin-edfi-unified": "3.0.0-dev.11",
     "@edfi/metaed-plugin-edfi-unified-advanced": "3.0.0-dev.11",
     "@edfi/metaed-plugin-edfi-xml-dictionary": "3.0.0-dev.11",
