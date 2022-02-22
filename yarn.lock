@@ -791,41 +791,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-interchange-brief@3.0.0-dev.11, @edfi/metaed-plugin-edfi-interchange-brief@workspace:packages/metaed-plugin-edfi-interchange-brief":
-  version: 0.0.0-use.local
-  resolution: "@edfi/metaed-plugin-edfi-interchange-brief@workspace:packages/metaed-plugin-edfi-interchange-brief"
-  dependencies:
-    "@edfi/ed-fi-model-2.0": 3.0.1
-    "@edfi/metaed-core": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-xsd": 3.0.0-dev.11
-    final-fs: ^1.6.1
-    handlebars: ^4.7.7
-    marked: ^0.4.0
-    node-horseman: ^3.3.0
-    phantomjs-prebuilt: ^2.1.16
-    ramda: ^0.28.0
-    sugar: ^2.0.6
-    xmldom: ^0.6.0
-    xpath: ^0.0.32
-  languageName: unknown
-  linkType: soft
-
-"@edfi/metaed-plugin-edfi-mappingedu@workspace:packages/metaed-plugin-edfi-mappingedu":
-  version: 0.0.0-use.local
-  resolution: "@edfi/metaed-plugin-edfi-mappingedu@workspace:packages/metaed-plugin-edfi-mappingedu"
-  dependencies:
-    "@edfi/ed-fi-model-2.0": 3.0.1
-    "@edfi/ed-fi-model-2.2": 3.0.1
-    "@edfi/ed-fi-model-3.0": 3.0.1
-    "@edfi/ed-fi-model-3.1": 3.0.1
-    "@edfi/metaed-core": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-xsd": 3.0.0-dev.11
-    final-fs: ^1.6.1
-    xlsx: ^0.18.0
-  languageName: unknown
-  linkType: soft
-
 "@edfi/metaed-plugin-edfi-ods-changequery-postgresql@3.0.0-dev.11, @edfi/metaed-plugin-edfi-ods-changequery-postgresql@workspace:packages/metaed-plugin-edfi-ods-changequery-postgresql":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-ods-changequery-postgresql@workspace:packages/metaed-plugin-edfi-ods-changequery-postgresql"
@@ -1029,24 +994,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-udm@3.0.0-dev.11, @edfi/metaed-plugin-edfi-udm@workspace:packages/metaed-plugin-edfi-udm":
-  version: 0.0.0-use.local
-  resolution: "@edfi/metaed-plugin-edfi-udm@workspace:packages/metaed-plugin-edfi-udm"
-  dependencies:
-    "@edfi/metaed-core": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-xsd": 3.0.0-dev.11
-    handlebars: ^4.7.7
-    js-beautify: ^1.14.0
-    marked: ^0.4.0
-    ramda: ^0.28.0
-    sort-array: ^2.0.0
-    sugar: ^2.0.6
-    winston: 3.5.1
-  languageName: unknown
-  linkType: soft
-
 "@edfi/metaed-plugin-edfi-unified-advanced@3.0.0-dev.11, @edfi/metaed-plugin-edfi-unified-advanced@workspace:packages/metaed-plugin-edfi-unified-advanced":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-unified-advanced@workspace:packages/metaed-plugin-edfi-unified-advanced"
@@ -1124,7 +1071,6 @@ __metadata:
     "@edfi/metaed-core": 3.0.0-dev.11
     "@edfi/metaed-odsapi-deploy": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-handbook": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-interchange-brief": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-ods-postgresql": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-ods-recordownership": 3.0.0-dev.11
@@ -1134,7 +1080,6 @@ __metadata:
     "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-odsapi": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-sql-dictionary": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-udm": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-unified": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-xml-dictionary": 3.0.0-dev.11
@@ -3822,7 +3767,6 @@ __metadata:
     "@edfi/metaed-core": 3.0.0-dev.11
     "@edfi/metaed-odsapi-deploy": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-handbook": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-interchange-brief": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-ods-changequery-postgresql": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-ods-changequery-sqlserver": 3.0.0-dev.11
@@ -3834,7 +3778,6 @@ __metadata:
     "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-odsapi": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-sql-dictionary": 3.0.0-dev.11
-    "@edfi/metaed-plugin-edfi-udm": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-unified": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.0-dev.11
     "@edfi/metaed-plugin-edfi-xml-dictionary": 3.0.0-dev.11
@@ -5105,7 +5048,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bluebird@npm:^3.0.1, bluebird@npm:^3.3.5, bluebird@npm:^3.5.0, bluebird@npm:^3.5.1, bluebird@npm:^3.5.3, bluebird@npm:^3.5.5":
+"bluebird@npm:^3.3.5, bluebird@npm:^3.5.0, bluebird@npm:^3.5.1, bluebird@npm:^3.5.3, bluebird@npm:^3.5.5":
   version: 3.7.2
   resolution: "bluebird@npm:3.7.2"
   checksum: 869417503c722e7dc54ca46715f70e15f4d9c602a423a02c825570862d12935be59ed9c7ba34a9b31f186c017c23cac6b54e35446f8353059c101da73eac22ef
@@ -5240,13 +5183,6 @@ __metadata:
   version: 1.0.0
   resolution: "btoa-lite@npm:1.0.0"
   checksum: c2d61993b801f8e35a96f20692a45459c753d9baa29d86d1343e714f8d6bbe7069f1a20a5ae868488f3fb137d5bd0c560f6fbbc90b5a71050919d2d2c97c0475
-  languageName: node
-  linkType: hard
-
-"buffer-crc32@npm:~0.2.3":
-  version: 0.2.13
-  resolution: "buffer-crc32@npm:0.2.13"
-  checksum: 06252347ae6daca3453b94e4b2f1d3754a3b146a111d81c68924c22d91889a40623264e95e67955b1cb4a68cbedf317abeabb5140a9766ed248973096db5ce1c
   languageName: node
   linkType: hard
 
@@ -6094,7 +6030,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"concat-stream@npm:^1.5.0, concat-stream@npm:^1.6.0, concat-stream@npm:^1.6.2":
+"concat-stream@npm:^1.5.0, concat-stream@npm:^1.6.0":
   version: 1.6.2
   resolution: "concat-stream@npm:1.6.2"
   dependencies:
@@ -6268,13 +6204,6 @@ __metadata:
   dependencies:
     safe-buffer: ~5.1.1
   checksum: 985d974a2d33e1a2543ada51c93e1ba2f73eaed608dc39f229afc78f71dcc4c8b7d7c684aa647e3c6a3a204027444d69e53e169ce94e8d1fa8d7dee80c9c8fed
-  languageName: node
-  linkType: hard
-
-"cookies.txt@npm:^0.1.1":
-  version: 0.1.2
-  resolution: "cookies.txt@npm:0.1.2"
-  checksum: 1fec1e8332b9396239c2bc05b5295579c4bf718aaa5457ee8fa1860dcaabf02da0a49d657f9ada957bc8622970834229390df77318fe56303e3f0c2b5a8cbf40
   languageName: node
   linkType: hard
 
@@ -6504,13 +6433,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"data-uri-to-buffer@npm:0.0.4":
-  version: 0.0.4
-  resolution: "data-uri-to-buffer@npm:0.0.4"
-  checksum: 5e2f2024d6730a6bdaa66eabd8c309e865f3d093479593f7ae5d4d4d70d7f2773ab44dcc2c216068a0ef4bf7787951dfa2ca4205e0a8b85285e7795f5fc9e25a
-  languageName: node
-  linkType: hard
-
 "data-urls@npm:^2.0.0":
   version: 2.0.0
   resolution: "data-urls@npm:2.0.0"
@@ -6580,7 +6502,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:^2.1.1, debug@npm:^2.2.0, debug@npm:^2.3.3, debug@npm:^2.6.8, debug@npm:^2.6.9":
+"debug@npm:^2.2.0, debug@npm:^2.3.3, debug@npm:^2.6.8, debug@npm:^2.6.9":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
   dependencies:
@@ -6687,7 +6609,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"defaults@npm:^1.0.3, defaults@npm:~1.0.0":
+"defaults@npm:^1.0.3":
   version: 1.0.3
   resolution: "defaults@npm:1.0.3"
   dependencies:
@@ -7859,20 +7781,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"extract-zip@npm:^1.6.5":
-  version: 1.7.0
-  resolution: "extract-zip@npm:1.7.0"
-  dependencies:
-    concat-stream: ^1.6.2
-    debug: ^2.6.9
-    mkdirp: ^0.5.4
-    yauzl: ^2.10.0
-  bin:
-    extract-zip: cli.js
-  checksum: 011bab660d738614555773d381a6ba4815d98c1cfcdcdf027e154ebcc9fc8c9ef637b3ea5c9b2144013100071ee41722ed041fc9aacc60f6198ef747cac0c073
-  languageName: node
-  linkType: hard
-
 "extsprintf@npm:1.3.0":
   version: 1.3.0
   resolution: "extsprintf@npm:1.3.0"
@@ -7986,15 +7894,6 @@ __metadata:
   dependencies:
     bser: 2.1.1
   checksum: 8510230778ab3a51c27dffb1b76ef2c24fab672a42742d3c0a45c2e9d1e5f20210b1fbca33486088da4a9a3958bde96b5aec0a63aac9894b4e9df65c88b2cbd6
-  languageName: node
-  linkType: hard
-
-"fd-slicer@npm:~1.1.0":
-  version: 1.1.0
-  resolution: "fd-slicer@npm:1.1.0"
-  dependencies:
-    pend: ~1.2.0
-  checksum: c8585fd5713f4476eb8261150900d2cb7f6ff2d87f8feb306ccc8a1122efd152f1783bdb2b8dc891395744583436bfd8081d8e63ece0ec8687eeefea394d4ff2
   languageName: node
   linkType: hard
 
@@ -8330,17 +8229,6 @@ __metadata:
   version: 1.0.0
   resolution: "fs-constants@npm:1.0.0"
   checksum: 18f5b718371816155849475ac36c7d0b24d39a11d91348cfcb308b4494824413e03572c403c86d3a260e049465518c4f0d5bd00f0371cdfcad6d4f30a85b350d
-  languageName: node
-  linkType: hard
-
-"fs-extra@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "fs-extra@npm:1.0.0"
-  dependencies:
-    graceful-fs: ^4.1.2
-    jsonfile: ^2.1.0
-    klaw: ^1.0.0
-  checksum: 9d3642621f42c810e9a32e6ecf97f6f827fdffb001316504d2102d87b4505b8bda1197d43e38e5b1db1faa240b022380b489a0e378b739e1cadef0df9aad4b5f
   languageName: node
   linkType: hard
 
@@ -8958,7 +8846,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^4.0.0, graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.15, graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.1.9, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.2, graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6":
+"graceful-fs@npm:^4.0.0, graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.15, graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.2, graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6":
   version: 4.2.8
   resolution: "graceful-fs@npm:4.2.8"
   checksum: 5d224c8969ad0581d551dfabdb06882706b31af2561bd5e2034b4097e67cc27d05232849b8643866585fd0a41c7af152950f8776f4dd5579e9853733f31461c6
@@ -9152,16 +9040,6 @@ __metadata:
     inherits: ^2.0.3
     minimalistic-assert: ^1.0.1
   checksum: e350096e659c62422b85fa508e4b3669017311aa4c49b74f19f8e1bc7f3a54a584fdfd45326d4964d6011f2b2d882e38bea775a96046f2a61b7779a979629d8f
-  languageName: node
-  linkType: hard
-
-"hasha@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "hasha@npm:2.2.0"
-  dependencies:
-    is-stream: ^1.0.1
-    pinkie-promise: ^2.0.0
-  checksum: 1855680c0e8a1b92686f816f2f224e184e5f2422f2ddef4f05184ea57bf954cecc017598af08b84c6aa723ccc38353469d4f143869ecfafedf1c50aec0e7ed4e
   languageName: node
   linkType: hard
 
@@ -10161,7 +10039,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-stream@npm:^1.0.1, is-stream@npm:^1.1.0":
+"is-stream@npm:^1.1.0":
   version: 1.1.0
   resolution: "is-stream@npm:1.1.0"
   checksum: 063c6bec9d5647aa6d42108d4c59723d2bd4ae42135a2d4db6eadbd49b7ea05b750fd69d279e5c7c45cf9da753ad2c00d8978be354d65aa9f6bb434969c6a2ae
@@ -11184,18 +11062,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonfile@npm:^2.1.0":
-  version: 2.4.0
-  resolution: "jsonfile@npm:2.4.0"
-  dependencies:
-    graceful-fs: ^4.1.6
-  dependenciesMeta:
-    graceful-fs:
-      optional: true
-  checksum: f5064aabbc9e35530dc471d8b203ae1f40dbe949ddde4391c6f6a6d310619a15f0efdae5587df594d1d70c555193aaeee9d2ed4aec9ffd5767bd5e4e62d49c3d
-  languageName: node
-  linkType: hard
-
 "jsonfile@npm:^3.0.0":
   version: 3.0.1
   resolution: "jsonfile@npm:3.0.1"
@@ -11327,13 +11193,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kew@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "kew@npm:0.7.0"
-  checksum: f21ccf245647ae9a89bcf98e479a355989f1b54aeff24af62d0cbf11a67cf7e7ffc59c3bcf05a70b68ae2a2c669f8004aea33cef69f04f0733d888afaa26d178
-  languageName: node
-  linkType: hard
-
 "keytar@npm:^7.3.0":
   version: 7.7.0
   resolution: "keytar@npm:7.7.0"
@@ -11383,18 +11242,6 @@ __metadata:
   dependencies:
     graceful-fs: ^4.1.11
   checksum: 275adbf4b2ba292177ff3d4d8f8bb27b93659c7f4a3ff439557ebd1acec9b699781f0b0d5d3c22d95538da6ba5e3c8449b6fd1990c9ecd915aef0ffa5afeab11
-  languageName: node
-  linkType: hard
-
-"klaw@npm:^1.0.0":
-  version: 1.3.1
-  resolution: "klaw@npm:1.3.1"
-  dependencies:
-    graceful-fs: ^4.1.9
-  dependenciesMeta:
-    graceful-fs:
-      optional: true
-  checksum: 8f69e4797c26e7c3f2426bfa85f38a3da3c2cb1b4c6bd850d2377aed440d41ce9d806f2885c2e2e224372c56af4b1d43b8a499adecf9a05e7373dc6b8b7c52e4
   languageName: node
   linkType: hard
 
@@ -12017,15 +11864,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^0.4.0":
-  version: 0.4.0
-  resolution: "marked@npm:0.4.0"
-  bin:
-    marked: ./bin/marked
-  checksum: 7f7f6dc7e9e2a8c645e1f80277e421cb31e476aa38799b02b646a19e206fb89111656df94a85bf8a6857273adc09706d09558bfe13ff9b13871219d2dad3fd6e
-  languageName: node
-  linkType: hard
-
 "mdast-util-compact@npm:^1.0.0":
   version: 1.0.4
   resolution: "mdast-util-compact@npm:1.0.4"
@@ -12560,7 +12398,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mkdirp@npm:>=0.5 0, mkdirp@npm:^0.5.1, mkdirp@npm:^0.5.4, mkdirp@npm:^0.5.5":
+"mkdirp@npm:>=0.5 0, mkdirp@npm:^0.5.1, mkdirp@npm:^0.5.5":
   version: 0.5.5
   resolution: "mkdirp@npm:0.5.5"
   dependencies:
@@ -12993,34 +12831,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-horseman@npm:^3.3.0":
-  version: 3.3.0
-  resolution: "node-horseman@npm:3.3.0"
-  dependencies:
-    bluebird: ^3.0.1
-    clone: ^1.0.2
-    cookies.txt: ^0.1.1
-    data-uri-to-buffer: 0.0.4
-    debug: ^2.1.1
-    defaults: ~1.0.0
-    node-phantom-simple: ^2.2.4
-  checksum: b29899a56b990e1e6905a195c4825608ec746d09149af96354494f2650c42376737937961beb65fbe204502c4d7e20bb09103310c40fe935f56ba7e6c1cb25a6
-  languageName: node
-  linkType: hard
-
 "node-int64@npm:^0.4.0":
   version: 0.4.0
   resolution: "node-int64@npm:0.4.0"
   checksum: d0b30b1ee6d961851c60d5eaa745d30b5c95d94bc0e74b81e5292f7c42a49e3af87f1eb9e89f59456f80645d679202537de751b7d72e9e40ceea40c5e449057e
-  languageName: node
-  linkType: hard
-
-"node-phantom-simple@npm:^2.2.4":
-  version: 2.2.4
-  resolution: "node-phantom-simple@npm:2.2.4"
-  dependencies:
-    debug: ^2.2.0
-  checksum: bcfcec18f94182337a2da60ecb9c1c8e73b14ddb70ecea021a338abfa7ebc2ef09f4781f59df5d8cd72a4eb78228e30bf09cc02675beaaa58598cb337ff48528
   languageName: node
   linkType: hard
 
@@ -14156,13 +13970,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pend@npm:~1.2.0":
-  version: 1.2.0
-  resolution: "pend@npm:1.2.0"
-  checksum: 6c72f5243303d9c60bd98e6446ba7d30ae29e3d56fdb6fae8767e8ba6386f33ee284c97efe3230a0d0217e2b1723b8ab490b1bbf34fcbb2180dbc8a9de47850d
-  languageName: node
-  linkType: hard
-
 "performance-now@npm:^2.1.0":
   version: 2.1.0
   resolution: "performance-now@npm:2.1.0"
@@ -14310,25 +14117,6 @@ __metadata:
     createdbjs: createdb.js
     dropdbjs: dropdb.js
   checksum: 764644cde13431070e4e3558ed08b67fe73cb92d5573d0c0017f76b76cd85b25aecdf3fa948e6d50ceabf315f50ed2cfe52275d04321c274f1a00c26fe8485b4
-  languageName: node
-  linkType: hard
-
-"phantomjs-prebuilt@npm:^2.1.16":
-  version: 2.1.16
-  resolution: "phantomjs-prebuilt@npm:2.1.16"
-  dependencies:
-    es6-promise: ^4.0.3
-    extract-zip: ^1.6.5
-    fs-extra: ^1.0.0
-    hasha: ^2.2.0
-    kew: ^0.7.0
-    progress: ^1.1.8
-    request: ^2.81.0
-    request-progress: ^2.0.1
-    which: ^1.2.10
-  bin:
-    phantomjs: ./bin/phantomjs
-  checksum: 1fbfa1b172644a9eaeedf6eb8b566b3043480c0175e8a2c4b4bf59c6bddb369a3b153e8d354b3509a7b471abc424857db1955d8fbd7a9d1be3e220518c7c6ce0
   languageName: node
   linkType: hard
 
@@ -14626,13 +14414,6 @@ __metadata:
   version: 0.11.10
   resolution: "process@npm:0.11.10"
   checksum: bfcce49814f7d172a6e6a14d5fa3ac92cc3d0c3b9feb1279774708a719e19acd673995226351a082a9ae99978254e320ccda4240ddc474ba31a76c79491ca7c3
-  languageName: node
-  linkType: hard
-
-"progress@npm:^1.1.8":
-  version: 1.1.8
-  resolution: "progress@npm:1.1.8"
-  checksum: 789c824156e03a7353b190fc63da46bc42b210250cebaa2dca447a6a740f5469f34ed30f768cdef088ca720a8c3c42dd743958e8bc6a35b2d2a1a83171ad2c56
   languageName: node
   linkType: hard
 
@@ -15429,16 +15210,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"request-progress@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "request-progress@npm:2.0.1"
-  dependencies:
-    throttleit: ^1.0.0
-  checksum: 66e7ce68a6f3b6cbf20e0d9e0ffc9cc4be0cc86c8051f7a329421bef8fb8da8bb7e893bc7e139a0d7f011feed5a5fce422fb809f5b6a59b91a282d4caf16417d
-  languageName: node
-  linkType: hard
-
-"request@npm:^2.81.0, request@npm:^2.88.0":
+"request@npm:^2.88.0":
   version: 2.88.2
   resolution: "request@npm:2.88.2"
   dependencies:
@@ -17068,13 +16840,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"throttleit@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "throttleit@npm:1.0.0"
-  checksum: 1b2db4d2454202d589e8236c07a69d2fab838876d370030ebea237c34c0a7d1d9cf11c29f994531ebb00efd31e9728291042b7754f2798a8352ec4463455b659
-  languageName: node
-  linkType: hard
-
 "through2-filter@npm:^3.0.0":
   version: 3.0.0
   resolution: "through2-filter@npm:3.0.0"
@@ -18433,7 +18198,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"which@npm:1.3.1, which@npm:^1.2.10, which@npm:^1.2.9, which@npm:^1.3.1":
+"which@npm:1.3.1, which@npm:^1.2.9, which@npm:^1.3.1":
   version: 1.3.1
   resolution: "which@npm:1.3.1"
   dependencies:
@@ -18989,16 +18754,6 @@ __metadata:
     y18n: ^3.2.1
     yargs-parser: ^7.0.0
   checksum: be8070b2cc1d8cd34fc299932ee7f4ccbe7f513ce37b3609f9b46fa6e39d32ff7f3ac7cb7e1f750987228f118c8d70abff0e1f4c6d30099dcb7a80c363f232a7
-  languageName: node
-  linkType: hard
-
-"yauzl@npm:^2.10.0":
-  version: 2.10.0
-  resolution: "yauzl@npm:2.10.0"
-  dependencies:
-    buffer-crc32: ~0.2.3
-    fd-slicer: ~1.1.0
-  checksum: 7f21fe0bbad6e2cb130044a5d1d0d5a0e5bf3d8d4f8c4e6ee12163ce798fee3de7388d22a7a0907f563ac5f9d40f8699a223d3d5c1718da90b0156da6904022b
   languageName: node
   linkType: hard
 
