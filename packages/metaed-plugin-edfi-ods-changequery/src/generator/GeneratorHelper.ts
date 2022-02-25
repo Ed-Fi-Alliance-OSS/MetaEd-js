@@ -307,6 +307,7 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
   const results: GeneratedOutput[] = [];
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
+  const includeDropIfExists = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -328,6 +329,7 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
         const generatedResult: string = template().createTriggerUpdateChangeVersion({
           triggers,
           useLicenseHeader,
+          includeDropIfExists,
         });
 
         results.push({

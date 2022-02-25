@@ -16,7 +16,7 @@ import { enhance as namespaceSetupEnhancer } from './model/Namespace';
 export { ColumnDataTypes } from './model/ColumnDataTypes';
 export { enhance as sqlServerTableSetupEnhancer } from './model/Table';
 export { enhance as sqlServerTableNamingEnhancer } from './enhancer/SqlServerTableNamingEnhancer';
-export { enhance as sqlServerColumnNamingEnhancer } from './enhancer/SqlServerColumnNamingEnhancer';
+export { enhance as sqlServerColumnNamingEnhancer, constructColumnNameFrom } from './enhancer/SqlServerColumnNamingEnhancer';
 export { enhance as sqlServerForeignKeyNamingEnhancer } from './enhancer/SqlServerForeignKeyNamingEnhancer';
 
 export function initialize(): MetaEdPlugin {

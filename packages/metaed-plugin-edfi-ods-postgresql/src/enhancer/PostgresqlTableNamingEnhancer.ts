@@ -33,7 +33,7 @@ function tableNameHash(nameGroup: TableNameGroup): string {
   return hash.sha256().update(untruncatedName).digest('hex');
 }
 
-export function constructNameFrom(nameGroup: TableNameGroup): TableNaming {
+export function constructTableNameFrom(nameGroup: TableNameGroup): TableNaming {
   const overallMaxLength = 63;
   const truncatedTableNameHash = tableNameHash(nameGroup).substring(0, 6);
 
@@ -60,7 +60,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     tables.forEach((table: Table) => {
       if (table.data.edfiOdsPostgresql == null) table.data.edfiOdsPostgresql = {};
-      Object.assign(table.data.edfiOdsPostgresql as TableEdfiOdsPostgresql, constructNameFrom(table.nameGroup));
+      Object.assign(table.data.edfiOdsPostgresql as TableEdfiOdsPostgresql, constructTableNameFrom(table.nameGroup));
     });
   });
 

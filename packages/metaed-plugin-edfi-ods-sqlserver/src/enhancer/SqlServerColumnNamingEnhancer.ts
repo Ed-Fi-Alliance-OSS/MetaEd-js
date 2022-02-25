@@ -16,7 +16,7 @@ function simpleColumnNameComponentCollapse(columnNameComponent: ColumnNameCompon
   return columnNameComponent.map((nameComponent) => nameComponent.name).reduce(appendOverlapCollapsing, '');
 }
 
-export function constructNameFrom(columnNameComponent: ColumnNameComponent[]): string {
+export function constructColumnNameFrom(columnNameComponent: ColumnNameComponent[]): string {
   return simpleColumnNameComponentCollapse(columnNameComponent);
 }
 
@@ -37,7 +37,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     tables.forEach((table: Table) => {
       table.columns.forEach((column: Column) => {
-        column.data.edfiOdsSqlServer.columnName = constructNameFrom(column.nameComponents);
+        column.data.edfiOdsSqlServer.columnName = constructColumnNameFrom(column.nameComponents);
         column.data.edfiOdsSqlServer.dataType = resolveDataType(column);
       });
     });

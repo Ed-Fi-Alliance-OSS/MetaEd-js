@@ -10,7 +10,7 @@ import { versionSatisfiesForPostgresChangeQuerySupport } from './EnhancerHelper'
 const enhancerName = 'AddColumnChangeVersionForTableEnhancer';
 
 // TODO: Separate into AddIndexForChangeVersion model?
-function createModel(table: Table): AddColumnChangeVersionForTable {
+function createAddColumnModel(table: Table): AddColumnChangeVersionForTable {
   return {
     schema: table.schema,
     tableName: table.data.edfiOdsPostgresql.tableName,
@@ -20,7 +20,7 @@ function createModel(table: Table): AddColumnChangeVersionForTable {
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (versionSatisfiesForPostgresChangeQuerySupport(metaEd)) {
-    performAddColumnChangeVersionForTableEnhancement(metaEd, PLUGIN_NAME, createModel);
+    performAddColumnChangeVersionForTableEnhancement(metaEd, PLUGIN_NAME, createAddColumnModel);
   }
   return {
     enhancerName,
