@@ -1,28 +1,4 @@
-export interface ChangeDataColumn {
-  columnName: string;
-  isDescriptorId: boolean;
-  isDescriptorNamespace: boolean;
-  isDescriptorCodeValue: boolean;
-  isUsi: boolean;
-  isUniqueId: boolean;
-  isRegularSelectColumn: boolean;
-  usiName: string;
-  tableAliasSuffix: string;
-}
-
-export function newChangeDataColumn() {
-  return {
-    columnName: '',
-    isDescriptorId: false,
-    isDescriptorNamespace: false,
-    isDescriptorCodeValue: false,
-    isUsi: false,
-    isUniqueId: false,
-    isRegularSelectColumn: false,
-    usiName: '',
-    tableAliasSuffix: '',
-  };
-}
+import { ChangeDataColumn } from './ChangeDataColumn';
 
 export interface CreateTriggerUpdateChangeVersion {
   schema: string;

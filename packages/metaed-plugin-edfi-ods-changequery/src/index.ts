@@ -3,13 +3,10 @@ import { validate as NamespaceMustNotBeNamedChanges } from './validator/Namespac
 
 export { changeQueryIndicated } from './enhancer/ChangeQueryIndicator';
 export { AddColumnChangeVersionForTable } from './model/AddColumnChangeVersionForTable';
-export {
-  CreateTriggerUpdateChangeVersion,
-  ChangeDataColumn,
-  newChangeDataColumn,
-} from './model/CreateTriggerUpdateChangeVersion';
+export { CreateTriggerUpdateChangeVersion } from './model/CreateTriggerUpdateChangeVersion';
+export { ChangeDataColumn, newChangeDataColumn } from './model/ChangeDataColumn';
 export { DeleteTrackingTable } from './model/DeleteTrackingTable';
-export { DeleteTrackingTrigger } from './model/DeleteTrackingTrigger';
+export { DeleteTrackingTrigger, newDeleteTrackingTrigger } from './model/DeleteTrackingTrigger';
 export { PairedForeignKeyColumnName } from './model/PairedForeignKeyColumnName';
 export {
   pluginEnvironment,

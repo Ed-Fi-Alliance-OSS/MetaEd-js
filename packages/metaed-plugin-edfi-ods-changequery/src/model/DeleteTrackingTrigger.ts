@@ -1,4 +1,5 @@
 import { ForeignKey } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { ChangeDataColumn } from './ChangeDataColumn';
 
 export interface DeleteTrackingTrigger {
   triggerSchema: string;
@@ -10,4 +11,24 @@ export interface DeleteTrackingTrigger {
   primaryKeyColumnNames: string[];
   targetTableIsSubclass: boolean;
   foreignKeyToSuperclass: ForeignKey | null;
+  isDescriptorTable: boolean;
+  isStyle5dot4: boolean;
+  changeDataColumns: ChangeDataColumn[];
+}
+
+export function newDeleteTrackingTrigger(): DeleteTrackingTrigger {
+  return {
+    triggerSchema: '',
+    triggerName: '',
+    targetTableSchema: '',
+    targetTableName: '',
+    deleteTrackingTableSchema: '',
+    deleteTrackingTableName: '',
+    primaryKeyColumnNames: [],
+    targetTableIsSubclass: false,
+    foreignKeyToSuperclass: null,
+    isDescriptorTable: false,
+    isStyle5dot4: false,
+    changeDataColumns: [],
+  };
 }
