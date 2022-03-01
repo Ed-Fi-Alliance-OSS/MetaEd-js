@@ -1,0 +1,43 @@
+name: POC MSSQL
+on:
+  workflow_dispatch:
+  pull_request:
+jobs:
+  poc:
+    name: POC MSSQL
+    # Windows is required for some of the unit tests to run properly
+    runs-on: ubuntu-20.04
+    env:    
+        SA_PASSWORD: abcdefgh1!
+        MSSQL_USERNAME: sa
+        MSSQL_PASSWORD: abcdefgh1!
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
+
+      - name: Set up Node
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # v2.5.1
+        with:
+          node-version: '16'
+          check-latest: true
+          registry-url: 'https://www.myget.org/F/ed-fi/npm/'
+
+      - name: Install
+        run: yarn install
+
+      - name: Lint
+        run: yarn test:lint
+
+      - name: Start Docker for SQL Server
+        run: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=${{ env.SA_PASSWORD }}' -e 'MSSQL_PID=Express' -p 1433:1433 --name mssql -d mcr.microsoft.com/mssql/server:2017-latest
+
+      - name: Unit tests
+        run: yarn test:unit:ci --ci  --config ./jest.ci-config.js
+
+      - name: Test Report
+        uses: dorny/test-reporter@0d00bb14cb0cc2c9b8985df6e81dd333188224e1 #v1.5.0
+        if: success() || failure()
+        with:
+          name: Test Reporting
+          path: "*.xml"
+          reporter: jest-junit  

@@ -40,10 +40,12 @@ Transcript-0004-Extension-extension-Tables.sql
 0040-IdColumnUniqueIndexes.sql
 0050-ExtendedProperties.sql
 
-Simple-0020-Extension-extension-Tables.sql
-SimpleType-0020-Extension-extension-Tables.sql
-Transcript-0020-Extension-extension-Tables.sql
-SimpleType-0030-Extension-extension-ForeignKeys.sql
+Simple-0004-Extension-Extension-Tables.sql
+Transcript-0004-Extension-Extension-Tables.sql
+Simple-0020-Extension-Extension-Tables.sql
+SimpleType-0020-Extension-Extension-Tables.sql
+Transcript-0020-Extension-Extension-Tables.sql
+SimpleType-0030-Extension-Extension-ForeignKeys.sql
 
 /packages/metaed-plugin-edfi-odsapi/test/integration/artifact/*
 !/packages/metaed-plugin-edfi-odsapi/test/integration/artifact/*-authoritative.json
@@ -64,6 +66,8 @@ sample-TriggerUpdateChangeVersion-v3.1.sql
 sample-TriggerUpdateChangeVersion-v3.4.sql
 
 CreatedByOwnership-v3.3.sql
+CreatedByOwnership-v5.0.sql
+CreatedByOwnership-v5.0-Alliance.sql
 
 MetaEdOutput-Experimental/
 MetaEdOutput/

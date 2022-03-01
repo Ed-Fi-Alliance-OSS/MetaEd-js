@@ -1,7 +1,7 @@
 import fs from 'fs';
 import handlebars from 'handlebars';
 import path from 'path';
-import { GeneratedOutput, GeneratorResult, MetaEdEnvironment } from '@edfi/metaed-core';
+import { GeneratedOutput, GeneratorResult, MetaEdEnvironment, orderByPath } from '@edfi/metaed-core';
 import { shouldApplyLicenseHeader } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { tableEntities, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { TableEdfiOdsRecordOwnership, recordOwnershipIndicated } from '@edfi/metaed-plugin-edfi-ods-recordownership';
@@ -22,7 +22,9 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
 
   if (recordOwnershipIndicated(metaEd)) {
     metaEd.namespace.forEach((namespace) => {
-      const tables: Table[] = Array.from(tableEntities(metaEd, namespace).values()).filter(hasOwnershipTokenColumn);
+      const tables: Table[] = orderByPath(['data', 'edfiOdsPostgresql', 'tableName'])(
+        Array.from(tableEntities(metaEd, namespace).values()).filter(hasOwnershipTokenColumn),
+      );
       if (tables.length > 0) {
         const generatedResult: string = template({
           tables,

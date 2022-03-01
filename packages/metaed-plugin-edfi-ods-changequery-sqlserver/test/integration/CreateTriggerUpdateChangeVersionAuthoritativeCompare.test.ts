@@ -113,7 +113,7 @@ describe('when generating change event scripts and comparing to ODS/API 3.1 auth
   it('should have no differences', async () => {
     const authoritative: string = path.resolve(artifactPath, authoritativeFilename);
     const generated: string = path.resolve(artifactPath, generatedFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -229,7 +229,7 @@ describe('when generating change event scripts with simple extensions and compar
   it('should have no core file differences', async () => {
     const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -240,7 +240,7 @@ describe('when generating change event scripts with simple extensions and compar
   it('should have no extension file differences', async () => {
     const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -340,7 +340,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
   it('should have no differences', async () => {
     const authoritative: string = path.resolve(artifactPath, authoritativeFilename);
     const generated: string = path.resolve(artifactPath, generatedFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -456,7 +456,7 @@ describe('when generating change event scripts with simple extensions and compar
   it('should have no core file differences', async () => {
     const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -467,7 +467,7 @@ describe('when generating change event scripts with simple extensions and compar
   it('should have no extension file differences', async () => {
     const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -568,7 +568,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
   it('should have no differences', async () => {
     const authoritative: string = path.resolve(artifactPath, authoritativeFilename);
     const generated: string = path.resolve(artifactPath, generatedFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -685,7 +685,7 @@ describe('when generating change event scripts with simple extensions and compar
   it('should have no core file differences', async () => {
     const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -696,7 +696,7 @@ describe('when generating change event scripts with simple extensions and compar
   it('should have no extension file differences', async () => {
     const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings

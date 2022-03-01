@@ -82,7 +82,7 @@ describe('when generating api model and comparing it to data standard 3.1 author
   it('should have no differences', async () => {
     const authoritative: string = path.resolve(artifactPath, authoritativeFilename);
     const generated: string = path.resolve(artifactPath, generatedFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -152,7 +152,7 @@ describe('when generating api model targeting tech version 3.1.1 and comparing i
   it('should have no differences', async () => {
     const authoritative: string = path.resolve(artifactPath, authoritativeFilename);
     const generated: string = path.resolve(artifactPath, generatedFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -222,7 +222,7 @@ describe('when generating api model and comparing it to data standard 3.0 author
   it('should have no differences', async () => {
     const authoritative: string = path.resolve(artifactPath, authoritativeFilename);
     const generated: string = path.resolve(artifactPath, generatedFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -310,7 +310,7 @@ describe('when generating api model with simple extensions and comparing it to d
   it('should have no core file differences', async () => {
     const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -321,7 +321,7 @@ describe('when generating api model with simple extensions and comparing it to d
   it('should have no extension file differences', async () => {
     const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -410,7 +410,7 @@ describe('when generating api model with student transcript extensions and compa
   it('should have no core file differences', async () => {
     const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -421,7 +421,7 @@ describe('when generating api model with student transcript extensions and compa
   it('should have no extension file differences', async () => {
     const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -509,7 +509,7 @@ describe('when generating api model with simple type merge extensions and compar
   it('should have no core file differences', async () => {
     const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -520,7 +520,7 @@ describe('when generating api model with simple type merge extensions and compar
   it('should have no extension file differences', async () => {
     const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -591,7 +591,7 @@ describe('when generating api model targeting tech version 3.3 and comparing it 
   it('should have no differences', async () => {
     const authoritative: string = path.resolve(artifactPath, authoritativeFilename);
     const generated: string = path.resolve(artifactPath, generatedFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -680,7 +680,7 @@ describe('when generating api model targeting tech version 3.4 with simple exten
   it('should have no core file differences', async () => {
     const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -691,7 +691,7 @@ describe('when generating api model targeting tech version 3.4 with simple exten
   it('should have no extension file differences', async () => {
     const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
     const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -764,7 +764,7 @@ describe('when generating api model targeting tech version 5.2 with comparing it
   it('should have no core file differences', async () => {
     const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -837,7 +837,7 @@ describe('when generating api model targeting tech version 5.3 with comparing it
   it('should have no core file differences', async () => {
     const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings

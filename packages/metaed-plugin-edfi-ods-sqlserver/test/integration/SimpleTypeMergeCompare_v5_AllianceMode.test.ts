@@ -111,7 +111,7 @@ describe('when generating ods tables file with simple merges for ODS/API 5.0 in 
 
   it('should have extension with no differences', async () => {
     expect(generatedExtensionOutput).toBeDefined();
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtensionOdsFilename} ${generatedExtensionOdsFilename}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtensionOdsFilename} ${generatedExtensionOdsFilename}`;
 
     const result = await new Promise((resolve) => exec(gitCommand, (_, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -201,7 +201,7 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
 
   it('should have core with no differences', async () => {
     expect(generatedCoreOutput).toBeDefined();
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCoreOdsFilename} ${generatedCoreOdsFilename}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCoreOdsFilename} ${generatedCoreOdsFilename}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -211,7 +211,7 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
 
   it('should have extension with no differences', async () => {
     expect(generatedExtensionOutput).toBeDefined();
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtensionOdsFilename} ${generatedExtensionOdsFilename}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtensionOdsFilename} ${generatedExtensionOdsFilename}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings

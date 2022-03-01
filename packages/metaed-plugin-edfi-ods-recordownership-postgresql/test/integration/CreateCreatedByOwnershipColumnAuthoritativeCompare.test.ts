@@ -112,7 +112,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 3.
   it('should have no differences', async () => {
     const authoritative: string = path.resolve(artifactPath, authoritativeFilename);
     const generated: string = path.resolve(artifactPath, generatedFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -213,7 +213,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
   it('should have no differences', async () => {
     const authoritative: string = path.resolve(artifactPath, authoritativeFilename);
     const generated: string = path.resolve(artifactPath, generatedFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
@@ -315,7 +315,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
   it('should have no differences', async () => {
     const authoritative: string = path.resolve(artifactPath, authoritativeFilename);
     const generated: string = path.resolve(artifactPath, generatedFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritative} ${generated}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
