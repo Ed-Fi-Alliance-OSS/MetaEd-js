@@ -44,8 +44,8 @@
     "@edfi/ed-fi-model-3.3b": "3.0.1",
     "cli-highlight": "^2.1.11",
     "final-fs": "^1.6.1",
-    "msnodesqlv8": "2.4.4",
-    "mssql": "7.3.0"
+    "mssql": "7.3.0",
+    "tedious": "^14.3.0"
   },
   "scripts": {
     "build": "yarn build:clean && yarn build:copy-non-ts && yarn build:dist",
