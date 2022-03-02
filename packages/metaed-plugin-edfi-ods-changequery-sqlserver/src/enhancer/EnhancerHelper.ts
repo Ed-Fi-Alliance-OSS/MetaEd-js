@@ -61,26 +61,32 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
 
       tableAliasSuffix += 1;
     } else if (isUsiColumn(pkColumn)) {
+      // flag if this is e.g. StudentUSI on the Student table itself
+      const usiNamePrefixComponents = pkColumn.nameComponents.slice(0, -1);
+      const isUsiOnOwnTable = table.data.edfiOdsSqlServer.tableName === constructColumnNameFrom(usiNamePrefixComponents);
+
       // If there is an USI column, make up a corresponding regular UniqueId column
       changeDataColumns.push({
         ...newChangeDataColumn(),
         columnName: pkColumn.data.edfiOdsSqlServer.columnName,
         tableAliasSuffix: String(tableAliasSuffix),
-        isUsi: true,
+        isUsi: !isUsiOnOwnTable,
         usiName: usiName(pkColumn),
         isRegularSelectColumn: true,
       });
 
       const uniqueIdColumnNaming: ColumnNameComponent[] = [
-        ...pkColumn.nameComponents.slice(0, -1),
+        ...usiNamePrefixComponents,
         { ...newColumnNameComponent(), name: 'UniqueId', isSynthetic: true },
       ];
       changeDataColumns.push({
         ...newChangeDataColumn(),
         columnName: constructColumnNameFrom(uniqueIdColumnNaming),
         tableAliasSuffix: String(tableAliasSuffix),
-        isUniqueId: true,
+        isUniqueId: !isUsiOnOwnTable,
+        isRegularSelectColumn: isUsiOnOwnTable,
       });
+
       tableAliasSuffix += 1;
     } else {
       // A regular column
