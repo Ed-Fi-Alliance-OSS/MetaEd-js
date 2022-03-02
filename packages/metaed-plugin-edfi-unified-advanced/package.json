@@ -24,8 +24,8 @@
     ]
   },
   "dependencies": {
-    "@edfi/metaed-core": "^3.0.0",
-    "@edfi/metaed-plugin-edfi-unified": "^3.0.0",
+    "@edfi/metaed-core": "3.0.0",
+    "@edfi/metaed-plugin-edfi-unified": "3.0.0",
     "ramda": "^0.28.0"
   },
   "scripts": {

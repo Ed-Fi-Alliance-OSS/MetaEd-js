@@ -21,7 +21,7 @@
     "yosay": "^2.0.2"
   },
   "devDependencies": {
-    "@edfi/metaed-core": "^3.0.0",
+    "@edfi/metaed-core": "3.0.0",
     "@octokit/core": "^3.5.1",
     "mem-fs": "^2.2.1",
     "yeoman-assert": "^3.1.1",
