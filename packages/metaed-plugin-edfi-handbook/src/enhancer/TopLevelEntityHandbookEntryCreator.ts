@@ -108,7 +108,7 @@ function entityPropertyToHandbookEntityReferenceProperty(
     metaEdId: property.metaEdId,
     targetPropertyId: referentialProperty.referencedEntity ? referentialProperty.referencedEntity.metaEdId : '',
     referenceUniqueIdentifier: getReferenceUniqueIdentifier(allEntities, property),
-    name: `${property.roleName}${property.metaEdName}`,
+    name: property.roleName === property.metaEdName ? `${property.roleName}` : `${property.roleName}${property.metaEdName}`,
     deprecationText: property.isDeprecated ? 'DEPRECATED' : '',
     deprecationReason: property.deprecationReason,
     extensionParentName: isPropertyOnExtensionEntity ? property.parentEntity.metaEdName : '',
