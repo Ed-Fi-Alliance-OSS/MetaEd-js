@@ -1,6 +1,6 @@
 {
   "name": "@edfi/generator-metaed-plugin",
-  "version": "3.0.0",
+  "version": "3.0.1-dev.0",
   "description": "Yeoman generator for MetaEd plugins",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -21,7 +21,7 @@
     "yosay": "^2.0.2"
   },
   "devDependencies": {
-    "@edfi/metaed-core": "3.0.0",
+    "@edfi/metaed-core": "3.0.1-dev.0",
     "@octokit/core": "^3.5.1",
     "mem-fs": "^2.2.1",
     "yeoman-assert": "^3.1.1",
