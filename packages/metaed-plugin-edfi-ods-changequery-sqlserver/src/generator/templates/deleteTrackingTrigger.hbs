@@ -8,9 +8,11 @@
 {{/if}}
 {{/if}}
 {{#triggers}}
+{{#if isStyle5dot4}}
 DROP TRIGGER IF EXISTS [{{{triggerSchema}}}].[{{{triggerName}}}]
 GO
 
+{{/if}}
 {{#if isDescriptorTable}}
 CREATE TRIGGER [{{{triggerSchema}}}].[{{{triggerName}}}] ON [{{{targetTableSchema}}}].[{{{targetTableName}}}] AFTER DELETE AS
 BEGIN
@@ -39,18 +41,17 @@ BEGIN
         {{#primaryKeyColumnNames}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, ChangeVersion
     {{~/if~}}
     )
-    SELECT {{#if isStyle5dot4~}}
-        {{#each changeDataColumns}}
+    SELECT {{#if isStyle5dot4}}
+{{#each changeDataColumns}}
 {{#if isRegularSelectColumn}}d.{{{columnName}}}{{/if~}}
 {{#if isUniqueId}}j{{tableAliasSuffix}}.{{{columnName}}}{{/if~}}
 {{#if isDescriptorNamespace}}j{{tableAliasSuffix}}.Namespace{{/if~}}
 {{#if isDescriptorCodeValue}}j{{tableAliasSuffix}}.CodeValue{{/if~}}  
         {{#unless @last}}, {{/unless}}{{/each}}, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    {{else~}}
-        {{#primaryKeyColumnNames}}{{#if ../targetTableIsSubclass}}d.{{/if}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    {{~/if}}
-    FROM    deleted d
-{{#if isStyle5dot4~}}
+    {{else}}
+ {{#primaryKeyColumnNames}}{{#if ../targetTableIsSubclass}}d.{{/if}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    {{/if}}
+    FROM    deleted d{{#if isStyle5dot4}}
 {{#each changeDataColumns}}
 {{#if isDescriptorId}}
         INNER JOIN edfi.Descriptor j{{tableAliasSuffix}}
@@ -61,14 +62,16 @@ BEGIN
             ON d.{{{columnName}}} = j{{tableAliasSuffix}}.{{{columnName}}}
 {{/if}}
 {{/each}}
-    {{~else~}}
+    {{else}}
     {{#if targetTableIsSubclass}}{{#foreignKeyToSuperclass}}
             INNER JOIN {{{foreignTableSchema}}}.{{{foreignTable.data.edfiOdsSqlServer.tableName}}} b ON {{#data.edfiOdsChangeQuery.columnNames}}d.{{{parentTableColumnName}}} = b.{{{foreignTableColumnName}}}{{#unless @last}} AND {{/unless}}{{/data.edfiOdsChangeQuery.columnNames}}{{/foreignKeyToSuperclass}}{{/if}}
-    {{~/if~}}
+    {{/if}}
 END
 {{/if}}
 GO
 
 ALTER TABLE [{{{targetTableSchema}}}].[{{{targetTableName}}}] ENABLE TRIGGER [{{{triggerName}}}]
 GO
+
+
 {{/triggers}}
