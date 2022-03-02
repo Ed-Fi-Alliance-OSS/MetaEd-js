@@ -8,6 +8,12 @@
 {{/if}}
 {{/if}}
 {{#triggers}}
+{{#if isStyle5dot4}}
+DROP TRIGGER IF EXISTS [{{{triggerSchema}}}].[{{{triggerName}}}]
+GO
+
+{{/if}}
+{{#if isDescriptorTable}}
 CREATE TRIGGER [{{{triggerSchema}}}].[{{{triggerName}}}] ON [{{{targetTableSchema}}}].[{{{targetTableName}}}] AFTER DELETE AS
 BEGIN
     IF @@rowcount = 0 
@@ -15,11 +21,51 @@ BEGIN
 
     SET NOCOUNT ON
 
-    INSERT INTO [{{{deleteTrackingTableSchema}}}].[{{{deleteTrackingTableName}}}]({{#primaryKeyColumnNames}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, ChangeVersion)
-    SELECT  {{#primaryKeyColumnNames}}{{#if ../targetTableIsSubclass}}d.{{/if}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    INSERT INTO [{{{deleteTrackingTableSchema}}}].[Descriptor](OldDescriptorId, OldCodeValue, OldNamespace, Id, Discriminator, ChangeVersion)
+    SELECT  {{#primaryKeyColumnNames}}{{#if ../targetTableIsSubclass}}d.{{/if}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, b.CodeValue, b.Namespace, b.Id, '{{{targetTableSchema}}}.{{{targetTableName}}}', (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d{{#if targetTableIsSubclass}}{{#foreignKeyToSuperclass}}
             INNER JOIN {{{foreignTableSchema}}}.{{{foreignTable.data.edfiOdsSqlServer.tableName}}} b ON {{#data.edfiOdsChangeQuery.columnNames}}d.{{{parentTableColumnName}}} = b.{{{foreignTableColumnName}}}{{#unless @last}} AND {{/unless}}{{/data.edfiOdsChangeQuery.columnNames}}{{/foreignKeyToSuperclass}}{{/if}}
 END
+{{else}}
+CREATE TRIGGER [{{{triggerSchema}}}].[{{{triggerName}}}] ON [{{{targetTableSchema}}}].[{{{targetTableName}}}] AFTER DELETE AS
+BEGIN
+    IF @@rowcount = 0 
+        RETURN
+
+    SET NOCOUNT ON
+
+    INSERT INTO [{{{deleteTrackingTableSchema}}}].[{{{deleteTrackingTableName}}}](
+    {{~#if isStyle5dot4~}}
+        {{#each changeDataColumns}}Old{{{columnName}}}{{#unless @last}}, {{/unless}}{{/each}}, Id, {{#unless omitDiscriminator}}Discriminator, {{/unless}}ChangeVersion
+    {{~else~}}
+        {{#primaryKeyColumnNames}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, ChangeVersion
+    {{~/if~}}
+    )
+    SELECT {{#if isStyle5dot4}}{{#each changeDataColumns}}{{#if isRegularSelectColumn}}d.{{{columnName}}}{{/if~}}
+{{#if isUniqueId}}j{{tableAliasSuffix}}.{{{columnName}}}{{/if~}}
+{{#if isDescriptorNamespace}}j{{tableAliasSuffix}}.Namespace{{/if~}}
+{{#if isDescriptorCodeValue}}j{{tableAliasSuffix}}.CodeValue{{/if~}}  
+        {{#unless @last}}, {{/unless}}{{/each}}, d.Id, {{#unless omitDiscriminator}}d.Discriminator, {{/unless}}(NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    {{else}}
+ {{#primaryKeyColumnNames}}{{#if ../targetTableIsSubclass}}d.{{/if}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    {{/if}}
+    FROM    deleted d{{#if isStyle5dot4}}
+{{#each changeDataColumns}}
+{{#if isDescriptorId}}
+        INNER JOIN edfi.Descriptor j{{tableAliasSuffix}}
+            ON d.{{columnName}} = j{{tableAliasSuffix}}.DescriptorId
+{{/if}}
+{{#if isUsi}}
+        INNER JOIN edfi.{{usiName}} j{{tableAliasSuffix}}
+            ON d.{{{columnName}}} = j{{tableAliasSuffix}}.{{{columnName}}}
+{{/if}}
+{{/each}}
+{{else}}
+{{#if targetTableIsSubclass}}{{#foreignKeyToSuperclass}}
+            INNER JOIN {{{foreignTableSchema}}}.{{{foreignTable.data.edfiOdsSqlServer.tableName}}} b ON {{#data.edfiOdsChangeQuery.columnNames}}d.{{{parentTableColumnName}}} = b.{{{foreignTableColumnName}}}{{#unless @last}} AND {{/unless}}{{/data.edfiOdsChangeQuery.columnNames}}{{/foreignKeyToSuperclass}}{{/if}}
+{{/if}}
+END
+{{/if}}
 GO
 
 ALTER TABLE [{{{targetTableSchema}}}].[{{{targetTableName}}}] ENABLE TRIGGER [{{{triggerName}}}]

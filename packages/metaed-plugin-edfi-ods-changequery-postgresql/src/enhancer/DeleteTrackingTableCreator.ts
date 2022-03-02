@@ -1,5 +1,5 @@
 import { Column, newColumn, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
-import { DeleteTrackingTable, getPrimaryKeys } from '@edfi/metaed-plugin-edfi-ods-changequery';
+import { DeleteTrackingTable, newDeleteTrackingTable, getPrimaryKeys } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { MetaEdEnvironment } from '@edfi/metaed-core';
 import { TARGET_DATABASE_PLUGIN_NAME } from './EnhancerHelper';
 
@@ -14,6 +14,7 @@ export function createDeleteTrackingTableModel(_metaEd: MetaEdEnvironment, mainT
   };
 
   const deleteTrackingTable: DeleteTrackingTable = {
+    ...newDeleteTrackingTable(),
     schema: `tracked_deletes_${mainTable.schema}`,
     tableName: trackingTableName,
     primaryKeyName: mainTable.data.edfiOdsPostgresql.primaryKeyName,

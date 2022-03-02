@@ -9,17 +9,20 @@ import { versionSatisfiesForPostgresChangeQuerySupport } from './EnhancerHelper'
 
 const enhancerName = 'CreateTriggerUpdateChangeVersionEnhancer';
 
-function createModel(table: Table): CreateTriggerUpdateChangeVersion {
+function createTriggerModel(table: Table): CreateTriggerUpdateChangeVersion {
   return {
     schema: table.schema,
     tableName: table.data.edfiOdsPostgresql.tableName,
     triggerName: 'UpdateChangeVersion',
+    primaryKeyColumnNames: [],
+    changeDataColumns: [],
+    includeKeyChanges: false,
   };
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (versionSatisfiesForPostgresChangeQuerySupport(metaEd)) {
-    performCreateTriggerUpdateChangeVersionEnhancement(metaEd, PLUGIN_NAME, createModel);
+    performCreateTriggerUpdateChangeVersionEnhancement(metaEd, PLUGIN_NAME, createTriggerModel);
   }
   return {
     enhancerName,

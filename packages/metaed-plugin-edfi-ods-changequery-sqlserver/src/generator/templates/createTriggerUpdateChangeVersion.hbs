@@ -8,6 +8,11 @@
 {{/if}}
 {{/if}}
 {{#triggers}}
+{{#if ../includeDropIfExists}}
+DROP TRIGGER IF EXISTS [{{{schema}}}].[{{{triggerName}}}]
+GO
+
+{{/if}}
 CREATE TRIGGER [{{{schema}}}].[{{{triggerName}}}] ON [{{{schema}}}].[{{{tableName}}}] AFTER UPDATE AS
 BEGIN
     SET NOCOUNT ON;
@@ -15,6 +20,42 @@ BEGIN
     SET ChangeVersion = (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM [{{{schema}}}].[{{{tableName}}}] u
     WHERE EXISTS (SELECT 1 FROM inserted i WHERE i.id = u.id);
+{{#if includeKeyChanges}}
+
+    -- Handle key changes
+    INSERT INTO tracked_changes_edfi.{{{tableName}}}(
+        {{#each changeDataColumns}}Old{{{columnName}}}, {{/each}}
+        {{#each changeDataColumns}}New{{{columnName}}}, {{/each}}
+        Id, ChangeVersion)
+    SELECT
+        {{#each changeDataColumns}}{{#if isRegularSelectColumn}}d.{{{columnName}}}{{/if}}{{#if isUniqueId}}dj{{tableAliasSuffix}}.{{{columnName}}}{{/if}}{{#if isDescriptorNamespace}}dj{{tableAliasSuffix}}.Namespace{{/if}}{{#if isDescriptorCodeValue}}dj{{tableAliasSuffix}}.CodeValue{{/if}}, {{/each}}
+        {{#each changeDataColumns}}{{#if isRegularSelectColumn}}i.{{{columnName}}}{{/if}}{{#if isUniqueId}}ij{{tableAliasSuffix}}.{{{columnName}}}{{/if}}{{#if isDescriptorNamespace}}ij{{tableAliasSuffix}}.Namespace{{/if}}{{#if isDescriptorCodeValue}}ij{{tableAliasSuffix}}.CodeValue{{/if}}, {{/each}}
+        d.Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    FROM deleted d INNER JOIN inserted i ON d.Id = i.Id
+{{#each changeDataColumns}}
+{{#if isDescriptorId}}
+        INNER JOIN edfi.Descriptor dj{{tableAliasSuffix}}
+            ON d.{{columnName}} = dj{{tableAliasSuffix}}.DescriptorId
+{{/if}}
+{{#if isUsi}}
+        INNER JOIN edfi.{{usiName}} dj{{tableAliasSuffix}}
+            ON d.{{{columnName}}} = dj{{tableAliasSuffix}}.{{{columnName}}}
+{{/if}}
+{{/each}}
+{{#each changeDataColumns}}
+{{#if isDescriptorId}}
+        INNER JOIN edfi.Descriptor ij{{tableAliasSuffix}}
+            ON i.{{columnName}} = ij{{tableAliasSuffix}}.DescriptorId
+{{/if}}
+{{#if isUsi}}
+        INNER JOIN edfi.{{usiName}} ij{{tableAliasSuffix}}
+            ON i.{{{columnName}}} = ij{{tableAliasSuffix}}.{{{columnName}}}
+{{/if}}
+{{/each}}
+
+    WHERE
+        {{#each primaryKeyColumnNames}}{{#if @first}}d.{{{this}}} <> i.{{{this}}}{{else}} OR d.{{{this}}} <> i.{{{this}}}{{/if}}{{/each}};
+{{/if}}
 END	
 GO
 

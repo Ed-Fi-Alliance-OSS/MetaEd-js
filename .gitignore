@@ -54,16 +54,28 @@ SimpleType-0030-Extension-Extension-ForeignKeys.sql
 
 TrackedDeleteTables-v3.1.sql
 TrackedDeleteTables-v3.4.sql
+TrackedDeleteTables-v5.4.sql
 sample-TrackedDeleteTables-v3.1.sql
 sample-TrackedDeleteTables-v3.4.sql
+sample-TrackedDeleteTables-v5.4.sql
 DeleteTrackingTrigger-v3.1.sql
 DeleteTrackingTrigger-v3.4.sql
+DeleteTrackingTrigger-v5.4.sql
 sample-DeleteTrackingTrigger-v3.1.sql
 sample-DeleteTrackingTrigger-v3.4.sql
+sample-DeleteTrackingTrigger-v5.4.sql
 TriggerUpdateChangeVersion-v3.1.sql
 TriggerUpdateChangeVersion-v3.4.sql
+TriggerUpdateChangeVersion-v5.0.sql
+TriggerUpdateChangeVersion-v5.0-Alliance.sql
+TriggerUpdateChangeVersion-v5.4.sql
 sample-TriggerUpdateChangeVersion-v3.1.sql
 sample-TriggerUpdateChangeVersion-v3.4.sql
+sample-TriggerUpdateChangeVersion-v5.4.sql
+AddColumnChangeVersion-v5.0.sql
+AddColumnChangeVersion-v5.4.sql
+AddIndexChangeVersion-v5.0.sql
+AddIndexChangeVersion-v5.4.sql
 
 CreatedByOwnership-v3.3.sql
 CreatedByOwnership-v5.0.sql

@@ -1,37 +1,55 @@
-import { DeleteTrackingTrigger, getPrimaryKeys } from '@edfi/metaed-plugin-edfi-ods-changequery';
+import { DeleteTrackingTrigger, getPrimaryKeys, newDeleteTrackingTrigger } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { Table, Column } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
-import { TARGET_DATABASE_PLUGIN_NAME } from './EnhancerHelper';
+import { changeDataColumnsFor, TARGET_DATABASE_PLUGIN_NAME } from './EnhancerHelper';
 
-function createDeleteTrackingTriggerModelV3dot3(mainTable: Table): DeleteTrackingTrigger {
+function createDeleteTrackingTriggerModelV3dot3(table: Table): DeleteTrackingTrigger {
   return {
-    triggerSchema: mainTable.schema,
-    triggerName: `${mainTable.schema}_${mainTable.data.edfiOdsSqlServer.tableName}_TR_DeleteTracking`,
-    targetTableSchema: mainTable.schema,
-    targetTableName: mainTable.data.edfiOdsSqlServer.tableName,
+    ...newDeleteTrackingTrigger(),
+    triggerSchema: table.schema,
+    triggerName: `${table.schema}_${table.data.edfiOdsSqlServer.tableName}_TR_DeleteTracking`,
+    targetTableSchema: table.schema,
+    targetTableName: table.data.edfiOdsSqlServer.tableName,
     deleteTrackingTableSchema: 'changes',
-    deleteTrackingTableName: `${mainTable.schema}_${mainTable.data.edfiOdsSqlServer.tableName}_TrackedDelete`,
-    primaryKeyColumnNames: getPrimaryKeys(mainTable, TARGET_DATABASE_PLUGIN_NAME).map(
+    deleteTrackingTableName: `${table.schema}_${table.data.edfiOdsSqlServer.tableName}_TrackedDelete`,
+    primaryKeyColumnNames: getPrimaryKeys(table, TARGET_DATABASE_PLUGIN_NAME).map(
       (column: Column) => column.data.edfiOdsSqlServer.columnName,
     ),
-    targetTableIsSubclass: false,
-    foreignKeyToSuperclass: null,
   };
 }
 
-function createDeleteTrackingTriggerModelV3dot4(mainTable: Table): DeleteTrackingTrigger {
+function createDeleteTrackingTriggerModelV3dot4(table: Table): DeleteTrackingTrigger {
   return {
-    triggerSchema: mainTable.schema,
-    triggerName: `${mainTable.schema}_${mainTable.data.edfiOdsSqlServer.tableName}_TR_DeleteTracking`,
-    targetTableSchema: mainTable.schema,
-    targetTableName: mainTable.data.edfiOdsSqlServer.tableName,
-    deleteTrackingTableSchema: `tracked_deletes_${mainTable.schema}`,
-    deleteTrackingTableName: mainTable.data.edfiOdsSqlServer.tableName,
-    primaryKeyColumnNames: getPrimaryKeys(mainTable, TARGET_DATABASE_PLUGIN_NAME).map(
+    ...newDeleteTrackingTrigger(),
+    triggerSchema: table.schema,
+    triggerName: `${table.schema}_${table.data.edfiOdsSqlServer.tableName}_TR_DeleteTracking`,
+    targetTableSchema: table.schema,
+    targetTableName: table.data.edfiOdsSqlServer.tableName,
+    deleteTrackingTableSchema: `tracked_deletes_${table.schema}`,
+    deleteTrackingTableName: table.data.edfiOdsSqlServer.tableName,
+    primaryKeyColumnNames: getPrimaryKeys(table, TARGET_DATABASE_PLUGIN_NAME).map(
       (column: Column) => column.data.edfiOdsSqlServer.columnName,
     ),
-    targetTableIsSubclass: false,
-    foreignKeyToSuperclass: null,
+  };
+}
+
+function createDeleteTrackingTriggerModelV5dot4(table: Table): DeleteTrackingTrigger {
+  return {
+    ...newDeleteTrackingTrigger(),
+    triggerSchema: table.schema,
+    triggerName: `${table.schema}_${table.data.edfiOdsSqlServer.tableName}_TR_DeleteTracking`,
+    targetTableSchema: table.schema,
+    targetTableName: table.data.edfiOdsSqlServer.tableName,
+    deleteTrackingTableSchema: `tracked_changes_${table.schema}`,
+    deleteTrackingTableName: table.data.edfiOdsSqlServer.tableName,
+    primaryKeyColumnNames: getPrimaryKeys(table, TARGET_DATABASE_PLUGIN_NAME).map(
+      (column: Column) => column.data.edfiOdsSqlServer.columnName,
+    ),
+    isDescriptorTable: table.existenceReason.isEntityMainTable && table.existenceReason.parentEntity?.type === 'descriptor',
+    isStyle5dot4: true,
+    changeDataColumns: changeDataColumnsFor(table),
+    isIgnored: table.existenceReason.isSubclassTable || table.existenceReason.isBaseDescriptor,
+    omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
   };
 }
 
@@ -42,5 +60,9 @@ export function createDeleteTrackingTriggerModel(metaEd: MetaEdEnvironment, main
     return createDeleteTrackingTriggerModelV3dot3(mainTable);
   }
 
-  return createDeleteTrackingTriggerModelV3dot4(mainTable);
+  if (versionSatisfies(targetTechnologyVersion, '<5.4.0')) {
+    return createDeleteTrackingTriggerModelV3dot4(mainTable);
+  }
+
+  return createDeleteTrackingTriggerModelV5dot4(mainTable);
 }

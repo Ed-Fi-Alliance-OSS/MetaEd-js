@@ -1046,6 +1046,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-ods-changequery-sqlserver@workspace:packages/metaed-plugin-edfi-ods-changequery-sqlserver"
   dependencies:
+    "@edfi/ed-fi-model-3.0": 3.0.1
+    "@edfi/ed-fi-model-3.3a": 3.0.1
+    "@edfi/ed-fi-model-3.3b": 3.0.1
     "@edfi/metaed-core": 3.0.1-dev.2
     "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.1-dev.2
     "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.2

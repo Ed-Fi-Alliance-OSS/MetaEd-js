@@ -64,6 +64,9 @@ export interface TableExistenceReason {
 
   /** is this table hardcoded and/or made up from somewhere */
   isSynthetic: boolean;
+
+  /** is this the hardcoded base descriptor table known as Descriptor */
+  isBaseDescriptor: boolean;
 }
 
 export function newTableExistenceReason(): TableExistenceReason {
@@ -74,6 +77,7 @@ export function newTableExistenceReason(): TableExistenceReason {
     isExtensionTable: false,
     isSubclassTable: false,
     isSynthetic: false,
+    isBaseDescriptor: false,
   };
 }
 

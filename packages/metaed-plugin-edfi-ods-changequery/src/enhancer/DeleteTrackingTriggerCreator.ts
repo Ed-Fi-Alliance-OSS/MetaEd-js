@@ -31,7 +31,7 @@ export function applyCreateDeleteTrackingTriggerEnhancements(
   if (!changeQueryIndicated(metaEd)) return;
   if (mainTable == null) return;
 
-  const deleteTrackingTriggerModel = createDeleteTrackingTriggerModel(metaEd, mainTable);
+  const deleteTrackingTriggerModel: DeleteTrackingTrigger = createDeleteTrackingTriggerModel(metaEd, mainTable);
   const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
   deleteTrackingTriggerEntities(plugin, namespace).push(deleteTrackingTriggerModel);
 

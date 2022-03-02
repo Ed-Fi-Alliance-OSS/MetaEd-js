@@ -931,3 +931,130 @@ describe('when generating change event scripts with simple extensions and compar
     expect(expectOneOf).toContain(result);
   });
 });
+
+describe('when generating change event scripts with simple extensions and comparing to ODS/API 5.4 authoritative artifacts', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact/tracking-trigger');
+  const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
+  const authoritativeCoreFilename = 'DeleteTrackingTrigger-v5.4-Authoritative.sql';
+  const authoritativeExtensionFilename = 'sample-DeleteTrackingTrigger-v5.4-Authoritative.sql';
+  const generatedCoreFilename = 'DeleteTrackingTrigger-v5.4.sql';
+  const generatedExtensionFilename = 'sample-DeleteTrackingTrigger-v5.4.sql';
+
+  let generatedCoreOutput: GeneratedOutput;
+  let generatedExtensionOutput: GeneratedOutput;
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      pluginTechVersion: {
+        edfiUnified: {
+          targetTechnologyVersion: '5.4.0',
+        },
+        edfiOdsRelational: {
+          targetTechnologyVersion: '5.4.0',
+        },
+        edfiOdsSqlServer: {
+          targetTechnologyVersion: '5.4.0',
+        },
+        edfiOdsApi: {
+          targetTechnologyVersion: '5.4.0',
+        },
+        edfiOdsChangeQuery: {
+          targetTechnologyVersion: '5.4.0',
+        },
+        edfiXsd: {
+          targetTechnologyVersion: '5.4.0',
+        },
+        edfiHandbook: {
+          targetTechnologyVersion: '5.4.0',
+        },
+        edfiInterchangeBrief: {
+          targetTechnologyVersion: '5.4.0',
+        },
+        edfiXmlDictionary: {
+          targetTechnologyVersion: '5.4.0',
+        },
+      },
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.3b/', sampleExtensionPath],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '3.3.1-b',
+          description: '',
+        },
+        {
+          projectName: 'Sample',
+          namespaceName: 'Sample',
+          projectExtension: 'Sample',
+          projectVersion: '3.2.0',
+          description: '',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+    };
+    state.metaEd.dataStandardVersion = '3.3.1-b';
+
+    validateConfiguration(state);
+    loadPlugins(state);
+    state.pluginManifest = state.pluginManifest.filter(
+      (manifest) =>
+        manifest.shortName === 'edfiUnified' ||
+        manifest.shortName === 'edfiOdsRelational' ||
+        manifest.shortName === 'edfiOdsSqlServer' ||
+        manifest.shortName === 'edfiOdsChangeQuery' ||
+        manifest.shortName === PLUGIN_NAME,
+    );
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const pluginManifest of state.pluginManifest) {
+      await runEnhancers(pluginManifest, state);
+      await runGenerators(pluginManifest, state);
+    }
+
+    const generatorResult: GeneratorResult = R.head(
+      state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.CreateDeletedForTrackingTriggersGenerator`),
+    );
+
+    [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
+
+    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
+    await ffs.writeFile(
+      path.resolve(artifactPath, generatedExtensionFilename),
+      generatedExtensionOutput.resultString,
+      'utf-8',
+    );
+  });
+
+  it('should have no core file differences', async () => {
+    const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
+    const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    // @ts-ignore "error" not used
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+
+  it('should have no extension file differences', async () => {
+    const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
+    const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+    // @ts-ignore "error" not used
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});

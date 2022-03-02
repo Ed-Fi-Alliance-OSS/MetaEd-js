@@ -8,7 +8,7 @@ import { PLUGIN_NAME } from '../PluginHelper';
 
 const enhancerName = 'AddColumnChangeVersionForTableEnhancer';
 
-function createModel(table: Table): AddColumnChangeVersionForTable {
+function createAddColumnModel(table: Table): AddColumnChangeVersionForTable {
   return {
     schema: table.schema,
     tableName: table.data.edfiOdsSqlServer.tableName,
@@ -17,7 +17,7 @@ function createModel(table: Table): AddColumnChangeVersionForTable {
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  performAddColumnChangeVersionForTableEnhancement(metaEd, PLUGIN_NAME, createModel);
+  performAddColumnChangeVersionForTableEnhancement(metaEd, PLUGIN_NAME, createAddColumnModel);
 
   return {
     enhancerName,

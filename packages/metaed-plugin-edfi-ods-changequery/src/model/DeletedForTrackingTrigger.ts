@@ -1,8 +1,8 @@
 import { ForeignKey } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { HasTriggerName } from './HasName';
 
-export interface DeleteTrackingTrigger {
+export interface DeleteTrackingTrigger extends HasTriggerName {
   triggerSchema: string;
-  triggerName: string;
   targetTableSchema: string;
   targetTableName: string;
   deleteTrackingTableSchema: string;

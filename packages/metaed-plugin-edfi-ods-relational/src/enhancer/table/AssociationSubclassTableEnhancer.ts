@@ -11,6 +11,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     .forEach((entity: TopLevelEntity) => {
       const tables: Table[] = [];
       const mainTable: Table = buildMainTable(metaEd, entity, false);
+      mainTable.existenceReason.isSubclassTable = true;
       tables.push(mainTable);
       buildTablesFromProperties(entity, mainTable, tables);
       entity.data.edfiOdsRelational.odsTables = tables;

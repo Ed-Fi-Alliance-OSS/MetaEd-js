@@ -5,6 +5,7 @@ import {
   Namespace,
   orderByPath,
   PluginEnvironment,
+  SemVer,
 } from '@edfi/metaed-core';
 import { Column, Table, tableEntities, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { DeleteTrackingTable } from '../model/DeleteTrackingTable';
@@ -69,7 +70,7 @@ export function createTriggerUpdateChangeVersionEntities(
 export function performAddColumnChangeVersionForTableEnhancement(
   metaEd: MetaEdEnvironment,
   pluginName: string,
-  createModel: (table: Table) => AddColumnChangeVersionForTable,
+  createAddColumnModel: (table: Table) => AddColumnChangeVersionForTable,
 ) {
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -77,7 +78,7 @@ export function performAddColumnChangeVersionForTableEnhancement(
     metaEd.namespace.forEach((namespace: Namespace) => {
       tableEntities(metaEd, namespace).forEach((table: Table) => {
         if (table.isAggregateRootTable) {
-          const addColumnChangeVersionForTable: AddColumnChangeVersionForTable = createModel(table);
+          const addColumnChangeVersionForTable: AddColumnChangeVersionForTable = createAddColumnModel(table);
           addColumnChangeVersionForTableEntities(plugin, namespace).push(addColumnChangeVersionForTable);
         }
       });
@@ -136,14 +137,18 @@ export function performAssociationChangeQueryEnhancement(
 export function performCreateTriggerUpdateChangeVersionEnhancement(
   metaEd: MetaEdEnvironment,
   pluginName: string,
-  createModel: (table: Table) => CreateTriggerUpdateChangeVersion,
+  createTriggerModel: (table: Table, targetTechnologyVersion: SemVer) => CreateTriggerUpdateChangeVersion,
 ) {
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
     metaEd.namespace.forEach((namespace: Namespace) => {
       tableEntities(metaEd, namespace).forEach((table: Table) => {
         if (table.isAggregateRootTable) {
-          const createTriggerUpdateChangeVersion: CreateTriggerUpdateChangeVersion = createModel(table);
+          const createTriggerUpdateChangeVersion: CreateTriggerUpdateChangeVersion = createTriggerModel(
+            table,
+            targetTechnologyVersion,
+          );
           createTriggerUpdateChangeVersionEntities(plugin, namespace).push(createTriggerUpdateChangeVersion);
         }
       });
