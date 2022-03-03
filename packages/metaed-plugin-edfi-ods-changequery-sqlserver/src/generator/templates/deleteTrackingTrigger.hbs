@@ -41,9 +41,7 @@ BEGIN
         {{#primaryKeyColumnNames}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, ChangeVersion
     {{~/if~}}
     )
-    SELECT {{#if isStyle5dot4}}
-{{#each changeDataColumns}}
-{{#if isRegularSelectColumn}}d.{{{columnName}}}{{/if~}}
+    SELECT {{#if isStyle5dot4}}{{#each changeDataColumns}}{{#if isRegularSelectColumn}}d.{{{columnName}}}{{/if~}}
 {{#if isUniqueId}}j{{tableAliasSuffix}}.{{{columnName}}}{{/if~}}
 {{#if isDescriptorNamespace}}j{{tableAliasSuffix}}.Namespace{{/if~}}
 {{#if isDescriptorCodeValue}}j{{tableAliasSuffix}}.CodeValue{{/if~}}  

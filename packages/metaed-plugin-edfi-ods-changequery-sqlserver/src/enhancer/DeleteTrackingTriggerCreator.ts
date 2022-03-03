@@ -48,6 +48,7 @@ function createDeleteTrackingTriggerModelV5dot4(table: Table): DeleteTrackingTri
     isDescriptorTable: table.existenceReason.isEntityMainTable && table.existenceReason.parentEntity?.type === 'descriptor',
     isStyle5dot4: true,
     changeDataColumns: changeDataColumnsFor(table),
+    isIgnored: table.existenceReason.isSubclassTable || table.existenceReason.isBaseDescriptor,
   };
 }
 

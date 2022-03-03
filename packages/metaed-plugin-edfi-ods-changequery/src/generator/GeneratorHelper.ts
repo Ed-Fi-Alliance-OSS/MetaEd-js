@@ -255,6 +255,16 @@ export function performCreateChangeVersionSequenceGeneration(
   return results;
 }
 
+function originalCompare(a: DeleteTrackingTrigger, b: DeleteTrackingTrigger): number {
+  if (a.triggerName < b.triggerName) return -1;
+  return a.triggerName > b.triggerName ? 1 : 0;
+}
+
+function compareLikeCsharp(a: DeleteTrackingTrigger, b: DeleteTrackingTrigger): number {
+  if (a.triggerName.toLowerCase() < b.triggerName.toLowerCase()) return -1;
+  return a.triggerName.toLowerCase() > b.triggerName.toLowerCase() ? 1 : 0;
+}
+
 export function performCreateDeletedForTrackingTriggerGeneration(
   metaEd: MetaEdEnvironment,
   pluginName: string,
@@ -264,19 +274,21 @@ export function performCreateDeletedForTrackingTriggerGeneration(
   const results: GeneratedOutput[] = [];
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
+  const useCsharpCompare = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
 
     metaEd.namespace.forEach((namespace) => {
-      const triggers: DeleteTrackingTrigger[] = deleteTrackingTriggerEntities(plugin, namespace);
+      const triggers: DeleteTrackingTrigger[] = deleteTrackingTriggerEntities(plugin, namespace).filter(
+        (trigger) => !trigger.isIgnored,
+      );
       if (triggers.length > 0) {
         triggers.sort(
           // by schema then by trigger name
           (a: DeleteTrackingTrigger, b: DeleteTrackingTrigger) => {
             if (a.triggerSchema === b.triggerSchema) {
-              if (a.triggerName < b.triggerName) return -1;
-              return a.triggerName > b.triggerName ? 1 : 0;
+              return useCsharpCompare ? compareLikeCsharp(a, b) : originalCompare(a, b);
             }
             return a.triggerSchema < b.triggerSchema ? -1 : 1;
           },

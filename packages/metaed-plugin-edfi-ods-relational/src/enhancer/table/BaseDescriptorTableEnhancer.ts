@@ -37,6 +37,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     existenceReason: {
       ...newTableExistenceReason(),
       isSynthetic: true,
+      isBaseDescriptor: true,
     },
     namespace: edfiNamespace,
     schema: edfiNamespace.namespaceName.toLowerCase(),
