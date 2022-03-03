@@ -8,6 +8,7 @@
 {{/if}}
 {{/if}}
 {{#tables}}
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[{{{schema}}}].[{{{tableName}}}]') AND name = 'ChangeVersion')
 ALTER TABLE [{{{schema}}}].[{{{tableName}}}] ADD [ChangeVersion] [BIGINT] DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) NOT NULL;
 
 {{/tables}}
