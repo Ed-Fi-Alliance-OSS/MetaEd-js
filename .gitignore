@@ -68,6 +68,8 @@ sample-TriggerUpdateChangeVersion-v3.4.sql
 sample-TriggerUpdateChangeVersion-v5.4.sql
 AddColumnChangeVersion-v5.0.sql
 AddColumnChangeVersion-v5.4.sql
+AddIndexChangeVersion-v5.0.sql
+AddIndexChangeVersion-v5.4.sql
 
 CreatedByOwnership-v3.3.sql
 
