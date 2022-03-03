@@ -62,10 +62,10 @@ BEGIN
             ON d.{{{columnName}}} = j{{tableAliasSuffix}}.{{{columnName}}}
 {{/if}}
 {{/each}}
-    {{else}}
-    {{#if targetTableIsSubclass}}{{#foreignKeyToSuperclass}}
+{{else}}
+{{#if targetTableIsSubclass}}{{#foreignKeyToSuperclass}}
             INNER JOIN {{{foreignTableSchema}}}.{{{foreignTable.data.edfiOdsSqlServer.tableName}}} b ON {{#data.edfiOdsChangeQuery.columnNames}}d.{{{parentTableColumnName}}} = b.{{{foreignTableColumnName}}}{{#unless @last}} AND {{/unless}}{{/data.edfiOdsChangeQuery.columnNames}}{{/foreignKeyToSuperclass}}{{/if}}
-    {{/if}}
+{{/if}}
 END
 {{/if}}
 GO

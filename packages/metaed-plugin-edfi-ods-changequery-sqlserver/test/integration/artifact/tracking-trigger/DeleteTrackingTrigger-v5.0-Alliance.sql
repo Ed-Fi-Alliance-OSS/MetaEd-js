@@ -12,7 +12,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AbsenceEventCategoryDescriptor](AbsenceEventCategoryDescriptorId, Id, ChangeVersion)
     SELECT  d.AbsenceEventCategoryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AbsenceEventCategoryDescriptorId = b.DescriptorId
 END
 GO
@@ -30,7 +30,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AcademicHonorCategoryDescriptor](AcademicHonorCategoryDescriptorId, Id, ChangeVersion)
     SELECT  d.AcademicHonorCategoryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AcademicHonorCategoryDescriptorId = b.DescriptorId
 END
 GO
@@ -48,7 +48,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AcademicSubjectDescriptor](AcademicSubjectDescriptorId, Id, ChangeVersion)
     SELECT  d.AcademicSubjectDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AcademicSubjectDescriptorId = b.DescriptorId
 END
 GO
@@ -66,7 +66,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AcademicWeek](SchoolId, WeekIdentifier, Id, ChangeVersion)
     SELECT  SchoolId, WeekIdentifier, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -83,7 +83,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AccommodationDescriptor](AccommodationDescriptorId, Id, ChangeVersion)
     SELECT  d.AccommodationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AccommodationDescriptorId = b.DescriptorId
 END
 GO
@@ -101,7 +101,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AccountClassificationDescriptor](AccountClassificationDescriptorId, Id, ChangeVersion)
     SELECT  d.AccountClassificationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AccountClassificationDescriptorId = b.DescriptorId
 END
 GO
@@ -119,7 +119,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AccountCode](AccountClassificationDescriptorId, AccountCodeNumber, EducationOrganizationId, FiscalYear, Id, ChangeVersion)
     SELECT  AccountClassificationDescriptorId, AccountCodeNumber, EducationOrganizationId, FiscalYear, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -136,7 +136,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Account](AccountIdentifier, EducationOrganizationId, FiscalYear, Id, ChangeVersion)
     SELECT  AccountIdentifier, EducationOrganizationId, FiscalYear, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -153,7 +153,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AccountabilityRating](EducationOrganizationId, RatingTitle, SchoolYear, Id, ChangeVersion)
     SELECT  EducationOrganizationId, RatingTitle, SchoolYear, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -170,7 +170,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AchievementCategoryDescriptor](AchievementCategoryDescriptorId, Id, ChangeVersion)
     SELECT  d.AchievementCategoryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AchievementCategoryDescriptorId = b.DescriptorId
 END
 GO
@@ -188,7 +188,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Actual](AccountIdentifier, AsOfDate, EducationOrganizationId, FiscalYear, Id, ChangeVersion)
     SELECT  AccountIdentifier, AsOfDate, EducationOrganizationId, FiscalYear, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -205,7 +205,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AdditionalCreditTypeDescriptor](AdditionalCreditTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.AdditionalCreditTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AdditionalCreditTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -223,7 +223,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AddressTypeDescriptor](AddressTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.AddressTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AddressTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -241,7 +241,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AdministrationEnvironmentDescriptor](AdministrationEnvironmentDescriptorId, Id, ChangeVersion)
     SELECT  d.AdministrationEnvironmentDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AdministrationEnvironmentDescriptorId = b.DescriptorId
 END
 GO
@@ -259,7 +259,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AdministrativeFundingControlDescriptor](AdministrativeFundingControlDescriptorId, Id, ChangeVersion)
     SELECT  d.AdministrativeFundingControlDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AdministrativeFundingControlDescriptorId = b.DescriptorId
 END
 GO
@@ -277,7 +277,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AssessmentCategoryDescriptor](AssessmentCategoryDescriptorId, Id, ChangeVersion)
     SELECT  d.AssessmentCategoryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AssessmentCategoryDescriptorId = b.DescriptorId
 END
 GO
@@ -295,7 +295,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AssessmentIdentificationSystemDescriptor](AssessmentIdentificationSystemDescriptorId, Id, ChangeVersion)
     SELECT  d.AssessmentIdentificationSystemDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AssessmentIdentificationSystemDescriptorId = b.DescriptorId
 END
 GO
@@ -313,7 +313,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AssessmentItemCategoryDescriptor](AssessmentItemCategoryDescriptorId, Id, ChangeVersion)
     SELECT  d.AssessmentItemCategoryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AssessmentItemCategoryDescriptorId = b.DescriptorId
 END
 GO
@@ -331,7 +331,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AssessmentItemResultDescriptor](AssessmentItemResultDescriptorId, Id, ChangeVersion)
     SELECT  d.AssessmentItemResultDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AssessmentItemResultDescriptorId = b.DescriptorId
 END
 GO
@@ -349,7 +349,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AssessmentItem](AssessmentIdentifier, IdentificationCode, Namespace, Id, ChangeVersion)
     SELECT  AssessmentIdentifier, IdentificationCode, Namespace, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -366,7 +366,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AssessmentPeriodDescriptor](AssessmentPeriodDescriptorId, Id, ChangeVersion)
     SELECT  d.AssessmentPeriodDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AssessmentPeriodDescriptorId = b.DescriptorId
 END
 GO
@@ -384,7 +384,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AssessmentReportingMethodDescriptor](AssessmentReportingMethodDescriptorId, Id, ChangeVersion)
     SELECT  d.AssessmentReportingMethodDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AssessmentReportingMethodDescriptorId = b.DescriptorId
 END
 GO
@@ -402,7 +402,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Assessment](AssessmentIdentifier, Namespace, Id, ChangeVersion)
     SELECT  AssessmentIdentifier, Namespace, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -419,7 +419,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AttemptStatusDescriptor](AttemptStatusDescriptorId, Id, ChangeVersion)
     SELECT  d.AttemptStatusDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AttemptStatusDescriptorId = b.DescriptorId
 END
 GO
@@ -437,7 +437,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[AttendanceEventCategoryDescriptor](AttendanceEventCategoryDescriptorId, Id, ChangeVersion)
     SELECT  d.AttendanceEventCategoryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.AttendanceEventCategoryDescriptorId = b.DescriptorId
 END
 GO
@@ -455,7 +455,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[BehaviorDescriptor](BehaviorDescriptorId, Id, ChangeVersion)
     SELECT  d.BehaviorDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.BehaviorDescriptorId = b.DescriptorId
 END
 GO
@@ -473,7 +473,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[BellSchedule](BellScheduleName, SchoolId, Id, ChangeVersion)
     SELECT  BellScheduleName, SchoolId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -490,7 +490,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Budget](AccountIdentifier, AsOfDate, EducationOrganizationId, FiscalYear, Id, ChangeVersion)
     SELECT  AccountIdentifier, AsOfDate, EducationOrganizationId, FiscalYear, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -507,7 +507,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CTEProgramServiceDescriptor](CTEProgramServiceDescriptorId, Id, ChangeVersion)
     SELECT  d.CTEProgramServiceDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CTEProgramServiceDescriptorId = b.DescriptorId
 END
 GO
@@ -525,7 +525,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CalendarDate](CalendarCode, Date, SchoolId, SchoolYear, Id, ChangeVersion)
     SELECT  CalendarCode, Date, SchoolId, SchoolYear, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -542,7 +542,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CalendarEventDescriptor](CalendarEventDescriptorId, Id, ChangeVersion)
     SELECT  d.CalendarEventDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CalendarEventDescriptorId = b.DescriptorId
 END
 GO
@@ -560,7 +560,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CalendarTypeDescriptor](CalendarTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.CalendarTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CalendarTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -578,7 +578,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Calendar](CalendarCode, SchoolId, SchoolYear, Id, ChangeVersion)
     SELECT  CalendarCode, SchoolId, SchoolYear, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -595,7 +595,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CareerPathwayDescriptor](CareerPathwayDescriptorId, Id, ChangeVersion)
     SELECT  d.CareerPathwayDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CareerPathwayDescriptorId = b.DescriptorId
 END
 GO
@@ -613,7 +613,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CharterApprovalAgencyTypeDescriptor](CharterApprovalAgencyTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.CharterApprovalAgencyTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CharterApprovalAgencyTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -631,7 +631,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CharterStatusDescriptor](CharterStatusDescriptorId, Id, ChangeVersion)
     SELECT  d.CharterStatusDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CharterStatusDescriptorId = b.DescriptorId
 END
 GO
@@ -649,7 +649,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CitizenshipStatusDescriptor](CitizenshipStatusDescriptorId, Id, ChangeVersion)
     SELECT  d.CitizenshipStatusDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CitizenshipStatusDescriptorId = b.DescriptorId
 END
 GO
@@ -667,7 +667,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ClassPeriod](ClassPeriodName, SchoolId, Id, ChangeVersion)
     SELECT  ClassPeriodName, SchoolId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -684,7 +684,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ClassroomPositionDescriptor](ClassroomPositionDescriptorId, Id, ChangeVersion)
     SELECT  d.ClassroomPositionDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ClassroomPositionDescriptorId = b.DescriptorId
 END
 GO
@@ -702,7 +702,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CohortScopeDescriptor](CohortScopeDescriptorId, Id, ChangeVersion)
     SELECT  d.CohortScopeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CohortScopeDescriptorId = b.DescriptorId
 END
 GO
@@ -720,7 +720,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CohortTypeDescriptor](CohortTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.CohortTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CohortTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -738,7 +738,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CohortYearTypeDescriptor](CohortYearTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.CohortYearTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CohortYearTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -756,7 +756,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Cohort](CohortIdentifier, EducationOrganizationId, Id, ChangeVersion)
     SELECT  CohortIdentifier, EducationOrganizationId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -773,7 +773,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CommunityOrganization](CommunityOrganizationId, Id, ChangeVersion)
     SELECT  d.CommunityOrganizationId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.EducationOrganization b ON d.CommunityOrganizationId = b.EducationOrganizationId
 END
 GO
@@ -791,7 +791,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CommunityProviderLicense](CommunityProviderId, LicenseIdentifier, LicensingOrganization, Id, ChangeVersion)
     SELECT  CommunityProviderId, LicenseIdentifier, LicensingOrganization, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -808,7 +808,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CommunityProvider](CommunityProviderId, Id, ChangeVersion)
     SELECT  d.CommunityProviderId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.EducationOrganization b ON d.CommunityProviderId = b.EducationOrganizationId
 END
 GO
@@ -826,7 +826,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CompetencyLevelDescriptor](CompetencyLevelDescriptorId, Id, ChangeVersion)
     SELECT  d.CompetencyLevelDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CompetencyLevelDescriptorId = b.DescriptorId
 END
 GO
@@ -844,7 +844,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CompetencyObjective](EducationOrganizationId, Objective, ObjectiveGradeLevelDescriptorId, Id, ChangeVersion)
     SELECT  EducationOrganizationId, Objective, ObjectiveGradeLevelDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -861,7 +861,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ContactTypeDescriptor](ContactTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.ContactTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ContactTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -879,7 +879,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ContentClassDescriptor](ContentClassDescriptorId, Id, ChangeVersion)
     SELECT  d.ContentClassDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ContentClassDescriptorId = b.DescriptorId
 END
 GO
@@ -897,7 +897,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ContinuationOfServicesReasonDescriptor](ContinuationOfServicesReasonDescriptorId, Id, ChangeVersion)
     SELECT  d.ContinuationOfServicesReasonDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ContinuationOfServicesReasonDescriptorId = b.DescriptorId
 END
 GO
@@ -915,7 +915,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ContractedStaff](AccountIdentifier, AsOfDate, EducationOrganizationId, FiscalYear, StaffUSI, Id, ChangeVersion)
     SELECT  AccountIdentifier, AsOfDate, EducationOrganizationId, FiscalYear, StaffUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -932,7 +932,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CostRateDescriptor](CostRateDescriptorId, Id, ChangeVersion)
     SELECT  d.CostRateDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CostRateDescriptorId = b.DescriptorId
 END
 GO
@@ -950,7 +950,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CountryDescriptor](CountryDescriptorId, Id, ChangeVersion)
     SELECT  d.CountryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CountryDescriptorId = b.DescriptorId
 END
 GO
@@ -968,7 +968,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CourseAttemptResultDescriptor](CourseAttemptResultDescriptorId, Id, ChangeVersion)
     SELECT  d.CourseAttemptResultDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CourseAttemptResultDescriptorId = b.DescriptorId
 END
 GO
@@ -986,7 +986,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CourseDefinedByDescriptor](CourseDefinedByDescriptorId, Id, ChangeVersion)
     SELECT  d.CourseDefinedByDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CourseDefinedByDescriptorId = b.DescriptorId
 END
 GO
@@ -1004,7 +1004,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CourseGPAApplicabilityDescriptor](CourseGPAApplicabilityDescriptorId, Id, ChangeVersion)
     SELECT  d.CourseGPAApplicabilityDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CourseGPAApplicabilityDescriptorId = b.DescriptorId
 END
 GO
@@ -1022,7 +1022,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CourseIdentificationSystemDescriptor](CourseIdentificationSystemDescriptorId, Id, ChangeVersion)
     SELECT  d.CourseIdentificationSystemDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CourseIdentificationSystemDescriptorId = b.DescriptorId
 END
 GO
@@ -1040,7 +1040,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CourseLevelCharacteristicDescriptor](CourseLevelCharacteristicDescriptorId, Id, ChangeVersion)
     SELECT  d.CourseLevelCharacteristicDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CourseLevelCharacteristicDescriptorId = b.DescriptorId
 END
 GO
@@ -1058,7 +1058,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CourseOffering](LocalCourseCode, SchoolId, SchoolYear, SessionName, Id, ChangeVersion)
     SELECT  LocalCourseCode, SchoolId, SchoolYear, SessionName, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1075,7 +1075,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CourseRepeatCodeDescriptor](CourseRepeatCodeDescriptorId, Id, ChangeVersion)
     SELECT  d.CourseRepeatCodeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CourseRepeatCodeDescriptorId = b.DescriptorId
 END
 GO
@@ -1093,7 +1093,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CourseTranscript](CourseAttemptResultDescriptorId, CourseCode, CourseEducationOrganizationId, EducationOrganizationId, SchoolYear, StudentUSI, TermDescriptorId, Id, ChangeVersion)
     SELECT  CourseAttemptResultDescriptorId, CourseCode, CourseEducationOrganizationId, EducationOrganizationId, SchoolYear, StudentUSI, TermDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1110,7 +1110,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Course](CourseCode, EducationOrganizationId, Id, ChangeVersion)
     SELECT  CourseCode, EducationOrganizationId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1127,7 +1127,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CredentialFieldDescriptor](CredentialFieldDescriptorId, Id, ChangeVersion)
     SELECT  d.CredentialFieldDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CredentialFieldDescriptorId = b.DescriptorId
 END
 GO
@@ -1145,7 +1145,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CredentialTypeDescriptor](CredentialTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.CredentialTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CredentialTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -1163,7 +1163,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Credential](CredentialIdentifier, StateOfIssueStateAbbreviationDescriptorId, Id, ChangeVersion)
     SELECT  CredentialIdentifier, StateOfIssueStateAbbreviationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1180,7 +1180,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CreditTypeDescriptor](CreditTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.CreditTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CreditTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -1198,7 +1198,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[CurriculumUsedDescriptor](CurriculumUsedDescriptorId, Id, ChangeVersion)
     SELECT  d.CurriculumUsedDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.CurriculumUsedDescriptorId = b.DescriptorId
 END
 GO
@@ -1216,7 +1216,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[DeliveryMethodDescriptor](DeliveryMethodDescriptorId, Id, ChangeVersion)
     SELECT  d.DeliveryMethodDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.DeliveryMethodDescriptorId = b.DescriptorId
 END
 GO
@@ -1234,7 +1234,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Descriptor](DescriptorId, Id, ChangeVersion)
     SELECT  DescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1251,7 +1251,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[DiagnosisDescriptor](DiagnosisDescriptorId, Id, ChangeVersion)
     SELECT  d.DiagnosisDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.DiagnosisDescriptorId = b.DescriptorId
 END
 GO
@@ -1269,7 +1269,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[DiplomaLevelDescriptor](DiplomaLevelDescriptorId, Id, ChangeVersion)
     SELECT  d.DiplomaLevelDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.DiplomaLevelDescriptorId = b.DescriptorId
 END
 GO
@@ -1287,7 +1287,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[DiplomaTypeDescriptor](DiplomaTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.DiplomaTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.DiplomaTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -1305,7 +1305,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[DisabilityDescriptor](DisabilityDescriptorId, Id, ChangeVersion)
     SELECT  d.DisabilityDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.DisabilityDescriptorId = b.DescriptorId
 END
 GO
@@ -1323,7 +1323,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[DisabilityDesignationDescriptor](DisabilityDesignationDescriptorId, Id, ChangeVersion)
     SELECT  d.DisabilityDesignationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.DisabilityDesignationDescriptorId = b.DescriptorId
 END
 GO
@@ -1341,7 +1341,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[DisabilityDeterminationSourceTypeDescriptor](DisabilityDeterminationSourceTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.DisabilityDeterminationSourceTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.DisabilityDeterminationSourceTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -1359,7 +1359,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[DisciplineActionLengthDifferenceReasonDescriptor](DisciplineActionLengthDifferenceReasonDescriptorId, Id, ChangeVersion)
     SELECT  d.DisciplineActionLengthDifferenceReasonDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.DisciplineActionLengthDifferenceReasonDescriptorId = b.DescriptorId
 END
 GO
@@ -1377,7 +1377,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[DisciplineAction](DisciplineActionIdentifier, DisciplineDate, StudentUSI, Id, ChangeVersion)
     SELECT  DisciplineActionIdentifier, DisciplineDate, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1394,7 +1394,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[DisciplineDescriptor](DisciplineDescriptorId, Id, ChangeVersion)
     SELECT  d.DisciplineDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.DisciplineDescriptorId = b.DescriptorId
 END
 GO
@@ -1412,7 +1412,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[DisciplineIncidentParticipationCodeDescriptor](DisciplineIncidentParticipationCodeDescriptorId, Id, ChangeVersion)
     SELECT  d.DisciplineIncidentParticipationCodeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.DisciplineIncidentParticipationCodeDescriptorId = b.DescriptorId
 END
 GO
@@ -1430,7 +1430,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[DisciplineIncident](IncidentIdentifier, SchoolId, Id, ChangeVersion)
     SELECT  IncidentIdentifier, SchoolId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1447,7 +1447,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EducationContent](ContentIdentifier, Id, ChangeVersion)
     SELECT  ContentIdentifier, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1464,7 +1464,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EducationOrganizationCategoryDescriptor](EducationOrganizationCategoryDescriptorId, Id, ChangeVersion)
     SELECT  d.EducationOrganizationCategoryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.EducationOrganizationCategoryDescriptorId = b.DescriptorId
 END
 GO
@@ -1482,7 +1482,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EducationOrganizationIdentificationSystemDescriptor](EducationOrganizationIdentificationSystemDescriptorId, Id, ChangeVersion)
     SELECT  d.EducationOrganizationIdentificationSystemDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.EducationOrganizationIdentificationSystemDescriptorId = b.DescriptorId
 END
 GO
@@ -1500,7 +1500,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EducationOrganizationInterventionPrescriptionAssociation](EducationOrganizationId, InterventionPrescriptionEducationOrganizationId, InterventionPrescriptionIdentificationCode, Id, ChangeVersion)
     SELECT  EducationOrganizationId, InterventionPrescriptionEducationOrganizationId, InterventionPrescriptionIdentificationCode, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1517,7 +1517,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EducationOrganizationNetworkAssociation](EducationOrganizationNetworkId, MemberEducationOrganizationId, Id, ChangeVersion)
     SELECT  EducationOrganizationNetworkId, MemberEducationOrganizationId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1534,7 +1534,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EducationOrganizationNetwork](EducationOrganizationNetworkId, Id, ChangeVersion)
     SELECT  d.EducationOrganizationNetworkId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.EducationOrganization b ON d.EducationOrganizationNetworkId = b.EducationOrganizationId
 END
 GO
@@ -1552,7 +1552,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EducationOrganizationPeerAssociation](EducationOrganizationId, PeerEducationOrganizationId, Id, ChangeVersion)
     SELECT  EducationOrganizationId, PeerEducationOrganizationId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1569,7 +1569,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EducationOrganization](EducationOrganizationId, Id, ChangeVersion)
     SELECT  EducationOrganizationId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1586,7 +1586,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EducationPlanDescriptor](EducationPlanDescriptorId, Id, ChangeVersion)
     SELECT  d.EducationPlanDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.EducationPlanDescriptorId = b.DescriptorId
 END
 GO
@@ -1604,7 +1604,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EducationServiceCenter](EducationServiceCenterId, Id, ChangeVersion)
     SELECT  d.EducationServiceCenterId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.EducationOrganization b ON d.EducationServiceCenterId = b.EducationOrganizationId
 END
 GO
@@ -1622,7 +1622,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EducationalEnvironmentDescriptor](EducationalEnvironmentDescriptorId, Id, ChangeVersion)
     SELECT  d.EducationalEnvironmentDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.EducationalEnvironmentDescriptorId = b.DescriptorId
 END
 GO
@@ -1640,7 +1640,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ElectronicMailTypeDescriptor](ElectronicMailTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.ElectronicMailTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ElectronicMailTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -1658,7 +1658,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EmploymentStatusDescriptor](EmploymentStatusDescriptorId, Id, ChangeVersion)
     SELECT  d.EmploymentStatusDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.EmploymentStatusDescriptorId = b.DescriptorId
 END
 GO
@@ -1676,7 +1676,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EntryGradeLevelReasonDescriptor](EntryGradeLevelReasonDescriptorId, Id, ChangeVersion)
     SELECT  d.EntryGradeLevelReasonDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.EntryGradeLevelReasonDescriptorId = b.DescriptorId
 END
 GO
@@ -1694,7 +1694,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EntryTypeDescriptor](EntryTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.EntryTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.EntryTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -1712,7 +1712,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[EventCircumstanceDescriptor](EventCircumstanceDescriptorId, Id, ChangeVersion)
     SELECT  d.EventCircumstanceDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.EventCircumstanceDescriptorId = b.DescriptorId
 END
 GO
@@ -1730,7 +1730,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ExitWithdrawTypeDescriptor](ExitWithdrawTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.ExitWithdrawTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ExitWithdrawTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -1748,7 +1748,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[FeederSchoolAssociation](BeginDate, FeederSchoolId, SchoolId, Id, ChangeVersion)
     SELECT  BeginDate, FeederSchoolId, SchoolId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1765,7 +1765,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[GeneralStudentProgramAssociation](BeginDate, EducationOrganizationId, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  BeginDate, EducationOrganizationId, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1782,7 +1782,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[GradeLevelDescriptor](GradeLevelDescriptorId, Id, ChangeVersion)
     SELECT  d.GradeLevelDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.GradeLevelDescriptorId = b.DescriptorId
 END
 GO
@@ -1800,7 +1800,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[GradePointAverageWeightSystemDescriptor](GradePointAverageWeightSystemDescriptorId, Id, ChangeVersion)
     SELECT  d.GradePointAverageWeightSystemDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.GradePointAverageWeightSystemDescriptorId = b.DescriptorId
 END
 GO
@@ -1818,7 +1818,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[GradeTypeDescriptor](GradeTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.GradeTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.GradeTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -1836,7 +1836,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Grade](BeginDate, GradeTypeDescriptorId, GradingPeriodDescriptorId, GradingPeriodSchoolYear, GradingPeriodSequence, LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, StudentUSI, Id, ChangeVersion)
     SELECT  BeginDate, GradeTypeDescriptorId, GradingPeriodDescriptorId, GradingPeriodSchoolYear, GradingPeriodSequence, LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1853,7 +1853,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[GradebookEntryTypeDescriptor](GradebookEntryTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.GradebookEntryTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.GradebookEntryTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -1871,7 +1871,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[GradebookEntry](DateAssigned, GradebookEntryTitle, LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, Id, ChangeVersion)
     SELECT  DateAssigned, GradebookEntryTitle, LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1888,7 +1888,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[GradingPeriodDescriptor](GradingPeriodDescriptorId, Id, ChangeVersion)
     SELECT  d.GradingPeriodDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.GradingPeriodDescriptorId = b.DescriptorId
 END
 GO
@@ -1906,7 +1906,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[GradingPeriod](GradingPeriodDescriptorId, PeriodSequence, SchoolId, SchoolYear, Id, ChangeVersion)
     SELECT  GradingPeriodDescriptorId, PeriodSequence, SchoolId, SchoolYear, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1923,7 +1923,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[GraduationPlanTypeDescriptor](GraduationPlanTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.GraduationPlanTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.GraduationPlanTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -1941,7 +1941,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[GraduationPlan](EducationOrganizationId, GraduationPlanTypeDescriptorId, GraduationSchoolYear, Id, ChangeVersion)
     SELECT  EducationOrganizationId, GraduationPlanTypeDescriptorId, GraduationSchoolYear, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -1958,7 +1958,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[GunFreeSchoolsActReportingStatusDescriptor](GunFreeSchoolsActReportingStatusDescriptorId, Id, ChangeVersion)
     SELECT  d.GunFreeSchoolsActReportingStatusDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.GunFreeSchoolsActReportingStatusDescriptorId = b.DescriptorId
 END
 GO
@@ -1976,7 +1976,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[HomelessPrimaryNighttimeResidenceDescriptor](HomelessPrimaryNighttimeResidenceDescriptorId, Id, ChangeVersion)
     SELECT  d.HomelessPrimaryNighttimeResidenceDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.HomelessPrimaryNighttimeResidenceDescriptorId = b.DescriptorId
 END
 GO
@@ -1994,7 +1994,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[HomelessProgramServiceDescriptor](HomelessProgramServiceDescriptorId, Id, ChangeVersion)
     SELECT  d.HomelessProgramServiceDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.HomelessProgramServiceDescriptorId = b.DescriptorId
 END
 GO
@@ -2012,7 +2012,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[IdentificationDocumentUseDescriptor](IdentificationDocumentUseDescriptorId, Id, ChangeVersion)
     SELECT  d.IdentificationDocumentUseDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.IdentificationDocumentUseDescriptorId = b.DescriptorId
 END
 GO
@@ -2030,7 +2030,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[IncidentLocationDescriptor](IncidentLocationDescriptorId, Id, ChangeVersion)
     SELECT  d.IncidentLocationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.IncidentLocationDescriptorId = b.DescriptorId
 END
 GO
@@ -2048,7 +2048,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[InstitutionTelephoneNumberTypeDescriptor](InstitutionTelephoneNumberTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.InstitutionTelephoneNumberTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.InstitutionTelephoneNumberTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -2066,7 +2066,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[InteractivityStyleDescriptor](InteractivityStyleDescriptorId, Id, ChangeVersion)
     SELECT  d.InteractivityStyleDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.InteractivityStyleDescriptorId = b.DescriptorId
 END
 GO
@@ -2084,7 +2084,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[InternetAccessDescriptor](InternetAccessDescriptorId, Id, ChangeVersion)
     SELECT  d.InternetAccessDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.InternetAccessDescriptorId = b.DescriptorId
 END
 GO
@@ -2102,7 +2102,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[InterventionClassDescriptor](InterventionClassDescriptorId, Id, ChangeVersion)
     SELECT  d.InterventionClassDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.InterventionClassDescriptorId = b.DescriptorId
 END
 GO
@@ -2120,7 +2120,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[InterventionEffectivenessRatingDescriptor](InterventionEffectivenessRatingDescriptorId, Id, ChangeVersion)
     SELECT  d.InterventionEffectivenessRatingDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.InterventionEffectivenessRatingDescriptorId = b.DescriptorId
 END
 GO
@@ -2138,7 +2138,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[InterventionPrescription](EducationOrganizationId, InterventionPrescriptionIdentificationCode, Id, ChangeVersion)
     SELECT  EducationOrganizationId, InterventionPrescriptionIdentificationCode, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -2155,7 +2155,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[InterventionStudy](EducationOrganizationId, InterventionStudyIdentificationCode, Id, ChangeVersion)
     SELECT  EducationOrganizationId, InterventionStudyIdentificationCode, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -2172,7 +2172,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Intervention](EducationOrganizationId, InterventionIdentificationCode, Id, ChangeVersion)
     SELECT  EducationOrganizationId, InterventionIdentificationCode, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -2189,7 +2189,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LanguageDescriptor](LanguageDescriptorId, Id, ChangeVersion)
     SELECT  d.LanguageDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.LanguageDescriptorId = b.DescriptorId
 END
 GO
@@ -2207,7 +2207,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LanguageInstructionProgramServiceDescriptor](LanguageInstructionProgramServiceDescriptorId, Id, ChangeVersion)
     SELECT  d.LanguageInstructionProgramServiceDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.LanguageInstructionProgramServiceDescriptorId = b.DescriptorId
 END
 GO
@@ -2225,7 +2225,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LanguageUseDescriptor](LanguageUseDescriptorId, Id, ChangeVersion)
     SELECT  d.LanguageUseDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.LanguageUseDescriptorId = b.DescriptorId
 END
 GO
@@ -2243,7 +2243,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LearningObjective](LearningObjectiveId, Namespace, Id, ChangeVersion)
     SELECT  LearningObjectiveId, Namespace, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -2260,7 +2260,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LearningStandardCategoryDescriptor](LearningStandardCategoryDescriptorId, Id, ChangeVersion)
     SELECT  d.LearningStandardCategoryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.LearningStandardCategoryDescriptorId = b.DescriptorId
 END
 GO
@@ -2278,7 +2278,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LearningStandardEquivalenceAssociation](Namespace, SourceLearningStandardId, TargetLearningStandardId, Id, ChangeVersion)
     SELECT  Namespace, SourceLearningStandardId, TargetLearningStandardId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -2295,7 +2295,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LearningStandardEquivalenceStrengthDescriptor](LearningStandardEquivalenceStrengthDescriptorId, Id, ChangeVersion)
     SELECT  d.LearningStandardEquivalenceStrengthDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.LearningStandardEquivalenceStrengthDescriptorId = b.DescriptorId
 END
 GO
@@ -2313,7 +2313,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LearningStandardScopeDescriptor](LearningStandardScopeDescriptorId, Id, ChangeVersion)
     SELECT  d.LearningStandardScopeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.LearningStandardScopeDescriptorId = b.DescriptorId
 END
 GO
@@ -2331,7 +2331,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LearningStandard](LearningStandardId, Id, ChangeVersion)
     SELECT  LearningStandardId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -2348,7 +2348,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LevelOfEducationDescriptor](LevelOfEducationDescriptorId, Id, ChangeVersion)
     SELECT  d.LevelOfEducationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.LevelOfEducationDescriptorId = b.DescriptorId
 END
 GO
@@ -2366,7 +2366,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LicenseStatusDescriptor](LicenseStatusDescriptorId, Id, ChangeVersion)
     SELECT  d.LicenseStatusDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.LicenseStatusDescriptorId = b.DescriptorId
 END
 GO
@@ -2384,7 +2384,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LicenseTypeDescriptor](LicenseTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.LicenseTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.LicenseTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -2402,7 +2402,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LimitedEnglishProficiencyDescriptor](LimitedEnglishProficiencyDescriptorId, Id, ChangeVersion)
     SELECT  d.LimitedEnglishProficiencyDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.LimitedEnglishProficiencyDescriptorId = b.DescriptorId
 END
 GO
@@ -2420,7 +2420,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LocalEducationAgencyCategoryDescriptor](LocalEducationAgencyCategoryDescriptorId, Id, ChangeVersion)
     SELECT  d.LocalEducationAgencyCategoryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.LocalEducationAgencyCategoryDescriptorId = b.DescriptorId
 END
 GO
@@ -2438,7 +2438,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LocalEducationAgency](LocalEducationAgencyId, Id, ChangeVersion)
     SELECT  d.LocalEducationAgencyId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.EducationOrganization b ON d.LocalEducationAgencyId = b.EducationOrganizationId
 END
 GO
@@ -2456,7 +2456,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[LocaleDescriptor](LocaleDescriptorId, Id, ChangeVersion)
     SELECT  d.LocaleDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.LocaleDescriptorId = b.DescriptorId
 END
 GO
@@ -2474,7 +2474,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Location](ClassroomIdentificationCode, SchoolId, Id, ChangeVersion)
     SELECT  ClassroomIdentificationCode, SchoolId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -2491,7 +2491,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[MagnetSpecialProgramEmphasisSchoolDescriptor](MagnetSpecialProgramEmphasisSchoolDescriptorId, Id, ChangeVersion)
     SELECT  d.MagnetSpecialProgramEmphasisSchoolDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.MagnetSpecialProgramEmphasisSchoolDescriptorId = b.DescriptorId
 END
 GO
@@ -2509,7 +2509,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[MediumOfInstructionDescriptor](MediumOfInstructionDescriptorId, Id, ChangeVersion)
     SELECT  d.MediumOfInstructionDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.MediumOfInstructionDescriptorId = b.DescriptorId
 END
 GO
@@ -2527,7 +2527,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[MethodCreditEarnedDescriptor](MethodCreditEarnedDescriptorId, Id, ChangeVersion)
     SELECT  d.MethodCreditEarnedDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.MethodCreditEarnedDescriptorId = b.DescriptorId
 END
 GO
@@ -2545,7 +2545,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[MigrantEducationProgramServiceDescriptor](MigrantEducationProgramServiceDescriptorId, Id, ChangeVersion)
     SELECT  d.MigrantEducationProgramServiceDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.MigrantEducationProgramServiceDescriptorId = b.DescriptorId
 END
 GO
@@ -2563,7 +2563,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[MonitoredDescriptor](MonitoredDescriptorId, Id, ChangeVersion)
     SELECT  d.MonitoredDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.MonitoredDescriptorId = b.DescriptorId
 END
 GO
@@ -2581,7 +2581,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[NeglectedOrDelinquentProgramDescriptor](NeglectedOrDelinquentProgramDescriptorId, Id, ChangeVersion)
     SELECT  d.NeglectedOrDelinquentProgramDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.NeglectedOrDelinquentProgramDescriptorId = b.DescriptorId
 END
 GO
@@ -2599,7 +2599,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[NeglectedOrDelinquentProgramServiceDescriptor](NeglectedOrDelinquentProgramServiceDescriptorId, Id, ChangeVersion)
     SELECT  d.NeglectedOrDelinquentProgramServiceDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.NeglectedOrDelinquentProgramServiceDescriptorId = b.DescriptorId
 END
 GO
@@ -2617,7 +2617,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[NetworkPurposeDescriptor](NetworkPurposeDescriptorId, Id, ChangeVersion)
     SELECT  d.NetworkPurposeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.NetworkPurposeDescriptorId = b.DescriptorId
 END
 GO
@@ -2635,7 +2635,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ObjectiveAssessment](AssessmentIdentifier, IdentificationCode, Namespace, Id, ChangeVersion)
     SELECT  AssessmentIdentifier, IdentificationCode, Namespace, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -2652,7 +2652,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[OldEthnicityDescriptor](OldEthnicityDescriptorId, Id, ChangeVersion)
     SELECT  d.OldEthnicityDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.OldEthnicityDescriptorId = b.DescriptorId
 END
 GO
@@ -2670,7 +2670,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[OpenStaffPosition](EducationOrganizationId, RequisitionNumber, Id, ChangeVersion)
     SELECT  EducationOrganizationId, RequisitionNumber, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -2687,7 +2687,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[OperationalStatusDescriptor](OperationalStatusDescriptorId, Id, ChangeVersion)
     SELECT  d.OperationalStatusDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.OperationalStatusDescriptorId = b.DescriptorId
 END
 GO
@@ -2705,7 +2705,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[OtherNameTypeDescriptor](OtherNameTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.OtherNameTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.OtherNameTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -2723,7 +2723,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Parent](ParentUSI, Id, ChangeVersion)
     SELECT  ParentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -2740,7 +2740,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ParticipationDescriptor](ParticipationDescriptorId, Id, ChangeVersion)
     SELECT  d.ParticipationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ParticipationDescriptorId = b.DescriptorId
 END
 GO
@@ -2758,7 +2758,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ParticipationStatusDescriptor](ParticipationStatusDescriptorId, Id, ChangeVersion)
     SELECT  d.ParticipationStatusDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ParticipationStatusDescriptorId = b.DescriptorId
 END
 GO
@@ -2776,7 +2776,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Payroll](AccountIdentifier, AsOfDate, EducationOrganizationId, FiscalYear, StaffUSI, Id, ChangeVersion)
     SELECT  AccountIdentifier, AsOfDate, EducationOrganizationId, FiscalYear, StaffUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -2793,7 +2793,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[PerformanceBaseConversionDescriptor](PerformanceBaseConversionDescriptorId, Id, ChangeVersion)
     SELECT  d.PerformanceBaseConversionDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.PerformanceBaseConversionDescriptorId = b.DescriptorId
 END
 GO
@@ -2811,7 +2811,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[PerformanceLevelDescriptor](PerformanceLevelDescriptorId, Id, ChangeVersion)
     SELECT  d.PerformanceLevelDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.PerformanceLevelDescriptorId = b.DescriptorId
 END
 GO
@@ -2829,7 +2829,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[PersonalInformationVerificationDescriptor](PersonalInformationVerificationDescriptorId, Id, ChangeVersion)
     SELECT  d.PersonalInformationVerificationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.PersonalInformationVerificationDescriptorId = b.DescriptorId
 END
 GO
@@ -2847,7 +2847,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[PlatformTypeDescriptor](PlatformTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.PlatformTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.PlatformTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -2865,7 +2865,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[PopulationServedDescriptor](PopulationServedDescriptorId, Id, ChangeVersion)
     SELECT  d.PopulationServedDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.PopulationServedDescriptorId = b.DescriptorId
 END
 GO
@@ -2883,7 +2883,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[PostSecondaryEventCategoryDescriptor](PostSecondaryEventCategoryDescriptorId, Id, ChangeVersion)
     SELECT  d.PostSecondaryEventCategoryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.PostSecondaryEventCategoryDescriptorId = b.DescriptorId
 END
 GO
@@ -2901,7 +2901,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[PostSecondaryEvent](EventDate, PostSecondaryEventCategoryDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  EventDate, PostSecondaryEventCategoryDescriptorId, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -2918,7 +2918,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[PostSecondaryInstitutionLevelDescriptor](PostSecondaryInstitutionLevelDescriptorId, Id, ChangeVersion)
     SELECT  d.PostSecondaryInstitutionLevelDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.PostSecondaryInstitutionLevelDescriptorId = b.DescriptorId
 END
 GO
@@ -2936,7 +2936,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[PostSecondaryInstitution](PostSecondaryInstitutionId, Id, ChangeVersion)
     SELECT  d.PostSecondaryInstitutionId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.EducationOrganization b ON d.PostSecondaryInstitutionId = b.EducationOrganizationId
 END
 GO
@@ -2954,7 +2954,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[PostingResultDescriptor](PostingResultDescriptorId, Id, ChangeVersion)
     SELECT  d.PostingResultDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.PostingResultDescriptorId = b.DescriptorId
 END
 GO
@@ -2972,7 +2972,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ProficiencyDescriptor](ProficiencyDescriptorId, Id, ChangeVersion)
     SELECT  d.ProficiencyDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ProficiencyDescriptorId = b.DescriptorId
 END
 GO
@@ -2990,7 +2990,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ProgramAssignmentDescriptor](ProgramAssignmentDescriptorId, Id, ChangeVersion)
     SELECT  d.ProgramAssignmentDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ProgramAssignmentDescriptorId = b.DescriptorId
 END
 GO
@@ -3008,7 +3008,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ProgramCharacteristicDescriptor](ProgramCharacteristicDescriptorId, Id, ChangeVersion)
     SELECT  d.ProgramCharacteristicDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ProgramCharacteristicDescriptorId = b.DescriptorId
 END
 GO
@@ -3026,7 +3026,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ProgramSponsorDescriptor](ProgramSponsorDescriptorId, Id, ChangeVersion)
     SELECT  d.ProgramSponsorDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ProgramSponsorDescriptorId = b.DescriptorId
 END
 GO
@@ -3044,7 +3044,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ProgramTypeDescriptor](ProgramTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.ProgramTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ProgramTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -3062,7 +3062,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Program](EducationOrganizationId, ProgramName, ProgramTypeDescriptorId, Id, ChangeVersion)
     SELECT  EducationOrganizationId, ProgramName, ProgramTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3079,7 +3079,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ProgressDescriptor](ProgressDescriptorId, Id, ChangeVersion)
     SELECT  d.ProgressDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ProgressDescriptorId = b.DescriptorId
 END
 GO
@@ -3097,7 +3097,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ProgressLevelDescriptor](ProgressLevelDescriptorId, Id, ChangeVersion)
     SELECT  d.ProgressLevelDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ProgressLevelDescriptorId = b.DescriptorId
 END
 GO
@@ -3115,7 +3115,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ProviderCategoryDescriptor](ProviderCategoryDescriptorId, Id, ChangeVersion)
     SELECT  d.ProviderCategoryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ProviderCategoryDescriptorId = b.DescriptorId
 END
 GO
@@ -3133,7 +3133,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ProviderProfitabilityDescriptor](ProviderProfitabilityDescriptorId, Id, ChangeVersion)
     SELECT  d.ProviderProfitabilityDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ProviderProfitabilityDescriptorId = b.DescriptorId
 END
 GO
@@ -3151,7 +3151,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ProviderStatusDescriptor](ProviderStatusDescriptorId, Id, ChangeVersion)
     SELECT  d.ProviderStatusDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ProviderStatusDescriptorId = b.DescriptorId
 END
 GO
@@ -3169,7 +3169,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[PublicationStatusDescriptor](PublicationStatusDescriptorId, Id, ChangeVersion)
     SELECT  d.PublicationStatusDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.PublicationStatusDescriptorId = b.DescriptorId
 END
 GO
@@ -3187,7 +3187,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[RaceDescriptor](RaceDescriptorId, Id, ChangeVersion)
     SELECT  d.RaceDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.RaceDescriptorId = b.DescriptorId
 END
 GO
@@ -3205,7 +3205,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ReasonExitedDescriptor](ReasonExitedDescriptorId, Id, ChangeVersion)
     SELECT  d.ReasonExitedDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ReasonExitedDescriptorId = b.DescriptorId
 END
 GO
@@ -3223,7 +3223,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ReasonNotTestedDescriptor](ReasonNotTestedDescriptorId, Id, ChangeVersion)
     SELECT  d.ReasonNotTestedDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ReasonNotTestedDescriptorId = b.DescriptorId
 END
 GO
@@ -3241,7 +3241,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[RecognitionTypeDescriptor](RecognitionTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.RecognitionTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.RecognitionTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -3259,7 +3259,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[RelationDescriptor](RelationDescriptorId, Id, ChangeVersion)
     SELECT  d.RelationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.RelationDescriptorId = b.DescriptorId
 END
 GO
@@ -3277,7 +3277,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[RepeatIdentifierDescriptor](RepeatIdentifierDescriptorId, Id, ChangeVersion)
     SELECT  d.RepeatIdentifierDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.RepeatIdentifierDescriptorId = b.DescriptorId
 END
 GO
@@ -3295,7 +3295,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ReportCard](EducationOrganizationId, GradingPeriodDescriptorId, GradingPeriodSchoolId, GradingPeriodSchoolYear, GradingPeriodSequence, StudentUSI, Id, ChangeVersion)
     SELECT  EducationOrganizationId, GradingPeriodDescriptorId, GradingPeriodSchoolId, GradingPeriodSchoolYear, GradingPeriodSequence, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3312,7 +3312,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ReporterDescriptionDescriptor](ReporterDescriptionDescriptorId, Id, ChangeVersion)
     SELECT  d.ReporterDescriptionDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ReporterDescriptionDescriptorId = b.DescriptorId
 END
 GO
@@ -3330,7 +3330,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ResidencyStatusDescriptor](ResidencyStatusDescriptorId, Id, ChangeVersion)
     SELECT  d.ResidencyStatusDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ResidencyStatusDescriptorId = b.DescriptorId
 END
 GO
@@ -3348,7 +3348,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ResponseIndicatorDescriptor](ResponseIndicatorDescriptorId, Id, ChangeVersion)
     SELECT  d.ResponseIndicatorDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ResponseIndicatorDescriptorId = b.DescriptorId
 END
 GO
@@ -3366,7 +3366,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ResponsibilityDescriptor](ResponsibilityDescriptorId, Id, ChangeVersion)
     SELECT  d.ResponsibilityDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ResponsibilityDescriptorId = b.DescriptorId
 END
 GO
@@ -3384,7 +3384,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[RestraintEventReasonDescriptor](RestraintEventReasonDescriptorId, Id, ChangeVersion)
     SELECT  d.RestraintEventReasonDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.RestraintEventReasonDescriptorId = b.DescriptorId
 END
 GO
@@ -3402,7 +3402,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[RestraintEvent](RestraintEventIdentifier, SchoolId, StudentUSI, Id, ChangeVersion)
     SELECT  RestraintEventIdentifier, SchoolId, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3419,7 +3419,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ResultDatatypeTypeDescriptor](ResultDatatypeTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.ResultDatatypeTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ResultDatatypeTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -3437,7 +3437,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[RetestIndicatorDescriptor](RetestIndicatorDescriptorId, Id, ChangeVersion)
     SELECT  d.RetestIndicatorDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.RetestIndicatorDescriptorId = b.DescriptorId
 END
 GO
@@ -3455,7 +3455,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[SchoolCategoryDescriptor](SchoolCategoryDescriptorId, Id, ChangeVersion)
     SELECT  d.SchoolCategoryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SchoolCategoryDescriptorId = b.DescriptorId
 END
 GO
@@ -3473,7 +3473,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[SchoolChoiceImplementStatusDescriptor](SchoolChoiceImplementStatusDescriptorId, Id, ChangeVersion)
     SELECT  d.SchoolChoiceImplementStatusDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SchoolChoiceImplementStatusDescriptorId = b.DescriptorId
 END
 GO
@@ -3491,7 +3491,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[SchoolFoodServiceProgramServiceDescriptor](SchoolFoodServiceProgramServiceDescriptorId, Id, ChangeVersion)
     SELECT  d.SchoolFoodServiceProgramServiceDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SchoolFoodServiceProgramServiceDescriptorId = b.DescriptorId
 END
 GO
@@ -3509,7 +3509,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[SchoolTypeDescriptor](SchoolTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.SchoolTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SchoolTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -3527,7 +3527,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[School](SchoolId, Id, ChangeVersion)
     SELECT  d.SchoolId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.EducationOrganization b ON d.SchoolId = b.EducationOrganizationId
 END
 GO
@@ -3545,7 +3545,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[SectionAttendanceTakenEvent](CalendarCode, Date, LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, Id, ChangeVersion)
     SELECT  CalendarCode, Date, LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3562,7 +3562,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[SectionCharacteristicDescriptor](SectionCharacteristicDescriptorId, Id, ChangeVersion)
     SELECT  d.SectionCharacteristicDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SectionCharacteristicDescriptorId = b.DescriptorId
 END
 GO
@@ -3580,7 +3580,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Section](LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, Id, ChangeVersion)
     SELECT  LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3597,7 +3597,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[SeparationDescriptor](SeparationDescriptorId, Id, ChangeVersion)
     SELECT  d.SeparationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SeparationDescriptorId = b.DescriptorId
 END
 GO
@@ -3615,7 +3615,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[SeparationReasonDescriptor](SeparationReasonDescriptorId, Id, ChangeVersion)
     SELECT  d.SeparationReasonDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SeparationReasonDescriptorId = b.DescriptorId
 END
 GO
@@ -3633,7 +3633,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[ServiceDescriptor](ServiceDescriptorId, Id, ChangeVersion)
     SELECT  d.ServiceDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.ServiceDescriptorId = b.DescriptorId
 END
 GO
@@ -3651,7 +3651,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Session](SchoolId, SchoolYear, SessionName, Id, ChangeVersion)
     SELECT  SchoolId, SchoolYear, SessionName, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3668,7 +3668,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[SexDescriptor](SexDescriptorId, Id, ChangeVersion)
     SELECT  d.SexDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SexDescriptorId = b.DescriptorId
 END
 GO
@@ -3686,7 +3686,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[SpecialEducationProgramServiceDescriptor](SpecialEducationProgramServiceDescriptorId, Id, ChangeVersion)
     SELECT  d.SpecialEducationProgramServiceDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SpecialEducationProgramServiceDescriptorId = b.DescriptorId
 END
 GO
@@ -3704,7 +3704,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[SpecialEducationSettingDescriptor](SpecialEducationSettingDescriptorId, Id, ChangeVersion)
     SELECT  d.SpecialEducationSettingDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SpecialEducationSettingDescriptorId = b.DescriptorId
 END
 GO
@@ -3722,7 +3722,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StaffAbsenceEvent](AbsenceEventCategoryDescriptorId, EventDate, StaffUSI, Id, ChangeVersion)
     SELECT  AbsenceEventCategoryDescriptorId, EventDate, StaffUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3739,7 +3739,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StaffClassificationDescriptor](StaffClassificationDescriptorId, Id, ChangeVersion)
     SELECT  d.StaffClassificationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.StaffClassificationDescriptorId = b.DescriptorId
 END
 GO
@@ -3757,7 +3757,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StaffCohortAssociation](BeginDate, CohortIdentifier, EducationOrganizationId, StaffUSI, Id, ChangeVersion)
     SELECT  BeginDate, CohortIdentifier, EducationOrganizationId, StaffUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3774,7 +3774,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StaffDisciplineIncidentAssociation](IncidentIdentifier, SchoolId, StaffUSI, Id, ChangeVersion)
     SELECT  IncidentIdentifier, SchoolId, StaffUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3791,7 +3791,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StaffEducationOrganizationAssignmentAssociation](BeginDate, EducationOrganizationId, StaffClassificationDescriptorId, StaffUSI, Id, ChangeVersion)
     SELECT  BeginDate, EducationOrganizationId, StaffClassificationDescriptorId, StaffUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3808,7 +3808,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StaffEducationOrganizationContactAssociation](ContactTitle, EducationOrganizationId, StaffUSI, Id, ChangeVersion)
     SELECT  ContactTitle, EducationOrganizationId, StaffUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3825,7 +3825,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StaffEducationOrganizationEmploymentAssociation](EducationOrganizationId, EmploymentStatusDescriptorId, HireDate, StaffUSI, Id, ChangeVersion)
     SELECT  EducationOrganizationId, EmploymentStatusDescriptorId, HireDate, StaffUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3842,7 +3842,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StaffIdentificationSystemDescriptor](StaffIdentificationSystemDescriptorId, Id, ChangeVersion)
     SELECT  d.StaffIdentificationSystemDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.StaffIdentificationSystemDescriptorId = b.DescriptorId
 END
 GO
@@ -3860,7 +3860,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StaffLeaveEventCategoryDescriptor](StaffLeaveEventCategoryDescriptorId, Id, ChangeVersion)
     SELECT  d.StaffLeaveEventCategoryDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.StaffLeaveEventCategoryDescriptorId = b.DescriptorId
 END
 GO
@@ -3878,7 +3878,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StaffLeave](BeginDate, StaffLeaveEventCategoryDescriptorId, StaffUSI, Id, ChangeVersion)
     SELECT  BeginDate, StaffLeaveEventCategoryDescriptorId, StaffUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3895,7 +3895,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StaffProgramAssociation](BeginDate, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StaffUSI, Id, ChangeVersion)
     SELECT  BeginDate, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StaffUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3912,7 +3912,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StaffSchoolAssociation](ProgramAssignmentDescriptorId, SchoolId, StaffUSI, Id, ChangeVersion)
     SELECT  ProgramAssignmentDescriptorId, SchoolId, StaffUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3929,7 +3929,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StaffSectionAssociation](LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, StaffUSI, Id, ChangeVersion)
     SELECT  LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, StaffUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3946,7 +3946,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Staff](StaffUSI, Id, ChangeVersion)
     SELECT  StaffUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -3963,7 +3963,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StateAbbreviationDescriptor](StateAbbreviationDescriptorId, Id, ChangeVersion)
     SELECT  d.StateAbbreviationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.StateAbbreviationDescriptorId = b.DescriptorId
 END
 GO
@@ -3981,7 +3981,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StateEducationAgency](StateEducationAgencyId, Id, ChangeVersion)
     SELECT  d.StateEducationAgencyId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.EducationOrganization b ON d.StateEducationAgencyId = b.EducationOrganizationId
 END
 GO
@@ -3999,7 +3999,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentAcademicRecord](EducationOrganizationId, SchoolYear, StudentUSI, TermDescriptorId, Id, ChangeVersion)
     SELECT  EducationOrganizationId, SchoolYear, StudentUSI, TermDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4016,7 +4016,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentAssessment](AssessmentIdentifier, Namespace, StudentAssessmentIdentifier, StudentUSI, Id, ChangeVersion)
     SELECT  AssessmentIdentifier, Namespace, StudentAssessmentIdentifier, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4033,7 +4033,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentCTEProgramAssociation](BeginDate, EducationOrganizationId, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  d.BeginDate, d.EducationOrganizationId, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, d.StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.GeneralStudentProgramAssociation b ON d.BeginDate = b.BeginDate AND d.EducationOrganizationId = b.EducationOrganizationId AND d.ProgramEducationOrganizationId = b.ProgramEducationOrganizationId AND d.ProgramName = b.ProgramName AND d.ProgramTypeDescriptorId = b.ProgramTypeDescriptorId AND d.StudentUSI = b.StudentUSI
 END
 GO
@@ -4051,7 +4051,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentCharacteristicDescriptor](StudentCharacteristicDescriptorId, Id, ChangeVersion)
     SELECT  d.StudentCharacteristicDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.StudentCharacteristicDescriptorId = b.DescriptorId
 END
 GO
@@ -4069,7 +4069,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentCohortAssociation](BeginDate, CohortIdentifier, EducationOrganizationId, StudentUSI, Id, ChangeVersion)
     SELECT  BeginDate, CohortIdentifier, EducationOrganizationId, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4086,7 +4086,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentCompetencyObjective](GradingPeriodDescriptorId, GradingPeriodSchoolId, GradingPeriodSchoolYear, GradingPeriodSequence, Objective, ObjectiveEducationOrganizationId, ObjectiveGradeLevelDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  GradingPeriodDescriptorId, GradingPeriodSchoolId, GradingPeriodSchoolYear, GradingPeriodSequence, Objective, ObjectiveEducationOrganizationId, ObjectiveGradeLevelDescriptorId, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4103,7 +4103,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentDisciplineIncidentAssociation](IncidentIdentifier, SchoolId, StudentUSI, Id, ChangeVersion)
     SELECT  IncidentIdentifier, SchoolId, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4120,7 +4120,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentEducationOrganizationAssociation](EducationOrganizationId, StudentUSI, Id, ChangeVersion)
     SELECT  EducationOrganizationId, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4137,7 +4137,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentEducationOrganizationResponsibilityAssociation](BeginDate, EducationOrganizationId, ResponsibilityDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  BeginDate, EducationOrganizationId, ResponsibilityDescriptorId, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4154,7 +4154,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentGradebookEntry](BeginDate, DateAssigned, GradebookEntryTitle, LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, StudentUSI, Id, ChangeVersion)
     SELECT  BeginDate, DateAssigned, GradebookEntryTitle, LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4171,7 +4171,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentHomelessProgramAssociation](BeginDate, EducationOrganizationId, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  d.BeginDate, d.EducationOrganizationId, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, d.StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.GeneralStudentProgramAssociation b ON d.BeginDate = b.BeginDate AND d.EducationOrganizationId = b.EducationOrganizationId AND d.ProgramEducationOrganizationId = b.ProgramEducationOrganizationId AND d.ProgramName = b.ProgramName AND d.ProgramTypeDescriptorId = b.ProgramTypeDescriptorId AND d.StudentUSI = b.StudentUSI
 END
 GO
@@ -4189,7 +4189,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentIdentificationSystemDescriptor](StudentIdentificationSystemDescriptorId, Id, ChangeVersion)
     SELECT  d.StudentIdentificationSystemDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.StudentIdentificationSystemDescriptorId = b.DescriptorId
 END
 GO
@@ -4207,7 +4207,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentInterventionAssociation](EducationOrganizationId, InterventionIdentificationCode, StudentUSI, Id, ChangeVersion)
     SELECT  EducationOrganizationId, InterventionIdentificationCode, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4224,7 +4224,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentInterventionAttendanceEvent](AttendanceEventCategoryDescriptorId, EducationOrganizationId, EventDate, InterventionIdentificationCode, StudentUSI, Id, ChangeVersion)
     SELECT  AttendanceEventCategoryDescriptorId, EducationOrganizationId, EventDate, InterventionIdentificationCode, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4241,7 +4241,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentLanguageInstructionProgramAssociation](BeginDate, EducationOrganizationId, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  d.BeginDate, d.EducationOrganizationId, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, d.StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.GeneralStudentProgramAssociation b ON d.BeginDate = b.BeginDate AND d.EducationOrganizationId = b.EducationOrganizationId AND d.ProgramEducationOrganizationId = b.ProgramEducationOrganizationId AND d.ProgramName = b.ProgramName AND d.ProgramTypeDescriptorId = b.ProgramTypeDescriptorId AND d.StudentUSI = b.StudentUSI
 END
 GO
@@ -4259,7 +4259,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentLearningObjective](GradingPeriodDescriptorId, GradingPeriodSchoolId, GradingPeriodSchoolYear, GradingPeriodSequence, LearningObjectiveId, Namespace, StudentUSI, Id, ChangeVersion)
     SELECT  GradingPeriodDescriptorId, GradingPeriodSchoolId, GradingPeriodSchoolYear, GradingPeriodSequence, LearningObjectiveId, Namespace, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4276,7 +4276,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentMigrantEducationProgramAssociation](BeginDate, EducationOrganizationId, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  d.BeginDate, d.EducationOrganizationId, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, d.StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.GeneralStudentProgramAssociation b ON d.BeginDate = b.BeginDate AND d.EducationOrganizationId = b.EducationOrganizationId AND d.ProgramEducationOrganizationId = b.ProgramEducationOrganizationId AND d.ProgramName = b.ProgramName AND d.ProgramTypeDescriptorId = b.ProgramTypeDescriptorId AND d.StudentUSI = b.StudentUSI
 END
 GO
@@ -4294,7 +4294,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentNeglectedOrDelinquentProgramAssociation](BeginDate, EducationOrganizationId, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  d.BeginDate, d.EducationOrganizationId, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, d.StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.GeneralStudentProgramAssociation b ON d.BeginDate = b.BeginDate AND d.EducationOrganizationId = b.EducationOrganizationId AND d.ProgramEducationOrganizationId = b.ProgramEducationOrganizationId AND d.ProgramName = b.ProgramName AND d.ProgramTypeDescriptorId = b.ProgramTypeDescriptorId AND d.StudentUSI = b.StudentUSI
 END
 GO
@@ -4312,7 +4312,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentParentAssociation](ParentUSI, StudentUSI, Id, ChangeVersion)
     SELECT  ParentUSI, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4329,7 +4329,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentParticipationCodeDescriptor](StudentParticipationCodeDescriptorId, Id, ChangeVersion)
     SELECT  d.StudentParticipationCodeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.StudentParticipationCodeDescriptorId = b.DescriptorId
 END
 GO
@@ -4347,7 +4347,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentProgramAssociation](BeginDate, EducationOrganizationId, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  d.BeginDate, d.EducationOrganizationId, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, d.StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.GeneralStudentProgramAssociation b ON d.BeginDate = b.BeginDate AND d.EducationOrganizationId = b.EducationOrganizationId AND d.ProgramEducationOrganizationId = b.ProgramEducationOrganizationId AND d.ProgramName = b.ProgramName AND d.ProgramTypeDescriptorId = b.ProgramTypeDescriptorId AND d.StudentUSI = b.StudentUSI
 END
 GO
@@ -4365,7 +4365,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentProgramAttendanceEvent](AttendanceEventCategoryDescriptorId, EducationOrganizationId, EventDate, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  AttendanceEventCategoryDescriptorId, EducationOrganizationId, EventDate, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4382,7 +4382,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentSchoolAssociation](EntryDate, SchoolId, StudentUSI, Id, ChangeVersion)
     SELECT  EntryDate, SchoolId, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4399,7 +4399,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentSchoolAttendanceEvent](AttendanceEventCategoryDescriptorId, EventDate, SchoolId, SchoolYear, SessionName, StudentUSI, Id, ChangeVersion)
     SELECT  AttendanceEventCategoryDescriptorId, EventDate, SchoolId, SchoolYear, SessionName, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4416,7 +4416,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentSchoolFoodServiceProgramAssociation](BeginDate, EducationOrganizationId, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  d.BeginDate, d.EducationOrganizationId, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, d.StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.GeneralStudentProgramAssociation b ON d.BeginDate = b.BeginDate AND d.EducationOrganizationId = b.EducationOrganizationId AND d.ProgramEducationOrganizationId = b.ProgramEducationOrganizationId AND d.ProgramName = b.ProgramName AND d.ProgramTypeDescriptorId = b.ProgramTypeDescriptorId AND d.StudentUSI = b.StudentUSI
 END
 GO
@@ -4434,7 +4434,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentSectionAssociation](BeginDate, LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, StudentUSI, Id, ChangeVersion)
     SELECT  BeginDate, LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4451,7 +4451,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentSectionAttendanceEvent](AttendanceEventCategoryDescriptorId, EventDate, LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, StudentUSI, Id, ChangeVersion)
     SELECT  AttendanceEventCategoryDescriptorId, EventDate, LocalCourseCode, SchoolId, SchoolYear, SectionIdentifier, SessionName, StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4468,7 +4468,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentSpecialEducationProgramAssociation](BeginDate, EducationOrganizationId, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  d.BeginDate, d.EducationOrganizationId, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, d.StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.GeneralStudentProgramAssociation b ON d.BeginDate = b.BeginDate AND d.EducationOrganizationId = b.EducationOrganizationId AND d.ProgramEducationOrganizationId = b.ProgramEducationOrganizationId AND d.ProgramName = b.ProgramName AND d.ProgramTypeDescriptorId = b.ProgramTypeDescriptorId AND d.StudentUSI = b.StudentUSI
 END
 GO
@@ -4486,7 +4486,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[StudentTitleIPartAProgramAssociation](BeginDate, EducationOrganizationId, ProgramEducationOrganizationId, ProgramName, ProgramTypeDescriptorId, StudentUSI, Id, ChangeVersion)
     SELECT  d.BeginDate, d.EducationOrganizationId, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, d.StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.GeneralStudentProgramAssociation b ON d.BeginDate = b.BeginDate AND d.EducationOrganizationId = b.EducationOrganizationId AND d.ProgramEducationOrganizationId = b.ProgramEducationOrganizationId AND d.ProgramName = b.ProgramName AND d.ProgramTypeDescriptorId = b.ProgramTypeDescriptorId AND d.StudentUSI = b.StudentUSI
 END
 GO
@@ -4504,7 +4504,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[Student](StudentUSI, Id, ChangeVersion)
     SELECT  StudentUSI, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -4521,7 +4521,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[TeachingCredentialBasisDescriptor](TeachingCredentialBasisDescriptorId, Id, ChangeVersion)
     SELECT  d.TeachingCredentialBasisDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.TeachingCredentialBasisDescriptorId = b.DescriptorId
 END
 GO
@@ -4539,7 +4539,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[TeachingCredentialDescriptor](TeachingCredentialDescriptorId, Id, ChangeVersion)
     SELECT  d.TeachingCredentialDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.TeachingCredentialDescriptorId = b.DescriptorId
 END
 GO
@@ -4557,7 +4557,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[TechnicalSkillsAssessmentDescriptor](TechnicalSkillsAssessmentDescriptorId, Id, ChangeVersion)
     SELECT  d.TechnicalSkillsAssessmentDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.TechnicalSkillsAssessmentDescriptorId = b.DescriptorId
 END
 GO
@@ -4575,7 +4575,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[TelephoneNumberTypeDescriptor](TelephoneNumberTypeDescriptorId, Id, ChangeVersion)
     SELECT  d.TelephoneNumberTypeDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.TelephoneNumberTypeDescriptorId = b.DescriptorId
 END
 GO
@@ -4593,7 +4593,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[TermDescriptor](TermDescriptorId, Id, ChangeVersion)
     SELECT  d.TermDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.TermDescriptorId = b.DescriptorId
 END
 GO
@@ -4611,7 +4611,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[TitleIPartAParticipantDescriptor](TitleIPartAParticipantDescriptorId, Id, ChangeVersion)
     SELECT  d.TitleIPartAParticipantDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.TitleIPartAParticipantDescriptorId = b.DescriptorId
 END
 GO
@@ -4629,7 +4629,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[TitleIPartAProgramServiceDescriptor](TitleIPartAProgramServiceDescriptorId, Id, ChangeVersion)
     SELECT  d.TitleIPartAProgramServiceDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.TitleIPartAProgramServiceDescriptorId = b.DescriptorId
 END
 GO
@@ -4647,7 +4647,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[TitleIPartASchoolDesignationDescriptor](TitleIPartASchoolDesignationDescriptorId, Id, ChangeVersion)
     SELECT  d.TitleIPartASchoolDesignationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.TitleIPartASchoolDesignationDescriptorId = b.DescriptorId
 END
 GO
@@ -4665,7 +4665,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[TribalAffiliationDescriptor](TribalAffiliationDescriptorId, Id, ChangeVersion)
     SELECT  d.TribalAffiliationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.TribalAffiliationDescriptorId = b.DescriptorId
 END
 GO
@@ -4683,7 +4683,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[VisaDescriptor](VisaDescriptorId, Id, ChangeVersion)
     SELECT  d.VisaDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.VisaDescriptorId = b.DescriptorId
 END
 GO
@@ -4701,7 +4701,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_edfi].[WeaponDescriptor](WeaponDescriptorId, Id, ChangeVersion)
     SELECT  d.WeaponDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.WeaponDescriptorId = b.DescriptorId
 END
 GO

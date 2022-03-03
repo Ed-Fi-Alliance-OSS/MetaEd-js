@@ -7,7 +7,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_sample].[InstitutionControlDescriptor](InstitutionControlDescriptorId, Id, ChangeVersion)
     SELECT  d.InstitutionControlDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.InstitutionControlDescriptorId = b.DescriptorId
 END
 GO
@@ -25,7 +25,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_sample].[InstitutionLevelDescriptor](InstitutionLevelDescriptorId, Id, ChangeVersion)
     SELECT  d.InstitutionLevelDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.InstitutionLevelDescriptorId = b.DescriptorId
 END
 GO
@@ -43,7 +43,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_sample].[PostSecondaryOrganization](NameOfInstitution, Id, ChangeVersion)
     SELECT  NameOfInstitution, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
 END
 GO
 
@@ -60,7 +60,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_sample].[SpecialEducationGraduationStatusDescriptor](SpecialEducationGraduationStatusDescriptorId, Id, ChangeVersion)
     SELECT  d.SpecialEducationGraduationStatusDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SpecialEducationGraduationStatusDescriptorId = b.DescriptorId
 END
 GO
@@ -78,7 +78,7 @@ BEGIN
 
     INSERT INTO [tracked_deletes_sample].[SubmissionCertificationDescriptor](SubmissionCertificationDescriptorId, Id, ChangeVersion)
     SELECT  d.SubmissionCertificationDescriptorId, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
-    FROM    deleted d    
+    FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SubmissionCertificationDescriptorId = b.DescriptorId
 END
 GO
