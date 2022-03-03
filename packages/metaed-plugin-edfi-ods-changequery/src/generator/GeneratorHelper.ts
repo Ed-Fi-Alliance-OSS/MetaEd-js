@@ -12,6 +12,7 @@ import { AddColumnChangeVersionForTable } from '../model/AddColumnChangeVersionF
 import { DeleteTrackingTable } from '../model/DeleteTrackingTable';
 import { CreateTriggerUpdateChangeVersion } from '../model/CreateTriggerUpdateChangeVersion';
 import { DeleteTrackingTrigger } from '../model/DeleteTrackingTrigger';
+import { HasTriggerName } from '../model/HasTriggerName';
 
 function prefixWithLicenseHeaderForVersion5PlusInAllianceMode(
   metaEd: MetaEdEnvironment,
@@ -255,12 +256,12 @@ export function performCreateChangeVersionSequenceGeneration(
   return results;
 }
 
-function originalCompare(a: DeleteTrackingTrigger, b: DeleteTrackingTrigger): number {
+function originalCompare(a: HasTriggerName, b: HasTriggerName): number {
   if (a.triggerName < b.triggerName) return -1;
   return a.triggerName > b.triggerName ? 1 : 0;
 }
 
-function compareLikeCsharp(a: DeleteTrackingTrigger, b: DeleteTrackingTrigger): number {
+function compareLikeCsharp(a: HasTriggerName, b: HasTriggerName): number {
   if (a.triggerName.toLowerCase() < b.triggerName.toLowerCase()) return -1;
   return a.triggerName.toLowerCase() > b.triggerName.toLowerCase() ? 1 : 0;
 }
@@ -319,7 +320,7 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
   const results: GeneratedOutput[] = [];
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
-  const includeDropIfExists = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
+  const use5Dot4Style = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -331,8 +332,7 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
           // by schema then by table name
           (a: CreateTriggerUpdateChangeVersion, b: CreateTriggerUpdateChangeVersion) => {
             if (a.schema === b.schema) {
-              if (a.tableName < b.tableName) return -1;
-              return a.tableName > b.tableName ? 1 : 0;
+              return use5Dot4Style ? compareLikeCsharp(a, b) : originalCompare(a, b);
             }
             return a.schema < b.schema ? -1 : 1;
           },
@@ -341,7 +341,7 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
         const generatedResult: string = template().createTriggerUpdateChangeVersion({
           triggers,
           useLicenseHeader,
-          includeDropIfExists,
+          includeDropIfExists: use5Dot4Style,
         });
 
         results.push({

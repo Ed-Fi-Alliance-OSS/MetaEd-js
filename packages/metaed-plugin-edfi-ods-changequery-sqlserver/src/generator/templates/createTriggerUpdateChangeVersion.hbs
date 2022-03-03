@@ -28,18 +28,8 @@ BEGIN
         {{#each changeDataColumns}}New{{{columnName}}}, {{/each}}
         Id, ChangeVersion)
     SELECT
-        {{#each changeDataColumns}}
-{{#if isRegularSelectColumn}}d.{{{columnName}}}{{/if~}}
-{{#if isUniqueId}}dj{{tableAliasSuffix}}.{{{columnName}}}{{/if~}}
-{{#if isDescriptorNamespace}}dj{{tableAliasSuffix}}.Namespace{{/if~}}
-{{#if isDescriptorCodeValue}}dj{{tableAliasSuffix}}.CodeValue{{/if~}}
-, {{/each}}
-        {{#each changeDataColumns}}
-{{#if isRegularSelectColumn}}i.{{{columnName}}}{{/if~}}
-{{#if isUniqueId}}ij{{tableAliasSuffix}}.{{{columnName}}}{{/if~}}
-{{#if isDescriptorNamespace}}ij{{tableAliasSuffix}}.Namespace{{/if~}}
-{{#if isDescriptorCodeValue}}ij{{tableAliasSuffix}}.CodeValue{{/if~}}
-, {{/each}}
+        {{#each changeDataColumns}}{{#if isRegularSelectColumn}}d.{{{columnName}}}{{/if}}{{#if isUniqueId}}dj{{tableAliasSuffix}}.{{{columnName}}}{{/if}}{{#if isDescriptorNamespace}}dj{{tableAliasSuffix}}.Namespace{{/if}}{{#if isDescriptorCodeValue}}dj{{tableAliasSuffix}}.CodeValue{{/if}}, {{/each}}
+        {{#each changeDataColumns}}{{#if isRegularSelectColumn}}i.{{{columnName}}}{{/if}}{{#if isUniqueId}}ij{{tableAliasSuffix}}.{{{columnName}}}{{/if}}{{#if isDescriptorNamespace}}ij{{tableAliasSuffix}}.Namespace{{/if}}{{#if isDescriptorCodeValue}}ij{{tableAliasSuffix}}.CodeValue{{/if}}, {{/each}}
         d.Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM deleted d INNER JOIN inserted i ON d.Id = i.Id
 {{#each changeDataColumns}}
