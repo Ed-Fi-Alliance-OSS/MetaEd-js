@@ -49,6 +49,7 @@ function createDeleteTrackingTriggerModelV5dot4(table: Table): DeleteTrackingTri
     isStyle5dot4: true,
     changeDataColumns: changeDataColumnsFor(table),
     isIgnored: table.existenceReason.isSubclassTable || table.existenceReason.isBaseDescriptor,
+    omitDiscriminator: table.schema === 'edfi' && table.data.edfiOdsSqlServer.tableName === 'SchoolYearType',
   };
 }
 

@@ -904,10 +904,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[CompetencyObjective](OldEducationOrganizationId, OldObjective, OldObjectiveGradeLevelDescriptorId, OldObjectiveGradeLevelDescriptorNamespace, OldObjectiveGradeLevelDescriptorCodeValue, Id, Discriminator, ChangeVersion)
-    SELECT  d.EducationOrganizationId, d.Objective, d.ObjectiveGradeLevelDescriptorId, j2.Namespace, j2.CodeValue, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.EducationOrganizationId, d.Objective, d.ObjectiveGradeLevelDescriptorId, j0.Namespace, j0.CodeValue, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j2
-            ON d.ObjectiveGradeLevelDescriptorId = j2.DescriptorId 
+        INNER JOIN edfi.Descriptor j0
+            ON d.ObjectiveGradeLevelDescriptorId = j0.DescriptorId
 END
 GO
 
@@ -982,10 +982,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[ContractedStaff](OldAccountIdentifier, OldAsOfDate, OldEducationOrganizationId, OldFiscalYear, OldStaffUSI, OldStaffUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.AccountIdentifier, d.AsOfDate, d.EducationOrganizationId, d.FiscalYear, d.StaffUSI, j4.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.AccountIdentifier, d.AsOfDate, d.EducationOrganizationId, d.FiscalYear, d.StaffUSI, j0.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Staff j4
-            ON d.StaffUSI = j4.StaffUSI 
+        INNER JOIN edfi.Staff j0
+            ON d.StaffUSI = j0.StaffUSI
 END
 GO
 
@@ -1193,14 +1193,14 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[CourseTranscript](OldCourseAttemptResultDescriptorId, OldCourseAttemptResultDescriptorNamespace, OldCourseAttemptResultDescriptorCodeValue, OldCourseCode, OldCourseEducationOrganizationId, OldEducationOrganizationId, OldSchoolYear, OldStudentUSI, OldStudentUniqueId, OldTermDescriptorId, OldTermDescriptorNamespace, OldTermDescriptorCodeValue, Id, Discriminator, ChangeVersion)
-    SELECT  d.CourseAttemptResultDescriptorId, j0.Namespace, j0.CodeValue, d.CourseCode, d.CourseEducationOrganizationId, d.EducationOrganizationId, d.SchoolYear, d.StudentUSI, j5.StudentUniqueId, d.TermDescriptorId, j6.Namespace, j6.CodeValue, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.CourseAttemptResultDescriptorId, j0.Namespace, j0.CodeValue, d.CourseCode, d.CourseEducationOrganizationId, d.EducationOrganizationId, d.SchoolYear, d.StudentUSI, j1.StudentUniqueId, d.TermDescriptorId, j2.Namespace, j2.CodeValue, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
         INNER JOIN edfi.Descriptor j0
             ON d.CourseAttemptResultDescriptorId = j0.DescriptorId 
-        INNER JOIN edfi.Student j5
-            ON d.StudentUSI = j5.StudentUSI 
-        INNER JOIN edfi.Descriptor j6
-            ON d.TermDescriptorId = j6.DescriptorId 
+        INNER JOIN edfi.Student j1
+            ON d.StudentUSI = j1.StudentUSI
+        INNER JOIN edfi.Descriptor j2
+            ON d.TermDescriptorId = j2.DescriptorId
 END
 GO
 
@@ -1218,10 +1218,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[Credential](OldCredentialIdentifier, OldStateOfIssueStateAbbreviationDescriptorId, OldStateOfIssueStateAbbreviationDescriptorNamespace, OldStateOfIssueStateAbbreviationDescriptorCodeValue, Id, Discriminator, ChangeVersion)
-    SELECT  d.CredentialIdentifier, d.StateOfIssueStateAbbreviationDescriptorId, j1.Namespace, j1.CodeValue, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.CredentialIdentifier, d.StateOfIssueStateAbbreviationDescriptorId, j0.Namespace, j0.CodeValue, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j1
-            ON d.StateOfIssueStateAbbreviationDescriptorId = j1.DescriptorId 
+        INNER JOIN edfi.Descriptor j0
+            ON d.StateOfIssueStateAbbreviationDescriptorId = j0.DescriptorId
 END
 GO
 
@@ -1486,10 +1486,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[DisciplineAction](OldDisciplineActionIdentifier, OldDisciplineDate, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.DisciplineActionIdentifier, d.DisciplineDate, d.StudentUSI, j2.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.DisciplineActionIdentifier, d.DisciplineDate, d.StudentUSI, j0.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Student j2
-            ON d.StudentUSI = j2.StudentUSI 
+        INNER JOIN edfi.Student j0
+            ON d.StudentUSI = j0.StudentUSI
 END
 GO
 
@@ -1887,12 +1887,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[GeneralStudentProgramAssociation](OldBeginDate, OldEducationOrganizationId, OldProgramEducationOrganizationId, OldProgramName, OldProgramTypeDescriptorId, OldProgramTypeDescriptorNamespace, OldProgramTypeDescriptorCodeValue, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.BeginDate, d.EducationOrganizationId, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, j4.Namespace, j4.CodeValue, d.StudentUSI, j5.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.BeginDate, d.EducationOrganizationId, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, j0.Namespace, j0.CodeValue, d.StudentUSI, j1.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j4
-            ON d.ProgramTypeDescriptorId = j4.DescriptorId 
-        INNER JOIN edfi.Student j5
-            ON d.StudentUSI = j5.StudentUSI 
+        INNER JOIN edfi.Descriptor j0
+            ON d.ProgramTypeDescriptorId = j0.DescriptorId
+        INNER JOIN edfi.Student j1
+            ON d.StudentUSI = j1.StudentUSI
 END
 GO
 
@@ -1910,14 +1910,14 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[Grade](OldBeginDate, OldGradeTypeDescriptorId, OldGradeTypeDescriptorNamespace, OldGradeTypeDescriptorCodeValue, OldGradingPeriodDescriptorId, OldGradingPeriodDescriptorNamespace, OldGradingPeriodDescriptorCodeValue, OldGradingPeriodSchoolYear, OldGradingPeriodSequence, OldLocalCourseCode, OldSchoolId, OldSchoolYear, OldSectionIdentifier, OldSessionName, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.BeginDate, d.GradeTypeDescriptorId, j1.Namespace, j1.CodeValue, d.GradingPeriodDescriptorId, j2.Namespace, j2.CodeValue, d.GradingPeriodSchoolYear, d.GradingPeriodSequence, d.LocalCourseCode, d.SchoolId, d.SchoolYear, d.SectionIdentifier, d.SessionName, d.StudentUSI, j10.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.BeginDate, d.GradeTypeDescriptorId, j0.Namespace, j0.CodeValue, d.GradingPeriodDescriptorId, j1.Namespace, j1.CodeValue, d.GradingPeriodSchoolYear, d.GradingPeriodSequence, d.LocalCourseCode, d.SchoolId, d.SchoolYear, d.SectionIdentifier, d.SessionName, d.StudentUSI, j2.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
+        INNER JOIN edfi.Descriptor j0
+            ON d.GradeTypeDescriptorId = j0.DescriptorId
         INNER JOIN edfi.Descriptor j1
-            ON d.GradeTypeDescriptorId = j1.DescriptorId 
-        INNER JOIN edfi.Descriptor j2
-            ON d.GradingPeriodDescriptorId = j2.DescriptorId 
-        INNER JOIN edfi.Student j10
-            ON d.StudentUSI = j10.StudentUSI 
+            ON d.GradingPeriodDescriptorId = j1.DescriptorId
+        INNER JOIN edfi.Student j2
+            ON d.StudentUSI = j2.StudentUSI
 END
 GO
 
@@ -2070,10 +2070,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[GraduationPlan](OldEducationOrganizationId, OldGraduationPlanTypeDescriptorId, OldGraduationPlanTypeDescriptorNamespace, OldGraduationPlanTypeDescriptorCodeValue, OldGraduationSchoolYear, Id, Discriminator, ChangeVersion)
-    SELECT  d.EducationOrganizationId, d.GraduationPlanTypeDescriptorId, j1.Namespace, j1.CodeValue, d.GraduationSchoolYear, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.EducationOrganizationId, d.GraduationPlanTypeDescriptorId, j0.Namespace, j0.CodeValue, d.GraduationSchoolYear, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j1
-            ON d.GraduationPlanTypeDescriptorId = j1.DescriptorId 
+        INNER JOIN edfi.Descriptor j0
+            ON d.GraduationPlanTypeDescriptorId = j0.DescriptorId
 END
 GO
 
@@ -3060,10 +3060,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[Payroll](OldAccountIdentifier, OldAsOfDate, OldEducationOrganizationId, OldFiscalYear, OldStaffUSI, OldStaffUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.AccountIdentifier, d.AsOfDate, d.EducationOrganizationId, d.FiscalYear, d.StaffUSI, j4.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.AccountIdentifier, d.AsOfDate, d.EducationOrganizationId, d.FiscalYear, d.StaffUSI, j0.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Staff j4
-            ON d.StaffUSI = j4.StaffUSI 
+        INNER JOIN edfi.Staff j0
+            ON d.StaffUSI = j0.StaffUSI
 END
 GO
 
@@ -3119,10 +3119,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[Person](OldPersonId, OldSourceSystemDescriptorId, OldSourceSystemDescriptorNamespace, OldSourceSystemDescriptorCodeValue, Id, Discriminator, ChangeVersion)
-    SELECT  d.PersonId, d.SourceSystemDescriptorId, j1.Namespace, j1.CodeValue, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.PersonId, d.SourceSystemDescriptorId, j0.Namespace, j0.CodeValue, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j1
-            ON d.SourceSystemDescriptorId = j1.DescriptorId 
+        INNER JOIN edfi.Descriptor j0
+            ON d.SourceSystemDescriptorId = j0.DescriptorId
 END
 GO
 
@@ -3216,12 +3216,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[PostSecondaryEvent](OldEventDate, OldPostSecondaryEventCategoryDescriptorId, OldPostSecondaryEventCategoryDescriptorNamespace, OldPostSecondaryEventCategoryDescriptorCodeValue, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.EventDate, d.PostSecondaryEventCategoryDescriptorId, j1.Namespace, j1.CodeValue, d.StudentUSI, j2.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.EventDate, d.PostSecondaryEventCategoryDescriptorId, j0.Namespace, j0.CodeValue, d.StudentUSI, j1.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j1
-            ON d.PostSecondaryEventCategoryDescriptorId = j1.DescriptorId 
-        INNER JOIN edfi.Student j2
-            ON d.StudentUSI = j2.StudentUSI 
+        INNER JOIN edfi.Descriptor j0
+            ON d.PostSecondaryEventCategoryDescriptorId = j0.DescriptorId
+        INNER JOIN edfi.Student j1
+            ON d.StudentUSI = j1.StudentUSI
 END
 GO
 
@@ -3353,10 +3353,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[Program](OldEducationOrganizationId, OldProgramName, OldProgramTypeDescriptorId, OldProgramTypeDescriptorNamespace, OldProgramTypeDescriptorCodeValue, Id, Discriminator, ChangeVersion)
-    SELECT  d.EducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, j2.Namespace, j2.CodeValue, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.EducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, j0.Namespace, j0.CodeValue, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j2
-            ON d.ProgramTypeDescriptorId = j2.DescriptorId 
+        INNER JOIN edfi.Descriptor j0
+            ON d.ProgramTypeDescriptorId = j0.DescriptorId
 END
 GO
 
@@ -3697,12 +3697,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[ReportCard](OldEducationOrganizationId, OldGradingPeriodDescriptorId, OldGradingPeriodDescriptorNamespace, OldGradingPeriodDescriptorCodeValue, OldGradingPeriodSchoolId, OldGradingPeriodSchoolYear, OldGradingPeriodSequence, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.EducationOrganizationId, d.GradingPeriodDescriptorId, j1.Namespace, j1.CodeValue, d.GradingPeriodSchoolId, d.GradingPeriodSchoolYear, d.GradingPeriodSequence, d.StudentUSI, j5.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.EducationOrganizationId, d.GradingPeriodDescriptorId, j0.Namespace, j0.CodeValue, d.GradingPeriodSchoolId, d.GradingPeriodSchoolYear, d.GradingPeriodSequence, d.StudentUSI, j1.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j1
-            ON d.GradingPeriodDescriptorId = j1.DescriptorId 
-        INNER JOIN edfi.Student j5
-            ON d.StudentUSI = j5.StudentUSI 
+        INNER JOIN edfi.Descriptor j0
+            ON d.GradingPeriodDescriptorId = j0.DescriptorId
+        INNER JOIN edfi.Student j1
+            ON d.StudentUSI = j1.StudentUSI
 END
 GO
 
@@ -3796,10 +3796,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[RestraintEvent](OldRestraintEventIdentifier, OldSchoolId, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.RestraintEventIdentifier, d.SchoolId, d.StudentUSI, j2.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.RestraintEventIdentifier, d.SchoolId, d.StudentUSI, j0.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Student j2
-            ON d.StudentUSI = j2.StudentUSI 
+        INNER JOIN edfi.Student j0
+            ON d.StudentUSI = j0.StudentUSI
 END
 GO
 
@@ -4197,12 +4197,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StaffAbsenceEvent](OldAbsenceEventCategoryDescriptorId, OldAbsenceEventCategoryDescriptorNamespace, OldAbsenceEventCategoryDescriptorCodeValue, OldEventDate, OldStaffUSI, OldStaffUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.AbsenceEventCategoryDescriptorId, j0.Namespace, j0.CodeValue, d.EventDate, d.StaffUSI, j2.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.AbsenceEventCategoryDescriptorId, j0.Namespace, j0.CodeValue, d.EventDate, d.StaffUSI, j1.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
         INNER JOIN edfi.Descriptor j0
             ON d.AbsenceEventCategoryDescriptorId = j0.DescriptorId 
-        INNER JOIN edfi.Staff j2
-            ON d.StaffUSI = j2.StaffUSI 
+        INNER JOIN edfi.Staff j1
+            ON d.StaffUSI = j1.StaffUSI
 END
 GO
 
@@ -4239,10 +4239,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StaffCohortAssociation](OldBeginDate, OldCohortIdentifier, OldEducationOrganizationId, OldStaffUSI, OldStaffUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.BeginDate, d.CohortIdentifier, d.EducationOrganizationId, d.StaffUSI, j3.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.BeginDate, d.CohortIdentifier, d.EducationOrganizationId, d.StaffUSI, j0.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Staff j3
-            ON d.StaffUSI = j3.StaffUSI 
+        INNER JOIN edfi.Staff j0
+            ON d.StaffUSI = j0.StaffUSI
 END
 GO
 
@@ -4260,10 +4260,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StaffDisciplineIncidentAssociation](OldIncidentIdentifier, OldSchoolId, OldStaffUSI, OldStaffUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.IncidentIdentifier, d.SchoolId, d.StaffUSI, j2.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.IncidentIdentifier, d.SchoolId, d.StaffUSI, j0.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Staff j2
-            ON d.StaffUSI = j2.StaffUSI 
+        INNER JOIN edfi.Staff j0
+            ON d.StaffUSI = j0.StaffUSI
 END
 GO
 
@@ -4281,12 +4281,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StaffEducationOrganizationAssignmentAssociation](OldBeginDate, OldEducationOrganizationId, OldStaffClassificationDescriptorId, OldStaffClassificationDescriptorNamespace, OldStaffClassificationDescriptorCodeValue, OldStaffUSI, OldStaffUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.BeginDate, d.EducationOrganizationId, d.StaffClassificationDescriptorId, j2.Namespace, j2.CodeValue, d.StaffUSI, j3.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.BeginDate, d.EducationOrganizationId, d.StaffClassificationDescriptorId, j0.Namespace, j0.CodeValue, d.StaffUSI, j1.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j2
-            ON d.StaffClassificationDescriptorId = j2.DescriptorId 
-        INNER JOIN edfi.Staff j3
-            ON d.StaffUSI = j3.StaffUSI 
+        INNER JOIN edfi.Descriptor j0
+            ON d.StaffClassificationDescriptorId = j0.DescriptorId
+        INNER JOIN edfi.Staff j1
+            ON d.StaffUSI = j1.StaffUSI
 END
 GO
 
@@ -4304,10 +4304,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StaffEducationOrganizationContactAssociation](OldContactTitle, OldEducationOrganizationId, OldStaffUSI, OldStaffUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.ContactTitle, d.EducationOrganizationId, d.StaffUSI, j2.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.ContactTitle, d.EducationOrganizationId, d.StaffUSI, j0.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Staff j2
-            ON d.StaffUSI = j2.StaffUSI 
+        INNER JOIN edfi.Staff j0
+            ON d.StaffUSI = j0.StaffUSI
 END
 GO
 
@@ -4325,12 +4325,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StaffEducationOrganizationEmploymentAssociation](OldEducationOrganizationId, OldEmploymentStatusDescriptorId, OldEmploymentStatusDescriptorNamespace, OldEmploymentStatusDescriptorCodeValue, OldHireDate, OldStaffUSI, OldStaffUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.EducationOrganizationId, d.EmploymentStatusDescriptorId, j1.Namespace, j1.CodeValue, d.HireDate, d.StaffUSI, j3.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.EducationOrganizationId, d.EmploymentStatusDescriptorId, j0.Namespace, j0.CodeValue, d.HireDate, d.StaffUSI, j1.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j1
-            ON d.EmploymentStatusDescriptorId = j1.DescriptorId 
-        INNER JOIN edfi.Staff j3
-            ON d.StaffUSI = j3.StaffUSI 
+        INNER JOIN edfi.Descriptor j0
+            ON d.EmploymentStatusDescriptorId = j0.DescriptorId
+        INNER JOIN edfi.Staff j1
+            ON d.StaffUSI = j1.StaffUSI
 END
 GO
 
@@ -4367,12 +4367,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StaffLeave](OldBeginDate, OldStaffLeaveEventCategoryDescriptorId, OldStaffLeaveEventCategoryDescriptorNamespace, OldStaffLeaveEventCategoryDescriptorCodeValue, OldStaffUSI, OldStaffUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.BeginDate, d.StaffLeaveEventCategoryDescriptorId, j1.Namespace, j1.CodeValue, d.StaffUSI, j2.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.BeginDate, d.StaffLeaveEventCategoryDescriptorId, j0.Namespace, j0.CodeValue, d.StaffUSI, j1.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j1
-            ON d.StaffLeaveEventCategoryDescriptorId = j1.DescriptorId 
-        INNER JOIN edfi.Staff j2
-            ON d.StaffUSI = j2.StaffUSI 
+        INNER JOIN edfi.Descriptor j0
+            ON d.StaffLeaveEventCategoryDescriptorId = j0.DescriptorId
+        INNER JOIN edfi.Staff j1
+            ON d.StaffUSI = j1.StaffUSI
 END
 GO
 
@@ -4409,12 +4409,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StaffProgramAssociation](OldBeginDate, OldProgramEducationOrganizationId, OldProgramName, OldProgramTypeDescriptorId, OldProgramTypeDescriptorNamespace, OldProgramTypeDescriptorCodeValue, OldStaffUSI, OldStaffUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.BeginDate, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, j3.Namespace, j3.CodeValue, d.StaffUSI, j4.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.BeginDate, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, j0.Namespace, j0.CodeValue, d.StaffUSI, j1.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j3
-            ON d.ProgramTypeDescriptorId = j3.DescriptorId 
-        INNER JOIN edfi.Staff j4
-            ON d.StaffUSI = j4.StaffUSI 
+        INNER JOIN edfi.Descriptor j0
+            ON d.ProgramTypeDescriptorId = j0.DescriptorId
+        INNER JOIN edfi.Staff j1
+            ON d.StaffUSI = j1.StaffUSI
 END
 GO
 
@@ -4432,12 +4432,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StaffSchoolAssociation](OldProgramAssignmentDescriptorId, OldProgramAssignmentDescriptorNamespace, OldProgramAssignmentDescriptorCodeValue, OldSchoolId, OldStaffUSI, OldStaffUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.ProgramAssignmentDescriptorId, j0.Namespace, j0.CodeValue, d.SchoolId, d.StaffUSI, j2.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.ProgramAssignmentDescriptorId, j0.Namespace, j0.CodeValue, d.SchoolId, d.StaffUSI, j1.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
         INNER JOIN edfi.Descriptor j0
             ON d.ProgramAssignmentDescriptorId = j0.DescriptorId 
-        INNER JOIN edfi.Staff j2
-            ON d.StaffUSI = j2.StaffUSI 
+        INNER JOIN edfi.Staff j1
+            ON d.StaffUSI = j1.StaffUSI
 END
 GO
 
@@ -4455,10 +4455,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StaffSectionAssociation](OldLocalCourseCode, OldSchoolId, OldSchoolYear, OldSectionIdentifier, OldSessionName, OldStaffUSI, OldStaffUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.LocalCourseCode, d.SchoolId, d.SchoolYear, d.SectionIdentifier, d.SessionName, d.StaffUSI, j5.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.LocalCourseCode, d.SchoolId, d.SchoolYear, d.SectionIdentifier, d.SessionName, d.StaffUSI, j0.StaffUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Staff j5
-            ON d.StaffUSI = j5.StaffUSI 
+        INNER JOIN edfi.Staff j0
+            ON d.StaffUSI = j0.StaffUSI
 END
 GO
 
@@ -4514,12 +4514,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentAcademicRecord](OldEducationOrganizationId, OldSchoolYear, OldStudentUSI, OldStudentUniqueId, OldTermDescriptorId, OldTermDescriptorNamespace, OldTermDescriptorCodeValue, Id, Discriminator, ChangeVersion)
-    SELECT  d.EducationOrganizationId, d.SchoolYear, d.StudentUSI, j2.StudentUniqueId, d.TermDescriptorId, j3.Namespace, j3.CodeValue, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.EducationOrganizationId, d.SchoolYear, d.StudentUSI, j0.StudentUniqueId, d.TermDescriptorId, j1.Namespace, j1.CodeValue, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Student j2
-            ON d.StudentUSI = j2.StudentUSI 
-        INNER JOIN edfi.Descriptor j3
-            ON d.TermDescriptorId = j3.DescriptorId 
+        INNER JOIN edfi.Student j0
+            ON d.StudentUSI = j0.StudentUSI
+        INNER JOIN edfi.Descriptor j1
+            ON d.TermDescriptorId = j1.DescriptorId
 END
 GO
 
@@ -4537,10 +4537,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentAssessment](OldAssessmentIdentifier, OldNamespace, OldStudentAssessmentIdentifier, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.AssessmentIdentifier, d.Namespace, d.StudentAssessmentIdentifier, d.StudentUSI, j3.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.AssessmentIdentifier, d.Namespace, d.StudentAssessmentIdentifier, d.StudentUSI, j0.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Student j3
-            ON d.StudentUSI = j3.StudentUSI 
+        INNER JOIN edfi.Student j0
+            ON d.StudentUSI = j0.StudentUSI
 END
 GO
 
@@ -4577,10 +4577,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentCohortAssociation](OldBeginDate, OldCohortIdentifier, OldEducationOrganizationId, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.BeginDate, d.CohortIdentifier, d.EducationOrganizationId, d.StudentUSI, j3.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.BeginDate, d.CohortIdentifier, d.EducationOrganizationId, d.StudentUSI, j0.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Student j3
-            ON d.StudentUSI = j3.StudentUSI 
+        INNER JOIN edfi.Student j0
+            ON d.StudentUSI = j0.StudentUSI
 END
 GO
 
@@ -4598,14 +4598,14 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentCompetencyObjective](OldGradingPeriodDescriptorId, OldGradingPeriodDescriptorNamespace, OldGradingPeriodDescriptorCodeValue, OldGradingPeriodSchoolId, OldGradingPeriodSchoolYear, OldGradingPeriodSequence, OldObjective, OldObjectiveEducationOrganizationId, OldObjectiveGradeLevelDescriptorId, OldObjectiveGradeLevelDescriptorNamespace, OldObjectiveGradeLevelDescriptorCodeValue, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.GradingPeriodDescriptorId, j0.Namespace, j0.CodeValue, d.GradingPeriodSchoolId, d.GradingPeriodSchoolYear, d.GradingPeriodSequence, d.Objective, d.ObjectiveEducationOrganizationId, d.ObjectiveGradeLevelDescriptorId, j6.Namespace, j6.CodeValue, d.StudentUSI, j7.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.GradingPeriodDescriptorId, j0.Namespace, j0.CodeValue, d.GradingPeriodSchoolId, d.GradingPeriodSchoolYear, d.GradingPeriodSequence, d.Objective, d.ObjectiveEducationOrganizationId, d.ObjectiveGradeLevelDescriptorId, j1.Namespace, j1.CodeValue, d.StudentUSI, j2.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
         INNER JOIN edfi.Descriptor j0
             ON d.GradingPeriodDescriptorId = j0.DescriptorId 
-        INNER JOIN edfi.Descriptor j6
-            ON d.ObjectiveGradeLevelDescriptorId = j6.DescriptorId 
-        INNER JOIN edfi.Student j7
-            ON d.StudentUSI = j7.StudentUSI 
+        INNER JOIN edfi.Descriptor j1
+            ON d.ObjectiveGradeLevelDescriptorId = j1.DescriptorId
+        INNER JOIN edfi.Student j2
+            ON d.StudentUSI = j2.StudentUSI
 END
 GO
 
@@ -4623,10 +4623,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentDisciplineIncidentAssociation](OldIncidentIdentifier, OldSchoolId, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.IncidentIdentifier, d.SchoolId, d.StudentUSI, j2.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.IncidentIdentifier, d.SchoolId, d.StudentUSI, j0.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Student j2
-            ON d.StudentUSI = j2.StudentUSI 
+        INNER JOIN edfi.Student j0
+            ON d.StudentUSI = j0.StudentUSI
 END
 GO
 
@@ -4644,12 +4644,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentDisciplineIncidentBehaviorAssociation](OldBehaviorDescriptorId, OldBehaviorDescriptorNamespace, OldBehaviorDescriptorCodeValue, OldIncidentIdentifier, OldSchoolId, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.BehaviorDescriptorId, j0.Namespace, j0.CodeValue, d.IncidentIdentifier, d.SchoolId, d.StudentUSI, j3.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.BehaviorDescriptorId, j0.Namespace, j0.CodeValue, d.IncidentIdentifier, d.SchoolId, d.StudentUSI, j1.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
         INNER JOIN edfi.Descriptor j0
             ON d.BehaviorDescriptorId = j0.DescriptorId 
-        INNER JOIN edfi.Student j3
-            ON d.StudentUSI = j3.StudentUSI 
+        INNER JOIN edfi.Student j1
+            ON d.StudentUSI = j1.StudentUSI
 END
 GO
 
@@ -4667,10 +4667,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentDisciplineIncidentNonOffenderAssociation](OldIncidentIdentifier, OldSchoolId, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.IncidentIdentifier, d.SchoolId, d.StudentUSI, j2.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.IncidentIdentifier, d.SchoolId, d.StudentUSI, j0.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Student j2
-            ON d.StudentUSI = j2.StudentUSI 
+        INNER JOIN edfi.Student j0
+            ON d.StudentUSI = j0.StudentUSI
 END
 GO
 
@@ -4688,10 +4688,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentEducationOrganizationAssociation](OldEducationOrganizationId, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.EducationOrganizationId, d.StudentUSI, j1.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.EducationOrganizationId, d.StudentUSI, j0.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Student j1
-            ON d.StudentUSI = j1.StudentUSI 
+        INNER JOIN edfi.Student j0
+            ON d.StudentUSI = j0.StudentUSI
 END
 GO
 
@@ -4709,12 +4709,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentEducationOrganizationResponsibilityAssociation](OldBeginDate, OldEducationOrganizationId, OldResponsibilityDescriptorId, OldResponsibilityDescriptorNamespace, OldResponsibilityDescriptorCodeValue, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.BeginDate, d.EducationOrganizationId, d.ResponsibilityDescriptorId, j2.Namespace, j2.CodeValue, d.StudentUSI, j3.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.BeginDate, d.EducationOrganizationId, d.ResponsibilityDescriptorId, j0.Namespace, j0.CodeValue, d.StudentUSI, j1.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j2
-            ON d.ResponsibilityDescriptorId = j2.DescriptorId 
-        INNER JOIN edfi.Student j3
-            ON d.StudentUSI = j3.StudentUSI 
+        INNER JOIN edfi.Descriptor j0
+            ON d.ResponsibilityDescriptorId = j0.DescriptorId
+        INNER JOIN edfi.Student j1
+            ON d.StudentUSI = j1.StudentUSI
 END
 GO
 
@@ -4732,10 +4732,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentGradebookEntry](OldBeginDate, OldDateAssigned, OldGradebookEntryTitle, OldLocalCourseCode, OldSchoolId, OldSchoolYear, OldSectionIdentifier, OldSessionName, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.BeginDate, d.DateAssigned, d.GradebookEntryTitle, d.LocalCourseCode, d.SchoolId, d.SchoolYear, d.SectionIdentifier, d.SessionName, d.StudentUSI, j8.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.BeginDate, d.DateAssigned, d.GradebookEntryTitle, d.LocalCourseCode, d.SchoolId, d.SchoolYear, d.SectionIdentifier, d.SessionName, d.StudentUSI, j0.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Student j8
-            ON d.StudentUSI = j8.StudentUSI 
+        INNER JOIN edfi.Student j0
+            ON d.StudentUSI = j0.StudentUSI
 END
 GO
 
@@ -4772,10 +4772,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentInterventionAssociation](OldEducationOrganizationId, OldInterventionIdentificationCode, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.EducationOrganizationId, d.InterventionIdentificationCode, d.StudentUSI, j2.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.EducationOrganizationId, d.InterventionIdentificationCode, d.StudentUSI, j0.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Student j2
-            ON d.StudentUSI = j2.StudentUSI 
+        INNER JOIN edfi.Student j0
+            ON d.StudentUSI = j0.StudentUSI
 END
 GO
 
@@ -4793,12 +4793,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentInterventionAttendanceEvent](OldAttendanceEventCategoryDescriptorId, OldAttendanceEventCategoryDescriptorNamespace, OldAttendanceEventCategoryDescriptorCodeValue, OldEducationOrganizationId, OldEventDate, OldInterventionIdentificationCode, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.AttendanceEventCategoryDescriptorId, j0.Namespace, j0.CodeValue, d.EducationOrganizationId, d.EventDate, d.InterventionIdentificationCode, d.StudentUSI, j4.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.AttendanceEventCategoryDescriptorId, j0.Namespace, j0.CodeValue, d.EducationOrganizationId, d.EventDate, d.InterventionIdentificationCode, d.StudentUSI, j1.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
         INNER JOIN edfi.Descriptor j0
             ON d.AttendanceEventCategoryDescriptorId = j0.DescriptorId 
-        INNER JOIN edfi.Student j4
-            ON d.StudentUSI = j4.StudentUSI 
+        INNER JOIN edfi.Student j1
+            ON d.StudentUSI = j1.StudentUSI
 END
 GO
 
@@ -4816,12 +4816,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentLearningObjective](OldGradingPeriodDescriptorId, OldGradingPeriodDescriptorNamespace, OldGradingPeriodDescriptorCodeValue, OldGradingPeriodSchoolId, OldGradingPeriodSchoolYear, OldGradingPeriodSequence, OldLearningObjectiveId, OldNamespace, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.GradingPeriodDescriptorId, j0.Namespace, j0.CodeValue, d.GradingPeriodSchoolId, d.GradingPeriodSchoolYear, d.GradingPeriodSequence, d.LearningObjectiveId, d.Namespace, d.StudentUSI, j6.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.GradingPeriodDescriptorId, j0.Namespace, j0.CodeValue, d.GradingPeriodSchoolId, d.GradingPeriodSchoolYear, d.GradingPeriodSequence, d.LearningObjectiveId, d.Namespace, d.StudentUSI, j1.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
         INNER JOIN edfi.Descriptor j0
             ON d.GradingPeriodDescriptorId = j0.DescriptorId 
-        INNER JOIN edfi.Student j6
-            ON d.StudentUSI = j6.StudentUSI 
+        INNER JOIN edfi.Student j1
+            ON d.StudentUSI = j1.StudentUSI
 END
 GO
 
@@ -4881,14 +4881,14 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentProgramAttendanceEvent](OldAttendanceEventCategoryDescriptorId, OldAttendanceEventCategoryDescriptorNamespace, OldAttendanceEventCategoryDescriptorCodeValue, OldEducationOrganizationId, OldEventDate, OldProgramEducationOrganizationId, OldProgramName, OldProgramTypeDescriptorId, OldProgramTypeDescriptorNamespace, OldProgramTypeDescriptorCodeValue, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.AttendanceEventCategoryDescriptorId, j0.Namespace, j0.CodeValue, d.EducationOrganizationId, d.EventDate, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, j5.Namespace, j5.CodeValue, d.StudentUSI, j6.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.AttendanceEventCategoryDescriptorId, j0.Namespace, j0.CodeValue, d.EducationOrganizationId, d.EventDate, d.ProgramEducationOrganizationId, d.ProgramName, d.ProgramTypeDescriptorId, j1.Namespace, j1.CodeValue, d.StudentUSI, j2.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
         INNER JOIN edfi.Descriptor j0
             ON d.AttendanceEventCategoryDescriptorId = j0.DescriptorId 
-        INNER JOIN edfi.Descriptor j5
-            ON d.ProgramTypeDescriptorId = j5.DescriptorId 
-        INNER JOIN edfi.Student j6
-            ON d.StudentUSI = j6.StudentUSI 
+        INNER JOIN edfi.Descriptor j1
+            ON d.ProgramTypeDescriptorId = j1.DescriptorId
+        INNER JOIN edfi.Student j2
+            ON d.StudentUSI = j2.StudentUSI
 END
 GO
 
@@ -4906,10 +4906,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentSchoolAssociation](OldEntryDate, OldSchoolId, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.EntryDate, d.SchoolId, d.StudentUSI, j2.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.EntryDate, d.SchoolId, d.StudentUSI, j0.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Student j2
-            ON d.StudentUSI = j2.StudentUSI 
+        INNER JOIN edfi.Student j0
+            ON d.StudentUSI = j0.StudentUSI
 END
 GO
 
@@ -4927,12 +4927,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentSchoolAttendanceEvent](OldAttendanceEventCategoryDescriptorId, OldAttendanceEventCategoryDescriptorNamespace, OldAttendanceEventCategoryDescriptorCodeValue, OldEventDate, OldSchoolId, OldSchoolYear, OldSessionName, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.AttendanceEventCategoryDescriptorId, j0.Namespace, j0.CodeValue, d.EventDate, d.SchoolId, d.SchoolYear, d.SessionName, d.StudentUSI, j5.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.AttendanceEventCategoryDescriptorId, j0.Namespace, j0.CodeValue, d.EventDate, d.SchoolId, d.SchoolYear, d.SessionName, d.StudentUSI, j1.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
         INNER JOIN edfi.Descriptor j0
             ON d.AttendanceEventCategoryDescriptorId = j0.DescriptorId 
-        INNER JOIN edfi.Student j5
-            ON d.StudentUSI = j5.StudentUSI 
+        INNER JOIN edfi.Student j1
+            ON d.StudentUSI = j1.StudentUSI
 END
 GO
 
@@ -4950,10 +4950,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentSectionAssociation](OldBeginDate, OldLocalCourseCode, OldSchoolId, OldSchoolYear, OldSectionIdentifier, OldSessionName, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.BeginDate, d.LocalCourseCode, d.SchoolId, d.SchoolYear, d.SectionIdentifier, d.SessionName, d.StudentUSI, j6.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.BeginDate, d.LocalCourseCode, d.SchoolId, d.SchoolYear, d.SectionIdentifier, d.SessionName, d.StudentUSI, j0.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Student j6
-            ON d.StudentUSI = j6.StudentUSI 
+        INNER JOIN edfi.Student j0
+            ON d.StudentUSI = j0.StudentUSI
 END
 GO
 
@@ -4971,12 +4971,12 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[StudentSectionAttendanceEvent](OldAttendanceEventCategoryDescriptorId, OldAttendanceEventCategoryDescriptorNamespace, OldAttendanceEventCategoryDescriptorCodeValue, OldEventDate, OldLocalCourseCode, OldSchoolId, OldSchoolYear, OldSectionIdentifier, OldSessionName, OldStudentUSI, OldStudentUniqueId, Id, Discriminator, ChangeVersion)
-    SELECT  d.AttendanceEventCategoryDescriptorId, j0.Namespace, j0.CodeValue, d.EventDate, d.LocalCourseCode, d.SchoolId, d.SchoolYear, d.SectionIdentifier, d.SessionName, d.StudentUSI, j7.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.AttendanceEventCategoryDescriptorId, j0.Namespace, j0.CodeValue, d.EventDate, d.LocalCourseCode, d.SchoolId, d.SchoolYear, d.SectionIdentifier, d.SessionName, d.StudentUSI, j1.StudentUniqueId, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
         INNER JOIN edfi.Descriptor j0
             ON d.AttendanceEventCategoryDescriptorId = j0.DescriptorId 
-        INNER JOIN edfi.Student j7
-            ON d.StudentUSI = j7.StudentUSI 
+        INNER JOIN edfi.Student j1
+            ON d.StudentUSI = j1.StudentUSI
 END
 GO
 
@@ -5070,10 +5070,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[SurveyProgramAssociation](OldEducationOrganizationId, OldNamespace, OldProgramName, OldProgramTypeDescriptorId, OldProgramTypeDescriptorNamespace, OldProgramTypeDescriptorCodeValue, OldSurveyIdentifier, Id, Discriminator, ChangeVersion)
-    SELECT  d.EducationOrganizationId, d.Namespace, d.ProgramName, d.ProgramTypeDescriptorId, j3.Namespace, j3.CodeValue, d.SurveyIdentifier, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.EducationOrganizationId, d.Namespace, d.ProgramName, d.ProgramTypeDescriptorId, j0.Namespace, j0.CodeValue, d.SurveyIdentifier, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Descriptor j3
-            ON d.ProgramTypeDescriptorId = j3.DescriptorId 
+        INNER JOIN edfi.Descriptor j0
+            ON d.ProgramTypeDescriptorId = j0.DescriptorId
 END
 GO
 
@@ -5167,10 +5167,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[SurveyResponseStaffTargetAssociation](OldNamespace, OldStaffUSI, OldStaffUniqueId, OldSurveyIdentifier, OldSurveyResponseIdentifier, Id, Discriminator, ChangeVersion)
-    SELECT  d.Namespace, d.StaffUSI, j1.StaffUniqueId, d.SurveyIdentifier, d.SurveyResponseIdentifier, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.Namespace, d.StaffUSI, j0.StaffUniqueId, d.SurveyIdentifier, d.SurveyResponseIdentifier, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Staff j1
-            ON d.StaffUSI = j1.StaffUSI 
+        INNER JOIN edfi.Staff j0
+            ON d.StaffUSI = j0.StaffUSI
 END
 GO
 
@@ -5264,10 +5264,10 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [tracked_changes_edfi].[SurveySectionResponseStaffTargetAssociation](OldNamespace, OldStaffUSI, OldStaffUniqueId, OldSurveyIdentifier, OldSurveyResponseIdentifier, OldSurveySectionTitle, Id, Discriminator, ChangeVersion)
-    SELECT  d.Namespace, d.StaffUSI, j1.StaffUniqueId, d.SurveyIdentifier, d.SurveyResponseIdentifier, d.SurveySectionTitle, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    SELECT d.Namespace, d.StaffUSI, j0.StaffUniqueId, d.SurveyIdentifier, d.SurveyResponseIdentifier, d.SurveySectionTitle, d.Id, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
-        INNER JOIN edfi.Staff j1
-            ON d.StaffUSI = j1.StaffUSI 
+        INNER JOIN edfi.Staff j0
+            ON d.StaffUSI = j0.StaffUSI
 END
 GO
 

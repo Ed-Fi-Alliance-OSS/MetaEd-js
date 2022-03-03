@@ -15,6 +15,7 @@ export interface DeleteTrackingTrigger {
   isStyle5dot4: boolean;
   changeDataColumns: ChangeDataColumn[];
   isIgnored: boolean;
+  omitDiscriminator: boolean;
 }
 
 export function newDeleteTrackingTrigger(): DeleteTrackingTrigger {
@@ -32,5 +33,6 @@ export function newDeleteTrackingTrigger(): DeleteTrackingTrigger {
     isStyle5dot4: false,
     changeDataColumns: [],
     isIgnored: false,
+    omitDiscriminator: false,
   };
 }
