@@ -16,9 +16,6 @@ jobs:
     runs-on: windows-2019
     
     steps:
-      - name: Checkout code   
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
-
       - name: Lint and Test
         uses: ./.github/actions/lint-and-test-metaed
       

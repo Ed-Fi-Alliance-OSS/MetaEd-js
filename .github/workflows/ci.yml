@@ -7,9 +7,14 @@ jobs:
     name: Lint and Test
     # Windows is required for some of the unit tests to run properly
     runs-on: windows-2019
-    steps:
-      - name: Checkout code   
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
-        
+    steps:        
       - name: Lint and Test
         uses: ./.github/actions/lint-and-test-metaed
+
+      - name: Test Report
+        uses: dorny/test-reporter@0d00bb14cb0cc2c9b8985df6e81dd333188224e1 #v1.5.0
+        if: success() || failure()
+        with:
+          name: Test Reporting
+          path: "*.xml"
+          reporter: jest-junit 
