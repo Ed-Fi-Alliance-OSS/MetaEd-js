@@ -8,4 +8,4 @@ jobs:
     # Windows is required for some of the unit tests to run properly
     runs-on: windows-2019
     steps:
-      - uses: ./lint-test-metaed
+      - uses: ./.github/actions/lint-test-metaed

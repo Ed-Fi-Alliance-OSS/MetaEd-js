@@ -16,7 +16,7 @@ jobs:
     runs-on: windows-2019
     
     steps:
-      - uses: ./lint-test-metaed
+      - uses: ./.github/actions/lint-test-metaed
       
       - name: Import GPG key
         id: import-gpg
