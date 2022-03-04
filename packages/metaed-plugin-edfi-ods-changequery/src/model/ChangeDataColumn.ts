@@ -1,6 +1,7 @@
 /** An object supporting the 5.4+ implementation of change queries */
 export interface ChangeDataColumn {
   columnName: string;
+  columnDataType: string;
   isDescriptorId: boolean;
   isDescriptorNamespace: boolean;
   isDescriptorCodeValue: boolean;
@@ -14,6 +15,7 @@ export interface ChangeDataColumn {
 export function newChangeDataColumn() {
   return {
     columnName: '',
+    columnDataType: '',
     isDescriptorId: false,
     isDescriptorNamespace: false,
     isDescriptorCodeValue: false,

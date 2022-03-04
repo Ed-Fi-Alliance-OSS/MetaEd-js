@@ -1,4 +1,5 @@
 import { Column } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { ChangeDataColumn } from './ChangeDataColumn';
 
 export interface DeleteTrackingTable {
   schema: string;
@@ -7,6 +8,9 @@ export interface DeleteTrackingTable {
   primaryKeyName: string;
   primaryKeyColumns: Column[];
   isStyle5dot4: boolean;
+  isDescriptorTable: boolean;
+  isIgnored: boolean;
+  changeDataColumns: ChangeDataColumn[];
 }
 
 export function newDeleteTrackingTable(): DeleteTrackingTable {
@@ -17,5 +21,8 @@ export function newDeleteTrackingTable(): DeleteTrackingTable {
     primaryKeyName: '',
     primaryKeyColumns: [],
     isStyle5dot4: false,
+    isDescriptorTable: false,
+    isIgnored: false,
+    changeDataColumns: [],
   };
 }

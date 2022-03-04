@@ -1,7 +1,7 @@
 import { Column, newColumn, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { DeleteTrackingTable, getPrimaryKeys, newDeleteTrackingTable } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
-import { TARGET_DATABASE_PLUGIN_NAME } from './EnhancerHelper';
+import { changeDataColumnsFor, TARGET_DATABASE_PLUGIN_NAME } from './EnhancerHelper';
 
 function createDeleteTrackingTableModelV3dot3(table: Table): DeleteTrackingTable {
   const tableName = `${table.schema}_${table.data.edfiOdsSqlServer.tableName}_TrackedDelete`;
@@ -83,6 +83,9 @@ function createDeleteTrackingTableModelV5dot4(table: Table): DeleteTrackingTable
     columns: [...getPrimaryKeys(table, TARGET_DATABASE_PLUGIN_NAME)],
     primaryKeyColumns: [changeVersionColumn],
     isStyle5dot4: true,
+    isDescriptorTable: table.existenceReason.parentEntity?.type === 'descriptor',
+    isIgnored: table.existenceReason.isSubclassTable || table.existenceReason.isBaseDescriptor,
+    changeDataColumns: changeDataColumnsFor(table),
   };
 
   deleteTrackingTable.columns.push({

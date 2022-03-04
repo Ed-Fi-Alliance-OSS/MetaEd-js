@@ -1,6 +1,6 @@
 import { EntityProperty } from '@edfi/metaed-core';
 import { Column, ColumnNameComponent, newColumnNameComponent, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
-import { constructColumnNameFrom } from '@edfi/metaed-plugin-edfi-ods-sqlserver';
+import { ColumnDataTypes, constructColumnNameFrom } from '@edfi/metaed-plugin-edfi-ods-sqlserver';
 import { ChangeDataColumn, newChangeDataColumn } from '@edfi/metaed-plugin-edfi-ods-changequery';
 
 export const TARGET_DATABASE_PLUGIN_NAME = 'edfiOdsSqlServer';
@@ -31,6 +31,7 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
       changeDataColumns.push({
         ...newChangeDataColumn(),
         columnName: pkColumn.data.edfiOdsSqlServer.columnName,
+        columnDataType: pkColumn.data.edfiOdsSqlServer.dataType,
         isDescriptorId: true,
         tableAliasSuffix: String(tableAliasSuffix),
         isRegularSelectColumn: true,
@@ -44,6 +45,7 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
       changeDataColumns.push({
         ...newChangeDataColumn(),
         columnName: constructColumnNameFrom(namespaceColumnNaming),
+        columnDataType: ColumnDataTypes.string('255'),
         tableAliasSuffix: String(tableAliasSuffix),
         isDescriptorNamespace: true,
       });
@@ -55,6 +57,7 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
       changeDataColumns.push({
         ...newChangeDataColumn(),
         columnName: constructColumnNameFrom(codeValueColumnNaming),
+        columnDataType: ColumnDataTypes.string('50'),
         tableAliasSuffix: String(tableAliasSuffix),
         isDescriptorCodeValue: true,
       });
@@ -69,6 +72,7 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
       changeDataColumns.push({
         ...newChangeDataColumn(),
         columnName: pkColumn.data.edfiOdsSqlServer.columnName,
+        columnDataType: pkColumn.data.edfiOdsSqlServer.dataType,
         tableAliasSuffix: String(tableAliasSuffix),
         isUsi: !isUsiOnOwnTable,
         usiName: usiName(pkColumn),
@@ -82,6 +86,7 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
       changeDataColumns.push({
         ...newChangeDataColumn(),
         columnName: constructColumnNameFrom(uniqueIdColumnNaming),
+        columnDataType: ColumnDataTypes.string('32'),
         tableAliasSuffix: String(tableAliasSuffix),
         isUniqueId: !isUsiOnOwnTable,
         isRegularSelectColumn: isUsiOnOwnTable,
@@ -93,6 +98,7 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
       changeDataColumns.push({
         ...newChangeDataColumn(),
         columnName: pkColumn.data.edfiOdsSqlServer.columnName,
+        columnDataType: pkColumn.data.edfiOdsSqlServer.dataType,
         isRegularSelectColumn: true,
       });
     }

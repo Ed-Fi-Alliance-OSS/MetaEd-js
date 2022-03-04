@@ -122,6 +122,16 @@ export function performCreateTrackedDeleteSchemasGeneration(
   return results;
 }
 
+function originalTableNameCompare(a: DeleteTrackingTable, b: DeleteTrackingTable): number {
+  if (a.tableName < b.tableName) return -1;
+  return a.tableName > b.tableName ? 1 : 0;
+}
+
+function compareTableNameLikeCsharp(a: DeleteTrackingTable, b: DeleteTrackingTable): number {
+  if (a.tableName.toLowerCase() < b.tableName.toLowerCase()) return -1;
+  return a.tableName.toLowerCase() > b.tableName.toLowerCase() ? 1 : 0;
+}
+
 export function performCreateTrackedDeleteTablesGeneration(
   metaEd: MetaEdEnvironment,
   pluginName: string,
@@ -131,25 +141,27 @@ export function performCreateTrackedDeleteTablesGeneration(
   const results: GeneratedOutput[] = [];
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
+  const isStyle5dot4 = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
 
     metaEd.namespace.forEach((namespace) => {
-      const tables: DeleteTrackingTable[] = deleteTrackingTableEntities(plugin, namespace);
+      const tables: DeleteTrackingTable[] = deleteTrackingTableEntities(plugin, namespace).filter(
+        (table) => !table.isIgnored,
+      );
       if (tables.length > 0) {
         tables.sort(
           // by schema then by table name
           (a: DeleteTrackingTable, b: DeleteTrackingTable) => {
             if (a.schema === b.schema) {
-              if (a.tableName < b.tableName) return -1;
-              return a.tableName > b.tableName ? 1 : 0;
+              return isStyle5dot4 ? compareTableNameLikeCsharp(a, b) : originalTableNameCompare(a, b);
             }
             return a.schema < b.schema ? -1 : 1;
           },
         );
 
-        const generatedResult: string = template().deleteTrackingTable({ tables, useLicenseHeader });
+        const generatedResult: string = template().deleteTrackingTable({ tables, useLicenseHeader, isStyle5dot4 });
 
         results.push({
           name: 'ODS Change Event: CreateTrackedDeleteTables',
@@ -320,7 +332,7 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
   const results: GeneratedOutput[] = [];
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
-  const use5Dot4Style = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
+  const isStyle5dot4 = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -332,7 +344,7 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
           // by schema then by table name
           (a: CreateTriggerUpdateChangeVersion, b: CreateTriggerUpdateChangeVersion) => {
             if (a.schema === b.schema) {
-              return use5Dot4Style ? compareLikeCsharp(a, b) : originalCompare(a, b);
+              return isStyle5dot4 ? compareLikeCsharp(a, b) : originalCompare(a, b);
             }
             return a.schema < b.schema ? -1 : 1;
           },
@@ -341,7 +353,7 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
         const generatedResult: string = template().createTriggerUpdateChangeVersion({
           triggers,
           useLicenseHeader,
-          includeDropIfExists: use5Dot4Style,
+          includeDropIfExists: isStyle5dot4,
         });
 
         results.push({

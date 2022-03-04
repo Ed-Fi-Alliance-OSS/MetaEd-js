@@ -5,17 +5,34 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
+{{#if isStyle5dot4}}
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'{{{schema}}}')
+EXEC sys.sp_executesql N'CREATE SCHEMA [{{{schema}}}]'
+GO
+
+{{/if}}
 {{/if}}
 {{/if}}
 {{#tables}}
+{{#unless isDescriptorTable}}
 {{#if isStyle5dot4}}
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE object_id = OBJECT_ID(N'[{{{schema}}}].[{{{tableName}}}]'))
 {{/if}}
 CREATE TABLE [{{{schema}}}].[{{{tableName}}}]
 (
+{{#if isStyle5dot4}}
+{{#changeDataColumns}}
+       Old{{{columnName}}} {{{columnDataType}}} NOT NULL,
+{{/changeDataColumns}}
+{{#changeDataColumns}}
+       New{{{columnName}}} {{{columnDataType}}} NOT NULL,
+{{/changeDataColumns}}
+{{else}}
 {{#columns}}
        {{{data.edfiOdsSqlServer.columnName}}} {{{data.edfiOdsSqlServer.dataType}}} NOT NULL,
 {{/columns}}
+{{/if}}
        CONSTRAINT {{{primaryKeyName}}} PRIMARY KEY CLUSTERED ({{#primaryKeyColumns}}{{{data.edfiOdsSqlServer.columnName}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumns}})
 )
+{{/unless}}
 {{/tables}}
