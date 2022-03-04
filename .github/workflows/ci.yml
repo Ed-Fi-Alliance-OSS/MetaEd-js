@@ -5,4 +5,5 @@ on:
 jobs:
   lint-and-test:
     name: Lint and Test
-    uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-lint-test.yml@main
+    steps:
+      - uses: ./reusable-lint-test.yml

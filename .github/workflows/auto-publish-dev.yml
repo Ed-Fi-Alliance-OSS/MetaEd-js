@@ -5,10 +5,6 @@ on:
     branches:
       - main
 jobs:
-  lint-and-test:
-    name: Lint and Test
-    uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-lint-test.yml@main
-  
   auto-publish-dev:
     needs: lint-and-test
     name: Auto Publish Dev
@@ -17,25 +13,8 @@ jobs:
     if: github.event.pull_request.merged == true
 
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout   
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
-        with:
-          fetch-depth: 0
-
-      - name: Set up Node
-        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # v2.5.1
-        with:
-          node-version: '16'
-          check-latest: true          
-          registry-url: 'https://www.myget.org/F/ed-fi/npm/'
-
-      - name: Install
-        run: yarn install --no-immutable
-      
-      - name: Build
-        run: yarn build
+      - uses: ./reusable-lint-test.yml
 
       - name: Import GPG key
         id: import-gpg
