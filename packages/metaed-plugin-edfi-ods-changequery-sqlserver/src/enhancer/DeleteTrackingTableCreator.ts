@@ -84,8 +84,9 @@ function createDeleteTrackingTableModelV5dot4(table: Table): DeleteTrackingTable
     primaryKeyColumns: [changeVersionColumn],
     isStyle5dot4: true,
     isDescriptorTable: table.existenceReason.parentEntity?.type === 'descriptor',
-    isIgnored: table.existenceReason.isSubclassTable || table.existenceReason.isBaseDescriptor,
+    isIgnored: table.existenceReason.isSubclassTable,
     changeDataColumns: changeDataColumnsFor(table),
+    omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
   };
 
   deleteTrackingTable.columns.push({

@@ -5,14 +5,14 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-{{#if isStyle5dot4}}
+{{/if}}
+{{/if}}
+{{#isStyle5dot4}}
 IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'{{{schema}}}')
 EXEC sys.sp_executesql N'CREATE SCHEMA [{{{schema}}}]'
 GO
 
-{{/if}}
-{{/if}}
-{{/if}}
+{{/isStyle5dot4}}
 {{#tables}}
 {{#unless isDescriptorTable}}
 {{#if isStyle5dot4}}
@@ -25,8 +25,12 @@ CREATE TABLE [{{{schema}}}].[{{{tableName}}}]
        Old{{{columnName}}} {{{columnDataType}}} NOT NULL,
 {{/changeDataColumns}}
 {{#changeDataColumns}}
-       New{{{columnName}}} {{{columnDataType}}} NOT NULL,
+       New{{{columnName}}} {{{columnDataType}}} NULL,
 {{/changeDataColumns}}
+       Id uniqueidentifier NOT NULL,
+       ChangeVersion bigint NOT NULL,{{#unless omitDiscriminator}}
+       Discriminator [NVARCHAR](128) NULL,{{/unless}}
+       CreateDate DateTime2 NOT NULL DEFAULT (getutcdate()),
 {{else}}
 {{#columns}}
        {{{data.edfiOdsSqlServer.columnName}}} {{{data.edfiOdsSqlServer.dataType}}} NOT NULL,

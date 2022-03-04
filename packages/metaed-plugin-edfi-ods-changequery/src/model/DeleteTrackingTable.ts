@@ -11,6 +11,7 @@ export interface DeleteTrackingTable {
   isDescriptorTable: boolean;
   isIgnored: boolean;
   changeDataColumns: ChangeDataColumn[];
+  omitDiscriminator: boolean;
 }
 
 export function newDeleteTrackingTable(): DeleteTrackingTable {
@@ -24,5 +25,6 @@ export function newDeleteTrackingTable(): DeleteTrackingTable {
     isDescriptorTable: false,
     isIgnored: false,
     changeDataColumns: [],
+    omitDiscriminator: false,
   };
 }

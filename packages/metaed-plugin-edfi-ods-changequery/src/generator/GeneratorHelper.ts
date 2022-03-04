@@ -161,7 +161,12 @@ export function performCreateTrackedDeleteTablesGeneration(
           },
         );
 
-        const generatedResult: string = template().deleteTrackingTable({ tables, useLicenseHeader, isStyle5dot4 });
+        const generatedResult: string = template().deleteTrackingTable({
+          tables,
+          useLicenseHeader,
+          isStyle5dot4,
+          schema: tables[0].schema,
+        });
 
         results.push({
           name: 'ODS Change Event: CreateTrackedDeleteTables',

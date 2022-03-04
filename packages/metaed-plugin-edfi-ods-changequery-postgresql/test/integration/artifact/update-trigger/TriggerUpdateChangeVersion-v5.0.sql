@@ -1,13 +1,82 @@
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.Descriptor
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.EducationOrganizationInterventionPrescriptionAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.EducationOrganizationNetworkAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.EducationOrganizationPeerAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.FeederSchoolAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.GeneralStudentProgramAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.LearningStandardEquivalenceAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffCohortAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffDisciplineIncidentAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffEducationOrganizationAssignmentAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffEducationOrganizationContactAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffEducationOrganizationEmploymentAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffProgramAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffSchoolAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffSectionAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentCohortAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentDisciplineIncidentAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentEducationOrganizationAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentEducationOrganizationResponsibilityAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentInterventionAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentParentAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentSchoolAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentSectionAssociation
+    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.AcademicWeek
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.Account
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.AccountCode
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.AccountabilityRating
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.AccountabilityRating
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.AccountCode
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.Actual
@@ -58,9 +127,6 @@ CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.CourseTranscript
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.Credential
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.Descriptor
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.DisciplineAction
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
@@ -71,21 +137,6 @@ CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.EducationContent
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.EducationOrganization
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.EducationOrganizationInterventionPrescriptionAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.EducationOrganizationNetworkAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.EducationOrganizationPeerAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.FeederSchoolAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.GeneralStudentProgramAssociation
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.Grade
@@ -115,9 +166,6 @@ CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.LearningObjective
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.LearningStandard
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.LearningStandardEquivalenceAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.Location
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
@@ -145,9 +193,6 @@ CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.ReportCard
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.RestraintEvent
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.SchoolYearType
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.Section
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
@@ -163,31 +208,7 @@ CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.Staff
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffAbsenceEvent
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffCohortAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffDisciplineIncidentAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffEducationOrganizationAssignmentAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffEducationOrganizationContactAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffEducationOrganizationEmploymentAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffLeave
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffProgramAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffSchoolAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StaffSectionAssociation
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.Student
@@ -199,25 +220,10 @@ CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentAcademicRecord
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentAssessment
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentCohortAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentCompetencyObjective
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentDisciplineIncidentAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentEducationOrganizationAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentEducationOrganizationResponsibilityAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentGradebookEntry
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentInterventionAssociation
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentInterventionAttendanceEvent
@@ -226,21 +232,15 @@ CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentInterventionAtte
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentLearningObjective
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentParentAssociation
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentProgramAttendanceEvent
-    FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
-
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentSchoolAssociation
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
 CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentSchoolAttendanceEvent
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentSectionAssociation
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentSectionAttendanceEvent
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
-CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.StudentSectionAttendanceEvent
+CREATE TRIGGER UpdateChangeVersion BEFORE UPDATE ON edfi.SchoolYearType
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
 
