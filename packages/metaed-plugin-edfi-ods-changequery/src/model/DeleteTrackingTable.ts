@@ -6,4 +6,16 @@ export interface DeleteTrackingTable {
   columns: Column[];
   primaryKeyName: string;
   primaryKeyColumns: Column[];
+  isStyle5dot4: boolean;
+}
+
+export function newDeleteTrackingTable(): DeleteTrackingTable {
+  return {
+    schema: '',
+    tableName: '',
+    columns: [],
+    primaryKeyName: '',
+    primaryKeyColumns: [],
+    isStyle5dot4: false,
+  };
 }
