@@ -5,5 +5,7 @@ on:
 jobs:
   lint-and-test:
     name: Lint and Test
+    # Windows is required for some of the unit tests to run properly
+    runs-on: windows-2019
     steps:
       - uses: ./reusable-lint-test.yml

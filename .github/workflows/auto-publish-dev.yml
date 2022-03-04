@@ -12,7 +12,9 @@ jobs:
     # Only if closed due to merge
     if: github.event.pull_request.merged == true
 
-    runs-on: ubuntu-latest
+    # Windows is required for some of the unit tests to run properly
+    runs-on: windows-2019
+    
     steps:
       - uses: ./reusable-lint-test.yml
 
