@@ -7,12 +7,14 @@ import { GeneratorResult } from '../generator/GeneratorResult';
 
 winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 export const METAED_OUTPUT = 'MetaEdOutput';
+const LINUX_USER_FULL_CONTROL = 0o700;
 
 function writeOutputFiles(result: GeneratorResult, outputDirectory: string) {
   result.generatedOutput.forEach((output) => {
     const folderName: string =
       output.namespace != null && output.namespace !== '' ? `${output.namespace}/${output.folderName}` : output.folderName;
-    if (!ffs.existsSync(`${outputDirectory}/${folderName}`)) ffs.mkdirRecursiveSync(`${outputDirectory}/${folderName}`);
+    if (!ffs.existsSync(`${outputDirectory}/${folderName}`))
+      ffs.mkdirRecursiveSync(`${outputDirectory}/${folderName}`, LINUX_USER_FULL_CONTROL);
     if (output.resultString)
       ffs.writeFileSync(`${outputDirectory}/${folderName}/${output.fileName}`, output.resultString, 'utf-8');
     else if (output.resultStream)
@@ -54,7 +56,7 @@ export function execute(state: State): boolean {
       ffs.rmdirRecursiveSync(outputDirectory);
     }
 
-    ffs.mkdirRecursiveSync(outputDirectory);
+    ffs.mkdirRecursiveSync(outputDirectory, LINUX_USER_FULL_CONTROL);
 
     // TODO: change this to use async/await
     state.generatorResults.forEach((result) => {
