@@ -1,8 +1,8 @@
 import { ChangeDataColumn } from './ChangeDataColumn';
+import { HasTableName } from './HasName';
 
-export interface CreateTriggerUpdateChangeVersion {
+export interface CreateTriggerUpdateChangeVersion extends HasTableName {
   schema: string;
-  tableName: string;
   triggerName: string;
   primaryKeyColumnNames: string[];
   changeDataColumns: ChangeDataColumn[];

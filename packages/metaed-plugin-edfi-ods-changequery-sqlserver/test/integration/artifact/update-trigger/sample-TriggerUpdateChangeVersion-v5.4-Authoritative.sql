@@ -1,5 +1,6 @@
 DROP TRIGGER IF EXISTS [sample].[sample_PostSecondaryOrganization_TR_UpdateChangeVersion]
 GO
+
 CREATE TRIGGER [sample].[sample_PostSecondaryOrganization_TR_UpdateChangeVersion] ON [sample].[PostSecondaryOrganization] AFTER UPDATE AS
 BEGIN
     SET NOCOUNT ON;

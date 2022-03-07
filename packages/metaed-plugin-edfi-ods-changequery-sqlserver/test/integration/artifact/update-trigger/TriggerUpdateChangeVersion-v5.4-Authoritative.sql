@@ -170,12 +170,13 @@ BEGIN
         OldClassPeriodName, OldSchoolId, 
         NewClassPeriodName, NewSchoolId, 
         Id, ChangeVersion)
-    SELECT 
+    SELECT
         d.ClassPeriodName, d.SchoolId, 
         i.ClassPeriodName, i.SchoolId, 
         d.Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM deleted d INNER JOIN inserted i ON d.Id = i.Id
-    WHERE 
+
+    WHERE
         d.ClassPeriodName <> i.ClassPeriodName OR d.SchoolId <> i.SchoolId;
 END	
 GO
@@ -614,12 +615,13 @@ BEGIN
         OldClassroomIdentificationCode, OldSchoolId, 
         NewClassroomIdentificationCode, NewSchoolId, 
         Id, ChangeVersion)
-    SELECT 
+    SELECT
         d.ClassroomIdentificationCode, d.SchoolId, 
         i.ClassroomIdentificationCode, i.SchoolId, 
         d.Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM deleted d INNER JOIN inserted i ON d.Id = i.Id
-    WHERE 
+
+    WHERE
         d.ClassroomIdentificationCode <> i.ClassroomIdentificationCode OR d.SchoolId <> i.SchoolId;
 END	
 GO
@@ -824,12 +826,13 @@ BEGIN
         OldSchoolId, OldSchoolYear, OldSessionName, 
         NewSchoolId, NewSchoolYear, NewSessionName, 
         Id, ChangeVersion)
-    SELECT 
+    SELECT
         d.SchoolId, d.SchoolYear, d.SessionName, 
         i.SchoolId, i.SchoolYear, i.SessionName, 
         d.Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM deleted d INNER JOIN inserted i ON d.Id = i.Id
-    WHERE 
+
+    WHERE
         d.SchoolId <> i.SchoolId OR d.SchoolYear <> i.SchoolYear OR d.SessionName <> i.SessionName;
 END	
 GO
@@ -1237,16 +1240,17 @@ BEGIN
         OldEntryDate, OldSchoolId, OldStudentUSI, OldStudentUniqueId, 
         NewEntryDate, NewSchoolId, NewStudentUSI, NewStudentUniqueId, 
         Id, ChangeVersion)
-    SELECT 
-        d.EntryDate, d.SchoolId, d.StudentUSI, dj2.StudentUniqueId, 
-        i.EntryDate, i.SchoolId, i.StudentUSI, ij2.StudentUniqueId, 
+    SELECT
+        d.EntryDate, d.SchoolId, d.StudentUSI, dj0.StudentUniqueId, 
+        i.EntryDate, i.SchoolId, i.StudentUSI, ij0.StudentUniqueId, 
         d.Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM deleted d INNER JOIN inserted i ON d.Id = i.Id
-        INNER JOIN edfi.Student dj2
-            ON d.StudentUSI = dj2.StudentUSI
-        INNER JOIN edfi.Student ij2
-            ON i.StudentUSI = ij2.StudentUSI
-    WHERE 
+        INNER JOIN edfi.Student dj0
+            ON d.StudentUSI = dj0.StudentUSI
+        INNER JOIN edfi.Student ij0
+            ON i.StudentUSI = ij0.StudentUSI
+
+    WHERE
         d.EntryDate <> i.EntryDate OR d.SchoolId <> i.SchoolId OR d.StudentUSI <> i.StudentUSI;
 END	
 GO

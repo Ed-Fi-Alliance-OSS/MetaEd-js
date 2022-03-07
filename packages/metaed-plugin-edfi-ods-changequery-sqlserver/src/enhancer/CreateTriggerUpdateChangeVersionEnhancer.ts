@@ -16,7 +16,9 @@ function createTriggerModel(table: Table, targetTechnologyVersion: SemVer): Crea
     triggerName: `${table.schema}_${table.data.edfiOdsSqlServer.tableName}_TR_UpdateChangeVersion`,
     primaryKeyColumnNames: table.primaryKeys.map((pkColumn: Column) => pkColumn.data.edfiOdsSqlServer.columnName),
     changeDataColumns: changeDataColumnsFor(table),
-    includeKeyChanges: versionSatisfies(targetTechnologyVersion, '>=5.4.0') && table.hasUpdateCascadingForeignKey,
+    includeKeyChanges:
+      versionSatisfies(targetTechnologyVersion, '>=5.4.0') &&
+      table.parentEntity?.data?.edfiOdsRelational?.odsCascadePrimaryKeyUpdates,
   };
 }
 

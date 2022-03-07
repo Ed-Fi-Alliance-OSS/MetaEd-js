@@ -1,9 +1,9 @@
 import { Column } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { ChangeDataColumn } from './ChangeDataColumn';
+import { HasTableName } from './HasName';
 
-export interface DeleteTrackingTable {
+export interface DeleteTrackingTable extends HasTableName {
   schema: string;
-  tableName: string;
   columns: Column[];
   primaryKeyName: string;
   primaryKeyColumns: Column[];

@@ -12,7 +12,7 @@ import { AddColumnChangeVersionForTable } from '../model/AddColumnChangeVersionF
 import { DeleteTrackingTable } from '../model/DeleteTrackingTable';
 import { CreateTriggerUpdateChangeVersion } from '../model/CreateTriggerUpdateChangeVersion';
 import { DeleteTrackingTrigger } from '../model/DeleteTrackingTrigger';
-import { HasTriggerName } from '../model/HasTriggerName';
+import { HasTriggerName, HasTableName } from '../model/HasName';
 
 function prefixWithLicenseHeaderForVersion5PlusInAllianceMode(
   metaEd: MetaEdEnvironment,
@@ -122,12 +122,12 @@ export function performCreateTrackedDeleteSchemasGeneration(
   return results;
 }
 
-function originalTableNameCompare(a: DeleteTrackingTable, b: DeleteTrackingTable): number {
+function originalTableNameCompare(a: HasTableName, b: HasTableName): number {
   if (a.tableName < b.tableName) return -1;
   return a.tableName > b.tableName ? 1 : 0;
 }
 
-function compareTableNameLikeCsharp(a: DeleteTrackingTable, b: DeleteTrackingTable): number {
+function compareTableNameLikeCsharp(a: HasTableName, b: HasTableName): number {
   if (a.tableName.toLowerCase() < b.tableName.toLowerCase()) return -1;
   return a.tableName.toLowerCase() > b.tableName.toLowerCase() ? 1 : 0;
 }
@@ -273,12 +273,12 @@ export function performCreateChangeVersionSequenceGeneration(
   return results;
 }
 
-function originalCompare(a: HasTriggerName, b: HasTriggerName): number {
+function originalTriggerNameCompare(a: HasTriggerName, b: HasTriggerName): number {
   if (a.triggerName < b.triggerName) return -1;
   return a.triggerName > b.triggerName ? 1 : 0;
 }
 
-function compareLikeCsharp(a: HasTriggerName, b: HasTriggerName): number {
+function compareTriggerNameLikeCsharp(a: HasTriggerName, b: HasTriggerName): number {
   if (a.triggerName.toLowerCase() < b.triggerName.toLowerCase()) return -1;
   return a.triggerName.toLowerCase() > b.triggerName.toLowerCase() ? 1 : 0;
 }
@@ -306,7 +306,7 @@ export function performCreateDeletedForTrackingTriggerGeneration(
           // by schema then by trigger name
           (a: DeleteTrackingTrigger, b: DeleteTrackingTrigger) => {
             if (a.triggerSchema === b.triggerSchema) {
-              return useCsharpCompare ? compareLikeCsharp(a, b) : originalCompare(a, b);
+              return useCsharpCompare ? compareTriggerNameLikeCsharp(a, b) : originalTriggerNameCompare(a, b);
             }
             return a.triggerSchema < b.triggerSchema ? -1 : 1;
           },
@@ -349,7 +349,7 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
           // by schema then by table name
           (a: CreateTriggerUpdateChangeVersion, b: CreateTriggerUpdateChangeVersion) => {
             if (a.schema === b.schema) {
-              return isStyle5dot4 ? compareLikeCsharp(a, b) : originalCompare(a, b);
+              return isStyle5dot4 ? compareTableNameLikeCsharp(a, b) : originalTableNameCompare(a, b);
             }
             return a.schema < b.schema ? -1 : 1;
           },

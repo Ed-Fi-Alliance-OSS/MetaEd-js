@@ -64,6 +64,8 @@ sample-DeleteTrackingTrigger-v3.4.sql
 sample-DeleteTrackingTrigger-v5.4.sql
 TriggerUpdateChangeVersion-v3.1.sql
 TriggerUpdateChangeVersion-v3.4.sql
+TriggerUpdateChangeVersion-v5.0.sql
+TriggerUpdateChangeVersion-v5.0-Alliance.sql
 TriggerUpdateChangeVersion-v5.4.sql
 sample-TriggerUpdateChangeVersion-v3.1.sql
 sample-TriggerUpdateChangeVersion-v3.4.sql
