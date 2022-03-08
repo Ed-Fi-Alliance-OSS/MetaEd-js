@@ -1,10 +1,10 @@
 name: Lint and Test
+inputs:
+  SA_PASSWORD:
+    required: true
+    default: abcdefgh1!
 runs:
   using: "composite"
-  inputs:
-    SA_PASSWORD:
-      required: true
-      default: abcdefgh1!
   steps:
     - name: Set up Node
       uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # v2.5.1
