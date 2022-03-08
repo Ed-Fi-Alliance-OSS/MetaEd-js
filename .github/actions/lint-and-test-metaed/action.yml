@@ -1,10 +1,10 @@
 name: Lint and Test
 runs:
   using: "composite"
-  env:
-    SA_PASSWORD: abcdefgh1!
-    MSSQL_USERNAME: sa
-    MSSQL_PASSWORD: abcdefgh1!
+  inputs:
+    SA_PASSWORD:
+      required: true
+      default: abcdefgh1!
   steps:
     - name: Set up Node
       uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # v2.5.1
@@ -22,8 +22,11 @@ runs:
       shell: bash
 
     - name: Start Docker for SQL Server
-      run: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=${{ env.SA_PASSWORD }}' -e 'MSSQL_PID=Express' -p 1433:1433 --name mssql -d mcr.microsoft.com/mssql/server:2017-latest
+      run: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=${{ inputs.SA_PASSWORD }}' -e 'MSSQL_PID=Express' -p 1433:1433 --name mssql -d mcr.microsoft.com/mssql/server:2017-latest
 
     - name: Unit tests
       run: yarn test:unit:ci --ci  --config ./jest.ci-config.js
-      shell: bash 
+      shell: bash
+      env:
+        MSSQL_USERNAME: sa
+        MSSQL_PASSWORD: ${{ inputs.SA_PASSWORD }}
