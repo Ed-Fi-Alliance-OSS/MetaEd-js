@@ -1,0 +1,2 @@
+Keeping this work in case we need to return to it, even though it is not currently functional due to the fact that Azure
+Artifacts will not allow publishing non-scoped packages, and Atom will not accept installing a scoped package.

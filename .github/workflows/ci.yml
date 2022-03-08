@@ -5,8 +5,7 @@ on:
 jobs:
   lint-and-test:
     name: Lint and Test
-    # Windows is required for some of the unit tests to run properly
-    runs-on: windows-2019
+    runs-on: ubuntu-20.04
     steps:        
       - name: Checkout code   
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0

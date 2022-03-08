@@ -6,14 +6,13 @@ on:
       - main
 jobs:
   auto-publish-dev:
-    needs: lint-and-test
     name: Auto Publish Dev
 
     # Only if closed due to merge
     if: github.event.pull_request.merged == true
 
     # Windows is required for some of the unit tests to run properly
-    runs-on: windows-2019
+    runs-on: ubuntu-20.04
     
     steps:
       - name: Checkout code   
