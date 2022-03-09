@@ -29,15 +29,14 @@ export {
 } from './enhancer/DeleteTrackingTriggerCreator';
 export {
   ChangeQueryTemplates,
-  changeQueryPath,
-  performColumnChangeVersionForTableGeneration,
-  performCreateTrackedDeleteSchemasGeneration,
-  performCreateTrackedDeleteTablesGeneration,
-  performAddIndexChangeVersionForTableGeneration,
-  performCreateChangesSchemaGeneration,
-  performCreateChangeVersionSequenceGeneration,
-  performCreateDeletedForTrackingTriggerGeneration,
-  performCreateTriggerUpdateChangeVersionGeneration,
+  generateAddColumnChangeVersionForTable,
+  generateCreateTrackedDeleteSchemas5dot3,
+  generateCreateTrackedDeleteTables,
+  generateAddIndexChangeVersionForTable,
+  generateCreateChangesSchema,
+  generateCreateChangeVersionSequence,
+  generateCreateDeletedForTrackingTrigger,
+  generateCreateTriggerUpdateChangeVersion,
 } from './generator/GeneratorHelper';
 export {
   EdFiOdsChangeQueryEntityRepository,

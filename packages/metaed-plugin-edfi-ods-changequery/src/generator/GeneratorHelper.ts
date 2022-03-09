@@ -41,11 +41,11 @@ export interface ChangeQueryTemplates {
   addIndexChangeVersion: any;
 }
 
-export function changeQueryPath(databaseFolderName: string) {
+function changeQueryPath(databaseFolderName: string) {
   return `/Database/${databaseFolderName}/ODS/Structure/Changes/`;
 }
 
-export function performColumnChangeVersionForTableGeneration(
+export function generateAddColumnChangeVersionForTable(
   metaEd: MetaEdEnvironment,
   pluginName: string,
   template: () => ChangeQueryTemplates,
@@ -89,7 +89,7 @@ export function performColumnChangeVersionForTableGeneration(
   return results;
 }
 
-export function performCreateTrackedDeleteSchemasGeneration(
+export function generateCreateTrackedDeleteSchemas5dot3(
   metaEd: MetaEdEnvironment,
   template: () => ChangeQueryTemplates,
   databaseFolderName: string,
@@ -97,7 +97,7 @@ export function performCreateTrackedDeleteSchemasGeneration(
   const results: GeneratedOutput[] = [];
 
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
-  if (versionSatisfies(targetTechnologyVersion, '<3.4.0')) {
+  if (versionSatisfies(targetTechnologyVersion, '<3.4.0 || >5.3.0')) {
     return results;
   }
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
@@ -132,7 +132,7 @@ function compareTableNameLikeCsharp(a: HasTableName, b: HasTableName): number {
   return a.tableName.toLowerCase() > b.tableName.toLowerCase() ? 1 : 0;
 }
 
-export function performCreateTrackedDeleteTablesGeneration(
+export function generateCreateTrackedDeleteTables(
   metaEd: MetaEdEnvironment,
   pluginName: string,
   template: () => ChangeQueryTemplates,
@@ -172,7 +172,7 @@ export function performCreateTrackedDeleteTablesGeneration(
           name: 'ODS Change Event: CreateTrackedDeleteTables',
           namespace: namespace.namespaceName,
           folderName: changeQueryPath(databaseFolderName),
-          fileName: `0050-CreateTrackedDeleteTables.sql`,
+          fileName: isStyle5dot4 ? '0200-CreateTrackedChangeTables.sql' : '0050-CreateTrackedDeleteTables.sql',
           resultString: generatedResult,
           resultStream: null,
         });
@@ -182,7 +182,7 @@ export function performCreateTrackedDeleteTablesGeneration(
   return results;
 }
 
-export function performAddIndexChangeVersionForTableGeneration(
+export function generateAddIndexChangeVersionForTable(
   metaEd: MetaEdEnvironment,
   pluginName: string,
   template: () => ChangeQueryTemplates,
@@ -226,7 +226,7 @@ export function performAddIndexChangeVersionForTableGeneration(
   return results;
 }
 
-export function performCreateChangesSchemaGeneration(
+export function generateCreateChangesSchema(
   metaEd: MetaEdEnvironment,
   literalOutputContent: string,
   databaseFolderName: string,
@@ -249,7 +249,7 @@ export function performCreateChangesSchemaGeneration(
   return results;
 }
 
-export function performCreateChangeVersionSequenceGeneration(
+export function generateCreateChangeVersionSequence(
   metaEd: MetaEdEnvironment,
   literalOutputContent: string,
   databaseFolderName: string,
@@ -283,7 +283,7 @@ function compareTriggerNameLikeCsharp(a: HasTriggerName, b: HasTriggerName): num
   return a.triggerName.toLowerCase() > b.triggerName.toLowerCase() ? 1 : 0;
 }
 
-export function performCreateDeletedForTrackingTriggerGeneration(
+export function generateCreateDeletedForTrackingTrigger(
   metaEd: MetaEdEnvironment,
   pluginName: string,
   template: () => ChangeQueryTemplates,
@@ -292,7 +292,7 @@ export function performCreateDeletedForTrackingTriggerGeneration(
   const results: GeneratedOutput[] = [];
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
-  const useCsharpCompare = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
+  const isStyle5dot4 = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -306,7 +306,7 @@ export function performCreateDeletedForTrackingTriggerGeneration(
           // by schema then by trigger name
           (a: DeleteTrackingTrigger, b: DeleteTrackingTrigger) => {
             if (a.triggerSchema === b.triggerSchema) {
-              return useCsharpCompare ? compareTriggerNameLikeCsharp(a, b) : originalTriggerNameCompare(a, b);
+              return isStyle5dot4 ? compareTriggerNameLikeCsharp(a, b) : originalTriggerNameCompare(a, b);
             }
             return a.triggerSchema < b.triggerSchema ? -1 : 1;
           },
@@ -318,7 +318,7 @@ export function performCreateDeletedForTrackingTriggerGeneration(
           name: 'ODS Change Event: CreateDeletedForTrackingTriggers',
           namespace: namespace.namespaceName,
           folderName: changeQueryPath(databaseFolderName),
-          fileName: '0060-CreateDeletedForTrackingTriggers.sql',
+          fileName: isStyle5dot4 ? '0220-CreateTriggersForDeleteTracking.sql' : '0060-CreateDeletedForTrackingTriggers.sql',
           resultString: generatedResult,
           resultStream: null,
         });
@@ -328,7 +328,7 @@ export function performCreateDeletedForTrackingTriggerGeneration(
   return results;
 }
 
-export function performCreateTriggerUpdateChangeVersionGeneration(
+export function generateCreateTriggerUpdateChangeVersion(
   metaEd: MetaEdEnvironment,
   pluginName: string,
   template: () => ChangeQueryTemplates,
@@ -365,7 +365,9 @@ export function performCreateTriggerUpdateChangeVersionGeneration(
           name: 'ODS Change Event: CreateTriggerUpdateChangeVersion',
           namespace: namespace.namespaceName,
           folderName: changeQueryPath(databaseFolderName),
-          fileName: '0040-CreateTriggerUpdateChangeVersionGenerator.sql',
+          fileName: isStyle5dot4
+            ? '0210-CreateTriggersForChangeVersionAndKeyChanges.sql'
+            : '0040-CreateTriggerUpdateChangeVersionGenerator.sql',
           resultString: generatedResult,
           resultStream: null,
         });
