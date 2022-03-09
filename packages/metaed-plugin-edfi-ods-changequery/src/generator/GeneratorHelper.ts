@@ -54,6 +54,7 @@ export function generateAddColumnChangeVersionForTable(
   const results: GeneratedOutput[] = [];
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
+  const isStyle5dot4 = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -72,7 +73,7 @@ export function generateAddColumnChangeVersionForTable(
           },
         );
 
-        const generatedResult: string = template().addColumnChangeVersion({ tables, useLicenseHeader });
+        const generatedResult: string = template().addColumnChangeVersion({ tables, useLicenseHeader, isStyle5dot4 });
 
         results.push({
           name: 'ODS Change Event: AddColumnChangeVersionForTable',

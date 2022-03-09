@@ -7,13 +7,44 @@
 
 {{/if}}
 {{/if}}
+{{#if isStyle5dot4}}
+DO $$
+BEGIN
+
+IF NOT EXISTS (SELECT 1 FROM information_schema.schemata WHERE schema_name = '{{{schema}}}') THEN
+CREATE SCHEMA tracked_changes_edfi;
+END IF;
+
+{{/if}}
 {{#tables}}
+{{#if isStyle5dot4}}
+IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = '{{{schema}}}' AND table_name = '{{{tableName}}}') THEN
+{{/if}}
 CREATE TABLE {{{schema}}}.{{{tableName}}}
 (
+{{#if isStyle5dot4}}
+{{#changeDataColumns}}
+       old{{{columnName}}} {{{columnDataType}}} NOT NULL,
+{{/changeDataColumns}}
+{{#changeDataColumns}}
+       new{{{columnName}}} {{{columnDataType}}} NULL,
+{{/changeDataColumns}}
+       id uuid NOT NULL,
+       changeversion bigint NOT NULL,{{#unless omitDiscriminator}}
+       discriminator varchar(128) NULL,{{/unless}}
+       createdate timestamp NOT NULL DEFAULT (now()),
+{{else}}
 {{#columns}}
        {{{data.edfiOdsPostgresql.columnName}}} {{{data.edfiOdsPostgresql.dataType}}} NOT NULL,
 {{/columns}}
+{{/if}}
        CONSTRAINT {{{primaryKeyName}}} PRIMARY KEY ({{#primaryKeyColumns}}{{{data.edfiOdsPostgresql.columnName}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumns}})
 );
-
+{{#if isStyle5dot4}}
+END IF;
+{{/if}}
 {{/tables}}
+{{#if isStyle5dot4}}
+END
+$$;
+{{/if}}

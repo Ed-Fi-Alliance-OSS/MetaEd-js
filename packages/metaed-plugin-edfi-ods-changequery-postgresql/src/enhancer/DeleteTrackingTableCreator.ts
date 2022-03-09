@@ -1,10 +1,10 @@
 import { Column, newColumn, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { DeleteTrackingTable, newDeleteTrackingTable, getPrimaryKeys } from '@edfi/metaed-plugin-edfi-ods-changequery';
-import { MetaEdEnvironment } from '@edfi/metaed-core';
-import { TARGET_DATABASE_PLUGIN_NAME } from './EnhancerHelper';
+import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
+import { TARGET_DATABASE_PLUGIN_NAME, changeDataColumnsFor } from './EnhancerHelper';
 
-export function createDeleteTrackingTableModel(_metaEd: MetaEdEnvironment, mainTable: Table): DeleteTrackingTable {
-  const trackingTableName: string = mainTable.data.edfiOdsPostgresql.tableName;
+export function createDeleteTrackingTableModelV3dot4(table: Table): DeleteTrackingTable {
+  const trackingTableName: string = table.data.edfiOdsPostgresql.tableName;
 
   const changeVersionColumn: Column = {
     ...newColumn(),
@@ -15,10 +15,10 @@ export function createDeleteTrackingTableModel(_metaEd: MetaEdEnvironment, mainT
 
   const deleteTrackingTable: DeleteTrackingTable = {
     ...newDeleteTrackingTable(),
-    schema: `tracked_deletes_${mainTable.schema}`,
+    schema: `tracked_deletes_${table.schema}`,
     tableName: trackingTableName,
-    primaryKeyName: mainTable.data.edfiOdsPostgresql.primaryKeyName,
-    columns: [...getPrimaryKeys(mainTable, TARGET_DATABASE_PLUGIN_NAME)],
+    primaryKeyName: table.data.edfiOdsPostgresql.primaryKeyName,
+    columns: [...getPrimaryKeys(table, TARGET_DATABASE_PLUGIN_NAME)],
     primaryKeyColumns: [changeVersionColumn],
   };
 
@@ -32,4 +32,50 @@ export function createDeleteTrackingTableModel(_metaEd: MetaEdEnvironment, mainT
   deleteTrackingTable.columns.push(changeVersionColumn);
 
   return deleteTrackingTable;
+}
+
+export function createDeleteTrackingTableModelV5dot4(table: Table): DeleteTrackingTable {
+  const trackingTableName: string = table.data.edfiOdsPostgresql.tableName;
+
+  const changeVersionColumn: Column = {
+    ...newColumn(),
+    columnId: 'ChangeVersion',
+    data: { edfiOdsSqlServer: { columnName: 'ChangeVersion', dataType: 'BIGINT' } },
+    isNullable: false,
+  };
+
+  const deleteTrackingTable: DeleteTrackingTable = {
+    ...newDeleteTrackingTable(),
+    schema: `tracked_changes_${table.schema}`,
+    tableName: trackingTableName,
+    primaryKeyName: table.data.edfiOdsPostgresql.primaryKeyName,
+    columns: [...getPrimaryKeys(table, TARGET_DATABASE_PLUGIN_NAME)],
+    primaryKeyColumns: [changeVersionColumn],
+    isStyle5dot4: true,
+    isDescriptorTable: table.existenceReason.parentEntity?.type === 'descriptor',
+    isIgnored: table.existenceReason.isSubclassTable,
+    changeDataColumns: changeDataColumnsFor(table),
+    omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
+  };
+
+  deleteTrackingTable.columns.push({
+    ...newColumn(),
+    columnId: 'Id',
+    data: { edfiOdsPostgresql: { columnName: 'Id', dataType: 'UUID' } },
+    isNullable: false,
+  });
+
+  deleteTrackingTable.columns.push(changeVersionColumn);
+
+  return deleteTrackingTable;
+}
+
+export function createDeleteTrackingTableModel(metaEd: MetaEdEnvironment, table: Table): DeleteTrackingTable {
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+
+  if (versionSatisfies(targetTechnologyVersion, '<5.4.0')) {
+    return createDeleteTrackingTableModelV3dot4(table);
+  }
+
+  return createDeleteTrackingTableModelV5dot4(table);
 }

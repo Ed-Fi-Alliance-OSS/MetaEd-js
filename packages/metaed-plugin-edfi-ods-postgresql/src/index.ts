@@ -15,7 +15,10 @@ export { ColumnDataTypes } from './model/ColumnDataTypes';
 
 export { enhance as postgreSqlTableSetupEnhancer } from './model/Table';
 export { enhance as postgreSqlTableNamingEnhancer } from './enhancer/PostgresqlTableNamingEnhancer';
-export { enhance as postgreSqlColumnNamingEnhancer } from './enhancer/PostgresqlColumnNamingEnhancer';
+export {
+  enhance as postgreSqlColumnNamingEnhancer,
+  constructColumnNameFrom,
+} from './enhancer/PostgresqlColumnNamingEnhancer';
 export { enhance as postgreSqlForeignKeyNamingEnhancer } from './enhancer/PostgresqlForeignKeyNamingEnhancer';
 
 export function initialize(): MetaEdPlugin {

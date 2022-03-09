@@ -2,7 +2,7 @@ import { MetaEdPlugin, newMetaEdPlugin } from '@edfi/metaed-core';
 import { validate as NamespaceMustNotBeNamedChanges } from './validator/NamespaceMustNotBeNamedChanges';
 
 export { changeQueryIndicated } from './enhancer/ChangeQueryIndicator';
-export { AddColumnChangeVersionForTable } from './model/AddColumnChangeVersionForTable';
+export { AddColumnChangeVersionForTable, newAddColumnChangeVersionForTable } from './model/AddColumnChangeVersionForTable';
 export { CreateTriggerUpdateChangeVersion } from './model/CreateTriggerUpdateChangeVersion';
 export { ChangeDataColumn, newChangeDataColumn } from './model/ChangeDataColumn';
 export { DeleteTrackingTable, newDeleteTrackingTable } from './model/DeleteTrackingTable';

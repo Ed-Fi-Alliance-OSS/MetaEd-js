@@ -101,16 +101,16 @@ function createDeleteTrackingTableModelV5dot4(table: Table): DeleteTrackingTable
   return deleteTrackingTable;
 }
 
-export function createDeleteTrackingTableModel(metaEd: MetaEdEnvironment, mainTable: Table): DeleteTrackingTable {
+export function createDeleteTrackingTableModel(metaEd: MetaEdEnvironment, table: Table): DeleteTrackingTable {
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
 
   if (versionSatisfies(targetTechnologyVersion, '<3.4.0')) {
-    return createDeleteTrackingTableModelV3dot3(mainTable);
+    return createDeleteTrackingTableModelV3dot3(table);
   }
 
   if (versionSatisfies(targetTechnologyVersion, '<5.4.0')) {
-    return createDeleteTrackingTableModelV3dot4(mainTable);
+    return createDeleteTrackingTableModelV3dot4(table);
   }
 
-  return createDeleteTrackingTableModelV5dot4(mainTable);
+  return createDeleteTrackingTableModelV5dot4(table);
 }

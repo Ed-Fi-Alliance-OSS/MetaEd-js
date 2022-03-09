@@ -10,7 +10,6 @@ CREATE TABLE tracked_deletes_sample.InstitutionControlDescriptor
        ChangeVersion BIGINT NOT NULL,
        CONSTRAINT InstitutionControlDescriptor_PK PRIMARY KEY (ChangeVersion)
 );
-
 CREATE TABLE tracked_deletes_sample.InstitutionLevelDescriptor
 (
        InstitutionLevelDescriptorId INT NOT NULL,
@@ -18,7 +17,6 @@ CREATE TABLE tracked_deletes_sample.InstitutionLevelDescriptor
        ChangeVersion BIGINT NOT NULL,
        CONSTRAINT InstitutionLevelDescriptor_PK PRIMARY KEY (ChangeVersion)
 );
-
 CREATE TABLE tracked_deletes_sample.PostSecondaryOrganization
 (
        NameOfInstitution VARCHAR(75) NOT NULL,
@@ -26,7 +24,6 @@ CREATE TABLE tracked_deletes_sample.PostSecondaryOrganization
        ChangeVersion BIGINT NOT NULL,
        CONSTRAINT PostSecondaryOrganization_PK PRIMARY KEY (ChangeVersion)
 );
-
 CREATE TABLE tracked_deletes_sample.SpecialEducationGraduationStatusDescriptor
 (
        SpecialEducationGraduationStatusDescriptorId INT NOT NULL,
@@ -34,7 +31,6 @@ CREATE TABLE tracked_deletes_sample.SpecialEducationGraduationStatusDescriptor
        ChangeVersion BIGINT NOT NULL,
        CONSTRAINT SpecialEducationGraduationStatusDescriptor_PK PRIMARY KEY (ChangeVersion)
 );
-
 CREATE TABLE tracked_deletes_sample.SubmissionCertificationDescriptor
 (
        SubmissionCertificationDescriptorId INT NOT NULL,
@@ -42,4 +38,3 @@ CREATE TABLE tracked_deletes_sample.SubmissionCertificationDescriptor
        ChangeVersion BIGINT NOT NULL,
        CONSTRAINT SubmissionCertificationDescriptor_PK PRIMARY KEY (ChangeVersion)
 );
-

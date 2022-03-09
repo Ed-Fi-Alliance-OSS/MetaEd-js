@@ -18,7 +18,7 @@ import { enhance as descriptorChangeQueryEnhancer } from './enhancer/DescriptorC
 import { enhance as domainEntityChangeQueryEnhancer } from './enhancer/DomainEntityChangeQueryEnhancer';
 import { enhance as domainEntitySubclassChangeQueryEnhancer } from './enhancer/DomainEntitySubclassChangeQueryEnhancer';
 import { enhance as enumerationChangeQueryEnhancer } from './enhancer/EnumerationChangeQueryEnhancer';
-import { enhance as schoolYearEnumerationEnhancer } from './enhancer/SchoolYearEnumerationEnhancer';
+import { enhance as schoolYearEnumerationChangeQueryEnhancer } from './enhancer/SchoolYearEnumerationChangeQueryEnhancer';
 import { enhance as addColumnChangeVersionForTableEnhancer } from './enhancer/AddColumnChangeVersionForTableEnhancer';
 import { enhance as createTriggerUpdateChangeVersionEnhancer } from './enhancer/CreateTriggerUpdateChangeVersionEnhancer';
 
@@ -34,7 +34,7 @@ export function initialize(): MetaEdPlugin {
       domainEntityChangeQueryEnhancer,
       domainEntitySubclassChangeQueryEnhancer,
       enumerationChangeQueryEnhancer,
-      schoolYearEnumerationEnhancer,
+      schoolYearEnumerationChangeQueryEnhancer,
       addColumnChangeVersionForTableEnhancer,
       createTriggerUpdateChangeVersionEnhancer,
     ],
