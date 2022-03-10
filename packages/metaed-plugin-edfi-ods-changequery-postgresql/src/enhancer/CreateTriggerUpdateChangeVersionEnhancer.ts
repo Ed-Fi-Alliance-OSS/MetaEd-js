@@ -10,15 +10,19 @@ import { versionSatisfiesForPostgresChangeQuerySupport, changeDataColumnsFor } f
 const enhancerName = 'CreateTriggerUpdateChangeVersionEnhancer';
 
 function createTriggerModel(table: Table, targetTechnologyVersion: SemVer): CreateTriggerUpdateChangeVersion {
+  const isStyle5dot4 = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
+  const primaryKeyColumnNames: string[] = table.primaryKeys.map(
+    (pkColumn: Column) => pkColumn.data.edfiOdsPostgresql.columnName,
+  );
   return {
     schema: table.schema,
-    tableName: table.data.edfiOdsPostgresql.tableName,
+    tableName: isStyle5dot4 ? table.data.edfiOdsPostgresql.tableName.toLowerCase() : table.data.edfiOdsPostgresql.tableName,
     triggerName: 'UpdateChangeVersion',
-    primaryKeyColumnNames: table.primaryKeys.map((pkColumn: Column) => pkColumn.data.edfiOdsPostgresql.columnName),
+    primaryKeyColumnNames: isStyle5dot4 ? primaryKeyColumnNames.map((p) => p.toLowerCase()) : primaryKeyColumnNames,
     changeDataColumns: changeDataColumnsFor(table),
-    includeKeyChanges:
-      versionSatisfies(targetTechnologyVersion, '>=5.4.0') &&
-      table.parentEntity?.data?.edfiOdsRelational?.odsCascadePrimaryKeyUpdates,
+    includeKeyChanges: isStyle5dot4 && table.parentEntity?.data?.edfiOdsRelational?.odsCascadePrimaryKeyUpdates,
+    isStyle5dot4,
+    omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
   };
 }
 

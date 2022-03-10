@@ -40,15 +40,15 @@ export function createDeleteTrackingTableModelV5dot4(table: Table): DeleteTracki
   const changeVersionColumn: Column = {
     ...newColumn(),
     columnId: 'ChangeVersion',
-    data: { edfiOdsSqlServer: { columnName: 'ChangeVersion', dataType: 'BIGINT' } },
+    data: { edfiOdsPostgresql: { columnName: 'ChangeVersion', dataType: 'BIGINT' } },
     isNullable: false,
   };
 
   const deleteTrackingTable: DeleteTrackingTable = {
     ...newDeleteTrackingTable(),
     schema: `tracked_changes_${table.schema}`,
-    tableName: trackingTableName,
-    primaryKeyName: table.data.edfiOdsPostgresql.primaryKeyName,
+    tableName: trackingTableName.toLowerCase(),
+    primaryKeyName: table.data.edfiOdsPostgresql.primaryKeyName.toLowerCase(),
     columns: [...getPrimaryKeys(table, TARGET_DATABASE_PLUGIN_NAME)],
     primaryKeyColumns: [changeVersionColumn],
     isStyle5dot4: true,

@@ -7,4 +7,6 @@ export interface CreateTriggerUpdateChangeVersion extends HasTableName {
   primaryKeyColumnNames: string[];
   changeDataColumns: ChangeDataColumn[];
   includeKeyChanges: boolean;
+  isStyle5dot4: boolean;
+  omitDiscriminator: boolean;
 }

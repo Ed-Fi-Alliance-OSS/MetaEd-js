@@ -359,7 +359,7 @@ export function generateCreateTriggerUpdateChangeVersion(
         const generatedResult: string = template().createTriggerUpdateChangeVersion({
           triggers,
           useLicenseHeader,
-          includeDropIfExists: isStyle5dot4,
+          isStyle5dot4,
         });
 
         results.push({

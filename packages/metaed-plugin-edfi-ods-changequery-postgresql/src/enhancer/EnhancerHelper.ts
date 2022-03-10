@@ -71,7 +71,7 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
     if (isBaseDescriptorTableIdColumn(table, pkColumn)) {
       changeDataColumns.push({
         ...newChangeDataColumn(),
-        columnName: pkColumn.data.edfiOdsPostgresql.columnName,
+        columnName: pkColumn.data.edfiOdsPostgresql.columnName.toLowerCase(),
         columnDataType: pkColumn.data.edfiOdsPostgresql.dataType,
         isDescriptorId: true,
         tableAliasSuffix: String(tableAliasSuffix),
@@ -79,17 +79,17 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
       });
       changeDataColumns.push({
         ...newChangeDataColumn(),
-        columnName: 'Namespace',
-        columnDataType: ColumnDataTypes.string('255'),
-        tableAliasSuffix: String(tableAliasSuffix),
-        isDescriptorNamespace: true,
-      });
-      changeDataColumns.push({
-        ...newChangeDataColumn(),
-        columnName: 'CodeValue',
+        columnName: 'codevalue',
         columnDataType: ColumnDataTypes.string('50'),
         tableAliasSuffix: String(tableAliasSuffix),
         isDescriptorCodeValue: true,
+      });
+      changeDataColumns.push({
+        ...newChangeDataColumn(),
+        columnName: 'namespace',
+        columnDataType: ColumnDataTypes.string('255'),
+        tableAliasSuffix: String(tableAliasSuffix),
+        isDescriptorNamespace: true,
       });
     }
 
@@ -97,7 +97,7 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
     else if (isDescriptorIdColumn(pkColumn)) {
       changeDataColumns.push({
         ...newChangeDataColumn(),
-        columnName: pkColumn.data.edfiOdsPostgresql.columnName,
+        columnName: pkColumn.data.edfiOdsPostgresql.columnName.toLowerCase(),
         columnDataType: pkColumn.data.edfiOdsPostgresql.dataType,
         isDescriptorId: true,
         tableAliasSuffix: String(tableAliasSuffix),
@@ -107,11 +107,11 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
       // Column nameComponents end in "Id" for these columns. Make new ones with Namespace/CodeValue substituted
       const namespaceColumnNaming: ColumnNameComponent[] = [
         ...pkColumn.nameComponents.slice(0, -1),
-        { ...newColumnNameComponent(), name: 'Namespace', isSynthetic: true },
+        { ...newColumnNameComponent(), name: 'namespace', isSynthetic: true },
       ];
       changeDataColumns.push({
         ...newChangeDataColumn(),
-        columnName: constructColumnNameFrom(namespaceColumnNaming),
+        columnName: constructColumnNameFrom(namespaceColumnNaming).toLowerCase(),
         columnDataType: ColumnDataTypes.string('255'),
         tableAliasSuffix: String(tableAliasSuffix),
         isDescriptorNamespace: true,
@@ -119,11 +119,11 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
 
       const codeValueColumnNaming: ColumnNameComponent[] = [
         ...pkColumn.nameComponents.slice(0, -1),
-        { ...newColumnNameComponent(), name: 'CodeValue', isSynthetic: true },
+        { ...newColumnNameComponent(), name: 'codevalue', isSynthetic: true },
       ];
       changeDataColumns.push({
         ...newChangeDataColumn(),
-        columnName: constructColumnNameFrom(codeValueColumnNaming),
+        columnName: constructColumnNameFrom(codeValueColumnNaming).toLowerCase(),
         columnDataType: ColumnDataTypes.string('50'),
         tableAliasSuffix: String(tableAliasSuffix),
         isDescriptorCodeValue: true,
@@ -140,21 +140,21 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
 
       changeDataColumns.push({
         ...newChangeDataColumn(),
-        columnName: pkColumn.data.edfiOdsPostgresql.columnName,
+        columnName: pkColumn.data.edfiOdsPostgresql.columnName.toLowerCase(),
         columnDataType: pkColumn.data.edfiOdsPostgresql.dataType,
         tableAliasSuffix: String(tableAliasSuffix),
         isUsi: !isUsiOnOwnTable,
-        usiName: usiName(pkColumn),
+        usiName: usiName(pkColumn).toLowerCase(),
         isRegularSelectColumn: true,
       });
 
       const uniqueIdColumnNaming: ColumnNameComponent[] = [
         ...usiNamePrefixComponents,
-        { ...newColumnNameComponent(), name: 'UniqueId', isSynthetic: true },
+        { ...newColumnNameComponent(), name: 'uniqueid', isSynthetic: true },
       ];
       changeDataColumns.push({
         ...newChangeDataColumn(),
-        columnName: constructColumnNameFrom(uniqueIdColumnNaming),
+        columnName: constructColumnNameFrom(uniqueIdColumnNaming).toLowerCase(),
         columnDataType: ColumnDataTypes.string('32'),
         tableAliasSuffix: String(tableAliasSuffix),
         isUniqueId: !isUsiOnOwnTable,
@@ -166,7 +166,7 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
       // A regular column
       changeDataColumns.push({
         ...newChangeDataColumn(),
-        columnName: pkColumn.data.edfiOdsPostgresql.columnName,
+        columnName: pkColumn.data.edfiOdsPostgresql.columnName.toLowerCase(),
         columnDataType: pkColumn.data.edfiOdsPostgresql.dataType,
         isRegularSelectColumn: true,
       });

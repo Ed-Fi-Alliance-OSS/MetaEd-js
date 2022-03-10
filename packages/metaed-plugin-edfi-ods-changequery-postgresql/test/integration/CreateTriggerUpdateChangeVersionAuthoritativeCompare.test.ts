@@ -705,10 +705,10 @@ describe('when generating change event scripts with simple extensions and compar
   });
 });
 
-describe('when generating change event scripts and comparing to ODS/API 5.4 authoritative artifacts in Alliance mode', (): void => {
+describe('when generating change event scripts and comparing to ODS/API 5.4 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/update-trigger');
-  const authoritativeFilename = 'TriggerUpdateChangeVersion-v5.4-Alliance-Authoritative.sql';
-  const generatedFilename = 'TriggerUpdateChangeVersion-v5.4-Alliance.sql';
+  const authoritativeFilename = 'TriggerUpdateChangeVersion-v5.4-Authoritative.sql';
+  const generatedFilename = 'TriggerUpdateChangeVersion-v5.4.sql';
 
   let generatedOutput: GeneratedOutput;
 
@@ -761,7 +761,6 @@ describe('when generating change event scripts and comparing to ODS/API 5.4 auth
       ...newState(),
       metaEdConfiguration,
     };
-    state.metaEd.allianceMode = true;
     state.metaEd.dataStandardVersion = '3.3.1-b';
 
     validateConfiguration(state);

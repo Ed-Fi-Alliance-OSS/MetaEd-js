@@ -8,7 +8,7 @@
 {{/if}}
 {{/if}}
 {{#triggers}}
-{{#if ../includeDropIfExists}}
+{{#if ../isStyle5dot4}}
 DROP TRIGGER IF EXISTS [{{{schema}}}].[{{{triggerName}}}]
 GO
 
@@ -23,7 +23,7 @@ BEGIN
 {{#if includeKeyChanges}}
 
     -- Handle key changes
-    INSERT INTO tracked_changes_edfi.{{{tableName}}}(
+    INSERT INTO tracked_changes_{{{schema}}}.{{{tableName}}}(
         {{#each changeDataColumns}}Old{{{columnName}}}, {{/each}}
         {{#each changeDataColumns}}New{{{columnName}}}, {{/each}}
         Id, ChangeVersion)

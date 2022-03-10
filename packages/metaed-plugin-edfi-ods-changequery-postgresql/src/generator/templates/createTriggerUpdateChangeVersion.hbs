@@ -21,6 +21,53 @@ CREATE TRIGGER {{triggerName}} BEFORE UPDATE ON {{{schema}}}.{{{tableName}}}
 END IF;
 {{/if}}
 
+{{#if includeKeyChanges}}
+CREATE OR REPLACE FUNCTION tracked_changes_{{{schema}}}.{{{tableName}}}_keychg()
+    RETURNS trigger AS
+$BODY$
+DECLARE
+{{#each changeDataColumns}}
+{{#if isDescriptorId}}
+    dj{{{tableAliasSuffix}}} {{{../schema}}}.descriptor%ROWTYPE;
+    ij{{{tableAliasSuffix}}} {{{../schema}}}.descriptor%ROWTYPE;
+{{/if}}
+{{#if isUsi}}
+    dj{{{tableAliasSuffix}}} {{{../schema}}}.{{usiName}}%ROWTYPE;
+    ij{{{tableAliasSuffix}}} {{{../schema}}}.{{usiName}}%ROWTYPE;
+{{/if}}
+{{/each}}
+BEGIN
+{{#each changeDataColumns}}
+{{#if isDescriptorId}}
+    SELECT INTO dj{{tableAliasSuffix}} * FROM {{../schema}}.descriptor j{{tableAliasSuffix}} WHERE descriptorid = old.{{columnName}};
+    SELECT INTO ij{{tableAliasSuffix}} * FROM {{../schema}}.descriptor j{{tableAliasSuffix}} WHERE descriptorid = new.{{columnName}};
+{{/if}}
+{{#if isUsi}}
+    SELECT INTO dj{{tableAliasSuffix}} * FROM {{../schema}}.{{usiName}} j{{tableAliasSuffix}} WHERE {{columnName}} = old.{{columnName}};
+    SELECT INTO ij{{tableAliasSuffix}} * FROM {{../schema}}.{{usiName}} j{{tableAliasSuffix}} WHERE {{columnName}} = new.{{columnName}};
+{{/if}}
+{{/each}}
+
+    -- Handle key changes
+    INSERT INTO tracked_changes_{{{schema}}}.{{{tableName}}}(
+        {{#each changeDataColumns}}old{{{columnName}}}, {{/each}}
+        {{#each changeDataColumns}}new{{{columnName}}}, {{/each}}
+        id, changeversion)
+    VALUES (
+        {{#each changeDataColumns}}{{#if isRegularSelectColumn}}old.{{{columnName}}}{{/if}}{{#if isUniqueId}}dj{{tableAliasSuffix}}.{{{columnName}}}{{/if}}{{#if isDescriptorNamespace}}dj{{tableAliasSuffix}}.namespace{{/if}}{{#if isDescriptorCodeValue}}dj{{tableAliasSuffix}}.codevalue{{/if}}, {{/each}}
+        {{#each changeDataColumns}}{{#if isRegularSelectColumn}}new.{{{columnName}}}{{/if}}{{#if isUniqueId}}ij{{tableAliasSuffix}}.{{{columnName}}}{{/if}}{{#if isDescriptorNamespace}}ij{{tableAliasSuffix}}.namespace{{/if}}{{#if isDescriptorCodeValue}}ij{{tableAliasSuffix}}.codevalue{{/if}}, {{/each}}
+        old.id, (nextval('changes.changeversionsequence')));
+
+    RETURN null;
+END;
+$BODY$ LANGUAGE plpgsql;
+
+IF NOT EXISTS(SELECT 1 FROM information_schema.triggers WHERE trigger_name = 'handlekeychanges' AND event_object_schema = '{{schema}}' AND event_object_table = '{{tableName}}') THEN
+    CREATE TRIGGER HandleKeyChanges AFTER UPDATE OF {{#each primaryKeyColumnNames}}{{#if @first}}{{{this}}}{{else}}, {{{this}}}{{/if}}{{/each}} ON {{schema}}.{{tableName}}
+        FOR EACH ROW EXECUTE PROCEDURE tracked_changes_{{schema}}.{{{tableName}}}_keychg();
+END IF;
+
+{{/if}}
 {{/triggers}}
 {{#if isStyle5dot4}}
 END
