@@ -7,23 +7,69 @@
 
 {{/if}}
 {{/if}}
-{{#triggers}}
-CREATE FUNCTION {{{triggerSchema}}}.{{{triggerName}}}()
-    RETURNS trigger AS
-$BODY$
+{{#if isStyle5dot4}}
+DO $$
 BEGIN
+{{/if}}
+{{#triggers}}
+CREATE {{#if isStyle5dot4}}OR REPLACE {{/if}}FUNCTION {{{triggerSchema}}}.{{{triggerName}}}()
+    RETURNS trigger AS
+$BODY${{#if needsDeclare}}
+DECLARE{{/if}}
+{{#each changeDataColumns}}
+{{#if isDescriptorId}}
+    dj{{{tableAliasSuffix}}} {{{../targetTableSchema}}}.descriptor%ROWTYPE;
+{{/if}}
+{{#if isUsi}}
+    dj{{{tableAliasSuffix}}} {{{../targetTableSchema}}}.{{usiName}}%ROWTYPE;
+{{/if}}
+{{/each}}
+BEGIN
+{{~#each changeDataColumns}}{{#if isDescriptorId}}
+    SELECT INTO dj{{{tableAliasSuffix}}} * FROM edfi.descriptor j{{{tableAliasSuffix}}} WHERE descriptorid = old.{{columnName}};
+{{/if}}{{#if isUsi}}
+    SELECT INTO dj{{{tableAliasSuffix}}} * FROM {{{../targetTableSchema}}}.{{usiName}} j{{{tableAliasSuffix}}} WHERE {{columnName}} = old.{{columnName}};
+{{/if}}{{/each}}{{!-- changeDataColumns --}}
+{{~#if isDescriptorTable}}
+
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT {{#primaryKeyColumnNames}}OLD.{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, b.codevalue, b.namespace, b.id, '{{{targetTableSchema}}}.{{{targetTableName}}}', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE {{#primaryKeyColumnNames}}old.{{{this}}} = b.descriptorid {{#unless @last}}AND {{/unless}}{{/primaryKeyColumnNames}};
+{{else}}{{!-- not isDescriptorTable --}}
+{{~#if isStyle5dot4}}
+
+    INSERT INTO {{{deleteTrackingTableSchema}}}.{{{deleteTrackingTableName}}}(
+        {{#changeDataColumns}}old{{{columnName}}}{{#unless @last}}, {{/unless}}{{/changeDataColumns}},
+        id, {{#unless omitDiscriminator}}discriminator, {{/unless}}changeversion)
+    VALUES (
+        {{#each changeDataColumns}}{{#if isRegularSelectColumn}}OLD.{{{columnName}}}{{/if}}{{#if isUniqueId}}dj{{tableAliasSuffix}}.{{{columnName}}}{{/if}}{{#if isDescriptorNamespace}}dj{{tableAliasSuffix}}.namespace{{/if}}{{#if isDescriptorCodeValue}}dj{{tableAliasSuffix}}.codevalue{{/if}}, {{/each}}
+        OLD.id, {{#unless omitDiscriminator}}OLD.discriminator, {{/unless}}nextval('changes.changeversionsequence'));
+{{else}}{{!-- not isStyle5dot4 --}}
     INSERT INTO {{{deleteTrackingTableSchema}}}.{{{deleteTrackingTableName}}}({{#primaryKeyColumnNames}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, ChangeVersion)
-{{#if targetTableIsSubclass}}
+{{~#if targetTableIsSubclass}}
+
     SELECT {{#primaryKeyColumnNames}}OLD.{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, nextval('changes.ChangeVersionSequence')
     FROM {{#foreignKeyToSuperclass}}{{{foreignTableSchema}}}.{{{foreignTable.data.edfiOdsPostgresql.tableName}}} WHERE {{#data.edfiOdsChangeQuery.columnNames}}{{{foreignTableColumnName}}} = OLD.{{{parentTableColumnName}}}{{#unless @last}} AND {{/unless}}{{/data.edfiOdsChangeQuery.columnNames}}{{/foreignKeyToSuperclass}};
-{{else}}
+{{~else}}{{!-- not targetTableIsSubclass --}}
     VALUES ({{#primaryKeyColumnNames}}OLD.{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, OLD.Id, nextval('changes.ChangeVersionSequence'));
-{{/if}}
+{{~/if}}{{!-- targetTableIsSubclass --}}
+{{~/if}}{{!-- isStyle5dot4 --}}
+{{~/if}}{{!-- isDescriptorTable --}}
     RETURN NULL;
 END;
 $BODY$ LANGUAGE plpgsql;
 
+{{#if isStyle5dot4}}
+IF NOT EXISTS(SELECT 1 FROM information_schema.triggers WHERE trigger_name = 'trackdeletes' AND event_object_schema = '{{targetTableSchema}}' AND event_object_table = '{{targetTableName}}') THEN
+{{/if}}
 CREATE TRIGGER TrackDeletes AFTER DELETE ON {{{targetTableSchema}}}.{{{targetTableName}}} 
     FOR EACH ROW EXECUTE PROCEDURE {{{triggerSchema}}}.{{{triggerName}}}();
+{{#if isStyle5dot4}}
+END IF;
+{{/if}}
 
 {{/triggers}}
+{{#if isStyle5dot4}}
+END
+$$;
+{{/if}}

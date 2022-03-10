@@ -60,9 +60,13 @@ sample-TrackedDeleteTables-v3.4.sql
 sample-TrackedDeleteTables-v5.4.sql
 DeleteTrackingTrigger-v3.1.sql
 DeleteTrackingTrigger-v3.4.sql
+DeleteTrackingTrigger-v5.0.sql
+DeleteTrackingTrigger-v5.0-Alliance.sql
 DeleteTrackingTrigger-v5.4.sql
 sample-DeleteTrackingTrigger-v3.1.sql
 sample-DeleteTrackingTrigger-v3.4.sql
+sample-DeleteTrackingTrigger-v5.0.sql
+sample-DeleteTrackingTrigger-v5.0-Alliance.sql
 sample-DeleteTrackingTrigger-v5.4.sql
 TriggerUpdateChangeVersion-v3.1.sql
 TriggerUpdateChangeVersion-v3.4.sql

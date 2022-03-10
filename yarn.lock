@@ -1029,6 +1029,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-ods-changequery-postgresql@workspace:packages/metaed-plugin-edfi-ods-changequery-postgresql"
   dependencies:
+    "@edfi/ed-fi-model-3.0": 3.0.1
+    "@edfi/ed-fi-model-3.2a": 3.0.1
+    "@edfi/ed-fi-model-3.3b": 3.0.1
     "@edfi/metaed-core": 3.0.1-dev.5
     "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.1-dev.5
     "@edfi/metaed-plugin-edfi-ods-postgresql": 3.0.1-dev.5

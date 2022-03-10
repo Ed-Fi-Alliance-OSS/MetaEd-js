@@ -313,7 +313,7 @@ export function generateCreateDeletedForTrackingTrigger(
           },
         );
 
-        const generatedResult: string = template().deleteTrackingTrigger({ triggers, useLicenseHeader });
+        const generatedResult: string = template().deleteTrackingTrigger({ triggers, useLicenseHeader, isStyle5dot4 });
 
         results.push({
           name: 'ODS Change Event: CreateDeletedForTrackingTriggers',
