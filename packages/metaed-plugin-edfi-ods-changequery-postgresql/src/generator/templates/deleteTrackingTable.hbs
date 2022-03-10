@@ -17,6 +17,7 @@ END IF;
 
 {{/if}}
 {{#tables}}
+{{#unless isDescriptorTable}}
 {{#if isStyle5dot4}}
 IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = '{{{schema}}}' AND table_name = '{{{tableName}}}') THEN
 {{/if}}
@@ -38,11 +39,12 @@ CREATE TABLE {{{schema}}}.{{{tableName}}}
        {{{data.edfiOdsPostgresql.columnName}}} {{{data.edfiOdsPostgresql.dataType}}} NOT NULL,
 {{/columns}}
 {{/if}}
-       CONSTRAINT {{{primaryKeyName}}} PRIMARY KEY ({{#primaryKeyColumns}}{{{data.edfiOdsPostgresql.columnName}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumns}})
+       CONSTRAINT {{{primaryKeyName}}} PRIMARY KEY (changeversion)
 );
 {{#if isStyle5dot4}}
 END IF;
 {{/if}}
+{{/unless}}
 {{/tables}}
 {{#if isStyle5dot4}}
 END

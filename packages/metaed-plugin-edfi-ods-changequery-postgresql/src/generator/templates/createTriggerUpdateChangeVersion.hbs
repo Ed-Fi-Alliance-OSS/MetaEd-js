@@ -7,8 +7,22 @@
 
 {{/if}}
 {{/if}}
+{{#if isStyle5dot4}}
+DO $$
+BEGIN
+{{/if}}
 {{#triggers}}
+{{#if isStyle5dot4}}
+IF NOT EXISTS(SELECT 1 FROM information_schema.triggers WHERE trigger_name = 'updatechangeversion' AND event_object_schema = '{{schema}}' AND event_object_table = '{{tableName}}') THEN
+{{/if}}
 CREATE TRIGGER {{triggerName}} BEFORE UPDATE ON {{{schema}}}.{{{tableName}}}
     FOR EACH ROW EXECUTE PROCEDURE changes.UpdateChangeVersion();
+{{#if isStyle5dot4}}
+END IF;
+{{/if}}
 
 {{/triggers}}
+{{#if isStyle5dot4}}
+END
+$$;
+{{/if}}
