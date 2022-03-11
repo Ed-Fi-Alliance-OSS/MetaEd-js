@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout code   
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
+        with:
+          token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
 
       - name: Build
         run: yarn build
