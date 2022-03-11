@@ -923,7 +923,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@edfi/generator-metaed-plugin@workspace:packages/generator-metaed-plugin"
   dependencies:
-    "@edfi/metaed-core": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
     "@octokit/core": ^3.5.1
     chalk: ^4.1.2
     mem-fs: ^2.2.1
@@ -936,11 +936,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-console@3.0.1-dev.3, @edfi/metaed-console@workspace:packages/metaed-console":
+"@edfi/metaed-console@3.0.1-dev.4, @edfi/metaed-console@workspace:packages/metaed-console":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-console@workspace:packages/metaed-console"
   dependencies:
-    "@edfi/metaed-core": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
     chalk: ^4.1.2
     semver: ^5.7.1
     winston: 3.5.1
@@ -948,7 +948,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-core@3.0.1-dev.3, @edfi/metaed-core@workspace:packages/metaed-core":
+"@edfi/metaed-core@3.0.1-dev.4, @edfi/metaed-core@workspace:packages/metaed-core":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-core@workspace:packages/metaed-core"
   dependencies:
@@ -971,11 +971,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-odsapi-deploy@3.0.1-dev.3, @edfi/metaed-odsapi-deploy@workspace:packages/metaed-odsapi-deploy":
+"@edfi/metaed-odsapi-deploy@3.0.1-dev.4, @edfi/metaed-odsapi-deploy@workspace:packages/metaed-odsapi-deploy":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-odsapi-deploy@workspace:packages/metaed-odsapi-deploy"
   dependencies:
-    "@edfi/metaed-core": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
     chalk: ^4.1.2
     fs-extra: ^5.0.0
     klaw-sync: ^3.0.2
@@ -988,15 +988,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-handbook@3.0.1-dev.3, @edfi/metaed-plugin-edfi-handbook@workspace:packages/metaed-plugin-edfi-handbook":
+"@edfi/metaed-plugin-edfi-handbook@3.0.1-dev.4, @edfi/metaed-plugin-edfi-handbook@workspace:packages/metaed-plugin-edfi-handbook":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-handbook@workspace:packages/metaed-plugin-edfi-handbook"
   dependencies:
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
     handlebars: ^4.7.7
     js-beautify: ^1.14.0
     ramda: ^0.28.0
@@ -1006,13 +1006,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-interchange-brief@3.0.1-dev.3, @edfi/metaed-plugin-edfi-interchange-brief@workspace:packages/metaed-plugin-edfi-interchange-brief":
+"@edfi/metaed-plugin-edfi-interchange-brief@3.0.1-dev.4, @edfi/metaed-plugin-edfi-interchange-brief@workspace:packages/metaed-plugin-edfi-interchange-brief":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-interchange-brief@workspace:packages/metaed-plugin-edfi-interchange-brief"
   dependencies:
     "@edfi/ed-fi-model-2.0": 3.0.1
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-xsd": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-xsd": 3.0.1-dev.4
     final-fs: ^1.6.1
     handlebars: ^4.7.7
     marked: ">=4.0.10"
@@ -1025,15 +1025,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-ods-changequery-postgresql@3.0.1-dev.3, @edfi/metaed-plugin-edfi-ods-changequery-postgresql@workspace:packages/metaed-plugin-edfi-ods-changequery-postgresql":
+"@edfi/metaed-plugin-edfi-ods-changequery-postgresql@3.0.1-dev.4, @edfi/metaed-plugin-edfi-ods-changequery-postgresql@workspace:packages/metaed-plugin-edfi-ods-changequery-postgresql":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-ods-changequery-postgresql@workspace:packages/metaed-plugin-edfi-ods-changequery-postgresql"
   dependencies:
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-postgresql": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-postgresql": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
     final-fs: ^1.6.1
     handlebars: ^4.7.7
     hash.js: ^1.1.7
@@ -1042,18 +1042,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-ods-changequery-sqlserver@3.0.1-dev.3, @edfi/metaed-plugin-edfi-ods-changequery-sqlserver@workspace:packages/metaed-plugin-edfi-ods-changequery-sqlserver":
+"@edfi/metaed-plugin-edfi-ods-changequery-sqlserver@3.0.1-dev.4, @edfi/metaed-plugin-edfi-ods-changequery-sqlserver@workspace:packages/metaed-plugin-edfi-ods-changequery-sqlserver":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-ods-changequery-sqlserver@workspace:packages/metaed-plugin-edfi-ods-changequery-sqlserver"
   dependencies:
     "@edfi/ed-fi-model-3.0": 3.0.1
     "@edfi/ed-fi-model-3.3a": 3.0.1
     "@edfi/ed-fi-model-3.3b": 3.0.1
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
     final-fs: ^1.6.1
     handlebars: ^4.7.7
     ramda: ^0.28.0
@@ -1061,14 +1061,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-ods-changequery@3.0.1-dev.3, @edfi/metaed-plugin-edfi-ods-changequery@workspace:packages/metaed-plugin-edfi-ods-changequery":
+"@edfi/metaed-plugin-edfi-ods-changequery@3.0.1-dev.4, @edfi/metaed-plugin-edfi-ods-changequery@workspace:packages/metaed-plugin-edfi-ods-changequery":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-ods-changequery@workspace:packages/metaed-plugin-edfi-ods-changequery"
   dependencies:
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
     final-fs: ^1.6.1
     handlebars: ^4.7.7
     ramda: ^0.28.0
@@ -1076,7 +1076,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-ods-postgresql@3.0.1-dev.3, @edfi/metaed-plugin-edfi-ods-postgresql@workspace:packages/metaed-plugin-edfi-ods-postgresql":
+"@edfi/metaed-plugin-edfi-ods-postgresql@3.0.1-dev.4, @edfi/metaed-plugin-edfi-ods-postgresql@workspace:packages/metaed-plugin-edfi-ods-postgresql":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-ods-postgresql@workspace:packages/metaed-plugin-edfi-ods-postgresql"
   dependencies:
@@ -1084,10 +1084,10 @@ __metadata:
     "@edfi/ed-fi-model-3.0": 3.0.1
     "@edfi/ed-fi-model-3.1": 3.0.1
     "@edfi/ed-fi-model-3.2a": 3.0.1
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
     "@types/pg": ^7.14.11
     cli-highlight: ^2.1.11
     deep-freeze: ^0.0.1
@@ -1102,46 +1102,46 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-ods-recordownership-postgresql@3.0.1-dev.3, @edfi/metaed-plugin-edfi-ods-recordownership-postgresql@workspace:packages/metaed-plugin-edfi-ods-recordownership-postgresql":
+"@edfi/metaed-plugin-edfi-ods-recordownership-postgresql@3.0.1-dev.4, @edfi/metaed-plugin-edfi-ods-recordownership-postgresql@workspace:packages/metaed-plugin-edfi-ods-recordownership-postgresql":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-ods-recordownership-postgresql@workspace:packages/metaed-plugin-edfi-ods-recordownership-postgresql"
   dependencies:
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-recordownership": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-recordownership": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
     final-fs: ^1.6.1
     handlebars: ^4.7.7
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-ods-recordownership-sqlserver@3.0.1-dev.3, @edfi/metaed-plugin-edfi-ods-recordownership-sqlserver@workspace:packages/metaed-plugin-edfi-ods-recordownership-sqlserver":
+"@edfi/metaed-plugin-edfi-ods-recordownership-sqlserver@3.0.1-dev.4, @edfi/metaed-plugin-edfi-ods-recordownership-sqlserver@workspace:packages/metaed-plugin-edfi-ods-recordownership-sqlserver":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-ods-recordownership-sqlserver@workspace:packages/metaed-plugin-edfi-ods-recordownership-sqlserver"
   dependencies:
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-recordownership": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-recordownership": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
     final-fs: ^1.6.1
     handlebars: ^4.7.7
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-ods-recordownership@3.0.1-dev.3, @edfi/metaed-plugin-edfi-ods-recordownership@workspace:packages/metaed-plugin-edfi-ods-recordownership":
+"@edfi/metaed-plugin-edfi-ods-recordownership@3.0.1-dev.4, @edfi/metaed-plugin-edfi-ods-recordownership@workspace:packages/metaed-plugin-edfi-ods-recordownership":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-ods-recordownership@workspace:packages/metaed-plugin-edfi-ods-recordownership"
   dependencies:
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
     final-fs: ^1.6.1
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-ods-relational@3.0.1-dev.3, @edfi/metaed-plugin-edfi-ods-relational@workspace:packages/metaed-plugin-edfi-ods-relational":
+"@edfi/metaed-plugin-edfi-ods-relational@3.0.1-dev.4, @edfi/metaed-plugin-edfi-ods-relational@workspace:packages/metaed-plugin-edfi-ods-relational":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-ods-relational@workspace:packages/metaed-plugin-edfi-ods-relational"
   dependencies:
@@ -1149,9 +1149,9 @@ __metadata:
     "@edfi/ed-fi-model-3.0": 3.0.1
     "@edfi/ed-fi-model-3.1": 3.0.1
     "@edfi/ed-fi-model-3.2a": 3.0.1
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
     cli-highlight: ^2.1.11
     deep-freeze: ^0.0.1
     final-fs: ^1.6.1
@@ -1163,7 +1163,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-ods-sqlserver@3.0.1-dev.3, @edfi/metaed-plugin-edfi-ods-sqlserver@workspace:packages/metaed-plugin-edfi-ods-sqlserver":
+"@edfi/metaed-plugin-edfi-ods-sqlserver@3.0.1-dev.4, @edfi/metaed-plugin-edfi-ods-sqlserver@workspace:packages/metaed-plugin-edfi-ods-sqlserver":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-ods-sqlserver@workspace:packages/metaed-plugin-edfi-ods-sqlserver"
   dependencies:
@@ -1172,10 +1172,10 @@ __metadata:
     "@edfi/ed-fi-model-3.1": 3.0.1
     "@edfi/ed-fi-model-3.2a": 3.0.1
     "@edfi/ed-fi-model-3.3b": 3.0.1
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
     cli-highlight: ^2.1.11
     deep-freeze: ^0.0.1
     final-fs: ^1.6.1
@@ -1189,7 +1189,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-odsapi@3.0.1-dev.3, @edfi/metaed-plugin-edfi-odsapi@workspace:packages/metaed-plugin-edfi-odsapi":
+"@edfi/metaed-plugin-edfi-odsapi@3.0.1-dev.4, @edfi/metaed-plugin-edfi-odsapi@workspace:packages/metaed-plugin-edfi-odsapi":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-odsapi@workspace:packages/metaed-plugin-edfi-odsapi"
   dependencies:
@@ -1199,12 +1199,12 @@ __metadata:
     "@edfi/ed-fi-model-3.1": 3.0.1
     "@edfi/ed-fi-model-3.2a": 3.0.1
     "@edfi/ed-fi-model-3.3a": 3.0.1
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-xsd": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-xsd": 3.0.1-dev.4
     deep-freeze: ^0.0.1
     final-fs: ^1.6.1
     handlebars: ^4.7.7
@@ -1216,52 +1216,52 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-sql-dictionary@3.0.1-dev.3, @edfi/metaed-plugin-edfi-sql-dictionary@workspace:packages/metaed-plugin-edfi-sql-dictionary":
+"@edfi/metaed-plugin-edfi-sql-dictionary@3.0.1-dev.4, @edfi/metaed-plugin-edfi-sql-dictionary@workspace:packages/metaed-plugin-edfi-sql-dictionary":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-sql-dictionary@workspace:packages/metaed-plugin-edfi-sql-dictionary"
   dependencies:
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
     handlebars: ^4.7.7
     winston: 3.5.1
     xlsx: 0.18.0
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-unified-advanced@3.0.1-dev.3, @edfi/metaed-plugin-edfi-unified-advanced@workspace:packages/metaed-plugin-edfi-unified-advanced":
+"@edfi/metaed-plugin-edfi-unified-advanced@3.0.1-dev.4, @edfi/metaed-plugin-edfi-unified-advanced@workspace:packages/metaed-plugin-edfi-unified-advanced":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-unified-advanced@workspace:packages/metaed-plugin-edfi-unified-advanced"
   dependencies:
     "@edfi/ed-fi-model-3.0": 3.0.1
     "@edfi/ed-fi-model-3.1": 3.0.1
     "@edfi/ed-fi-model-3.2a": 3.0.1
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.4
     ramda: ^0.28.0
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-unified@3.0.1-dev.3, @edfi/metaed-plugin-edfi-unified@workspace:packages/metaed-plugin-edfi-unified":
+"@edfi/metaed-plugin-edfi-unified@3.0.1-dev.4, @edfi/metaed-plugin-edfi-unified@workspace:packages/metaed-plugin-edfi-unified":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-unified@workspace:packages/metaed-plugin-edfi-unified"
   dependencies:
-    "@edfi/metaed-core": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
     ramda: ^0.28.0
     winston: 3.5.1
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-xml-dictionary@3.0.1-dev.3, @edfi/metaed-plugin-edfi-xml-dictionary@workspace:packages/metaed-plugin-edfi-xml-dictionary":
+"@edfi/metaed-plugin-edfi-xml-dictionary@3.0.1-dev.4, @edfi/metaed-plugin-edfi-xml-dictionary@workspace:packages/metaed-plugin-edfi-xml-dictionary":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-xml-dictionary@workspace:packages/metaed-plugin-edfi-xml-dictionary"
   dependencies:
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-xsd": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-xsd": 3.0.1-dev.4
     handlebars: ^4.7.7
     js-beautify: ^1.14.0
     winston: 3.5.1
@@ -1270,7 +1270,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@edfi/metaed-plugin-edfi-xsd@3.0.1-dev.3, @edfi/metaed-plugin-edfi-xsd@workspace:packages/metaed-plugin-edfi-xsd":
+"@edfi/metaed-plugin-edfi-xsd@3.0.1-dev.4, @edfi/metaed-plugin-edfi-xsd@workspace:packages/metaed-plugin-edfi-xsd":
   version: 0.0.0-use.local
   resolution: "@edfi/metaed-plugin-edfi-xsd@workspace:packages/metaed-plugin-edfi-xsd"
   dependencies:
@@ -1278,9 +1278,9 @@ __metadata:
     "@edfi/ed-fi-model-3.0": 3.0.1
     "@edfi/ed-fi-model-3.1": 3.0.1
     "@edfi/ed-fi-model-3.2a": 3.0.1
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
     deep-freeze: ^0.0.1
     final-fs: ^1.6.1
     handlebars: ^4.7.7
@@ -1304,24 +1304,24 @@ __metadata:
     "@edfi/ed-fi-model-3.0": 3.0.1
     "@edfi/ed-fi-model-3.1": 3.0.1
     "@edfi/ed-fi-model-3.2a": 3.0.1
-    "@edfi/metaed-console": 3.0.1-dev.3
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-odsapi-deploy": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-handbook": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-interchange-brief": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-postgresql": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-recordownership": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-recordownership-postgresql": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-recordownership-sqlserver": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-odsapi": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-sql-dictionary": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-xml-dictionary": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-xsd": 3.0.1-dev.3
+    "@edfi/metaed-console": 3.0.1-dev.4
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-odsapi-deploy": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-handbook": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-interchange-brief": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-postgresql": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-recordownership": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-recordownership-postgresql": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-recordownership-sqlserver": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-odsapi": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-sql-dictionary": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-xml-dictionary": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-xsd": 3.0.1-dev.4
     "@types/glob": ^7.2.0
     "@types/node": ^17.0.14
     "@types/vscode": ^1.63.2
@@ -4100,26 +4100,26 @@ __metadata:
     "@edfi/ed-fi-model-3.2c": 3.0.1
     "@edfi/ed-fi-model-3.3a": 3.0.1
     "@edfi/ed-fi-model-3.3b": 3.0.1
-    "@edfi/metaed-console": 3.0.1-dev.3
-    "@edfi/metaed-core": 3.0.1-dev.3
-    "@edfi/metaed-odsapi-deploy": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-handbook": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-interchange-brief": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-changequery-postgresql": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-changequery-sqlserver": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-postgresql": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-recordownership": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-recordownership-postgresql": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-recordownership-sqlserver": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-odsapi": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-sql-dictionary": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-xml-dictionary": 3.0.1-dev.3
-    "@edfi/metaed-plugin-edfi-xsd": 3.0.1-dev.3
+    "@edfi/metaed-console": 3.0.1-dev.4
+    "@edfi/metaed-core": 3.0.1-dev.4
+    "@edfi/metaed-odsapi-deploy": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-handbook": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-interchange-brief": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-changequery-postgresql": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-changequery-sqlserver": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-postgresql": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-recordownership": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-recordownership-postgresql": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-recordownership-sqlserver": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-relational": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-odsapi": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-sql-dictionary": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-unified-advanced": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-xml-dictionary": 3.0.1-dev.4
+    "@edfi/metaed-plugin-edfi-xsd": 3.0.1-dev.4
     "@types/atom": 1.40.11
     adm-zip: ^0.5.9
     ansi-html: ^0.0.7
