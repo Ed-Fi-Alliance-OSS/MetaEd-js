@@ -20,6 +20,9 @@ jobs:
         with:
           token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
 
+      - name: Install
+        run: yarn install
+
       - name: Build
         run: yarn build
       
