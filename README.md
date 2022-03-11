@@ -1,6 +1,6 @@
 # metaed-js
 
-Ed-Fi Alliance core MetaEd plugins.
+Ed-Fi Alliance core MetaEd plugins and Atom integration.
 
 Tech Docs:
 
