@@ -1163,10 +1163,10 @@ BEGIN
 
     INSERT INTO tracked_changes_edfi.credential(
         oldcredentialidentifier, oldstateofissuestateabbreviationdescriptorid, oldstateofissuestateabbreviationdescriptornamespace, oldstateofissuestateabbreviationdescriptorcodevalue,
-        id, discriminator, changeversion)
+        id, namespace, discriminator, changeversion)
     VALUES (
         OLD.credentialidentifier, OLD.stateofissuestateabbreviationdescriptorid, dj0.namespace, dj0.codevalue, 
-        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+        OLD.id, OLD.namespace, OLD.discriminator, nextval('changes.changeversionsequence'));
 
     RETURN NULL;
 END;
@@ -1516,10 +1516,10 @@ $BODY$
 BEGIN
     INSERT INTO tracked_changes_edfi.educationcontent(
         oldcontentidentifier,
-        id, discriminator, changeversion)
+        id, namespace, discriminator, changeversion)
     VALUES (
         OLD.contentidentifier, 
-        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+        OLD.id, OLD.namespace, OLD.discriminator, nextval('changes.changeversionsequence'));
 
     RETURN NULL;
 END;
@@ -2402,10 +2402,10 @@ $BODY$
 BEGIN
     INSERT INTO tracked_changes_edfi.learningstandard(
         oldlearningstandardid,
-        id, discriminator, changeversion)
+        id, namespace, discriminator, changeversion)
     VALUES (
         OLD.learningstandardid, 
-        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+        OLD.id, OLD.namespace, OLD.discriminator, nextval('changes.changeversionsequence'));
 
     RETURN NULL;
 END;

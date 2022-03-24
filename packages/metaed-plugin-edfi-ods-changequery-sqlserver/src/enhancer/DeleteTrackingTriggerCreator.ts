@@ -1,4 +1,9 @@
-import { DeleteTrackingTrigger, getPrimaryKeys, newDeleteTrackingTrigger } from '@edfi/metaed-plugin-edfi-ods-changequery';
+import {
+  DeleteTrackingTrigger,
+  getPrimaryKeys,
+  hasRequiredNonIdentityNamespaceColumn,
+  newDeleteTrackingTrigger,
+} from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { Table, Column } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
 import { changeDataColumnsFor, TARGET_DATABASE_PLUGIN_NAME } from './EnhancerHelper';
@@ -50,6 +55,7 @@ function createDeleteTrackingTriggerModelV5dot4(table: Table): DeleteTrackingTri
     changeDataColumns: changeDataColumnsFor(table),
     isIgnored: table.existenceReason.isSubclassTable || table.existenceReason.isBaseDescriptor,
     omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
+    includeNamespace: hasRequiredNonIdentityNamespaceColumn(table),
   };
 }
 

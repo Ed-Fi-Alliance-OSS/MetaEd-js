@@ -2,6 +2,7 @@ import {
   ChangeDataColumn,
   DeleteTrackingTrigger,
   getPrimaryKeys,
+  hasRequiredNonIdentityNamespaceColumn,
   newDeleteTrackingTrigger,
 } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { Table, Column } from '@edfi/metaed-plugin-edfi-ods-relational';
@@ -42,6 +43,7 @@ export function createDeleteTrackingTriggerModelV5dot4(table: Table): DeleteTrac
     needsDeclare: changeDataColumns.some((c) => c.isUsi || c.isDescriptorId),
     isIgnored: table.existenceReason.isSubclassTable || table.existenceReason.isBaseDescriptor,
     omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
+    includeNamespace: hasRequiredNonIdentityNamespaceColumn(table),
   };
 }
 

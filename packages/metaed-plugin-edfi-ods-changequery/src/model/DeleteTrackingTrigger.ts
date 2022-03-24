@@ -17,6 +17,7 @@ export interface DeleteTrackingTrigger extends HasTriggerName {
   needsDeclare: boolean;
   isIgnored: boolean;
   omitDiscriminator: boolean;
+  includeNamespace: boolean;
 }
 
 export function newDeleteTrackingTrigger(): DeleteTrackingTrigger {
@@ -36,5 +37,6 @@ export function newDeleteTrackingTrigger(): DeleteTrackingTrigger {
     needsDeclare: false,
     isIgnored: false,
     omitDiscriminator: false,
+    includeNamespace: false,
   };
 }

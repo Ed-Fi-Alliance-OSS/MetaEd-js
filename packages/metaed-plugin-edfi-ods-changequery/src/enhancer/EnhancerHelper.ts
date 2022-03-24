@@ -183,3 +183,16 @@ export function performEnumerationChangeQueryEnhancement(
     });
   }
 }
+
+export function hasRequiredNonIdentityNamespaceColumn(table: Table): boolean {
+  let result = false;
+  table.columns.forEach((column: Column) => {
+    if (column.sourceEntityProperties.length !== 1) return;
+    if (column.sourceEntityProperties[0].metaEdName !== 'Namespace') return;
+    if (column.sourceEntityProperties[0].type !== 'sharedString') return;
+    if (column.sourceEntityProperties[0].referencedType !== 'URI') return;
+    if (!column.sourceEntityProperties[0].isRequired) return;
+    result = true;
+  });
+  return result;
+}

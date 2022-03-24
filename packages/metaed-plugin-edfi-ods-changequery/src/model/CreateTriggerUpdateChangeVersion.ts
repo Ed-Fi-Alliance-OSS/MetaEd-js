@@ -9,4 +9,19 @@ export interface CreateTriggerUpdateChangeVersion extends HasTableName {
   includeKeyChanges: boolean;
   isStyle5dot4: boolean;
   omitDiscriminator: boolean;
+  includeNamespace: boolean;
+}
+
+export function newCreateTriggerUpdateChangeVersion(): CreateTriggerUpdateChangeVersion {
+  return {
+    schema: '',
+    tableName: '',
+    triggerName: '',
+    primaryKeyColumnNames: [],
+    changeDataColumns: [],
+    includeKeyChanges: false,
+    isStyle5dot4: false,
+    omitDiscriminator: false,
+    includeNamespace: false,
+  };
 }

@@ -40,10 +40,10 @@ BEGIN
 
     INSERT INTO {{{deleteTrackingTableSchema}}}.{{{deleteTrackingTableName}}}(
         {{#changeDataColumns}}old{{{columnName}}}{{#unless @last}}, {{/unless}}{{/changeDataColumns}},
-        id, {{#unless omitDiscriminator}}discriminator, {{/unless}}changeversion)
+        id, {{#if includeNamespace}}namespace, {{/if}}{{#unless omitDiscriminator}}discriminator, {{/unless}}changeversion)
     VALUES (
         {{#each changeDataColumns}}{{#if isRegularSelectColumn}}OLD.{{{columnName}}}{{/if}}{{#if isUniqueId}}dj{{tableAliasSuffix}}.{{{columnName}}}{{/if}}{{#if isDescriptorNamespace}}dj{{tableAliasSuffix}}.namespace{{/if}}{{#if isDescriptorCodeValue}}dj{{tableAliasSuffix}}.codevalue{{/if}}, {{/each}}
-        OLD.id, {{#unless omitDiscriminator}}OLD.discriminator, {{/unless}}nextval('changes.changeversionsequence'));
+        OLD.id, {{#if includeNamespace}}OLD.namespace, {{/if}}{{#unless omitDiscriminator}}OLD.discriminator, {{/unless}}nextval('changes.changeversionsequence'));
 {{else}}{{!-- not isStyle5dot4 --}}
     INSERT INTO {{{deleteTrackingTableSchema}}}.{{{deleteTrackingTableName}}}({{#primaryKeyColumnNames}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, ChangeVersion)
 {{~#if targetTableIsSubclass}}

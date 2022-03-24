@@ -2,6 +2,7 @@ import { MetaEdEnvironment, EnhancerResult, versionSatisfies, SemVer } from '@ed
 import { Column, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import {
   CreateTriggerUpdateChangeVersion,
+  hasRequiredNonIdentityNamespaceColumn,
   performCreateTriggerUpdateChangeVersionEnhancement,
 } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { PLUGIN_NAME } from '../PluginHelper';
@@ -20,6 +21,7 @@ function createTriggerModel(table: Table, targetTechnologyVersion: SemVer): Crea
     includeKeyChanges: isStyle5dot4 && table.parentEntity?.data?.edfiOdsRelational?.odsCascadePrimaryKeyUpdates,
     isStyle5dot4,
     omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
+    includeNamespace: hasRequiredNonIdentityNamespaceColumn(table),
   };
 }
 

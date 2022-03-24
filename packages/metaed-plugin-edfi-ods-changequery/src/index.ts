@@ -3,7 +3,10 @@ import { validate as NamespaceMustNotBeNamedChanges } from './validator/Namespac
 
 export { changeQueryIndicated } from './enhancer/ChangeQueryIndicator';
 export { AddColumnChangeVersionForTable, newAddColumnChangeVersionForTable } from './model/AddColumnChangeVersionForTable';
-export { CreateTriggerUpdateChangeVersion } from './model/CreateTriggerUpdateChangeVersion';
+export {
+  CreateTriggerUpdateChangeVersion,
+  newCreateTriggerUpdateChangeVersion,
+} from './model/CreateTriggerUpdateChangeVersion';
 export { ChangeDataColumn, newChangeDataColumn } from './model/ChangeDataColumn';
 export { DeleteTrackingTable, newDeleteTrackingTable } from './model/DeleteTrackingTable';
 export { DeleteTrackingTrigger, newDeleteTrackingTrigger } from './model/DeleteTrackingTrigger';
@@ -22,6 +25,7 @@ export {
   performAssociationChangeQueryEnhancement,
   performCreateTriggerUpdateChangeVersionEnhancement,
   performEnumerationChangeQueryEnhancement,
+  hasRequiredNonIdentityNamespaceColumn,
 } from './enhancer/EnhancerHelper';
 export {
   SuperclassForeignKeyFinder,

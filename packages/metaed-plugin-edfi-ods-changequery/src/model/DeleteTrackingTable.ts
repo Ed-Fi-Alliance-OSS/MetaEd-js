@@ -12,6 +12,7 @@ export interface DeleteTrackingTable extends HasTableName {
   isIgnored: boolean;
   changeDataColumns: ChangeDataColumn[];
   omitDiscriminator: boolean;
+  includeNamespace: boolean;
 }
 
 export function newDeleteTrackingTable(): DeleteTrackingTable {
@@ -26,5 +27,6 @@ export function newDeleteTrackingTable(): DeleteTrackingTable {
     isIgnored: false,
     changeDataColumns: [],
     omitDiscriminator: false,
+    includeNamespace: false,
   };
 }
