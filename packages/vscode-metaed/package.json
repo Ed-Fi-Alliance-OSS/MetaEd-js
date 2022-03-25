@@ -2,6 +2,7 @@
 	"name": "@edfi/vscode-metaed",
 	"displayName": "MetaEd for VS Code",
 	"description": "MetaEd for VS Code",
+	"license": "SEE LICENSE IN LICENSE.md",
 	"version": "3.0.1-dev.6",
 	"publishConfig": {
 		"registry": "https://www.myget.org/F/ed-fi/npm/"
