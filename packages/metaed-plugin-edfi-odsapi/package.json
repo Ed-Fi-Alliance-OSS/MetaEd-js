@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-odsapi",
   "main": "dist/index.js",
-  "version": "3.0.1-dev.9",
+  "version": "3.0.1-dev.10",
   "description": "Ed-Fi ODS/API plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -29,12 +29,12 @@
   },
   "dependencies": {
     "@dagrejs/graphlib": "^2.1.4",
-    "@edfi/metaed-core": "3.0.1-dev.9",
-    "@edfi/metaed-plugin-edfi-ods-relational": "3.0.1-dev.9",
-    "@edfi/metaed-plugin-edfi-ods-sqlserver": "3.0.1-dev.9",
-    "@edfi/metaed-plugin-edfi-unified": "3.0.1-dev.9",
-    "@edfi/metaed-plugin-edfi-unified-advanced": "3.0.1-dev.9",
-    "@edfi/metaed-plugin-edfi-xsd": "3.0.1-dev.9",
+    "@edfi/metaed-core": "3.0.1-dev.10",
+    "@edfi/metaed-plugin-edfi-ods-relational": "3.0.1-dev.10",
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": "3.0.1-dev.10",
+    "@edfi/metaed-plugin-edfi-unified": "3.0.1-dev.10",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "3.0.1-dev.10",
+    "@edfi/metaed-plugin-edfi-xsd": "3.0.1-dev.10",
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.7.7",
     "ramda": "^0.28.0",
