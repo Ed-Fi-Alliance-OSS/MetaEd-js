@@ -1,5 +1,6 @@
 name: Auto Publish Dev
 on:
+  workflow_dispatch:
   pull_request:
     types: [closed]
     branches:
@@ -8,8 +9,8 @@ jobs:
   auto-publish-dev:
     name: Auto Publish Dev
 
-    # Only if closed due to merge
-    if: github.event.pull_request.merged == true
+    # Only if closed due to merge or manual trigger
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
 
     # Windows is required for some of the unit tests to run properly
     runs-on: ubuntu-20.04
