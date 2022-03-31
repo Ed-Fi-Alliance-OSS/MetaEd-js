@@ -1152,6 +1152,11 @@ describe('when building association source map', (): void => {
           "line": 0,
           "tokenText": "NoSourceMap",
         },
+        "isCollection": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
         "isDeprecated": Object {
           "column": 0,
           "line": 0,
@@ -1303,6 +1308,11 @@ describe('when building association source map', (): void => {
           "tokenText": "NoSourceMap",
         },
         "hasRestriction": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "isCollection": Object {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",

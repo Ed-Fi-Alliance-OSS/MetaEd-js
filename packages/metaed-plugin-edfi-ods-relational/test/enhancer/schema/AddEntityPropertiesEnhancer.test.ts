@@ -42,6 +42,7 @@ describe('when PropertyEnhancer enhances property with required collection', ():
     integerProperty = Object.assign(newIntegerProperty(), {
       metaEdName: integerPropertyName,
       isRequiredCollection: true,
+      isCollection: true,
     });
 
     metaEd.propertyIndex.integer.push(integerProperty);
@@ -64,6 +65,7 @@ describe('when PropertyEnhancer enhances property with optional collection', ():
     integerProperty = Object.assign(newIntegerProperty(), {
       metaEdName: integerPropertyName,
       isOptionalCollection: true,
+      isCollection: true,
     });
 
     metaEd.propertyIndex.integer.push(integerProperty);

@@ -17,11 +17,6 @@ const enhancerName = 'EntityPropertySetupEnhancer';
 export function odsName(property: EntityProperty): string {
   return prependRoleNameToMetaEdName(property.metaEdName, property.roleName);
 }
-
-export function odsIsCollection(property: EntityProperty): boolean {
-  return property.isRequiredCollection || property.isOptionalCollection;
-}
-
 export function odsContextPrefix(property: EntityProperty): string {
   return R.isEmpty(property.shortenTo) || property.shortenTo == null ? property.roleName : property.shortenTo;
 }
@@ -31,7 +26,7 @@ export function addEntityPropertyEdfiOdsTo(property: EntityProperty) {
 
   Object.assign(property.data.edfiOdsRelational, {
     odsName: odsName(property),
-    odsIsCollection: odsIsCollection(property),
+    odsIsCollection: property.isCollection,
     odsContextPrefix: odsContextPrefix(property),
     odsIsIdentityDatabaseType: false,
     odsIsUniqueIndex: false,

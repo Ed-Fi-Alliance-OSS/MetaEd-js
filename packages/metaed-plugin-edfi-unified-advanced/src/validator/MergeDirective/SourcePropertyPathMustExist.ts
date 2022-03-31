@@ -24,10 +24,6 @@ const validPropertyTypes: PropertyType[] = [
   'sharedString',
 ];
 
-function isCollectionProperty(property: EntityProperty): boolean {
-  return property.isOptionalCollection || property.isRequiredCollection;
-}
-
 function isIdentityLikeProperty(property: EntityProperty): boolean {
   return (
     property.isPartOfIdentity || property.isIdentityRename || ['choice', 'inlineCommon'].includes(property.parentEntity.type)
@@ -68,7 +64,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
 
       if (mergeDirective.targetPropertyChain.length < 1) return; // something wrong but not this validators problem
       const firstTargetProperty = mergeDirective.targetPropertyChain[0];
-      if (isCollectionProperty(firstTargetProperty) && !isIdentityLikeProperty(firstSourceProperty)) {
+      if (firstTargetProperty.isCollection && !isIdentityLikeProperty(firstSourceProperty)) {
         makeFailure(failures, mergeDirective);
         return;
       }

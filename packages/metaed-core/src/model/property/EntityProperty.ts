@@ -37,6 +37,7 @@ export interface EntityPropertySourceMap {
   isOptional: SourceMap;
   isRequiredCollection: SourceMap;
   isOptionalCollection: SourceMap;
+  isCollection: SourceMap;
   isQueryableOnly: SourceMap;
   roleName: SourceMap;
   hasRestriction: SourceMap;
@@ -69,6 +70,7 @@ export function newEntityPropertySourceMap(): EntityPropertySourceMap {
     isOptional: NoSourceMap,
     isRequiredCollection: NoSourceMap,
     isOptionalCollection: NoSourceMap,
+    isCollection: NoSourceMap,
     isQueryableOnly: NoSourceMap,
     roleName: NoSourceMap,
     hasRestriction: NoSourceMap,
@@ -121,6 +123,8 @@ export function newEntityPropertySourceMap(): EntityPropertySourceMap {
  *
  * **isOptionalCollection** is true if the "is optional collection" keyword applies.
  *
+ * **isCollection** is true if the property is an optional or required collection.
+ *
  * **isQueryableOnly** is true if the "is queryable only" keyword applies.
  *
  * **roleName** is true if the "renames identity property" keyword applies.
@@ -160,6 +164,7 @@ export interface EntityProperty {
   isOptional: boolean;
   isRequiredCollection: boolean;
   isOptionalCollection: boolean;
+  isCollection: boolean;
   isQueryableOnly: boolean;
   roleName: string;
   hasRestriction: boolean;
@@ -196,6 +201,7 @@ export function newEntityProperty(): EntityProperty {
     isOptional: false,
     isRequiredCollection: false,
     isOptionalCollection: false,
+    isCollection: false,
     isQueryableOnly: false,
     roleName: '',
     hasRestriction: false,

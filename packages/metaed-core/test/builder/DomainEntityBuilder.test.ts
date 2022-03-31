@@ -808,6 +808,11 @@ describe('when building domain entity with shared integer reference', (): void =
           "line": 0,
           "tokenText": "NoSourceMap",
         },
+        "isCollection": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
         "isDeprecated": Object {
           "column": 0,
           "line": 0,
@@ -992,6 +997,11 @@ describe('when building domain entity with shared integer reference without name
           "tokenText": "NoSourceMap",
         },
         "hasRestriction": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "isCollection": Object {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",

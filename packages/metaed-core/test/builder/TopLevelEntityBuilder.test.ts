@@ -944,6 +944,11 @@ describe('when building decimal property', (): void => {
           "line": 12,
           "tokenText": "max value",
         },
+        "isCollection": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
         "isDeprecated": Object {
           "column": 0,
           "line": 0,
@@ -1579,6 +1584,11 @@ describe('when building required entity properties', (): void => {
           "tokenText": "NoSourceMap",
         },
         "hasRestriction": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "isCollection": Object {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",
@@ -2561,6 +2571,11 @@ describe('when building integer property', (): void => {
           "column": 6,
           "line": 10,
           "tokenText": "max value",
+        },
+        "isCollection": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
         },
         "isDeprecated": Object {
           "column": 0,
@@ -3743,6 +3758,11 @@ describe('when building short property', (): void => {
           "line": 10,
           "tokenText": "max value",
         },
+        "isCollection": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
         "isDeprecated": Object {
           "column": 0,
           "line": 0,
@@ -3977,6 +3997,11 @@ describe('when building string property', (): void => {
           "column": 6,
           "line": 10,
           "tokenText": "max length",
+        },
+        "isCollection": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
         },
         "isDeprecated": Object {
           "column": 0,

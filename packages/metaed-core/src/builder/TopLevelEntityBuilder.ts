@@ -671,12 +671,16 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
     if (this.currentProperty === NoEntityProperty) return;
     this.currentProperty.isRequiredCollection = true;
     this.currentProperty.sourceMap.isRequiredCollection = sourceMapFrom(context);
+    this.currentProperty.isCollection = true;
+    this.currentProperty.sourceMap.isCollection = sourceMapFrom(context);
   }
 
   enterOptionalCollection(context: MetaEdGrammar.OptionalCollectionContext) {
     if (this.currentProperty === NoEntityProperty) return;
     this.currentProperty.isOptionalCollection = true;
     this.currentProperty.sourceMap.isOptionalCollection = sourceMapFrom(context);
+    this.currentProperty.isCollection = true;
+    this.currentProperty.sourceMap.isCollection = sourceMapFrom(context);
   }
 
   enterMinLength(context: MetaEdGrammar.MinLengthContext) {
