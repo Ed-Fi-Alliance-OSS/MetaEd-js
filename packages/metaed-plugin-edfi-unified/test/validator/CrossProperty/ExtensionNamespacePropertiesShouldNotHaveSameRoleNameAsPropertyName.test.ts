@@ -147,7 +147,7 @@ describe('when property in non Ed-Fi namespace has role name same as property na
     failures = validate(metaEd);
   });
 
-  it('should have no validation failures', (): void => {
+  it('should have validation failure', (): void => {
     expect(failures).toMatchInlineSnapshot(`
       Array [
         Object {
