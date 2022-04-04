@@ -31,7 +31,7 @@ CREATE TABLE {{{schema}}}.{{{tableName}}}
        new{{{columnName}}} {{{columnDataType}}} NULL,
 {{/changeDataColumns}}
        id uuid NOT NULL,{{#if includeNamespace}}
-       namespace varchar(255) NOT NULL,{{/if}}
+       oldnamespace varchar(255) NOT NULL,{{/if}}
        changeversion bigint NOT NULL,{{#unless omitDiscriminator}}
        discriminator varchar(128) NULL,{{/unless}}
        createdate timestamp NOT NULL DEFAULT (now()),

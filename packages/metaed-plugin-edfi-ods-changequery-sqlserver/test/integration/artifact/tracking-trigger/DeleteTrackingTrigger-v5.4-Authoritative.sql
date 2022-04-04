@@ -1323,8 +1323,8 @@ BEGIN
 
     SET NOCOUNT ON
 
-    INSERT INTO [tracked_changes_edfi].[Credential](OldCredentialIdentifier, OldStateOfIssueStateAbbreviationDescriptorId, OldStateOfIssueStateAbbreviationDescriptorNamespace, OldStateOfIssueStateAbbreviationDescriptorCodeValue, Id, Namespace, Discriminator, ChangeVersion)
-    SELECT d.CredentialIdentifier, d.StateOfIssueStateAbbreviationDescriptorId, j0.Namespace, j0.CodeValue, d.Id, d.Namespace, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    INSERT INTO [tracked_changes_edfi].[Credential](OldCredentialIdentifier, OldStateOfIssueStateAbbreviationDescriptorId, OldStateOfIssueStateAbbreviationDescriptorNamespace, OldStateOfIssueStateAbbreviationDescriptorCodeValue, Id, OldNamespace, Discriminator, ChangeVersion)
+    SELECT d.CredentialIdentifier, d.StateOfIssueStateAbbreviationDescriptorId, j0.Namespace, j0.CodeValue, d.Id, d.OldNamespace, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
         INNER JOIN edfi.Descriptor j0
             ON d.StateOfIssueStateAbbreviationDescriptorId = j0.DescriptorId
@@ -1744,8 +1744,8 @@ BEGIN
 
     SET NOCOUNT ON
 
-    INSERT INTO [tracked_changes_edfi].[EducationContent](OldContentIdentifier, Id, Namespace, Discriminator, ChangeVersion)
-    SELECT d.ContentIdentifier, d.Id, d.Namespace, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    INSERT INTO [tracked_changes_edfi].[EducationContent](OldContentIdentifier, Id, OldNamespace, Discriminator, ChangeVersion)
+    SELECT d.ContentIdentifier, d.Id, d.OldNamespace, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
 END
 GO
@@ -2751,8 +2751,8 @@ BEGIN
 
     SET NOCOUNT ON
 
-    INSERT INTO [tracked_changes_edfi].[LearningStandard](OldLearningStandardId, Id, Namespace, Discriminator, ChangeVersion)
-    SELECT d.LearningStandardId, d.Id, d.Namespace, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    INSERT INTO [tracked_changes_edfi].[LearningStandard](OldLearningStandardId, Id, OldNamespace, Discriminator, ChangeVersion)
+    SELECT d.LearningStandardId, d.Id, d.OldNamespace, d.Discriminator, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
 END
 GO

@@ -52,11 +52,11 @@ BEGIN
     INSERT INTO tracked_changes_{{{schema}}}.{{{tableName}}}(
         {{#each changeDataColumns}}old{{{columnName}}}, {{/each}}
         {{#each changeDataColumns}}new{{{columnName}}}, {{/each}}
-        id, {{#if includeNamespace}}namespace, {{/if}}changeversion)
+        id, {{#if includeNamespace}}oldnamespace, {{/if}}changeversion)
     VALUES (
         {{#each changeDataColumns}}{{#if isRegularSelectColumn}}old.{{{columnName}}}{{/if}}{{#if isUniqueId}}dj{{tableAliasSuffix}}.{{{columnName}}}{{/if}}{{#if isDescriptorNamespace}}dj{{tableAliasSuffix}}.namespace{{/if}}{{#if isDescriptorCodeValue}}dj{{tableAliasSuffix}}.codevalue{{/if}}, {{/each}}
         {{#each changeDataColumns}}{{#if isRegularSelectColumn}}new.{{{columnName}}}{{/if}}{{#if isUniqueId}}ij{{tableAliasSuffix}}.{{{columnName}}}{{/if}}{{#if isDescriptorNamespace}}ij{{tableAliasSuffix}}.namespace{{/if}}{{#if isDescriptorCodeValue}}ij{{tableAliasSuffix}}.codevalue{{/if}}, {{/each}}
-        old.id, {{#if includeNamespace}}old.namespace, {{/if}}(nextval('changes.changeversionsequence')));
+        old.id, {{#if includeNamespace}}old.oldnamespace, {{/if}}(nextval('changes.changeversionsequence')));
 
     RETURN null;
 END;

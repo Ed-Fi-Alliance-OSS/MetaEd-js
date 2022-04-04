@@ -36,7 +36,7 @@ BEGIN
 
     INSERT INTO [{{{deleteTrackingTableSchema}}}].[{{{deleteTrackingTableName}}}](
     {{~#if isStyle5dot4~}}
-        {{#each changeDataColumns}}Old{{{columnName}}}{{#unless @last}}, {{/unless}}{{/each}}, Id, {{#if includeNamespace}}Namespace, {{/if}}{{#unless omitDiscriminator}}Discriminator, {{/unless}}ChangeVersion
+        {{#each changeDataColumns}}Old{{{columnName}}}{{#unless @last}}, {{/unless}}{{/each}}, Id, {{#if includeNamespace}}OldNamespace, {{/if}}{{#unless omitDiscriminator}}Discriminator, {{/unless}}ChangeVersion
     {{~else~}}
         {{#primaryKeyColumnNames}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, ChangeVersion
     {{~/if~}}
@@ -45,7 +45,7 @@ BEGIN
 {{#if isUniqueId}}j{{tableAliasSuffix}}.{{{columnName}}}{{/if~}}
 {{#if isDescriptorNamespace}}j{{tableAliasSuffix}}.Namespace{{/if~}}
 {{#if isDescriptorCodeValue}}j{{tableAliasSuffix}}.CodeValue{{/if~}}  
-        {{#unless @last}}, {{/unless}}{{/each}}, d.Id, {{#if includeNamespace}}d.Namespace, {{/if}}{{#unless omitDiscriminator}}d.Discriminator, {{/unless}}(NEXT VALUE FOR [changes].[ChangeVersionSequence])
+        {{#unless @last}}, {{/unless}}{{/each}}, d.Id, {{#if includeNamespace}}d.OldNamespace, {{/if}}{{#unless omitDiscriminator}}d.Discriminator, {{/unless}}(NEXT VALUE FOR [changes].[ChangeVersionSequence])
     {{else}}
  {{#primaryKeyColumnNames}}{{#if ../targetTableIsSubclass}}d.{{/if}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     {{/if}}

@@ -28,7 +28,7 @@ CREATE TABLE [{{{schema}}}].[{{{tableName}}}]
        New{{{columnName}}} {{{columnDataType}}} NULL,
 {{/changeDataColumns}}
        Id uniqueidentifier NOT NULL,{{#if includeNamespace}}
-       Namespace [NVARCHAR](255) NOT NULL,{{/if}}
+       OldNamespace [NVARCHAR](255) NOT NULL,{{/if}}
        ChangeVersion bigint NOT NULL,{{#unless omitDiscriminator}}
        Discriminator [NVARCHAR](128) NULL,{{/unless}}
        CreateDate DateTime2 NOT NULL DEFAULT (getutcdate()),
