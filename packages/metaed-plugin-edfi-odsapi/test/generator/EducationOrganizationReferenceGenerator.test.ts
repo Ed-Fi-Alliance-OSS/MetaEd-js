@@ -1,4 +1,4 @@
-import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { GeneratedOutput, newMetaEdEnvironment, newNamespace, newPluginEnvironment } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Namespace, GeneratorResult } from '@edfi/metaed-core';
 import { newEducationOrganizationReference } from '../../src/model/educationOrganizationReferenceMetadata/EducationOrganizationReference';
 import { EducationOrganizationReference } from '../../src/model/educationOrganizationReferenceMetadata/EducationOrganizationReference';
@@ -9,6 +9,10 @@ describe('when generating education organization reference for core', (): void =
 
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiOdsApi', {
+      ...newPluginEnvironment(),
+      targetTechnologyVersion: '5.0.0',
+    });
 
     const educationOrganizationReference: EducationOrganizationReference = {
       ...newEducationOrganizationReference(),
@@ -39,6 +43,10 @@ describe('when generating education organization reference for extension', (): v
 
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiOdsApi', {
+      ...newPluginEnvironment(),
+      targetTechnologyVersion: '5.0.0',
+    });
 
     const educationOrganizationReference: EducationOrganizationReference = {
       ...newEducationOrganizationReference(),
@@ -72,6 +80,10 @@ describe('when generating education organization reference for both core and ext
 
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiOdsApi', {
+      ...newPluginEnvironment(),
+      targetTechnologyVersion: '5.0.0',
+    });
 
     const coreEducationOrganizationReference: EducationOrganizationReference = {
       ...newEducationOrganizationReference(),
@@ -124,6 +136,10 @@ describe('when generating education organization reference for both core and emp
 
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiOdsApi', {
+      ...newPluginEnvironment(),
+      targetTechnologyVersion: '5.0.0',
+    });
 
     const coreEducationOrganizationReference: EducationOrganizationReference = {
       ...newEducationOrganizationReference(),
@@ -159,5 +175,39 @@ describe('when generating education organization reference for both core and emp
 
   it('should only generate core education organization reference element', (): void => {
     expect(coreResult).toMatchSnapshot();
+  });
+});
+
+describe('when targeting ODS/API version 5.4 or greater', () => {
+  let result: GeneratedOutput[] = [];
+
+  beforeAll(async () => {
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiOdsApi', {
+      ...newPluginEnvironment(),
+      targetTechnologyVersion: '5.4.0',
+    });
+
+    const educationOrganizationReference: EducationOrganizationReference = {
+      ...newEducationOrganizationReference(),
+      name: 'School',
+      identityPropertyName: 'SchoolId',
+    };
+
+    const namespace: Namespace = Object.assign(newNamespace(), {
+      namespaceName: 'EdFi',
+      data: {
+        edfiOdsApi: {
+          apiEducationOrganizationReferences: [educationOrganizationReference],
+        },
+      },
+    });
+
+    metaEd.namespace.set(namespace.namespaceName, namespace);
+    result = (await generate(metaEd)).generatedOutput;
+  });
+
+  it('should not generate education organization', () => {
+    expect(result).toHaveLength(0);
   });
 });

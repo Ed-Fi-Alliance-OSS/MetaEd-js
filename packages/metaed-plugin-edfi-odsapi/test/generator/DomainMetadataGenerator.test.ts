@@ -1,4 +1,4 @@
-import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { GeneratedOutput, newMetaEdEnvironment, newNamespace, newPluginEnvironment } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { generate } from '../../src/generator/domainMetadata/DomainMetadataGenerator';
 import { Aggregate } from '../../src/model/domainMetadata/Aggregate';
@@ -11,6 +11,10 @@ describe('when generating aggregate for edfi', (): void => {
 
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiOdsApi', {
+      ...newPluginEnvironment(),
+      targetTechnologyVersion: '5.0.0',
+    });
 
     const aggregate: Aggregate = {
       root: 'Entity1',
@@ -67,6 +71,10 @@ describe('when generating aggregate for extensions', (): void => {
 
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiOdsApi', {
+      ...newPluginEnvironment(),
+      targetTechnologyVersion: '5.0.0',
+    });
 
     const aggregate: Aggregate = {
       root: 'Entity1',
@@ -115,6 +123,10 @@ describe('when generating aggregate with subclass for edfi', (): void => {
 
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiOdsApi', {
+      ...newPluginEnvironment(),
+      targetTechnologyVersion: '5.0.0',
+    });
 
     const aggregate: Aggregate = {
       root: 'Entity1',
@@ -163,6 +175,10 @@ describe('when generating aggregate extensions', (): void => {
 
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiOdsApi', {
+      ...newPluginEnvironment(),
+      targetTechnologyVersion: '5.0.0',
+    });
 
     const aggregate: Aggregate = {
       root: 'Entity1',
@@ -211,6 +227,10 @@ describe('when generating abstract aggregate for edfi', (): void => {
 
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiOdsApi', {
+      ...newPluginEnvironment(),
+      targetTechnologyVersion: '5.0.0',
+    });
 
     const aggregate: Aggregate = {
       root: 'Entity1',
@@ -259,6 +279,10 @@ describe('when generating aggregate with primary key update', (): void => {
 
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiOdsApi', {
+      ...newPluginEnvironment(),
+      targetTechnologyVersion: '5.0.0',
+    });
 
     const aggregate: Aggregate = {
       root: 'Entity1',
@@ -307,6 +331,10 @@ describe('when generating aggregate with required collection table', (): void =>
 
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiOdsApi', {
+      ...newPluginEnvironment(),
+      targetTechnologyVersion: '5.0.0',
+    });
 
     const aggregate: Aggregate = {
       root: 'Entity1',
@@ -344,5 +372,66 @@ describe('when generating aggregate with required collection table', (): void =>
 
   it('should generate aggregate element', (): void => {
     expect(result).toMatchSnapshot();
+  });
+});
+
+describe('when targeting ODS/API version 5.4 or greater', () => {
+  const namespaceName = 'EdFi';
+  const schema = namespaceName.toLowerCase();
+  const projectName = 'Ed-Fi';
+  let result: GeneratedOutput[] = [];
+
+  beforeAll(async () => {
+    const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+    metaEd.plugin.set('edfiOdsApi', {
+      ...newPluginEnvironment(),
+      targetTechnologyVersion: '5.4.0',
+    });
+
+    const aggregate: Aggregate = {
+      root: 'Entity1',
+      schema: namespaceName,
+      allowPrimaryKeyUpdates: false,
+      isExtension: false,
+      entityTables: [
+        {
+          table: 'Entity2',
+          isA: null,
+          isAbstract: false,
+          isRequiredCollection: false,
+          schema,
+          hasIsA: false,
+          requiresSchema: false,
+        },
+        {
+          table: 'Entity3',
+          isA: null,
+          isAbstract: false,
+          isRequiredCollection: false,
+          schema,
+          hasIsA: false,
+          requiresSchema: false,
+        },
+      ],
+    };
+
+    const namespace: Namespace = {
+      ...newNamespace(),
+      namespaceName,
+      projectName,
+      isExtension: false,
+      data: {
+        edfiOdsApi: {
+          aggregates: [aggregate],
+        },
+      },
+    };
+
+    metaEd.namespace.set(namespace.namespaceName, namespace);
+    result = (await generate(metaEd)).generatedOutput;
+  });
+
+  it('should not generate domain metadata', () => {
+    expect(result).toHaveLength(0);
   });
 });

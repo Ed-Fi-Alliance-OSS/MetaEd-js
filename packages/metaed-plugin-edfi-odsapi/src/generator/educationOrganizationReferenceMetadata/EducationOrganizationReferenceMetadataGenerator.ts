@@ -2,7 +2,7 @@ import fs from 'fs';
 import R from 'ramda';
 import path from 'path';
 import handlebars from 'handlebars';
-import { orderByProp } from '@edfi/metaed-core';
+import { orderByProp, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
 import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from '@edfi/metaed-core';
 import { EducationOrganizationReference } from '../../model/educationOrganizationReferenceMetadata/EducationOrganizationReference';
 
@@ -34,6 +34,10 @@ function generateFile(input: any, namespace: Namespace): GeneratedOutput {
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
+
+  if (!versionSatisfies((metaEd.plugin.get('edfiOdsApi') as PluginEnvironment).targetTechnologyVersion, '<5.4.0')) {
+    return { generatorName, generatedOutput: results };
+  }
 
   metaEd.namespace.forEach((namespace: Namespace) => {
     const educationOrganizationReferences: EducationOrganizationReference[] = orderByProp('name')(

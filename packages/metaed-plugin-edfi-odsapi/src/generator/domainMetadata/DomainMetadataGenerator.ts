@@ -1,5 +1,12 @@
 import R from 'ramda';
-import { MetaEdEnvironment, Namespace, GeneratorResult, GeneratedOutput } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  Namespace,
+  GeneratorResult,
+  GeneratedOutput,
+  versionSatisfies,
+  PluginEnvironment,
+} from '@edfi/metaed-core';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 import { Aggregate } from '../../model/domainMetadata/Aggregate';
 import { registerPartials, template } from './DomainMetadataGeneratorBase';
@@ -12,9 +19,14 @@ function fileName(projectPrefix: string): string {
 }
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
-  registerPartials();
-
+  const generatorName = 'edfiOdsApi.DomainMetadataGenerator';
   const results: GeneratedOutput[] = [];
+
+  if (!versionSatisfies((metaEd.plugin.get('edfiOdsApi') as PluginEnvironment).targetTechnologyVersion, '<5.4.0')) {
+    return { generatorName, generatedOutput: results };
+  }
+
+  registerPartials();
 
   metaEd.namespace.forEach((namespace: Namespace) => {
     const schema: SchemaDefinition = {
@@ -58,7 +70,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   });
 
   return {
-    generatorName: 'edfiOdsApi.DomainMetadataGenerator',
+    generatorName,
     generatedOutput: results,
   };
 }
