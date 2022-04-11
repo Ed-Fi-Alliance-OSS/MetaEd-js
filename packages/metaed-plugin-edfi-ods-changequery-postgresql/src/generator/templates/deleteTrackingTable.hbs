@@ -12,7 +12,7 @@ DO $$
 BEGIN
 
 IF NOT EXISTS (SELECT 1 FROM information_schema.schemata WHERE schema_name = '{{{schema}}}') THEN
-CREATE SCHEMA tracked_changes_edfi;
+CREATE SCHEMA {{{schema}}};
 END IF;
 
 {{/if}}

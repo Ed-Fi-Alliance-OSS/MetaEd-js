@@ -18,10 +18,10 @@ $BODY${{#if needsDeclare}}
 DECLARE{{/if}}
 {{#each changeDataColumns}}
 {{#if isDescriptorId}}
-    dj{{{tableAliasSuffix}}} {{{../targetTableSchema}}}.descriptor%ROWTYPE;
+    dj{{{tableAliasSuffix}}} edfi.descriptor%ROWTYPE;
 {{/if}}
 {{#if isUsi}}
-    dj{{{tableAliasSuffix}}} {{{../targetTableSchema}}}.{{usiName}}%ROWTYPE;
+    dj{{{tableAliasSuffix}}} edfi.{{usiName}}%ROWTYPE;
 {{/if}}
 {{/each}}
 BEGIN
