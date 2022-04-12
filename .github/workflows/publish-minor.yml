@@ -1,0 +1,11 @@
+name: Publish Minor Version
+on:
+  workflow_dispatch:
+
+jobs:
+  publish-minor:
+    name: Publish Minor
+
+    uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-publish.yml@main
+    with:
+      bump: minor

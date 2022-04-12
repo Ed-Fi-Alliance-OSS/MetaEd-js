@@ -1,0 +1,11 @@
+name: Publish Patch Version
+on:
+  workflow_dispatch:
+
+jobs:
+  publish-patch:
+    name: Publish Patch
+
+    uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-publish.yml@main
+    with:
+      bump: patch

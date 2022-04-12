@@ -1,0 +1,11 @@
+name: Publish Major Version
+on:
+  workflow_dispatch:
+
+jobs:
+  publish-major:
+    name: Publish Major
+
+    uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-publish.yml@main
+    with:
+      bump: major

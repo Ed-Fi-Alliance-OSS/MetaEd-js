@@ -1,18 +1,16 @@
-name: Auto Publish Dev
+name: Reusable Publish
 on:
-  workflow_dispatch:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
+  workflow_call:
+    inputs:
+      bump:
+        description: The version to bump. Choices are 'major', 'minor', 'patch', or 'dev'.
+        required: true
+        type: string
+
 jobs:
-  auto-publish-dev:
-    name: Auto Publish Dev
+  publish:
+    name: Publish
 
-    # Only if closed due to merge or manual trigger
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
-
-    # Windows is required for some of the unit tests to run properly
     runs-on: ubuntu-20.04
     
     steps:
@@ -43,13 +41,21 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
 
-      - name: Publish
+      - name: Git setup
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_MYGET_ACCESS_TOKEN }}
         run: |
           git config user.name "${{ steps.import-gpg.outputs.name }}"
           git config user.email "${{ steps.import-gpg.outputs.email }}"
 
+      - name: Publish dev prerelease
+        if: inputs.bump == 'dev'
+        run: |
           yarn lerna version prerelease --exact --force-publish=* --force-git-tag --sign-git-commit --yes --preid dev
-
           yarn lerna publish from-git --yes --dist-tag dev --no-verify-access
+
+      - name: Publish release
+        if: inputs.bump != 'dev'
+        run: |
+          yarn lerna version ${{ inputs.bump }} --exact --force-publish=* --force-git-tag --sign-git-commit --yes
+          yarn lerna publish from-git --yes --no-verify-access
