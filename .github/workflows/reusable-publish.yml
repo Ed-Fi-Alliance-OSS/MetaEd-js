@@ -6,6 +6,15 @@ on:
         description: The version to bump. Choices are 'major', 'minor', 'patch', or 'dev'.
         required: true
         type: string
+    secrets:
+      EDFI_BUILD_AGENT_PAT:
+        required: true
+      EDFIBUILDAGENT_PRIVATE_KEY:
+        required: true
+      EDFIBUILDAGENT_PASSPHRASE:
+        required: true
+      NPM_MYGET_ACCESS_TOKEN:
+        required: true     
 
 jobs:
   publish:
