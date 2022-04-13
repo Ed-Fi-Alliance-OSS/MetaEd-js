@@ -27,7 +27,7 @@ export function resolveDataType(column: Column): string {
     case 'string':
       // SQL Server supports up to 4000 characters in an NVARCHAR, for anything bigger it needs to be an NVARCHAR(MAX)
       if (parseInt((column as StringColumn).length, 10) > 4000) {
-        (column as StringColumn).length = 'MAX';
+        return ColumnDataTypes.string('MAX');
       }
       return ColumnDataTypes.string((column as StringColumn).length);
     default:
