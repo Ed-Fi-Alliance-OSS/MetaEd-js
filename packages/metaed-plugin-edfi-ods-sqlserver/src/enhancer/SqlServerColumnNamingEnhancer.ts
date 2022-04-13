@@ -10,13 +10,13 @@ import {
 } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { ColumnDataTypes } from '../model/ColumnDataTypes';
 
-const enhancerName = 'SqlServerTableNamingEnhancer';
+const enhancerName = 'SqlServerColumnNamingEnhancer';
 
 function simpleColumnNameComponentCollapse(columnNameComponent: ColumnNameComponent[]): string {
   return columnNameComponent.map((nameComponent) => nameComponent.name).reduce(appendOverlapCollapsing, '');
 }
 
-export function constructColumnNameFrom(columnNameComponent: ColumnNameComponent[]): string {
+export function constructNameFrom(columnNameComponent: ColumnNameComponent[]): string {
   return simpleColumnNameComponentCollapse(columnNameComponent);
 }
 
@@ -25,6 +25,10 @@ export function resolveDataType(column: Column): string {
     case 'decimal':
       return ColumnDataTypes.decimal((column as DecimalColumn).precision, (column as DecimalColumn).scale);
     case 'string':
+      // SQL Server supports up to 4000 characters in an NVARCHAR, for anything bigger it needs to be an NVARCHAR(MAX)
+      if (parseInt((column as StringColumn).length, 10) > 4000) {
+        (column as StringColumn).length = 'MAX';
+      }
       return ColumnDataTypes.string((column as StringColumn).length);
     default:
       return ColumnDataTypes[column.type];
@@ -37,7 +41,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
     tables.forEach((table: Table) => {
       table.columns.forEach((column: Column) => {
-        column.data.edfiOdsSqlServer.columnName = constructColumnNameFrom(column.nameComponents);
+        column.data.edfiOdsSqlServer.columnName = constructNameFrom(column.nameComponents);
         column.data.edfiOdsSqlServer.dataType = resolveDataType(column);
       });
     });
