@@ -11,6 +11,11 @@ on:
         - major
         - minor
         - patch
+      debug_enabled:
+        description: Run the build with tmate debugging enabled     
+        required: true
+        default: false
+        type: boolean
 
 jobs:
   publish-major:
@@ -19,6 +24,7 @@ jobs:
     uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-publish.yml@main
     with:
       bump: ${{ github.event.inputs.bump }}
+      debug_enabled: ${{ github.event.inputs.debug_enabled }}
     secrets:
       EDFI_BUILD_AGENT_PAT: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
       EDFIBUILDAGENT_PRIVATE_KEY: ${{ secrets.EDFIBUILDAGENT_PRIVATE_KEY }}

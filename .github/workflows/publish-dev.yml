@@ -1,6 +1,11 @@
 name: Publish Dev Version
 on:
   workflow_dispatch:
+    debug_enabled:
+      description: Run the build with tmate debugging enabled     
+      required: true
+      default: false
+      type: boolean
   pull_request:
     types: [closed]
     branches:
@@ -15,6 +20,8 @@ jobs:
     uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-publish.yml@main
     with:
       bump: dev
+      debug_enabled: ${{ github.event.inputs.debug_enabled }}
+
     secrets:
       EDFI_BUILD_AGENT_PAT: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
       EDFIBUILDAGENT_PRIVATE_KEY: ${{ secrets.EDFIBUILDAGENT_PRIVATE_KEY }}

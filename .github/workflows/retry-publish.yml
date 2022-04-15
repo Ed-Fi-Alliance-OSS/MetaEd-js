@@ -1,7 +1,12 @@
 name: Retry Publish
 on:
   workflow_dispatch:
-
+    inputs:
+      debug_enabled:
+        description: Run the build with tmate debugging enabled     
+        required: true
+        default: false
+        type: boolean
 jobs:
   retry-publish:
     name: Retry Publish
@@ -10,6 +15,7 @@ jobs:
     with:
       bump: 'none'
       retry: true
+      debug_enabled: ${{ github.event.inputs.debug_enabled }}
     secrets:
       EDFI_BUILD_AGENT_PAT: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
       EDFIBUILDAGENT_PRIVATE_KEY: ${{ secrets.EDFIBUILDAGENT_PRIVATE_KEY }}
