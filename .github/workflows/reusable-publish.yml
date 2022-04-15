@@ -3,9 +3,13 @@ on:
   workflow_call:
     inputs:
       bump:
-        description: The version to bump. Choices are 'major', 'minor', 'patch', or 'dev'.
+        description: The version to bump. Choices are 'major', 'minor', 'patch', or 'dev'. If retrying, use 'none' instead.
         required: true
         type: string
+      retry:
+        description: Retry the publish without bumping the version again.
+        default: false
+        type: boolean
     secrets:
       EDFI_BUILD_AGENT_PAT:
         required: true
@@ -57,14 +61,19 @@ jobs:
           git config user.name "${{ steps.import-gpg.outputs.name }}"
           git config user.email "${{ steps.import-gpg.outputs.email }}"
 
-      - name: Publish dev prerelease
-        if: inputs.bump == 'dev'
-        run: |
-          yarn lerna version prerelease --exact --force-publish=* --force-git-tag --sign-git-commit --yes --preid dev
-          yarn lerna publish from-git --yes --dist-tag dev --no-verify-access
+      - name: Lerna version dev prerelease
+        if: inputs.bump == 'dev' && inputs.retry == false
+        run: yarn lerna version prerelease --exact --force-publish=* --force-git-tag --sign-git-commit --yes --preid dev
 
-      - name: Publish release
-        if: inputs.bump != 'dev'
+      - name: Lerna version release
+        if: inputs.bump != 'dev' && inputs.retry == false
+        run: yarn lerna version ${{ inputs.bump }} --exact --force-publish=* --force-git-tag --sign-git-commit --yes
+
+      - name: Lerna publish
+        if: inputs.retry == false
+        run: yarn lerna publish from-git --yes --pre-dist-tag dev
+
+      - name: Lerna retry publish
+        if: inputs.retry == true
         run: |
-          yarn lerna version ${{ inputs.bump }} --exact --force-publish=* --force-git-tag --sign-git-commit --yes
-          yarn lerna publish from-git --yes --no-verify-access
+          yarn lerna publish from-package --yes --pre-dist-tag dev

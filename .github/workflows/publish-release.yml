@@ -1,14 +1,24 @@
-name: Publish Patch Version
+name: Publish Release
 on:
   workflow_dispatch:
+    inputs:
+      bump:
+        description: 'Version Bump'
+        required: true
+        default: 'patch' 
+        type: choice
+        options:
+        - major
+        - minor
+        - patch
 
 jobs:
-  publish-patch:
-    name: Publish Patch
+  publish-major:
+    name: Publish Release
 
     uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-publish.yml@main
     with:
-      bump: patch
+      bump: ${{ github.event.inputs.bump }}
     secrets:
       EDFI_BUILD_AGENT_PAT: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
       EDFIBUILDAGENT_PRIVATE_KEY: ${{ secrets.EDFIBUILDAGENT_PRIVATE_KEY }}

@@ -1,16 +1,18 @@
-name: Publish Minor Version
+name: Retry Publish
 on:
   workflow_dispatch:
 
 jobs:
-  publish-minor:
-    name: Publish Minor
+  retry-publish:
+    name: Retry Publish
 
     uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-publish.yml@main
     with:
-      bump: minor
+      bump: 'none'
+      retry: true
     secrets:
       EDFI_BUILD_AGENT_PAT: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
       EDFIBUILDAGENT_PRIVATE_KEY: ${{ secrets.EDFIBUILDAGENT_PRIVATE_KEY }}
       EDFIBUILDAGENT_PASSPHRASE: ${{ secrets.EDFIBUILDAGENT_PASSPHRASE }}
       NPM_MYGET_ACCESS_TOKEN: ${{ secrets.NPM_MYGET_ACCESS_TOKEN }}
+

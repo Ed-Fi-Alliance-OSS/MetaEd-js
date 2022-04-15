@@ -78,13 +78,7 @@
     "test:unit:debug": "node --inspect-brk ./node_modules/.bin/jest --runInBand",
     "test:atom": "yarn workspace atom-metaed test",
     "test:code-duplication": "yarn jsinspect -t 50 --ignore \"test|gen|dist\" ./packages",
-    "version": "yarn install --no-immutable && git stage yarn.lock",
-    "prep-for-publish": "yarn test && yarn build",
-    "publish-all": "yarn lerna exec --no-private npm publish",
-    "version:dev": "yarn lerna version prerelease --conventional-commits --exact --force-publish=* --no-push --sign-git-commit --yes --preid=dev",
-    "version:patch": "yarn lerna version patch      --conventional-commits --exact --force-publish=* --no-push --sign-git-commit --yes",
-    "version:minor": "yarn lerna version minor      --conventional-commits --exact --force-publish=* --no-push --sign-git-commit --yes",
-    "version:major": "yarn lerna version major      --conventional-commits --exact --force-publish=* --no-push --sign-git-commit --yes"
+    "version": "yarn install --no-immutable && git stage yarn.lock"
   },
   "packageManager": "yarn@3.1.1"
 }
