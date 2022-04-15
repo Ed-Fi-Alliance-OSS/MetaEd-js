@@ -6,14 +6,17 @@ on:
         description: The version to bump. Choices are 'major', 'minor', 'patch', or 'dev'. If retrying, use 'none' instead.
         required: true
         type: string
+
       retry:
         description: Retry the publish without bumping the version again.
         default: false
         type: boolean
+
       debug_enabled:
-        description: Run the build with tmate debugging enabled
-        default: false
-        type: boolean
+        description: Run the build with tmate debugging enabled. Choices are 'true' or 'false' # https://github.com/actions/runner/issues/1483
+        default: 'false'
+        type: string
+
     secrets:
       EDFI_BUILD_AGENT_PAT:
         required: true
@@ -84,6 +87,6 @@ jobs:
 
       # Enable tmate debugging if the input option was provided (https://github.com/marketplace/actions/debugging-with-tmate)
       - name: Setup tmate session
-        if: ${{ inputs.debug_enabled }}
+        if: ${{ inputs.debug_enabled == 'true' }}
         uses: mxschmitt/action-tmate@8b4e4ac71822ed7e0ad5fb3d1c33483e9e8fb270 # v3.1.1
         timeout-minutes: 10

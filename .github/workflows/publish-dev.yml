@@ -4,12 +4,17 @@ on:
     debug_enabled:
       description: Run the build with tmate debugging enabled     
       required: true
-      default: false
-      type: boolean
+      default: 'false'
+      type: choice
+      options:
+      - false
+      - true
+
   pull_request:
     types: [closed]
     branches:
       - main
+
 jobs:
   publish-dev:
     name: Publish Dev
@@ -21,7 +26,7 @@ jobs:
     with:
       bump: dev
       # '|| false' below handles pull_request event case, where github.event.inputs.debug_enabled is undefined
-      debug_enabled: ${{ github.event.inputs.debug_enabled || false }}
+      debug_enabled: ${{ github.event.inputs.debug_enabled || 'false' }}
 
     secrets:
       EDFI_BUILD_AGENT_PAT: ${{ secrets.EDFI_BUILD_AGENT_PAT }}

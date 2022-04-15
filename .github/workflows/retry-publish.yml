@@ -5,8 +5,12 @@ on:
       debug_enabled:
         description: Run the build with tmate debugging enabled     
         required: true
-        default: false
-        type: boolean
+        default: 'false'
+        type: choice
+        options:
+        - false
+        - true
+
 jobs:
   retry-publish:
     name: Retry Publish
