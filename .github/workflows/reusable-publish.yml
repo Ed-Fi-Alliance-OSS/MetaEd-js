@@ -87,6 +87,6 @@ jobs:
 
       # Enable tmate debugging if the input option was provided (https://github.com/marketplace/actions/debugging-with-tmate)
       - name: Setup tmate session
-        if: ${{ inputs.debug_enabled == 'true' }}
+        if: always() && inputs.debug_enabled == 'true'
         uses: mxschmitt/action-tmate@8b4e4ac71822ed7e0ad5fb3d1c33483e9e8fb270 # v3.1.1
         timeout-minutes: 10
