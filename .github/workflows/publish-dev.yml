@@ -20,7 +20,8 @@ jobs:
     uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-publish.yml@main
     with:
       bump: dev
-      debug_enabled: ${{ github.event.inputs.debug_enabled }}
+      # '|| false' below handles pull_request event case, where github.event.inputs.debug_enabled is undefined
+      debug_enabled: ${{ github.event.inputs.debug_enabled || false }}
 
     secrets:
       EDFI_BUILD_AGENT_PAT: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
