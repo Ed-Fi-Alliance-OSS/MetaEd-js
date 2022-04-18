@@ -62,8 +62,6 @@ jobs:
           git_commit_gpgsign: true
 
       - name: Git setup
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_MYGET_ACCESS_TOKEN }}
         run: |
           git config user.name "${{ steps.import-gpg.outputs.name }}"
           git config user.email "${{ steps.import-gpg.outputs.email }}"
@@ -78,10 +76,14 @@ jobs:
 
       - name: Lerna publish
         if: inputs.retry == false
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_MYGET_ACCESS_TOKEN }}
         run: yarn lerna publish from-git --yes --pre-dist-tag dev
 
       - name: Lerna retry publish
         if: inputs.retry == true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_MYGET_ACCESS_TOKEN }}
         run: |
           yarn lerna publish from-package --yes --pre-dist-tag dev
 
