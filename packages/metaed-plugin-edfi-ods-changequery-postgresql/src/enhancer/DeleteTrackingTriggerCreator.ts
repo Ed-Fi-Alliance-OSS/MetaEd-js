@@ -24,7 +24,7 @@ export function createDeleteTrackingTriggerModelV3dot4(table: Table): DeleteTrac
   };
 }
 
-export function createDeleteTrackingTriggerModelV5dot4(table: Table): DeleteTrackingTrigger {
+export function createDeleteTrackingTriggerModelV6dot0(table: Table): DeleteTrackingTrigger {
   const changeDataColumns: ChangeDataColumn[] = changeDataColumnsFor(table);
   return {
     ...newDeleteTrackingTrigger(),
@@ -39,7 +39,7 @@ export function createDeleteTrackingTriggerModelV5dot4(table: Table): DeleteTrac
       (column: Column) => column.data.edfiOdsPostgresql.columnName,
     ),
     isDescriptorTable: table.existenceReason.isEntityMainTable && table.existenceReason.parentEntity?.type === 'descriptor',
-    isStyle5dot4: true,
+    isStyle6dot0: true,
     changeDataColumns,
     needsDeclare: changeDataColumns.some((c) => c.isUsi || c.isDescriptorId),
     isIgnored: table.existenceReason.isSubclassTable || table.existenceReason.isBaseDescriptor,
@@ -51,9 +51,9 @@ export function createDeleteTrackingTriggerModelV5dot4(table: Table): DeleteTrac
 export function createDeleteTrackingTriggerModel(metaEd: MetaEdEnvironment, table: Table): DeleteTrackingTrigger {
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
 
-  if (versionSatisfies(targetTechnologyVersion, '<5.4.0')) {
+  if (versionSatisfies(targetTechnologyVersion, '<6.0.0')) {
     return createDeleteTrackingTriggerModelV3dot4(table);
   }
 
-  return createDeleteTrackingTriggerModelV5dot4(table);
+  return createDeleteTrackingTriggerModelV6dot0(table);
 }

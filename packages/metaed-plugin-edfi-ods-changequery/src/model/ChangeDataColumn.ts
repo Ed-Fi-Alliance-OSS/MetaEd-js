@@ -1,4 +1,4 @@
-/** An object supporting the 5.4+ implementation of change queries */
+/** An object supporting the 6.0.0+ implementation of change queries */
 export interface ChangeDataColumn {
   columnName: string;
   columnDataType: string;

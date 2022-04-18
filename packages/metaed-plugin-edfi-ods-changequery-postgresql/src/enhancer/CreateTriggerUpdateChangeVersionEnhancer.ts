@@ -11,18 +11,18 @@ import { versionSatisfiesForPostgresChangeQuerySupport, changeDataColumnsFor } f
 const enhancerName = 'CreateTriggerUpdateChangeVersionEnhancer';
 
 function createTriggerModel(table: Table, targetTechnologyVersion: SemVer): CreateTriggerUpdateChangeVersion {
-  const isStyle5dot4 = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
+  const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
   const primaryKeyColumnNames: string[] = table.primaryKeys.map(
     (pkColumn: Column) => pkColumn.data.edfiOdsPostgresql.columnName,
   );
   return {
     schema: table.schema,
-    tableName: isStyle5dot4 ? table.data.edfiOdsPostgresql.tableName.toLowerCase() : table.data.edfiOdsPostgresql.tableName,
+    tableName: isStyle6dot0 ? table.data.edfiOdsPostgresql.tableName.toLowerCase() : table.data.edfiOdsPostgresql.tableName,
     triggerName: 'UpdateChangeVersion',
-    primaryKeyColumnNames: isStyle5dot4 ? primaryKeyColumnNames.map((p) => p.toLowerCase()) : primaryKeyColumnNames,
+    primaryKeyColumnNames: isStyle6dot0 ? primaryKeyColumnNames.map((p) => p.toLowerCase()) : primaryKeyColumnNames,
     changeDataColumns: changeDataColumnsFor(table),
-    includeKeyChanges: isStyle5dot4 && table.parentEntity?.data?.edfiOdsRelational?.odsCascadePrimaryKeyUpdates,
-    isStyle5dot4,
+    includeKeyChanges: isStyle6dot0 && table.parentEntity?.data?.edfiOdsRelational?.odsCascadePrimaryKeyUpdates,
+    isStyle6dot0,
     omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
     includeNamespace: hasRequiredNonIdentityNamespaceColumn(table),
   };

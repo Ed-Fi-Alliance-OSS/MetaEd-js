@@ -178,14 +178,14 @@ describe('when generating education organization reference for both core and emp
   });
 });
 
-describe('when targeting ODS/API version 5.4 or greater', () => {
+describe('when targeting ODS/API version 6.0.0 or greater', () => {
   let result: GeneratedOutput[] = [];
 
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
     metaEd.plugin.set('edfiOdsApi', {
       ...newPluginEnvironment(),
-      targetTechnologyVersion: '5.4.0',
+      targetTechnologyVersion: '6.0.0',
     });
 
     const educationOrganizationReference: EducationOrganizationReference = {

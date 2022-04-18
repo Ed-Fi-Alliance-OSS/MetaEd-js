@@ -33,7 +33,7 @@ const odsApiVersionSupport: Map<string, any[]> = new Map([
   ['5.1.0', [{ value: '3.2.0-c', description: '3.2c' }]],
   ['5.2.0', [{ value: '3.3.0-a', description: '3.3a' }]],
   ['5.3.0', [{ value: '3.3.1-b', description: '3.3b' }]],
-  ['5.4.0', [{ value: '3.3.1-b', description: '3.3b' }]], // TODO: This DS version is a 5.4 placeholder - real version TBD
+  ['6.0.0', [{ value: '4.0.0-a', description: '4.0a' }]],
 ]);
 
 // Used to schedule an update to the DS version in the settings after the DS version dropdown is re-written
@@ -78,15 +78,15 @@ export function switchCoreDsProjectOnDsChange(disposableTracker: CompositeDispos
       if (newValue === '3.2.0-c') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.2c'));
       if (newValue === '3.3.0-a') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.3a'));
       if (newValue === '3.3.1-b') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.3b'));
+      if (newValue === '4.0.0-a') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-4.0a'));
     }),
   );
 }
 
 async function setCoreToFiveDotX() {
-  // TODO: These DS version entries are 5.4 placeholders - real version TBD
-  setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.3b'));
-  setTargetDsVersion('3.3.1-b');
-  setTargetOdsApiVersion('5.4.0');
+  setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-4.0a'));
+  setTargetDsVersion('4.0.0-a');
+  setTargetOdsApiVersion('6.0.0');
   await nextMacroTask();
 }
 

@@ -7,20 +7,20 @@
 
 {{/if}}
 {{/if}}
-{{#isStyle5dot4}}
+{{#isStyle6dot0}}
 IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'{{{schema}}}')
 EXEC sys.sp_executesql N'CREATE SCHEMA [{{{schema}}}]'
 GO
 
-{{/isStyle5dot4}}
+{{/isStyle6dot0}}
 {{#tables}}
 {{#unless isDescriptorTable}}
-{{#if isStyle5dot4}}
+{{#if isStyle6dot0}}
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE object_id = OBJECT_ID(N'[{{{schema}}}].[{{{tableName}}}]'))
 {{/if}}
 CREATE TABLE [{{{schema}}}].[{{{tableName}}}]
 (
-{{#if isStyle5dot4}}
+{{#if isStyle6dot0}}
 {{#changeDataColumns}}
        Old{{{columnName}}} {{{columnDataType}}} NOT NULL,
 {{/changeDataColumns}}

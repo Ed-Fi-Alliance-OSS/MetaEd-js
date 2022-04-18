@@ -7,20 +7,20 @@
 
 {{/if}}
 {{/if}}
-{{#if isStyle5dot4}}
+{{#if isStyle6dot0}}
 DO $$
 BEGIN
 {{/if}}
 {{#tables}}
-{{#if isStyle5dot4}}IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema='{{{schema}}}' AND table_name='{{{tableName}}}' AND column_name='changeversion') THEN
+{{#if isStyle6dot0}}IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema='{{{schema}}}' AND table_name='{{{tableName}}}' AND column_name='changeversion') THEN
 {{/if}}
 ALTER TABLE {{{schema}}}.{{{tableName}}}
 ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
-{{#if isStyle5dot4}}END IF;
+{{#if isStyle6dot0}}END IF;
 {{/if}}
 
 {{/tables}}
-{{#if isStyle5dot4}}
+{{#if isStyle6dot0}}
 END
 $$;
 {{/if}}

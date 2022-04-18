@@ -13,14 +13,14 @@ const enhancerName = 'AddColumnChangeVersionForTableEnhancer';
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (versionSatisfiesForPostgresChangeQuerySupport(metaEd)) {
     const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
-    const isStyle5dot4 = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
+    const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
 
     const createAddColumnModel = (table: Table): AddColumnChangeVersionForTable => ({
       ...newAddColumnChangeVersionForTable(),
       schema: table.schema,
       tableName: table.data.edfiOdsPostgresql.tableName,
       tableNameHash: table.data.edfiOdsPostgresql.truncatedTableNameHash,
-      isStyle5dot4,
+      isStyle6dot0,
     });
 
     performAddColumnChangeVersionForTableEnhancement(metaEd, PLUGIN_NAME, createAddColumnModel);

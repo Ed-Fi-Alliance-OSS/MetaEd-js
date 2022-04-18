@@ -15,7 +15,7 @@ const enhancerName = 'SchoolYearEnumerationEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
-  if (changeQueryIndicated(metaEd) && versionSatisfies(targetTechnologyVersion, '>=5.4.0')) {
+  if (changeQueryIndicated(metaEd) && versionSatisfies(targetTechnologyVersion, '>=6.0.0')) {
     const edfiNamespace: Namespace | undefined = metaEd.namespace.get('EdFi');
     if (edfiNamespace == null) return { enhancerName, success: false };
 

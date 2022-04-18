@@ -11,15 +11,15 @@ import { changeDataColumnsFor } from './EnhancerHelper';
 const enhancerName = 'CreateTriggerUpdateChangeVersionEnhancer';
 
 function createTriggerModel(table: Table, targetTechnologyVersion: SemVer): CreateTriggerUpdateChangeVersion {
-  const isStyle5dot4 = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
+  const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
   return {
     schema: table.schema,
     tableName: table.data.edfiOdsSqlServer.tableName,
     triggerName: `${table.schema}_${table.data.edfiOdsSqlServer.tableName}_TR_UpdateChangeVersion`,
     primaryKeyColumnNames: table.primaryKeys.map((pkColumn: Column) => pkColumn.data.edfiOdsSqlServer.columnName),
     changeDataColumns: changeDataColumnsFor(table),
-    includeKeyChanges: isStyle5dot4 && table.parentEntity?.data?.edfiOdsRelational?.odsCascadePrimaryKeyUpdates,
-    isStyle5dot4,
+    includeKeyChanges: isStyle6dot0 && table.parentEntity?.data?.edfiOdsRelational?.odsCascadePrimaryKeyUpdates,
+    isStyle6dot0,
     omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
     includeNamespace: hasRequiredNonIdentityNamespaceColumn(table),
   };

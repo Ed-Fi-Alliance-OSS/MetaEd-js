@@ -39,7 +39,7 @@ export function createDeleteTrackingTableModelV3dot4(table: Table): DeleteTracki
   return deleteTrackingTable;
 }
 
-export function createDeleteTrackingTableModelV5dot4(table: Table): DeleteTrackingTable {
+export function createDeleteTrackingTableModelV6dot0(table: Table): DeleteTrackingTable {
   const trackingTableName: string = table.data.edfiOdsPostgresql.tableName;
 
   const changeVersionColumn: Column = {
@@ -56,7 +56,7 @@ export function createDeleteTrackingTableModelV5dot4(table: Table): DeleteTracki
     primaryKeyName: table.data.edfiOdsPostgresql.primaryKeyName.toLowerCase(),
     columns: [...getPrimaryKeys(table, TARGET_DATABASE_PLUGIN_NAME)],
     primaryKeyColumns: [changeVersionColumn],
-    isStyle5dot4: true,
+    isStyle6dot0: true,
     isDescriptorTable: table.existenceReason.parentEntity?.type === 'descriptor',
     isIgnored: table.existenceReason.isSubclassTable,
     changeDataColumns: changeDataColumnsFor(table),
@@ -79,9 +79,9 @@ export function createDeleteTrackingTableModelV5dot4(table: Table): DeleteTracki
 export function createDeleteTrackingTableModel(metaEd: MetaEdEnvironment, table: Table): DeleteTrackingTable {
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
 
-  if (versionSatisfies(targetTechnologyVersion, '<5.4.0')) {
+  if (versionSatisfies(targetTechnologyVersion, '<6.0.0')) {
     return createDeleteTrackingTableModelV3dot4(table);
   }
 
-  return createDeleteTrackingTableModelV5dot4(table);
+  return createDeleteTrackingTableModelV6dot0(table);
 }

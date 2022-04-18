@@ -70,7 +70,7 @@ function createDeleteTrackingTableModelV3dot4(table: Table): DeleteTrackingTable
   return deleteTrackingTable;
 }
 
-function createDeleteTrackingTableModelV5dot4(table: Table): DeleteTrackingTable {
+function createDeleteTrackingTableModelV6dot0(table: Table): DeleteTrackingTable {
   const trackingTableName: string = table.data.edfiOdsSqlServer.tableName;
 
   const changeVersionColumn: Column = {
@@ -87,7 +87,7 @@ function createDeleteTrackingTableModelV5dot4(table: Table): DeleteTrackingTable
     primaryKeyName: `PK_${trackingTableName}`,
     columns: [...getPrimaryKeys(table, TARGET_DATABASE_PLUGIN_NAME)],
     primaryKeyColumns: [changeVersionColumn],
-    isStyle5dot4: true,
+    isStyle6dot0: true,
     isDescriptorTable: table.existenceReason.parentEntity?.type === 'descriptor',
     isIgnored: table.existenceReason.isSubclassTable,
     changeDataColumns: changeDataColumnsFor(table),
@@ -114,9 +114,9 @@ export function createDeleteTrackingTableModel(metaEd: MetaEdEnvironment, table:
     return createDeleteTrackingTableModelV3dot3(table);
   }
 
-  if (versionSatisfies(targetTechnologyVersion, '<5.4.0')) {
+  if (versionSatisfies(targetTechnologyVersion, '<6.0.0')) {
     return createDeleteTrackingTableModelV3dot4(table);
   }
 
-  return createDeleteTrackingTableModelV5dot4(table);
+  return createDeleteTrackingTableModelV6dot0(table);
 }

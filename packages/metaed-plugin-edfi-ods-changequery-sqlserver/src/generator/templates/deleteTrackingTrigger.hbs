@@ -8,7 +8,7 @@
 {{/if}}
 {{/if}}
 {{#triggers}}
-{{#if isStyle5dot4}}
+{{#if isStyle6dot0}}
 DROP TRIGGER IF EXISTS [{{{triggerSchema}}}].[{{{triggerName}}}]
 GO
 
@@ -35,13 +35,13 @@ BEGIN
     SET NOCOUNT ON
 
     INSERT INTO [{{{deleteTrackingTableSchema}}}].[{{{deleteTrackingTableName}}}](
-    {{~#if isStyle5dot4~}}
+    {{~#if isStyle6dot0~}}
         {{#each changeDataColumns}}Old{{{columnName}}}{{#unless @last}}, {{/unless}}{{/each}}, Id, {{#if includeNamespace}}OldNamespace, {{/if}}{{#unless omitDiscriminator}}Discriminator, {{/unless}}ChangeVersion
     {{~else~}}
         {{#primaryKeyColumnNames}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, ChangeVersion
     {{~/if~}}
     )
-    SELECT {{#if isStyle5dot4}}{{#each changeDataColumns}}{{#if isRegularSelectColumn}}d.{{{columnName}}}{{/if~}}
+    SELECT {{#if isStyle6dot0}}{{#each changeDataColumns}}{{#if isRegularSelectColumn}}d.{{{columnName}}}{{/if~}}
 {{#if isUniqueId}}j{{tableAliasSuffix}}.{{{columnName}}}{{/if~}}
 {{#if isDescriptorNamespace}}j{{tableAliasSuffix}}.Namespace{{/if~}}
 {{#if isDescriptorCodeValue}}j{{tableAliasSuffix}}.CodeValue{{/if~}}  
@@ -49,7 +49,7 @@ BEGIN
     {{else}}
  {{#primaryKeyColumnNames}}{{#if ../targetTableIsSubclass}}d.{{/if}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     {{/if}}
-    FROM    deleted d{{#if isStyle5dot4}}
+    FROM    deleted d{{#if isStyle6dot0}}
 {{#each changeDataColumns}}
 {{#if isDescriptorId}}
         INNER JOIN edfi.Descriptor j{{tableAliasSuffix}}

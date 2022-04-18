@@ -38,7 +38,7 @@ function createDeleteTrackingTriggerModelV3dot4(table: Table): DeleteTrackingTri
   };
 }
 
-function createDeleteTrackingTriggerModelV5dot4(table: Table): DeleteTrackingTrigger {
+function createDeleteTrackingTriggerModelV6dot0(table: Table): DeleteTrackingTrigger {
   return {
     ...newDeleteTrackingTrigger(),
     triggerSchema: table.schema,
@@ -51,7 +51,7 @@ function createDeleteTrackingTriggerModelV5dot4(table: Table): DeleteTrackingTri
       (column: Column) => column.data.edfiOdsSqlServer.columnName,
     ),
     isDescriptorTable: table.existenceReason.isEntityMainTable && table.existenceReason.parentEntity?.type === 'descriptor',
-    isStyle5dot4: true,
+    isStyle6dot0: true,
     changeDataColumns: changeDataColumnsFor(table),
     isIgnored: table.existenceReason.isSubclassTable || table.existenceReason.isBaseDescriptor,
     omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
@@ -66,9 +66,9 @@ export function createDeleteTrackingTriggerModel(metaEd: MetaEdEnvironment, main
     return createDeleteTrackingTriggerModelV3dot3(mainTable);
   }
 
-  if (versionSatisfies(targetTechnologyVersion, '<5.4.0')) {
+  if (versionSatisfies(targetTechnologyVersion, '<6.0.0')) {
     return createDeleteTrackingTriggerModelV3dot4(mainTable);
   }
 
-  return createDeleteTrackingTriggerModelV5dot4(mainTable);
+  return createDeleteTrackingTriggerModelV6dot0(mainTable);
 }

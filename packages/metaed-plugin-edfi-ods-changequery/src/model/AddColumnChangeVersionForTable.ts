@@ -2,7 +2,7 @@ export interface AddColumnChangeVersionForTable {
   schema: string;
   tableName: string;
   tableNameHash: string | null;
-  isStyle5dot4: boolean;
+  isStyle6dot0: boolean;
 }
 
 export function newAddColumnChangeVersionForTable(): AddColumnChangeVersionForTable {
@@ -10,6 +10,6 @@ export function newAddColumnChangeVersionForTable(): AddColumnChangeVersionForTa
     schema: '',
     tableName: '',
     tableNameHash: null,
-    isStyle5dot4: false,
+    isStyle6dot0: false,
   };
 }

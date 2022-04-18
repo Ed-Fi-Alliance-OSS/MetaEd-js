@@ -375,7 +375,7 @@ describe('when generating aggregate with required collection table', (): void =>
   });
 });
 
-describe('when targeting ODS/API version 5.4 or greater', () => {
+describe('when targeting ODS/API version 6.0.0 or greater', () => {
   const namespaceName = 'EdFi';
   const schema = namespaceName.toLowerCase();
   const projectName = 'Ed-Fi';
@@ -385,7 +385,7 @@ describe('when targeting ODS/API version 5.4 or greater', () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
     metaEd.plugin.set('edfiOdsApi', {
       ...newPluginEnvironment(),
-      targetTechnologyVersion: '5.4.0',
+      targetTechnologyVersion: '6.0.0',
     });
 
     const aggregate: Aggregate = {

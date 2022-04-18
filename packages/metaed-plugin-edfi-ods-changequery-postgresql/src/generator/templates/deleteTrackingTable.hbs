@@ -7,7 +7,7 @@
 
 {{/if}}
 {{/if}}
-{{#if isStyle5dot4}}
+{{#if isStyle6dot0}}
 DO $$
 BEGIN
 
@@ -18,12 +18,12 @@ END IF;
 {{/if}}
 {{#tables}}
 {{#unless isDescriptorTable}}
-{{#if isStyle5dot4}}
+{{#if isStyle6dot0}}
 IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = '{{{schema}}}' AND table_name = '{{{tableName}}}') THEN
 {{/if}}
 CREATE TABLE {{{schema}}}.{{{tableName}}}
 (
-{{#if isStyle5dot4}}
+{{#if isStyle6dot0}}
 {{#changeDataColumns}}
        old{{{columnName}}} {{{columnDataType}}} NOT NULL,
 {{/changeDataColumns}}
@@ -42,13 +42,13 @@ CREATE TABLE {{{schema}}}.{{{tableName}}}
 {{/if}}
        CONSTRAINT {{{primaryKeyName}}} PRIMARY KEY ({{#primaryKeyColumns}}{{{data.edfiOdsPostgresql.columnName}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumns}})
 );
-{{#if isStyle5dot4}}
+{{#if isStyle6dot0}}
 END IF;
 {{/if}}
 
 {{/unless}}
 {{/tables}}
-{{#if isStyle5dot4}}
+{{#if isStyle6dot0}}
 END
 $$;
 {{/if}}

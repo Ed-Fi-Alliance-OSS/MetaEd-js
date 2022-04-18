@@ -35,7 +35,7 @@ function generateFile(input: any, namespace: Namespace): GeneratedOutput {
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
 
-  if (!versionSatisfies((metaEd.plugin.get('edfiOdsApi') as PluginEnvironment).targetTechnologyVersion, '<5.4.0')) {
+  if (!versionSatisfies((metaEd.plugin.get('edfiOdsApi') as PluginEnvironment).targetTechnologyVersion, '<6.0.0')) {
     return { generatorName, generatedOutput: results };
   }
 

@@ -7,7 +7,7 @@ export interface DeleteTrackingTable extends HasTableName {
   columns: Column[];
   primaryKeyName: string;
   primaryKeyColumns: Column[];
-  isStyle5dot4: boolean;
+  isStyle6dot0: boolean;
   isDescriptorTable: boolean;
   isIgnored: boolean;
   changeDataColumns: ChangeDataColumn[];
@@ -22,7 +22,7 @@ export function newDeleteTrackingTable(): DeleteTrackingTable {
     columns: [],
     primaryKeyName: '',
     primaryKeyColumns: [],
-    isStyle5dot4: false,
+    isStyle6dot0: false,
     isDescriptorTable: false,
     isIgnored: false,
     changeDataColumns: [],

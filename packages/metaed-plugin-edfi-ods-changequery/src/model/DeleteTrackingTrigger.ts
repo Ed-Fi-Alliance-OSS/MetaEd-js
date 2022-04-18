@@ -13,7 +13,7 @@ export interface DeleteTrackingTrigger extends HasTriggerName {
   targetTableIsSubclass: boolean;
   foreignKeyToSuperclass: ForeignKey | null;
   isDescriptorTable: boolean;
-  isStyle5dot4: boolean;
+  isStyle6dot0: boolean;
   changeDataColumns: ChangeDataColumn[];
   needsDeclare: boolean;
   isIgnored: boolean;
@@ -34,7 +34,7 @@ export function newDeleteTrackingTrigger(): DeleteTrackingTrigger {
     targetTableIsSubclass: false,
     foreignKeyToSuperclass: null,
     isDescriptorTable: false,
-    isStyle5dot4: false,
+    isStyle6dot0: false,
     changeDataColumns: [],
     needsDeclare: false,
     isIgnored: false,

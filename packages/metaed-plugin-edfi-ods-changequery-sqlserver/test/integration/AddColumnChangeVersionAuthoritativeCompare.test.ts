@@ -122,10 +122,10 @@ describe('when generating add column changeversion and comparing to ODS/API 5.0 
   });
 });
 
-describe('when generating add column changeversion and comparing to ODS/API 5.4 authoritative artifacts', (): void => {
+describe('when generating add column changeversion and comparing to ODS/API 6.0.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/add-column-changeversion');
-  const authoritativeCoreFilename = 'AddColumnChangeVersion-v5.4-Authoritative.sql';
-  const generatedCoreFilename = 'AddColumnChangeVersion-v5.4.sql';
+  const authoritativeCoreFilename = 'AddColumnChangeVersion-v6.0-Authoritative.sql';
+  const generatedCoreFilename = 'AddColumnChangeVersion-v6.0.sql';
 
   let generatedOutput: GeneratedOutput;
 
@@ -135,31 +135,31 @@ describe('when generating add column changeversion and comparing to ODS/API 5.4 
       artifactDirectory: './MetaEdOutput/',
       pluginTechVersion: {
         edfiUnified: {
-          targetTechnologyVersion: '5.4.0',
+          targetTechnologyVersion: '6.0.0',
         },
         edfiOdsRelational: {
-          targetTechnologyVersion: '5.4.0',
+          targetTechnologyVersion: '6.0.0',
         },
         edfiOdsSqlServer: {
-          targetTechnologyVersion: '5.4.0',
+          targetTechnologyVersion: '6.0.0',
         },
         edfiOdsApi: {
-          targetTechnologyVersion: '5.4.0',
+          targetTechnologyVersion: '6.0.0',
         },
         edfiOdsChangeQuery: {
-          targetTechnologyVersion: '5.4.0',
+          targetTechnologyVersion: '6.0.0',
         },
         edfiXsd: {
-          targetTechnologyVersion: '5.4.0',
+          targetTechnologyVersion: '6.0.0',
         },
         edfiHandbook: {
-          targetTechnologyVersion: '5.4.0',
+          targetTechnologyVersion: '6.0.0',
         },
         edfiInterchangeBrief: {
-          targetTechnologyVersion: '5.4.0',
+          targetTechnologyVersion: '6.0.0',
         },
         edfiXmlDictionary: {
-          targetTechnologyVersion: '5.4.0',
+          targetTechnologyVersion: '6.0.0',
         },
       },
       projectPaths: ['./node_modules/@edfi/ed-fi-model-3.3b/'],

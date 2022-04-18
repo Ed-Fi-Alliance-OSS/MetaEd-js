@@ -54,7 +54,7 @@ export function generateAddColumnChangeVersionForTable(
   const results: GeneratedOutput[] = [];
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
-  const isStyle5dot4 = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
+  const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -73,7 +73,7 @@ export function generateAddColumnChangeVersionForTable(
           },
         );
 
-        const generatedResult: string = template().addColumnChangeVersion({ tables, useLicenseHeader, isStyle5dot4 });
+        const generatedResult: string = template().addColumnChangeVersion({ tables, useLicenseHeader, isStyle6dot0 });
 
         results.push({
           name: 'ODS Change Event: AddColumnChangeVersionForTable',
@@ -142,7 +142,7 @@ export function generateCreateTrackedDeleteTables(
   const results: GeneratedOutput[] = [];
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
-  const isStyle5dot4 = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
+  const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -156,7 +156,7 @@ export function generateCreateTrackedDeleteTables(
           // by schema then by table name
           (a: DeleteTrackingTable, b: DeleteTrackingTable) => {
             if (a.schema === b.schema) {
-              return isStyle5dot4 ? compareTableNameLikeCsharp(a, b) : originalTableNameCompare(a, b);
+              return isStyle6dot0 ? compareTableNameLikeCsharp(a, b) : originalTableNameCompare(a, b);
             }
             return a.schema < b.schema ? -1 : 1;
           },
@@ -165,7 +165,7 @@ export function generateCreateTrackedDeleteTables(
         const generatedResult: string = template().deleteTrackingTable({
           tables,
           useLicenseHeader,
-          isStyle5dot4,
+          isStyle6dot0,
           schema: tables[0].schema,
         });
 
@@ -173,7 +173,7 @@ export function generateCreateTrackedDeleteTables(
           name: 'ODS Change Event: CreateTrackedDeleteTables',
           namespace: namespace.namespaceName,
           folderName: changeQueryPath(databaseFolderName),
-          fileName: isStyle5dot4 ? '0200-CreateTrackedChangeTables.sql' : '0050-CreateTrackedDeleteTables.sql',
+          fileName: isStyle6dot0 ? '0200-CreateTrackedChangeTables.sql' : '0050-CreateTrackedDeleteTables.sql',
           resultString: generatedResult,
           resultStream: null,
         });
@@ -293,7 +293,7 @@ export function generateCreateDeletedForTrackingTrigger(
   const results: GeneratedOutput[] = [];
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
-  const isStyle5dot4 = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
+  const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -307,19 +307,19 @@ export function generateCreateDeletedForTrackingTrigger(
           // by schema then by trigger name
           (a: DeleteTrackingTrigger, b: DeleteTrackingTrigger) => {
             if (a.triggerSchema === b.triggerSchema) {
-              return isStyle5dot4 ? compareTriggerNameLikeCsharp(a, b) : originalTriggerNameCompare(a, b);
+              return isStyle6dot0 ? compareTriggerNameLikeCsharp(a, b) : originalTriggerNameCompare(a, b);
             }
             return a.triggerSchema < b.triggerSchema ? -1 : 1;
           },
         );
 
-        const generatedResult: string = template().deleteTrackingTrigger({ triggers, useLicenseHeader, isStyle5dot4 });
+        const generatedResult: string = template().deleteTrackingTrigger({ triggers, useLicenseHeader, isStyle6dot0 });
 
         results.push({
           name: 'ODS Change Event: CreateDeletedForTrackingTriggers',
           namespace: namespace.namespaceName,
           folderName: changeQueryPath(databaseFolderName),
-          fileName: isStyle5dot4 ? '0220-CreateTriggersForDeleteTracking.sql' : '0060-CreateDeletedForTrackingTriggers.sql',
+          fileName: isStyle6dot0 ? '0220-CreateTriggersForDeleteTracking.sql' : '0060-CreateDeletedForTrackingTriggers.sql',
           resultString: generatedResult,
           resultStream: null,
         });
@@ -338,7 +338,7 @@ export function generateCreateTriggerUpdateChangeVersion(
   const results: GeneratedOutput[] = [];
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
-  const isStyle5dot4 = versionSatisfies(targetTechnologyVersion, '>=5.4.0');
+  const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
 
   if (changeQueryIndicated(metaEd)) {
     const plugin: PluginEnvironment | undefined = pluginEnvironment(metaEd, pluginName);
@@ -350,7 +350,7 @@ export function generateCreateTriggerUpdateChangeVersion(
           // by schema then by table name
           (a: CreateTriggerUpdateChangeVersion, b: CreateTriggerUpdateChangeVersion) => {
             if (a.schema === b.schema) {
-              return isStyle5dot4 ? compareTableNameLikeCsharp(a, b) : originalTableNameCompare(a, b);
+              return isStyle6dot0 ? compareTableNameLikeCsharp(a, b) : originalTableNameCompare(a, b);
             }
             return a.schema < b.schema ? -1 : 1;
           },
@@ -359,14 +359,14 @@ export function generateCreateTriggerUpdateChangeVersion(
         const generatedResult: string = template().createTriggerUpdateChangeVersion({
           triggers,
           useLicenseHeader,
-          isStyle5dot4,
+          isStyle6dot0,
         });
 
         results.push({
           name: 'ODS Change Event: CreateTriggerUpdateChangeVersion',
           namespace: namespace.namespaceName,
           folderName: changeQueryPath(databaseFolderName),
-          fileName: isStyle5dot4
+          fileName: isStyle6dot0
             ? '0210-CreateTriggersForChangeVersionAndKeyChanges.sql'
             : '0040-CreateTriggerUpdateChangeVersionGenerator.sql',
           resultString: generatedResult,
