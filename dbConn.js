@@ -4,7 +4,9 @@ const config = {
     user: 'sa',
     password: 'abcdefghi1!',
     server: 'localhost',
-    database: 'master',
+    options: {
+        trustServerCertificate:true,
+    }
 };
 
 sql.on('error', err => {
