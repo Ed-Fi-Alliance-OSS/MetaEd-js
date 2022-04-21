@@ -1,6 +1,14 @@
 name: Lint and Test
 on:
   workflow_dispatch:
+    debug_enabled:
+        description: Run the build with tmate debugging enabled
+        required: true
+        default: 'false'
+        type: choice
+        options:
+        - false
+        - true
   pull_request:
 jobs:
   lint-and-test:
@@ -12,11 +20,9 @@ jobs:
 
       - name: Lint and Test
         uses: ./.github/actions/lint-and-test-metaed
-
-      - name: Test Report
-        uses: dorny/test-reporter@0d00bb14cb0cc2c9b8985df6e81dd333188224e1 #v1.5.0
-        if: success() || failure()
-        with:
-          name: Test Reporting
-          path: "*.xml"
-          reporter: jest-junit 
+      
+      # Enable tmate debugging if the input option was provided (https://github.com/marketplace/actions/debugging-with-tmate)
+      - name: Setup tmate session
+        if: always() && inputs.debug_enabled == 'true'
+        uses: mxschmitt/action-tmate@8b4e4ac71822ed7e0ad5fb3d1c33483e9e8fb270 # v3.1.1
+        timeout-minutes: 10
