@@ -63,6 +63,7 @@ export async function disconnectAll() {
 }
 
 export async function connect(databaseName: string, retry: number = retryCount): Promise<sql.ConnectionPool> {
+  winston.verbose(`Config:${newConfig}`);
   if (pools.has(databaseName)) {
     return pools.get(databaseName);
   }
