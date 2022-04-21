@@ -44,5 +44,5 @@ jobs:
         shell: bash
         env:
           MSSQL_USERNAME: sa
-          MSSQL_PASSWORD: ${{ inputs.SA_PASSWORD }}
+          MSSQL_PASSWORD: abcdefgh1!
   
