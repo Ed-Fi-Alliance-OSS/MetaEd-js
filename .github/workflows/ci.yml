@@ -31,6 +31,10 @@ jobs:
         run: yarn install
         shell: bash
 
+      - name: Start Docker for SQL Server
+        run: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=abcdefgh1!' -e 'MSSQL_PID=Standard' -p 1433:1433 --name mssql -d mcr.microsoft.com/mssql/server:2017-latest
+        shell: bash
+
       # Enable tmate debugging if the input option was provided (https://github.com/marketplace/actions/debugging-with-tmate)
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@8b4e4ac71822ed7e0ad5fb3d1c33483e9e8fb270 # v3.1.1
