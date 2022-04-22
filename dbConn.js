@@ -11,7 +11,7 @@ const config = {
     driver: 'tedious',
     options: {
         trustServerCertificate:true,
-        encrypt: false,
+        encrypt: true,
         abortTransactionOnError: true
     }
 };
