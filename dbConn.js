@@ -1,11 +1,18 @@
 const sql = require('mssql');
 
 const config = {
+    database: 'MetaEd_Ods_Integration_Tests',
     user: 'sa',
     password: 'abcdefgh1!',
     server: 'localhost',
+    port: 1433,
+    connectionTimeout: 15000,
+    requestTimeout: 15000,
+    driver: 'tedious',
     options: {
         trustServerCertificate:true,
+        encrypt: false,
+        abortTransactionOnError: true
     }
 };
 
