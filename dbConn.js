@@ -15,7 +15,7 @@ const config = {
         abortTransactionOnError: true
     }
 };
-
+  
 sql.on('error', err => {
     console.error('err: ', err);
 });
