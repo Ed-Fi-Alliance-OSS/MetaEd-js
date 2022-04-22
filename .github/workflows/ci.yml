@@ -45,4 +45,6 @@ jobs:
         env:
           MSSQL_USERNAME: sa
           MSSQL_PASSWORD: abcdefgh1!
+          MSSQL_TRUST_CERTIFICATE: 'true'
+
   
