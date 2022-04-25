@@ -1,14 +1,15 @@
 name: Publish Dev Version
 on:
   workflow_dispatch:
-    debug_enabled:
-      description: Run the build with tmate debugging enabled     
-      required: true
-      default: 'false'
-      type: choice
-      options:
-      - false
-      - true
+    inputs:
+      debug_enabled:
+        description: Run the build with tmate debugging enabled     
+        required: true
+        default: 'false'
+        type: choice
+        options:
+        - false
+        - true
 
   pull_request:
     types: [closed]
