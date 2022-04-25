@@ -17,6 +17,7 @@ export const pools: Map<string, Pool> = new Map();
 export const retryCount = 5;
 
 export const newConfig: sql.config = {
+  database: process.env.METAED_DATABASE || 'MetaEd_Ods_Integration_Tests',
   server: process.env.MSSQL_SERVER || 'localhost',
   port: process.env.MSSQL_PORT || 1433,
   connectionTimeout: 15000,

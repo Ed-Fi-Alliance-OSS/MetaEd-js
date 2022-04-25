@@ -35,6 +35,10 @@ jobs:
         run: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=abcdefgh1!' -e 'MSSQL_PID=Standard' -p 1433:1433 --name mssql -d mcr.microsoft.com/mssql/server:2017-latest
         shell: bash
 
+      - name: Create Test Database
+        run: docker exec -i mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P abcdefgh1! -d master -Q "CREATE DATABASE MetaEd_Ods_Integration_Tests"
+        shell: bash
+
       - name: Unit tests
         run: yarn test:unit:ods:sqlserver:db --ci --config ./jest.ci-config.js
         shell: bash
