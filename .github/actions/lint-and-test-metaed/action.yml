@@ -30,9 +30,13 @@ runs:
       shell: bash
 
     - name: Unit tests
+      run: yarn test:unit:ci --ci  --config ./jest.ci-config.js
+      shell: bash
+
+    - name: SQL Server Database Unit tests
       run: yarn test:unit:ods:sqlserver:db --ci --config ./jest.ci-config.js
       shell: bash
       env:
         MSSQL_USERNAME: sa
         MSSQL_PASSWORD: ${{ inputs.SA_PASSWORD }}
-        MSSQL_TRUST_CERTIFICATE: 'true'
+        MSSQL_TRUST_CERTIFICATE: 'true' 
