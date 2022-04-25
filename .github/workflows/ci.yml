@@ -1,15 +1,6 @@
 name: Lint and Test
 on:
   workflow_dispatch:
-    inputs:
-      debug_enabled:
-        description: Run the build with tmate debugging enabled     
-        required: true
-        default: 'false'
-        type: choice
-        options:
-        - false
-        - true
   pull_request:
 jobs:
   lint-and-test:
@@ -21,8 +12,6 @@ jobs:
 
       - name: Lint and Test
         uses: ./.github/actions/lint-and-test-metaed
-        with:
-          debug_enabled: ${{ github.event.inputs.debug_enabled || 'false' }}
 
       - name: Test Report
         uses: dorny/test-reporter@0d00bb14cb0cc2c9b8985df6e81dd333188224e1 #v1.5.0
