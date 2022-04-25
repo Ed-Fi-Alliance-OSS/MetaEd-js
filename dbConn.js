@@ -7,6 +7,7 @@ const config = {
     port: 1433,
     connectionTimeout: 15000,
     requestTimeout: 15000,
+    driver: 'tedious',
     options: {
         trustServerCertificate:true,
     }
