@@ -39,5 +39,13 @@ jobs:
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@8b4e4ac71822ed7e0ad5fb3d1c33483e9e8fb270 # v3.1.1
 
+      - name: Unit tests
+        run: yarn test:unit:ods:sqlserver:db --ci --config ./jest.ci-config.js
+        shell: bash
+        env:
+          MSSQL_USERNAME: sa
+          MSSQL_PASSWORD: abcdefgh1!
+          MSSQL_TRUST_CERTIFICATE: 'true'
+          METAED_DATABASE: 'master'
 
   
