@@ -1,6 +1,7 @@
 const sql = require('mssql');
 
 const config = {
+    database: 'MetaEd_Ods_Integration_Tests',
     user: 'sa',
     password: 'abcdefgh1!',
     server: 'localhost',
