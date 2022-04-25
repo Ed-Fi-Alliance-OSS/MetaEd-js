@@ -3,14 +3,13 @@ on:
   workflow_dispatch:
     inputs:
       debug_enabled:
-          description: Run the build with tmate debugging enabled
-          required: true
-          default: 'false'
-          type: choice
-          options:
-          - false
-          - true
-
+        description: Run the build with tmate debugging enabled     
+        required: true
+        default: 'false'
+        type: choice
+        options:
+        - false
+        - true
   pull_request:
 jobs:
   lint-and-test:
@@ -20,32 +19,15 @@ jobs:
       - name: Checkout code   
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
 
-      - name: Set up Node
-        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # v2.5.1
+      - name: Lint and Test
+        uses: ./.github/actions/lint-and-test-metaed
         with:
-          node-version: '16'
-          check-latest: true
-          registry-url: 'https://www.myget.org/F/ed-fi/npm/'
+          debug_enabled: ${{ github.event.inputs.debug_enabled || 'false' }}
 
-      - name: Install
-        run: yarn install
-        shell: bash
-
-      - name: Start Docker for SQL Server
-        run: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=abcdefgh1!' -e 'MSSQL_PID=Standard' -p 1433:1433 --name mssql -d mcr.microsoft.com/mssql/server:2017-latest
-        shell: bash
-
-      - name: Create Test Database
-        run: docker exec -i mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P abcdefgh1! -d master -Q "CREATE DATABASE MetaEd_Ods_Integration_Tests"
-        shell: bash
-
-      - name: Unit tests
-        run: yarn test:unit:ods:sqlserver:db --ci --config ./jest.ci-config.js
-        shell: bash
-        env:
-          MSSQL_USERNAME: sa
-          MSSQL_PASSWORD: abcdefgh1!
-          MSSQL_TRUST_CERTIFICATE: 'true'
-          METAED_DATABASE: 'master'
-
-  
+      - name: Test Report
+        uses: dorny/test-reporter@0d00bb14cb0cc2c9b8985df6e81dd333188224e1 #v1.5.0
+        if: success() || failure()
+        with:
+          name: Test Reporting
+          path: "*.xml"
+          reporter: jest-junit 
