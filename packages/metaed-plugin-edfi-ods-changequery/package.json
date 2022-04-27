@@ -32,7 +32,7 @@
     "@edfi/metaed-plugin-edfi-unified-advanced": "3.0.2-dev.0",
     "handlebars": "^4.7.7",
     "ramda": "^0.28.0",
-    "winston": "3.5.1"
+    "winston": "3.7.2"
   },
   "devDependencies": {
     "final-fs": "^1.6.1"

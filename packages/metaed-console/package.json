@@ -17,7 +17,7 @@
     "@edfi/metaed-core": "3.0.2-dev.0",
     "chalk": "^4.1.2",
     "semver": "^5.7.1",
-    "winston": "3.5.1",
+    "winston": "3.7.2",
     "yargs": "^17.3.1"
   },
   "scripts": {

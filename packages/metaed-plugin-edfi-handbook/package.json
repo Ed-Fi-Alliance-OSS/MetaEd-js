@@ -35,7 +35,7 @@
     "js-beautify": "^1.14.0",
     "ramda": "^0.28.0",
     "sort-array": "^2.0.0",
-    "winston": "3.5.1",
+    "winston": "3.7.2",
     "xlsx": "0.18.0"
   },
   "scripts": {

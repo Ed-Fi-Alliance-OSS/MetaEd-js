@@ -24,7 +24,7 @@
   "dependencies": {
     "@edfi/metaed-core": "3.0.2-dev.0",
     "ramda": "^0.28.0",
-    "winston": "3.5.1"
+    "winston": "3.7.2"
   },
   "scripts": {
     "build": "yarn build:clean && yarn build:copy-non-ts && yarn build:dist",
