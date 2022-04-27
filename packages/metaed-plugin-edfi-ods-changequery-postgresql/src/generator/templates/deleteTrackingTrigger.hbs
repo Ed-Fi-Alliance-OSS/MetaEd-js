@@ -33,7 +33,7 @@ BEGIN
 {{~#if isDescriptorTable}}
 
     INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
-    SELECT {{#primaryKeyColumnNames}}OLD.{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, b.codevalue, b.namespace, b.id, '{{{targetTableSchema}}}.{{{targetTableName}}}', nextval('changes.ChangeVersionSequence')
+    SELECT {{#primaryKeyColumnNames}}OLD.{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, b.codevalue, b.namespace, b.id, '{{{targetTableSchema}}}.{{{targetTableNameCasePreserved}}}', nextval('changes.ChangeVersionSequence')
     FROM edfi.descriptor b WHERE {{#primaryKeyColumnNames}}old.{{{this}}} = b.descriptorid {{#unless @last}}AND {{/unless}}{{/primaryKeyColumnNames}};
 {{else}}{{!-- not isDescriptorTable --}}
 {{~#if isStyle5dot4}}

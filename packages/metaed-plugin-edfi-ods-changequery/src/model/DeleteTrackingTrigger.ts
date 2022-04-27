@@ -6,6 +6,7 @@ export interface DeleteTrackingTrigger extends HasTriggerName {
   triggerSchema: string;
   targetTableSchema: string;
   targetTableName: string;
+  targetTableNameCasePreserved: string;
   deleteTrackingTableSchema: string;
   deleteTrackingTableName: string;
   primaryKeyColumnNames: string[];
@@ -26,6 +27,7 @@ export function newDeleteTrackingTrigger(): DeleteTrackingTrigger {
     triggerName: '',
     targetTableSchema: '',
     targetTableName: '',
+    targetTableNameCasePreserved: '',
     deleteTrackingTableSchema: '',
     deleteTrackingTableName: '',
     primaryKeyColumnNames: [],

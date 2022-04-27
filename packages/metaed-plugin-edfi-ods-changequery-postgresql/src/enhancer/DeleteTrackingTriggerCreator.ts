@@ -32,6 +32,7 @@ export function createDeleteTrackingTriggerModelV5dot4(table: Table): DeleteTrac
     triggerName: postgresqlTriggerName(table, 'deleted').toLowerCase(),
     targetTableSchema: table.schema,
     targetTableName: table.data.edfiOdsPostgresql.tableName.toLowerCase(),
+    targetTableNameCasePreserved: table.data.edfiOdsPostgresql.tableName,
     deleteTrackingTableSchema: `tracked_changes_${table.schema}`,
     deleteTrackingTableName: table.data.edfiOdsPostgresql.tableName.toLowerCase(),
     primaryKeyColumnNames: getPrimaryKeys(table, TARGET_DATABASE_PLUGIN_NAME).map(
