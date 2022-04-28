@@ -24,9 +24,11 @@ runs:
       run: |
         sudo systemctl start postgresql.service
         pg_isready
+      shell: bash
     - name: Create Testing DB
       run: |
         sudo -u postgres createdb --owner=postgres metaed_integration_tests
+      shell: bash
     - name: PostgreSQL Database Unit tests
       run: yarn test:unit:ods:postgresql:db --ci --config ./jest.ci-config.js
       shell: bash
