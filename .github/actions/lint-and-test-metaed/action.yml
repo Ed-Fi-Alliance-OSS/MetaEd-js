@@ -19,3 +19,16 @@ runs:
 
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@8b4e4ac71822ed7e0ad5fb3d1c33483e9e8fb270 # v3.1.1
+
+    - name: Start PostgreSQL on Ubuntu
+      run: |
+        sudo systemctl start postgresql.service
+        pg_isready
+    - name: Create Testing DB
+      run: |
+        sudo -u postgres createdb --owner=postgres metaed_integration_tests
+    - name: PostgreSQL Database Unit tests
+      run: yarn test:unit:ods:postgresql:db --ci --config ./jest.ci-config.js
+      shell: bash
+      env:
+        PGPASSWORD: ''
