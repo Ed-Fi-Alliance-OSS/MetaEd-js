@@ -926,6 +926,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@edfi/ed-fi-model-4.0a@npm:3.0.1":
+  version: 3.0.1
+  resolution: "@edfi/ed-fi-model-4.0a@npm:3.0.1::__archiveUrl=https%3A%2F%2Fwww.myget.org%2FF%2Fed-fi%2Fnpm%2F%40edfi%2Fed-fi-model-4.0a%2F-%2F%40edfi%2Fed-fi-model-4.0a-3.0.1.tgz"
+  checksum: ec024af7b72fc930a6977dddcfe5d92a64dedd94f31bbbadee64c7da81903b84451b1c85ea2cc7e0de051cf6bf98affc9c109dd212a57fba31aaaf3836bf6b5b
+  languageName: node
+  linkType: hard
+
 "@edfi/generator-metaed-plugin@workspace:packages/generator-metaed-plugin":
   version: 0.0.0-use.local
   resolution: "@edfi/generator-metaed-plugin@workspace:packages/generator-metaed-plugin"
@@ -4110,6 +4117,7 @@ __metadata:
     "@edfi/ed-fi-model-3.2c": 3.0.1
     "@edfi/ed-fi-model-3.3a": 3.0.1
     "@edfi/ed-fi-model-3.3b": 3.0.1
+    "@edfi/ed-fi-model-4.0a": 3.0.1
     "@edfi/metaed-console": 3.0.2-dev.1
     "@edfi/metaed-core": 3.0.2-dev.1
     "@edfi/metaed-odsapi-deploy": 3.0.2-dev.1
