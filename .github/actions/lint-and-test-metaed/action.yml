@@ -20,7 +20,16 @@ runs:
     - name: Start PostgreSQL on Ubuntu
       run: |
         sudo systemctl start postgresql.service
-        createdb -h localhost -p 5432 -U postgres -w metaed_integration_tests
+      shell: bash
+
+    - name: Create Testing Database and change superuser password
+      run: |
+        sudo -u postgres psql -U postgres create database metaed_integration_tests
+      shell: bash
+
+    - name: Update superuser password
+      run: |
+        sudo -u postgres psql -U postgres -c "alter user postgres with password 'docker';"
       shell: bash
 
     - name: PostgreSQL Database Unit tests
