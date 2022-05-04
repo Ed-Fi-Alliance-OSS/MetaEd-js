@@ -17,18 +17,27 @@ runs:
       run: yarn install
       shell: bash
 
-    - name: Start PostgreSQL on Ubuntu
+    - name: Lint
+      run: yarn test:lint
+      shell: bash
+
+    - name: Start Docker for SQL Server
+      run: >
+        docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=${{ inputs.SA_PASSWORD }}' -e 'MSSQL_PID=Express' -p 1433:1433 
+          --name mssql -d mcr.microsoft.com/mssql/server:2017-latest
+      shell: bash
+
+    - name: SQLServer Unit tests
+      run: yarn test:unit:ci --ci  --config ./jest.ci-config.js
+      shell: bash
+      env:
+        MSSQL_USERNAME: sa
+        MSSQL_PASSWORD: ${{ inputs.SA_PASSWORD }}
+
+    - name: Setup PostgreSQL for testing
       run: |
         sudo systemctl start postgresql.service
-      shell: bash
-
-    - name: Create Testing Database and change superuser password
-      run: |
         sudo -u postgres psql -U postgres -c "create database metaed_integration_tests;"
-      shell: bash
-
-    - name: Update superuser password
-      run: |
         sudo -u postgres psql -U postgres -c "alter user postgres with password 'docker';"
       shell: bash
 
