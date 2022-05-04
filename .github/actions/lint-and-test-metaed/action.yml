@@ -22,8 +22,8 @@ runs:
       shell: bash
 
     - name: Start Docker for SQL Server
-      run: >
-        docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=${{ inputs.SA_PASSWORD }}' -e 'MSSQL_PID=Express' -p 1433:1433 
+      run: |
+        docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=${{ inputs.SA_PASSWORD }}' -e 'MSSQL_PID=Express' -p 1433:1433 \
           --name mssql -d mcr.microsoft.com/mssql/server:2017-latest
       shell: bash
 
