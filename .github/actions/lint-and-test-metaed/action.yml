@@ -20,8 +20,8 @@ runs:
     - name: Start PostgreSQL on Ubuntu
       run: |
         sudo systemctl start postgresql.service
-        sudo -u postgres psql -U postgres -c "alter user postgres with password 'docker';"
         createdb -h localhost -p 5432 -U postgres metaed_integration_tests
+        sudo -u postgres psql -U postgres -c "alter user postgres with password 'docker';"
       shell: bash
 
     - name: PostgreSQL Database Unit tests
