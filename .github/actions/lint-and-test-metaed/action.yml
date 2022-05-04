@@ -24,7 +24,7 @@ runs:
 
     - name: Create Testing Database and change superuser password
       run: |
-        sudo -u postgres psql -U postgres create database metaed_integration_tests
+        sudo -u postgres psql -U postgres "create database metaed_integration_tests;"
       shell: bash
 
     - name: Update superuser password
