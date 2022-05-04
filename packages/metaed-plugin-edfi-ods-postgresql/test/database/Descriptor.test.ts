@@ -99,6 +99,7 @@ describe('when descriptor is defined', (): void => {
     expect(effectiveEndDateColumn.notNull).toBe(false);
     expect(effectiveEndDateColumn.type.name).toBe('date');
     expect(effectiveEndDateColumn.comment).toBe('The end date of the period when the descriptor is in effect.');
+    await rollbackAndEnd();
   });
 
   it('should have correct primary keys', async () => {
@@ -221,6 +222,7 @@ describe('when descriptor does not have a map type', (): void => {
   it('should not have map type table', async () => {
     const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
     expect(() => db.schemas.get(schemaName).tables.get(`${descriptorName}Type`)).toThrow();
+    await rollbackAndEnd();
   });
 
   it('should not have map type foreign key column', async () => {
@@ -228,6 +230,7 @@ describe('when descriptor does not have a map type', (): void => {
     const table = db.schemas.get(schemaName).tables.get(descriptorTableName);
 
     expect(() => table.columns.get(`${baseDescriptorTableName}TypeId`)).toThrow();
+    await rollbackAndEnd();
   });
 });
 

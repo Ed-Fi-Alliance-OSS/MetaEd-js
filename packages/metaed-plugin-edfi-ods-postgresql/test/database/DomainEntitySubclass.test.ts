@@ -121,5 +121,6 @@ describe('when core domain entity subclass has identity rename property', (): vo
     expect(() => table.columns.get('id')).toThrow();
     expect(() => table.columns.get('lastmodifieddate')).toThrow();
     expect(() => table.columns.get('createdate')).toThrow();
+    await rollbackAndEnd();
   });
 });

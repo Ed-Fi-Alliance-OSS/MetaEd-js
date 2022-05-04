@@ -119,6 +119,7 @@ describe('when common is a required property', (): void => {
     const table = db.schemas.get(schemaName).tables.get(domainEntityTableName + commonTableName);
     expect(() => table.columns.get('id')).toThrow();
     expect(() => table.columns.get('lastmodifieddate')).toThrow();
+    await rollbackAndEnd();
   });
 
   it('should have join table for collection property', async () => {
@@ -310,6 +311,7 @@ describe('when common is a required property role name', (): void => {
     const table = db.schemas.get(schemaName).tables.get(domainEntityTableName + contextColumnName2 + commonTableName);
     expect(() => table.columns.get('id')).toThrow();
     expect(() => table.columns.get('lastmodifieddate')).toThrow();
+    await rollbackAndEnd();
   });
 
   it('should have join table for collection property', async () => {
