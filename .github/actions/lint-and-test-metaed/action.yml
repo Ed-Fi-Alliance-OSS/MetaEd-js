@@ -17,15 +17,16 @@ runs:
       run: yarn install
       shell: bash
 
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@8b4e4ac71822ed7e0ad5fb3d1c33483e9e8fb270 # v3.1.1
-
     - name: Start PostgreSQL on Ubuntu
       run: |
         sudo systemctl start postgresql.service
       shell: bash
+
+    - name: Update Postgres Superuser password
+      run: |
+        sudo -u postgres psql -U postgres -c "alter user postgres with password 'docker';"
+      shell: bash
+      
     - name: PostgreSQL Database Unit tests
       run: yarn test:unit:ods:postgresql:db --ci --config ./jest.ci-config.js
       shell: bash
-      env:
-        PGPASSWORD: ''
