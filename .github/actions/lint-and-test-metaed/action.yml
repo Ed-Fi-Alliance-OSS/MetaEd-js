@@ -17,13 +17,13 @@ runs:
       run: yarn install
       shell: bash
 
-    # - name: Lint
-    #   run: yarn test:lint
-    #   shell: bash
+    - name: Lint
+      run: yarn test:lint
+      shell: bash
 
-    # - name: Unit tests
-    #   run: yarn test:unit:ci --ci  --config ./jest.ci-config.js
-    #   shell: bash
+    - name: Unit tests
+      run: yarn test:unit:ci --ci  --config ./jest.ci-config.js
+      shell: bash
 
     - name: Start Docker for SQL Server
       run: |
@@ -31,7 +31,7 @@ runs:
           --name mssql -d mcr.microsoft.com/mssql/server:2017-latest
       shell: bash
 
-    - name: Create Testing Database
+    - name: Create SQL Server Testing Database
       run: |
         docker exec -i mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P ${{ inputs.SA_PASSWORD }} -d master \
           -Q "CREATE DATABASE MetaEd_Ods_Integration_Tests"
@@ -43,9 +43,11 @@ runs:
       env:
         MSSQL_USERNAME: sa
         MSSQL_PASSWORD: ${{ inputs.SA_PASSWORD }}
-        MSSQL_TRUST_CERTIFICATE: 'true' 
+        MSSQL_TRUST_CERTIFICATE: 'true' # This is required for successful auth to the docker SQL Server
 
     - name: Setup PostgreSQL for testing
+      # Postgres on Ubuntu is installed locally but the service needs to be started. The default postgres 
+      # super user password is blank, so updating to what the unit tests expect, also creating the testing database
       run: |
         sudo systemctl start postgresql.service
         sudo -u postgres psql -U postgres -c "create database metaed_integration_tests;"
