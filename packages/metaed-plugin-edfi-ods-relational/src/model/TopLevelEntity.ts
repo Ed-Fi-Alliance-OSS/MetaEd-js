@@ -10,6 +10,7 @@ export interface TopLevelEntityEdfiOds {
   odsIdentityProperties: EntityProperty[];
   odsEntityTable: Table;
   odsTables: Table[];
+  hasUsiTable: boolean;
 }
 
 const enhancerName = 'OdsTopLevelEntitySetupEnhancer';
@@ -24,6 +25,7 @@ export function addTopLevelEntityEdfiOdsTo(topLevelEntity: TopLevelEntity) {
     odsIdentityProperties: [...topLevelEntity.identityProperties],
     odsEntityTable: NoTable,
     odsTables: [],
+    hasUsiTable: false,
   });
 }
 

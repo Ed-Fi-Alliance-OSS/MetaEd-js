@@ -3,6 +3,7 @@ import {
   MetaEdEnvironment,
   ModelBase,
   Namespace,
+  NoTopLevelEntity,
   orderByPath,
   PluginEnvironment,
   SemVer,
@@ -195,4 +196,8 @@ export function hasRequiredNonIdentityNamespaceColumn(table: Table): boolean {
     result = true;
   });
   return result;
+}
+
+export function isUsiTable(table: Table): boolean {
+  return table.parentEntity !== NoTopLevelEntity && table.parentEntity.data.edfiOdsRelational.hasUsiTable;
 }

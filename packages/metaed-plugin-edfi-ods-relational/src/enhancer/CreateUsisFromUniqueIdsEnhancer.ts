@@ -46,6 +46,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     usiProperty.data.edfiOdsRelational.odsIsIdentityDatabaseType = true;
     entity.data.edfiOdsRelational.odsProperties.push(usiProperty);
     entity.data.edfiOdsRelational.odsIdentityProperties.push(usiProperty);
+    entity.data.edfiOdsRelational.hasUsiTable = true;
   });
 
   return {

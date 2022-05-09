@@ -10,6 +10,7 @@ export interface CreateTriggerUpdateChangeVersion extends HasTableName {
   isStyle6dot0: boolean;
   omitDiscriminator: boolean;
   includeNamespace: boolean;
+  isUsiTable: boolean;
 }
 
 export function newCreateTriggerUpdateChangeVersion(): CreateTriggerUpdateChangeVersion {
@@ -23,5 +24,6 @@ export function newCreateTriggerUpdateChangeVersion(): CreateTriggerUpdateChange
     isStyle6dot0: false,
     omitDiscriminator: false,
     includeNamespace: false,
+    isUsiTable: false,
   };
 }

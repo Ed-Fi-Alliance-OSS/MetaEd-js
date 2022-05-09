@@ -21,6 +21,33 @@ CREATE TRIGGER {{triggerName}} BEFORE UPDATE ON {{{schema}}}.{{{tableName}}}
 END IF;
 {{/if}}
 
+{{#if isUsiTable}}
+CREATE OR REPLACE FUNCTION tracked_changes_edfi.{{{tableName}}}_keychg()
+    RETURNS trigger AS
+$BODY$
+DECLARE
+BEGIN
+
+    -- Handle key changes
+    INSERT INTO tracked_changes_edfi.{{{tableName}}}(
+        old{{{tableName}}}usi, old{{{tableName}}}uniqueid, 
+        new{{{tableName}}}usi, new{{{tableName}}}uniqueid, 
+        id, changeversion)
+    VALUES (
+        old.{{{tableName}}}usi, old.{{{tableName}}}uniqueid, 
+        new.{{{tableName}}}usi, new.{{{tableName}}}uniqueid, 
+        old.id, (nextval('changes.changeversionsequence')));
+
+    RETURN null;
+END;
+$BODY$ LANGUAGE plpgsql;
+
+IF NOT EXISTS(SELECT 1 FROM information_schema.triggers WHERE trigger_name = 'handlekeychanges' AND event_object_schema = 'edfi' AND event_object_table = '{{{tableName}}}') THEN
+    CREATE TRIGGER HandleKeyChanges AFTER UPDATE OF {{{tableName}}}uniqueid ON edfi.{{{tableName}}}
+        FOR EACH ROW EXECUTE PROCEDURE tracked_changes_edfi.{{{tableName}}}_keychg();
+END IF;
+
+{{/if}}
 {{#if includeKeyChanges}}
 CREATE OR REPLACE FUNCTION tracked_changes_{{{schema}}}.{{{tableName}}}_keychg()
     RETURNS trigger AS

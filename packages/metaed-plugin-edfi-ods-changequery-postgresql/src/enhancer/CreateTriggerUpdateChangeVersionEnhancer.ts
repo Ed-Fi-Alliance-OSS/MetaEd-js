@@ -3,6 +3,7 @@ import { Column, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import {
   CreateTriggerUpdateChangeVersion,
   hasRequiredNonIdentityNamespaceColumn,
+  isUsiTable,
   performCreateTriggerUpdateChangeVersionEnhancement,
 } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { PLUGIN_NAME } from '../PluginHelper';
@@ -25,6 +26,7 @@ function createTriggerModel(table: Table, targetTechnologyVersion: SemVer): Crea
     isStyle6dot0,
     omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
     includeNamespace: hasRequiredNonIdentityNamespaceColumn(table),
+    isUsiTable: isStyle6dot0 && isUsiTable(table),
   };
 }
 

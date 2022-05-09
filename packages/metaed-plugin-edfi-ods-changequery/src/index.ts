@@ -26,6 +26,7 @@ export {
   performCreateTriggerUpdateChangeVersionEnhancement,
   performEnumerationChangeQueryEnhancement,
   hasRequiredNonIdentityNamespaceColumn,
+  isUsiTable,
 } from './enhancer/EnhancerHelper';
 export {
   SuperclassForeignKeyFinder,

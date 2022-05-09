@@ -20,6 +20,20 @@ BEGIN
     SET ChangeVersion = (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM [{{{schema}}}].[{{{tableName}}}] u
     WHERE EXISTS (SELECT 1 FROM inserted i WHERE i.id = u.id);
+{{#if isUsiTable}}
+
+    ---- Add key change entry when UniqueId is modified
+    INSERT INTO [tracked_changes_edfi].[{{{tableName}}}] (
+        Old{{{tableName}}}USI, Old{{{tableName}}}UniqueId, 
+        New{{{tableName}}}USI, New{{{tableName}}}UniqueId,
+        Id, ChangeVersion)
+    SELECT
+        old.{{{tableName}}}USI, old.{{{tableName}}}UniqueId, 
+        new.{{{tableName}}}USI, new.{{{tableName}}}UniqueId,
+        old.Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
+    FROM deleted old INNER JOIN inserted new ON old.{{{tableName}}}USI = new.{{{tableName}}}USI
+    WHERE new.{{{tableName}}}UniqueId <> old.{{{tableName}}}UniqueId;
+{{/if}}
 {{#if includeKeyChanges}}
 
     -- Handle key changes
