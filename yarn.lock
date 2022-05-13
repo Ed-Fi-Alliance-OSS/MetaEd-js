@@ -1046,6 +1046,7 @@ __metadata:
     "@edfi/ed-fi-model-3.0": 3.0.1
     "@edfi/ed-fi-model-3.2a": 3.0.1
     "@edfi/ed-fi-model-3.3b": 3.0.1
+    "@edfi/ed-fi-model-4.0a": 3.0.1
     "@edfi/metaed-core": 3.0.2-dev.3
     "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.2-dev.3
     "@edfi/metaed-plugin-edfi-ods-postgresql": 3.0.2-dev.3
@@ -1066,6 +1067,7 @@ __metadata:
     "@edfi/ed-fi-model-3.0": 3.0.1
     "@edfi/ed-fi-model-3.3a": 3.0.1
     "@edfi/ed-fi-model-3.3b": 3.0.1
+    "@edfi/ed-fi-model-4.0a": 3.0.1
     "@edfi/metaed-core": 3.0.2-dev.3
     "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.2-dev.3
     "@edfi/metaed-plugin-edfi-ods-relational": 3.0.2-dev.3

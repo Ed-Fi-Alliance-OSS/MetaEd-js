@@ -45,7 +45,7 @@ BEGIN
 {{#if isUniqueId}}j{{tableAliasSuffix}}.{{{columnName}}}{{/if~}}
 {{#if isDescriptorNamespace}}j{{tableAliasSuffix}}.Namespace{{/if~}}
 {{#if isDescriptorCodeValue}}j{{tableAliasSuffix}}.CodeValue{{/if~}}  
-        {{#unless @last}}, {{/unless}}{{/each}}, d.Id, {{#if includeNamespace}}d.OldNamespace, {{/if}}{{#unless omitDiscriminator}}d.Discriminator, {{/unless}}(NEXT VALUE FOR [changes].[ChangeVersionSequence])
+        {{#unless @last}}, {{/unless}}{{/each}}, d.Id, {{#if includeNamespace}}d.Namespace, {{/if}}{{#unless omitDiscriminator}}d.Discriminator, {{/unless}}(NEXT VALUE FOR [changes].[ChangeVersionSequence])
     {{else}}
  {{#primaryKeyColumnNames}}{{#if ../targetTableIsSubclass}}d.{{/if}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, Id, (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     {{/if}}
