@@ -5,7 +5,7 @@ import { execSync } from 'child_process';
 console.info('Command arguments: ', process.argv);
 
 try {
-  execSync('npm install atom-metaed@dev');
+  execSync('npm install atom-metaed@dev --loglevel error');
 } catch (err) {
   console.error('Exception occurred during npm install atom-metaed:');
   console.error('--> stdout', err);
@@ -13,4 +13,5 @@ try {
 }
 
 // Implicitly calls the deploy process
-await import('@edfi/metaed-odsapi-deploy');
+// eslint-disable-next-line import/no-extraneous-dependencies
+await import('@edfi/metaed-console');
