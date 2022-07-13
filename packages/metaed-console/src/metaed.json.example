@@ -1,32 +1,30 @@
 {
   "metaEdConfiguration": {
-    "title": "Development 2.0.0",
-    "dataStandardCoreSourceDirectory": "./node_modules/@edfi/ed-fi-model-2.0/",
-    "dataStandardCoreSourceVersion": "2.0.0",
-    "dataStandardExtensionSourceDirectory": "C:/Projects/MetaEd/MetaEd-CSharp/SampleMetaEd/extension/",
-    "artifactDirectory": "./MetaEdOutput/",
-    "pluginTechVersion": {
-      "edfiUnified": {
-        "targetTechnologyVersion": "2.0.0"
+    "artifactDirectory": "C:\\source\\ed-fi\\MetaEd-Js\\build\\MetaEdOutput",
+    "deployDirectory": "",
+    "pluginTechVersion": {},
+    "projects": [
+      {
+        "namespaceName": "EdFi",
+        "projectName": "Ed-Fi",
+        "projectVersion": "3.3.1-b",
+        "projectExtension": "",
+        "description": "The Ed-Fi Data Model 3.3b"
       },
-      "edfiOdsRelational": {
-        "targetTechnologyVersion": "2.0.0"
-      },
-      "edfiOdsApi": {
-        "targetTechnologyVersion": "2.0.0"
-      },
-      "edfiXsd": {
-        "targetTechnologyVersion": "2.0.0"
-      },
-      "edfiHandbook": {
-        "targetTechnologyVersion": "2.0.0"
-      },
-      "edfiInterchangeBrief": {
-        "targetTechnologyVersion": "2.0.0"
-      },
-      "edfiXmlDictionary": {
-        "targetTechnologyVersion": "2.0.0"
+      {
+        "namespaceName": "Homograph",
+        "projectName": "Homograph",
+        "projectVersion": "1.0.0",
+        "projectExtension": "homograph",
+        "description": "The homograph extension data model"
       }
-    }
+    ],
+    "projectPaths": [
+      "C:\\source\\ed-fi\\MetaEd-Js\\build\\node_modules\\@edfi\\ed-fi-model-3.3b",
+      "C:\\source\\ed-fi\\ed-fi-ods-implementation\\Extensions\\Homograph\\HomographMetaEd"
+    ],
+    "pluginConfigDirectories": [],
+    "defaultPluginTechVersion": "5.3.0",
+    "allianceMode": true
   }
 }
