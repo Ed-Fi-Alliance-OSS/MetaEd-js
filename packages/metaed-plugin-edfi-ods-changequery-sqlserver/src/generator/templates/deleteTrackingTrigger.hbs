@@ -21,7 +21,7 @@ BEGIN
 
     SET NOCOUNT ON
 
-    INSERT INTO [{{{deleteTrackingTableSchema}}}].[Descriptor](OldDescriptorId, OldCodeValue, OldNamespace, Id, Discriminator, ChangeVersion)
+    INSERT INTO [tracked_changes_edfi].[Descriptor](OldDescriptorId, OldCodeValue, OldNamespace, Id, Discriminator, ChangeVersion)
     SELECT  {{#primaryKeyColumnNames}}{{#if ../targetTableIsSubclass}}d.{{/if}}{{{this}}}{{#unless @last}}, {{/unless}}{{/primaryKeyColumnNames}}, b.CodeValue, b.Namespace, b.Id, '{{{targetTableSchema}}}.{{{targetTableName}}}', (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d{{#if targetTableIsSubclass}}{{#foreignKeyToSuperclass}}
             INNER JOIN {{{foreignTableSchema}}}.{{{foreignTable.data.edfiOdsSqlServer.tableName}}} b ON {{#data.edfiOdsChangeQuery.columnNames}}d.{{{parentTableColumnName}}} = b.{{{foreignTableColumnName}}}{{#unless @last}} AND {{/unless}}{{/data.edfiOdsChangeQuery.columnNames}}{{/foreignKeyToSuperclass}}{{/if}}

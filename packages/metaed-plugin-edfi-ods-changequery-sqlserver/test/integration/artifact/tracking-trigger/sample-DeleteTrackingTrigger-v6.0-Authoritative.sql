@@ -8,7 +8,7 @@ BEGIN
 
     SET NOCOUNT ON
 
-    INSERT INTO [tracked_changes_sample].[Descriptor](OldDescriptorId, OldCodeValue, OldNamespace, Id, Discriminator, ChangeVersion)
+    INSERT INTO [tracked_changes_edfi].[Descriptor](OldDescriptorId, OldCodeValue, OldNamespace, Id, Discriminator, ChangeVersion)
     SELECT  d.InstitutionControlDescriptorId, b.CodeValue, b.Namespace, b.Id, 'sample.InstitutionControlDescriptor', (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.InstitutionControlDescriptorId = b.DescriptorId
@@ -29,7 +29,7 @@ BEGIN
 
     SET NOCOUNT ON
 
-    INSERT INTO [tracked_changes_sample].[Descriptor](OldDescriptorId, OldCodeValue, OldNamespace, Id, Discriminator, ChangeVersion)
+    INSERT INTO [tracked_changes_edfi].[Descriptor](OldDescriptorId, OldCodeValue, OldNamespace, Id, Discriminator, ChangeVersion)
     SELECT  d.InstitutionLevelDescriptorId, b.CodeValue, b.Namespace, b.Id, 'sample.InstitutionLevelDescriptor', (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.InstitutionLevelDescriptorId = b.DescriptorId
@@ -70,7 +70,7 @@ BEGIN
 
     SET NOCOUNT ON
 
-    INSERT INTO [tracked_changes_sample].[Descriptor](OldDescriptorId, OldCodeValue, OldNamespace, Id, Discriminator, ChangeVersion)
+    INSERT INTO [tracked_changes_edfi].[Descriptor](OldDescriptorId, OldCodeValue, OldNamespace, Id, Discriminator, ChangeVersion)
     SELECT  d.SpecialEducationGraduationStatusDescriptorId, b.CodeValue, b.Namespace, b.Id, 'sample.SpecialEducationGraduationStatusDescriptor', (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SpecialEducationGraduationStatusDescriptorId = b.DescriptorId
@@ -91,7 +91,7 @@ BEGIN
 
     SET NOCOUNT ON
 
-    INSERT INTO [tracked_changes_sample].[Descriptor](OldDescriptorId, OldCodeValue, OldNamespace, Id, Discriminator, ChangeVersion)
+    INSERT INTO [tracked_changes_edfi].[Descriptor](OldDescriptorId, OldCodeValue, OldNamespace, Id, Discriminator, ChangeVersion)
     SELECT  d.SubmissionCertificationDescriptorId, b.CodeValue, b.Namespace, b.Id, 'sample.SubmissionCertificationDescriptor', (NEXT VALUE FOR [changes].[ChangeVersionSequence])
     FROM    deleted d
             INNER JOIN edfi.Descriptor b ON d.SubmissionCertificationDescriptorId = b.DescriptorId
