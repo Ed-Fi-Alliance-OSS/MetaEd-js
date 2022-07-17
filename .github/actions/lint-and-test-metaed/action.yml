@@ -21,14 +21,15 @@ runs:
       run: yarn test:lint
       shell: bash
 
-    - name: Unit tests
-      run: yarn test:unit:ci --ci  --config ./jest.ci-config.js
-      shell: bash
-
     - name: Start Docker for SQL Server
+      # Starting before unit tests to give plenty of spin-up time - unit tests do not depend on this
       run: |
         docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=${{ inputs.SA_PASSWORD }}' -e 'MSSQL_PID=Express' -p 1433:1433 \
           --name mssql -d mcr.microsoft.com/mssql/server:2019-latest
+      shell: bash
+  
+    - name: Unit tests
+      run: yarn test:unit:ci --ci  --config ./jest.ci-config.js
       shell: bash
 
     - name: Create SQL Server Testing Database
