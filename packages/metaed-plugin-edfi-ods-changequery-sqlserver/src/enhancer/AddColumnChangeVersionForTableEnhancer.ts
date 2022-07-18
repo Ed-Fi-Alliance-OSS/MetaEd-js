@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
 import { Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import {
   AddColumnChangeVersionForTable,
@@ -9,15 +9,18 @@ import { PLUGIN_NAME } from '../PluginHelper';
 
 const enhancerName = 'AddColumnChangeVersionForTableEnhancer';
 
-function createAddColumnModel(table: Table): AddColumnChangeVersionForTable {
-  return {
+export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+  const isStyle6dot0 = versionSatisfies(targetTechnologyVersion, '>=6.0.0');
+
+  const createAddColumnModel = (table: Table): AddColumnChangeVersionForTable => ({
     ...newAddColumnChangeVersionForTable(),
     schema: table.schema,
+    isCoreSchema: table.schema === 'edfi',
     tableName: table.data.edfiOdsSqlServer.tableName,
-  };
-}
+    isStyle6dot0,
+  });
 
-export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   performAddColumnChangeVersionForTableEnhancement(metaEd, PLUGIN_NAME, createAddColumnModel);
 
   return {

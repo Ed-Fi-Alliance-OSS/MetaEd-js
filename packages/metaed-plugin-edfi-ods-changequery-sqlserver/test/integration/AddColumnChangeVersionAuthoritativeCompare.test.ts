@@ -2,7 +2,7 @@ import R from 'ramda';
 import path from 'path';
 import ffs from 'final-fs';
 import { exec } from 'child_process';
-import { GeneratedOutput, State } from '@edfi/metaed-core';
+import { GeneratedOutput, GeneratorResult, State } from '@edfi/metaed-core';
 import {
   buildMetaEd,
   buildParseTree,
@@ -122,12 +122,16 @@ describe('when generating add column changeversion and comparing to ODS/API 5.0 
   });
 });
 
-describe('when generating add column changeversion and comparing to ODS/API 6.0.0 authoritative artifacts', (): void => {
+describe('when generating add column changeversion with simple extensions and comparing to ODS/API 6.0.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/add-column-changeversion');
+  const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
   const authoritativeCoreFilename = 'AddColumnChangeVersion-v6.0-Authoritative.sql';
   const generatedCoreFilename = 'AddColumnChangeVersion-v6.0.sql';
+  const authoritativeExtensionFilename = 'sample-AddColumnChangeVersion-v6.0-Authoritative.sql';
+  const generatedExtensionFilename = 'sample-AddColumnChangeVersion-v6.0.sql';
 
-  let generatedOutput: GeneratedOutput;
+  let generatedCoreOutput: GeneratedOutput;
+  let generatedExtensionOutput: GeneratedOutput;
 
   beforeAll(async () => {
     const metaEdConfiguration = {
@@ -162,13 +166,20 @@ describe('when generating add column changeversion and comparing to ODS/API 6.0.
           targetTechnologyVersion: '6.0.0',
         },
       },
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.3b/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.3b/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
           projectVersion: '3.3.1-b',
+          description: '',
+        },
+        {
+          projectName: 'Sample',
+          namespaceName: 'Sample',
+          projectExtension: 'Sample',
+          projectVersion: '3.0.0',
           description: '',
         },
       ],
@@ -201,21 +212,35 @@ describe('when generating add column changeversion and comparing to ODS/API 6.0.
       await runGenerators(pluginManifest, state);
     }
 
-    generatedOutput = R.head(
-      R.head(
-        state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.AddColumnChangeVersionForTableGenerator`),
-      ).generatedOutput,
+    const generatorResult: GeneratorResult = R.head(
+      state.generatorResults.filter((x) => x.generatorName === `${PLUGIN_NAME}.AddColumnChangeVersionForTableGenerator`),
     );
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedOutput.resultString, 'utf-8');
+    [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
+
+    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
+    await ffs.writeFile(
+      path.resolve(artifactPath, generatedExtensionFilename),
+      generatedExtensionOutput.resultString,
+      'utf-8',
+    );
   });
 
-  it('should have no differences', async () => {
-    const authoritative: string = path.resolve(artifactPath, authoritativeCoreFilename);
-    const generated: string = path.resolve(artifactPath, generatedCoreFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritative} ${generated}`;
-    // @ts-ignore "error" not used
-    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+  it('should have no core file differences', async () => {
+    const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
+    const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+
+  it('should have no extension file differences', async () => {
+    const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
+    const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);

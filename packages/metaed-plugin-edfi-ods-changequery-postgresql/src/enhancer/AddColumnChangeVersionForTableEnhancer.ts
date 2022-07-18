@@ -18,6 +18,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const createAddColumnModel = (table: Table): AddColumnChangeVersionForTable => ({
       ...newAddColumnChangeVersionForTable(),
       schema: table.schema,
+      isCoreSchema: table.schema === 'edfi',
       tableName: table.data.edfiOdsPostgresql.tableName,
       tableNameHash: table.data.edfiOdsPostgresql.truncatedTableNameHash,
       isStyle6dot0,

@@ -78,6 +78,7 @@ sample-TriggerUpdateChangeVersion-v3.4.sql
 sample-TriggerUpdateChangeVersion-v6.0.sql
 AddColumnChangeVersion-v5.0.sql
 AddColumnChangeVersion-v6.0.sql
+sample-AddColumnChangeVersion-v6.0.sql
 AddIndexChangeVersion-v5.0.sql
 AddIndexChangeVersion-v6.0.sql
 

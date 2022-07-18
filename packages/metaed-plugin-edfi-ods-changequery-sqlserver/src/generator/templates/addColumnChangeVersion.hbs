@@ -7,8 +7,10 @@
 
 {{/if}}
 {{/if}}
-{{#tables}}
-IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[{{{schema}}}].[{{{tableName}}}]') AND name = 'ChangeVersion')
-ALTER TABLE [{{{schema}}}].[{{{tableName}}}] ADD [ChangeVersion] [BIGINT] DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) NOT NULL;
-
+{{#tables}}IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[{{{schema}}}].[{{{tableName}}}]') AND name = 'ChangeVersion')
+{{#if isCoreSchema}}ALTER TABLE [{{{schema}}}].[{{{tableName}}}] ADD [ChangeVersion] [BIGINT] DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) NOT NULL;
+{{else}}{{#if isStyle6dot0}}ALTER TABLE [{{{schema}}}].[{{{tableName}}}] ADD [ChangeVersion] [BIGINT] CONSTRAINT {{{tableName}}}_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [{{{schema}}}].[{{{tableName}}}] DROP CONSTRAINT {{{tableName}}}_DF_ChangeVersion;
+ALTER TABLE [{{{schema}}}].[{{{tableName}}}] ADD CONSTRAINT {{{tableName}}}_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+{{/if}}{{/if}}
 {{/tables}}
