@@ -13,11 +13,11 @@ BEGIN
 {{/if}}
 {{#tables}}
 {{#if isStyle6dot0}}IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema='{{{schema}}}' AND table_name='{{{tableName}}}' AND column_name='changeversion') THEN
-{{/if}}
-ALTER TABLE {{{schema}}}.{{{tableName}}} ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
-{{#if isStyle6dot0}}END IF;
-{{/if}}
-
+{{#if isCoreSchema}}ALTER TABLE {{{schema}}}.{{{tableName}}} ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;{{else}}{{!-- not isCoreSchema --}}ALTER TABLE {{{schema}}}.{{{tableName}}} ADD ChangeVersion BIGINT DEFAULT (0) NOT NULL; 
+ALTER TABLE {{{schema}}}.{{{tableName}}} ALTER ChangeVersion SET DEFAULT nextval('changes.ChangeVersionSequence');{{/if}}{{!-- end isCoreSchema --}}
+END IF;
+{{else}}{{!-- not isStyle6dot0 --}}ALTER TABLE {{{schema}}}.{{{tableName}}} ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+{{/if}}{{!-- end isStyle6dot0 --}}
 {{/tables}}
 {{#if isStyle6dot0}}
 END
