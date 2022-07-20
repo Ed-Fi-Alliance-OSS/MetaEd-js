@@ -20,6 +20,7 @@ export interface HandbookEntry {
   modelReferencesUsedByProperties: HandbookUsedByProperty[];
   hasDeprecatedProperty: boolean;
   name: string;
+  odsFragment: string[];
   optionList: string[];
   typeCharacteristics: string[];
   repositoryId: string;
@@ -46,6 +47,7 @@ export function newHandbookEntry(): HandbookEntry {
     modelReferencesUsedByProperties: [],
     hasDeprecatedProperty: false,
     name: '',
+    odsFragment: [],
     optionList: [],
     typeCharacteristics: [],
     repositoryId: '',

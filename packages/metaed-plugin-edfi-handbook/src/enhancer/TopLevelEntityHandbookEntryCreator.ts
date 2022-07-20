@@ -1,4 +1,8 @@
 import sort from 'sort-array';
+import fs from 'fs';
+import path from 'path';
+import ramda from 'ramda';
+import handlebars from 'handlebars';
 import {
   TopLevelEntity,
   EntityProperty,
@@ -51,6 +55,28 @@ function enumerationShortDescriptionsFor(entity: TopLevelEntity): string[] {
   }
   if (entity.type === 'descriptor') return getEnumerationItemsFor((entity as Descriptor).mapTypeEnumeration);
   return [];
+}
+
+function getTemplateString(templateName: string): string {
+  return fs.readFileSync(path.join(__dirname, './template/', `${templateName}.hbs`), 'utf8');
+}
+
+const getHandbookTableTemplate: () => (x: any) => string = ramda.once(() =>
+  handlebars.compile(getTemplateString('handbookTable')),
+);
+
+function generatedTableSqlFor(entity: TopLevelEntity): string[] {
+  if (entity.data.edfiOdsRelational == null || entity.data.edfiOdsRelational.odsTables == null) return [];
+
+  const tables = entity.data.edfiOdsRelational.odsTables;
+  const results: string[] = [];
+
+  tables.forEach((table: any) => {
+    const handbookTableTemplate: (x: any) => string = getHandbookTableTemplate();
+    results.push(handbookTableTemplate({ table }));
+  });
+
+  return results.sort();
 }
 
 function findEntityByMetaEdName(allEntities: ModelBase[], metaEdName: string): boolean {
@@ -175,6 +201,7 @@ export function createDefaultHandbookEntry(
     deprecationText: entity.isDeprecated ? ' - DEPRECATED' : '',
     deprecationReason: entity.deprecationReason,
     hasDeprecatedProperty: entity.properties.some((p) => p.isDeprecated),
+    odsFragment: generatedTableSqlFor(entity),
     optionList: enumerationShortDescriptionsFor(entity),
     typeCharacteristics: [],
   };

@@ -70,6 +70,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
     setRow(handbookRow, 'Type Characteristics', asNewLineSeparatedList(handbookEntry.typeCharacteristics));
     setRow(handbookRow, 'Option List', asNewLineSeparatedList(handbookEntry.optionList));
     setRow(handbookRow, 'References', getModelReferencesListFor(handbookEntry));
+    setRow(handbookRow, 'ODS', asNewLineSeparatedList(handbookEntry.odsFragment));
 
     handbookSheet.rows.push(createRow(handbookRow));
     handbookSheet['!cols'] = [

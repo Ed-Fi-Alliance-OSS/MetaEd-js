@@ -27,7 +27,16 @@ function getPropertyName(property: EntityProperty): string {
   return property.metaEdName;
 }
 
-export function createDefaultHandbookEntry(property: EntityProperty, metaEdType: string, umlType: string): HandbookEntry {
+function generatedTableSqlFor(property: EntityProperty, columnDatatype: string): Array<string> {
+  return [`${property.metaEdName} ${columnDatatype}`];
+}
+
+export function createDefaultHandbookEntry(
+  property: EntityProperty,
+  metaEdType: string,
+  umlType: string,
+  columnDatatype: string,
+): HandbookEntry {
   return {
     ...newHandbookEntry(),
     definition: property.documentation,
@@ -39,6 +48,7 @@ export function createDefaultHandbookEntry(property: EntityProperty, metaEdType:
     modelReferencesUsedBy: [parentNameAndPropertyCardinality(property)],
     name: getPropertyName(property),
     projectName: property.namespace.projectName,
+    odsFragment: generatedTableSqlFor(property, columnDatatype),
     optionList: [],
     typeCharacteristics: [],
   };

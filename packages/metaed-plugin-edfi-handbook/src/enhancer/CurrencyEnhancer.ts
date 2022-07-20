@@ -1,4 +1,5 @@
 import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { ColumnDataTypes } from '@edfi/metaed-plugin-edfi-ods-sqlserver';
 import { createDefaultHandbookEntry } from './BaseSimpleTypeHandbookEntryCreator';
 import { EdfiHandbookRepository } from '../model/EdfiHandbookRepository';
 import { edfiHandbookRepositoryForNamespace } from './EnhancerHelper';
@@ -14,7 +15,14 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const handbookRepository: EdfiHandbookRepository | null = edfiHandbookRepositoryForNamespace(metaEd, coreNamespace);
   if (handbookRepository == null) return { enhancerName, success: false };
 
-  handbookRepository.handbookEntries.push(createDefaultHandbookEntry(currencyEdfiId, currencyName, currencyDocumentation));
+  handbookRepository.handbookEntries.push(
+    createDefaultHandbookEntry({
+      metaEdId: currencyEdfiId,
+      name: currencyName,
+      definition: currencyDocumentation,
+      columnDefinition: ColumnDataTypes.currency,
+    }),
+  );
 
   return {
     enhancerName,
