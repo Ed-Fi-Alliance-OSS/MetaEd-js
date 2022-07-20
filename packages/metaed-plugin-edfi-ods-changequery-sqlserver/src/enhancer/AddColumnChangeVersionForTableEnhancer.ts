@@ -16,7 +16,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const createAddColumnModel = (table: Table): AddColumnChangeVersionForTable => ({
     ...newAddColumnChangeVersionForTable(),
     schema: table.schema,
-    isCoreSchema: table.schema === 'edfi',
     tableName: table.data.edfiOdsSqlServer.tableName,
     isStyle6dot0,
   });
