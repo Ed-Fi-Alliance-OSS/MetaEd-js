@@ -19,6 +19,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       ...newAddColumnChangeVersionForTable(),
       schema: table.schema,
       tableName: table.data.edfiOdsPostgresql.tableName,
+      tableNameLowercased: (table.data.edfiOdsPostgresql.tableName as string).toLowerCase(),
       tableNameHash: table.data.edfiOdsPostgresql.truncatedTableNameHash,
       isStyle6dot0,
     });
