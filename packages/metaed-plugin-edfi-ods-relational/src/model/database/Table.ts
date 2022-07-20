@@ -15,8 +15,6 @@ import { ColumnTransform } from './ColumnTransform';
 import { ForeignKey } from './ForeignKey';
 import { simpleTableNameGroupConcat } from './TableNameGroupHelper';
 
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
-
 // eslint-disable-next-line no-use-before-define
 export type TableNameElement = TableNameComponent | TableNameGroup;
 

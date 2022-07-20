@@ -13,4 +13,5 @@ module.exports = {
     },
   },
   modulePathIgnorePatterns: ['dist*', 'docs*'],
+  setupFiles: ['<rootDir>/jest-setup.js'],
 };

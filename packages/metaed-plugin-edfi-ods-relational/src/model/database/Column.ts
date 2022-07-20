@@ -5,8 +5,6 @@ import { EntityProperty, TopLevelEntity } from '@edfi/metaed-core';
 import { ColumnType } from './ColumnType';
 import { NoTable, Table } from './Table';
 
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
-
 /** A single component of the name of the column used by dependent plugins to construct the actual name */
 export interface ColumnNameComponent {
   /** the string name component itself */

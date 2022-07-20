@@ -2,8 +2,6 @@ import path from 'path';
 import winston from 'winston';
 import { State } from '../State';
 
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
-
 export function initializeMetaEdEnvironment(state: State): State {
   // set alliance mode given from configuration
   state.metaEd.allianceMode = state.metaEdConfiguration.allianceMode;

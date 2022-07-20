@@ -7,8 +7,6 @@ import { PluginManifest } from './PluginManifest';
 import { NoMetaEdPlugin } from './MetaEdPlugin';
 import { newPluginEnvironment } from './PluginEnvironment';
 
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
-
 const cachedPlugins: Map<string, PluginManifest[]> = new Map();
 
 export function scanForPlugins(state: State): PluginManifest[] {

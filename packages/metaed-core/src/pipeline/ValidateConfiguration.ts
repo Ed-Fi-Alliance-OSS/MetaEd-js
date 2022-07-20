@@ -1,7 +1,5 @@
 import { State } from '../State';
 
-// winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
-
 // export const validateVersion = (version: SemVer, message: string) => {
 //   const cleaned = semver.clean(version);
 //   if (semver.valid(cleaned) == null) throw new Error(message);

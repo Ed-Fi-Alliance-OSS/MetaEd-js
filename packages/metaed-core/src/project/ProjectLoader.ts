@@ -7,8 +7,6 @@ import klawSync from 'klaw-sync';
 import { MetaEdProjectPathPairs } from './ProjectTypes';
 import { deriveNamespaceFromProjectName } from './ProjectTypes';
 
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
-
 function findDirectories(directory: string): string[] {
   try {
     return klawSync(directory, { nofile: true }).map((x) => x.path);

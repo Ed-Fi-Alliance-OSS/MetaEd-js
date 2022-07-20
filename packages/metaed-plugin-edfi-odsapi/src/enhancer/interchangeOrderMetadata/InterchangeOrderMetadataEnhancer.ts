@@ -22,8 +22,6 @@ import { EdFiXsdEntityRepository, MergedInterchange } from '@edfi/metaed-plugin-
 import { edfiXsdRepositoryForNamespace } from '@edfi/metaed-plugin-edfi-xsd';
 import graphlib, { Graph } from '@dagrejs/graphlib';
 
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
-
 const enhancerName = 'InterchangeOrderMetadataEnhancer';
 
 interface Edge {

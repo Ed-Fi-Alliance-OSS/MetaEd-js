@@ -9,8 +9,6 @@ import { Table } from './Table';
 import { Column } from './Column';
 import { ForeignKeyStrategy } from './ForeignKeyStrategy';
 
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
-
 export interface ForeignKeySourceReference {
   isPartOfIdentity: boolean;
   isRequired: boolean;

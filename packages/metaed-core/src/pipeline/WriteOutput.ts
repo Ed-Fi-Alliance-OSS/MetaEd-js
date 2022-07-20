@@ -5,7 +5,6 @@ import winston from 'winston';
 import { State } from '../State';
 import { GeneratorResult } from '../generator/GeneratorResult';
 
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 export const METAED_OUTPUT = 'MetaEdOutput';
 const LINUX_USER_FULL_CONTROL = 0o700;
 

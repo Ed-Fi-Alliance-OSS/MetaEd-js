@@ -1,10 +1,7 @@
-import winston from 'winston';
 import { versionSatisfies, GeneratedOutput, GeneratorResult, MetaEdEnvironment, PluginEnvironment } from '@edfi/metaed-core';
 import { shouldApplyLicenseHeader } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { dataPath, fileNameFor, registerPartials, structurePath, template } from './OdsGeneratorBase';
 import { NamespaceEdfiOdsPostgresql } from '../model/Namespace';
-
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 
 export async function generateTables(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
