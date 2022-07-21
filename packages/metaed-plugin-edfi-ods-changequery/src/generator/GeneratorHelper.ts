@@ -41,7 +41,7 @@ export interface ChangeQueryTemplates {
   addIndexChangeVersion: any;
 }
 
-function changeQueryPath(databaseFolderName: string) {
+export function changeQueryPath(databaseFolderName: string) {
   return `/Database/${databaseFolderName}/ODS/Structure/Changes/`;
 }
 

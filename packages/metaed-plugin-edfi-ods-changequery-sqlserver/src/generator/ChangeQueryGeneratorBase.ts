@@ -27,6 +27,7 @@ export const template = R.memoizeWith(
       deleteTrackingTrigger: templateNamed('deleteTrackingTrigger'),
       createTriggerUpdateChangeVersion: templateNamed('createTriggerUpdateChangeVersion'),
       addIndexChangeVersion: templateNamed('addIndexChangeVersion'),
+      createChangeVersionSequence: templateNamed('createChangeVersionSequence'),
     },
 );
 

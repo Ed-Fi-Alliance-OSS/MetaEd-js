@@ -42,6 +42,7 @@ export {
   generateCreateChangeVersionSequence,
   generateCreateDeletedForTrackingTrigger,
   generateCreateTriggerUpdateChangeVersion,
+  changeQueryPath,
 } from './generator/GeneratorHelper';
 export {
   EdFiOdsChangeQueryEntityRepository,
