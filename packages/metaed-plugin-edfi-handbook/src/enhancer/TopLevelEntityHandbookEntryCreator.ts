@@ -13,6 +13,7 @@ import {
   ModelBase,
   getAllEntitiesForNamespaces,
 } from '@edfi/metaed-core';
+import type { Table, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { HandbookEntry } from '../model/HandbookEntry';
 import { newHandbookEntry } from '../model/HandbookEntry';
 import { getAllReferentialProperties } from './EnhancerHelper';
@@ -68,10 +69,10 @@ const getHandbookTableTemplate: () => (x: any) => string = ramda.once(() =>
 function generatedTableSqlFor(entity: TopLevelEntity): string[] {
   if (entity.data.edfiOdsRelational == null || entity.data.edfiOdsRelational.odsTables == null) return [];
 
-  const tables = entity.data.edfiOdsRelational.odsTables;
+  const tables: Table[] = (entity.data.edfiOdsRelational as TopLevelEntityEdfiOds).odsTables;
   const results: string[] = [];
 
-  tables.forEach((table: any) => {
+  tables.forEach((table: Table) => {
     const handbookTableTemplate: (x: any) => string = getHandbookTableTemplate();
     results.push(handbookTableTemplate({ table }));
   });

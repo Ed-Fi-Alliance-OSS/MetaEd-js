@@ -21,10 +21,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   metaEd.namespace.forEach((namespace: Namespace) => {
     const handbookRepository: EdfiHandbookRepository | null = edfiHandbookRepositoryForNamespace(metaEd, namespace);
     if (handbookRepository == null) return;
-    (getEntitiesOfTypeForNamespaces([namespace], 'decimalType') as DecimalType[]).forEach((entity) => {
+    (getEntitiesOfTypeForNamespaces([namespace], 'decimalType') as DecimalType[]).forEach((decimalType) => {
       handbookRepository.handbookEntries.push({
-        ...createDefaultHandbookEntry(entity, 'Decimal', 'Number', metaEd),
-        typeCharacteristics: getTypeCharacteristicsFor(entity),
+        ...createDefaultHandbookEntry(decimalType, 'Decimal', 'Number', metaEd),
+        typeCharacteristics: getTypeCharacteristicsFor(decimalType),
       });
     });
   });

@@ -1,25 +1,26 @@
 import { ColumnDataTypes } from '@edfi/metaed-plugin-edfi-ods-sqlserver';
-import { ModelBase, MetaEdEnvironment, EntityProperty } from '@edfi/metaed-core';
+import type { MetaEdEnvironment, EntityProperty, IntegerType, DecimalType, StringType } from '@edfi/metaed-core';
 import { HandbookEntry } from '../model/HandbookEntry';
 import { newHandbookEntry } from '../model/HandbookEntry';
 import { getAllReferentialProperties } from './EnhancerHelper';
 
-function getColumnString(property: any): string {
-  switch (property.type) {
+type XsdType = StringType | IntegerType | DecimalType;
+
+function getColumnString(xsdType: XsdType): string {
+  switch (xsdType.type) {
     case 'stringType':
-      return ColumnDataTypes.string(property.maxLength);
+      return ColumnDataTypes.string((xsdType as StringType).maxLength);
     case 'decimalType':
-      return ColumnDataTypes.decimal(property.totalDigits, property.decimalPlaces);
+      return ColumnDataTypes.decimal((xsdType as DecimalType).totalDigits, (xsdType as DecimalType).decimalPlaces);
     case 'integerType':
-      return property.isShort ? ColumnDataTypes.short : ColumnDataTypes.integer;
+      return (xsdType as IntegerType).isShort ? ColumnDataTypes.short : ColumnDataTypes.integer;
     default:
       return '';
   }
 }
 
-// eslint-disable-next-line
-function generatedTableSqlFor(property: any): Array<string> {
-  return [`${property.metaEdName} ${getColumnString(property)}`];
+function generatedTableSqlFor(xsdType: XsdType): Array<string> {
+  return [`${xsdType.metaEdName} ${getColumnString(xsdType)}`];
 }
 
 function getCardinalityStringFor(property: EntityProperty, isHandbookEntityReferenceProperty: boolean = false): string {
@@ -33,30 +34,30 @@ function getCardinalityStringFor(property: EntityProperty, isHandbookEntityRefer
   return 'UNKNOWN CARDINALITY';
 }
 
-function referringProperties(metaEd: MetaEdEnvironment, entity: ModelBase): string[] {
+function referringProperties(metaEd: MetaEdEnvironment, xsdType: XsdType): string[] {
   return getAllReferentialProperties(metaEd)
-    .filter((x) => x.referencedEntity.metaEdName === entity.metaEdName)
+    .filter((x) => x.referencedEntity.metaEdName === xsdType.metaEdName)
     .map((x) => `${x.parentEntityName}.${x.metaEdName} (as ${getCardinalityStringFor(x)})`);
 }
 
 export function createDefaultHandbookEntry(
-  entity: ModelBase,
+  xsdType: XsdType,
   metaEdType: string,
   umlType: string,
   metaEd: MetaEdEnvironment,
 ): HandbookEntry {
   return {
     ...newHandbookEntry(),
-    definition: entity.documentation,
-    metaEdId: entity.metaEdId,
+    definition: xsdType.documentation,
+    metaEdId: xsdType.metaEdId,
     // This is the way the UI searches for entities
-    uniqueIdentifier: entity.metaEdName + entity.metaEdId,
-    odsFragment: generatedTableSqlFor(entity),
+    uniqueIdentifier: xsdType.metaEdName + xsdType.metaEdId,
+    odsFragment: generatedTableSqlFor(xsdType),
     metaEdType,
     umlType,
-    modelReferencesUsedBy: referringProperties(metaEd, entity),
-    name: entity.metaEdName,
-    projectName: entity.namespace.projectName,
+    modelReferencesUsedBy: referringProperties(metaEd, xsdType),
+    name: xsdType.metaEdName,
+    projectName: xsdType.namespace.projectName,
     optionList: [],
     typeCharacteristics: [],
   };
