@@ -55,23 +55,23 @@ $BODY$
 DECLARE
 {{#each changeDataColumns}}
 {{#if isDescriptorId}}
-    dj{{{tableAliasSuffix}}} {{{../schema}}}.descriptor%ROWTYPE;
-    ij{{{tableAliasSuffix}}} {{{../schema}}}.descriptor%ROWTYPE;
+    dj{{{tableAliasSuffix}}} edfi.descriptor%ROWTYPE;
+    ij{{{tableAliasSuffix}}} edfi.descriptor%ROWTYPE;
 {{/if}}
 {{#if isUsi}}
-    dj{{{tableAliasSuffix}}} {{{../schema}}}.{{usiName}}%ROWTYPE;
-    ij{{{tableAliasSuffix}}} {{{../schema}}}.{{usiName}}%ROWTYPE;
+    dj{{{tableAliasSuffix}}} edfi.{{usiName}}%ROWTYPE;
+    ij{{{tableAliasSuffix}}} edfi.{{usiName}}%ROWTYPE;
 {{/if}}
 {{/each}}
 BEGIN
 {{#each changeDataColumns}}
 {{#if isDescriptorId}}
-    SELECT INTO dj{{tableAliasSuffix}} * FROM {{../schema}}.descriptor j{{tableAliasSuffix}} WHERE descriptorid = old.{{columnName}};
-    SELECT INTO ij{{tableAliasSuffix}} * FROM {{../schema}}.descriptor j{{tableAliasSuffix}} WHERE descriptorid = new.{{columnName}};
+    SELECT INTO dj{{tableAliasSuffix}} * FROM edfi.descriptor j{{tableAliasSuffix}} WHERE descriptorid = old.{{columnName}};
+    SELECT INTO ij{{tableAliasSuffix}} * FROM edfi.descriptor j{{tableAliasSuffix}} WHERE descriptorid = new.{{columnName}};
 {{/if}}
 {{#if isUsi}}
-    SELECT INTO dj{{tableAliasSuffix}} * FROM {{../schema}}.{{usiName}} j{{tableAliasSuffix}} WHERE {{columnName}} = old.{{columnName}};
-    SELECT INTO ij{{tableAliasSuffix}} * FROM {{../schema}}.{{usiName}} j{{tableAliasSuffix}} WHERE {{columnName}} = new.{{columnName}};
+    SELECT INTO dj{{tableAliasSuffix}} * FROM edfi.{{usiName}} j{{tableAliasSuffix}} WHERE {{columnName}} = old.{{columnName}};
+    SELECT INTO ij{{tableAliasSuffix}} * FROM edfi.{{usiName}} j{{tableAliasSuffix}} WHERE {{columnName}} = new.{{columnName}};
 {{/if}}
 {{/each}}
 

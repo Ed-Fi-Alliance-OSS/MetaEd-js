@@ -28,7 +28,7 @@ BEGIN
 {{~#each changeDataColumns}}{{#if isDescriptorId}}
     SELECT INTO dj{{{tableAliasSuffix}}} * FROM edfi.descriptor j{{{tableAliasSuffix}}} WHERE descriptorid = old.{{columnName}};
 {{/if}}{{#if isUsi}}
-    SELECT INTO dj{{{tableAliasSuffix}}} * FROM {{{../targetTableSchema}}}.{{usiName}} j{{{tableAliasSuffix}}} WHERE {{columnName}} = old.{{columnName}};
+    SELECT INTO dj{{{tableAliasSuffix}}} * FROM edfi.{{usiName}} j{{{tableAliasSuffix}}} WHERE {{columnName}} = old.{{columnName}};
 {{/if}}{{/each}}{{!-- changeDataColumns --}}
 {{~#if isDescriptorTable}}
 
