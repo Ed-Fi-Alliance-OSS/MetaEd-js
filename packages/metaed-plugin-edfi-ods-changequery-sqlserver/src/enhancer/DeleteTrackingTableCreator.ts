@@ -6,7 +6,7 @@ import {
   newDeleteTrackingTable,
 } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
-import { changeDataColumnsFor, TARGET_DATABASE_PLUGIN_NAME } from './EnhancerHelper';
+import { changeDataColumnsFor, hardcodedOldColumnFor, TARGET_DATABASE_PLUGIN_NAME } from './EnhancerHelper';
 
 function createDeleteTrackingTableModelV3dot3(table: Table): DeleteTrackingTable {
   const tableName = `${table.schema}_${table.data.edfiOdsSqlServer.tableName}_TrackedDelete`;
@@ -91,6 +91,7 @@ function createDeleteTrackingTableModelV6dot0(table: Table): DeleteTrackingTable
     isDescriptorTable: table.existenceReason.parentEntity?.type === 'descriptor',
     isIgnored: table.existenceReason.isSubclassTable,
     changeDataColumns: changeDataColumnsFor(table),
+    hardcodedOldColumn: hardcodedOldColumnFor(table),
     omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
     includeNamespace: hasRequiredNonIdentityNamespaceColumn(table),
   };

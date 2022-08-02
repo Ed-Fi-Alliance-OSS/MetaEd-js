@@ -1,7 +1,11 @@
 import { EntityProperty } from '@edfi/metaed-core';
 import { Column, ColumnNameComponent, newColumnNameComponent, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { ColumnDataTypes, constructColumnNameFrom } from '@edfi/metaed-plugin-edfi-ods-sqlserver';
-import { ChangeDataColumn, newChangeDataColumn } from '@edfi/metaed-plugin-edfi-ods-changequery';
+import {
+  ChangeDataColumn,
+  disciplineActionWithResponsibilitySchoolColumn,
+  newChangeDataColumn,
+} from '@edfi/metaed-plugin-edfi-ods-changequery';
 
 export const TARGET_DATABASE_PLUGIN_NAME = 'edfiOdsSqlServer';
 
@@ -136,5 +140,25 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
     }
   });
 
+  return changeDataColumns;
+}
+
+// This is a hardcode for core DisciplineAction with a ResponsibilitySchoolId column
+// Added for authorization reasons. See METAED-1293
+export function hardcodedOldColumnFor(table: Table): ChangeDataColumn | null {
+  const responsibilitySchoolColumn: Column | undefined = disciplineActionWithResponsibilitySchoolColumn(table);
+  if (responsibilitySchoolColumn == null) return null;
+  return {
+    ...newChangeDataColumn(),
+    columnName: responsibilitySchoolColumn.data.edfiOdsSqlServer.columnName,
+    columnDataType: responsibilitySchoolColumn.data.edfiOdsSqlServer.dataType,
+    isRegularSelectColumn: true,
+  };
+}
+
+export function changeDataColumnsWithHardcodesFor(table: Table): ChangeDataColumn[] {
+  const changeDataColumns: ChangeDataColumn[] = changeDataColumnsFor(table);
+  const hardcodedOldColumn: ChangeDataColumn | null = hardcodedOldColumnFor(table);
+  if (hardcodedOldColumn != null) changeDataColumns.push(hardcodedOldColumn);
   return changeDataColumns;
 }

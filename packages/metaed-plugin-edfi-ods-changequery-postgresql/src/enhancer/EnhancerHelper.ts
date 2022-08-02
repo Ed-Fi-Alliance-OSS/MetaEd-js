@@ -7,7 +7,11 @@ import {
   newColumnNameComponent,
 } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { MetaEdEnvironment, PluginEnvironment, versionSatisfies, EntityProperty } from '@edfi/metaed-core';
-import { ChangeDataColumn, newChangeDataColumn } from '@edfi/metaed-plugin-edfi-ods-changequery';
+import {
+  ChangeDataColumn,
+  disciplineActionWithResponsibilitySchoolColumn,
+  newChangeDataColumn,
+} from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { ColumnDataTypes, constructColumnNameFrom } from '@edfi/metaed-plugin-edfi-ods-postgresql';
 
 export const TARGET_DATABASE_PLUGIN_NAME = 'edfiOdsPostgresql';
@@ -173,5 +177,25 @@ export function changeDataColumnsFor(table: Table): ChangeDataColumn[] {
     }
   });
 
+  return changeDataColumns;
+}
+
+// This is a hardcode for core DisciplineAction with a ResponsibilitySchoolId column
+// Added for authorization reasons. See METAED-1293
+export function hardcodedOldColumnFor(table: Table): ChangeDataColumn | null {
+  const responsibilitySchoolColumn: Column | undefined = disciplineActionWithResponsibilitySchoolColumn(table);
+  if (responsibilitySchoolColumn == null) return null;
+  return {
+    ...newChangeDataColumn(),
+    columnName: responsibilitySchoolColumn.data.edfiOdsPostgresql.columnName.toLowerCase(),
+    columnDataType: responsibilitySchoolColumn.data.edfiOdsPostgresql.dataType,
+    isRegularSelectColumn: true,
+  };
+}
+
+export function changeDataColumnsWithHardcodesFor(table: Table): ChangeDataColumn[] {
+  const changeDataColumns: ChangeDataColumn[] = changeDataColumnsFor(table);
+  const hardcodedOldColumn: ChangeDataColumn | null = hardcodedOldColumnFor(table);
+  if (hardcodedOldColumn != null) changeDataColumns.push(hardcodedOldColumn);
   return changeDataColumns;
 }

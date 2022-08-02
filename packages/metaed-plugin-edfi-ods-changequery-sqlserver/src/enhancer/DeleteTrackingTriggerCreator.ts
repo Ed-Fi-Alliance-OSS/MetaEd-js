@@ -6,7 +6,7 @@ import {
 } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { Table, Column } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
-import { changeDataColumnsFor, TARGET_DATABASE_PLUGIN_NAME } from './EnhancerHelper';
+import { changeDataColumnsWithHardcodesFor, TARGET_DATABASE_PLUGIN_NAME } from './EnhancerHelper';
 
 function createDeleteTrackingTriggerModelV3dot3(table: Table): DeleteTrackingTrigger {
   return {
@@ -52,7 +52,7 @@ function createDeleteTrackingTriggerModelV6dot0(table: Table): DeleteTrackingTri
     ),
     isDescriptorTable: table.existenceReason.isEntityMainTable && table.existenceReason.parentEntity?.type === 'descriptor',
     isStyle6dot0: true,
-    changeDataColumns: changeDataColumnsFor(table),
+    changeDataColumns: changeDataColumnsWithHardcodesFor(table),
     isIgnored: table.existenceReason.isSubclassTable || table.existenceReason.isBaseDescriptor,
     omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
     includeNamespace: hasRequiredNonIdentityNamespaceColumn(table),

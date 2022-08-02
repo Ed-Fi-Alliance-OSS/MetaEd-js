@@ -24,6 +24,8 @@ CREATE TABLE [{{{schema}}}].[{{{tableName}}}]
 {{#changeDataColumns}}
        Old{{{columnName}}} {{{columnDataType}}} NOT NULL,
 {{/changeDataColumns}}
+{{~#hardcodedOldColumn}}       Old{{{columnName}}} {{{columnDataType}}} NOT NULL,
+{{/hardcodedOldColumn~}}
 {{#changeDataColumns}}
        New{{{columnName}}} {{{columnDataType}}} NULL,
 {{/changeDataColumns}}

@@ -201,3 +201,24 @@ export function hasRequiredNonIdentityNamespaceColumn(table: Table): boolean {
 export function isUsiTable(table: Table): boolean {
   return table.parentEntity !== NoTopLevelEntity && table.parentEntity.data.edfiOdsRelational.hasUsiTable;
 }
+
+// This is a hardcode for core DisciplineAction with a ResponsibilitySchoolId column
+// Added for authorization reasons. See METAED-1293
+export function disciplineActionWithResponsibilitySchoolColumn(table: Table): Column | undefined {
+  // Must be named DisciplineAction
+  if (table.parentEntity.metaEdName !== 'DisciplineAction') return undefined;
+  // Must be core entity
+  if (table.parentEntity.namespace.isExtension) return undefined;
+  // Must be DomainEntity
+  if (table.parentEntity.type !== 'domainEntity') return undefined;
+  // Must have domain entity property named School with role name Responsibility with required cardinality
+  if (
+    table.parentEntity.properties.find(
+      (p) => p.metaEdName === 'School' && p.roleName === 'Responsibility' && p.isRequired && p.type === 'domainEntity',
+    ) == null
+  ) {
+    return undefined;
+  }
+
+  return table.columns.find((c) => c.columnId === 'ResponsibilitySchoolId');
+}

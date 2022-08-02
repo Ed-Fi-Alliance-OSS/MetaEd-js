@@ -372,6 +372,7 @@ CREATE TABLE [tracked_changes_edfi].[DisciplineAction]
        OldDisciplineDate [DATE] NOT NULL,
        OldStudentUSI [INT] NOT NULL,
        OldStudentUniqueId [NVARCHAR](32) NOT NULL,
+       OldResponsibilitySchoolId [INT] NOT NULL,
        NewDisciplineActionIdentifier [NVARCHAR](20) NULL,
        NewDisciplineDate [DATE] NULL,
        NewStudentUSI [INT] NULL,

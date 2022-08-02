@@ -7,7 +7,7 @@ import {
 } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { Table, Column } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
-import { TARGET_DATABASE_PLUGIN_NAME, postgresqlTriggerName, changeDataColumnsFor } from './EnhancerHelper';
+import { TARGET_DATABASE_PLUGIN_NAME, postgresqlTriggerName, changeDataColumnsWithHardcodesFor } from './EnhancerHelper';
 
 export function createDeleteTrackingTriggerModelV3dot4(table: Table): DeleteTrackingTrigger {
   return {
@@ -25,7 +25,7 @@ export function createDeleteTrackingTriggerModelV3dot4(table: Table): DeleteTrac
 }
 
 export function createDeleteTrackingTriggerModelV6dot0(table: Table): DeleteTrackingTrigger {
-  const changeDataColumns: ChangeDataColumn[] = changeDataColumnsFor(table);
+  const changeDataColumns: ChangeDataColumn[] = changeDataColumnsWithHardcodesFor(table);
   return {
     ...newDeleteTrackingTrigger(),
     triggerSchema: `tracked_changes_${table.schema}`,

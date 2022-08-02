@@ -27,6 +27,7 @@ export {
   performEnumerationChangeQueryEnhancement,
   hasRequiredNonIdentityNamespaceColumn,
   isUsiTable,
+  disciplineActionWithResponsibilitySchoolColumn,
 } from './enhancer/EnhancerHelper';
 export {
   SuperclassForeignKeyFinder,

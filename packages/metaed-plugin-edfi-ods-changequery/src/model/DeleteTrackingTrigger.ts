@@ -15,6 +15,7 @@ export interface DeleteTrackingTrigger extends HasTriggerName {
   isDescriptorTable: boolean;
   isStyle6dot0: boolean;
   changeDataColumns: ChangeDataColumn[];
+  hardcodedOldColumn: ChangeDataColumn | null;
   needsDeclare: boolean;
   isIgnored: boolean;
   omitDiscriminator: boolean;
@@ -36,6 +37,7 @@ export function newDeleteTrackingTrigger(): DeleteTrackingTrigger {
     isDescriptorTable: false,
     isStyle6dot0: false,
     changeDataColumns: [],
+    hardcodedOldColumn: null,
     needsDeclare: false,
     isIgnored: false,
     omitDiscriminator: false,

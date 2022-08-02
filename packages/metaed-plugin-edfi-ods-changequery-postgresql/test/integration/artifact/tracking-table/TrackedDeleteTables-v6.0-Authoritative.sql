@@ -419,6 +419,7 @@ CREATE TABLE tracked_changes_edfi.disciplineaction
        olddisciplinedate DATE NOT NULL,
        oldstudentusi INT NOT NULL,
        oldstudentuniqueid VARCHAR(32) NOT NULL,
+       oldresponsibilityschoolid INT NOT NULL,
        newdisciplineactionidentifier VARCHAR(20) NULL,
        newdisciplinedate DATE NULL,
        newstudentusi INT NULL,

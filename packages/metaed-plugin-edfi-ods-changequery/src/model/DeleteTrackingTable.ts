@@ -11,6 +11,7 @@ export interface DeleteTrackingTable extends HasTableName {
   isDescriptorTable: boolean;
   isIgnored: boolean;
   changeDataColumns: ChangeDataColumn[];
+  hardcodedOldColumn: ChangeDataColumn | null;
   omitDiscriminator: boolean;
   includeNamespace: boolean;
 }
@@ -26,6 +27,7 @@ export function newDeleteTrackingTable(): DeleteTrackingTable {
     isDescriptorTable: false,
     isIgnored: false,
     changeDataColumns: [],
+    hardcodedOldColumn: null,
     omitDiscriminator: false,
     includeNamespace: false,
   };

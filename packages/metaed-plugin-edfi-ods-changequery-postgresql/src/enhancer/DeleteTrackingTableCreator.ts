@@ -6,7 +6,7 @@ import {
   hasRequiredNonIdentityNamespaceColumn,
 } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
-import { TARGET_DATABASE_PLUGIN_NAME, changeDataColumnsFor } from './EnhancerHelper';
+import { TARGET_DATABASE_PLUGIN_NAME, changeDataColumnsFor, hardcodedOldColumnFor } from './EnhancerHelper';
 
 export function createDeleteTrackingTableModelV3dot4(table: Table): DeleteTrackingTable {
   const trackingTableName: string = table.data.edfiOdsPostgresql.tableName;
@@ -60,6 +60,7 @@ export function createDeleteTrackingTableModelV6dot0(table: Table): DeleteTracki
     isDescriptorTable: table.existenceReason.parentEntity?.type === 'descriptor',
     isIgnored: table.existenceReason.isSubclassTable,
     changeDataColumns: changeDataColumnsFor(table),
+    hardcodedOldColumn: hardcodedOldColumnFor(table),
     omitDiscriminator: table.schema === 'edfi' && table.tableId === 'SchoolYearType',
     includeNamespace: hasRequiredNonIdentityNamespaceColumn(table),
   };
