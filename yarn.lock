@@ -926,10 +926,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@edfi/ed-fi-model-4.0a@npm:3.0.2":
-  version: 3.0.2
-  resolution: "@edfi/ed-fi-model-4.0a@npm:3.0.2::__archiveUrl=https%3A%2F%2Fwww.myget.org%2FF%2Fed-fi%2Fnpm%2F%40edfi%2Fed-fi-model-4.0a%2F-%2F%40edfi%2Fed-fi-model-4.0a-3.0.2.tgz"
-  checksum: faf52c9c06bd84fa61c32245fab8b97d3a798f59da5c9f725a6fca62485df3e03f5512745e30bd9f1a32b08d6a3489ed3b04b6c6478891c92bf4e607111b522a
+"@edfi/ed-fi-model-4.0a@npm:3.0.3":
+  version: 3.0.3
+  resolution: "@edfi/ed-fi-model-4.0a@npm:3.0.3::__archiveUrl=https%3A%2F%2Fwww.myget.org%2FF%2Fed-fi%2Fnpm%2F%40edfi%2Fed-fi-model-4.0a%2F-%2F%40edfi%2Fed-fi-model-4.0a-3.0.3.tgz"
+  checksum: 9600d16635198b95e8263750e7ed45f83421df95afeb885cb745db2ba0657fb2f3418b03a8f15f55f0f9a75dd78340ad644b9b175cb499861b071cbe76c44572
   languageName: node
   linkType: hard
 
@@ -1046,7 +1046,7 @@ __metadata:
     "@edfi/ed-fi-model-3.0": 3.0.1
     "@edfi/ed-fi-model-3.2a": 3.0.1
     "@edfi/ed-fi-model-3.3b": 3.0.1
-    "@edfi/ed-fi-model-4.0a": 3.0.2
+    "@edfi/ed-fi-model-4.0a": 3.0.3
     "@edfi/metaed-core": 3.0.2-dev.11
     "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.2-dev.11
     "@edfi/metaed-plugin-edfi-ods-postgresql": 3.0.2-dev.11
@@ -1067,7 +1067,7 @@ __metadata:
     "@edfi/ed-fi-model-3.0": 3.0.1
     "@edfi/ed-fi-model-3.3a": 3.0.1
     "@edfi/ed-fi-model-3.3b": 3.0.1
-    "@edfi/ed-fi-model-4.0a": 3.0.2
+    "@edfi/ed-fi-model-4.0a": 3.0.3
     "@edfi/metaed-core": 3.0.2-dev.11
     "@edfi/metaed-plugin-edfi-ods-changequery": 3.0.2-dev.11
     "@edfi/metaed-plugin-edfi-ods-relational": 3.0.2-dev.11
@@ -4119,7 +4119,7 @@ __metadata:
     "@edfi/ed-fi-model-3.2c": 3.0.1
     "@edfi/ed-fi-model-3.3a": 3.0.1
     "@edfi/ed-fi-model-3.3b": 3.0.1
-    "@edfi/ed-fi-model-4.0a": 3.0.2
+    "@edfi/ed-fi-model-4.0a": 3.0.3
     "@edfi/metaed-console": 3.0.2-dev.11
     "@edfi/metaed-core": 3.0.2-dev.11
     "@edfi/metaed-odsapi-deploy": 3.0.2-dev.11
