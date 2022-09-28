@@ -39,7 +39,7 @@ function locallyDefinedPropertiesFrom(table: Table): ApiProperty[] {
 
   const result: ApiProperty[] = table.columns
     .filter((column: Column) => includeColumn(column, table, foreignKeyColumnIdsOnTable))
-    .map((column: Column) => buildApiProperty(column));
+    .map((column: Column) => buildApiProperty(column, '3.2.0'));
 
   return result;
 }

@@ -18,7 +18,7 @@ function buildApiPropertyWithServerAssignedOverride(
   schemasTables: Map<string, Map<string, Table>>,
   { isIdentifying, cardinality }: AssociationDefinition,
 ): ApiProperty {
-  const result: ApiProperty = { ...buildApiProperty(column), isIdentifying };
+  const result: ApiProperty = { ...buildApiProperty(column, '3.2.0'), isIdentifying };
   if (cardinality === 'OneToOne' || cardinality === 'OneToOneInheritance' || cardinality === 'OneToOneExtension') {
     const foreignSchemaTableMap: Map<string, Table> | undefined = schemasTables.get(foreignKey.foreignTableSchema);
     if (foreignSchemaTableMap == null)

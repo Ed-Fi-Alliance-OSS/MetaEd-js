@@ -845,3 +845,76 @@ describe('when generating api model targeting tech version 5.3 with comparing it
     expect(expectOneOf).toContain(result);
   });
 });
+
+describe('when generating api model targeting tech version 7.0 with comparing it to data standard 3.3b authoritative artifacts', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact');
+  const authoritativeCoreFilename = 'edfi-7.0-api-model-authoritative.json';
+  const generatedCoreFilename = 'edfi-7.0-api-model-generated.json';
+
+  let generatedCoreOutput: GeneratedOutput;
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.0.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.3b/'],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '3.3.1-b',
+          description: 'A description',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+    };
+    state.metaEd.dataStandardVersion = '3.3.1-b';
+
+    validateConfiguration(state);
+    loadPlugins(state);
+    state.pluginManifest = state.pluginManifest.filter(
+      (manifest) =>
+        manifest.shortName === 'edfiUnified' ||
+        manifest.shortName === 'edfiOdsRelational' ||
+        manifest.shortName === 'edfiOdsPostgresql' ||
+        manifest.shortName === 'edfiOdsSqlServer' ||
+        manifest.shortName === 'edfiXsd' ||
+        manifest.shortName === 'edfiOdsApi',
+    );
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const pluginManifest of state.pluginManifest) {
+      await runEnhancers(pluginManifest, state);
+      await runGenerators(pluginManifest, state);
+    }
+
+    const generatorResult: GeneratorResult = R.head(
+      state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
+    );
+
+    [generatedCoreOutput] = generatorResult.generatedOutput;
+
+    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
+  });
+
+  it('should have no core file differences', async () => {
+    const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
+    const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    // @ts-ignore "error" not used
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});

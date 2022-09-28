@@ -25,6 +25,7 @@ function primaryEntityPropertiesFrom(
   foreignKey: ForeignKey,
   schemasTables: Map<string, Map<string, Table>>,
   { isIdentifying }: AssociationDefinition,
+  targetTechnologyVersion: string,
 ): ApiProperty[] {
   const foreignSchemaTableMap: Map<string, Table> | undefined = schemasTables.get(foreignKey.foreignTableSchema);
   if (foreignSchemaTableMap == null)
@@ -38,7 +39,11 @@ function primaryEntityPropertiesFrom(
   return foreignKey.data.edfiOdsSqlServer.foreignTableColumnNames
     .map((columnName: string) => foreignTable.columns.filter((c) => c.data.edfiOdsSqlServer.columnName === columnName))
     .map((columnArray: Column[]) => columnArray[0])
-    .map((column: Column) => ({ ...buildApiProperty(column), isIdentifying, ...columnNamesFor(column) }));
+    .map((column: Column) => ({
+      ...buildApiProperty(column, targetTechnologyVersion),
+      isIdentifying,
+      ...columnNamesFor(column),
+    }));
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
@@ -54,7 +59,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       if (foreignKey == null) return;
 
       associationDefinition.primaryEntityProperties.push(
-        ...primaryEntityPropertiesFrom(foreignKey, schemasTables, associationDefinition),
+        ...primaryEntityPropertiesFrom(foreignKey, schemasTables, associationDefinition, targetTechnologyVersion),
       );
     });
   });

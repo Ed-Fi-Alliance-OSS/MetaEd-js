@@ -27,8 +27,13 @@ function buildApiPropertyWithServerAssignedOverride(
   foreignKey: ForeignKey,
   schemasTables: Map<string, Map<string, Table>>,
   { isIdentifying, cardinality }: AssociationDefinition,
+  targetTechnologyVersion: string,
 ): ApiProperty {
-  const result: ApiProperty = { ...buildApiProperty(column), isIdentifying, ...columnNamesFor(column) };
+  const result: ApiProperty = {
+    ...buildApiProperty(column, targetTechnologyVersion),
+    isIdentifying,
+    ...columnNamesFor(column),
+  };
   if (cardinality === 'OneToOne' || cardinality === 'OneToOneInheritance' || cardinality === 'OneToOneExtension') {
     const foreignSchemaTableMap: Map<string, Table> | undefined = schemasTables.get(foreignKey.foreignTableSchema);
     if (foreignSchemaTableMap == null)
@@ -56,6 +61,7 @@ function secondaryEntityPropertiesFrom(
   foreignKey: ForeignKey,
   schemasTables: Map<string, Map<string, Table>>,
   associationDefinition: AssociationDefinition,
+  targetTechnologyVersion: string,
 ): ApiProperty[] {
   const parentSchemaTableMap: Map<string, Table> | undefined = schemasTables.get(foreignKey.parentTable.schema);
   if (parentSchemaTableMap == null)
@@ -70,7 +76,13 @@ function secondaryEntityPropertiesFrom(
     .map((columnName: string) => parentTable.columns.filter((c) => c.data.edfiOdsSqlServer.columnName === columnName))
     .map((columnArray: Column[]) => columnArray[0])
     .map((column: Column) =>
-      buildApiPropertyWithServerAssignedOverride(column, foreignKey, schemasTables, associationDefinition),
+      buildApiPropertyWithServerAssignedOverride(
+        column,
+        foreignKey,
+        schemasTables,
+        associationDefinition,
+        targetTechnologyVersion,
+      ),
     );
 }
 
@@ -87,7 +99,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       if (foreignKey == null) return;
 
       associationDefinition.secondaryEntityProperties.push(
-        ...secondaryEntityPropertiesFrom(foreignKey, schemasTables, associationDefinition),
+        ...secondaryEntityPropertiesFrom(foreignKey, schemasTables, associationDefinition, targetTechnologyVersion),
       );
     });
   });

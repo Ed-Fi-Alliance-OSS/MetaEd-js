@@ -28,7 +28,7 @@ function primaryEntityPropertiesFrom(
   return foreignKey.data.edfiOdsSqlServer.foreignTableColumnNames
     .map((columnName: string) => foreignTable.columns.filter((c) => c.data.edfiOdsSqlServer.columnName === columnName))
     .map((columnArray: Column[]) => columnArray[0])
-    .map((column: Column) => ({ ...buildApiProperty(column), isIdentifying }));
+    .map((column: Column) => ({ ...buildApiProperty(column, '3.2.0'), isIdentifying }));
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {

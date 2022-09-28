@@ -41,7 +41,7 @@ function columnNamesFor(column: Column): { columnNames: PhysicalNames } {
   };
 }
 
-function locallyDefinedPropertiesFrom(table: Table): ApiProperty[] {
+function locallyDefinedPropertiesFrom(table: Table, targetTechnologyVersion: string): ApiProperty[] {
   const foreignKeyColumnIdsOnTable: string[] = R.chain(
     (fk) => fk.columnPairs.map((cp) => cp.parentTableColumnId),
     table.foreignKeys,
@@ -49,7 +49,7 @@ function locallyDefinedPropertiesFrom(table: Table): ApiProperty[] {
 
   const result: ApiProperty[] = table.columns
     .filter((column: Column) => includeColumn(column, table, foreignKeyColumnIdsOnTable))
-    .map((column: Column) => ({ ...buildApiProperty(column), ...columnNamesFor(column) }));
+    .map((column: Column) => ({ ...buildApiProperty(column, targetTechnologyVersion), ...columnNamesFor(column) }));
 
   return result;
 }
@@ -65,7 +65,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const table = tableFor(metaEd, namespace, entityDefinition.name);
       if (table == null) return;
 
-      entityDefinition.locallyDefinedProperties.push(...locallyDefinedPropertiesFrom(table));
+      entityDefinition.locallyDefinedProperties.push(...locallyDefinedPropertiesFrom(table, targetTechnologyVersion));
     });
   });
 

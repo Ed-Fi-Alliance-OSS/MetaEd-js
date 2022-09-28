@@ -1,4 +1,5 @@
 import { Column, DecimalColumn, StringColumn } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { IntegerProperty, versionSatisfies } from '@edfi/metaed-core';
 import { ApiProperty } from '../../model/apiModel/ApiProperty';
 import { ApiPropertyType } from '../../model/apiModel/ApiPropertyType';
 import { DbType } from '../../model/apiModel/DbType';
@@ -26,6 +27,22 @@ function maxLengthFrom(column: Column): number {
   return 0;
 }
 
+function minValueFrom(column: Column): number | undefined {
+  if (column.type !== 'integer' && column.type !== 'short') return undefined;
+  if (column.sourceEntityProperties.length === 0) return undefined;
+  const { minValue } = column.sourceEntityProperties[0] as IntegerProperty;
+  if (minValue == null || minValue === '') return undefined;
+  return Number.parseInt(minValue, 10);
+}
+
+function maxValueFrom(column: Column): number | undefined {
+  if (column.type !== 'integer' && column.type !== 'short') return undefined;
+  if (column.sourceEntityProperties.length === 0) return undefined;
+  const { maxValue } = column.sourceEntityProperties[0] as IntegerProperty;
+  if (maxValue == null || maxValue === '') return undefined;
+  return Number.parseInt(maxValue, 10);
+}
+
 function precisionFrom(column: Column): number {
   if (column.type === 'currency') return 19;
   if (column.type === 'decimal') return Number.parseInt((column as DecimalColumn).precision, 10);
@@ -43,7 +60,18 @@ function scaleFrom(column: Column): number {
   return 0;
 }
 
-function apiPropertyTypeFrom(column: Column): ApiPropertyType {
+function apiPropertyTypeFrom(column: Column, targetTechnologyVersion: string): ApiPropertyType {
+  if (versionSatisfies(targetTechnologyVersion, '>=7.0') && (column.type === 'integer' || column.type === 'short')) {
+    const result: ApiPropertyType = {
+      dbType: dbTypeFrom(column),
+      isNullable: column.isNullable,
+    };
+    const minValue: number | undefined = minValueFrom(column);
+    const maxValue: number | undefined = maxValueFrom(column);
+    if (minValue != null) result.minValue = minValue;
+    if (maxValue != null) result.maxValue = maxValue;
+    return result;
+  }
   return {
     dbType: dbTypeFrom(column),
     maxLength: maxLengthFrom(column),
@@ -54,10 +82,10 @@ function apiPropertyTypeFrom(column: Column): ApiPropertyType {
 }
 
 // locally defined "properties" are the columns on a table minus the columns there to provide a FK reference
-export function buildApiProperty(column: Column): ApiProperty {
+export function buildApiProperty(column: Column, targetTechnologyVersion: string): ApiProperty {
   return {
     propertyName: column.data.edfiOdsSqlServer.columnName,
-    propertyType: apiPropertyTypeFrom(column),
+    propertyType: apiPropertyTypeFrom(column, targetTechnologyVersion),
     description: column.description,
     isIdentifying: column.isPartOfPrimaryKey,
     isServerAssigned: column.isIdentityDatabaseType,
