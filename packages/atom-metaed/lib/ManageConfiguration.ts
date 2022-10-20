@@ -34,6 +34,7 @@ const odsApiVersionSupport: Map<string, any[]> = new Map([
   ['5.2.0', [{ value: '3.3.0-a', description: '3.3a' }]],
   ['5.3.0', [{ value: '3.3.1-b', description: '3.3b' }]],
   ['6.0.0', [{ value: '4.0.0-a', description: '4.0a' }]],
+  ['6.1.0', [{ value: '4.0.0', description: '4.0' }]],
 ]);
 
 // Used to schedule an update to the DS version in the settings after the DS version dropdown is re-written
@@ -79,24 +80,25 @@ export function switchCoreDsProjectOnDsChange(disposableTracker: CompositeDispos
       if (newValue === '3.3.0-a') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.3a'));
       if (newValue === '3.3.1-b') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.3b'));
       if (newValue === '4.0.0-a') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-4.0a'));
+      if (newValue === '4.0.0') setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-4.0'));
     }),
   );
 }
 
-async function setCoreToFiveDotX() {
-  setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-4.0a'));
-  setTargetDsVersion('4.0.0-a');
-  setTargetOdsApiVersion('6.0.0');
+async function setCoreToSixDotX() {
+  setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-4.0'));
+  setTargetDsVersion('4.0.0');
+  setTargetOdsApiVersion('6.1.0');
   await nextMacroTask();
 }
 
 // initialize package settings if invalid
 export async function initializePackageSettings() {
   if (!getTargetDsVersion()) {
-    await setCoreToFiveDotX();
+    await setCoreToSixDotX();
   }
   if (!getCoreMetaEdSourceDirectory() || !(await fs.exists(path.resolve(getCoreMetaEdSourceDirectory())))) {
-    await setCoreToFiveDotX();
+    await setCoreToSixDotX();
   }
   if (!atom.config.get('metaed-exception-report.user')) {
     atom.config.set('metaed-exception-report.user', newUuid());
@@ -141,7 +143,7 @@ export function manageLegacyIssues(disposableTracker: CompositeDisposable) {
   // remove tech preview flag left behind by 1.1.x versions of MetaEd
   if (atom.config.get('atom-metaed.useTechPreview')) {
     atom.config.unset('atom-metaed.useTechPreview');
-    setCoreToFiveDotX();
+    setCoreToSixDotX();
   }
 
   // remove obsolete path to C# console
