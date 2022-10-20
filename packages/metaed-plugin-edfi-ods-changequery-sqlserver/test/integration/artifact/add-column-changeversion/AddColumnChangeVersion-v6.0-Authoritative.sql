@@ -8,35 +8,11 @@ ALTER TABLE [edfi].[AcademicWeek] ADD CONSTRAINT AcademicWeek_DF_ChangeVersion D
 END
 
 
-IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[Account]') AND name = 'ChangeVersion')
-BEGIN
-ALTER TABLE [edfi].[Account] ADD [ChangeVersion] [BIGINT] CONSTRAINT Account_DF_ChangeVersion DEFAULT (0) NOT NULL;
-ALTER TABLE [edfi].[Account] DROP CONSTRAINT Account_DF_ChangeVersion;
-ALTER TABLE [edfi].[Account] ADD CONSTRAINT Account_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
-END
-
-
-IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[AccountCode]') AND name = 'ChangeVersion')
-BEGIN
-ALTER TABLE [edfi].[AccountCode] ADD [ChangeVersion] [BIGINT] CONSTRAINT AccountCode_DF_ChangeVersion DEFAULT (0) NOT NULL;
-ALTER TABLE [edfi].[AccountCode] DROP CONSTRAINT AccountCode_DF_ChangeVersion;
-ALTER TABLE [edfi].[AccountCode] ADD CONSTRAINT AccountCode_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
-END
-
-
 IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[AccountabilityRating]') AND name = 'ChangeVersion')
 BEGIN
 ALTER TABLE [edfi].[AccountabilityRating] ADD [ChangeVersion] [BIGINT] CONSTRAINT AccountabilityRating_DF_ChangeVersion DEFAULT (0) NOT NULL;
 ALTER TABLE [edfi].[AccountabilityRating] DROP CONSTRAINT AccountabilityRating_DF_ChangeVersion;
 ALTER TABLE [edfi].[AccountabilityRating] ADD CONSTRAINT AccountabilityRating_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
-END
-
-
-IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[Actual]') AND name = 'ChangeVersion')
-BEGIN
-ALTER TABLE [edfi].[Actual] ADD [ChangeVersion] [BIGINT] CONSTRAINT Actual_DF_ChangeVersion DEFAULT (0) NOT NULL;
-ALTER TABLE [edfi].[Actual] DROP CONSTRAINT Actual_DF_ChangeVersion;
-ALTER TABLE [edfi].[Actual] ADD CONSTRAINT Actual_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
 END
 
 
@@ -64,19 +40,19 @@ ALTER TABLE [edfi].[AssessmentScoreRangeLearningStandard] ADD CONSTRAINT Assessm
 END
 
 
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[BalanceSheetDimension]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[BalanceSheetDimension] ADD [ChangeVersion] [BIGINT] CONSTRAINT BalanceSheetDimension_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[BalanceSheetDimension] DROP CONSTRAINT BalanceSheetDimension_DF_ChangeVersion;
+ALTER TABLE [edfi].[BalanceSheetDimension] ADD CONSTRAINT BalanceSheetDimension_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
 IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[BellSchedule]') AND name = 'ChangeVersion')
 BEGIN
 ALTER TABLE [edfi].[BellSchedule] ADD [ChangeVersion] [BIGINT] CONSTRAINT BellSchedule_DF_ChangeVersion DEFAULT (0) NOT NULL;
 ALTER TABLE [edfi].[BellSchedule] DROP CONSTRAINT BellSchedule_DF_ChangeVersion;
 ALTER TABLE [edfi].[BellSchedule] ADD CONSTRAINT BellSchedule_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
-END
-
-
-IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[Budget]') AND name = 'ChangeVersion')
-BEGIN
-ALTER TABLE [edfi].[Budget] ADD [ChangeVersion] [BIGINT] CONSTRAINT Budget_DF_ChangeVersion DEFAULT (0) NOT NULL;
-ALTER TABLE [edfi].[Budget] DROP CONSTRAINT Budget_DF_ChangeVersion;
-ALTER TABLE [edfi].[Budget] ADD CONSTRAINT Budget_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
 END
 
 
@@ -93,6 +69,14 @@ BEGIN
 ALTER TABLE [edfi].[CalendarDate] ADD [ChangeVersion] [BIGINT] CONSTRAINT CalendarDate_DF_ChangeVersion DEFAULT (0) NOT NULL;
 ALTER TABLE [edfi].[CalendarDate] DROP CONSTRAINT CalendarDate_DF_ChangeVersion;
 ALTER TABLE [edfi].[CalendarDate] ADD CONSTRAINT CalendarDate_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[ChartOfAccount]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[ChartOfAccount] ADD [ChangeVersion] [BIGINT] CONSTRAINT ChartOfAccount_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[ChartOfAccount] DROP CONSTRAINT ChartOfAccount_DF_ChangeVersion;
+ALTER TABLE [edfi].[ChartOfAccount] ADD CONSTRAINT ChartOfAccount_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
 END
 
 
@@ -125,14 +109,6 @@ BEGIN
 ALTER TABLE [edfi].[CompetencyObjective] ADD [ChangeVersion] [BIGINT] CONSTRAINT CompetencyObjective_DF_ChangeVersion DEFAULT (0) NOT NULL;
 ALTER TABLE [edfi].[CompetencyObjective] DROP CONSTRAINT CompetencyObjective_DF_ChangeVersion;
 ALTER TABLE [edfi].[CompetencyObjective] ADD CONSTRAINT CompetencyObjective_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
-END
-
-
-IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[ContractedStaff]') AND name = 'ChangeVersion')
-BEGIN
-ALTER TABLE [edfi].[ContractedStaff] ADD [ChangeVersion] [BIGINT] CONSTRAINT ContractedStaff_DF_ChangeVersion DEFAULT (0) NOT NULL;
-ALTER TABLE [edfi].[ContractedStaff] DROP CONSTRAINT ContractedStaff_DF_ChangeVersion;
-ALTER TABLE [edfi].[ContractedStaff] ADD CONSTRAINT ContractedStaff_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
 END
 
 
@@ -173,6 +149,14 @@ BEGIN
 ALTER TABLE [edfi].[Descriptor] ADD [ChangeVersion] [BIGINT] CONSTRAINT Descriptor_DF_ChangeVersion DEFAULT (0) NOT NULL;
 ALTER TABLE [edfi].[Descriptor] DROP CONSTRAINT Descriptor_DF_ChangeVersion;
 ALTER TABLE [edfi].[Descriptor] ADD CONSTRAINT Descriptor_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[DescriptorMapping]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[DescriptorMapping] ADD [ChangeVersion] [BIGINT] CONSTRAINT DescriptorMapping_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[DescriptorMapping] DROP CONSTRAINT DescriptorMapping_DF_ChangeVersion;
+ALTER TABLE [edfi].[DescriptorMapping] ADD CONSTRAINT DescriptorMapping_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
 END
 
 
@@ -237,6 +221,22 @@ BEGIN
 ALTER TABLE [edfi].[FeederSchoolAssociation] ADD [ChangeVersion] [BIGINT] CONSTRAINT FeederSchoolAssociation_DF_ChangeVersion DEFAULT (0) NOT NULL;
 ALTER TABLE [edfi].[FeederSchoolAssociation] DROP CONSTRAINT FeederSchoolAssociation_DF_ChangeVersion;
 ALTER TABLE [edfi].[FeederSchoolAssociation] ADD CONSTRAINT FeederSchoolAssociation_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[FunctionDimension]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[FunctionDimension] ADD [ChangeVersion] [BIGINT] CONSTRAINT FunctionDimension_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[FunctionDimension] DROP CONSTRAINT FunctionDimension_DF_ChangeVersion;
+ALTER TABLE [edfi].[FunctionDimension] ADD CONSTRAINT FunctionDimension_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[FundDimension]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[FundDimension] ADD [ChangeVersion] [BIGINT] CONSTRAINT FundDimension_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[FundDimension] DROP CONSTRAINT FundDimension_DF_ChangeVersion;
+ALTER TABLE [edfi].[FundDimension] ADD CONSTRAINT FundDimension_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
 END
 
 
@@ -328,11 +328,67 @@ ALTER TABLE [edfi].[LearningStandardEquivalenceAssociation] ADD CONSTRAINT Learn
 END
 
 
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[LocalAccount]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[LocalAccount] ADD [ChangeVersion] [BIGINT] CONSTRAINT LocalAccount_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[LocalAccount] DROP CONSTRAINT LocalAccount_DF_ChangeVersion;
+ALTER TABLE [edfi].[LocalAccount] ADD CONSTRAINT LocalAccount_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[LocalActual]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[LocalActual] ADD [ChangeVersion] [BIGINT] CONSTRAINT LocalActual_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[LocalActual] DROP CONSTRAINT LocalActual_DF_ChangeVersion;
+ALTER TABLE [edfi].[LocalActual] ADD CONSTRAINT LocalActual_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[LocalBudget]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[LocalBudget] ADD [ChangeVersion] [BIGINT] CONSTRAINT LocalBudget_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[LocalBudget] DROP CONSTRAINT LocalBudget_DF_ChangeVersion;
+ALTER TABLE [edfi].[LocalBudget] ADD CONSTRAINT LocalBudget_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[LocalContractedStaff]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[LocalContractedStaff] ADD [ChangeVersion] [BIGINT] CONSTRAINT LocalContractedStaff_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[LocalContractedStaff] DROP CONSTRAINT LocalContractedStaff_DF_ChangeVersion;
+ALTER TABLE [edfi].[LocalContractedStaff] ADD CONSTRAINT LocalContractedStaff_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[LocalEncumbrance]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[LocalEncumbrance] ADD [ChangeVersion] [BIGINT] CONSTRAINT LocalEncumbrance_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[LocalEncumbrance] DROP CONSTRAINT LocalEncumbrance_DF_ChangeVersion;
+ALTER TABLE [edfi].[LocalEncumbrance] ADD CONSTRAINT LocalEncumbrance_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[LocalPayroll]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[LocalPayroll] ADD [ChangeVersion] [BIGINT] CONSTRAINT LocalPayroll_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[LocalPayroll] DROP CONSTRAINT LocalPayroll_DF_ChangeVersion;
+ALTER TABLE [edfi].[LocalPayroll] ADD CONSTRAINT LocalPayroll_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
 IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[Location]') AND name = 'ChangeVersion')
 BEGIN
 ALTER TABLE [edfi].[Location] ADD [ChangeVersion] [BIGINT] CONSTRAINT Location_DF_ChangeVersion DEFAULT (0) NOT NULL;
 ALTER TABLE [edfi].[Location] DROP CONSTRAINT Location_DF_ChangeVersion;
 ALTER TABLE [edfi].[Location] ADD CONSTRAINT Location_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[ObjectDimension]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[ObjectDimension] ADD [ChangeVersion] [BIGINT] CONSTRAINT ObjectDimension_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[ObjectDimension] DROP CONSTRAINT ObjectDimension_DF_ChangeVersion;
+ALTER TABLE [edfi].[ObjectDimension] ADD CONSTRAINT ObjectDimension_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
 END
 
 
@@ -352,19 +408,19 @@ ALTER TABLE [edfi].[OpenStaffPosition] ADD CONSTRAINT OpenStaffPosition_DF_Chang
 END
 
 
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[OperationalUnitDimension]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[OperationalUnitDimension] ADD [ChangeVersion] [BIGINT] CONSTRAINT OperationalUnitDimension_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[OperationalUnitDimension] DROP CONSTRAINT OperationalUnitDimension_DF_ChangeVersion;
+ALTER TABLE [edfi].[OperationalUnitDimension] ADD CONSTRAINT OperationalUnitDimension_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
 IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[Parent]') AND name = 'ChangeVersion')
 BEGIN
 ALTER TABLE [edfi].[Parent] ADD [ChangeVersion] [BIGINT] CONSTRAINT Parent_DF_ChangeVersion DEFAULT (0) NOT NULL;
 ALTER TABLE [edfi].[Parent] DROP CONSTRAINT Parent_DF_ChangeVersion;
 ALTER TABLE [edfi].[Parent] ADD CONSTRAINT Parent_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
-END
-
-
-IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[Payroll]') AND name = 'ChangeVersion')
-BEGIN
-ALTER TABLE [edfi].[Payroll] ADD [ChangeVersion] [BIGINT] CONSTRAINT Payroll_DF_ChangeVersion DEFAULT (0) NOT NULL;
-ALTER TABLE [edfi].[Payroll] DROP CONSTRAINT Payroll_DF_ChangeVersion;
-ALTER TABLE [edfi].[Payroll] ADD CONSTRAINT Payroll_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
 END
 
 
@@ -389,6 +445,22 @@ BEGIN
 ALTER TABLE [edfi].[Program] ADD [ChangeVersion] [BIGINT] CONSTRAINT Program_DF_ChangeVersion DEFAULT (0) NOT NULL;
 ALTER TABLE [edfi].[Program] DROP CONSTRAINT Program_DF_ChangeVersion;
 ALTER TABLE [edfi].[Program] ADD CONSTRAINT Program_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[ProgramDimension]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[ProgramDimension] ADD [ChangeVersion] [BIGINT] CONSTRAINT ProgramDimension_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[ProgramDimension] DROP CONSTRAINT ProgramDimension_DF_ChangeVersion;
+ALTER TABLE [edfi].[ProgramDimension] ADD CONSTRAINT ProgramDimension_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[ProjectDimension]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[ProjectDimension] ADD [ChangeVersion] [BIGINT] CONSTRAINT ProjectDimension_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[ProjectDimension] DROP CONSTRAINT ProjectDimension_DF_ChangeVersion;
+ALTER TABLE [edfi].[ProjectDimension] ADD CONSTRAINT ProjectDimension_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
 END
 
 
@@ -437,6 +509,14 @@ BEGIN
 ALTER TABLE [edfi].[Session] ADD [ChangeVersion] [BIGINT] CONSTRAINT Session_DF_ChangeVersion DEFAULT (0) NOT NULL;
 ALTER TABLE [edfi].[Session] DROP CONSTRAINT Session_DF_ChangeVersion;
 ALTER TABLE [edfi].[Session] ADD CONSTRAINT Session_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
+END
+
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[edfi].[SourceDimension]') AND name = 'ChangeVersion')
+BEGIN
+ALTER TABLE [edfi].[SourceDimension] ADD [ChangeVersion] [BIGINT] CONSTRAINT SourceDimension_DF_ChangeVersion DEFAULT (0) NOT NULL;
+ALTER TABLE [edfi].[SourceDimension] DROP CONSTRAINT SourceDimension_DF_ChangeVersion;
+ALTER TABLE [edfi].[SourceDimension] ADD CONSTRAINT SourceDimension_DF_ChangeVersion DEFAULT (NEXT VALUE FOR [changes].[ChangeVersionSequence]) For [ChangeVersion];
 END
 
 
