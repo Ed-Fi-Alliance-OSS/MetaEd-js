@@ -360,13 +360,13 @@ describe('when generating change queries version sequence and comparing to ODS/A
           targetTechnologyVersion: '6.0.0',
         },
       },
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.3b/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-4.0a/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.3.0-b',
+          projectVersion: '4.0.0-a',
           description: '',
         },
       ],
@@ -376,7 +376,7 @@ describe('when generating change queries version sequence and comparing to ODS/A
       ...newState(),
       metaEdConfiguration,
     };
-    state.metaEd.dataStandardVersion = '3.3.0-b';
+    state.metaEd.dataStandardVersion = '4.0.0-a';
 
     validateConfiguration(state);
     loadPlugins(state);

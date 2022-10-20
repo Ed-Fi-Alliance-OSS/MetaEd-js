@@ -166,13 +166,13 @@ describe('when generating add column changeversion with simple extensions and co
           targetTechnologyVersion: '6.0.0',
         },
       },
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.3b/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-4.0a/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.3.1-b',
+          projectVersion: '4.0.0-a',
           description: '',
         },
         {
@@ -189,7 +189,7 @@ describe('when generating add column changeversion with simple extensions and co
       ...newState(),
       metaEdConfiguration,
     };
-    state.metaEd.dataStandardVersion = '3.3.1-b';
+    state.metaEd.dataStandardVersion = '4.0.0-a';
 
     validateConfiguration(state);
     loadPlugins(state);
