@@ -29,11 +29,11 @@
     "@edfi/metaed-plugin-edfi-unified-advanced": "3.1.0",
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.7.7",
-    "js-beautify": "^1.14.6",
+    "js-beautify": "^1.14.7",
     "ramda": "^0.28.0",
     "semver": "^5.7.1",
     "sugar": "^2.0.6",
-    "winston": "3.7.2",
+    "winston": "3.8.2",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {

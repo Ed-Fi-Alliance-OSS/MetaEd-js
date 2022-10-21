@@ -30,8 +30,8 @@
     "@edfi/metaed-plugin-edfi-unified-advanced": "3.1.0",
     "@edfi/metaed-plugin-edfi-xsd": "3.1.0",
     "handlebars": "^4.7.7",
-    "js-beautify": "^1.14.6",
-    "winston": "3.7.2",
+    "js-beautify": "^1.14.7",
+    "winston": "3.8.2",
     "xlsx": "^0.18.5",
     "xmldom": "^0.6.0"
   },
