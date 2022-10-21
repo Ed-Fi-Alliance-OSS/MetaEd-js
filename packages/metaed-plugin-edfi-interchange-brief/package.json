@@ -26,6 +26,7 @@
   "dependencies": {
     "@edfi/metaed-core": "3.1.0",
     "@edfi/metaed-plugin-edfi-xsd": "3.1.0",
+    "@xmldom/xmldom": "0.7.6",
     "handlebars": "^4.7.7",
     "marked": "^4.1.1",
     "node-horseman": "^3.3.0",
@@ -36,7 +37,6 @@
   "devDependencies": {
     "@edfi/ed-fi-model-2.0": "3.0.1",
     "final-fs": "^1.6.1",
-    "xmldom": "^0.6.0",
     "xpath": "^0.0.32"
   },
   "scripts": {
