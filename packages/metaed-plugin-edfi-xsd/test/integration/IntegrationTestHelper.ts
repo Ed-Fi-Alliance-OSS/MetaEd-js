@@ -1,4 +1,4 @@
-import { DOMParser } from 'xmldom';
+import { DOMParser } from '@xmldom/xmldom';
 import xpath from 'xpath';
 import { MetaEdEnvironment, GeneratedOutput, Namespace } from '@edfi/metaed-core';
 import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
@@ -10,7 +10,7 @@ import { generate as generateInterchange } from '../../src/generator/Interchange
 
 const parser = new DOMParser();
 
-function parseXml(xmlString: string): string {
+function parseXml(xmlString: string): any {
   return parser.parseFromString(xmlString);
 }
 
