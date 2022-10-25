@@ -17,8 +17,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "semver": "^5.7.1",
-    "yeoman-generator": "^5.7.0",
-    "yosay": "^2.0.2"
+    "yeoman-generator": "^5.7.0"
   },
   "devDependencies": {
     "@edfi/metaed-core": "3.1.1-dev.0",
