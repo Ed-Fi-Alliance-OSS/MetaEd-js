@@ -62,9 +62,8 @@ export async function launchServer(context: ExtensionContext) {
 
   // Start the client. This will also launch the server
   client = new LanguageClient('MetaEd', 'MetaEd', serverOptions, clientOptions);
-  client.start();
+  await client.start();
 
-  await client.onReady();
   client.onNotification('metaed/buildComplete', () => {
     window.showInformationMessage('MetaEd Build Complete');
   });
