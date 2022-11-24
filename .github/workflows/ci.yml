@@ -9,16 +9,16 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       SA_PASSWORD: abcdefgh1!
-    steps:        
-      - name: Checkout code   
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
 
       - name: Set up Node
-        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # v2.5.1
+        uses: actions/setup-node@17f8bd926464a1afa4c6a11669539e9c1ba77048 # v3.2.0
         with:
-          node-version: '16'
+          node-version: "16"
           check-latest: true
-          registry-url: 'https://www.myget.org/F/ed-fi/npm/'
+          registry-url: "https://www.myget.org/F/ed-fi/npm/"
 
       - name: Install
         run: yarn install
@@ -34,7 +34,7 @@ jobs:
           docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=${{ env.SA_PASSWORD }}' -e 'MSSQL_PID=Express' -p 1433:1433 \
             --name mssql -d mcr.microsoft.com/mssql/server:2019-latest
         shell: bash
-    
+
       - name: Unit tests
         run: yarn test:unit:ci --ci  --config ./jest.ci-config.js
         shell: bash
@@ -53,11 +53,11 @@ jobs:
         env:
           MSSQL_USERNAME: sa
           MSSQL_PASSWORD: ${{ env.SA_PASSWORD }}
-          MSSQL_TRUST_CERTIFICATE: 'true' # This is required for successful auth to the docker SQL Server
+          MSSQL_TRUST_CERTIFICATE: "true" # This is required for successful auth to the docker SQL Server
           JEST_JUNIT_OUTPUT_DIR: sqlserver-tests
 
       - name: Setup PostgreSQL for testing
-        # Postgres on Ubuntu is installed locally but the service needs to be started. The default postgres 
+        # Postgres on Ubuntu is installed locally but the service needs to be started. The default postgres
         # super user password is blank, so updating to what the unit tests expect, also creating the testing database
         run: |
           sudo systemctl start postgresql.service
@@ -72,25 +72,25 @@ jobs:
           JEST_JUNIT_OUTPUT_DIR: postgresql-tests
 
       - name: Unit Test Report
-        uses: dorny/test-reporter@0d00bb14cb0cc2c9b8985df6e81dd333188224e1 #v1.5.0
+        uses: dorny/test-reporter@c9b3d0e2bd2a4e96aaf424dbaa31c46b42318226 #v1.6.0
         if: success() || failure()
         with:
           name: Unit Test Results
-          path: 'unit-tests/*.xml'
+          path: "unit-tests/*.xml"
           reporter: jest-junit
 
       - name: SQLServer Test Report
-        uses: dorny/test-reporter@0d00bb14cb0cc2c9b8985df6e81dd333188224e1 #v1.5.0
+        uses: dorny/test-reporter@c9b3d0e2bd2a4e96aaf424dbaa31c46b42318226 #v1.6.0
         if: success() || failure()
         with:
           name: SQLServer Test Results
-          path: 'sqlserver-tests/*.xml'
+          path: "sqlserver-tests/*.xml"
           reporter: jest-junit
 
       - name: PostgreSQL Test Report
-        uses: dorny/test-reporter@0d00bb14cb0cc2c9b8985df6e81dd333188224e1 #v1.5.0
+        uses: dorny/test-reporter@c9b3d0e2bd2a4e96aaf424dbaa31c46b42318226 #v1.6.0
         if: success() || failure()
         with:
           name: PostgreSQL Test Results
-          path: 'postgresql-tests/*.xml'
+          path: "postgresql-tests/*.xml"
           reporter: jest-junit

@@ -14,7 +14,7 @@ on:
 
       debug_enabled:
         description: Run the build with tmate debugging enabled. Choices are 'true' or 'false' # https://github.com/actions/runner/issues/1483
-        default: 'false'
+        default: "false"
         type: string
 
     secrets:
@@ -25,24 +25,24 @@ on:
       EDFIBUILDAGENT_PASSPHRASE:
         required: true
       NPM_MYGET_ACCESS_TOKEN:
-        required: true     
+        required: true
 
 jobs:
   publish:
     name: Publish
 
     runs-on: ubuntu-20.04
-    
+
     steps:
       - name: Set up Node
-        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # v2.5.1
+        uses: actions/setup-node@17f8bd926464a1afa4c6a11669539e9c1ba77048 # v3.2.0
         with:
-          node-version: '16'
+          node-version: "16"
           check-latest: true
-          registry-url: 'https://www.myget.org/F/ed-fi/npm/'
-        
-      - name: Checkout code   
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
+          registry-url: "https://www.myget.org/F/ed-fi/npm/"
+
+      - name: Checkout code
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
         with:
           token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
 
@@ -51,10 +51,10 @@ jobs:
 
       - name: Build
         run: yarn build
-      
+
       - name: Import GPG key
         id: import-gpg
-        uses: crazy-max/ghaction-import-gpg@cb4264d3319acaa2bea23d51ef67f80b4f775013 # v4.1.0
+        uses: crazy-max/ghaction-import-gpg@c8bb57c57e8df1be8c73ff3d59deab1dbc00e0d1 # v5.1.0
         with:
           gpg_private_key: ${{ secrets.EDFIBUILDAGENT_PRIVATE_KEY }}
           passphrase: ${{ secrets.EDFIBUILDAGENT_PASSPHRASE }}
