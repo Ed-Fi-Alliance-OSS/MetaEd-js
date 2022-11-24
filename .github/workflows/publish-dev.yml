@@ -3,13 +3,13 @@ on:
   workflow_dispatch:
     inputs:
       debug_enabled:
-        description: Run the build with tmate debugging enabled     
+        description: Run the build with tmate debugging enabled
         required: true
-        default: 'false'
+        default: "false"
         type: choice
         options:
-        - false
-        - true
+          - "false"
+          - "true"
 
   pull_request:
     types: [closed]

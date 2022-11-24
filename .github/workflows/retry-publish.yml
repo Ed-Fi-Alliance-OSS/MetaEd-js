@@ -3,13 +3,13 @@ on:
   workflow_dispatch:
     inputs:
       debug_enabled:
-        description: Run the build with tmate debugging enabled     
+        description: Run the build with tmate debugging enabled
         required: true
-        default: 'false'
+        default: "false"
         type: choice
         options:
-        - false
-        - true
+          - "false"
+          - "true"
 
 jobs:
   retry-publish:
@@ -17,7 +17,7 @@ jobs:
 
     uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-publish.yml@main
     with:
-      bump: 'none'
+      bump: "none"
       retry: true
       debug_enabled: ${{ github.event.inputs.debug_enabled }}
     secrets:
@@ -25,4 +25,3 @@ jobs:
       EDFIBUILDAGENT_PRIVATE_KEY: ${{ secrets.EDFIBUILDAGENT_PRIVATE_KEY }}
       EDFIBUILDAGENT_PASSPHRASE: ${{ secrets.EDFIBUILDAGENT_PASSPHRASE }}
       NPM_MYGET_ACCESS_TOKEN: ${{ secrets.NPM_MYGET_ACCESS_TOKEN }}
-
