@@ -1,15 +1,12 @@
-// eslint-disable-next-line import/no-unresolved
 import { URI } from 'vscode-uri';
 import {
   createConnection,
-  TextDocuments,
   Diagnostic,
   DiagnosticSeverity,
   ProposedFeatures,
   InitializeParams,
   DidChangeConfigurationNotification,
 } from 'vscode-languageserver/node';
-import { TextDocument } from 'vscode-languageserver-textdocument';
 import { State, MetaEdConfiguration, executePipeline, newState, newMetaEdConfiguration } from '@edfi/metaed-core';
 import { MetaEdProjectMetadata, validProjectMetadata, findMetaEdProjectMetadata } from '../common/Projects';
 
@@ -22,8 +19,6 @@ const connection = createConnection(ProposedFeatures.all);
 let hasConfigurationCapability: boolean = false;
 let hasWorkspaceFolderCapability: boolean = false;
 
-const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
-
 const workspaceFolders: Set<string> = new Set();
 let currentFilesWithFailures: string[] = [];
 
@@ -34,7 +29,7 @@ async function createMetaEdConfiguration(
 
   const metaEdConfiguration: MetaEdConfiguration = {
     ...newMetaEdConfiguration(),
-    defaultPluginTechVersion: '3.3.0',
+    defaultPluginTechVersion: '6.1.0',
     allianceMode: false,
   };
 
@@ -53,6 +48,9 @@ async function createMetaEdConfiguration(
 }
 
 async function validateFiles(): Promise<void> {
+  // eslint-disable-next-line no-console
+  console.log(`${Date.now()}: Server is running MetaEd to validate files`);
+  connection.console.log(`${Date.now()}: Server is running MetaEd to validate files`);
   const metaEdProjectMetadata: MetaEdProjectMetadata[] = await findMetaEdProjectMetadataForServer(
     Array.from(workspaceFolders),
   );
@@ -69,13 +67,14 @@ async function validateFiles(): Promise<void> {
     },
     metaEdConfiguration,
   };
-  state.metaEd.dataStandardVersion = '3.2.0';
+  state.metaEd.dataStandardVersion = '4.0.0';
 
   const { validationFailure } = (await executePipeline(state)).state;
 
   const filesWithFailure: Map<string, Diagnostic[]> = new Map();
 
-  validationFailure.forEach((failure) => {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const failure of validationFailure) {
     if (failure.fileMap != null) {
       const fileUri = URI.file(failure.fileMap.fullPath);
       if (!filesWithFailure.has(fileUri.toString())) {
@@ -85,8 +84,6 @@ async function validateFiles(): Promise<void> {
       const tokenLength: number = failure.sourceMap && failure.sourceMap.tokenText ? failure.sourceMap.tokenText.length : 0;
       const adjustedLine: number = !failure.fileMap || failure.fileMap.lineNumber === 0 ? 0 : failure.fileMap.lineNumber - 1;
       const characterPosition: number = failure.sourceMap ? failure.sourceMap.column : 0;
-
-      const diagnostics: Diagnostic[] = [];
 
       const diagnostic: Diagnostic = {
         severity: failure.category === 'warning' ? DiagnosticSeverity.Warning : DiagnosticSeverity.Error,
@@ -100,42 +97,58 @@ async function validateFiles(): Promise<void> {
 
       const fileWithFailureDiagnostics = filesWithFailure.get(fileUri.toString());
       if (fileWithFailureDiagnostics != null) fileWithFailureDiagnostics.push(diagnostic);
-      connection.sendDiagnostics({ uri: fileUri.toString(), diagnostics });
     }
-  });
+  }
 
   // send failures
-  filesWithFailure.forEach((diagnostics: Diagnostic[], uri: string) => {
-    connection.sendDiagnostics({ uri, diagnostics });
-  });
+  // eslint-disable-next-line no-console
+  console.log(`${Date.now()}: Server is sending failures`);
+  // eslint-disable-next-line no-restricted-syntax
+  for (const [uri, diagnostics] of filesWithFailure) {
+    // eslint-disable-next-line no-console
+    console.log(`${Date.now()}: Server sends failure for ${uri} to client`);
+
+    await connection.sendDiagnostics({ uri, diagnostics });
+  }
 
   // clear resolved failures
-  const resolvedFailures = [...currentFilesWithFailures].filter((fileUri) => filesWithFailure.has(fileUri));
-  resolvedFailures.forEach((uri) => {
-    connection.sendDiagnostics({ uri, diagnostics: [] });
-  });
+  const resolvedFailures = currentFilesWithFailures.filter((fileUri) => !filesWithFailure.has(fileUri));
+  // eslint-disable-next-line no-restricted-syntax
+  for (const uri of resolvedFailures) {
+    // eslint-disable-next-line no-console
+    console.log(`${Date.now()}: Server is sending clear of failure for ${uri}`);
+    await connection.sendDiagnostics({ uri, diagnostics: [] });
+  }
   currentFilesWithFailures = Array.from(filesWithFailure.keys());
 }
 
-connection.onNotification('metaed/build', async (metaEdConfiguration: MetaEdConfiguration) => {
-  const state: State = {
-    ...newState(),
-    pipelineOptions: {
-      runValidators: true,
-      runEnhancers: true,
-      runGenerators: true,
-      stopOnValidationFailure: true,
-    },
-    metaEdConfiguration,
-  };
-  state.metaEd.dataStandardVersion = '3.2.0';
+connection.onNotification('metaed/build', (metaEdConfiguration: MetaEdConfiguration) => {
+  (async () => {
+    // eslint-disable-next-line no-console
+    console.log(`${Date.now()}: Server received build command from client`);
+    const state: State = {
+      ...newState(),
+      pipelineOptions: {
+        runValidators: true,
+        runEnhancers: true,
+        runGenerators: true,
+        stopOnValidationFailure: true,
+      },
+      metaEdConfiguration,
+    };
+    state.metaEd.dataStandardVersion = '4.0.0';
 
-  await executePipeline(state);
+    await executePipeline(state);
 
-  connection.sendNotification('metaed/buildComplete');
+    // eslint-disable-next-line no-console
+    console.log(`${Date.now()}: Server sending build complete notification to client`);
+    await connection.sendNotification('metaed/buildComplete');
+  })();
 });
 
 connection.onInitialize((params: InitializeParams) => {
+  // eslint-disable-next-line no-console
+  console.log(`${Date.now()}: Server onInitialize (singular)`);
   const { capabilities } = params;
 
   hasConfigurationCapability = !!(capabilities.workspace && !!capabilities.workspace.configuration);
@@ -152,56 +165,41 @@ connection.onInitialize((params: InitializeParams) => {
   };
 });
 
-connection.onInitialized(async () => {
-  if (hasConfigurationCapability) {
-    // Register for all configuration changes.
-    connection.client.register(DidChangeConfigurationNotification.type, undefined);
-  }
-  if (hasWorkspaceFolderCapability) {
-    connection.workspace.onDidChangeWorkspaceFolders((event) => {
-      connection.console.log('Workspace folder change event received.');
-      event.removed.forEach((workspaceFolder) => {
-        workspaceFolders.delete(workspaceFolder.uri);
-      });
-      event.added.forEach((workspaceFolder) => {
-        workspaceFolders.add(workspaceFolder.uri);
-      });
-    });
-    const currentWorkspaceFolders = await connection.workspace.getWorkspaceFolders();
-    if (currentWorkspaceFolders != null) {
-      currentWorkspaceFolders.forEach((workspaceFolder) => {
-        workspaceFolders.add(workspaceFolder.uri);
-      });
+connection.onInitialized(() => {
+  // eslint-disable-next-line no-console
+  console.log(`${Date.now()}: Server onInitialized (plural)`);
+  (async () => {
+    if (hasConfigurationCapability) {
+      // Register for all configuration changes.
+      await connection.client.register(DidChangeConfigurationNotification.type, undefined);
     }
-  }
-  await validateFiles();
+    if (hasWorkspaceFolderCapability) {
+      connection.workspace.onDidChangeWorkspaceFolders((event) => {
+        connection.console.log(`${Date.now()}: Workspace folder change event received.`);
+        event.removed.forEach((workspaceFolder) => {
+          workspaceFolders.delete(workspaceFolder.uri);
+        });
+        event.added.forEach((workspaceFolder) => {
+          workspaceFolders.add(workspaceFolder.uri);
+        });
+      });
+      const currentWorkspaceFolders = await connection.workspace.getWorkspaceFolders();
+      if (currentWorkspaceFolders != null) {
+        currentWorkspaceFolders.forEach((workspaceFolder) => {
+          workspaceFolders.add(workspaceFolder.uri);
+        });
+      }
+    }
+  })();
 });
 
-function clearDiagnostics() {
-  currentFilesWithFailures.forEach((uri) => {
-    connection.sendDiagnostics({ uri, diagnostics: [] });
-  });
-  currentFilesWithFailures = [];
-}
-
-documents.onDidOpen(async () => {
-  clearDiagnostics();
-  await validateFiles();
+connection.onNotification('metaed/lint', () => {
+  (async () => {
+    // eslint-disable-next-line no-console
+    console.log(`${Date.now()}: Server received lint command from client`);
+    await validateFiles();
+  })();
 });
-
-// Lint on save only - not on the fly - works well with editor autosave
-documents.onDidSave(async () => {
-  clearDiagnostics();
-  await validateFiles();
-});
-
-documents.onDidClose(async () => {
-  clearDiagnostics();
-  await validateFiles();
-});
-
-// Make text document manager listen
-documents.listen(connection);
 
 // Make connection listen
 connection.listen();

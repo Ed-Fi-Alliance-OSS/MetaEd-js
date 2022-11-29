@@ -45,7 +45,7 @@
     { 
       "type": "node",
       "request": "attach",
-      "name": "Attach to Server",
+      "name": "Attach to vscode-metaed server",
       "port": 6009,
       "restart": true,
       "outFiles": ["${workspaceRoot}/server/out/**/*.js"]

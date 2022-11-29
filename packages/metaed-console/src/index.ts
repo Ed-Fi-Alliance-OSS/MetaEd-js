@@ -1,3 +1,3 @@
 import { metaEdConsole } from './metaed-console';
 
-metaEdConsole();
+metaEdConsole().catch(null);
