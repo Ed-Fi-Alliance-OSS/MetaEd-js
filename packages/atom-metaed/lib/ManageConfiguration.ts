@@ -61,8 +61,10 @@ async function updateDsVersionEnumsToMatch(odsApiVersion: string) {
 
 export function switchCoreDsProjectOptionsOnOdsApiChange(disposableTracker: CompositeDisposable) {
   disposableTracker.add(
-    atom.config.onDidChange('atom-metaed.targetOdsApiVersion', async (valueChanges) => {
-      await updateDsVersionEnumsToMatch(valueChanges.newValue);
+    atom.config.onDidChange('atom-metaed.targetOdsApiVersion', (valueChanges) => {
+      (async () => {
+        await updateDsVersionEnumsToMatch(valueChanges.newValue);
+      })();
     }),
   );
 }
@@ -139,11 +141,11 @@ async function warnOnMetaEdJsonExistence(projectPath: string) {
   }
 }
 
-export function manageLegacyIssues(disposableTracker: CompositeDisposable) {
+export async function manageLegacyIssues(disposableTracker: CompositeDisposable) {
   // remove tech preview flag left behind by 1.1.x versions of MetaEd
   if (atom.config.get('atom-metaed.useTechPreview')) {
     atom.config.unset('atom-metaed.useTechPreview');
-    setCoreToSixDotX();
+    await setCoreToSixDotX();
   }
 
   // remove obsolete path to C# console
@@ -159,14 +161,20 @@ export function manageLegacyIssues(disposableTracker: CompositeDisposable) {
   // warn that MetaEdOutput-Experimental folder from 1.1.x versions is no longer used
   disposableTracker.add(
     atom.project.onDidChangePaths((projectPaths: string[]) => {
-      projectPaths.forEach(async (projectPath) => warnOnExperimentalFolderExistence(projectPath));
+      // eslint-disable-next-line no-restricted-syntax
+      for (const projectPath of projectPaths) {
+        (async () => warnOnExperimentalFolderExistence(projectPath))();
+      }
     }),
   );
 
   // warn that metaEd.json from pre-1.2 versions is obsolete
   disposableTracker.add(
     atom.project.onDidChangePaths((projectPaths: string[]) => {
-      projectPaths.forEach(async (projectPath) => warnOnMetaEdJsonExistence(projectPath));
+      // eslint-disable-next-line no-restricted-syntax
+      for (const projectPath of projectPaths) {
+        (async () => warnOnMetaEdJsonExistence(projectPath))();
+      }
     }),
   );
 }

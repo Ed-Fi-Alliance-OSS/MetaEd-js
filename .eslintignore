@@ -5,3 +5,7 @@ packages/**/node_modules/*
 packages/metaed-core/src/grammar/gen/
 packages/generator-metaed-plugin/
 build/
+.eslintrc.js
+jest.ci-config.js
+jest-setup.js
+jest.config.js

@@ -102,9 +102,9 @@ class CommandGroups {
   }
 }
 
-export function hideTreeViewContextMenuOperationsWhenCore() {
+export async function hideTreeViewContextMenuOperationsWhenCore() {
   if (!atom.packages.isPackageLoaded('tree-view')) return;
-  atom.packages.activatePackage('tree-view').then((pkg: Package) => {
+  await atom.packages.activatePackage('tree-view').then((pkg: Package) => {
     const contextMenuCommandsToHide = [
       'tree-view:move',
       'tree-view:duplicate',

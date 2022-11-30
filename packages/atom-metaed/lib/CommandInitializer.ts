@@ -59,16 +59,16 @@ const fileFromTemplateEvent = (commandEvent: any, filename: string, template: ()
 export function initializeCommands(disposableTracker: CompositeDisposable, outputWindow: OutputWindow): void {
   disposableTracker.add(
     atom.commands.add('atom-workspace', {
-      'atom-metaed:about': () => {
-        atom.workspace.open('atom-metaed://about');
+      'atom-metaed:about': async () => {
+        await atom.workspace.open('atom-metaed://about');
       },
     }),
   );
 
   disposableTracker.add(
     atom.commands.add('atom-workspace', {
-      'atom-metaed:settings': () => {
-        atom.workspace.open('atom://config/packages/atom-metaed');
+      'atom-metaed:settings': async () => {
+        await atom.workspace.open('atom://config/packages/atom-metaed');
       },
     }),
   );
@@ -95,10 +95,12 @@ export function initializeCommands(disposableTracker: CompositeDisposable, outpu
           buttons: [
             {
               text: 'OK',
-              onDidClick: async () => {
+              onDidClick: () => {
                 if (dialog) dialog.dismiss();
-                const success: boolean = await build(outputWindow);
-                if (success) await deploy(outputWindow, allianceMode());
+                (async () => {
+                  const success: boolean = await build(outputWindow);
+                  if (success) await deploy(outputWindow, allianceMode());
+                })();
               },
             },
             {
