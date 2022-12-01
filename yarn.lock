@@ -913,6 +913,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@edfi/ed-fi-model-4.0@npm:3.0.1":
+  version: 3.0.1
+  resolution: "@edfi/ed-fi-model-4.0@npm:3.0.1::__archiveUrl=https%3A%2F%2Fwww.myget.org%2FF%2Fed-fi%2Fnpm%2F%40edfi%2Fed-fi-model-4.0%2F-%2F%40edfi%2Fed-fi-model-4.0-3.0.1.tgz"
+  checksum: 94bc69f8e199c977bac1232bd6c7903de9a81ce27e1f798cc7401a3df52d433676829bca568e3f39fac4b42191c16a3ad8f260caacc05d9e1b8fb73991f6e054
+  languageName: node
+  linkType: hard
+
 "@edfi/ed-fi-model-4.0a@npm:3.0.3":
   version: 3.0.3
   resolution: "@edfi/ed-fi-model-4.0a@npm:3.0.3::__archiveUrl=https%3A%2F%2Fwww.myget.org%2FF%2Fed-fi%2Fnpm%2F%40edfi%2Fed-fi-model-4.0a%2F-%2F%40edfi%2Fed-fi-model-4.0a-3.0.3.tgz"
@@ -4136,7 +4143,7 @@ __metadata:
     "@edfi/ed-fi-model-3.2c": 3.0.1
     "@edfi/ed-fi-model-3.3a": 3.0.1
     "@edfi/ed-fi-model-3.3b": 3.0.1
-    "@edfi/ed-fi-model-4.0": 3.0.0
+    "@edfi/ed-fi-model-4.0": 3.0.1
     "@edfi/ed-fi-model-4.0a": 3.0.3
     "@edfi/metaed-console": 3.1.1-dev.2
     "@edfi/metaed-core": 3.1.1-dev.2
