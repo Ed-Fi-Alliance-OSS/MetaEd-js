@@ -49,10 +49,11 @@ export async function activate() {
         buttons: [
           {
             text: 'Accept',
-            onDidClick: async () => {
+            onDidClick: () => {
               if (dialog) dialog.dismiss();
               setAcceptedLicense();
-              setImmediate(() => activate());
+              // eslint-disable-next-line @typescript-eslint/no-misused-promises
+              setImmediate(async () => activate());
             },
           },
           {
@@ -100,7 +101,7 @@ export async function activate() {
   switchCoreDsProjectOptionsOnOdsApiChange(disposableTracker);
   switchCoreDsProjectOnDsChange(disposableTracker);
 
-  if (!allianceMode()) hideTreeViewContextMenuOperationsWhenCore();
+  if (!allianceMode()) await hideTreeViewContextMenuOperationsWhenCore();
 
   initializeCommands(disposableTracker, outputWindow);
 

@@ -53,7 +53,7 @@ async function cleanUpMetaEdArtifacts(artifactDirectory: string, outputWindow: O
       if (typeof (editor as TextEditor).getPath === 'function') {
         const editorPath: string | undefined = (editor as TextEditor).getPath();
         if (editorPath && editorPath.startsWith(artifactDirectory)) {
-          pane.destroyItem(editor);
+          (async () => pane.destroyItem(editor))();
         }
       }
     });

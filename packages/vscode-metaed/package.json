@@ -9,7 +9,7 @@
 	},
 	"publisher": "edfi-test",
 	"engines": {
-		"vscode": "^1.41.0"
+		"vscode": "^1.73.0"
 	},
 	"categories": [
 		"Other"
@@ -34,16 +34,21 @@
 		"languages": [
 			{
 				"id": "metaed",
+				"aliases": [
+					"MetaEd",
+					"metaed"
+				],
 				"extensions": [
 					".metaed"
-				]
+				],
+				"configuration": "./language-configuration.json"
 			}
 		],
 		"grammars": [
 			{
 				"language": "metaed",
 				"scopeName": "source.metaed",
-				"path": "./syntaxes/metaed.tmGrammar.json"
+				"path": "./syntaxes/metaed.tmLanguage.json"
 			}
 		],
 		"menus": {
@@ -60,10 +65,11 @@
 		}
 	},
 	"scripts": {
+		"build": "yarn build:clean && yarn build:copy-non-ts && yarn build:dist",
+		"build:clean": "rimraf dist",
+		"build:dist": "tsc",
+		"build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose",
 		"vscode:prepublish": "yarn build",
-		"build": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "yarn compile",
 		"test": "node ./dist/test/runTest.js"
 	},
 	"dependencies": {
@@ -97,20 +103,22 @@
 		"@edfi/metaed-plugin-edfi-xml-dictionary": "3.2.0",
 		"@edfi/metaed-plugin-edfi-xsd": "3.2.0",
 		"fs-extra": "^3.0.1",
+		"p-debounce": "2.1.0",
 		"ramda": "^0.28.0",
 		"semver": "^5.7.1",
 		"tmp-promise": "^1.1.0",
 		"vscode-languageclient": "^8.0.0",
 		"vscode-languageserver": "^8.0.0",
-		"vscode-languageserver-textdocument": "^1.0.7",
 		"vscode-uri": "^3.0.6"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.2.0",
 		"@types/node": "^17.0.45",
 		"@types/vscode": "^1.72.0",
+		"copyfiles": "^2.4.1",
 		"glob": "^7.2.3",
 		"mocha": "^9.2.2",
+		"rimraf": "^3.0.2",
 		"typescript": "^4.8.4",
 		"vscode-test": "^1.6.1"
 	}
