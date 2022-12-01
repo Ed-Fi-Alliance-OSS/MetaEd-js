@@ -14,9 +14,11 @@ export function createNewExtensionProject(outputWindow: OutputWindow): void {
   } else if (projectCount > 0) {
     atom.pickFolder((selectedPaths: string[]) => {
       if (selectedPaths == null || selectedPaths.length === 0) return;
-      selectedPaths.forEach(async (selectedPath) => {
-        atom.project.addPath(selectedPath);
-        await newProjectJson(selectedPath);
+      selectedPaths.forEach((selectedPath) => {
+        (async () => {
+          atom.project.addPath(selectedPath);
+          await newProjectJson(selectedPath);
+        })();
       });
     });
   }

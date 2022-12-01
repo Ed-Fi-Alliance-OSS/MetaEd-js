@@ -1,3 +1,3 @@
 import { metaEdDeploy } from './metaed-odsapi-deploy';
 
-metaEdDeploy();
+metaEdDeploy().catch(null);

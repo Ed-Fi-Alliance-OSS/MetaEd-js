@@ -2,6 +2,7 @@
 import { commands, workspace, window, ExtensionContext } from 'vscode';
 import R from 'ramda';
 import path from 'path';
+import debounce from 'p-debounce';
 import { MetaEdConfiguration, newMetaEdConfiguration } from '@edfi/metaed-core';
 import { LanguageClient, LanguageClientOptions, ServerOptions, TransportKind } from 'vscode-languageclient/node';
 import { findMetaEdProjectMetadataForClient } from './Projects';
@@ -9,6 +10,10 @@ import { AboutPanel } from './AboutPanel';
 import { MetaEdProjectMetadata, validProjectMetadata } from '../common/Projects';
 
 let client: LanguageClient;
+
+const sendLintCommandToServer: () => Promise<void> = debounce(async () => {
+  await client.sendNotification('metaed/lint');
+}, 500);
 
 async function createMetaEdConfiguration(): Promise<MetaEdConfiguration | undefined> {
   const metaEdProjectMetadata: MetaEdProjectMetadata[] = await findMetaEdProjectMetadataForClient();
@@ -18,7 +23,7 @@ async function createMetaEdConfiguration(): Promise<MetaEdConfiguration | undefi
 
   const metaEdConfiguration: MetaEdConfiguration = {
     ...newMetaEdConfiguration(),
-    defaultPluginTechVersion: '3.3.0',
+    defaultPluginTechVersion: '6.1.0',
     allianceMode: false,
     artifactDirectory: path.join(lastProjectPath, 'MetaEdOutput'),
   };
@@ -65,23 +70,33 @@ export async function launchServer(context: ExtensionContext) {
   await client.start();
 
   client.onNotification('metaed/buildComplete', () => {
-    window.showInformationMessage('MetaEd Build Complete');
+    (async () => {
+      await window.showInformationMessage('MetaEd Build Complete');
+    })();
   });
 }
 
 export async function activate(context: ExtensionContext) {
   // eslint-disable-next-line no-console
-  console.log('Congratulations, your extension "vscode-metaed" is now active!');
+  console.log(`${Date.now()}: Activating vscode-metaed extension`);
 
-  const disposable = commands.registerCommand('metaed.build', async () => {
-    // The code you place here will be executed every time your command is executed
+  context.subscriptions.push(
+    commands.registerCommand('metaed.build', () => {
+      (async () => {
+        await window.showInformationMessage('Building MetaEd...');
+        const metaEdConfiguration = await createMetaEdConfiguration();
+        await client.sendNotification('metaed/build', metaEdConfiguration);
+      })();
+    }),
+  );
 
-    window.showInformationMessage('Building MetaEd...');
-    const metaEdConfiguration = await createMetaEdConfiguration();
-    client.sendNotification('metaed/build', metaEdConfiguration);
-  });
-
-  context.subscriptions.push(disposable);
+  context.subscriptions.push(
+    commands.registerCommand('metaed.lint', () => {
+      (async () => {
+        await sendLintCommandToServer();
+      })();
+    }),
+  );
 
   // About Panel
   context.subscriptions.push(
@@ -90,7 +105,47 @@ export async function activate(context: ExtensionContext) {
     }),
   );
 
-  launchServer(context);
+  context.subscriptions.push(
+    window.onDidChangeActiveTextEditor((editor) => {
+      if (editor == null) return;
+      // eslint-disable-next-line no-console
+      console.log(`${Date.now()}: client onDidChangeActiveTextEditor sending lint command to server`);
+      (async () => {
+        await sendLintCommandToServer();
+      })();
+    }),
+  );
+
+  context.subscriptions.push(
+    workspace.onDidChangeTextDocument((editor) => {
+      if (editor != null) {
+        // eslint-disable-next-line no-console
+        console.log(`${Date.now()}: client onDidChangeTextDocument sending lint command to server`);
+        (async () => {
+          await sendLintCommandToServer();
+        })();
+      }
+    }),
+  );
+
+  context.subscriptions.push(
+    workspace.onDidCloseTextDocument((editor) => {
+      if (editor != null) {
+        // eslint-disable-next-line no-console
+        console.log(`${Date.now()}: client onDidCloseTextDocument sending lint command to server`);
+        (async () => {
+          await sendLintCommandToServer();
+        })();
+      }
+    }),
+  );
+
+  await launchServer(context);
+
+  // Trigger an initial lint after extension startup is complete
+  if (window.activeTextEditor != null) {
+    await sendLintCommandToServer();
+  }
 }
 
 export function deactivate(): Promise<void> | undefined {

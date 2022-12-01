@@ -18,8 +18,10 @@ export async function newProjectJson(projectPath: string): Promise<void> {
         {
           text: 'View File',
           onDidClick: () => {
-            atom.workspace.open(newFilePath);
-            return notification.dismiss();
+            (async () => {
+              await atom.workspace.open(newFilePath);
+              notification.dismiss();
+            })();
           },
         },
         {

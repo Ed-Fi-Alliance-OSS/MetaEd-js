@@ -19,7 +19,7 @@ describe('when deploying 3.0 extension artifacts', (): void => {
       defaultPluginTechVersion: '3.0.0',
     };
 
-    DeployExtensionV3(metaEdConfiguration, true, false);
+    await DeployExtensionV3(metaEdConfiguration, true, false);
 
     const normalizePath = (x: string) => path.relative(deployDirectory, x).split(path.sep).join('/');
 

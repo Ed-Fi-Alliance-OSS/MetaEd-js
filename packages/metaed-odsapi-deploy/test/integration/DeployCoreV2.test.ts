@@ -19,7 +19,7 @@ describe('when deploying 2.0 core artifacts', (): void => {
       defaultPluginTechVersion: '2.0.0',
     };
 
-    DeployCoreV2(metaEdConfiguration, true, false);
+    await DeployCoreV2(metaEdConfiguration, true, false);
 
     const normalizePath = (x: string) => path.relative(deployDirectory, x).split(path.sep).join('/');
 

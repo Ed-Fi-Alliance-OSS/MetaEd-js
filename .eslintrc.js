@@ -10,10 +10,19 @@ module.exports = {
     },
     'import/extensions': ['.js', '.mjs', '.jsx', '.ts', '.tsx'],
   },
+  parserOptions: {
+    project: ['./tsconfig.eslint.json'],
+    tsconfigRootDir: __dirname,
+  },
   rules: {
-    // TODO: setting no-unused-vars to off for now -- eslint-plugin-typescript 1.0.0-rc.2 is plagued with problems with this rule
+    // Let typescript compiler handle this
     'no-unused-vars': 'off',
     'typescript/no-unused-vars': 'off',
+
+    // Catch common async/await problems
+    '@typescript-eslint/no-misused-promises': 2,
+    '@typescript-eslint/no-floating-promises': [2, { ignoreIIFE: true }],
+    '@typescript-eslint/promise-function-async': 2,
 
     // originally required in the early days of monorepos -- consider revisiting
     'import/no-cycle': 'off',

@@ -70,13 +70,15 @@ export class AboutPanel {
     // Handle messages from the webview
     this.myPanel.webview.onDidReceiveMessage(
       (message) => {
-        switch (message.command) {
-          case 'alert':
-            vscode.window.showErrorMessage(message.text);
-            break;
-          default:
-            break;
-        }
+        (async () => {
+          switch (message.command) {
+            case 'alert':
+              await vscode.window.showErrorMessage(message.text);
+              break;
+            default:
+              break;
+          }
+        })();
       },
       null,
       this.disposables,
