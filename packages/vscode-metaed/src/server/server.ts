@@ -48,8 +48,6 @@ async function createMetaEdConfiguration(
 }
 
 async function validateFiles(): Promise<void> {
-  // eslint-disable-next-line no-console
-  console.log(`${Date.now()}: Server is running MetaEd to validate files`);
   connection.console.log(`${Date.now()}: Server is running MetaEd to validate files`);
   const metaEdProjectMetadata: MetaEdProjectMetadata[] = await findMetaEdProjectMetadataForServer(
     Array.from(workspaceFolders),
@@ -101,13 +99,10 @@ async function validateFiles(): Promise<void> {
   }
 
   // send failures
-  // eslint-disable-next-line no-console
-  console.log(`${Date.now()}: Server is sending failures`);
+  connection.console.log(`${Date.now()}: Server is sending failures`);
   // eslint-disable-next-line no-restricted-syntax
   for (const [uri, diagnostics] of filesWithFailure) {
-    // eslint-disable-next-line no-console
-    console.log(`${Date.now()}: Server sends failure for ${uri} to client`);
-
+    connection.console.log(`${Date.now()}: Server sends failure for ${uri} to client`);
     await connection.sendDiagnostics({ uri, diagnostics });
   }
 
@@ -124,8 +119,7 @@ async function validateFiles(): Promise<void> {
 
 connection.onNotification('metaed/build', (metaEdConfiguration: MetaEdConfiguration) => {
   (async () => {
-    // eslint-disable-next-line no-console
-    console.log(`${Date.now()}: Server received build command from client`);
+    connection.console.log(`${Date.now()}: Server received build command from client`);
     const state: State = {
       ...newState(),
       pipelineOptions: {
@@ -138,17 +132,16 @@ connection.onNotification('metaed/build', (metaEdConfiguration: MetaEdConfigurat
     };
     state.metaEd.dataStandardVersion = '4.0.0';
 
-    await executePipeline(state);
+    const buildResult = await executePipeline(state);
+    connection.console.log(`${Date.now()}: Server sending build complete notification to client`);
+    connection.console.log(`${Date.now()}: Server sending build complete notification to client`);
 
-    // eslint-disable-next-line no-console
-    console.log(`${Date.now()}: Server sending build complete notification to client`);
-    await connection.sendNotification('metaed/buildComplete');
+    await connection.sendNotification('metaed/buildComplete', buildResult.failure);
   })();
 });
 
 connection.onInitialize((params: InitializeParams) => {
-  // eslint-disable-next-line no-console
-  console.log(`${Date.now()}: Server onInitialize (singular)`);
+  connection.console.log(`${Date.now()}: Server onInitialize (singular)`);
   const { capabilities } = params;
 
   hasConfigurationCapability = !!(capabilities.workspace && !!capabilities.workspace.configuration);
@@ -166,8 +159,7 @@ connection.onInitialize((params: InitializeParams) => {
 });
 
 connection.onInitialized(() => {
-  // eslint-disable-next-line no-console
-  console.log(`${Date.now()}: Server onInitialized (plural)`);
+  connection.console.log(`${Date.now()}: Server onInitialized (plural)`);
   (async () => {
     if (hasConfigurationCapability) {
       // Register for all configuration changes.
@@ -195,8 +187,7 @@ connection.onInitialized(() => {
 
 connection.onNotification('metaed/lint', () => {
   (async () => {
-    // eslint-disable-next-line no-console
-    console.log(`${Date.now()}: Server received lint command from client`);
+    connection.console.log(`${Date.now()}: Server received lint command from client`);
     await validateFiles();
   })();
 });
