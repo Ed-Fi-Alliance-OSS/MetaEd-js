@@ -58,7 +58,7 @@ async function addSubscriptions(context: ExtensionContext) {
       (async () => {
         const metaEdConfiguration = await createMetaEdConfiguration();
         await client.sendNotification('metaed/build', metaEdConfiguration);
-        // This seems to need to some after the client.sendNotification(), otherwise blocks it sometimes
+        // This seems to need to come after the client.sendNotification(), otherwise blocks it sometimes
         await window.showInformationMessage('Building MetaEd...');
       })();
     }),
@@ -143,7 +143,9 @@ export async function activate(context: ExtensionContext) {
   client = new LanguageClient('MetaEd', 'MetaEd', serverOptions, clientOptions);
   await client.start();
 
-  client.outputChannel.appendLine(`${Date.now()}: Activating vscode-metaed extension ✨`);
+  client.outputChannel.appendLine(`${Date.now()}: MetaEd extension is starting...`);
+
+  await addSubscriptions(context);
 
   client.onNotification('metaed/buildComplete', (failure: boolean) => {
     (async () => {
@@ -156,14 +158,13 @@ export async function activate(context: ExtensionContext) {
     })();
   });
 
-  await addSubscriptions(context);
-
-  client.outputChannel.appendLine('MetaEd is active ✨');
-
   // Trigger an initial lint after extension startup is complete
   if (window.activeTextEditor != null) {
     await sendLintCommandToServer();
   }
+
+  client.outputChannel.appendLine('MetaEd has started 🎬');
+  await window.showInformationMessage('MetaEd has started 🎬');
 }
 
 /**
