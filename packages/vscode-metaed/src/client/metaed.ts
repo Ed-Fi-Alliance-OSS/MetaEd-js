@@ -153,7 +153,7 @@ export async function activate(context: ExtensionContext) {
         await window.showInformationMessage('MetaEd build failure - see Problems window');
         await commands.executeCommand('workbench.action.problems.focus');
       } else {
-        await window.showInformationMessage('MetaEd build success ✨');
+        await window.showInformationMessage(`MetaEd build success: Find results in 'MetaEdOutput' folder.`);
       }
     })();
   });
