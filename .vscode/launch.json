@@ -15,21 +15,6 @@
       "sourceMaps": true
     },
     {
-      "type": "node",
-      "request": "launch",
-      "name": "Jest :: Watch File",
-      "program": "${workspaceRoot}/node_modules/jest-cli/bin/jest.js",
-      "args": [
-        "--runTestsByPath",
-        "${relativeFile}",
-        "--runInBand",
-        "--watch",
-        "--onlyChanged"
-      ],
-      "console": "integratedTerminal",
-      "sourceMaps": true
-    },
-    {
       "name": "Run vscode-metaed",
       "type": "extensionHost",
       "request": "launch",
@@ -39,8 +24,7 @@
       ],
       "outFiles": [
         "${workspaceFolder}/dist/**/*.js"
-      ],
-      "preLaunchTask": "npm: watch"
+      ]
     },
     { 
       "type": "node",
