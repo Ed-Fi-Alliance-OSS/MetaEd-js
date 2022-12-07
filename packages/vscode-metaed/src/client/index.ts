@@ -8,6 +8,11 @@ import { LanguageClient, LanguageClientOptions, ServerOptions, TransportKind } f
 import { findMetaEdProjectMetadataForClient } from './Projects';
 import { AboutPanel } from './AboutPanel';
 import { MetaEdProjectMetadata, validProjectMetadata } from '../common/Projects';
+import {
+  initializePackageSettings,
+  switchCoreDsProjectOnDsChange,
+  switchCoreDsProjectOnOdsApiChange,
+} from './ManageConfiguration';
 
 let client: LanguageClient;
 
@@ -162,6 +167,10 @@ export async function activate(context: ExtensionContext) {
   if (window.activeTextEditor != null) {
     await sendLintCommandToServer();
   }
+
+  await initializePackageSettings();
+  switchCoreDsProjectOnOdsApiChange(client.outputChannel);
+  await switchCoreDsProjectOnDsChange(client.outputChannel);
 
   client.outputChannel.appendLine('MetaEd has started 🎬');
   await window.showInformationMessage('MetaEd has started 🎬');

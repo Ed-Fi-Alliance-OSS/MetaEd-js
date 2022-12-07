@@ -4,6 +4,8 @@ import * as path from 'path';
 import { scanForPlugins, newState } from '@edfi/metaed-core';
 import { vscodeMetaEdPackageJson } from './Utility';
 
+export const LICENSE_URL = 'https://techdocs.ed-fi.org/x/vRSAAw';
+
 // TODO: this class shouldn't be using TypeScript-only directives (e.g. "private")
 export class AboutPanel {
   /**
@@ -53,7 +55,7 @@ export class AboutPanel {
     this.update();
 
     // Listen for when the panel is disposed
-    // This happens when the user closes the panel or when the panel is closed programatically
+    // This happens when the user closes the panel or when the panel is closed programmatically
     this.myPanel.onDidDispose(() => this.dispose(), null, this.disposables);
 
     // Update the content based on view changes
@@ -119,7 +121,7 @@ export class AboutPanel {
           <img src='${backgroundUri}' alt=''/>
 
           <p style='position:absolute; bottom:0; font-size:11px; font-family:"Arial"; padding:0px 37px; width:100%; height:185px; text-align:left; overflow-y:scroll'>
-            MetaEd is © 2022 Ed-Fi Alliance, LLC. Click <a href="https://techdocs.ed-fi.org/x/vRSAAw">here</a> for license information.
+            MetaEd is © 2022 Ed-Fi Alliance, LLC. Click <a href="${LICENSE_URL}">here</a> for license information.
             <br/>
             vscode-metaed${version}
             <br/>

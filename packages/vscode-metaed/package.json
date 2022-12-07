@@ -17,7 +17,7 @@
 	"activationEvents": [
 		"onLanguage:metaed"
 	],
-	"main": "./dist/client/metaed.js",
+	"main": "./dist/client/index.js",
 	"contributes": {
 		"commands": [
 			{
@@ -62,6 +62,84 @@
 					"group": "navigation"
 				}
 			]
+		},
+		"configuration": {
+			"title": "MetaEd",
+			"properties": {
+				"metaed.targetOdsApiVersion": {
+					"order": 1,
+					"description": "The target Ed-Fi ODS/API version",
+					"type": "string",
+					"default": "",
+					"enum": [
+						"",
+						"3.0.0",
+						"3.1.0",
+						"3.1.1",
+						"3.2.0",
+						"3.3.0",
+						"3.4.0",
+						"5.0.0",
+						"5.1.0",
+						"5.2.0",
+						"5.3.0",
+						"6.0.0",
+						"6.1.0"
+					]
+				},
+				"metaed.targetDataStandardVersion": {
+					"order": 2,
+					"description": "The target Ed-Fi Data Standard version",
+					"type": "string",
+					"default": ""
+				},
+				"metaed.edfiOdsApiSourceDirectory": {
+					"order": 3,
+					"description": "Full path to root folder for the Ed-Fi ODS / API source code.  The folder this points to should contain Ed-Fi-ODS and Ed-Fi-ODS-Implementation folders.",
+					"type": "string",
+					"default": ""
+				},
+				"metaed.suppressDeleteOnDeploy": {
+					"order": 4,
+					"description": "Stop deployment from deleting the SupportingArtifacts API folder.  For advanced users only.",
+					"type": "boolean",
+					"default": false
+				},
+				"metaed.telemetryConsent": {
+					"order": 5,
+					"description": "Select whether you are willing to submit anonymous usage information to the Ed-Fi Alliance server. Broadly, we send things like performance metrics and exceptions.",
+					"type": "string",
+					"default": "",
+					"enum": [
+						"",
+						"true",
+						"false"
+					],
+					"enumDescriptions": [
+						"Please select:",
+						"I consent.",
+						"I do not consent."
+					]
+				},
+				"metaed.coreMetaEdSourceDirectory": {
+					"order": 6,
+					"description": "Full path to the set of core MetaEd files for the Ed-Fi Data Standard.",
+					"type": "string",
+					"default": ""
+				},
+				"metaed.acceptedLicense": {
+					"order": 7,
+					"markdownDescription": "Usage of the MetaEd IDE requires acceptance of the Ed-Fi License. Click [here](https://techdocs.ed-fi.org/x/vRSAAw) for license information. Check the box to accept the license terms.",
+					"type": "boolean",
+					"default": false
+				},
+				"metaed.allianceMode": {
+					"order": 8,
+					"description": "For Alliance users only, this makes core files editable. Non-Alliance users must leave this setting disabled to avoid dangerous and costly mistakes.",
+					"type": "boolean",
+					"default": false
+				}
+			}
 		}
 	},
 	"scripts": {
@@ -73,8 +151,6 @@
 		"test": "node ./dist/test/runTest.js"
 	},
 	"dependencies": {
-		"@edfi/ed-fi-model-2.0": "3.0.1",
-		"@edfi/ed-fi-model-2.2": "3.0.1",
 		"@edfi/ed-fi-model-3.0": "3.0.1",
 		"@edfi/ed-fi-model-3.1": "3.0.1",
 		"@edfi/ed-fi-model-3.2a": "3.0.1",

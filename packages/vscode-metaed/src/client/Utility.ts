@@ -18,4 +18,13 @@ export function devEnvironmentCorrectedPath(pathStartingWithPackageDirectory: st
     : path.resolve(__dirname, '../../..', pathStartingWithPackageDirectory);
 }
 
-export const nextMacroTask = async (): Promise<void> => new Promise((resolve) => setImmediate(resolve));
+/**
+ * Awaiting on this function in a microtask ends the microtask queue and allows the next macro task to run.
+ * See https://medium.com/@mmoshikoo/event-loop-in-nodejs-visualized-235867255e81 for a visual
+ * explanation of the role of microtasks Node event loop
+ *
+ * For example, this is useful inside UI event listeners that then make a UI modification, as those event listeners
+ * are microtasks (more specifically they are Promise callbacks), yet the UI change itself is a macro task. Yielding
+ * gives the UI the opportunity to complete its UI behavior before making a UI modification in the event listener.
+ */
+export const yieldToNextMacroTask = async (): Promise<void> => new Promise((resolve) => setImmediate(resolve));
