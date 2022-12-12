@@ -15,7 +15,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onLanguage:metaed"
+		"*"
 	],
 	"main": "./dist/client/index.js",
 	"contributes": {

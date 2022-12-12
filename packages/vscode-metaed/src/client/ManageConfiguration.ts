@@ -1,11 +1,14 @@
 // eslint-disable-next-line import/no-unresolved
-import { ConfigurationChangeEvent, OutputChannel, workspace } from 'vscode';
+import { ConfigurationChangeEvent, OutputChannel, Uri, workspace } from 'vscode';
+import * as path from 'path';
+import fs from 'fs-extra';
 import {
   setCoreMetaEdSourceDirectory,
   getTargetDsVersion,
   setTargetDsVersion,
   getTargetOdsApiVersion,
   setTargetOdsApiVersion,
+  getCoreMetaEdSourceDirectory,
 } from './PackageSettings';
 import { devEnvironmentCorrectedPath, yieldToNextMacroTask } from './Utility';
 
@@ -31,25 +34,58 @@ export async function switchCoreDsProjectOnDsChange(logOutputChannel: OutputChan
     await yieldToNextMacroTask();
     const newTargetDsVersion: string = getTargetDsVersion();
 
+    let modelName = '';
+    let modelPath = '';
+
     try {
-      if (newTargetDsVersion === '3.0.0')
-        await setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.0'));
-      if (newTargetDsVersion === '3.1.0')
-        await setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.1'));
-      if (newTargetDsVersion === '3.2.0')
-        await setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.2a'));
-      if (newTargetDsVersion === '3.2.0-b')
-        await setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.2b'));
-      if (newTargetDsVersion === '3.2.0-c')
-        await setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.2c'));
-      if (newTargetDsVersion === '3.3.0-a')
-        await setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.3a'));
-      if (newTargetDsVersion === '3.3.1-b')
-        await setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.3b'));
-      if (newTargetDsVersion === '4.0.0-a')
-        await setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-4.0a'));
-      if (newTargetDsVersion === '4.0.0')
-        await setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-4.0'));
+      switch (newTargetDsVersion) {
+        case '3.0.0':
+          modelName = 'Ed-Fi-Model 3.0';
+          modelPath = devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.0');
+          break;
+        case '3.1.0':
+          modelName = 'Ed-Fi-Model 3.1';
+          modelPath = devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.1');
+          break;
+        case '3.2.0':
+          modelName = 'Ed-Fi-Model 3.2a';
+          modelPath = devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.2a');
+          break;
+        case '3.2.0-b':
+          modelName = 'Ed-Fi-Model 3.2b';
+          modelPath = devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.2b');
+          break;
+        case '3.2.0-c':
+          modelName = 'Ed-Fi-Model 3.2c';
+          modelPath = devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.2c');
+          break;
+        case '3.3.0-a':
+          modelName = 'Ed-Fi-Model 3.3a';
+          modelPath = devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.3a');
+          break;
+        case '3.3.1-b':
+          modelName = 'Ed-Fi-Model 3.3b';
+          modelPath = devEnvironmentCorrectedPath('@edfi/ed-fi-model-3.3b');
+          break;
+        case '4.0.0-a':
+          modelName = 'Ed-Fi-Model 4.0a';
+          modelPath = devEnvironmentCorrectedPath('@edfi/ed-fi-model-4.0a');
+          break;
+        case '4.0.0':
+          modelName = 'Ed-Fi-Model 4.0';
+          modelPath = devEnvironmentCorrectedPath('@edfi/ed-fi-model-4.0');
+          break;
+        default:
+          return;
+      }
+
+      await setCoreMetaEdSourceDirectory(modelPath);
+      await yieldToNextMacroTask();
+
+      workspace.updateWorkspaceFolders(0, workspace.workspaceFolders == null ? 0 : workspace.workspaceFolders.length, {
+        name: modelName,
+        uri: Uri.file(modelPath),
+      });
     } catch (e) {
       logOutputChannel.appendLine(`Exception: ${e}`);
     } finally {
@@ -59,7 +95,14 @@ export async function switchCoreDsProjectOnDsChange(logOutputChannel: OutputChan
 }
 
 async function setCoreToSixDotX() {
-  await setCoreMetaEdSourceDirectory(devEnvironmentCorrectedPath('@edfi/ed-fi-model-4.0'));
+  const modelPath = devEnvironmentCorrectedPath('@edfi/ed-fi-model-4.0');
+  workspace.updateWorkspaceFolders(0, workspace.workspaceFolders == null ? 0 : workspace.workspaceFolders.length, {
+    name: 'Ed-Fi-Model 4.0',
+    uri: Uri.file(modelPath),
+  });
+  await yieldToNextMacroTask();
+
+  await setCoreMetaEdSourceDirectory(modelPath);
   await setTargetDsVersion('4.0.0');
   await setTargetOdsApiVersion('6.1.0');
   await yieldToNextMacroTask();
@@ -82,16 +125,17 @@ export function switchCoreDsProjectOnOdsApiChange(logOutputChannel: OutputChanne
   });
 }
 
-// initialize package settings if invalid
+/**
+ * Initialize package settings if the current ones are invalid
+ */
 export async function initializePackageSettings() {
   if (getTargetDsVersion() === '') {
     await setCoreToSixDotX();
   }
 
-  // TODO: Enable once paths to Ed-Fi-Models are figured out
-  // if (getCoreMetaEdSourceDirectory() === '' || !(await fs.exists(path.resolve(getCoreMetaEdSourceDirectory())))) {
-  //   await setCoreToSixDotX();
-  // }
+  if (getCoreMetaEdSourceDirectory() === '' || !(await fs.exists(path.resolve(getCoreMetaEdSourceDirectory())))) {
+    await setCoreToSixDotX();
+  }
 
-  // await yieldToNextMacroTask();
+  await yieldToNextMacroTask();
 }

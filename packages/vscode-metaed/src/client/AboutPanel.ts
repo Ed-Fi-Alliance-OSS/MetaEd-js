@@ -103,7 +103,8 @@ export class AboutPanel {
 
   private update() {
     const pluginList: string[] = scanForPlugins(newState()).map((pm) => `${pm.npmName} ${pm.version}`);
-    const version: string = vscodeMetaEdPackageJson() != null ? ` v${vscodeMetaEdPackageJson().version}` : '';
+    const metaEdPackageJson: any | null = vscodeMetaEdPackageJson();
+    const version: string = metaEdPackageJson == null ? '' : ` v${metaEdPackageJson.version}`;
     const backgroundUri = this.myPanel.webview.asWebviewUri(
       vscode.Uri.file(path.resolve(this.extensionPath, './static/MetaEd-About-Background.png')),
     );
