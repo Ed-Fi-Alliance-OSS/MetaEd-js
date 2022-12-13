@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import { ConfigurationChangeEvent, OutputChannel, Uri, workspace } from 'vscode';
+import { ConfigurationChangeEvent, OutputChannel, Uri, workspace, window } from 'vscode';
 import * as path from 'path';
 import fs from 'fs-extra';
 import {
@@ -86,6 +86,7 @@ export async function switchCoreDsProjectOnDsChange(logOutputChannel: OutputChan
         name: modelName,
         uri: Uri.file(modelPath),
       });
+      await window.showInformationMessage('MetaEd is switching Data Standard projects and will restart. Please wait.');
     } catch (e) {
       logOutputChannel.appendLine(`Exception: ${e}`);
     } finally {
@@ -96,11 +97,18 @@ export async function switchCoreDsProjectOnDsChange(logOutputChannel: OutputChan
 
 async function setCoreToSixDotX() {
   const modelPath = devEnvironmentCorrectedPath('@edfi/ed-fi-model-4.0');
+  const noWorkspaceFoldersOpen: boolean = workspace.workspaceFolders == null;
+
   workspace.updateWorkspaceFolders(0, workspace.workspaceFolders == null ? 0 : workspace.workspaceFolders.length, {
     name: 'Ed-Fi-Model 4.0',
     uri: Uri.file(modelPath),
   });
   await yieldToNextMacroTask();
+
+  if (noWorkspaceFoldersOpen) {
+    await window.showInformationMessage('MetaEd is adding a Data Standard project and will restart. Please wait.');
+    return;
+  }
 
   await setCoreMetaEdSourceDirectory(modelPath);
   await setTargetDsVersion('4.0.0');
