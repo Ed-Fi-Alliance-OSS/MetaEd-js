@@ -10,9 +10,11 @@ import { AboutPanel } from './AboutPanel';
 import { MetaEdProjectMetadata, validProjectMetadata } from '../common/Projects';
 import {
   initializePackageSettings,
+  InitializePackageSettingsResult,
   switchCoreDsProjectOnDsChange,
   switchCoreDsProjectOnOdsApiChange,
 } from './ManageConfiguration';
+import { yieldToNextMacroTask } from './Utility';
 
 let client: LanguageClient;
 
@@ -63,8 +65,10 @@ async function addSubscriptions(context: ExtensionContext) {
       (async () => {
         const metaEdConfiguration = await createMetaEdConfiguration();
         await client.sendNotification('metaed/build', metaEdConfiguration);
-        // This seems to need to come after the client.sendNotification(), otherwise blocks it sometimes
-        await window.showInformationMessage('Building MetaEd...');
+
+        // eslint-disable-next-line no-void
+        void window.showInformationMessage('Building MetaEd...');
+        await yieldToNextMacroTask();
       })();
     }),
   );
@@ -152,28 +156,40 @@ export async function activate(context: ExtensionContext) {
 
   await addSubscriptions(context);
 
-  client.onNotification('metaed/buildComplete', (failure: boolean) => {
-    (async () => {
-      if (failure) {
-        await window.showInformationMessage('MetaEd build failure - see Problems window');
-        await commands.executeCommand('workbench.action.problems.focus');
-      } else {
-        await window.showInformationMessage(`MetaEd build success: Find results in 'MetaEdOutput' folder.`);
-      }
-    })();
-  });
+  context.subscriptions.push(
+    client.onNotification('metaed/buildComplete', (failure: boolean) => {
+      (async () => {
+        if (failure) {
+          // eslint-disable-next-line no-void
+          void window.showInformationMessage('MetaEd build failure - see Problems window');
+          await commands.executeCommand('workbench.action.problems.focus');
+        } else {
+          // eslint-disable-next-line no-void
+          void window.showInformationMessage(`MetaEd build success: Find results in 'MetaEdOutput' folder.`);
+          await yieldToNextMacroTask();
+        }
+      })();
+    }),
+  );
 
   // Trigger an initial lint after extension startup is complete
   if (window.activeTextEditor != null) {
     await sendLintCommandToServer();
   }
 
-  await initializePackageSettings();
+  const initializePackageSettingsResult: InitializePackageSettingsResult = await initializePackageSettings();
+  if (initializePackageSettingsResult.restarting) {
+    client.outputChannel.appendLine('MetaEd will restart');
+    return;
+  }
+
   switchCoreDsProjectOnOdsApiChange(client.outputChannel);
-  await switchCoreDsProjectOnDsChange(client.outputChannel);
+  await switchCoreDsProjectOnDsChange(context, client.outputChannel);
 
   client.outputChannel.appendLine('MetaEd has started 🎬');
-  await window.showInformationMessage('MetaEd has started 🎬');
+  // eslint-disable-next-line no-void
+  void window.showInformationMessage('MetaEd has started 🎬');
+  await yieldToNextMacroTask();
 }
 
 /**

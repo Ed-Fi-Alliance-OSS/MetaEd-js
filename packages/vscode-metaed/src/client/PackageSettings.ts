@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import { workspace, WorkspaceConfiguration } from 'vscode';
 import semver from 'semver';
+import { yieldToNextMacroTask } from './Utility';
 
 function getWorkspaceConfiguration(): WorkspaceConfiguration {
   return workspace.getConfiguration('metaed');
@@ -10,8 +11,10 @@ export function getCoreMetaEdSourceDirectory(): string {
   return getWorkspaceConfiguration().get('coreMetaEdSourceDirectory') ?? '';
 }
 
-export function setCoreMetaEdSourceDirectory(directory: string) {
-  return getWorkspaceConfiguration().update('coreMetaEdSourceDirectory', directory);
+export async function setCoreMetaEdSourceDirectory(directory: string) {
+  const result = await getWorkspaceConfiguration().update('coreMetaEdSourceDirectory', directory);
+  await yieldToNextMacroTask();
+  return result;
 }
 
 export function getEdfiOdsApiSourceDirectory(): string {
@@ -31,8 +34,10 @@ export function getTargetDsVersionSemver(): string {
   return targetDsVersion === '' ? '6.1.0' : targetDsVersion;
 }
 
-export function setTargetDsVersion(targetDsVersion: string) {
-  return getWorkspaceConfiguration().update('targetDataStandardVersion', targetDsVersion);
+export async function setTargetDsVersion(targetDsVersion: string) {
+  const result = await getWorkspaceConfiguration().update('targetDataStandardVersion', targetDsVersion);
+  await yieldToNextMacroTask();
+  return result;
 }
 
 export function getTargetOdsApiVersion(): string {
@@ -43,24 +48,30 @@ export function getTargetOdsApiVersionSemver(): string {
   return (semver.coerce(getTargetOdsApiVersion()) || '').toString();
 }
 
-export function setTargetOdsApiVersion(targetOdsApiVersion: string) {
-  return getWorkspaceConfiguration().update('targetOdsApiVersion', targetOdsApiVersion);
+export async function setTargetOdsApiVersion(targetOdsApiVersion: string) {
+  const result = await getWorkspaceConfiguration().update('targetOdsApiVersion', targetOdsApiVersion);
+  await yieldToNextMacroTask();
+  return result;
 }
 
 export function telemetryConsent(): string {
   return getWorkspaceConfiguration().get('telemetryConsent') ?? '';
 }
 
-export function setTelemetryConsent(consent: string) {
-  return getWorkspaceConfiguration().update('telemetryConsent', consent);
+export async function setTelemetryConsent(consent: string) {
+  const result = await getWorkspaceConfiguration().update('telemetryConsent', consent);
+  await yieldToNextMacroTask();
+  return result;
 }
 
 export function acceptedLicense(): boolean {
   return getWorkspaceConfiguration().get('acceptedLicense') ?? false;
 }
 
-export function setAcceptedLicense() {
-  return getWorkspaceConfiguration().update('acceptedLicense', true);
+export async function setAcceptedLicense() {
+  const result = await getWorkspaceConfiguration().update('acceptedLicense', true);
+  await yieldToNextMacroTask();
+  return result;
 }
 
 export function allianceMode(): boolean {

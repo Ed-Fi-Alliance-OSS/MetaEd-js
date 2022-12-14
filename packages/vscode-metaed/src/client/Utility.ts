@@ -30,9 +30,8 @@ export const installedExtensionPath: () => string = R.memoizeWith(R.identity, ()
   // TODO: Change publisher name from prototype's name
   const metaedExtension: Extension<void> | undefined = extensions.getExtension('edfi-test.metaed');
   if (metaedExtension == null) {
-    (async () => {
-      await window.showErrorMessage('MetaEd hardcoded extension publisher.name is incorrect');
-    })();
+    // eslint-disable-next-line no-void
+    void window.showErrorMessage('MetaEd hardcoded extension publisher.name is incorrect');
     return '';
   }
   return metaedExtension.extensionPath;
@@ -55,6 +54,6 @@ export function devEnvironmentCorrectedPath(pathStartingWithPackageDirectory: st
  *
  * For example, this is useful inside UI event listeners that then make a UI modification, as those event listeners
  * are microtasks (more specifically they are Promise callbacks), yet the UI change itself is a macro task. Yielding
- * gives the UI the opportunity to complete its UI behavior before making a UI modification in the event listener.
+ * gives the UI the opportunity to complete its UI behavior.
  */
 export const yieldToNextMacroTask = async (): Promise<void> => new Promise((resolve) => setImmediate(resolve));
