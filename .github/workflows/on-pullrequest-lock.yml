@@ -13,5 +13,8 @@ jobs:
   dependency-scanner:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
+        
       - name: OSV Dependency Audit
-        uses: google/osv-scanner@c6ed0fabdbe8ad75465bd7eab81ba904a9c89f42
+        uses: google/osv-scanner@c6ed0fabdbe8ad75465bd7eab81ba904a9c89f42 # v1.0.0
