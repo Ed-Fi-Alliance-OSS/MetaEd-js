@@ -1,0 +1,14 @@
+name: Package Dependency Audit
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "**/*.lock"
+      - ".github/workflows/on-pullrequest-lock.yml"
+
+jobs:
+  dependency-scanner:
+    name: OSV Dependency Audit
+    uses: google/osv-scanner/action.yml@c6ed0fabdbe8ad75465bd7eab81ba904a9c89f42
