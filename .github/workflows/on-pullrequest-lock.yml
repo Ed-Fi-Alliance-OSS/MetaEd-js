@@ -7,8 +7,11 @@ on:
     paths:
       - "**/*.lock"
       - ".github/workflows/on-pullrequest-lock.yml"
+  workflow_dispatch:
 
 jobs:
   dependency-scanner:
-    name: OSV Dependency Audit
-    uses: google/osv-scanner/action.yml@c6ed0fabdbe8ad75465bd7eab81ba904a9c89f42
+    runs-on: ubuntu-latest
+    steps:
+      - name: OSV Dependency Audit
+        uses: google/osv-scanner@c6ed0fabdbe8ad75465bd7eab81ba904a9c89f42
