@@ -131,6 +131,7 @@ async function setCoreToSixDotX(): Promise<InitializePackageSettingsResult> {
     return { restarting: true };
   }
 
+  // Intentionally not using `await` on the next line, as it causes unexpected behavior when trying to use MetaEd commands
   // eslint-disable-next-line no-void
   void window.showInformationMessage('MetaEd is switching Data Standard projects and will restart. Please wait.');
   await yieldToNextMacroTask();
