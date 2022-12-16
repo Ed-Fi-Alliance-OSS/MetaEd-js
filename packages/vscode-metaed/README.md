@@ -1,6 +1,6 @@
-# This is vscode-metaed README
+# vscode-metaed
 
-This is the README for your extension "metaed". After writing up a brief description, we recommend including the following sections.
+This is the MetaEd IDE as a Visual Studio Code extension.
 
 ## Features
 
@@ -39,7 +39,4 @@ Users appreciate release notes as you update your extension.
 
 Initial release of ...
 
-### 1.0.1
-
-Fixed issue #.
 

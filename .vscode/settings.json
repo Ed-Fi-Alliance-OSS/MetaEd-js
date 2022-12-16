@@ -43,6 +43,7 @@
     "klaw",
     "metaed",
     "odsapi",
+    "packagejson",
     "pgtools",
     "preid",
     "psql",
