@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # v3.5.1
         with:
           node-version: "16"
-          cache: "yarn"
+          cache: "npm"
           registry-url: "https://www.myget.org/F/ed-fi/npm/"
 
       - name: Node modules cache
@@ -26,14 +26,14 @@ jobs:
         uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 #v3.0.11
         with:
           path: "**/node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install dependencies
         if: ${{ steps.modules-cache.outputs.cache-hit != 'true' }}
-        run: yarn install
+        run: npm install
 
       - name: Linter
-        run: yarn test:lint
+        run: npm run test:lint
 
   unit-tests:
     name: Unit Test
@@ -47,7 +47,7 @@ jobs:
         uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # v3.5.1
         with:
           node-version: "16"
-          cache: "yarn"
+          cache: "npm"
           registry-url: "https://www.myget.org/F/ed-fi/npm/"
 
       - name: Node modules cache
@@ -55,14 +55,14 @@ jobs:
         uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 #v3.0.11
         with:
           path: "**/node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install dependencies
         if: ${{ steps.modules-cache.outputs.cache-hit != 'true' }}
-        run: yarn install
+        run: npm install
 
       - name: Unit Tests
-        run: yarn test:unit:ci --ci  --config ./jest.ci-config.js
+        run: npm run test:unit:ci -- --ci  --config ./jest.ci-config.js
         env:
           JEST_JUNIT_OUTPUT_DIR: unit-tests
 
@@ -99,7 +99,7 @@ jobs:
         uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # v3.5.1
         with:
           node-version: "16"
-          cache: "yarn"
+          cache: "npm"
           registry-url: "https://www.myget.org/F/ed-fi/npm/"
 
       - name: Node modules cache
@@ -107,11 +107,11 @@ jobs:
         uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 #v3.0.11
         with:
           path: "**/node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install dependencies
         if: ${{ steps.modules-cache.outputs.cache-hit != 'true' }}
-        run: yarn install
+        run: npm install
 
       - name: Create SQL Server Testing Database
         run: |
@@ -119,7 +119,7 @@ jobs:
             -Q "CREATE DATABASE MetaEd_Ods_Integration_Tests"
 
       - name: SQLServer Unit tests
-        run: yarn test:unit:ods:sqlserver:db --ci  --config ./jest.ci-config.js
+        run: npm run test:unit:ods:sqlserver:db -- --ci  --config ./jest.ci-config.js
         env:
           MSSQL_USERNAME: sa
           MSSQL_PASSWORD: ${{ env.SA_PASSWORD }}
@@ -148,7 +148,7 @@ jobs:
         uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # v3.5.1
         with:
           node-version: "16"
-          cache: "yarn"
+          cache: "npm"
           registry-url: "https://www.myget.org/F/ed-fi/npm/"
 
       - name: Node modules cache
@@ -156,11 +156,11 @@ jobs:
         uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 #v3.0.11
         with:
           path: "**/node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install dependencies
         if: ${{ steps.modules-cache.outputs.cache-hit != 'true' }}
-        run: yarn install
+        run: npm install
 
       - name: Setup PostgreSQL for testing
         # Postgres on Ubuntu is installed locally but the service needs to be started. The default postgres
@@ -171,7 +171,7 @@ jobs:
           sudo -u postgres psql -U postgres -c "alter user postgres with password 'docker';"
 
       - name: PostgreSQL Unit tests
-        run: yarn test:unit:ods:postgresql:db --ci --config ./jest.ci-config.js
+        run: npm run test:unit:ods:postgresql:db -- --ci --config ./jest.ci-config.js
         env:
           JEST_JUNIT_OUTPUT_DIR: postgresql-tests
 

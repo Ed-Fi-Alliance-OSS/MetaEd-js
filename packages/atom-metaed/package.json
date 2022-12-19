@@ -198,7 +198,7 @@
     }
   },
   "scripts": {
-    "build": "yarn build:clean && yarn build:dist",
+    "build": "npm run build:clean && npm run build:dist",
     "build:clean": "rimraf dist && rimraf build/dist",
     "build:dist": "tsc",
     "build:ci": "tsc build/build.ts --outDir build/dist --lib ES2015,DOM --target ES2015 --module CommonJS --allowSyntheticDefaultImports --esModuleInterop",

@@ -143,14 +143,14 @@
 		}
 	},
 	"scripts": {
-		"build": "yarn build:clean && yarn build:copy-non-ts && yarn build:dist",
+		"build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
 		"build:clean": "rimraf dist",
 		"build:dist": "tsc",
 		"build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose",
 		"test": "node ./dist/test/runTest.js",
-		"package": "yarn build && yarn package:packagejson:backup && yarn package:packagejson:modify && vsce package --no-dependencies --no-git-tag-version --no-update-package-json --allow-star-activation --allow-missing-repository && yarn package:packagejson:restore",
+		"package": "npm run build && npm run package:packagejson:backup && npm run package:packagejson:modify && vsce package --no-dependencies --no-git-tag-version --no-update-package-json --allow-star-activation --allow-missing-repository && npm run package:packagejson:restore",
 		"package:packagejson:backup": "cpy package.json ../vscode-metaed --rename=package.json.bak",
-		"package:packagejson:modify": "yarn run replace '\"name\": \"@edfi/vscode-metaed\"' '\"name\": \"vscode-metaed\"' package.json",
+		"package:packagejson:modify": "npm run replace '\"name\": \"@edfi/vscode-metaed\"' '\"name\": \"vscode-metaed\"' package.json",
 		"package:packagejson:restore": "move-file package.json.bak package.json"
 	},
 	"dependencies": {

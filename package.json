@@ -37,7 +37,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-push": "yarn test:pre-push"
+      "pre-push": "npm run test:pre-push"
     }
   },
   "scripts": {
@@ -46,39 +46,37 @@
     "metaed:deploy": "node ./packages/metaed-odsapi-deploy/dist/index.js",
     "build": "lerna run build --stream",
     "build:clean": "lerna run build:clean --stream",
-    "test": "yarn build:clean && yarn test:lint && yarn test:unit && yarn test:atom",
-    "test:pre-push": "yarn build:clean && yarn test:lint",
+    "test": "npm run build:clean && npm run test:lint && npm run test:unit",
+    "test:pre-push": "npm run build:clean && npm run test:lint",
     "test:coverage": "rimraf coverage/ && jest --coverage",
-    "test:lint": "yarn test:lint:ts && yarn test:lint:eslint",
+    "test:lint": "npm run test:lint:ts && npm run test:lint:eslint",
     "test:lint:eslint": "eslint --max-warnings 0 --ext .js,.ts .",
     "test:lint:ts": "tsc -p . --noEmit",
-    "test:unit": "yarn test:unit:unified && yarn test:unit:ods && yarn test:unit:everything-else",
-    "test:unit:ci": "yarn test:unit:unified && yarn test:unit:ods:ci && yarn test:unit:everything-else",
+    "test:unit": "npm run test:unit:unified && npm run test:unit:ods && npm run test:unit:everything-else",
+    "test:unit:ci": "npm run test:unit:unified && npm run test:unit:ods:ci && npm run test:unit:everything-else",
     "test:unit:unified": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest packages/metaed-plugin-edfi-unified",
-    "test:unit:ods": "yarn test:unit:ods:changequery:all && yarn test:unit:ods:postgresql:non-db && yarn test:unit:ods:ro:all && yarn test:unit:ods:relational && yarn test:unit:ods:sqlserver:all && yarn test:unit:odsapi",
-    "test:unit:ods:ci": "yarn test:unit:ods:changequery:all && yarn test:unit:ods:postgresql:non-db && yarn test:unit:ods:ro:all && yarn test:unit:ods:relational && yarn test:unit:ods:sqlserver:non-db && yarn test:unit:odsapi",
-    "test:unit:ods:changequery:all": "yarn test:unit:ods:changequery && yarn test:unit:ods:changequery:postgresql && yarn test:unit:ods:changequery:sqlserver",
-    "test:unit:ods:changequery": "cross-env NODE_OPTIONS=--max-old-space-size=4096 yarn jest packages/metaed-plugin-edfi-ods-changequery",
+    "test:unit:ods": "npm run test:unit:ods:changequery:all && npm run test:unit:ods:postgresql:non-db && npm run test:unit:ods:ro:all && npm run test:unit:ods:relational && npm run test:unit:ods:sqlserver:all && npm run test:unit:odsapi",
+    "test:unit:ods:ci": "npm run test:unit:ods:changequery:all && npm run test:unit:ods:postgresql:non-db && npm run test:unit:ods:ro:all && npm run test:unit:ods:relational && npm run test:unit:ods:sqlserver:non-db && npm run test:unit:odsapi",
+    "test:unit:ods:changequery:all": "npm run test:unit:ods:changequery && npm run test:unit:ods:changequery:postgresql && npm run test:unit:ods:changequery:sqlserver",
+    "test:unit:ods:changequery": "cross-env NODE_OPTIONS=--max-old-space-size=4096 npx jest packages/metaed-plugin-edfi-ods-changequery",
     "test:unit:ods:changequery:postgresql": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest \"packages/metaed-plugin-edfi-ods-changequery-postgresql\"",
     "test:unit:ods:changequery:sqlserver": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest \"packages/metaed-plugin-edfi-ods-changequery-sqlserver\"",
     "test:unit:ods:postgresql:db": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest packages/metaed-plugin-edfi-ods-postgresql/test/database -i",
     "test:unit:ods:postgresql:non-db": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest \"packages/metaed-plugin-edfi-ods-postgresql/test/(enhancer|generator|integration)\"",
-    "test:unit:ods:postgresql:setup-db": "yarn dropdbjs metaed_integration_tests --password=docker && yarn createdbjs metaed_integration_tests --password=docker && psql -d metaed_integration_tests -U postgres",
-    "test:unit:ods:ro:all": "yarn test:unit:ods:ro && yarn test:unit:ods:ro:postgresql && yarn test:unit:ods:ro:sqlserver",
+    "test:unit:ods:postgresql:setup-db": "npx dropdbjs metaed_integration_tests --password=docker && npx createdbjs metaed_integration_tests --password=docker && psql -d metaed_integration_tests -U postgres",
+    "test:unit:ods:ro:all": "npm run test:unit:ods:ro && npm run test:unit:ods:ro:postgresql && npm run test:unit:ods:ro:sqlserver",
     "test:unit:ods:ro": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest packages/metaed-plugin-edfi-ods-recordownership",
     "test:unit:ods:ro:postgresql": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest \"packages/metaed-plugin-edfi-ods-recordownership-postgresql\"",
     "test:unit:ods:ro:sqlserver": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest \"packages/metaed-plugin-edfi-ods-recordownership-sqlserver\"",
     "test:unit:ods:relational": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest packages/metaed-plugin-edfi-ods-relational",
-    "test:unit:ods:sqlserver:all": "yarn test:unit:ods:sqlserver && yarn test:unit:ods:sqlserver:db && yarn test:unit:ods:sqlserver:non-db",
-    "test:unit:ods:sqlserver": "cross-env NODE_OPTIONS=--max-old-space-size=4096 ts-node packages/metaed-plugin-edfi-ods-sqlserver/test/database/InitializeOdsIntegrationTestDatabase.ts && yarn jest packages/metaed-plugin-edfi-ods-sqlserver -i",
+    "test:unit:ods:sqlserver:all": "npm run test:unit:ods:sqlserver && npm run test:unit:ods:sqlserver:db && npm run test:unit:ods:sqlserver:non-db",
+    "test:unit:ods:sqlserver": "cross-env NODE_OPTIONS=--max-old-space-size=4096 ts-node packages/metaed-plugin-edfi-ods-sqlserver/test/database/InitializeOdsIntegrationTestDatabase.ts && npx jest packages/metaed-plugin-edfi-ods-sqlserver -i",
     "test:unit:ods:sqlserver:db": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest packages/metaed-plugin-edfi-ods-sqlserver/test/database -i",
     "test:unit:ods:sqlserver:non-db": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest \"packages/metaed-plugin-edfi-ods-sqlserver/test/(enhancer|generator|integration|diminisher)\"",
     "test:unit:odsapi": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest packages/metaed-plugin-edfi-odsapi",
     "test:unit:everything-else": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest \"packages/(?!metaed-plugin-edfi-ods|metaed-plugin-edfi-unified)\"",
     "test:unit:debug": "node --inspect-brk ./node_modules/.bin/jest --runInBand",
-    "test:atom": "yarn workspace atom-metaed test",
-    "test:code-duplication": "yarn jsinspect -t 50 --ignore \"test|gen|dist\" ./packages",
-    "version": "yarn install --no-immutable && git stage yarn.lock"
-  },
-  "packageManager": "yarn@3.1.1"
+    "test:code-duplication": "npx jsinspect -t 50 --ignore \"test|gen|dist\" ./packages",
+    "version": "npm install && git stage package-lock.json"
+  }
 }

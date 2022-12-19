@@ -135,12 +135,12 @@ module.exports = class extends Generator {
         'typescript-eslint-parser': '^21.0.2',
       },
       scripts: {
-        test: 'yarn test:lint && yarn test:unit',
-        'test:lint': 'yarn test:ts && yarn test:eslint',
+        test: 'npm run test:lint && npm run test:unit',
+        'test:lint': 'npm run test:ts && npm run test:eslint',
         'test:eslint': 'eslint --ext .js,.ts .',
         'test:ts': 'tsc -p . --noEmit',
-        'test:unit': 'yarn build:clean && yarn jest .',
-        build: 'yarn build:clean && yarn build:copy-non-ts && yarn build:dist',
+        'test:unit': 'npm run build:clean && npx jest .',
+        build: 'npm run build:clean && npm run build:copy-non-ts && npm run build:dist',
         'build:clean': 'rimraf dist',
         'build:dist': 'tsc',
         'build:copy-non-ts': 'copyfiles -u 1 -e "**/*.ts" "src/**/*" dist --verbose',
@@ -214,7 +214,7 @@ module.exports = class extends Generator {
   end() {
     this.log(
       `Demonstrating ${chalk.yellow(
-        'yarn test',
+        'npm run test',
       )} script that runs Typescript type checking, ESLint, and Jest on plugin codebase.`,
     );
     this.spawnCommandSync('yarn', ['test']);
