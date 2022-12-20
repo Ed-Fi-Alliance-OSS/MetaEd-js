@@ -29,9 +29,6 @@
     "@edfi/metaed-plugin-edfi-ods-relational": "3.2.1-dev.2",
     "@edfi/metaed-plugin-edfi-unified-advanced": "3.2.1-dev.2"
   },
-  "devDependencies": {
-    "final-fs": "^1.6.1"
-  },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
     "build:clean": "rimraf dist",

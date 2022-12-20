@@ -1,4 +1,5 @@
-import ffs from 'final-fs';
+import fs from 'node:fs';
+import klawSync from 'klaw-sync';
 import path from 'path';
 import winston from 'winston';
 import { createMetaEdFile } from './MetaEdFile';
@@ -44,9 +45,9 @@ export function loadFiles(state: State): boolean {
     };
 
     try {
-      const filenames: string[] = ffs
-        .readdirRecursiveSync(inputDirectory.path, true, inputDirectory.path)
-        .filter((filename) => filename.endsWith('.metaed'));
+      const filenames: string[] = klawSync(inputDirectory.path, {
+        filter: (item) => ['.metaed', '.metaEd', '.MetaEd', '.METAED'].includes(path.extname(item.path)),
+      }).map((klawObject) => klawObject.path);
 
       if (filenames.length > 0) {
         filenamesFoundInDirectories = true;
@@ -55,7 +56,7 @@ export function loadFiles(state: State): boolean {
       const filenamesToLoad: string[] = filenames.filter((filename) => !state.filePathsToExclude.has(filename));
 
       filenamesToLoad.forEach((filename) => {
-        const contents = ffs.readFileSync(filename, 'utf-8');
+        const contents = fs.readFileSync(filename, 'utf-8');
         const metaEdFile = createMetaEdFile(path.dirname(filename), path.basename(filename), contents);
         fileSet.files.push(metaEdFile);
       });

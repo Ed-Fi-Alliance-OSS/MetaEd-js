@@ -31,6 +31,7 @@
     "antlr",
     "autosave",
     "changequery",
+    "changeversion",
     "copyfiles",
     "createdbjs",
     "diminisher",

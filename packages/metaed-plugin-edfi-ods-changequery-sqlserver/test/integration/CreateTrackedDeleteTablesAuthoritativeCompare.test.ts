@@ -1,6 +1,6 @@
+import { promises as fs } from 'node:fs';
 import * as R from 'ramda';
 import path from 'path';
-import ffs from 'final-fs';
 import { exec } from 'child_process';
 import { GeneratedOutput, State, GeneratorResult } from '@edfi/metaed-core';
 import {
@@ -19,7 +19,6 @@ import {
 } from '@edfi/metaed-core';
 import { PLUGIN_NAME } from '../../src/PluginHelper';
 
-jest.unmock('final-fs');
 jest.setTimeout(40000);
 
 describe('when generating change event scripts and comparing to ODS/API 3.1 authoritative artifacts', (): void => {
@@ -106,7 +105,7 @@ describe('when generating change event scripts and comparing to ODS/API 3.1 auth
         .generatedOutput,
     );
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {
@@ -217,12 +216,8 @@ describe('when generating change event scripts with simple extensions and compar
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
-    await ffs.writeFile(
-      path.resolve(artifactPath, generatedExtensionFilename),
-      generatedExtensionOutput.resultString,
-      'utf-8',
-    );
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
   });
 
   it('should have no core file differences', async () => {
@@ -332,7 +327,7 @@ describe('when generating change event scripts and comparing to ODS/API 3.4 auth
         .generatedOutput,
     );
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {
@@ -443,12 +438,8 @@ describe('when generating change event scripts with simple extensions and compar
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
-    await ffs.writeFile(
-      path.resolve(artifactPath, generatedExtensionFilename),
-      generatedExtensionOutput.resultString,
-      'utf-8',
-    );
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
   });
 
   it('should have no core file differences', async () => {
@@ -558,7 +549,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
         .generatedOutput,
     );
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {
@@ -669,12 +660,8 @@ describe('when generating change event scripts with simple extensions and compar
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
-    await ffs.writeFile(
-      path.resolve(artifactPath, generatedExtensionFilename),
-      generatedExtensionOutput.resultString,
-      'utf-8',
-    );
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
   });
 
   it('should have no core file differences', async () => {
@@ -785,7 +772,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
         .generatedOutput,
     );
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {
@@ -897,12 +884,8 @@ describe('when generating change event scripts with simple extensions and compar
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
-    await ffs.writeFile(
-      path.resolve(artifactPath, generatedExtensionFilename),
-      generatedExtensionOutput.resultString,
-      'utf-8',
-    );
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
   });
 
   it('should have no core file differences', async () => {
@@ -1024,12 +1007,8 @@ describe('when generating change event scripts with simple extensions and compar
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
-    await ffs.writeFile(
-      path.resolve(artifactPath, generatedExtensionFilename),
-      generatedExtensionOutput.resultString,
-      'utf-8',
-    );
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
   });
 
   it('should have no core file differences', async () => {

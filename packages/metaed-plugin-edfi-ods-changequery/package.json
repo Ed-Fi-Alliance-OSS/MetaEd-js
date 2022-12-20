@@ -34,9 +34,6 @@
     "ramda": "^0.28.0",
     "winston": "3.8.2"
   },
-  "devDependencies": {
-    "final-fs": "^1.6.1"
-  },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
     "build:clean": "rimraf dist",

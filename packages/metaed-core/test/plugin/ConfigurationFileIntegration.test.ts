@@ -17,7 +17,8 @@ import { PluginEnvironment } from '../../src/plugin/PluginEnvironment';
 import { ConfigurationSchema } from '../../src/plugin/ConfigurationSchema';
 import { newMetaEdPlugin } from '../../src/plugin/MetaEdPlugin';
 
-jest.unmock('final-fs');
+jest.unmock('node:fs');
+jest.unmock('klaw-sync');
 jest.setTimeout(40000);
 
 describe('when loading a project with two invalid plugin configuration files', (): void => {

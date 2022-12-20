@@ -14,7 +14,6 @@ import {
   buildMetaEd,
 } from '@edfi/metaed-core';
 
-jest.unmock('final-fs');
 jest.setTimeout(100000);
 
 describe('when generating api model and comparing it to data standard 3.1 authoritative artifacts', (): void => {

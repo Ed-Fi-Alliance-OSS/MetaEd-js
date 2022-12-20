@@ -8,7 +8,6 @@ import {
 } from '@edfi/metaed-core';
 import { State } from '@edfi/metaed-core';
 
-jest.unmock('final-fs');
 jest.setTimeout(100000);
 
 const metaEdConfiguration = {

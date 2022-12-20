@@ -7,7 +7,8 @@ import { State } from '../../src/State';
 import { CommonProperty } from '../../src/model/property/CommonProperty';
 import { Namespace } from '../../src/model/Namespace';
 
-jest.unmock('final-fs');
+jest.unmock('node:fs');
+jest.unmock('klaw-sync');
 jest.setTimeout(30000);
 
 const metaEdConfiguration = {

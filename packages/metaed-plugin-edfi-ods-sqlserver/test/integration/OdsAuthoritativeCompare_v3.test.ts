@@ -1,6 +1,6 @@
+import { promises as fs } from 'node:fs';
 import * as R from 'ramda';
 import path from 'path';
-import ffs from 'final-fs';
 import { exec } from 'child_process';
 import {
   GeneratedOutput,
@@ -25,7 +25,6 @@ import {
 import { Table, tableEntities, rowEntities } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { orderRows } from '../../src/enhancer/AddSchemaContainerEnhancer';
 
-jest.unmock('final-fs');
 jest.setTimeout(40000);
 
 describe('when generating ods and comparing it to data standard 3.0 authoritative artifacts', (): void => {
@@ -132,7 +131,7 @@ describe('when generating ods and comparing it to data standard 3.0 authoritativ
     authoritativeCoreOds = `${artifactPath}/${coreFileBaseName}-Authoritative.sql`;
 
     expect(coreResult).toBeDefined();
-    await ffs.writeFile(generatedCoreOds, coreResult.resultString, 'utf-8');
+    await fs.writeFile(generatedCoreOds, coreResult.resultString, 'utf-8');
   });
 
   it('should have correct table order', (): void => {
@@ -235,8 +234,8 @@ describe('when generating ods with simple extensions and comparing it to data st
     generatedExtensionOdsFilename = `${artifactPath}/Simple-${extensionFileBaseName}.sql`;
     authoritativeExtensionOdsFilename = `${artifactPath}/Simple-${extensionFileBaseName}-Authoritative.sql`;
 
-    await ffs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString, 'utf-8');
-    await ffs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString, 'utf-8');
+    await fs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString, 'utf-8');
+    await fs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString, 'utf-8');
   });
 
   it('should have core with no differences', async () => {
@@ -334,8 +333,8 @@ describe('when generating ods with student transcript extensions and comparing i
     generatedExtensionOdsFilename = `${artifactPath}/Transcript-${extensionFileBaseName}.sql`;
     authoritativeExtensionOdsFilename = `${artifactPath}/Transcript-${extensionFileBaseName}-Authoritative.sql`;
 
-    await ffs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString, 'utf-8');
-    await ffs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString, 'utf-8');
+    await fs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString, 'utf-8');
+    await fs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString, 'utf-8');
   });
 
   it('should have core with no differences', async () => {

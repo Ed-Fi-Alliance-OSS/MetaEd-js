@@ -16,7 +16,6 @@ import {
   walkBuilders,
 } from '@edfi/metaed-core';
 
-jest.unmock('final-fs');
 jest.setTimeout(100000);
 
 describe('when running enhancers and validators against DS 3.1 and a simple extension', (): void => {

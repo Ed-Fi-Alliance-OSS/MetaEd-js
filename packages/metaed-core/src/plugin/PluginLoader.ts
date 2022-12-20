@@ -1,4 +1,4 @@
-import fs from 'final-fs';
+import fs from 'node:fs';
 import path from 'path';
 import Topo from 'topo';
 import semver from 'semver';
@@ -25,7 +25,7 @@ function mainModuleResolver(directory: string, packageJson: any): string {
 function loadPluginManifest(directory: string): PluginManifest | null {
   let packageJson;
   try {
-    packageJson = JSON.parse(fs.readFileSync(path.join(directory, 'package.json')));
+    packageJson = JSON.parse(fs.readFileSync(path.join(directory, 'package.json')).toString('utf8'));
   } catch (err) {
     // ignore errors on file loading
     return null;

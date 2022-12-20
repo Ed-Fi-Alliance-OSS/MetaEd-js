@@ -36,7 +36,6 @@
   },
   "devDependencies": {
     "@edfi/ed-fi-model-2.0": "3.0.1",
-    "final-fs": "^1.6.1",
     "xpath": "^0.0.32"
   },
   "scripts": {

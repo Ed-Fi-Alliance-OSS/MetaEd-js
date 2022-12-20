@@ -1,4 +1,4 @@
-import ffs from 'final-fs';
+import fs from 'node:fs';
 import klawSync from 'klaw-sync';
 import path from 'path';
 import winston from 'winston';
@@ -12,12 +12,12 @@ function writeOutputFiles(result: GeneratorResult, outputDirectory: string) {
   result.generatedOutput.forEach((output) => {
     const folderName: string =
       output.namespace != null && output.namespace !== '' ? `${output.namespace}/${output.folderName}` : output.folderName;
-    if (!ffs.existsSync(`${outputDirectory}/${folderName}`))
-      ffs.mkdirRecursiveSync(`${outputDirectory}/${folderName}`, LINUX_USER_FULL_CONTROL);
+    if (!fs.existsSync(`${outputDirectory}/${folderName}`))
+      fs.mkdirSync(`${outputDirectory}/${folderName}`, { mode: LINUX_USER_FULL_CONTROL, recursive: true });
     if (output.resultString)
-      ffs.writeFileSync(`${outputDirectory}/${folderName}/${output.fileName}`, output.resultString, 'utf-8');
+      fs.writeFileSync(`${outputDirectory}/${folderName}/${output.fileName}`, output.resultString, 'utf-8');
     else if (output.resultStream)
-      ffs.writeFileSync(`${outputDirectory}/${folderName}/${output.fileName}`, output.resultStream);
+      fs.writeFileSync(`${outputDirectory}/${folderName}/${output.fileName}`, output.resultStream);
     else winston.debug(`No output stream or string for ${result.generatorName}`);
   });
 }
@@ -37,7 +37,7 @@ export function execute(state: State): boolean {
   winston.info(`- Artifact Directory: ${outputDirectory}`);
 
   try {
-    if (ffs.existsSync(outputDirectory)) {
+    if (fs.existsSync(outputDirectory)) {
       if (!outputDirectory.includes(METAED_OUTPUT)) {
         winston.error(
           `Unable to delete output directory at path "${outputDirectory}".  Output directory name must contain 'MetaEdOutput'.`,
@@ -45,17 +45,17 @@ export function execute(state: State): boolean {
         return false;
       }
 
-      const testForMetaEdFilePaths: string[] = klawSync(outputDirectory, {
+      const testForMetaEdFilePaths = klawSync(outputDirectory, {
         filter: (item) => ['.metaed', '.metaEd', '.MetaEd', '.METAED'].includes(path.extname(item.path)),
       });
       if (testForMetaEdFilePaths.length > 0) {
         winston.error(`WriteOutput: MetaEd files found in output location '${outputDirectory}'. Not writing files.`);
         return false;
       }
-      ffs.rmdirRecursiveSync(outputDirectory);
+      fs.rmdirSync(outputDirectory, { recursive: true });
     }
 
-    ffs.mkdirRecursiveSync(outputDirectory, LINUX_USER_FULL_CONTROL);
+    fs.mkdirSync(outputDirectory, { mode: LINUX_USER_FULL_CONTROL, recursive: true });
 
     // TODO: change this to use async/await
     state.generatorResults.forEach((result) => {

@@ -146,7 +146,7 @@
 		"build": "npm run build:clean && npm run build:copy-non-ts && npm run build:extension",
 		"build:clean": "rimraf extension",
 		"build:extension": "npm run build:extension:esbuild && npm run build:extension:vsce",
-		"build:extension:esbuild": "npx esbuild ./src/client/index.js --bundle --platform=node --external:vscode --format=cjs --outfile=extension/index.js",
+		"build:extension:esbuild": "npx esbuild ./src/client/index.js --bundle --platform=node --external:vscode --format=cjs --tree-shaking=false --outfile=extension/index.js",
 		"build:extension:vsce": "npx vsce package --allow-star-activation --allow-missing-repository --no-dependencies --out extension/vscode-metaed.vsix",
 		"build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" extension --verbose"
 	},

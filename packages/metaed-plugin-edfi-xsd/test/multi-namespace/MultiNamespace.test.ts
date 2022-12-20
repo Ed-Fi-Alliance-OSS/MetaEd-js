@@ -1,7 +1,6 @@
 import path from 'path';
 import { State, Namespace, executePipeline, newMetaEdConfiguration, newPipelineOptions, newState } from '@edfi/metaed-core';
 
-jest.unmock('final-fs');
 jest.setTimeout(30000);
 
 const metaEdConfiguration = {

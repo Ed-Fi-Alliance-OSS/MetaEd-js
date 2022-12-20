@@ -1,6 +1,6 @@
+import { promises as fs } from 'node:fs';
 import * as R from 'ramda';
 import path from 'path';
-import ffs from 'final-fs';
 import { exec } from 'child_process';
 import { GeneratedOutput, State } from '@edfi/metaed-core';
 import {
@@ -19,7 +19,6 @@ import {
 } from '@edfi/metaed-core';
 import { PLUGIN_NAME } from '../../src/PluginHelper';
 
-jest.unmock('final-fs');
 jest.setTimeout(40000);
 
 describe('when generating change event schema and comparing to ODS/API 3.1 authoritative artifacts', (): void => {
@@ -106,7 +105,7 @@ describe('when generating change event schema and comparing to ODS/API 3.1 autho
         .generatedOutput,
     );
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {
@@ -205,7 +204,7 @@ describe('when generating change event schema and comparing to ODS/API 5.0 autho
         .generatedOutput,
     );
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {
@@ -305,7 +304,7 @@ describe('when generating change event schema and comparing to ODS/API 5.0 autho
         .generatedOutput,
     );
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {

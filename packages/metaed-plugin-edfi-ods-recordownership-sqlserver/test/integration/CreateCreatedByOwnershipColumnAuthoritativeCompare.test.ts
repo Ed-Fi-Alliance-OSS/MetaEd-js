@@ -1,5 +1,5 @@
+import { promises as fs } from 'node:fs';
 import path from 'path';
-import ffs from 'final-fs';
 import { exec } from 'child_process';
 import { GeneratedOutput, State } from '@edfi/metaed-core';
 import {
@@ -17,7 +17,6 @@ import {
   walkBuilders,
 } from '@edfi/metaed-core';
 
-jest.unmock('final-fs');
 jest.setTimeout(40000);
 
 describe('when generating CreatedByOwnership columns and comparing to ODS/API 3.3 authoritative artifacts', (): void => {
@@ -106,7 +105,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 3.
       (x) => x.generatorName === 'edfiOdsRecordOwnershipSqlServer.AddCreatedByOwnershipColumnForTableGenerator',
     )[0].generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {
@@ -207,7 +206,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
       (x) => x.generatorName === 'edfiOdsRecordOwnershipSqlServer.AddCreatedByOwnershipColumnForTableGenerator',
     )[0].generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {
@@ -309,7 +308,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
       (x) => x.generatorName === 'edfiOdsRecordOwnershipSqlServer.AddCreatedByOwnershipColumnForTableGenerator',
     )[0].generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {

@@ -41,8 +41,7 @@
     "@edfi/ed-fi-model-3.0": "3.0.1",
     "@edfi/ed-fi-model-3.2a": "3.0.1",
     "@edfi/ed-fi-model-3.3b": "3.0.1",
-    "@edfi/ed-fi-model-4.0a": "3.0.3",
-    "final-fs": "^1.6.1"
+    "@edfi/ed-fi-model-4.0a": "3.0.3"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",

@@ -1,6 +1,6 @@
+import { promises as fs } from 'node:fs';
 import * as R from 'ramda';
 import path from 'path';
-import ffs from 'final-fs';
 import { exec } from 'child_process';
 import { GeneratedOutput, State, GeneratorResult } from '@edfi/metaed-core';
 import {
@@ -18,7 +18,6 @@ import {
   walkBuilders,
 } from '@edfi/metaed-core';
 
-jest.unmock('final-fs');
 jest.setTimeout(40000);
 
 describe('when generating api model and comparing it to data standard 3.1 authoritative artifacts', (): void => {
@@ -76,7 +75,7 @@ describe('when generating api model and comparing it to data standard 3.1 author
       R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator')).generatedOutput,
     );
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {
@@ -146,7 +145,7 @@ describe('when generating api model targeting tech version 3.1.1 and comparing i
       R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator')).generatedOutput,
     );
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {
@@ -216,7 +215,7 @@ describe('when generating api model and comparing it to data standard 3.0 author
       R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator')).generatedOutput,
     );
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {
@@ -299,12 +298,8 @@ describe('when generating api model with simple extensions and comparing it to d
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
-    await ffs.writeFile(
-      path.resolve(artifactPath, generatedExtensionFilename),
-      generatedExtensionOutput.resultString,
-      'utf-8',
-    );
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
   });
 
   it('should have no core file differences', async () => {
@@ -398,13 +393,8 @@ describe('when generating api model with student transcript extensions and compa
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
-
-    await ffs.writeFile(
-      path.resolve(artifactPath, generatedExtensionFilename),
-      generatedExtensionOutput.resultString,
-      'utf-8',
-    );
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
   });
 
   it('should have no core file differences', async () => {
@@ -498,12 +488,8 @@ describe('when generating api model with simple type merge extensions and compar
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
-    await ffs.writeFile(
-      path.resolve(artifactPath, generatedExtensionFilename),
-      generatedExtensionOutput.resultString,
-      'utf-8',
-    );
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
   });
 
   it('should have no core file differences', async () => {
@@ -585,7 +571,7 @@ describe('when generating api model targeting tech version 3.3 and comparing it 
       R.head(state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator')).generatedOutput,
     );
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
   });
 
   it('should have no differences', async () => {
@@ -669,12 +655,8 @@ describe('when generating api model targeting tech version 3.4 with simple exten
 
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
-    await ffs.writeFile(
-      path.resolve(artifactPath, generatedExtensionFilename),
-      generatedExtensionOutput.resultString,
-      'utf-8',
-    );
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
   });
 
   it('should have no core file differences', async () => {
@@ -758,7 +740,7 @@ describe('when generating api model targeting tech version 5.2 with comparing it
 
     [generatedCoreOutput] = generatorResult.generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
   });
 
   it('should have no core file differences', async () => {
@@ -831,7 +813,7 @@ describe('when generating api model targeting tech version 5.3 with comparing it
 
     [generatedCoreOutput] = generatorResult.generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
   });
 
   it('should have no core file differences', async () => {
@@ -904,7 +886,7 @@ describe('when generating api model targeting tech version 7.0 with comparing it
 
     [generatedCoreOutput] = generatorResult.generatedOutput;
 
-    await ffs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString, 'utf-8');
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
   });
 
   it('should have no core file differences', async () => {

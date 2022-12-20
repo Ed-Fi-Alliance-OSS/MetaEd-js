@@ -1,4 +1,5 @@
-import ffs from 'final-fs';
+import fs from 'node:fs';
+import util from 'node:util';
 import path from 'path';
 import cosmic from 'cosmiconfig';
 import { State } from '../State';
@@ -10,6 +11,8 @@ import { JoiSchema, JoiResult, JoiErrorDetail } from './JoiTypes';
 import { ConfigurationSchema, ConfigurationRule } from './ConfigurationSchema';
 import { configurationStructureSchema } from './ConfigurationSchema';
 import { annotateModelWithConfiguration } from './AnnotateModelWithConfiguration';
+
+const existsAsync = util.promisify(fs.exists);
 
 interface CosmicResult {
   config?: any;
@@ -104,7 +107,7 @@ export async function loadPluginConfiguration(state: State): Promise<void> {
       const pluginShortName: string = pluginManifest.shortName;
       const expectedConfigPath = path.join(searchDirectory, `${pluginShortName}.config.json`);
       try {
-        const fileExists = await ffs.exists(expectedConfigPath);
+        const fileExists = await existsAsync(expectedConfigPath);
         if (fileExists) {
           const explorer = cosmic(pluginShortName);
           const cosmicResult: CosmicResult = await explorer.load(expectedConfigPath);

@@ -1,5 +1,5 @@
+import { promises as fs } from 'node:fs';
 import path from 'path';
-import ffs from 'final-fs';
 import { exec } from 'child_process';
 import { GeneratedOutput, State, GeneratorResult } from '@edfi/metaed-core';
 import {
@@ -17,7 +17,6 @@ import {
   walkBuilders,
 } from '@edfi/metaed-core';
 
-jest.unmock('final-fs');
 jest.setTimeout(40000);
 
 describe('when generating ods tables file with simple merges for ODS/API 5.0', (): void => {
@@ -94,8 +93,8 @@ describe('when generating ods tables file with simple merges for ODS/API 5.0', (
     generatedExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}.sql`;
     authoritativeExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}-Authoritative.sql`;
 
-    await ffs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString, 'utf-8');
-    await ffs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString, 'utf-8');
+    await fs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString);
+    await fs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString);
   });
 
   it('should have core with no differences', async () => {
@@ -193,8 +192,8 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
     generatedExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}.sql`;
     authoritativeExtensionOdsFilename = `${artifactPath}/SimpleType-${extensionFileBaseName}-Authoritative.sql`;
 
-    await ffs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString, 'utf-8');
-    await ffs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString, 'utf-8');
+    await fs.writeFile(generatedCoreOdsFilename, generatedCoreOutput.resultString);
+    await fs.writeFile(generatedExtensionOdsFilename, generatedExtensionOutput.resultString);
   });
 
   it('should have core with no differences', async () => {
