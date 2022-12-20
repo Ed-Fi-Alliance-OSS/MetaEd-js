@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { getAllEntitiesOfType, asTopLevelEntity } from '@edfi/metaed-core';
 import { MetaEdEnvironment, ModelBase, EnhancerResult, TopLevelEntity, Namespace } from '@edfi/metaed-core';
 import { Table, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';

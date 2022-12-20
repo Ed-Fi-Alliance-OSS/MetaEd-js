@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import R from 'ramda';
+import * as R from 'ramda';
 import winston from 'winston';
 import {
   orderByProp,

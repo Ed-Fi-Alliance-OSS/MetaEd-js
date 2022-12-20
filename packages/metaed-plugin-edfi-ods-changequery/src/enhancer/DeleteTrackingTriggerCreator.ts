@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { MetaEdEnvironment, PluginEnvironment, Namespace } from '@edfi/metaed-core';
 import { Table, ForeignKey } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { DeleteTrackingTrigger } from '../model/DeleteTrackingTrigger';

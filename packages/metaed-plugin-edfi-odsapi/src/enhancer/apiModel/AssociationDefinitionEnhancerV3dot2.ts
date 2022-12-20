@@ -1,7 +1,7 @@
 import { EnhancerResult, MetaEdEnvironment, Namespace, PluginEnvironment, SemVer } from '@edfi/metaed-core';
 import { versionSatisfies } from '@edfi/metaed-core';
 import { ForeignKey, Table, tableEntities } from '@edfi/metaed-plugin-edfi-ods-relational';
-import R from 'ramda';
+import * as R from 'ramda';
 import { AssociationDefinition } from '../../model/apiModel/AssociationDefinition';
 import { newAssociationDefinition } from '../../model/apiModel/AssociationDefinition';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';

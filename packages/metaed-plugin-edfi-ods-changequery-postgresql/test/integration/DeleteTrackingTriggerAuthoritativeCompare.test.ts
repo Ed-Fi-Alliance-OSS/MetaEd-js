@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import path from 'path';
 import ffs from 'final-fs';
 import { exec } from 'child_process';

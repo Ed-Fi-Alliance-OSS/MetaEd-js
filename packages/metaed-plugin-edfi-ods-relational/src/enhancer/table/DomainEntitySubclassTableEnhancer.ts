@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { asTopLevelEntity, getEntitiesOfTypeForNamespaces } from '@edfi/metaed-core';
 import { EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, TopLevelEntity } from '@edfi/metaed-core';
 import { addForeignKey } from '../../model/database/Table';

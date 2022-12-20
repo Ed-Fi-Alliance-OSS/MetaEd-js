@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { newMetaEdEnvironment, newInlineCommonProperty, newInlineCommon, newNamespace } from '@edfi/metaed-core';
 import { MetaEdEnvironment, InlineCommonProperty, Common, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/property/InlineCommonReferenceEnhancer';

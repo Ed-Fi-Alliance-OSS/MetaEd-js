@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import fs from 'fs-extra';
 import path from 'path';
 import winston from 'winston';

@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import xmlParser from 'xml-js';
 import { GeneratorResult, newMetaEdEnvironment, newNamespace, newPluginEnvironment } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Namespace, GeneratedOutput } from '@edfi/metaed-core';

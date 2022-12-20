@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { getAllEntitiesOfType } from '@edfi/metaed-core';
 import { EnhancerResult, EnumerationItem, MetaEdEnvironment, ModelBase } from '@edfi/metaed-core';
 import { escapeSqlSingleQuote } from '../shared/Utility';

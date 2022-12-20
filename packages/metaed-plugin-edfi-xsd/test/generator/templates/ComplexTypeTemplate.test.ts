@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import xmlParser from 'xml-js';
 import { createComplexType, createAttribute, createElementComplexTypeItem } from '../GeneratorTestBase';
 import {

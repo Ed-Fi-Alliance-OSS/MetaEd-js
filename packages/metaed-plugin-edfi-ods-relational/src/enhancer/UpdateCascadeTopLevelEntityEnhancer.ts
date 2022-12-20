@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { asReferentialProperty, getAllTopLevelEntitiesForNamespaces, getAllEntitiesOfType } from '@edfi/metaed-core';
 import { EnhancerResult, EntityProperty, MetaEdEnvironment, TopLevelEntity } from '@edfi/metaed-core';
 import { isOdsReferenceProperty } from '../model/property/ReferenceProperty';

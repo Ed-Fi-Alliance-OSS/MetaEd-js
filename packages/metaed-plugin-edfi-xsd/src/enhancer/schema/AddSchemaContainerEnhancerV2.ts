@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { MetaEdEnvironment, EnhancerResult, TopLevelEntity, SemVer } from '@edfi/metaed-core';
 import { getAllEntitiesOfType, orderByProp, V2Only, versionSatisfies } from '@edfi/metaed-core';
 import { TopLevelEntityEdfiXsd } from '../../model/TopLevelEntity';

@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import xmlParser from 'xml-js';
 import { createAnnotation } from '../GeneratorTestBase';
 import { nextSecondName, nextHeadText, nextHeadName, nextSecond, nextHead, nextLength } from './TemplateTestHelper';

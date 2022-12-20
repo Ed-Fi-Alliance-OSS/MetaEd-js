@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { EntityProperty, MergeDirective } from '@edfi/metaed-core';
 import { isSharedProperty, asReferentialProperty } from '@edfi/metaed-core';
 import { addColumns, addForeignKey, newTable, newTableExistenceReason } from '../../model/database/Table';

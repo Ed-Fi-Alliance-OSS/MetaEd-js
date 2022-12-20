@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { String as sugar } from 'sugar';
 import { asTopLevelEntity, getEntitiesOfTypeForNamespaces, newIntegerProperty, versionSatisfies } from '@edfi/metaed-core';
 import {

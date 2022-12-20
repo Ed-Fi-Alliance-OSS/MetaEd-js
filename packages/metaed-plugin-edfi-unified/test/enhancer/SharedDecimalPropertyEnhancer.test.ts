@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { MetaEdEnvironment } from '@edfi/metaed-core';
 import { addProperty, newMetaEdEnvironment, newSharedDecimal, newSharedDecimalProperty } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/SharedDecimalPropertyEnhancer';

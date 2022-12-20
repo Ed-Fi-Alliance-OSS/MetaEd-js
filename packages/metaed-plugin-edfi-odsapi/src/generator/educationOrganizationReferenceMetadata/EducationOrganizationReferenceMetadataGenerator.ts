@@ -1,5 +1,5 @@
 import fs from 'fs';
-import R from 'ramda';
+import * as R from 'ramda';
 import path from 'path';
 import handlebars from 'handlebars';
 import { orderByProp, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';

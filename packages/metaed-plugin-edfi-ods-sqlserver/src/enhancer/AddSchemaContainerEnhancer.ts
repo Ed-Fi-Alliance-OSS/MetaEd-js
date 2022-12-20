@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { orderByPath, orderByProp, MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core';
 import { tableEntities, rowEntities, EnumerationRowBase, ForeignKey, Table } from '@edfi/metaed-plugin-edfi-ods-relational';
 

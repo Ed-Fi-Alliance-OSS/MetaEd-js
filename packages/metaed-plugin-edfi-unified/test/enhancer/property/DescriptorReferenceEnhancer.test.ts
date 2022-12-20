@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { newMetaEdEnvironment, newDescriptorProperty, newDescriptor, newNamespace } from '@edfi/metaed-core';
 import { MetaEdEnvironment, DescriptorProperty, Descriptor, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/property/DescriptorReferenceEnhancer';

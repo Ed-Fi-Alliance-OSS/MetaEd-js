@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { EntityProperty, TopLevelEntity } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';

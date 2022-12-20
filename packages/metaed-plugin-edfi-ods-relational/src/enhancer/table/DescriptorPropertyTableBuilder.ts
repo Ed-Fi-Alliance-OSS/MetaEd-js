@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { EntityProperty, ReferentialProperty } from '@edfi/metaed-core';
 import { asReferentialProperty } from '@edfi/metaed-core';
 import { addColumns, addForeignKey, newTable, newTableExistenceReason } from '../../model/database/Table';

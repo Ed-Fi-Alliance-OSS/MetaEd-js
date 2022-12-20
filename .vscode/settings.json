@@ -38,11 +38,13 @@
     "Dlanguage",
     "dropdbjs",
     "edfi",
+    "esbuild",
     "jsinspect",
     "keymaps",
     "klaw",
     "metaed",
     "odsapi",
+    "outfile",
     "packagejson",
     "pgtools",
     "preid",
@@ -53,6 +55,7 @@
     "sqlserver",
     "teamcity",
     "unmock",
+    "vsix",
     "yarnpkg"
   ],
   "editor.codeActionsOnSave": {

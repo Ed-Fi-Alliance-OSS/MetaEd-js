@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { ReferentialProperty, MetaEdEnvironment, TopLevelEntity, PropertyType, Namespace } from '@edfi/metaed-core';
 import { EdFiXsdEntityRepository } from '@edfi/metaed-plugin-edfi-xsd';
 import { edfiXsdRepositoryForNamespace } from '@edfi/metaed-plugin-edfi-xsd';

@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import handlebars from 'handlebars';
 import { html as beautify } from 'js-beautify';
 import fs from 'fs';

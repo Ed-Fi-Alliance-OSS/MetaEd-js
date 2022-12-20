@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { EnhancerResult, EntityProperty, MetaEdEnvironment, Namespace, PluginEnvironment, SemVer } from '@edfi/metaed-core';
 import { isSharedProperty, versionSatisfies } from '@edfi/metaed-core';
 import { Column, Table } from '@edfi/metaed-plugin-edfi-ods-relational';

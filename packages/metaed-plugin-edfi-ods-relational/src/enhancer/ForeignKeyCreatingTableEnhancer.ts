@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { asReferentialProperty } from '@edfi/metaed-core';
 import { EnhancerResult, EntityProperty, MergeDirective, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { getAllColumns, getPrimaryKeys, addForeignKey } from '../model/database/Table';

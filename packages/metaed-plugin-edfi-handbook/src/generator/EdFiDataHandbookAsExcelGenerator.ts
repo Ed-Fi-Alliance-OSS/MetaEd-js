@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { orderByProp } from '@edfi/metaed-core';
 import { MetaEdEnvironment, GeneratedOutput, GeneratorResult, Namespace } from '@edfi/metaed-core';
 

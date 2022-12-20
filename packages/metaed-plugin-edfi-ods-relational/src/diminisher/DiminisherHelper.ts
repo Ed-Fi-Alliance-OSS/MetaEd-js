@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { Column, newColumnNameComponent } from '../model/database/Column';
 import { ColumnPair } from '../model/database/ColumnPair';
 import { ForeignKey } from '../model/database/ForeignKey';

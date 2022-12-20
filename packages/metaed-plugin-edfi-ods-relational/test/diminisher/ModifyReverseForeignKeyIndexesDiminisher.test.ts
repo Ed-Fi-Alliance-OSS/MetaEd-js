@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/diminisher/ModifyReverseForeignKeyIndexesDiminisher';

@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { SourceMap, ValidationFailure, ModelBase, Namespace } from '@edfi/metaed-core';
 import {
   findReferencedProperty,

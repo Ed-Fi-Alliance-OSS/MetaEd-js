@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import deepmerge from 'deepmerge';
 import { getEntitiesOfTypeForNamespaces } from '../model/EntityRepository';
 import { ModelBase } from '../model/ModelBase';

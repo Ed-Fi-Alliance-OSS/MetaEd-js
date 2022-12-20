@@ -1,7 +1,7 @@
 import fs from 'fs';
 import handlebars from 'handlebars';
 import path from 'path';
-import R from 'ramda';
+import * as R from 'ramda';
 import { ChangeQueryTemplates } from '@edfi/metaed-plugin-edfi-ods-changequery';
 
 export const databaseSpecificFolderName: string = 'PostgreSQL';

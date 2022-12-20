@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 
 import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
 import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';

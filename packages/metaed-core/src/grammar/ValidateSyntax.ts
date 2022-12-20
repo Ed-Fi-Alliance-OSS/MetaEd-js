@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import winston from 'winston';
 import { State } from '../State';
 import { ValidationFailure } from '../validator/ValidationFailure';

@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { MetaEdEnvironment, Namespace, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import {
   initializeEdFiOdsRelationalEntityRepository,

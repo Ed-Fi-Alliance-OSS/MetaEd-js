@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { DomainEntity, Common, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { newDomainEntity, newCommon, getEntityFromNamespace, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import { ComplexType } from '../../src/model/schema/ComplexType';

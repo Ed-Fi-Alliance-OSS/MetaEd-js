@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 
 export const nameOf = R.lensProp('name');
 export const textOf = R.lensProp('text');

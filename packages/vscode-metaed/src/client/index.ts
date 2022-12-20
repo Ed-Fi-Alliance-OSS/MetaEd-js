@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import { commands, workspace, window, ExtensionContext, TextDocumentChangeEvent, TextEditor, TextDocument } from 'vscode';
-import R from 'ramda';
+import * as R from 'ramda';
 import path from 'path';
 import debounce from 'p-debounce';
 import { MetaEdConfiguration, newMetaEdConfiguration } from '@edfi/metaed-core';

@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { addProperty, newMetaEdEnvironment, newSharedString, newSharedStringProperty } from '@edfi/metaed-core';
 import { MetaEdEnvironment } from '@edfi/metaed-core';
 import { enhance } from '../../src/enhancer/SharedStringPropertyEnhancer';

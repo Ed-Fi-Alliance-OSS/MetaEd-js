@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import winston from 'winston';
 import { orderByProp, asCommonProperty, NoNamespace, DomainEntityProperty, AssociationProperty } from '@edfi/metaed-core';
 import { EntityProperty, PropertyType, Namespace } from '@edfi/metaed-core';

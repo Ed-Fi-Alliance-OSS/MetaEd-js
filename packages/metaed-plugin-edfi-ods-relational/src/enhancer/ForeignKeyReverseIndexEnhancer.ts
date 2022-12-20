@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { getPrimaryKeys } from '../model/database/Table';
 import { getParentTableColumnIds } from '../model/database/ForeignKey';

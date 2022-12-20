@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { asReferentialProperty } from '@edfi/metaed-core';
 import { EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
 import {

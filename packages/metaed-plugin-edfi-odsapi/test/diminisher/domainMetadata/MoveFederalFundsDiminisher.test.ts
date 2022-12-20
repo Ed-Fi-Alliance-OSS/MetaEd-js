@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { newMetaEdEnvironment, newNamespace, NoNamespace } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/diminisher/domainMetadata/MoveFederalFundsDiminisher';

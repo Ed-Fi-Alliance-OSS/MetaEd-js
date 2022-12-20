@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { Package } from 'atom';
-import R from 'ramda';
+import * as R from 'ramda';
 import { $ } from 'atom-space-pen-views';
 import { isCoreMetaEdFile } from './MakeCoreTabsReadOnly';
 

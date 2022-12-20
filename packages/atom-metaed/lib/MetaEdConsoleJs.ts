@@ -3,7 +3,7 @@
 
 // eslint-disable-next-line import/no-unresolved
 import { Notification, TextEditor } from 'atom';
-import R from 'ramda';
+import * as R from 'ramda';
 import fs from 'fs-extra';
 import klawSync from 'klaw-sync';
 import path from 'path';

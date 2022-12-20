@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { getEntityFromNamespace, versionSatisfies } from '@edfi/metaed-core';
 import { EnhancerResult, Namespace, MetaEdEnvironment, ModelBase, ModelType } from '@edfi/metaed-core';
 import { ComplexType } from '../model/schema/ComplexType';

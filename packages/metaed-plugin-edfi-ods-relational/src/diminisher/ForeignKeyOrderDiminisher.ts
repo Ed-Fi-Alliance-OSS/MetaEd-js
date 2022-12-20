@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { versionSatisfies } from '@edfi/metaed-core';
 import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { tableEntities } from '../enhancer/EnhancerHelper';

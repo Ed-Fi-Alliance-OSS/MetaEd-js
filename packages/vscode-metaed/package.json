@@ -17,7 +17,7 @@
 	"activationEvents": [
 		"*"
 	],
-	"main": "./dist/client/index.js",
+	"main": "./extension/index.js",
 	"contributes": {
 		"commands": [
 			{
@@ -143,15 +143,12 @@
 		}
 	},
 	"scripts": {
-		"build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
-		"build:clean": "rimraf dist",
-		"build:dist": "tsc",
-		"build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose",
-		"test": "node ./dist/test/runTest.js",
-		"package": "npm run build && npm run package:packagejson:backup && npm run package:packagejson:modify && vsce package --no-dependencies --no-git-tag-version --no-update-package-json --allow-star-activation --allow-missing-repository && npm run package:packagejson:restore",
-		"package:packagejson:backup": "cpy package.json ../vscode-metaed --rename=package.json.bak",
-		"package:packagejson:modify": "npm run replace '\"name\": \"@edfi/vscode-metaed\"' '\"name\": \"vscode-metaed\"' package.json",
-		"package:packagejson:restore": "move-file package.json.bak package.json"
+		"build": "npm run build:clean && npm run build:copy-non-ts && npm run build:extension",
+		"build:clean": "rimraf extension",
+		"build:extension": "npm run build:extension:esbuild && npm run build:extension:vsce",
+		"build:extension:esbuild": "npx esbuild ./src/client/index.js --bundle --platform=node --external:vscode --format=cjs --outfile=extension/index.js",
+		"build:extension:vsce": "npx vsce package --allow-star-activation --allow-missing-repository --no-dependencies --out extension/vscode-metaed.vsix",
+		"build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" extension --verbose"
 	},
 	"dependencies": {
 		"@edfi/ed-fi-model-3.0": "3.0.1",

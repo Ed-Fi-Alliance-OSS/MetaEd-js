@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { EnhancerResult, MetaEdEnvironment, ModelBase } from '@edfi/metaed-core';
 import { getAllEntitiesOfType, normalizeEnumerationSuffix } from '@edfi/metaed-core';
 import { enumerationRowCreator } from './EnumerationRowCreator';

@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { DomainEntity, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { newDomainEntity, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import { enhance } from '../../src/diminisher/IdentificationDocumentTableDiminisher';

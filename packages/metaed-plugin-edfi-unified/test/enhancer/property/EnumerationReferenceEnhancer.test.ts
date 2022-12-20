@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { newMetaEdEnvironment, newNamespace, newEnumerationProperty, newEnumeration } from '@edfi/metaed-core';
 import { MetaEdEnvironment, EnumerationProperty, Enumeration, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/property/EnumerationReferenceEnhancer';

@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { TextEditor } from 'atom';
-import R from 'ramda';
+import * as R from 'ramda';
 import path from 'path';
 import fs from 'fs-extra';
 import {

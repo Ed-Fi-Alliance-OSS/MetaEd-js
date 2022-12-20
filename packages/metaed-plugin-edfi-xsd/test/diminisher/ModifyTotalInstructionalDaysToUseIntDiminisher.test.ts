@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { DomainEntity, IntegerType, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import {
   addEntityForNamespace,

@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { MetaEdEnvironment, EnhancerResult, Association, ModelBase, Namespace } from '@edfi/metaed-core';
 import { versionSatisfies, V3OrGreater, getEntitiesOfType, asAssociation } from '@edfi/metaed-core';
 

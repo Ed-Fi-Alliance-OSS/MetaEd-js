@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 import { newMetaEdEnvironment, newNamespace, newChoiceProperty, newChoice } from '@edfi/metaed-core';
 import { MetaEdEnvironment, ChoiceProperty, Choice, Namespace } from '@edfi/metaed-core';
 import { enhance } from '../../../src/enhancer/property/ChoiceReferenceEnhancer';
