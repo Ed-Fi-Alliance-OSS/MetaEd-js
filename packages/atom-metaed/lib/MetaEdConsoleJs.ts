@@ -72,7 +72,7 @@ async function cleanUpMetaEdArtifacts(artifactDirectory: string, outputWindow: O
 
   try {
     if (await fs.exists(artifactDirectory)) {
-      const metaEdFilePaths: string[] = klawSync(artifactDirectory, {
+      const metaEdFilePaths = klawSync(artifactDirectory, {
         filter: (item) => ['.metaed', '.metaEd', '.MetaEd', '.METAED'].includes(path.extname(item.path)),
       });
       if (metaEdFilePaths.length > 0) {
