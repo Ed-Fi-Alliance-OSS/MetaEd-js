@@ -4,38 +4,107 @@ on:
   pull_request:
 
 jobs:
-  test:
-    name: Lint and Test
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+
+      - name: Setup Node
+        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # v3.5.1
+        with:
+          node-version: "16"
+          cache: "yarn"
+          registry-url: "https://www.myget.org/F/ed-fi/npm/"
+
+      - name: Node modules cache
+        id: modules-cache
+        uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 #v3.0.11
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        if: ${{ steps.modules-cache.outputs.cache-hit != 'true' }}
+        run: yarn install
+
+      - name: Linter
+        run: yarn test:lint
+
+  unit-tests:
+    name: Unit Test
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+
+      - name: Setup Node
+        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # v3.5.1
+        with:
+          node-version: "16"
+          cache: "yarn"
+          registry-url: "https://www.myget.org/F/ed-fi/npm/"
+
+      - name: Node modules cache
+        id: modules-cache
+        uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 #v3.0.11
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        if: ${{ steps.modules-cache.outputs.cache-hit != 'true' }}
+        run: yarn install
+
+      - name: Unit Tests
+        run: yarn test:unit:ci --ci  --config ./jest.ci-config.js
+        env:
+          JEST_JUNIT_OUTPUT_DIR: unit-tests
+
+      - name: Unit Test Report
+        uses: dorny/test-reporter@c9b3d0e2bd2a4e96aaf424dbaa31c46b42318226 #v1.6.0
+        if: success() || failure()
+        with:
+          name: Unit Test Results
+          path: "unit-tests/*.xml"
+          reporter: jest-junit
+
+  sql-server-tests:
+    name: SQL Server Tests
+    needs: lint
     runs-on: ubuntu-latest
     env:
       SA_PASSWORD: abcdefgh1!
     steps:
-      - name: Checkout code
-        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
+      - name: Checkout repository
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
 
-      - name: Set up Node
-        uses: actions/setup-node@17f8bd926464a1afa4c6a11669539e9c1ba77048 # v3.2.0
+      - name: Setup Node
+        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # v3.5.1
         with:
           node-version: "16"
-          check-latest: true
+          cache: "yarn"
           registry-url: "https://www.myget.org/F/ed-fi/npm/"
 
-      - name: Install
+      - name: Node modules cache
+        id: modules-cache
+        uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 #v3.0.11
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        if: ${{ steps.modules-cache.outputs.cache-hit != 'true' }}
         run: yarn install
 
-      - name: Lint
-        run: yarn test:lint
-
       - name: Start Docker for SQL Server
-        # Starting before unit tests to give plenty of spin-up time - unit tests do not depend on this
+        # Starting before unit tests to give plenty of spin-up time - unit tests do not depend on this. How to do it?
         run: |
           docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=${{ env.SA_PASSWORD }}' -e 'MSSQL_PID=Express' -p 1433:1433 \
             --name mssql -d mcr.microsoft.com/mssql/server:2019-latest
-
-      - name: Unit tests
-        run: yarn test:unit:ci --ci  --config ./jest.ci-config.js
-        env:
-          JEST_JUNIT_OUTPUT_DIR: unit-tests
 
       - name: Create SQL Server Testing Database
         run: |
@@ -50,6 +119,42 @@ jobs:
           MSSQL_TRUST_CERTIFICATE: "true" # This is required for successful auth to the docker SQL Server
           JEST_JUNIT_OUTPUT_DIR: sqlserver-tests
 
+      - name: SQLServer Test Report
+        uses: dorny/test-reporter@c9b3d0e2bd2a4e96aaf424dbaa31c46b42318226 #v1.6.0
+        if: success() || failure()
+        with:
+          name: SQLServer Test Results
+          path: "sqlserver-tests/*.xml"
+          reporter: jest-junit
+
+  postgres-tests:
+    name: PostgreSQL Tests
+    needs: lint
+    runs-on: ubuntu-latest
+    env:
+      SA_PASSWORD: abcdefgh1!
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+
+      - name: Setup Node
+        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # v3.5.1
+        with:
+          node-version: "16"
+          cache: "yarn"
+          registry-url: "https://www.myget.org/F/ed-fi/npm/"
+
+      - name: Node modules cache
+        id: modules-cache
+        uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 #v3.0.11
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        if: ${{ steps.modules-cache.outputs.cache-hit != 'true' }}
+        run: yarn install
+
       - name: Setup PostgreSQL for testing
         # Postgres on Ubuntu is installed locally but the service needs to be started. The default postgres
         # super user password is blank, so updating to what the unit tests expect, also creating the testing database
@@ -62,22 +167,6 @@ jobs:
         run: yarn test:unit:ods:postgresql:db --ci --config ./jest.ci-config.js
         env:
           JEST_JUNIT_OUTPUT_DIR: postgresql-tests
-
-      - name: Unit Test Report
-        uses: dorny/test-reporter@c9b3d0e2bd2a4e96aaf424dbaa31c46b42318226 #v1.6.0
-        if: success() || failure()
-        with:
-          name: Unit Test Results
-          path: "unit-tests/*.xml"
-          reporter: jest-junit
-
-      - name: SQLServer Test Report
-        uses: dorny/test-reporter@c9b3d0e2bd2a4e96aaf424dbaa31c46b42318226 #v1.6.0
-        if: success() || failure()
-        with:
-          name: SQLServer Test Results
-          path: "sqlserver-tests/*.xml"
-          reporter: jest-junit
 
       - name: PostgreSQL Test Report
         uses: dorny/test-reporter@c9b3d0e2bd2a4e96aaf424dbaa31c46b42318226 #v1.6.0
