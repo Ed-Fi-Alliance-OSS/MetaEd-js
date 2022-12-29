@@ -1,11 +1,10 @@
 import path from 'path';
-import winston from 'winston';
-// import semver from 'semver';
 import { scanDirectories, materializePlugin } from './PluginLoader';
 import { State } from '../State';
 import { PluginManifest } from './PluginManifest';
 import { NoMetaEdPlugin } from './MetaEdPlugin';
 import { newPluginEnvironment } from './PluginEnvironment';
+import { Logger } from '../Logger';
 
 const cachedPlugins: Map<string, PluginManifest[]> = new Map();
 
@@ -26,7 +25,7 @@ export function scanForPlugins(state: State): PluginManifest[] {
 
     if (pluginManifest.metaEdPlugin === NoMetaEdPlugin) {
       const message = `Could not load plugin ${pluginManifest.shortName}`;
-      winston.info(`  ${message}`);
+      Logger.info(`  ${message}`);
       state.pipelineFailure.push({ category: 'error', message });
       return;
     }
@@ -45,7 +44,7 @@ export function scanForPlugins(state: State): PluginManifest[] {
       // eslint-disable-line
       if (foundPlugins.find((plugin) => plugin.npmName === dependencyName) == null) {
         const message = `Plugin ${pluginManifest.shortName} requires a plugin named ${dependencyName} which was not found. Plugin not loaded.`;
-        winston.info(`  ${message}`);
+        Logger.info(`  ${message}`);
         state.pipelineFailure.push({ category: 'error', message });
         return;
       }
@@ -74,7 +73,7 @@ export function loadPlugins(state: State): void {
       ? state.metaEdConfiguration.pluginTechVersion[pluginManifest.shortName].targetTechnologyVersion
       : state.metaEdConfiguration.defaultPluginTechVersion;
 
-    winston.info(`- ${pluginManifest.shortName} version ${pluginManifest.version}, tech version ${targetTechnologyVersion}`);
+    Logger.info(`- ${pluginManifest.shortName} version ${pluginManifest.version}, tech version ${targetTechnologyVersion}`);
 
     state.metaEd.plugin.set(pluginManifest.shortName, {
       ...newPluginEnvironment(),

@@ -255,6 +255,7 @@ export { asTopLevelEntity, newTopLevelEntity } from './model/TopLevelEntity';
 export { normalizeDescriptorSuffix, normalizeEnumerationSuffix } from './Utility';
 export { isDataStandard, findDataStandardVersions } from './project/ProjectTypes';
 export { scanForProjects, overrideProjectNameAndNamespace } from './project/ProjectLoader';
+export { Logger } from './Logger';
 
 // for plugin testing
 export { MetaEdTextBuilder } from './grammar/MetaEdTextBuilder';

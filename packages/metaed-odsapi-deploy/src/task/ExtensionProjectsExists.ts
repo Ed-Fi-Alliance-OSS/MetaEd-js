@@ -1,8 +1,7 @@
-import { MetaEdConfiguration, versionSatisfies } from '@edfi/metaed-core';
+import { Logger, MetaEdConfiguration, versionSatisfies } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
 import Sugar from 'sugar';
-import winston from 'winston';
 
 const projectPaths: string[] = ['Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/'];
 
@@ -19,7 +18,7 @@ export function extensionProjectsExists(metaEdConfiguration: MetaEdConfiguration
       const resolvedPath = path.resolve(deployDirectory, Sugar.String.format(projectPath, { projectName }));
       if (fs.pathExistsSync(resolvedPath)) return;
 
-      winston.error(`Expected ${projectName} project but was not at path: ${resolvedPath}`);
+      Logger.error(`Expected ${projectName} project but was not at path: ${resolvedPath}`);
       result = false;
     });
   });

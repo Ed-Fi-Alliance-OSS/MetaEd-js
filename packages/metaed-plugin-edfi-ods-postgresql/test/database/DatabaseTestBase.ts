@@ -1,8 +1,7 @@
-import winston from 'winston';
 import { Client } from 'pg';
 import pgStructure, { Db } from 'pg-structure';
 
-import { MetaEdEnvironment } from '@edfi/metaed-core';
+import { Logger, MetaEdEnvironment } from '@edfi/metaed-core';
 import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
 import { initialize as initializeOdsRelationalPlugin } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { initialize as initializeOdsPostgresqlPlugin } from '../../index';
@@ -10,9 +9,6 @@ import { generate as odsGenerate } from '../../src/generator/OdsGenerator';
 import { generate as schemaGenerate } from '../../src/generator/SchemaGenerator';
 
 export const testDatabaseName = 'metaed_integration_tests';
-
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
-winston.level = 'info';
 
 let client: Client | null = null;
 
@@ -25,7 +21,7 @@ export const testDbDefinition = {
 };
 
 async function executeGeneratedSql(generatedSql: string): Promise<Db | null> {
-  winston.verbose(`[${testDatabaseName}] executeGeneratedSql`);
+  Logger.verbose(`[${testDatabaseName}] executeGeneratedSql`);
   try {
     client = new Client(testDbDefinition);
     await client.connect();
@@ -40,7 +36,7 @@ async function executeGeneratedSql(generatedSql: string): Promise<Db | null> {
     await client.query(generatedSql);
     return await pgStructure(client);
   } catch (error) {
-    winston.verbose(`[${testDatabaseName}] executeGeneratedSql: ${error.message} ${error.stack}`);
+    Logger.verbose(`[${testDatabaseName}] executeGeneratedSql: ${error.message} ${error.stack}`);
     return null;
   }
 }
@@ -49,7 +45,7 @@ export async function testSuiteAfterAll() {
   try {
     if (client != null) await client.end();
   } catch (error) {
-    winston.verbose(`[${testDatabaseName}] testSuiteAfterAll: ${error.message} ${error.stack}`);
+    Logger.verbose(`[${testDatabaseName}] testSuiteAfterAll: ${error.message} ${error.stack}`);
   }
 }
 
@@ -57,7 +53,7 @@ export async function testAfterEach() {
   try {
     if (client != null) await client.query('ROLLBACK');
   } catch (error) {
-    winston.verbose(`[${testDatabaseName}] testSuiteAfterAll: ${error.message} ${error.stack}`);
+    Logger.verbose(`[${testDatabaseName}] testSuiteAfterAll: ${error.message} ${error.stack}`);
   }
 }
 

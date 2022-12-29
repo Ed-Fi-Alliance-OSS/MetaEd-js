@@ -1,10 +1,9 @@
-import { MetaEdConfiguration } from '@edfi/metaed-core';
+import { Logger, MetaEdConfiguration } from '@edfi/metaed-core';
 import chalk from 'chalk';
 import fs from 'fs-extra';
 import touch from 'touch';
 import path from 'path';
 import Sugar from 'sugar';
-import winston from 'winston';
 
 const projectPaths: string[] = [
   'Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/EdFi.Ods.Extensions.{projectName}.csproj',
@@ -22,11 +21,11 @@ export function refreshProject(metaEdConfiguration: MetaEdConfiguration): void {
       if (!fs.pathExistsSync(resolvedPath)) return;
 
       try {
-        winston.info(`Refresh ${resolvedPath}`);
+        Logger.info(`Refresh ${resolvedPath}`);
 
         touch.sync(resolvedPath, { nocreate: true });
       } catch (err) {
-        winston.error(`Attempted modification of ${chalk.red(resolvedPath)} failed due to issue: ${err.message}`);
+        Logger.error(`Attempted modification of ${chalk.red(resolvedPath)} failed due to issue: ${err.message}`);
       }
     });
   });

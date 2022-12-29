@@ -1,6 +1,5 @@
 import chalk from 'chalk';
 import path from 'path';
-import winston from 'winston';
 import Yargs from 'yargs';
 import {
   scanForProjects,
@@ -19,6 +18,7 @@ import {
   MetaEdEnvironment,
   MetaEdProjectPathPairs,
   MetaEdProject,
+  Logger,
 } from '@edfi/metaed-core';
 import { execute as DeployCore } from './task/DeployCore';
 import { execute as DeployCoreV2 } from './task/DeployCoreV2';
@@ -32,8 +32,6 @@ import { execute as RefreshProject } from './task/RefreshProject';
 import { execute as RemoveExtensionArtifacts } from './task/RemoveExtensionArtifacts';
 import { execute as RemoveExtensionArtifactsV2andV3 } from './task/RemoveExtensionArtifactsV2andV3';
 
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
-
 export function dataStandardVersionFor(projects: MetaEdProject[]): SemVer {
   const dataStandardVersions: SemVer[] = findDataStandardVersions(projects);
   const errorMessage: string[] = [];
@@ -46,7 +44,7 @@ export function dataStandardVersionFor(projects: MetaEdProject[]): SemVer {
     return dataStandardVersions[0];
   }
   if (errorMessage.length > 0) {
-    errorMessage.forEach((err) => winston.error(err));
+    errorMessage.forEach((err) => Logger.error(err));
     process.exit(1);
   }
   return '0.0.0';
@@ -137,7 +135,7 @@ export async function metaEdDeploy() {
       const { failure } = await executePipeline(state);
       process.exitCode = !state.validationFailure.some((vf) => vf.category === 'error') && !failure ? 0 : 1;
     } catch (error) {
-      winston.error(error);
+      Logger.error(error);
       process.exitCode = 1;
     }
   } else {
@@ -175,10 +173,10 @@ export async function metaEdDeploy() {
       if (!success) process.exitCode = 1;
     }
   } catch (error) {
-    winston.error(error);
+    Logger.error(error);
     process.exitCode = 1;
   }
 
   const endTime = Date.now() - startTime;
-  winston.info(`Done in ${chalk.green(endTime > 1000 ? `${endTime / 1000}s` : `${endTime}ms`)}.`);
+  Logger.info(`Done in ${chalk.green(endTime > 1000 ? `${endTime / 1000}s` : `${endTime}ms`)}.`);
 }

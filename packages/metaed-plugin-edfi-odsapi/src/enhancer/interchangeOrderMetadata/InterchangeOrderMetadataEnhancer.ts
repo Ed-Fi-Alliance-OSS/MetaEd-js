@@ -1,4 +1,3 @@
-import winston from 'winston';
 import { uniq, sortWith, prop } from 'ramda';
 import {
   isReferentialProperty,
@@ -6,6 +5,7 @@ import {
   asChoiceProperty,
   asReferentialProperty,
   NoInterchangeItem,
+  Logger,
 } from '@edfi/metaed-core';
 import {
   ChoiceProperty,
@@ -112,7 +112,7 @@ export function sortGraph(graph: Graph, removeRequiredCycles: boolean = false): 
 
   if (graphlib.alg.isAcyclic(graph)) return graphlib.alg.topsort(graph);
 
-  winston.error('Unable to sort interchange metadata');
+  Logger.error('Unable to sort interchange metadata');
   return [];
 }
 

@@ -2,12 +2,12 @@ import fs from 'final-fs';
 import path from 'path';
 import Topo from 'topo';
 import semver from 'semver';
-import winston from 'winston';
 import { NoMetaEdPlugin } from './MetaEdPlugin';
 import { PluginManifest } from './PluginManifest';
 import { MetaEdPlugin } from './MetaEdPlugin';
 import { SemVerRange } from '../MetaEdEnvironment';
 import { PipelineFailure } from '../pipeline/PipelineFailure';
+import { Logger } from '../Logger';
 
 // Resolve roughly like Typescript does with "node" strategy  (https://www.typescriptlang.org/docs/handbook/module-resolution.html)
 function mainModuleResolver(directory: string, packageJson: any): string {
@@ -92,7 +92,7 @@ export function scanDirectories(directories: string | string[]): {
           });
         } catch (err) {
           const message = `Attempted load of npm package ${manifest.npmName} plugin '${manifest.description}' failed due to dependency issue.`;
-          winston.error(`${message}`);
+          Logger.error(`${message}`);
           pipelineFailures.push({ category: 'error', message });
         }
       }
@@ -108,7 +108,7 @@ export function materializePlugin(pluginManifest: PluginManifest): PipelineFailu
   try {
     if (!pluginManifest.mainModule) {
       const message = `Attempted load of npm package ${pluginManifest.npmName} plugin '${pluginManifest.description}' at '${pluginManifest.mainModule}' failed.  Module entry point not found.`;
-      winston.error(`${message}`);
+      Logger.error(`${message}`);
       pipelineFailures.push({ category: 'error', message });
       return pipelineFailures;
     }
@@ -121,12 +121,12 @@ export function materializePlugin(pluginManifest: PluginManifest): PipelineFailu
       pluginManifest.metaEdPlugin = pluginFactory();
     } else {
       const message = `Attempted load of npm package ${pluginManifest.npmName} plugin '${pluginManifest.description}' at '${pluginManifest.mainModule}' failed. initialize() not found.`;
-      winston.error(`${message}`);
+      Logger.error(`${message}`);
       pipelineFailures.push({ category: 'error', message });
     }
   } catch (err) {
     const message = `Attempted load of npm package ${pluginManifest.npmName} plugin '${pluginManifest.description}' at '${pluginManifest.mainModule}' failed. Error message: ${err.message}`;
-    winston.error(`${message}`);
+    Logger.error(`${message}`);
     pipelineFailures.push({ category: 'error', message });
   }
 

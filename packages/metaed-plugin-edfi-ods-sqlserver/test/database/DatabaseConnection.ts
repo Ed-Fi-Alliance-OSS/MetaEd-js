@@ -1,11 +1,9 @@
-import winston from 'winston';
+import { Logger } from '@edfi/metaed-core';
 import { highlight } from 'cli-highlight';
 import sql from 'mssql';
 
 export const testDatabaseName = 'MetaEd_Ods_Integration_Tests';
 
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
-winston.level = 'info';
 const highlightSql = (statement: string) => highlight(statement, { language: 'sql', ignoreIllegals: true });
 
 export interface Pool {
@@ -40,16 +38,16 @@ export async function disconnect(databaseName: string): Promise<void> {
       if (pool != null) {
         if (pool.transaction != null) {
           await pool.transaction.rollback();
-          winston.verbose(`[${databaseName}] DatabaseConnection.disconnect: rolling back transaction`);
+          Logger.verbose(`[${databaseName}] DatabaseConnection.disconnect: rolling back transaction`);
         }
         if (pool.connection != null) {
           await pool.connection.close();
-          winston.verbose(`[${databaseName}] DatabaseConnection.disconnect: pool disconnected.`);
+          Logger.verbose(`[${databaseName}] DatabaseConnection.disconnect: pool disconnected.`);
         }
         pools.delete(databaseName);
       }
     } catch (error) {
-      winston.verbose(`[${databaseName}] DatabaseConnection.disconnect: ${error.message} ${error.stack}`);
+      Logger.verbose(`[${databaseName}] DatabaseConnection.disconnect: ${error.message} ${error.stack}`);
     }
   }
 }
@@ -70,14 +68,14 @@ export async function connect(databaseName: string, retry: number = retryCount):
   let pool: Pool = {};
   try {
     pool.connection = await new sql.ConnectionPool({ ...newConfig, database: databaseName });
-    winston.verbose(`[${databaseName}] created connection pool`);
+    Logger.verbose(`[${databaseName}] created connection pool`);
     if (!pool.connection.connected && !pool.connection.connecting) {
       await pool.connection.connect();
     }
 
     pool.transaction = await new sql.Transaction(pool.connection);
     await pool.transaction.begin();
-    winston.verbose(`[${databaseName}] ---------- begin transaction ----------`);
+    Logger.verbose(`[${databaseName}] ---------- begin transaction ----------`);
   } catch (error) {
     // NOTE: This is a work around for the following error. This seems to occur most often when a fresh database has been
     // created and a connection attempt is made while it is in transition.
@@ -103,7 +101,7 @@ export async function database(databaseName: string, fn: Function, transaction: 
       throw new Error('DatabaseConnection: Pool had no connection or transaction');
     }
   } catch (error) {
-    winston.error(`[${databaseName}] ${error.message} ${error.stack}`);
+    Logger.error(`[${databaseName}] ${error.message} ${error.stack}`);
   }
 }
 
@@ -111,7 +109,7 @@ export async function beginTransaction(databaseName: string): Promise<void> {
   if (pools.has(databaseName)) {
     const pool = pools.get(databaseName);
     if (pool != null && pool.transaction != null) {
-      winston.verbose(`[${databaseName}] DatabaseConnection.beginTransaction: beginning transaction`);
+      Logger.verbose(`[${databaseName}] DatabaseConnection.beginTransaction: beginning transaction`);
       await pool.transaction.begin();
     }
   }
@@ -121,7 +119,7 @@ export async function rollbackTransaction(databaseName: string): Promise<void> {
   if (pools.has(databaseName)) {
     const pool = pools.get(databaseName);
     if (pool != null && pool.transaction != null) {
-      winston.verbose(`[${databaseName}] DatabaseConnection.rollbackTransaction: rolling back transaction`);
+      Logger.verbose(`[${databaseName}] DatabaseConnection.rollbackTransaction: rolling back transaction`);
       await pool.transaction.rollback();
     }
   }
@@ -129,10 +127,10 @@ export async function rollbackTransaction(databaseName: string): Promise<void> {
 
 export async function query(connection: sql.Connection | sql.Transaction, action: string, statement: string): Promise<any> {
   const databaseName: string = connection.config ? connection.config.database : connection.parent.config.database;
-  winston.verbose(`[${databaseName}] ${action}`);
-  winston.verbose('\n', highlightSql(statement));
+  Logger.verbose(`[${databaseName}] ${action}`);
+  Logger.verbose(`\n${highlightSql(statement)}`);
   const result = await new sql.Request(connection).query(statement);
-  winston.verbose(`=> `, result.recordset);
+  Logger.verbose(`=> ${result.recordset}`);
   return result.recordset;
 }
 
@@ -159,10 +157,10 @@ export async function executeGeneratedSql(generatedSql: string, databaseName: st
   await database(
     databaseName,
     async (db) => {
-      winston.verbose(`[${databaseName}] executeGeneratedSql`);
+      Logger.verbose(`[${databaseName}] executeGeneratedSql`);
       // eslint-disable-next-line no-restricted-syntax
       for (const statement of sqlStatements) {
-        winston.debug('\n', highlightSql(statement));
+        Logger.debug('\n', highlightSql(statement));
         if (statement != null || statement !== '') await new sql.Request(db).query(statement);
       }
     },

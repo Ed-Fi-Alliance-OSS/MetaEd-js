@@ -1,6 +1,5 @@
 import deepFreeze from 'deep-freeze';
 import R from 'ramda';
-import winston from 'winston';
 import {
   orderByProp,
   NoTopLevelEntity,
@@ -9,6 +8,7 @@ import {
   TopLevelEntity,
   EntityProperty,
   Namespace,
+  Logger,
 } from '@edfi/metaed-core';
 import { columnConstraintMerge, Column, NoColumn } from './Column';
 import { ColumnTransform } from './ColumnTransform';
@@ -218,7 +218,7 @@ export function getColumnWithStrongestConstraint(
   const existingColumn = table.columns.find((x) => x.columnId === column.columnId);
   if (existingColumn == null) return column;
 
-  winston.debug(`  Duplicate column ${column.columnId} on table ${simpleTableNameGroupConcat(table.nameGroup)}.`);
+  Logger.debug(`  Duplicate column ${column.columnId} on table ${simpleTableNameGroupConcat(table.nameGroup)}.`);
   table.columns = R.reject((c: Column) => c.columnId === column.columnId)(table.columns);
   return constraintStrategy(existingColumn, column);
 }

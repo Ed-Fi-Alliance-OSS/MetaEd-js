@@ -1,7 +1,5 @@
-import winston from 'winston';
+import { Logger } from '@edfi/metaed-core';
 import { database, query, disconnect, testDatabaseName } from './DatabaseConnection';
-
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 
 async function dropDatabaseIfExists(databaseName: string): Promise<void> {
   const sql = `
@@ -49,5 +47,5 @@ CREATE DATABASE [${databaseName}]
   await createDatabaseIfNotExists(testDatabaseName);
   await disconnect('master');
 })().catch((e) => {
-  winston.error(`InitializeTestDatabase: ${e.message} ${e.stack}`);
+  Logger.error(`InitializeTestDatabase: ${e.message} ${e.stack}`);
 });
