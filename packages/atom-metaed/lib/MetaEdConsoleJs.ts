@@ -87,7 +87,7 @@ async function cleanUpMetaEdArtifacts(artifactDirectory: string, outputWindow: O
     return true;
   } catch (exception) {
     console.error(exception);
-    outputWindow.addMessage(`Unable to peform operation on output directory at path "${artifactDirectory}".`);
+    outputWindow.addMessage(`Unable to perform operation on output directory at path "${artifactDirectory}".`);
     outputWindow.addMessage(exception.message);
     if (exception.code === 'ENOTEMPTY' || exception.code === 'EPERM') {
       outputWindow.addMessage('Please close any files or folders that may be open in other applications.');

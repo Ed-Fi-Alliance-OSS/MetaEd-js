@@ -3,7 +3,6 @@
   // ESlint
   "eslint.enable": true,
   "eslint.packageManager": "yarn",
-  "eslint.autoFixOnSave": true,
   "eslint.validate": [
     { "language": "javascript", "autoFix": true },
     { "language": "typescript", "autoFix": true }
@@ -12,10 +11,6 @@
 
   // TypeScript
   "typescript.tsdk": "./node_modules/typescript/lib",
-
-  // NPM
-  "npm.packageManager": "yarn",
-  "npm.enableScriptExplorer": true,
 
   // File Explorer
   "files.exclude": {
@@ -37,6 +32,7 @@
     "diminisher",
     "dismissable",
     "Dlanguage",
+    "dorny",
     "dropdbjs",
     "edfi",
     "esbuild",
@@ -44,6 +40,7 @@
     "keymaps",
     "klaw",
     "metaed",
+    "MSSQL",
     "odsapi",
     "outfile",
     "packagejson",
@@ -53,6 +50,7 @@
     "recordownership",
     "semverified",
     "shortstat",
+    "sqlcmd",
     "sqlserver",
     "teamcity",
     "unmock",
@@ -61,5 +59,5 @@
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  },
+  }
 }

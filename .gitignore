@@ -9,15 +9,8 @@ node_modules/
 npm-debug.log
 tmp
 
-## Webstorm:
-.idea/
-
 ## VSCode:
 .vscode/
-
-## vscode-metaed packaged extension
-packages/vscode-metaed/*.vsix
-packages/vscode-metaed/package.json.bak
 
 ## Babel target directory
 dist/
