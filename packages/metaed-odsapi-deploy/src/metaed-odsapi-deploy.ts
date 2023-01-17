@@ -100,6 +100,9 @@ export async function metaEdDeploy() {
   let metaEdConfiguration: MetaEdConfiguration;
 
   if (yargs.argv.metaEdConfiguration == null) {
+    // if this function was called outside the normal CLI flow, do nothing and return
+    if (yargs.argv.source == null || yargs.argv.projectNames == null) return;
+
     const resolvedProjects: MetaEdProjectPathPairs[] = await scanForProjects(yargs.argv.source, yargs.argv.projectNames);
 
     metaEdConfiguration = {
