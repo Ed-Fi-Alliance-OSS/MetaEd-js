@@ -4,6 +4,7 @@ import { PhysicalNames } from './PhysicalNames';
 
 export type AssociationDefinitionCardinality =
   | 'OneToOne'
+  | 'OneToZeroOrOne'
   | 'OneToOneInheritance'
   | 'OneToOneExtension'
   | 'OneToOneOrMore'

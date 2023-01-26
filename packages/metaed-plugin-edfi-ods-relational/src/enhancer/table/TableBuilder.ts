@@ -17,19 +17,6 @@ export interface TableBuilder {
 
 export function nullTableBuilder() {
   return {
-    buildTables: (
-      // @ts-ignore - unused parameter name
-      property: EntityProperty,
-      // @ts-ignore - unused parameter name
-      tableStrategy: TableStrategy,
-      // @ts-ignore - unused parameter name
-      primaryKeys: Column[],
-      // @ts-ignore - unused parameter name
-      buildStrategy: BuildStrategy,
-      // @ts-ignore - unused parameter name
-      tables: Table[],
-      // @ts-ignore - unused parameter name
-      parentIsRequired: boolean | null,
-    ) => {},
+    buildTables: () => {},
   };
 }

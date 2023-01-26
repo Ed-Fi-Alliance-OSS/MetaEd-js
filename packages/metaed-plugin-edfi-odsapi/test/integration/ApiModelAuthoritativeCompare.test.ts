@@ -828,26 +828,37 @@ describe('when generating api model targeting tech version 5.3 with comparing it
   });
 });
 
-describe('when generating api model targeting tech version 7.0 with comparing it to data standard 3.3b authoritative artifacts', (): void => {
+describe('when generating api model targeting tech version 6.1 with common cardinality extensions and comparing it to data standard 4.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact');
-  const authoritativeCoreFilename = 'edfi-7.0-api-model-authoritative.json';
-  const generatedCoreFilename = 'edfi-7.0-api-model-generated.json';
+  const sampleExtensionPath: string = path.resolve(__dirname, './common-cardinality-project');
+  const authoritativeCoreFilename = 'edfi-6.1-api-model-authoritative.json';
+  const authoritativeExtensionFilename = 'edfi-6.1-api-model-common-cardinality-extension-authoritative.json';
+  const generatedCoreFilename = 'edfi-6.1-api-model-generated.json';
+  const generatedExtensionFilename = 'edfi-6.1-api-model-common-cardinality-extension-generated.json';
 
   let generatedCoreOutput: GeneratedOutput;
+  let generatedExtensionOutput: GeneratedOutput;
 
   beforeAll(async () => {
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '7.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.3b/'],
+      defaultPluginTechVersion: '6.1.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-4.0/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.3.1-b',
-          description: 'A description',
+          projectVersion: '4.0.0',
+          description: '',
+        },
+        {
+          projectName: 'CommonCardinality',
+          namespaceName: 'CommonCardinality',
+          projectExtension: 'CommonCardinality',
+          projectVersion: '1.0.0',
+          description: '',
         },
       ],
     };
@@ -856,7 +867,7 @@ describe('when generating api model targeting tech version 7.0 with comparing it
       ...newState(),
       metaEdConfiguration,
     };
-    state.metaEd.dataStandardVersion = '3.3.1-b';
+    state.metaEd.dataStandardVersion = '4.0.0';
 
     validateConfiguration(state);
     loadPlugins(state);
@@ -884,15 +895,27 @@ describe('when generating api model targeting tech version 7.0 with comparing it
       state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
     );
 
-    [generatedCoreOutput] = generatorResult.generatedOutput;
+    [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
     await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
   });
 
   it('should have no core file differences', async () => {
     const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
     const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    // @ts-ignore "error" not used
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+
+  it('should have no extension file differences', async () => {
+    const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
+    const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
     // @ts-ignore "error" not used
     const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
