@@ -1,0 +1,11 @@
+Common LanguageSet
+    documentation "LanguageSet"
+    descriptor EdFi.LanguageUse
+        documentation "A description of how the language is used (e.g. Home Language, Native Language, Spoken Language)."
+        is required collection
+    date BeginDate
+        documentation "Begin date of the effective date for the Language"
+        is part of identity
+    date EndDate
+        documentation "End date of the effective date for the Language"
+        is optional

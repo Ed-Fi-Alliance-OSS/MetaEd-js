@@ -6,17 +6,15 @@ import { EntityTable } from '../../model/domainMetadata/EntityTable';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 import { allTablesInNamespacesBySchema, foreignKeyFor } from './EnhancerHelper';
 
-const enhancerName = 'AssociationDefinitionIsRequiredEnhancer';
+const enhancerName = 'AssociationDefinitionCardinalityEnhancer';
 
-function findAggregateWithEntity(
-  targetTechnologyVersion: string,
-  aggregates: Aggregate[],
-  entityTableSchema: string,
-  entityTableName: string,
-): Aggregate | null {
+function findAggregateWithEntity(targetTechnologyVersion: string, aggregates: Aggregate[], table: Table): Aggregate | null {
+  // Table name in the DomainMetadata EntityTable structure is not the non-db specific tableId, but instead the overlap-collapsed table name
+  const tableNameToMatch: string = table.data.edfiOdsSqlServer.tableName;
+
   const aggregatesWithEntityTable: Aggregate[] = aggregates.reduce((result: Aggregate[], currentAggregate: Aggregate) => {
     const inThisAggregate: boolean = currentAggregate.entityTables.some(
-      (e: EntityTable) => e.schema === entityTableSchema && e.table === entityTableName,
+      (e: EntityTable) => e.schema === table.schema && e.table === tableNameToMatch,
     );
     // METAED-948
     if (versionSatisfies(targetTechnologyVersion, '<3.4.0')) {
@@ -24,7 +22,7 @@ function findAggregateWithEntity(
     }
 
     // if this is an aggregate extension, it can be a stand-in for an aggregate in a different schema
-    const inThisAggregateExtension: boolean = currentAggregate.isExtension && currentAggregate.root === entityTableName;
+    const inThisAggregateExtension: boolean = currentAggregate.isExtension && currentAggregate.root === tableNameToMatch;
     return inThisAggregate || inThisAggregateExtension ? result.concat(currentAggregate) : result;
   }, []);
   return aggregatesWithEntityTable.length === 1 ? aggregatesWithEntityTable[0] : null;
@@ -82,8 +80,7 @@ function cardinalityFrom(
   const rootAggregate: Aggregate | null = findAggregateWithEntity(
     targetTechnologyVersion,
     domainMetadataAggregatesForNamespace,
-    foreignKey.foreignTableSchema,
-    foreignKey.foreignTableId,
+    foreignTable,
   );
   if (rootAggregate == null) return 'OneToZeroOrMore';
 
@@ -103,7 +100,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const schemasTables: Map<string, Map<string, Table>> = allTablesInNamespacesBySchema(metaEd);
 
     associationDefinitions.forEach((associationDefinition: AssociationDefinition) => {
-      const foreignKey = foreignKeyFor(metaEd, namespace, associationDefinition.fullName.name);
+      const foreignKey: ForeignKey | undefined = foreignKeyFor(metaEd, namespace, associationDefinition.fullName.name);
       if (foreignKey == null) return;
 
       associationDefinition.cardinality = cardinalityFrom(
