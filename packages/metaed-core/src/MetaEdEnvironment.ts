@@ -16,7 +16,7 @@ export type SemVerRange = string;
 /**
  * Provided to validators and enhancers
  */
-export interface MetaEdEnvironment {
+export type MetaEdEnvironment = {
   // namespaces
   namespace: Map<string, Namespace>;
 
@@ -34,7 +34,13 @@ export interface MetaEdEnvironment {
 
   // whether we are running in Alliance mode - which means assuming this is an Ed-Fi Alliance user
   allianceMode: boolean;
-}
+
+  // the earliest allowable school year enumeration
+  minSchoolYear: number;
+
+  // the latest allowable school year enumeration
+  maxSchoolYear: number;
+};
 
 /**
  *
@@ -46,4 +52,6 @@ export const newMetaEdEnvironment: () => MetaEdEnvironment = () => ({
   metaEdVersion: '0.0.0',
   dataStandardVersion: '0.0.0',
   allianceMode: false,
+  minSchoolYear: 1900,
+  maxSchoolYear: 2100,
 });
