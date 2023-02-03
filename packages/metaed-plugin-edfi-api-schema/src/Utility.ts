@@ -5,7 +5,7 @@
 
 import { EntityProperty, NoEntityProperty, TopLevelEntity } from '@edfi/metaed-core';
 import inflection from 'inflection';
-import { EntityPropertyMeadowlarkData } from './model/EntityPropertyMeadowlarkData';
+import { EntityPropertyApiSchemaData } from './model/EntityPropertyApiSchemaData';
 
 /**
  * Simplified MetaEd top level reference checking, supporting
@@ -65,23 +65,23 @@ export function dropPrefix(prefix: string, str: string) {
  * Select the correct top level name to avoid possible collisions between superclass and subclass properties.
  */
 export function topLevelApiNameOnEntity(entity: TopLevelEntity, property: EntityProperty): string {
-  const propertyMeadowlarkData = property.data.meadowlark as EntityPropertyMeadowlarkData;
+  const propertyApiSchemaData = property.data.apiSchema as EntityPropertyApiSchemaData;
 
   // Avoid collision if this is a property on the subclass with a superclass conflict
-  if (propertyMeadowlarkData.namingCollisionWithSuperclassProperty !== NoEntityProperty) {
-    return propertyMeadowlarkData.apiMapping.decollisionedTopLevelName;
+  if (propertyApiSchemaData.namingCollisionWithSuperclassProperty !== NoEntityProperty) {
+    return propertyApiSchemaData.apiMapping.decollisionedTopLevelName;
   }
 
   // Avoid collision if this is a property on the superclass with a subclass conflict that applies here.
   // (Note this doesn't handle the case where the property is pulled up but actually on an inline common/choice,
   // but that's hopefully not a valid model scenario anyway due to inline common/choice naming patterns.)
   if (
-    propertyMeadowlarkData.namingCollisionWithSubclassProperties.some(
+    propertyApiSchemaData.namingCollisionWithSubclassProperties.some(
       (subclassProperty) => subclassProperty.parentEntity === entity,
     )
   ) {
-    return propertyMeadowlarkData.apiMapping.decollisionedTopLevelName;
+    return propertyApiSchemaData.apiMapping.decollisionedTopLevelName;
   }
 
-  return propertyMeadowlarkData.apiMapping.topLevelName;
+  return propertyApiSchemaData.apiMapping.topLevelName;
 }

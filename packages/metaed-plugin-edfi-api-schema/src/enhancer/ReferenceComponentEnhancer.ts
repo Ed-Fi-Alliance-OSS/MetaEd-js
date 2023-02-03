@@ -5,7 +5,7 @@
 
 // may be a candidate for future addition to metaed-plugin-edfi-unified-advanced
 import { EnhancerResult, MetaEdEnvironment, ReferentialProperty, EntityProperty, getAllProperties } from '@edfi/metaed-core';
-import { EntityPropertyMeadowlarkData } from '../model/EntityPropertyMeadowlarkData';
+import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { newReferenceElement, ReferenceComponent, newReferenceGroup } from '../model/ReferenceComponent';
 
 const enhancerName = 'ReferenceComponentEnhancer';
@@ -37,7 +37,7 @@ function buildReferenceComponent(sourceProperty: EntityProperty): ReferenceCompo
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllProperties(metaEd.propertyIndex).forEach((property) => {
-    (property.data.meadowlark as EntityPropertyMeadowlarkData).referenceComponent = buildReferenceComponent(property);
+    (property.data.apiSchema as EntityPropertyApiSchemaData).referenceComponent = buildReferenceComponent(property);
   });
 
   return {

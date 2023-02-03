@@ -7,7 +7,7 @@ import { MetaEdEnvironment, EnhancerResult, EntityProperty, NoEntityProperty, ge
 import { ApiPropertyMapping, NoApiPropertyMapping } from './ApiPropertyMapping';
 import { NoReferenceElement, ReferenceComponent } from './ReferenceComponent';
 
-export type EntityPropertyMeadowlarkData = {
+export type EntityPropertyApiSchemaData = {
   /**
    * API shape metadata for this property.
    */
@@ -30,12 +30,12 @@ export type EntityPropertyMeadowlarkData = {
 };
 
 /**
- * Initialize property with Meadowlark data placeholder.
+ * Initialize property with ApiSchema data placeholder.
  */
-export function addEntityPropertyMeadowlarkDataTo(property: EntityProperty) {
-  if (property.data.meadowlark == null) property.data.meadowlark = {};
+export function addEntityPropertyApiSchemaDataTo(property: EntityProperty) {
+  if (property.data.apiSchema == null) property.data.apiSchema = {};
 
-  Object.assign(property.data.meadowlark, {
+  Object.assign(property.data.apiSchema, {
     apiMapping: NoApiPropertyMapping,
     namingCollisionWithSuperclassProperty: NoEntityProperty,
     namingCollisionWithSubclassProperties: [],
@@ -44,15 +44,15 @@ export function addEntityPropertyMeadowlarkDataTo(property: EntityProperty) {
 }
 
 /**
- * Initialize all properties with Meadowlark data placeholder.
+ * Initialize all properties with ApiSchema data placeholder.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllProperties(metaEd.propertyIndex).forEach((property: EntityProperty) => {
-    addEntityPropertyMeadowlarkDataTo(property);
+    addEntityPropertyApiSchemaDataTo(property);
   });
 
   return {
-    enhancerName: 'EntityPropertyMeadowlarkDataSetupEnhancer',
+    enhancerName: 'EntityPropertyApiSchemaDataSetupEnhancer',
     success: true,
   };
 }

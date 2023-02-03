@@ -2,7 +2,7 @@
   "name": "@edfi/metaed-plugin-edfi-api-schema",
   "main": "dist/index.js",
   "version": "3.2.1-dev.6",
-  "description": "MetaEd plugin for generating Meadowlark object models",
+  "description": "MetaEd plugin for generating API Schema object models",
   "license": "Apache-2.0",
   "publishConfig": {
     "registry": "https://www.myget.org/F/ed-fi/npm/"
@@ -14,7 +14,7 @@
   ],
   "metaed-plugin": {
     "pluginType": "artifact-specific",
-    "shortName": "edfiMeadowlark",
+    "shortName": "edfiApiSchema",
     "authorName": "Ed-Fi Alliance",
     "metaEdVersion": "3.x",
     "technologyVersion": "*",

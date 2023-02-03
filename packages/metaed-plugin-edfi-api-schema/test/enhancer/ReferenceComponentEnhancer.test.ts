@@ -13,10 +13,10 @@ import {
 } from '@edfi/metaed-core';
 import { domainEntityReferenceEnhancer, descriptorReferenceEnhancer } from '@edfi/metaed-plugin-edfi-unified';
 import {
-  enhance as entityPropertyMeadowlarkDataSetupEnhancer,
-  EntityPropertyMeadowlarkData,
-} from '../../src/model/EntityPropertyMeadowlarkData';
-import { enhance as entityMeadowlarkDataSetupEnhancer } from '../../src/model/EntityMeadowlarkData';
+  enhance as entityPropertyApiSchemaDataSetupEnhancer,
+  EntityPropertyApiSchemaData,
+} from '../../src/model/EntityPropertyApiSchemaData';
+import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
 import { enhance } from '../../src/enhancer/ReferenceComponentEnhancer';
 import { isReferenceGroup, ReferenceGroup, isReferenceElement } from '../../src/model/ReferenceComponent';
 
@@ -45,14 +45,14 @@ describe('when building simple domain entity referencing another', () => {
       .sendToListener(builder);
 
     domainEntityReferenceEnhancer(metaEd);
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     enhance(metaEd);
   });
 
   it('should have the referenced domain entitys identity property', () => {
     const property = metaEd.propertyIndex.domainEntity.find((p) => p.metaEdName === referencedEntityName) as any;
-    const { referenceComponent } = property.data.meadowlark as EntityPropertyMeadowlarkData;
+    const { referenceComponent } = property.data.apiSchema as EntityPropertyApiSchemaData;
     expect(isReferenceGroup(referenceComponent)).toBe(true);
     expect((referenceComponent as ReferenceGroup).referenceComponents).toHaveLength(1);
     expect(isReferenceElement((referenceComponent as ReferenceGroup).referenceComponents[0])).toBe(true);
@@ -87,14 +87,14 @@ describe('when building simple domain entity referencing a descriptor as part of
 
     domainEntityReferenceEnhancer(metaEd);
     descriptorReferenceEnhancer(metaEd);
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     enhance(metaEd);
   });
 
   it('should have the descriptor property without a group since descriptors have no identity properties', () => {
     const property = metaEd.propertyIndex.descriptor.find((p) => p.metaEdName === descriptorName) as any;
-    const { referenceComponent } = property.data.meadowlark as EntityPropertyMeadowlarkData;
+    const { referenceComponent } = property.data.apiSchema as EntityPropertyApiSchemaData;
     expect(isReferenceElement(referenceComponent)).toBe(true);
   });
 });
@@ -136,14 +136,14 @@ describe('when building simple domain entity referencing another referencing ano
       .sendToListener(builder);
 
     domainEntityReferenceEnhancer(metaEd);
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     enhance(metaEd);
   });
 
   it('should have the referenced domain entitys identity property', () => {
     const property = metaEd.propertyIndex.domainEntity.find((p) => p.metaEdName === referencedEntityName) as any;
-    const { referenceComponent } = property.data.meadowlark as EntityPropertyMeadowlarkData;
+    const { referenceComponent } = property.data.apiSchema as EntityPropertyApiSchemaData;
     expect(isReferenceGroup(referenceComponent)).toBe(true);
     expect((referenceComponent as ReferenceGroup).referenceComponents).toHaveLength(1);
     expect(isReferenceElement((referenceComponent as ReferenceGroup).referenceComponents[0])).toBe(true);
@@ -190,14 +190,14 @@ describe('when building simple domain entity referencing another referencing ano
       .sendToListener(builder);
 
     domainEntityReferenceEnhancer(metaEd);
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     enhance(metaEd);
   });
 
   it('should have the referenced domain entitys identity property', () => {
     const property = metaEd.propertyIndex.domainEntity.find((p) => p.metaEdName === referencedEntityName) as any;
-    const { referenceComponent } = property.data.meadowlark as EntityPropertyMeadowlarkData;
+    const { referenceComponent } = property.data.apiSchema as EntityPropertyApiSchemaData;
     expect(isReferenceGroup(referenceComponent)).toBe(true);
     expect((referenceComponent as ReferenceGroup).referenceComponents).toHaveLength(2);
     expect(isReferenceElement((referenceComponent as ReferenceGroup).referenceComponents[0])).toBe(true);

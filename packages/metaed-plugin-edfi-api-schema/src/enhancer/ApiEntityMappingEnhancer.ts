@@ -12,7 +12,7 @@ import {
   identityReferenceComponentsFrom,
   referenceGroupsFrom,
 } from './ApiEntityMappingEnhancerBase';
-import { EntityMeadowlarkData } from '../model/EntityMeadowlarkData';
+import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 
 /**
  * Collects all of the API shape metadata for a MetaEd non-subclass entity.
@@ -39,12 +39,12 @@ function buildApiEntityMapping(entity: TopLevelEntity): ApiEntityMapping {
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'domainEntity', 'association').forEach((entity) => {
-    (entity.data.meadowlark as EntityMeadowlarkData).apiMapping = buildApiEntityMapping(entity as TopLevelEntity);
+    (entity.data.apiSchema as EntityApiSchemaData).apiMapping = buildApiEntityMapping(entity as TopLevelEntity);
   });
 
   // Descriptors have no API shape metadata
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
-    (entity.data.meadowlark as EntityMeadowlarkData).apiMapping = NoApiEntityMapping;
+    (entity.data.apiSchema as EntityApiSchemaData).apiMapping = NoApiEntityMapping;
   });
 
   return {

@@ -10,7 +10,7 @@ import {
   getAllEntitiesOfType,
   NoEntityProperty,
 } from '@edfi/metaed-core';
-import { EntityPropertyMeadowlarkData } from '../model/EntityPropertyMeadowlarkData';
+import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { dropPrefix } from '../Utility';
 
 /**
@@ -47,17 +47,17 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         );
 
         // Set in the subclass -> superclass direction if exists
-        const subclassPropertyMeadowlark = subclassCollectionProperty.data.meadowlark as EntityPropertyMeadowlarkData;
-        subclassPropertyMeadowlark.namingCollisionWithSuperclassProperty =
+        const subclassPropertyApiSchema = subclassCollectionProperty.data.apiSchema as EntityPropertyApiSchemaData;
+        subclassPropertyApiSchema.namingCollisionWithSuperclassProperty =
           superclassPrefixedCollectionProperties.find(
             (superclassProperty) =>
               dropPrefix(superclassEntity.metaEdName, superclassProperty.fullPropertyName) === subclassPropertyNameSuffix,
           ) ?? NoEntityProperty;
 
         // Add in the superclass -> subclass direction if exists
-        if (subclassPropertyMeadowlark.namingCollisionWithSuperclassProperty !== NoEntityProperty) {
+        if (subclassPropertyApiSchema.namingCollisionWithSuperclassProperty !== NoEntityProperty) {
           (
-            subclassPropertyMeadowlark.namingCollisionWithSuperclassProperty.data.meadowlark as EntityPropertyMeadowlarkData
+            subclassPropertyApiSchema.namingCollisionWithSuperclassProperty.data.apiSchema as EntityPropertyApiSchemaData
           ).namingCollisionWithSubclassProperties.push(subclassCollectionProperty);
         }
       });

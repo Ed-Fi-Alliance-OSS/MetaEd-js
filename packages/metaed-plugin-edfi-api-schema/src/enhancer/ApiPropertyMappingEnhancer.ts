@@ -15,7 +15,7 @@ import {
 } from '@edfi/metaed-core';
 import { isTopLevelReference, isDescriptor, uncapitalize, pluralize } from '../Utility';
 import { ApiPropertyMapping } from '../model/ApiPropertyMapping';
-import { EntityPropertyMeadowlarkData } from '../model/EntityPropertyMeadowlarkData';
+import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 
 const enhancerName = 'ApiPropertyMappingEnhancer';
 
@@ -167,7 +167,7 @@ function buildApiPropertyMapping(property: EntityProperty): ApiPropertyMapping {
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllProperties(metaEd.propertyIndex).forEach((property) => {
-    (property.data.meadowlark as EntityPropertyMeadowlarkData).apiMapping = buildApiPropertyMapping(property);
+    (property.data.apiSchema as EntityPropertyApiSchemaData).apiMapping = buildApiPropertyMapping(property);
   });
 
   return {

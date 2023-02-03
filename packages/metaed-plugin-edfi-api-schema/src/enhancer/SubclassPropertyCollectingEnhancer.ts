@@ -5,7 +5,7 @@
 
 import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, TopLevelEntity } from '@edfi/metaed-core';
 import { CollectedProperty } from '../model/CollectedProperty';
-import { EntityMeadowlarkData } from '../model/EntityMeadowlarkData';
+import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { defaultPropertyModifier } from '../model/PropertyModifier';
 import { collectProperties } from './BasePropertyCollectingEnhancer';
 
@@ -34,7 +34,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         });
     }
 
-    (entity.data.meadowlark as EntityMeadowlarkData).collectedProperties = collectedProperties;
+    (entity.data.apiSchema as EntityApiSchemaData).collectedProperties = collectedProperties;
   });
 
   return {

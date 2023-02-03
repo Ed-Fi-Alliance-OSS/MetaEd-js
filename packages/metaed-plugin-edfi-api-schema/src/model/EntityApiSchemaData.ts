@@ -8,7 +8,7 @@ import { ApiEntityMapping, NoApiEntityMapping } from './ApiEntityMapping';
 import type { CollectedProperty } from './CollectedProperty';
 import { SchemaRoot, NoSchemaRoot } from './JsonSchema';
 
-export type EntityMeadowlarkData = {
+export type EntityApiSchemaData = {
   /**
    * API shape metadata for this entity.
    */
@@ -24,12 +24,12 @@ export type EntityMeadowlarkData = {
 };
 
 /**
- * Initialize entity with Meadowlark data placeholder.
+ * Initialize entity with ApiSchema data placeholder.
  */
-export function addEntityMeadowlarkDataTo(entity: ModelBase) {
-  if (entity.data.meadowlark == null) entity.data.meadowlark = {};
+export function addEntityApiSchemaDataTo(entity: ModelBase) {
+  if (entity.data.apiSchema == null) entity.data.apiSchema = {};
 
-  Object.assign(entity.data.meadowlark, {
+  Object.assign(entity.data.apiSchema, {
     apiMapping: NoApiEntityMapping,
     jsonSchema: NoSchemaRoot,
     collectedProperties: [],
@@ -37,7 +37,7 @@ export function addEntityMeadowlarkDataTo(entity: ModelBase) {
 }
 
 /**
- * Initialize all properties with Meadowlark data placeholder.
+ * Initialize all properties with ApiSchema data placeholder.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(
@@ -50,12 +50,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     'common',
     'schoolYearEnumeration',
   ).forEach((entity) => {
-    if (entity.data.meadowlark == null) entity.data.meadowlark = {};
-    addEntityMeadowlarkDataTo(entity);
+    if (entity.data.apiSchema == null) entity.data.apiSchema = {};
+    addEntityApiSchemaDataTo(entity);
   });
 
   return {
-    enhancerName: 'EntityMeadowlarkDataSetupEnhancer',
+    enhancerName: 'EntityApiSchemaDataSetupEnhancer',
     success: true,
   };
 }

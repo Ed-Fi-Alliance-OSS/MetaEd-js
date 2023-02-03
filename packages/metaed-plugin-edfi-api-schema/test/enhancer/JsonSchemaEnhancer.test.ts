@@ -26,8 +26,8 @@ import {
   domainEntitySubclassBaseClassEnhancer,
   enumerationReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
-import { enhance as entityPropertyMeadowlarkDataSetupEnhancer } from '../../src/model/EntityPropertyMeadowlarkData';
-import { enhance as entityMeadowlarkDataSetupEnhancer } from '../../src/model/EntityMeadowlarkData';
+import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
+import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
 import { enhance as subclassPropertyNamingCollisionEnhancer } from '../../src/enhancer/SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
@@ -72,8 +72,8 @@ describe('when building simple domain entity with all the simple non-collections
     namespace = metaEd.namespace.get(namespaceName);
 
     domainEntityReferenceEnhancer(metaEd);
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -83,7 +83,7 @@ describe('when building simple domain entity with all the simple non-collections
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -183,7 +183,7 @@ describe('when building simple domain entity with all the simple non-collections
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -220,8 +220,8 @@ describe('when building simple domain entity with all the simple collections', (
     namespace = metaEd.namespace.get(namespaceName);
 
     domainEntityReferenceEnhancer(metaEd);
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -231,7 +231,7 @@ describe('when building simple domain entity with all the simple collections', (
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -506,7 +506,7 @@ describe('when building simple domain entity with all the simple collections', (
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -549,8 +549,8 @@ describe('when building a domain entity referencing another referencing another 
     namespace = metaEd.namespace.get(namespaceName);
 
     domainEntityReferenceEnhancer(metaEd);
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -560,7 +560,7 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -645,7 +645,7 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -689,8 +689,8 @@ describe('when building a domain entity referencing CourseOffering with an impli
     namespace = metaEd.namespace.get(namespaceName);
 
     domainEntityReferenceEnhancer(metaEd);
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -700,7 +700,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -763,7 +763,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -811,8 +811,8 @@ describe('when building domain entity with nested choice and inline commons', ()
     domainEntityReferenceEnhancer(metaEd);
     choiceReferenceEnhancer(metaEd);
     inlineCommonReferenceEnhancer(metaEd);
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -822,7 +822,7 @@ describe('when building domain entity with nested choice and inline commons', ()
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -926,7 +926,7 @@ describe('when building domain entity with nested choice and inline commons', ()
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -952,8 +952,8 @@ describe('when building domain entity with scalar collection named with prefix o
     namespace = metaEd.namespace.get(namespaceName);
 
     domainEntityReferenceEnhancer(metaEd);
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -963,7 +963,7 @@ describe('when building domain entity with scalar collection named with prefix o
 
   it('should be a correct schema - parent name prefix removed', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1012,7 +1012,7 @@ describe('when building domain entity with scalar collection named with prefix o
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -1043,8 +1043,8 @@ describe('when building domain entity with Association/DomainEntity collection n
     namespace = metaEd.namespace.get(namespaceName);
 
     domainEntityReferenceEnhancer(metaEd);
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -1054,7 +1054,7 @@ describe('when building domain entity with Association/DomainEntity collection n
 
   it('should be a correct schema - parent name prefix retained', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1112,7 +1112,7 @@ describe('when building domain entity with Association/DomainEntity collection n
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -1150,8 +1150,8 @@ describe('when building domain entity with a simple common collection', () => {
     commonReferenceEnhancer(metaEd);
     descriptorReferenceEnhancer(metaEd);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -1161,7 +1161,7 @@ describe('when building domain entity with a simple common collection', () => {
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1213,7 +1213,7 @@ describe('when building domain entity with a simple common collection', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -1259,8 +1259,8 @@ describe('when building domain entity subclass with common collection and descri
     commonReferenceEnhancer(metaEd);
     descriptorReferenceEnhancer(metaEd);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     subclassPropertyNamingCollisionEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
@@ -1273,7 +1273,7 @@ describe('when building domain entity subclass with common collection and descri
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntitySubclass.get(domainEntitySubclassName);
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1325,7 +1325,7 @@ describe('when building domain entity subclass with common collection and descri
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntitySubclass.get(domainEntitySubclassName);
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -1363,8 +1363,8 @@ describe('when building association with a common collection in a common collect
 
     commonReferenceEnhancer(metaEd);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -1374,7 +1374,7 @@ describe('when building association with a common collection in a common collect
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('StudentEducationOrganizationAssociation');
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1443,7 +1443,7 @@ describe('when building association with a common collection in a common collect
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('StudentEducationOrganizationAssociation');
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -1474,8 +1474,8 @@ describe('when building domain entity with a descriptor with role name', () => {
 
     descriptorReferenceEnhancer(metaEd);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -1485,7 +1485,7 @@ describe('when building domain entity with a descriptor with role name', () => {
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1517,7 +1517,7 @@ describe('when building domain entity with a descriptor with role name', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -1548,8 +1548,8 @@ describe('when building domain entity with a descriptor collection with role nam
 
     descriptorReferenceEnhancer(metaEd);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -1559,7 +1559,7 @@ describe('when building domain entity with a descriptor collection with role nam
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1605,7 +1605,7 @@ describe('when building domain entity with a descriptor collection with role nam
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -1645,8 +1645,8 @@ describe('when building domain entity with a common with a choice', () => {
     choiceReferenceEnhancer(metaEd);
     commonReferenceEnhancer(metaEd);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -1656,7 +1656,7 @@ describe('when building domain entity with a common with a choice', () => {
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1705,7 +1705,7 @@ describe('when building domain entity with a common with a choice', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -1742,8 +1742,8 @@ describe('when building domain entity with a common and a common collection with
 
     commonReferenceEnhancer(metaEd);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -1753,7 +1753,7 @@ describe('when building domain entity with a common and a common collection with
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1812,7 +1812,7 @@ describe('when building domain entity with a common and a common collection with
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -1835,8 +1835,8 @@ describe('when building domain entity with an all-caps property', () => {
 
     namespace = metaEd.namespace.get(namespaceName);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -1846,7 +1846,7 @@ describe('when building domain entity with an all-caps property', () => {
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1879,7 +1879,7 @@ describe('when building domain entity with an all-caps property', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -1917,8 +1917,8 @@ describe('when building domain entity with a common with a domain entity referen
     domainEntityReferenceEnhancer(metaEd);
     commonReferenceEnhancer(metaEd);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -1928,7 +1928,7 @@ describe('when building domain entity with a common with a domain entity referen
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1980,7 +1980,7 @@ describe('when building domain entity with a common with a domain entity referen
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -2012,8 +2012,8 @@ describe('when building domain entity with two school year enumerations, one rol
 
     enumerationReferenceEnhancer(metaEd);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -2023,7 +2023,7 @@ describe('when building domain entity with two school year enumerations, one rol
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2081,7 +2081,7 @@ describe('when building domain entity with two school year enumerations, one rol
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -2113,8 +2113,8 @@ describe('when building domain entity with reference to domain entity with schoo
     domainEntityReferenceEnhancer(metaEd);
     enumerationReferenceEnhancer(metaEd);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -2124,7 +2124,7 @@ describe('when building domain entity with reference to domain entity with schoo
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2172,7 +2172,7 @@ describe('when building domain entity with reference to domain entity with schoo
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -2192,8 +2192,8 @@ describe('when building a descriptor', () => {
       .sendToListener(new DescriptorBuilder(metaEd, []));
     namespace = metaEd.namespace.get(namespaceName);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -2203,7 +2203,7 @@ describe('when building a descriptor', () => {
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.descriptor.get('GradeLevel');
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2239,7 +2239,7 @@ describe('when building a descriptor', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.descriptor.get('GradeLevel');
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -2261,8 +2261,8 @@ describe('when building a school year enumeration', () => {
 
     namespace = metaEd.namespace.get(namespaceName);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -2272,7 +2272,7 @@ describe('when building a school year enumeration', () => {
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2293,7 +2293,7 @@ describe('when building a school year enumeration', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
-    ajv.compile(entity.data.meadowlark.jsonSchema);
+    ajv.compile(entity.data.apiSchema.jsonSchema);
   });
 });
 
@@ -2339,8 +2339,8 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
     enumerationReferenceEnhancer(metaEd);
     commonReferenceEnhancer(metaEd);
 
-    entityPropertyMeadowlarkDataSetupEnhancer(metaEd);
-    entityMeadowlarkDataSetupEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
@@ -2350,7 +2350,7 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('StudentCohort');
-    expect(entity.data.meadowlark.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,

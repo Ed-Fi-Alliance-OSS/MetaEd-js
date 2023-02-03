@@ -13,7 +13,7 @@ import {
   descriptorCollectedPropertiesFrom,
   superclassFor,
 } from './ApiEntityMappingEnhancerBase';
-import { EntityMeadowlarkData } from '../model/EntityMeadowlarkData';
+import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 
 /**
  * Returns properties sorted by name ascending, optionally with the given property removed
@@ -62,7 +62,7 @@ function buildApiEntityMappingForSubclass(entity: TopLevelEntity): ApiEntityMapp
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'domainEntitySubclass', 'associationSubclass').forEach((entity) => {
-    (entity.data.meadowlark as EntityMeadowlarkData).apiMapping = buildApiEntityMappingForSubclass(entity as TopLevelEntity);
+    (entity.data.apiSchema as EntityApiSchemaData).apiMapping = buildApiEntityMappingForSubclass(entity as TopLevelEntity);
   });
 
   return {

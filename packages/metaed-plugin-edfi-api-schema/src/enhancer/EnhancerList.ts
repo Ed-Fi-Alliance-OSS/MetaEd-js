@@ -4,8 +4,8 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 import { Enhancer } from '@edfi/metaed-core';
-import { enhance as entityPropertyMeadowlarkDataSetupEnhancer } from '../model/EntityPropertyMeadowlarkData';
-import { enhance as entityMeadowlarkDataSetupEnhancer } from '../model/EntityMeadowlarkData';
+import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../model/EntityPropertyApiSchemaData';
+import { enhance as entityApiSchemaDataSetupEnhancer } from '../model/EntityApiSchemaData';
 import { enhance as subclassPropertyNamingCollisionEnhancer } from './SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from './ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from './ApiPropertyMappingEnhancer';
@@ -17,8 +17,8 @@ import { enhance as jsonSchemaEnhancer } from './JsonSchemaEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
-    entityPropertyMeadowlarkDataSetupEnhancer,
-    entityMeadowlarkDataSetupEnhancer,
+    entityPropertyApiSchemaDataSetupEnhancer,
+    entityApiSchemaDataSetupEnhancer,
     subclassPropertyNamingCollisionEnhancer,
     referenceComponentEnhancer,
     apiPropertyMappingEnhancer,
