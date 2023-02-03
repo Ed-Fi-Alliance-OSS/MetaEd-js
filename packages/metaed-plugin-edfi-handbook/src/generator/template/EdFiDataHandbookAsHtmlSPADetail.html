@@ -37,6 +37,7 @@
                     <th ng-if="ctrl.selected.hasDeprecatedProperty">Deprecation Reason</th>
                     <th>UML Datatype</th>
                     <th>JSON Datatype</th>
+                    <th>JSON Element Name</th>
                     <th>Other</th>
                     <th ng-if="ctrl.selected.showIdentityColumn">Identity</th>
                     <th>Cardinality</th>
@@ -53,6 +54,7 @@
                     <td ng-if="ctrl.selected.hasDeprecatedProperty">{{r.deprecationReason}}</td>
                     <td>{{r.umlDatatype}}</td>
                     <td>{{r.jsonDatatype}}</td>
+                    <td>{{r.jsonElementName}}</td>
                     <td>
                         <p>MetaEd DSL Datatype: {{r.metaEdDatatype}}</p>
                         <p ng-if="r.sqlDatatype">SQL Recommended Datatype: {{r.sqlDatatype}}</p>
