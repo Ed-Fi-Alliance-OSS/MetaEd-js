@@ -14,6 +14,7 @@ import {
   getAllEntitiesForNamespaces,
 } from '@edfi/metaed-core';
 import type { Table, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
+import { topLevelApiNameOnEntity } from '@edfi/metaed-plugin-edfi-meadowlark';
 import { HandbookEntry } from '../model/HandbookEntry';
 import { newHandbookEntry } from '../model/HandbookEntry';
 import { getAllReferentialProperties } from './EnhancerHelper';
@@ -142,6 +143,7 @@ function entityPropertyToHandbookEntityReferenceProperty(
     extensionParentNamespaceName: isPropertyOnExtensionEntity ? property.parentEntity.namespace.namespaceName : '',
     umlDatatype: umlDatatypeMatrix[property.type],
     jsonDatatype: jsonDatatypeMatrix[property.type],
+    jsonElementName: topLevelApiNameOnEntity(property.parentEntity, property),
     metaEdDatatype: getMetaEdDatatype(property),
     sqlDatatype: getSqlDatatype(property),
     isIdentity: property.isPartOfIdentity || property.isIdentityRename,

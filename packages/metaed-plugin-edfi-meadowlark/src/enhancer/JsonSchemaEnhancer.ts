@@ -30,7 +30,7 @@ import {
   SchemaRoot,
 } from '../model/JsonSchema';
 import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
-import { singularize, topLevelNameOnEntity } from '../Utility';
+import { singularize, topLevelApiNameOnEntity } from '../Utility';
 
 const enhancerName = 'JsonSchemaEnhancer';
 
@@ -411,7 +411,7 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
   const { collectedProperties } = entityForSchema.data.meadowlark as EntityMeadowlarkData;
 
   collectedProperties.forEach(({ property, propertyModifier }) => {
-    const topLevelName = topLevelNameOnEntity(entityForSchema, property);
+    const topLevelName = topLevelApiNameOnEntity(entityForSchema, property);
     const schemaObjectBaseName = prefixedName(topLevelName, propertyModifier);
 
     const schemaProperty: SchemaProperty =

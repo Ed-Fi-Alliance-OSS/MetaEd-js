@@ -1,6 +1,7 @@
 import { HandbookMergeProperty } from './HandbookMergeProperty';
 
-export interface HandbookEntityReferenceProperty {
+// A row in the "References" table on an Entity Handbook page
+export type HandbookEntityReferenceProperty = {
   metaEdId: string;
   targetPropertyId: string;
   referenceUniqueIdentifier: string;
@@ -11,6 +12,7 @@ export interface HandbookEntityReferenceProperty {
   extensionParentNamespaceName: string;
   umlDatatype: string;
   jsonDatatype: string;
+  jsonElementName: string;
   metaEdDatatype: string;
   sqlDatatype: string;
   isIdentity: boolean;
@@ -18,4 +20,4 @@ export interface HandbookEntityReferenceProperty {
   cardinality: string;
   definition: string;
   mergeDirectives?: HandbookMergeProperty[];
-}
+};
