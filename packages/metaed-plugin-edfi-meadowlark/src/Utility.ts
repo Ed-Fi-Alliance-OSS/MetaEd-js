@@ -26,15 +26,23 @@ export function uncapitalize(text: string): string {
   if (text == null || typeof text !== 'string') return '';
   // Handle text like "URI" -> "uri"
   if (text === text.toUpperCase()) return text.toLowerCase();
-  return text.charAt(0).toLowerCase() + text.substr(1);
+  return text.charAt(0).toLowerCase() + text.substring(1);
 }
 
 export function capitalize(text: string): string {
   if (text == null || typeof text !== 'string') return '';
-  return text.charAt(0).toUpperCase() + text.substr(1);
+  return text.charAt(0).toUpperCase() + text.substring(1);
 }
 
+const pluralEdgeCases = {
+  accommodation: 'accommodations',
+};
+
 export function pluralize(text: string): string {
+  if (text in pluralEdgeCases) {
+    return pluralEdgeCases[text];
+  }
+
   return inflection.pluralize(text);
 }
 
