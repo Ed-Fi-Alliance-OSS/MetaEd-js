@@ -36,6 +36,7 @@ export function capitalize(text: string): string {
 
 const pluralEdgeCases = {
   accommodation: 'accommodations',
+  Accommodation: 'Accommodations',
 };
 
 export function pluralize(text: string): string {

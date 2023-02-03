@@ -9,6 +9,7 @@ describe('when pluralizing a word', () => {
   // Testing the offender (accommodation) plus some random other words
   it.each([
     ['accommodation', 'accommodations'],
+    ['Accommodation', 'Accommodations'],
     ['property', 'properties'],
     ['item', 'items'],
     ['descriptor', 'descriptors'],
