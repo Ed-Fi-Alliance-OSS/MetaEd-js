@@ -23,12 +23,12 @@
       "@edfi/metaed-plugin-edfi-unified-advanced",
       "@edfi/metaed-plugin-edfi-ods-relational",
       "@edfi/metaed-plugin-edfi-ods-sqlserver",
-      "@edfi/metaed-plugin-edfi-meadowlark"
+      "@edfi/metaed-plugin-edfi-api-schema"
     ]
   },
   "dependencies": {
     "@edfi/metaed-core": "3.2.1-dev.6",
-    "@edfi/metaed-plugin-edfi-meadowlark": "3.2.1-dev.6",
+    "@edfi/metaed-plugin-edfi-api-schema": "3.2.1-dev.6",
     "@edfi/metaed-plugin-edfi-ods-relational": "3.2.1-dev.6",
     "@edfi/metaed-plugin-edfi-ods-sqlserver": "3.2.1-dev.6",
     "@edfi/metaed-plugin-edfi-unified": "3.2.1-dev.6",

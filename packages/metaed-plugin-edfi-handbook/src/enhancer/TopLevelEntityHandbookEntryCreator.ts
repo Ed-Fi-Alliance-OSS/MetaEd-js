@@ -14,7 +14,7 @@ import {
   getAllEntitiesForNamespaces,
 } from '@edfi/metaed-core';
 import type { Table, TopLevelEntityEdfiOds } from '@edfi/metaed-plugin-edfi-ods-relational';
-import { topLevelApiNameOnEntity } from '@edfi/metaed-plugin-edfi-meadowlark';
+import { topLevelApiNameOnEntity } from '@edfi/metaed-plugin-edfi-api-schema';
 import { HandbookEntry } from '../model/HandbookEntry';
 import { newHandbookEntry } from '../model/HandbookEntry';
 import { getAllReferentialProperties } from './EnhancerHelper';

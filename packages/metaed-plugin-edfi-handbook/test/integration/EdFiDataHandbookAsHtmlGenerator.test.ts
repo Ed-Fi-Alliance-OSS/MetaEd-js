@@ -9,7 +9,7 @@ import {
 import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
 import { initialize as initializeOdsRelationalPlugin } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { initialize as initializeOdsSqlServerPlugin } from '@edfi/metaed-plugin-edfi-ods-sqlserver';
-import { initialize as initializeMeadowlarkPlugin } from '@edfi/metaed-plugin-edfi-meadowlark';
+import { initialize as initializeMeadowlarkPlugin } from '@edfi/metaed-plugin-edfi-api-schema';
 import { initialize as initializeHandbookPlugin } from '../../src/index';
 import { generate } from '../../src/generator/EdFiDataHandbookAsHtmlIndexGenerator';
 
