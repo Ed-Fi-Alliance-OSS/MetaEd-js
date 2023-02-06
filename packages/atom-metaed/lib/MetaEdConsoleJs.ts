@@ -184,6 +184,7 @@ async function executeBuild(
       '/s',
       '/c',
       `node --no-deprecation "${metaEdConsolePath}"`,
+      '--accept-license',
       '--config',
       `"${metaEdConfigurationPath}"`,
     ];
@@ -367,6 +368,7 @@ async function executeDeploy(
       '/s',
       '/c',
       `node --no-deprecation "${metaEdDeployPath}"`,
+      '--accept-license',
       '--config',
       `"${metaEdConfigurationPath}"`,
     ];

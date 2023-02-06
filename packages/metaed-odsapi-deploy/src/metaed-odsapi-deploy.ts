@@ -92,6 +92,12 @@ export async function metaEdDeploy() {
       type: 'boolean',
       default: false,
     })
+    .option('accept-license', {
+      alias: 'a',
+      describe: 'Accept the Ed-Fi License Agreement at https://www.ed-fi.org/getting-started/license-ed-fi-technology',
+      type: 'string',
+      demandOption: true,
+    })
     .help()
     .alias('help', 'h')
     .version()

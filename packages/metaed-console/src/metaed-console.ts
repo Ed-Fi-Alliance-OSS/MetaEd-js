@@ -25,6 +25,12 @@ export async function metaEdConsole() {
       describe: 'The default technology version for all plugins, in semver format',
       type: 'string',
     })
+    .option('accept-license', {
+      alias: 'a',
+      describe: 'Accept the Ed-Fi License Agreement at https://www.ed-fi.org/getting-started/license-ed-fi-technology',
+      type: 'string',
+      demandOption: true,
+    })
     .help()
     .alias('help', 'h')
     .version()
