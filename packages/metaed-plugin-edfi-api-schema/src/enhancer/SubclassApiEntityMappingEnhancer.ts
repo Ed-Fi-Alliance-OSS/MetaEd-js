@@ -62,7 +62,9 @@ function buildApiEntityMappingForSubclass(entity: TopLevelEntity): ApiEntityMapp
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'domainEntitySubclass', 'associationSubclass').forEach((entity) => {
-    (entity.data.edfiApiSchema as EntityApiSchemaData).apiMapping = buildApiEntityMappingForSubclass(entity as TopLevelEntity);
+    (entity.data.edfiApiSchema as EntityApiSchemaData).apiMapping = buildApiEntityMappingForSubclass(
+      entity as TopLevelEntity,
+    );
   });
 
   return {

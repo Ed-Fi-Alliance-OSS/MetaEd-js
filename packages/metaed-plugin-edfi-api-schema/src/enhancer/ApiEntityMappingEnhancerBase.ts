@@ -19,7 +19,9 @@ import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaDat
  * All of the identity properties of the given entity, in sorted order
  */
 export function identityReferenceComponentsFrom(identityProperties: EntityProperty[]): ReferenceComponent[] {
-  return identityProperties.map((property) => (property.data.edfiApiSchema as EntityPropertyApiSchemaData).referenceComponent);
+  return identityProperties.map(
+    (property) => (property.data.edfiApiSchema as EntityPropertyApiSchemaData).referenceComponent,
+  );
 }
 
 /**
