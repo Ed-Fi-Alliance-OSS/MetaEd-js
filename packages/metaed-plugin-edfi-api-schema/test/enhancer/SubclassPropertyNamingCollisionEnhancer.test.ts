@@ -55,7 +55,7 @@ describe('when superclass and subclass have a naming collision issue', () => {
     const edOrgEntity: any = metaEd.namespace.get(namespace)?.entity.domainEntity.get(educationOrganization);
     const edOrgCategoryProperty = edOrgEntity.properties.find((p) => p.metaEdName === `${educationOrganization}${category}`);
 
-    expect(schoolCategoryProperty.data.apiSchema.namingCollisionWithSuperclassProperty).toBe(edOrgCategoryProperty);
+    expect(schoolCategoryProperty.data.edfiApiSchema.namingCollisionWithSuperclassProperty).toBe(edOrgCategoryProperty);
   });
 
   it('should indicate superclass property has a conflict with subclass property', () => {
@@ -65,8 +65,8 @@ describe('when superclass and subclass have a naming collision issue', () => {
     const edOrgEntity: any = metaEd.namespace.get(namespace)?.entity.domainEntity.get(educationOrganization);
     const edOrgCategoryProperty = edOrgEntity.properties.find((p) => p.metaEdName === `${educationOrganization}${category}`);
 
-    expect(edOrgCategoryProperty.data.apiSchema.namingCollisionWithSubclassProperties).toHaveLength(1);
-    expect(edOrgCategoryProperty.data.apiSchema.namingCollisionWithSubclassProperties[0]).toBe(schoolCategoryProperty);
+    expect(edOrgCategoryProperty.data.edfiApiSchema.namingCollisionWithSubclassProperties).toHaveLength(1);
+    expect(edOrgCategoryProperty.data.edfiApiSchema.namingCollisionWithSubclassProperties[0]).toBe(schoolCategoryProperty);
   });
 });
 
@@ -105,7 +105,7 @@ describe('when superclass and subclass have no naming collision issue due to dif
     const schoolEntity: any = metaEd.namespace.get(namespace)?.entity.domainEntitySubclass.get(school);
     const schoolCategoryProperty = schoolEntity.properties.find((p) => p.metaEdName === `${school}${category}`);
 
-    expect(schoolCategoryProperty.data.apiSchema.namingCollisionWithSuperclassProperty).toBe(NoEntityProperty);
+    expect(schoolCategoryProperty.data.edfiApiSchema.namingCollisionWithSuperclassProperty).toBe(NoEntityProperty);
   });
 
   it('should indicate superclass property has no conflict', () => {
@@ -114,7 +114,7 @@ describe('when superclass and subclass have no naming collision issue due to dif
       (p) => p.metaEdName === `${educationOrganization}Not${category}`,
     );
 
-    expect(edOrgCategoryProperty.data.apiSchema.namingCollisionWithSubclassProperties).toHaveLength(0);
+    expect(edOrgCategoryProperty.data.edfiApiSchema.namingCollisionWithSubclassProperties).toHaveLength(0);
   });
 });
 
@@ -152,13 +152,13 @@ describe('when superclass and subclass have no naming collision issue due to one
   it('should indicate subclass property has no conflict', () => {
     const leaEntity: any = metaEd.namespace.get(namespace)?.entity.domainEntitySubclass.get(localEducationAgency);
     const leaCategoryProperty = leaEntity.properties.find((p) => p.metaEdName === `${localEducationAgency}${category}`);
-    expect(leaCategoryProperty.data.apiSchema.namingCollisionWithSuperclassProperty).toBe(NoEntityProperty);
+    expect(leaCategoryProperty.data.edfiApiSchema.namingCollisionWithSuperclassProperty).toBe(NoEntityProperty);
   });
 
   it('should indicate superclass property has no conflict', () => {
     const edOrgEntity: any = metaEd.namespace.get(namespace)?.entity.domainEntity.get(educationOrganization);
     const edOrgCategoryProperty = edOrgEntity.properties.find((p) => p.metaEdName === `${educationOrganization}${category}`);
 
-    expect(edOrgCategoryProperty.data.apiSchema.namingCollisionWithSubclassProperties).toHaveLength(0);
+    expect(edOrgCategoryProperty.data.edfiApiSchema.namingCollisionWithSubclassProperties).toHaveLength(0);
   });
 });

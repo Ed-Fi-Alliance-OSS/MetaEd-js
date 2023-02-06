@@ -37,7 +37,7 @@ function buildReferenceComponent(sourceProperty: EntityProperty): ReferenceCompo
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllProperties(metaEd.propertyIndex).forEach((property) => {
-    (property.data.apiSchema as EntityPropertyApiSchemaData).referenceComponent = buildReferenceComponent(property);
+    (property.data.edfiApiSchema as EntityPropertyApiSchemaData).referenceComponent = buildReferenceComponent(property);
   });
 
   return {

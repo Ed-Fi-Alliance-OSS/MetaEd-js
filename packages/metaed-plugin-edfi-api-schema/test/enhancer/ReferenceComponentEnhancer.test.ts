@@ -52,7 +52,7 @@ describe('when building simple domain entity referencing another', () => {
 
   it('should have the referenced domain entitys identity property', () => {
     const property = metaEd.propertyIndex.domainEntity.find((p) => p.metaEdName === referencedEntityName) as any;
-    const { referenceComponent } = property.data.apiSchema as EntityPropertyApiSchemaData;
+    const { referenceComponent } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
     expect(isReferenceGroup(referenceComponent)).toBe(true);
     expect((referenceComponent as ReferenceGroup).referenceComponents).toHaveLength(1);
     expect(isReferenceElement((referenceComponent as ReferenceGroup).referenceComponents[0])).toBe(true);
@@ -94,7 +94,7 @@ describe('when building simple domain entity referencing a descriptor as part of
 
   it('should have the descriptor property without a group since descriptors have no identity properties', () => {
     const property = metaEd.propertyIndex.descriptor.find((p) => p.metaEdName === descriptorName) as any;
-    const { referenceComponent } = property.data.apiSchema as EntityPropertyApiSchemaData;
+    const { referenceComponent } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
     expect(isReferenceElement(referenceComponent)).toBe(true);
   });
 });
@@ -143,7 +143,7 @@ describe('when building simple domain entity referencing another referencing ano
 
   it('should have the referenced domain entitys identity property', () => {
     const property = metaEd.propertyIndex.domainEntity.find((p) => p.metaEdName === referencedEntityName) as any;
-    const { referenceComponent } = property.data.apiSchema as EntityPropertyApiSchemaData;
+    const { referenceComponent } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
     expect(isReferenceGroup(referenceComponent)).toBe(true);
     expect((referenceComponent as ReferenceGroup).referenceComponents).toHaveLength(1);
     expect(isReferenceElement((referenceComponent as ReferenceGroup).referenceComponents[0])).toBe(true);
@@ -197,7 +197,7 @@ describe('when building simple domain entity referencing another referencing ano
 
   it('should have the referenced domain entitys identity property', () => {
     const property = metaEd.propertyIndex.domainEntity.find((p) => p.metaEdName === referencedEntityName) as any;
-    const { referenceComponent } = property.data.apiSchema as EntityPropertyApiSchemaData;
+    const { referenceComponent } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
     expect(isReferenceGroup(referenceComponent)).toBe(true);
     expect((referenceComponent as ReferenceGroup).referenceComponents).toHaveLength(2);
     expect(isReferenceElement((referenceComponent as ReferenceGroup).referenceComponents[0])).toBe(true);

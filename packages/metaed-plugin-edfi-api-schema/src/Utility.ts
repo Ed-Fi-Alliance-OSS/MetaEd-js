@@ -65,7 +65,7 @@ export function dropPrefix(prefix: string, str: string) {
  * Select the correct top level name to avoid possible collisions between superclass and subclass properties.
  */
 export function topLevelApiNameOnEntity(entity: TopLevelEntity, property: EntityProperty): string {
-  const propertyApiSchemaData = property.data.apiSchema as EntityPropertyApiSchemaData;
+  const propertyApiSchemaData = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
   // Avoid collision if this is a property on the subclass with a superclass conflict
   if (propertyApiSchemaData.namingCollisionWithSuperclassProperty !== NoEntityProperty) {

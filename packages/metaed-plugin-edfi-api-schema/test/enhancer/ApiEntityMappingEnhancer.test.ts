@@ -69,7 +69,7 @@ describe('when demonstrating key unification via entity referencing two entities
 
   it('should have ClassPeriod and CourseOffering in Section reference groups', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(section);
-    const apiMapping = sectionEntity?.data.apiSchema.apiMapping;
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.referenceGroups).toHaveLength(2);
     expect(apiMapping?.referenceGroups[0].isGroup).toBe(true);
@@ -80,7 +80,7 @@ describe('when demonstrating key unification via entity referencing two entities
 
   it('should have Course Offering reference group and Section Identifier reference element in Section identity reference components', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(section);
-    const apiMapping = sectionEntity?.data.apiSchema.apiMapping;
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.identityReferenceComponents).toHaveLength(2);
     expect(apiMapping?.identityReferenceComponents[0].isGroup).toBe(true);
@@ -92,7 +92,7 @@ describe('when demonstrating key unification via entity referencing two entities
 
   it('should have LocalCourseCode, SchoolId, and SectionIdentifier in Section flattened identity properties', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(section);
-    const apiMapping = sectionEntity?.data.apiSchema.apiMapping;
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.flattenedIdentityProperties).toHaveLength(3);
     expect(apiMapping?.flattenedIdentityProperties[0].fullPropertyName).toBe('LocalCourseCode');
@@ -102,13 +102,13 @@ describe('when demonstrating key unification via entity referencing two entities
 
   it('should not have any descriptor property mappings in Section', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(section);
-    const apiMapping = sectionEntity?.data.apiSchema.apiMapping;
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
     expect(apiMapping?.descriptorCollectedProperties).toHaveLength(0);
   });
 
   it('should have School in CourseOffering reference groups', () => {
     const courseOfferingEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(courseOffering);
-    const apiMapping = courseOfferingEntity?.data.apiSchema.apiMapping;
+    const apiMapping = courseOfferingEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.referenceGroups).toHaveLength(1);
     expect(apiMapping?.referenceGroups[0].isGroup).toBe(true);
@@ -117,7 +117,7 @@ describe('when demonstrating key unification via entity referencing two entities
 
   it('should have LocalCourseCode reference element and School reference group in CourseOffering identity reference components', () => {
     const courseOfferingEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(courseOffering);
-    const apiMapping = courseOfferingEntity?.data.apiSchema.apiMapping;
+    const apiMapping = courseOfferingEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.identityReferenceComponents).toHaveLength(2);
     expect(apiMapping?.identityReferenceComponents[0].isElement).toBe(true);
@@ -129,7 +129,7 @@ describe('when demonstrating key unification via entity referencing two entities
 
   it('should have LocalCourseCode and SchoolId in CourseOffering flattened identity properties', () => {
     const courseOfferingEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(courseOffering);
-    const apiMapping = courseOfferingEntity?.data.apiSchema.apiMapping;
+    const apiMapping = courseOfferingEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.flattenedIdentityProperties).toHaveLength(2);
     expect(apiMapping?.flattenedIdentityProperties[0].fullPropertyName).toBe('LocalCourseCode');
@@ -138,13 +138,13 @@ describe('when demonstrating key unification via entity referencing two entities
 
   it('should not have any descriptor property mappings in CourseOffering', () => {
     const courseOfferingEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(courseOffering);
-    const apiMapping = courseOfferingEntity?.data.apiSchema.apiMapping;
+    const apiMapping = courseOfferingEntity?.data.edfiApiSchema.apiMapping;
     expect(apiMapping?.descriptorCollectedProperties).toHaveLength(0);
   });
 
   it('should have School in ClassPeriod reference groups', () => {
     const classPeriodEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(classPeriod);
-    const apiMapping = classPeriodEntity?.data.apiSchema.apiMapping;
+    const apiMapping = classPeriodEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.referenceGroups).toHaveLength(1);
     expect(apiMapping?.referenceGroups[0].isGroup).toBe(true);
@@ -153,7 +153,7 @@ describe('when demonstrating key unification via entity referencing two entities
 
   it('should have School reference group and ClassPeriodName reference element in ClassPeriod identity reference components', () => {
     const classPeriodEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(classPeriod);
-    const apiMapping = classPeriodEntity?.data.apiSchema.apiMapping;
+    const apiMapping = classPeriodEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.identityReferenceComponents).toHaveLength(2);
     expect(apiMapping?.identityReferenceComponents[0].isElement).toBe(true);
@@ -165,7 +165,7 @@ describe('when demonstrating key unification via entity referencing two entities
 
   it('should have ClassPeriodName and SchoolId in ClassPeriod flattened identity properties', () => {
     const classPeriodEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(classPeriod);
-    const apiMapping = classPeriodEntity?.data.apiSchema.apiMapping;
+    const apiMapping = classPeriodEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.flattenedIdentityProperties).toHaveLength(2);
     expect(apiMapping?.flattenedIdentityProperties[0].fullPropertyName).toBe('ClassPeriodName');
@@ -174,19 +174,19 @@ describe('when demonstrating key unification via entity referencing two entities
 
   it('should not have any descriptor property mappings in ClassPeriod', () => {
     const classPeriodEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(classPeriod);
-    const apiMapping = classPeriodEntity?.data.apiSchema.apiMapping;
+    const apiMapping = classPeriodEntity?.data.edfiApiSchema.apiMapping;
     expect(apiMapping?.descriptorCollectedProperties).toHaveLength(0);
   });
 
   it('should no reference groups in School', () => {
     const schoolEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(school);
-    const apiMapping = schoolEntity?.data.apiSchema.apiMapping;
+    const apiMapping = schoolEntity?.data.edfiApiSchema.apiMapping;
     expect(apiMapping?.referenceGroups).toHaveLength(0);
   });
 
   it('should have SchoolId reference element in School identity reference components', () => {
     const schoolEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(school);
-    const apiMapping = schoolEntity?.data.apiSchema.apiMapping;
+    const apiMapping = schoolEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.identityReferenceComponents).toHaveLength(1);
     expect(apiMapping?.identityReferenceComponents[0].isElement).toBe(true);
@@ -195,7 +195,7 @@ describe('when demonstrating key unification via entity referencing two entities
 
   it('should have SchoolId in School flattened identity properties', () => {
     const schoolEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(school);
-    const apiMapping = schoolEntity?.data.apiSchema.apiMapping;
+    const apiMapping = schoolEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.flattenedIdentityProperties).toHaveLength(1);
     expect(apiMapping?.flattenedIdentityProperties[0].fullPropertyName).toBe('SchoolId');
@@ -203,7 +203,7 @@ describe('when demonstrating key unification via entity referencing two entities
 
   it('should not have any descriptor property mappings in School', () => {
     const schoolEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(school);
-    const apiMapping = schoolEntity?.data.apiSchema.apiMapping;
+    const apiMapping = schoolEntity?.data.edfiApiSchema.apiMapping;
     expect(apiMapping?.descriptorCollectedProperties).toHaveLength(0);
   });
 });
@@ -245,14 +245,14 @@ describe('when demonstrating descriptor collections and scalar descriptors on on
 
   it('should have two descriptor collected properties', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.apiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
 
     expect(collectedProperties).toHaveLength(2);
   });
 
   it('should have one collection collected property', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.apiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
 
     expect(collectedProperties[0].property.type).toBe('descriptor');
     expect(collectedProperties[0].property.metaEdName).toBe(descriptorName);
@@ -263,7 +263,7 @@ describe('when demonstrating descriptor collections and scalar descriptors on on
 
   it('should have one scalar collected property', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.apiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
 
     expect(collectedProperties[1].property.type).toBe('descriptor');
     expect(collectedProperties[1].property.metaEdName).toBe(descriptorName);
@@ -316,14 +316,14 @@ describe('when one entity has a descriptor on an inline common reference', () =>
 
   it('should have one descriptor collected property', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.apiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
 
     expect(collectedProperties).toHaveLength(1);
   });
 
   it('should have correct collected property values', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.apiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
 
     expect(collectedProperties[0].property.type).toBe('descriptor');
     expect(collectedProperties[0].property.metaEdName).toBe(descriptorName);
@@ -378,14 +378,14 @@ describe('when one entity has a descriptor on an inline common reference which i
 
   it('should have one descriptor collected property', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.apiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
 
     expect(collectedProperties).toHaveLength(1);
   });
 
   it('should have correct descriptor name', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.apiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
 
     expect(collectedProperties[0].property.type).toBe('descriptor');
     expect(collectedProperties[0].property.metaEdName).toBe(descriptorName);

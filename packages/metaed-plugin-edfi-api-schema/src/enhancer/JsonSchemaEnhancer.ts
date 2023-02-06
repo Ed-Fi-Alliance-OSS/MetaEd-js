@@ -126,10 +126,10 @@ function schemaObjectForReferentialProperty(
   const schemaProperties: SchemaProperties = {};
   const required: Set<string> = new Set();
 
-  const referencedEntityApiMapping = (property.referencedEntity.data.apiSchema as EntityApiSchemaData).apiMapping;
+  const referencedEntityApiMapping = (property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData).apiMapping;
 
   referencedEntityApiMapping.flattenedIdentityProperties.forEach((identityProperty) => {
-    const identityPropertyApiMapping = (identityProperty.data.apiSchema as EntityPropertyApiSchemaData).apiMapping;
+    const identityPropertyApiMapping = (identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData).apiMapping;
     const schemaPropertyName: string = prefixedName(identityPropertyApiMapping.fullName, propertyModifier);
 
     const schemaProperty: SchemaProperty = schemaPropertyFor(identityProperty, propertyModifier, schoolYearSchemas);
@@ -161,7 +161,7 @@ function schemaObjectForScalarCommonProperty(
   const schemaProperties: SchemaProperties = {};
   const required: string[] = [];
 
-  const { collectedProperties } = property.referencedEntity.data.apiSchema as EntityApiSchemaData;
+  const { collectedProperties } = property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
 
   collectedProperties.forEach((collectedProperty) => {
     const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
@@ -169,7 +169,7 @@ function schemaObjectForScalarCommonProperty(
       collectedProperty.propertyModifier,
     );
 
-    const referencePropertyApiMapping = (collectedProperty.property.data.apiSchema as EntityPropertyApiSchemaData)
+    const referencePropertyApiMapping = (collectedProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData)
       .apiMapping;
     const schemaPropertyName: string = prefixedName(referencePropertyApiMapping.topLevelName, concatenatedPropertyModifier);
 
@@ -277,7 +277,7 @@ function schemaArrayForReferenceCollection(
   propertyModifier: PropertyModifier,
   schoolYearSchemas: SchoolYearSchemas,
 ): SchemaArray {
-  const { apiMapping } = property.data.apiSchema as EntityPropertyApiSchemaData;
+  const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
   const referenceName = prefixedName(apiMapping.referenceCollectionName, propertyModifier);
 
   const referenceSchemaObject: SchemaObject = schemaObjectForReferentialProperty(
@@ -302,7 +302,7 @@ function schemaArrayForReferenceCollection(
  * corresponding to the given descriptor collection property.
  */
 function schemaArrayForDescriptorCollection(property: EntityProperty, propertyModifier: PropertyModifier): SchemaArray {
-  const { apiMapping } = property.data.apiSchema as EntityPropertyApiSchemaData;
+  const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
   const descriptorName = prefixedName(apiMapping.descriptorCollectionName, propertyModifier);
 
   const descriptorSchemaProperty: { [key: string]: SchemaProperty } = {
@@ -324,7 +324,7 @@ function schemaArrayForNonReferenceCollection(
   propertyModifier: PropertyModifier,
   schoolYearSchemas: SchoolYearSchemas,
 ): SchemaArray {
-  const { apiMapping } = property.data.apiSchema as EntityPropertyApiSchemaData;
+  const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
   const propertyName = singularize(prefixedName(apiMapping.fullName, propertyModifier));
 
   const schemaProperty: { [key: string]: SchemaProperty } = {
@@ -359,7 +359,7 @@ function schemaPropertyFor(
   propertyModifier: PropertyModifier,
   schoolYearSchemas: SchoolYearSchemas,
 ): SchemaProperty {
-  const { apiMapping } = property.data.apiSchema as EntityPropertyApiSchemaData;
+  const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
   if (apiMapping.isReferenceCollection) {
     return schemaArrayForReferenceCollection(property, propertyModifier, schoolYearSchemas);
@@ -408,7 +408,7 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
     additionalProperties: false,
   };
 
-  const { collectedProperties } = entityForSchema.data.apiSchema as EntityApiSchemaData;
+  const { collectedProperties } = entityForSchema.data.edfiApiSchema as EntityApiSchemaData;
 
   collectedProperties.forEach(({ property, propertyModifier }) => {
     const topLevelName = topLevelApiNameOnEntity(entityForSchema, property);
@@ -460,7 +460,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   // Build schemas for each domain entity and association
   getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
     (entity) => {
-      const entityApiSchemaData = entity.data.apiSchema as EntityApiSchemaData;
+      const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
       entityApiSchemaData.jsonSchema = buildJsonSchema(entity as TopLevelEntity, {
         schoolYearSchema,
         schoolYearEnumerationSchema,
@@ -470,13 +470,13 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
   // Attach descriptor schema to each descriptor
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
-    const entityApiSchemaData = entity.data.apiSchema as EntityApiSchemaData;
+    const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
     entityApiSchemaData.jsonSchema = descriptorSchema;
   });
 
   // Attach school year enumeration schema
   getAllEntitiesOfType(metaEd, 'schoolYearEnumeration').forEach((entity) => {
-    const entityApiSchemaData = entity.data.apiSchema as EntityApiSchemaData;
+    const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
     entityApiSchemaData.jsonSchema = schoolYearEnumerationSchema;
   });
 

@@ -19,7 +19,7 @@ import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaDat
  * All of the identity properties of the given entity, in sorted order
  */
 export function identityReferenceComponentsFrom(identityProperties: EntityProperty[]): ReferenceComponent[] {
-  return identityProperties.map((property) => (property.data.apiSchema as EntityPropertyApiSchemaData).referenceComponent);
+  return identityProperties.map((property) => (property.data.edfiApiSchema as EntityPropertyApiSchemaData).referenceComponent);
 }
 
 /**
@@ -27,7 +27,7 @@ export function identityReferenceComponentsFrom(identityProperties: EntityProper
  */
 export function referenceGroupsFrom(sortedProperties: EntityProperty[]): ReferenceGroup[] {
   return sortedProperties
-    .map((property) => (property.data.apiSchema as EntityPropertyApiSchemaData).referenceComponent)
+    .map((property) => (property.data.edfiApiSchema as EntityPropertyApiSchemaData).referenceComponent)
     .filter((rc) => isReferenceGroup(rc)) as ReferenceGroup[];
 }
 
@@ -36,7 +36,7 @@ export function referenceGroupsFrom(sortedProperties: EntityProperty[]): Referen
  */
 export function flattenedIdentityPropertiesFrom(identityProperties: EntityProperty[]): EntityProperty[] {
   const referenceElements: ReferenceElement[] = identityProperties.flatMap((identityProperty) =>
-    flattenReferenceElementsFromComponent(identityProperty.data.apiSchema.referenceComponent),
+    flattenReferenceElementsFromComponent(identityProperty.data.edfiApiSchema.referenceComponent),
   );
   return referenceElements.map((referenceElement) => referenceElement.sourceProperty);
 }
@@ -45,7 +45,7 @@ export function flattenedIdentityPropertiesFrom(identityProperties: EntityProper
  * CollectedProperties of all of the descriptor properties on the entity.
  */
 export function descriptorCollectedPropertiesFrom(entity: TopLevelEntity): CollectedProperty[] {
-  return (entity.data.apiSchema as EntityApiSchemaData).collectedProperties.filter(
+  return (entity.data.edfiApiSchema as EntityApiSchemaData).collectedProperties.filter(
     (cp) => cp.property.type === 'descriptor',
   );
 }

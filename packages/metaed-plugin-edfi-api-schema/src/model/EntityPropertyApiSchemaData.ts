@@ -33,9 +33,9 @@ export type EntityPropertyApiSchemaData = {
  * Initialize property with ApiSchema data placeholder.
  */
 export function addEntityPropertyApiSchemaDataTo(property: EntityProperty) {
-  if (property.data.apiSchema == null) property.data.apiSchema = {};
+  if (property.data.edfiApiSchema == null) property.data.edfiApiSchema = {};
 
-  Object.assign(property.data.apiSchema, {
+  Object.assign(property.data.edfiApiSchema, {
     apiMapping: NoApiPropertyMapping,
     namingCollisionWithSuperclassProperty: NoEntityProperty,
     namingCollisionWithSubclassProperties: [],

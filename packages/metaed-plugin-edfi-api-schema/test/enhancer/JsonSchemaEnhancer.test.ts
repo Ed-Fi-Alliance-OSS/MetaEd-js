@@ -83,7 +83,7 @@ describe('when building simple domain entity with all the simple non-collections
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -183,7 +183,7 @@ describe('when building simple domain entity with all the simple non-collections
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -231,7 +231,7 @@ describe('when building simple domain entity with all the simple collections', (
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -506,7 +506,7 @@ describe('when building simple domain entity with all the simple collections', (
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -560,7 +560,7 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -645,7 +645,7 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -700,7 +700,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -763,7 +763,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -822,7 +822,7 @@ describe('when building domain entity with nested choice and inline commons', ()
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -926,7 +926,7 @@ describe('when building domain entity with nested choice and inline commons', ()
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -963,7 +963,7 @@ describe('when building domain entity with scalar collection named with prefix o
 
   it('should be a correct schema - parent name prefix removed', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1012,7 +1012,7 @@ describe('when building domain entity with scalar collection named with prefix o
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -1054,7 +1054,7 @@ describe('when building domain entity with Association/DomainEntity collection n
 
   it('should be a correct schema - parent name prefix retained', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1112,7 +1112,7 @@ describe('when building domain entity with Association/DomainEntity collection n
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -1161,7 +1161,7 @@ describe('when building domain entity with a simple common collection', () => {
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1213,7 +1213,7 @@ describe('when building domain entity with a simple common collection', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -1273,7 +1273,7 @@ describe('when building domain entity subclass with common collection and descri
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntitySubclass.get(domainEntitySubclassName);
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1325,7 +1325,7 @@ describe('when building domain entity subclass with common collection and descri
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntitySubclass.get(domainEntitySubclassName);
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -1374,7 +1374,7 @@ describe('when building association with a common collection in a common collect
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('StudentEducationOrganizationAssociation');
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1443,7 +1443,7 @@ describe('when building association with a common collection in a common collect
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('StudentEducationOrganizationAssociation');
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -1485,7 +1485,7 @@ describe('when building domain entity with a descriptor with role name', () => {
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1517,7 +1517,7 @@ describe('when building domain entity with a descriptor with role name', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -1559,7 +1559,7 @@ describe('when building domain entity with a descriptor collection with role nam
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1605,7 +1605,7 @@ describe('when building domain entity with a descriptor collection with role nam
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -1656,7 +1656,7 @@ describe('when building domain entity with a common with a choice', () => {
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1705,7 +1705,7 @@ describe('when building domain entity with a common with a choice', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -1753,7 +1753,7 @@ describe('when building domain entity with a common and a common collection with
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1812,7 +1812,7 @@ describe('when building domain entity with a common and a common collection with
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -1846,7 +1846,7 @@ describe('when building domain entity with an all-caps property', () => {
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1879,7 +1879,7 @@ describe('when building domain entity with an all-caps property', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -1928,7 +1928,7 @@ describe('when building domain entity with a common with a domain entity referen
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1980,7 +1980,7 @@ describe('when building domain entity with a common with a domain entity referen
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -2023,7 +2023,7 @@ describe('when building domain entity with two school year enumerations, one rol
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2081,7 +2081,7 @@ describe('when building domain entity with two school year enumerations, one rol
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -2124,7 +2124,7 @@ describe('when building domain entity with reference to domain entity with schoo
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2172,7 +2172,7 @@ describe('when building domain entity with reference to domain entity with schoo
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -2203,7 +2203,7 @@ describe('when building a descriptor', () => {
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.descriptor.get('GradeLevel');
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2239,7 +2239,7 @@ describe('when building a descriptor', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.descriptor.get('GradeLevel');
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -2272,7 +2272,7 @@ describe('when building a school year enumeration', () => {
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2293,7 +2293,7 @@ describe('when building a school year enumeration', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
-    ajv.compile(entity.data.apiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
   });
 });
 
@@ -2350,7 +2350,7 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('StudentCohort');
-    expect(entity.data.apiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,

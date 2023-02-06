@@ -39,12 +39,12 @@ function buildApiEntityMapping(entity: TopLevelEntity): ApiEntityMapping {
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'domainEntity', 'association').forEach((entity) => {
-    (entity.data.apiSchema as EntityApiSchemaData).apiMapping = buildApiEntityMapping(entity as TopLevelEntity);
+    (entity.data.edfiApiSchema as EntityApiSchemaData).apiMapping = buildApiEntityMapping(entity as TopLevelEntity);
   });
 
   // Descriptors have no API shape metadata
   getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
-    (entity.data.apiSchema as EntityApiSchemaData).apiMapping = NoApiEntityMapping;
+    (entity.data.edfiApiSchema as EntityApiSchemaData).apiMapping = NoApiEntityMapping;
   });
 
   return {

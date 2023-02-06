@@ -60,7 +60,7 @@ describe('when building simple domain entity referencing another referencing ano
 
   it('should be valid', () => {
     expect(metaEd.propertyIndex.string).toHaveLength(4);
-    expect(metaEd.propertyIndex.string[0].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.string[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "sectionIdentifier",
         "descriptorCollectionName": "",
@@ -76,7 +76,7 @@ describe('when building simple domain entity referencing another referencing ano
         "topLevelName": "sectionIdentifier",
       }
     `);
-    expect(metaEd.propertyIndex.string[1].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.string[1].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "localCourseCode",
         "descriptorCollectionName": "",
@@ -92,7 +92,7 @@ describe('when building simple domain entity referencing another referencing ano
         "topLevelName": "localCourseCode",
       }
     `);
-    expect(metaEd.propertyIndex.string[2].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.string[2].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "classPeriodName",
         "descriptorCollectionName": "",
@@ -108,7 +108,7 @@ describe('when building simple domain entity referencing another referencing ano
         "topLevelName": "classPeriodName",
       }
     `);
-    expect(metaEd.propertyIndex.string[3].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.string[3].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "schoolId",
         "descriptorCollectionName": "",
@@ -126,7 +126,7 @@ describe('when building simple domain entity referencing another referencing ano
     `);
 
     expect(metaEd.propertyIndex.domainEntity).toHaveLength(4);
-    expect(metaEd.propertyIndex.domainEntity[0].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.domainEntity[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "courseOfferingReference",
         "descriptorCollectionName": "",
@@ -142,7 +142,7 @@ describe('when building simple domain entity referencing another referencing ano
         "topLevelName": "courseOfferingReference",
       }
     `);
-    expect(metaEd.propertyIndex.domainEntity[1].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.domainEntity[1].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "classPeriods",
         "descriptorCollectionName": "",
@@ -158,7 +158,7 @@ describe('when building simple domain entity referencing another referencing ano
         "topLevelName": "classPeriods",
       }
     `);
-    expect(metaEd.propertyIndex.domainEntity[2].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.domainEntity[2].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "schoolReference",
         "descriptorCollectionName": "",
@@ -174,7 +174,7 @@ describe('when building simple domain entity referencing another referencing ano
         "topLevelName": "schoolReference",
       }
     `);
-    expect(metaEd.propertyIndex.domainEntity[3].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.domainEntity[3].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "schoolReference",
         "descriptorCollectionName": "",
@@ -235,7 +235,7 @@ describe('when domain entity has a reference with same role name as entity name'
 
   it('should be valid', () => {
     expect(metaEd.propertyIndex.string).toHaveLength(4);
-    expect(metaEd.propertyIndex.string[0].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.string[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "sectionIdentifier",
         "descriptorCollectionName": "",
@@ -251,7 +251,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "topLevelName": "sectionIdentifier",
       }
     `);
-    expect(metaEd.propertyIndex.string[1].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.string[1].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "localCourseCode",
         "descriptorCollectionName": "",
@@ -267,7 +267,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "topLevelName": "localCourseCode",
       }
     `);
-    expect(metaEd.propertyIndex.string[2].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.string[2].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "classPeriodName",
         "descriptorCollectionName": "",
@@ -283,7 +283,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "topLevelName": "classPeriodName",
       }
     `);
-    expect(metaEd.propertyIndex.string[3].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.string[3].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "schoolId",
         "descriptorCollectionName": "",
@@ -301,7 +301,7 @@ describe('when domain entity has a reference with same role name as entity name'
     `);
 
     expect(metaEd.propertyIndex.domainEntity).toHaveLength(4);
-    expect(metaEd.propertyIndex.domainEntity[0].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.domainEntity[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "courseOfferingReference",
         "descriptorCollectionName": "",
@@ -317,7 +317,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "topLevelName": "courseOfferingReference",
       }
     `);
-    expect(metaEd.propertyIndex.domainEntity[1].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.domainEntity[1].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "classPeriods",
         "descriptorCollectionName": "",
@@ -333,7 +333,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "topLevelName": "classPeriods",
       }
     `);
-    expect(metaEd.propertyIndex.domainEntity[2].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.domainEntity[2].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "schoolReference",
         "descriptorCollectionName": "",
@@ -349,7 +349,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "topLevelName": "schoolReference",
       }
     `);
-    expect(metaEd.propertyIndex.domainEntity[3].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.domainEntity[3].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "schoolReference",
         "descriptorCollectionName": "",
@@ -401,11 +401,11 @@ describe('when superclass and subclass will have a naming collision issue', () =
 
   it('should have correct regular and collision resolved top level names', () => {
     expect(metaEd.propertyIndex.string).toHaveLength(2);
-    const edOrgPropertyApiMapping = metaEd.propertyIndex.string[0].data.apiSchema.apiMapping;
+    const edOrgPropertyApiMapping = metaEd.propertyIndex.string[0].data.edfiApiSchema.apiMapping;
     expect(edOrgPropertyApiMapping.decollisionedTopLevelName).toBe('educationOrganizationCategories');
     expect(edOrgPropertyApiMapping.topLevelName).toBe('categories');
 
-    const schoolPropertyApiMapping = metaEd.propertyIndex.string[1].data.apiSchema.apiMapping;
+    const schoolPropertyApiMapping = metaEd.propertyIndex.string[1].data.edfiApiSchema.apiMapping;
     expect(schoolPropertyApiMapping.decollisionedTopLevelName).toBe('schoolCategories');
     expect(schoolPropertyApiMapping.topLevelName).toBe('categories');
   });
@@ -441,7 +441,7 @@ describe('when building simple domain entity with common collection', () => {
 
   it('should be valid', () => {
     expect(metaEd.propertyIndex.common).toHaveLength(1);
-    expect(metaEd.propertyIndex.common[0].data.apiSchema.apiMapping).toMatchInlineSnapshot(`
+    expect(metaEd.propertyIndex.common[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
         "decollisionedTopLevelName": "meetingTimes",
         "descriptorCollectionName": "",
@@ -484,7 +484,7 @@ describe('when building a domain entity with a descriptor collection that meets 
     referenceComponentEnhancer(metaEd);
     enhance(metaEd);
 
-    meadowlarkData = metaEd.propertyIndex.descriptor[0].data.apiSchema;
+    meadowlarkData = metaEd.propertyIndex.descriptor[0].data.edfiApiSchema;
   });
 
   it('should have the prefix removed from the name', () => {

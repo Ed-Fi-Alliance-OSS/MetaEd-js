@@ -34,7 +34,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         });
     }
 
-    (entity.data.apiSchema as EntityApiSchemaData).collectedProperties = collectedProperties;
+    (entity.data.edfiApiSchema as EntityApiSchemaData).collectedProperties = collectedProperties;
   });
 
   return {

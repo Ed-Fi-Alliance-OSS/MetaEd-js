@@ -27,9 +27,9 @@ export type EntityApiSchemaData = {
  * Initialize entity with ApiSchema data placeholder.
  */
 export function addEntityApiSchemaDataTo(entity: ModelBase) {
-  if (entity.data.apiSchema == null) entity.data.apiSchema = {};
+  if (entity.data.edfiApiSchema == null) entity.data.edfiApiSchema = {};
 
-  Object.assign(entity.data.apiSchema, {
+  Object.assign(entity.data.edfiApiSchema, {
     apiMapping: NoApiEntityMapping,
     jsonSchema: NoSchemaRoot,
     collectedProperties: [],
@@ -50,7 +50,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     'common',
     'schoolYearEnumeration',
   ).forEach((entity) => {
-    if (entity.data.apiSchema == null) entity.data.apiSchema = {};
+    if (entity.data.edfiApiSchema == null) entity.data.edfiApiSchema = {};
     addEntityApiSchemaDataTo(entity);
   });
 

@@ -167,7 +167,7 @@ function buildApiPropertyMapping(property: EntityProperty): ApiPropertyMapping {
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllProperties(metaEd.propertyIndex).forEach((property) => {
-    (property.data.apiSchema as EntityPropertyApiSchemaData).apiMapping = buildApiPropertyMapping(property);
+    (property.data.edfiApiSchema as EntityPropertyApiSchemaData).apiMapping = buildApiPropertyMapping(property);
   });
 
   return {

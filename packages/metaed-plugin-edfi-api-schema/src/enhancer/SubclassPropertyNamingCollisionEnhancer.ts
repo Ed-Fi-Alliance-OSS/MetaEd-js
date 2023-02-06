@@ -47,7 +47,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         );
 
         // Set in the subclass -> superclass direction if exists
-        const subclassPropertyApiSchema = subclassCollectionProperty.data.apiSchema as EntityPropertyApiSchemaData;
+        const subclassPropertyApiSchema = subclassCollectionProperty.data.edfiApiSchema as EntityPropertyApiSchemaData;
         subclassPropertyApiSchema.namingCollisionWithSuperclassProperty =
           superclassPrefixedCollectionProperties.find(
             (superclassProperty) =>
@@ -57,7 +57,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         // Add in the superclass -> subclass direction if exists
         if (subclassPropertyApiSchema.namingCollisionWithSuperclassProperty !== NoEntityProperty) {
           (
-            subclassPropertyApiSchema.namingCollisionWithSuperclassProperty.data.apiSchema as EntityPropertyApiSchemaData
+            subclassPropertyApiSchema.namingCollisionWithSuperclassProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
           ).namingCollisionWithSubclassProperties.push(subclassCollectionProperty);
         }
       });
