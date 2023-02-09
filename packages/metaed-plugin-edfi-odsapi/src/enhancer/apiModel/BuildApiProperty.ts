@@ -85,7 +85,7 @@ function apiPropertyTypeFrom(column: Column, targetTechnologyVersion: string): A
   }
 
   // METAED-1330
-  if (versionSatisfies(targetTechnologyVersion, '>=5.3') && column.type === 'decimal') {
+  if (versionSatisfies(targetTechnologyVersion, '>=5.1') && column.type === 'decimal') {
     return apiPropertyTypefromNumeric(column);
   }
 
