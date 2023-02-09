@@ -1,4 +1,11 @@
-import { IntegerProperty, newIntegerProperty, newShortProperty, ShortProperty } from '@edfi/metaed-core';
+import {
+  DecimalProperty,
+  IntegerProperty,
+  newDecimalProperty,
+  newIntegerProperty,
+  newShortProperty,
+  ShortProperty,
+} from '@edfi/metaed-core';
 import { newColumn, StringColumn, DecimalColumn } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { Column } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { buildApiProperty } from '../../../src/enhancer/apiModel/BuildApiProperty';
@@ -139,8 +146,11 @@ describe('when building an api property from an integer column with min/max valu
         "propertyType": Object {
           "dbType": "Int32",
           "isNullable": false,
+          "maxLength": 0,
           "maxValue": 20,
           "minValue": 10,
+          "precision": 10,
+          "scale": 0,
         },
       }
     `);
@@ -174,6 +184,9 @@ describe('when building an api property from an integer column without min/max v
         "propertyType": Object {
           "dbType": "Int32",
           "isNullable": false,
+          "maxLength": 0,
+          "precision": 10,
+          "scale": 0,
         },
       }
     `);
@@ -213,8 +226,11 @@ describe('when building an api property from a short column with min/max values 
         "propertyType": Object {
           "dbType": "Int16",
           "isNullable": false,
+          "maxLength": 0,
           "maxValue": 20,
           "minValue": 10,
+          "precision": 5,
+          "scale": 0,
         },
       }
     `);
@@ -248,6 +264,101 @@ describe('when building an api property from a short column without min/max valu
         "propertyType": Object {
           "dbType": "Int16",
           "isNullable": false,
+          "maxLength": 0,
+          "precision": 5,
+          "scale": 0,
+        },
+      }
+    `);
+  });
+});
+
+describe('when building an api property from a decimal column with min/max values for ODS/API version 5.3', (): void => {
+  const columnId = 'Name';
+  const description = 'Description';
+  const column: DecimalColumn = {
+    ...newColumn(),
+    type: 'decimal',
+    columnId,
+    data: { edfiOdsSqlServer: { columnName: columnId } },
+    description,
+    isNullable: false,
+    precision: '5',
+    scale: '10',
+    sourceEntityProperties: [
+      {
+        ...newDecimalProperty(),
+        minValue: '10',
+        maxValue: '20',
+        decimalPlaces: '5',
+        totalDigits: '10',
+      } as DecimalProperty,
+    ],
+  };
+
+  const apiProperty: ApiProperty = buildApiProperty(column, '5.3.0');
+
+  it('should have correct api property', (): void => {
+    expect(apiProperty).toMatchInlineSnapshot(`
+      Object {
+        "deprecationReasons": undefined,
+        "description": "Description",
+        "isDeprecated": undefined,
+        "isIdentifying": false,
+        "isServerAssigned": false,
+        "propertyName": "Name",
+        "propertyType": Object {
+          "dbType": "Decimal",
+          "isNullable": false,
+          "maxLength": 0,
+          "maxValue": 20,
+          "minValue": 10,
+          "precision": 5,
+          "scale": 10,
+        },
+      }
+    `);
+  });
+});
+
+describe('when building an api property from a decimal column without min/max values for ODS/API version 5.3', (): void => {
+  const columnId = 'Name';
+  const description = 'Description';
+  const column: DecimalColumn = {
+    ...newColumn(),
+    type: 'decimal',
+    columnId,
+    data: { edfiOdsSqlServer: { columnName: columnId } },
+    description,
+    isNullable: false,
+    precision: '5',
+    scale: '10',
+    sourceEntityProperties: [
+      {
+        ...newDecimalProperty(),
+        decimalPlaces: '5',
+        totalDigits: '10',
+      } as DecimalProperty,
+    ],
+  };
+
+  const apiProperty: ApiProperty = buildApiProperty(column, '5.3.0');
+
+  it('should have correct api property', (): void => {
+    expect(apiProperty).toMatchInlineSnapshot(`
+      Object {
+        "deprecationReasons": undefined,
+        "description": "Description",
+        "isDeprecated": undefined,
+        "isIdentifying": false,
+        "isServerAssigned": false,
+        "propertyName": "Name",
+        "propertyType": Object {
+          "dbType": "Decimal",
+          "isNullable": false,
+          "maxLength": 0,
+          "precision": 5,
+          "scale": 10,
         },
       }
     `);
