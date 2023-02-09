@@ -1,5 +1,5 @@
 import { Column, DecimalColumn, StringColumn } from '@edfi/metaed-plugin-edfi-ods-relational';
-import { IntegerProperty, versionSatisfies } from '@edfi/metaed-core';
+import { DecimalProperty, IntegerProperty, ShortProperty, versionSatisfies } from '@edfi/metaed-core';
 import { ApiProperty } from '../../model/apiModel/ApiProperty';
 import { ApiPropertyType } from '../../model/apiModel/ApiPropertyType';
 import { DbType } from '../../model/apiModel/DbType';
@@ -28,17 +28,17 @@ function maxLengthFrom(column: Column): number {
 }
 
 function minValueFrom(column: Column): number | undefined {
-  if (column.type !== 'integer' && column.type !== 'short') return undefined;
+  if (column.type !== 'integer' && column.type !== 'short' && column.type !== 'decimal') return undefined;
   if (column.sourceEntityProperties.length === 0) return undefined;
-  const { minValue } = column.sourceEntityProperties[0] as IntegerProperty;
+  const { minValue } = column.sourceEntityProperties[0] as IntegerProperty | ShortProperty | DecimalProperty;
   if (minValue == null || minValue === '') return undefined;
   return Number.parseInt(minValue, 10);
 }
 
 function maxValueFrom(column: Column): number | undefined {
-  if (column.type !== 'integer' && column.type !== 'short') return undefined;
+  if (column.type !== 'integer' && column.type !== 'short' && column.type !== 'decimal') return undefined;
   if (column.sourceEntityProperties.length === 0) return undefined;
-  const { maxValue } = column.sourceEntityProperties[0] as IntegerProperty;
+  const { maxValue } = column.sourceEntityProperties[0] as IntegerProperty | ShortProperty | DecimalProperty;
   if (maxValue == null || maxValue === '') return undefined;
   return Number.parseInt(maxValue, 10);
 }
@@ -60,18 +60,35 @@ function scaleFrom(column: Column): number {
   return 0;
 }
 
+function apiPropertyTypefromNumeric(column: Column): ApiPropertyType {
+  const minValue: number | undefined = minValueFrom(column);
+  const maxValue: number | undefined = maxValueFrom(column);
+
+  const result: ApiPropertyType = {
+    dbType: dbTypeFrom(column),
+    maxLength: maxLengthFrom(column),
+    precision: precisionFrom(column),
+    scale: scaleFrom(column),
+    isNullable: column.isNullable,
+  };
+
+  if (minValue != null) result.minValue = minValue;
+  if (maxValue != null) result.maxValue = maxValue;
+
+  return result;
+}
+
 function apiPropertyTypeFrom(column: Column, targetTechnologyVersion: string): ApiPropertyType {
+  // METAED-1299
   if (versionSatisfies(targetTechnologyVersion, '>=7.0') && (column.type === 'integer' || column.type === 'short')) {
-    const result: ApiPropertyType = {
-      dbType: dbTypeFrom(column),
-      isNullable: column.isNullable,
-    };
-    const minValue: number | undefined = minValueFrom(column);
-    const maxValue: number | undefined = maxValueFrom(column);
-    if (minValue != null) result.minValue = minValue;
-    if (maxValue != null) result.maxValue = maxValue;
-    return result;
+    return apiPropertyTypefromNumeric(column);
   }
+
+  // METAED-1330
+  if (versionSatisfies(targetTechnologyVersion, '>=5.1') && column.type === 'decimal') {
+    return apiPropertyTypefromNumeric(column);
+  }
+
   return {
     dbType: dbTypeFrom(column),
     maxLength: maxLengthFrom(column),
