@@ -261,6 +261,7 @@
   },
   "devDependencies": {
     "@types/atom": "1.40.11",
+    "@vercel/ncc": "^0.36.1",
     "mock-fs": "^4.14.0",
     "proxyquire": "^1.8.0"
   },

@@ -36,12 +36,14 @@
   },
   "devDependencies": {
     "@edfi/ed-fi-model-2.0": "3.0.1",
+    "@vercel/ncc": "^0.36.1",
     "xpath": "^0.0.32"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
     "build:clean": "rimraf dist",
     "build:dist": "tsc",
-    "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose"
+    "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose",
+    "minify": "ncc build -m"
   }
 }

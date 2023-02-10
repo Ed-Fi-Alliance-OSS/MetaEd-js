@@ -41,12 +41,14 @@
     "@edfi/ed-fi-model-3.0": "3.0.1",
     "@edfi/ed-fi-model-3.2a": "3.0.1",
     "@edfi/ed-fi-model-3.3b": "3.0.1",
-    "@edfi/ed-fi-model-4.0a": "3.0.3"
+    "@edfi/ed-fi-model-4.0a": "3.0.3",
+    "@vercel/ncc": "^0.36.1"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
     "build:clean": "rimraf dist",
     "build:dist": "tsc",
-    "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose"
+    "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose",
+    "minify": "ncc build -m"
   }
 }

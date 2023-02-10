@@ -39,6 +39,7 @@
     "@edfi/ed-fi-model-3.0": "3.0.1",
     "@edfi/ed-fi-model-3.1": "3.0.1",
     "@edfi/ed-fi-model-3.2a": "3.0.1",
+    "@vercel/ncc": "^0.36.1",
     "cli-highlight": "^2.1.11"
   },
   "scripts": {
@@ -46,6 +47,7 @@
     "build:clean": "rimraf dist",
     "build:dist": "tsc",
     "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose",
-    "test:single": "jest --runInBand"
+    "test:single": "jest --runInBand",
+    "minify": "ncc build -m"
   }
 }
