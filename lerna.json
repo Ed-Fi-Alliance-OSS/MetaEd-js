@@ -5,10 +5,5 @@
   ],
   "version": "3.2.0",
   "npmClient": "yarn",
-  "useWorkspaces": true,
-  "command": {
-    "version": {
-      "allowBranch": "main"
-    }
-  }
+  "useWorkspaces": true
 }
