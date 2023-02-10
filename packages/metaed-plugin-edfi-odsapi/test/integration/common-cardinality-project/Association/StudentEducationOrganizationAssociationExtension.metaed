@@ -1,0 +1,4 @@
+Association EdFi.StudentEducationOrganizationAssociation additions
+    common extension EdFi.Language
+          documentation "Language with effective dates."
+          is optional collection

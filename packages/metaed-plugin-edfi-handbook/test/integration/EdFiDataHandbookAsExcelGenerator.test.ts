@@ -9,6 +9,7 @@ import {
 import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
 import { initialize as initializeOdsRelationalPlugin } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { initialize as initializeOdsSqlServerPlugin } from '@edfi/metaed-plugin-edfi-ods-sqlserver';
+import { initialize as initializeMeadowlarkPlugin } from '@edfi/metaed-plugin-edfi-meadowlark';
 import { initialize as initializeHandbookPlugin } from '../../src/index';
 import { generate } from '../../src/generator/EdFiDataHandbookAsExcelGenerator';
 import { readWorkbook } from '../../src/model/Workbook';
@@ -57,6 +58,7 @@ describe('when generating excel version of handbook', (): void => {
     initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     initializeOdsRelationalPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     initializeOdsSqlServerPlugin().enhancer.forEach((enhance) => enhance(metaEd));
+    initializeMeadowlarkPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     initializeHandbookPlugin().enhancer.forEach((enhance) => enhance(metaEd));
 
     generatorResults = await generate(metaEd);
