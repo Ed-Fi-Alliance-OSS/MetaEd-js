@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-meadowlark",
   "main": "dist/index.js",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "MetaEd plugin for generating Meadowlark object models",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -23,8 +23,8 @@
     ]
   },
   "dependencies": {
-    "@edfi/metaed-core": "3.2.0",
-    "@edfi/metaed-plugin-edfi-unified": "3.2.0",
+    "@edfi/metaed-core": "3.2.1",
+    "@edfi/metaed-plugin-edfi-unified": "3.2.1",
     "deep-freeze": "^0.0.1",
     "inflection": "^1.13.4",
     "ts-invariant": "^0.10.3"
