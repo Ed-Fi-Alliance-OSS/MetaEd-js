@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-ods-recordownership",
   "main": "dist/index.js",
-  "version": "3.2.1-dev.10",
+  "version": "3.2.1-dev.11",
   "description": "Ed-Fi ODS/API Record Ownership plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -25,16 +25,16 @@
     ]
   },
   "dependencies": {
-    "@edfi/metaed-core": "3.2.1-dev.10",
-    "@edfi/metaed-plugin-edfi-ods-relational": "3.2.1-dev.10",
-    "@edfi/metaed-plugin-edfi-unified-advanced": "3.2.1-dev.10"
+    "@edfi/metaed-core": "^3.2.1-dev.11",
+    "@edfi/metaed-plugin-edfi-ods-relational": "^3.2.1-dev.11",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "^3.2.1-dev.11"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
     "build:clean": "rimraf dist",
     "build:dist": "tsc",
     "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose",
-    "minify": "ncc build -m"
+    "minify": "ncc build ./src/index.ts -m"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.36.1"

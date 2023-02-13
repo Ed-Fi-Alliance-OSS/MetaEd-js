@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-odsapi",
   "main": "dist/index.js",
-  "version": "3.2.1-dev.10",
+  "version": "3.2.1-dev.11",
   "description": "Ed-Fi ODS/API plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -29,12 +29,12 @@
   },
   "dependencies": {
     "@dagrejs/graphlib": "^2.1.4",
-    "@edfi/metaed-core": "3.2.1-dev.10",
-    "@edfi/metaed-plugin-edfi-ods-relational": "3.2.1-dev.10",
-    "@edfi/metaed-plugin-edfi-ods-sqlserver": "3.2.1-dev.10",
-    "@edfi/metaed-plugin-edfi-unified": "3.2.1-dev.10",
-    "@edfi/metaed-plugin-edfi-unified-advanced": "3.2.1-dev.10",
-    "@edfi/metaed-plugin-edfi-xsd": "3.2.1-dev.10",
+    "@edfi/metaed-core": "^3.2.1-dev.11",
+    "@edfi/metaed-plugin-edfi-ods-relational": "^3.2.1-dev.11",
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": "^3.2.1-dev.11",
+    "@edfi/metaed-plugin-edfi-unified": "^3.2.1-dev.11",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "^3.2.1-dev.11",
+    "@edfi/metaed-plugin-edfi-xsd": "^3.2.1-dev.11",
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.7.7",
     "ramda": "^0.28.0",
@@ -57,6 +57,6 @@
     "build:clean": "rimraf dist",
     "build:dist": "tsc",
     "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose",
-    "minify": "ncc build -m"
+    "minify": "ncc build ./src/index.ts -m"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-interchange-brief",
   "main": "dist/index.js",
-  "version": "3.2.1-dev.10",
+  "version": "3.2.1-dev.11",
   "description": "Ed-Fi Interchange Brief plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -24,8 +24,8 @@
     ]
   },
   "dependencies": {
-    "@edfi/metaed-core": "3.2.1-dev.10",
-    "@edfi/metaed-plugin-edfi-xsd": "3.2.1-dev.10",
+    "@edfi/metaed-core": "^3.2.1-dev.11",
+    "@edfi/metaed-plugin-edfi-xsd": "^3.2.1-dev.11",
     "@xmldom/xmldom": "0.7.6",
     "handlebars": "^4.7.7",
     "marked": "^4.1.1",
@@ -44,6 +44,6 @@
     "build:clean": "rimraf dist",
     "build:dist": "tsc",
     "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose",
-    "minify": "ncc build -m"
+    "minify": "ncc build ./src/index.ts -m"
   }
 }

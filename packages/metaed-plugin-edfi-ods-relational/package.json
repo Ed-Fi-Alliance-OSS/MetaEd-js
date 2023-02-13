@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-ods-relational",
   "main": "dist/index.js",
-  "version": "3.2.1-dev.10",
+  "version": "3.2.1-dev.11",
   "description": "Ed-Fi Relational ODS plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -24,9 +24,9 @@
     ]
   },
   "dependencies": {
-    "@edfi/metaed-core": "3.2.1-dev.10",
-    "@edfi/metaed-plugin-edfi-unified": "3.2.1-dev.10",
-    "@edfi/metaed-plugin-edfi-unified-advanced": "3.2.1-dev.10",
+    "@edfi/metaed-core": "^3.2.1-dev.11",
+    "@edfi/metaed-plugin-edfi-unified": "^3.2.1-dev.11",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "^3.2.1-dev.11",
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.7.7",
     "hash.js": "^1.1.7",
@@ -48,6 +48,6 @@
     "build:dist": "tsc",
     "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose",
     "test:single": "jest --runInBand",
-    "minify": "ncc build -m"
+    "minify": "ncc build ./src/index.ts -m"
   }
 }
