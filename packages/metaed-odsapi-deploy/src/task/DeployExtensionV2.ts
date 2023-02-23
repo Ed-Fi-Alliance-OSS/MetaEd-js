@@ -1,6 +1,5 @@
 import fs from 'fs-extra';
-import { MetaEdConfiguration, V2Only } from '@edfi/metaed-core';
-import { versionSatisfies } from '@edfi/metaed-core';
+import { MetaEdConfiguration, V2Only, versionSatisfies } from '@edfi/metaed-core';
 import path from 'path';
 import winston from 'winston';
 import { CopyOptions } from '../CopyOptions';

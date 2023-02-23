@@ -1,19 +1,16 @@
-import { MetaEdConfiguration, V2Only } from '@edfi/metaed-core';
-import { versionSatisfies } from '@edfi/metaed-core';
+import { MetaEdConfiguration, V2Only, versionSatisfies } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
 import winston from 'winston';
 import { CopyOptions } from '../CopyOptions';
 
-/* eslint-disable prettier/prettier */
 const artifacts: CopyOptions[] = [
   { src: 'ApiMetadata/', dest: 'Ed-Fi-ODS/Standard/Metadata/' },
   { src: 'Database/SQLServer/ODS/Data/', dest: 'Ed-Fi-ODS/Database/Data/EdFi' },
   { src: 'Database/SQLServer/ODS/Structure/', dest: 'Ed-Fi-ODS/Database/Structure/EdFi' },
   { src: 'Interchange/', dest: 'Ed-Fi-ODS/Standard/Schemas/' },
   { src: 'XSD/', dest: 'Ed-Fi-ODS/Standard/Schemas/' },
-]
-/* eslint-enable prettier/prettier */
+];
 
 function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration) {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;

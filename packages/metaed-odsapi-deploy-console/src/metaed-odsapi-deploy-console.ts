@@ -12,7 +12,7 @@ import {
   newMetaEdEnvironment,
   findDataStandardVersions,
 } from '@edfi/metaed-core';
-import {
+import type {
   SemVer,
   MetaEdConfiguration,
   State,
@@ -21,7 +21,7 @@ import {
   MetaEdProjectPathPairs,
   MetaEdProject,
 } from '@edfi/metaed-core';
-import { runDeployTasks } from './RunDeployTasks';
+import { runDeployTasks } from '@edfi/metaed-odsapi-deploy';
 
 winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 

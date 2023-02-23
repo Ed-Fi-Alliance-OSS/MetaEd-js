@@ -1,4 +1,4 @@
-import { MetaEdConfiguration } from '@edfi/metaed-core';
+import type { MetaEdConfiguration } from '@edfi/metaed-core';
 import { versionSatisfies } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
@@ -7,16 +7,17 @@ import { CopyOptions } from '../CopyOptions';
 
 const excludeApiModel = (_src: string, dest: string): boolean => !dest.endsWith('ApiModel.json');
 
-/* eslint-disable prettier/prettier */
 const artifacts: CopyOptions[] = [
   { src: 'ApiMetadata/', dest: 'Ed-Fi-ODS/Standard/Metadata/', options: { filter: excludeApiModel } },
-  { src: 'ApiMetadata/ApiModel.json', dest: 'Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Standard/SupportingArtifacts/Metadata/ApiModel.json'},
+  {
+    src: 'ApiMetadata/ApiModel.json',
+    dest: 'Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Standard/SupportingArtifacts/Metadata/ApiModel.json',
+  },
   { src: 'Database/SQLServer/ODS/Data/', dest: 'Ed-Fi-ODS/Database/Data/EdFi' },
   { src: 'Database/SQLServer/ODS/Structure/', dest: 'Ed-Fi-ODS/Database/Structure/EdFi' },
   { src: 'Interchange/', dest: 'Ed-Fi-ODS/Standard/Schemas/' },
   { src: 'XSD/', dest: 'Ed-Fi-ODS/Standard/Schemas/' },
-]
-/* eslint-enable prettier/prettier */
+];
 
 function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration) {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
