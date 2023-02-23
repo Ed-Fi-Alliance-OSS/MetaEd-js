@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 import fs from 'fs';
 import chalk from 'chalk';
 import path from 'path';
@@ -41,7 +42,7 @@ export async function metaEdConsole() {
   const state: State = {
     ...newState(),
     metaEdConfiguration: Object.assign(newMetaEdConfiguration(), {
-      ...(argv.metaEdConfiguration as MetaEdConfiguration),
+      ...(argv['metaEdConfiguration'] as MetaEdConfiguration),
     }),
     pipelineOptions: {
       runValidators: true,
@@ -51,8 +52,8 @@ export async function metaEdConsole() {
     },
   };
 
-  if (argv.defaultPluginTechVersion != null)
-    state.metaEdConfiguration.defaultPluginTechVersion = argv.defaultPluginTechVersion;
+  if (argv['defaultPluginTechVersion'] != null)
+    state.metaEdConfiguration.defaultPluginTechVersion = argv['defaultPluginTechVersion'];
 
   const dataStandardVersions: SemVer[] = findDataStandardVersions(state.metaEdConfiguration.projects);
 

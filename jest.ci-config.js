@@ -14,6 +14,11 @@ module.exports = {
   },
   modulePathIgnorePatterns: ['dist*', 'docs*'],
   setupFiles: ['<rootDir>/jest-setup.js'],
+  snapshotFormat: {
+    escapeString: true,
+    printBasicPrototype: true
+  },
+  workerIdleMemoryLimit: '300MB',
   reporters: [
     'default',
     [
