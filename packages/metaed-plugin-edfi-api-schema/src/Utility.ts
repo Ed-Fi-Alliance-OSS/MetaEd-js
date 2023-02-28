@@ -17,11 +17,37 @@ export function isDescriptor(property: EntityProperty): boolean {
   return property.type === 'descriptor';
 }
 
+/**
+ * Uncapitalizes the first character, and also leading acronyms
+ *
+ * Generally follows the behavior of ToCamelCase() in
+ * https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-ODS/blob/main/Application/EdFi.Common/Extensions/StringExtensions.cs
+ */
 export function uncapitalize(text: string): string {
-  if (text == null || typeof text !== 'string') return '';
-  // Handle text like "URI" -> "uri"
-  if (text === text.toUpperCase()) return text.toLowerCase();
-  return text.charAt(0).toLowerCase() + text.substring(1);
+  // Match on a run of uppercase characters at the beginning of the string
+  const leadingUppercaseBlockMatch: string[] | null = text.match(/^[A-Z]*/);
+
+  // Case of no leading uppercase characters
+  if (leadingUppercaseBlockMatch == null) return text;
+
+  const [leadingUppercaseBlock] = leadingUppercaseBlockMatch;
+
+  // Case of a single uppercase character
+  if (leadingUppercaseBlock.length === 1) {
+    return leadingUppercaseBlock.toLowerCase() + text.substring(1);
+  }
+
+  // Case of entirely an acronym with or without a trailing "s" (e.g. "URIs" -> "uris" not "urIs")
+  if (
+    text.length === leadingUppercaseBlock.length ||
+    (text.length === leadingUppercaseBlock.length + 1 && text.endsWith('s'))
+  ) {
+    return text.toLowerCase();
+  }
+
+  // Case of acronym at start of longer string
+  const acronymLength = leadingUppercaseBlock.length - 1;
+  return text.substring(0, acronymLength).toLowerCase() + text.substring(acronymLength);
 }
 
 export function capitalize(text: string): string {
