@@ -149,7 +149,7 @@ describe('when building simple domain entity with all the simple non-collections
             "additionalProperties": false,
             "description": "A school year enumeration",
             "properties": Object {
-              "schoolYearSchema": Object {
+              "schoolYear": Object {
                 "description": "A school year between 1900 and 2100",
                 "maximum": 2100,
                 "minimum": 1900,
@@ -471,7 +471,7 @@ describe('when building simple domain entity with all the simple collections', (
             "additionalProperties": false,
             "description": "A school year enumeration",
             "properties": Object {
-              "schoolYearSchema": Object {
+              "schoolYear": Object {
                 "description": "A school year between 1900 and 2100",
                 "maximum": 2100,
                 "minimum": 1900,
@@ -2040,7 +2040,7 @@ describe('when building domain entity with two school year enumerations, one rol
             "additionalProperties": false,
             "description": "A school year enumeration",
             "properties": Object {
-              "schoolYearSchema": Object {
+              "schoolYear": Object {
                 "description": "A school year between 1900 and 2100",
                 "maximum": 2100,
                 "minimum": 1900,
@@ -2059,7 +2059,7 @@ describe('when building domain entity with two school year enumerations, one rol
             "additionalProperties": false,
             "description": "A school year enumeration",
             "properties": Object {
-              "schoolYearSchema": Object {
+              "schoolYear": Object {
                 "description": "A school year between 1900 and 2100",
                 "maximum": 2100,
                 "minimum": 1900,
@@ -2278,7 +2278,7 @@ describe('when building a school year enumeration', () => {
         "additionalProperties": false,
         "description": "A school year enumeration",
         "properties": Object {
-          "schoolYearSchema": Object {
+          "schoolYear": Object {
             "description": "A school year between 1900 and 2100",
             "maximum": 2100,
             "minimum": 1900,
@@ -2371,7 +2371,7 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
                   "additionalProperties": false,
                   "description": "A school year enumeration",
                   "properties": Object {
-                    "schoolYearSchema": Object {
+                    "schoolYear": Object {
                       "description": "A school year between 1900 and 2100",
                       "maximum": 2100,
                       "minimum": 1900,

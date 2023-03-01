@@ -453,10 +453,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     title: 'EdFi.SchoolYearType',
     description: 'A school year enumeration',
     properties: {
-      schoolYearSchema,
+      schoolYear: schoolYearSchema,
     },
     additionalProperties: false,
   };
+
   // Build schemas for each domain entity and association
   getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
     (entity) => {
