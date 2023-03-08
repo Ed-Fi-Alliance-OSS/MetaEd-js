@@ -29,7 +29,7 @@
     "@edfi/metaed-plugin-edfi-unified": "3.2.1-dev.13",
     "@edfi/metaed-plugin-edfi-unified-advanced": "3.2.1-dev.13",
     "@edfi/metaed-plugin-edfi-xsd": "3.2.1-dev.13",
-    "@xmldom/xmldom": "0.7.6",
+    "@xmldom/xmldom": "^0.7.9",
     "handlebars": "^4.7.7",
     "js-beautify": "^1.14.7",
     "winston": "3.8.2",
