@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-ods-recordownership",
   "main": "dist/index.js",
-  "version": "4.0.1-dev.0",
+  "version": "4.0.1-dev.1",
   "description": "Ed-Fi ODS/API Record Ownership plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -25,9 +25,9 @@
     ]
   },
   "dependencies": {
-    "@edfi/metaed-core": "^4.0.1-dev.0",
-    "@edfi/metaed-plugin-edfi-ods-relational": "^4.0.1-dev.0",
-    "@edfi/metaed-plugin-edfi-unified-advanced": "^4.0.1-dev.0"
+    "@edfi/metaed-core": "4.0.1-dev.1",
+    "@edfi/metaed-plugin-edfi-ods-relational": "4.0.1-dev.1",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "4.0.1-dev.1"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
