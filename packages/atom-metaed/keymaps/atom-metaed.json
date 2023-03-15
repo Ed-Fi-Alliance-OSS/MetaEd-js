@@ -1,6 +1,0 @@
-{
-  "atom-workspace": {
-    "F5": "atom-metaed:build",
-    "F6": "atom-metaed:deploy"
-  }
-}
