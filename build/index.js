@@ -5,7 +5,7 @@ import { execSync } from 'child_process';
 console.info('Command arguments: ', process.argv);
 
 try {
-  execSync('npm install atom-metaed@dev --loglevel error');
+  execSync('npm install @edfi/metaed-console@dev --loglevel error');
 } catch (err) {
   console.error('Exception occurred during npm install atom-metaed:');
   console.error('--> stdout', err);
