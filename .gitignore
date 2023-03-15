@@ -92,3 +92,4 @@ MetaEdOutput/
 
 .secrets
 metaed.conf.json
+build/package-lock.json
