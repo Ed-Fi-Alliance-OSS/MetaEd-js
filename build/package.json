@@ -2,5 +2,8 @@
   "name": "metaed-model-builder",
   "version": "4.0.0",
   "description": "Build script for the Ed-Fi Model and extensions",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@edfi/metaed-console": "dev"
+  }
 }
