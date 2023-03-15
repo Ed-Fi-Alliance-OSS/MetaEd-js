@@ -8,7 +8,7 @@
   "useWorkspaces": true,
   "command": {
     "version": {
-      "allowBranch": "main"
+      "allowBranch": "METAED-1423"
     }
   }
 }
