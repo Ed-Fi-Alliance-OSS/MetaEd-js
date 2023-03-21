@@ -1,6 +1,6 @@
 import { String as sugar } from 'sugar';
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
-import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
+import type { NamespaceContext, NamespaceNameContext, NamespaceTypeContext } from '../grammar/gen/MetaEdGrammar';
+import MetaEdGrammarListener from '../grammar/gen/MetaEdGrammarListener';
 import { NamespaceRepository } from '../model/NamespaceRepository';
 import { MetaEdEnvironment } from '../MetaEdEnvironment';
 import { Namespace } from '../model/Namespace';
@@ -8,32 +8,21 @@ import { NoNamespace, newNamespace } from '../model/Namespace';
 import { isErrorText } from './BuilderUtility';
 import { ValidationFailure } from '../validator/ValidationFailure';
 
-export function namespaceNameFrom(context: MetaEdGrammar.NamespaceNameContext): string {
-  if (
-    context.exception ||
-    context.ID() == null ||
-    context.ID().exception != null ||
-    context.ID().getText() == null ||
-    isErrorText(context.ID().getText())
-  )
+export function namespaceNameFrom(context: NamespaceNameContext): string {
+  if (context.exception || context.ID() == null || context.ID().getText() == null || isErrorText(context.ID().getText()))
     return '';
 
   return context.ID().getText();
 }
 
-function enteringNamespaceName(context: MetaEdGrammar.NamespaceNameContext, namespace: Namespace): Namespace {
+function enteringNamespaceName(context: NamespaceNameContext, namespace: Namespace): Namespace {
   if (
     namespace === NoNamespace ||
-    (!context.exception &&
-      context.ID() != null &&
-      !context.ID().exception &&
-      context.ID().getText() != null &&
-      isErrorText(context.ID().getText()))
+    (!context.exception && context.ID() != null && context.ID().getText() != null && isErrorText(context.ID().getText()))
   )
     return newNamespace();
 
-  if (context.exception || context.ID() == null || context.ID().exception != null || context.ID().getText() == null)
-    return namespace;
+  if (context.exception || context.ID() == null || context.ID().getText() == null) return namespace;
 
   Object.assign(namespace, { namespaceName: context.ID().getText() });
 
@@ -45,14 +34,14 @@ function enteringNamespaceName(context: MetaEdGrammar.NamespaceNameContext, name
   return namespace;
 }
 
-function enteringNamespaceType(context: MetaEdGrammar.NamespaceTypeContext, namespace: Namespace): Namespace {
+function enteringNamespaceType(context: NamespaceTypeContext, namespace: Namespace): Namespace {
   if (namespace === NoNamespace) return namespace;
   if (context.exception) return namespace;
   if (context.CORE() != null) {
     Object.assign(namespace, { projectExtension: '', projectName: 'EdFi', isExtension: false });
     return namespace;
   }
-  if (context.ID() == null || context.ID().exception != null || isErrorText(context.ID().getText())) return namespace;
+  if (context.ID() == null || isErrorText(context.ID().getText())) return namespace;
 
   Object.assign(namespace, {
     projectExtension: context.ID().getText(),
@@ -79,18 +68,18 @@ export class NamespaceBuilder extends MetaEdGrammarListener {
     this.validationFailures = validationFailures;
   }
 
-  enterNamespace(context: MetaEdGrammar.NamespaceContext) {
+  enterNamespace = (context: NamespaceContext) => {
     if (context.exception) return;
     if (this.currentNamespace !== NoNamespace) return;
     this.currentNamespace = newNamespace();
-  }
+  };
 
-  enterNamespaceName(context: MetaEdGrammar.NamespaceNameContext) {
+  enterNamespaceName = (context: NamespaceNameContext) => {
     if (this.currentNamespace === NoNamespace) return;
     this.currentNamespace = enteringNamespaceName(context, this.currentNamespace);
-  }
+  };
 
-  enterNamespaceType(context: MetaEdGrammar.NamespaceTypeContext) {
+  enterNamespaceType = (context: NamespaceTypeContext) => {
     if (this.currentNamespace === NoNamespace) return;
     this.currentNamespace = enteringNamespaceType(context, this.currentNamespace);
 
@@ -99,5 +88,5 @@ export class NamespaceBuilder extends MetaEdGrammarListener {
       this.namespaceRepository.set(this.currentNamespace.namespaceName, this.currentNamespace);
     }
     this.currentNamespace = NoNamespace;
-  }
+  };
 }

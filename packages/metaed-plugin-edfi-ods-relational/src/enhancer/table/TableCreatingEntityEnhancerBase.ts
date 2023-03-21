@@ -24,8 +24,7 @@ export function buildTablesFromProperties(entity: TopLevelEntity, mainTable: Tab
   });
 }
 
-// @ts-ignore - "metaEd" is never read
-export function buildMainTable(metaEd: MetaEdEnvironment, entity: TopLevelEntity, aggregateRootTable: boolean): Table {
+export function buildMainTable(_metaEd: MetaEdEnvironment, entity: TopLevelEntity, aggregateRootTable: boolean): Table {
   const mainTable: Table = {
     ...newTable(),
     namespace: entity.namespace,

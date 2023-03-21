@@ -5,8 +5,13 @@ import { ValidationFailure } from '../validator/ValidationFailure';
 import { NoSharedSimple } from '../model/SharedSimple';
 import { namespaceNameFrom } from './NamespaceBuilder';
 import { extractDocumentation, isErrorText, squareBracketRemoval, extractDeprecationReason } from './BuilderUtility';
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
-import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
+import type {
+  DeprecatedContext,
+  DocumentationContext,
+  MetaEdIdContext,
+  NamespaceNameContext,
+} from '../grammar/gen/MetaEdGrammar';
+import MetaEdGrammarListener from '../grammar/gen/MetaEdGrammarListener';
 import { sourceMapFrom } from '../model/SourceMap';
 import { NoNamespace } from '../model/Namespace';
 
@@ -30,10 +35,10 @@ export class SharedSimpleBuilder extends MetaEdGrammarListener {
     this.currentSharedSimple = NoSharedSimple;
   }
 
-  enterNamespaceName(context: MetaEdGrammar.NamespaceNameContext) {
+  enterNamespaceName = (context: NamespaceNameContext) => {
     const namespace: Namespace | undefined = this.metaEd.namespace.get(namespaceNameFrom(context));
     this.currentNamespace = namespace == null ? NoNamespace : namespace;
-  }
+  };
 
   enteringSharedSimple(simpleFactory: () => SharedSimple) {
     this.currentSharedSimple = { ...simpleFactory(), namespace: this.currentNamespace };
@@ -77,13 +82,13 @@ export class SharedSimpleBuilder extends MetaEdGrammarListener {
     this.currentSharedSimple.metaEdName = name;
   }
 
-  enterDocumentation(context: MetaEdGrammar.DocumentationContext) {
+  enterDocumentation = (context: DocumentationContext) => {
     if (this.currentSharedSimple === NoSharedSimple) return;
     this.currentSharedSimple.documentation = extractDocumentation(context);
     this.currentSharedSimple.sourceMap.documentation = sourceMapFrom(context);
-  }
+  };
 
-  enterDeprecated(context: MetaEdGrammar.DeprecatedContext) {
+  enterDeprecated = (context: DeprecatedContext) => {
     if (this.currentSharedSimple === NoSharedSimple) return;
 
     if (!context.exception) {
@@ -92,19 +97,13 @@ export class SharedSimpleBuilder extends MetaEdGrammarListener {
       this.currentSharedSimple.sourceMap.isDeprecated = sourceMapFrom(context);
       this.currentSharedSimple.sourceMap.deprecationReason = sourceMapFrom(context);
     }
-  }
+  };
 
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception != null ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
+  enterMetaEdId = (context: MetaEdIdContext) => {
+    if (context.exception || context.METAED_ID() == null || isErrorText(context.METAED_ID().getText())) return;
     if (this.currentSharedSimple !== NoSharedSimple) {
       this.currentSharedSimple.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
       this.currentSharedSimple.sourceMap.metaEdId = sourceMapFrom(context);
     }
-  }
+  };
 }

@@ -99,8 +99,7 @@ class ChangeForeignColumnId extends ForeignKeyStrategy {
     return this.myDecoratedStrategy.parentColumnId(column);
   }
 
-  // @ts-ignore,
-  foreignColumnId(column: Column) {
+  foreignColumnId(_column: Column) {
     return this.myForeignColumnId;
   }
 }

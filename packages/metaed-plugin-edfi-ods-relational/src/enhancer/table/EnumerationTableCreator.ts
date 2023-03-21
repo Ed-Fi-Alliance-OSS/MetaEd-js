@@ -17,8 +17,7 @@ const removeTypeSuffix = R.when(R.endsWith('Type'), R.dropLast(4));
 export const enumerationTableCreator: {
   build(metaEd: MetaEdEnvironment, entity: Enumeration | Descriptor, documentation: string): Table;
 } = {
-  // @ts-ignore "metaEd" unused here
-  build(metaEd: MetaEdEnvironment, entity: Enumeration | Descriptor, documentation: string): Table {
+  build(_metaEd: MetaEdEnvironment, entity: Enumeration | Descriptor, documentation: string): Table {
     const { metaEdName, namespace } = entity;
     const normalizedName = normalizeEnumerationSuffix(metaEdName);
     const table: Table = {

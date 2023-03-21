@@ -5,8 +5,24 @@ import { ValidationFailure } from '../validator/ValidationFailure';
 import { newIntegerType, newShortType, NoIntegerType } from '../model/IntegerType';
 import { namespaceNameFrom } from './NamespaceBuilder';
 import { extractDocumentation, extractDeprecationReason, squareBracketRemoval, isErrorText } from './BuilderUtility';
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
-import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
+import type {
+  DeprecatedContext,
+  DocumentationContext,
+  IntegerPropertyContext,
+  MaxValueContext,
+  MetaEdIdContext,
+  MinValueContext,
+  NamespaceNameContext,
+  PropertyDocumentationContext,
+  RoleNameNameContext,
+  SharedIntegerContext,
+  SharedIntegerNameContext,
+  SharedShortContext,
+  SharedShortNameContext,
+  ShortPropertyContext,
+  SimplePropertyNameContext,
+} from '../grammar/gen/MetaEdGrammar';
+import MetaEdGrammarListener from '../grammar/gen/MetaEdGrammarListener';
 import { sourceMapFrom } from '../model/SourceMap';
 import { NoNamespace } from '../model/Namespace';
 
@@ -28,33 +44,29 @@ export class IntegerTypeBuilder extends MetaEdGrammarListener {
     this.currentIntegerType = NoIntegerType;
   }
 
-  enterNamespaceName(context: MetaEdGrammar.NamespaceNameContext) {
+  enterNamespaceName = (context: NamespaceNameContext) => {
     const namespace: Namespace | undefined = this.metaEd.namespace.get(namespaceNameFrom(context));
     this.currentNamespace = namespace == null ? NoNamespace : namespace;
-  }
+  };
 
-  enterSharedInteger(context: MetaEdGrammar.SharedIntegerContext) {
+  enterSharedInteger = (context: SharedIntegerContext) => {
     this.enteringIntegerType(context, { isShort: false, generatedSimpleType: false });
-  }
+  };
 
-  enterIntegerProperty(context: MetaEdGrammar.IntegerPropertyContext) {
+  enterIntegerProperty = (context: IntegerPropertyContext) => {
     this.enteringIntegerType(context, { isShort: false, generatedSimpleType: true });
-  }
+  };
 
-  enterSharedShort(context: MetaEdGrammar.SharedShortContext) {
+  enterSharedShort = (context: SharedShortContext) => {
     this.enteringIntegerType(context, { isShort: true, generatedSimpleType: false });
-  }
+  };
 
-  enterShortProperty(context: MetaEdGrammar.ShortPropertyContext) {
+  enterShortProperty = (context: ShortPropertyContext) => {
     this.enteringIntegerType(context, { isShort: true, generatedSimpleType: true });
-  }
+  };
 
   enteringIntegerType(
-    context:
-      | MetaEdGrammar.SharedIntegerContext
-      | MetaEdGrammar.IntegerPropertyContext
-      | MetaEdGrammar.SharedShortContext
-      | MetaEdGrammar.ShortPropertyContext,
+    context: SharedIntegerContext | IntegerPropertyContext | SharedShortContext | ShortPropertyContext,
     { isShort, generatedSimpleType }: { isShort: boolean; generatedSimpleType: boolean },
   ) {
     const factory = isShort ? newShortType : newIntegerType;
@@ -63,7 +75,7 @@ export class IntegerTypeBuilder extends MetaEdGrammarListener {
     this.currentIntegerType.sourceMap.type = sourceMapFrom(context);
   }
 
-  enterDeprecated(context: MetaEdGrammar.DeprecatedContext) {
+  enterDeprecated = (context: DeprecatedContext) => {
     if (this.currentIntegerType === NoIntegerType) return;
 
     if (!context.exception) {
@@ -72,71 +84,64 @@ export class IntegerTypeBuilder extends MetaEdGrammarListener {
       this.currentIntegerType.sourceMap.isDeprecated = sourceMapFrom(context);
       this.currentIntegerType.sourceMap.deprecationReason = sourceMapFrom(context);
     }
-  }
+  };
 
-  enterDocumentation(context: MetaEdGrammar.DocumentationContext) {
+  enterDocumentation = (context: DocumentationContext) => {
     if (this.currentIntegerType === NoIntegerType || this.currentIntegerType.generatedSimpleType) return;
     this.currentIntegerType.documentation = extractDocumentation(context);
     this.currentIntegerType.sourceMap.documentation = sourceMapFrom(context);
-  }
+  };
 
-  enterPropertyDocumentation(context: MetaEdGrammar.PropertyDocumentationContext) {
+  enterPropertyDocumentation = (context: PropertyDocumentationContext) => {
     if (this.currentIntegerType === NoIntegerType) return;
 
-    if (!context.exception && context.INHERITED() !== null && !context.INHERITED().exception) {
+    if (!context.exception && context.INHERITED() !== null) {
       this.currentIntegerType.documentationInherited = true;
       this.currentIntegerType.sourceMap.documentationInherited = sourceMapFrom(context);
     } else {
       this.currentIntegerType.documentation = extractDocumentation(context);
       this.currentIntegerType.sourceMap.documentation = sourceMapFrom(context);
     }
-  }
+  };
 
-  enterSharedIntegerName(context: MetaEdGrammar.SharedIntegerNameContext) {
+  enterSharedIntegerName = (context: SharedIntegerNameContext) => {
     this.enteringIntegerTypeName(context);
-  }
+  };
 
-  enterSharedShortName(context: MetaEdGrammar.SharedShortNameContext) {
+  enterSharedShortName = (context: SharedShortNameContext) => {
     this.enteringIntegerTypeName(context);
-  }
+  };
 
-  enterSimplePropertyName(context: MetaEdGrammar.SimplePropertyNameContext) {
+  enterSimplePropertyName = (context: SimplePropertyNameContext) => {
     if (this.currentIntegerType === NoIntegerType) return;
     if (context.exception || context.localPropertyName() == null) return;
     const localPropertyNameContext = context.localPropertyName();
     if (
       localPropertyNameContext.exception ||
       localPropertyNameContext.ID() == null ||
-      localPropertyNameContext.ID().exception ||
       isErrorText(localPropertyNameContext.ID().getText())
     )
       return;
     this.currentIntegerType.metaEdName = localPropertyNameContext.ID().getText();
     this.currentIntegerType.sourceMap.metaEdName = sourceMapFrom(localPropertyNameContext);
-  }
+  };
 
-  enteringIntegerTypeName(context: MetaEdGrammar.roleNameNameContext) {
+  enteringIntegerTypeName = (context: RoleNameNameContext) => {
     if (this.currentIntegerType === NoIntegerType) return;
-    if (context.exception || context.ID() == null || context.ID().exception || isErrorText(context.ID().getText())) return;
+    if (context.exception || context.ID() == null || isErrorText(context.ID().getText())) return;
     this.currentIntegerType.metaEdName = context.ID().getText();
     this.currentIntegerType.sourceMap.metaEdName = sourceMapFrom(context);
-  }
+  };
 
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
+  enterMetaEdId = (context: MetaEdIdContext) => {
     if (this.currentIntegerType === NoIntegerType) return;
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
+    if (context.exception || context.METAED_ID() == null || isErrorText(context.METAED_ID().getText())) return;
 
     this.currentIntegerType.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
     this.currentIntegerType.sourceMap.metaEdId = sourceMapFrom(context);
-  }
+  };
 
-  enterMinValue(context: MetaEdGrammar.MinValueContext) {
+  enterMinValue = (context: MinValueContext) => {
     if (this.currentIntegerType === NoIntegerType) return;
     if (
       context.exception ||
@@ -147,9 +152,9 @@ export class IntegerTypeBuilder extends MetaEdGrammarListener {
       return;
     this.currentIntegerType.minValue = context.signed_int().getText();
     this.currentIntegerType.sourceMap.minValue = sourceMapFrom(context);
-  }
+  };
 
-  enterMaxValue(context: MetaEdGrammar.MaxValueContext) {
+  enterMaxValue = (context: MaxValueContext) => {
     if (this.currentIntegerType === NoIntegerType) return;
     if (
       context.exception ||
@@ -160,27 +165,23 @@ export class IntegerTypeBuilder extends MetaEdGrammarListener {
       return;
     this.currentIntegerType.maxValue = context.signed_int().getText();
     this.currentIntegerType.sourceMap.maxValue = sourceMapFrom(context);
-  }
+  };
 
-  // @ts-ignore
-  exitIntegerProperty(context: MetaEdGrammar.IntegerPropertyContext) {
+  exitIntegerProperty = (_context: IntegerPropertyContext) => {
     this.exitingIntegerType();
-  }
+  };
 
-  // @ts-ignore
-  exitSharedInteger(context: MetaEdGrammar.SharedIntegerContext) {
+  exitSharedInteger = (_context: SharedIntegerContext) => {
     this.exitingIntegerType();
-  }
+  };
 
-  // @ts-ignore
-  exitShortProperty(context: MetaEdGrammar.ShortPropertyContext) {
+  exitShortProperty = (_context: ShortPropertyContext) => {
     this.exitingIntegerType();
-  }
+  };
 
-  // @ts-ignore
-  exitSharedShort(context: MetaEdGrammar.SharedShortContext) {
+  exitSharedShort = (_context: SharedShortContext) => {
     this.exitingIntegerType();
-  }
+  };
 
   exitingIntegerType() {
     if (this.currentIntegerType === NoIntegerType) return;

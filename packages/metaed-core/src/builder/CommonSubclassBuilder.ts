@@ -1,4 +1,4 @@
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
+import type { BaseNameContext, CommonNameContext, CommonSubclassContext } from '../grammar/gen/MetaEdGrammar';
 import { TopLevelEntityBuilder } from './TopLevelEntityBuilder';
 import { newCommonSubclass } from '../model/CommonSubclass';
 import { NoTopLevelEntity } from '../model/TopLevelEntity';
@@ -9,26 +9,25 @@ import { sourceMapFrom } from '../model/SourceMap';
  * An ANTLR4 listener that creates CommonSubclass entities.
  */
 export class CommonSubclassBuilder extends TopLevelEntityBuilder {
-  enterCommonSubclass(context: MetaEdGrammar.CommonSubclassContext) {
+  enterCommonSubclass = (context: CommonSubclassContext) => {
     this.enteringEntity(newCommonSubclass);
     if (this.currentTopLevelEntity !== NoTopLevelEntity) {
       this.currentTopLevelEntity.sourceMap.type = sourceMapFrom(context);
     }
-  }
+  };
 
-  // @ts-ignore
-  exitCommonSubclass(context: MetaEdGrammar.CommonSubclassContext) {
+  exitCommonSubclass = (_context: CommonSubclassContext) => {
     this.exitingEntity();
-  }
+  };
 
-  enterCommonName(context: MetaEdGrammar.CommonNameContext) {
+  enterCommonName = (context: CommonNameContext) => {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
-    if (context.exception || context.ID() == null || context.ID().exception || isErrorText(context.ID().getText())) return;
+    if (context.exception || context.ID() == null || isErrorText(context.ID().getText())) return;
     this.enteringName(context.ID().getText());
     this.currentTopLevelEntity.sourceMap.metaEdName = sourceMapFrom(context);
-  }
+  };
 
-  enterBaseName(context: MetaEdGrammar.BaseNameContext) {
+  enterBaseName = (context: BaseNameContext) => {
     this.enteringBaseName(context);
-  }
+  };
 }

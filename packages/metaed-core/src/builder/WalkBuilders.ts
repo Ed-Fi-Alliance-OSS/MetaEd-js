@@ -1,5 +1,5 @@
-import antlr4 from 'antlr4';
-import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
+import { ParseTreeWalker } from 'antlr4';
+import MetaEdGrammarListener from '../grammar/gen/MetaEdGrammarListener';
 import { State } from '../State';
 import { nextMacroTask } from '../Utility';
 import { AssociationBuilder } from './AssociationBuilder';
@@ -54,7 +54,7 @@ export async function execute(state: State): Promise<void> {
 
     new SyntaxValidatingBuilder(state.metaEd, state.validationFailure),
   ];
-  const parseTreeWalker = new antlr4.tree.ParseTreeWalker();
+  const parseTreeWalker: ParseTreeWalker = new ParseTreeWalker();
 
   // eslint-disable-next-line no-restricted-syntax
   for (const builder of builders) {

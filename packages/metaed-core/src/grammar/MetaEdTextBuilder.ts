@@ -1,8 +1,8 @@
 /* eslint-disable max-classes-per-file */
-import antlr4 from 'antlr4';
-import { MetaEdGrammar } from './gen/MetaEdGrammar';
-import { MetaEdGrammarListener } from './gen/MetaEdGrammarListener';
-import { BaseLexer } from './gen/BaseLexer';
+import { CharStream, CommonTokenStream, ParseTreeWalker } from 'antlr4';
+import MetaEdGrammar from './gen/MetaEdGrammar';
+import MetaEdGrammarListener from './gen/MetaEdGrammarListener';
+import BaseLexer from './gen/BaseLexer';
 
 /**
  * ErrorListener is an ANTLR4 ErrorListener used in unit testing to collect syntax errors from the ANTLR parser.
@@ -23,14 +23,14 @@ class ErrorListener {
 
 function listen(metaEdText: string, listener: MetaEdGrammarListener): string[] {
   const errorListener = new ErrorListener();
-  const lexer = new BaseLexer(new antlr4.InputStream(metaEdText));
-  const parser = new MetaEdGrammar(new antlr4.CommonTokenStream(lexer, undefined));
+  const lexer = new BaseLexer(new CharStream(metaEdText));
+  const parser = new MetaEdGrammar(new CommonTokenStream(lexer));
   lexer.removeErrorListeners();
   lexer.addErrorListener(errorListener);
   parser.removeErrorListeners();
   parser.addErrorListener(errorListener);
   const parserContext = parser.metaEd();
-  const parseTreeWalker = new antlr4.tree.ParseTreeWalker();
+  const parseTreeWalker = new ParseTreeWalker();
   parseTreeWalker.walk(listener, parserContext);
   const result = errorListener.errorMessages;
 

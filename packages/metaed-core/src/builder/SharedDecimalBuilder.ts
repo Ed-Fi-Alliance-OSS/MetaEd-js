@@ -1,4 +1,11 @@
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
+import type {
+  DecimalPlacesContext,
+  MaxValueDecimalContext,
+  MinValueDecimalContext,
+  SharedDecimalContext,
+  SharedDecimalNameContext,
+  TotalDigitsContext,
+} from '../grammar/gen/MetaEdGrammar';
 import { SharedSimpleBuilder } from './SharedSimpleBuilder';
 import { newSharedDecimal } from '../model/SharedDecimal';
 import { SharedDecimal, SharedDecimalSourceMap } from '../model/SharedDecimal';
@@ -10,53 +17,40 @@ import { NoSharedSimple } from '../model/SharedSimple';
  * An ANTLR4 listener that creates SharedDecimal entities.
  */
 export class SharedDecimalBuilder extends SharedSimpleBuilder {
-  enterSharedDecimal(context: MetaEdGrammar.SharedDecimalContext) {
+  enterSharedDecimal = (context: SharedDecimalContext) => {
     this.enteringSharedSimple(newSharedDecimal);
     if (this.currentSharedSimple !== NoSharedSimple) {
       Object.assign((this.currentSharedSimple as SharedDecimal).sourceMap, {
         type: sourceMapFrom(context),
       });
     }
-  }
+  };
 
-  // @ts-ignore
-  exitSharedDecimal(context: MetaEdGrammar.SharedDecimalContext) {
+  exitSharedDecimal = (_context: SharedDecimalContext) => {
     this.exitingSharedSimple();
-  }
+  };
 
-  enterSharedDecimalName(context: MetaEdGrammar.SharedDecimalNameContext) {
-    if (context.exception || context.ID() == null || context.ID().exception || isErrorText(context.ID().getText())) return;
+  enterSharedDecimalName = (context: SharedDecimalNameContext) => {
+    if (context.exception || context.ID() == null || isErrorText(context.ID().getText())) return;
     this.enteringName(context.ID().getText());
     (this.currentSharedSimple as SharedDecimal).sourceMap.metaEdName = sourceMapFrom(context);
-  }
+  };
 
-  enterDecimalPlaces(context: MetaEdGrammar.DecimalPlacesContext) {
+  enterDecimalPlaces = (context: DecimalPlacesContext) => {
     if (this.currentSharedSimple === NoSharedSimple) return;
-    if (
-      context.exception ||
-      context.UNSIGNED_INT() == null ||
-      context.UNSIGNED_INT().exception ||
-      isErrorText(context.UNSIGNED_INT().getText())
-    )
-      return;
+    if (context.exception || context.UNSIGNED_INT() == null || isErrorText(context.UNSIGNED_INT().getText())) return;
     (this.currentSharedSimple as SharedDecimal).decimalPlaces = context.UNSIGNED_INT().getText();
     (this.currentSharedSimple.sourceMap as SharedDecimalSourceMap).decimalPlaces = sourceMapFrom(context);
-  }
+  };
 
-  enterTotalDigits(context: MetaEdGrammar.TotalDigitsContext) {
+  enterTotalDigits = (context: TotalDigitsContext) => {
     if (this.currentSharedSimple === NoSharedSimple) return;
-    if (
-      context.exception ||
-      context.UNSIGNED_INT() == null ||
-      context.UNSIGNED_INT().exception ||
-      isErrorText(context.UNSIGNED_INT().getText())
-    )
-      return;
+    if (context.exception || context.UNSIGNED_INT() == null || isErrorText(context.UNSIGNED_INT().getText())) return;
     (this.currentSharedSimple as SharedDecimal).totalDigits = context.UNSIGNED_INT().getText();
     (this.currentSharedSimple.sourceMap as SharedDecimalSourceMap).totalDigits = sourceMapFrom(context);
-  }
+  };
 
-  enterMinValueDecimal(context: MetaEdGrammar.MinValueDecimalContext) {
+  enterMinValueDecimal = (context: MinValueDecimalContext) => {
     if (this.currentSharedSimple === NoSharedSimple) return;
     if (
       context.exception ||
@@ -67,9 +61,9 @@ export class SharedDecimalBuilder extends SharedSimpleBuilder {
       return;
     (this.currentSharedSimple as SharedDecimal).minValue = context.decimalValue().getText();
     (this.currentSharedSimple.sourceMap as SharedDecimalSourceMap).minValue = sourceMapFrom(context);
-  }
+  };
 
-  enterMaxValueDecimal(context: MetaEdGrammar.MaxValueDecimalContext) {
+  enterMaxValueDecimal = (context: MaxValueDecimalContext) => {
     if (this.currentSharedSimple === NoSharedSimple) return;
     if (
       context.exception ||
@@ -80,5 +74,5 @@ export class SharedDecimalBuilder extends SharedSimpleBuilder {
       return;
     (this.currentSharedSimple as SharedDecimal).maxValue = context.decimalValue().getText();
     (this.currentSharedSimple.sourceMap as SharedDecimalSourceMap).maxValue = sourceMapFrom(context);
-  }
+  };
 }

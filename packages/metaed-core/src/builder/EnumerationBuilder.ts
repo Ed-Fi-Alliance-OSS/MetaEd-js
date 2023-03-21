@@ -1,4 +1,11 @@
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
+import type {
+  EnumerationContext,
+  EnumerationItemContext,
+  EnumerationItemDocumentationContext,
+  EnumerationNameContext,
+  MetaEdIdContext,
+  ShortDescriptionContext,
+} from '../grammar/gen/MetaEdGrammar';
 import { TopLevelEntityBuilder } from './TopLevelEntityBuilder';
 import { newEnumeration, asEnumeration } from '../model/Enumeration';
 import { newSchoolYearEnumeration } from '../model/SchoolYearEnumeration';
@@ -22,23 +29,22 @@ export class EnumerationBuilder extends TopLevelEntityBuilder {
     this.currentEnumerationItem = NoEnumerationItem;
   }
 
-  enterEnumeration(context: MetaEdGrammar.EnumerationContext) {
+  enterEnumeration = (context: EnumerationContext) => {
     this.enteringEntity(newEnumeration);
     if (this.currentTopLevelEntity !== NoTopLevelEntity) {
       Object.assign(this.currentTopLevelEntity.sourceMap, {
         type: sourceMapFrom(context),
       });
     }
-  }
+  };
 
-  // @ts-ignore
-  exitEnumeration(context: MetaEdGrammar.EnumerationContext) {
+  exitEnumeration = (_context: EnumerationContext) => {
     this.exitingEntity();
-  }
+  };
 
-  enterEnumerationName(context: MetaEdGrammar.EnumerationNameContext) {
+  enterEnumerationName = (context: EnumerationNameContext) => {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
-    if (context.exception || context.ID() == null || context.ID().exception || isErrorText(context.ID().getText())) return;
+    if (context.exception || context.ID() == null || isErrorText(context.ID().getText())) return;
     const enumerationName = context.ID().getText();
 
     // need to differentiate SchoolYear from other enumerations - overwrite with new type
@@ -53,46 +59,40 @@ export class EnumerationBuilder extends TopLevelEntityBuilder {
     Object.assign(this.currentTopLevelEntity.sourceMap, {
       metaEdName: sourceMapFrom(context),
     });
-  }
+  };
 
-  enterEnumerationItemDocumentation(context: MetaEdGrammar.EnumerationItemDocumentationContext) {
+  enterEnumerationItemDocumentation = (context: EnumerationItemDocumentationContext) => {
     if (this.currentEnumerationItem === NoEnumerationItem) return;
     this.currentEnumerationItem.documentation = extractDocumentation(context);
     this.currentEnumerationItem.sourceMap.documentation = sourceMapFrom(context);
-  }
+  };
 
-  enterEnumerationItem(context: MetaEdGrammar.EnumerationItemContext) {
+  enterEnumerationItem = (context: EnumerationItemContext) => {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
     this.currentEnumerationItem = newEnumerationItem();
     this.currentEnumerationItem.sourceMap.type = sourceMapFrom(context);
-  }
+  };
 
-  exitEnumerationItem(context: MetaEdGrammar.EnumerationItemContext) {
+  exitEnumerationItem = (context: EnumerationItemContext) => {
     if (this.currentTopLevelEntity === NoTopLevelEntity || this.currentEnumerationItem === NoEnumerationItem) return;
     asEnumeration(this.currentTopLevelEntity).enumerationItems.push(this.currentEnumerationItem);
     (this.currentTopLevelEntity.sourceMap as EnumerationSourceMap).enumerationItems.push(sourceMapFrom(context));
     this.currentEnumerationItem = NoEnumerationItem;
-  }
+  };
 
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception != null ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
+  enterMetaEdId = (context: MetaEdIdContext) => {
+    if (context.exception || context.METAED_ID() == null || isErrorText(context.METAED_ID().getText())) return;
     if (this.currentEnumerationItem !== NoEnumerationItem) {
       this.currentEnumerationItem.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
       this.currentEnumerationItem.sourceMap.metaEdId = sourceMapFrom(context);
     } else {
       super.enterMetaEdId(context);
     }
-  }
+  };
 
-  enterShortDescription(context: MetaEdGrammar.ShortDescriptionContext) {
+  enterShortDescription = (context: ShortDescriptionContext) => {
     if (this.currentEnumerationItem === NoEnumerationItem) return;
     this.currentEnumerationItem.shortDescription = extractShortDescription(context);
     this.currentEnumerationItem.sourceMap.shortDescription = sourceMapFrom(context);
-  }
+  };
 }

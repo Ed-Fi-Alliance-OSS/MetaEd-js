@@ -5,8 +5,22 @@ import { ValidationFailure } from '../validator/ValidationFailure';
 import { newDecimalType, NoDecimalType } from '../model/DecimalType';
 import { namespaceNameFrom } from './NamespaceBuilder';
 import { extractDocumentation, extractDeprecationReason, squareBracketRemoval, isErrorText } from './BuilderUtility';
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
-import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
+import type {
+  DecimalPlacesContext,
+  DecimalPropertyContext,
+  DeprecatedContext,
+  DocumentationContext,
+  MaxValueDecimalContext,
+  MetaEdIdContext,
+  MinValueDecimalContext,
+  NamespaceNameContext,
+  PropertyDocumentationContext,
+  SharedDecimalContext,
+  SharedDecimalNameContext,
+  SimplePropertyNameContext,
+  TotalDigitsContext,
+} from '../grammar/gen/MetaEdGrammar';
+import MetaEdGrammarListener from '../grammar/gen/MetaEdGrammarListener';
 import { sourceMapFrom } from '../model/SourceMap';
 import { NoNamespace } from '../model/Namespace';
 
@@ -28,28 +42,25 @@ export class DecimalTypeBuilder extends MetaEdGrammarListener {
     this.currentDecimalType = NoDecimalType;
   }
 
-  enterNamespaceName(context: MetaEdGrammar.NamespaceNameContext) {
+  enterNamespaceName = (context: NamespaceNameContext) => {
     const namespace: Namespace | undefined = this.metaEd.namespace.get(namespaceNameFrom(context));
     this.currentNamespace = namespace == null ? NoNamespace : namespace;
-  }
+  };
 
-  enterSharedDecimal(context: MetaEdGrammar.SharedDecimalContext) {
+  enterSharedDecimal = (context: SharedDecimalContext) => {
     this.enteringDecimalType(context);
-  }
+  };
 
-  enterDecimalProperty(context: MetaEdGrammar.DecimalPropertyContext) {
+  enterDecimalProperty = (context: DecimalPropertyContext) => {
     this.enteringDecimalType(context, true);
-  }
+  };
 
-  enteringDecimalType(
-    context: MetaEdGrammar.SharedDecimalContext | MetaEdGrammar.DecimalPropertyContext,
-    generatedSimpleType: boolean = false,
-  ) {
+  enteringDecimalType = (context: SharedDecimalContext | DecimalPropertyContext, generatedSimpleType: boolean = false) => {
     this.currentDecimalType = { ...newDecimalType(), namespace: this.currentNamespace, generatedSimpleType };
     this.currentDecimalType.sourceMap.type = sourceMapFrom(context);
-  }
+  };
 
-  enterDeprecated(context: MetaEdGrammar.DeprecatedContext) {
+  enterDeprecated = (context: DeprecatedContext) => {
     if (this.currentDecimalType === NoDecimalType) return;
 
     if (!context.exception) {
@@ -58,89 +69,70 @@ export class DecimalTypeBuilder extends MetaEdGrammarListener {
       this.currentDecimalType.sourceMap.isDeprecated = sourceMapFrom(context);
       this.currentDecimalType.sourceMap.deprecationReason = sourceMapFrom(context);
     }
-  }
+  };
 
-  enterDocumentation(context: MetaEdGrammar.DocumentationContext) {
+  enterDocumentation = (context: DocumentationContext) => {
     if (this.currentDecimalType === NoDecimalType || this.currentDecimalType.generatedSimpleType) return;
     this.currentDecimalType.documentation = extractDocumentation(context);
     this.currentDecimalType.sourceMap.documentation = sourceMapFrom(context);
-  }
+  };
 
-  enterPropertyDocumentation(context: MetaEdGrammar.PropertyDocumentationContext) {
+  enterPropertyDocumentation = (context: PropertyDocumentationContext) => {
     if (this.currentDecimalType === NoDecimalType) return;
 
-    if (!context.exception && context.INHERITED() !== null && !context.INHERITED().exception) {
+    if (!context.exception && context.INHERITED() !== null) {
       this.currentDecimalType.documentationInherited = true;
       this.currentDecimalType.sourceMap.documentationInherited = sourceMapFrom(context);
     } else {
       this.currentDecimalType.documentation = extractDocumentation(context);
       this.currentDecimalType.sourceMap.documentation = sourceMapFrom(context);
     }
-  }
+  };
 
-  enterSharedDecimalName(context: MetaEdGrammar.SharedDecimalNameContext) {
+  enterSharedDecimalName = (context: SharedDecimalNameContext) => {
     if (this.currentDecimalType === NoDecimalType) return;
-    if (context.exception || context.ID() == null || context.ID().exception || isErrorText(context.ID().getText())) return;
+    if (context.exception || context.ID() == null || isErrorText(context.ID().getText())) return;
     this.currentDecimalType.metaEdName = context.ID().getText();
     this.currentDecimalType.sourceMap.metaEdName = sourceMapFrom(context);
-  }
+  };
 
-  enterSimplePropertyName(context: MetaEdGrammar.SimplePropertyNameContext) {
+  enterSimplePropertyName = (context: SimplePropertyNameContext) => {
     if (this.currentDecimalType === NoDecimalType) return;
     if (context.exception || context.localPropertyName() == null) return;
     const localPropertyNameContext = context.localPropertyName();
     if (
       localPropertyNameContext.exception ||
       localPropertyNameContext.ID() == null ||
-      localPropertyNameContext.ID().exception ||
       isErrorText(localPropertyNameContext.ID().getText())
     )
       return;
     this.currentDecimalType.metaEdName = localPropertyNameContext.ID().getText();
     this.currentDecimalType.sourceMap.metaEdName = sourceMapFrom(localPropertyNameContext);
-  }
+  };
 
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
+  enterMetaEdId = (context: MetaEdIdContext) => {
     if (this.currentDecimalType === NoDecimalType) return;
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
+    if (context.exception || context.METAED_ID() == null || isErrorText(context.METAED_ID().getText())) return;
 
     this.currentDecimalType.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
     this.currentDecimalType.sourceMap.metaEdId = sourceMapFrom(context);
-  }
+  };
 
-  enterTotalDigits(context: MetaEdGrammar.TotalDigitsContext) {
+  enterTotalDigits = (context: TotalDigitsContext) => {
     if (this.currentDecimalType === NoDecimalType) return;
-    if (
-      context.exception ||
-      context.UNSIGNED_INT() == null ||
-      context.UNSIGNED_INT().exception ||
-      isErrorText(context.UNSIGNED_INT().getText())
-    )
-      return;
+    if (context.exception || context.UNSIGNED_INT() == null || isErrorText(context.UNSIGNED_INT().getText())) return;
     this.currentDecimalType.totalDigits = context.UNSIGNED_INT().getText();
     this.currentDecimalType.sourceMap.totalDigits = sourceMapFrom(context);
-  }
+  };
 
-  enterDecimalPlaces(context: MetaEdGrammar.DecimalPlacesContext) {
+  enterDecimalPlaces = (context: DecimalPlacesContext) => {
     if (this.currentDecimalType === NoDecimalType) return;
-    if (
-      context.exception ||
-      context.UNSIGNED_INT() == null ||
-      context.UNSIGNED_INT().exception ||
-      isErrorText(context.UNSIGNED_INT().getText())
-    )
-      return;
+    if (context.exception || context.UNSIGNED_INT() == null || isErrorText(context.UNSIGNED_INT().getText())) return;
     this.currentDecimalType.decimalPlaces = context.UNSIGNED_INT().getText();
     this.currentDecimalType.sourceMap.decimalPlaces = sourceMapFrom(context);
-  }
+  };
 
-  enterMinValueDecimal(context: MetaEdGrammar.MinValueDecimalContext) {
+  enterMinValueDecimal = (context: MinValueDecimalContext) => {
     if (this.currentDecimalType === NoDecimalType) return;
     if (
       context.exception ||
@@ -151,9 +143,9 @@ export class DecimalTypeBuilder extends MetaEdGrammarListener {
       return;
     this.currentDecimalType.minValue = context.decimalValue().getText();
     this.currentDecimalType.sourceMap.minValue = sourceMapFrom(context);
-  }
+  };
 
-  enterMaxValueDecimal(context: MetaEdGrammar.MaxValueDecimalContext) {
+  enterMaxValueDecimal = (context: MaxValueDecimalContext) => {
     if (this.currentDecimalType === NoDecimalType) return;
     if (
       context.exception ||
@@ -164,17 +156,15 @@ export class DecimalTypeBuilder extends MetaEdGrammarListener {
       return;
     this.currentDecimalType.maxValue = context.decimalValue().getText();
     this.currentDecimalType.sourceMap.maxValue = sourceMapFrom(context);
-  }
+  };
 
-  // @ts-ignore
-  exitDecimalProperty(context: MetaEdGrammar.DecimalPropertyContext) {
+  exitDecimalProperty = (_context: DecimalPropertyContext) => {
     this.exitingDecimalType();
-  }
+  };
 
-  // @ts-ignore
-  exitSharedDecimal(context: MetaEdGrammar.SharedDecimalContext) {
+  exitSharedDecimal = (_context: SharedDecimalContext) => {
     this.exitingDecimalType();
-  }
+  };
 
   exitingDecimalType() {
     if (this.currentDecimalType === NoDecimalType) return;

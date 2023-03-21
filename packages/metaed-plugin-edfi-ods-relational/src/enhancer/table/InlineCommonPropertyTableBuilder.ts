@@ -15,8 +15,7 @@ export function inlineCommonPropertyTableBuilder(factory: TableBuilderFactory): 
       parentPrimaryKeys: Column[],
       buildStrategy: BuildStrategy,
       tables: Table[],
-      // @ts-ignore
-      parentIsRequired: boolean | null,
+      _parentIsRequired: boolean | null,
     ): void {
       const inlineCommonProperty: ReferentialProperty = asReferentialProperty(property);
 

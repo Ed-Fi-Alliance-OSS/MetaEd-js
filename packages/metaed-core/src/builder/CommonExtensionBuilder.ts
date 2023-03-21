@@ -1,4 +1,4 @@
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
+import type { CommonExtensionContext, ExtendeeNameContext } from '../grammar/gen/MetaEdGrammar';
 import { TopLevelEntityBuilder } from './TopLevelEntityBuilder';
 import { newCommonExtension } from '../model/CommonExtension';
 import { NoTopLevelEntity } from '../model/TopLevelEntity';
@@ -8,19 +8,18 @@ import { sourceMapFrom } from '../model/SourceMap';
  * An ANTLR4 listener that creates CommonExtension entities.
  */
 export class CommonExtensionBuilder extends TopLevelEntityBuilder {
-  enterCommonExtension(context: MetaEdGrammar.CommonExtensionContext) {
+  enterCommonExtension = (context: CommonExtensionContext) => {
     this.enteringEntity(newCommonExtension);
     if (this.currentTopLevelEntity !== NoTopLevelEntity) {
       this.currentTopLevelEntity.sourceMap.type = sourceMapFrom(context);
     }
-  }
+  };
 
-  // @ts-ignore
-  exitCommonExtension(context: MetaEdGrammar.CommonExtensionContext) {
+  exitCommonExtension = (_context: CommonExtensionContext) => {
     this.exitingEntity();
-  }
+  };
 
-  enterExtendeeName(context: MetaEdGrammar.ExtendeeNameContext) {
+  enterExtendeeName = (context: ExtendeeNameContext) => {
     this.enteringExtendeeName(context);
-  }
+  };
 }

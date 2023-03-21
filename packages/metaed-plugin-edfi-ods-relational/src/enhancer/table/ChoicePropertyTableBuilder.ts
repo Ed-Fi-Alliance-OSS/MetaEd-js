@@ -16,8 +16,7 @@ export function choicePropertyTableBuilder(factory: TableBuilderFactory): TableB
       parentPrimaryKeys: Column[],
       buildStrategy: BuildStrategy,
       tables: Table[],
-      // @ts-ignore
-      parentIsRequired: boolean | null,
+      _parentIsRequired: boolean | null,
     ): void {
       const choice: ReferentialProperty = asReferentialProperty(property);
       let strategy: BuildStrategy = buildStrategy;

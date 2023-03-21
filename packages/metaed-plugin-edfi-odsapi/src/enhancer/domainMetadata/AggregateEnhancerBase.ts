@@ -16,14 +16,10 @@ export type IsAggregateExtension = () => boolean;
 export type OrderedAndUniqueTablesFor = (entity: TopLevelEntity, namespace: Namespace) => Table[];
 
 export function nullEnhanceEntityTable(
-  // @ts-ignore - value never read
-  metaEd: MetaEdEnvironment,
-  // @ts-ignore - value never read
-  entity: TopLevelEntity,
-  // @ts-ignore - value never read
-  table: Table,
-  // @ts-ignore - value never read
-  entityTable: EntityTable,
+  _metaEd: MetaEdEnvironment,
+  _entity: TopLevelEntity,
+  _table: Table,
+  _entityTable: EntityTable,
 ): void {} // eslint-disable-line no-unused-vars
 
 export function defaultOrderedAndUniqueTablesFor(entity: TopLevelEntity, namespace: Namespace): Table[] {

@@ -5,8 +5,20 @@ import { ValidationFailure } from '../validator/ValidationFailure';
 import { newStringType, NoStringType } from '../model/StringType';
 import { namespaceNameFrom } from './NamespaceBuilder';
 import { extractDocumentation, squareBracketRemoval, isErrorText, extractDeprecationReason } from './BuilderUtility';
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
-import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
+import type {
+  DeprecatedContext,
+  DocumentationContext,
+  MaxLengthContext,
+  MetaEdIdContext,
+  MinLengthContext,
+  NamespaceNameContext,
+  PropertyDocumentationContext,
+  SharedStringContext,
+  SharedStringNameContext,
+  SimplePropertyNameContext,
+  StringPropertyContext,
+} from '../grammar/gen/MetaEdGrammar';
+import MetaEdGrammarListener from '../grammar/gen/MetaEdGrammarListener';
 import { sourceMapFrom } from '../model/SourceMap';
 import { NoNamespace } from '../model/Namespace';
 
@@ -28,28 +40,25 @@ export class StringTypeBuilder extends MetaEdGrammarListener {
     this.currentStringType = NoStringType;
   }
 
-  enterNamespaceName(context: MetaEdGrammar.NamespaceNameContext) {
+  enterNamespaceName = (context: NamespaceNameContext) => {
     const namespace: Namespace | undefined = this.metaEd.namespace.get(namespaceNameFrom(context));
     this.currentNamespace = namespace == null ? NoNamespace : namespace;
-  }
+  };
 
-  enterSharedString(context: MetaEdGrammar.SharedStringContext) {
+  enterSharedString = (context: SharedStringContext) => {
     this.enteringStringType(context);
-  }
+  };
 
-  enterStringProperty(context: MetaEdGrammar.StringPropertyContext) {
+  enterStringProperty = (context: StringPropertyContext) => {
     this.enteringStringType(context, true);
-  }
+  };
 
-  enteringStringType(
-    context: MetaEdGrammar.SharedStringContext | MetaEdGrammar.StringPropertyContext,
-    generatedSimpleType: boolean = false,
-  ) {
+  enteringStringType = (context: SharedStringContext | StringPropertyContext, generatedSimpleType: boolean = false) => {
     this.currentStringType = { ...newStringType(), namespace: this.currentNamespace, generatedSimpleType };
     this.currentStringType.sourceMap.type = sourceMapFrom(context);
-  }
+  };
 
-  enterDeprecated(context: MetaEdGrammar.DeprecatedContext) {
+  enterDeprecated = (context: DeprecatedContext) => {
     if (this.currentStringType === NoStringType) return;
 
     if (!context.exception) {
@@ -58,97 +67,76 @@ export class StringTypeBuilder extends MetaEdGrammarListener {
       this.currentStringType.sourceMap.isDeprecated = sourceMapFrom(context);
       this.currentStringType.sourceMap.deprecationReason = sourceMapFrom(context);
     }
-  }
+  };
 
-  enterDocumentation(context: MetaEdGrammar.DocumentationContext) {
+  enterDocumentation = (context: DocumentationContext) => {
     if (this.currentStringType === NoStringType || this.currentStringType.generatedSimpleType) return;
     this.currentStringType.documentation = extractDocumentation(context);
     this.currentStringType.sourceMap.documentation = sourceMapFrom(context);
-  }
+  };
 
-  enterPropertyDocumentation(context: MetaEdGrammar.PropertyDocumentationContext) {
+  enterPropertyDocumentation = (context: PropertyDocumentationContext) => {
     if (this.currentStringType === NoStringType) return;
 
-    if (!context.exception && context.INHERITED() !== null && !context.INHERITED().exception) {
+    if (!context.exception && context.INHERITED() !== null) {
       this.currentStringType.documentationInherited = true;
       this.currentStringType.sourceMap.documentationInherited = sourceMapFrom(context);
     } else {
       this.currentStringType.documentation = extractDocumentation(context);
       this.currentStringType.sourceMap.documentation = sourceMapFrom(context);
     }
-  }
+  };
 
-  enterSharedStringName(context: MetaEdGrammar.SharedStringNameContext) {
+  enterSharedStringName = (context: SharedStringNameContext) => {
     if (this.currentStringType === NoStringType) return;
-    if (context.exception || context.ID() == null || context.ID().exception || isErrorText(context.ID().getText())) return;
+    if (context.exception || context.ID() == null || isErrorText(context.ID().getText())) return;
     this.currentStringType.metaEdName = context.ID().getText();
     this.currentStringType.sourceMap.metaEdName = sourceMapFrom(context);
-  }
+  };
 
-  enterSimplePropertyName(context: MetaEdGrammar.SimplePropertyNameContext) {
+  enterSimplePropertyName = (context: SimplePropertyNameContext) => {
     if (this.currentStringType === NoStringType) return;
     if (context.exception || context.localPropertyName() == null) return;
     const localPropertyNameContext = context.localPropertyName();
     if (
       localPropertyNameContext.exception ||
       localPropertyNameContext.ID() == null ||
-      localPropertyNameContext.ID().exception ||
       isErrorText(localPropertyNameContext.ID().getText())
     )
       return;
     this.currentStringType.metaEdName = localPropertyNameContext.ID().getText();
     this.currentStringType.sourceMap.metaEdName = sourceMapFrom(localPropertyNameContext);
-  }
+  };
 
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
+  enterMetaEdId = (context: MetaEdIdContext) => {
     if (this.currentStringType === NoStringType) return;
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
+    if (context.exception || context.METAED_ID() == null || isErrorText(context.METAED_ID().getText())) return;
 
     this.currentStringType.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
     this.currentStringType.sourceMap.metaEdId = sourceMapFrom(context);
-  }
+  };
 
-  enterMinLength(context: MetaEdGrammar.MinLengthContext) {
+  enterMinLength = (context: MinLengthContext) => {
     if (this.currentStringType === NoStringType) return;
-    if (
-      context.exception ||
-      context.UNSIGNED_INT() == null ||
-      context.UNSIGNED_INT().exception ||
-      isErrorText(context.UNSIGNED_INT().getText())
-    )
-      return;
+    if (context.exception || context.UNSIGNED_INT() == null || isErrorText(context.UNSIGNED_INT().getText())) return;
     this.currentStringType.minLength = context.UNSIGNED_INT().getText();
     this.currentStringType.sourceMap.minLength = sourceMapFrom(context);
-  }
+  };
 
-  enterMaxLength(context: MetaEdGrammar.MaxLengthContext) {
+  enterMaxLength = (context: MaxLengthContext) => {
     if (this.currentStringType === NoStringType) return;
-    if (
-      context.exception ||
-      context.UNSIGNED_INT() == null ||
-      context.UNSIGNED_INT().exception ||
-      isErrorText(context.UNSIGNED_INT().getText())
-    )
-      return;
+    if (context.exception || context.UNSIGNED_INT() == null || isErrorText(context.UNSIGNED_INT().getText())) return;
     this.currentStringType.maxLength = context.UNSIGNED_INT().getText();
     this.currentStringType.sourceMap.maxLength = sourceMapFrom(context);
-  }
+  };
 
-  // @ts-ignore
-  exitStringProperty(context: MetaEdGrammar.StringPropertyContext) {
+  exitStringProperty = (_context: StringPropertyContext) => {
     this.exitingStringType();
-  }
+  };
 
-  // @ts-ignore
-  exitSharedString(context: MetaEdGrammar.SharedStringContext) {
+  exitSharedString = (_context: SharedStringContext) => {
     this.exitingStringType();
-  }
+  };
 
   exitingStringType() {
     if (this.currentStringType === NoStringType) return;

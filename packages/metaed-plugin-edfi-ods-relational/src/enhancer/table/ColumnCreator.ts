@@ -8,7 +8,6 @@ export interface ColumnCreator {
 
 export function nullColumnCreator() {
   return {
-    // @ts-ignore - all unused parameter names
-    createColumns: (property: EntityProperty, strategy: BuildStrategy): Column[] => [],
+    createColumns: (_property: EntityProperty, _strategy: BuildStrategy): Column[] => [],
   };
 }

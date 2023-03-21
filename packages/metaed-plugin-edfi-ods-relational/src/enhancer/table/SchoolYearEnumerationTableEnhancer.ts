@@ -15,8 +15,7 @@ import { ColumnType } from '../../model/database/ColumnType';
 
 const enhancerName = 'SchoolYearEnumerationTableEnhancer';
 
-// @ts-ignore - "metaEd" is never read
-function build(metaEd: MetaEdEnvironment, entity: SchoolYearEnumeration): Table {
+function build(_metaEd: MetaEdEnvironment, entity: SchoolYearEnumeration): Table {
   const { namespace, documentation } = entity;
   const table: Table = {
     ...newTable(),

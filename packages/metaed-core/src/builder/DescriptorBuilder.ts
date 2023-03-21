@@ -1,4 +1,15 @@
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
+import type {
+  DescriptorContext,
+  DescriptorNameContext,
+  EnumerationItemContext,
+  EnumerationItemDocumentationContext,
+  MapTypeDocumentationContext,
+  MetaEdIdContext,
+  OptionalMapTypeContext,
+  RequiredMapTypeContext,
+  ShortDescriptionContext,
+  WithMapTypeContext,
+} from '../grammar/gen/MetaEdGrammar';
 import { TopLevelEntityBuilder } from './TopLevelEntityBuilder';
 import { newDescriptor, asDescriptor } from '../model/Descriptor';
 import { DescriptorSourceMap } from '../model/Descriptor';
@@ -27,37 +38,36 @@ export class DescriptorBuilder extends TopLevelEntityBuilder {
     this.currentEnumerationItem = NoEnumerationItem;
   }
 
-  enterDescriptor(context: MetaEdGrammar.DescriptorContext) {
+  enterDescriptor = (context: DescriptorContext) => {
     this.enteringEntity(newDescriptor);
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
     this.currentTopLevelEntity.sourceMap.type = sourceMapFrom(context);
-  }
+  };
 
-  // @ts-ignore
-  exitDescriptor(context: MetaEdGrammar.DescriptorContext) {
+  exitDescriptor = (_context: DescriptorContext) => {
     this.exitingEntity();
-  }
+  };
 
-  enterDescriptorName(context: MetaEdGrammar.DescriptorNameContext) {
+  enterDescriptorName = (context: DescriptorNameContext) => {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
-    if (context.exception || context.ID() == null || context.ID().exception || isErrorText(context.ID().getText())) return;
+    if (context.exception || context.ID() == null || isErrorText(context.ID().getText())) return;
     this.enteringName(context.ID().getText());
     this.currentTopLevelEntity.sourceMap.metaEdName = sourceMapFrom(context);
-  }
+  };
 
-  enterOptionalMapType(context: MetaEdGrammar.OptionalMapTypeContext) {
+  enterOptionalMapType = (context: OptionalMapTypeContext) => {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
     asDescriptor(this.currentTopLevelEntity).isMapTypeOptional = true;
     (this.currentTopLevelEntity.sourceMap as DescriptorSourceMap).isMapTypeOptional = sourceMapFrom(context);
-  }
+  };
 
-  enterRequiredMapType(context: MetaEdGrammar.RequiredMapTypeContext) {
+  enterRequiredMapType = (context: RequiredMapTypeContext) => {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
     asDescriptor(this.currentTopLevelEntity).isMapTypeRequired = true;
     (this.currentTopLevelEntity.sourceMap as DescriptorSourceMap).isMapTypeRequired = sourceMapFrom(context);
-  }
+  };
 
-  enterWithMapType(context: MetaEdGrammar.WithMapTypeContext) {
+  enterWithMapType = (context: WithMapTypeContext) => {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
     this.currentMapTypeEnumeration = {
       ...newMapTypeEnumeration(),
@@ -68,22 +78,21 @@ export class DescriptorBuilder extends TopLevelEntityBuilder {
 
     this.currentMapTypeEnumeration.sourceMap.type = sourceMapFrom(context);
     (this.currentMapTypeEnumeration.sourceMap as unknown as DescriptorSourceMap).mapTypeEnumeration = sourceMapFrom(context);
-  }
+  };
 
-  enterMapTypeDocumentation(context: MetaEdGrammar.MapTypeDocumentationContext) {
+  enterMapTypeDocumentation = (context: MapTypeDocumentationContext) => {
     if (this.currentMapTypeEnumeration === NoMapTypeEnumeration) return;
     this.currentMapTypeEnumeration.documentation = extractDocumentation(context);
     this.currentMapTypeEnumeration.sourceMap.documentation = sourceMapFrom(context);
-  }
+  };
 
-  enterEnumerationItemDocumentation(context: MetaEdGrammar.EnumerationItemDocumentationContext) {
+  enterEnumerationItemDocumentation = (context: EnumerationItemDocumentationContext) => {
     if (this.currentEnumerationItem === NoEnumerationItem) return;
     this.currentEnumerationItem.documentation = extractDocumentation(context);
     this.currentEnumerationItem.sourceMap.documentation = sourceMapFrom(context);
-  }
+  };
 
-  // @ts-ignore
-  exitWithMapType(context: MetaEdGrammar.WithMapTypeContext) {
+  exitWithMapType = (_context: WithMapTypeContext) => {
     if (this.currentMapTypeEnumeration === NoMapTypeEnumeration) return;
     if (this.currentTopLevelEntity !== NoTopLevelEntity) {
       asDescriptor(this.currentTopLevelEntity).mapTypeEnumeration = this.currentMapTypeEnumeration;
@@ -93,42 +102,36 @@ export class DescriptorBuilder extends TopLevelEntityBuilder {
       this.currentMapTypeEnumeration,
     );
     this.currentMapTypeEnumeration = NoMapTypeEnumeration;
-  }
+  };
 
-  enterEnumerationItem(context: MetaEdGrammar.EnumerationItemContext) {
+  enterEnumerationItem = (context: EnumerationItemContext) => {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
     this.currentEnumerationItem = newEnumerationItem();
     this.currentEnumerationItem.sourceMap.type = sourceMapFrom(context);
-  }
+  };
 
-  exitEnumerationItem(context: MetaEdGrammar.EnumerationItemContext) {
+  exitEnumerationItem = (context: EnumerationItemContext) => {
     if (this.currentEnumerationItem === NoEnumerationItem) return;
     if (this.currentMapTypeEnumeration !== NoMapTypeEnumeration) {
       this.currentMapTypeEnumeration.enumerationItems.push(this.currentEnumerationItem);
       (this.currentMapTypeEnumeration.sourceMap as EnumerationSourceMap).enumerationItems.push(sourceMapFrom(context));
     }
     this.currentEnumerationItem = NoEnumerationItem;
-  }
+  };
 
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception != null ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
+  enterMetaEdId = (context: MetaEdIdContext) => {
+    if (context.exception || context.METAED_ID() == null || isErrorText(context.METAED_ID().getText())) return;
     if (this.currentEnumerationItem !== NoEnumerationItem) {
       this.currentEnumerationItem.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
       this.currentEnumerationItem.sourceMap.metaEdId = sourceMapFrom(context);
     } else {
       super.enterMetaEdId(context);
     }
-  }
+  };
 
-  enterShortDescription(context: MetaEdGrammar.ShortDescriptionContext) {
+  enterShortDescription = (context: ShortDescriptionContext) => {
     if (this.currentEnumerationItem === NoEnumerationItem) return;
     this.currentEnumerationItem.shortDescription = extractShortDescription(context);
     this.currentEnumerationItem.sourceMap.shortDescription = sourceMapFrom(context);
-  }
+  };
 }

@@ -1,6 +1,16 @@
-import { ParserRuleContext } from 'antlr4/ParserRuleContext';
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
-import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
+import type { ParserRuleContext } from 'antlr4';
+import type {
+  IdentityRenameContext,
+  IsQueryableFieldContext,
+  IsQueryableOnlyContext,
+  IsWeakReferenceContext,
+  NamespaceNameContext,
+  SharedShortContext,
+  SharedShortPropertyContext,
+  ShortenToNameContext,
+  ShortPropertyContext,
+} from '../grammar/gen/MetaEdGrammar';
+import MetaEdGrammarListener from '../grammar/gen/MetaEdGrammarListener';
 
 import { MetaEdEnvironment } from '../MetaEdEnvironment';
 import { ValidationFailure, ValidationFailureCategory } from '../validator/ValidationFailure';
@@ -47,13 +57,13 @@ export class SyntaxValidatingBuilder extends MetaEdGrammarListener {
     this.currentNamespace = NoNamespace;
   }
 
-  enterNamespaceName(context: MetaEdGrammar.NamespaceNameContext) {
+  enterNamespaceName = (context: NamespaceNameContext) => {
     const namespace: Namespace | undefined = this.metaEd.namespace.get(namespaceNameFrom(context));
     this.currentNamespace = namespace == null ? NoNamespace : namespace;
-  }
+  };
 
   // Deprecate 'is weak'
-  enterIsWeakReference(context: MetaEdGrammar.IsWeakReferenceContext) {
+  enterIsWeakReference = (context: IsWeakReferenceContext) => {
     if (versionSatisfies(this.metaEd.dataStandardVersion, targetDataStandardVersion330a)) {
       this.validationFailures.push({
         validatorName,
@@ -68,38 +78,38 @@ export class SyntaxValidatingBuilder extends MetaEdGrammarListener {
     if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
       this.validationFailures.push(deprecationWarning(context, `The 'is weak' keyword`));
     }
-  }
+  };
 
   // Deprecate 'is queryable only'
-  enterIsQueryableOnly(context: MetaEdGrammar.IsQueryableOnlyContext) {
+  enterIsQueryableOnly = (context: IsQueryableOnlyContext) => {
     if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
       this.validationFailures.push(deprecationWarning(context, `The 'is queryable only' keyword`));
     }
-  }
+  };
 
   // Deprecate 'is queryable field'
-  enterIsQueryableField(context: MetaEdGrammar.IsQueryableFieldContext) {
+  enterIsQueryableField = (context: IsQueryableFieldContext) => {
     if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
       this.validationFailures.push(deprecationWarning(context, `The 'is queryable field' keyword`));
     }
-  }
+  };
 
   // deprecate 'shorten to'
-  enterShortenToName(context: MetaEdGrammar.ShortenToNameContext) {
+  enterShortenToName = (context: ShortenToNameContext) => {
     if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
       this.validationFailures.push(deprecationWarning(context, `The 'shorten to' keyword`));
     }
-  }
+  };
 
   // deprecate 'renames identity property' in extensions
-  enterIdentityRename(context: MetaEdGrammar.IdentityRenameContext) {
+  enterIdentityRename = (context: IdentityRenameContext) => {
     if (this.currentNamespace.isExtension) {
       this.validationFailures.push(deprecationWarning(context, `The 'renames identity property' keyword`));
     }
-  }
+  };
 
   // deprecate 'Shared Short'
-  enterSharedShort(context: MetaEdGrammar.SharedShortContext) {
+  enterSharedShort = (context: SharedShortContext) => {
     if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
       this.validationFailures.push(
         newValidationFailure(
@@ -108,10 +118,10 @@ export class SyntaxValidatingBuilder extends MetaEdGrammarListener {
         ),
       );
     }
-  }
+  };
 
   // deprecate 'shared short'
-  enterSharedShortProperty(context: MetaEdGrammar.SharedShortPropertyContext) {
+  enterSharedShortProperty = (context: SharedShortPropertyContext) => {
     if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
       this.validationFailures.push(
         newValidationFailure(
@@ -120,14 +130,14 @@ export class SyntaxValidatingBuilder extends MetaEdGrammarListener {
         ),
       );
     }
-  }
+  };
 
   // deprecate 'short'
-  enterShortProperty(context: MetaEdGrammar.ShortPropertyContext) {
+  enterShortProperty = (context: ShortPropertyContext) => {
     if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
       this.validationFailures.push(
         newValidationFailure(context, `The 'short' property ${willBeDeprecated} Use 'integer' with a max value instead.`),
       );
     }
-  }
+  };
 }

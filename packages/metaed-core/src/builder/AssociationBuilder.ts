@@ -1,4 +1,9 @@
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
+import type {
+  AssociationContext,
+  AssociationNameContext,
+  CascadeUpdateContext,
+  DefiningDomainEntityContext,
+} from '../grammar/gen/MetaEdGrammar';
 import { TopLevelEntityBuilder } from './TopLevelEntityBuilder';
 import { newDomainEntityProperty } from '../model/property/DomainEntityProperty';
 import { newAssociation } from '../model/Association';
@@ -11,48 +16,45 @@ import { EntityProperty } from '../model/property/EntityProperty';
  * An ANTLR4 listener that creates Association entities.
  */
 export class AssociationBuilder extends TopLevelEntityBuilder {
-  enterAssociation(context: MetaEdGrammar.AssociationContext) {
+  enterAssociation = (context: AssociationContext) => {
     this.enteringEntity(newAssociation);
     if (this.currentTopLevelEntity !== NoTopLevelEntity) {
       this.currentTopLevelEntity.sourceMap.type = sourceMapFrom(context);
     }
-  }
+  };
 
-  // @ts-ignore
-  exitAssociation(context: MetaEdGrammar.AssociationContext) {
+  exitAssociation = (_context: AssociationContext) => {
     this.exitingEntity();
-  }
+  };
 
-  enterAssociationName(context: MetaEdGrammar.AssociationNameContext) {
+  enterAssociationName = (context: AssociationNameContext) => {
     if (
       this.currentTopLevelEntity === NoTopLevelEntity ||
       context.exception ||
       context.ID() == null ||
-      context.ID().exception ||
       isErrorText(context.ID().getText())
     )
       return;
     this.enteringName(context.ID().getText());
     this.currentTopLevelEntity.sourceMap.metaEdName = sourceMapFrom(context);
-  }
+  };
 
-  enterCascadeUpdate(context: MetaEdGrammar.CascadeUpdateContext) {
+  enterCascadeUpdate = (context: CascadeUpdateContext) => {
     if (this.currentTopLevelEntity !== NoTopLevelEntity) {
       this.currentTopLevelEntity.allowPrimaryKeyUpdates = true;
       this.currentTopLevelEntity.sourceMap.allowPrimaryKeyUpdates = sourceMapFrom(context);
     }
-  }
+  };
 
-  enterDefiningDomainEntity(context: MetaEdGrammar.DefiningDomainEntityContext) {
+  enterDefiningDomainEntity = (context: DefiningDomainEntityContext) => {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
     if (context.exception) return;
     this.currentProperty = { ...newDomainEntityProperty(), definesAssociation: true } as EntityProperty;
     this.currentProperty.sourceMap.type = sourceMapFrom(context);
     this.enteringIdentity(context);
-  }
+  };
 
-  // @ts-ignore
-  exitDefiningDomainEntity(context: MetaEdGrammar.DefiningDomainEntityContext) {
+  exitDefiningDomainEntity = (_context: DefiningDomainEntityContext) => {
     this.exitingProperty();
-  }
+  };
 }

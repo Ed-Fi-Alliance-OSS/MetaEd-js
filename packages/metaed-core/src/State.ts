@@ -10,7 +10,7 @@ import { InputDirectory } from './file/InputDirectory';
 import { FileSet } from './file/MetaEdFile';
 import { FileIndex } from './file/FileIndex';
 import { PipelineOptions } from './pipeline/PipelineOptions';
-import { MetaEdGrammar } from './grammar/gen/MetaEdGrammar';
+import MetaEdGrammar from './grammar/gen/MetaEdGrammar';
 import { MetaEdEnvironment } from './MetaEdEnvironment';
 import { PluginManifest } from './plugin/PluginManifest';
 

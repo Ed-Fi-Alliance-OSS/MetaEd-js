@@ -7,8 +7,7 @@ import { EntityTable } from '../../model/domainMetadata/EntityTable';
 const enhancerName = 'AssociationAggregateEnhancer';
 
 export function enhanceEntityTable(
-  // @ts-ignore - value never read
-  metaEd: MetaEdEnvironment,
+  _metaEd: MetaEdEnvironment,
   association: Association,
   table: Table,
   entityTable: EntityTable,

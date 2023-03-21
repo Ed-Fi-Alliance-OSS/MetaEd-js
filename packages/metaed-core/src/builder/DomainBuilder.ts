@@ -1,5 +1,18 @@
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
-import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
+import type {
+  DeprecatedContext,
+  DocumentationContext,
+  DomainContext,
+  DomainItemContext,
+  DomainNameContext,
+  FooterDocumentationContext,
+  MetaEdIdContext,
+  NamespaceNameContext,
+  ParentDomainNameContext,
+  SubdomainContext,
+  SubdomainNameContext,
+  SubdomainPositionContext,
+} from '../grammar/gen/MetaEdGrammar';
+import MetaEdGrammarListener from '../grammar/gen/MetaEdGrammarListener';
 
 import { Domain, DomainSourceMap } from '../model/Domain';
 import { Subdomain, SubdomainSourceMap } from '../model/Subdomain';
@@ -39,12 +52,12 @@ export class DomainBuilder extends MetaEdGrammarListener {
     this.validationFailures = validationFailures;
   }
 
-  enterNamespaceName(context: MetaEdGrammar.NamespaceNameContext) {
+  enterNamespaceName = (context: NamespaceNameContext) => {
     const namespace: Namespace | undefined = this.metaEd.namespace.get(namespaceNameFrom(context));
     this.currentNamespace = namespace == null ? NoNamespace : namespace;
-  }
+  };
 
-  enterDeprecated(context: MetaEdGrammar.DeprecatedContext) {
+  enterDeprecated = (context: DeprecatedContext) => {
     if (this.currentDomain === NoDomain) return;
 
     if (!context.exception) {
@@ -53,23 +66,17 @@ export class DomainBuilder extends MetaEdGrammarListener {
       this.currentDomain.sourceMap.isDeprecated = sourceMapFrom(context);
       this.currentDomain.sourceMap.deprecationReason = sourceMapFrom(context);
     }
-  }
+  };
 
-  enterDocumentation(context: MetaEdGrammar.DocumentationContext) {
+  enterDocumentation = (context: DocumentationContext) => {
     if (this.currentDomain === NoDomain) return;
     this.currentDomain.documentation = extractDocumentation(context);
     this.currentDomain.sourceMap.documentation = sourceMapFrom(context);
-  }
+  };
 
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
+  enterMetaEdId = (context: MetaEdIdContext) => {
     if (this.currentDomain === NoDomain) return;
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception != null ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
+    if (context.exception || context.METAED_ID() == null || isErrorText(context.METAED_ID().getText())) return;
 
     if (this.currentDomainItem !== NoDomainItem) {
       this.currentDomainItem.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
@@ -78,17 +85,17 @@ export class DomainBuilder extends MetaEdGrammarListener {
       this.currentDomain.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
       this.currentDomain.sourceMap.metaEdId = sourceMapFrom(context);
     }
-  }
+  };
 
-  enterDomain(context: MetaEdGrammar.DomainContext) {
+  enterDomain = (context: DomainContext) => {
     this.currentDomain = { ...newDomain(), namespace: this.currentNamespace };
     this.currentDomain.sourceMap.type = sourceMapFrom(context);
-  }
+  };
 
-  enterSubdomain(context: MetaEdGrammar.SubdomainContext) {
+  enterSubdomain = (context: SubdomainContext) => {
     this.currentDomain = { ...newSubdomain(), namespace: this.currentNamespace };
     this.currentDomain.sourceMap.type = sourceMapFrom(context);
-  }
+  };
 
   exitingEntity() {
     if (this.currentDomain === NoDomain) return;
@@ -119,52 +126,44 @@ export class DomainBuilder extends MetaEdGrammarListener {
     this.currentDomain = NoDomain;
   }
 
-  // @ts-ignore
-  exitDomain(context: MetaEdGrammar.DomainContext) {
+  exitDomain = (_context: DomainContext) => {
     this.exitingEntity();
-  }
+  };
 
-  // @ts-ignore
-  exitSubdomain(context: MetaEdGrammar.DomainContext) {
+  exitSubdomain = (_context: SubdomainContext) => {
     this.exitingEntity();
-  }
+  };
 
-  enterDomainName(context: MetaEdGrammar.DomainNameContext) {
+  enterDomainName = (context: DomainNameContext) => {
     if (this.currentDomain === NoDomain) return;
-    if (context.exception || context.ID() == null || context.ID().exception || isErrorText(context.ID().getText())) return;
+    if (context.exception || context.ID() == null || isErrorText(context.ID().getText())) return;
     this.currentDomain.metaEdName = context.ID().getText();
     this.currentDomain.sourceMap.metaEdName = sourceMapFrom(context);
-  }
+  };
 
-  enterSubdomainName(context: MetaEdGrammar.SubdomainNameContext) {
+  enterSubdomainName = (context: SubdomainNameContext) => {
     if (this.currentDomain === NoDomain) return;
-    if (context.exception || context.ID() == null || context.ID().exception || isErrorText(context.ID().getText())) return;
+    if (context.exception || context.ID() == null || isErrorText(context.ID().getText())) return;
     this.currentDomain.metaEdName = context.ID().getText();
     this.currentDomain.sourceMap.metaEdName = sourceMapFrom(context);
-  }
+  };
 
-  enterParentDomainName(context: MetaEdGrammar.ParentDomainNameContext) {
+  enterParentDomainName = (context: ParentDomainNameContext) => {
     if (this.currentDomain === NoDomain) return;
-    if (context.exception || context.ID() == null || context.ID().exception || isErrorText(context.ID().getText())) return;
+    if (context.exception || context.ID() == null || isErrorText(context.ID().getText())) return;
     (this.currentDomain as Subdomain).parentMetaEdName = context.ID().getText();
     (this.currentDomain.sourceMap as SubdomainSourceMap).parent = sourceMapFrom(context);
     (this.currentDomain.sourceMap as SubdomainSourceMap).parentMetaEdName = sourceMapFrom(context);
-  }
+  };
 
-  enterSubdomainPosition(context: MetaEdGrammar.SubdomainPositionContext) {
+  enterSubdomainPosition = (context: SubdomainPositionContext) => {
     if (this.currentDomain === NoDomain) return;
-    if (
-      context.exception ||
-      context.UNSIGNED_INT() == null ||
-      context.UNSIGNED_INT().exception ||
-      isErrorText(context.UNSIGNED_INT().getText())
-    )
-      return;
+    if (context.exception || context.UNSIGNED_INT() == null || isErrorText(context.UNSIGNED_INT().getText())) return;
     (this.currentDomain as Subdomain).position = Number(context.UNSIGNED_INT().getText());
     (this.currentDomain.sourceMap as SubdomainSourceMap).position = sourceMapFrom(context);
-  }
+  };
 
-  enterDomainItem(context: MetaEdGrammar.DomainItemContext) {
+  enterDomainItem = (context: DomainItemContext) => {
     if (this.currentDomain === NoDomain) return;
 
     if (context.exception || context.localDomainItemName() == null) return;
@@ -172,7 +171,6 @@ export class DomainBuilder extends MetaEdGrammarListener {
     if (
       localDomainItemNameContext.exception ||
       localDomainItemNameContext.ID() == null ||
-      localDomainItemNameContext.ID().exception ||
       isErrorText(localDomainItemNameContext.ID().getText())
     )
       return;
@@ -201,7 +199,6 @@ export class DomainBuilder extends MetaEdGrammarListener {
       baseNamespaceContext == null ||
       baseNamespaceContext.exception ||
       baseNamespaceContext.ID() == null ||
-      baseNamespaceContext.ID().exception ||
       isErrorText(baseNamespaceContext.ID().getText())
     ) {
       this.currentDomainItem.referencedNamespaceName = this.currentNamespace.namespaceName;
@@ -210,18 +207,18 @@ export class DomainBuilder extends MetaEdGrammarListener {
       this.currentDomainItem.referencedNamespaceName = baseNamespaceContext.ID().getText();
       this.currentDomainItem.sourceMap.referencedNamespaceName = sourceMapFrom(baseNamespaceContext);
     }
-  }
+  };
 
-  exitDomainItem(context: MetaEdGrammar.DomainItemContext) {
+  exitDomainItem = (context: DomainItemContext) => {
     if (this.currentDomain === NoDomain || this.currentDomainItem === NoDomainItem) return;
     (this.currentDomain.sourceMap as DomainSourceMap).domainItems.push(sourceMapFrom(context));
     this.currentDomain.domainItems.push(this.currentDomainItem);
     this.currentDomainItem = NoDomainItem;
-  }
+  };
 
-  enterFooterDocumentation(context: MetaEdGrammar.FooterDocumentationContext) {
+  enterFooterDocumentation = (context: FooterDocumentationContext) => {
     if (this.currentDomain === NoDomain) return;
     (this.currentDomain as Domain).footerDocumentation = extractDocumentation(context);
     (this.currentDomain.sourceMap as DomainSourceMap).footerDocumentation = sourceMapFrom(context);
-  }
+  };
 }

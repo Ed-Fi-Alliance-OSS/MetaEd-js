@@ -1,4 +1,4 @@
-import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
+import type { ChoiceContext, ChoiceNameContext } from '../grammar/gen/MetaEdGrammar';
 import { TopLevelEntityBuilder } from './TopLevelEntityBuilder';
 import { newChoice } from '../model/Choice';
 import { isErrorText } from './BuilderUtility';
@@ -9,22 +9,21 @@ import { sourceMapFrom } from '../model/SourceMap';
  * An ANTLR4 listener that creates Choice entities.
  */
 export class ChoiceBuilder extends TopLevelEntityBuilder {
-  enterChoice(context: MetaEdGrammar.ChoiceContext) {
+  enterChoice = (context: ChoiceContext) => {
     this.enteringEntity(newChoice);
     if (this.currentTopLevelEntity !== NoTopLevelEntity) {
       this.currentTopLevelEntity.sourceMap.type = sourceMapFrom(context);
     }
-  }
+  };
 
-  // @ts-ignore
-  exitChoice(context: MetaEdGrammar.ChoiceContext) {
+  exitChoice = (_context: ChoiceContext) => {
     this.exitingEntity();
-  }
+  };
 
-  enterChoiceName(context: MetaEdGrammar.ChoiceNameContext) {
+  enterChoiceName = (context: ChoiceNameContext) => {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
-    if (context.exception || context.ID() == null || context.ID().exception || isErrorText(context.ID().getText())) return;
+    if (context.exception || context.ID() == null || isErrorText(context.ID().getText())) return;
     this.enteringName(context.ID().getText());
     this.currentTopLevelEntity.sourceMap.metaEdName = sourceMapFrom(context);
-  }
+  };
 }
