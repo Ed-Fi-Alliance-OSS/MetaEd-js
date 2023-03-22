@@ -1,5 +1,6 @@
 import * as R from 'ramda';
 import winston from 'winston';
+import type MetaEdGrammar from './gen/MetaEdGrammar';
 import { ValidationFailure } from '../validator/ValidationFailure';
 import { MetaEdErrorListener } from './MetaEdErrorListener';
 import { State } from '../State';
@@ -10,7 +11,7 @@ export const buildParseTree = R.curry((parseTreeBuilder: ParseTreeBuilder, state
   const validationFailures: ValidationFailure[] = [];
 
   const errorListener = new MetaEdErrorListener(validationFailures, 'BuildParseTree - MetaEdErrorListener');
-  const parseTree = parseTreeBuilder(errorListener, getAllContents(state.fileIndex));
+  const parseTree: MetaEdGrammar = parseTreeBuilder(errorListener, getAllContents(state.fileIndex));
 
   if (parseTree == null) {
     winston.error('BuildParseTree: parse tree builder returned null for state metaEdFileIndex contents');
@@ -22,8 +23,5 @@ export const buildParseTree = R.curry((parseTreeBuilder: ParseTreeBuilder, state
     }
   });
 
-  //    state.validationFailure.push(...validationFailures);
-
-  // eslint-disable-next-line no-param-reassign
-  state.parseTree = parseTree;
+  state.parseTree = parseTree.metaEd();
 });

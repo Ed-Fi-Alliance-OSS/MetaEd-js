@@ -195,15 +195,23 @@ export class InterchangeBuilder extends MetaEdGrammarListener {
     }
   };
 
+  #setReferencedNamespace(context: InterchangeElementContext | InterchangeIdentityContext) {
+    const baseNamespaceContext = context.baseNamespace();
+    if (
+      baseNamespaceContext == null ||
+      baseNamespaceContext.exception ||
+      baseNamespaceContext.ID() == null ||
+      isErrorText(baseNamespaceContext.ID().getText())
+    ) {
+      this.currentInterchangeItem.referencedNamespaceName = this.currentNamespace.namespaceName;
+      this.currentInterchangeItem.sourceMap.referencedNamespaceName = this.currentInterchangeItem.sourceMap.metaEdName;
+    } else {
+      this.currentInterchangeItem.referencedNamespaceName = baseNamespaceContext.ID().getText();
+      this.currentInterchangeItem.sourceMap.referencedNamespaceName = sourceMapFrom(baseNamespaceContext);
+    }
+  }
+
   enterInterchangeElement = (context: InterchangeElementContext) => {
-    this.enteringInterchangeItem(context);
-  };
-
-  enterInterchangeIdentity = (context: InterchangeIdentityContext) => {
-    this.enteringInterchangeItem(context);
-  };
-
-  enteringInterchangeItem = (context: InterchangeElementContext | InterchangeIdentityContext) => {
     if (this.currentInterchange === NoInterchange) return;
 
     if (context.exception || context.localInterchangeItemName() == null) return;
@@ -223,14 +231,9 @@ export class InterchangeBuilder extends MetaEdGrammarListener {
       referencedType: sourceMapFrom(localInterchangeItemNameContext),
     });
 
-    // mutually exclusive in language - spread between interchangeElement and interchangeIdentity
     if (context.ASSOCIATION_KEYWORD && context.ASSOCIATION_KEYWORD()) {
       this.currentInterchangeItem.referencedType = ['association', 'associationSubclass'];
-    } else if (context.ASSOCIATION_IDENTITY && context.ASSOCIATION_IDENTITY()) {
-      this.currentInterchangeItem.referencedType = ['association', 'associationSubclass'];
     } else if (context.DOMAIN_ENTITY_KEYWORD && context.DOMAIN_ENTITY_KEYWORD()) {
-      this.currentInterchangeItem.referencedType = ['domainEntity', 'domainEntitySubclass'];
-    } else if (context.DOMAIN_ENTITY_IDENTITY && context.DOMAIN_ENTITY_IDENTITY()) {
       this.currentInterchangeItem.referencedType = ['domainEntity', 'domainEntitySubclass'];
     } else if (context.DESCRIPTOR_KEYWORD && context.DESCRIPTOR_KEYWORD()) {
       this.currentInterchangeItem.referencedType = ['descriptor'];
@@ -238,19 +241,38 @@ export class InterchangeBuilder extends MetaEdGrammarListener {
       this.currentInterchangeItem.referencedType = ['unknown'];
     }
 
-    const baseNamespaceContext = context.baseNamespace();
+    this.#setReferencedNamespace(context);
+  };
+
+  enterInterchangeIdentity = (context: InterchangeIdentityContext) => {
+    if (this.currentInterchange === NoInterchange) return;
+
+    if (context.exception || context.localInterchangeItemName() == null) return;
+    const localInterchangeItemNameContext = context.localInterchangeItemName();
     if (
-      baseNamespaceContext == null ||
-      baseNamespaceContext.exception ||
-      baseNamespaceContext.ID() == null ||
-      isErrorText(baseNamespaceContext.ID().getText())
-    ) {
-      this.currentInterchangeItem.referencedNamespaceName = this.currentNamespace.namespaceName;
-      this.currentInterchangeItem.sourceMap.referencedNamespaceName = this.currentInterchangeItem.sourceMap.metaEdName;
+      localInterchangeItemNameContext.exception ||
+      localInterchangeItemNameContext.ID() == null ||
+      isErrorText(localInterchangeItemNameContext.ID().getText())
+    )
+      return;
+
+    this.currentInterchangeItem = { ...newInterchangeItem(), metaEdName: localInterchangeItemNameContext.ID().getText() };
+
+    Object.assign(this.currentInterchangeItem.sourceMap, {
+      type: sourceMapFrom(localInterchangeItemNameContext),
+      metaEdName: sourceMapFrom(localInterchangeItemNameContext),
+      referencedType: sourceMapFrom(localInterchangeItemNameContext),
+    });
+
+    if (context.ASSOCIATION_IDENTITY && context.ASSOCIATION_IDENTITY()) {
+      this.currentInterchangeItem.referencedType = ['association', 'associationSubclass'];
+    } else if (context.DOMAIN_ENTITY_IDENTITY && context.DOMAIN_ENTITY_IDENTITY()) {
+      this.currentInterchangeItem.referencedType = ['domainEntity', 'domainEntitySubclass'];
     } else {
-      this.currentInterchangeItem.referencedNamespaceName = baseNamespaceContext.ID().getText();
-      this.currentInterchangeItem.sourceMap.referencedNamespaceName = sourceMapFrom(baseNamespaceContext);
+      this.currentInterchangeItem.referencedType = ['unknown'];
     }
+
+    this.#setReferencedNamespace(context);
   };
 
   exitInterchangeElement = (context: InterchangeElementContext) => {

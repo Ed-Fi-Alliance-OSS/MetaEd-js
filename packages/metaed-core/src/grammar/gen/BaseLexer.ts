@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Generated from ./packages/metaed-core/src/grammar/language/BaseLexer.g4 by ANTLR 4.12.0
 // noinspection ES6UnusedImports,JSUnusedGlobalSymbols,JSUnusedLocalSymbols
 import {

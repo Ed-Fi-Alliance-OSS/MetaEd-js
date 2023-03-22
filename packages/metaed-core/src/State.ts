@@ -1,3 +1,4 @@
+import type { ParseTree } from 'antlr4';
 import { newMetaEdConfiguration } from './MetaEdConfiguration';
 import { newMetaEdEnvironment } from './MetaEdEnvironment';
 import { newPipelineOptions } from './pipeline/PipelineOptions';
@@ -10,7 +11,6 @@ import { InputDirectory } from './file/InputDirectory';
 import { FileSet } from './file/MetaEdFile';
 import { FileIndex } from './file/FileIndex';
 import { PipelineOptions } from './pipeline/PipelineOptions';
-import MetaEdGrammar from './grammar/gen/MetaEdGrammar';
 import { MetaEdEnvironment } from './MetaEdEnvironment';
 import { PluginManifest } from './plugin/PluginManifest';
 
@@ -47,7 +47,7 @@ export interface State {
   fileIndex: FileIndex | null;
 
   // the ANTLR parse tree of the concatenated .metaed files
-  parseTree: MetaEdGrammar | null;
+  parseTree: ParseTree | null;
 
   // the MetaEd environment
   metaEd: MetaEdEnvironment;

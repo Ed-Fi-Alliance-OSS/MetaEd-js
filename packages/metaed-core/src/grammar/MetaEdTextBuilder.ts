@@ -1,28 +1,28 @@
 /* eslint-disable max-classes-per-file */
-import { CharStream, CommonTokenStream, ParseTreeWalker } from 'antlr4';
+import { CharStream, CommonTokenStream, ParseTreeWalker, ErrorListener } from 'antlr4';
 import MetaEdGrammar from './gen/MetaEdGrammar';
 import MetaEdGrammarListener from './gen/MetaEdGrammarListener';
 import BaseLexer from './gen/BaseLexer';
 
 /**
- * ErrorListener is an ANTLR4 ErrorListener used in unit testing to collect syntax errors from the ANTLR parser.
+ * TestingErrorListener is an ANTLR4 ErrorListener used in unit testing to collect syntax errors from the ANTLR parser.
  */
-class ErrorListener {
+class TestingErrorListener extends ErrorListener<any> {
   errorMessages: string[];
 
   constructor() {
-    antlr4.error.ErrorListener.call(this);
+    super();
     this.errorMessages = [];
   }
 
-  syntaxError(_1: any, offendingSymbol: any, line: number, column: number, message: string) {
+  syntaxError(_recognizer: any, offendingSymbol: any, line: number, column: number, message: string) {
     const tokenText = offendingSymbol && offendingSymbol.text ? offendingSymbol.text : '';
     this.errorMessages.push(`${message}, column: ${column}, line: ${line}, token: ${tokenText}`);
   }
 }
 
 function listen(metaEdText: string, listener: MetaEdGrammarListener): string[] {
-  const errorListener = new ErrorListener();
+  const errorListener = new TestingErrorListener();
   const lexer = new BaseLexer(new CharStream(metaEdText));
   const parser = new MetaEdGrammar(new CommonTokenStream(lexer));
   lexer.removeErrorListeners();
@@ -90,11 +90,6 @@ export class MetaEdTextBuilder {
 
   toString(): string {
     return this.textLines.join('\r\n');
-  }
-
-  toConsole(): void {
-    // eslint-disable-next-line no-console
-    console.log([this.toString(), this.errorMessages.join('\r\n')].join('\r\n'));
   }
 
   getIndentation(): string {

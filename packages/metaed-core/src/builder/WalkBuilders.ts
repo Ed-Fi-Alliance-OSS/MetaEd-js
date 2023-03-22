@@ -1,4 +1,4 @@
-import { ParseTreeWalker } from 'antlr4';
+import { ParseTree, ParseTreeWalker } from 'antlr4';
 import MetaEdGrammarListener from '../grammar/gen/MetaEdGrammarListener';
 import { State } from '../State';
 import { nextMacroTask } from '../Utility';
@@ -27,6 +27,9 @@ import { StringTypeBuilder } from './StringTypeBuilder';
 import { SyntaxValidatingBuilder } from './SyntaxValidatingBuilder';
 
 export async function execute(state: State): Promise<void> {
+  const { parseTree }: { parseTree: ParseTree | null } = state;
+  if (parseTree == null) return;
+
   const builders: MetaEdGrammarListener[] = [
     // NamespaceBuilder goes first, all others have a dependency on it
     new NamespaceBuilder(state.metaEd, state.validationFailure),
@@ -58,7 +61,7 @@ export async function execute(state: State): Promise<void> {
 
   // eslint-disable-next-line no-restricted-syntax
   for (const builder of builders) {
-    parseTreeWalker.walk(builder, state.parseTree);
+    parseTreeWalker.walk(builder, parseTree);
     await nextMacroTask();
   }
 }

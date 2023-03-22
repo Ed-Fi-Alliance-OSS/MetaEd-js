@@ -116,8 +116,8 @@ import { ValidationFailure } from '../validator/ValidationFailure';
 import { PropertyIndex } from '../model/property/PropertyRepository';
 
 function propertyPathFrom(context: PropertyPathContext): string[] {
-  if (R.any((token) => token.exception)(context.ID())) return [];
-  return R.map((token) => token.getText())(context.ID());
+  if (R.any((token) => token.exception)(context.ID_list())) return [];
+  return R.map((token) => token.getText())(context.ID_list());
 }
 
 /**

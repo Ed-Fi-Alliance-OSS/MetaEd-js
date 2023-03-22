@@ -9,7 +9,6 @@ import { execute as walkBuilders } from '../builder/WalkBuilders';
 import { loadPluginConfiguration } from '../plugin/LoadPluginConfiguration';
 import { fileMapForValidationFailure } from './FileMapForValidationFailure';
 import { nextMacroTask, versionSatisfies } from '../Utility';
-// import { validateConfiguration } from './ValidateConfiguration';
 import { execute as runValidators } from '../validator/RunValidators';
 import { execute as runEnhancers } from '../enhancer/RunEnhancers';
 import { execute as runGenerators } from '../generator/RunGenerators';
@@ -20,10 +19,6 @@ import { State } from '../State';
 import { PluginEnvironment } from '../plugin/PluginEnvironment';
 
 export async function executePipeline(state: State): Promise<{ state: State; failure: boolean }> {
-  // winston.info('Validating configuration...');
-  // validateConfiguration(state);
-  // await nextMacroTask();
-
   let failure = false;
 
   winston.debug('Initialize MetaEdEnvironment');
