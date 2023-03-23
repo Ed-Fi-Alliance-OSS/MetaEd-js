@@ -1,7 +1,11 @@
 module.exports = {
   preset: 'ts-jest',
+  transform: {
+    '^.+\\.m?tsx?$': 'ts-jest',
+    '^.+\\.m?jsx?$': 'babel-jest',
+  },
   testEnvironment: 'node',
-  transformIgnorePatterns: ['<rootDir>.*(node_modules)(?!.*metaed-.*).*$'],
+  transformIgnorePatterns: ['<rootDir>.*(node_modules)(?!.*(metaed-|antlr4).*).*$'],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
   collectCoverageFrom: ['packages/**/src/**/*.ts'],
   coverageThreshold: {
