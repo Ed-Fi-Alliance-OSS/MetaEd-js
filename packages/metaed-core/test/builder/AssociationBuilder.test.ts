@@ -656,17 +656,18 @@ describe('when building association with no domain entity property', (): void =>
     expect(getAssociation(namespace.entity, entityName).documentation).toBe(documentation1);
   });
 
-  it('should have no property', (): void => {
-    expect(getAssociation(namespace.entity, entityName).properties).toHaveLength(0);
+  it('should have a single property', (): void => {
+    expect(getAssociation(namespace.entity, entityName).properties).toHaveLength(1);
+    expect(getAssociation(namespace.entity, entityName).properties[0].metaEdName).toBe(firstDomainEntityName);
   });
 
   it('should have mismatched input error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "mismatched input 'End Namespace' expecting {'domain entity', 'merge', 'role name'}, column: 0, line: 8, token: End Namespace",
-              "mismatched input 'End Namespace' expecting {'domain entity', 'merge', 'role name'}, column: 0, line: 8, token: End Namespace",
-            ]
-        `);
+      Array [
+        "mismatched input 'End Namespace' expecting 'domain entity', column: 0, line: 8, token: End Namespace",
+        "mismatched input 'End Namespace' expecting 'domain entity', column: 0, line: 8, token: End Namespace",
+      ]
+    `);
   });
 });
 
@@ -969,11 +970,11 @@ describe('when building association with invalid trailing text', (): void => {
 
   it('should have extraneous input error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'datetime', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'merge', 'role name'}, column: 0, line: 11, token: TrailingText",
-              "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain', 'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'datetime', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'merge', 'role name'}, column: 0, line: 11, token: TrailingText",
-            ]
-        `);
+      Array [
+        "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 0, line: 11, token: TrailingText",
+        "extraneous input 'TrailingText' expecting {'Abstract Entity', 'Association', 'End Namespace', 'Choice', 'Common', 'Descriptor', 'Domain', 'Domain Entity', 'Enumeration', 'Interchange', 'Inline Common', 'Shared Decimal', 'Shared Integer', 'Shared Short', 'Shared String', 'Subdomain'}, column: 0, line: 11, token: TrailingText",
+      ]
+    `);
   });
 });
 
