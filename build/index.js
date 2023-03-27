@@ -1,3 +1,13 @@
+import { execSync } from 'child_process';
+
+try {
+  execSync('npm install');
+} catch (err) {
+  console.error('Exception occurred during npm install atom-metaed:');
+  console.error('--> stdout', err);
+  console.error('--> sdterr', err.stderr.toString());
+}
+
 /* eslint-disable no-console */
 console.info('Command arguments: ', process.argv);
 
