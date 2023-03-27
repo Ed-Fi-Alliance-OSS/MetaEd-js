@@ -1,4 +1,4 @@
-import type { ParseTree } from 'antlr4';
+import { ParserRuleContext } from 'antlr4';
 import { newMetaEdConfiguration } from './MetaEdConfiguration';
 import { newMetaEdEnvironment } from './MetaEdEnvironment';
 import { newPipelineOptions } from './pipeline/PipelineOptions';
@@ -47,7 +47,7 @@ export interface State {
   fileIndex: FileIndex | null;
 
   // the ANTLR parse tree of the concatenated .metaed files
-  parseTree: ParseTree | null;
+  parseTree: ParserRuleContext | null;
 
   // the MetaEd environment
   metaEd: MetaEdEnvironment;

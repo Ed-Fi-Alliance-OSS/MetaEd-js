@@ -165,7 +165,7 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
     this.currentTopLevelEntityPropertyLookup.clear();
   };
 
-  exitingEntity() {
+  exitingEntity = () => {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
     if (this.currentTopLevelEntity.metaEdName) {
       const currentTopLevelEntityRepository: Map<string, TopLevelEntity> =
@@ -195,7 +195,7 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
       }
     }
     this.currentTopLevelEntity = NoTopLevelEntity;
-  }
+  };
 
   enteringExtendeeName = (context: ExtendeeNameContext) => {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;

@@ -17,6 +17,7 @@ import { NoTopLevelEntity } from '../model/TopLevelEntity';
 import { MetaEdEnvironment } from '../MetaEdEnvironment';
 import { ValidationFailure } from '../validator/ValidationFailure';
 import { sourceMapFrom } from '../model/SourceMap';
+import { NoEntityProperty } from '../model/property/EntityProperty';
 
 /**
  * An ANTLR4 listener that creates Enumeration entities.
@@ -85,8 +86,12 @@ export class EnumerationBuilder extends TopLevelEntityBuilder {
     if (this.currentEnumerationItem !== NoEnumerationItem) {
       this.currentEnumerationItem.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
       this.currentEnumerationItem.sourceMap.metaEdId = sourceMapFrom(context);
-    } else {
-      super.enterMetaEdId(context);
+    } else if (this.currentProperty !== NoEntityProperty) {
+      this.currentProperty.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
+      this.currentProperty.sourceMap.metaEdId = sourceMapFrom(context);
+    } else if (this.currentTopLevelEntity !== NoTopLevelEntity) {
+      this.currentTopLevelEntity.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
+      this.currentTopLevelEntity.sourceMap.metaEdId = sourceMapFrom(context);
     }
   };
 

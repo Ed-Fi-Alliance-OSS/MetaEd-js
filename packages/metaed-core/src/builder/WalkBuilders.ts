@@ -1,4 +1,4 @@
-import { ParseTree, ParseTreeWalker } from 'antlr4';
+import { ParserRuleContext, ParseTreeWalker } from 'antlr4';
 import MetaEdGrammarListener from '../grammar/gen/MetaEdGrammarListener';
 import { State } from '../State';
 import { nextMacroTask } from '../Utility';
@@ -27,7 +27,7 @@ import { StringTypeBuilder } from './StringTypeBuilder';
 import { SyntaxValidatingBuilder } from './SyntaxValidatingBuilder';
 
 export async function execute(state: State): Promise<void> {
-  const { parseTree }: { parseTree: ParseTree | null } = state;
+  const { parseTree }: { parseTree: ParserRuleContext | null } = state;
   if (parseTree == null) return;
 
   const builders: MetaEdGrammarListener[] = [
