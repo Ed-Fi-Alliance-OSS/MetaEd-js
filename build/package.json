@@ -4,6 +4,24 @@
   "description": "Build script for the Ed-Fi Model and extensions",
   "type": "module",
   "dependencies": {
-    "@edfi/metaed-console": "dev"
+    "@edfi/metaed-console": "dev",
+    "@edfi/metaed-odsapi-deploy": "dev",
+    "@edfi/metaed-plugin-edfi-handbook": "dev",
+    "@edfi/metaed-plugin-edfi-interchange-brief": "dev",
+    "@edfi/metaed-plugin-edfi-ods-changequery": "dev",
+    "@edfi/metaed-plugin-edfi-ods-changequery-postgresql": "dev",
+    "@edfi/metaed-plugin-edfi-ods-changequery-sqlserver": "dev",
+    "@edfi/metaed-plugin-edfi-ods-postgresql": "dev",
+    "@edfi/metaed-plugin-edfi-ods-recordownership": "dev",
+    "@edfi/metaed-plugin-edfi-ods-recordownership-postgresql": "dev",
+    "@edfi/metaed-plugin-edfi-ods-recordownership-sqlserver": "dev",
+    "@edfi/metaed-plugin-edfi-ods-relational": "dev",
+    "@edfi/metaed-plugin-edfi-ods-sqlserver": "dev",
+    "@edfi/metaed-plugin-edfi-odsapi": "dev",
+    "@edfi/metaed-plugin-edfi-sql-dictionary": "dev",
+    "@edfi/metaed-plugin-edfi-unified": "dev",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "dev",
+    "@edfi/metaed-plugin-edfi-xml-dictionary": "dev",
+    "@edfi/metaed-plugin-edfi-xsd": "dev"
   }
 }
