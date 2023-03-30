@@ -1,6 +1,6 @@
 // Generated from ./packages/metaed-core/src/grammar/language/MetaEdGrammar.g4 by ANTLR 4.6
 // jshint ignore: start
-var antlr4 = require('antlr4/index');
+var antlr4 = require('@edfi/antlr4/index');
 var MetaEdGrammarListener = require('./MetaEdGrammarListener').MetaEdGrammarListener;
 var grammarFileName = "MetaEdGrammar.g4";
 

@@ -1,4 +1,4 @@
-import { ParserRuleContext } from 'antlr4/ParserRuleContext';
+import type { ParserRuleContext } from '@edfi/antlr4/ParserRuleContext';
 import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
 import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
 

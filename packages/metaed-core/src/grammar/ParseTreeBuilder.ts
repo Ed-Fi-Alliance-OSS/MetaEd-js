@@ -1,4 +1,4 @@
-import antlr4 from 'antlr4/index';
+import antlr4 from '@edfi/antlr4/index';
 import { BaseLexer } from './gen/BaseLexer';
 import { MetaEdGrammar } from './gen/MetaEdGrammar';
 import { MetaEdErrorListener } from './MetaEdErrorListener';

@@ -1,4 +1,4 @@
-import antlr4 from 'antlr4';
+import antlr4 from '@edfi/antlr4';
 import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
 import { State } from '../State';
 import { nextMacroTask } from '../Utility';

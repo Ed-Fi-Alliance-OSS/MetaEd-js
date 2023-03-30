@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import { ParserRuleContext } from 'antlr4/ParserRuleContext';
+import { ParserRuleContext } from '@edfi/antlr4/ParserRuleContext';
 
 /**
  *

@@ -1,4 +1,4 @@
-import antlr4 from 'antlr4';
+import antlr4 from '@edfi/antlr4';
 import { ValidationFailure } from '../validator/ValidationFailure';
 
 export class MetaEdErrorListener {
