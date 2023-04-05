@@ -10,15 +10,15 @@ import {
   fileMapForValidationFailure,
   loadFileIndex,
   loadFiles,
-  loadPlugins,
+  setupPlugins,
   initializeNamespaces,
   newMetaEdConfiguration,
   newState,
   runEnhancers,
   runGenerators,
-  validateConfiguration,
   walkBuilders,
 } from '@edfi/metaed-core';
+import { metaEdPlugins } from '../PluginHelper';
 
 jest.setTimeout(40000);
 
@@ -56,22 +56,20 @@ describe('when generating xsd and comparing it to data standard 2.0 authoritativ
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.dataStandardVersion = '2.0.0';
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiXsd',
-    );
+
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     fileMapForValidationFailure(state);
@@ -185,22 +183,20 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.dataStandardVersion = '3.1.0';
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiXsd',
-    );
+
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     fileMapForValidationFailure(state);
@@ -321,22 +317,20 @@ describe('when generating xsd with extension and comparing it to data standard 3
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.dataStandardVersion = '3.1.0';
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiXsd',
-    );
+
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     fileMapForValidationFailure(state);

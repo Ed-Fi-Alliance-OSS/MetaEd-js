@@ -1,23 +1,23 @@
 import { newMetaEdConfiguration } from './MetaEdConfiguration';
 import { newMetaEdEnvironment } from './MetaEdEnvironment';
 import { newPipelineOptions } from './pipeline/PipelineOptions';
-import { MetaEdConfiguration } from './MetaEdConfiguration';
-import { ValidationFailure } from './validator/ValidationFailure';
-import { PipelineFailure } from './pipeline/PipelineFailure';
-import { EnhancerResult } from './enhancer/EnhancerResult';
-import { GeneratorResult } from './generator/GeneratorResult';
-import { InputDirectory } from './file/InputDirectory';
-import { FileSet } from './file/MetaEdFile';
-import { FileIndex } from './file/FileIndex';
-import { PipelineOptions } from './pipeline/PipelineOptions';
-import { MetaEdGrammar } from './grammar/gen/MetaEdGrammar';
-import { MetaEdEnvironment } from './MetaEdEnvironment';
-import { PluginManifest } from './plugin/PluginManifest';
+import type { MetaEdConfiguration } from './MetaEdConfiguration';
+import type { ValidationFailure } from './validator/ValidationFailure';
+import type { PipelineFailure } from './pipeline/PipelineFailure';
+import type { EnhancerResult } from './enhancer/EnhancerResult';
+import type { GeneratorResult } from './generator/GeneratorResult';
+import type { InputDirectory } from './file/InputDirectory';
+import type { FileSet } from './file/MetaEdFile';
+import type { FileIndex } from './file/FileIndex';
+import type { PipelineOptions } from './pipeline/PipelineOptions';
+import type { MetaEdGrammar } from './grammar/gen/MetaEdGrammar';
+import type { MetaEdEnvironment } from './MetaEdEnvironment';
+import type { MetaEdPlugin } from './plugin/MetaEdPlugin';
 
 /**
- *
+ * The state of MetaEd. Includes the initial configuration, the runtime MetaEd environment, and the results.
  */
-export interface State {
+export type State = {
   // the project level configuration loaded from the metaed.json file either located at the root level of a project
   // or referenced by the console's --config argument
   metaEdConfiguration: MetaEdConfiguration;
@@ -55,18 +55,15 @@ export interface State {
   // the directory where metaed outputs artifacts
   outputDirectory: string | null;
 
-  // the directory to scan for plugins
-  pluginScanDirectory: string | null;
-
-  // the plugin manifest information loaded from each plugin's package.json
-  pluginManifest: PluginManifest[];
-
   // options for what pipeline steps should run
   pipelineOptions: PipelineOptions;
-}
+
+  // the MetaEd plugins to run, in dependency order
+  metaEdPlugins: MetaEdPlugin[];
+};
 
 /**
- *
+ * Creates a new, empty State object
  */
 export const newState: () => State = () => ({
   metaEdConfiguration: newMetaEdConfiguration(),
@@ -81,8 +78,6 @@ export const newState: () => State = () => ({
   parseTree: null,
   metaEd: newMetaEdEnvironment(),
   outputDirectory: null,
-  pluginScanDirectory: null,
-  pluginManifest: [],
-  pluginConfiguration: new Map(),
+  metaEdPlugins: [],
   pipelineOptions: newPipelineOptions(),
 });

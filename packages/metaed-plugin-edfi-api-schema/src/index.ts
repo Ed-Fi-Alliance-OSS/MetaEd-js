@@ -1,4 +1,4 @@
-import { MetaEdPlugin, newMetaEdPlugin } from '@edfi/metaed-core';
+import type { MetaEdPlugin } from '@edfi/metaed-core';
 import { enhancerList } from './enhancer/EnhancerList';
 
 export { enhance as entityPropertyApiSchemaDataSetupEnhancer } from './model/EntityPropertyApiSchemaData';
@@ -22,7 +22,9 @@ export type { ApiPropertyMapping } from './model/ApiPropertyMapping';
 
 export function initialize(): MetaEdPlugin {
   return {
-    ...newMetaEdPlugin(),
     enhancer: enhancerList(),
+    validator: [],
+    generator: [],
+    shortName: 'edfiApiSchema',
   };
 }

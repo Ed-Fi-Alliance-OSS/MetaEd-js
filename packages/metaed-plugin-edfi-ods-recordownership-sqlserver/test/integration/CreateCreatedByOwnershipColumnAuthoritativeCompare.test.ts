@@ -7,15 +7,15 @@ import {
   buildParseTree,
   loadFileIndex,
   loadFiles,
-  loadPlugins,
+  setupPlugins,
   initializeNamespaces,
   newMetaEdConfiguration,
   newState,
   runEnhancers,
   runGenerators,
-  validateConfiguration,
   walkBuilders,
 } from '@edfi/metaed-core';
+import { metaEdPlugins } from '../PluginHelper';
 
 jest.setTimeout(40000);
 
@@ -30,38 +30,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 3.
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      pluginTechVersion: {
-        edfiUnified: {
-          targetTechnologyVersion: '3.3.0',
-        },
-        edfiOdsRelational: {
-          targetTechnologyVersion: '3.3.0',
-        },
-        edfiOdsSqlServer: {
-          targetTechnologyVersion: '3.3.0',
-        },
-        edfiOdsApi: {
-          targetTechnologyVersion: '3.3.0',
-        },
-        edfiOdsRecordOwnership: {
-          targetTechnologyVersion: '3.3.0',
-        },
-        edfiOdsRecordOwnershipSqlServer: {
-          targetTechnologyVersion: '3.3.0',
-        },
-        edfiXsd: {
-          targetTechnologyVersion: '3.3.0',
-        },
-        edfiHandbook: {
-          targetTechnologyVersion: '3.3.0',
-        },
-        edfiInterchangeBrief: {
-          targetTechnologyVersion: '3.3.0',
-        },
-        edfiXmlDictionary: {
-          targetTechnologyVersion: '3.3.0',
-        },
-      },
+      defaultPluginTechVersion: '3.3.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
       projects: [
         {
@@ -77,28 +46,20 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 3.
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.dataStandardVersion = '3.2.0-a';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer' ||
-        manifest.shortName === 'edfiOdsRecordOwnershipSqlServer' ||
-        manifest.shortName === 'edfiOdsRecordOwnership',
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     [generatedOutput] = state.generatorResults.filter(
@@ -131,38 +92,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      pluginTechVersion: {
-        edfiUnified: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsRelational: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsSqlServer: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsApi: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsRecordOwnership: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsRecordOwnershipSqlServer: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXsd: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiHandbook: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiInterchangeBrief: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXmlDictionary: {
-          targetTechnologyVersion: '5.0.0',
-        },
-      },
+      defaultPluginTechVersion: '5.0.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
       projects: [
         {
@@ -178,28 +108,20 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.dataStandardVersion = '3.2.0-a';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer' ||
-        manifest.shortName === 'edfiOdsRecordOwnershipSqlServer' ||
-        manifest.shortName === 'edfiOdsRecordOwnership',
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     [generatedOutput] = state.generatorResults.filter(
@@ -232,38 +154,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      pluginTechVersion: {
-        edfiUnified: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsRelational: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsSqlServer: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsApi: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsRecordOwnership: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsRecordOwnershipSqlServer: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXsd: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiHandbook: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiInterchangeBrief: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXmlDictionary: {
-          targetTechnologyVersion: '5.0.0',
-        },
-      },
+      defaultPluginTechVersion: '5.0.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
       projects: [
         {
@@ -279,29 +170,21 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.allianceMode = true;
     state.metaEd.dataStandardVersion = '3.2.0-a';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer' ||
-        manifest.shortName === 'edfiOdsRecordOwnershipSqlServer' ||
-        manifest.shortName === 'edfiOdsRecordOwnership',
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     [generatedOutput] = state.generatorResults.filter(

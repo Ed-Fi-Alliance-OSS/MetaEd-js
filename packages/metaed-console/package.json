@@ -26,6 +26,7 @@
     "@edfi/ed-fi-model-4.0": "3.0.1",
     "@edfi/ed-fi-model-4.0a": "3.0.3",
     "@edfi/metaed-core": "4.0.1-dev.5",
+    "@edfi/metaed-default-plugins": "4.0.1-dev.5",
     "chalk": "^4.1.2",
     "semver": "^5.7.1",
     "winston": "3.8.2",

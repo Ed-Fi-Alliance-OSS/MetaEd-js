@@ -11,7 +11,8 @@ import {
   MetaEdConfiguration,
   findDataStandardVersions,
 } from '@edfi/metaed-core';
-import { State, SemVer } from '@edfi/metaed-core';
+import type { State, SemVer } from '@edfi/metaed-core';
+import { defaultPlugins } from '@edfi/metaed-default-plugins';
 
 winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 
@@ -50,6 +51,7 @@ export async function metaEdConsole() {
       runGenerators: true,
       stopOnValidationFailure: true,
     },
+    metaEdPlugins: defaultPlugins(),
   };
 
   if (argv['defaultPluginTechVersion'] != null)

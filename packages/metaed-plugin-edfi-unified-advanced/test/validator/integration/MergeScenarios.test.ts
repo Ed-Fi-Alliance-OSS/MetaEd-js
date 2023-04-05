@@ -2,8 +2,7 @@ import {
   newMetaEdConfiguration,
   newState,
   State,
-  validateConfiguration,
-  loadPlugins,
+  setupPlugins,
   loadFiles,
   loadFileIndex,
   buildParseTree,
@@ -13,6 +12,7 @@ import {
   runEnhancers,
   buildMetaEd,
 } from '@edfi/metaed-core';
+import { metaEdPlugins } from '../../PluginHelper';
 
 jest.setTimeout(100000);
 
@@ -36,23 +36,20 @@ describe('when generating api model and comparing it to data standard 3.1 author
   const state: State = {
     ...newState(),
     metaEdConfiguration,
+    metaEdPlugins: metaEdPlugins(),
   };
   state.metaEd.dataStandardVersion = '3.1.0';
   beforeAll(async () => {
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) => manifest.shortName === 'edfiUnified' || manifest.shortName === 'edfiUnifiedAdvanced',
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      runValidators(pluginManifest, state);
-      await runEnhancers(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      runValidators(metaEdPlugin, state);
+      await runEnhancers(metaEdPlugin, state);
     }
   });
 

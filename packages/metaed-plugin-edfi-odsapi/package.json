@@ -13,25 +13,12 @@
     "/LICENSE.md",
     "/package.json"
   ],
-  "metaed-plugin": {
-    "pluginType": "artifact-specific",
-    "shortName": "edfiOdsApi",
-    "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "3.x",
-    "technologyVersion": "*",
-    "dependencies": [
-      "@edfi/metaed-plugin-edfi-unified-advanced",
-      "@edfi/metaed-plugin-edfi-ods-relational",
-      "@edfi/metaed-plugin-edfi-ods-sqlserver",
-      "@edfi/metaed-plugin-edfi-ods-postgresql",
-      "@edfi/metaed-plugin-edfi-xsd"
-    ]
-  },
   "dependencies": {
     "@dagrejs/graphlib": "^2.1.4",
     "@edfi/metaed-core": "4.0.1-dev.5",
     "@edfi/metaed-plugin-edfi-ods-relational": "4.0.1-dev.5",
     "@edfi/metaed-plugin-edfi-ods-sqlserver": "4.0.1-dev.5",
+    "@edfi/metaed-plugin-edfi-ods-postgresql": "4.0.1-dev.5",
     "@edfi/metaed-plugin-edfi-unified": "4.0.1-dev.5",
     "@edfi/metaed-plugin-edfi-unified-advanced": "4.0.1-dev.5",
     "@edfi/metaed-plugin-edfi-xsd": "4.0.1-dev.5",

@@ -8,16 +8,16 @@ import {
   buildParseTree,
   loadFileIndex,
   loadFiles,
-  loadPlugins,
+  setupPlugins,
   initializeNamespaces,
   newMetaEdConfiguration,
   newState,
   runEnhancers,
   runGenerators,
-  validateConfiguration,
   walkBuilders,
 } from '@edfi/metaed-core';
 import { PLUGIN_NAME } from '../../src/PluginHelper';
+import { metaEdPlugins } from './PluginHelper';
 
 jest.setTimeout(40000);
 
@@ -32,35 +32,7 @@ describe('when generating change event scripts and comparing to ODS/API 3.1 auth
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      pluginTechVersion: {
-        edfiUnified: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiOdsRelational: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiOdsSqlServer: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiOdsApi: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiOdsChangeQuery: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiXsd: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiHandbook: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiInterchangeBrief: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiXmlDictionary: {
-          targetTechnologyVersion: '3.1.0',
-        },
-      },
+      defaultPluginTechVersion: '3.1.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-3.0/'],
       projects: [
         {
@@ -76,28 +48,20 @@ describe('when generating change event scripts and comparing to ODS/API 3.1 auth
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.dataStandardVersion = '3.0.0';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer' ||
-        manifest.shortName === 'edfiOdsChangeQuery' ||
-        manifest.shortName === PLUGIN_NAME,
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     generatedOutput = R.head(
@@ -136,35 +100,7 @@ describe('when generating change event scripts with simple extensions and compar
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      pluginTechVersion: {
-        edfiUnified: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiOdsRelational: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiOdsSqlServer: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiOdsApi: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiOdsChangeQuery: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiXsd: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiHandbook: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiInterchangeBrief: {
-          targetTechnologyVersion: '3.1.0',
-        },
-        edfiXmlDictionary: {
-          targetTechnologyVersion: '3.1.0',
-        },
-      },
+      defaultPluginTechVersion: '3.1.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-3.0/', sampleExtensionPath],
       projects: [
         {
@@ -187,28 +123,20 @@ describe('when generating change event scripts with simple extensions and compar
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.dataStandardVersion = '3.0.0';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer' ||
-        manifest.shortName === 'edfiOdsChangeQuery' ||
-        manifest.shortName === PLUGIN_NAME,
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     const generatorResult: GeneratorResult = R.head(
@@ -255,35 +183,7 @@ describe('when generating change event scripts and comparing to ODS/API 3.4 auth
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      pluginTechVersion: {
-        edfiUnified: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiOdsRelational: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiOdsSqlServer: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiOdsApi: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiOdsChangeQuery: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiXsd: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiHandbook: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiInterchangeBrief: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiXmlDictionary: {
-          targetTechnologyVersion: '3.4.0',
-        },
-      },
+      defaultPluginTechVersion: '3.4.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
       projects: [
         {
@@ -299,28 +199,20 @@ describe('when generating change event scripts and comparing to ODS/API 3.4 auth
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.dataStandardVersion = '3.2.0';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer' ||
-        manifest.shortName === 'edfiOdsChangeQuery' ||
-        manifest.shortName === PLUGIN_NAME,
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     generatedOutput = R.head(
@@ -359,35 +251,7 @@ describe('when generating change event scripts with simple extensions and compar
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      pluginTechVersion: {
-        edfiUnified: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiOdsRelational: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiOdsSqlServer: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiOdsApi: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiOdsChangeQuery: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiXsd: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiHandbook: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiInterchangeBrief: {
-          targetTechnologyVersion: '3.4.0',
-        },
-        edfiXmlDictionary: {
-          targetTechnologyVersion: '3.4.0',
-        },
-      },
+      defaultPluginTechVersion: '3.4.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/', sampleExtensionPath],
       projects: [
         {
@@ -410,28 +274,20 @@ describe('when generating change event scripts with simple extensions and compar
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.dataStandardVersion = '3.2.0';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer' ||
-        manifest.shortName === 'edfiOdsChangeQuery' ||
-        manifest.shortName === PLUGIN_NAME,
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     const generatorResult: GeneratorResult = R.head(
@@ -478,35 +334,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      pluginTechVersion: {
-        edfiUnified: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsRelational: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsSqlServer: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsApi: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsChangeQuery: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXsd: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiHandbook: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiInterchangeBrief: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXmlDictionary: {
-          targetTechnologyVersion: '5.0.0',
-        },
-      },
+      defaultPluginTechVersion: '5.0.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
       projects: [
         {
@@ -522,28 +350,20 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.dataStandardVersion = '3.2.0';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer' ||
-        manifest.shortName === 'edfiOdsChangeQuery' ||
-        manifest.shortName === PLUGIN_NAME,
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     generatedOutput = R.head(
@@ -582,35 +402,7 @@ describe('when generating change event scripts with simple extensions and compar
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      pluginTechVersion: {
-        edfiUnified: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsRelational: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsSqlServer: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsApi: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsChangeQuery: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXsd: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiHandbook: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiInterchangeBrief: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXmlDictionary: {
-          targetTechnologyVersion: '5.0.0',
-        },
-      },
+      defaultPluginTechVersion: '5.0.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/', sampleExtensionPath],
       projects: [
         {
@@ -633,28 +425,20 @@ describe('when generating change event scripts with simple extensions and compar
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.dataStandardVersion = '3.2.0';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer' ||
-        manifest.shortName === 'edfiOdsChangeQuery' ||
-        manifest.shortName === PLUGIN_NAME,
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     const generatorResult: GeneratorResult = R.head(
@@ -701,35 +485,7 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      pluginTechVersion: {
-        edfiUnified: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsRelational: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsSqlServer: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsApi: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsChangeQuery: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXsd: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiHandbook: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiInterchangeBrief: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXmlDictionary: {
-          targetTechnologyVersion: '5.0.0',
-        },
-      },
+      defaultPluginTechVersion: '5.0.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
       projects: [
         {
@@ -745,29 +501,21 @@ describe('when generating change event scripts and comparing to ODS/API 5.0 auth
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.allianceMode = true;
     state.metaEd.dataStandardVersion = '3.2.0';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer' ||
-        manifest.shortName === 'edfiOdsChangeQuery' ||
-        manifest.shortName === PLUGIN_NAME,
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     generatedOutput = R.head(
@@ -806,35 +554,7 @@ describe('when generating change event scripts with simple extensions and compar
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      pluginTechVersion: {
-        edfiUnified: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsRelational: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsSqlServer: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsApi: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsChangeQuery: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXsd: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiHandbook: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiInterchangeBrief: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXmlDictionary: {
-          targetTechnologyVersion: '5.0.0',
-        },
-      },
+      defaultPluginTechVersion: '5.0.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/', sampleExtensionPath],
       projects: [
         {
@@ -857,29 +577,21 @@ describe('when generating change event scripts with simple extensions and compar
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.allianceMode = true;
     state.metaEd.dataStandardVersion = '3.2.0';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer' ||
-        manifest.shortName === 'edfiOdsChangeQuery' ||
-        manifest.shortName === PLUGIN_NAME,
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     const generatorResult: GeneratorResult = R.head(
@@ -930,35 +642,7 @@ describe('when generating change event scripts with simple extensions and compar
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      pluginTechVersion: {
-        edfiUnified: {
-          targetTechnologyVersion: '6.0.0',
-        },
-        edfiOdsRelational: {
-          targetTechnologyVersion: '6.0.0',
-        },
-        edfiOdsSqlServer: {
-          targetTechnologyVersion: '6.0.0',
-        },
-        edfiOdsApi: {
-          targetTechnologyVersion: '6.0.0',
-        },
-        edfiOdsChangeQuery: {
-          targetTechnologyVersion: '6.0.0',
-        },
-        edfiXsd: {
-          targetTechnologyVersion: '6.0.0',
-        },
-        edfiHandbook: {
-          targetTechnologyVersion: '6.0.0',
-        },
-        edfiInterchangeBrief: {
-          targetTechnologyVersion: '6.0.0',
-        },
-        edfiXmlDictionary: {
-          targetTechnologyVersion: '6.0.0',
-        },
-      },
+      defaultPluginTechVersion: '6.0.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-4.0a/', sampleExtensionPath],
       projects: [
         {
@@ -981,28 +665,20 @@ describe('when generating change event scripts with simple extensions and compar
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.dataStandardVersion = '4.0.0-a';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer' ||
-        manifest.shortName === 'edfiOdsChangeQuery' ||
-        manifest.shortName === PLUGIN_NAME,
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     const generatorResult: GeneratorResult = R.head(

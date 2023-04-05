@@ -1,7 +1,0 @@
-Domain Entity Staff additions
-    integer MyCollection
-        documentation "Hi"
-        is required collection
-    common StaffRatingLevel
-        documentation "There"
-        is optional

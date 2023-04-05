@@ -1,4 +1,4 @@
-import { MetaEdPlugin } from '@edfi/metaed-core';
+import type { MetaEdPlugin } from '@edfi/metaed-core';
 import { enhancerList } from './enhancer/EnhancerList';
 import { generate as generateXsd } from './generator/XsdGenerator';
 import { generate as generateSchemaAnnotation } from './generator/SchemaAnnotationGenerator';
@@ -86,6 +86,6 @@ export function initialize(): MetaEdPlugin {
     validator: [v3LimitedDuplicateNamesInDependencyNamespaces],
     enhancer: enhancerList(),
     generator: [generateXsd, generateSchemaAnnotation, generateInterchange],
-    configurationSchemas: new Map(),
+    shortName: 'edfiXsd',
   };
 }

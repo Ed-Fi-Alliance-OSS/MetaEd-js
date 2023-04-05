@@ -22,6 +22,7 @@ import type {
   MetaEdProject,
 } from '@edfi/metaed-core';
 import { runDeployTasks } from '@edfi/metaed-odsapi-deploy';
+import { defaultPlugins } from '@edfi/metaed-default-plugins';
 
 winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 
@@ -134,7 +135,7 @@ export async function metaEdDeploy() {
     };
     const dataStandardVersion: SemVer = dataStandardVersionFor(metaEdConfiguration.projects);
     const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion };
-    const state: State = { ...newState(), metaEdConfiguration, pipelineOptions, metaEd };
+    const state: State = { ...newState(), metaEdConfiguration, pipelineOptions, metaEd, metaEdPlugins: defaultPlugins() };
 
     try {
       const { failure } = await executePipeline(state);

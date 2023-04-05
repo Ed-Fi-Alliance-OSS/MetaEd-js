@@ -1,0 +1,40 @@
+{
+  "name": "@edfi/metaed-default-plugins",
+  "main": "dist/index.js",
+  "version": "4.0.1-dev.5",
+  "description": "Provides the default plugins for MetaEd",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "publishConfig": {
+    "registry": "https://www.myget.org/F/ed-fi/npm/"
+  },
+  "files": [
+    "/dist",
+    "/LICENSE.md",
+    "/package.json"
+  ],
+  "dependencies": {
+    "@edfi/metaed-plugin-edfi-api-schema": "4.0.1-dev.5",
+    "@edfi/metaed-plugin-edfi-handbook": "4.0.1-dev.5",
+		"@edfi/metaed-plugin-edfi-ods-changequery": "4.0.1-dev.5",
+    "@edfi/metaed-plugin-edfi-ods-changequery-postgresql": "4.0.1-dev.5",
+    "@edfi/metaed-plugin-edfi-ods-changequery-sqlserver": "4.0.1-dev.5",
+		"@edfi/metaed-plugin-edfi-ods-postgresql": "4.0.1-dev.5",
+		"@edfi/metaed-plugin-edfi-ods-recordownership": "4.0.1-dev.5",
+		"@edfi/metaed-plugin-edfi-ods-recordownership-postgresql": "4.0.1-dev.5",
+		"@edfi/metaed-plugin-edfi-ods-recordownership-sqlserver": "4.0.1-dev.5",
+		"@edfi/metaed-plugin-edfi-ods-relational": "4.0.1-dev.5",
+		"@edfi/metaed-plugin-edfi-ods-sqlserver": "4.0.1-dev.5",
+		"@edfi/metaed-plugin-edfi-odsapi": "4.0.1-dev.5",
+		"@edfi/metaed-plugin-edfi-sql-dictionary": "4.0.1-dev.5",
+		"@edfi/metaed-plugin-edfi-unified": "4.0.1-dev.5",
+		"@edfi/metaed-plugin-edfi-unified-advanced": "4.0.1-dev.5",
+		"@edfi/metaed-plugin-edfi-xml-dictionary": "4.0.1-dev.5",
+		"@edfi/metaed-plugin-edfi-xsd": "4.0.1-dev.5"
+  },
+  "scripts": {
+    "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
+    "build:clean": "rimraf dist",
+    "build:dist": "tsc",
+    "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose"
+  }
+}

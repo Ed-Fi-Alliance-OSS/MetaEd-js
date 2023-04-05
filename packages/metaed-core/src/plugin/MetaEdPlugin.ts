@@ -2,27 +2,26 @@ import deepFreeze from 'deep-freeze';
 import { Validator } from '../validator/Validator';
 import { Enhancer } from '../enhancer/Enhancer';
 import { Generator } from '../generator/Generator';
-import { ConfigurationSchema } from './ConfigurationSchema';
 
 /**
  *
  */
-export interface MetaEdPlugin {
+export type MetaEdPlugin = {
   validator: Validator[];
   enhancer: Enhancer[];
   generator: Generator[];
-  configurationSchemas: ConfigurationSchema;
-}
+  shortName: string;
+};
 
 /**
  *
  */
-export function newMetaEdPlugin(): MetaEdPlugin {
+function newMetaEdPlugin(): MetaEdPlugin {
   return {
     validator: [],
     enhancer: [],
     generator: [],
-    configurationSchemas: new Map(),
+    shortName: '',
   };
 }
 

@@ -13,17 +13,17 @@ import {
   fileMapForValidationFailure,
   loadFileIndex,
   loadFiles,
-  loadPlugins,
+  setupPlugins,
   initializeNamespaces,
   newMetaEdConfiguration,
   newState,
   runEnhancers,
   runGenerators,
-  validateConfiguration,
   walkBuilders,
 } from '@edfi/metaed-core';
 import { Table, tableEntities, rowEntities } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { orderRows } from '../../src/enhancer/AddSchemaContainerEnhancer';
+import { metaEdPlugins } from './PluginHelper';
 
 jest.setTimeout(40000);
 
@@ -42,32 +42,7 @@ describe('when generating ods and comparing it to data standard 3.2 authoritativ
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      pluginTechVersion: {
-        edfiUnified: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsRelational: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsSqlServer: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiOdsApi: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXsd: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiHandbook: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiInterchangeBrief: {
-          targetTechnologyVersion: '5.0.0',
-        },
-        edfiXmlDictionary: {
-          targetTechnologyVersion: '5.0.0',
-        },
-      },
+      defaultPluginTechVersion: '5.0.0',
       projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
       projects: [
         {
@@ -83,27 +58,21 @@ describe('when generating ods and comparing it to data standard 3.2 authoritativ
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.allianceMode = true;
     state.metaEd.dataStandardVersion = '3.2.0';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer',
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     fileMapForValidationFailure(state);
@@ -201,27 +170,21 @@ describe('when generating ods with simple extensions and comparing it to data st
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.allianceMode = true;
     state.metaEd.dataStandardVersion = '3.2.0';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer',
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     const generatorResult: GeneratorResult = R.head(
@@ -301,27 +264,21 @@ describe('when generating ods with student transcript extensions and comparing i
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.allianceMode = true;
     state.metaEd.dataStandardVersion = '3.2.0';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer',
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     const generatorResult: GeneratorResult = R.head(
@@ -401,27 +358,21 @@ describe('when generating ods with student transcript extensions and comparing i
     const state: State = {
       ...newState(),
       metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.allianceMode = true;
     state.metaEd.dataStandardVersion = '3.3.1-b';
 
-    validateConfiguration(state);
-    loadPlugins(state);
-    state.pluginManifest = state.pluginManifest.filter(
-      (manifest) =>
-        manifest.shortName === 'edfiUnified' ||
-        manifest.shortName === 'edfiOdsRelational' ||
-        manifest.shortName === 'edfiOdsSqlServer',
-    );
+    setupPlugins(state);
     loadFiles(state);
     loadFileIndex(state);
     buildParseTree(buildMetaEd, state);
     await walkBuilders(state);
     initializeNamespaces(state);
     // eslint-disable-next-line no-restricted-syntax
-    for (const pluginManifest of state.pluginManifest) {
-      await runEnhancers(pluginManifest, state);
-      await runGenerators(pluginManifest, state);
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
     }
 
     const generatorResult: GeneratorResult = R.head(

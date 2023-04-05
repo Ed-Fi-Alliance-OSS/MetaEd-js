@@ -1,5 +1,4 @@
-import { MetaEdPlugin } from '@edfi/metaed-core';
-import { newMetaEdPlugin } from '@edfi/metaed-core';
+import type { MetaEdPlugin } from '@edfi/metaed-core';
 
 import { generate as CreateTrackedDeleteSchemasGenerator } from './generator/CreateTrackedDeleteSchemasGenerator';
 import { generate as CreateTrackedDeleteTablesGenerator } from './generator/CreateTrackedDeleteTablesGenerator';
@@ -24,7 +23,7 @@ import { enhance as createTriggerUpdateChangeVersionEnhancer } from './enhancer/
 
 export function initialize(): MetaEdPlugin {
   return {
-    ...newMetaEdPlugin(),
+    validator: [],
     enhancer: [
       edFiOdsChangeQueryEntityRepository,
       associationChangeQueryEnhancer,
@@ -48,5 +47,6 @@ export function initialize(): MetaEdPlugin {
       AddColumnChangeVersionForTableGenerator,
       AddIndexChangeVersionForTableGenerator,
     ],
+    shortName: 'edfiOdsChangeQueryPostgresql',
   };
 }

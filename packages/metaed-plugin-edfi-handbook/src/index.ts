@@ -52,6 +52,6 @@ export function initialize(): MetaEdPlugin {
       modelReferencesUsedByEnhancer,
     ],
     generator: [htmlGenerator, excelGenerator],
-    configurationSchemas: new Map(),
+    shortName: 'edfiHandbook',
   };
 }

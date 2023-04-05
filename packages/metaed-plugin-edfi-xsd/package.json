@@ -13,16 +13,6 @@
     "/LICENSE.md",
     "/package.json"
   ],
-  "metaed-plugin": {
-    "pluginType": "artifact-specific",
-    "shortName": "edfiXsd",
-    "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "3.x",
-    "technologyVersion": "*",
-    "dependencies": [
-      "@edfi/metaed-plugin-edfi-unified-advanced"
-    ]
-  },
   "dependencies": {
     "@edfi/metaed-core": "4.0.1-dev.5",
     "@edfi/metaed-plugin-edfi-unified": "4.0.1-dev.5",

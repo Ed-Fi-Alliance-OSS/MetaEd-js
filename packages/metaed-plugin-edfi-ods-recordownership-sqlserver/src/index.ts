@@ -1,11 +1,11 @@
-import { MetaEdPlugin } from '@edfi/metaed-core';
-import { newMetaEdPlugin } from '@edfi/metaed-core';
-
+import type { MetaEdPlugin } from '@edfi/metaed-core';
 import { generate as addCreatedByOwnershipColumnForTableGenerator } from './generator/AddCreatedByOwnershipColumnForTableGenerator';
 
 export function initialize(): MetaEdPlugin {
   return {
-    ...newMetaEdPlugin(),
+    validator: [],
+    enhancer: [],
     generator: [addCreatedByOwnershipColumnForTableGenerator],
+    shortName: 'edfiOdsRecordOwnershipSqlServer',
   };
 }

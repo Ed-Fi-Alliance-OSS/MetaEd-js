@@ -1,4 +1,4 @@
-import { MetaEdPlugin, newMetaEdPlugin } from '@edfi/metaed-core';
+import type { MetaEdPlugin } from '@edfi/metaed-core';
 import { validate as NamespaceMustNotBeNamedChanges } from './validator/NamespaceMustNotBeNamedChanges';
 
 export { changeQueryIndicated } from './enhancer/ChangeQueryIndicator';
@@ -53,9 +53,9 @@ export {
 
 export function initialize(): MetaEdPlugin {
   return {
-    ...newMetaEdPlugin(),
     validator: [NamespaceMustNotBeNamedChanges],
     enhancer: [],
     generator: [],
+    shortName: 'edfiOdsChangeQuery',
   };
 }

@@ -10,9 +10,8 @@ export {
 } from './Utility';
 export { executePipeline } from './pipeline/Pipeline';
 export { createMetaEdFile } from './file/MetaEdFile';
-export { validateConfiguration } from './pipeline/ValidateConfiguration';
+export { setupPlugins } from './plugin/PluginSetup';
 export { loadFiles } from './file/FileSystemFilenameLoader';
-export { loadPlugins, scanForPlugins } from './plugin/LoadPlugins';
 export { initializeNamespaces } from './pipeline/InitializeNamespaces';
 export { newState } from './State';
 export { newPipelineOptions } from './pipeline/PipelineOptions';
@@ -92,10 +91,7 @@ export { GeneratorResult } from './generator/GeneratorResult';
 export { GeneratedOutput } from './generator/GeneratedOutput';
 export { MetaEdEnvironment, SemVer } from './MetaEdEnvironment';
 export { PluginEnvironment } from './plugin/PluginEnvironment';
-export { PluginConfiguration } from './plugin/PluginConfiguration';
-export { ConfigurationSchema } from './plugin/ConfigurationSchema';
 export { MetaEdConfiguration } from './MetaEdConfiguration';
-export { PluginManifest } from './plugin/PluginManifest';
 export { MetaEdPlugin } from './plugin/MetaEdPlugin';
 export { MetaEdProject, MetaEdProjectPathPairs } from './project/ProjectTypes';
 export { PipelineFailure } from './pipeline/PipelineFailure';
@@ -182,7 +178,6 @@ export { NoEntityProperty } from './model/property/EntityProperty';
 
 // Factories
 export { newMetaEdEnvironment } from './MetaEdEnvironment';
-export { newMetaEdPlugin } from './plugin/MetaEdPlugin';
 export { newPluginEnvironment } from './plugin/PluginEnvironment';
 export { newMetaEdConfiguration, newPluginTargetTechnologyVersion } from './MetaEdConfiguration';
 export { newMetaEdProject, deriveNamespaceFromProjectName } from './project/ProjectTypes';

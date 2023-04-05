@@ -1,5 +1,4 @@
-import { Enhancer, Validator, MetaEdPlugin } from '@edfi/metaed-core';
-import { newMetaEdPlugin } from '@edfi/metaed-core';
+import type { Enhancer, Validator, MetaEdPlugin } from '@edfi/metaed-core';
 
 import { validate as abstractEntityMustContainAnIdentity } from './validator/AbstractEntity/AbstractEntityMustContainAnIdentity';
 import { validate as abstractEntityMustNotBeExtended } from './validator/AbstractEntity/AbstractEntityMustNotBeExtended';
@@ -103,13 +102,6 @@ import { validate as interchangeExtensionMustNotRedeclareIdentityName } from './
 import { validate as mergeDirectiveMustStartSourcePathWithPropertyName } from './validator/MergeDirective/MergeDirectiveMustStartSourcePathWithPropertyName';
 import { validate as namespacesNamesMustNotHaveOnlyDifferentCasing } from './validator/Namespace/NamespacesNamesMustNotHaveOnlyDifferentCasing';
 
-/*
-import { validate as metaEdIdIsRequiredForDomainItems } from './validator/MetaEdId/MetaEdIdIsRequiredForDomainItems';
-import { validate as metaEdIdIsRequiredForEntities } from './validator/MetaEdId/MetaEdIdIsRequiredForEntities';
-import { validate as metaEdIdIsRequiredForEnumerationItems } from './validator/MetaEdId/MetaEdIdIsRequiredForEnumerationItems';
-import { validate as metaEdIdIsRequiredForInterchangeItems } from './validator/MetaEdId/MetaEdIdIsRequiredForInterchangeItems';
-import { validate as metaEdIdIsRequiredForProperties } from './validator/MetaEdId/MetaEdIdIsRequiredForProperties';
-*/
 import { validate as mustNotDuplicateMetaEdId } from './validator/MetaEdId/MustNotDuplicateMetaEdId';
 
 import { validate as sharedDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits } from './validator/SharedDecimal/SharedDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits';
@@ -312,12 +304,6 @@ function validatorList(): Validator[] {
 
     mergeDirectiveMustStartSourcePathWithPropertyName,
 
-    // ////// Commenting out MetaEd ID required warnings -- imports commented out above
-    // metaEdIdIsRequiredForDomainItems,
-    // metaEdIdIsRequiredForEntities,
-    // metaEdIdIsRequiredForEnumerationItems,
-    // metaEdIdIsRequiredForInterchangeItems,
-    // metaEdIdIsRequiredForProperties,
     mustNotDuplicateMetaEdId,
 
     namespacesNamesMustNotHaveOnlyDifferentCasing,
@@ -410,5 +396,5 @@ function enhancerList(): Enhancer[] {
 }
 
 export function initialize(): MetaEdPlugin {
-  return { ...newMetaEdPlugin(), validator: validatorList(), enhancer: enhancerList() };
+  return { validator: validatorList(), enhancer: enhancerList(), generator: [], shortName: 'edfiUnified' };
 }

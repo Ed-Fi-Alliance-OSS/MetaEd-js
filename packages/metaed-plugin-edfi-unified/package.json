@@ -13,14 +13,6 @@
     "/LICENSE.md",
     "/package.json"
   ],
-  "metaed-plugin": {
-    "pluginType": "artifact-specific",
-    "shortName": "edfiUnified",
-    "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "3.x",
-    "technologyVersion": "*",
-    "dependencies": []
-  },
   "dependencies": {
     "@edfi/metaed-core": "4.0.1-dev.5",
     "ramda": "^0.28.0",

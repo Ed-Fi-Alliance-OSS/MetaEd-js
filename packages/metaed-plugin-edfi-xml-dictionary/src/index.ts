@@ -1,4 +1,4 @@
-import { MetaEdPlugin } from '@edfi/metaed-core';
+import type { MetaEdPlugin } from '@edfi/metaed-core';
 import { generate as xmlDataDictionaryGenerator } from './generator/XmlDataDictionaryGenerator';
 
 export function initialize(): MetaEdPlugin {
@@ -6,6 +6,6 @@ export function initialize(): MetaEdPlugin {
     validator: [],
     enhancer: [],
     generator: [xmlDataDictionaryGenerator],
-    configurationSchemas: new Map(),
+    shortName: 'edfiXmlDictionary',
   };
 }

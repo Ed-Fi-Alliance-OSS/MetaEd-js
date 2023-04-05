@@ -1,5 +1,4 @@
-import { MetaEdPlugin } from '@edfi/metaed-core';
-import { newMetaEdPlugin } from '@edfi/metaed-core';
+import type { MetaEdPlugin } from '@edfi/metaed-core';
 import { validatorList } from './validator/ValidatorList';
 import { enhancerList } from './enhancer/EnhancerList';
 import { generate as DomainMetadataGenerator } from './generator/domainMetadata/DomainMetadataGenerator';
@@ -9,7 +8,6 @@ import { generate as InterchangeOrderMetadataGenerator } from './generator/inter
 
 export function initialize(): MetaEdPlugin {
   return {
-    ...newMetaEdPlugin(),
     validator: validatorList(),
     enhancer: enhancerList(),
     generator: [
@@ -18,5 +16,6 @@ export function initialize(): MetaEdPlugin {
       EducationOrganizationReferenceMetadataGenerator,
       InterchangeOrderMetadataGenerator,
     ],
+    shortName: 'edfiOdsApi',
   };
 }

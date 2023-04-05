@@ -13,19 +13,6 @@
     "/LICENSE.md",
     "/package.json"
   ],
-  "metaed-plugin": {
-    "pluginType": "artifact-specific",
-    "shortName": "edfiHandbook",
-    "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "3.x",
-    "technologyVersion": "*",
-    "dependencies": [
-      "@edfi/metaed-plugin-edfi-unified-advanced",
-      "@edfi/metaed-plugin-edfi-ods-relational",
-      "@edfi/metaed-plugin-edfi-ods-sqlserver",
-      "@edfi/metaed-plugin-edfi-api-schema"
-    ]
-  },
   "dependencies": {
     "@edfi/metaed-core": "4.0.1-dev.5",
     "@edfi/metaed-plugin-edfi-api-schema": "4.0.1-dev.5",

@@ -1,4 +1,4 @@
-import { MetaEdPlugin } from '@edfi/metaed-core';
+import type { MetaEdPlugin } from '@edfi/metaed-core';
 import { enhancerList } from './enhancer/EnhancerList';
 import { validate as blockPropertiesNamedDiscriminator } from './validator/BlockPropertiesNamedDiscriminator';
 
@@ -78,6 +78,6 @@ export function initialize(): MetaEdPlugin {
     validator: [blockPropertiesNamedDiscriminator],
     enhancer: enhancerList(),
     generator: [],
-    configurationSchemas: new Map(),
+    shortName: 'edfiOdsRelational',
   };
 }

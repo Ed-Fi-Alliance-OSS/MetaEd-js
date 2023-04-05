@@ -1,11 +1,11 @@
 import { State } from '../State';
-import { PluginManifest } from '../plugin/PluginManifest';
+import { MetaEdPlugin } from '../plugin/MetaEdPlugin';
 
-export async function execute(pluginManifest: PluginManifest, state: State): Promise<void> {
+export async function execute(metaEdPlugin: MetaEdPlugin, state: State): Promise<void> {
   if (state.metaEd.namespace == null || state.metaEd.propertyIndex == null) return;
 
   // eslint-disable-next-line no-restricted-syntax
-  for (const generator of pluginManifest.metaEdPlugin.generator) {
+  for (const generator of metaEdPlugin.generator) {
     state.generatorResults.push(await generator(state.metaEd));
   }
 }

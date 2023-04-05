@@ -1,4 +1,4 @@
-import { MetaEdPlugin } from '@edfi/metaed-core';
+import type { MetaEdPlugin } from '@edfi/metaed-core';
 import { generate as OdsGenerator } from './generator/OdsGenerator';
 import { generate as SchemaGenerator } from './generator/SchemaGenerator';
 import { generate as IdIndexesGenerator } from './generator/IdIndexesGenerator';
@@ -34,6 +34,6 @@ export function initialize(): MetaEdPlugin {
       addSchemaContainerEnhancer,
     ],
     generator: [SchemaGenerator, OdsGenerator, IdIndexesGenerator],
-    configurationSchemas: new Map(),
+    shortName: 'edfiOdsSqlServer',
   };
 }

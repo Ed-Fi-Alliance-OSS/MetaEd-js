@@ -6,32 +6,26 @@ import { buildTopLevelEntity, buildMetaEd } from '../grammar/ParseTreeBuilder';
 import { loadFileIndex } from '../file/LoadFileIndex';
 import { buildParseTree } from '../grammar/BuildParseTree';
 import { execute as walkBuilders } from '../builder/WalkBuilders';
-import { loadPluginConfiguration } from '../plugin/LoadPluginConfiguration';
 import { fileMapForValidationFailure } from './FileMapForValidationFailure';
-import { nextMacroTask, versionSatisfies } from '../Utility';
-// import { validateConfiguration } from './ValidateConfiguration';
+import { nextMacroTask } from '../Utility';
 import { execute as runValidators } from '../validator/RunValidators';
 import { execute as runEnhancers } from '../enhancer/RunEnhancers';
 import { execute as runGenerators } from '../generator/RunGenerators';
 import { execute as writeOutput } from './WriteOutput';
-import { loadPlugins } from '../plugin/LoadPlugins';
 import { initializeNamespaces } from './InitializeNamespaces';
 import { State } from '../State';
 import { PluginEnvironment } from '../plugin/PluginEnvironment';
+import { setupPlugins } from '../plugin/PluginSetup';
 
 export async function executePipeline(state: State): Promise<{ state: State; failure: boolean }> {
-  // winston.info('Validating configuration...');
-  // validateConfiguration(state);
-  // await nextMacroTask();
-
   let failure = false;
 
   winston.debug('Initialize MetaEdEnvironment');
   initializeMetaEdEnvironment(state);
   await nextMacroTask();
 
-  winston.info('Loading plugins');
-  loadPlugins(state);
+  winston.debug('Plugin Setup');
+  setupPlugins(state);
   await nextMacroTask();
 
   winston.info('Loading .metaed files');
@@ -56,25 +50,18 @@ export async function executePipeline(state: State): Promise<{ state: State; fai
   initializeNamespaces(state);
   await nextMacroTask();
 
-  winston.debug('Loading plugin configuration files');
-  await loadPluginConfiguration(state);
-
   winston.info('Running plugins');
   // eslint-disable-next-line no-restricted-syntax
-  for (const pluginManifest of state.pluginManifest) {
-    const pluginEnvironment: PluginEnvironment | undefined = state.metaEd.plugin.get(pluginManifest.shortName);
-    if (
-      pluginManifest.enabled &&
-      pluginEnvironment != null &&
-      versionSatisfies(pluginEnvironment.targetTechnologyVersion, pluginManifest.technologyVersion)
-    ) {
+  for (const metaEdPlugin of state.metaEdPlugins) {
+    const pluginEnvironment: PluginEnvironment | undefined = state.metaEd.plugin.get(metaEdPlugin.shortName);
+    if (pluginEnvironment != null) {
       try {
-        winston.info(`- ${pluginManifest.description}`);
+        winston.info(`- ${metaEdPlugin.shortName}`);
         if (state.pipelineOptions.runValidators) {
-          if (pluginManifest.metaEdPlugin.validator.length > 0) {
-            winston.debug(`- Running ${pluginManifest.metaEdPlugin.validator.length} validators...`);
+          if (metaEdPlugin.validator.length > 0) {
+            winston.debug(`- Running ${metaEdPlugin.validator.length} validators...`);
           }
-          runValidators(pluginManifest, state);
+          runValidators(metaEdPlugin, state);
           await nextMacroTask();
           if (
             state.validationFailure.some((vf) => vf.category === 'error') &&
@@ -86,22 +73,22 @@ export async function executePipeline(state: State): Promise<{ state: State; fai
         }
 
         if (state.pipelineOptions.runEnhancers) {
-          if (pluginManifest.metaEdPlugin.enhancer.length > 0) {
-            winston.debug(`- Running ${pluginManifest.metaEdPlugin.enhancer.length} enhancers...`);
+          if (metaEdPlugin.enhancer.length > 0) {
+            winston.debug(`- Running ${metaEdPlugin.enhancer.length} enhancers...`);
           }
-          await runEnhancers(pluginManifest, state);
+          await runEnhancers(metaEdPlugin, state);
           await nextMacroTask();
         }
 
         if (state.pipelineOptions.runGenerators) {
-          if (pluginManifest.metaEdPlugin.generator.length > 0) {
-            winston.debug(`- Running ${pluginManifest.metaEdPlugin.generator.length} generators...`);
+          if (metaEdPlugin.generator.length > 0) {
+            winston.debug(`- Running ${metaEdPlugin.generator.length} generators...`);
           }
-          await runGenerators(pluginManifest, state);
+          await runGenerators(metaEdPlugin, state);
           await nextMacroTask();
         }
       } catch (err) {
-        const message = `Plugin ${pluginManifest.shortName} threw exception '${err.message}'`;
+        const message = `Plugin ${metaEdPlugin.shortName} threw exception '${err.message}'`;
         winston.error(`  ${message}`);
         state.pipelineFailure.push({ category: 'error', message });
         winston.error(err.stack);

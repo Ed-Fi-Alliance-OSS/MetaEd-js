@@ -1,6 +1,19 @@
 import path from 'path';
-import { executePipeline, newMetaEdConfiguration, newPipelineOptions, newState } from '@edfi/metaed-core';
+import {
+  buildMetaEd,
+  buildParseTree,
+  initializeNamespaces,
+  loadFileIndex,
+  loadFiles,
+  newMetaEdConfiguration,
+  newState,
+  runEnhancers,
+  runValidators,
+  setupPlugins,
+  walkBuilders,
+} from '@edfi/metaed-core';
 import { State, Namespace } from '@edfi/metaed-core';
+import { metaEdPlugins } from '../PluginHelper';
 
 jest.setTimeout(30000);
 
@@ -19,37 +32,48 @@ const metaEdConfiguration = {
       namespaceName: 'EdFi',
       projectExtension: '',
       projectVersion: '3.0.0',
+      description: '',
     },
     {
       projectName: 'Grand Bend',
       namespaceName: 'Gb',
       projectExtension: 'GrandBend',
       projectVersion: '1.0.0',
+      description: '',
     },
     {
       projectName: 'Sample',
       namespaceName: 'Sample',
       projectExtension: 'Sample',
       projectVersion: '1.0.0',
+      description: '',
     },
   ],
 };
 
 describe('when building a simple core and two simple extension projects', (): void => {
-  let state: State = newState();
+  let state: State;
 
   beforeAll(async () => {
-    state = Object.assign(newState(), {
+    state = {
+      ...newState(),
       metaEdConfiguration,
-      pipelineOptions: Object.assign(newPipelineOptions(), {
-        runValidators: true,
-        runEnhancers: true,
-      }),
-    });
+      metaEdPlugins: metaEdPlugins(),
+    };
 
     state.metaEd.dataStandardVersion = '3.0.0';
-    state.pluginScanDirectory = path.resolve(__dirname, '../../..');
-    await executePipeline(state);
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      runValidators(metaEdPlugin, state);
+      await runEnhancers(metaEdPlugin, state);
+    }
   });
 
   it('should have no validation errors', (): void => {

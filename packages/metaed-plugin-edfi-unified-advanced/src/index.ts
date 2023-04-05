@@ -1,4 +1,4 @@
-import { MetaEdPlugin, newMetaEdPlugin } from '@edfi/metaed-core';
+import type { MetaEdPlugin } from '@edfi/metaed-core';
 
 import { validate as sourcePropertyAndTargetPropertyMustMatch } from './validator/MergeDirective/SourcePropertyAndTargetPropertyMustMatch';
 import { validate as sourcePropertyPathStringsMustExist } from './validator/MergeDirective/SourcePropertyPathMustExist';
@@ -15,7 +15,6 @@ import { validate as selfReferencingPropertiesMustHaveRoleNameIfAllowed } from '
 
 export function initialize(): MetaEdPlugin {
   return {
-    ...newMetaEdPlugin(),
     validator: [
       sourcePropertyPathStringsMustExist,
       targetPropertyPathStringsMustExist,
@@ -30,5 +29,8 @@ export function initialize(): MetaEdPlugin {
       commonPropertyCollectionTargetMustContainIdentity,
       selfReferencingPropertiesMustHaveRoleNameIfAllowed,
     ],
+    enhancer: [],
+    generator: [],
+    shortName: 'edfiUnifiedAdvanced',
   };
 }

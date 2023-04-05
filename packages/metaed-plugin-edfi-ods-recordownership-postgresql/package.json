@@ -13,24 +13,12 @@
     "/LICENSE.md",
     "/package.json"
   ],
-  "metaed-plugin": {
-    "pluginType": "artifact-specific",
-    "shortName": "edfiOdsRecordOwnershipPostgresql",
-    "authorName": "Ed-Fi Alliance",
-    "metaEdVersion": "3.x",
-    "technologyVersion": ">=3.3.0",
-    "dependencies": [
-      "@edfi/metaed-plugin-edfi-unified-advanced",
-      "@edfi/metaed-plugin-edfi-ods-relational",
-      "@edfi/metaed-plugin-edfi-ods-recordownership",
-      "@edfi/metaed-plugin-edfi-ods-postgresql"
-    ]
-  },
   "dependencies": {
     "@edfi/metaed-core": "4.0.1-dev.5",
     "@edfi/metaed-plugin-edfi-ods-recordownership": "4.0.1-dev.5",
     "@edfi/metaed-plugin-edfi-ods-relational": "4.0.1-dev.5",
-    "@edfi/metaed-plugin-edfi-ods-sqlserver": "4.0.1-dev.5",
+    "@edfi/metaed-plugin-edfi-ods-postgresql": "4.0.1-dev.5",
+    "@edfi/metaed-plugin-edfi-unified": "4.0.1-dev.5",
     "@edfi/metaed-plugin-edfi-unified-advanced": "4.0.1-dev.5",
     "handlebars": "^4.7.7"
   },

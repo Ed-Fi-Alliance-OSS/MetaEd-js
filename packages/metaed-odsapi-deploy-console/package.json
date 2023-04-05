@@ -16,6 +16,7 @@
   "dependencies": {
     "@edfi/metaed-core": "4.0.1-dev.5",
     "@edfi/metaed-odsapi-deploy": "4.0.1-dev.5",
+    "@edfi/metaed-default-plugins": "4.0.1-dev.5",
     "chalk": "^4.1.2",
     "winston": "3.8.2",
     "yargs": "17.6.0"
