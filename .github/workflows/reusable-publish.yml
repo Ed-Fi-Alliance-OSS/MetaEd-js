@@ -70,11 +70,13 @@ jobs:
           git config user.email "${{ steps.import-gpg.outputs.email }}"
 
       - name: Create user .npmrc for Azure Artifacts publishing
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN  }}
         run: |
           echo "Configuring user .npmrc for ${{ env.NPM_REGISTRY }}"
           set +x  # disable echo to shell so that the base64-encoded API key never escapes into the log.
           # Create the user .npmrc file with proper settings
-          API_KEY=`echo -n "${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}" | base64`
+          API_KEY=`echo -n "${{ env.NODE_AUTH_TOKEN }}" | base64`
           touch $HOME/.npmrc
           echo "; begin auth token" >> $HOME/.npmrc
           echo ${{ env.NPM_REGISTRY }}:username=ed-fi-alliance >> $HOME/.npmrc
