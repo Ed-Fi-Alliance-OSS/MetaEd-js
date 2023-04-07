@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: "16"
           check-latest: true
-          registry-url: "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/"
+          cache-dependency-path: "**/package-lock.json"
 
       - name: Checkout code
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2

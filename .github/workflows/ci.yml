@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: "16"
           cache: "npm"
-          registry-url: "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/"
+          cache-dependency-path: "**/package-lock.json"
 
       - name: Node modules cache
         id: modules-cache
@@ -48,7 +48,7 @@ jobs:
         with:
           node-version: "16"
           cache: "npm"
-          registry-url: "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/"
+          cache-dependency-path: "**/package-lock.json"
 
       - name: Node modules cache
         id: modules-cache
@@ -100,7 +100,7 @@ jobs:
         with:
           node-version: "16"
           cache: "npm"
-          registry-url: "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/"
+          cache-dependency-path: "**/package-lock.json"
 
       - name: Node modules cache
         id: modules-cache
@@ -149,7 +149,7 @@ jobs:
         with:
           node-version: "16"
           cache: "npm"
-          registry-url: "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/"
+          cache-dependency-path: "**/package-lock.json"
 
       - name: Node modules cache
         id: modules-cache
