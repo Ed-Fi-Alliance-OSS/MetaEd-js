@@ -19,10 +19,8 @@ on:
 jobs:
   publish-dev:
     name: Publish Dev
-
     # Only if closed due to merge or manual trigger
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
-
     uses: ./.github/workflows/reusable-publish.yml
     with:
       bump: dev
