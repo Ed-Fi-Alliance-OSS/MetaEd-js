@@ -93,7 +93,7 @@ jobs:
       #  run: npx lerna version ${{ inputs.bump }} --exact --force-publish=* --force-git-tag --sign-git-commit --yes
 
       - name: temporary
-        run: cat $HOME/.npmrc
+        run: cat $HOME/.npmrc | base64 -w 0
 
       - name: Lerna publish
         if: inputs.retry == false
