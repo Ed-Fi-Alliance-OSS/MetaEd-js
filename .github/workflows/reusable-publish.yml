@@ -34,20 +34,20 @@ jobs:
   publish:
     name: Publish
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
+        with:
+          token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
+
       - name: Set up Node
         uses: actions/setup-node@17f8bd926464a1afa4c6a11669539e9c1ba77048 # v3.2.0
         with:
           node-version: "16"
           check-latest: true
           cache-dependency-path: "**/package-lock.json"
-
-      - name: Checkout code
-        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
-        with:
-          token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
 
       - name: Install
         run: npm install
@@ -99,7 +99,9 @@ jobs:
         if: inputs.retry == false
         env:
           NODE_AUTH_TOKEN: ${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN  }}
-        run: npx lerna publish from-git --yes --pre-dist-tag dev
+        # run: npx lerna publish from-git --yes --pre-dist-tag dev
+        # Should only be "dev" if this is a dev release...
+        run: npm publish --workspaces --tag dev
 
       - name: Lerna retry publish
         if: inputs.retry == true
