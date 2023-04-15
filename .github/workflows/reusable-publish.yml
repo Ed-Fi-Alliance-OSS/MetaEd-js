@@ -28,7 +28,7 @@ on:
         required: true
 
 env:
-  NPM_REGISTRY: https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/
+  NPM_REGISTRY: //pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/
 
 jobs:
   publish:
