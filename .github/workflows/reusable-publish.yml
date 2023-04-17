@@ -28,26 +28,26 @@ on:
         required: true
 
 env:
-  NPM_REGISTRY: https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/
+  NPM_REGISTRY: //pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/
 
 jobs:
   publish:
     name: Publish
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
+        with:
+          token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
+
       - name: Set up Node
         uses: actions/setup-node@17f8bd926464a1afa4c6a11669539e9c1ba77048 # v3.2.0
         with:
           node-version: "16"
           check-latest: true
           cache-dependency-path: "**/package-lock.json"
-
-      - name: Checkout code
-        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
-        with:
-          token: ${{ secrets.EDFI_BUILD_AGENT_PAT }}
 
       - name: Install
         run: npm install

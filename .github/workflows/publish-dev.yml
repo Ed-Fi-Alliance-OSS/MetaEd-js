@@ -23,7 +23,7 @@ jobs:
     # Only if closed due to merge or manual trigger
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
 
-    uses: Ed-Fi-Closed/MetaEd-js/.github/workflows/reusable-publish.yml@main
+    uses:  ./.github/workflows/reusable-publish.yml
     with:
       bump: dev
       # '|| false' below handles pull_request event case, where github.event.inputs.debug_enabled is undefined
