@@ -53,13 +53,6 @@ import { enhance as addSchemaContainerEnhancer } from './schema/AddSchemaContain
 import { enhance as addSchemaContainerEnhancerV2 } from './schema/AddSchemaContainerEnhancerV2';
 
 import { enhance as addLookupTypesDiminisher } from '../diminisher/AddLookupTypesDiminisher';
-import { enhance as modifyAppropriateSexOnInterventionStudyToBeMaxOccursTwoDiminisher } from '../diminisher/ModifyAppropriateSexOnInterventionStudyToBeMaxOccursTwoDiminisher';
-import { enhance as modifyDisciplineActionLengthToUseIntegerDiminisher } from '../diminisher/ModifyDisciplineActionLengthToUseIntegerDiminisher';
-import { enhance as modifyEducationContentLearningResourceToInlineSequenceDiminisher } from '../diminisher/ModifyEducationContentLearningResourceToInlineSequenceDiminisher';
-import { enhance as modifyIdentityTypeOrderToMatchLegacyOrderDiminisher } from '../diminisher/ModifyIdentityTypeOrderToMatchLegacyOrderDiminisher';
-import { enhance as modifyOrderOfPriorityToUsePositiveIntegerDiminisher } from '../diminisher/ModifyOrderOfPriorityToUsePositiveIntegerDiminisher';
-import { enhance as modifyStaffCredentialStateOfIssueStateAbbreviationElementNameDiminisher } from '../diminisher/ModifyStaffCredentialStateOfIssueStateAbbreviationElementNameDiminisher';
-import { enhance as modifyTotalInstructionalDaysToUseIntDiminisher } from '../diminisher/ModifyTotalInstructionalDaysToUseIntDiminisher';
 
 import { enhance as hasDuplicateEntityNameInDependencyNamespaceEnhancer } from './HasDuplicateEntityNameInDependencyNamespaceEnhancer';
 
@@ -141,13 +134,6 @@ export function enhancerList(): Enhancer[] {
 
     // DiminisherPhase
     addLookupTypesDiminisher,
-    modifyAppropriateSexOnInterventionStudyToBeMaxOccursTwoDiminisher,
-    modifyDisciplineActionLengthToUseIntegerDiminisher,
-    modifyEducationContentLearningResourceToInlineSequenceDiminisher,
-    modifyIdentityTypeOrderToMatchLegacyOrderDiminisher,
-    modifyOrderOfPriorityToUsePositiveIntegerDiminisher,
-    modifyStaffCredentialStateOfIssueStateAbbreviationElementNameDiminisher,
-    modifyTotalInstructionalDaysToUseIntDiminisher,
 
     // SchemaCreationPhase
     addSchemaContainerEnhancer,
