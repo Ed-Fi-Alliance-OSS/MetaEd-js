@@ -43,8 +43,6 @@ import { enhance as entityDefinitionIdentifierEnhancer } from './apiModel/Entity
 import { enhance as entityDefinitionIdentifierEnhancerV3 } from './apiModel/EntityDefinitionIdentifierEnhancerV3dot2';
 import { enhance as entityDefinitionPropertyOrderEnhancer } from './apiModel/EntityDefinitionPropertyOrderEnhancer';
 
-import { enhance as moveFederalFundsDiminisher } from '../diminisher/domainMetadata/MoveFederalFundsDiminisher';
-
 export function enhancerList(): Enhancer[] {
   return [
     // **************************
@@ -96,9 +94,5 @@ export function enhancerList(): Enhancer[] {
     entityDefinitionIdentifierEnhancer,
     entityDefinitionIdentifierEnhancerV3,
     entityDefinitionPropertyOrderEnhancer,
-
-    // **************************
-    // API Metadata Diminish Phase
-    moveFederalFundsDiminisher,
   ];
 }
