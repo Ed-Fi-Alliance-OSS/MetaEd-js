@@ -38,35 +38,11 @@ import { enhance as foreignKeyForeignTableReferenceEnhancer } from './ForeignKey
 import { enhance as columnDeprecationEnhancer } from './ColumnDeprecationEnhancer';
 import { enhance as tableDeprecationEnhancer } from './TableDeprecationEnhancer';
 
-import { enhance as addApiTopLevelResourceColumnsFromLeaAndStateFederalFundsDiminisher } from '../diminisher/AddApiTopLevelResourceColumnsFromLeaAndStateFederalFundsDiminisher';
-import { enhance as addExtraBeginDateColumnToStudentLearningObjectiveDiminisher } from '../diminisher/AddExtraBeginDateColumnToStudentLearningObjectiveDiminisher';
-import { enhance as addExtraPeriodSequenceColumnToGradingPeriodTypeDiminisher } from '../diminisher/AddExtraPeriodSequenceColumnToGradingPeriodTypeDiminisher';
-import { enhance as addFksFromAcademicWeekToCalendarDateDiminisher } from '../diminisher/AddFksFromAcademicWeekToCalendarDateDiminisher';
-import { enhance as addReportCardRoleNameFromEducationOrganizationIdOnReportCardScoAndReportCardSloDiminisher } from '../diminisher/AddReportCardRoleNameFromEducationOrganizationIdOnReportCardScoAndReportCardSloDiminisher';
-import { enhance as addRoleNameFromEducationContentDSLRMUriDiminisher } from '../diminisher/AddRoleNameFromEducationContentDSLRMUriDiminisher';
-import { enhance as assessmentContentStandardTableDiminisher } from '../diminisher/AssessmentContentStandardTableDiminisher';
-import { enhance as changeNameOfInnovativeDollarsSpentStrategicPrioritiesDiminisher } from '../diminisher/ChangeNameOfInnovativeDollarsSpentStrategicPrioritiesDiminisher';
-import { enhance as graduationPlanRequiredAssessmentPerformanceLevelDiminisher } from '../diminisher/GraduationPlanRequiredAssessmentPerformanceLevelDiminisher';
-import { enhance as identificationDocumentTableDiminisher } from '../diminisher/IdentificationDocumentTableDiminisher';
-import { enhance as modifyCascadingDeletesDefinitionsDiminisher } from '../diminisher/ModifyCascadingDeletesDefinitionsDiminisher';
-import { enhance as modifyCascadingUpdatesDefinitionsDiminisher } from '../diminisher/ModifyCascadingUpdatesDefinitionsDiminisher';
-import { enhance as modifyStringColumnLengthDiminisher } from '../diminisher/ModifyStringColumnLengthDiminisher';
-import { enhance as modifyIdentityForEducationOrganizationAndSubTypesDiminisher } from '../diminisher/ModifyIdentityForEducationOrganizationAndSubTypesDiminisher';
-import { enhance as modifyReverseForeignKeyIndexesDiminisher } from '../diminisher/ModifyReverseForeignKeyIndexesDiminisher';
-import { enhance as primaryKeyOrderDiminisher } from '../diminisher/PrimaryKeyOrderDiminisher';
-// eslint-disable-next-line camelcase
-import { enhance as removeGradingPeriodRoleNameFromSchoolIdOnReportCardAndReportCardGradeDiminisher2_0_x } from '../diminisher/RemoveGradingPeriodRoleNameFromSchoolIdOnReportCardAndReportCardGradeDiminisher2_0_x';
-// eslint-disable-next-line camelcase
-import { enhance as removeGradingPeriodRoleNameFromSchoolIdOnReportCardAndReportCardGradeDiminisher2_1_x } from '../diminisher/RemoveGradingPeriodRoleNameFromSchoolIdOnReportCardAndReportCardGradeDiminisher2_1_x';
-import { enhance as removeGradingPeriodRoleNameFromSchoolIdOnReportCardAndReportCardGradeDiminisherBase } from '../diminisher/RemoveGradingPeriodRoleNameFromSchoolIdOnReportCardAndReportCardGradeDiminisherBase';
-import { enhance as removeStartTimeFromPkOfInterventionMeetingTimeDiminisher } from '../diminisher/RemoveStartTimeFromPkOfInterventionMeetingTimeDiminisher';
-
 export function enhancerList(): Enhancer[] {
   return [
     // Property Collection Cloning Phase
     edFiOdsEntityRepository,
     topLevelEntity,
-    modifyIdentityForEducationOrganizationAndSubTypesDiminisher,
 
     // Builder Post Processing Phase
     topLevelEntityBaseReferenceEnhancer,
@@ -100,29 +76,8 @@ export function enhancerList(): Enhancer[] {
     enumerationTableEnhancer,
     schoolYearEnumerationTableEnhancer,
 
-    assessmentContentStandardTableDiminisher,
-    graduationPlanRequiredAssessmentPerformanceLevelDiminisher,
-    identificationDocumentTableDiminisher,
-
     // Foreign Key Creation Phase
     foreignKeyCreatingTableEnhancer,
-
-    addApiTopLevelResourceColumnsFromLeaAndStateFederalFundsDiminisher,
-    addExtraBeginDateColumnToStudentLearningObjectiveDiminisher,
-    addExtraPeriodSequenceColumnToGradingPeriodTypeDiminisher,
-    addFksFromAcademicWeekToCalendarDateDiminisher,
-    addReportCardRoleNameFromEducationOrganizationIdOnReportCardScoAndReportCardSloDiminisher,
-    addRoleNameFromEducationContentDSLRMUriDiminisher,
-    changeNameOfInnovativeDollarsSpentStrategicPrioritiesDiminisher,
-    modifyCascadingDeletesDefinitionsDiminisher,
-    modifyCascadingUpdatesDefinitionsDiminisher,
-    modifyStringColumnLengthDiminisher,
-    // eslint-disable-next-line camelcase
-    removeGradingPeriodRoleNameFromSchoolIdOnReportCardAndReportCardGradeDiminisher2_0_x,
-    // eslint-disable-next-line camelcase
-    removeGradingPeriodRoleNameFromSchoolIdOnReportCardAndReportCardGradeDiminisher2_1_x,
-    removeGradingPeriodRoleNameFromSchoolIdOnReportCardAndReportCardGradeDiminisherBase,
-    removeStartTimeFromPkOfInterventionMeetingTimeDiminisher,
 
     // Row Population Phase
     enumerationRowEnhancer,
@@ -131,8 +86,6 @@ export function enhancerList(): Enhancer[] {
 
     // Post Ods Creation Phase
     foreignKeyReverseIndexEnhancer,
-    modifyReverseForeignKeyIndexesDiminisher,
-    primaryKeyOrderDiminisher,
 
     discriminatorColumnFlaggingEnhancer,
     columnDeprecationEnhancer,
