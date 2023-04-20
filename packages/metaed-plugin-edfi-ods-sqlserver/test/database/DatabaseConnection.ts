@@ -128,9 +128,9 @@ export async function rollbackTransaction(databaseName: string): Promise<void> {
 export async function query(connection: sql.Connection | sql.Transaction, action: string, statement: string): Promise<any> {
   const databaseName: string = connection.config ? connection.config.database : connection.parent.config.database;
   Logger.verbose(`[${databaseName}] ${action}`);
-  Logger.verbose('\n', highlightSql(statement));
+  Logger.verbose(`\n${highlightSql(statement)}`);
   const result = await new sql.Request(connection).query(statement);
-  Logger.verbose(`=> `, result.recordset);
+  Logger.verbose(`=> ${result.recordset}`);
   return result.recordset;
 }
 

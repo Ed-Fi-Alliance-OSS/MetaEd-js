@@ -1,3 +1,4 @@
+import { Logger } from '@edfi/metaed-core';
 import { database, query, disconnect, testDatabaseName } from './DatabaseConnection';
 
 async function dropDatabaseIfExists(databaseName: string): Promise<void> {

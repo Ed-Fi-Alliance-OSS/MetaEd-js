@@ -14,38 +14,6 @@ const convertErrorToString = (err) => {
   return err;
 };
 
-const format = winston.format.combine(
-  winston.format.label({
-    label: 'Meadowlark',
-  }),
-  winston.format.timestamp({
-    format: timestampFormat,
-  }),
-  winston.format.json(),
-);
-
-const offlineFormat = winston.format.combine(
-  winston.format.timestamp({
-    format: timestampFormat,
-  }),
-  winston.format.printf(({ level, message, timestamp, extra, error }) => {
-    let m = message;
-    let e = error ?? extra ?? '';
-
-    if (typeof message === 'object') {
-      // TypeScript thinks that this is a string, but it there are cases where it ends up being an object
-      m = convertErrorToString(m);
-    }
-    if (typeof e === 'object') {
-      e = JSON.stringify(e);
-    }
-
-    return `${timestamp} ${level} ${m} ${e}`;
-  }),
-  winston.format.colorize({
-    all: true,
-  }),
-);
 // Logger begins life "uninitialized" and in silent mode
 let isInitialized = false;
 
