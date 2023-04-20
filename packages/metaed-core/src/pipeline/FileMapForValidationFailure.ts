@@ -1,8 +1,8 @@
 import chalk from 'chalk';
-import winston from 'winston';
 import { getFilenameAndLineNumber } from '../file/FileIndex';
 import { State } from '../State';
 import { ValidationFailure } from '../validator/ValidationFailure';
+import { Logger } from '../Logger';
 
 function logValidationFailures(state: State): void {
   state.validationFailure.forEach((validationFailure: ValidationFailure) => {
@@ -13,11 +13,11 @@ function logValidationFailures(state: State): void {
     const logMessage = `  ${validationFailure.message}  ${chalk.gray(`${fullPath} (${adjustedLine}:${characterPosition})`)}`;
 
     if (validationFailure.category === 'error') {
-      winston.error(logMessage);
+      Logger.error(logMessage);
     } else if (validationFailure.category === 'warning') {
-      winston.warn(logMessage);
+      Logger.warn(logMessage);
     } else {
-      winston.info(logMessage);
+      Logger.info(logMessage);
     }
   });
 }

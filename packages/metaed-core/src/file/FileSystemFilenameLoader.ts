@@ -1,18 +1,18 @@
 import fs from 'node:fs';
 import klawSync from 'klaw-sync';
 import path from 'path';
-import winston from 'winston';
 import { createMetaEdFile } from './MetaEdFile';
 import { FileSet } from './MetaEdFile';
 import { State } from '../State';
 import { MetaEdConfiguration } from '../MetaEdConfiguration';
+import { Logger } from '../Logger';
 
 export function loadFiles(state: State): boolean {
   let success = true;
   const { metaEdConfiguration }: { metaEdConfiguration: MetaEdConfiguration } = state;
 
   if (metaEdConfiguration.projects.length !== metaEdConfiguration.projectPaths.length) {
-    winston.error('FileSystemFilenameLoader: project metadata must be same length as project paths');
+    Logger.error('FileSystemFilenameLoader: project metadata must be same length as project paths');
     return false;
   }
 
@@ -61,22 +61,22 @@ export function loadFiles(state: State): boolean {
         fileSet.files.push(metaEdFile);
       });
 
-      winston.info(
+      Logger.info(
         `- ${inputDirectory.path} (${filenamesToLoad.length} .metaed file${filenamesToLoad.length > 1 ? 's' : ''} loaded)`,
       );
 
       fileSets.push(fileSet);
     } catch (exception) {
-      winston.error(`FileSystemFilenameLoader: Unable to read files at location '${inputDirectory.path}'.`, exception);
+      Logger.error(`FileSystemFilenameLoader: Unable to read files at location '${inputDirectory.path}'.`, exception);
       if (exception.code === 'ENOTEMPTY' || exception.code === 'EPERM') {
-        winston.error('Please close any files or folders that may be open in other applications.');
+        Logger.error('Please close any files or folders that may be open in other applications.');
       }
       success = false;
     }
   });
 
   if (!filenamesFoundInDirectories) {
-    winston.error('No MetaEd files found in any input directory.');
+    Logger.error('No MetaEd files found in any input directory.');
     success = false;
   }
 

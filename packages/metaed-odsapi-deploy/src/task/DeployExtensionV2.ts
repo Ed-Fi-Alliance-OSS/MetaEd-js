@@ -1,7 +1,6 @@
 import fs from 'fs-extra';
-import { MetaEdConfiguration, V2Only, versionSatisfies } from '@edfi/metaed-core';
+import { Logger, MetaEdConfiguration, V2Only, versionSatisfies } from '@edfi/metaed-core';
 import path from 'path';
-import winston from 'winston';
 import { CopyOptions } from '../CopyOptions';
 
 const artifacts: CopyOptions[] = [
@@ -28,11 +27,11 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): voi
       if (!fs.pathExistsSync(resolvedArtifact.src)) return;
 
       try {
-        winston.info(`Deploy ${resolvedArtifact.src} to ${resolvedArtifact.dest}`);
+        Logger.info(`Deploy ${resolvedArtifact.src} to ${resolvedArtifact.dest}`);
 
         fs.copySync(resolvedArtifact.src, resolvedArtifact.dest, resolvedArtifact.options);
       } catch (err) {
-        winston.error(`Attempted deploy of ${artifact.src} failed due to issue: ${err.message}`);
+        Logger.error(`Attempted deploy of ${artifact.src} failed due to issue: ${err.message}`);
       }
     });
   });

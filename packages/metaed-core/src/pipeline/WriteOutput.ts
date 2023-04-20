@@ -1,9 +1,9 @@
 import fs from 'node:fs';
 import klawSync from 'klaw-sync';
 import path from 'path';
-import winston from 'winston';
 import { State } from '../State';
 import { GeneratorResult } from '../generator/GeneratorResult';
+import { Logger } from '../Logger';
 
 export const METAED_OUTPUT = 'MetaEdOutput';
 const LINUX_USER_FULL_CONTROL = 0o700;
@@ -18,7 +18,7 @@ function writeOutputFiles(result: GeneratorResult, outputDirectory: string) {
       fs.writeFileSync(`${outputDirectory}/${folderName}/${output.fileName}`, output.resultString, 'utf-8');
     else if (output.resultStream)
       fs.writeFileSync(`${outputDirectory}/${folderName}/${output.fileName}`, output.resultStream);
-    else winston.debug(`No output stream or string for ${result.generatorName}`);
+    else Logger.debug(`No output stream or string for ${result.generatorName}`);
   });
 }
 
@@ -34,12 +34,12 @@ export function execute(state: State): boolean {
     outputDirectory = path.resolve(defaultRootDirectory.path, METAED_OUTPUT);
   }
 
-  winston.info(`- Artifact Directory: ${outputDirectory}`);
+  Logger.info(`- Artifact Directory: ${outputDirectory}`);
 
   try {
     if (fs.existsSync(outputDirectory)) {
       if (!outputDirectory.includes(METAED_OUTPUT)) {
-        winston.error(
+        Logger.error(
           `Unable to delete output directory at path "${outputDirectory}".  Output directory name must contain 'MetaEdOutput'.`,
         );
         return false;
@@ -49,7 +49,7 @@ export function execute(state: State): boolean {
         filter: (item) => ['.metaed', '.metaEd', '.MetaEd', '.METAED'].includes(path.extname(item.path)),
       });
       if (testForMetaEdFilePaths.length > 0) {
-        winston.error(`WriteOutput: MetaEd files found in output location '${outputDirectory}'. Not writing files.`);
+        Logger.error(`WriteOutput: MetaEd files found in output location '${outputDirectory}'. Not writing files.`);
         return false;
       }
       fs.rmdirSync(outputDirectory, { recursive: true });
@@ -61,7 +61,7 @@ export function execute(state: State): boolean {
     state.generatorResults.forEach((result) => {
       // if (result is a Promise)
       if ((result as any).then) {
-        winston.debug('Resolving Promise:');
+        Logger.debug('Resolving Promise:');
         (result as any).then((resolvedResult) => {
           writeOutputFiles(resolvedResult, outputDirectory);
         });
@@ -71,9 +71,9 @@ export function execute(state: State): boolean {
     state.metaEdConfiguration.artifactDirectory = outputDirectory;
     return true;
   } catch (exception) {
-    winston.error(`WriteOutput: Unable to write files to output location '${outputDirectory}'.`, exception);
+    Logger.error(`WriteOutput: Unable to write files to output location '${outputDirectory}'.`, exception);
     if (exception.code === 'ENOTEMPTY' || exception.code === 'EPERM') {
-      winston.error('Please close any files or folders that may be open in other applications.');
+      Logger.error('Please close any files or folders that may be open in other applications.');
     }
     return false;
   }

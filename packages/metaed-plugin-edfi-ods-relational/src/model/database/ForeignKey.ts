@@ -1,6 +1,12 @@
 import * as R from 'ramda';
-import winston from 'winston';
-import { orderByProp, asCommonProperty, NoNamespace, DomainEntityProperty, AssociationProperty } from '@edfi/metaed-core';
+import {
+  orderByProp,
+  asCommonProperty,
+  Logger,
+  NoNamespace,
+  DomainEntityProperty,
+  AssociationProperty,
+} from '@edfi/metaed-core';
 import { EntityProperty, PropertyType, Namespace } from '@edfi/metaed-core';
 import { ReferencePropertyEdfiOds } from '../property/ReferenceProperty';
 import { NoTable, getPrimaryKeys, getColumn } from './Table';
@@ -132,7 +138,7 @@ export function addColumnPair(foreignKey: ForeignKey, columnPair: ColumnPair): v
   if (existingPair == null) {
     foreignKey.columnPairs.push(columnPair);
   } else {
-    winston.debug(
+    Logger.debug(
       `  Attempt to add duplicate column pair: [${columnPair.parentTableColumnId}, ${columnPair.foreignTableColumnId}] on foreign key referencing ${foreignKey.foreignTableSchema}.${foreignKey.foreignTableId} failed.`,
     );
   }

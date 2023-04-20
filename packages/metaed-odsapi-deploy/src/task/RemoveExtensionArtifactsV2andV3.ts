@@ -1,7 +1,6 @@
-import { MetaEdConfiguration, versionSatisfies } from '@edfi/metaed-core';
+import { Logger, MetaEdConfiguration, versionSatisfies } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
-import winston from 'winston';
 
 export function removeExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): boolean {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
@@ -21,11 +20,11 @@ export function removeExtensionArtifacts(metaEdConfiguration: MetaEdConfiguratio
       if (!fs.pathExistsSync(resolvedPath)) return;
 
       try {
-        winston.info(`Remove ${projectName} artifacts ${resolvedPath}`);
+        Logger.info(`Remove ${projectName} artifacts ${resolvedPath}`);
 
         fs.removeSync(resolvedPath);
       } catch (err) {
-        winston.error(`Attempted removal of ${resolvedPath} failed due to issue: ${err.message}`);
+        Logger.error(`Attempted removal of ${resolvedPath} failed due to issue: ${err.message}`);
         result = false;
       }
     });

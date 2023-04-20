@@ -1,15 +1,15 @@
 import * as R from 'ramda';
-import winston from 'winston';
 import { State } from '../State';
 import { ValidationFailure } from '../validator/ValidationFailure';
 import { MetaEdFile, FileSet } from '../file/MetaEdFile';
 import { createFileIndex, getFilenameAndLineNumber } from '../file/FileIndex';
 import { MetaEdErrorListener } from './MetaEdErrorListener';
 import { ParseTreeBuilder } from './ParseTreeBuilder';
+import { Logger } from '../Logger';
 
 export const validateSyntax = R.curry((parseTreeBuilder: ParseTreeBuilder, state: State): void => {
   if (state.loadedFileSet == null) {
-    winston.error('ValidateSyntax: no files to load found');
+    Logger.error('ValidateSyntax: no files to load found');
     return;
   }
 
@@ -20,7 +20,7 @@ export const validateSyntax = R.curry((parseTreeBuilder: ParseTreeBuilder, state
 
       const parseTree = parseTreeBuilder(errorListener, file.contents);
       if (parseTree == null) {
-        winston.error(`ValidateSyntax: parse tree builder returned null for file ${file.fullPath}`);
+        Logger.error(`ValidateSyntax: parse tree builder returned null for file ${file.fullPath}`);
       }
 
       validationFailures.forEach((failure: ValidationFailure) => {

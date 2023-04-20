@@ -1,17 +1,17 @@
 import * as R from 'ramda';
 import fs from 'fs-extra';
 import path from 'path';
-import winston from 'winston';
 import chalk from 'chalk';
 import klawSync from 'klaw-sync';
 import { MetaEdProjectPathPairs } from './ProjectTypes';
 import { deriveNamespaceFromProjectName } from './ProjectTypes';
+import { Logger } from '../Logger';
 
 function findDirectories(directory: string): string[] {
   try {
     return klawSync(directory, { nofile: true }).map((x) => x.path);
   } catch (err) {
-    winston.error(`ProjectLoader: Attempted to find directories in ${directory} failed due to issue: ${err.message}`);
+    Logger.error(`ProjectLoader: Attempted to find directories in ${directory} failed due to issue: ${err.message}`);
   }
   return [];
 }
@@ -34,7 +34,7 @@ async function findProjects(directories: string | string[]): Promise<MetaEdProje
         }
       }
     } catch (err) {
-      winston.error(`ProjectLoader: Attempted load of ${packageToTry} failed due to issue: ${err.message}`);
+      Logger.error(`ProjectLoader: Attempted load of ${packageToTry} failed due to issue: ${err.message}`);
     }
   }
   projects.forEach((p: MetaEdProjectPathPairs) => {
@@ -52,8 +52,8 @@ export function overrideProjectNameAndNamespace(projects: MetaEdProjectPathPairs
     if (projects[index].project.projectName === projectName) return;
 
     const namespaceName = deriveNamespaceFromProjectName(projectName) || '';
-    winston.info(`Overriding projectName: ${projects[index].project.projectName} ${chalk.red('->')} ${projectName}`);
-    winston.info(`Overriding namespaceName: ${projects[index].project.namespaceName} ${chalk.red('->')} ${namespaceName}`);
+    Logger.info(`Overriding projectName: ${projects[index].project.projectName} ${chalk.red('->')} ${projectName}`);
+    Logger.info(`Overriding namespaceName: ${projects[index].project.namespaceName} ${chalk.red('->')} ${namespaceName}`);
 
     projects[index].project.projectName = projectName;
     projects[index].project.namespaceName = namespaceName;

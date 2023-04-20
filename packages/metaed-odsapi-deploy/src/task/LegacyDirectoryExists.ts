@@ -1,7 +1,6 @@
-import { MetaEdConfiguration, versionSatisfies } from '@edfi/metaed-core';
+import { Logger, MetaEdConfiguration, versionSatisfies } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
-import winston from 'winston';
 
 export function legacyCoreDirectoryExists(metaEdConfiguration: MetaEdConfiguration): void {
   const { deployDirectory } = metaEdConfiguration;
@@ -11,7 +10,7 @@ export function legacyCoreDirectoryExists(metaEdConfiguration: MetaEdConfigurati
     const resolvedPath = path.resolve(deployDirectory, legacyPath);
 
     if (fs.pathExistsSync(resolvedPath)) {
-      winston.warn(
+      Logger.warn(
         `"SupportingArtifacts" directory found for Standard at ${resolvedPath}.  Please move any custom artifacts to the new "Artifact" directory and remove the "SupportingArtifacts" directory.`,
       );
     }
@@ -33,7 +32,7 @@ export function legacyExtensionDirectoryExists(metaEdConfiguration: MetaEdConfig
       const resolvedPath = path.resolve(deployDirectory, legacyPath);
 
       if (fs.pathExistsSync(resolvedPath)) {
-        winston.warn(
+        Logger.warn(
           `"SupportingArtifacts" directory found for ${projectName} at ${resolvedPath}.  Please move any custom artifacts to the new "Artifact" directory and remove the "SupportingArtifacts" directory.`,
         );
       }

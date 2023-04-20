@@ -2,10 +2,10 @@
 import fs from 'fs';
 import chalk from 'chalk';
 import path from 'path';
-import winston from 'winston';
 import Yargs from 'yargs';
 import {
   executePipeline,
+  Logger,
   newState,
   newMetaEdConfiguration,
   MetaEdConfiguration,
@@ -13,8 +13,6 @@ import {
 } from '@edfi/metaed-core';
 import type { State, SemVer } from '@edfi/metaed-core';
 import { defaultPlugins } from '@edfi/metaed-default-plugins';
-
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 
 export async function metaEdConsole() {
   const { argv } = Yargs.usage('Usage: $0 [options]')
@@ -60,10 +58,10 @@ export async function metaEdConsole() {
   const dataStandardVersions: SemVer[] = findDataStandardVersions(state.metaEdConfiguration.projects);
 
   if (dataStandardVersions.length === 0) {
-    winston.error('No data standard project found.  Aborting.');
+    Logger.error('No data standard project found.  Aborting.');
     process.exitCode = 1;
   } else if (dataStandardVersions.length > 1) {
-    winston.error('Multiple data standard projects found.  Aborting.');
+    Logger.error('Multiple data standard projects found.  Aborting.');
     process.exitCode = 1;
   } else {
     // eslint-disable-next-line prefer-destructuring
@@ -72,10 +70,10 @@ export async function metaEdConsole() {
       const { failure } = await executePipeline(state);
       process.exitCode = !state.validationFailure.some((vf) => vf.category === 'error') && !failure ? 0 : 1;
     } catch (e) {
-      winston.error(e);
+      Logger.error(e);
       process.exitCode = 1;
     }
   }
   const endTime = Date.now() - startTime;
-  winston.info(`Done in ${chalk.green(endTime > 1000 ? `${endTime / 1000}s` : `${endTime}ms`)}.`);
+  Logger.info(`Done in ${chalk.green(endTime > 1000 ? `${endTime / 1000}s` : `${endTime}ms`)}.`);
 }

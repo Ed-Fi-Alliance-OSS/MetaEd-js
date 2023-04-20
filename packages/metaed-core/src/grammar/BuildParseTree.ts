@@ -1,10 +1,10 @@
 import * as R from 'ramda';
-import winston from 'winston';
 import { ValidationFailure } from '../validator/ValidationFailure';
 import { MetaEdErrorListener } from './MetaEdErrorListener';
 import { State } from '../State';
 import { getAllContents, getFilenameAndLineNumber } from '../file/FileIndex';
 import { ParseTreeBuilder } from './ParseTreeBuilder';
+import { Logger } from '../Logger';
 
 export const buildParseTree = R.curry((parseTreeBuilder: ParseTreeBuilder, state: State): void => {
   const validationFailures: ValidationFailure[] = [];
@@ -13,7 +13,7 @@ export const buildParseTree = R.curry((parseTreeBuilder: ParseTreeBuilder, state
   const parseTree = parseTreeBuilder(errorListener, getAllContents(state.fileIndex));
 
   if (parseTree == null) {
-    winston.error('BuildParseTree: parse tree builder returned null for state metaEdFileIndex contents');
+    Logger.error('BuildParseTree: parse tree builder returned null for state metaEdFileIndex contents');
   }
 
   validationFailures.forEach((failure) => {

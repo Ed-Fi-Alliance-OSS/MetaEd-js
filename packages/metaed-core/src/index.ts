@@ -253,3 +253,5 @@ export { scanForProjects, overrideProjectNameAndNamespace } from './project/Proj
 
 // for plugin testing
 export { MetaEdTextBuilder } from './grammar/MetaEdTextBuilder';
+
+export { Logger } from './Logger';

@@ -1,7 +1,6 @@
 import deepFreeze from 'deep-freeze';
 import * as R from 'ramda';
-import winston from 'winston';
-import { EntityProperty, TopLevelEntity } from '@edfi/metaed-core';
+import { EntityProperty, Logger, TopLevelEntity } from '@edfi/metaed-core';
 import { ColumnType } from './ColumnType';
 import { NoTable, Table } from './Table';
 
@@ -225,7 +224,7 @@ export function addSourceEntityProperty(column: Column, property: EntityProperty
   if (existingProperty == null) {
     column.sourceEntityProperties.push(property);
   } else {
-    winston.warn(
+    Logger.warn(
       `  Attempt to add duplicate source entity property: ${property.metaEdName} (${property.typeHumanizedName})  to column ${column.columnId} failed.`,
     );
   }
@@ -236,6 +235,6 @@ export function addMergedReferenceContext(column: Column, referenceContext: stri
   if (existingProperty == null) {
     column.mergedReferenceContexts.push(referenceContext);
   } else {
-    // winston.warn(`Attempt to add duplicate merged reference context: ${referenceContext} to column ${column.columnId} failed.`);
+    // Logger.warn(`Attempt to add duplicate merged reference context: ${referenceContext} to column ${column.columnId} failed.`);
   }
 }

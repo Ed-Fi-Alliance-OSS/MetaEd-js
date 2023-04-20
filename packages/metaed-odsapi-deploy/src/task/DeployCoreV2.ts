@@ -1,7 +1,6 @@
-import { MetaEdConfiguration, V2Only, versionSatisfies } from '@edfi/metaed-core';
+import { Logger, MetaEdConfiguration, V2Only, versionSatisfies } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
-import winston from 'winston';
 import { CopyOptions } from '../CopyOptions';
 
 const artifacts: CopyOptions[] = [
@@ -26,11 +25,11 @@ function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration) {
 
     try {
       const relativeArtifactSource = path.relative(artifactDirectory, resolvedArtifact.src);
-      winston.info(`Deploy ${relativeArtifactSource} to ${artifact.dest}`);
+      Logger.info(`Deploy ${relativeArtifactSource} to ${artifact.dest}`);
 
       fs.copySync(resolvedArtifact.src, resolvedArtifact.dest, resolvedArtifact.options);
     } catch (err) {
-      winston.error(`Attempted deploy of ${resolvedArtifact.src} failed due to issue: ${err.message}`);
+      Logger.error(`Attempted deploy of ${resolvedArtifact.src} failed due to issue: ${err.message}`);
     }
   });
 }

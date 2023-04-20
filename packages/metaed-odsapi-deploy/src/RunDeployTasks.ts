@@ -1,5 +1,4 @@
-import winston from 'winston';
-import { MetaEdConfiguration } from '@edfi/metaed-core';
+import { Logger, MetaEdConfiguration } from '@edfi/metaed-core';
 import { execute as DeployCore } from './task/DeployCore';
 import { execute as DeployCoreV2 } from './task/DeployCoreV2';
 import { execute as DeployCoreV3 } from './task/DeployCoreV3';
@@ -11,8 +10,6 @@ import { execute as LegacyDirectoryExists } from './task/LegacyDirectoryExists';
 import { execute as RefreshProject } from './task/RefreshProject';
 import { execute as RemoveExtensionArtifacts } from './task/RemoveExtensionArtifacts';
 import { execute as RemoveExtensionArtifactsV2andV3 } from './task/RemoveExtensionArtifactsV2andV3';
-
-winston.configure({ transports: [new winston.transports.Console()], format: winston.format.cli() });
 
 /**
  * Runs the full set of deployment tasks in order, returning true if they are all successful.
@@ -54,7 +51,7 @@ export async function runDeployTasks(
       if (!success) return false;
     }
   } catch (error) {
-    winston.error(error);
+    Logger.error(error);
     return false;
   }
   return true;
