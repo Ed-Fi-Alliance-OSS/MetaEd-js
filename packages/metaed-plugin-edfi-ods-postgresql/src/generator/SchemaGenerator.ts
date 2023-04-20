@@ -1,10 +1,10 @@
-import { GeneratedOutput, GeneratorResult, MetaEdEnvironment, versionSatisfies } from '@edfi/metaed-core';
+import { GeneratedOutput, GeneratorResult, MetaEdEnvironment } from '@edfi/metaed-core';
 import { shouldApplyLicenseHeader } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { fileNameFor, structurePath, template } from './OdsGeneratorBase';
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
-  const prefix: string = versionSatisfies(metaEd.dataStandardVersion, '2.x') ? '0001' : '0010';
+  const prefix: string = '0010';
   const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
 
   metaEd.namespace.forEach((namespace) => {

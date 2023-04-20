@@ -4,7 +4,7 @@ import { dataPath, fileNameFor, registerPartials, structurePath, template } from
 
 export async function generateTables(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment) || {
-    targetTechnologyVersion: '2.0.0',
+    targetTechnologyVersion: '3.0.0',
   };
   const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
 
@@ -155,27 +155,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
     schoolYearsResult,
   ];
 
-  if (versionSatisfies(metaEd.dataStandardVersion, '2.x')) {
-    metaEd.namespace.forEach((namespace) => {
-      let resultString = '';
-      generatorResults.forEach((result: GeneratorResult) => {
-        resultString += result.generatedOutput
-          .filter((output: GeneratedOutput) => namespace.namespaceName === output.namespace)
-          .reduce((string: string, output: GeneratedOutput) => string + output.resultString, '');
-      });
-
-      results.push({
-        name: 'ODS SQL Server Tables',
-        namespace: namespace.namespaceName,
-        folderName: structurePath,
-        fileName: fileNameFor('0004', namespace, 'Tables'),
-        resultString,
-        resultStream: null,
-      });
-    });
-  } else {
-    generatorResults.forEach((result: GeneratorResult) => results.push(...result.generatedOutput));
-  }
+  generatorResults.forEach((result: GeneratorResult) => results.push(...result.generatedOutput));
 
   return {
     generatorName: 'edfiOdsSqlServer.OdsGenerator',

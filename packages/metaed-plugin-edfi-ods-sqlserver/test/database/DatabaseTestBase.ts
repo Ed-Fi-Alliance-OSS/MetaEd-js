@@ -80,7 +80,7 @@ export async function enhanceGenerateAndExecuteSql(
   metaEd: MetaEdEnvironment,
   databaseName: string = testDatabaseName,
 ): Promise<any> {
-  metaEd.dataStandardVersion = metaEd.dataStandardVersion === '0.0.0' ? '2.0.0' : metaEd.dataStandardVersion;
+  metaEd.dataStandardVersion = metaEd.dataStandardVersion === '0.0.0' ? '3.0.0' : metaEd.dataStandardVersion;
   initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
   initializeOdsRelationalPlugin().enhancer.forEach((enhance) => enhance(metaEd));
   initializeOdsSqlServerPlugin().enhancer.forEach((enhance) => enhance(metaEd));
