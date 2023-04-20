@@ -9,7 +9,6 @@ import { enhance as entityProperty } from '../model/property/EntityProperty';
 import { enhance as enumerationProperty } from '../model/property/EnumerationProperty';
 import { enhance as referenceProperty } from '../model/property/ReferenceProperty';
 
-import { enhance as associationExtensionTableEnhancerV2 } from './table/AssociationExtensionTableEnhancerV2';
 import { enhance as associationExtensionTableEnhancer } from './table/AssociationExtensionTableEnhancer';
 import { enhance as associationSubclassTableEnhancer } from './table/AssociationSubclassTableEnhancer';
 import { enhance as associationTableEnhancer } from './table/AssociationTableEnhancer';
@@ -64,7 +63,6 @@ export function enhancerList(): Enhancer[] {
     // Table Creation Phase
     updateCascadeTopLevelEntityEnhancer,
 
-    associationExtensionTableEnhancerV2,
     associationExtensionTableEnhancer,
     associationSubclassTableEnhancer,
     associationTableEnhancer,
