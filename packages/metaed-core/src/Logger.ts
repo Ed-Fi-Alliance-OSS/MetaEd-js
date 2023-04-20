@@ -72,8 +72,7 @@ export function initializeLogging(): void {
     level: process.env.LOG_LEVEL?.toLocaleLowerCase() ?? (offline ? 'debug' : 'info'),
     transports: [
       new winston.transports.Console({
-        // format: winston.format.cli(),
-        format: offline ? offlineFormat : format,
+        format: winston.format.cli(),
       }),
     ],
   });
