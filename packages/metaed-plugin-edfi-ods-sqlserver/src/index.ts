@@ -3,7 +3,6 @@ import { generate as OdsGenerator } from './generator/OdsGenerator';
 import { generate as SchemaGenerator } from './generator/SchemaGenerator';
 import { generate as IdIndexesGenerator } from './generator/IdIndexesGenerator';
 
-import { enhance as templateSpecificTablePropertyEnhancerV2 } from './enhancer/TemplateSpecificTablePropertyEnhancerV2';
 import { enhance as templateSpecificTablePropertyEnhancer } from './enhancer/TemplateSpecificTablePropertyEnhancer';
 import { enhance as sqlServerTableNamingEnhancer } from './enhancer/SqlServerTableNamingEnhancer';
 import { enhance as sqlServerColumnNamingEnhancer } from './enhancer/SqlServerColumnNamingEnhancer';
@@ -26,7 +25,6 @@ export function initialize(): MetaEdPlugin {
       sqlServerTableSetupEnhancer,
       sqlServerTableNamingEnhancer,
       sqlServerColumnNamingEnhancer,
-      templateSpecificTablePropertyEnhancerV2,
       templateSpecificTablePropertyEnhancer,
       sqlServerForeignKeyNamingEnhancer,
       addSchemaContainerEnhancer,
