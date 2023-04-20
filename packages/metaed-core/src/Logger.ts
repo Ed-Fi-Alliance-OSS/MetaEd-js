@@ -4,8 +4,6 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 import winston from 'winston';
 
-const timestampFormat: string = 'YYYY-MM-DD HH:mm:ss.SSS';
-
 const convertErrorToString = (err) => {
   // Preserve any dictionary, but otherwise convert to string
   if (err != null && err.constructor !== Object) {
