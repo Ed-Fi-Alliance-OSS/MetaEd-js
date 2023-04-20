@@ -15,7 +15,6 @@ import { enhance as associationTableEnhancer } from './table/AssociationTableEnh
 import { enhance as baseDescriptorTableCreatingEnhancer } from './table/BaseDescriptorTableEnhancer';
 import { enhance as descriptorTableEnhancer } from './table/DescriptorTableEnhancer';
 import { enhance as discriminatorColumnFlaggingEnhancer } from './table/DiscriminatorColumnFlaggingEnhancer';
-import { enhance as domainEntityExtensionTableEnhancerV2 } from './table/DomainEntityExtensionTableEnhancerV2';
 import { enhance as domainEntityExtensionTableEnhancer } from './table/DomainEntityExtensionTableEnhancer';
 import { enhance as domainEntitySubclassTableEnhancer } from './table/DomainEntitySubclassTableEnhancer';
 import { enhance as domainEntityTableEnhancer } from './table/DomainEntityTableEnhancer';
@@ -67,7 +66,6 @@ export function enhancerList(): Enhancer[] {
     associationSubclassTableEnhancer,
     associationTableEnhancer,
     descriptorTableEnhancer,
-    domainEntityExtensionTableEnhancerV2,
     domainEntityExtensionTableEnhancer,
     domainEntitySubclassTableEnhancer,
     domainEntityTableEnhancer,
