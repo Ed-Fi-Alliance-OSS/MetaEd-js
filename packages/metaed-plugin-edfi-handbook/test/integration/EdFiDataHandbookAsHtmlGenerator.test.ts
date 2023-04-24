@@ -14,7 +14,7 @@ import { initialize as initializeHandbookPlugin } from '../../src/index';
 import { generate } from '../../src/generator/EdFiDataHandbookAsHtmlIndexGenerator';
 
 describe('when generating HTML version of handbook', (): void => {
-  const dataStandardVersion: SemVer = '2.0.0';
+  const dataStandardVersion: SemVer = '3.0.0';
   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion };
 
   let generatorResults: GeneratorResult;

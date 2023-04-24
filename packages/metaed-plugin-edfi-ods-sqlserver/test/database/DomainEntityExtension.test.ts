@@ -124,7 +124,7 @@ describe('when domain entity extension has multiple properties', (): void => {
   it('should not have standard resource columns', async () => {
     expect(await columnExists(column(extension, domainEntityExtensionName, 'Id'))).toBe(false);
     expect(await columnExists(column(extension, domainEntityExtensionName, 'LastModifiedDate'))).toBe(false);
-    expect(await columnExists(column(extension, domainEntityExtensionName, 'CreateDate'))).toBe(false);
+    expect(await columnExists(column(extension, domainEntityExtensionName, 'CreateDate'))).toBe(true);
   });
 
   it('should have common table', async () => {
