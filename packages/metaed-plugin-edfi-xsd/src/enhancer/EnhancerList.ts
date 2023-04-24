@@ -49,7 +49,6 @@ import { enhance as addEnumerationSimpleTypesEnhancer } from './schema/AddEnumer
 import { enhance as addIntegerSimpleTypesEnhancer } from './schema/AddIntegerSimpleTypesEnhancer';
 import { enhance as addStringSimpleTypesEnhancer } from './schema/AddStringSimpleTypesEnhancer';
 import { enhance as addSchemaContainerEnhancer } from './schema/AddSchemaContainerEnhancer';
-import { enhance as addSchemaContainerEnhancerV2 } from './schema/AddSchemaContainerEnhancerV2';
 
 import { enhance as addLookupTypesDiminisher } from '../diminisher/AddLookupTypesDiminisher';
 
@@ -135,7 +134,6 @@ export function enhancerList(): Enhancer[] {
 
     // SchemaCreationPhase
     addSchemaContainerEnhancer,
-    addSchemaContainerEnhancerV2,
 
     // MergeInterchangeElementOrderPhase
     mergedInterchangeElementOrderEnhancer,
