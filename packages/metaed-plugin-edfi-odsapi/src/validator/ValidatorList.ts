@@ -1,7 +1,6 @@
 import { Validator } from '@edfi/metaed-core';
 
 import { validate as mergingEntityExtensionPropertyWithCorePropertyOfSameNameIsUnsupported } from './UnsupportedExtension/MergingEntityExtensionPropertyWithCorePropertyOfSameNameIsUnsupported';
-import { validate as mergingRequiredWithOptionalPropertyIsUnsupported } from './UnsupportedExtension/MergingRequiredWithOptionalPropertyIsUnsupported';
 
 import { validate as extendingSubclassOfEducationOrganizationProhibited } from './UpcomingImprovements/ExtendingSubclassOfEducationOrganizationProhibited';
 import { validate as extendingStudentProgramAssociationOrSubclassProhibited } from './UpcomingImprovements/ExtendingStudentProgramAssociationOrSubclassProhibited';
@@ -15,7 +14,6 @@ import { validate as v2CannotDuplicateNamesInDependencyNamespaces } from './Cros
 export function validatorList(): Validator[] {
   return [
     mergingEntityExtensionPropertyWithCorePropertyOfSameNameIsUnsupported,
-    mergingRequiredWithOptionalPropertyIsUnsupported,
 
     extendingStudentProgramAssociationOrSubclassProhibited,
     extendingSubclassOfEducationOrganizationProhibited,
