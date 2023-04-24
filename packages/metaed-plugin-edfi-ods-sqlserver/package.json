@@ -22,8 +22,7 @@
     "handlebars": "^4.7.7",
     "hash.js": "^1.1.7",
     "ramda": "^0.28.0",
-    "sugar": "^2.0.6",
-    "winston": "3.8.2"
+    "sugar": "^2.0.6"
   },
   "devDependencies": {
     "@edfi/ed-fi-model-2.0": "3.0.1",
