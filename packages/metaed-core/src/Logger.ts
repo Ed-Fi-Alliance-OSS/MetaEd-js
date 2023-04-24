@@ -70,10 +70,6 @@ export const Logger = {
   child: () => Logger,
 };
 
-export function writeErrorToLog(moduleName: string, method: string, status?: number | undefined, error?: any): void {
-  Logger.error(`${moduleName}.${method} ${status || ''}`, error);
-}
-
 export function isDebugEnabled(): boolean {
   return logger.levels[logger.level] >= logger.levels.debug;
 }
