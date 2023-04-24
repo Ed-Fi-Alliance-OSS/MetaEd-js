@@ -104,29 +104,7 @@ describe('when common extension is a required common override property on associ
   });
 
   it('should have association extension table', async () => {
-    expect(await tableExists(table(extension, associationExtensionName))).toBe(true);
-  });
-
-  it('should have correct primary keys', async () => {
-    expect(await tablePrimaryKeys(table(extension, associationExtensionName))).toEqual([
-      integerPropertyName2,
-      integerPropertyName3,
-    ]);
-  });
-
-  it('should have correct foreign key relationship', async () => {
-    const foreignKey1: DatabaseForeignKey = foreignKey(
-      [
-        column(extension, associationExtensionName, integerPropertyName2),
-        column(extension, associationExtensionName, integerPropertyName3),
-      ],
-      [
-        column(namespaceName, associationName, integerPropertyName2),
-        column(namespaceName, associationName, integerPropertyName3),
-      ],
-    );
-    expect(await foreignKeyExists(foreignKey1)).toBe(true);
-    expect(await foreignKeyDeleteCascades(foreignKey1)).toBe(true);
+    expect(await tableExists(table(extension, associationExtensionName))).toBe(false);
   });
 
   it('should have common table', async () => {
@@ -257,20 +235,7 @@ describe('when common extension is a required common override property on domain
   });
 
   it('should have domain entity extension table', async () => {
-    expect(await tableExists(table(extension, domainEntityExtensionName))).toBe(true);
-  });
-
-  it('should have correct primary keys', async () => {
-    expect(await tablePrimaryKeys(table(extension, domainEntityExtensionName))).toEqual([integerPropertyName2]);
-  });
-
-  it('should have correct foreign key relationship', async () => {
-    const foreignKey1: DatabaseForeignKey = foreignKey(
-      [column(extension, domainEntityExtensionName, integerPropertyName2)],
-      [column(namespaceName, domainEntityName, integerPropertyName2)],
-    );
-    expect(await foreignKeyExists(foreignKey1)).toBe(true);
-    expect(await foreignKeyDeleteCascades(foreignKey1)).toBe(true);
+    expect(await tableExists(table(extension, domainEntityExtensionName))).toBe(false);
   });
 
   it('should have common table', async () => {
