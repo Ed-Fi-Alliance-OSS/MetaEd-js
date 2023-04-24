@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`when enhancing descriptor should have reference type annotation documentation assigned 1`] = `"Provides references for complex type name descriptor and its details during interchange. Use XML IDREF to reference a record that is included in the interchange."`;
-
-exports[`when enhancing descriptor with optional map type should not have items 1`] = `"Provides references for complex type name descriptor and its details during interchange. Use XML IDREF to reference a record that is included in the interchange."`;
-
-exports[`when enhancing descriptor with property and map type should create map type item element 1`] = `"The mapping to a known ComplexTypeName enumeration type."`;
-
-exports[`when enhancing descriptor with required map type should not have items 1`] = `"Provides references for complex type name descriptor and its details during interchange. Use XML IDREF to reference a record that is included in the interchange."`;
