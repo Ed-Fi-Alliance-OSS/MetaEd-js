@@ -41,7 +41,6 @@ import { enhance as addCommonSubclassComplexTypesEnhancer } from './schema/AddCo
 import { enhance as addCommonExtensionComplexTypesEnhancer } from './schema/AddCommonExtensionComplexTypesEnhancer';
 import { enhance as addDecimalSimpleTypesEnhancer } from './schema/AddDecimalSimpleTypesEnhancer';
 import { enhance as addDescriptorComplexTypesEnhancer } from './schema/AddDescriptorComplexTypesEnhancer';
-import { enhance as AddDescriptorComplexTypesEnhancerV2 } from './schema/AddDescriptorComplexTypesEnhancerV2';
 import { enhance as AddDescriptorExtendedReferenceTypesEnhancer } from './schema/AddDescriptorExtendedReferenceTypesEnhancer';
 import { enhance as addDomainEntityComplexTypesEnhancer } from './schema/AddDomainEntityComplexTypesEnhancer';
 import { enhance as addDomainEntityExtensionComplexTypesEnhancer } from './schema/AddDomainEntityExtensionComplexTypesEnhancer';
@@ -122,7 +121,6 @@ export function enhancerList(): Enhancer[] {
     addCommonExtensionComplexTypesEnhancer,
     addCommonSubclassComplexTypesEnhancer,
     addDescriptorComplexTypesEnhancer,
-    AddDescriptorComplexTypesEnhancerV2,
     AddDescriptorExtendedReferenceTypesEnhancer,
     addDomainEntityComplexTypesEnhancer,
     addDomainEntityExtensionComplexTypesEnhancer,
