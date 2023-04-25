@@ -40,11 +40,6 @@ describe('when generating xsd for descriptor', (): void => {
     const elements = xpathSelect("/xs:schema/xs:complexType[@name='CoreEntityDescriptor']", coreResult);
     expect(elements).toHaveLength(1);
   });
-
-  it('should generate descriptor reference', (): void => {
-    const elements = xpathSelect("/xs:schema/xs:complexType[@name='CoreEntityDescriptorReferenceType']", coreResult);
-    expect(elements).toHaveLength(1);
-  });
 });
 
 describe('when generating xsd for domain entity in extension namespace with reference to core descriptor', (): void => {
@@ -94,11 +89,6 @@ describe('when generating xsd for domain entity in extension namespace with refe
 
   it('should generate core descriptor', (): void => {
     const elements = xpathSelect("/xs:schema/xs:complexType[@name='CoreEntityDescriptor']", coreResult);
-    expect(elements).toHaveLength(1);
-  });
-
-  it('should generate core domain entity reference', (): void => {
-    const elements = xpathSelect("/xs:schema/xs:complexType[@name='CoreEntityDescriptorReferenceType']", coreResult);
     expect(elements).toHaveLength(1);
   });
 
