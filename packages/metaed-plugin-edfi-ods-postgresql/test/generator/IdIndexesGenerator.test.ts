@@ -15,7 +15,7 @@ describe('when generating id indexes for core namespace table with no id', (): v
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
     metaEd.namespace.set(namespace.namespaceName, namespace);
     metaEd.plugin.set('edfiOdsPostgresql', {
-      targetTechnologyVersion: '2.0.0',
+      targetTechnologyVersion: '3.0.0',
       shortName: '',
       namespace: new Map(),
       config: {},

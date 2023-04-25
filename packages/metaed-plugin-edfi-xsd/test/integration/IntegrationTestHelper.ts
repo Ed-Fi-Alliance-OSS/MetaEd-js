@@ -38,7 +38,7 @@ export function initializeNamespaceDependencies(
 }
 
 export async function enhanceAndGenerate(metaEd: MetaEdEnvironment): Promise<EnhanceAndGenerateResult> {
-  metaEd.dataStandardVersion = '2.0.0';
+  metaEd.dataStandardVersion = '3.0.0';
 
   initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
   initializeXsdPlugin().enhancer.forEach((enhance) => enhance(metaEd));

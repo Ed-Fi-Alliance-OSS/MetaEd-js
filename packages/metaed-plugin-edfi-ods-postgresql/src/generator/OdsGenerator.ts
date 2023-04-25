@@ -6,7 +6,7 @@ import { NamespaceEdfiOdsPostgresql } from '../model/Namespace';
 export async function generateTables(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
   const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment) || {
-    targetTechnologyVersion: '2.0.0',
+    targetTechnologyVersion: '3.0.0',
   };
   const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
 

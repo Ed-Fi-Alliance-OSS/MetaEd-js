@@ -44,6 +44,6 @@ export const newMetaEdConfiguration: () => MetaEdConfiguration = () => ({
   projects: [],
   projectPaths: [],
   pluginConfigDirectories: [],
-  defaultPluginTechVersion: '2.0.0',
+  defaultPluginTechVersion: '3.0.0',
   allianceMode: false,
 });

@@ -63,7 +63,7 @@ export function shouldApplyLicenseHeader(metaEd: MetaEdEnvironment): Boolean {
   const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment) ||
     (metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment) ||
     (metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment) || {
-      targetTechnologyVersion: '2.0.0',
+      targetTechnologyVersion: '3.0.0',
     };
   return metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 }

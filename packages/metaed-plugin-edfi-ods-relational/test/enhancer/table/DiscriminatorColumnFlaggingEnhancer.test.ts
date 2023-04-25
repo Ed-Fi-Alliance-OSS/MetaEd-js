@@ -46,7 +46,7 @@ describe('when DiscriminatorColumnFlaggingEnhancer enhances table with DE parent
   metaEd.plugin.set(
     'edfiOdsRelational',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '2.0.0',
+      targetTechnologyVersion: '3.0.0',
     }),
   );
 
