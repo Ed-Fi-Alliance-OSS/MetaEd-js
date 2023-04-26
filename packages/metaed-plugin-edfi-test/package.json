@@ -1,0 +1,25 @@
+{
+  "name": "@edfi/metaed-plugin-edfi-test",
+  "main": "dist/index.js",
+  "version": "4.0.1-dev.11",
+  "description": "Ed-Fi Handbook plugin for MetaEd",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "publishConfig": {
+    "registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/"
+  },
+  "files": [
+    "/dist",
+    "/CHANGELOG.md",
+    "/LICENSE.md",
+    "/package.json"
+  ],
+  "dependencies": {
+    "@edfi/metaed-core": "4.0.1-dev.11"
+  },
+  "scripts": {
+    "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
+    "build:clean": "rimraf dist",
+    "build:dist": "tsc",
+    "build:copy-non-ts": "copyfiles -u 1 -e \"**/*.ts\" \"src/**/*\" dist --verbose"
+  }
+}
