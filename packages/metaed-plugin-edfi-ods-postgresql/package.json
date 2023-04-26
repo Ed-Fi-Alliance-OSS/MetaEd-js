@@ -1,7 +1,7 @@
 {
   "name": "@edfi/metaed-plugin-edfi-ods-postgresql",
   "main": "dist/index.js",
-  "version": "4.0.1-dev.11",
+  "version": "4.0.1-dev.12",
   "description": "Ed-Fi PostgreSQL ODS plugin for MetaEd",
   "license": "SEE LICENSE IN LICENSE.md",
   "publishConfig": {
@@ -14,10 +14,10 @@
     "/package.json"
   ],
   "dependencies": {
-    "@edfi/metaed-core": "4.0.1-dev.11",
-    "@edfi/metaed-plugin-edfi-ods-relational": "4.0.1-dev.11",
-    "@edfi/metaed-plugin-edfi-unified": "4.0.1-dev.11",
-    "@edfi/metaed-plugin-edfi-unified-advanced": "4.0.1-dev.11",
+    "@edfi/metaed-core": "4.0.1-dev.12",
+    "@edfi/metaed-plugin-edfi-ods-relational": "4.0.1-dev.12",
+    "@edfi/metaed-plugin-edfi-unified": "4.0.1-dev.12",
+    "@edfi/metaed-plugin-edfi-unified-advanced": "4.0.1-dev.12",
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.7.7",
     "hash.js": "^1.1.7",
