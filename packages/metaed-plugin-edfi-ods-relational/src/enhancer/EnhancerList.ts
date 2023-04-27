@@ -36,6 +36,8 @@ import { enhance as foreignKeyForeignTableReferenceEnhancer } from './ForeignKey
 import { enhance as columnDeprecationEnhancer } from './ColumnDeprecationEnhancer';
 import { enhance as tableDeprecationEnhancer } from './TableDeprecationEnhancer';
 
+import { enhance as assessmentContentStandardTableDiminisher } from '../diminisher/AssessmentContentStandardTableDiminisher';
+
 export function enhancerList(): Enhancer[] {
   return [
     // Property Collection Cloning Phase
@@ -71,6 +73,8 @@ export function enhancerList(): Enhancer[] {
     domainEntityTableEnhancer,
     enumerationTableEnhancer,
     schoolYearEnumerationTableEnhancer,
+
+    assessmentContentStandardTableDiminisher,
 
     // Foreign Key Creation Phase
     foreignKeyCreatingTableEnhancer,
