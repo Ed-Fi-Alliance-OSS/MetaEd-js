@@ -37,6 +37,10 @@
       "extensionEntityNames": [
         {
           "schema": "commoncardinality",
+          "name": "StudentEducationOrganizationAssociationLanguageCollection"
+        },
+        {
+          "schema": "commoncardinality",
           "name": "StudentEducationOrganizationAssociationLanguageSet"
         },
         {
@@ -240,6 +244,86 @@
       "tableNames": {
         "sqlServer": "PriorYearLeaverLanguageUse",
         "postgreSql": "PriorYearLeaverLanguageUse"
+      }
+    },
+    {
+      "schema": "commoncardinality",
+      "name": "StudentEducationOrganizationAssociationLanguageCollection",
+      "locallyDefinedProperties": [
+        {
+          "propertyName": "BeginDate",
+          "propertyType": {
+            "dbType": "Date",
+            "maxLength": 0,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "Begin date of the effective date for the LanguageCollection",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "BeginDate",
+            "postgreSql": "BeginDate"
+          }
+        },
+        {
+          "propertyName": "CreateDate",
+          "propertyType": {
+            "dbType": "DateTime2",
+            "maxLength": 0,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "",
+          "isIdentifying": false,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "CreateDate",
+            "postgreSql": "CreateDate"
+          }
+        },
+        {
+          "propertyName": "EndDate",
+          "propertyType": {
+            "dbType": "Date",
+            "maxLength": 0,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": true
+          },
+          "description": "End date of the effective date for the LanguageCollection",
+          "isIdentifying": false,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "EndDate",
+            "postgreSql": "EndDate"
+          }
+        }
+      ],
+      "identifiers": [
+        {
+          "identifierName": "StudentEducationOrganizationAssociationLanguageCollection_PK",
+          "identifyingPropertyNames": [
+            "BeginDate",
+            "EducationOrganizationId",
+            "LanguageDescriptorId",
+            "StudentUSI"
+          ],
+          "isPrimary": true,
+          "isUpdatable": false,
+          "constraintNames": {
+            "sqlServer": "StudentEducationOrganizationAssociationLanguageCollection_PK",
+            "postgreSql": "StudentEducationOrganizationAssociationLanguageCollection_PK"
+          }
+        }
+      ],
+      "isAbstract": false,
+      "description": "LanguageCollection being used",
+      "tableNames": {
+        "sqlServer": "StudentEducationOrganizationAssociationLanguageCollection",
+        "postgreSql": "StudentEducationOrganizationAssociationLanguageCollection"
       }
     },
     {
@@ -648,6 +732,134 @@
     {
       "fullName": {
         "schema": "commoncardinality",
+        "name": "FK_StudentEducationOrganizationAssociationLanguageCollection_StudentEducationOrganizationAssociationLanguage"
+      },
+      "cardinality": "OneToOneOrMore",
+      "primaryEntityFullName": {
+        "schema": "edfi",
+        "name": "StudentEducationOrganizationAssociationLanguage"
+      },
+      "primaryEntityProperties": [
+        {
+          "propertyName": "EducationOrganizationId",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "The identifier assigned to an education organization.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "EducationOrganizationId",
+            "postgreSql": "EducationOrganizationId"
+          }
+        },
+        {
+          "propertyName": "LanguageDescriptorId",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "A specification of which written or spoken communication is being used.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "LanguageDescriptorId",
+            "postgreSql": "LanguageDescriptorId"
+          }
+        },
+        {
+          "propertyName": "StudentUSI",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "A unique alphanumeric code assigned to a student.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "StudentUSI",
+            "postgreSql": "StudentUSI"
+          }
+        }
+      ],
+      "secondaryEntityFullName": {
+        "schema": "commoncardinality",
+        "name": "StudentEducationOrganizationAssociationLanguageCollection"
+      },
+      "secondaryEntityProperties": [
+        {
+          "propertyName": "EducationOrganizationId",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "The identifier assigned to an education organization.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "EducationOrganizationId",
+            "postgreSql": "EducationOrganizationId"
+          }
+        },
+        {
+          "propertyName": "LanguageDescriptorId",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "A specification of which written or spoken communication is being used.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "LanguageDescriptorId",
+            "postgreSql": "LanguageDescriptorId"
+          }
+        },
+        {
+          "propertyName": "StudentUSI",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "A unique alphanumeric code assigned to a student.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "StudentUSI",
+            "postgreSql": "StudentUSI"
+          }
+        }
+      ],
+      "isIdentifying": true,
+      "isRequired": true,
+      "constraintNames": {
+        "sqlServer": "FK_StudentEducationOrganizationAssociationLanguageCollection_StudentEducationOrganizationAssociationLanguage",
+        "postgreSql": "FK_2feba7_StudentEducationOrganizationAssociationLanguage"
+      },
+      "potentiallyLogical": false
+    },
+    {
+      "fullName": {
+        "schema": "commoncardinality",
         "name": "FK_StudentEducationOrganizationAssociationLanguageSet_StudentEducationOrganizationAssociationLanguage"
       },
       "cardinality": "OneToZeroOrMore",
@@ -778,7 +990,7 @@
         "schema": "commoncardinality",
         "name": "FK_StudentEducationOrganizationAssociationLanguageSetLanguageUse_LanguageUseDescriptor"
       },
-      "cardinality": "OneToZeroOrMore",
+      "cardinality": "OneToOneOrMore",
       "primaryEntityFullName": {
         "schema": "edfi",
         "name": "LanguageUseDescriptor"

@@ -82,7 +82,12 @@ function cardinalityFrom(
     domainMetadataAggregatesForNamespace,
     foreignTable,
   );
-  if (rootAggregate == null) return 'OneToZeroOrMore';
+
+  if (rootAggregate == null) {
+    // METAED-1435: Fallback to checking source reference property for cardinality
+    if (foreignKey.sourceReference.isRequiredCollection) return 'OneToOneOrMore';
+    return 'OneToZeroOrMore';
+  }
 
   // METAED-948
   if (versionSatisfies(targetTechnologyVersion, '<3.4.0')) {

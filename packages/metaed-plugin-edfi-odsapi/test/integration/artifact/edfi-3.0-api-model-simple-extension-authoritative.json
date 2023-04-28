@@ -1065,7 +1065,7 @@
         "schema": "sample",
         "name": "FK_StaffMyCollection_Staff"
       },
-      "cardinality": "OneToZeroOrMore",
+      "cardinality": "OneToOneOrMore",
       "primaryEntityFullName": {
         "schema": "edfi",
         "name": "Staff"
@@ -1112,7 +1112,7 @@
         "schema": "sample",
         "name": "FK_StaffRatingLevel_Staff"
       },
-      "cardinality": "OneToZeroOrMore",
+      "cardinality": "OneToOneOrMore",
       "primaryEntityFullName": {
         "schema": "edfi",
         "name": "Staff"

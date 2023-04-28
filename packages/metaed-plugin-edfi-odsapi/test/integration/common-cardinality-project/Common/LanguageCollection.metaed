@@ -1,0 +1,8 @@
+Common LanguageCollection
+    documentation "LanguageCollection"
+    date BeginDate
+        documentation "Begin date of the effective date for the LanguageCollection"
+        is part of identity
+    date EndDate
+        documentation "End date of the effective date for the LanguageCollection"
+        is optional

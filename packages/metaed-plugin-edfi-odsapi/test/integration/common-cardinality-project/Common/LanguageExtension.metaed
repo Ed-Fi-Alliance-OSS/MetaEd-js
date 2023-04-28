@@ -2,3 +2,6 @@ Common EdFi.Language additions
     common LanguageSet
       documentation "LanguageSet being used"
       is required
+    common LanguageCollection
+      documentation "LanguageCollection being used"
+      is required collection
