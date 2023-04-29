@@ -62,7 +62,7 @@ function build(metaEd: MetaEdEnvironment, entity: SchoolYearEnumeration): Table 
       {
         ...newColumn(),
         type: 'string' as ColumnType,
-        length: '50',
+        maxLength: '50',
         columnId: 'SchoolYearDescription',
         nameComponents: [{ ...newColumnNameComponent(), name: 'SchoolYearDescription', isSynthetic: true }],
         isPartOfPrimaryKey: false,

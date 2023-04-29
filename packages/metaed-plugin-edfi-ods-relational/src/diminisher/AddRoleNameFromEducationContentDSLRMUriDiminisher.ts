@@ -36,7 +36,7 @@ function renameAndTruncateEducationContentDerivativeSourceLearningResourceMetada
   column.columnId = learningResourceMetadataURI;
   column.nameComponents = [{ ...newColumnNameComponent(), name: learningResourceMetadataURI, isSynthetic: true }];
   column.type = 'string';
-  (column as StringColumn).length = '225';
+  (column as StringColumn).maxLength = '225';
 }
 
 function renameAndTruncateEducationContentDerivativeSourceURI(tablesForCoreNamespace: Map<string, Table>): void {
@@ -50,7 +50,7 @@ function renameAndTruncateEducationContentDerivativeSourceURI(tablesForCoreNames
   column.columnId = uri;
   column.nameComponents = [{ ...newColumnNameComponent(), name: uri, isSynthetic: true }];
   column.type = 'string';
-  (column as StringColumn).length = '225';
+  (column as StringColumn).maxLength = '225';
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {

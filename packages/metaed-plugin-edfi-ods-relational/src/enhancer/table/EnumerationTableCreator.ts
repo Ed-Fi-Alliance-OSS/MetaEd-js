@@ -68,7 +68,7 @@ export const enumerationTableCreator: {
         {
           ...newColumn(),
           type: 'string' as ColumnType,
-          length: '50',
+          maxLength: '50',
           columnId: 'CodeValue',
           nameComponents: [{ ...newColumnNameComponent(), name: 'CodeValue', isSynthetic: true }],
           isPartOfPrimaryKey: false,
@@ -78,7 +78,7 @@ export const enumerationTableCreator: {
         {
           ...newColumn(),
           type: 'string' as ColumnType,
-          length: '1024',
+          maxLength: '1024',
           columnId: 'Description',
           nameComponents: [{ ...newColumnNameComponent(), name: 'Description', isSynthetic: true }],
           isPartOfPrimaryKey: false,
@@ -88,7 +88,7 @@ export const enumerationTableCreator: {
         {
           ...newColumn(),
           type: 'string' as ColumnType,
-          length: '450',
+          maxLength: '450',
           columnId: 'ShortDescription',
           nameComponents: [{ ...newColumnNameComponent(), name: 'ShortDescription', isSynthetic: true }],
           isPartOfPrimaryKey: false,

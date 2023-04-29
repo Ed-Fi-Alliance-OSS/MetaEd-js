@@ -21,7 +21,8 @@ const createDecimalColumn = (property: DecimalProperty): DecimalColumn => ({
 const createStringColumn = (property: StringProperty): StringColumn => ({
   ...newColumn(),
   type: 'string',
-  length: property.maxLength || '0',
+  minLength: property.minLength || '0',
+  maxLength: property.maxLength || '0',
 });
 
 export function createNewColumnFor(property: SimpleProperty): Column {

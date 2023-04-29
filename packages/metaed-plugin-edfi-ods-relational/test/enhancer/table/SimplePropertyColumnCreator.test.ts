@@ -536,7 +536,7 @@ describe('when converting shared string property to column', (): void => {
   it('should return converted column', (): void => {
     expect(columns).toHaveLength(1);
     expect(columns[0].type).toBe('string');
-    expect((columns[0] as StringColumn).length).toBe(length);
+    expect((columns[0] as StringColumn).maxLength).toBe(length);
     expect(columns[0].columnId).toBe(contextName + propertyName);
     expect(columns[0].description).toBe(propertyDocumentation);
     expect(columns[0].isIdentityDatabaseType).toBe(true);
@@ -621,7 +621,7 @@ describe('when converting string property to column', (): void => {
   it('should return converted column', (): void => {
     expect(columns).toHaveLength(1);
     expect(columns[0].type).toBe('string');
-    expect((columns[0] as StringColumn).length).toBe(length);
+    expect((columns[0] as StringColumn).maxLength).toBe(length);
     expect(columns[0].columnId).toBe(contextName + propertyName);
     expect(columns[0].description).toBe(propertyDocumentation);
     expect(columns[0].isIdentityDatabaseType).toBe(true);

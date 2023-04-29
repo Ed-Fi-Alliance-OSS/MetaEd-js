@@ -26,7 +26,7 @@ export function resolveDataType(column: Column): string {
     case 'decimal':
       return ColumnDataTypes.decimal((column as DecimalColumn).precision, (column as DecimalColumn).scale);
     case 'string':
-      return ColumnDataTypes.string((column as StringColumn).length);
+      return ColumnDataTypes.string((column as StringColumn).maxLength);
     default:
       return ColumnDataTypes[column.type];
   }

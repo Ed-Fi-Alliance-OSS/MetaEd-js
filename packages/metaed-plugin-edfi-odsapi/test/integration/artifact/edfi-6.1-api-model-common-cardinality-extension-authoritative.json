@@ -110,6 +110,7 @@
           "propertyName": "StudentUId",
           "propertyType": {
             "dbType": "String",
+            "minLength": 0,
             "maxLength": 32,
             "precision": 0,
             "scale": 0,
@@ -254,6 +255,7 @@
           "propertyName": "BeginDate",
           "propertyType": {
             "dbType": "Date",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 0,
             "scale": 0,
@@ -288,6 +290,7 @@
           "propertyName": "EndDate",
           "propertyType": {
             "dbType": "Date",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 0,
             "scale": 0,
@@ -334,6 +337,7 @@
           "propertyName": "BeginDate",
           "propertyType": {
             "dbType": "Date",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 0,
             "scale": 0,
@@ -368,6 +372,7 @@
           "propertyName": "EndDate",
           "propertyType": {
             "dbType": "Date",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 0,
             "scale": 0,
@@ -470,6 +475,7 @@
           "propertyName": "LanguageDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -493,6 +499,7 @@
           "propertyName": "LanguageDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -530,6 +537,7 @@
           "propertyName": "StudentUId",
           "propertyType": {
             "dbType": "String",
+            "minLength": 0,
             "maxLength": 32,
             "precision": 0,
             "scale": 0,
@@ -553,6 +561,7 @@
           "propertyName": "StudentUId",
           "propertyType": {
             "dbType": "String",
+            "minLength": 0,
             "maxLength": 32,
             "precision": 0,
             "scale": 0,
@@ -590,6 +599,7 @@
           "propertyName": "LanguageUseDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -613,6 +623,7 @@
           "propertyName": "LanguageUseDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -650,6 +661,7 @@
           "propertyName": "LanguageDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -667,6 +679,7 @@
           "propertyName": "StudentUId",
           "propertyType": {
             "dbType": "String",
+            "minLength": 0,
             "maxLength": 32,
             "precision": 0,
             "scale": 0,
@@ -690,6 +703,7 @@
           "propertyName": "LanguageDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -707,6 +721,7 @@
           "propertyName": "StudentUId",
           "propertyType": {
             "dbType": "String",
+            "minLength": 0,
             "maxLength": 32,
             "precision": 0,
             "scale": 0,
@@ -744,6 +759,7 @@
           "propertyName": "EducationOrganizationId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -761,6 +777,7 @@
           "propertyName": "LanguageDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -778,6 +795,7 @@
           "propertyName": "StudentUSI",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -801,6 +819,7 @@
           "propertyName": "EducationOrganizationId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -818,6 +837,7 @@
           "propertyName": "LanguageDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -835,6 +855,7 @@
           "propertyName": "StudentUSI",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -872,6 +893,7 @@
           "propertyName": "EducationOrganizationId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -889,6 +911,7 @@
           "propertyName": "LanguageDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -906,6 +929,7 @@
           "propertyName": "StudentUSI",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -929,6 +953,7 @@
           "propertyName": "EducationOrganizationId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -946,6 +971,7 @@
           "propertyName": "LanguageDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -963,6 +989,7 @@
           "propertyName": "StudentUSI",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -1000,6 +1027,7 @@
           "propertyName": "LanguageUseDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -1023,6 +1051,7 @@
           "propertyName": "LanguageUseDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -1060,6 +1089,7 @@
           "propertyName": "BeginDate",
           "propertyType": {
             "dbType": "Date",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 0,
             "scale": 0,
@@ -1077,6 +1107,7 @@
           "propertyName": "EducationOrganizationId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -1094,6 +1125,7 @@
           "propertyName": "LanguageDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -1111,6 +1143,7 @@
           "propertyName": "StudentUSI",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -1134,6 +1167,7 @@
           "propertyName": "BeginDate",
           "propertyType": {
             "dbType": "Date",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 0,
             "scale": 0,
@@ -1151,6 +1185,7 @@
           "propertyName": "EducationOrganizationId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -1168,6 +1203,7 @@
           "propertyName": "LanguageDescriptorId",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,
@@ -1185,6 +1221,7 @@
           "propertyName": "StudentUSI",
           "propertyType": {
             "dbType": "Int32",
+            "minLength": 0,
             "maxLength": 0,
             "precision": 10,
             "scale": 0,

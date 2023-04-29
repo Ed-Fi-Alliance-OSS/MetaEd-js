@@ -41,7 +41,7 @@ describe('when building an api property from a nullable string column', (): void
   const column: Column = {
     ...newColumn(),
     type: 'string',
-    length: '100',
+    maxLength: '100',
     columnId,
     data: { edfiOdsSqlServer: { columnName: columnId } },
     description,

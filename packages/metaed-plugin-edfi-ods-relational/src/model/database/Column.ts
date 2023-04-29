@@ -124,7 +124,8 @@ export interface DecimalColumn extends Column {
 }
 
 export interface StringColumn extends Column {
-  length: string;
+  minLength: string;
+  maxLength: string;
 }
 
 export function newColumn(): Column {

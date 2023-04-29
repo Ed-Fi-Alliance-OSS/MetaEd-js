@@ -21,7 +21,7 @@ describe('when ModifyColumnDataTypesDiminisher diminishes string lengths for mat
         {
           ...newColumn(),
           columnId: author,
-          length: '123',
+          maxLength: '123',
           type: 'string',
         } as StringColumn,
       ],
@@ -37,7 +37,7 @@ describe('when ModifyColumnDataTypesDiminisher diminishes string lengths for mat
     expect(columns).toHaveLength(1);
     expect(columns[0].columnId).toBe(author);
     expect(columns[0].type).toBe('string');
-    expect((columns[0] as StringColumn).length).toBe('225');
+    expect((columns[0] as StringColumn).maxLength).toBe('225');
   });
 });
 
@@ -58,7 +58,7 @@ describe('when ModifyColumnDataTypesDiminisher diminishes non matching table', (
         {
           ...newColumn(),
           columnId,
-          length: '123',
+          maxLength: '123',
           type: 'string',
         } as StringColumn,
       ],
@@ -74,6 +74,6 @@ describe('when ModifyColumnDataTypesDiminisher diminishes non matching table', (
     expect(columns).toHaveLength(1);
     expect(columns[0].columnId).toBe(columnId);
     expect(columns[0].type).toBe('string');
-    expect((columns[0] as StringColumn).length).toBe('123');
+    expect((columns[0] as StringColumn).maxLength).toBe('123');
   });
 });

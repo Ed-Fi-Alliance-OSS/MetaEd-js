@@ -115,7 +115,7 @@ describe('when creating columns for inline common with only one property', (): v
   it('should return a single column', (): void => {
     expect(columns).toHaveLength(1);
     expect(columns[0].type).toBe('string');
-    expect((columns[0] as StringColumn).length).toBe(length);
+    expect((columns[0] as StringColumn).maxLength).toBe(length);
     expect(columns[0].columnId).toBe(contextName + propertyContextName + propertyName);
     expect(columns[0].description).toBe(propertyDocumentation);
     expect(columns[0].isIdentityDatabaseType).toBe(false);
@@ -201,7 +201,7 @@ describe('when creating columns for inline common with two properties', (): void
 
   it('should return a string column', (): void => {
     expect(columns[0].type).toBe('string');
-    expect((columns[0] as StringColumn).length).toBe(length);
+    expect((columns[0] as StringColumn).maxLength).toBe(length);
     expect(columns[0].columnId).toBe(contextName + stringPropertyContextName + stringPropertyName);
     expect(columns[0].description).toBe(propertyDocumentation);
     expect(columns[0].isIdentityDatabaseType).toBe(false);

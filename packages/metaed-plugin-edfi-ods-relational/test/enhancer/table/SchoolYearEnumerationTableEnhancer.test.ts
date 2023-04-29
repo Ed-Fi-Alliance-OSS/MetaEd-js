@@ -56,7 +56,7 @@ describe('when SchoolYearEnumerationTableEnhancer enhances schoolYearEnumeration
     const table = tableEntities(metaEd, namespace).get(schoolYearType) as any;
     const column = table.columns.filter((x) => x.columnId === 'SchoolYearDescription')[0];
     expect(column).toBeDefined();
-    expect(column.length).toBe('50');
+    expect(column.maxLength).toBe('50');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');

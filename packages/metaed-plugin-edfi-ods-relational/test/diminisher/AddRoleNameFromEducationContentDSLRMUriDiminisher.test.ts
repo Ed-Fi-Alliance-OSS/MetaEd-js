@@ -28,7 +28,7 @@ describe('when AddRoleNameFromEducationContentDSLRMUriDiminisher diminishes Educ
           ...newColumn(),
           columnId: derivativeSourceLearningResourceMetadataURI,
           type: 'string',
-          length: '123',
+          maxLength: '123',
         } as StringColumn,
       ],
     };
@@ -50,7 +50,7 @@ describe('when AddRoleNameFromEducationContentDSLRMUriDiminisher diminishes Educ
       tableEntities(metaEd, namespace).get(educationContentDerivativeSourceLearningResourceMetadataURI) as Table
     ).columns[0];
     expect(column.type).toBe('string');
-    expect((column as StringColumn).length).toBe('225');
+    expect((column as StringColumn).maxLength).toBe('225');
   });
 });
 
@@ -72,7 +72,7 @@ describe('when AddRoleNameFromEducationContentDSLRMUriDiminisher diminishes Educ
         {
           ...newColumn(),
           columnId: derivativeSourceURI,
-          length: '123',
+          maxLength: '123',
         } as StringColumn,
       ],
     };
@@ -90,6 +90,6 @@ describe('when AddRoleNameFromEducationContentDSLRMUriDiminisher diminishes Educ
   it('should set column length', (): void => {
     const column: Column = (tableEntities(metaEd, namespace).get(educationContentDerivativeSourceURI) as Table).columns[0];
     expect(column.type).toBe('string');
-    expect((column as StringColumn).length).toBe('225');
+    expect((column as StringColumn).maxLength).toBe('225');
   });
 });

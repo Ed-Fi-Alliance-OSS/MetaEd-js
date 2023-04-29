@@ -2,6 +2,7 @@ import { DbType } from './DbType';
 
 export interface ApiPropertyType {
   dbType: DbType;
+  minLength?: number;
   maxLength?: number;
   precision?: number;
   scale?: number;

@@ -64,7 +64,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       {
         ...newColumn(),
         type: 'string' as ColumnType,
-        length: '255',
+        maxLength: '255',
         isNullable: false,
         isPartOfPrimaryKey: false,
         isPartOfAlternateKey: true,
@@ -76,7 +76,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       {
         ...newColumn(),
         type: 'string' as ColumnType,
-        length: '50',
+        maxLength: '50',
         isNullable: false,
         isPartOfPrimaryKey: false,
         isPartOfAlternateKey: true,
@@ -87,7 +87,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       {
         ...newColumn(),
         type: 'string' as ColumnType,
-        length: '75',
+        maxLength: '75',
         isNullable: false,
         isPartOfPrimaryKey: false,
         columnId: 'ShortDescription',
@@ -97,7 +97,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       {
         ...newColumn(),
         type: 'string' as ColumnType,
-        length: '1024',
+        maxLength: '1024',
         isNullable: true,
         isPartOfPrimaryKey: false,
         columnId: 'Description',

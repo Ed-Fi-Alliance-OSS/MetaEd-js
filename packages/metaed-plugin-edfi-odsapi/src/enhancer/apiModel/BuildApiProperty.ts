@@ -21,9 +21,14 @@ function dbTypeFrom(column: Column): DbType {
   return 'Unknown';
 }
 
+function minLengthFrom(column: Column): number {
+  if (column.type === 'string') return Number.parseInt((column as StringColumn).minLength, 10) || 0;
+  return 0;
+}
+
 function maxLengthFrom(column: Column): number {
   if (column.type === 'duration') return 30;
-  if (column.type === 'string') return Number.parseInt((column as StringColumn).length, 10);
+  if (column.type === 'string') return Number.parseInt((column as StringColumn).maxLength, 10);
   return 0;
 }
 
@@ -87,6 +92,18 @@ function apiPropertyTypeFrom(column: Column, targetTechnologyVersion: string): A
   // METAED-1330
   if (versionSatisfies(targetTechnologyVersion, '>=5.1') && column.type === 'decimal') {
     return apiPropertyTypefromNumeric(column);
+  }
+
+  // METAED-1381
+  if (versionSatisfies(targetTechnologyVersion, '>=6.1')) {
+    return {
+      dbType: dbTypeFrom(column),
+      minLength: minLengthFrom(column),
+      maxLength: maxLengthFrom(column),
+      precision: precisionFrom(column),
+      scale: scaleFrom(column),
+      isNullable: column.isNullable,
+    };
   }
 
   return {

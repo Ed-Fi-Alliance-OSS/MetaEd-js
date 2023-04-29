@@ -224,7 +224,7 @@ describe('when DescriptorTableEnhancer enhances descriptor with required map typ
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
     const column = R.head(table.columns.filter((x) => x.columnId === 'CodeValue'));
     expect(column).toBeDefined();
-    expect(column.length).toBe('50');
+    expect(column.maxLength).toBe('50');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');
@@ -234,7 +234,7 @@ describe('when DescriptorTableEnhancer enhances descriptor with required map typ
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
     const column = R.head(table.columns.filter((x) => x.columnId === 'Description'));
     expect(column).toBeDefined();
-    expect(column.length).toBe('1024');
+    expect(column.maxLength).toBe('1024');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');
@@ -244,7 +244,7 @@ describe('when DescriptorTableEnhancer enhances descriptor with required map typ
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
     const column = R.head(table.columns.filter((x) => x.columnId === 'ShortDescription'));
     expect(column).toBeDefined();
-    expect(column.length).toBe('450');
+    expect(column.maxLength).toBe('450');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');
@@ -381,7 +381,7 @@ describe('when DescriptorTableEnhancer enhances descriptor with optional map typ
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
     const column = R.head(table.columns.filter((x) => x.columnId === 'CodeValue'));
     expect(column).toBeDefined();
-    expect(column.length).toBe('50');
+    expect(column.maxLength).toBe('50');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');
@@ -391,7 +391,7 @@ describe('when DescriptorTableEnhancer enhances descriptor with optional map typ
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
     const column = R.head(table.columns.filter((x) => x.columnId === 'Description'));
     expect(column).toBeDefined();
-    expect(column.length).toBe('1024');
+    expect(column.maxLength).toBe('1024');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');
@@ -401,7 +401,7 @@ describe('when DescriptorTableEnhancer enhances descriptor with optional map typ
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
     const column = R.head(table.columns.filter((x) => x.columnId === 'ShortDescription'));
     expect(column).toBeDefined();
-    expect(column.length).toBe('450');
+    expect(column.maxLength).toBe('450');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');
@@ -538,7 +538,7 @@ describe("when DescriptorTableEnhancer enhances descriptor with map type name en
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
     const column = R.head(table.columns.filter((x) => x.columnId === 'CodeValue'));
     expect(column).toBeDefined();
-    expect(column.length).toBe('50');
+    expect(column.maxLength).toBe('50');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');
@@ -548,7 +548,7 @@ describe("when DescriptorTableEnhancer enhances descriptor with map type name en
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
     const column = R.head(table.columns.filter((x) => x.columnId === 'Description'));
     expect(column).toBeDefined();
-    expect(column.length).toBe('1024');
+    expect(column.maxLength).toBe('1024');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');
@@ -558,7 +558,7 @@ describe("when DescriptorTableEnhancer enhances descriptor with map type name en
     const table = tableEntities(metaEd, namespace).get(descriptorNameType) as Table;
     const column = R.head(table.columns.filter((x) => x.columnId === 'ShortDescription'));
     expect(column).toBeDefined();
-    expect(column.length).toBe('450');
+    expect(column.maxLength).toBe('450');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');

@@ -17,7 +17,7 @@ const modifyStringColumnLength =
 
     const column: Column | undefined = table.columns.find((x: Column) => x.columnId === columnName);
     if (column == null) return;
-    (column as StringColumn).length = length;
+    (column as StringColumn).maxLength = length;
   };
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {

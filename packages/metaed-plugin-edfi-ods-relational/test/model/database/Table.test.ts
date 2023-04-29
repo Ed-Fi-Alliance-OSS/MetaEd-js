@@ -104,7 +104,7 @@ describe('when using add column range', (): void => {
         { ...newColumn(), type: 'integer', columnId: 'IntegerColumnName' },
         { ...newColumn(), type: 'percent', columnId: 'PercentColumnName' },
         { ...newColumn(), type: 'short', columnId: 'ShortColumnName' },
-        { ...newColumn(), type: 'string', length: '100', columnId: 'StringColumnName' } as StringColumn,
+        { ...newColumn(), type: 'string', maxLength: '100', columnId: 'StringColumnName' } as StringColumn,
         { ...newColumn(), type: 'time', columnId: 'TimeColumnName' },
         { ...newColumn(), type: 'year', columnId: 'YearColumnName' },
       ],
@@ -213,7 +213,7 @@ describe('when using table column getters', (): void => {
       {
         ...newColumn(),
         type: 'string',
-        length: '100',
+        maxLength: '100',
         columnId: stringColumnName,
         nameComponents: [{ ...newColumnNameComponent(), name: stringColumnName }],
         isPartOfAlternateKey: false,

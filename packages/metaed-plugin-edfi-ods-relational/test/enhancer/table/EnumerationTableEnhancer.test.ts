@@ -55,7 +55,7 @@ describe('when EnumerationTableEnhancer enhances enumeration', (): void => {
     const table = tableEntities(metaEd, namespace).get(enumerationNameType) as any;
     const column = table.columns.filter((x) => x.columnId === 'CodeValue')[0];
     expect(column).toBeDefined();
-    expect(column.length).toBe('50');
+    expect(column.maxLength).toBe('50');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');
@@ -65,7 +65,7 @@ describe('when EnumerationTableEnhancer enhances enumeration', (): void => {
     const table = tableEntities(metaEd, namespace).get(enumerationNameType) as any;
     const column = table.columns.filter((x) => x.columnId === 'Description')[0];
     expect(column).toBeDefined();
-    expect(column.length).toBe('1024');
+    expect(column.maxLength).toBe('1024');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');
@@ -75,7 +75,7 @@ describe('when EnumerationTableEnhancer enhances enumeration', (): void => {
     const table = tableEntities(metaEd, namespace).get(enumerationNameType) as any;
     const column = table.columns.filter((x) => x.columnId === 'ShortDescription')[0];
     expect(column).toBeDefined();
-    expect(column.length).toBe('450');
+    expect(column.maxLength).toBe('450');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');
@@ -132,7 +132,7 @@ describe("when EnumerationTableEnhancer enhances enumeration name ending with 'T
     const table = tableEntities(metaEd, namespace).get(enumerationNameType) as any;
     const column = table.columns.filter((x) => x.columnId === 'CodeValue')[0];
     expect(column).toBeDefined();
-    expect(column.length).toBe('50');
+    expect(column.maxLength).toBe('50');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');
@@ -142,7 +142,7 @@ describe("when EnumerationTableEnhancer enhances enumeration name ending with 'T
     const table = tableEntities(metaEd, namespace).get(enumerationNameType) as any;
     const column = table.columns.filter((x) => x.columnId === 'Description')[0];
     expect(column).toBeDefined();
-    expect(column.length).toBe('1024');
+    expect(column.maxLength).toBe('1024');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');
@@ -152,7 +152,7 @@ describe("when EnumerationTableEnhancer enhances enumeration name ending with 'T
     const table = tableEntities(metaEd, namespace).get(enumerationNameType) as any;
     const column = table.columns.filter((x) => x.columnId === 'ShortDescription')[0];
     expect(column).toBeDefined();
-    expect(column.length).toBe('450');
+    expect(column.maxLength).toBe('450');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
     expect(column.description).not.toBe('');

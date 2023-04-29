@@ -26,10 +26,10 @@ export function resolveDataType(column: Column): string {
       return ColumnDataTypes.decimal((column as DecimalColumn).precision, (column as DecimalColumn).scale);
     case 'string':
       // SQL Server supports up to 4000 characters in an NVARCHAR, for anything bigger it needs to be an NVARCHAR(MAX)
-      if (parseInt((column as StringColumn).length, 10) > 4000) {
+      if (parseInt((column as StringColumn).maxLength, 10) > 4000) {
         return ColumnDataTypes.string('MAX');
       }
-      return ColumnDataTypes.string((column as StringColumn).length);
+      return ColumnDataTypes.string((column as StringColumn).maxLength);
     default:
       return ColumnDataTypes[column.type];
   }

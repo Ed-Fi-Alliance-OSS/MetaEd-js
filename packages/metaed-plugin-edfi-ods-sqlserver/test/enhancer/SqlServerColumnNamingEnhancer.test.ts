@@ -29,13 +29,13 @@ describe('when a table has a string longer than 4000 bytes', (): void => {
         {
           ...newColumn(),
           type: 'string' as ColumnType,
-          length: '4000',
+          maxLength: '4000',
           columnId: 'NormalString',
         } as StringColumn,
         {
           ...newColumn(),
           type: 'string' as ColumnType,
-          length: '4500',
+          maxLength: '4500',
           columnId: 'MAXString',
         } as StringColumn,
       ],
