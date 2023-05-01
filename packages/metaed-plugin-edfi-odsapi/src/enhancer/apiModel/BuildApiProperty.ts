@@ -95,7 +95,7 @@ function apiPropertyTypeFrom(column: Column, targetTechnologyVersion: string): A
   }
 
   // METAED-1381
-  if (versionSatisfies(targetTechnologyVersion, '>=6.1')) {
+  if (versionSatisfies(targetTechnologyVersion, '>=7.0')) {
     return {
       dbType: dbTypeFrom(column),
       minLength: minLengthFrom(column),

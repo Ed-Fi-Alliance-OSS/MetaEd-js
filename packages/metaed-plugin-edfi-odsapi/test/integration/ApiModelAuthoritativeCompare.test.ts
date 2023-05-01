@@ -830,3 +830,90 @@ describe('when generating api model targeting tech version 6.1 with common cardi
     expect(expectOneOf).toContain(result);
   });
 });
+
+describe('when generating api model targeting tech version 7.0 with common cardinality extensions and comparing it to data standard 4.0 authoritative artifacts', (): void => {
+  const artifactPath: string = path.resolve(__dirname, './artifact');
+  const sampleExtensionPath: string = path.resolve(__dirname, './common-cardinality-project');
+  const authoritativeCoreFilename = 'edfi-7.0-api-model-authoritative.json';
+  const authoritativeExtensionFilename = 'edfi-7.0-api-model-common-cardinality-extension-authoritative.json';
+  const generatedCoreFilename = 'edfi-7.0-api-model-generated.json';
+  const generatedExtensionFilename = 'edfi-7.0-api-model-common-cardinality-extension-generated.json';
+
+  let generatedCoreOutput: GeneratedOutput;
+  let generatedExtensionOutput: GeneratedOutput;
+
+  beforeAll(async () => {
+    const metaEdConfiguration = {
+      ...newMetaEdConfiguration(),
+      artifactDirectory: './MetaEdOutput/',
+      defaultPluginTechVersion: '7.0.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-4.0/', sampleExtensionPath],
+      projects: [
+        {
+          projectName: 'Ed-Fi',
+          namespaceName: 'EdFi',
+          projectExtension: '',
+          projectVersion: '4.0.0',
+          description: '',
+        },
+        {
+          projectName: 'CommonCardinality',
+          namespaceName: 'CommonCardinality',
+          projectExtension: 'CommonCardinality',
+          projectVersion: '1.0.0',
+          description: '',
+        },
+      ],
+    };
+
+    const state: State = {
+      ...newState(),
+      metaEdConfiguration,
+      metaEdPlugins: metaEdPlugins(),
+    };
+    state.metaEd.dataStandardVersion = '4.0.0';
+
+    setupPlugins(state);
+    loadFiles(state);
+    loadFileIndex(state);
+    buildParseTree(buildMetaEd, state);
+    await walkBuilders(state);
+    initializeNamespaces(state);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const metaEdPlugin of state.metaEdPlugins) {
+      await runEnhancers(metaEdPlugin, state);
+      await runGenerators(metaEdPlugin, state);
+    }
+
+    const generatorResult: GeneratorResult = R.head(
+      state.generatorResults.filter((x) => x.generatorName === 'edfiOdsApi.ApiModelGenerator'),
+    );
+
+    [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
+
+    await fs.writeFile(path.resolve(artifactPath, generatedCoreFilename), generatedCoreOutput.resultString);
+    await fs.writeFile(path.resolve(artifactPath, generatedExtensionFilename), generatedExtensionOutput.resultString);
+  });
+
+  it('should have no core file differences', async () => {
+    const authoritativeCore: string = path.resolve(artifactPath, authoritativeCoreFilename);
+    const generatedCore: string = path.resolve(artifactPath, generatedCoreFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCore} ${generatedCore}`;
+    // @ts-ignore "error" not used
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+
+  it('should have no extension file differences', async () => {
+    const authoritativeExtension: string = path.resolve(artifactPath, authoritativeExtensionFilename);
+    const generatedExtension: string = path.resolve(artifactPath, generatedExtensionFilename);
+    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtension} ${generatedExtension}`;
+    // @ts-ignore "error" not used
+    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+    // two different ways to show no difference, depending on platform line endings
+    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
+    expect(expectOneOf).toContain(result);
+  });
+});
