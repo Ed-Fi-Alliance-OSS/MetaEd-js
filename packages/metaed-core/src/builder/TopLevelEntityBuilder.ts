@@ -745,20 +745,37 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
 
   enterMinValue(context: MetaEdGrammar.MinValueContext) {
     if (this.currentProperty === NoEntityProperty) return;
-    if (
-      context.exception ||
-      context.signed_int() == null ||
-      context.signed_int().exception ||
-      isErrorText(context.signed_int().getText())
-    )
-      return;
-    (this.currentProperty as IntegerProperty | ShortProperty).minValue = context.signed_int().getText();
-    (this.currentProperty.sourceMap as IntegerPropertySourceMap | ShortPropertySourceMap).minValue = sourceMapFrom(context);
+
+    if (context.exception) return;
+    if (context.signed_int() == null && context.BIG() == null) return;
+    if (context.signed_int() == null && (context.BIG().exception || isErrorText(context.BIG().getText()))) return;
+    if (context.BIG() == null && (context.signed_int().exception || isErrorText(context.signed_int().getText()))) return;
+
+    if (context.signed_int() != null) (this.currentProperty as IntegerProperty).minValue = context.signed_int().getText();
+    if (context.BIG() != null) (this.currentProperty as IntegerProperty).hasBigHint = true;
+
+    (this.currentProperty.sourceMap as ShortPropertySourceMap).minValue = sourceMapFrom(context);
     this.currentProperty.hasRestriction = true;
     this.currentProperty.sourceMap.hasRestriction = sourceMapFrom(context);
   }
 
   enterMaxValue(context: MetaEdGrammar.MaxValueContext) {
+    if (this.currentProperty === NoEntityProperty) return;
+
+    if (context.exception) return;
+    if (context.signed_int() == null && context.BIG() == null) return;
+    if (context.signed_int() == null && (context.BIG().exception || isErrorText(context.BIG().getText()))) return;
+    if (context.BIG() == null && (context.signed_int().exception || isErrorText(context.signed_int().getText()))) return;
+
+    if (context.signed_int() != null) (this.currentProperty as IntegerProperty).maxValue = context.signed_int().getText();
+    if (context.BIG() != null) (this.currentProperty as IntegerProperty).hasBigHint = true;
+
+    (this.currentProperty.sourceMap as IntegerPropertySourceMap).maxValue = sourceMapFrom(context);
+    this.currentProperty.hasRestriction = true;
+    this.currentProperty.sourceMap.hasRestriction = sourceMapFrom(context);
+  }
+
+  enterMinValueShort(context: MetaEdGrammar.MinValueShortContext) {
     if (this.currentProperty === NoEntityProperty) return;
     if (
       context.exception ||
@@ -767,8 +784,23 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
       isErrorText(context.signed_int().getText())
     )
       return;
-    (this.currentProperty as IntegerProperty | ShortProperty).maxValue = context.signed_int().getText();
-    (this.currentProperty.sourceMap as IntegerPropertySourceMap | ShortPropertySourceMap).maxValue = sourceMapFrom(context);
+    (this.currentProperty as ShortProperty).minValue = context.signed_int().getText();
+    (this.currentProperty.sourceMap as ShortPropertySourceMap).minValue = sourceMapFrom(context);
+    this.currentProperty.hasRestriction = true;
+    this.currentProperty.sourceMap.hasRestriction = sourceMapFrom(context);
+  }
+
+  enterMaxValueShort(context: MetaEdGrammar.MaxValueShortContext) {
+    if (this.currentProperty === NoEntityProperty) return;
+    if (
+      context.exception ||
+      context.signed_int() == null ||
+      context.signed_int().exception ||
+      isErrorText(context.signed_int().getText())
+    )
+      return;
+    (this.currentProperty as ShortProperty).maxValue = context.signed_int().getText();
+    (this.currentProperty.sourceMap as ShortPropertySourceMap).maxValue = sourceMapFrom(context);
     this.currentProperty.hasRestriction = true;
     this.currentProperty.sourceMap.hasRestriction = sourceMapFrom(context);
   }

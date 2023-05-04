@@ -470,6 +470,24 @@ MetaEdGrammarListener.prototype.exitMaxValue = function(ctx) {
 };
 
 
+// Enter a parse tree produced by MetaEdGrammar#minValueShort.
+MetaEdGrammarListener.prototype.enterMinValueShort = function(ctx) {
+};
+
+// Exit a parse tree produced by MetaEdGrammar#minValueShort.
+MetaEdGrammarListener.prototype.exitMinValueShort = function(ctx) {
+};
+
+
+// Enter a parse tree produced by MetaEdGrammar#maxValueShort.
+MetaEdGrammarListener.prototype.enterMaxValueShort = function(ctx) {
+};
+
+// Exit a parse tree produced by MetaEdGrammar#maxValueShort.
+MetaEdGrammarListener.prototype.exitMaxValueShort = function(ctx) {
+};
+
+
 // Enter a parse tree produced by MetaEdGrammar#minValueDecimal.
 MetaEdGrammarListener.prototype.enterMinValueDecimal = function(ctx) {
 };

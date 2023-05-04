@@ -351,9 +351,13 @@ subdomainPosition
 
 // Property
 
-minValue : MIN_VALUE signed_int ;
+minValue : MIN_VALUE (signed_int | BIG) ;
 
-maxValue : MAX_VALUE signed_int ;
+maxValue : MAX_VALUE (signed_int | BIG) ;
+
+minValueShort : MIN_VALUE signed_int ;
+
+maxValueShort : MAX_VALUE signed_int ;
 
 minValueDecimal : MIN_VALUE decimalValue ;
 
@@ -491,8 +495,8 @@ sharedStringProperty : SHARED_STRING_KEYWORD sharedPropertyType (SHARED_NAMED sh
 
 shortProperty : SHORT simplePropertyName metaEdId?
             propertyComponents
-            minValue?
-            maxValue? ;
+            minValueShort?
+            maxValueShort? ;
 
 stringProperty : STRING simplePropertyName metaEdId?
             propertyComponents

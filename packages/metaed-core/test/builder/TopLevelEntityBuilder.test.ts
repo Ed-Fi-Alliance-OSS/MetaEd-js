@@ -2539,6 +2539,10 @@ describe('when building integer property', (): void => {
     ).not.toBe(NoSourceMap);
   });
 
+  it('should not have big hint', (): void => {
+    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).hasBigHint).toBe(false);
+  });
+
   it('should have source map with line, column, text', (): void => {
     expect(getDomainEntity(namespace.entity, entityName).properties[0].sourceMap).toMatchInlineSnapshot(`
       Object {
@@ -2694,6 +2698,138 @@ describe('when building integer property', (): void => {
         },
       }
     `);
+  });
+});
+
+describe('when building integer property with big max value', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'Namespace';
+
+  const entityName = 'EntityName';
+  const entityDocumentation = 'Documentation';
+  const propertyName = 'PropertyName';
+  const propertyDocumentation = 'PropertyDocumentation';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    const builder = new DomainEntityBuilder(metaEd, []);
+
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(entityName)
+      .withDocumentation(entityDocumentation)
+      .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, null, null, false, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(builder);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should not have maxValue', (): void => {
+    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).maxValue).toBeNull();
+  });
+
+  it('should not have minValue', (): void => {
+    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).minValue).toBeNull();
+  });
+
+  it('should have big hint', (): void => {
+    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).hasBigHint).toBe(true);
+  });
+
+  it('should have source map for max value', (): void => {
+    expect(
+      (getDomainEntity(namespace.entity, entityName).properties[0].sourceMap as IntegerPropertySourceMap).maxValue,
+    ).not.toBe(NoSourceMap);
+  });
+});
+
+describe('when building integer property with big min value', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'Namespace';
+
+  const entityName = 'EntityName';
+  const entityDocumentation = 'Documentation';
+  const propertyName = 'PropertyName';
+  const propertyDocumentation = 'PropertyDocumentation';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    const builder = new DomainEntityBuilder(metaEd, []);
+
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(entityName)
+      .withDocumentation(entityDocumentation)
+      .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, null, null, true, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(builder);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should not have maxValue', (): void => {
+    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).maxValue).toBeNull();
+  });
+
+  it('should not have minValue', (): void => {
+    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).minValue).toBeNull();
+  });
+
+  it('should have big hint', (): void => {
+    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).hasBigHint).toBe(true);
+  });
+
+  it('should have source map for min value', (): void => {
+    expect(
+      (getDomainEntity(namespace.entity, entityName).properties[0].sourceMap as IntegerPropertySourceMap).minValue,
+    ).toBeDefined();
+    expect(
+      (getDomainEntity(namespace.entity, entityName).properties[0].sourceMap as IntegerPropertySourceMap).minValue,
+    ).not.toBe(NoSourceMap);
+  });
+});
+
+describe('when building integer property with big min value and big max value', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'Namespace';
+
+  const entityName = 'EntityName';
+  const entityDocumentation = 'Documentation';
+  const propertyName = 'PropertyName';
+  const propertyDocumentation = 'PropertyDocumentation';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    const builder = new DomainEntityBuilder(metaEd, []);
+
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(entityName)
+      .withDocumentation(entityDocumentation)
+      .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, null, null, true, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(builder);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should not have maxValue', (): void => {
+    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).maxValue).toBeNull();
+  });
+
+  it('should not have minValue', (): void => {
+    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).minValue).toBeNull();
+  });
+
+  it('should have big hint', (): void => {
+    expect(asIntegerProperty(getDomainEntity(namespace.entity, entityName).properties[0]).hasBigHint).toBe(true);
   });
 });
 

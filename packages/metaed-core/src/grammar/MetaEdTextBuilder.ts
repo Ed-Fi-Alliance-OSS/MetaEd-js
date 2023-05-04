@@ -1176,15 +1176,21 @@ export class MetaEdTextBuilder {
     return this;
   }
 
-  withMinValue(minValue: string | null): MetaEdTextBuilder {
-    if (minValue == null) return this;
-    this.addLine(`min value ${minValue}`);
+  withMinValue(minValue: string | null, bigHintMinValue: boolean = false): MetaEdTextBuilder {
+    if (minValue != null) {
+      this.addLine(`min value ${minValue}`);
+    } else if (bigHintMinValue) {
+      this.addLine('min value big');
+    }
     return this;
   }
 
-  withMaxValue(maxValue: string | null): MetaEdTextBuilder {
-    if (maxValue == null) return this;
-    this.addLine(`max value ${maxValue}`);
+  withMaxValue(maxValue: string | null, bigHintMaxValue: boolean = false): MetaEdTextBuilder {
+    if (maxValue != null) {
+      this.addLine(`max value ${maxValue}`);
+    } else if (bigHintMaxValue) {
+      this.addLine('max value big');
+    }
     return this;
   }
 
@@ -1223,11 +1229,16 @@ export class MetaEdTextBuilder {
     return this;
   }
 
-  withNumericRestrictions(minValue: string | null = null, maxValue: string | null = null): MetaEdTextBuilder {
+  withNumericRestrictions(
+    minValue: string | null = null,
+    maxValue: string | null = null,
+    bigHintMinValue: boolean = false,
+    bigHintMaxValue: boolean = false,
+  ): MetaEdTextBuilder {
     this.increaseIndentation();
 
-    this.withMinValue(minValue);
-    this.withMaxValue(maxValue);
+    this.withMinValue(minValue, bigHintMinValue);
+    this.withMaxValue(maxValue, bigHintMaxValue);
 
     this.decreaseIndentation();
 
@@ -1354,6 +1365,8 @@ export class MetaEdTextBuilder {
     context: string | null = null,
     metaEdId: string | null = null,
     deprecatedReason: string | null = null,
+    bigHintMinValue: boolean = false,
+    bigHintMaxValue: boolean = false,
   ): MetaEdTextBuilder {
     this.withProperty(
       'integer',
@@ -1366,7 +1379,7 @@ export class MetaEdTextBuilder {
       null,
       deprecatedReason,
     );
-    this.withNumericRestrictions(minValue, maxValue);
+    this.withNumericRestrictions(minValue, maxValue, bigHintMinValue, bigHintMaxValue);
     return this;
   }
 

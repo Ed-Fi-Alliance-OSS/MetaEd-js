@@ -56,27 +56,29 @@ export class SharedIntegerBuilder extends SharedSimpleBuilder {
 
   enterMinValue(context: MetaEdGrammar.MinValueContext) {
     if (this.currentSharedSimple === NoSharedSimple) return;
-    if (
-      context.exception ||
-      context.signed_int() == null ||
-      context.signed_int().exception ||
-      isErrorText(context.signed_int().getText())
-    )
-      return;
-    (this.currentSharedSimple as SharedInteger).minValue = context.signed_int().getText();
+
+    if (context.exception) return;
+    if (context.signed_int() == null && context.BIG() == null) return;
+    if (context.signed_int() == null && (context.BIG().exception || isErrorText(context.BIG().getText()))) return;
+    if (context.BIG() == null && (context.signed_int().exception || isErrorText(context.signed_int().getText()))) return;
+
+    if (context.signed_int() != null) (this.currentSharedSimple as SharedInteger).minValue = context.signed_int().getText();
+    if (context.BIG() != null) (this.currentSharedSimple as SharedInteger).hasBigHint = true;
+
     (this.currentSharedSimple.sourceMap as SharedIntegerSourceMap).minValue = sourceMapFrom(context);
   }
 
   enterMaxValue(context: MetaEdGrammar.MaxValueContext) {
     if (this.currentSharedSimple === NoSharedSimple) return;
-    if (
-      context.exception ||
-      context.signed_int() == null ||
-      context.signed_int().exception ||
-      isErrorText(context.signed_int().getText())
-    )
-      return;
-    (this.currentSharedSimple as SharedInteger).maxValue = context.signed_int().getText();
+
+    if (context.exception) return;
+    if (context.signed_int() == null && context.BIG() == null) return;
+    if (context.signed_int() == null && (context.BIG().exception || isErrorText(context.BIG().getText()))) return;
+    if (context.BIG() == null && (context.signed_int().exception || isErrorText(context.signed_int().getText()))) return;
+
+    if (context.signed_int() != null) (this.currentSharedSimple as SharedInteger).maxValue = context.signed_int().getText();
+    if (context.BIG() != null) (this.currentSharedSimple as SharedInteger).hasBigHint = true;
+
     (this.currentSharedSimple.sourceMap as SharedIntegerSourceMap).maxValue = sourceMapFrom(context);
   }
 }

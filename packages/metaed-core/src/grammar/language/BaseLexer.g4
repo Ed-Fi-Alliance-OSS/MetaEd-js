@@ -53,6 +53,7 @@ TIME :                      'time';
 YEAR :                      'year';
 
 ADDITIONS :              'additions';
+BIG :                    'big';
 BASED_ON :               'based on';
 CORE :                   'core';
 CASCADE_UPDATE :         'allow primary key updates';

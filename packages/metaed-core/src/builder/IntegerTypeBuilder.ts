@@ -162,23 +162,27 @@ export class IntegerTypeBuilder extends MetaEdGrammarListener {
     this.currentIntegerType.sourceMap.maxValue = sourceMapFrom(context);
   }
 
-  // @ts-ignore
-  exitIntegerProperty(context: MetaEdGrammar.IntegerPropertyContext) {
+  enterMinValueShort(context: MetaEdGrammar.MinValueShortContext) {
+    this.enterMinValue(context);
+  }
+
+  enterMaxValueShort(context: MetaEdGrammar.MaxValueShortContext) {
+    this.enterMaxValue(context);
+  }
+
+  exitIntegerProperty(_context: MetaEdGrammar.IntegerPropertyContext) {
     this.exitingIntegerType();
   }
 
-  // @ts-ignore
-  exitSharedInteger(context: MetaEdGrammar.SharedIntegerContext) {
+  exitSharedInteger(_context: MetaEdGrammar.SharedIntegerContext) {
     this.exitingIntegerType();
   }
 
-  // @ts-ignore
-  exitShortProperty(context: MetaEdGrammar.ShortPropertyContext) {
+  exitShortProperty(_context: MetaEdGrammar.ShortPropertyContext) {
     this.exitingIntegerType();
   }
 
-  // @ts-ignore
-  exitSharedShort(context: MetaEdGrammar.SharedShortContext) {
+  exitSharedShort(_context: MetaEdGrammar.SharedShortContext) {
     this.exitingIntegerType();
   }
 

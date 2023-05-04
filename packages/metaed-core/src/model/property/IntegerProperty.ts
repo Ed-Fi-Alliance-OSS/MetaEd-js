@@ -24,6 +24,7 @@ export interface IntegerProperty extends SimpleProperty {
   sourceMap: IntegerPropertySourceMap;
   minValue: string | null;
   maxValue: string | null;
+  hasBigHint: boolean;
 }
 
 /**
@@ -36,6 +37,7 @@ export function newIntegerProperty(): IntegerProperty {
     typeHumanizedName: 'Integer Property',
     minValue: null,
     maxValue: null,
+    hasBigHint: false,
     sourceMap: newIntegerPropertySourceMap(),
   };
 }

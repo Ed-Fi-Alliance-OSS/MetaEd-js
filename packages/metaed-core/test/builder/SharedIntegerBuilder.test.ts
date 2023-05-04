@@ -79,6 +79,10 @@ describe('when building shared integer in extension namespace', (): void => {
   it('should not be a short', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).isShort).toBe(false);
   });
+
+  it('should not have big hint', (): void => {
+    expect(getSharedInteger(namespace.entity, entityName).hasBigHint).toBe(false);
+  });
 });
 
 describe('when building deprecated shared integer', (): void => {
@@ -418,7 +422,7 @@ describe('when building shared integer with no documentation', (): void => {
   });
 });
 
-describe('when building shared integer with no min value', (): void => {
+describe('when building shared integer with empty min value', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const validationFailures: ValidationFailure[] = [];
   const textBuilder: MetaEdTextBuilder = MetaEdTextBuilder.build();
@@ -464,29 +468,21 @@ describe('when building shared integer with no min value', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).documentation).toBe(documentation);
   });
 
-  it('should have a min value because max value token was ignored', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).minValue).toBe(`max value${maxValue}`);
-  });
-
-  it('should not have max value because it was consumed by min value', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).maxValue).toBe('');
-  });
-
   it('should not be a short', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).isShort).toBe(false);
   });
 
   it('should have extraneous input error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "extraneous input 'max value' expecting {UNSIGNED_INT, '+', '-'}, column: 6, line: 6, token: max value",
-              "extraneous input 'max value' expecting {UNSIGNED_INT, '+', '-'}, column: 6, line: 6, token: max value",
-            ]
-        `);
+      Array [
+        "extraneous input 'max value' expecting {'big', UNSIGNED_INT, '+', '-'}, column: 6, line: 6, token: max value",
+        "extraneous input 'max value' expecting {'big', UNSIGNED_INT, '+', '-'}, column: 6, line: 6, token: max value",
+      ]
+    `);
   });
 });
 
-describe('when building shared integer with no max value', (): void => {
+describe('when building shared integer with empty max value', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const validationFailures: ValidationFailure[] = [];
   const textBuilder: MetaEdTextBuilder = MetaEdTextBuilder.build();
@@ -546,11 +542,126 @@ describe('when building shared integer with no max value', (): void => {
 
   it('should have mismatched input error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "mismatched input 'End Namespace' expecting {UNSIGNED_INT, '+', '-'}, column: 0, line: 7, token: End Namespace",
-              "mismatched input 'End Namespace' expecting {UNSIGNED_INT, '+', '-'}, column: 0, line: 7, token: End Namespace",
-            ]
-        `);
+      Array [
+        "mismatched input 'End Namespace' expecting {'big', UNSIGNED_INT, '+', '-'}, column: 0, line: 7, token: End Namespace",
+        "mismatched input 'End Namespace' expecting {'big', UNSIGNED_INT, '+', '-'}, column: 0, line: 7, token: End Namespace",
+      ]
+    `);
+  });
+});
+
+describe('when building shared integer with big min value', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const validationFailures: ValidationFailure[] = [];
+  const textBuilder: MetaEdTextBuilder = MetaEdTextBuilder.build();
+  const namespaceName = 'Namespace';
+  const projectExtension = 'ProjectExtension';
+
+  const entityName = 'EntityName';
+  const metaEdId = '123';
+  const documentation = 'doc';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    const builder = new SharedIntegerBuilder(metaEd, validationFailures);
+
+    textBuilder
+      .withBeginNamespace(namespaceName, projectExtension)
+      .withStartSharedInteger(entityName, metaEdId)
+      .withDocumentation(documentation)
+      .withNumericRestrictions(null, null, true, false)
+      .withEndSharedInteger()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
+      .sendToListener(builder);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should not have a min value', (): void => {
+    expect(getSharedInteger(namespace.entity, entityName).minValue).toBe('');
+  });
+
+  it('should have big hint', (): void => {
+    expect(getSharedInteger(namespace.entity, entityName).hasBigHint).toBe(true);
+  });
+});
+
+describe('when building shared integer with big max value', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const validationFailures: ValidationFailure[] = [];
+  const textBuilder: MetaEdTextBuilder = MetaEdTextBuilder.build();
+  const namespaceName = 'Namespace';
+  const projectExtension = 'ProjectExtension';
+
+  const entityName = 'EntityName';
+  const metaEdId = '123';
+  const documentation = 'doc';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    const builder = new SharedIntegerBuilder(metaEd, validationFailures);
+
+    textBuilder
+      .withBeginNamespace(namespaceName, projectExtension)
+      .withStartSharedInteger(entityName, metaEdId)
+      .withDocumentation(documentation)
+      .withNumericRestrictions(null, null, false, true)
+      .withEndSharedInteger()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
+      .sendToListener(builder);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should not have a max value', (): void => {
+    expect(getSharedInteger(namespace.entity, entityName).maxValue).toBe('');
+  });
+
+  it('should have big hint', (): void => {
+    expect(getSharedInteger(namespace.entity, entityName).hasBigHint).toBe(true);
+  });
+});
+
+describe('when building shared integer with big min and big max value', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const validationFailures: ValidationFailure[] = [];
+  const textBuilder: MetaEdTextBuilder = MetaEdTextBuilder.build();
+  const namespaceName = 'Namespace';
+  const projectExtension = 'ProjectExtension';
+
+  const entityName = 'EntityName';
+  const metaEdId = '123';
+  const documentation = 'doc';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    const builder = new SharedIntegerBuilder(metaEd, validationFailures);
+
+    textBuilder
+      .withBeginNamespace(namespaceName, projectExtension)
+      .withStartSharedInteger(entityName, metaEdId)
+      .withDocumentation(documentation)
+      .withNumericRestrictions(null, null, true, true)
+      .withEndSharedInteger()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
+      .sendToListener(builder);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should not have a min value', (): void => {
+    expect(getSharedInteger(namespace.entity, entityName).minValue).toBe('');
+  });
+
+  it('should not have a max value', (): void => {
+    expect(getSharedInteger(namespace.entity, entityName).maxValue).toBe('');
+  });
+
+  it('should have big hint', (): void => {
+    expect(getSharedInteger(namespace.entity, entityName).hasBigHint).toBe(true);
   });
 });
 
@@ -778,7 +889,7 @@ describe('when building shared short with no documentation', (): void => {
   });
 });
 
-describe('when building shared short with no min value', (): void => {
+describe('when building shared short with empty min value', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const validationFailures: ValidationFailure[] = [];
   const textBuilder: MetaEdTextBuilder = MetaEdTextBuilder.build();
@@ -824,29 +935,21 @@ describe('when building shared short with no min value', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).documentation).toBe(documentation);
   });
 
-  it('should have a min value because max value token was ignored', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).minValue).toBe(`max value${maxValue}`);
-  });
-
-  it('should not have max value because it was consumed by min value', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).maxValue).toBe('');
-  });
-
   it('should be a short', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).isShort).toBe(true);
   });
 
   it('should have extraneous input error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "extraneous input 'max value' expecting {UNSIGNED_INT, '+', '-'}, column: 6, line: 6, token: max value",
-              "extraneous input 'max value' expecting {UNSIGNED_INT, '+', '-'}, column: 6, line: 6, token: max value",
-            ]
-        `);
+      Array [
+        "extraneous input 'max value' expecting {'big', UNSIGNED_INT, '+', '-'}, column: 6, line: 6, token: max value",
+        "extraneous input 'max value' expecting {'big', UNSIGNED_INT, '+', '-'}, column: 6, line: 6, token: max value",
+      ]
+    `);
   });
 });
 
-describe('when building shared short with no max value', (): void => {
+describe('when building shared short with empty max value', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const validationFailures: ValidationFailure[] = [];
   const textBuilder: MetaEdTextBuilder = MetaEdTextBuilder.build();
@@ -906,11 +1009,11 @@ describe('when building shared short with no max value', (): void => {
 
   it('should have mismatched input error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "mismatched input 'End Namespace' expecting {UNSIGNED_INT, '+', '-'}, column: 0, line: 7, token: End Namespace",
-              "mismatched input 'End Namespace' expecting {UNSIGNED_INT, '+', '-'}, column: 0, line: 7, token: End Namespace",
-            ]
-        `);
+      Array [
+        "mismatched input 'End Namespace' expecting {'big', UNSIGNED_INT, '+', '-'}, column: 0, line: 7, token: End Namespace",
+        "mismatched input 'End Namespace' expecting {'big', UNSIGNED_INT, '+', '-'}, column: 0, line: 7, token: End Namespace",
+      ]
+    `);
   });
 });
 

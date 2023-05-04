@@ -27,6 +27,7 @@ export interface SharedInteger extends SharedSimple {
   isShort: boolean;
   minValue: string;
   maxValue: string;
+  hasBigHint: boolean;
 }
 
 /**
@@ -40,6 +41,7 @@ export function newSharedInteger(): SharedInteger {
     isShort: false,
     minValue: '',
     maxValue: '',
+    hasBigHint: false,
     sourceMap: newSharedIntegerSourceMap(),
   };
 }
