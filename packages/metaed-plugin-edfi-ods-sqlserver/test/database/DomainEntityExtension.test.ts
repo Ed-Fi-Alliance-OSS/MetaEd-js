@@ -121,10 +121,13 @@ describe('when domain entity extension has multiple properties', (): void => {
     expect(await foreignKeyDeleteCascades(foreignKey1)).toBe(true);
   });
 
-  it('should not have standard resource columns', async () => {
+  it('should have create date column', async () => {
+    expect(await columnExists(column(extension, domainEntityExtensionName, 'CreateDate'))).toBe(true);
+  });
+
+  it('should not have id and last modified data columns', async () => {
     expect(await columnExists(column(extension, domainEntityExtensionName, 'Id'))).toBe(false);
     expect(await columnExists(column(extension, domainEntityExtensionName, 'LastModifiedDate'))).toBe(false);
-    expect(await columnExists(column(extension, domainEntityExtensionName, 'CreateDate'))).toBe(true);
   });
 
   it('should have common table', async () => {
