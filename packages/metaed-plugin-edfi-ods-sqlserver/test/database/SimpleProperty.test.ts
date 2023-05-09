@@ -115,6 +115,42 @@ describe('when entity has multiple identity properties', (): void => {
   });
 });
 
+describe('when entity has integer property with big hint', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'Namespace';
+  const domainEntityName = 'DomainEntityName';
+  const integerDocumentation = 'IntegerDocumentation';
+  const integerName = 'IntegerName';
+
+  beforeAll(async () => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('Documentation')
+      .withIntegerIdentity('IdentityPropertyName', 'Documentation')
+      .withIntegerProperty(integerName, integerDocumentation, false, false, null, null, null, null, null, false, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    return enhanceGenerateAndExecuteSql(metaEd);
+  });
+
+  afterAll(async () => testTearDown());
+
+  it('should have entity table', async () => {
+    expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
+  });
+
+  it('should have correct column datatype', async () => {
+    const integerColumn: DatabaseColumn = column(namespaceName, domainEntityName, integerName);
+    expect(await columnExists(integerColumn)).toBe(true);
+    expect(await columnDataType(integerColumn)).toBe(columnDataTypes.bigint);
+  });
+});
+
 describe('when entity has decimal properties', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'Namespace';

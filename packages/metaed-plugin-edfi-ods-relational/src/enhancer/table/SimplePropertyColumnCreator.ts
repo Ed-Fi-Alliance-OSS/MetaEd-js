@@ -1,4 +1,4 @@
-import { EntityProperty, DecimalProperty, StringProperty, SimpleProperty } from '@edfi/metaed-core';
+import { EntityProperty, DecimalProperty, StringProperty, SimpleProperty, IntegerProperty } from '@edfi/metaed-core';
 import {
   initializeColumn,
   newColumn,
@@ -50,7 +50,7 @@ export function createNewColumnFor(property: SimpleProperty): Column {
     }),
     integer: () => ({
       ...newColumn(),
-      type: 'integer',
+      type: (property as IntegerProperty).hasBigHint ? 'bigint' : 'integer',
     }),
     percent: () => ({
       ...newColumn(),

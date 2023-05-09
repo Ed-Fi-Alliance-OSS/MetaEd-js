@@ -1,5 +1,6 @@
 export interface ColumnData {
   unknown: string;
+  bigint: string;
   boolean: string;
   currency: string;
   date: string;
@@ -16,6 +17,7 @@ export interface ColumnData {
 
 export const ColumnDataTypes: ColumnData = {
   unknown: '',
+  bigint: '[BIGINT]',
   boolean: '[BIT]',
   currency: '[MONEY]',
   date: '[DATE]',

@@ -10,6 +10,8 @@ import {
   newCommonProperty,
   newDescriptorProperty,
   newEnumerationProperty,
+  newIntegerProperty,
+  IntegerProperty,
 } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Namespace, EntityProperty } from '@edfi/metaed-core';
 import { enhance as initializeTopLevelEntities } from '../../src/model/TopLevelEntity';
@@ -47,6 +49,57 @@ describe('when enhancing core string property', (): void => {
   it('should have correct xsdName and xsdType', (): void => {
     expect(property.data.edfiXsd.xsdName).toBe(propertyName);
     expect(property.data.edfiXsd.xsdType).toBe(propertyName);
+  });
+});
+
+describe('when enhancing core integer property', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
+  metaEd.namespace.set(namespace.namespaceName, namespace);
+  const propertyName = 'PropertyName';
+  const property: IntegerProperty = {
+    ...newIntegerProperty(),
+    metaEdName: propertyName,
+    namespace,
+    data: { edfiXsd: {} as any },
+  };
+
+  beforeAll(() => {
+    createRepositoryEntityWithProperty(metaEd, namespace, property);
+    initializeTopLevelEntities(metaEd);
+    addModelBaseEdfiXsd(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should have correct xsdName and xsdType', (): void => {
+    expect(property.data.edfiXsd.xsdName).toBe(propertyName);
+    expect(property.data.edfiXsd.xsdType).toBe('xs:int');
+  });
+});
+
+describe('when enhancing core integer property with big hint', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
+  metaEd.namespace.set(namespace.namespaceName, namespace);
+  const propertyName = 'PropertyName';
+  const property: IntegerProperty = {
+    ...newIntegerProperty(),
+    metaEdName: propertyName,
+    namespace,
+    hasBigHint: true,
+    data: { edfiXsd: {} as any },
+  };
+
+  beforeAll(() => {
+    createRepositoryEntityWithProperty(metaEd, namespace, property);
+    initializeTopLevelEntities(metaEd);
+    addModelBaseEdfiXsd(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should have correct xsdName and xsdType', (): void => {
+    expect(property.data.edfiXsd.xsdName).toBe(propertyName);
+    expect(property.data.edfiXsd.xsdType).toBe('xs:long');
   });
 });
 

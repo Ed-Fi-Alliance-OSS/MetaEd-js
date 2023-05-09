@@ -67,6 +67,102 @@ describe('when enhancing integer type', (): void => {
   });
 });
 
+describe('when enhancing integer type with big hint for max value', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const simpleTypeName = 'SimpleTypeName';
+  const documentation = 'Documentation';
+  const minValue = '1';
+  let enhancedItem: IntegerType;
+  let createdSimpleType: IntegerSimpleType;
+
+  beforeAll(() => {
+    const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
+    metaEd.namespace.set(namespace.namespaceName, namespace);
+
+    enhancedItem = {
+      ...newIntegerType(),
+      metaEdName: simpleTypeName,
+      documentation,
+      generatedSimpleType: false,
+      minValue,
+      hasBigHint: true,
+      data: {
+        edfiXsd: {},
+      },
+    };
+    addModelBaseEdfiXsdTo(enhancedItem);
+    namespace.entity.integerType.set(enhancedItem.metaEdName, enhancedItem);
+
+    enhance(metaEd);
+
+    createdSimpleType = enhancedItem.data.edfiXsd.xsdSimpleType as IntegerSimpleType;
+  });
+
+  it('should have base type assigned', (): void => {
+    expect(createdSimpleType.baseType).toBe('xs:long');
+  });
+
+  it('should have no max value assigned', (): void => {
+    expect(createdSimpleType.maxValue).toBe('');
+  });
+
+  it('should have min value assigned', (): void => {
+    expect(createdSimpleType.minValue).toBe(minValue);
+  });
+
+  it('should have name assigned', (): void => {
+    expect(createdSimpleType.name).toBe(simpleTypeName);
+  });
+});
+
+describe('when enhancing integer type with big hint for min value', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const simpleTypeName = 'SimpleTypeName';
+  const documentation = 'Documentation';
+  const maxValue = '1';
+  let enhancedItem: IntegerType;
+  let createdSimpleType: IntegerSimpleType;
+
+  beforeAll(() => {
+    const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
+    metaEd.namespace.set(namespace.namespaceName, namespace);
+
+    enhancedItem = {
+      ...newIntegerType(),
+      metaEdName: simpleTypeName,
+      documentation,
+      generatedSimpleType: false,
+      maxValue,
+      hasBigHint: true,
+      data: {
+        edfiXsd: {},
+      },
+    };
+    addModelBaseEdfiXsdTo(enhancedItem);
+    namespace.entity.integerType.set(enhancedItem.metaEdName, enhancedItem);
+
+    enhance(metaEd);
+
+    createdSimpleType = enhancedItem.data.edfiXsd.xsdSimpleType as IntegerSimpleType;
+  });
+
+  it('should have base type assigned', (): void => {
+    expect(createdSimpleType.baseType).toBe('xs:long');
+  });
+
+  it('should have max value assigned', (): void => {
+    expect(createdSimpleType.maxValue).toBe(maxValue);
+  });
+
+  it('should have no min value assigned', (): void => {
+    expect(createdSimpleType.minValue).toBe('');
+  });
+
+  it('should have name assigned', (): void => {
+    expect(createdSimpleType.name).toBe(simpleTypeName);
+  });
+});
+
 describe('when enhancing integer type is short', (): void => {
   const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();

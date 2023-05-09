@@ -31,6 +31,7 @@ export interface IntegerType extends ModelBase {
   isShort: boolean;
   minValue: string;
   maxValue: string;
+  hasBigHint: boolean;
   referringSimpleProperties: EntityProperty[];
   sourceMap: IntegerTypeSourceMap;
 }
@@ -46,6 +47,7 @@ export function newIntegerType(): IntegerType {
     isShort: false,
     minValue: '',
     maxValue: '',
+    hasBigHint: false,
     referringSimpleProperties: [],
     sourceMap: newIntegerTypeSourceMap(),
   };

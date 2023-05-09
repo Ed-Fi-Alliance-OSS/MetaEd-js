@@ -333,6 +333,49 @@ describe('when converting integer property to column', (): void => {
   });
 });
 
+describe('when converting integer property with big hint to column', (): void => {
+  const propertyName = 'PropertyName';
+  const propertyDocumentation = 'PropertyDocumentation';
+  const contextName = 'ContextName';
+  let property: IntegerProperty;
+  let columns: Column[];
+
+  beforeAll(() => {
+    property = {
+      ...newIntegerProperty(),
+      hasBigHint: true,
+      metaEdName: propertyName,
+      documentation: propertyDocumentation,
+      parentEntity: newDomainEntity(),
+      isPartOfIdentity: true,
+      isOptional: true,
+      data: {
+        edfiOdsRelational: {
+          odsName: propertyName,
+          odsContextPrefix: contextName,
+          odsIsIdentityDatabaseType: true,
+          odsIsUniqueIndex: true,
+        },
+      },
+    };
+
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+  });
+
+  it('should return converted column', (): void => {
+    expect(columns).toHaveLength(1);
+    expect(columns[0].type).toBe('bigint');
+    expect(columns[0].columnId).toBe(contextName + propertyName);
+    expect(columns[0].description).toBe(propertyDocumentation);
+    expect(columns[0].isIdentityDatabaseType).toBe(true);
+    expect(columns[0].isNullable).toBe(true);
+    expect(columns[0].isPartOfPrimaryKey).toBe(true);
+    expect(columns[0].originalContextPrefix).toBe(contextName);
+    expect(columns[0].sourceEntityProperties[0]).toBe(property);
+  });
+});
+
 describe('when converting percent property to column', (): void => {
   const propertyName = 'PropertyName';
   const propertyDocumentation = 'PropertyDocumentation';

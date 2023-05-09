@@ -138,6 +138,34 @@ export class IntegerTypeBuilder extends MetaEdGrammarListener {
 
   enterMinValue(context: MetaEdGrammar.MinValueContext) {
     if (this.currentIntegerType === NoIntegerType) return;
+
+    if (context.exception) return;
+    if (context.signed_int() == null && context.BIG() == null) return;
+    if (context.signed_int() == null && (context.BIG().exception || isErrorText(context.BIG().getText()))) return;
+    if (context.BIG() == null && (context.signed_int().exception || isErrorText(context.signed_int().getText()))) return;
+
+    if (context.signed_int() != null) this.currentIntegerType.minValue = context.signed_int().getText();
+    if (context.BIG() != null) this.currentIntegerType.hasBigHint = true;
+
+    this.currentIntegerType.sourceMap.minValue = sourceMapFrom(context);
+  }
+
+  enterMaxValue(context: MetaEdGrammar.MaxValueContext) {
+    if (this.currentIntegerType === NoIntegerType) return;
+
+    if (context.exception) return;
+    if (context.signed_int() == null && context.BIG() == null) return;
+    if (context.signed_int() == null && (context.BIG().exception || isErrorText(context.BIG().getText()))) return;
+    if (context.BIG() == null && (context.signed_int().exception || isErrorText(context.signed_int().getText()))) return;
+
+    if (context.signed_int() != null) this.currentIntegerType.maxValue = context.signed_int().getText();
+    if (context.BIG() != null) this.currentIntegerType.hasBigHint = true;
+
+    this.currentIntegerType.sourceMap.maxValue = sourceMapFrom(context);
+  }
+
+  enterMinValueShort(context: MetaEdGrammar.MinValueShortContext) {
+    if (this.currentIntegerType === NoIntegerType) return;
     if (
       context.exception ||
       context.signed_int() == null ||
@@ -149,7 +177,7 @@ export class IntegerTypeBuilder extends MetaEdGrammarListener {
     this.currentIntegerType.sourceMap.minValue = sourceMapFrom(context);
   }
 
-  enterMaxValue(context: MetaEdGrammar.MaxValueContext) {
+  enterMaxValueShort(context: MetaEdGrammar.MaxValueShortContext) {
     if (this.currentIntegerType === NoIntegerType) return;
     if (
       context.exception ||
@@ -160,14 +188,6 @@ export class IntegerTypeBuilder extends MetaEdGrammarListener {
       return;
     this.currentIntegerType.maxValue = context.signed_int().getText();
     this.currentIntegerType.sourceMap.maxValue = sourceMapFrom(context);
-  }
-
-  enterMinValueShort(context: MetaEdGrammar.MinValueShortContext) {
-    this.enterMinValue(context);
-  }
-
-  enterMaxValueShort(context: MetaEdGrammar.MaxValueShortContext) {
-    this.enterMaxValue(context);
   }
 
   exitIntegerProperty(_context: MetaEdGrammar.IntegerPropertyContext) {

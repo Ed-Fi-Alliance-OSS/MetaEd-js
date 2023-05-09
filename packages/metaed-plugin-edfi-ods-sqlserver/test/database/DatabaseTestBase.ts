@@ -63,6 +63,7 @@ export function index(primaryColumn: DatabaseColumn): DatabaseIndex {
 
 // as found in DATA_TYPE column of INFORMATION_SCHEMA.COLUMNS system view
 export const columnDataTypes = {
+  bigint: 'bigint',
   bit: 'bit',
   date: 'date',
   datetime: 'datetime',

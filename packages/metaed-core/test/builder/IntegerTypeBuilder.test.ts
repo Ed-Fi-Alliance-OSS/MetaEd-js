@@ -83,6 +83,10 @@ describe('when building shared integer in extension namespace', (): void => {
     expect(getIntegerType(namespace.entity, expectedRepositoryId).maxValue).toBe(maxValue);
   });
 
+  it('should not have big hint', (): void => {
+    expect(getIntegerType(namespace.entity, expectedRepositoryId).hasBigHint).toBe(false);
+  });
+
   it('should have data', (): void => {
     expect(getIntegerType(namespace.entity, expectedRepositoryId).data).toBeDefined();
   });
@@ -93,6 +97,164 @@ describe('when building shared integer in extension namespace', (): void => {
 
   it('should not be a short type', (): void => {
     expect(getIntegerType(namespace.entity, expectedRepositoryId).isShort).toBe(false);
+  });
+});
+
+describe('when building shared integer with big min value', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const validationFailures: ValidationFailure[] = [];
+  const namespaceName = 'Namespace';
+  const projectExtension = 'ProjectExtension';
+
+  const entityName = 'EntityName';
+  const metaEdId = '123';
+  const documentation = 'doc';
+
+  const expectedRepositoryId = `${projectExtension}-${entityName}`;
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName, projectExtension)
+      .withStartSharedInteger(entityName, metaEdId)
+      .withDocumentation(documentation)
+      .withNumericRestrictions(null, null, true, false)
+      .withEndSharedInteger()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
+      .sendToListener(new IntegerTypeBuilder(metaEd, validationFailures));
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should not have minValue', (): void => {
+    expect(getIntegerType(namespace.entity, expectedRepositoryId).minValue).toBe('');
+  });
+
+  it('should not have maxValue', (): void => {
+    expect(getIntegerType(namespace.entity, expectedRepositoryId).maxValue).toBe('');
+  });
+
+  it('should have big hint', (): void => {
+    expect(getIntegerType(namespace.entity, expectedRepositoryId).hasBigHint).toBe(true);
+  });
+});
+
+describe('when building shared integer with big max value', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const validationFailures: ValidationFailure[] = [];
+  const namespaceName = 'Namespace';
+  const projectExtension = 'ProjectExtension';
+
+  const entityName = 'EntityName';
+  const metaEdId = '123';
+  const documentation = 'doc';
+
+  const expectedRepositoryId = `${projectExtension}-${entityName}`;
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName, projectExtension)
+      .withStartSharedInteger(entityName, metaEdId)
+      .withDocumentation(documentation)
+      .withNumericRestrictions(null, null, false, true)
+      .withEndSharedInteger()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
+      .sendToListener(new IntegerTypeBuilder(metaEd, validationFailures));
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should not have minValue', (): void => {
+    expect(getIntegerType(namespace.entity, expectedRepositoryId).minValue).toBe('');
+  });
+
+  it('should not have maxValue', (): void => {
+    expect(getIntegerType(namespace.entity, expectedRepositoryId).maxValue).toBe('');
+  });
+
+  it('should have big hint', (): void => {
+    expect(getIntegerType(namespace.entity, expectedRepositoryId).hasBigHint).toBe(true);
+  });
+});
+
+describe('when building integer property with big min value', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const validationFailures: ValidationFailure[] = [];
+  const namespaceName = 'Namespace';
+  const projectExtension = 'ProjectExtension';
+
+  const entityName = 'EntityName';
+  const documentation = 'doc';
+
+  const expectedRepositoryId = `${projectExtension}-${entityName}`;
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName, projectExtension)
+      .withStartDomainEntity('DomainEntity', '1')
+      .withDocumentation(documentation)
+      .withIntegerProperty(entityName, documentation, true, false, null, null, null, null, null, true, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
+      .sendToListener(new IntegerTypeBuilder(metaEd, validationFailures));
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should not have minValue', (): void => {
+    expect(getIntegerType(namespace.entity, expectedRepositoryId).minValue).toBe('');
+  });
+
+  it('should not have maxValue', (): void => {
+    expect(getIntegerType(namespace.entity, expectedRepositoryId).maxValue).toBe('');
+  });
+
+  it('should have big hint', (): void => {
+    expect(getIntegerType(namespace.entity, expectedRepositoryId).hasBigHint).toBe(true);
+  });
+});
+
+describe('when building integer property with big max value', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const validationFailures: ValidationFailure[] = [];
+  const namespaceName = 'Namespace';
+  const projectExtension = 'ProjectExtension';
+
+  const entityName = 'EntityName';
+  const documentation = 'doc';
+
+  const expectedRepositoryId = `${projectExtension}-${entityName}`;
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName, projectExtension)
+      .withStartDomainEntity('DomainEntity', '1')
+      .withDocumentation(documentation)
+      .withIntegerProperty(entityName, documentation, true, false, null, null, null, null, null, false, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
+      .sendToListener(new IntegerTypeBuilder(metaEd, validationFailures));
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('should not have minValue', (): void => {
+    expect(getIntegerType(namespace.entity, expectedRepositoryId).minValue).toBe('');
+  });
+
+  it('should not have maxValue', (): void => {
+    expect(getIntegerType(namespace.entity, expectedRepositoryId).maxValue).toBe('');
+  });
+
+  it('should have big hint', (): void => {
+    expect(getIntegerType(namespace.entity, expectedRepositoryId).hasBigHint).toBe(true);
   });
 });
 

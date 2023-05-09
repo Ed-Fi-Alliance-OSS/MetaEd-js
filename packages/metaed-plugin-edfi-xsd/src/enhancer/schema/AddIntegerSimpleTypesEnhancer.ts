@@ -10,6 +10,12 @@ import { typeGroupSimple } from './AddComplexTypesBaseEnhancer';
 
 const enhancerName = 'AddIntegerSimpleTypesEnhancer';
 
+function determineBaseTypeFor(integerType: IntegerType): string {
+  if (integerType.isShort) return 'xs:short';
+  if (integerType.hasBigHint) return 'xs:long';
+  return 'xs:int';
+}
+
 function createSchemaSimpleType(integerType: IntegerType): SimpleType {
   if (integerType.generatedSimpleType && integerType.minValue === '' && integerType.maxValue === '') {
     return NoSimpleType;
@@ -19,7 +25,7 @@ function createSchemaSimpleType(integerType: IntegerType): SimpleType {
     ...newIntegerSimpleType(),
     name: (integerType.data.edfiXsd as ModelBaseEdfiXsd).xsdMetaEdNameWithExtension(),
     annotation: { ...newAnnotation(), documentation: integerType.documentation, typeGroup: typeGroupSimple },
-    baseType: integerType.isShort ? 'xs:short' : 'xs:int',
+    baseType: determineBaseTypeFor(integerType),
     minValue: integerType.minValue,
     maxValue: integerType.maxValue,
   } as SimpleType;
