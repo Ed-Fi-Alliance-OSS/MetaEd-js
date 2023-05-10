@@ -7,3 +7,6 @@ Domain Entity PriorYearLeaver
     common EdFi.Language
         documentation inherited
         is optional collection
+    integer ABigNumber
+        documentation "big hint test"
+        max value big

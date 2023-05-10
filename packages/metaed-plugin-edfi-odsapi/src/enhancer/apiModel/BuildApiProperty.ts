@@ -5,6 +5,7 @@ import { ApiPropertyType } from '../../model/apiModel/ApiPropertyType';
 import { DbType } from '../../model/apiModel/DbType';
 
 function dbTypeFrom(column: Column): DbType {
+  if (column.type === 'bigint') return 'Int64';
   if (column.type === 'boolean') return 'Boolean';
   if (column.type === 'currency') return 'Currency';
   if (column.type === 'date') return 'Date';
@@ -33,7 +34,9 @@ function maxLengthFrom(column: Column): number {
 }
 
 function minValueFrom(column: Column): number | undefined {
-  if (column.type !== 'integer' && column.type !== 'short' && column.type !== 'decimal') return undefined;
+  if (column.type !== 'integer' && column.type !== 'short' && column.type !== 'bigint' && column.type !== 'decimal') {
+    return undefined;
+  }
   if (column.sourceEntityProperties.length === 0) return undefined;
   const { minValue } = column.sourceEntityProperties[0] as IntegerProperty | ShortProperty | DecimalProperty;
   if (minValue == null || minValue === '') return undefined;
@@ -41,7 +44,9 @@ function minValueFrom(column: Column): number | undefined {
 }
 
 function maxValueFrom(column: Column): number | undefined {
-  if (column.type !== 'integer' && column.type !== 'short' && column.type !== 'decimal') return undefined;
+  if (column.type !== 'integer' && column.type !== 'short' && column.type !== 'bigint' && column.type !== 'decimal') {
+    return undefined;
+  }
   if (column.sourceEntityProperties.length === 0) return undefined;
   const { maxValue } = column.sourceEntityProperties[0] as IntegerProperty | ShortProperty | DecimalProperty;
   if (maxValue == null || maxValue === '') return undefined;
@@ -52,7 +57,7 @@ function precisionFrom(column: Column): number {
   if (column.type === 'currency') return 19;
   if (column.type === 'decimal') return Number.parseInt((column as DecimalColumn).precision, 10);
   if (column.type === 'percent') return 5;
-  if (column.type === 'integer') return 10;
+  if (column.type === 'integer' || column.type === 'bigint') return 10;
   if (column.type === 'short') return 5;
   if (column.type === 'year') return 5;
   return 0;
@@ -85,7 +90,10 @@ function apiPropertyTypefromNumeric(column: Column): ApiPropertyType {
 
 function apiPropertyTypeFrom(column: Column, targetTechnologyVersion: string): ApiPropertyType {
   // METAED-1299
-  if (versionSatisfies(targetTechnologyVersion, '>=7.0') && (column.type === 'integer' || column.type === 'short')) {
+  if (
+    versionSatisfies(targetTechnologyVersion, '>=7.0') &&
+    (column.type === 'integer' || column.type === 'short' || column.type === 'bigint')
+  ) {
     return apiPropertyTypefromNumeric(column);
   }
 

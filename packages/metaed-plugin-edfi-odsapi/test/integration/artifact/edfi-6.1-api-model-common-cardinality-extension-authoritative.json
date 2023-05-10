@@ -56,6 +56,23 @@
       "name": "PriorYearLeaver",
       "locallyDefinedProperties": [
         {
+          "propertyName": "ABigNumber",
+          "propertyType": {
+            "dbType": "Int64",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "big hint test",
+          "isIdentifying": false,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "ABigNumber",
+            "postgreSql": "ABigNumber"
+          }
+        },
+        {
           "propertyName": "CreateDate",
           "propertyType": {
             "dbType": "DateTime2",
