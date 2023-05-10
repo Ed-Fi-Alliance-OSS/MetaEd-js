@@ -90,6 +90,25 @@
           }
         },
         {
+          "propertyName": "DecimalMinMaxValues",
+          "propertyType": {
+            "dbType": "Decimal",
+            "maxLength": 0,
+            "precision": 15,
+            "scale": 5,
+            "isNullable": true,
+            "minValue": 1.1,
+            "maxValue": 2.22
+          },
+          "description": "Decimal min and max value test",
+          "isIdentifying": false,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "DecimalMinMaxValues",
+            "postgreSql": "DecimalMinMaxValues"
+          }
+        },
+        {
           "propertyName": "Id",
           "propertyType": {
             "dbType": "Guid",

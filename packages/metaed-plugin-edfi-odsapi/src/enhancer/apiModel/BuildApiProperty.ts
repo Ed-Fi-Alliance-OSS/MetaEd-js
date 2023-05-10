@@ -40,7 +40,7 @@ function minValueFrom(column: Column): number | undefined {
   if (column.sourceEntityProperties.length === 0) return undefined;
   const { minValue } = column.sourceEntityProperties[0] as IntegerProperty | ShortProperty | DecimalProperty;
   if (minValue == null || minValue === '') return undefined;
-  return Number.parseInt(minValue, 10);
+  return column.type === 'decimal' ? Number.parseFloat(minValue) : Number.parseInt(minValue, 10);
 }
 
 function maxValueFrom(column: Column): number | undefined {
@@ -50,7 +50,7 @@ function maxValueFrom(column: Column): number | undefined {
   if (column.sourceEntityProperties.length === 0) return undefined;
   const { maxValue } = column.sourceEntityProperties[0] as IntegerProperty | ShortProperty | DecimalProperty;
   if (maxValue == null || maxValue === '') return undefined;
-  return Number.parseInt(maxValue, 10);
+  return column.type === 'decimal' ? Number.parseFloat(maxValue) : Number.parseInt(maxValue, 10);
 }
 
 function precisionFrom(column: Column): number {
