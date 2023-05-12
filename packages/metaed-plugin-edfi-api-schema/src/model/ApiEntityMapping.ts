@@ -7,6 +7,7 @@ import deepFreeze from 'deep-freeze';
 import { EntityProperty, TopLevelEntity } from '@edfi/metaed-core';
 import { CollectedProperty } from './CollectedProperty';
 import { ReferenceComponent, ReferenceGroup } from './ReferenceComponent';
+import { Merge } from './Merge';
 
 /**
  * API shape metadata for a MetaEd entity.
@@ -43,6 +44,8 @@ export type ApiEntityMapping = {
    * Example 2: If the entity is GradingPeriod (not a subclass), assignableTo would be null.
    */
   superclass: TopLevelEntity | null;
+
+  merges: Merge[] | null;
 };
 
 export function newApiEntityMapping(): ApiEntityMapping {
@@ -52,6 +55,7 @@ export function newApiEntityMapping(): ApiEntityMapping {
     referenceGroups: [],
     descriptorCollectedProperties: [],
     superclass: null,
+    merges: null,
   };
 }
 
