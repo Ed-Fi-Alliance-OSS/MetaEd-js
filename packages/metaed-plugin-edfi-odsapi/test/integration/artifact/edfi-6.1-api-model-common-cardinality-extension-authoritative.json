@@ -10,6 +10,26 @@
     {
       "aggregateRootEntityName": {
         "schema": "commoncardinality",
+        "name": "CommonScalarCardinality"
+      },
+      "aggregateEntityNames": [
+        {
+          "schema": "commoncardinality",
+          "name": "CommonScalarCardinality"
+        },
+        {
+          "schema": "commoncardinality",
+          "name": "CommonScalarCardinalityLanguageCollection"
+        },
+        {
+          "schema": "commoncardinality",
+          "name": "CommonScalarCardinalitySimpleCommon"
+        }
+      ]
+    },
+    {
+      "aggregateRootEntityName": {
+        "schema": "commoncardinality",
         "name": "PriorYearLeaver"
       },
       "aggregateEntityNames": [
@@ -51,6 +71,267 @@
     }
   ],
   "entityDefinitions": [
+    {
+      "schema": "commoncardinality",
+      "name": "CommonScalarCardinality",
+      "locallyDefinedProperties": [
+        {
+          "propertyName": "CreateDate",
+          "propertyType": {
+            "dbType": "DateTime2",
+            "maxLength": 0,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "",
+          "isIdentifying": false,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "CreateDate",
+            "postgreSql": "CreateDate"
+          }
+        },
+        {
+          "propertyName": "Id",
+          "propertyType": {
+            "dbType": "Guid",
+            "maxLength": 0,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "",
+          "isIdentifying": false,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "Id",
+            "postgreSql": "Id"
+          }
+        },
+        {
+          "propertyName": "LastModifiedDate",
+          "propertyType": {
+            "dbType": "DateTime2",
+            "maxLength": 0,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "",
+          "isIdentifying": false,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "LastModifiedDate",
+            "postgreSql": "LastModifiedDate"
+          }
+        },
+        {
+          "propertyName": "StudentUId",
+          "propertyType": {
+            "dbType": "String",
+            "maxLength": 32,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "StudentUId is a unique number assigned to a student",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "StudentUId",
+            "postgreSql": "StudentUId"
+          }
+        }
+      ],
+      "identifiers": [
+        {
+          "identifierName": "CommonScalarCardinality_PK",
+          "identifyingPropertyNames": [
+            "StudentUId"
+          ],
+          "isPrimary": true,
+          "isUpdatable": false,
+          "constraintNames": {
+            "sqlServer": "CommonScalarCardinality_PK",
+            "postgreSql": "CommonScalarCardinality_PK"
+          }
+        },
+        {
+          "identifierName": "UX_CommonScalarCardinality_Id",
+          "identifyingPropertyNames": [
+            "Id"
+          ],
+          "isPrimary": false,
+          "isUpdatable": false,
+          "constraintNames": {
+            "sqlServer": "UX_CommonScalarCardinality_Id",
+            "postgreSql": "UX_a458a2_Id"
+          }
+        }
+      ],
+      "isAbstract": false,
+      "description": "CommonScalarCardinality",
+      "tableNames": {
+        "sqlServer": "CommonScalarCardinality",
+        "postgreSql": "CommonScalarCardinality"
+      }
+    },
+    {
+      "schema": "commoncardinality",
+      "name": "CommonScalarCardinalityLanguageCollection",
+      "locallyDefinedProperties": [
+        {
+          "propertyName": "BeginDate",
+          "propertyType": {
+            "dbType": "Date",
+            "maxLength": 0,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "Begin date of the effective date for the LanguageCollection",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "BeginDate",
+            "postgreSql": "BeginDate"
+          }
+        },
+        {
+          "propertyName": "CreateDate",
+          "propertyType": {
+            "dbType": "DateTime2",
+            "maxLength": 0,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "",
+          "isIdentifying": false,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "CreateDate",
+            "postgreSql": "CreateDate"
+          }
+        },
+        {
+          "propertyName": "EndDate",
+          "propertyType": {
+            "dbType": "Date",
+            "maxLength": 0,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": true
+          },
+          "description": "End date of the effective date for the LanguageCollection",
+          "isIdentifying": false,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "EndDate",
+            "postgreSql": "EndDate"
+          }
+        }
+      ],
+      "identifiers": [
+        {
+          "identifierName": "CommonScalarCardinalityLanguageCollection_PK",
+          "identifyingPropertyNames": [
+            "BeginDate",
+            "StudentUId"
+          ],
+          "isPrimary": true,
+          "isUpdatable": false,
+          "constraintNames": {
+            "sqlServer": "CommonScalarCardinalityLanguageCollection_PK",
+            "postgreSql": "CommonScalarCardinalityLanguageCollection_PK"
+          }
+        }
+      ],
+      "isAbstract": false,
+      "description": "doc",
+      "tableNames": {
+        "sqlServer": "CommonScalarCardinalityLanguageCollection",
+        "postgreSql": "CommonScalarCardinalityLanguageCollection"
+      }
+    },
+    {
+      "schema": "commoncardinality",
+      "name": "CommonScalarCardinalitySimpleCommon",
+      "locallyDefinedProperties": [
+        {
+          "propertyName": "BeginDate",
+          "propertyType": {
+            "dbType": "Date",
+            "maxLength": 0,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "Begin date of the effective date for the SimpleCommon",
+          "isIdentifying": false,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "BeginDate",
+            "postgreSql": "BeginDate"
+          }
+        },
+        {
+          "propertyName": "CreateDate",
+          "propertyType": {
+            "dbType": "DateTime2",
+            "maxLength": 0,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "",
+          "isIdentifying": false,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "CreateDate",
+            "postgreSql": "CreateDate"
+          }
+        },
+        {
+          "propertyName": "EndDate",
+          "propertyType": {
+            "dbType": "Date",
+            "maxLength": 0,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": true
+          },
+          "description": "End date of the effective date for the SimpleCommon",
+          "isIdentifying": false,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "EndDate",
+            "postgreSql": "EndDate"
+          }
+        }
+      ],
+      "identifiers": [
+        {
+          "identifierName": "CommonScalarCardinalitySimpleCommon_PK",
+          "identifyingPropertyNames": [
+            "StudentUId"
+          ],
+          "isPrimary": true,
+          "isUpdatable": false,
+          "constraintNames": {
+            "sqlServer": "CommonScalarCardinalitySimpleCommon_PK",
+            "postgreSql": "CommonScalarCardinalitySimpleCommon_PK"
+          }
+        }
+      ],
+      "isAbstract": false,
+      "description": "doc",
+      "tableNames": {
+        "sqlServer": "CommonScalarCardinalitySimpleCommon",
+        "postgreSql": "CommonScalarCardinalitySimpleCommon"
+      }
+    },
     {
       "schema": "commoncardinality",
       "name": "PriorYearLeaver",
@@ -491,6 +772,126 @@
     }
   ],
   "associationDefinitions": [
+    {
+      "fullName": {
+        "schema": "commoncardinality",
+        "name": "FK_CommonScalarCardinalityLanguageCollection_CommonScalarCardinality"
+      },
+      "cardinality": "OneToZeroOrMore",
+      "primaryEntityFullName": {
+        "schema": "commoncardinality",
+        "name": "CommonScalarCardinality"
+      },
+      "primaryEntityProperties": [
+        {
+          "propertyName": "StudentUId",
+          "propertyType": {
+            "dbType": "String",
+            "maxLength": 32,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "StudentUId is a unique number assigned to a student",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "StudentUId",
+            "postgreSql": "StudentUId"
+          }
+        }
+      ],
+      "secondaryEntityFullName": {
+        "schema": "commoncardinality",
+        "name": "CommonScalarCardinalityLanguageCollection"
+      },
+      "secondaryEntityProperties": [
+        {
+          "propertyName": "StudentUId",
+          "propertyType": {
+            "dbType": "String",
+            "maxLength": 32,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "StudentUId is a unique number assigned to a student",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "StudentUId",
+            "postgreSql": "StudentUId"
+          }
+        }
+      ],
+      "isIdentifying": true,
+      "isRequired": true,
+      "constraintNames": {
+        "sqlServer": "FK_CommonScalarCardinalityLanguageCollection_CommonScalarCardinality",
+        "postgreSql": "FK_54b26e_CommonScalarCardinality"
+      },
+      "potentiallyLogical": false
+    },
+    {
+      "fullName": {
+        "schema": "commoncardinality",
+        "name": "FK_CommonScalarCardinalitySimpleCommon_CommonScalarCardinality"
+      },
+      "cardinality": "OneToOne",
+      "primaryEntityFullName": {
+        "schema": "commoncardinality",
+        "name": "CommonScalarCardinality"
+      },
+      "primaryEntityProperties": [
+        {
+          "propertyName": "StudentUId",
+          "propertyType": {
+            "dbType": "String",
+            "maxLength": 32,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "StudentUId is a unique number assigned to a student",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "StudentUId",
+            "postgreSql": "StudentUId"
+          }
+        }
+      ],
+      "secondaryEntityFullName": {
+        "schema": "commoncardinality",
+        "name": "CommonScalarCardinalitySimpleCommon"
+      },
+      "secondaryEntityProperties": [
+        {
+          "propertyName": "StudentUId",
+          "propertyType": {
+            "dbType": "String",
+            "maxLength": 32,
+            "precision": 0,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "StudentUId is a unique number assigned to a student",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "StudentUId",
+            "postgreSql": "StudentUId"
+          }
+        }
+      ],
+      "isIdentifying": true,
+      "isRequired": true,
+      "constraintNames": {
+        "sqlServer": "FK_CommonScalarCardinalitySimpleCommon_CommonScalarCardinality",
+        "postgreSql": "FK_24a354_CommonScalarCardinality"
+      },
+      "potentiallyLogical": false
+    },
     {
       "fullName": {
         "schema": "commoncardinality",

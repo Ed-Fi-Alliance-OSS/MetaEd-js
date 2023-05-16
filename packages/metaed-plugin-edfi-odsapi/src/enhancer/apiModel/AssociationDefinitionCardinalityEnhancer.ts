@@ -8,6 +8,13 @@ import { allTablesInNamespacesBySchema, foreignKeyFor } from './EnhancerHelper';
 
 const enhancerName = 'AssociationDefinitionCardinalityEnhancer';
 
+function cardinalityFromSourceReference(foreignKey: ForeignKey): AssociationDefinitionCardinality {
+  if (foreignKey.sourceReference.isRequired) return 'OneToOne';
+  if (foreignKey.sourceReference.isOptional) return 'OneToZeroOrOne';
+  if (foreignKey.sourceReference.isRequiredCollection) return 'OneToOneOrMore';
+  return 'OneToZeroOrMore'; // optional collection
+}
+
 function findAggregateWithEntity(targetTechnologyVersion: string, aggregates: Aggregate[], table: Table): Aggregate | null {
   // Table name in the DomainMetadata EntityTable structure is not the non-db specific tableId, but instead the overlap-collapsed table name
   const tableNameToMatch: string = table.data.edfiOdsSqlServer.tableName;
@@ -28,23 +35,17 @@ function findAggregateWithEntity(targetTechnologyVersion: string, aggregates: Ag
   return aggregatesWithEntityTable.length === 1 ? aggregatesWithEntityTable[0] : null;
 }
 
-function childEntitySearch34(rootAggregate: Aggregate, foreignKey: ForeignKey): AssociationDefinitionCardinality {
-  const childEntitySearch: EntityTable | undefined = rootAggregate.entityTables.find(
-    (et: EntityTable) =>
-      et.table === foreignKey.parentTable.data.edfiOdsSqlServer.tableName && et.schema === foreignKey.parentTable.schema,
-  );
-  if (childEntitySearch == null) return 'OneToZeroOrMore';
-  return childEntitySearch.isRequiredCollection ? 'OneToOneOrMore' : 'OneToZeroOrMore';
-}
+function childEntitySearch(rootAggregate: Aggregate, foreignKey: ForeignKey): AssociationDefinitionCardinality {
+  // METAED-1354: Use source reference directly for a common
+  if (foreignKey.sourceReference.propertyType === 'common') return cardinalityFromSourceReference(foreignKey);
 
-function childEntitySearch33(rootAggregate: Aggregate, foreignKey: ForeignKey): AssociationDefinitionCardinality {
-  const childEntitySearch: EntityTable[] = rootAggregate.entityTables.filter(
+  const childEntityTable: EntityTable | undefined = rootAggregate.entityTables.find(
     (et: EntityTable) =>
       et.table === foreignKey.parentTable.data.edfiOdsSqlServer.tableName && et.schema === foreignKey.parentTable.schema,
   );
-  if (childEntitySearch.length !== 1) return 'OneToZeroOrMore';
-  if (childEntitySearch[0].isRequiredCollection) return 'OneToOneOrMore';
-  return 'OneToZeroOrMore';
+
+  if (childEntityTable == null) return 'OneToZeroOrMore';
+  return childEntityTable.isRequiredCollection ? 'OneToOneOrMore' : 'OneToZeroOrMore';
 }
 
 function cardinalityFrom(
@@ -71,9 +72,13 @@ function cardinalityFrom(
   if (foreignTable == null)
     throw new Error(`BuildAssociationDefinitions: could not find table '${foreignKey.foreignTableId}'.`);
 
-  // this is what the if statement in the C# code had: count of PK columns on both sides are
-  // equal -- this feels like too weak a constraint
-  if (isIdentifying && parentTable.primaryKeys.length === foreignTable.primaryKeys.length) return 'OneToOne';
+  if (isIdentifying && parentTable.primaryKeys.length === foreignTable.primaryKeys.length) {
+    // METAED-1354: Pre-7.0 defaulted to OneToOne for non-commons
+    if (foreignKey.sourceReference.propertyType !== 'common') return 'OneToOne';
+
+    // METAED-1354: Use source reference directly for a common
+    return cardinalityFromSourceReference(foreignKey);
+  }
 
   // OneToOneOrMore is based on the "isRequiredCollection" flag in DomainMetadata, when the foreign key is the
   // back reference from an aggregate dependent table to either the root table or an intermediate dependent table
@@ -84,20 +89,21 @@ function cardinalityFrom(
   );
 
   if (rootAggregate == null) {
-    // METAED-1435: Fallback to checking source reference property for cardinality
     if (foreignKey.sourceReference.isRequiredCollection) return 'OneToOneOrMore';
-    return 'OneToZeroOrMore';
+
+    // METAED-1354: Pre-7.0 defaulted to OneToZeroOrMore for non-commons
+    if (foreignKey.sourceReference.propertyType !== 'common') return 'OneToZeroOrMore';
+
+    // METAED-1354: Use source reference directly for a common
+    return cardinalityFromSourceReference(foreignKey);
   }
 
-  // METAED-948
-  if (versionSatisfies(targetTechnologyVersion, '<3.4.0')) {
-    return childEntitySearch33(rootAggregate, foreignKey);
-  }
-  return childEntitySearch34(rootAggregate, foreignKey);
+  return childEntitySearch(rootAggregate, foreignKey);
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsApi') as PluginEnvironment;
+  if (versionSatisfies(targetTechnologyVersion, '<7.0.0')) return { enhancerName, success: true };
 
   metaEd.namespace.forEach((namespace: Namespace) => {
     const { domainModelDefinition, aggregates } = namespace.data.edfiOdsApi as NamespaceEdfiOdsApi;

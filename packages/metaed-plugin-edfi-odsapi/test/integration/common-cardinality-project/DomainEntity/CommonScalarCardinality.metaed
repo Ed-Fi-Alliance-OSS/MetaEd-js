@@ -1,0 +1,12 @@
+Domain Entity CommonScalarCardinality
+    documentation "CommonScalarCardinality"
+    string StudentUId
+        documentation "StudentUId is a unique number assigned to a student"
+        is part of identity
+        max length 32
+    common LanguageCollection
+        documentation "doc"
+        is required
+    common SimpleCommon
+        documentation "doc"
+        is optional
