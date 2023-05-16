@@ -6,7 +6,7 @@
 import { EntityProperty, newEntityProperty } from '@edfi/metaed-core';
 
 export interface MergeElement extends EntityProperty {
-  JSONPathLocation: string;
+  JsonPath: string;
 }
 
 /**
@@ -15,6 +15,6 @@ export interface MergeElement extends EntityProperty {
 export function newMergeElement(): MergeElement {
   return {
     ...newEntityProperty(),
-    JSONPathLocation: '',
+    JsonPath: '',
   };
 }

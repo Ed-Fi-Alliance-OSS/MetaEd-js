@@ -10,9 +10,10 @@ import {
   MetaEdEnvironment,
   EnhancerResult,
   ReferentialProperty,
-  // EntityProperty,
+  EntityProperty,
   // CommonProperty,
   TopLevelEntity,
+  MergeDirective,
   // StringProperty,
   // IntegerProperty,
   // ShortProperty,
@@ -24,6 +25,7 @@ import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSche
 // import { PropertyModifier, prefixedName } from '../model/PropertyModifier';
 import { /* singularize, */ pluralize, uncapitalize } from '../Utility';
 import { newMerge } from '../model/Merge';
+// import { MergeElement } from '../model/MergeElement';
 
 const enhancerName = 'ApiMergeDirectiveEnhancer';
 
@@ -255,22 +257,45 @@ const enhancerName = 'ApiMergeDirectiveEnhancer';
   };
 } */
 
-export function jsonPathExpressionBuilder(property: ReferentialProperty): string {
-  let jsonPathExpression = '$';
-  if (property.mergeDirectives != null && property.mergeDirectives.length > 0) {
-    jsonPathExpression += `.${uncapitalize(pluralize(property.fullPropertyName))}`;
-    property.mergeDirectives.forEach((mergeDirective) => {
-      mergeDirective.sourcePropertyChain.forEach((propertyChain) => {
-        const { apiMapping } = propertyChain.data.edfiApiSchema as EntityPropertyApiSchemaData;
-        jsonPathExpression += `.${
-          apiMapping.isScalarReference ? apiMapping.decollisionedTopLevelName : apiMapping.fullName
-        }`;
-      });
-    });
+function targetProperty(mergeDirective: MergeDirective): EntityProperty {
+  return mergeDirective.sourcePropertyChain[mergeDirective.targetPropertyChain.length - 1];
+}
 
-    return jsonPathExpression;
-  }
-  return '';
+function sourceProperty(mergeDirective: MergeDirective): EntityProperty {
+  return mergeDirective.sourcePropertyChain[mergeDirective.sourcePropertyChain.length - 1];
+}
+
+function mergeTargetBuilder(property: ReferentialProperty, mergeDirective: MergeDirective): string {
+  let jsonPathExpression = '';
+
+  jsonPathExpression = '$';
+  jsonPathExpression += `.${uncapitalize(property.parentEntityName)}`;
+
+  mergeDirective.targetPropertyChain.forEach((propertyChainElement) => {
+    const { apiMapping } = propertyChainElement.data.edfiApiSchema as EntityPropertyApiSchemaData;
+    jsonPathExpression += `.${apiMapping.isScalarReference ? apiMapping.decollisionedTopLevelName : apiMapping.fullName}`;
+  });
+
+  return jsonPathExpression;
+}
+
+function mergeSourceBuilder(property: ReferentialProperty, mergeDirective: MergeDirective): string {
+  let jsonPathExpression = '';
+  jsonPathExpression = '$';
+  jsonPathExpression += `.${uncapitalize(pluralize(property.fullPropertyName))}`;
+
+  if (property.isCollection) jsonPathExpression += '[?(@';
+
+  mergeDirective.sourcePropertyChain.forEach((propertyChainElement) => {
+    const { apiMapping } = propertyChainElement.data.edfiApiSchema as EntityPropertyApiSchemaData;
+    if (apiMapping.isReferenceCollection) jsonPathExpression += `.${apiMapping.referenceCollectionName}`;
+    else if (apiMapping.isScalarReference) jsonPathExpression += `.${apiMapping.decollisionedTopLevelName}`;
+    else jsonPathExpression += `.${apiMapping.fullName}`;
+  });
+
+  if (property.isCollection) jsonPathExpression += '=%value%)]';
+
+  return jsonPathExpression;
 }
 
 function mergeElements(entityPathFor: TopLevelEntity) {
@@ -283,22 +308,25 @@ function mergeElements(entityPathFor: TopLevelEntity) {
         (property.property as ReferentialProperty).mergeDirectives.length > 0,
     )
     .forEach(({ property }) => {
-      const jsonPathExpression = jsonPathExpressionBuilder(property as ReferentialProperty);
+      const referentialProperty: ReferentialProperty = property as ReferentialProperty;
       const { apiMapping } = entityPathFor.data.edfiApiSchema as EntityApiSchemaData;
-      const merge = newMerge();
-      merge.mergeSource = { ...property, JSONPathLocation: jsonPathExpression };
       apiMapping.merges = [];
-      apiMapping.merges.push(merge);
+      (property as ReferentialProperty).mergeDirectives.forEach((mergeDirective) => {
+        const merge = newMerge();
+        merge.mergeSource = {
+          ...sourceProperty(mergeDirective),
+          JsonPath: mergeSourceBuilder(referentialProperty, mergeDirective),
+        };
+        merge.mergeTarget = {
+          ...targetProperty(mergeDirective),
+          JsonPath: mergeTargetBuilder(referentialProperty, mergeDirective),
+        };
+        apiMapping.merges?.push(merge);
+      });
     });
 }
 
-/**
- * This enhancer uses the results of the ApiMappingEnhancer to create a JSON schema
- * for each MetaEd entity. This schema is used to validate the API JSON document body
- * shape for each resource that corresponds to the MetaEd entity.
- */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  // Build schemas for each domain entity and association
   getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
     (entity) => {
       mergeElements(entity as TopLevelEntity);
