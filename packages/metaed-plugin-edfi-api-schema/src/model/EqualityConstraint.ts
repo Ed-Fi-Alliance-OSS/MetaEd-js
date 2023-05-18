@@ -5,7 +5,7 @@
 
 import { MergeElement, newMergeElement } from './MergeElement';
 
-export interface Merge {
+export interface EqualityConstraint {
   mergeSource: MergeElement;
   mergeTarget: MergeElement;
 }
@@ -13,7 +13,7 @@ export interface Merge {
 /**
  *
  */
-export function newMerge(): Merge {
+export function newMerge(): EqualityConstraint {
   return {
     mergeSource: newMergeElement(),
     mergeTarget: newMergeElement(),

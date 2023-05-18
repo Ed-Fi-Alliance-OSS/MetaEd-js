@@ -7,7 +7,7 @@ import deepFreeze from 'deep-freeze';
 import { EntityProperty, TopLevelEntity } from '@edfi/metaed-core';
 import { CollectedProperty } from './CollectedProperty';
 import { ReferenceComponent, ReferenceGroup } from './ReferenceComponent';
-import { Merge } from './Merge';
+import { EqualityConstraint } from './EqualityConstraint';
 
 /**
  * API shape metadata for a MetaEd entity.
@@ -45,7 +45,7 @@ export type ApiEntityMapping = {
    */
   superclass: TopLevelEntity | null;
 
-  merges: Merge[] | null;
+  qualityConstraints: EqualityConstraint[] | null;
 };
 
 export function newApiEntityMapping(): ApiEntityMapping {
@@ -55,7 +55,7 @@ export function newApiEntityMapping(): ApiEntityMapping {
     referenceGroups: [],
     descriptorCollectedProperties: [],
     superclass: null,
-    merges: null,
+    qualityConstraints: null,
   };
 }
 

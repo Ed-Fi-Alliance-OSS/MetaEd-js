@@ -28,7 +28,6 @@ describe('when building domain entity with DomainEntity collection and single me
       .withBeginNamespace('EdFi')
       .withStartDomainEntity('GradingPeriod')
       .withDocumentation('doc')
-      .withStringIdentity('GradingPeriodIdentity', 'doc', '30')
       .withEnumerationIdentity('SchoolYear', 'doc')
       .withEndDomainEntity()
 
@@ -55,27 +54,161 @@ describe('when building domain entity with DomainEntity collection and single me
     apiMergeDirectiveEnhancer(metaEd);
   });
 
-  it('merges property has one element', () => {
+  it('qualityConstraints property has one element', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
-    expect(apiMapping.merges.length).toBe(1);
+    expect(apiMapping.qualityConstraints.length).toBe(1);
   });
 
-  it('source element on merge property has a correct JsonPath expression', () => {
+  it('recognizes the SchoolYear merge', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
-    expect(apiMapping.merges[0].mergeSource.fullPropertyName).toBe('SchoolYear');
-    expect(apiMapping.merges[0].mergeSource.parentEntityName).toBe('GradingPeriod');
-    expect(apiMapping.merges[0].mergeSource.JsonPath).toBe(
+    expect(apiMapping.qualityConstraints[0].mergeSource.fullPropertyName).toBe('SchoolYear');
+    expect(apiMapping.qualityConstraints[0].mergeSource.parentEntityName).toBe('GradingPeriod');
+    expect(apiMapping.qualityConstraints[0].mergeSource.jsonPath).toBe(
       '$.gradingPeriods[?(@.gradingPeriodReference.schoolYear=%value%)]',
     );
-  });
 
-  it('target element on merge property has a correct JsonPath expression', () => {
-    const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
-    const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
-    expect(apiMapping.merges[0].mergeTarget.fullPropertyName).toBe('GradingPeriod');
-    expect(apiMapping.merges[0].mergeTarget.parentEntityName).toBe('Session');
-    expect(apiMapping.merges[0].mergeTarget.JsonPath).toBe('$.session.schoolYear');
+    expect(apiMapping.qualityConstraints[0].mergeTarget.fullPropertyName).toBe('SchoolYear');
+    expect(apiMapping.qualityConstraints[0].mergeTarget.parentEntityName).toBe('Session');
+    expect(apiMapping.qualityConstraints[0].mergeTarget.jsonPath).toBe('$.session.schoolYear=%value%');
   });
 });
+
+describe('when building domain entity with DomainEntity collection and two merge directives', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespace = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity('GradingPeriod')
+      .withDocumentation('doc')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withStringIdentity('SessionName', 'doc', '30')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withDomainEntityProperty('GradingPeriod', 'doc', false, true)
+      .withMergeDirective('GradingPeriod.SchoolYear', 'SchoolYear')
+      .withMergeDirective('GradingPeriod.School', 'School')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    apiMergeDirectiveEnhancer(metaEd);
+  });
+
+  it('qualityConstraints property has one element', () => {
+    const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
+    const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
+    expect(apiMapping.qualityConstraints.length).toBe(2);
+  });
+
+  it('recognizes the SchoolYear merge', () => {
+    const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
+    const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
+    expect(apiMapping.qualityConstraints[0].mergeSource.fullPropertyName).toBe('SchoolYear');
+    expect(apiMapping.qualityConstraints[0].mergeSource.parentEntityName).toBe('GradingPeriod');
+    expect(apiMapping.qualityConstraints[0].mergeSource.jsonPath).toBe(
+      '$.gradingPeriods[?(@.gradingPeriodReference.schoolYear=%value%)]',
+    );
+
+    expect(apiMapping.qualityConstraints[0].mergeTarget.fullPropertyName).toBe('SchoolYear');
+    expect(apiMapping.qualityConstraints[0].mergeTarget.parentEntityName).toBe('Session');
+    expect(apiMapping.qualityConstraints[0].mergeTarget.jsonPath).toBe('$.session.schoolYear=%value%');
+  });
+
+  it('recognizes the School merge', () => {
+    const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
+    const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping.qualityConstraints[1].mergeSource.fullPropertyName).toBe('School');
+    expect(apiMapping.qualityConstraints[1].mergeSource.parentEntityName).toBe('GradingPeriod');
+    expect(apiMapping.qualityConstraints[1].mergeSource.jsonPath).toBe(
+      '$.gradingPeriods[?(@.gradingPeriodReference.schoolId=%value%)]',
+    );
+
+    expect(apiMapping.qualityConstraints[1].mergeTarget.fullPropertyName).toBe('School');
+    expect(apiMapping.qualityConstraints[1].mergeTarget.parentEntityName).toBe('Session');
+    expect(apiMapping.qualityConstraints[1].mergeTarget.jsonPath).toBe('$.session.schoolId=%value%');
+  });
+});
+
+// describe('when building domain entity with DomainEntity and single merge directive', () => {
+//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+//   const namespace = 'EdFi';
+
+//   beforeAll(() => {
+//     MetaEdTextBuilder.build()
+//       .withBeginNamespace('EdFi')
+//       .withStartDomainEntity('School')
+//       .withDocumentation('doc')
+//       .withIntegerIdentity('SchoolId', 'doc')
+//       .withEndDomainEntity()
+
+//       .withStartDomainEntity('Session')
+//       .withDocumentation('doc')
+//       .withDomainEntityIdentity('School', 'doc')
+//       .withEndDomainEntity()
+
+//       .withStartDomainEntity('CourseOffering')
+//       .withDocumentation('doc')
+//       .withDomainEntityIdentity('School', 'doc')
+//       .withMergeDirective('School', 'Session.School')
+//       .withEndDomainEntity()
+//       .withEndNamespace()
+
+//       .sendToListener(new NamespaceBuilder(metaEd, []))
+//       .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+//     domainEntityReferenceEnhancer(metaEd);
+//     mergeDirectiveEnhancer(metaEd);
+//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+//     entityApiSchemaDataSetupEnhancer(metaEd);
+//     referenceComponentEnhancer(metaEd);
+//     apiPropertyMappingEnhancer(metaEd);
+//     propertyCollectingEnhancer(metaEd);
+//     apiEntityMappingEnhancer(metaEd);
+//     apiMergeDirectiveEnhancer(metaEd);
+//   });
+
+//   it('qualityConstraints property has one element', () => {
+//     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
+//     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
+//     expect(apiMapping.qualityConstraints.length).toBe(1);
+//   });
+
+// it('recognizes the SchoolYear merge', () => {
+//   const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
+//   const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
+//   expect(apiMapping.qualityConstraints[0].mergeSource.fullPropertyName).toBe('SchoolYear');
+//   expect(apiMapping.qualityConstraints[0].mergeSource.parentEntityName).toBe('GradingPeriod');
+//   expect(apiMapping.qualityConstraints[0].mergeSource.jsonPath).toBe(
+//     '$.gradingPeriods[?(@.gradingPeriodReference.schoolYear=%value%)]',
+//   );
+
+//   expect(apiMapping.qualityConstraints[0].mergeTarget.fullPropertyName).toBe('SchoolYear');
+//   expect(apiMapping.qualityConstraints[0].mergeTarget.parentEntityName).toBe('Session');
+//   expect(apiMapping.qualityConstraints[0].mergeTarget.jsonPath).toBe('$.session.schoolYear=%value%');
+// });
+// });
