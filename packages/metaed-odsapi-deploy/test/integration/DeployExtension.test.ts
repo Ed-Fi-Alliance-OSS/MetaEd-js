@@ -1,11 +1,11 @@
-import { newMetaEdConfiguration } from '@edfi/metaed-core';
+import { newMetaEdConfiguration, newMetaEdProject } from '@edfi/metaed-core';
 import { MetaEdConfiguration } from '@edfi/metaed-core';
 import klawSync from 'klaw-sync';
 import fs from 'fs-extra';
 import path from 'path';
-import { execute as DeployExtension } from '../../src/task/DeployExtension';
+import { execute as deployExtension } from '../../src/task/DeployExtension';
 
-describe('when deploying 3.3 extension artifacts', (): void => {
+describe('when deploying 7.0 extension artifacts', (): void => {
   let result: string[];
 
   beforeAll(async () => {
@@ -16,10 +16,11 @@ describe('when deploying 3.3 extension artifacts', (): void => {
       ...newMetaEdConfiguration(),
       artifactDirectory: path.resolve(__dirname, './artifact'),
       deployDirectory,
-      defaultPluginTechVersion: '3.3.0',
+      defaultPluginTechVersion: '7.0.0',
+      projects: [{ ...newMetaEdProject(), projectName: 'Sample', projectVersion: '1.0.0' }],
     };
 
-    await DeployExtension(metaEdConfiguration, true, false);
+    await deployExtension(metaEdConfiguration, '5.0.0', true, false);
 
     const normalizePath = (x: string) => path.relative(deployDirectory, x).split(path.sep).join('/');
 
@@ -31,14 +32,14 @@ describe('when deploying 3.3 extension artifacts', (): void => {
   it('should have correct directory paths', (): void => {
     expect(result).toMatchInlineSnapshot(`
       Array [
-        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/Metadata/ApiModel-EXTENSION.json",
-        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/Metadata/InterchangeOrderMetadata-EXTENSION.xml",
-        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/MsSql/Data/Ods/0010-SampleExtensionsData.sql",
-        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/MsSql/Structure/Ods/0010-EXTENSION-Sample-Schemas.sql",
-        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/PgSql/Data/Ods/0010-SampleExtensionsData.sql",
-        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/PgSql/Structure/Ods/0010-EXTENSION-Sample-Schemas.sql",
-        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/Schemas/EXTENSION-Ed-Fi-Extended-Core.xsd",
-        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Artifacts/Schemas/EXTENSION-Interchange-Descriptors-Extension.xsd",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Versions/1.0.0/Standard/5.0.0/Artifacts/Metadata/ApiModel-EXTENSION.json",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Versions/1.0.0/Standard/5.0.0/Artifacts/Metadata/InterchangeOrderMetadata-EXTENSION.xml",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Versions/1.0.0/Standard/5.0.0/Artifacts/MsSql/Data/Ods/0010-SampleExtensionsData.sql",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Versions/1.0.0/Standard/5.0.0/Artifacts/MsSql/Structure/Ods/0010-EXTENSION-Sample-Schemas.sql",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Versions/1.0.0/Standard/5.0.0/Artifacts/PgSql/Data/Ods/0010-SampleExtensionsData.sql",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Versions/1.0.0/Standard/5.0.0/Artifacts/PgSql/Structure/Ods/0010-EXTENSION-Sample-Schemas.sql",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Versions/1.0.0/Standard/5.0.0/Artifacts/Schemas/EXTENSION-Ed-Fi-Extended-Core.xsd",
+        "Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.Sample/Versions/1.0.0/Standard/5.0.0/Artifacts/Schemas/EXTENSION-Interchange-Descriptors-Extension.xsd",
       ]
     `);
   });
