@@ -1,21 +1,18 @@
 import type { MetaEdConfiguration, SemVer } from '@edfi/metaed-core';
-import { Logger, versionSatisfies } from '@edfi/metaed-core';
+import { versionSatisfies, Logger } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
 import { CopyOptions } from '../CopyOptions';
 
-const excludeApiModel = (_src: string, dest: string): boolean => !dest.endsWith('ApiModel.json');
-
+const corePath: string = 'Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts';
 const artifacts: CopyOptions[] = [
-  { src: 'ApiMetadata/', dest: 'Ed-Fi-ODS/Standard/Metadata/', options: { filter: excludeApiModel } },
-  {
-    src: 'ApiMetadata/ApiModel.json',
-    dest: 'Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Standard/SupportingArtifacts/Metadata/ApiModel.json',
-  },
-  { src: 'Database/SQLServer/ODS/Data/', dest: 'Ed-Fi-ODS/Database/Data/EdFi' },
-  { src: 'Database/SQLServer/ODS/Structure/', dest: 'Ed-Fi-ODS/Database/Structure/EdFi' },
-  { src: 'Interchange/', dest: 'Ed-Fi-ODS/Standard/Schemas/' },
-  { src: 'XSD/', dest: 'Ed-Fi-ODS/Standard/Schemas/' },
+  { src: 'ApiMetadata/', dest: `${corePath}/Metadata/` },
+  { src: 'Database/SQLServer/ODS/Data/', dest: `${corePath}/MsSql/Data/Ods` },
+  { src: 'Database/SQLServer/ODS/Structure/', dest: `${corePath}/MsSql/Structure/Ods` },
+  { src: 'Database/PostgreSQL/ODS/Data/', dest: `${corePath}/PgSql/Data/Ods` },
+  { src: 'Database/PostgreSQL/ODS/Structure/', dest: `${corePath}/PgSql/Structure/Ods` },
+  { src: 'Interchange/', dest: `${corePath}/Schemas/` },
+  { src: 'XSD/', dest: `${corePath}/Schemas/` },
 ];
 
 function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration) {
@@ -48,7 +45,7 @@ export async function execute(
   _suppressDelete: boolean,
 ): Promise<boolean> {
   if (!deployCore) return true;
-  if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=3.0.0 <3.3.0')) {
+  if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=3.3.0 <7.0.0')) {
     return true;
   }
 

@@ -1,4 +1,4 @@
-import { Logger, MetaEdConfiguration } from '@edfi/metaed-core';
+import { Logger, MetaEdConfiguration, SemVer } from '@edfi/metaed-core';
 import chalk from 'chalk';
 import fs from 'fs-extra';
 import touch from 'touch';
@@ -33,6 +33,7 @@ export function refreshProject(metaEdConfiguration: MetaEdConfiguration): void {
 
 export async function execute(
   metaEdConfiguration: MetaEdConfiguration,
+  _dataStandardVersion: SemVer,
   _deployCore: boolean,
   _suppressDelete: boolean,
 ): Promise<boolean> {

@@ -1,4 +1,4 @@
-import { Logger, MetaEdConfiguration, versionSatisfies } from '@edfi/metaed-core';
+import { Logger, MetaEdConfiguration, SemVer, versionSatisfies } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
 
@@ -31,6 +31,7 @@ export function removeExtensionArtifacts(metaEdConfiguration: MetaEdConfiguratio
 
 export async function execute(
   metaEdConfiguration: MetaEdConfiguration,
+  _dataStandardVersion: SemVer,
   _deployCore: boolean,
   suppressDelete: boolean,
 ): Promise<boolean> {

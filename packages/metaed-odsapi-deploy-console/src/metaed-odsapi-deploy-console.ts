@@ -150,7 +150,12 @@ export async function metaEdDeploy() {
   }
 
   // Run all deployment tasks
-  const deploySuccess = await runDeployTasks(metaEdConfiguration, yargs.argv['core'], yargs.argv['suppressDelete']);
+  const deploySuccess = await runDeployTasks(
+    metaEdConfiguration,
+    dataStandardVersionFor(metaEdConfiguration.projects),
+    yargs.argv['core'],
+    yargs.argv['suppressDelete'],
+  );
   if (!deploySuccess) process.exitCode = 1;
 
   const endTime = Date.now() - startTime;

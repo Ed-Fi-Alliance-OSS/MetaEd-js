@@ -1,4 +1,4 @@
-import { Logger, MetaEdConfiguration, versionSatisfies } from '@edfi/metaed-core';
+import { Logger, MetaEdConfiguration, SemVer, versionSatisfies } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
 import Sugar from 'sugar';
@@ -28,6 +28,7 @@ export function extensionProjectsExists(metaEdConfiguration: MetaEdConfiguration
 
 export async function execute(
   metaEdConfiguration: MetaEdConfiguration,
+  _dataStandardVersion: SemVer,
   _deployCore: boolean,
   _suppressDelete: boolean,
 ): Promise<boolean> {

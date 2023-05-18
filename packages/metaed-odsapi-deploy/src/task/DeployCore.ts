@@ -1,54 +1,57 @@
-import type { MetaEdConfiguration } from '@edfi/metaed-core';
+import type { MetaEdConfiguration, SemVer } from '@edfi/metaed-core';
 import { versionSatisfies, Logger } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
 import { CopyOptions } from '../CopyOptions';
 
-const corePath: string = 'Ed-Fi-ODS/Application/EdFi.Ods.Standard/Artifacts';
-const artifacts: CopyOptions[] = [
-  { src: 'ApiMetadata/', dest: `${corePath}/Metadata/` },
-  { src: 'Database/SQLServer/ODS/Data/', dest: `${corePath}/MsSql/Data/Ods` },
-  { src: 'Database/SQLServer/ODS/Structure/', dest: `${corePath}/MsSql/Structure/Ods` },
-  { src: 'Database/PostgreSQL/ODS/Data/', dest: `${corePath}/PgSql/Data/Ods` },
-  { src: 'Database/PostgreSQL/ODS/Structure/', dest: `${corePath}/PgSql/Structure/Ods` },
-  { src: 'Interchange/', dest: `${corePath}/Schemas/` },
-  { src: 'XSD/', dest: `${corePath}/Schemas/` },
-];
+function deployPaths(corePath: string): CopyOptions[] {
+  return [
+    { src: 'ApiMetadata/', dest: `${corePath}/Metadata/` },
+    { src: 'Database/SQLServer/ODS/Data/', dest: `${corePath}/MsSql/Data/Ods` },
+    { src: 'Database/SQLServer/ODS/Structure/', dest: `${corePath}/MsSql/Structure/Ods` },
+    { src: 'Database/PostgreSQL/ODS/Data/', dest: `${corePath}/PgSql/Data/Ods` },
+    { src: 'Database/PostgreSQL/ODS/Structure/', dest: `${corePath}/PgSql/Structure/Ods` },
+    { src: 'Interchange/', dest: `${corePath}/Schemas/` },
+    { src: 'XSD/', dest: `${corePath}/Schemas/` },
+  ];
+}
 
-function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration) {
+function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStandardVersion: SemVer) {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectName: string = 'EdFi';
+  const corePath: string = `Ed-Fi-ODS/Application/EdFi.Ods.Standard/Standard/${dataStandardVersion}/Artifacts`;
 
-  artifacts.forEach((artifact: CopyOptions) => {
-    const resolvedArtifact: CopyOptions = {
-      ...artifact,
-      src: path.resolve(artifactDirectory, projectName, artifact.src),
-      dest: path.resolve(deployDirectory, artifact.dest),
+  deployPaths(corePath).forEach((deployPath: CopyOptions) => {
+    const resolvedDeployPath: CopyOptions = {
+      ...deployPath,
+      src: path.resolve(artifactDirectory, projectName, deployPath.src),
+      dest: path.resolve(deployDirectory, deployPath.dest),
     };
-    if (!fs.pathExistsSync(resolvedArtifact.src)) return;
+    if (!fs.pathExistsSync(resolvedDeployPath.src)) return;
 
     try {
-      const relativeArtifactSource = path.relative(artifactDirectory, resolvedArtifact.src);
-      Logger.info(`Deploy ${relativeArtifactSource} to ${artifact.dest}`);
+      const relativeArtifactSource = path.relative(artifactDirectory, resolvedDeployPath.src);
+      Logger.info(`Deploy ${relativeArtifactSource} to ${deployPath.dest}`);
 
-      fs.copySync(resolvedArtifact.src, resolvedArtifact.dest, resolvedArtifact.options);
+      fs.copySync(resolvedDeployPath.src, resolvedDeployPath.dest, resolvedDeployPath.options);
     } catch (err) {
-      Logger.error(`Attempted deploy of ${artifact.src} failed due to issue: ${err.message}`);
+      Logger.error(`Attempted deploy of ${deployPath.src} failed due to issue: ${err.message}`);
     }
   });
 }
 
 export async function execute(
   metaEdConfiguration: MetaEdConfiguration,
+  dataStandardVersion: SemVer,
   deployCore: boolean,
   _suppressDelete: boolean,
 ): Promise<boolean> {
   if (!deployCore) return true;
-  if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=3.3.0')) {
+  if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=7.0.0')) {
     return true;
   }
 
-  deployCoreArtifacts(metaEdConfiguration);
+  deployCoreArtifacts(metaEdConfiguration, dataStandardVersion);
 
   return true;
 }

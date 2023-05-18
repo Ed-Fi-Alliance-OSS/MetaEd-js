@@ -1,13 +1,16 @@
-import { Logger, MetaEdConfiguration } from '@edfi/metaed-core';
-import { execute as DeployCore } from './task/DeployCore';
-import { execute as DeployCoreV3 } from './task/DeployCoreV3';
-import { execute as DeployExtension } from './task/DeployExtension';
-import { execute as DeployExtensionV3 } from './task/DeployExtensionV3';
-import { execute as ExtensionProjectsExists } from './task/ExtensionProjectsExists';
-import { execute as LegacyDirectoryExists } from './task/LegacyDirectoryExists';
-import { execute as RefreshProject } from './task/RefreshProject';
-import { execute as RemoveExtensionArtifacts } from './task/RemoveExtensionArtifacts';
-import { execute as RemoveExtensionArtifactsV2andV3 } from './task/RemoveExtensionArtifactsV2andV3';
+import { Logger, MetaEdConfiguration, SemVer } from '@edfi/metaed-core';
+import { execute as deployCoreTask } from './task/DeployCore';
+import { execute as deployCoreV3Task } from './task/DeployCoreV3';
+import { execute as deployCoreV6Task } from './task/DeployCoreV6';
+import { execute as deployExtensionTask } from './task/DeployExtension';
+import { execute as deployExtensionV3Task } from './task/DeployExtensionV3';
+import { execute as deployExtensionV6Task } from './task/DeployExtensionV6';
+import { execute as extensionProjectsExistsTask } from './task/ExtensionProjectsExists';
+import { execute as legacyDirectoryExistsTask } from './task/LegacyDirectoryExists';
+import { execute as refreshProjectTask } from './task/RefreshProject';
+import { execute as removeExtensionArtifactsTask } from './task/RemoveExtensionArtifacts';
+import { execute as removeExtensionArtifactsV2andV3Task } from './task/RemoveExtensionArtifactsV2andV3';
+import { DeployTask } from './task/DeployTask';
 
 /**
  * Runs the full set of deployment tasks in order, returning true if they are all successful.
@@ -20,30 +23,33 @@ import { execute as RemoveExtensionArtifactsV2andV3 } from './task/RemoveExtensi
  */
 export async function runDeployTasks(
   metaEdConfiguration: MetaEdConfiguration,
+  dataStandardVersion: SemVer,
   deployCore: boolean,
   suppressDelete: boolean,
 ): Promise<boolean> {
   try {
-    const tasks = [
-      ExtensionProjectsExists,
+    const tasks: DeployTask[] = [
+      extensionProjectsExistsTask,
 
-      RemoveExtensionArtifactsV2andV3,
-      RemoveExtensionArtifacts,
+      removeExtensionArtifactsV2andV3Task,
+      removeExtensionArtifactsTask,
 
-      DeployCoreV3,
-      DeployCore,
+      deployCoreV3Task,
+      deployCoreV6Task,
+      deployCoreTask,
 
-      DeployExtensionV3,
-      DeployExtension,
+      deployExtensionV3Task,
+      deployExtensionV6Task,
+      deployExtensionTask,
 
-      RefreshProject,
+      refreshProjectTask,
 
-      LegacyDirectoryExists,
+      legacyDirectoryExistsTask,
     ];
 
     // eslint-disable-next-line no-restricted-syntax
     for (const task of tasks) {
-      const success = await task(metaEdConfiguration, deployCore, suppressDelete);
+      const success: boolean = await task(metaEdConfiguration, dataStandardVersion, deployCore, suppressDelete);
       if (!success) return false;
     }
   } catch (error) {

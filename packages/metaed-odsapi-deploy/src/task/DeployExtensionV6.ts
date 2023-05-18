@@ -1,14 +1,17 @@
 import fs from 'fs-extra';
-import { Logger, MetaEdConfiguration, SemVer, versionSatisfies } from '@edfi/metaed-core';
+import type { MetaEdConfiguration, SemVer } from '@edfi/metaed-core';
+import { Logger, versionSatisfies } from '@edfi/metaed-core';
 import path from 'path';
 import Sugar from 'sugar';
 import { CopyOptions } from '../CopyOptions';
 
-const extensionPath: string = 'Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/SupportingArtifacts';
+const extensionPath: string = 'Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/Artifacts';
 const artifacts: CopyOptions[] = [
   { src: 'ApiMetadata/', dest: `${extensionPath}/Metadata/` },
-  { src: 'Database/SQLServer/ODS/Data/', dest: `${extensionPath}/Database/Data/EdFi` },
-  { src: 'Database/SQLServer/ODS/Structure/', dest: `${extensionPath}/Database/Structure/EdFi` },
+  { src: 'Database/SQLServer/ODS/Data/', dest: `${extensionPath}/MsSql/Data/Ods` },
+  { src: 'Database/SQLServer/ODS/Structure/', dest: `${extensionPath}/MsSql/Structure/Ods` },
+  { src: 'Database/PostgreSQL/ODS/Data/', dest: `${extensionPath}/PgSql/Data/Ods` },
+  { src: 'Database/PostgreSQL/ODS/Structure/', dest: `${extensionPath}/PgSql/Structure/Ods` },
   { src: 'Interchange/', dest: `${extensionPath}/Schemas/` },
   { src: 'XSD/', dest: `${extensionPath}/Schemas/` },
 ];
@@ -46,7 +49,7 @@ export async function execute(
   _deployCore: boolean,
   _suppressDelete: boolean,
 ): Promise<boolean> {
-  if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=3.0.0 <3.3.0')) {
+  if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=3.3.0 <7.0.0')) {
     return true;
   }
 
