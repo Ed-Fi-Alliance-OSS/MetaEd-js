@@ -16,7 +16,7 @@ import {
 } from '@edfi/metaed-core';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
-import { pluralize, uncapitalize } from '../Utility';
+import { uncapitalize } from '../Utility';
 import { newMerge } from '../model/EqualityConstraint';
 
 const enhancerName = 'ApiMergeDirectiveEnhancer';
@@ -29,27 +29,26 @@ function sourceProperty(mergeDirective: MergeDirective): EntityProperty {
   return mergeDirective.sourcePropertyChain[mergeDirective.sourcePropertyChain.length - 1];
 }
 
-function mergeTargetBuilder(property: ReferentialProperty, mergeDirective: MergeDirective): string {
+function mergeTargetBuilder(/* property: ReferentialProperty, */ mergeDirective: MergeDirective): string {
   let jsonPathExpression = '';
-
   jsonPathExpression = '$';
-  jsonPathExpression += `.${uncapitalize(property.parentEntityName)}`;
 
   mergeDirective.targetPropertyChain.forEach((propertyChainElement) => {
     const { apiMapping } = propertyChainElement.data.edfiApiSchema as EntityPropertyApiSchemaData;
     if (apiMapping.isReferenceCollection) jsonPathExpression += `.${apiMapping.referenceCollectionName}`;
     else if (apiMapping.isScalarReference) {
       if (propertyChainElement.type === 'association' || propertyChainElement.type === 'domainEntity') {
-        const identityProperties = (propertyChainElement as ReferentialProperty).referencedEntity.identityProperties.map(
-          (identityProperty) => `${uncapitalize(identityProperty.fullPropertyName)}=%value%`,
-        );
-        jsonPathExpression += '.';
-        jsonPathExpression += identityProperties.join('&&');
+        jsonPathExpression += `.${apiMapping.decollisionedTopLevelName}`;
+        const identityProperties = (propertyChainElement as ReferentialProperty).referencedEntity.identityProperties
+          .filter((identityProperty) => identityProperty.type !== 'association' && identityProperty.type !== 'domainEntity')
+          .map((identityProperty) => `${uncapitalize(identityProperty.fullPropertyName)}`);
+        if (identityProperties && identityProperties.length > 0) jsonPathExpression += `.${identityProperties.join('&&')}`;
       } else {
         jsonPathExpression += `.${apiMapping.decollisionedTopLevelName}`;
       }
     } else {
-      jsonPathExpression += `.${apiMapping.fullName}=%value%`;
+      jsonPathExpression += `.${apiMapping.decollisionedTopLevelName}`;
+      jsonPathExpression += `.${apiMapping.fullName}`;
     }
   });
 
@@ -58,8 +57,9 @@ function mergeTargetBuilder(property: ReferentialProperty, mergeDirective: Merge
 
 function mergeSourceBuilder(property: ReferentialProperty, mergeDirective: MergeDirective): string {
   let jsonPathExpression = '';
-  jsonPathExpression = '$';
-  jsonPathExpression += `.${uncapitalize(pluralize(property.fullPropertyName))}`;
+  jsonPathExpression = '$.';
+  const apiMappingProperty = (property.data.edfiApiSchema as EntityPropertyApiSchemaData).apiMapping;
+  jsonPathExpression += apiMappingProperty.decollisionedTopLevelName;
 
   if (property.isCollection) jsonPathExpression += '[?(@';
 
@@ -69,10 +69,12 @@ function mergeSourceBuilder(property: ReferentialProperty, mergeDirective: Merge
     else if (apiMapping.isScalarReference) {
       if (propertyChainElement.type === 'association' || propertyChainElement.type === 'domainEntity') {
         const identityProperties = (propertyChainElement as ReferentialProperty).referencedEntity.identityProperties.map(
-          (identityProperty) => `${uncapitalize(identityProperty.fullPropertyName)}=%value%`,
+          (identityProperty) =>
+            property.isCollection
+              ? `${uncapitalize(identityProperty.fullPropertyName)}=%value%`
+              : uncapitalize(identityProperty.fullPropertyName),
         );
-        jsonPathExpression += '.';
-        jsonPathExpression += identityProperties.join('&&');
+        if (identityProperties && identityProperties.length > 0) jsonPathExpression += `.${identityProperties.join('&&')}`;
       } else {
         jsonPathExpression += `.${apiMapping.decollisionedTopLevelName}`;
       }
@@ -107,7 +109,7 @@ function mergeElements(entityPathFor: TopLevelEntity) {
         };
         merge.mergeTarget = {
           ...targetProperty(mergeDirective),
-          jsonPath: mergeTargetBuilder(referentialProperty, mergeDirective),
+          jsonPath: mergeTargetBuilder(/* referentialProperty, */ mergeDirective),
         };
         apiMapping.qualityConstraints?.push(merge);
       });

@@ -51,7 +51,7 @@ function buildApiEntityMappingForSubclass(entity: TopLevelEntity): ApiEntityMapp
     referenceGroups: referenceGroupsFrom(combinedProperties),
     descriptorCollectedProperties: descriptorCollectedPropertiesFrom(entity),
     superclass: superclassFor(entity),
-    merges: null,
+    qualityConstraints: null,
   };
 }
 
