@@ -44,9 +44,14 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     };
     addEntityPropertyEdfiOdsTo(usiProperty);
     usiProperty.data.edfiOdsRelational.odsIsIdentityDatabaseType = true;
+    usiProperty.data.edfiOdsRelational.isUsiProperty = true;
+
     entity.data.edfiOdsRelational.odsProperties.push(usiProperty);
     entity.data.edfiOdsRelational.odsIdentityProperties.push(usiProperty);
-    entity.data.edfiOdsRelational.hasUsiTable = true;
+    entity.data.edfiOdsRelational.usiProperty = usiProperty;
+
+    uniqueIdProperty.data.edfiOdsRelational.isUniqueIdProperty = true;
+    uniqueIdProperty.data.edfiOdsRelational.relatedUsiProperty = usiProperty;
   });
 
   return {

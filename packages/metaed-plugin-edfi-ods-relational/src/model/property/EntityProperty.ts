@@ -9,6 +9,12 @@ export interface EntityPropertyEdfiOds {
   odsIsIdentityDatabaseType: boolean;
   odsIsUniqueIndex: boolean;
   odsContextPrefix: string;
+  // True if this is a uniqueid property
+  isUniqueIdProperty: boolean;
+  // If this is a uniqueid property, the usi property spawned from it
+  relatedUsiProperty?: EntityProperty;
+  // True if this is an usi property
+  isUsiProperty: boolean;
 }
 
 // Enhancer for object setup
@@ -30,6 +36,8 @@ export function addEntityPropertyEdfiOdsTo(property: EntityProperty) {
     odsContextPrefix: odsContextPrefix(property),
     odsIsIdentityDatabaseType: false,
     odsIsUniqueIndex: false,
+    isUniqueIdProperty: false,
+    isUsiProperty: false,
   });
 }
 

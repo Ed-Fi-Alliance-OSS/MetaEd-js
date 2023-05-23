@@ -43,60 +43,9 @@ export interface ColumnNaming {
   nameComponents: ColumnNameComponent[];
 }
 
-/** The reason why this column exists */
-export interface ColumnExistenceReason {
-  /** is the column data directly from a simple property */
-  isDirectlyFromSimpleProperty: boolean;
-  /** is the column part of a foreign key reference used to implement a collection property */
-  isPartOfForeignKeyImplementingCollection: boolean;
-  /** is the column part of a foreign key reference used to implement a common property */
-  isPartOfForeignKeyImplementingCommon: boolean;
-  /** the source property if one exists, whether a simple property or a property requiring a foreign key implementation */
-  sourceProperty?: EntityProperty;
-
-  /** is the column part of a foreign key reference of an extension back to a parent entity */
-  isPartOfForeignKeyToExtensionTable: boolean;
-  /** is the column part of a foreign key reference of a subclass back to a parent entity */
-  isPartOfForeignKeyToSubclassTable: boolean;
-  /** the parent entity requiring a foreign key implementation, if one exists */
-  parentEntity?: TopLevelEntity;
-
-  /** is the column an API create date column */
-  isSyntheticCreateDate: boolean;
-  /** is the column an API last modified date column */
-  isSyntheticLastModifiedDate: boolean;
-  /** is the column an API id column */
-  isSyntheticIdGuid: boolean;
-  /** is the column a subclass discriminator column */
-  isSyntheticDiscriminator: boolean;
-
-  /** is the column a participant in a merge due to a merge directive somewhere in the model */
-  isInvolvedInMerge: boolean;
-  /** the properties that would also have created this column if there were no merge directives, if this column is a participant in a merge */
-  mergedAwayProperties?: EntityProperty[];
-}
-
-export function newColumnExistenceReason(): ColumnExistenceReason {
-  return {
-    isDirectlyFromSimpleProperty: false,
-    isPartOfForeignKeyImplementingCollection: false,
-    isPartOfForeignKeyImplementingCommon: false,
-    isPartOfForeignKeyToExtensionTable: false,
-    isPartOfForeignKeyToSubclassTable: false,
-    isSyntheticCreateDate: false,
-    isSyntheticLastModifiedDate: false,
-    isSyntheticIdGuid: false,
-    isSyntheticDiscriminator: false,
-    isInvolvedInMerge: false,
-  };
-}
-
-export const NoColumnExistenceReason: ColumnExistenceReason = deepFreeze(newColumnExistenceReason());
-
 export interface Column {
   // new stuff here
   nameComponents: ColumnNameComponent[];
-  existenceReason: ColumnExistenceReason;
   parentTable: Table;
   /** The string identifier for the column, independent of the column name */
   columnId: string;
@@ -115,6 +64,11 @@ export interface Column {
   mergedReferenceContexts: string[];
   isDeprecated: boolean;
   deprecationReasons: string[];
+  /** is the column derived from a uniqueid property */
+  isFromUniqueIdProperty: boolean;
+  /** is the column derived from an usi column */
+  isFromUsiProperty: boolean;
+
   data: any;
 }
 
@@ -131,7 +85,6 @@ export interface StringColumn extends Column {
 export function newColumn(): Column {
   return {
     nameComponents: [],
-    existenceReason: NoColumnExistenceReason,
     parentTable: NoTable,
     columnId: '',
     type: 'unknown',
@@ -148,6 +101,8 @@ export function newColumn(): Column {
     mergedReferenceContexts: [],
     isDeprecated: false,
     deprecationReasons: [],
+    isFromUniqueIdProperty: false,
+    isFromUsiProperty: false,
     data: {},
   };
 }
@@ -184,6 +139,8 @@ export function initializeColumn(
     isPartOfPrimaryKey: suppressPrimaryKey ? false : property.isPartOfIdentity,
     isUniqueIndex: property.data.edfiOdsRelational.odsIsUniqueIndex,
     originalContextPrefix: property.data.edfiOdsRelational.odsContextPrefix,
+    isFromUniqueIdProperty: property.data.edfiOdsRelational.isUniqueIdProperty,
+    isFromUsiProperty: property.data.edfiOdsRelational.isUsiProperty,
   });
   column.sourceEntityProperties.push(property);
   return column;

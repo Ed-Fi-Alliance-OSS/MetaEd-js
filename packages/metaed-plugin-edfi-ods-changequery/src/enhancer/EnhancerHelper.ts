@@ -199,7 +199,7 @@ export function hasRequiredNonIdentityNamespaceColumn(table: Table): boolean {
 }
 
 export function isUsiTable(table: Table): boolean {
-  return table.parentEntity !== NoTopLevelEntity && table.parentEntity.data.edfiOdsRelational.hasUsiTable;
+  return table.parentEntity !== NoTopLevelEntity && table.parentEntity.data.edfiOdsRelational.usiProperty != null;
 }
 
 // This is a hardcode for core DisciplineAction with a ResponsibilitySchoolId column

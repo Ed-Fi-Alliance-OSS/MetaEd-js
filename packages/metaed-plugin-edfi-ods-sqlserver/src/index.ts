@@ -4,6 +4,7 @@ import { generate as SchemaGenerator } from './generator/SchemaGenerator';
 import { generate as IdIndexesGenerator } from './generator/IdIndexesGenerator';
 
 import { enhance as templateSpecificTablePropertyEnhancer } from './enhancer/TemplateSpecificTablePropertyEnhancer';
+import { enhance as templateSpecificTablePropertyEnhancerV6dot1 } from './enhancer/TemplateSpecificTablePropertyEnhancerV6dot1';
 import { enhance as sqlServerTableNamingEnhancer } from './enhancer/SqlServerTableNamingEnhancer';
 import { enhance as sqlServerColumnNamingEnhancer } from './enhancer/SqlServerColumnNamingEnhancer';
 import { enhance as sqlServerForeignKeyNamingEnhancer } from './enhancer/SqlServerForeignKeyNamingEnhancer';
@@ -26,6 +27,7 @@ export function initialize(): MetaEdPlugin {
       sqlServerTableNamingEnhancer,
       sqlServerColumnNamingEnhancer,
       templateSpecificTablePropertyEnhancer,
+      templateSpecificTablePropertyEnhancerV6dot1,
       sqlServerForeignKeyNamingEnhancer,
       addSchemaContainerEnhancer,
     ],

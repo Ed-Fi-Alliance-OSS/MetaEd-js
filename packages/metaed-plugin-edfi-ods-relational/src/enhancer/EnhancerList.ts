@@ -56,7 +56,6 @@ export function enhancerList(): Enhancer[] {
     referenceProperty,
     odsTableIdEnhancer,
     createUsisFromUniqueIdsEnhancer,
-    // tablePropertyEnhancer no longer needed?
 
     // Static Database Item Creation Phase
     baseDescriptorTableCreatingEnhancer,

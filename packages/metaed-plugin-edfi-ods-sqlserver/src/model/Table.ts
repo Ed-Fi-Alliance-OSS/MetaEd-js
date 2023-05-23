@@ -5,6 +5,8 @@ import { ForeignKeyEdfiOdsSqlServer } from './ForeignKey';
 
 export interface TableEdfiOdsSqlServer {
   tableName: string;
+  // If the table has an additional "INCLUDE" column for the unique index, this is the column name
+  uniqueIndexIncludeColumnName?: string;
 }
 
 const enhancerName = 'SqlServerTableSetupEnhancer';

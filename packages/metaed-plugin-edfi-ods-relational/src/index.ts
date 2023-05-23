@@ -9,10 +9,8 @@ export {
   StringColumn,
   NoColumn,
   ColumnNameComponent,
-  ColumnExistenceReason,
   newColumn,
   newColumnNameComponent,
-  newColumnExistenceReason,
 } from './model/database/Column';
 export { ColumnPair, newColumnPair } from './model/database/ColumnPair';
 export { ColumnType } from './model/database/ColumnType';
