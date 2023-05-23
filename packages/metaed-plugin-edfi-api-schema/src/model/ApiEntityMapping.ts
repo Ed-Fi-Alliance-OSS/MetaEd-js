@@ -45,7 +45,7 @@ export type ApiEntityMapping = {
    */
   superclass: TopLevelEntity | null;
 
-  qualityConstraints: EqualityConstraint[] | null;
+  equalityConstraints: EqualityConstraint[] | null;
 };
 
 export function newApiEntityMapping(): ApiEntityMapping {
@@ -55,7 +55,7 @@ export function newApiEntityMapping(): ApiEntityMapping {
     referenceGroups: [],
     descriptorCollectedProperties: [],
     superclass: null,
-    qualityConstraints: null,
+    equalityConstraints: null,
   };
 }
 

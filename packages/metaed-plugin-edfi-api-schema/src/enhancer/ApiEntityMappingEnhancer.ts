@@ -28,7 +28,7 @@ function buildApiEntityMapping(entity: TopLevelEntity): ApiEntityMapping {
     referenceGroups: referenceGroupsFrom(properties),
     descriptorCollectedProperties: descriptorCollectedPropertiesFrom(entity),
     superclass: superclassFor(entity),
-    qualityConstraints: null,
+    equalityConstraints: null,
   };
 }
 

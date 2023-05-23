@@ -38,11 +38,18 @@ function mergeTargetBuilder(/* property: ReferentialProperty, */ mergeDirective:
     if (apiMapping.isReferenceCollection) jsonPathExpression += `.${apiMapping.referenceCollectionName}`;
     else if (apiMapping.isScalarReference) {
       if (propertyChainElement.type === 'association' || propertyChainElement.type === 'domainEntity') {
-        jsonPathExpression += `.${apiMapping.decollisionedTopLevelName}`;
-        const identityProperties = (propertyChainElement as ReferentialProperty).referencedEntity.identityProperties
-          .filter((identityProperty) => identityProperty.type !== 'association' && identityProperty.type !== 'domainEntity')
-          .map((identityProperty) => `${uncapitalize(identityProperty.fullPropertyName)}`);
-        if (identityProperties && identityProperties.length > 0) jsonPathExpression += `.${identityProperties.join('&&')}`;
+        const { referencedEntity } = propertyChainElement as ReferentialProperty;
+        const referencedEntityApiMapping = (referencedEntity.data.edfiApiSchema as EntityApiSchemaData).apiMapping;
+        const identityProperties = referencedEntityApiMapping.flattenedIdentityProperties.map(
+          (identityProperty) => `${uncapitalize(identityProperty.fullPropertyName)}`,
+        );
+        if (identityProperties && identityProperties.length > 0) {
+          const identityAlreadyConcatenated = identityProperties.find((x) => jsonPathExpression.indexOf(x) !== -1);
+          if (!identityAlreadyConcatenated) {
+            jsonPathExpression += `.${apiMapping.decollisionedTopLevelName}`;
+            jsonPathExpression += `.${identityProperties.join('&&')}`;
+          }
+        }
       } else {
         jsonPathExpression += `.${apiMapping.decollisionedTopLevelName}`;
       }
@@ -68,11 +75,12 @@ function mergeSourceBuilder(property: ReferentialProperty, mergeDirective: Merge
     if (apiMapping.isReferenceCollection) jsonPathExpression += `.${apiMapping.referenceCollectionName}`;
     else if (apiMapping.isScalarReference) {
       if (propertyChainElement.type === 'association' || propertyChainElement.type === 'domainEntity') {
-        const identityProperties = (propertyChainElement as ReferentialProperty).referencedEntity.identityProperties.map(
-          (identityProperty) =>
-            property.isCollection
-              ? `${uncapitalize(identityProperty.fullPropertyName)}=%value%`
-              : uncapitalize(identityProperty.fullPropertyName),
+        const { referencedEntity } = propertyChainElement as ReferentialProperty;
+        const referencedEntityApiMapping = (referencedEntity.data.edfiApiSchema as EntityApiSchemaData).apiMapping;
+        const identityProperties = referencedEntityApiMapping.flattenedIdentityProperties.map((identityProperty) =>
+          property.isCollection
+            ? `${uncapitalize(identityProperty.fullPropertyName)}=%value%`
+            : uncapitalize(identityProperty.fullPropertyName),
         );
         if (identityProperties && identityProperties.length > 0) jsonPathExpression += `.${identityProperties.join('&&')}`;
       } else {
@@ -100,7 +108,7 @@ function mergeElements(entityPathFor: TopLevelEntity) {
     .forEach(({ property }) => {
       const referentialProperty: ReferentialProperty = property as ReferentialProperty;
       const { apiMapping } = entityPathFor.data.edfiApiSchema as EntityApiSchemaData;
-      apiMapping.qualityConstraints = [];
+      apiMapping.equalityConstraints = [];
       (property as ReferentialProperty).mergeDirectives.forEach((mergeDirective) => {
         const merge = newMerge();
         merge.mergeSource = {
@@ -111,7 +119,7 @@ function mergeElements(entityPathFor: TopLevelEntity) {
           ...targetProperty(mergeDirective),
           jsonPath: mergeTargetBuilder(/* referentialProperty, */ mergeDirective),
         };
-        apiMapping.qualityConstraints?.push(merge);
+        apiMapping.equalityConstraints?.push(merge);
       });
     });
 }
