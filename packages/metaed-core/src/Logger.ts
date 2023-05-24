@@ -12,37 +12,19 @@ const convertErrorToString = (err) => {
   return err;
 };
 
-// Logger begins life "uninitialized" and in silent mode
-let isInitialized = false;
-
 // Create and set up a silent default logger transport - in case a library is using the default logger
 const transport = new winston.transports.Console();
 transport.silent = true;
 winston.configure({ transports: [transport] });
 
-// Set initial logger to silent
-let logger: winston.Logger = winston.createLogger({
-  transports: [transport],
+const logger = winston.createLogger({
+  level: process.env.LOG_LEVEL?.toLocaleLowerCase() ?? 'info',
+  transports: [
+    new winston.transports.Console({
+      format: winston.format.cli(),
+    }),
+  ],
 });
-
-/**
- * This should be called by frontend services at startup, before logging. Because services can have
- * multiple startup points (e.g. multiple lambdas), this checks if initialization has already happened.
- */
-export function initializeLogging(): void {
-  if (isInitialized) return;
-
-  const offline = process.env.IS_LOCAL === 'true';
-  isInitialized = true;
-  logger = winston.createLogger({
-    level: process.env.LOG_LEVEL?.toLocaleLowerCase() ?? (offline ? 'debug' : 'info'),
-    transports: [
-      new winston.transports.Console({
-        format: winston.format.cli(),
-      }),
-    ],
-  });
-}
 
 export const Logger = {
   fatal: (message: string, err?: any | null) => {
