@@ -3,17 +3,11 @@ import { tableEntities, Column, Table, escapeSqlSingleQuote } from '@edfi/metaed
 import { hasAlternateKeys, getAlternateKeys, getUniqueIndexes, getAllColumns, getPrimaryKeys } from './ColumnOrdering';
 
 // Sets sorted table properties for use by the generator template
-const enhancerName = 'TemplateSpecificTablePropertyEnhancer';
-
-/** Returns the column name for a column that should be INCLUDEd in the unique index, if any */
-function findUniqueIndexIncludeColumnName(table: Table): string | undefined {
-  const uniqueIndexIncludeColumn: Column | undefined = table.columns.find((c: Column) => c.isFromUsiProperty);
-  return uniqueIndexIncludeColumn ? uniqueIndexIncludeColumn.data.edfiOdsPostgresql.columnName : undefined;
-}
+const enhancerName = 'TemplateSpecificTablePropertyEnhancerV6dot1';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
-  if (!versionSatisfies(targetTechnologyVersion, '>=7.0.0')) return { enhancerName, success: true };
+  if (!versionSatisfies(targetTechnologyVersion, '>=3.0.0 <7.0.0')) return { enhancerName, success: true };
 
   metaEd.namespace.forEach((namespace: Namespace) => {
     const tables: Map<string, Table> = tableEntities(metaEd, namespace);
@@ -33,7 +27,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         uniqueIndexes: getUniqueIndexes(table),
         isTypeTable: table.tableId.endsWith('Type'), // TODO: this shouldn't rely on table ID, instead look at table parent entity
       });
-      table.data.edfiOdsPostgresql.uniqueIndexIncludeColumnName = findUniqueIndexIncludeColumnName(table);
     });
   });
 

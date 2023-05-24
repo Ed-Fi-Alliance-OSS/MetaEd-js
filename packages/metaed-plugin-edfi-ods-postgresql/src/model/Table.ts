@@ -5,6 +5,8 @@ export interface TableEdfiOdsPostgresql {
   tableName: string;
   primaryKeyName: string;
   truncatedTableNameHash: string;
+  // If the table has an additional "INCLUDE" column for the unique index, this is the column name
+  uniqueIndexIncludeColumnName?: string;
 }
 
 const enhancerName = 'PostgresqlTableSetupEnhancer';

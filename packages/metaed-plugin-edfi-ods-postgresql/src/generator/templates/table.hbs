@@ -29,7 +29,7 @@ CREATE TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} (
 {{/if}}
 ); 
 {{#if uniqueIndexes.length}}
-CREATE UNIQUE INDEX {{{data.edfiOdsPostgresql.tableName}}}_UI_{{{uniqueIndexes.0.data.edfiOdsPostgresql.columnName}}} ON {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ({{#uniqueIndexes}}{{{data.edfiOdsPostgresql.columnName}}}{{#unless @last}}, {{/unless}}{{/uniqueIndexes}});
+CREATE UNIQUE INDEX {{{data.edfiOdsPostgresql.tableName}}}_UI_{{{uniqueIndexes.0.data.edfiOdsPostgresql.columnName}}} ON {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ({{#uniqueIndexes}}{{{data.edfiOdsPostgresql.columnName}}}{{#unless @last}}, {{/unless}}{{/uniqueIndexes}}){{#if data.edfiOdsPostgresql.uniqueIndexIncludeColumnName}} INCLUDE ({{{data.edfiOdsPostgresql.uniqueIndexIncludeColumnName}}}){{/if}};
 {{/if}}
 {{#if includeCreateDateColumn}}
 ALTER TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ALTER COLUMN CreateDate SET DEFAULT current_timestamp;

@@ -31,7 +31,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         columns: getAllColumns(table),
         primaryKeys: table.primaryKeys.length === 0 ? getPrimaryKeys(table) : table.primaryKeys,
         uniqueIndexes: getUniqueIndexes(table),
-
         isTypeTable: table.tableId.endsWith('Type'), // TODO: this shouldn't rely on table ID, instead look at table parent entity
       });
       table.data.edfiOdsSqlServer.uniqueIndexIncludeColumnName = findUniqueIndexIncludeColumnName(table);
