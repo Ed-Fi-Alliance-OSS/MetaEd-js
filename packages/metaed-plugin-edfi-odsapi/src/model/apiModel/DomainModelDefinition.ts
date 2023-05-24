@@ -1,3 +1,4 @@
+import { SemVer } from '@edfi/metaed-core';
 import { AggregateDefinition } from './AggregateDefinition';
 import { AggregateExtensionDefinition } from './AggregateExtensionDefinition';
 import { AssociationDefinition } from './AssociationDefinition';
@@ -13,6 +14,8 @@ export interface DomainModelDefinition {
   aggregateExtensionDefinitions: AggregateExtensionDefinition[];
   entityDefinitions: EntityDefinition[];
   associationDefinitions: AssociationDefinition[];
+  // For ODS/API 7.0+
+  edFiVersion?: SemVer;
 }
 
 export function newDomainModelDefinition(): DomainModelDefinition {

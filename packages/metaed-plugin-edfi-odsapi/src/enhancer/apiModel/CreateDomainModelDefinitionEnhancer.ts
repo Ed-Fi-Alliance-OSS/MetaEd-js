@@ -1,12 +1,5 @@
 import * as R from 'ramda';
-import {
-  MetaEdEnvironment,
-  EnhancerResult,
-  Namespace,
-  PluginEnvironment,
-  SemVer,
-  versionSatisfies,
-} from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, Namespace, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
 import { parse } from 'semver';
 import { NoSchemaDefinition } from '../../model/apiModel/SchemaDefinition';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
@@ -75,14 +68,13 @@ export function buildAggregateExtensionDefinitions(namespace: Namespace): Aggreg
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  const vFiveTwoOrGreater: SemVer = '>=5.2';
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsApi') as PluginEnvironment;
 
   const defaultVersion: string = '3.0.0';
   const semverParsedVersion = parse(targetTechnologyVersion);
   let odsApiVersion: string = defaultVersion;
 
-  if (versionSatisfies(targetTechnologyVersion, vFiveTwoOrGreater)) {
+  if (versionSatisfies(targetTechnologyVersion, '>=5.2')) {
     odsApiVersion = semverParsedVersion ? `${semverParsedVersion.major}.${semverParsedVersion.minor}` : defaultVersion;
   } else {
     odsApiVersion = targetTechnologyVersion || defaultVersion;
@@ -96,6 +88,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       aggregateDefinitions: buildAggregateDefinitions(namespace),
       aggregateExtensionDefinitions: buildAggregateExtensionDefinitions(namespace),
     };
+
+    // With ODS/API 7+, extension ApiModel gets data standard version
+    if (versionSatisfies(targetTechnologyVersion, '>=7.0.0') && namespace.namespaceName !== 'EdFi') {
+      domainModelDefinition.edFiVersion = metaEd.dataStandardVersion;
+    }
 
     (namespace.data.edfiOdsApi as NamespaceEdfiOdsApi).domainModelDefinition = domainModelDefinition;
   });
