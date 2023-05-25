@@ -3,19 +3,19 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { MergeElement, newMergeElement } from './MergeElement';
+import { EqualityConstraintElement, newEqualityConstraintElement } from './MergeElement';
 
 export interface EqualityConstraint {
-  mergeSource: MergeElement;
-  mergeTarget: MergeElement;
+  equalityConstraintElementSource: EqualityConstraintElement;
+  equalityConstraintElementTarget: EqualityConstraintElement;
 }
 
 /**
  *
  */
-export function newMerge(): EqualityConstraint {
+export function newEqualityConstraint(): EqualityConstraint {
   return {
-    mergeSource: newMergeElement(),
-    mergeTarget: newMergeElement(),
+    equalityConstraintElementSource: newEqualityConstraintElement(),
+    equalityConstraintElementTarget: newEqualityConstraintElement(),
   };
 }

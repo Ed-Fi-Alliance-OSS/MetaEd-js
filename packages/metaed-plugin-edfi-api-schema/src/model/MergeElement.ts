@@ -5,14 +5,14 @@
 
 import { EntityProperty, newEntityProperty } from '@edfi/metaed-core';
 
-export interface MergeElement extends EntityProperty {
+export interface EqualityConstraintElement extends EntityProperty {
   jsonPath: string;
 }
 
 /**
  *
  */
-export function newMergeElement(): MergeElement {
+export function newEqualityConstraintElement(): EqualityConstraintElement {
   return {
     ...newEntityProperty(),
     jsonPath: '',
