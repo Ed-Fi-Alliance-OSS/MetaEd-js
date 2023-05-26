@@ -16,7 +16,7 @@ import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/Ent
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
-import { enhance as apiMergeDirectiveEnhancer } from '../../src/enhancer/ApiMergeDirectiveEnhancer';
+import { enhance as apiMergeDirectiveEnhancer } from '../../src/enhancer/EqualityConstraintEnhancer';
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
 
 describe('when building domain entity with DomainEntity collection and single merge directive', () => {
@@ -63,17 +63,10 @@ describe('when building domain entity with DomainEntity collection and single me
   it('recognizes the SchoolYear merge', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementSource.fullPropertyName).toBe('SchoolYear');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementSource.parentEntityName).toBe('GradingPeriod');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementSource.jsonPath).toBe(
-      '$.gradingPeriods[?(@.gradingPeriodReference.schoolYear=%value%)]',
+    expect(apiMapping.equalityConstraints[0].sourceJsonPath).toBe(
+      '$.gradingPeriods[?(@.gradingPeriodReference.schoolYear==%value%)]',
     );
-
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementTarget.fullPropertyName).toBe('SchoolYear');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementTarget.parentEntityName).toBe('Session');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementTarget.jsonPath).toBe(
-      '$.schoolYearTypeReference.schoolYear',
-    );
+    expect(apiMapping.equalityConstraints[0].targetJsonPath).toBe('$.schoolYearTypeReference.schoolYear');
   });
 });
 
@@ -119,19 +112,16 @@ describe('when building domain entity with DomainEntity and single merge directi
   it('equalityConstraints property has one element', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('CourseOffering');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
+
     expect(apiMapping.equalityConstraints.length).toBe(1);
   });
 
   it('recognizes the School merge', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('CourseOffering');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementSource.fullPropertyName).toBe('School');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementSource.parentEntityName).toBe('CourseOffering');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementSource.jsonPath).toBe('$.schoolReference.schoolId');
 
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementTarget.fullPropertyName).toBe('School');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementTarget.parentEntityName).toBe('Session');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementTarget.jsonPath).toBe('$.sessionReference.schoolId');
+    expect(apiMapping.equalityConstraints[0].sourceJsonPath).toBe('$.schoolReference.schoolId');
+    expect(apiMapping.equalityConstraints[0].targetJsonPath).toBe('$.sessionReference.schoolId');
   });
 });
 
@@ -181,38 +171,28 @@ describe('when building domain entity with DomainEntity collection and two merge
   it('equalityConstraints property has one element', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
+
     expect(apiMapping.equalityConstraints.length).toBe(2);
   });
 
   it('recognizes the SchoolYear merge', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementSource.fullPropertyName).toBe('SchoolYear');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementSource.parentEntityName).toBe('GradingPeriod');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementSource.jsonPath).toBe(
-      '$.gradingPeriods[?(@.gradingPeriodReference.schoolId=%value%.schoolYear=%value%)]',
-    );
 
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementTarget.fullPropertyName).toBe('SchoolYear');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementTarget.parentEntityName).toBe('Session');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementTarget.jsonPath).toBe(
-      '$.schoolYearTypeReference.schoolYear',
+    expect(apiMapping.equalityConstraints[0].sourceJsonPath).toBe(
+      '$.gradingPeriods[?(@.gradingPeriodReference.schoolId==%value%&&@.gradingPeriodReference.schoolYear==%value%)]',
     );
+    expect(apiMapping.equalityConstraints[0].targetJsonPath).toBe('$.schoolYearTypeReference.schoolYear');
   });
 
   it('recognizes the School merge', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
 
-    expect(apiMapping.equalityConstraints[1].equalityConstraintElementSource.fullPropertyName).toBe('School');
-    expect(apiMapping.equalityConstraints[1].equalityConstraintElementSource.parentEntityName).toBe('GradingPeriod');
-    expect(apiMapping.equalityConstraints[1].equalityConstraintElementSource.jsonPath).toBe(
-      '$.gradingPeriods[?(@.gradingPeriodReference.schoolId=%value%.schoolYear=%value%)]',
+    expect(apiMapping.equalityConstraints[1].sourceJsonPath).toBe(
+      '$.gradingPeriods[?(@.gradingPeriodReference.schoolId==%value%&&@.gradingPeriodReference.schoolYear==%value%)]',
     );
-
-    expect(apiMapping.equalityConstraints[1].equalityConstraintElementTarget.fullPropertyName).toBe('School');
-    expect(apiMapping.equalityConstraints[1].equalityConstraintElementTarget.parentEntityName).toBe('Session');
-    expect(apiMapping.equalityConstraints[1].equalityConstraintElementTarget.jsonPath).toBe('$.schoolReference.schoolId');
+    expect(apiMapping.equalityConstraints[1].targetJsonPath).toBe('$.schoolReference.schoolId');
   });
 });
 
@@ -225,7 +205,7 @@ describe('when building domain entity with DomainEntity collection and single me
       .withBeginNamespace('EdFi')
       .withStartDomainEntity('ClassPeriod')
       .withDocumentation('doc')
-      .withDomainEntityProperty('School', 'doc', false, false)
+      .withDomainEntityIdentity('School', 'doc')
       .withEndDomainEntity()
 
       .withStartDomainEntity('School')
@@ -273,20 +253,17 @@ describe('when building domain entity with DomainEntity collection and single me
   it('equalityConstraints property has one element', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('StudentSectionAttendanceEvent');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
+
     expect(apiMapping.equalityConstraints.length).toBe(1);
   });
 
   it('recognizes the SchoolId merge', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('StudentSectionAttendanceEvent');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementSource.fullPropertyName).toBe('School');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementSource.parentEntityName).toBe('ClassPeriod');
-    // expect(apiMapping.equalityConstraints[0].equalityConstraintElementSource.jsonPath).toBe(
-    //   '$.classPeriods[?(@.classPeriodReference.schoolId=%value%)]',
-    // );
 
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementTarget.fullPropertyName).toBe('School');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementTarget.parentEntityName).toBe('Session');
-    expect(apiMapping.equalityConstraints[0].equalityConstraintElementTarget.jsonPath).toBe('$.sectionReference.schoolId');
+    expect(apiMapping.equalityConstraints[0].sourceJsonPath).toBe(
+      '$.classPeriods[?(@.classPeriodReference.schoolId==%value%)]',
+    );
+    expect(apiMapping.equalityConstraints[0].targetJsonPath).toBe('$.sectionReference.schoolId');
   });
 });

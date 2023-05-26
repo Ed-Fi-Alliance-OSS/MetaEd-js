@@ -1,8 +1,3 @@
-// SPDX-License-Identifier: Apache-2.0
-// Licensed to the Ed-Fi Alliance under one or more agreements.
-// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
-// See the LICENSE and NOTICES files in the project root for more information.
-
 /* eslint-disable no-use-before-define */
 
 import {
@@ -21,14 +16,6 @@ import { newEqualityConstraint } from '../model/EqualityConstraint';
 
 const enhancerName = 'ApiMergeDirectiveEnhancer';
 
-function targetProperty(mergeDirective: MergeDirective): EntityProperty {
-  return mergeDirective.targetPropertyChain[mergeDirective.targetPropertyChain.length - 1];
-}
-
-function sourceProperty(mergeDirective: MergeDirective): EntityProperty {
-  return mergeDirective.sourcePropertyChain[mergeDirective.sourcePropertyChain.length - 1];
-}
-
 function sourceObjectForReferentialProperty(
   jsonPath: string,
   property: ReferentialProperty,
@@ -37,18 +24,21 @@ function sourceObjectForReferentialProperty(
   const referencedEntityApiMapping = (property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData).apiMapping;
 
   let subJsonPath = '';
+  const subJsonPathArray: string[] = [];
 
   referencedEntityApiMapping.flattenedIdentityProperties.forEach((identityProperty) => {
     const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
-    subJsonPath += sourcePropertyFor(jsonPath, identityProperty, propertyModifier, apiMapping.isReferenceCollection);
+    subJsonPath = sourcePropertyFor(jsonPath, identityProperty, propertyModifier, apiMapping.isReferenceCollection);
     if (subJsonPath !== '') {
-      if (apiMapping.isScalarReference) subJsonPath = `.${apiMapping.decollisionedTopLevelName}${subJsonPath}`;
-      else subJsonPath = `${subJsonPath}`;
+      if (apiMapping.isScalarReference) subJsonPathArray.push(`.${apiMapping.decollisionedTopLevelName}${subJsonPath}`);
+      else if (apiMapping.isReferenceCollection)
+        subJsonPathArray.push(`@.${apiMapping.referenceCollectionName}${subJsonPath}`);
+      else subJsonPathArray.push(subJsonPath);
     }
   });
 
-  return subJsonPath;
+  return subJsonPathArray.join('&&');
 }
 
 function targetObjectForReferentialProperty(
@@ -59,18 +49,21 @@ function targetObjectForReferentialProperty(
   const referencedEntityApiMapping = (property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData).apiMapping;
 
   let subJsonPath = '';
+  const subJsonPathArray: string[] = [];
 
   referencedEntityApiMapping.flattenedIdentityProperties.forEach((identityProperty) => {
     const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
-    subJsonPath += targetPropertyFor(jsonPath, identityProperty, propertyModifier, apiMapping.isReferenceCollection);
+    subJsonPath = targetPropertyFor(jsonPath, identityProperty, propertyModifier, apiMapping.isReferenceCollection);
     if (subJsonPath !== '') {
-      if (apiMapping.isScalarReference) subJsonPath = `.${apiMapping.decollisionedTopLevelName}${subJsonPath}`;
-      else subJsonPath = `${subJsonPath}`;
+      if (apiMapping.isScalarReference) subJsonPathArray.push(`.${apiMapping.decollisionedTopLevelName}${subJsonPath}`);
+      else if (apiMapping.isReferenceCollection)
+        subJsonPathArray.push(`@.${apiMapping.referenceCollectionName}${subJsonPath}`);
+      else subJsonPathArray.push(subJsonPath);
     }
   });
 
-  return subJsonPath;
+  return subJsonPathArray.join('&&');
 }
 
 function sourcePropertyForNonReference(
@@ -82,7 +75,7 @@ function sourcePropertyForNonReference(
 
   if (jsonPath.indexOf(`.${apiMapping.fullName}`) === -1) {
     if (fromReferenceCollection) {
-      return `.${apiMapping.fullName}=%value%`;
+      return `.${apiMapping.fullName}==%value%`;
     }
     return `.${apiMapping.fullName}`;
   }
@@ -99,7 +92,7 @@ function targetPropertyForNonReference(
 
   if (jsonPath.indexOf(`.${apiMapping.fullName}`) === -1) {
     if (fromReferenceCollection) {
-      return `.${apiMapping.fullName}=%value%`;
+      return `.${apiMapping.fullName}==%value%`;
     }
 
     if (property.parentEntity.type === 'association' || property.parentEntity.type === 'domainEntity') {
@@ -116,7 +109,7 @@ function targetPropertyForNonReference(
 function sourceArrayForReferenceCollection(property: EntityProperty, propertyModifier: PropertyModifier): string {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
-  let subJsonPath = `.${apiMapping.decollisionedTopLevelName}[?(@.${apiMapping.referenceCollectionName}`;
+  let subJsonPath = `.${apiMapping.decollisionedTopLevelName}[?(`;
 
   const referenceSchemaObject: string = sourceObjectForReferentialProperty(subJsonPath, property as ReferentialProperty, {
     ...propertyModifier,
@@ -131,7 +124,7 @@ function sourceArrayForReferenceCollection(property: EntityProperty, propertyMod
 function targetArrayForReferenceCollection(property: ReferentialProperty, propertyModifier: PropertyModifier): string {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
-  let subJsonPath = `.${apiMapping.decollisionedTopLevelName}[?(@.${apiMapping.referenceCollectionName}`;
+  let subJsonPath = `.${apiMapping.decollisionedTopLevelName}[?(`;
 
   const referenceSchemaObject: string = targetObjectForReferentialProperty(subJsonPath, property as ReferentialProperty, {
     ...propertyModifier,
@@ -232,14 +225,8 @@ function equalityConstraintElements(entityPathFor: TopLevelEntity) {
       apiMapping.equalityConstraints = [];
       (property as ReferentialProperty).mergeDirectives.forEach((mergeDirective) => {
         const equalityConstraint = newEqualityConstraint();
-        equalityConstraint.equalityConstraintElementSource = {
-          ...sourceProperty(mergeDirective),
-          jsonPath: sourceEqualityConstraintBuilder(propertyModifier, mergeDirective),
-        };
-        equalityConstraint.equalityConstraintElementTarget = {
-          ...targetProperty(mergeDirective),
-          jsonPath: targetEqualityConstraintBuilder(propertyModifier, mergeDirective),
-        };
+        equalityConstraint.sourceJsonPath = sourceEqualityConstraintBuilder(propertyModifier, mergeDirective);
+        equalityConstraint.targetJsonPath = targetEqualityConstraintBuilder(propertyModifier, mergeDirective);
         apiMapping.equalityConstraints?.push(equalityConstraint);
       });
     });
