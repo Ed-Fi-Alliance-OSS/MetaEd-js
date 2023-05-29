@@ -96,6 +96,7 @@ export interface Table {
   typeHumanizedNameWithIndefiniteArticle: string;
   includeCreateDateColumn: boolean;
   includeLastModifiedDateAndIdColumn: boolean;
+  includeComputedDescriptorUriColumn: boolean;
   isRequiredCollectionTable: boolean;
   isTypeTable: boolean;
   hasAlternateKeys: boolean;
@@ -130,6 +131,7 @@ export function newTable(): Table {
     typeHumanizedNameWithIndefiniteArticle: 'A Table',
     includeCreateDateColumn: false,
     includeLastModifiedDateAndIdColumn: false,
+    includeComputedDescriptorUriColumn: false,
     isRequiredCollectionTable: false,
     isTypeTable: false,
     hasAlternateKeys: false,

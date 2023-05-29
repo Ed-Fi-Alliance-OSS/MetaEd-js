@@ -45,6 +45,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     includeCreateDateColumn: true,
     includeLastModifiedDateAndIdColumn: true,
     isAggregateRootTable: true,
+    hasDiscriminatorColumn: true,
+    includeComputedDescriptorUriColumn: true,
   };
 
   addColumns(

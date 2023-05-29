@@ -170,6 +170,21 @@ describe('when descriptor is defined', (): void => {
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
     expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
+
+  it('should have discriminator column', async () => {
+    const discriminatorColumn: DatabaseColumn = column(namespaceName, baseDescriptorTableName, 'discriminator');
+    expect(await columnExists(discriminatorColumn)).toBe(true);
+    expect(await columnIsNullable(discriminatorColumn)).toBe(true);
+    expect(await columnDataType(discriminatorColumn)).toBe(columnDataTypes.nvarchar);
+    expect(await columnLength(discriminatorColumn)).toBe(128);
+  });
+
+  it('should have Uri column', async () => {
+    const UriColumn: DatabaseColumn = column(namespaceName, baseDescriptorTableName, 'Uri');
+    expect(await columnExists(UriColumn)).toBe(true);
+    expect(await columnIsNullable(UriColumn)).toBe(false);
+    expect(await columnDataType(UriColumn)).toBe(columnDataTypes.nvarchar);
+  });
 });
 
 describe('when descriptor does not have a map type', (): void => {

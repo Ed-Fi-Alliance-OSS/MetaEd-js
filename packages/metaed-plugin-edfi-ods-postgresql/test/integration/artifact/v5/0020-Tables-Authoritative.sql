@@ -1108,12 +1108,15 @@ CREATE TABLE edfi.Descriptor (
     PriorDescriptorId INT NULL,
     EffectiveBeginDate DATE NULL,
     EffectiveEndDate DATE NULL,
+    Discriminator VARCHAR(128) NULL,
+    Uri character varying(306) GENERATED ALWAYS AS ( Namespace || '#' || CodeValue ) STORED,
     CreateDate TIMESTAMP NOT NULL,
     LastModifiedDate TIMESTAMP NOT NULL,
     Id UUID NOT NULL,
     CONSTRAINT Descriptor_PK PRIMARY KEY (DescriptorId),
     CONSTRAINT Descriptor_AK UNIQUE (CodeValue, Namespace)
 ); 
+CREATE UNIQUE INDEX UX_Descriptor_Uri ON edfi.Descriptor (Uri) INCLUDE (DescriptorId, Discriminator);
 ALTER TABLE edfi.Descriptor ALTER COLUMN CreateDate SET DEFAULT current_timestamp;
 ALTER TABLE edfi.Descriptor ALTER COLUMN Id SET DEFAULT gen_random_uuid();
 ALTER TABLE edfi.Descriptor ALTER COLUMN LastModifiedDate SET DEFAULT current_timestamp;

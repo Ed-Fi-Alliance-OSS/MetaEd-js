@@ -99,6 +99,17 @@ describe('when descriptor is defined', (): void => {
     expect(effectiveEndDateColumn.notNull).toBe(false);
     expect(effectiveEndDateColumn.type.name).toBe('date');
     expect(effectiveEndDateColumn.comment).toBe('The end date of the period when the descriptor is in effect.');
+
+    const discriminatorColumn = table.columns.get('discriminator');
+    expect(discriminatorColumn.notNull).toBe(false);
+    expect(discriminatorColumn.type.name).toBe('character varying');
+    expect(discriminatorColumn.length).toBe(128);
+
+    const uriColumn = table.columns.get('uri');
+    expect(uriColumn.notNull).toBe(false);
+    expect(uriColumn.type.name).toBe('character varying');
+    expect(uriColumn.length).toBe(306);
+
     await rollbackAndEnd();
   });
 
