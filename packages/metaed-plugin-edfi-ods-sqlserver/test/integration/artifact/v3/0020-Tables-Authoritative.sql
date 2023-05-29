@@ -7,6 +7,7 @@ CREATE TABLE [edfi].[AbsenceEventCategoryDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[AcademicHonorCategoryDescriptor] --
 CREATE TABLE [edfi].[AcademicHonorCategoryDescriptor] (
     [AcademicHonorCategoryDescriptorId] [INT] NOT NULL,
@@ -16,6 +17,7 @@ CREATE TABLE [edfi].[AcademicHonorCategoryDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[AcademicSubjectDescriptor] --
 CREATE TABLE [edfi].[AcademicSubjectDescriptor] (
     [AcademicSubjectDescriptorId] [INT] NOT NULL,
@@ -24,6 +26,7 @@ CREATE TABLE [edfi].[AcademicSubjectDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[AcademicWeek] --
 CREATE TABLE [edfi].[AcademicWeek] (
@@ -42,6 +45,7 @@ CREATE TABLE [edfi].[AcademicWeek] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AcademicWeek] ADD CONSTRAINT [AcademicWeek_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[AcademicWeek] ADD CONSTRAINT [AcademicWeek_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -57,6 +61,7 @@ CREATE TABLE [edfi].[AccommodationDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[Account] --
 CREATE TABLE [edfi].[Account] (
@@ -75,6 +80,7 @@ CREATE TABLE [edfi].[Account] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Account] ADD CONSTRAINT [Account_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Account] ADD CONSTRAINT [Account_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -102,6 +108,7 @@ CREATE TABLE [edfi].[AccountabilityRating] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AccountabilityRating] ADD CONSTRAINT [AccountabilityRating_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[AccountabilityRating] ADD CONSTRAINT [AccountabilityRating_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -126,6 +133,7 @@ CREATE TABLE [edfi].[AccountAccountCode] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AccountAccountCode] ADD CONSTRAINT [AccountAccountCode_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -137,6 +145,7 @@ CREATE TABLE [edfi].[AccountClassificationDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[AccountCode] --
 CREATE TABLE [edfi].[AccountCode] (
@@ -157,6 +166,7 @@ CREATE TABLE [edfi].[AccountCode] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AccountCode] ADD CONSTRAINT [AccountCode_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[AccountCode] ADD CONSTRAINT [AccountCode_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -172,6 +182,7 @@ CREATE TABLE [edfi].[AchievementCategoryDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[Actual] --
 CREATE TABLE [edfi].[Actual] (
@@ -192,6 +203,7 @@ CREATE TABLE [edfi].[Actual] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Actual] ADD CONSTRAINT [Actual_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Actual] ADD CONSTRAINT [Actual_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -208,6 +220,7 @@ CREATE TABLE [edfi].[AdditionalCreditTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[AddressTypeDescriptor] --
 CREATE TABLE [edfi].[AddressTypeDescriptor] (
     [AddressTypeDescriptorId] [INT] NOT NULL,
@@ -216,6 +229,7 @@ CREATE TABLE [edfi].[AddressTypeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[AdministrationEnvironmentDescriptor] --
 CREATE TABLE [edfi].[AdministrationEnvironmentDescriptor] (
@@ -226,6 +240,7 @@ CREATE TABLE [edfi].[AdministrationEnvironmentDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[AdministrativeFundingControlDescriptor] --
 CREATE TABLE [edfi].[AdministrativeFundingControlDescriptor] (
     [AdministrativeFundingControlDescriptorId] [INT] NOT NULL,
@@ -234,6 +249,7 @@ CREATE TABLE [edfi].[AdministrativeFundingControlDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[Assessment] --
 CREATE TABLE [edfi].[Assessment] (
@@ -261,6 +277,7 @@ CREATE TABLE [edfi].[Assessment] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Assessment] ADD CONSTRAINT [Assessment_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Assessment] ADD CONSTRAINT [Assessment_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -276,6 +293,7 @@ CREATE TABLE [edfi].[AssessmentCategoryDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[AssessmentContentStandard] --
 CREATE TABLE [edfi].[AssessmentContentStandard] (
@@ -301,6 +319,7 @@ CREATE TABLE [edfi].[AssessmentContentStandard] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AssessmentContentStandard] ADD CONSTRAINT [AssessmentContentStandard_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -321,6 +340,7 @@ CREATE TABLE [edfi].[AssessmentContentStandardAuthor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AssessmentContentStandardAuthor] ADD CONSTRAINT [AssessmentContentStandardAuthor_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -343,6 +363,7 @@ CREATE TABLE [edfi].[AssessmentIdentificationCode] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AssessmentIdentificationCode] ADD CONSTRAINT [AssessmentIdentificationCode_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -354,6 +375,7 @@ CREATE TABLE [edfi].[AssessmentIdentificationSystemDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[AssessmentItem] --
 CREATE TABLE [edfi].[AssessmentItem] (
@@ -381,6 +403,7 @@ CREATE TABLE [edfi].[AssessmentItem] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AssessmentItem] ADD CONSTRAINT [AssessmentItem_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[AssessmentItem] ADD CONSTRAINT [AssessmentItem_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -396,6 +419,7 @@ CREATE TABLE [edfi].[AssessmentItemCategoryDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[AssessmentItemLearningStandard] --
 CREATE TABLE [edfi].[AssessmentItemLearningStandard] (
@@ -416,6 +440,7 @@ CREATE TABLE [edfi].[AssessmentItemLearningStandard] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AssessmentItemLearningStandard] ADD CONSTRAINT [AssessmentItemLearningStandard_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -427,6 +452,7 @@ CREATE TABLE [edfi].[AssessmentItemResultDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[AssessmentLanguage] --
 CREATE TABLE [edfi].[AssessmentLanguage] (
@@ -445,6 +471,7 @@ CREATE TABLE [edfi].[AssessmentLanguage] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AssessmentLanguage] ADD CONSTRAINT [AssessmentLanguage_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -470,6 +497,7 @@ CREATE TABLE [edfi].[AssessmentPerformanceLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AssessmentPerformanceLevel] ADD CONSTRAINT [AssessmentPerformanceLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -491,6 +519,7 @@ CREATE TABLE [edfi].[AssessmentPeriod] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AssessmentPeriod] ADD CONSTRAINT [AssessmentPeriod_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -502,6 +531,7 @@ CREATE TABLE [edfi].[AssessmentPeriodDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[AssessmentProgram] --
 CREATE TABLE [edfi].[AssessmentProgram] (
@@ -524,6 +554,7 @@ CREATE TABLE [edfi].[AssessmentProgram] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AssessmentProgram] ADD CONSTRAINT [AssessmentProgram_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -535,6 +566,7 @@ CREATE TABLE [edfi].[AssessmentReportingMethodDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[AssessmentScore] --
 CREATE TABLE [edfi].[AssessmentScore] (
@@ -556,6 +588,7 @@ CREATE TABLE [edfi].[AssessmentScore] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AssessmentScore] ADD CONSTRAINT [AssessmentScore_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -584,6 +617,7 @@ CREATE TABLE [edfi].[AssessmentSection] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[AssessmentSection] ADD CONSTRAINT [AssessmentSection_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -596,6 +630,7 @@ CREATE TABLE [edfi].[AttemptStatusDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[AttendanceEventCategoryDescriptor] --
 CREATE TABLE [edfi].[AttendanceEventCategoryDescriptor] (
     [AttendanceEventCategoryDescriptorId] [INT] NOT NULL,
@@ -605,6 +640,7 @@ CREATE TABLE [edfi].[AttendanceEventCategoryDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[BehaviorDescriptor] --
 CREATE TABLE [edfi].[BehaviorDescriptor] (
     [BehaviorDescriptorId] [INT] NOT NULL,
@@ -613,6 +649,7 @@ CREATE TABLE [edfi].[BehaviorDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[BellSchedule] --
 CREATE TABLE [edfi].[BellSchedule] (
@@ -629,6 +666,7 @@ CREATE TABLE [edfi].[BellSchedule] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[BellSchedule] ADD CONSTRAINT [BellSchedule_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[BellSchedule] ADD CONSTRAINT [BellSchedule_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -649,6 +687,7 @@ CREATE TABLE [edfi].[BellScheduleClassPeriod] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[BellScheduleClassPeriod] ADD CONSTRAINT [BellScheduleClassPeriod_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -665,6 +704,7 @@ CREATE TABLE [edfi].[BellScheduleDate] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[BellScheduleDate] ADD CONSTRAINT [BellScheduleDate_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -681,6 +721,7 @@ CREATE TABLE [edfi].[BellScheduleGradeLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[BellScheduleGradeLevel] ADD CONSTRAINT [BellScheduleGradeLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -703,6 +744,7 @@ CREATE TABLE [edfi].[Budget] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Budget] ADD CONSTRAINT [Budget_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Budget] ADD CONSTRAINT [Budget_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -727,6 +769,7 @@ CREATE TABLE [edfi].[Calendar] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Calendar] ADD CONSTRAINT [Calendar_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Calendar] ADD CONSTRAINT [Calendar_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -752,6 +795,7 @@ CREATE TABLE [edfi].[CalendarDate] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CalendarDate] ADD CONSTRAINT [CalendarDate_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[CalendarDate] ADD CONSTRAINT [CalendarDate_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -776,6 +820,7 @@ CREATE TABLE [edfi].[CalendarDateCalendarEvent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CalendarDateCalendarEvent] ADD CONSTRAINT [CalendarDateCalendarEvent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -787,6 +832,7 @@ CREATE TABLE [edfi].[CalendarEventDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[CalendarGradeLevel] --
 CREATE TABLE [edfi].[CalendarGradeLevel] (
@@ -803,6 +849,7 @@ CREATE TABLE [edfi].[CalendarGradeLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CalendarGradeLevel] ADD CONSTRAINT [CalendarGradeLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -815,6 +862,7 @@ CREATE TABLE [edfi].[CalendarTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[CareerPathwayDescriptor] --
 CREATE TABLE [edfi].[CareerPathwayDescriptor] (
     [CareerPathwayDescriptorId] [INT] NOT NULL,
@@ -823,6 +871,7 @@ CREATE TABLE [edfi].[CareerPathwayDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[CharterApprovalAgencyTypeDescriptor] --
 CREATE TABLE [edfi].[CharterApprovalAgencyTypeDescriptor] (
@@ -833,6 +882,7 @@ CREATE TABLE [edfi].[CharterApprovalAgencyTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[CharterStatusDescriptor] --
 CREATE TABLE [edfi].[CharterStatusDescriptor] (
     [CharterStatusDescriptorId] [INT] NOT NULL,
@@ -842,6 +892,7 @@ CREATE TABLE [edfi].[CharterStatusDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[CitizenshipStatusDescriptor] --
 CREATE TABLE [edfi].[CitizenshipStatusDescriptor] (
     [CitizenshipStatusDescriptorId] [INT] NOT NULL,
@@ -850,6 +901,7 @@ CREATE TABLE [edfi].[CitizenshipStatusDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[ClassPeriod] --
 CREATE TABLE [edfi].[ClassPeriod] (
@@ -866,6 +918,7 @@ CREATE TABLE [edfi].[ClassPeriod] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ClassPeriod] ADD CONSTRAINT [ClassPeriod_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[ClassPeriod] ADD CONSTRAINT [ClassPeriod_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -888,6 +941,7 @@ CREATE TABLE [edfi].[ClassPeriodMeetingTime] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ClassPeriodMeetingTime] ADD CONSTRAINT [ClassPeriodMeetingTime_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -899,6 +953,7 @@ CREATE TABLE [edfi].[ClassroomPositionDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[Cohort] --
 CREATE TABLE [edfi].[Cohort] (
@@ -918,6 +973,7 @@ CREATE TABLE [edfi].[Cohort] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Cohort] ADD CONSTRAINT [Cohort_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Cohort] ADD CONSTRAINT [Cohort_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -942,6 +998,7 @@ CREATE TABLE [edfi].[CohortProgram] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CohortProgram] ADD CONSTRAINT [CohortProgram_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -954,6 +1011,7 @@ CREATE TABLE [edfi].[CohortScopeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[CohortTypeDescriptor] --
 CREATE TABLE [edfi].[CohortTypeDescriptor] (
     [CohortTypeDescriptorId] [INT] NOT NULL,
@@ -962,6 +1020,7 @@ CREATE TABLE [edfi].[CohortTypeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[CohortYearTypeDescriptor] --
 CREATE TABLE [edfi].[CohortYearTypeDescriptor] (
@@ -972,6 +1031,7 @@ CREATE TABLE [edfi].[CohortYearTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[CommunityOrganization] --
 CREATE TABLE [edfi].[CommunityOrganization] (
     [CommunityOrganizationId] [INT] NOT NULL,
@@ -980,6 +1040,7 @@ CREATE TABLE [edfi].[CommunityOrganization] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[CommunityProvider] --
 CREATE TABLE [edfi].[CommunityProvider] (
@@ -995,6 +1056,7 @@ CREATE TABLE [edfi].[CommunityProvider] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[CommunityProviderLicense] --
 CREATE TABLE [edfi].[CommunityProviderLicense] (
@@ -1020,6 +1082,7 @@ CREATE TABLE [edfi].[CommunityProviderLicense] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CommunityProviderLicense] ADD CONSTRAINT [CommunityProviderLicense_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[CommunityProviderLicense] ADD CONSTRAINT [CommunityProviderLicense_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -1035,6 +1098,7 @@ CREATE TABLE [edfi].[CompetencyLevelDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[CompetencyObjective] --
 CREATE TABLE [edfi].[CompetencyObjective] (
@@ -1055,6 +1119,7 @@ CREATE TABLE [edfi].[CompetencyObjective] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CompetencyObjective] ADD CONSTRAINT [CompetencyObjective_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[CompetencyObjective] ADD CONSTRAINT [CompetencyObjective_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -1071,6 +1136,7 @@ CREATE TABLE [edfi].[ContactTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[ContentClassDescriptor] --
 CREATE TABLE [edfi].[ContentClassDescriptor] (
     [ContentClassDescriptorId] [INT] NOT NULL,
@@ -1080,6 +1146,7 @@ CREATE TABLE [edfi].[ContentClassDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[ContinuationOfServicesReasonDescriptor] --
 CREATE TABLE [edfi].[ContinuationOfServicesReasonDescriptor] (
     [ContinuationOfServicesReasonDescriptorId] [INT] NOT NULL,
@@ -1088,6 +1155,7 @@ CREATE TABLE [edfi].[ContinuationOfServicesReasonDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[ContractedStaff] --
 CREATE TABLE [edfi].[ContractedStaff] (
@@ -1110,6 +1178,7 @@ CREATE TABLE [edfi].[ContractedStaff] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ContractedStaff] ADD CONSTRAINT [ContractedStaff_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[ContractedStaff] ADD CONSTRAINT [ContractedStaff_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -1126,6 +1195,7 @@ CREATE TABLE [edfi].[CostRateDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[CountryDescriptor] --
 CREATE TABLE [edfi].[CountryDescriptor] (
     [CountryDescriptorId] [INT] NOT NULL,
@@ -1134,6 +1204,7 @@ CREATE TABLE [edfi].[CountryDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[Course] --
 CREATE TABLE [edfi].[Course] (
@@ -1166,6 +1237,7 @@ CREATE TABLE [edfi].[Course] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Course] ADD CONSTRAINT [Course_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Course] ADD CONSTRAINT [Course_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -1182,6 +1254,7 @@ CREATE TABLE [edfi].[CourseAttemptResultDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[CourseCompetencyLevel] --
 CREATE TABLE [edfi].[CourseCompetencyLevel] (
     [CompetencyLevelDescriptorId] [INT] NOT NULL,
@@ -1195,6 +1268,7 @@ CREATE TABLE [edfi].[CourseCompetencyLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CourseCompetencyLevel] ADD CONSTRAINT [CourseCompetencyLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1207,6 +1281,7 @@ CREATE TABLE [edfi].[CourseDefinedByDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[CourseGPAApplicabilityDescriptor] --
 CREATE TABLE [edfi].[CourseGPAApplicabilityDescriptor] (
     [CourseGPAApplicabilityDescriptorId] [INT] NOT NULL,
@@ -1215,6 +1290,7 @@ CREATE TABLE [edfi].[CourseGPAApplicabilityDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[CourseIdentificationCode] --
 CREATE TABLE [edfi].[CourseIdentificationCode] (
@@ -1231,6 +1307,7 @@ CREATE TABLE [edfi].[CourseIdentificationCode] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CourseIdentificationCode] ADD CONSTRAINT [CourseIdentificationCode_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1242,6 +1319,7 @@ CREATE TABLE [edfi].[CourseIdentificationSystemDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[CourseLearningObjective] --
 CREATE TABLE [edfi].[CourseLearningObjective] (
@@ -1260,6 +1338,7 @@ CREATE TABLE [edfi].[CourseLearningObjective] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CourseLearningObjective] ADD CONSTRAINT [CourseLearningObjective_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1276,6 +1355,7 @@ CREATE TABLE [edfi].[CourseLearningStandard] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CourseLearningStandard] ADD CONSTRAINT [CourseLearningStandard_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1292,6 +1372,7 @@ CREATE TABLE [edfi].[CourseLevelCharacteristic] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CourseLevelCharacteristic] ADD CONSTRAINT [CourseLevelCharacteristic_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1303,6 +1384,7 @@ CREATE TABLE [edfi].[CourseLevelCharacteristicDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[CourseOfferedGradeLevel] --
 CREATE TABLE [edfi].[CourseOfferedGradeLevel] (
@@ -1317,6 +1399,7 @@ CREATE TABLE [edfi].[CourseOfferedGradeLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CourseOfferedGradeLevel] ADD CONSTRAINT [CourseOfferedGradeLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1342,6 +1425,7 @@ CREATE TABLE [edfi].[CourseOffering] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CourseOffering] ADD CONSTRAINT [CourseOffering_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[CourseOffering] ADD CONSTRAINT [CourseOffering_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -1366,6 +1450,7 @@ CREATE TABLE [edfi].[CourseOfferingCurriculumUsed] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CourseOfferingCurriculumUsed] ADD CONSTRAINT [CourseOfferingCurriculumUsed_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1377,6 +1462,7 @@ CREATE TABLE [edfi].[CourseRepeatCodeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[CourseTranscript] --
 CREATE TABLE [edfi].[CourseTranscript] (
@@ -1417,6 +1503,7 @@ CREATE TABLE [edfi].[CourseTranscript] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CourseTranscript] ADD CONSTRAINT [CourseTranscript_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[CourseTranscript] ADD CONSTRAINT [CourseTranscript_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -1448,6 +1535,7 @@ CREATE TABLE [edfi].[CourseTranscriptEarnedAdditionalCredits] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CourseTranscriptEarnedAdditionalCredits] ADD CONSTRAINT [CourseTranscriptEarnedAdditionalCredits_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1473,6 +1561,7 @@ CREATE TABLE [edfi].[Credential] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Credential] ADD CONSTRAINT [Credential_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Credential] ADD CONSTRAINT [Credential_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -1493,6 +1582,7 @@ CREATE TABLE [edfi].[CredentialAcademicSubject] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CredentialAcademicSubject] ADD CONSTRAINT [CredentialAcademicSubject_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1509,6 +1599,7 @@ CREATE TABLE [edfi].[CredentialEndorsement] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CredentialEndorsement] ADD CONSTRAINT [CredentialEndorsement_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1520,6 +1611,7 @@ CREATE TABLE [edfi].[CredentialFieldDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[CredentialGradeLevel] --
 CREATE TABLE [edfi].[CredentialGradeLevel] (
@@ -1534,6 +1626,7 @@ CREATE TABLE [edfi].[CredentialGradeLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[CredentialGradeLevel] ADD CONSTRAINT [CredentialGradeLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1546,6 +1639,7 @@ CREATE TABLE [edfi].[CredentialTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[CreditTypeDescriptor] --
 CREATE TABLE [edfi].[CreditTypeDescriptor] (
     [CreditTypeDescriptorId] [INT] NOT NULL,
@@ -1554,6 +1648,7 @@ CREATE TABLE [edfi].[CreditTypeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[CurriculumUsedDescriptor] --
 CREATE TABLE [edfi].[CurriculumUsedDescriptor] (
@@ -1564,6 +1659,7 @@ CREATE TABLE [edfi].[CurriculumUsedDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[DeliveryMethodDescriptor] --
 CREATE TABLE [edfi].[DeliveryMethodDescriptor] (
     [DeliveryMethodDescriptorId] [INT] NOT NULL,
@@ -1572,6 +1668,7 @@ CREATE TABLE [edfi].[DeliveryMethodDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[Descriptor] --
 CREATE TABLE [edfi].[Descriptor] (
@@ -1583,6 +1680,8 @@ CREATE TABLE [edfi].[Descriptor] (
     [PriorDescriptorId] [INT] NULL,
     [EffectiveBeginDate] [DATE] NULL,
     [EffectiveEndDate] [DATE] NULL,
+    [Discriminator] [NVARCHAR](128) NULL,
+    [Uri] AS CONCAT(Namespace, '#', CodeValue) PERSISTED NOT NULL,
     [CreateDate] [DATETIME] NOT NULL,
     [LastModifiedDate] [DATETIME] NOT NULL,
     [Id] [UNIQUEIDENTIFIER] NOT NULL,
@@ -1595,6 +1694,9 @@ CREATE TABLE [edfi].[Descriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+CREATE UNIQUE INDEX UX_Descriptor_Uri ON [edfi].[Descriptor] (Uri) INCLUDE (DescriptorId, Discriminator)
+GO
+
 ALTER TABLE [edfi].[Descriptor] ADD CONSTRAINT [Descriptor_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Descriptor] ADD CONSTRAINT [Descriptor_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -1611,6 +1713,7 @@ CREATE TABLE [edfi].[DiagnosisDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[DiplomaLevelDescriptor] --
 CREATE TABLE [edfi].[DiplomaLevelDescriptor] (
     [DiplomaLevelDescriptorId] [INT] NOT NULL,
@@ -1619,6 +1722,7 @@ CREATE TABLE [edfi].[DiplomaLevelDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[DiplomaTypeDescriptor] --
 CREATE TABLE [edfi].[DiplomaTypeDescriptor] (
@@ -1629,6 +1733,7 @@ CREATE TABLE [edfi].[DiplomaTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[DisabilityDescriptor] --
 CREATE TABLE [edfi].[DisabilityDescriptor] (
     [DisabilityDescriptorId] [INT] NOT NULL,
@@ -1637,6 +1742,7 @@ CREATE TABLE [edfi].[DisabilityDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[DisabilityDesignationDescriptor] --
 CREATE TABLE [edfi].[DisabilityDesignationDescriptor] (
@@ -1647,6 +1753,7 @@ CREATE TABLE [edfi].[DisabilityDesignationDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[DisabilityDeterminationSourceTypeDescriptor] --
 CREATE TABLE [edfi].[DisabilityDeterminationSourceTypeDescriptor] (
     [DisabilityDeterminationSourceTypeDescriptorId] [INT] NOT NULL,
@@ -1655,6 +1762,7 @@ CREATE TABLE [edfi].[DisabilityDeterminationSourceTypeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[DisciplineAction] --
 CREATE TABLE [edfi].[DisciplineAction] (
@@ -1680,6 +1788,7 @@ CREATE TABLE [edfi].[DisciplineAction] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[DisciplineAction] ADD CONSTRAINT [DisciplineAction_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[DisciplineAction] ADD CONSTRAINT [DisciplineAction_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -1702,6 +1811,7 @@ CREATE TABLE [edfi].[DisciplineActionDiscipline] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[DisciplineActionDiscipline] ADD CONSTRAINT [DisciplineActionDiscipline_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1713,6 +1823,7 @@ CREATE TABLE [edfi].[DisciplineActionLengthDifferenceReasonDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[DisciplineActionStaff] --
 CREATE TABLE [edfi].[DisciplineActionStaff] (
@@ -1729,6 +1840,7 @@ CREATE TABLE [edfi].[DisciplineActionStaff] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[DisciplineActionStaff] ADD CONSTRAINT [DisciplineActionStaff_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1749,6 +1861,7 @@ CREATE TABLE [edfi].[DisciplineActionStudentDisciplineIncidentAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[DisciplineActionStudentDisciplineIncidentAssociation] ADD CONSTRAINT [DisciplineActionStudentDisciplineIncidentAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1760,6 +1873,7 @@ CREATE TABLE [edfi].[DisciplineDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[DisciplineIncident] --
 CREATE TABLE [edfi].[DisciplineIncident] (
@@ -1785,6 +1899,7 @@ CREATE TABLE [edfi].[DisciplineIncident] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[DisciplineIncident] ADD CONSTRAINT [DisciplineIncident_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[DisciplineIncident] ADD CONSTRAINT [DisciplineIncident_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -1806,6 +1921,7 @@ CREATE TABLE [edfi].[DisciplineIncidentBehavior] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[DisciplineIncidentBehavior] ADD CONSTRAINT [DisciplineIncidentBehavior_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1822,6 +1938,7 @@ CREATE TABLE [edfi].[DisciplineIncidentWeapon] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[DisciplineIncidentWeapon] ADD CONSTRAINT [DisciplineIncidentWeapon_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1833,6 +1950,7 @@ CREATE TABLE [edfi].[EducationalEnvironmentDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[EducationContent] --
 CREATE TABLE [edfi].[EducationContent] (
@@ -1862,6 +1980,7 @@ CREATE TABLE [edfi].[EducationContent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationContent] ADD CONSTRAINT [EducationContent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[EducationContent] ADD CONSTRAINT [EducationContent_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -1880,6 +1999,7 @@ CREATE TABLE [edfi].[EducationContentAppropriateGradeLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationContentAppropriateGradeLevel] ADD CONSTRAINT [EducationContentAppropriateGradeLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1894,6 +2014,7 @@ CREATE TABLE [edfi].[EducationContentAppropriateSex] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationContentAppropriateSex] ADD CONSTRAINT [EducationContentAppropriateSex_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1908,6 +2029,7 @@ CREATE TABLE [edfi].[EducationContentAuthor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationContentAuthor] ADD CONSTRAINT [EducationContentAuthor_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1922,6 +2044,7 @@ CREATE TABLE [edfi].[EducationContentDerivativeSourceEducationContent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationContentDerivativeSourceEducationContent] ADD CONSTRAINT [EducationContentDerivativeSourceEducationContent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1936,6 +2059,7 @@ CREATE TABLE [edfi].[EducationContentDerivativeSourceLearningResourceMetadataURI
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationContentDerivativeSourceLearningResourceMetadataURI] ADD CONSTRAINT [EducationContentDerivativeSourceLearningResourceMetadataURI_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1950,6 +2074,7 @@ CREATE TABLE [edfi].[EducationContentDerivativeSourceURI] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationContentDerivativeSourceURI] ADD CONSTRAINT [EducationContentDerivativeSourceURI_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1964,6 +2089,7 @@ CREATE TABLE [edfi].[EducationContentLanguage] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationContentLanguage] ADD CONSTRAINT [EducationContentLanguage_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -1983,6 +2109,7 @@ CREATE TABLE [edfi].[EducationOrganization] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationOrganization] ADD CONSTRAINT [EducationOrganization_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[EducationOrganization] ADD CONSTRAINT [EducationOrganization_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -2012,6 +2139,7 @@ CREATE TABLE [edfi].[EducationOrganizationAddress] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationOrganizationAddress] ADD CONSTRAINT [EducationOrganizationAddress_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2029,6 +2157,7 @@ CREATE TABLE [edfi].[EducationOrganizationAddressPeriod] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationOrganizationAddressPeriod] ADD CONSTRAINT [EducationOrganizationAddressPeriod_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2043,6 +2172,7 @@ CREATE TABLE [edfi].[EducationOrganizationCategory] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationOrganizationCategory] ADD CONSTRAINT [EducationOrganizationCategory_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2054,6 +2184,7 @@ CREATE TABLE [edfi].[EducationOrganizationCategoryDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[EducationOrganizationIdentificationCode] --
 CREATE TABLE [edfi].[EducationOrganizationIdentificationCode] (
@@ -2067,6 +2198,7 @@ CREATE TABLE [edfi].[EducationOrganizationIdentificationCode] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationOrganizationIdentificationCode] ADD CONSTRAINT [EducationOrganizationIdentificationCode_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2078,6 +2210,7 @@ CREATE TABLE [edfi].[EducationOrganizationIdentificationSystemDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[EducationOrganizationInstitutionTelephone] --
 CREATE TABLE [edfi].[EducationOrganizationInstitutionTelephone] (
@@ -2091,6 +2224,7 @@ CREATE TABLE [edfi].[EducationOrganizationInstitutionTelephone] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationOrganizationInstitutionTelephone] ADD CONSTRAINT [EducationOrganizationInstitutionTelephone_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2114,6 +2248,7 @@ CREATE TABLE [edfi].[EducationOrganizationInternationalAddress] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationOrganizationInternationalAddress] ADD CONSTRAINT [EducationOrganizationInternationalAddress_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2135,6 +2270,7 @@ CREATE TABLE [edfi].[EducationOrganizationInterventionPrescriptionAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationOrganizationInterventionPrescriptionAssociation] ADD CONSTRAINT [EducationOrganizationInterventionPrescriptionAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[EducationOrganizationInterventionPrescriptionAssociation] ADD CONSTRAINT [EducationOrganizationInterventionPrescriptionAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -2152,6 +2288,7 @@ CREATE TABLE [edfi].[EducationOrganizationNetwork] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[EducationOrganizationNetworkAssociation] --
 CREATE TABLE [edfi].[EducationOrganizationNetworkAssociation] (
     [EducationOrganizationNetworkId] [INT] NOT NULL,
@@ -2168,6 +2305,7 @@ CREATE TABLE [edfi].[EducationOrganizationNetworkAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationOrganizationNetworkAssociation] ADD CONSTRAINT [EducationOrganizationNetworkAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[EducationOrganizationNetworkAssociation] ADD CONSTRAINT [EducationOrganizationNetworkAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -2189,6 +2327,7 @@ CREATE TABLE [edfi].[EducationOrganizationPeerAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[EducationOrganizationPeerAssociation] ADD CONSTRAINT [EducationOrganizationPeerAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[EducationOrganizationPeerAssociation] ADD CONSTRAINT [EducationOrganizationPeerAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -2205,6 +2344,7 @@ CREATE TABLE [edfi].[EducationPlanDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[EducationServiceCenter] --
 CREATE TABLE [edfi].[EducationServiceCenter] (
     [EducationServiceCenterId] [INT] NOT NULL,
@@ -2215,6 +2355,7 @@ CREATE TABLE [edfi].[EducationServiceCenter] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[ElectronicMailTypeDescriptor] --
 CREATE TABLE [edfi].[ElectronicMailTypeDescriptor] (
     [ElectronicMailTypeDescriptorId] [INT] NOT NULL,
@@ -2223,6 +2364,7 @@ CREATE TABLE [edfi].[ElectronicMailTypeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[EmploymentStatusDescriptor] --
 CREATE TABLE [edfi].[EmploymentStatusDescriptor] (
@@ -2233,6 +2375,7 @@ CREATE TABLE [edfi].[EmploymentStatusDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[EntryGradeLevelReasonDescriptor] --
 CREATE TABLE [edfi].[EntryGradeLevelReasonDescriptor] (
     [EntryGradeLevelReasonDescriptorId] [INT] NOT NULL,
@@ -2241,6 +2384,7 @@ CREATE TABLE [edfi].[EntryGradeLevelReasonDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[EntryTypeDescriptor] --
 CREATE TABLE [edfi].[EntryTypeDescriptor] (
@@ -2251,6 +2395,7 @@ CREATE TABLE [edfi].[EntryTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[EventCircumstanceDescriptor] --
 CREATE TABLE [edfi].[EventCircumstanceDescriptor] (
     [EventCircumstanceDescriptorId] [INT] NOT NULL,
@@ -2260,6 +2405,7 @@ CREATE TABLE [edfi].[EventCircumstanceDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[ExitWithdrawTypeDescriptor] --
 CREATE TABLE [edfi].[ExitWithdrawTypeDescriptor] (
     [ExitWithdrawTypeDescriptorId] [INT] NOT NULL,
@@ -2268,6 +2414,7 @@ CREATE TABLE [edfi].[ExitWithdrawTypeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[FeederSchoolAssociation] --
 CREATE TABLE [edfi].[FeederSchoolAssociation] (
@@ -2287,6 +2434,7 @@ CREATE TABLE [edfi].[FeederSchoolAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[FeederSchoolAssociation] ADD CONSTRAINT [FeederSchoolAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[FeederSchoolAssociation] ADD CONSTRAINT [FeederSchoolAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -2319,6 +2467,7 @@ CREATE TABLE [edfi].[GeneralStudentProgramAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[GeneralStudentProgramAssociation] ADD CONSTRAINT [GeneralStudentProgramAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[GeneralStudentProgramAssociation] ADD CONSTRAINT [GeneralStudentProgramAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -2362,6 +2511,7 @@ CREATE TABLE [edfi].[Grade] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Grade] ADD CONSTRAINT [Grade_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Grade] ADD CONSTRAINT [Grade_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -2397,6 +2547,7 @@ CREATE TABLE [edfi].[GradebookEntry] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[GradebookEntry] ADD CONSTRAINT [GradebookEntry_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[GradebookEntry] ADD CONSTRAINT [GradebookEntry_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -2431,6 +2582,7 @@ CREATE TABLE [edfi].[GradebookEntryLearningObjective] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[GradebookEntryLearningObjective] ADD CONSTRAINT [GradebookEntryLearningObjective_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2457,6 +2609,7 @@ CREATE TABLE [edfi].[GradebookEntryLearningStandard] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[GradebookEntryLearningStandard] ADD CONSTRAINT [GradebookEntryLearningStandard_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2469,6 +2622,7 @@ CREATE TABLE [edfi].[GradebookEntryTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[GradeLevelDescriptor] --
 CREATE TABLE [edfi].[GradeLevelDescriptor] (
     [GradeLevelDescriptorId] [INT] NOT NULL,
@@ -2478,6 +2632,7 @@ CREATE TABLE [edfi].[GradeLevelDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[GradeTypeDescriptor] --
 CREATE TABLE [edfi].[GradeTypeDescriptor] (
     [GradeTypeDescriptorId] [INT] NOT NULL,
@@ -2486,6 +2641,7 @@ CREATE TABLE [edfi].[GradeTypeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[GradingPeriod] --
 CREATE TABLE [edfi].[GradingPeriod] (
@@ -2508,6 +2664,7 @@ CREATE TABLE [edfi].[GradingPeriod] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[GradingPeriod] ADD CONSTRAINT [GradingPeriod_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[GradingPeriod] ADD CONSTRAINT [GradingPeriod_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -2523,6 +2680,7 @@ CREATE TABLE [edfi].[GradingPeriodDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[GraduationPlan] --
 CREATE TABLE [edfi].[GraduationPlan] (
@@ -2544,6 +2702,7 @@ CREATE TABLE [edfi].[GraduationPlan] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[GraduationPlan] ADD CONSTRAINT [GraduationPlan_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[GraduationPlan] ADD CONSTRAINT [GraduationPlan_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -2570,6 +2729,7 @@ CREATE TABLE [edfi].[GraduationPlanCreditsByCourse] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[GraduationPlanCreditsByCourse] ADD CONSTRAINT [GraduationPlanCreditsByCourse_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2592,6 +2752,7 @@ CREATE TABLE [edfi].[GraduationPlanCreditsByCourseCourse] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[GraduationPlanCreditsByCourseCourse] ADD CONSTRAINT [GraduationPlanCreditsByCourseCourse_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2613,6 +2774,7 @@ CREATE TABLE [edfi].[GraduationPlanCreditsBySubject] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[GraduationPlanCreditsBySubject] ADD CONSTRAINT [GraduationPlanCreditsBySubject_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2637,6 +2799,7 @@ CREATE TABLE [edfi].[GraduationPlanRequiredAssessment] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[GraduationPlanRequiredAssessment] ADD CONSTRAINT [GraduationPlanRequiredAssessment_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2666,6 +2829,7 @@ CREATE TABLE [edfi].[GraduationPlanRequiredAssessmentPerformanceLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[GraduationPlanRequiredAssessmentPerformanceLevel] ADD CONSTRAINT [GraduationPlanRequiredAssessmentPerformanceLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2695,6 +2859,7 @@ CREATE TABLE [edfi].[GraduationPlanRequiredAssessmentScore] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[GraduationPlanRequiredAssessmentScore] ADD CONSTRAINT [GraduationPlanRequiredAssessmentScore_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2707,6 +2872,7 @@ CREATE TABLE [edfi].[GraduationPlanTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[GunFreeSchoolsActReportingStatusDescriptor] --
 CREATE TABLE [edfi].[GunFreeSchoolsActReportingStatusDescriptor] (
     [GunFreeSchoolsActReportingStatusDescriptorId] [INT] NOT NULL,
@@ -2715,6 +2881,7 @@ CREATE TABLE [edfi].[GunFreeSchoolsActReportingStatusDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[HomelessPrimaryNighttimeResidenceDescriptor] --
 CREATE TABLE [edfi].[HomelessPrimaryNighttimeResidenceDescriptor] (
@@ -2725,6 +2892,7 @@ CREATE TABLE [edfi].[HomelessPrimaryNighttimeResidenceDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[HomelessProgramServiceDescriptor] --
 CREATE TABLE [edfi].[HomelessProgramServiceDescriptor] (
     [HomelessProgramServiceDescriptorId] [INT] NOT NULL,
@@ -2733,6 +2901,7 @@ CREATE TABLE [edfi].[HomelessProgramServiceDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[IdentificationDocumentUseDescriptor] --
 CREATE TABLE [edfi].[IdentificationDocumentUseDescriptor] (
@@ -2743,6 +2912,7 @@ CREATE TABLE [edfi].[IdentificationDocumentUseDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[IncidentLocationDescriptor] --
 CREATE TABLE [edfi].[IncidentLocationDescriptor] (
     [IncidentLocationDescriptorId] [INT] NOT NULL,
@@ -2751,6 +2921,7 @@ CREATE TABLE [edfi].[IncidentLocationDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[InstitutionTelephoneNumberTypeDescriptor] --
 CREATE TABLE [edfi].[InstitutionTelephoneNumberTypeDescriptor] (
@@ -2761,6 +2932,7 @@ CREATE TABLE [edfi].[InstitutionTelephoneNumberTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[InteractivityStyleDescriptor] --
 CREATE TABLE [edfi].[InteractivityStyleDescriptor] (
     [InteractivityStyleDescriptorId] [INT] NOT NULL,
@@ -2770,6 +2942,7 @@ CREATE TABLE [edfi].[InteractivityStyleDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[InternetAccessDescriptor] --
 CREATE TABLE [edfi].[InternetAccessDescriptor] (
     [InternetAccessDescriptorId] [INT] NOT NULL,
@@ -2778,6 +2951,7 @@ CREATE TABLE [edfi].[InternetAccessDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[Intervention] --
 CREATE TABLE [edfi].[Intervention] (
@@ -2799,6 +2973,7 @@ CREATE TABLE [edfi].[Intervention] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Intervention] ADD CONSTRAINT [Intervention_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Intervention] ADD CONSTRAINT [Intervention_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -2819,6 +2994,7 @@ CREATE TABLE [edfi].[InterventionAppropriateGradeLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionAppropriateGradeLevel] ADD CONSTRAINT [InterventionAppropriateGradeLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2835,6 +3011,7 @@ CREATE TABLE [edfi].[InterventionAppropriateSex] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionAppropriateSex] ADD CONSTRAINT [InterventionAppropriateSex_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2846,6 +3023,7 @@ CREATE TABLE [edfi].[InterventionClassDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[InterventionDiagnosis] --
 CREATE TABLE [edfi].[InterventionDiagnosis] (
@@ -2860,6 +3038,7 @@ CREATE TABLE [edfi].[InterventionDiagnosis] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionDiagnosis] ADD CONSTRAINT [InterventionDiagnosis_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2876,6 +3055,7 @@ CREATE TABLE [edfi].[InterventionEducationContent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionEducationContent] ADD CONSTRAINT [InterventionEducationContent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2887,6 +3067,7 @@ CREATE TABLE [edfi].[InterventionEffectivenessRatingDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[InterventionInterventionPrescription] --
 CREATE TABLE [edfi].[InterventionInterventionPrescription] (
@@ -2903,6 +3084,7 @@ CREATE TABLE [edfi].[InterventionInterventionPrescription] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionInterventionPrescription] ADD CONSTRAINT [InterventionInterventionPrescription_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2919,6 +3101,7 @@ CREATE TABLE [edfi].[InterventionLearningResourceMetadataURI] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionLearningResourceMetadataURI] ADD CONSTRAINT [InterventionLearningResourceMetadataURI_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2937,6 +3120,7 @@ CREATE TABLE [edfi].[InterventionMeetingTime] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionMeetingTime] ADD CONSTRAINT [InterventionMeetingTime_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2953,6 +3137,7 @@ CREATE TABLE [edfi].[InterventionPopulationServed] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionPopulationServed] ADD CONSTRAINT [InterventionPopulationServed_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -2974,6 +3159,7 @@ CREATE TABLE [edfi].[InterventionPrescription] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionPrescription] ADD CONSTRAINT [InterventionPrescription_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[InterventionPrescription] ADD CONSTRAINT [InterventionPrescription_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -2994,6 +3180,7 @@ CREATE TABLE [edfi].[InterventionPrescriptionAppropriateGradeLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionPrescriptionAppropriateGradeLevel] ADD CONSTRAINT [InterventionPrescriptionAppropriateGradeLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3010,6 +3197,7 @@ CREATE TABLE [edfi].[InterventionPrescriptionAppropriateSex] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionPrescriptionAppropriateSex] ADD CONSTRAINT [InterventionPrescriptionAppropriateSex_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3026,6 +3214,7 @@ CREATE TABLE [edfi].[InterventionPrescriptionDiagnosis] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionPrescriptionDiagnosis] ADD CONSTRAINT [InterventionPrescriptionDiagnosis_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3042,6 +3231,7 @@ CREATE TABLE [edfi].[InterventionPrescriptionEducationContent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionPrescriptionEducationContent] ADD CONSTRAINT [InterventionPrescriptionEducationContent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3058,6 +3248,7 @@ CREATE TABLE [edfi].[InterventionPrescriptionLearningResourceMetadataURI] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionPrescriptionLearningResourceMetadataURI] ADD CONSTRAINT [InterventionPrescriptionLearningResourceMetadataURI_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3074,6 +3265,7 @@ CREATE TABLE [edfi].[InterventionPrescriptionPopulationServed] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionPrescriptionPopulationServed] ADD CONSTRAINT [InterventionPrescriptionPopulationServed_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3090,6 +3282,7 @@ CREATE TABLE [edfi].[InterventionPrescriptionURI] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionPrescriptionURI] ADD CONSTRAINT [InterventionPrescriptionURI_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3106,6 +3299,7 @@ CREATE TABLE [edfi].[InterventionStaff] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionStaff] ADD CONSTRAINT [InterventionStaff_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3128,6 +3322,7 @@ CREATE TABLE [edfi].[InterventionStudy] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionStudy] ADD CONSTRAINT [InterventionStudy_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[InterventionStudy] ADD CONSTRAINT [InterventionStudy_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -3148,6 +3343,7 @@ CREATE TABLE [edfi].[InterventionStudyAppropriateGradeLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionStudyAppropriateGradeLevel] ADD CONSTRAINT [InterventionStudyAppropriateGradeLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3164,6 +3360,7 @@ CREATE TABLE [edfi].[InterventionStudyAppropriateSex] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionStudyAppropriateSex] ADD CONSTRAINT [InterventionStudyAppropriateSex_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3180,6 +3377,7 @@ CREATE TABLE [edfi].[InterventionStudyEducationContent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionStudyEducationContent] ADD CONSTRAINT [InterventionStudyEducationContent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3202,6 +3400,7 @@ CREATE TABLE [edfi].[InterventionStudyInterventionEffectiveness] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionStudyInterventionEffectiveness] ADD CONSTRAINT [InterventionStudyInterventionEffectiveness_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3218,6 +3417,7 @@ CREATE TABLE [edfi].[InterventionStudyLearningResourceMetadataURI] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionStudyLearningResourceMetadataURI] ADD CONSTRAINT [InterventionStudyLearningResourceMetadataURI_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3234,6 +3434,7 @@ CREATE TABLE [edfi].[InterventionStudyPopulationServed] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionStudyPopulationServed] ADD CONSTRAINT [InterventionStudyPopulationServed_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3250,6 +3451,7 @@ CREATE TABLE [edfi].[InterventionStudyStateAbbreviation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionStudyStateAbbreviation] ADD CONSTRAINT [InterventionStudyStateAbbreviation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3266,6 +3468,7 @@ CREATE TABLE [edfi].[InterventionStudyURI] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionStudyURI] ADD CONSTRAINT [InterventionStudyURI_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3282,6 +3485,7 @@ CREATE TABLE [edfi].[InterventionURI] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[InterventionURI] ADD CONSTRAINT [InterventionURI_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3294,6 +3498,7 @@ CREATE TABLE [edfi].[LanguageDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[LanguageInstructionProgramServiceDescriptor] --
 CREATE TABLE [edfi].[LanguageInstructionProgramServiceDescriptor] (
     [LanguageInstructionProgramServiceDescriptorId] [INT] NOT NULL,
@@ -3303,6 +3508,7 @@ CREATE TABLE [edfi].[LanguageInstructionProgramServiceDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[LanguageUseDescriptor] --
 CREATE TABLE [edfi].[LanguageUseDescriptor] (
     [LanguageUseDescriptorId] [INT] NOT NULL,
@@ -3311,6 +3517,7 @@ CREATE TABLE [edfi].[LanguageUseDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[LearningObjective] --
 CREATE TABLE [edfi].[LearningObjective] (
@@ -3336,6 +3543,7 @@ CREATE TABLE [edfi].[LearningObjective] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[LearningObjective] ADD CONSTRAINT [LearningObjective_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[LearningObjective] ADD CONSTRAINT [LearningObjective_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -3365,6 +3573,7 @@ CREATE TABLE [edfi].[LearningObjectiveContentStandard] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[LearningObjectiveContentStandard] ADD CONSTRAINT [LearningObjectiveContentStandard_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3383,6 +3592,7 @@ CREATE TABLE [edfi].[LearningObjectiveContentStandardAuthor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[LearningObjectiveContentStandardAuthor] ADD CONSTRAINT [LearningObjectiveContentStandardAuthor_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3401,6 +3611,7 @@ CREATE TABLE [edfi].[LearningObjectiveLearningStandard] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[LearningObjectiveLearningStandard] ADD CONSTRAINT [LearningObjectiveLearningStandard_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3425,6 +3636,7 @@ CREATE TABLE [edfi].[LearningStandard] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[LearningStandard] ADD CONSTRAINT [LearningStandard_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[LearningStandard] ADD CONSTRAINT [LearningStandard_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -3440,6 +3652,7 @@ CREATE TABLE [edfi].[LearningStandardCategoryDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[LearningStandardContentStandard] --
 CREATE TABLE [edfi].[LearningStandardContentStandard] (
@@ -3459,6 +3672,7 @@ CREATE TABLE [edfi].[LearningStandardContentStandard] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[LearningStandardContentStandard] ADD CONSTRAINT [LearningStandardContentStandard_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3473,6 +3687,7 @@ CREATE TABLE [edfi].[LearningStandardContentStandardAuthor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[LearningStandardContentStandardAuthor] ADD CONSTRAINT [LearningStandardContentStandardAuthor_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3487,6 +3702,7 @@ CREATE TABLE [edfi].[LearningStandardGradeLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[LearningStandardGradeLevel] ADD CONSTRAINT [LearningStandardGradeLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3503,6 +3719,7 @@ CREATE TABLE [edfi].[LearningStandardIdentificationCode] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[LearningStandardIdentificationCode] ADD CONSTRAINT [LearningStandardIdentificationCode_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3517,6 +3734,7 @@ CREATE TABLE [edfi].[LearningStandardPrerequisiteLearningStandard] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[LearningStandardPrerequisiteLearningStandard] ADD CONSTRAINT [LearningStandardPrerequisiteLearningStandard_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3529,6 +3747,7 @@ CREATE TABLE [edfi].[LevelOfEducationDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[LicenseStatusDescriptor] --
 CREATE TABLE [edfi].[LicenseStatusDescriptor] (
     [LicenseStatusDescriptorId] [INT] NOT NULL,
@@ -3537,6 +3756,7 @@ CREATE TABLE [edfi].[LicenseStatusDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[LicenseTypeDescriptor] --
 CREATE TABLE [edfi].[LicenseTypeDescriptor] (
@@ -3547,6 +3767,7 @@ CREATE TABLE [edfi].[LicenseTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[LimitedEnglishProficiencyDescriptor] --
 CREATE TABLE [edfi].[LimitedEnglishProficiencyDescriptor] (
     [LimitedEnglishProficiencyDescriptorId] [INT] NOT NULL,
@@ -3555,6 +3776,7 @@ CREATE TABLE [edfi].[LimitedEnglishProficiencyDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[LocalEducationAgency] --
 CREATE TABLE [edfi].[LocalEducationAgency] (
@@ -3570,6 +3792,7 @@ CREATE TABLE [edfi].[LocalEducationAgency] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[LocalEducationAgencyAccountability] --
 CREATE TABLE [edfi].[LocalEducationAgencyAccountability] (
     [LocalEducationAgencyId] [INT] NOT NULL,
@@ -3583,6 +3806,7 @@ CREATE TABLE [edfi].[LocalEducationAgencyAccountability] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[LocalEducationAgencyAccountability] ADD CONSTRAINT [LocalEducationAgencyAccountability_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3594,6 +3818,7 @@ CREATE TABLE [edfi].[LocalEducationAgencyCategoryDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[LocalEducationAgencyFederalFunds] --
 CREATE TABLE [edfi].[LocalEducationAgencyFederalFunds] (
@@ -3614,6 +3839,7 @@ CREATE TABLE [edfi].[LocalEducationAgencyFederalFunds] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[LocalEducationAgencyFederalFunds] ADD CONSTRAINT [LocalEducationAgencyFederalFunds_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3633,6 +3859,7 @@ CREATE TABLE [edfi].[Location] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Location] ADD CONSTRAINT [Location_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Location] ADD CONSTRAINT [Location_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -3649,6 +3876,7 @@ CREATE TABLE [edfi].[MagnetSpecialProgramEmphasisSchoolDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[MediumOfInstructionDescriptor] --
 CREATE TABLE [edfi].[MediumOfInstructionDescriptor] (
     [MediumOfInstructionDescriptorId] [INT] NOT NULL,
@@ -3657,6 +3885,7 @@ CREATE TABLE [edfi].[MediumOfInstructionDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[MethodCreditEarnedDescriptor] --
 CREATE TABLE [edfi].[MethodCreditEarnedDescriptor] (
@@ -3667,6 +3896,7 @@ CREATE TABLE [edfi].[MethodCreditEarnedDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[MigrantEducationProgramServiceDescriptor] --
 CREATE TABLE [edfi].[MigrantEducationProgramServiceDescriptor] (
     [MigrantEducationProgramServiceDescriptorId] [INT] NOT NULL,
@@ -3675,6 +3905,7 @@ CREATE TABLE [edfi].[MigrantEducationProgramServiceDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[MonitoredDescriptor] --
 CREATE TABLE [edfi].[MonitoredDescriptor] (
@@ -3685,6 +3916,7 @@ CREATE TABLE [edfi].[MonitoredDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[NeglectedOrDelinquentProgramDescriptor] --
 CREATE TABLE [edfi].[NeglectedOrDelinquentProgramDescriptor] (
     [NeglectedOrDelinquentProgramDescriptorId] [INT] NOT NULL,
@@ -3693,6 +3925,7 @@ CREATE TABLE [edfi].[NeglectedOrDelinquentProgramDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[NeglectedOrDelinquentProgramServiceDescriptor] --
 CREATE TABLE [edfi].[NeglectedOrDelinquentProgramServiceDescriptor] (
@@ -3703,6 +3936,7 @@ CREATE TABLE [edfi].[NeglectedOrDelinquentProgramServiceDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[NetworkPurposeDescriptor] --
 CREATE TABLE [edfi].[NetworkPurposeDescriptor] (
     [NetworkPurposeDescriptorId] [INT] NOT NULL,
@@ -3711,6 +3945,7 @@ CREATE TABLE [edfi].[NetworkPurposeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[ObjectiveAssessment] --
 CREATE TABLE [edfi].[ObjectiveAssessment] (
@@ -3737,6 +3972,7 @@ CREATE TABLE [edfi].[ObjectiveAssessment] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ObjectiveAssessment] ADD CONSTRAINT [ObjectiveAssessment_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[ObjectiveAssessment] ADD CONSTRAINT [ObjectiveAssessment_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -3763,6 +3999,7 @@ CREATE TABLE [edfi].[ObjectiveAssessmentAssessmentItem] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ObjectiveAssessmentAssessmentItem] ADD CONSTRAINT [ObjectiveAssessmentAssessmentItem_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3785,6 +4022,7 @@ CREATE TABLE [edfi].[ObjectiveAssessmentLearningObjective] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ObjectiveAssessmentLearningObjective] ADD CONSTRAINT [ObjectiveAssessmentLearningObjective_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3807,6 +4045,7 @@ CREATE TABLE [edfi].[ObjectiveAssessmentLearningStandard] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ObjectiveAssessmentLearningStandard] ADD CONSTRAINT [ObjectiveAssessmentLearningStandard_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3834,6 +4073,7 @@ CREATE TABLE [edfi].[ObjectiveAssessmentPerformanceLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ObjectiveAssessmentPerformanceLevel] ADD CONSTRAINT [ObjectiveAssessmentPerformanceLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3859,6 +4099,7 @@ CREATE TABLE [edfi].[ObjectiveAssessmentScore] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ObjectiveAssessmentScore] ADD CONSTRAINT [ObjectiveAssessmentScore_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3870,6 +4111,7 @@ CREATE TABLE [edfi].[OldEthnicityDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[OpenStaffPosition] --
 CREATE TABLE [edfi].[OpenStaffPosition] (
@@ -3892,6 +4134,7 @@ CREATE TABLE [edfi].[OpenStaffPosition] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[OpenStaffPosition] ADD CONSTRAINT [OpenStaffPosition_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[OpenStaffPosition] ADD CONSTRAINT [OpenStaffPosition_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -3912,6 +4155,7 @@ CREATE TABLE [edfi].[OpenStaffPositionAcademicSubject] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[OpenStaffPositionAcademicSubject] ADD CONSTRAINT [OpenStaffPositionAcademicSubject_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3928,6 +4172,7 @@ CREATE TABLE [edfi].[OpenStaffPositionInstructionalGradeLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[OpenStaffPositionInstructionalGradeLevel] ADD CONSTRAINT [OpenStaffPositionInstructionalGradeLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -3940,6 +4185,7 @@ CREATE TABLE [edfi].[OperationalStatusDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[OtherNameTypeDescriptor] --
 CREATE TABLE [edfi].[OtherNameTypeDescriptor] (
     [OtherNameTypeDescriptorId] [INT] NOT NULL,
@@ -3948,6 +4194,7 @@ CREATE TABLE [edfi].[OtherNameTypeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[Parent] --
 CREATE TABLE [edfi].[Parent] (
@@ -3974,6 +4221,7 @@ CREATE UNIQUE NONCLUSTERED INDEX [Parent_UI_ParentUniqueId] ON [edfi].[Parent] (
     [ParentUniqueId] ASC
 ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Parent] ADD CONSTRAINT [Parent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Parent] ADD CONSTRAINT [Parent_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -4003,6 +4251,7 @@ CREATE TABLE [edfi].[ParentAddress] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ParentAddress] ADD CONSTRAINT [ParentAddress_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4020,6 +4269,7 @@ CREATE TABLE [edfi].[ParentAddressPeriod] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ParentAddressPeriod] ADD CONSTRAINT [ParentAddressPeriod_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4037,6 +4287,7 @@ CREATE TABLE [edfi].[ParentElectronicMail] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ParentElectronicMail] ADD CONSTRAINT [ParentElectronicMail_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4060,6 +4311,7 @@ CREATE TABLE [edfi].[ParentInternationalAddress] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ParentInternationalAddress] ADD CONSTRAINT [ParentInternationalAddress_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4074,6 +4326,7 @@ CREATE TABLE [edfi].[ParentLanguage] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ParentLanguage] ADD CONSTRAINT [ParentLanguage_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4090,6 +4343,7 @@ CREATE TABLE [edfi].[ParentLanguageUse] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ParentLanguageUse] ADD CONSTRAINT [ParentLanguageUse_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4109,6 +4363,7 @@ CREATE TABLE [edfi].[ParentOtherName] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ParentOtherName] ADD CONSTRAINT [ParentOtherName_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4130,6 +4385,7 @@ CREATE TABLE [edfi].[ParentPersonalIdentificationDocument] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ParentPersonalIdentificationDocument] ADD CONSTRAINT [ParentPersonalIdentificationDocument_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4148,6 +4404,7 @@ CREATE TABLE [edfi].[ParentTelephone] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ParentTelephone] ADD CONSTRAINT [ParentTelephone_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4159,6 +4416,7 @@ CREATE TABLE [edfi].[ParticipationDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[Payroll] --
 CREATE TABLE [edfi].[Payroll] (
@@ -4181,6 +4439,7 @@ CREATE TABLE [edfi].[Payroll] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Payroll] ADD CONSTRAINT [Payroll_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Payroll] ADD CONSTRAINT [Payroll_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -4197,6 +4456,7 @@ CREATE TABLE [edfi].[PerformanceBaseConversionDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[PerformanceLevelDescriptor] --
 CREATE TABLE [edfi].[PerformanceLevelDescriptor] (
     [PerformanceLevelDescriptorId] [INT] NOT NULL,
@@ -4205,6 +4465,7 @@ CREATE TABLE [edfi].[PerformanceLevelDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[PersonalInformationVerificationDescriptor] --
 CREATE TABLE [edfi].[PersonalInformationVerificationDescriptor] (
@@ -4215,6 +4476,7 @@ CREATE TABLE [edfi].[PersonalInformationVerificationDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[PopulationServedDescriptor] --
 CREATE TABLE [edfi].[PopulationServedDescriptor] (
     [PopulationServedDescriptorId] [INT] NOT NULL,
@@ -4224,6 +4486,7 @@ CREATE TABLE [edfi].[PopulationServedDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[PostingResultDescriptor] --
 CREATE TABLE [edfi].[PostingResultDescriptor] (
     [PostingResultDescriptorId] [INT] NOT NULL,
@@ -4232,6 +4495,7 @@ CREATE TABLE [edfi].[PostingResultDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[PostSecondaryEvent] --
 CREATE TABLE [edfi].[PostSecondaryEvent] (
@@ -4250,6 +4514,7 @@ CREATE TABLE [edfi].[PostSecondaryEvent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[PostSecondaryEvent] ADD CONSTRAINT [PostSecondaryEvent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[PostSecondaryEvent] ADD CONSTRAINT [PostSecondaryEvent_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -4266,6 +4531,7 @@ CREATE TABLE [edfi].[PostSecondaryEventCategoryDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[PostSecondaryInstitution] --
 CREATE TABLE [edfi].[PostSecondaryInstitution] (
     [PostSecondaryInstitutionId] [INT] NOT NULL,
@@ -4277,6 +4543,7 @@ CREATE TABLE [edfi].[PostSecondaryInstitution] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[PostSecondaryInstitutionLevelDescriptor] --
 CREATE TABLE [edfi].[PostSecondaryInstitutionLevelDescriptor] (
     [PostSecondaryInstitutionLevelDescriptorId] [INT] NOT NULL,
@@ -4285,6 +4552,7 @@ CREATE TABLE [edfi].[PostSecondaryInstitutionLevelDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[PostSecondaryInstitutionMediumOfInstruction] --
 CREATE TABLE [edfi].[PostSecondaryInstitutionMediumOfInstruction] (
@@ -4297,6 +4565,7 @@ CREATE TABLE [edfi].[PostSecondaryInstitutionMediumOfInstruction] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[PostSecondaryInstitutionMediumOfInstruction] ADD CONSTRAINT [PostSecondaryInstitutionMediumOfInstruction_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4308,6 +4577,7 @@ CREATE TABLE [edfi].[ProficiencyDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[Program] --
 CREATE TABLE [edfi].[Program] (
@@ -4326,6 +4596,7 @@ CREATE TABLE [edfi].[Program] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Program] ADD CONSTRAINT [Program_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Program] ADD CONSTRAINT [Program_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -4342,6 +4613,7 @@ CREATE TABLE [edfi].[ProgramAssignmentDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[ProgramCharacteristic] --
 CREATE TABLE [edfi].[ProgramCharacteristic] (
     [EducationOrganizationId] [INT] NOT NULL,
@@ -4357,6 +4629,7 @@ CREATE TABLE [edfi].[ProgramCharacteristic] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ProgramCharacteristic] ADD CONSTRAINT [ProgramCharacteristic_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4368,6 +4641,7 @@ CREATE TABLE [edfi].[ProgramCharacteristicDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[ProgramLearningObjective] --
 CREATE TABLE [edfi].[ProgramLearningObjective] (
@@ -4388,6 +4662,7 @@ CREATE TABLE [edfi].[ProgramLearningObjective] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ProgramLearningObjective] ADD CONSTRAINT [ProgramLearningObjective_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4406,6 +4681,7 @@ CREATE TABLE [edfi].[ProgramLearningStandard] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ProgramLearningStandard] ADD CONSTRAINT [ProgramLearningStandard_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4424,6 +4700,7 @@ CREATE TABLE [edfi].[ProgramService] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ProgramService] ADD CONSTRAINT [ProgramService_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4442,6 +4719,7 @@ CREATE TABLE [edfi].[ProgramSponsor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ProgramSponsor] ADD CONSTRAINT [ProgramSponsor_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4454,6 +4732,7 @@ CREATE TABLE [edfi].[ProgramSponsorDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[ProgramTypeDescriptor] --
 CREATE TABLE [edfi].[ProgramTypeDescriptor] (
     [ProgramTypeDescriptorId] [INT] NOT NULL,
@@ -4462,6 +4741,7 @@ CREATE TABLE [edfi].[ProgramTypeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[ProgressDescriptor] --
 CREATE TABLE [edfi].[ProgressDescriptor] (
@@ -4472,6 +4752,7 @@ CREATE TABLE [edfi].[ProgressDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[ProgressLevelDescriptor] --
 CREATE TABLE [edfi].[ProgressLevelDescriptor] (
     [ProgressLevelDescriptorId] [INT] NOT NULL,
@@ -4480,6 +4761,7 @@ CREATE TABLE [edfi].[ProgressLevelDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[ProviderCategoryDescriptor] --
 CREATE TABLE [edfi].[ProviderCategoryDescriptor] (
@@ -4490,6 +4772,7 @@ CREATE TABLE [edfi].[ProviderCategoryDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[ProviderProfitabilityDescriptor] --
 CREATE TABLE [edfi].[ProviderProfitabilityDescriptor] (
     [ProviderProfitabilityDescriptorId] [INT] NOT NULL,
@@ -4498,6 +4781,7 @@ CREATE TABLE [edfi].[ProviderProfitabilityDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[ProviderStatusDescriptor] --
 CREATE TABLE [edfi].[ProviderStatusDescriptor] (
@@ -4508,6 +4792,7 @@ CREATE TABLE [edfi].[ProviderStatusDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[PublicationStatusDescriptor] --
 CREATE TABLE [edfi].[PublicationStatusDescriptor] (
     [PublicationStatusDescriptorId] [INT] NOT NULL,
@@ -4516,6 +4801,7 @@ CREATE TABLE [edfi].[PublicationStatusDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[RaceDescriptor] --
 CREATE TABLE [edfi].[RaceDescriptor] (
@@ -4526,6 +4812,7 @@ CREATE TABLE [edfi].[RaceDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[ReasonExitedDescriptor] --
 CREATE TABLE [edfi].[ReasonExitedDescriptor] (
     [ReasonExitedDescriptorId] [INT] NOT NULL,
@@ -4534,6 +4821,7 @@ CREATE TABLE [edfi].[ReasonExitedDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[ReasonNotTestedDescriptor] --
 CREATE TABLE [edfi].[ReasonNotTestedDescriptor] (
@@ -4544,6 +4832,7 @@ CREATE TABLE [edfi].[ReasonNotTestedDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[RecognitionTypeDescriptor] --
 CREATE TABLE [edfi].[RecognitionTypeDescriptor] (
     [RecognitionTypeDescriptorId] [INT] NOT NULL,
@@ -4552,6 +4841,7 @@ CREATE TABLE [edfi].[RecognitionTypeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[RelationDescriptor] --
 CREATE TABLE [edfi].[RelationDescriptor] (
@@ -4562,6 +4852,7 @@ CREATE TABLE [edfi].[RelationDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[RepeatIdentifierDescriptor] --
 CREATE TABLE [edfi].[RepeatIdentifierDescriptor] (
     [RepeatIdentifierDescriptorId] [INT] NOT NULL,
@@ -4570,6 +4861,7 @@ CREATE TABLE [edfi].[RepeatIdentifierDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[ReportCard] --
 CREATE TABLE [edfi].[ReportCard] (
@@ -4598,6 +4890,7 @@ CREATE TABLE [edfi].[ReportCard] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ReportCard] ADD CONSTRAINT [ReportCard_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[ReportCard] ADD CONSTRAINT [ReportCard_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -4638,6 +4931,7 @@ CREATE TABLE [edfi].[ReportCardGrade] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ReportCardGrade] ADD CONSTRAINT [ReportCardGrade_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4666,6 +4960,7 @@ CREATE TABLE [edfi].[ReportCardStudentCompetencyObjective] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ReportCardStudentCompetencyObjective] ADD CONSTRAINT [ReportCardStudentCompetencyObjective_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4694,6 +4989,7 @@ CREATE TABLE [edfi].[ReportCardStudentLearningObjective] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[ReportCardStudentLearningObjective] ADD CONSTRAINT [ReportCardStudentLearningObjective_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4706,6 +5002,7 @@ CREATE TABLE [edfi].[ReporterDescriptionDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[ResidencyStatusDescriptor] --
 CREATE TABLE [edfi].[ResidencyStatusDescriptor] (
     [ResidencyStatusDescriptorId] [INT] NOT NULL,
@@ -4714,6 +5011,7 @@ CREATE TABLE [edfi].[ResidencyStatusDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[ResponseIndicatorDescriptor] --
 CREATE TABLE [edfi].[ResponseIndicatorDescriptor] (
@@ -4724,6 +5022,7 @@ CREATE TABLE [edfi].[ResponseIndicatorDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[ResponsibilityDescriptor] --
 CREATE TABLE [edfi].[ResponsibilityDescriptor] (
     [ResponsibilityDescriptorId] [INT] NOT NULL,
@@ -4732,6 +5031,7 @@ CREATE TABLE [edfi].[ResponsibilityDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[RestraintEvent] --
 CREATE TABLE [edfi].[RestraintEvent] (
@@ -4751,6 +5051,7 @@ CREATE TABLE [edfi].[RestraintEvent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[RestraintEvent] ADD CONSTRAINT [RestraintEvent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[RestraintEvent] ADD CONSTRAINT [RestraintEvent_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -4777,6 +5078,7 @@ CREATE TABLE [edfi].[RestraintEventProgram] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[RestraintEventProgram] ADD CONSTRAINT [RestraintEventProgram_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4795,6 +5097,7 @@ CREATE TABLE [edfi].[RestraintEventReason] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[RestraintEventReason] ADD CONSTRAINT [RestraintEventReason_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4807,6 +5110,7 @@ CREATE TABLE [edfi].[RestraintEventReasonDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[ResultDatatypeTypeDescriptor] --
 CREATE TABLE [edfi].[ResultDatatypeTypeDescriptor] (
     [ResultDatatypeTypeDescriptorId] [INT] NOT NULL,
@@ -4816,6 +5120,7 @@ CREATE TABLE [edfi].[ResultDatatypeTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[RetestIndicatorDescriptor] --
 CREATE TABLE [edfi].[RetestIndicatorDescriptor] (
     [RetestIndicatorDescriptorId] [INT] NOT NULL,
@@ -4824,6 +5129,7 @@ CREATE TABLE [edfi].[RetestIndicatorDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[School] --
 CREATE TABLE [edfi].[School] (
@@ -4843,6 +5149,7 @@ CREATE TABLE [edfi].[School] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[SchoolCategory] --
 CREATE TABLE [edfi].[SchoolCategory] (
     [SchoolCategoryDescriptorId] [INT] NOT NULL,
@@ -4854,6 +5161,7 @@ CREATE TABLE [edfi].[SchoolCategory] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[SchoolCategory] ADD CONSTRAINT [SchoolCategory_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4866,6 +5174,7 @@ CREATE TABLE [edfi].[SchoolCategoryDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[SchoolChoiceImplementStatusDescriptor] --
 CREATE TABLE [edfi].[SchoolChoiceImplementStatusDescriptor] (
     [SchoolChoiceImplementStatusDescriptorId] [INT] NOT NULL,
@@ -4875,6 +5184,7 @@ CREATE TABLE [edfi].[SchoolChoiceImplementStatusDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[SchoolFoodServiceProgramServiceDescriptor] --
 CREATE TABLE [edfi].[SchoolFoodServiceProgramServiceDescriptor] (
     [SchoolFoodServiceProgramServiceDescriptorId] [INT] NOT NULL,
@@ -4883,6 +5193,7 @@ CREATE TABLE [edfi].[SchoolFoodServiceProgramServiceDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[SchoolGradeLevel] --
 CREATE TABLE [edfi].[SchoolGradeLevel] (
@@ -4895,6 +5206,7 @@ CREATE TABLE [edfi].[SchoolGradeLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[SchoolGradeLevel] ADD CONSTRAINT [SchoolGradeLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -4906,6 +5218,7 @@ CREATE TABLE [edfi].[SchoolTypeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[SchoolYearType] --
 CREATE TABLE [edfi].[SchoolYearType] (
@@ -4920,6 +5233,7 @@ CREATE TABLE [edfi].[SchoolYearType] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[SchoolYearType] ADD CONSTRAINT [SchoolYearType_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[SchoolYearType] ADD CONSTRAINT [SchoolYearType_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -4957,6 +5271,7 @@ CREATE TABLE [edfi].[Section] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Section] ADD CONSTRAINT [Section_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Section] ADD CONSTRAINT [Section_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -4990,6 +5305,7 @@ CREATE TABLE [edfi].[SectionAttendanceTakenEvent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[SectionAttendanceTakenEvent] ADD CONSTRAINT [SectionAttendanceTakenEvent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[SectionAttendanceTakenEvent] ADD CONSTRAINT [SectionAttendanceTakenEvent_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -5016,6 +5332,7 @@ CREATE TABLE [edfi].[SectionCharacteristic] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[SectionCharacteristic] ADD CONSTRAINT [SectionCharacteristic_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5027,6 +5344,7 @@ CREATE TABLE [edfi].[SectionCharacteristicDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[SectionClassPeriod] --
 CREATE TABLE [edfi].[SectionClassPeriod] (
@@ -5047,6 +5365,7 @@ CREATE TABLE [edfi].[SectionClassPeriod] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[SectionClassPeriod] ADD CONSTRAINT [SectionClassPeriod_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5073,6 +5392,7 @@ CREATE TABLE [edfi].[SectionProgram] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[SectionProgram] ADD CONSTRAINT [SectionProgram_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5085,6 +5405,7 @@ CREATE TABLE [edfi].[SeparationDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[SeparationReasonDescriptor] --
 CREATE TABLE [edfi].[SeparationReasonDescriptor] (
     [SeparationReasonDescriptorId] [INT] NOT NULL,
@@ -5094,6 +5415,7 @@ CREATE TABLE [edfi].[SeparationReasonDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[ServiceDescriptor] --
 CREATE TABLE [edfi].[ServiceDescriptor] (
     [ServiceDescriptorId] [INT] NOT NULL,
@@ -5102,6 +5424,7 @@ CREATE TABLE [edfi].[ServiceDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[Session] --
 CREATE TABLE [edfi].[Session] (
@@ -5123,6 +5446,7 @@ CREATE TABLE [edfi].[Session] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Session] ADD CONSTRAINT [Session_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Session] ADD CONSTRAINT [Session_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -5145,6 +5469,7 @@ CREATE TABLE [edfi].[SessionAcademicWeek] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[SessionAcademicWeek] ADD CONSTRAINT [SessionAcademicWeek_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5165,6 +5490,7 @@ CREATE TABLE [edfi].[SessionGradingPeriod] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[SessionGradingPeriod] ADD CONSTRAINT [SessionGradingPeriod_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5177,6 +5503,7 @@ CREATE TABLE [edfi].[SexDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[SpecialEducationProgramServiceDescriptor] --
 CREATE TABLE [edfi].[SpecialEducationProgramServiceDescriptor] (
     [SpecialEducationProgramServiceDescriptorId] [INT] NOT NULL,
@@ -5186,6 +5513,7 @@ CREATE TABLE [edfi].[SpecialEducationProgramServiceDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[SpecialEducationSettingDescriptor] --
 CREATE TABLE [edfi].[SpecialEducationSettingDescriptor] (
     [SpecialEducationSettingDescriptorId] [INT] NOT NULL,
@@ -5194,6 +5522,7 @@ CREATE TABLE [edfi].[SpecialEducationSettingDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[Staff] --
 CREATE TABLE [edfi].[Staff] (
@@ -5228,6 +5557,7 @@ CREATE UNIQUE NONCLUSTERED INDEX [Staff_UI_StaffUniqueId] ON [edfi].[Staff] (
     [StaffUniqueId] ASC
 ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Staff] ADD CONSTRAINT [Staff_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Staff] ADD CONSTRAINT [Staff_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -5253,6 +5583,7 @@ CREATE TABLE [edfi].[StaffAbsenceEvent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffAbsenceEvent] ADD CONSTRAINT [StaffAbsenceEvent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StaffAbsenceEvent] ADD CONSTRAINT [StaffAbsenceEvent_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -5282,6 +5613,7 @@ CREATE TABLE [edfi].[StaffAddress] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffAddress] ADD CONSTRAINT [StaffAddress_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5299,6 +5631,7 @@ CREATE TABLE [edfi].[StaffAddressPeriod] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffAddressPeriod] ADD CONSTRAINT [StaffAddressPeriod_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5310,6 +5643,7 @@ CREATE TABLE [edfi].[StaffClassificationDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[StaffCohortAssociation] --
 CREATE TABLE [edfi].[StaffCohortAssociation] (
@@ -5331,6 +5665,7 @@ CREATE TABLE [edfi].[StaffCohortAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffCohortAssociation] ADD CONSTRAINT [StaffCohortAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StaffCohortAssociation] ADD CONSTRAINT [StaffCohortAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -5351,6 +5686,7 @@ CREATE TABLE [edfi].[StaffCredential] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffCredential] ADD CONSTRAINT [StaffCredential_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5380,6 +5716,7 @@ CREATE TABLE [edfi].[StaffEducationOrganizationAssignmentAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffEducationOrganizationAssignmentAssociation] ADD CONSTRAINT [StaffEducationOrganizationAssignmentAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StaffEducationOrganizationAssignmentAssociation] ADD CONSTRAINT [StaffEducationOrganizationAssignmentAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -5405,6 +5742,7 @@ CREATE TABLE [edfi].[StaffEducationOrganizationContactAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffEducationOrganizationContactAssociation] ADD CONSTRAINT [StaffEducationOrganizationContactAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StaffEducationOrganizationContactAssociation] ADD CONSTRAINT [StaffEducationOrganizationContactAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -5437,6 +5775,7 @@ CREATE TABLE [edfi].[StaffEducationOrganizationContactAssociationAddress] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffEducationOrganizationContactAssociationAddress] ADD CONSTRAINT [StaffEducationOrganizationContactAssociationAddress_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5456,6 +5795,7 @@ CREATE TABLE [edfi].[StaffEducationOrganizationContactAssociationAddressPeriod] 
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffEducationOrganizationContactAssociationAddressPeriod] ADD CONSTRAINT [StaffEducationOrganizationContactAssociationAddressPeriod_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5478,6 +5818,7 @@ CREATE TABLE [edfi].[StaffEducationOrganizationContactAssociationTelephone] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffEducationOrganizationContactAssociationTelephone] ADD CONSTRAINT [StaffEducationOrganizationContactAssociationTelephone_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5508,6 +5849,7 @@ CREATE TABLE [edfi].[StaffEducationOrganizationEmploymentAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffEducationOrganizationEmploymentAssociation] ADD CONSTRAINT [StaffEducationOrganizationEmploymentAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StaffEducationOrganizationEmploymentAssociation] ADD CONSTRAINT [StaffEducationOrganizationEmploymentAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -5529,6 +5871,7 @@ CREATE TABLE [edfi].[StaffElectronicMail] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffElectronicMail] ADD CONSTRAINT [StaffElectronicMail_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5545,6 +5888,7 @@ CREATE TABLE [edfi].[StaffIdentificationCode] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffIdentificationCode] ADD CONSTRAINT [StaffIdentificationCode_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5566,6 +5910,7 @@ CREATE TABLE [edfi].[StaffIdentificationDocument] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffIdentificationDocument] ADD CONSTRAINT [StaffIdentificationDocument_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5577,6 +5922,7 @@ CREATE TABLE [edfi].[StaffIdentificationSystemDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[StaffInternationalAddress] --
 CREATE TABLE [edfi].[StaffInternationalAddress] (
@@ -5598,6 +5944,7 @@ CREATE TABLE [edfi].[StaffInternationalAddress] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffInternationalAddress] ADD CONSTRAINT [StaffInternationalAddress_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5612,6 +5959,7 @@ CREATE TABLE [edfi].[StaffLanguage] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffLanguage] ADD CONSTRAINT [StaffLanguage_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5628,6 +5976,7 @@ CREATE TABLE [edfi].[StaffLanguageUse] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffLanguageUse] ADD CONSTRAINT [StaffLanguageUse_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5650,6 +5999,7 @@ CREATE TABLE [edfi].[StaffLeave] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffLeave] ADD CONSTRAINT [StaffLeave_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StaffLeave] ADD CONSTRAINT [StaffLeave_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -5665,6 +6015,7 @@ CREATE TABLE [edfi].[StaffLeaveEventCategoryDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[StaffOtherName] --
 CREATE TABLE [edfi].[StaffOtherName] (
@@ -5682,6 +6033,7 @@ CREATE TABLE [edfi].[StaffOtherName] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffOtherName] ADD CONSTRAINT [StaffOtherName_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5703,6 +6055,7 @@ CREATE TABLE [edfi].[StaffPersonalIdentificationDocument] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffPersonalIdentificationDocument] ADD CONSTRAINT [StaffPersonalIdentificationDocument_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5728,6 +6081,7 @@ CREATE TABLE [edfi].[StaffProgramAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffProgramAssociation] ADD CONSTRAINT [StaffProgramAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StaffProgramAssociation] ADD CONSTRAINT [StaffProgramAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -5746,6 +6100,7 @@ CREATE TABLE [edfi].[StaffRace] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffRace] ADD CONSTRAINT [StaffRace_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5772,6 +6127,7 @@ CREATE TABLE [edfi].[StaffRecognition] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffRecognition] ADD CONSTRAINT [StaffRecognition_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5793,6 +6149,7 @@ CREATE TABLE [edfi].[StaffSchoolAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffSchoolAssociation] ADD CONSTRAINT [StaffSchoolAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StaffSchoolAssociation] ADD CONSTRAINT [StaffSchoolAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -5815,6 +6172,7 @@ CREATE TABLE [edfi].[StaffSchoolAssociationAcademicSubject] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffSchoolAssociationAcademicSubject] ADD CONSTRAINT [StaffSchoolAssociationAcademicSubject_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5833,6 +6191,7 @@ CREATE TABLE [edfi].[StaffSchoolAssociationGradeLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffSchoolAssociationGradeLevel] ADD CONSTRAINT [StaffSchoolAssociationGradeLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5864,6 +6223,7 @@ CREATE TABLE [edfi].[StaffSectionAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffSectionAssociation] ADD CONSTRAINT [StaffSectionAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StaffSectionAssociation] ADD CONSTRAINT [StaffSectionAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -5886,6 +6246,7 @@ CREATE TABLE [edfi].[StaffTelephone] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffTelephone] ADD CONSTRAINT [StaffTelephone_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5900,6 +6261,7 @@ CREATE TABLE [edfi].[StaffTribalAffiliation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffTribalAffiliation] ADD CONSTRAINT [StaffTribalAffiliation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5914,6 +6276,7 @@ CREATE TABLE [edfi].[StaffVisa] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StaffVisa] ADD CONSTRAINT [StaffVisa_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5926,6 +6289,7 @@ CREATE TABLE [edfi].[StateAbbreviationDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[StateEducationAgency] --
 CREATE TABLE [edfi].[StateEducationAgency] (
     [StateEducationAgencyId] [INT] NOT NULL,
@@ -5934,6 +6298,7 @@ CREATE TABLE [edfi].[StateEducationAgency] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[StateEducationAgencyAccountability] --
 CREATE TABLE [edfi].[StateEducationAgencyAccountability] (
@@ -5947,6 +6312,7 @@ CREATE TABLE [edfi].[StateEducationAgencyAccountability] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StateEducationAgencyAccountability] ADD CONSTRAINT [StateEducationAgencyAccountability_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5962,6 +6328,7 @@ CREATE TABLE [edfi].[StateEducationAgencyFederalFunds] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StateEducationAgencyFederalFunds] ADD CONSTRAINT [StateEducationAgencyFederalFunds_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -5997,6 +6364,7 @@ CREATE UNIQUE NONCLUSTERED INDEX [Student_UI_StudentUniqueId] ON [edfi].[Student
     [StudentUniqueId] ASC
 ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[Student] ADD CONSTRAINT [Student_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[Student] ADD CONSTRAINT [Student_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -6040,6 +6408,7 @@ CREATE TABLE [edfi].[StudentAcademicRecord] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAcademicRecord] ADD CONSTRAINT [StudentAcademicRecord_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentAcademicRecord] ADD CONSTRAINT [StudentAcademicRecord_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -6077,6 +6446,7 @@ CREATE TABLE [edfi].[StudentAcademicRecordAcademicHonor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAcademicRecordAcademicHonor] ADD CONSTRAINT [StudentAcademicRecordAcademicHonor_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6099,6 +6469,7 @@ CREATE TABLE [edfi].[StudentAcademicRecordClassRanking] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAcademicRecordClassRanking] ADD CONSTRAINT [StudentAcademicRecordClassRanking_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6134,6 +6505,7 @@ CREATE TABLE [edfi].[StudentAcademicRecordDiploma] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAcademicRecordDiploma] ADD CONSTRAINT [StudentAcademicRecordDiploma_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6166,6 +6538,7 @@ CREATE TABLE [edfi].[StudentAcademicRecordRecognition] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAcademicRecordRecognition] ADD CONSTRAINT [StudentAcademicRecordRecognition_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6192,6 +6565,7 @@ CREATE TABLE [edfi].[StudentAcademicRecordReportCard] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAcademicRecordReportCard] ADD CONSTRAINT [StudentAcademicRecordReportCard_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6227,6 +6601,7 @@ CREATE TABLE [edfi].[StudentAssessment] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAssessment] ADD CONSTRAINT [StudentAssessment_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentAssessment] ADD CONSTRAINT [StudentAssessment_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -6255,6 +6630,7 @@ CREATE TABLE [edfi].[StudentAssessmentAccommodation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAssessmentAccommodation] ADD CONSTRAINT [StudentAssessmentAccommodation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6285,6 +6661,7 @@ CREATE TABLE [edfi].[StudentAssessmentItem] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAssessmentItem] ADD CONSTRAINT [StudentAssessmentItem_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6312,6 +6689,7 @@ CREATE TABLE [edfi].[StudentAssessmentPerformanceLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAssessmentPerformanceLevel] ADD CONSTRAINT [StudentAssessmentPerformanceLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6338,6 +6716,7 @@ CREATE TABLE [edfi].[StudentAssessmentScoreResult] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAssessmentScoreResult] ADD CONSTRAINT [StudentAssessmentScoreResult_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6362,6 +6741,7 @@ CREATE TABLE [edfi].[StudentAssessmentStudentObjectiveAssessment] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAssessmentStudentObjectiveAssessment] ADD CONSTRAINT [StudentAssessmentStudentObjectiveAssessment_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6391,6 +6771,7 @@ CREATE TABLE [edfi].[StudentAssessmentStudentObjectiveAssessmentPerformanceLevel
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAssessmentStudentObjectiveAssessmentPerformanceLevel] ADD CONSTRAINT [StudentAssessmentStudentObjectiveAssessmentPerformanceLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6419,6 +6800,7 @@ CREATE TABLE [edfi].[StudentAssessmentStudentObjectiveAssessmentScoreResult] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentAssessmentStudentObjectiveAssessmentScoreResult] ADD CONSTRAINT [StudentAssessmentStudentObjectiveAssessmentScoreResult_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6430,6 +6812,7 @@ CREATE TABLE [edfi].[StudentCharacteristicDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[StudentCohortAssociation] --
 CREATE TABLE [edfi].[StudentCohortAssociation] (
@@ -6450,6 +6833,7 @@ CREATE TABLE [edfi].[StudentCohortAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentCohortAssociation] ADD CONSTRAINT [StudentCohortAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentCohortAssociation] ADD CONSTRAINT [StudentCohortAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -6482,6 +6866,7 @@ CREATE TABLE [edfi].[StudentCohortAssociationSection] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentCohortAssociationSection] ADD CONSTRAINT [StudentCohortAssociationSection_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6513,6 +6898,7 @@ CREATE TABLE [edfi].[StudentCompetencyObjective] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentCompetencyObjective] ADD CONSTRAINT [StudentCompetencyObjective_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentCompetencyObjective] ADD CONSTRAINT [StudentCompetencyObjective_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -6553,6 +6939,7 @@ CREATE TABLE [edfi].[StudentCompetencyObjectiveGeneralStudentProgramAssociation]
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentCompetencyObjectiveGeneralStudentProgramAssociation] ADD CONSTRAINT [StudentCompetencyObjectiveGeneralStudentProgramAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6591,6 +6978,7 @@ CREATE TABLE [edfi].[StudentCompetencyObjectiveStudentSectionAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentCompetencyObjectiveStudentSectionAssociation] ADD CONSTRAINT [StudentCompetencyObjectiveStudentSectionAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6616,6 +7004,7 @@ CREATE TABLE [edfi].[StudentCTEProgramAssociation] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[StudentCTEProgramAssociationCTEProgram] --
 CREATE TABLE [edfi].[StudentCTEProgramAssociationCTEProgram] (
     [BeginDate] [DATE] NOT NULL,
@@ -6640,6 +7029,7 @@ CREATE TABLE [edfi].[StudentCTEProgramAssociationCTEProgram] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentCTEProgramAssociationCTEProgram] ADD CONSTRAINT [StudentCTEProgramAssociationCTEProgram_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6667,6 +7057,7 @@ CREATE TABLE [edfi].[StudentCTEProgramAssociationService] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentCTEProgramAssociationService] ADD CONSTRAINT [StudentCTEProgramAssociationService_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6687,6 +7078,7 @@ CREATE TABLE [edfi].[StudentDisciplineIncidentAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentDisciplineIncidentAssociation] ADD CONSTRAINT [StudentDisciplineIncidentAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentDisciplineIncidentAssociation] ADD CONSTRAINT [StudentDisciplineIncidentAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -6710,6 +7102,7 @@ CREATE TABLE [edfi].[StudentDisciplineIncidentAssociationBehavior] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentDisciplineIncidentAssociationBehavior] ADD CONSTRAINT [StudentDisciplineIncidentAssociationBehavior_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6733,6 +7126,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociation] ADD CONSTRAINT [StudentEducationOrganizationAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociation] ADD CONSTRAINT [StudentEducationOrganizationAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -6764,6 +7158,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationAddress] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationAddress] ADD CONSTRAINT [StudentEducationOrganizationAssociationAddress_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6783,6 +7178,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationAddressPeriod] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationAddressPeriod] ADD CONSTRAINT [StudentEducationOrganizationAssociationAddressPeriod_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6801,6 +7197,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationCohortYear] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationCohortYear] ADD CONSTRAINT [StudentEducationOrganizationAssociationCohortYear_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6820,6 +7217,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationDisability] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationDisability] ADD CONSTRAINT [StudentEducationOrganizationAssociationDisability_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6838,6 +7236,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationDisabilityDesignatio
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationDisabilityDesignation] ADD CONSTRAINT [StudentEducationOrganizationAssociationDisabilityDesignation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6857,6 +7256,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationElectronicMail] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationElectronicMail] ADD CONSTRAINT [StudentEducationOrganizationAssociationElectronicMail_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6882,6 +7282,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationInternationalAddress
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationInternationalAddress] ADD CONSTRAINT [StudentEducationOrganizationAssociationInternationalAddress_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6898,6 +7299,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationLanguage] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationLanguage] ADD CONSTRAINT [StudentEducationOrganizationAssociationLanguage_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6916,6 +7318,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationLanguageUse] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationLanguageUse] ADD CONSTRAINT [StudentEducationOrganizationAssociationLanguageUse_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6935,6 +7338,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationProgramParticipation
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationProgramParticipation] ADD CONSTRAINT [StudentEducationOrganizationAssociationProgramParticipation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6953,6 +7357,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationProgramParticipation
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationProgramParticipationProgramCharacteristic] ADD CONSTRAINT [StudentEducationOrganizationAssociationProgramParticipationProgramCharacteristic_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6969,6 +7374,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationRace] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationRace] ADD CONSTRAINT [StudentEducationOrganizationAssociationRace_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -6986,6 +7392,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationStudentCharacteristi
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationStudentCharacteristic] ADD CONSTRAINT [StudentEducationOrganizationAssociationStudentCharacteristic_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7005,6 +7412,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationStudentCharacteristi
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationStudentCharacteristicPeriod] ADD CONSTRAINT [StudentEducationOrganizationAssociationStudentCharacteristicPeriod_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7024,6 +7432,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationStudentIdentificatio
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationStudentIdentificationCode] ADD CONSTRAINT [StudentEducationOrganizationAssociationStudentIdentificationCode_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7043,6 +7452,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationStudentIndicator] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationStudentIndicator] ADD CONSTRAINT [StudentEducationOrganizationAssociationStudentIndicator_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7062,6 +7472,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationStudentIndicatorPeri
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationStudentIndicatorPeriod] ADD CONSTRAINT [StudentEducationOrganizationAssociationStudentIndicatorPeriod_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7082,6 +7493,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationTelephone] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationTelephone] ADD CONSTRAINT [StudentEducationOrganizationAssociationTelephone_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7098,6 +7510,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationAssociationTribalAffiliation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationAssociationTribalAffiliation] ADD CONSTRAINT [StudentEducationOrganizationAssociationTribalAffiliation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7120,6 +7533,7 @@ CREATE TABLE [edfi].[StudentEducationOrganizationResponsibilityAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentEducationOrganizationResponsibilityAssociation] ADD CONSTRAINT [StudentEducationOrganizationResponsibilityAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentEducationOrganizationResponsibilityAssociation] ADD CONSTRAINT [StudentEducationOrganizationResponsibilityAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -7160,6 +7574,7 @@ CREATE TABLE [edfi].[StudentGradebookEntry] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentGradebookEntry] ADD CONSTRAINT [StudentGradebookEntry_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentGradebookEntry] ADD CONSTRAINT [StudentGradebookEntry_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -7189,6 +7604,7 @@ CREATE TABLE [edfi].[StudentHomelessProgramAssociation] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[StudentHomelessProgramAssociationHomelessProgramService] --
 CREATE TABLE [edfi].[StudentHomelessProgramAssociationHomelessProgramService] (
     [BeginDate] [DATE] NOT NULL,
@@ -7213,6 +7629,7 @@ CREATE TABLE [edfi].[StudentHomelessProgramAssociationHomelessProgramService] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentHomelessProgramAssociationHomelessProgramService] ADD CONSTRAINT [StudentHomelessProgramAssociationHomelessProgramService_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7234,6 +7651,7 @@ CREATE TABLE [edfi].[StudentIdentificationDocument] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentIdentificationDocument] ADD CONSTRAINT [StudentIdentificationDocument_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7245,6 +7663,7 @@ CREATE TABLE [edfi].[StudentIdentificationSystemDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[StudentInterventionAssociation] --
 CREATE TABLE [edfi].[StudentInterventionAssociation] (
@@ -7266,6 +7685,7 @@ CREATE TABLE [edfi].[StudentInterventionAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentInterventionAssociation] ADD CONSTRAINT [StudentInterventionAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentInterventionAssociation] ADD CONSTRAINT [StudentInterventionAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -7294,6 +7714,7 @@ CREATE TABLE [edfi].[StudentInterventionAssociationInterventionEffectiveness] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentInterventionAssociationInterventionEffectiveness] ADD CONSTRAINT [StudentInterventionAssociationInterventionEffectiveness_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7321,6 +7742,7 @@ CREATE TABLE [edfi].[StudentInterventionAttendanceEvent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentInterventionAttendanceEvent] ADD CONSTRAINT [StudentInterventionAttendanceEvent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentInterventionAttendanceEvent] ADD CONSTRAINT [StudentInterventionAttendanceEvent_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -7348,6 +7770,7 @@ CREATE TABLE [edfi].[StudentLanguageInstructionProgramAssociation] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[StudentLanguageInstructionProgramAssociationEnglishLanguageProficiencyAssessment] --
 CREATE TABLE [edfi].[StudentLanguageInstructionProgramAssociationEnglishLanguageProficiencyAssessment] (
     [BeginDate] [DATE] NOT NULL,
@@ -7373,6 +7796,7 @@ CREATE TABLE [edfi].[StudentLanguageInstructionProgramAssociationEnglishLanguage
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentLanguageInstructionProgramAssociationEnglishLanguageProficiencyAssessment] ADD CONSTRAINT [StudentLanguageInstructionProgramAssociationEnglishLanguageProficiencyAssessment_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7400,6 +7824,7 @@ CREATE TABLE [edfi].[StudentLanguageInstructionProgramAssociationLanguageInstruc
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentLanguageInstructionProgramAssociationLanguageInstructionProgramService] ADD CONSTRAINT [StudentLanguageInstructionProgramAssociationLanguageInstructionProgramService_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7431,6 +7856,7 @@ CREATE TABLE [edfi].[StudentLearningObjective] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentLearningObjective] ADD CONSTRAINT [StudentLearningObjective_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentLearningObjective] ADD CONSTRAINT [StudentLearningObjective_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -7471,6 +7897,7 @@ CREATE TABLE [edfi].[StudentLearningObjectiveGeneralStudentProgramAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentLearningObjectiveGeneralStudentProgramAssociation] ADD CONSTRAINT [StudentLearningObjectiveGeneralStudentProgramAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7509,6 +7936,7 @@ CREATE TABLE [edfi].[StudentLearningObjectiveStudentSectionAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentLearningObjectiveStudentSectionAssociation] ADD CONSTRAINT [StudentLearningObjectiveStudentSectionAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7540,6 +7968,7 @@ CREATE TABLE [edfi].[StudentMigrantEducationProgramAssociation] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[StudentMigrantEducationProgramAssociationMigrantEducationProgramService] --
 CREATE TABLE [edfi].[StudentMigrantEducationProgramAssociationMigrantEducationProgramService] (
     [BeginDate] [DATE] NOT NULL,
@@ -7564,6 +7993,7 @@ CREATE TABLE [edfi].[StudentMigrantEducationProgramAssociationMigrantEducationPr
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentMigrantEducationProgramAssociationMigrantEducationProgramService] ADD CONSTRAINT [StudentMigrantEducationProgramAssociationMigrantEducationProgramService_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7589,6 +8019,7 @@ CREATE TABLE [edfi].[StudentNeglectedOrDelinquentProgramAssociation] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[StudentNeglectedOrDelinquentProgramAssociationNeglectedOrDelinquentProgramService] --
 CREATE TABLE [edfi].[StudentNeglectedOrDelinquentProgramAssociationNeglectedOrDelinquentProgramService] (
     [BeginDate] [DATE] NOT NULL,
@@ -7613,6 +8044,7 @@ CREATE TABLE [edfi].[StudentNeglectedOrDelinquentProgramAssociationNeglectedOrDe
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentNeglectedOrDelinquentProgramAssociationNeglectedOrDelinquentProgramService] ADD CONSTRAINT [StudentNeglectedOrDelinquentProgramAssociationNeglectedOrDelinquentProgramService_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7632,6 +8064,7 @@ CREATE TABLE [edfi].[StudentOtherName] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentOtherName] ADD CONSTRAINT [StudentOtherName_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7655,6 +8088,7 @@ CREATE TABLE [edfi].[StudentParentAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentParentAssociation] ADD CONSTRAINT [StudentParentAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentParentAssociation] ADD CONSTRAINT [StudentParentAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -7670,6 +8104,7 @@ CREATE TABLE [edfi].[StudentParticipationCodeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[StudentPersonalIdentificationDocument] --
 CREATE TABLE [edfi].[StudentPersonalIdentificationDocument] (
@@ -7689,6 +8124,7 @@ CREATE TABLE [edfi].[StudentPersonalIdentificationDocument] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentPersonalIdentificationDocument] ADD CONSTRAINT [StudentPersonalIdentificationDocument_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7710,6 +8146,7 @@ CREATE TABLE [edfi].[StudentProgramAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[StudentProgramAssociationService] --
 CREATE TABLE [edfi].[StudentProgramAssociationService] (
@@ -7735,6 +8172,7 @@ CREATE TABLE [edfi].[StudentProgramAssociationService] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentProgramAssociationService] ADD CONSTRAINT [StudentProgramAssociationService_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7765,6 +8203,7 @@ CREATE TABLE [edfi].[StudentProgramAttendanceEvent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentProgramAttendanceEvent] ADD CONSTRAINT [StudentProgramAttendanceEvent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentProgramAttendanceEvent] ADD CONSTRAINT [StudentProgramAttendanceEvent_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -7804,6 +8243,7 @@ CREATE TABLE [edfi].[StudentSchoolAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentSchoolAssociation] ADD CONSTRAINT [StudentSchoolAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentSchoolAssociation] ADD CONSTRAINT [StudentSchoolAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -7826,6 +8266,7 @@ CREATE TABLE [edfi].[StudentSchoolAssociationEducationPlan] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentSchoolAssociationEducationPlan] ADD CONSTRAINT [StudentSchoolAssociationEducationPlan_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7854,6 +8295,7 @@ CREATE TABLE [edfi].[StudentSchoolAttendanceEvent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentSchoolAttendanceEvent] ADD CONSTRAINT [StudentSchoolAttendanceEvent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentSchoolAttendanceEvent] ADD CONSTRAINT [StudentSchoolAttendanceEvent_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -7881,6 +8323,7 @@ CREATE TABLE [edfi].[StudentSchoolFoodServiceProgramAssociation] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[StudentSchoolFoodServiceProgramAssociationSchoolFoodServiceProgramService] --
 CREATE TABLE [edfi].[StudentSchoolFoodServiceProgramAssociationSchoolFoodServiceProgramService] (
     [BeginDate] [DATE] NOT NULL,
@@ -7905,6 +8348,7 @@ CREATE TABLE [edfi].[StudentSchoolFoodServiceProgramAssociationSchoolFoodService
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentSchoolFoodServiceProgramAssociationSchoolFoodServiceProgramService] ADD CONSTRAINT [StudentSchoolFoodServiceProgramAssociationSchoolFoodServiceProgramService_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -7937,6 +8381,7 @@ CREATE TABLE [edfi].[StudentSectionAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentSectionAssociation] ADD CONSTRAINT [StudentSectionAssociation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentSectionAssociation] ADD CONSTRAINT [StudentSectionAssociation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -7973,6 +8418,7 @@ CREATE TABLE [edfi].[StudentSectionAttendanceEvent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentSectionAttendanceEvent] ADD CONSTRAINT [StudentSectionAttendanceEvent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [edfi].[StudentSectionAttendanceEvent] ADD CONSTRAINT [StudentSectionAttendanceEvent_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -8009,6 +8455,7 @@ CREATE TABLE [edfi].[StudentSpecialEducationProgramAssociation] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[StudentSpecialEducationProgramAssociationDisability] --
 CREATE TABLE [edfi].[StudentSpecialEducationProgramAssociationDisability] (
     [BeginDate] [DATE] NOT NULL,
@@ -8033,6 +8480,7 @@ CREATE TABLE [edfi].[StudentSpecialEducationProgramAssociationDisability] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentSpecialEducationProgramAssociationDisability] ADD CONSTRAINT [StudentSpecialEducationProgramAssociationDisability_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -8059,6 +8507,7 @@ CREATE TABLE [edfi].[StudentSpecialEducationProgramAssociationDisabilityDesignat
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentSpecialEducationProgramAssociationDisabilityDesignation] ADD CONSTRAINT [StudentSpecialEducationProgramAssociationDisabilityDesignation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -8084,6 +8533,7 @@ CREATE TABLE [edfi].[StudentSpecialEducationProgramAssociationServiceProvider] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentSpecialEducationProgramAssociationServiceProvider] ADD CONSTRAINT [StudentSpecialEducationProgramAssociationServiceProvider_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -8111,6 +8561,7 @@ CREATE TABLE [edfi].[StudentSpecialEducationProgramAssociationSpecialEducationPr
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentSpecialEducationProgramAssociationSpecialEducationProgramService] ADD CONSTRAINT [StudentSpecialEducationProgramAssociationSpecialEducationProgramService_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -8133,6 +8584,7 @@ CREATE TABLE [edfi].[StudentTitleIPartAProgramAssociation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[StudentTitleIPartAProgramAssociationService] --
 CREATE TABLE [edfi].[StudentTitleIPartAProgramAssociationService] (
@@ -8158,6 +8610,7 @@ CREATE TABLE [edfi].[StudentTitleIPartAProgramAssociationService] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentTitleIPartAProgramAssociationService] ADD CONSTRAINT [StudentTitleIPartAProgramAssociationService_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -8172,6 +8625,7 @@ CREATE TABLE [edfi].[StudentVisa] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 ALTER TABLE [edfi].[StudentVisa] ADD CONSTRAINT [StudentVisa_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -8184,6 +8638,7 @@ CREATE TABLE [edfi].[TeachingCredentialBasisDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[TeachingCredentialDescriptor] --
 CREATE TABLE [edfi].[TeachingCredentialDescriptor] (
     [TeachingCredentialDescriptorId] [INT] NOT NULL,
@@ -8192,6 +8647,7 @@ CREATE TABLE [edfi].[TeachingCredentialDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[TechnicalSkillsAssessmentDescriptor] --
 CREATE TABLE [edfi].[TechnicalSkillsAssessmentDescriptor] (
@@ -8202,6 +8658,7 @@ CREATE TABLE [edfi].[TechnicalSkillsAssessmentDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[TelephoneNumberTypeDescriptor] --
 CREATE TABLE [edfi].[TelephoneNumberTypeDescriptor] (
     [TelephoneNumberTypeDescriptorId] [INT] NOT NULL,
@@ -8210,6 +8667,7 @@ CREATE TABLE [edfi].[TelephoneNumberTypeDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[TermDescriptor] --
 CREATE TABLE [edfi].[TermDescriptor] (
@@ -8220,6 +8678,7 @@ CREATE TABLE [edfi].[TermDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[TitleIPartAParticipantDescriptor] --
 CREATE TABLE [edfi].[TitleIPartAParticipantDescriptor] (
     [TitleIPartAParticipantDescriptorId] [INT] NOT NULL,
@@ -8228,6 +8687,7 @@ CREATE TABLE [edfi].[TitleIPartAParticipantDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[TitleIPartASchoolDesignationDescriptor] --
 CREATE TABLE [edfi].[TitleIPartASchoolDesignationDescriptor] (
@@ -8238,6 +8698,7 @@ CREATE TABLE [edfi].[TitleIPartASchoolDesignationDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[TribalAffiliationDescriptor] --
 CREATE TABLE [edfi].[TribalAffiliationDescriptor] (
     [TribalAffiliationDescriptorId] [INT] NOT NULL,
@@ -8246,6 +8707,7 @@ CREATE TABLE [edfi].[TribalAffiliationDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 -- Table [edfi].[VisaDescriptor] --
 CREATE TABLE [edfi].[VisaDescriptor] (
@@ -8256,6 +8718,7 @@ CREATE TABLE [edfi].[VisaDescriptor] (
 ) ON [PRIMARY]
 GO
 
+
 -- Table [edfi].[WeaponDescriptor] --
 CREATE TABLE [edfi].[WeaponDescriptor] (
     [WeaponDescriptorId] [INT] NOT NULL,
@@ -8264,4 +8727,5 @@ CREATE TABLE [edfi].[WeaponDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
