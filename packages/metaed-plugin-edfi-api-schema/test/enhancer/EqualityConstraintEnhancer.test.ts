@@ -16,8 +16,8 @@ import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/Ent
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
-import { enhance as apiMergeDirectiveEnhancer } from '../../src/enhancer/EqualityConstraintEnhancer';
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
+import { enhance } from '../../src/enhancer/EqualityConstraintEnhancer';
 
 describe('when building domain entity with DomainEntity collection and single merge directive', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
@@ -51,7 +51,7 @@ describe('when building domain entity with DomainEntity collection and single me
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    apiMergeDirectiveEnhancer(metaEd);
+    enhance(metaEd);
   });
 
   it('equalityConstraints property has one element', () => {
@@ -104,7 +104,7 @@ describe('when building domain entity with DomainEntity and single merge directi
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    apiMergeDirectiveEnhancer(metaEd);
+    enhance(metaEd);
   });
 
   it('equalityConstraints property has one element', () => {
@@ -163,7 +163,7 @@ describe('when building domain entity with DomainEntity collection and two merge
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    apiMergeDirectiveEnhancer(metaEd);
+    enhance(metaEd);
   });
 
   it('equalityConstraints property has one element', () => {
@@ -241,7 +241,7 @@ describe('when building domain entity with DomainEntity collection and single me
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    apiMergeDirectiveEnhancer(metaEd);
+    enhance(metaEd);
   });
 
   it('equalityConstraints property has one element', () => {

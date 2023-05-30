@@ -12,9 +12,8 @@ import {
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { newEqualityConstraint } from '../model/EqualityConstraint';
-import { uncapitalize, pluralize } from '../Utility';
 
-const enhancerName = 'ApiMergeDirectiveEnhancer';
+const enhancerName = 'EqualityConstraintEnhancer';
 
 function sourceObjectForReferentialProperty(jsonPath: string, property: ReferentialProperty): string {
   const referencedEntityApiMapping = (property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData).apiMapping;
@@ -22,27 +21,19 @@ function sourceObjectForReferentialProperty(jsonPath: string, property: Referent
   let subJsonPath = '';
   const subJsonPathArray: string[] = [];
 
-  referencedEntityApiMapping.flattenedIdentityProperties
-    .filter((identityProperty) => {
-      const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-      return (
-        apiMapping.fullName === uncapitalize(pluralize(identityProperty.parentEntityName)) ||
-        apiMapping.fullName === uncapitalize(identityProperty.parentEntityName)
-      );
-    })
-    .forEach((identityProperty) => {
-      const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+  referencedEntityApiMapping.flattenedIdentityProperties.forEach((identityProperty) => {
+    const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
+    const apiMappingIdentityProperty = (identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData).apiMapping;
 
-      subJsonPath = sourcePropertyFor(jsonPath, identityProperty);
-      if (subJsonPath !== '') {
-        if (apiMapping.isScalarReference) subJsonPathArray.push(`.${apiMapping.decollisionedTopLevelName}${subJsonPath}`);
-        // else if (apiMapping.isReferenceCollection)
-        //   subJsonPathArray.push(`.${apiMapping.referenceCollectionName}${subJsonPath}`);
-        else subJsonPathArray.push(subJsonPath);
-      }
-    });
+    subJsonPath = sourcePropertyFor(jsonPath, identityProperty);
+    if (subJsonPath !== '') {
+      if (apiMappingIdentityProperty.isScalarReference) subJsonPathArray.push(subJsonPath);
+      else if (apiMapping.isReferenceCollection) subJsonPathArray.push(`${subJsonPath}`);
+      else subJsonPathArray.push(`${subJsonPath}`);
+    }
+  });
 
-  return subJsonPathArray.join('&&');
+  return subJsonPathArray.join('');
 }
 
 function targetObjectForReferentialProperty(jsonPath: string, property: ReferentialProperty): string {
@@ -57,13 +48,11 @@ function targetObjectForReferentialProperty(jsonPath: string, property: Referent
     subJsonPath = targetPropertyFor(jsonPath, identityProperty);
     if (subJsonPath !== '') {
       if (apiMapping.isScalarReference) subJsonPathArray.push(`.${apiMapping.decollisionedTopLevelName}${subJsonPath}`);
-      else if (apiMapping.isReferenceCollection)
-        subJsonPathArray.push(`@.${apiMapping.referenceCollectionName}${subJsonPath}`);
       else subJsonPathArray.push(subJsonPath);
     }
   });
 
-  return subJsonPathArray.join('&&');
+  return subJsonPathArray.join('');
 }
 
 function sourcePropertyForNonReference(jsonPath: string, property: EntityProperty): string {
@@ -91,41 +80,20 @@ function targetPropertyForNonReference(jsonPath: string, property: EntityPropert
   return '';
 }
 
-function sourceArrayForReferenceCollection(property: EntityProperty): string {
+function arrayForReferenceCollection(property: EntityProperty): string {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
-  let subJsonPath = `.${apiMapping.decollisionedTopLevelName}[*].${apiMapping.referenceCollectionName}`;
-
-  const referenceSchemaObject: string = sourceObjectForReferentialProperty(subJsonPath, property as ReferentialProperty);
-
-  subJsonPath += `${referenceSchemaObject}`;
-
-  return subJsonPath;
-}
-
-function targetArrayForReferenceCollection(property: ReferentialProperty): string {
-  const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-
-  let subJsonPath = `.${apiMapping.decollisionedTopLevelName}[*].${apiMapping.referenceCollectionName}`;
-
-  const referenceSchemaObject: string = sourceObjectForReferentialProperty(subJsonPath, property as ReferentialProperty);
-
-  subJsonPath += `${referenceSchemaObject}`;
-
-  return subJsonPath;
+  return `.${apiMapping.decollisionedTopLevelName}[*].${apiMapping.referenceCollectionName}`;
 }
 
 function sourcePropertyFor(jsonPath: string, property: EntityProperty): string {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
   if (apiMapping.isReferenceCollection) {
-    return sourceArrayForReferenceCollection(property);
+    return arrayForReferenceCollection(property);
   }
   if (apiMapping.isScalarReference) {
-    if (property.type === 'association' || property.type === 'domainEntity') {
-      return sourceObjectForReferentialProperty(jsonPath, property as ReferentialProperty);
-    }
-    return `.${apiMapping.decollisionedTopLevelName}`;
+    return sourceObjectForReferentialProperty(jsonPath, property as ReferentialProperty);
   }
   if (apiMapping.isCommonCollection) {
     return '';
@@ -143,7 +111,7 @@ function targetPropertyFor(jsonPath: string, property: EntityProperty): string {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
   if (apiMapping.isReferenceCollection) {
-    return targetArrayForReferenceCollection(property as ReferentialProperty);
+    return arrayForReferenceCollection(property as ReferentialProperty);
   }
   if (apiMapping.isScalarReference) {
     if (property.type === 'association' || property.type === 'domainEntity') {
