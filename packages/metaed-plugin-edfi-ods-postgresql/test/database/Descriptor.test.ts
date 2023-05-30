@@ -103,24 +103,6 @@ describe('when descriptor is defined', (): void => {
     await rollbackAndEnd();
   });
 
-  it('should have new descriptor columns version >= 7.0+', async () => {
-    const metaEdConfiguration = metaEd;
-    metaEdConfiguration.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '7.0.0' });
-    const db: Db = (await enhanceGenerateAndExecuteSql(metaEdConfiguration)) as Db;
-    const table = db.schemas.get(schemaName).tables.get(baseDescriptorTableName);
-    const discriminatorColumn = table.columns.get('discriminator');
-    expect(discriminatorColumn.notNull).toBe(false);
-    expect(discriminatorColumn.type.name).toBe('character varying');
-    expect(discriminatorColumn.length).toBe(128);
-
-    const uriColumn = table.columns.get('uri');
-    expect(uriColumn.notNull).toBe(false);
-    expect(uriColumn.type.name).toBe('character varying');
-    expect(uriColumn.length).toBe(306);
-
-    await rollbackAndEnd();
-  });
-
   it('should have correct primary keys', async () => {
     const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
     const table = db.schemas.get(schemaName).tables.get(baseDescriptorTableName);
@@ -249,6 +231,43 @@ describe('when descriptor does not have a map type', (): void => {
     const table = db.schemas.get(schemaName).tables.get(descriptorTableName);
 
     expect(() => table.columns.get(`${baseDescriptorTableName}TypeId`)).toThrow();
+    await rollbackAndEnd();
+  });
+});
+
+describe('when descriptor is generated for ODS/API version 7+', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const schemaName = namespaceName.toLowerCase();
+  const baseDescriptorTableName = 'descriptor';
+  const descriptorName = 'DescriptorName';
+
+  beforeAll(async () => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDescriptor(descriptorName)
+      .withDocumentation('Documentation')
+      .withEndDescriptor()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []));
+  });
+
+  it('should have discriminator and uri columns', async () => {
+    metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '7.0.0' });
+    const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
+    const table = db.schemas.get(schemaName).tables.get(baseDescriptorTableName);
+    const discriminatorColumn = table.columns.get('discriminator');
+    expect(discriminatorColumn.notNull).toBe(false);
+    expect(discriminatorColumn.type.name).toBe('character varying');
+    expect(discriminatorColumn.length).toBe(128);
+
+    const uriColumn = table.columns.get('uri');
+    expect(uriColumn.notNull).toBe(false);
+    expect(uriColumn.type.name).toBe('varchar');
+    expect(uriColumn.length).toBe(306);
+
     await rollbackAndEnd();
   });
 });

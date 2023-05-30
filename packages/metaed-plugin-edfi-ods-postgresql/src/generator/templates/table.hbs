@@ -17,7 +17,7 @@ CREATE TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} (
     Discriminator VARCHAR(128) NULL,
 {{/if}}
 {{~#if includeComputedDescriptorUriColumn}}
-    Uri character varying(306) GENERATED ALWAYS AS ( Namespace || '#' || CodeValue ) STORED,
+    Uri VARCHAR(306) GENERATED ALWAYS AS ( Namespace || '#' || CodeValue ) STORED,
 {{/if~}}
 {{#if includeCreateDateColumn}}
     CreateDate TIMESTAMP NOT NULL,

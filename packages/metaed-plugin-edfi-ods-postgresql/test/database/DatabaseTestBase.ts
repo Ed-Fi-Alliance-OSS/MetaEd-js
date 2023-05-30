@@ -65,11 +65,11 @@ export async function rollbackAndEnd() {
 
 export async function enhanceGenerateAndExecuteSql(metaEd: MetaEdEnvironment): Promise<Db | null> {
   metaEd.dataStandardVersion = metaEd.dataStandardVersion === '0.0.0' ? '3.0.0' : metaEd.dataStandardVersion;
-  const { targetTechnologyVersion } = (metaEd?.plugin?.get('edfiOdsRelational') as PluginEnvironment) ?? {
+  const metaEdPlugin: PluginEnvironment | undefined = metaEd?.plugin?.get('edfiOdsRelational') as PluginEnvironment;
+  metaEd.plugin.set('edfiOdsRelational', {
     ...newPluginEnvironment(),
-    targetTechnologyVersion: '3.0.0',
-  };
-  metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion });
+    targetTechnologyVersion: metaEdPlugin.targetTechnologyVersion ?? '3.0.0',
+  });
   initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
   initializeOdsRelationalPlugin().enhancer.forEach((enhance) => enhance(metaEd));
   initializeOdsPostgresqlPlugin().enhancer.forEach((enhance) => enhance(metaEd));
