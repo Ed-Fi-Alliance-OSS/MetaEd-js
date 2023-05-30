@@ -148,7 +148,7 @@ describe('when descriptor is defined', (): void => {
   });
 
   it('should have alternate keys', async () => {
-    expect(await tableUniqueConstraints(table(namespaceName, baseDescriptorTableName))).toEqual(['CodeValue', 'Namespace']);
+    expect(await tableUniqueConstraints(table(namespaceName, baseDescriptorTableName))).toEqual(['Namespace', 'CodeValue']);
   });
 
   it('should have standard resource columns', async () => {
