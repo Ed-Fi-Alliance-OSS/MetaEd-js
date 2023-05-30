@@ -103,7 +103,7 @@ describe('when descriptor is defined', (): void => {
     await rollbackAndEnd();
   });
 
-  it('should have new descriptor columns >= 7', async () => {
+  it('should have new descriptor columns version >= 7.0+', async () => {
     const metaEdConfiguration = metaEd;
     metaEdConfiguration.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '7.0.0' });
     const db: Db = (await enhanceGenerateAndExecuteSql(metaEdConfiguration)) as Db;

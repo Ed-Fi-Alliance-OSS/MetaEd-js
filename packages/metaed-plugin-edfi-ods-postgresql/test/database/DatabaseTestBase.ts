@@ -1,7 +1,7 @@
 import { Client } from 'pg';
 import pgStructure, { Db } from 'pg-structure';
 
-import { Logger, MetaEdEnvironment, newPluginEnvironment } from '@edfi/metaed-core';
+import { Logger, MetaEdEnvironment, PluginEnvironment, newPluginEnvironment } from '@edfi/metaed-core';
 import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
 import { initialize as initializeOdsRelationalPlugin } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { initialize as initializeOdsPostgresqlPlugin } from '../../index';
@@ -65,7 +65,11 @@ export async function rollbackAndEnd() {
 
 export async function enhanceGenerateAndExecuteSql(metaEd: MetaEdEnvironment): Promise<Db | null> {
   metaEd.dataStandardVersion = metaEd.dataStandardVersion === '0.0.0' ? '3.0.0' : metaEd.dataStandardVersion;
-  metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '3.0.0' });
+  const { targetTechnologyVersion } = (metaEd?.plugin?.get('edfiOdsRelational') as PluginEnvironment) ?? {
+    ...newPluginEnvironment(),
+    targetTechnologyVersion: '3.0.0',
+  };
+  metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion });
   initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
   initializeOdsRelationalPlugin().enhancer.forEach((enhance) => enhance(metaEd));
   initializeOdsPostgresqlPlugin().enhancer.forEach((enhance) => enhance(metaEd));
