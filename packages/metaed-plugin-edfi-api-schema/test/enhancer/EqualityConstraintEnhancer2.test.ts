@@ -114,3 +114,86 @@ describe('when two domain entities with all four possible simple identities are 
     expect(equalityConstraint.targetJsonPath).toBe('$.domainEntityBeingMergedToReference.stringProperty');
   });
 });
+
+describe('when merging on both a reference and a simple identity down multiple levels on both references', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('SectionAttendanceTakenEvent')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Section', 'doc')
+      .withDomainEntityIdentity('CalendarDate', 'doc')
+      .withMergeDirective('CalendarDate.Calendar.School', 'Section.CourseOffering.Session.School')
+      .withMergeDirective('CalendarDate.Calendar.SchoolYear', 'Section.CourseOffering.Session.SchoolYear')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Section')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('CourseOffering', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('CourseOffering')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Session', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('CalendarDate')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Calendar', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Calendar')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should have created two equality constraints', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('SectionAttendanceTakenEvent');
+    const equalityConstraints = entity?.data.edfiApiSchema.apiMapping.equalityConstraints;
+    expect(equalityConstraints).toHaveLength(2);
+  });
+
+  it('should have equality constraint for schoolYear', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('SectionAttendanceTakenEvent');
+    const equalityConstraint: EqualityConstraint = entity?.data.edfiApiSchema.apiMapping.equalityConstraints[0];
+    expect(equalityConstraint.sourceJsonPath).toBe('$.calendarDateReference.schoolId');
+    expect(equalityConstraint.targetJsonPath).toBe('$.sectionReference.schoolId');
+  });
+
+  it('should have equality constraint for integerProperty', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('SectionAttendanceTakenEvent');
+    const equalityConstraint: EqualityConstraint = entity?.data.edfiApiSchema.apiMapping.equalityConstraints[1];
+    expect(equalityConstraint.sourceJsonPath).toBe('$.calendarDateReference.schoolYear');
+    expect(equalityConstraint.targetJsonPath).toBe('$.sectionReference.schoolYear');
+  });
+});
