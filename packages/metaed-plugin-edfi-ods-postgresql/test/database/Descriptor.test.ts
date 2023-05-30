@@ -134,8 +134,8 @@ describe('when descriptor is defined', (): void => {
     const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
     const table = db.schemas.get(schemaName).tables.get(baseDescriptorTableName);
     expect(table.uniqueConstraints.length).toBe(1);
-    expect(table.uniqueConstraints[0].columns[0].name).toBe('codevalue');
-    expect(table.uniqueConstraints[0].columns[1].name).toBe('namespace');
+    expect(table.uniqueConstraints[0].columns[0].name).toBe('namespace');
+    expect(table.uniqueConstraints[0].columns[1].name).toBe('codevalue');
     await rollbackAndEnd();
   });
 
