@@ -1,4 +1,4 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import { EnhancerResult, MetaEdEnvironment, Namespace, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
 import {
   addColumns,
   newTable,
@@ -17,6 +17,9 @@ const enhancerName = 'BaseDescriptorTableEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const edfiNamespace: Namespace | undefined = metaEd.namespace.get('EdFi');
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+  const isVersion7: boolean = versionSatisfies(targetTechnologyVersion, '>=7.0.0');
+
   if (edfiNamespace == null) return { enhancerName, success: false };
 
   const descriptorTable: Table = {
@@ -45,8 +48,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     includeCreateDateColumn: true,
     includeLastModifiedDateAndIdColumn: true,
     isAggregateRootTable: true,
-    hasDiscriminatorColumn: true,
-    includeComputedDescriptorUriColumn: true,
+    hasDiscriminatorColumn: isVersion7,
+    includeComputedDescriptorUriColumn: isVersion7,
   };
 
   addColumns(

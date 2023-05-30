@@ -16,9 +16,9 @@ CREATE TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} (
 {{#if hasDiscriminatorColumn}}
     Discriminator VARCHAR(128) NULL,
 {{/if}}
-{{#if includeComputedDescriptorUriColumn}}
+{{~#if includeComputedDescriptorUriColumn}}
     Uri character varying(306) GENERATED ALWAYS AS ( Namespace || '#' || CodeValue ) STORED,
-{{/if}}
+{{/if~}}
 {{#if includeCreateDateColumn}}
     CreateDate TIMESTAMP NOT NULL,
 {{/if}}
@@ -31,9 +31,6 @@ CREATE TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} (
     CONSTRAINT {{data.edfiOdsPostgresql.tableName}}_AK UNIQUE ({{#alternateKeys}}{{{data.edfiOdsPostgresql.columnName}}}{{#unless @last}}, {{/unless}}{{/alternateKeys}})
 {{/if}}
 );
-{{#if includeComputedDescriptorUriColumn}}
-CREATE UNIQUE INDEX UX_{{{data.edfiOdsPostgresql.tableName}}}_Uri ON {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} (Uri) INCLUDE (DescriptorId, Discriminator);
-{{/if}} 
 {{#if uniqueIndexes.length}}
 CREATE UNIQUE INDEX {{{data.edfiOdsPostgresql.tableName}}}_UI_{{{uniqueIndexes.0.data.edfiOdsPostgresql.columnName}}} ON {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ({{#uniqueIndexes}}{{{data.edfiOdsPostgresql.columnName}}}{{#unless @last}}, {{/unless}}{{/uniqueIndexes}}){{#if data.edfiOdsPostgresql.uniqueIndexIncludeColumnName}} INCLUDE ({{{data.edfiOdsPostgresql.uniqueIndexIncludeColumnName}}}){{/if}};
 {{/if}}
@@ -43,6 +40,9 @@ ALTER TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ALTER COLUMN Cre
 {{#if includeLastModifiedDateAndIdColumn}}
 ALTER TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ALTER COLUMN Id SET DEFAULT gen_random_uuid();
 ALTER TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ALTER COLUMN LastModifiedDate SET DEFAULT current_timestamp;
+{{/if}}
+{{~#if includeComputedDescriptorUriColumn}}
+CREATE UNIQUE INDEX UX_{{{data.edfiOdsPostgresql.tableName}}}_Uri ON {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} (Uri) INCLUDE (DescriptorId, Discriminator);
 {{/if}}
 
 {{/tables}}

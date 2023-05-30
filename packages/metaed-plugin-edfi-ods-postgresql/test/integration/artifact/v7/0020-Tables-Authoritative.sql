@@ -1350,10 +1350,10 @@ CREATE TABLE edfi.Descriptor (
     CONSTRAINT Descriptor_PK PRIMARY KEY (DescriptorId),
     CONSTRAINT Descriptor_AK UNIQUE (Namespace, CodeValue)
 ); 
-CREATE UNIQUE INDEX UX_Descriptor_Uri ON edfi.Descriptor (Uri) INCLUDE (DescriptorId, Discriminator);
 ALTER TABLE edfi.Descriptor ALTER COLUMN CreateDate SET DEFAULT current_timestamp;
 ALTER TABLE edfi.Descriptor ALTER COLUMN Id SET DEFAULT gen_random_uuid();
 ALTER TABLE edfi.Descriptor ALTER COLUMN LastModifiedDate SET DEFAULT current_timestamp;
+CREATE UNIQUE INDEX UX_Descriptor_Uri ON edfi.Descriptor (Uri) INCLUDE (DescriptorId, Discriminator);
 
 -- Table edfi.DescriptorMapping --
 CREATE TABLE edfi.DescriptorMapping (

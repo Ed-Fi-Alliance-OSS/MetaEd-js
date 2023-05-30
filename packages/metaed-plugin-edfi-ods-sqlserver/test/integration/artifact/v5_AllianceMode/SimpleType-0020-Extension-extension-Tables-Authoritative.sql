@@ -12,7 +12,6 @@ CREATE TABLE [extension].[AccountTypeDescriptor] (
 ) ON [PRIMARY]
 GO
 
-
 -- Table [extension].[BalanceSheetDimension] --
 CREATE TABLE [extension].[BalanceSheetDimension] (
     [BalanceSheetCode] [NVARCHAR](16) NOT NULL,
@@ -28,7 +27,6 @@ CREATE TABLE [extension].[BalanceSheetDimension] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[BalanceSheetDimension] ADD CONSTRAINT [BalanceSheetDimension_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[BalanceSheetDimension] ADD CONSTRAINT [BalanceSheetDimension_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -49,7 +47,6 @@ CREATE TABLE [extension].[BalanceSheetDimensionReportingTag] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[BalanceSheetDimensionReportingTag] ADD CONSTRAINT [BalanceSheetDimensionReportingTag_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -79,7 +76,6 @@ CREATE TABLE [extension].[ChartOfAccount] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[ChartOfAccount] ADD CONSTRAINT [ChartOfAccount_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[ChartOfAccount] ADD CONSTRAINT [ChartOfAccount_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -102,7 +98,6 @@ CREATE TABLE [extension].[ChartOfAccountReportingTag] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[ChartOfAccountReportingTag] ADD CONSTRAINT [ChartOfAccountReportingTag_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -114,7 +109,6 @@ CREATE TABLE [extension].[FinancialCollectionDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 
 -- Table [extension].[FunctionDimension] --
 CREATE TABLE [extension].[FunctionDimension] (
@@ -131,7 +125,6 @@ CREATE TABLE [extension].[FunctionDimension] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[FunctionDimension] ADD CONSTRAINT [FunctionDimension_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[FunctionDimension] ADD CONSTRAINT [FunctionDimension_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -152,7 +145,6 @@ CREATE TABLE [extension].[FunctionDimensionReportingTag] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[FunctionDimensionReportingTag] ADD CONSTRAINT [FunctionDimensionReportingTag_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -171,7 +163,6 @@ CREATE TABLE [extension].[FundDimension] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[FundDimension] ADD CONSTRAINT [FundDimension_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[FundDimension] ADD CONSTRAINT [FundDimension_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -192,7 +183,6 @@ CREATE TABLE [extension].[FundDimensionReportingTag] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[FundDimensionReportingTag] ADD CONSTRAINT [FundDimensionReportingTag_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -215,7 +205,6 @@ CREATE TABLE [extension].[LocalAccount] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[LocalAccount] ADD CONSTRAINT [LocalAccount_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[LocalAccount] ADD CONSTRAINT [LocalAccount_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -238,7 +227,6 @@ CREATE TABLE [extension].[LocalAccountReportingTag] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[LocalAccountReportingTag] ADD CONSTRAINT [LocalAccountReportingTag_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -262,7 +250,6 @@ CREATE TABLE [extension].[LocalActual] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[LocalActual] ADD CONSTRAINT [LocalActual_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[LocalActual] ADD CONSTRAINT [LocalActual_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -290,7 +277,6 @@ CREATE TABLE [extension].[LocalBudget] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[LocalBudget] ADD CONSTRAINT [LocalBudget_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[LocalBudget] ADD CONSTRAINT [LocalBudget_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -313,7 +299,6 @@ CREATE TABLE [extension].[ObjectDimension] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[ObjectDimension] ADD CONSTRAINT [ObjectDimension_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[ObjectDimension] ADD CONSTRAINT [ObjectDimension_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -334,7 +319,6 @@ CREATE TABLE [extension].[ObjectDimensionReportingTag] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[ObjectDimensionReportingTag] ADD CONSTRAINT [ObjectDimensionReportingTag_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -353,7 +337,6 @@ CREATE TABLE [extension].[OperationalUnitDimension] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[OperationalUnitDimension] ADD CONSTRAINT [OperationalUnitDimension_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[OperationalUnitDimension] ADD CONSTRAINT [OperationalUnitDimension_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -374,7 +357,6 @@ CREATE TABLE [extension].[OperationalUnitDimensionReportingTag] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[OperationalUnitDimensionReportingTag] ADD CONSTRAINT [OperationalUnitDimensionReportingTag_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -393,7 +375,6 @@ CREATE TABLE [extension].[ProgramDimension] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[ProgramDimension] ADD CONSTRAINT [ProgramDimension_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[ProgramDimension] ADD CONSTRAINT [ProgramDimension_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -414,7 +395,6 @@ CREATE TABLE [extension].[ProgramDimensionReportingTag] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[ProgramDimensionReportingTag] ADD CONSTRAINT [ProgramDimensionReportingTag_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -433,7 +413,6 @@ CREATE TABLE [extension].[ProjectDimension] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[ProjectDimension] ADD CONSTRAINT [ProjectDimension_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[ProjectDimension] ADD CONSTRAINT [ProjectDimension_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -454,7 +433,6 @@ CREATE TABLE [extension].[ProjectDimensionReportingTag] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[ProjectDimensionReportingTag] ADD CONSTRAINT [ProjectDimensionReportingTag_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -466,7 +444,6 @@ CREATE TABLE [extension].[ReportingTagDescriptor] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 
 -- Table [extension].[SourceDimension] --
 CREATE TABLE [extension].[SourceDimension] (
@@ -483,7 +460,6 @@ CREATE TABLE [extension].[SourceDimension] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[SourceDimension] ADD CONSTRAINT [SourceDimension_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[SourceDimension] ADD CONSTRAINT [SourceDimension_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -504,7 +480,6 @@ CREATE TABLE [extension].[SourceDimensionReportingTag] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[SourceDimensionReportingTag] ADD CONSTRAINT [SourceDimensionReportingTag_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 

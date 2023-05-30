@@ -16,9 +16,9 @@ CREATE TABLE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] (
 {{#if hasDiscriminatorColumn}}
     [Discriminator] [NVARCHAR](128) NULL,
 {{/if}}
-{{#if includeComputedDescriptorUriColumn}}
+{{~#if includeComputedDescriptorUriColumn}}
     [Uri] AS CONCAT(Namespace, '#', CodeValue) PERSISTED NOT NULL,
-{{/if}}
+{{/if~}}
 {{#if includeCreateDateColumn}}
     [CreateDate] {{#if ../useDatetime2}}[DATETIME2]{{else}}[DATETIME]{{/if}} NOT NULL,
 {{/if}}
@@ -48,11 +48,6 @@ CREATE UNIQUE NONCLUSTERED INDEX [{{{data.edfiOdsSqlServer.tableName}}}_UI_{{{un
 ){{#if data.edfiOdsSqlServer.uniqueIndexIncludeColumnName}} INCLUDE ({{{data.edfiOdsSqlServer.uniqueIndexIncludeColumnName}}}){{/if}} WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 {{/if}}
-{{#if includeComputedDescriptorUriColumn}}
-CREATE UNIQUE INDEX UX_{{{data.edfiOdsSqlServer.tableName}}}_Uri ON [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] (Uri) INCLUDE (DescriptorId, Discriminator)
-GO
-{{/if}}
-
 {{#if includeCreateDateColumn}}
 ALTER TABLE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] ADD CONSTRAINT [{{{data.edfiOdsSqlServer.tableName}}}_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
@@ -61,6 +56,10 @@ GO
 ALTER TABLE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] ADD CONSTRAINT [{{{data.edfiOdsSqlServer.tableName}}}_DF_Id] DEFAULT (newid()) FOR [Id]
 GO
 ALTER TABLE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] ADD CONSTRAINT [{{{data.edfiOdsSqlServer.tableName}}}_DF_LastModifiedDate] DEFAULT (getdate()) FOR [LastModifiedDate]
+GO
+{{/if}}
+{{~#if includeComputedDescriptorUriColumn}}
+CREATE UNIQUE INDEX UX_{{{data.edfiOdsSqlServer.tableName}}}_Uri ON [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] (Uri) INCLUDE (DescriptorId, Discriminator)
 GO
 {{/if}}
 

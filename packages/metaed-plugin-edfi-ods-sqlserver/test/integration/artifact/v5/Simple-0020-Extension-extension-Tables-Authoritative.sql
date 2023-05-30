@@ -14,7 +14,6 @@ CREATE TABLE [extension].[StaffEvaluation] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[StaffEvaluation] ADD CONSTRAINT [StaffEvaluation_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[StaffEvaluation] ADD CONSTRAINT [StaffEvaluation_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -40,7 +39,6 @@ CREATE TABLE [extension].[StaffEvaluationComponent] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[StaffEvaluationComponent] ADD CONSTRAINT [StaffEvaluationComponent_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[StaffEvaluationComponent] ADD CONSTRAINT [StaffEvaluationComponent_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -64,7 +62,6 @@ CREATE TABLE [extension].[StaffEvaluationComponentStaffRatingLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[StaffEvaluationComponentStaffRatingLevel] ADD CONSTRAINT [StaffEvaluationComponentStaffRatingLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -87,7 +84,6 @@ CREATE TABLE [extension].[StaffEvaluationRating] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[StaffEvaluationRating] ADD CONSTRAINT [StaffEvaluationRating_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 ALTER TABLE [extension].[StaffEvaluationRating] ADD CONSTRAINT [StaffEvaluationRating_DF_Id] DEFAULT (newid()) FOR [Id]
@@ -108,7 +104,6 @@ CREATE TABLE [extension].[StaffEvaluationSampleCommonSubclass] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[StaffEvaluationSampleCommonSubclass] ADD CONSTRAINT [StaffEvaluationSampleCommonSubclass_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -127,7 +122,6 @@ CREATE TABLE [extension].[StaffEvaluationStaffRatingLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[StaffEvaluationStaffRatingLevel] ADD CONSTRAINT [StaffEvaluationStaffRatingLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -142,7 +136,6 @@ CREATE TABLE [extension].[StaffMyCollection] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[StaffMyCollection] ADD CONSTRAINT [StaffMyCollection_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 
@@ -158,7 +151,6 @@ CREATE TABLE [extension].[StaffRatingLevel] (
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
 ALTER TABLE [extension].[StaffRatingLevel] ADD CONSTRAINT [StaffRatingLevel_DF_CreateDate] DEFAULT (getdate()) FOR [CreateDate]
 GO
 

@@ -7,6 +7,7 @@ export function hasAlternateKeys(table: Table): boolean {
 
 export function getAlternateKeys(table: Table): Column[] {
   if (
+    table.includeComputedDescriptorUriColumn &&
     table.tableId.toLowerCase() === 'descriptor' &&
     table.columns.some((x) => x.isPartOfAlternateKey && x.columnId.toLowerCase() === 'namespace')
   ) {

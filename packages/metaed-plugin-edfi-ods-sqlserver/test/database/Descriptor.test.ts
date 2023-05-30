@@ -5,6 +5,7 @@ import {
   MetaEdTextBuilder,
   NamespaceBuilder,
   newMetaEdEnvironment,
+  newPluginEnvironment,
 } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import {
@@ -148,7 +149,7 @@ describe('when descriptor is defined', (): void => {
   });
 
   it('should have alternate keys', async () => {
-    expect(await tableUniqueConstraints(table(namespaceName, baseDescriptorTableName))).toEqual(['Namespace', 'CodeValue']);
+    expect(await tableUniqueConstraints(table(namespaceName, baseDescriptorTableName))).toEqual(['CodeValue', 'Namespace']);
   });
 
   it('should have standard resource columns', async () => {
@@ -169,21 +170,6 @@ describe('when descriptor is defined', (): void => {
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
     expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
-  });
-
-  it('should have discriminator column', async () => {
-    const discriminatorColumn: DatabaseColumn = column(namespaceName, baseDescriptorTableName, 'discriminator');
-    expect(await columnExists(discriminatorColumn)).toBe(true);
-    expect(await columnIsNullable(discriminatorColumn)).toBe(true);
-    expect(await columnDataType(discriminatorColumn)).toBe(columnDataTypes.nvarchar);
-    expect(await columnLength(discriminatorColumn)).toBe(128);
-  });
-
-  it('should have Uri column', async () => {
-    const UriColumn: DatabaseColumn = column(namespaceName, baseDescriptorTableName, 'Uri');
-    expect(await columnExists(UriColumn)).toBe(true);
-    expect(await columnIsNullable(UriColumn)).toBe(false);
-    expect(await columnDataType(UriColumn)).toBe(columnDataTypes.nvarchar);
   });
 });
 
@@ -1421,5 +1407,50 @@ describe('when extension descriptor has required reference properties to core en
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
     expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+  });
+});
+
+describe('when descriptor is defined v >= 7.0.0', (): void => {
+  const metaEdBase: MetaEdEnvironment = newMetaEdEnvironment();
+  const metaEd: MetaEdEnvironment = metaEdBase;
+  metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '7.0.0' });
+
+  const namespaceName = 'EdFi';
+  const baseDescriptorTableName = 'Descriptor';
+  const descriptorName = 'DescriptorName';
+
+  beforeAll(async () => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDescriptor(descriptorName)
+      .withDocumentation('Documentation')
+      .withEndDescriptor()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []));
+
+    return enhanceGenerateAndExecuteSql(metaEd);
+  });
+
+  afterAll(async () => testTearDown());
+
+  it('should have discriminator column', async () => {
+    const discriminatorColumn: DatabaseColumn = column(namespaceName, baseDescriptorTableName, 'discriminator');
+    expect(await columnExists(discriminatorColumn)).toBe(true);
+    expect(await columnIsNullable(discriminatorColumn)).toBe(true);
+    expect(await columnDataType(discriminatorColumn)).toBe(columnDataTypes.nvarchar);
+    expect(await columnLength(discriminatorColumn)).toBe(128);
+  });
+
+  it('should have Uri column', async () => {
+    const UriColumn: DatabaseColumn = column(namespaceName, baseDescriptorTableName, 'Uri');
+    expect(await columnExists(UriColumn)).toBe(true);
+    expect(await columnIsNullable(UriColumn)).toBe(false);
+    expect(await columnDataType(UriColumn)).toBe(columnDataTypes.nvarchar);
+  });
+
+  it('should have alternate keys with namespace first', async () => {
+    expect(await tableUniqueConstraints(table(namespaceName, baseDescriptorTableName))).toEqual(['Namespace', 'CodeValue']);
   });
 });
