@@ -17,7 +17,7 @@ export const testDbDefinition = {
   port: Number(process.env.PGPORT || 5432),
   database: process.env.PGDATABASE || testDatabaseName,
   user: process.env.PGUSER || 'postgres',
-  password: process.env.PGPASSWORD || 'docker',
+  password: process.env.PGPASSWORD || 'abcdefgh1!',
 };
 
 async function executeGeneratedSql(generatedSql: string): Promise<Db | null> {
@@ -68,7 +68,7 @@ export async function enhanceGenerateAndExecuteSql(metaEd: MetaEdEnvironment): P
   const metaEdPlugin: PluginEnvironment | undefined = metaEd?.plugin?.get('edfiOdsRelational') as PluginEnvironment;
   metaEd.plugin.set('edfiOdsRelational', {
     ...newPluginEnvironment(),
-    targetTechnologyVersion: metaEdPlugin.targetTechnologyVersion ?? '3.0.0',
+    targetTechnologyVersion: metaEdPlugin?.targetTechnologyVersion ?? '3.0.0',
   });
   initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
   initializeOdsRelationalPlugin().enhancer.forEach((enhance) => enhance(metaEd));

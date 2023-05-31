@@ -1343,7 +1343,7 @@ CREATE TABLE edfi.Descriptor (
     EffectiveBeginDate DATE NULL,
     EffectiveEndDate DATE NULL,
     Discriminator VARCHAR(128) NULL,
-    Uri character varying(306) GENERATED ALWAYS AS ( Namespace || '#' || CodeValue ) STORED,
+    Uri VARCHAR(306) GENERATED ALWAYS AS ( Namespace || '#' || CodeValue ) STORED,
     CreateDate TIMESTAMP NOT NULL,
     LastModifiedDate TIMESTAMP NOT NULL,
     Id UUID NOT NULL,

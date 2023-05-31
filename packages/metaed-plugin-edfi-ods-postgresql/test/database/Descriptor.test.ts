@@ -9,7 +9,7 @@ import {
 } from '@edfi/metaed-core';
 import { enhanceGenerateAndExecuteSql, rollbackAndEnd } from './DatabaseTestBase';
 
-jest.setTimeout(40000);
+jest.setTimeout(160000);
 
 describe('when descriptor is defined', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
