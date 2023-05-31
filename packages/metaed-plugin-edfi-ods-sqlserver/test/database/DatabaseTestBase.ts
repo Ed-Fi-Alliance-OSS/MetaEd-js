@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, PluginEnvironment, newPluginEnvironment } from '@edfi/metaed-core';
+import { MetaEdEnvironment, SemVer, newPluginEnvironment } from '@edfi/metaed-core';
 import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
 import { initialize as initializeOdsRelationalPlugin } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { initialize as initializeOdsSqlServerPlugin } from '../../index';
@@ -80,12 +80,12 @@ export const columnDataTypes = {
 export async function enhanceGenerateAndExecuteSql(
   metaEd: MetaEdEnvironment,
   databaseName: string = testDatabaseName,
+  targetTechnologyVersion: SemVer = '3.0.0',
 ): Promise<any> {
   metaEd.dataStandardVersion = metaEd.dataStandardVersion === '0.0.0' ? '3.0.0' : metaEd.dataStandardVersion;
-  const metaEdPlugin: PluginEnvironment | undefined = metaEd?.plugin?.get('edfiOdsRelational') as PluginEnvironment;
   metaEd.plugin.set('edfiOdsRelational', {
     ...newPluginEnvironment(),
-    targetTechnologyVersion: metaEdPlugin?.targetTechnologyVersion ?? '3.0.0',
+    targetTechnologyVersion,
   });
   initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
   initializeOdsRelationalPlugin().enhancer.forEach((enhance) => enhance(metaEd));

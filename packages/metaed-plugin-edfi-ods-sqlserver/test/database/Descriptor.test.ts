@@ -4,8 +4,8 @@ import {
   EnumerationBuilder,
   MetaEdTextBuilder,
   NamespaceBuilder,
+  SemVer,
   newMetaEdEnvironment,
-  newPluginEnvironment,
 } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import {
@@ -1410,14 +1410,13 @@ describe('when extension descriptor has required reference properties to core en
   });
 });
 
-describe('when descriptor is defined v >= 7.0.0', (): void => {
+describe('when descriptor is generated for ODS/API version 7+', (): void => {
   const metaEdBase: MetaEdEnvironment = newMetaEdEnvironment();
   const metaEd: MetaEdEnvironment = metaEdBase;
-  metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '7.0.0' });
-
   const namespaceName = 'EdFi';
   const baseDescriptorTableName = 'Descriptor';
   const descriptorName = 'DescriptorName';
+  const targetTechnologyVersion: SemVer = '7.0.0';
 
   beforeAll(async () => {
     MetaEdTextBuilder.build()
@@ -1430,7 +1429,7 @@ describe('when descriptor is defined v >= 7.0.0', (): void => {
       .sendToListener(new NamespaceBuilder(metaEd, []))
       .sendToListener(new DescriptorBuilder(metaEd, []));
 
-    return enhanceGenerateAndExecuteSql(metaEd);
+    return enhanceGenerateAndExecuteSql(metaEd, targetTechnologyVersion);
   });
 
   afterAll(async () => testTearDown());
