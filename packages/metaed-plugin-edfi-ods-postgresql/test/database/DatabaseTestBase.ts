@@ -17,7 +17,7 @@ export const testDbDefinition = {
   port: Number(process.env.PGPORT || 5432),
   database: process.env.PGDATABASE || testDatabaseName,
   user: process.env.PGUSER || 'postgres',
-  password: process.env.PGPASSWORD || 'docker!',
+  password: process.env.PGPASSWORD || 'docker',
 };
 
 async function executeGeneratedSql(generatedSql: string): Promise<Db | null> {
