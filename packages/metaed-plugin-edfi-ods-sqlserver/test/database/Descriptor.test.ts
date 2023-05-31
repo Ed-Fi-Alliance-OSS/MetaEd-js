@@ -1429,7 +1429,7 @@ describe('when descriptor is generated for ODS/API version 7+', (): void => {
       .sendToListener(new NamespaceBuilder(metaEd, []))
       .sendToListener(new DescriptorBuilder(metaEd, []));
 
-    return enhanceGenerateAndExecuteSql(metaEd, targetTechnologyVersion);
+    return enhanceGenerateAndExecuteSql(metaEd, undefined, targetTechnologyVersion);
   });
 
   afterAll(async () => testTearDown());
