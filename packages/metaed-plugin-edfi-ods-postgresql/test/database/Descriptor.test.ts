@@ -9,7 +9,7 @@ import {
 } from '@edfi/metaed-core';
 import { enhanceGenerateAndExecuteSql, rollbackAndEnd } from './DatabaseTestBase';
 
-jest.setTimeout(160000);
+jest.setTimeout(40000);
 
 describe('when descriptor is defined', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
@@ -116,8 +116,8 @@ describe('when descriptor is defined', (): void => {
     const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
     const table = db.schemas.get(schemaName).tables.get(baseDescriptorTableName);
     expect(table.uniqueConstraints.length).toBe(1);
-    expect(table.uniqueConstraints[0].columns[0].name).toBe('namespace');
-    expect(table.uniqueConstraints[0].columns[1].name).toBe('codevalue');
+    expect(table.uniqueConstraints[0].columns[1].name).toBe('namespace');
+    expect(table.uniqueConstraints[0].columns[0].name).toBe('codevalue');
     await rollbackAndEnd();
   });
 
@@ -241,6 +241,7 @@ describe('when descriptor is generated for ODS/API version 7+', (): void => {
   const schemaName = namespaceName.toLowerCase();
   const baseDescriptorTableName = 'descriptor';
   const descriptorName = 'DescriptorName';
+  metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '7.0.0' });
 
   beforeAll(async () => {
     MetaEdTextBuilder.build()
@@ -255,7 +256,6 @@ describe('when descriptor is generated for ODS/API version 7+', (): void => {
   });
 
   it('should have discriminator and uri columns', async () => {
-    metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '7.0.0' });
     const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
     const table = db.schemas.get(schemaName).tables.get(baseDescriptorTableName);
     const discriminatorColumn = table.columns.get('discriminator');
@@ -268,6 +268,14 @@ describe('when descriptor is generated for ODS/API version 7+', (): void => {
     expect(uriColumn.type.name).toBe('varchar');
     expect(uriColumn.length).toBe(306);
 
+    await rollbackAndEnd();
+  });
+  it('should have alternate keys namespace first', async () => {
+    const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
+    const table = db.schemas.get(schemaName).tables.get(baseDescriptorTableName);
+    expect(table.uniqueConstraints.length).toBe(1);
+    expect(table.uniqueConstraints[0].columns[0].name).toBe('namespace');
+    expect(table.uniqueConstraints[0].columns[1].name).toBe('codevalue');
     await rollbackAndEnd();
   });
 });
