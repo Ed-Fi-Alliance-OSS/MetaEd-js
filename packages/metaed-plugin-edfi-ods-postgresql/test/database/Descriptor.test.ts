@@ -265,7 +265,7 @@ describe('when descriptor is generated for ODS/API version 7+', (): void => {
 
     const uriColumn = table.columns.get('uri');
     expect(uriColumn.notNull).toBe(false);
-    expect(uriColumn.type.name).toBe('varchar');
+    expect(uriColumn.type.name).toBe('character varying');
     expect(uriColumn.length).toBe(306);
 
     await rollbackAndEnd();
