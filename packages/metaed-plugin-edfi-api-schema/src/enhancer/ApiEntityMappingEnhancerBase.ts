@@ -49,28 +49,28 @@ function flattenReferenceElementsFromComponent(
         `${currentPropertyPath}.${referenceComponent.sourceProperty.fullPropertyName}` as PropertyPath,
       ),
     );
+  } else {
+    (referenceComponent as ReferenceGroup).referenceComponents.forEach((subReferenceComponent) => {
+      if (isReferenceElement(subReferenceComponent)) {
+        const subReferenceElement: ReferenceElement = subReferenceComponent as ReferenceElement;
+        referenceElementsAccumulator.set(
+          subReferenceElement,
+          propertyPathAccumulator.concat(
+            `${currentPropertyPath}.${subReferenceElement.sourceProperty.fullPropertyName}` as PropertyPath,
+          ),
+        );
+      } else {
+        const nextPropertyPath: PropertyPath =
+          `${currentPropertyPath}.${subReferenceComponent.sourceProperty.fullPropertyName}` as PropertyPath;
+        flattenReferenceElementsFromComponent(
+          subReferenceComponent,
+          nextPropertyPath,
+          propertyPathAccumulator.concat(nextPropertyPath),
+          referenceElementsAccumulator,
+        );
+      }
+    });
   }
-
-  (referenceComponent as ReferenceGroup).referenceComponents.forEach((subReferenceComponent) => {
-    if (isReferenceElement(subReferenceComponent)) {
-      const subReferenceElement: ReferenceElement = subReferenceComponent as ReferenceElement;
-      referenceElementsAccumulator.set(
-        subReferenceElement,
-        propertyPathAccumulator.concat(
-          `${currentPropertyPath}.${subReferenceElement.sourceProperty.fullPropertyName}` as PropertyPath,
-        ),
-      );
-    } else {
-      const nextPropertyPath: PropertyPath =
-        `${currentPropertyPath}.${subReferenceComponent.sourceProperty.fullPropertyName}` as PropertyPath;
-      flattenReferenceElementsFromComponent(
-        subReferenceComponent,
-        nextPropertyPath,
-        propertyPathAccumulator.concat(nextPropertyPath),
-        referenceElementsAccumulator,
-      );
-    }
-  });
 }
 
 /**

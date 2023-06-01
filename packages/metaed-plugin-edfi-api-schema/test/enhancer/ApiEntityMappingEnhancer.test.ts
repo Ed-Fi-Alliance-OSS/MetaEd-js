@@ -95,9 +95,9 @@ describe('when demonstrating key unification via entity referencing two entities
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.flattenedIdentityProperties).toHaveLength(3);
-    expect(apiMapping?.flattenedIdentityProperties[0].fullPropertyName).toBe('LocalCourseCode');
-    expect(apiMapping?.flattenedIdentityProperties[1].fullPropertyName).toBe('SchoolId');
-    expect(apiMapping?.flattenedIdentityProperties[2].fullPropertyName).toBe('SectionIdentifier');
+    expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('LocalCourseCode');
+    expect(apiMapping?.flattenedIdentityProperties[1].identityProperty.fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityProperties[2].identityProperty.fullPropertyName).toBe('SectionIdentifier');
   });
 
   it('should not have any descriptor property mappings in Section', () => {
@@ -132,8 +132,8 @@ describe('when demonstrating key unification via entity referencing two entities
     const apiMapping = courseOfferingEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.flattenedIdentityProperties).toHaveLength(2);
-    expect(apiMapping?.flattenedIdentityProperties[0].fullPropertyName).toBe('LocalCourseCode');
-    expect(apiMapping?.flattenedIdentityProperties[1].fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('LocalCourseCode');
+    expect(apiMapping?.flattenedIdentityProperties[1].identityProperty.fullPropertyName).toBe('SchoolId');
   });
 
   it('should not have any descriptor property mappings in CourseOffering', () => {
@@ -168,8 +168,8 @@ describe('when demonstrating key unification via entity referencing two entities
     const apiMapping = classPeriodEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.flattenedIdentityProperties).toHaveLength(2);
-    expect(apiMapping?.flattenedIdentityProperties[0].fullPropertyName).toBe('ClassPeriodName');
-    expect(apiMapping?.flattenedIdentityProperties[1].fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('ClassPeriodName');
+    expect(apiMapping?.flattenedIdentityProperties[1].identityProperty.fullPropertyName).toBe('SchoolId');
   });
 
   it('should not have any descriptor property mappings in ClassPeriod', () => {
@@ -198,7 +198,7 @@ describe('when demonstrating key unification via entity referencing two entities
     const apiMapping = schoolEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.flattenedIdentityProperties).toHaveLength(1);
-    expect(apiMapping?.flattenedIdentityProperties[0].fullPropertyName).toBe('SchoolId');
+    expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('SchoolId');
   });
 
   it('should not have any descriptor property mappings in School', () => {
