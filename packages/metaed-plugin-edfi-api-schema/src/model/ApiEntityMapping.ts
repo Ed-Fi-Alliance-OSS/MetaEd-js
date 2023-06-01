@@ -1,13 +1,9 @@
-// SPDX-License-Identifier: Apache-2.0
-// Licensed to the Ed-Fi Alliance under one or more agreements.
-// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
-// See the LICENSE and NOTICES files in the project root for more information.
-
 import deepFreeze from 'deep-freeze';
-import { EntityProperty, TopLevelEntity } from '@edfi/metaed-core';
+import { TopLevelEntity } from '@edfi/metaed-core';
 import { CollectedProperty } from './CollectedProperty';
 import { ReferenceComponent, ReferenceGroup } from './ReferenceComponent';
 import { EqualityConstraint } from './EqualityConstraint';
+import { FlattenedIdentityProperty } from './FlattenedIdentityProperty';
 
 /**
  * API shape metadata for a MetaEd entity.
@@ -15,9 +11,10 @@ import { EqualityConstraint } from './EqualityConstraint';
 export type ApiEntityMapping = {
   /**
    * The non-reference properties that make up the identity
-   * of the entity, in sorted order.
+   * of the entity, in sorted order. Includes the paths showing
+   * how the property came to be part of the identity.
    */
-  flattenedIdentityProperties: EntityProperty[];
+  flattenedIdentityProperties: FlattenedIdentityProperty[];
 
   /**
    * The ReferenceComponents of all of the identity properties
