@@ -54,13 +54,13 @@ describe('when building domain entity with DomainEntity collection and single me
     enhance(metaEd);
   });
 
-  it('equalityConstraints property has one element', () => {
+  it('should have created one equality constraint', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
     expect(apiMapping.equalityConstraints.length).toBe(1);
   });
 
-  it('recognizes the SchoolYear merge', () => {
+  it('should have equality constraint for schoolYear', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
     expect(apiMapping.equalityConstraints[0].sourceJsonPath).toBe('$.gradingPeriods[*].gradingPeriodReference.schoolYear');
@@ -68,7 +68,7 @@ describe('when building domain entity with DomainEntity collection and single me
   });
 });
 
-describe('when building domain entity with DomainEntity and single merge directive', () => {
+describe('when building domain entity with single merge directive', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespace = 'EdFi';
 
@@ -107,14 +107,14 @@ describe('when building domain entity with DomainEntity and single merge directi
     enhance(metaEd);
   });
 
-  it('equalityConstraints property has one element', () => {
+  it('should have created one equality constraint', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('CourseOffering');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping.equalityConstraints.length).toBe(1);
   });
 
-  it('recognizes the School merge', () => {
+  it('should have equality constraint for schoolId', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('CourseOffering');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
 
@@ -166,14 +166,14 @@ describe('when building domain entity with DomainEntity collection and two merge
     enhance(metaEd);
   });
 
-  it('equalityConstraints property has one element', () => {
+  it('should have created one equality constraint', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping.equalityConstraints.length).toBe(2);
   });
 
-  it('recognizes the SchoolYear merge', () => {
+  it('should have equality constraint for schoolYear', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
 
@@ -181,7 +181,7 @@ describe('when building domain entity with DomainEntity collection and two merge
     expect(apiMapping.equalityConstraints[0].targetJsonPath).toBe('$.schoolYearTypeReference.schoolYear');
   });
 
-  it('recognizes the School merge', () => {
+  it('should have equality constraint for schoolId', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
 
@@ -190,7 +190,7 @@ describe('when building domain entity with DomainEntity collection and two merge
   });
 });
 
-describe('when building domain entity with DomainEntity collection and single merge directive - 4 elements on target chain', () => {
+describe('when building domain entity with DomainEntity collection and single merge directive with multiple levels on target reference', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespace = 'EdFi';
 
@@ -244,14 +244,14 @@ describe('when building domain entity with DomainEntity collection and single me
     enhance(metaEd);
   });
 
-  it('equalityConstraints property has one element', () => {
+  it('should have created one equality constraint', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('StudentSectionAttendanceEvent');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping.equalityConstraints.length).toBe(1);
   });
 
-  it('recognizes the SchoolId merge', () => {
+  it('should have equality constraint for schoolId', () => {
     const sessionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('StudentSectionAttendanceEvent');
     const apiMapping = sessionEntity?.data.edfiApiSchema.apiMapping;
 

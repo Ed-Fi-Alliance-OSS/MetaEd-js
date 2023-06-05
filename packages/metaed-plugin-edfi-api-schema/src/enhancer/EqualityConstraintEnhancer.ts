@@ -26,7 +26,7 @@ function sourceObjectForReferentialProperty(
   const subJsonPathArray: string[] = [];
 
   referencedEntityApiMapping.flattenedIdentityProperties.forEach((identityProperty) => {
-    subJsonPath = propertyFor(jsonPath, identityProperty, false);
+    subJsonPath = propertyFor(jsonPath, identityProperty.identityProperty, false);
     if (subJsonPath !== '') {
       const { apiMapping } = propertyChainElement.data.edfiApiSchema as EntityPropertyApiSchemaData;
       if (isTopLevelElement) subJsonPathArray.push(`.${apiMapping.decollisionedTopLevelName}${subJsonPath}`);
