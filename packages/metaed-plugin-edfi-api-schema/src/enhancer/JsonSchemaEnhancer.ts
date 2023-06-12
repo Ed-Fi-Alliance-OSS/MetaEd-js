@@ -69,17 +69,10 @@ const descriptorSchema: SchemaRoot = {
 /**
  * Adds JsonPath to an EntityJsonPaths for a given list of PropertyPaths. Handles array initialization when needed.
  */
-function addJsonPathFor(
-  entityJsonPaths: EntityJsonPaths,
-  propertyPaths: PropertyPath[],
-  commonPathPrefix: PropertyPath,
-  jsonPath: JsonPath,
-) {
+function addJsonPathFor(entityJsonPaths: EntityJsonPaths, propertyPaths: PropertyPath[], jsonPath: JsonPath) {
   propertyPaths.forEach((propertyPath) => {
-    const prefixedPath: PropertyPath =
-      commonPathPrefix === '' ? propertyPath : (`${commonPathPrefix}.${propertyPath}` as PropertyPath);
-    if (entityJsonPaths[prefixedPath] == null) entityJsonPaths[prefixedPath] = [];
-    entityJsonPaths[prefixedPath].push(jsonPath);
+    if (entityJsonPaths[propertyPath] == null) entityJsonPaths[propertyPath] = [];
+    entityJsonPaths[propertyPath].push(jsonPath);
   });
 }
 
@@ -141,7 +134,6 @@ function schemaObjectForReferentialProperty(
   property: ReferentialProperty,
   propertyModifier: PropertyModifier,
   entityJsonPaths: EntityJsonPaths,
-  commonPathPrefix: PropertyPath,
   currentJsonPath: JsonPath,
   schoolYearSchemas: SchoolYearSchemas,
 ): SchemaObject {
@@ -161,7 +153,6 @@ function schemaObjectForReferentialProperty(
       flattenedIdentityProperty.identityProperty,
       entityJsonPaths,
       flattenedIdentityProperty.propertyPaths,
-      commonPathPrefix,
       `${currentJsonPath}.${schemaPropertyName}` as JsonPath,
       schoolYearSchemas,
     );
@@ -212,9 +203,8 @@ function schemaObjectForScalarCommonProperty(
       collectedProperty.property,
       concatenatedPropertyModifier,
       entityJsonPaths,
-      currentPropertyPath,
-      property.fullPropertyName as PropertyPath,
-      currentJsonPath,
+      `${currentPropertyPath}.${property.fullPropertyName}` as PropertyPath,
+      `${currentJsonPath}.${schemaPropertyName}` as JsonPath,
       schoolYearSchemas,
     );
 
@@ -234,7 +224,6 @@ function schemaPropertyForNonReference(
   property: EntityProperty,
   entityJsonPaths: EntityJsonPaths,
   currentPropertyPaths: PropertyPath[],
-  commonPathPrefix: PropertyPath,
   currentJsonPath: JsonPath,
   { schoolYearSchema, schoolYearEnumerationSchema }: SchoolYearSchemas,
 ): SchemaProperty {
@@ -244,7 +233,7 @@ function schemaPropertyForNonReference(
 
   switch (property.type) {
     case 'boolean':
-      addJsonPathFor(entityJsonPaths, currentPropertyPaths, commonPathPrefix, currentJsonPath);
+      addJsonPathFor(entityJsonPaths, currentPropertyPaths, currentJsonPath);
       return { type: 'boolean', description };
 
     case 'currency':
@@ -252,25 +241,25 @@ function schemaPropertyForNonReference(
     case 'duration':
     case 'percent':
     case 'sharedDecimal':
-      addJsonPathFor(entityJsonPaths, currentPropertyPaths, commonPathPrefix, currentJsonPath);
+      addJsonPathFor(entityJsonPaths, currentPropertyPaths, currentJsonPath);
       return { type: 'number', description };
 
     case 'date':
-      addJsonPathFor(entityJsonPaths, currentPropertyPaths, commonPathPrefix, currentJsonPath);
+      addJsonPathFor(entityJsonPaths, currentPropertyPaths, currentJsonPath);
       return { type: 'string', format: 'date', description };
 
     case 'datetime':
-      addJsonPathFor(entityJsonPaths, currentPropertyPaths, commonPathPrefix, currentJsonPath);
+      addJsonPathFor(entityJsonPaths, currentPropertyPaths, currentJsonPath);
       return { type: 'string', format: 'date-time', description };
 
     case 'descriptor':
     case 'enumeration':
-      addJsonPathFor(entityJsonPaths, currentPropertyPaths, commonPathPrefix, currentJsonPath);
+      addJsonPathFor(entityJsonPaths, currentPropertyPaths, currentJsonPath);
       return { type: 'string', description };
 
     case 'integer':
     case 'sharedInteger': {
-      addJsonPathFor(entityJsonPaths, currentPropertyPaths, commonPathPrefix, currentJsonPath);
+      addJsonPathFor(entityJsonPaths, currentPropertyPaths, currentJsonPath);
       const result: SchemaProperty = { type: 'integer', description };
       const integerProperty: IntegerProperty = property as IntegerProperty;
       if (integerProperty.minValue) result.minimum = Number(integerProperty.minValue);
@@ -280,7 +269,7 @@ function schemaPropertyForNonReference(
 
     case 'short':
     case 'sharedShort': {
-      addJsonPathFor(entityJsonPaths, currentPropertyPaths, commonPathPrefix, currentJsonPath);
+      addJsonPathFor(entityJsonPaths, currentPropertyPaths, currentJsonPath);
       const result: SchemaProperty = { type: 'integer', description };
       const shortProperty: ShortProperty = property as ShortProperty;
       if (shortProperty.minValue) result.minimum = Number(shortProperty.minValue);
@@ -290,7 +279,7 @@ function schemaPropertyForNonReference(
 
     case 'string':
     case 'sharedString': {
-      addJsonPathFor(entityJsonPaths, currentPropertyPaths, commonPathPrefix, currentJsonPath);
+      addJsonPathFor(entityJsonPaths, currentPropertyPaths, currentJsonPath);
       const result: SchemaProperty = { type: 'string', description };
       const stringProperty: StringProperty = property as StringProperty;
       if (stringProperty.minLength) result.minLength = Number(stringProperty.minLength);
@@ -299,21 +288,21 @@ function schemaPropertyForNonReference(
     }
 
     case 'time':
-      addJsonPathFor(entityJsonPaths, currentPropertyPaths, commonPathPrefix, currentJsonPath);
+      addJsonPathFor(entityJsonPaths, currentPropertyPaths, currentJsonPath);
       return { type: 'string', format: 'time', description };
 
     case 'schoolYearEnumeration':
       if (property.parentEntity.type === 'common') {
         // For a common, the school year ends up being nested under a reference object
-        addJsonPathFor(entityJsonPaths, currentPropertyPaths, commonPathPrefix, `${currentJsonPath}.schoolYear` as JsonPath);
+        addJsonPathFor(entityJsonPaths, currentPropertyPaths, `${currentJsonPath}.schoolYear` as JsonPath);
         return schoolYearEnumerationSchema;
       }
 
-      addJsonPathFor(entityJsonPaths, currentPropertyPaths, commonPathPrefix, currentJsonPath);
+      addJsonPathFor(entityJsonPaths, currentPropertyPaths, currentJsonPath);
       return schoolYearSchema;
 
     case 'year':
-      addJsonPathFor(entityJsonPaths, currentPropertyPaths, commonPathPrefix, currentJsonPath);
+      addJsonPathFor(entityJsonPaths, currentPropertyPaths, currentJsonPath);
       return { type: 'integer', description };
 
     case 'choice':
@@ -331,7 +320,6 @@ function schemaArrayForReferenceCollection(
   property: EntityProperty,
   propertyModifier: PropertyModifier,
   entityJsonPaths: EntityJsonPaths,
-  commonPathPrefix,
   currentJsonPath: JsonPath,
   schoolYearSchemas: SchoolYearSchemas,
 ): SchemaArray {
@@ -345,7 +333,6 @@ function schemaArrayForReferenceCollection(
       parentPrefixes: [], // reset prefixes inside the reference
     },
     entityJsonPaths,
-    commonPathPrefix,
     `${currentJsonPath}[*].${referenceName}` as JsonPath,
     schoolYearSchemas,
   );
@@ -367,7 +354,6 @@ function schemaArrayForDescriptorCollection(
   propertyModifier: PropertyModifier,
   entityJsonPaths: EntityJsonPaths,
   currentPropertyPath: PropertyPath,
-  commonPathPrefix: PropertyPath,
   currentJsonPath: JsonPath,
 ): SchemaArray {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
@@ -377,12 +363,7 @@ function schemaArrayForDescriptorCollection(
     [descriptorName]: { type: 'string', description: 'An Ed-Fi Descriptor' },
   };
 
-  addJsonPathFor(
-    entityJsonPaths,
-    [currentPropertyPath],
-    commonPathPrefix,
-    `${currentJsonPath}[*].${descriptorName}` as JsonPath,
-  );
+  addJsonPathFor(entityJsonPaths, [currentPropertyPath], `${currentJsonPath}[*].${descriptorName}` as JsonPath);
 
   return {
     ...schemaArrayFrom(schemaObjectFrom(descriptorSchemaProperty, [descriptorName])),
@@ -399,7 +380,6 @@ function schemaArrayForNonReferenceCollection(
   propertyModifier: PropertyModifier,
   entityJsonPaths: EntityJsonPaths,
   currentPropertyPath: PropertyPath,
-  commonPathPrefix: PropertyPath,
   currentJsonPath: JsonPath,
   schoolYearSchemas: SchoolYearSchemas,
 ): SchemaArray {
@@ -411,7 +391,6 @@ function schemaArrayForNonReferenceCollection(
       property,
       entityJsonPaths,
       [currentPropertyPath],
-      commonPathPrefix,
       `${currentJsonPath}[*].${propertyName}` as JsonPath,
       schoolYearSchemas,
     ),
@@ -436,7 +415,7 @@ function schemaPropertyForSchoolYearEnumeration(
 ): SchemaProperty {
   invariant(property.type === 'schoolYearEnumeration');
 
-  addJsonPathFor(entityJsonPaths, [currentPropertyPath], '' as PropertyPath, `${currentJsonPath}.schoolYear` as JsonPath);
+  addJsonPathFor(entityJsonPaths, [currentPropertyPath], `${currentJsonPath}.schoolYear` as JsonPath);
   return schoolYearEnumerationSchema;
 }
 
@@ -449,7 +428,6 @@ function schemaPropertyFor(
   propertyModifier: PropertyModifier,
   entityJsonPaths: EntityJsonPaths,
   currentPropertyPath: PropertyPath,
-  commonPathPrefix: PropertyPath,
   currentJsonPath: JsonPath,
   schoolYearSchemas: SchoolYearSchemas,
 ): SchemaProperty {
@@ -460,7 +438,6 @@ function schemaPropertyFor(
       property,
       propertyModifier,
       entityJsonPaths,
-      commonPathPrefix,
       currentJsonPath,
       schoolYearSchemas,
     );
@@ -470,7 +447,6 @@ function schemaPropertyFor(
       property as ReferentialProperty,
       propertyModifier,
       entityJsonPaths,
-      commonPathPrefix,
       currentJsonPath,
       schoolYearSchemas,
     );
@@ -481,7 +457,6 @@ function schemaPropertyFor(
       propertyModifier,
       entityJsonPaths,
       currentPropertyPath,
-      commonPathPrefix,
       currentJsonPath,
     );
   }
@@ -513,19 +488,11 @@ function schemaPropertyFor(
       propertyModifier,
       entityJsonPaths,
       currentPropertyPath,
-      commonPathPrefix,
       currentJsonPath,
       schoolYearSchemas,
     );
   }
-  return schemaPropertyForNonReference(
-    property,
-    entityJsonPaths,
-    [currentPropertyPath],
-    commonPathPrefix,
-    currentJsonPath,
-    schoolYearSchemas,
-  );
+  return schemaPropertyForNonReference(property, entityJsonPaths, [currentPropertyPath], currentJsonPath, schoolYearSchemas);
 }
 
 /**
@@ -572,7 +539,6 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
             propertyModifier,
             entityJsonPaths,
             property.fullPropertyName as PropertyPath,
-            '' as PropertyPath,
             `$.${schemaObjectBaseName}` as JsonPath,
             schoolYearSchemas,
           );
