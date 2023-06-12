@@ -18,7 +18,7 @@ import {
   // EnumerationBuilder,
 } from '@edfi/metaed-core';
 import {
-  // domainEntityReferenceEnhancer,
+  domainEntityReferenceEnhancer,
   choiceReferenceEnhancer,
   // inlineCommonReferenceEnhancer,
   commonReferenceEnhancer,
@@ -2012,328 +2012,328 @@ describe('when building domain entity with a common with a choice', () => {
   });
 });
 
-// describe('when building domain entity with a common and a common collection with parent entity prefix', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
+describe('when building domain entity with a common and a common collection with parent entity prefix', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
 
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('Assessment')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('AssessmentIdentifier', 'doc')
-//       .withCommonProperty('AssessmentScore', 'doc', true, true)
-//       .withCommonProperty('AssessmentPeriod', 'doc', false, false)
-//       .withEndDomainEntity()
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Assessment')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssessmentIdentifier', 'doc')
+      .withCommonProperty('AssessmentScore', 'doc', true, true)
+      .withCommonProperty('AssessmentPeriod', 'doc', false, false)
+      .withEndDomainEntity()
 
-//       .withStartCommon('AssessmentScore')
-//       .withDocumentation('doc')
-//       .withStringProperty('MinimumScore', 'doc', true, false, '30')
-//       .withEndCommon()
+      .withStartCommon('AssessmentScore')
+      .withDocumentation('doc')
+      .withStringProperty('MinimumScore', 'doc', true, false, '30')
+      .withEndCommon()
 
-//       .withStartCommon('AssessmentPeriod')
-//       .withDocumentation('doc')
-//       .withStringProperty('BeginDate', 'doc', false, false, '30')
-//       .withEndCommon()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
+      .withStartCommon('AssessmentPeriod')
+      .withDocumentation('doc')
+      .withStringProperty('BeginDate', 'doc', false, false, '30')
+      .withEndCommon()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
 
-//     namespace = metaEd.namespace.get(namespaceName);
+    namespace = metaEd.namespace.get(namespaceName);
 
-//     commonReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
 
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
 
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
-//       Object {
-//         "$schema": "https://json-schema.org/draft/2020-12/schema",
-//         "additionalProperties": false,
-//         "description": "doc",
-//         "properties": Object {
-//           "_ext": Object {
-//             "additionalProperties": true,
-//             "description": "optional extension collection",
-//             "properties": Object {},
-//             "type": "object",
-//           },
-//           "assessmentIdentifier": Object {
-//             "description": "doc",
-//             "type": "integer",
-//           },
-//           "period": Object {
-//             "additionalProperties": false,
-//             "properties": Object {
-//               "beginDate": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "type": "object",
-//           },
-//           "scores": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "minimumScore": Object {
-//                   "description": "doc",
-//                   "maxLength": 30,
-//                   "type": "string",
-//                 },
-//               },
-//               "required": Array [
-//                 "minimumScore",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 0,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//         },
-//         "required": Array [
-//           "assessmentIdentifier",
-//           "scores",
-//         ],
-//         "title": "EdFi.Assessment",
-//         "type": "object",
-//       }
-//     `);
-//   });
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {},
+            "type": "object",
+          },
+          "assessmentIdentifier": Object {
+            "description": "doc",
+            "type": "integer",
+          },
+          "period": Object {
+            "additionalProperties": false,
+            "properties": Object {
+              "beginDate": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "type": "object",
+          },
+          "scores": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "minimumScore": Object {
+                  "description": "doc",
+                  "maxLength": 30,
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "minimumScore",
+              ],
+              "type": "object",
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
+          },
+        },
+        "required": Array [
+          "assessmentIdentifier",
+          "scores",
+        ],
+        "title": "EdFi.Assessment",
+        "type": "object",
+      }
+    `);
+  });
 
-//   it('should be well-formed according to ajv', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     ajv.compile(entity.data.edfiApiSchema.jsonSchema);
-//   });
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+  });
 
-//   it('should be correct entityJsonPaths', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
-//       Object {
-//         "AssessmentIdentifier": Array [
-//           "$.assessmentIdentifier",
-//         ],
-//         "AssessmentPeriod.AssessmentPeriod": Array [
-//           "$.period",
-//         ],
-//         "AssessmentScore.AssessmentScore": Array [
-//           "$.scores[*]",
-//         ],
-//       }
-//     `);
-//   });
-// });
+  it('should be correct entityJsonPaths', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": Array [
+          "$.assessmentIdentifier",
+        ],
+        "AssessmentPeriod.BeginDate": Array [
+          "$.period.beginDate",
+        ],
+        "AssessmentScore.MinimumScore": Array [
+          "$.scores[*].minimumScore",
+        ],
+      }
+    `);
+  });
+});
 
-// describe('when building domain entity with an all-caps property', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
+describe('when building domain entity with an all-caps property', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
 
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('Assessment')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('AssessmentIdentifier', 'doc')
-//       .withStringProperty('URI', 'doc', false, false, '30')
-//       .withEndDomainEntity()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Assessment')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssessmentIdentifier', 'doc')
+      .withStringProperty('URI', 'doc', false, false, '30')
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
 
-//     namespace = metaEd.namespace.get(namespaceName);
+    namespace = metaEd.namespace.get(namespaceName);
 
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
 
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
-//       Object {
-//         "$schema": "https://json-schema.org/draft/2020-12/schema",
-//         "additionalProperties": false,
-//         "description": "doc",
-//         "properties": Object {
-//           "_ext": Object {
-//             "additionalProperties": true,
-//             "description": "optional extension collection",
-//             "properties": Object {},
-//             "type": "object",
-//           },
-//           "assessmentIdentifier": Object {
-//             "description": "doc",
-//             "type": "integer",
-//           },
-//           "uri": Object {
-//             "description": "doc",
-//             "maxLength": 30,
-//             "type": "string",
-//           },
-//         },
-//         "required": Array [
-//           "assessmentIdentifier",
-//         ],
-//         "title": "EdFi.Assessment",
-//         "type": "object",
-//       }
-//     `);
-//   });
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {},
+            "type": "object",
+          },
+          "assessmentIdentifier": Object {
+            "description": "doc",
+            "type": "integer",
+          },
+          "uri": Object {
+            "description": "doc",
+            "maxLength": 30,
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "assessmentIdentifier",
+        ],
+        "title": "EdFi.Assessment",
+        "type": "object",
+      }
+    `);
+  });
 
-//   it('should be well-formed according to ajv', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     ajv.compile(entity.data.edfiApiSchema.jsonSchema);
-//   });
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+  });
 
-//   it('should be correct entityJsonPaths', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
-//       Object {
-//         "AssessmentIdentifier": Array [
-//           "$.assessmentIdentifier",
-//         ],
-//         "URI": Array [
-//           "$.uri",
-//         ],
-//       }
-//     `);
-//   });
-// });
+  it('should be correct entityJsonPaths', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": Array [
+          "$.assessmentIdentifier",
+        ],
+        "URI": Array [
+          "$.uri",
+        ],
+      }
+    `);
+  });
+});
 
-// describe('when building domain entity with a common with a domain entity reference with a role name', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
+describe('when building domain entity with a common with a domain entity reference with a role name', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
 
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity('Assessment')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('AssessmentIdentifier', 'doc')
-//       .withCommonProperty('ContentStandard', 'doc', false, false)
-//       .withEndDomainEntity()
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('Assessment')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssessmentIdentifier', 'doc')
+      .withCommonProperty('ContentStandard', 'doc', false, false)
+      .withEndDomainEntity()
 
-//       .withStartCommon('ContentStandard')
-//       .withDocumentation('doc')
-//       .withStringProperty('Title', 'doc', false, false, '30')
-//       .withDomainEntityProperty('EducationOrganization', 'doc', false, false, false, 'Mandating')
-//       .withEndCommon()
+      .withStartCommon('ContentStandard')
+      .withDocumentation('doc')
+      .withStringProperty('Title', 'doc', false, false, '30')
+      .withDomainEntityProperty('EducationOrganization', 'doc', false, false, false, 'Mandating')
+      .withEndCommon()
 
-//       .withStartDomainEntity('EducationOrganization')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('EducationOrganizationId', 'doc')
-//       .withEndDomainEntity()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
+      .withStartDomainEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
 
-//     namespace = metaEd.namespace.get(namespaceName);
+    namespace = metaEd.namespace.get(namespaceName);
 
-//     domainEntityReferenceEnhancer(metaEd);
-//     commonReferenceEnhancer(metaEd);
+    domainEntityReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
 
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
 
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
-//       Object {
-//         "$schema": "https://json-schema.org/draft/2020-12/schema",
-//         "additionalProperties": false,
-//         "description": "doc",
-//         "properties": Object {
-//           "_ext": Object {
-//             "additionalProperties": true,
-//             "description": "optional extension collection",
-//             "properties": Object {},
-//             "type": "object",
-//           },
-//           "assessmentIdentifier": Object {
-//             "description": "doc",
-//             "type": "integer",
-//           },
-//           "contentStandard": Object {
-//             "additionalProperties": false,
-//             "properties": Object {
-//               "mandatingEducationOrganizationReference": Object {
-//                 "additionalProperties": false,
-//                 "properties": Object {
-//                   "educationOrganizationId": Object {
-//                     "description": "doc",
-//                     "type": "integer",
-//                   },
-//                 },
-//                 "required": Array [
-//                   "educationOrganizationId",
-//                 ],
-//                 "type": "object",
-//               },
-//               "title": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "type": "object",
-//           },
-//         },
-//         "required": Array [
-//           "assessmentIdentifier",
-//         ],
-//         "title": "EdFi.Assessment",
-//         "type": "object",
-//       }
-//     `);
-//   });
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {},
+            "type": "object",
+          },
+          "assessmentIdentifier": Object {
+            "description": "doc",
+            "type": "integer",
+          },
+          "contentStandard": Object {
+            "additionalProperties": false,
+            "properties": Object {
+              "mandatingEducationOrganizationReference": Object {
+                "additionalProperties": false,
+                "properties": Object {
+                  "educationOrganizationId": Object {
+                    "description": "doc",
+                    "type": "integer",
+                  },
+                },
+                "required": Array [
+                  "educationOrganizationId",
+                ],
+                "type": "object",
+              },
+              "title": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "type": "object",
+          },
+        },
+        "required": Array [
+          "assessmentIdentifier",
+        ],
+        "title": "EdFi.Assessment",
+        "type": "object",
+      }
+    `);
+  });
 
-//   it('should be well-formed according to ajv', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     ajv.compile(entity.data.edfiApiSchema.jsonSchema);
-//   });
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+  });
 
-//   it('should be correct entityJsonPaths', () => {
-//     const entity = namespace.entity.domainEntity.get('Assessment');
-//     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
-//       Object {
-//         "AssessmentIdentifier": Array [
-//           "$.assessmentIdentifier",
-//         ],
-//         "ContentStandard..EducationOrganizationId": Array [
-//           "$.contentStandard.educationOrganizationId",
-//         ],
-//         "ContentStandard.ContentStandard": Array [
-//           "$.contentStandard",
-//         ],
-//       }
-//     `);
-//   });
-// });
+  it('should be correct entityJsonPaths', () => {
+    const entity = namespace.entity.domainEntity.get('Assessment');
+    expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": Array [
+          "$.assessmentIdentifier",
+        ],
+        "ContentStandard.MandatingEducationOrganization.EducationOrganizationId": Array [
+          "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
+        ],
+        "ContentStandard.Title": Array [
+          "$.contentStandard.title",
+        ],
+      }
+    `);
+  });
+});
 
 // describe('when building domain entity with two school year enumerations, one role named', () => {
 //   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
