@@ -203,7 +203,7 @@ function schemaObjectForScalarCommonProperty(
       collectedProperty.property,
       concatenatedPropertyModifier,
       entityJsonPaths,
-      `${currentPropertyPath}.${property.fullPropertyName}` as PropertyPath,
+      `${currentPropertyPath}.${collectedProperty.property.fullPropertyName}` as PropertyPath,
       `${currentJsonPath}.${schemaPropertyName}` as JsonPath,
       schoolYearSchemas,
     );
