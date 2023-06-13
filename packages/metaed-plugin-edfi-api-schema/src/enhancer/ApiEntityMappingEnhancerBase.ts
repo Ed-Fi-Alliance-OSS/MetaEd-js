@@ -33,6 +33,14 @@ export function referenceGroupsFrom(sortedProperties: EntityProperty[]): Referen
 }
 
 /**
+ * Takes two property paths and joins them, returning a new dot-separated path.
+ */
+function joinPropertyPaths(currentPropertyPath: PropertyPath, newPropertyPath: PropertyPath): PropertyPath {
+  if (currentPropertyPath === '') return newPropertyPath;
+  return `${currentPropertyPath}.${newPropertyPath}` as PropertyPath;
+}
+
+/**
  * Flatten a graph of ReferenceComponents into an array of ReferenceElements, discarding any
  * ReferenceGroups that are part of the graph but preserving the path information.
  */
@@ -46,7 +54,7 @@ function flattenReferenceElementsFromComponent(
     referenceElementsAccumulator.set(
       referenceComponent,
       propertyPathAccumulator.concat(
-        `${currentPropertyPath}.${referenceComponent.sourceProperty.fullPropertyName}` as PropertyPath,
+        joinPropertyPaths(currentPropertyPath, referenceComponent.sourceProperty.fullPropertyName as PropertyPath),
       ),
     );
   } else {
@@ -56,12 +64,15 @@ function flattenReferenceElementsFromComponent(
         referenceElementsAccumulator.set(
           subReferenceElement,
           propertyPathAccumulator.concat(
-            `${currentPropertyPath}.${subReferenceElement.sourceProperty.fullPropertyName}` as PropertyPath,
+            joinPropertyPaths(currentPropertyPath, subReferenceElement.sourceProperty.fullPropertyName as PropertyPath),
           ),
         );
       } else {
-        const nextPropertyPath: PropertyPath =
-          `${currentPropertyPath}.${subReferenceComponent.sourceProperty.fullPropertyName}` as PropertyPath;
+        const nextPropertyPath: PropertyPath = joinPropertyPaths(
+          currentPropertyPath,
+          subReferenceComponent.sourceProperty.fullPropertyName as PropertyPath,
+        );
+
         flattenReferenceElementsFromComponent(
           subReferenceComponent,
           nextPropertyPath,

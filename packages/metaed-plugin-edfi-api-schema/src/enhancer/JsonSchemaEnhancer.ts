@@ -134,6 +134,7 @@ function schemaObjectForReferentialProperty(
   property: ReferentialProperty,
   propertyModifier: PropertyModifier,
   entityJsonPaths: EntityJsonPaths,
+  currentPropertyPath: PropertyPath,
   currentJsonPath: JsonPath,
   schoolYearSchemas: SchoolYearSchemas,
 ): SchemaObject {
@@ -152,7 +153,9 @@ function schemaObjectForReferentialProperty(
     const schemaProperty: SchemaProperty = schemaPropertyForNonReference(
       flattenedIdentityProperty.identityProperty,
       entityJsonPaths,
-      flattenedIdentityProperty.propertyPaths,
+      flattenedIdentityProperty.propertyPaths.map(
+        (propertyPath) => `${currentPropertyPath}.${propertyPath}` as PropertyPath,
+      ),
       `${currentJsonPath}.${schemaPropertyName}` as JsonPath,
       schoolYearSchemas,
     );
@@ -320,6 +323,7 @@ function schemaArrayForReferenceCollection(
   property: EntityProperty,
   propertyModifier: PropertyModifier,
   entityJsonPaths: EntityJsonPaths,
+  currentPropertyPath: PropertyPath,
   currentJsonPath: JsonPath,
   schoolYearSchemas: SchoolYearSchemas,
 ): SchemaArray {
@@ -333,6 +337,7 @@ function schemaArrayForReferenceCollection(
       parentPrefixes: [], // reset prefixes inside the reference
     },
     entityJsonPaths,
+    currentPropertyPath,
     `${currentJsonPath}[*].${referenceName}` as JsonPath,
     schoolYearSchemas,
   );
@@ -438,6 +443,7 @@ function schemaPropertyFor(
       property,
       propertyModifier,
       entityJsonPaths,
+      currentPropertyPath,
       currentJsonPath,
       schoolYearSchemas,
     );
@@ -447,6 +453,7 @@ function schemaPropertyFor(
       property as ReferentialProperty,
       propertyModifier,
       entityJsonPaths,
+      currentPropertyPath,
       currentJsonPath,
       schoolYearSchemas,
     );
