@@ -71,7 +71,11 @@ const descriptorSchema: SchemaRoot = {
  */
 function addJsonPathFor(entityJsonPaths: EntityJsonPaths, propertyPaths: PropertyPath[], jsonPath: JsonPath) {
   propertyPaths.forEach((propertyPath) => {
+    // initalize if necessary
     if (entityJsonPaths[propertyPath] == null) entityJsonPaths[propertyPath] = [];
+    // Avoid duplicates
+    if (entityJsonPaths[propertyPath].includes(jsonPath)) return;
+
     entityJsonPaths[propertyPath].push(jsonPath);
   });
 }
@@ -143,6 +147,8 @@ function schemaObjectForReferentialProperty(
 
   const referencedEntityApiMapping = (property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData).apiMapping;
 
+  const entityJsonPathsForThisProperty: EntityJsonPaths = {};
+
   referencedEntityApiMapping.flattenedIdentityProperties.forEach((flattenedIdentityProperty: FlattenedIdentityProperty) => {
     const identityPropertyApiMapping = (
       flattenedIdentityProperty.identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
@@ -152,13 +158,23 @@ function schemaObjectForReferentialProperty(
     // Because these are flattened, we know they are non-reference properties
     const schemaProperty: SchemaProperty = schemaPropertyForNonReference(
       flattenedIdentityProperty.identityProperty,
-      entityJsonPaths,
+      entityJsonPathsForThisProperty,
       flattenedIdentityProperty.propertyPaths.map(
         (propertyPath) => `${currentPropertyPath}.${propertyPath}` as PropertyPath,
       ),
       `${currentJsonPath}.${schemaPropertyName}` as JsonPath,
       schoolYearSchemas,
     );
+
+    // Take the JsonPaths for entire property and apply to entityJsonPaths for the property,
+    // then add those collected results individually to entityJsonPaths
+    Object.values(entityJsonPathsForThisProperty)
+      .flat()
+      .forEach((jsonPath: JsonPath) => {
+        // This relies on deduping in addJsonPathFor(), because we can expect multiple property paths to a json path
+        addJsonPathFor(entityJsonPaths, [currentPropertyPath], jsonPath);
+      });
+    Object.assign(entityJsonPaths, entityJsonPathsForThisProperty);
 
     // Note that this key/value usage of Object implictly merges by overwrite if there is more than one scalar property
     // with the same name sourced from different identity reference properties. There is no need to check

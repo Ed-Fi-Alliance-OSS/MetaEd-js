@@ -749,16 +749,30 @@ describe('when building a domain entity referencing another referencing another 
     const entity = namespace.entity.domainEntity.get(domainEntityName);
     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
       Object {
+        "ClassPeriod": Array [
+          "$.classPeriods[*].classPeriodReference.classPeriodName",
+          "$.classPeriods[*].classPeriodReference.schoolId",
+        ],
         "ClassPeriod.ClassPeriodName": Array [
           "$.classPeriods[*].classPeriodReference.classPeriodName",
         ],
-        "ClassPeriod.SchoolId": Array [
+        "ClassPeriod.School": Array [
           "$.classPeriods[*].classPeriodReference.schoolId",
+        ],
+        "ClassPeriod.School.SchoolId": Array [
+          "$.classPeriods[*].classPeriodReference.schoolId",
+        ],
+        "CourseOffering": Array [
+          "$.courseOfferingReference.localCourseCode",
+          "$.courseOfferingReference.schoolId",
         ],
         "CourseOffering.LocalCourseCode": Array [
           "$.courseOfferingReference.localCourseCode",
         ],
-        "CourseOffering.SchoolId": Array [
+        "CourseOffering.School": Array [
+          "$.courseOfferingReference.schoolId",
+        ],
+        "CourseOffering.School.SchoolId": Array [
           "$.courseOfferingReference.schoolId",
         ],
         "SectionIdentifier": Array [
@@ -890,6 +904,12 @@ describe('when building a domain entity referencing CourseOffering with an impli
     const entity = namespace.entity.domainEntity.get(domainEntityName);
     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
       Object {
+        "CourseOffering": Array [
+          "$.courseOfferingReference.localCourseCode",
+          "$.courseOfferingReference.schoolId",
+          "$.courseOfferingReference.schoolYear",
+          "$.courseOfferingReference.sessionName",
+        ],
         "CourseOffering.LocalCourseCode": Array [
           "$.courseOfferingReference.localCourseCode",
         ],
@@ -899,13 +919,21 @@ describe('when building a domain entity referencing CourseOffering with an impli
         "CourseOffering.School.SchoolId": Array [
           "$.courseOfferingReference.schoolId",
         ],
-        "CourseOffering.SchoolId": Array [
+        "CourseOffering.Session": Array [
+          "$.courseOfferingReference.schoolId",
+          "$.courseOfferingReference.schoolYear",
+          "$.courseOfferingReference.sessionName",
+        ],
+        "CourseOffering.Session.School": Array [
           "$.courseOfferingReference.schoolId",
         ],
-        "CourseOffering.SchoolYear": Array [
+        "CourseOffering.Session.School.SchoolId": Array [
+          "$.courseOfferingReference.schoolId",
+        ],
+        "CourseOffering.Session.SchoolYear": Array [
           "$.courseOfferingReference.schoolYear",
         ],
-        "CourseOffering.SessionName": Array [
+        "CourseOffering.Session.SessionName": Array [
           "$.courseOfferingReference.sessionName",
         ],
         "SectionIdentifier": Array [
@@ -2325,6 +2353,9 @@ describe('when building domain entity with a common with a domain entity referen
       Object {
         "AssessmentIdentifier": Array [
           "$.assessmentIdentifier",
+        ],
+        "ContentStandard.MandatingEducationOrganization": Array [
+          "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
         ],
         "ContentStandard.MandatingEducationOrganization.EducationOrganizationId": Array [
           "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
