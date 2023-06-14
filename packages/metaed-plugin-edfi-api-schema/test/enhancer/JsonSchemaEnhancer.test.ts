@@ -40,879 +40,881 @@ import { enhance } from '../../src/enhancer/JsonSchemaEnhancer';
 const ajv = new Ajv({ allErrors: true });
 addFormatsTo(ajv);
 
-// describe('when building simple domain entity with all the simple non-collections', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   const domainEntityName = 'DomainEntityName';
-//   let namespace: any = null;
+describe('when building simple domain entity with all the simple non-collections', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'DomainEntityName';
+  let namespace: any = null;
 
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity(domainEntityName)
-//       .withDocumentation('doc')
-//       .withBooleanProperty('OptionalBooleanProperty', 'doc1', false, false)
-//       .withCurrencyProperty('RequiredCurrencyProperty', 'doc2', true, false)
-//       .withDecimalProperty('OptionalDecimalProperty', 'doc3', false, false, '2', '1')
-//       .withDurationProperty('RequiredDurationProperty', 'doc4', true, false)
-//       .withPercentProperty('OptionalPercentProperty', 'doc5', false, false)
-//       .withDateProperty('RequiredDateProperty', 'doc6', true, false)
-//       .withDatetimeProperty('RequiredDatetimeProperty', 'doc7', true, false)
-//       .withIntegerProperty('RequiredIntegerProperty', 'doc8', true, false, '10', '5')
-//       .withShortProperty('OptionalShortProperty', 'doc9', false, false)
-//       .withStringIdentity('StringIdentity', 'doc10', '30', '20')
-//       .withTimeProperty('RequiredTimeProperty', 'doc11', true, false)
-//       .withEnumerationProperty('SchoolYear', 'doc12', false, false)
-//       .withYearProperty('OptionalYear', 'doc13', false, false)
-//       .withEndDomainEntity()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withBooleanProperty('OptionalBooleanProperty', 'doc1', false, false)
+      .withCurrencyProperty('RequiredCurrencyProperty', 'doc2', true, false)
+      .withDecimalProperty('OptionalDecimalProperty', 'doc3', false, false, '2', '1')
+      .withDurationProperty('RequiredDurationProperty', 'doc4', true, false)
+      .withPercentProperty('OptionalPercentProperty', 'doc5', false, false)
+      .withDateProperty('RequiredDateProperty', 'doc6', true, false)
+      .withDatetimeProperty('RequiredDatetimeProperty', 'doc7', true, false)
+      .withIntegerProperty('RequiredIntegerProperty', 'doc8', true, false, '10', '5')
+      .withShortProperty('OptionalShortProperty', 'doc9', false, false)
+      .withStringIdentity('StringIdentity', 'doc10', '30', '20')
+      .withTimeProperty('RequiredTimeProperty', 'doc11', true, false)
+      .withEnumerationProperty('SchoolYear', 'doc12', false, false)
+      .withYearProperty('OptionalYear', 'doc13', false, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
 
-//     namespace = metaEd.namespace.get(namespaceName);
+    namespace = metaEd.namespace.get(namespaceName);
 
-//     domainEntityReferenceEnhancer(metaEd);
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
 
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
-//       Object {
-//         "$schema": "https://json-schema.org/draft/2020-12/schema",
-//         "additionalProperties": false,
-//         "description": "doc",
-//         "properties": Object {
-//           "_ext": Object {
-//             "additionalProperties": true,
-//             "description": "optional extension collection",
-//             "properties": Object {},
-//             "type": "object",
-//           },
-//           "optionalBooleanProperty": Object {
-//             "description": "doc1",
-//             "type": "boolean",
-//           },
-//           "optionalDecimalProperty": Object {
-//             "description": "doc3",
-//             "type": "number",
-//           },
-//           "optionalPercentProperty": Object {
-//             "description": "doc5",
-//             "type": "number",
-//           },
-//           "optionalShortProperty": Object {
-//             "description": "doc9",
-//             "type": "integer",
-//           },
-//           "optionalYear": Object {
-//             "description": "doc13",
-//             "type": "integer",
-//           },
-//           "requiredCurrencyProperty": Object {
-//             "description": "doc2",
-//             "type": "number",
-//           },
-//           "requiredDateProperty": Object {
-//             "description": "doc6",
-//             "format": "date",
-//             "type": "string",
-//           },
-//           "requiredDatetimeProperty": Object {
-//             "description": "doc7",
-//             "format": "date-time",
-//             "type": "string",
-//           },
-//           "requiredDurationProperty": Object {
-//             "description": "doc4",
-//             "type": "number",
-//           },
-//           "requiredIntegerProperty": Object {
-//             "description": "doc8",
-//             "maximum": 10,
-//             "minimum": 5,
-//             "type": "integer",
-//           },
-//           "requiredTimeProperty": Object {
-//             "description": "doc11",
-//             "format": "time",
-//             "type": "string",
-//           },
-//           "schoolYearTypeReference": Object {
-//             "$schema": "https://json-schema.org/draft/2020-12/schema",
-//             "additionalProperties": false,
-//             "description": "A school year enumeration",
-//             "properties": Object {
-//               "schoolYear": Object {
-//                 "description": "A school year between 1900 and 2100",
-//                 "maximum": 2100,
-//                 "minimum": 1900,
-//                 "type": "integer",
-//               },
-//             },
-//             "title": "EdFi.SchoolYearType",
-//             "type": "object",
-//           },
-//           "stringIdentity": Object {
-//             "description": "doc10",
-//             "maxLength": 30,
-//             "minLength": 20,
-//             "type": "string",
-//           },
-//         },
-//         "required": Array [
-//           "requiredCurrencyProperty",
-//           "requiredDurationProperty",
-//           "requiredDateProperty",
-//           "requiredDatetimeProperty",
-//           "requiredIntegerProperty",
-//           "stringIdentity",
-//           "requiredTimeProperty",
-//         ],
-//         "title": "EdFi.DomainEntityName",
-//         "type": "object",
-//       }
-//     `);
-//   });
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {},
+            "type": "object",
+          },
+          "optionalBooleanProperty": Object {
+            "description": "doc1",
+            "type": "boolean",
+          },
+          "optionalDecimalProperty": Object {
+            "description": "doc3",
+            "type": "number",
+          },
+          "optionalPercentProperty": Object {
+            "description": "doc5",
+            "type": "number",
+          },
+          "optionalShortProperty": Object {
+            "description": "doc9",
+            "type": "integer",
+          },
+          "optionalYear": Object {
+            "description": "doc13",
+            "type": "integer",
+          },
+          "requiredCurrencyProperty": Object {
+            "description": "doc2",
+            "type": "number",
+          },
+          "requiredDateProperty": Object {
+            "description": "doc6",
+            "format": "date",
+            "type": "string",
+          },
+          "requiredDatetimeProperty": Object {
+            "description": "doc7",
+            "format": "date-time",
+            "type": "string",
+          },
+          "requiredDurationProperty": Object {
+            "description": "doc4",
+            "type": "number",
+          },
+          "requiredIntegerProperty": Object {
+            "description": "doc8",
+            "maximum": 10,
+            "minimum": 5,
+            "type": "integer",
+          },
+          "requiredTimeProperty": Object {
+            "description": "doc11",
+            "format": "time",
+            "type": "string",
+          },
+          "schoolYearTypeReference": Object {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "additionalProperties": false,
+            "description": "A school year enumeration",
+            "properties": Object {
+              "schoolYear": Object {
+                "description": "A school year between 1900 and 2100",
+                "maximum": 2100,
+                "minimum": 1900,
+                "type": "integer",
+              },
+            },
+            "title": "EdFi.SchoolYearType",
+            "type": "object",
+          },
+          "stringIdentity": Object {
+            "description": "doc10",
+            "maxLength": 30,
+            "minLength": 20,
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "requiredCurrencyProperty",
+          "requiredDurationProperty",
+          "requiredDateProperty",
+          "requiredDatetimeProperty",
+          "requiredIntegerProperty",
+          "stringIdentity",
+          "requiredTimeProperty",
+        ],
+        "title": "EdFi.DomainEntityName",
+        "type": "object",
+      }
+    `);
+  });
 
-//   it('should be well-formed according to ajv', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     ajv.compile(entity.data.edfiApiSchema.jsonSchema);
-//   });
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+  });
 
-//   it('should be correct entityJsonPaths', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
-//       Object {
-//         "OptionalBooleanProperty": Array [
-//           "$.optionalBooleanProperty",
-//         ],
-//         "OptionalDecimalProperty": Array [
-//           "$.optionalDecimalProperty",
-//         ],
-//         "OptionalPercentProperty": Array [
-//           "$.optionalPercentProperty",
-//         ],
-//         "OptionalShortProperty": Array [
-//           "$.optionalShortProperty",
-//         ],
-//         "OptionalYear": Array [
-//           "$.optionalYear",
-//         ],
-//         "RequiredCurrencyProperty": Array [
-//           "$.requiredCurrencyProperty",
-//         ],
-//         "RequiredDateProperty": Array [
-//           "$.requiredDateProperty",
-//         ],
-//         "RequiredDatetimeProperty": Array [
-//           "$.requiredDatetimeProperty",
-//         ],
-//         "RequiredDurationProperty": Array [
-//           "$.requiredDurationProperty",
-//         ],
-//         "RequiredIntegerProperty": Array [
-//           "$.requiredIntegerProperty",
-//         ],
-//         "RequiredTimeProperty": Array [
-//           "$.requiredTimeProperty",
-//         ],
-//         "SchoolYear": Array [
-//           "$.schoolYearTypeReference.schoolYear",
-//         ],
-//         "StringIdentity": Array [
-//           "$.stringIdentity",
-//         ],
-//       }
-//     `);
-//   });
-// });
+  it('should be correct entityJsonPaths', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "OptionalBooleanProperty": Array [
+          "$.optionalBooleanProperty",
+        ],
+        "OptionalDecimalProperty": Array [
+          "$.optionalDecimalProperty",
+        ],
+        "OptionalPercentProperty": Array [
+          "$.optionalPercentProperty",
+        ],
+        "OptionalShortProperty": Array [
+          "$.optionalShortProperty",
+        ],
+        "OptionalYear": Array [
+          "$.optionalYear",
+        ],
+        "RequiredCurrencyProperty": Array [
+          "$.requiredCurrencyProperty",
+        ],
+        "RequiredDateProperty": Array [
+          "$.requiredDateProperty",
+        ],
+        "RequiredDatetimeProperty": Array [
+          "$.requiredDatetimeProperty",
+        ],
+        "RequiredDurationProperty": Array [
+          "$.requiredDurationProperty",
+        ],
+        "RequiredIntegerProperty": Array [
+          "$.requiredIntegerProperty",
+        ],
+        "RequiredTimeProperty": Array [
+          "$.requiredTimeProperty",
+        ],
+        "SchoolYear": Array [
+          "$.schoolYearTypeReference.schoolYear",
+        ],
+        "StringIdentity": Array [
+          "$.stringIdentity",
+        ],
+      }
+    `);
+  });
+});
 
-// describe('when building simple domain entity with all the simple collections', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   const domainEntityName = 'DomainEntityName';
-//   let namespace: any = null;
+describe('when building simple domain entity with all the simple collections', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'DomainEntityName';
+  let namespace: any = null;
 
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity(domainEntityName)
-//       .withDocumentation('doc')
-//       .withBooleanProperty('OptionalBooleanProperty', 'doc1', false, true)
-//       .withCurrencyProperty('RequiredCurrencyProperty', 'doc2', true, true)
-//       .withDecimalProperty('OptionalDecimalProperty', 'doc3', false, true, '2', '1')
-//       .withDurationProperty('RequiredDurationProperty', 'doc4', true, true)
-//       .withPercentProperty('OptionalPercentProperty', 'doc5', false, true)
-//       .withDateProperty('RequiredDateProperty', 'doc6', true, true)
-//       .withDatetimeProperty('RequiredDatetimeProperty', 'doc7', true, true)
-//       .withIntegerProperty('RequiredIntegerProperty', 'doc8', true, true, '10', '5')
-//       .withShortProperty('OptionalShortProperty', 'doc9', false, true)
-//       .withStringIdentity('StringIdentity', 'doc10', '30', '20')
-//       .withStringProperty('RequiredStringProperty', 'doc11', true, true, '31', '21')
-//       .withTimeProperty('RequiredTimeProperty', 'doc12', true, true)
-//       .withEnumerationProperty('SchoolYear', 'doc13', false, true)
-//       .withYearProperty('OptionalYear', 'doc14', false, true)
-//       .withEndDomainEntity()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withBooleanProperty('OptionalBooleanProperty', 'doc1', false, true)
+      .withCurrencyProperty('RequiredCurrencyProperty', 'doc2', true, true)
+      .withDecimalProperty('OptionalDecimalProperty', 'doc3', false, true, '2', '1')
+      .withDurationProperty('RequiredDurationProperty', 'doc4', true, true)
+      .withPercentProperty('OptionalPercentProperty', 'doc5', false, true)
+      .withDateProperty('RequiredDateProperty', 'doc6', true, true)
+      .withDatetimeProperty('RequiredDatetimeProperty', 'doc7', true, true)
+      .withIntegerProperty('RequiredIntegerProperty', 'doc8', true, true, '10', '5')
+      .withShortProperty('OptionalShortProperty', 'doc9', false, true)
+      .withStringIdentity('StringIdentity', 'doc10', '30', '20')
+      .withStringProperty('RequiredStringProperty', 'doc11', true, true, '31', '21')
+      .withTimeProperty('RequiredTimeProperty', 'doc12', true, true)
+      .withEnumerationProperty('SchoolYear', 'doc13', false, true)
+      .withYearProperty('OptionalYear', 'doc14', false, true)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
 
-//     namespace = metaEd.namespace.get(namespaceName);
+    namespace = metaEd.namespace.get(namespaceName);
 
-//     domainEntityReferenceEnhancer(metaEd);
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
 
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
-//       Object {
-//         "$schema": "https://json-schema.org/draft/2020-12/schema",
-//         "additionalProperties": false,
-//         "description": "doc",
-//         "properties": Object {
-//           "_ext": Object {
-//             "additionalProperties": true,
-//             "description": "optional extension collection",
-//             "properties": Object {},
-//             "type": "object",
-//           },
-//           "optionalBooleanProperties": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "optionalBooleanProperty": Object {
-//                   "description": "doc1",
-//                   "type": "boolean",
-//                 },
-//               },
-//               "required": Array [
-//                 "optionalBooleanProperty",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 0,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "optionalDecimalProperties": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "optionalDecimalProperty": Object {
-//                   "description": "doc3",
-//                   "type": "number",
-//                 },
-//               },
-//               "required": Array [
-//                 "optionalDecimalProperty",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 0,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "optionalPercentProperties": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "optionalPercentProperty": Object {
-//                   "description": "doc5",
-//                   "type": "number",
-//                 },
-//               },
-//               "required": Array [
-//                 "optionalPercentProperty",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 0,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "optionalShortProperties": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "optionalShortProperty": Object {
-//                   "description": "doc9",
-//                   "type": "integer",
-//                 },
-//               },
-//               "required": Array [
-//                 "optionalShortProperty",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 0,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "optionalYears": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "optionalYear": Object {
-//                   "description": "doc14",
-//                   "type": "integer",
-//                 },
-//               },
-//               "required": Array [
-//                 "optionalYear",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 0,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "requiredCurrencyProperties": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "requiredCurrencyProperty": Object {
-//                   "description": "doc2",
-//                   "type": "number",
-//                 },
-//               },
-//               "required": Array [
-//                 "requiredCurrencyProperty",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 1,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "requiredDateProperties": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "requiredDateProperty": Object {
-//                   "description": "doc6",
-//                   "format": "date",
-//                   "type": "string",
-//                 },
-//               },
-//               "required": Array [
-//                 "requiredDateProperty",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 1,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "requiredDatetimeProperties": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "requiredDatetimeProperty": Object {
-//                   "description": "doc7",
-//                   "format": "date-time",
-//                   "type": "string",
-//                 },
-//               },
-//               "required": Array [
-//                 "requiredDatetimeProperty",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 1,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "requiredDurationProperties": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "requiredDurationProperty": Object {
-//                   "description": "doc4",
-//                   "type": "number",
-//                 },
-//               },
-//               "required": Array [
-//                 "requiredDurationProperty",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 1,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "requiredIntegerProperties": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "requiredIntegerProperty": Object {
-//                   "description": "doc8",
-//                   "maximum": 10,
-//                   "minimum": 5,
-//                   "type": "integer",
-//                 },
-//               },
-//               "required": Array [
-//                 "requiredIntegerProperty",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 1,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "requiredStringProperties": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "requiredStringProperty": Object {
-//                   "description": "doc11",
-//                   "maxLength": 31,
-//                   "minLength": 21,
-//                   "type": "string",
-//                 },
-//               },
-//               "required": Array [
-//                 "requiredStringProperty",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 1,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "requiredTimeProperties": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "requiredTimeProperty": Object {
-//                   "description": "doc12",
-//                   "format": "time",
-//                   "type": "string",
-//                 },
-//               },
-//               "required": Array [
-//                 "requiredTimeProperty",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 1,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "schoolYearTypeReference": Object {
-//             "$schema": "https://json-schema.org/draft/2020-12/schema",
-//             "additionalProperties": false,
-//             "description": "A school year enumeration",
-//             "properties": Object {
-//               "schoolYear": Object {
-//                 "description": "A school year between 1900 and 2100",
-//                 "maximum": 2100,
-//                 "minimum": 1900,
-//                 "type": "integer",
-//               },
-//             },
-//             "title": "EdFi.SchoolYearType",
-//             "type": "object",
-//           },
-//           "stringIdentity": Object {
-//             "description": "doc10",
-//             "maxLength": 30,
-//             "minLength": 20,
-//             "type": "string",
-//           },
-//         },
-//         "required": Array [
-//           "requiredCurrencyProperties",
-//           "requiredDurationProperties",
-//           "requiredDateProperties",
-//           "requiredDatetimeProperties",
-//           "requiredIntegerProperties",
-//           "stringIdentity",
-//           "requiredStringProperties",
-//           "requiredTimeProperties",
-//         ],
-//         "title": "EdFi.DomainEntityName",
-//         "type": "object",
-//       }
-//     `);
-//   });
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {},
+            "type": "object",
+          },
+          "optionalBooleanProperties": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "optionalBooleanProperty": Object {
+                  "description": "doc1",
+                  "type": "boolean",
+                },
+              },
+              "required": Array [
+                "optionalBooleanProperty",
+              ],
+              "type": "object",
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "optionalDecimalProperties": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "optionalDecimalProperty": Object {
+                  "description": "doc3",
+                  "type": "number",
+                },
+              },
+              "required": Array [
+                "optionalDecimalProperty",
+              ],
+              "type": "object",
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "optionalPercentProperties": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "optionalPercentProperty": Object {
+                  "description": "doc5",
+                  "type": "number",
+                },
+              },
+              "required": Array [
+                "optionalPercentProperty",
+              ],
+              "type": "object",
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "optionalShortProperties": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "optionalShortProperty": Object {
+                  "description": "doc9",
+                  "type": "integer",
+                },
+              },
+              "required": Array [
+                "optionalShortProperty",
+              ],
+              "type": "object",
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "optionalYears": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "optionalYear": Object {
+                  "description": "doc14",
+                  "type": "integer",
+                },
+              },
+              "required": Array [
+                "optionalYear",
+              ],
+              "type": "object",
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "requiredCurrencyProperties": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "requiredCurrencyProperty": Object {
+                  "description": "doc2",
+                  "type": "number",
+                },
+              },
+              "required": Array [
+                "requiredCurrencyProperty",
+              ],
+              "type": "object",
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "requiredDateProperties": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "requiredDateProperty": Object {
+                  "description": "doc6",
+                  "format": "date",
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "requiredDateProperty",
+              ],
+              "type": "object",
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "requiredDatetimeProperties": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "requiredDatetimeProperty": Object {
+                  "description": "doc7",
+                  "format": "date-time",
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "requiredDatetimeProperty",
+              ],
+              "type": "object",
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "requiredDurationProperties": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "requiredDurationProperty": Object {
+                  "description": "doc4",
+                  "type": "number",
+                },
+              },
+              "required": Array [
+                "requiredDurationProperty",
+              ],
+              "type": "object",
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "requiredIntegerProperties": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "requiredIntegerProperty": Object {
+                  "description": "doc8",
+                  "maximum": 10,
+                  "minimum": 5,
+                  "type": "integer",
+                },
+              },
+              "required": Array [
+                "requiredIntegerProperty",
+              ],
+              "type": "object",
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "requiredStringProperties": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "requiredStringProperty": Object {
+                  "description": "doc11",
+                  "maxLength": 31,
+                  "minLength": 21,
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "requiredStringProperty",
+              ],
+              "type": "object",
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "requiredTimeProperties": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "requiredTimeProperty": Object {
+                  "description": "doc12",
+                  "format": "time",
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "requiredTimeProperty",
+              ],
+              "type": "object",
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "schoolYearTypeReference": Object {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "additionalProperties": false,
+            "description": "A school year enumeration",
+            "properties": Object {
+              "schoolYear": Object {
+                "description": "A school year between 1900 and 2100",
+                "maximum": 2100,
+                "minimum": 1900,
+                "type": "integer",
+              },
+            },
+            "title": "EdFi.SchoolYearType",
+            "type": "object",
+          },
+          "stringIdentity": Object {
+            "description": "doc10",
+            "maxLength": 30,
+            "minLength": 20,
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "requiredCurrencyProperties",
+          "requiredDurationProperties",
+          "requiredDateProperties",
+          "requiredDatetimeProperties",
+          "requiredIntegerProperties",
+          "stringIdentity",
+          "requiredStringProperties",
+          "requiredTimeProperties",
+        ],
+        "title": "EdFi.DomainEntityName",
+        "type": "object",
+      }
+    `);
+  });
 
-//   it('should be well-formed according to ajv', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     ajv.compile(entity.data.edfiApiSchema.jsonSchema);
-//   });
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+  });
 
-//   it('should be correct entityJsonPaths', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
-//       Object {
-//         "OptionalBooleanProperty": Array [
-//           "$.optionalBooleanProperties[*].optionalBooleanProperty",
-//         ],
-//         "OptionalDecimalProperty": Array [
-//           "$.optionalDecimalProperties[*].optionalDecimalProperty",
-//         ],
-//         "OptionalPercentProperty": Array [
-//           "$.optionalPercentProperties[*].optionalPercentProperty",
-//         ],
-//         "OptionalShortProperty": Array [
-//           "$.optionalShortProperties[*].optionalShortProperty",
-//         ],
-//         "OptionalYear": Array [
-//           "$.optionalYears[*].optionalYear",
-//         ],
-//         "RequiredCurrencyProperty": Array [
-//           "$.requiredCurrencyProperties[*].requiredCurrencyProperty",
-//         ],
-//         "RequiredDateProperty": Array [
-//           "$.requiredDateProperties[*].requiredDateProperty",
-//         ],
-//         "RequiredDatetimeProperty": Array [
-//           "$.requiredDatetimeProperties[*].requiredDatetimeProperty",
-//         ],
-//         "RequiredDurationProperty": Array [
-//           "$.requiredDurationProperties[*].requiredDurationProperty",
-//         ],
-//         "RequiredIntegerProperty": Array [
-//           "$.requiredIntegerProperties[*].requiredIntegerProperty",
-//         ],
-//         "RequiredStringProperty": Array [
-//           "$.requiredStringProperties[*].requiredStringProperty",
-//         ],
-//         "RequiredTimeProperty": Array [
-//           "$.requiredTimeProperties[*].requiredTimeProperty",
-//         ],
-//         "SchoolYear": Array [
-//           "$.schoolYearTypeReference.schoolYear",
-//         ],
-//         "StringIdentity": Array [
-//           "$.stringIdentity",
-//         ],
-//       }
-//     `);
-//   });
-// });
+  it('should be correct entityJsonPaths', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "OptionalBooleanProperty": Array [
+          "$.optionalBooleanProperties[*].optionalBooleanProperty",
+        ],
+        "OptionalDecimalProperty": Array [
+          "$.optionalDecimalProperties[*].optionalDecimalProperty",
+        ],
+        "OptionalPercentProperty": Array [
+          "$.optionalPercentProperties[*].optionalPercentProperty",
+        ],
+        "OptionalShortProperty": Array [
+          "$.optionalShortProperties[*].optionalShortProperty",
+        ],
+        "OptionalYear": Array [
+          "$.optionalYears[*].optionalYear",
+        ],
+        "RequiredCurrencyProperty": Array [
+          "$.requiredCurrencyProperties[*].requiredCurrencyProperty",
+        ],
+        "RequiredDateProperty": Array [
+          "$.requiredDateProperties[*].requiredDateProperty",
+        ],
+        "RequiredDatetimeProperty": Array [
+          "$.requiredDatetimeProperties[*].requiredDatetimeProperty",
+        ],
+        "RequiredDurationProperty": Array [
+          "$.requiredDurationProperties[*].requiredDurationProperty",
+        ],
+        "RequiredIntegerProperty": Array [
+          "$.requiredIntegerProperties[*].requiredIntegerProperty",
+        ],
+        "RequiredStringProperty": Array [
+          "$.requiredStringProperties[*].requiredStringProperty",
+        ],
+        "RequiredTimeProperty": Array [
+          "$.requiredTimeProperties[*].requiredTimeProperty",
+        ],
+        "SchoolYear": Array [
+          "$.schoolYearTypeReference.schoolYear",
+        ],
+        "StringIdentity": Array [
+          "$.stringIdentity",
+        ],
+      }
+    `);
+  });
+});
 
-// describe('when building a domain entity referencing another referencing another with identity', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   const domainEntityName = 'DomainEntityName';
-//   let namespace: any = null;
+describe('when building a domain entity referencing another referencing another with identity', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'DomainEntityName';
+  let namespace: any = null;
 
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity(domainEntityName)
-//       .withDocumentation('doc')
-//       .withStringIdentity('SectionIdentifier', 'doc', '30')
-//       .withDomainEntityIdentity('CourseOffering', 'doc')
-//       .withDomainEntityProperty('ClassPeriod', 'doc', true, true)
-//       .withEndDomainEntity()
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('SectionIdentifier', 'doc', '30')
+      .withDomainEntityIdentity('CourseOffering', 'doc')
+      .withDomainEntityProperty('ClassPeriod', 'doc', true, true)
+      .withEndDomainEntity()
 
-//       .withStartDomainEntity('CourseOffering')
-//       .withDocumentation('doc')
-//       .withStringIdentity('LocalCourseCode', 'doc', '30')
-//       .withDomainEntityIdentity('School', 'doc')
-//       .withEndDomainEntity()
+      .withStartDomainEntity('CourseOffering')
+      .withDocumentation('doc')
+      .withStringIdentity('LocalCourseCode', 'doc', '30')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
 
-//       .withStartDomainEntity('ClassPeriod')
-//       .withDocumentation('doc')
-//       .withStringIdentity('ClassPeriodName', 'doc', '30')
-//       .withDomainEntityIdentity('School', 'doc')
-//       .withEndDomainEntity()
+      .withStartDomainEntity('ClassPeriod')
+      .withDocumentation('doc')
+      .withStringIdentity('ClassPeriodName', 'doc', '30')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
 
-//       .withStartDomainEntity('School')
-//       .withDocumentation('doc')
-//       .withStringIdentity('SchoolId', 'doc', '30')
-//       .withEndDomainEntity()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withStringIdentity('SchoolId', 'doc', '30')
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
 
-//     namespace = metaEd.namespace.get(namespaceName);
+    namespace = metaEd.namespace.get(namespaceName);
 
-//     domainEntityReferenceEnhancer(metaEd);
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
 
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
-//       Object {
-//         "$schema": "https://json-schema.org/draft/2020-12/schema",
-//         "additionalProperties": false,
-//         "description": "doc",
-//         "properties": Object {
-//           "_ext": Object {
-//             "additionalProperties": true,
-//             "description": "optional extension collection",
-//             "properties": Object {},
-//             "type": "object",
-//           },
-//           "classPeriods": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "classPeriodReference": Object {
-//                   "additionalProperties": false,
-//                   "properties": Object {
-//                     "classPeriodName": Object {
-//                       "description": "doc",
-//                       "maxLength": 30,
-//                       "type": "string",
-//                     },
-//                     "schoolId": Object {
-//                       "description": "doc",
-//                       "maxLength": 30,
-//                       "type": "string",
-//                     },
-//                   },
-//                   "required": Array [
-//                     "classPeriodName",
-//                     "schoolId",
-//                   ],
-//                   "type": "object",
-//                 },
-//               },
-//               "required": Array [
-//                 "classPeriodReference",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 1,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "courseOfferingReference": Object {
-//             "additionalProperties": false,
-//             "properties": Object {
-//               "localCourseCode": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//               "schoolId": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "localCourseCode",
-//               "schoolId",
-//             ],
-//             "type": "object",
-//           },
-//           "sectionIdentifier": Object {
-//             "description": "doc",
-//             "maxLength": 30,
-//             "type": "string",
-//           },
-//         },
-//         "required": Array [
-//           "sectionIdentifier",
-//           "courseOfferingReference",
-//           "classPeriods",
-//         ],
-//         "title": "EdFi.DomainEntityName",
-//         "type": "object",
-//       }
-//     `);
-//   });
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {},
+            "type": "object",
+          },
+          "classPeriods": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "classPeriodReference": Object {
+                  "additionalProperties": false,
+                  "properties": Object {
+                    "classPeriodName": Object {
+                      "description": "doc",
+                      "maxLength": 30,
+                      "type": "string",
+                    },
+                    "schoolId": Object {
+                      "description": "doc",
+                      "maxLength": 30,
+                      "type": "string",
+                    },
+                  },
+                  "required": Array [
+                    "classPeriodName",
+                    "schoolId",
+                  ],
+                  "type": "object",
+                },
+              },
+              "required": Array [
+                "classPeriodReference",
+              ],
+              "type": "object",
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "courseOfferingReference": Object {
+            "additionalProperties": false,
+            "properties": Object {
+              "localCourseCode": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+              "schoolId": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "localCourseCode",
+              "schoolId",
+            ],
+            "type": "object",
+          },
+          "sectionIdentifier": Object {
+            "description": "doc",
+            "maxLength": 30,
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "sectionIdentifier",
+          "courseOfferingReference",
+          "classPeriods",
+        ],
+        "title": "EdFi.DomainEntityName",
+        "type": "object",
+      }
+    `);
+  });
 
-//   it('should be well-formed according to ajv', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     ajv.compile(entity.data.edfiApiSchema.jsonSchema);
-//   });
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+  });
 
-//   it('should be correct entityJsonPaths', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
-//       Object {
-//         ".ClassPeriodName": Array [
-//           "$.classPeriods[*].classPeriodReference.classPeriodName",
-//         ],
-//         ".LocalCourseCode": Array [
-//           "$.courseOfferingReference.localCourseCode",
-//         ],
-//         ".SchoolId": Array [
-//           "$.courseOfferingReference.schoolId",
-//           "$.classPeriods[*].classPeriodReference.schoolId",
-//         ],
-//         "SectionIdentifier": Array [
-//           "$.sectionIdentifier",
-//         ],
-//       }
-//     `);
-//   });
-// });
+  it('should be correct entityJsonPaths', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "ClassPeriod.ClassPeriodName": Array [
+          "$.classPeriods[*].classPeriodReference.classPeriodName",
+        ],
+        "ClassPeriod.SchoolId": Array [
+          "$.classPeriods[*].classPeriodReference.schoolId",
+        ],
+        "CourseOffering.LocalCourseCode": Array [
+          "$.courseOfferingReference.localCourseCode",
+        ],
+        "CourseOffering.SchoolId": Array [
+          "$.courseOfferingReference.schoolId",
+        ],
+        "SectionIdentifier": Array [
+          "$.sectionIdentifier",
+        ],
+      }
+    `);
+  });
+});
 
-// describe('when building a domain entity referencing CourseOffering with an implicit merge between School and Session.School', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   const domainEntityName = 'DomainEntityName';
-//   let namespace: any = null;
+describe('when building a domain entity referencing CourseOffering with an implicit merge between School and Session.School', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'DomainEntityName';
+  let namespace: any = null;
 
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDomainEntity(domainEntityName)
-//       .withDocumentation('doc')
-//       .withStringIdentity('SectionIdentifier', 'doc', '30')
-//       .withDomainEntityIdentity('CourseOffering', 'doc')
-//       .withEndDomainEntity()
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('SectionIdentifier', 'doc', '30')
+      .withDomainEntityIdentity('CourseOffering', 'doc')
+      .withEndDomainEntity()
 
-//       .withStartDomainEntity('CourseOffering')
-//       .withDocumentation('doc')
-//       .withStringIdentity('LocalCourseCode', 'doc', '30')
-//       .withDomainEntityIdentity('School', 'doc')
-//       .withDomainEntityIdentity('Session', 'doc')
-//       .withEndDomainEntity()
+      .withStartDomainEntity('CourseOffering')
+      .withDocumentation('doc')
+      .withStringIdentity('LocalCourseCode', 'doc', '30')
+      .withDomainEntityIdentity('School', 'doc')
+      .withDomainEntityIdentity('Session', 'doc')
+      .withEndDomainEntity()
 
-//       .withStartDomainEntity('Session')
-//       .withDocumentation('doc')
-//       .withStringIdentity('SessionName', 'doc', '30')
-//       .withEnumerationIdentity('SchoolYear', 'doc')
-//       .withDomainEntityIdentity('School', 'doc')
-//       .withEndDomainEntity()
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withStringIdentity('SessionName', 'doc', '30')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
 
-//       .withStartDomainEntity('School')
-//       .withDocumentation('doc')
-//       .withStringIdentity('SchoolId', 'doc', '30')
-//       .withEndDomainEntity()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withStringIdentity('SchoolId', 'doc', '30')
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
 
-//     namespace = metaEd.namespace.get(namespaceName);
+    namespace = metaEd.namespace.get(namespaceName);
 
-//     domainEntityReferenceEnhancer(metaEd);
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
 
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
-//       Object {
-//         "$schema": "https://json-schema.org/draft/2020-12/schema",
-//         "additionalProperties": false,
-//         "description": "doc",
-//         "properties": Object {
-//           "_ext": Object {
-//             "additionalProperties": true,
-//             "description": "optional extension collection",
-//             "properties": Object {},
-//             "type": "object",
-//           },
-//           "courseOfferingReference": Object {
-//             "additionalProperties": false,
-//             "properties": Object {
-//               "localCourseCode": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//               "schoolId": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//               "schoolYear": Object {
-//                 "description": "A school year between 1900 and 2100",
-//                 "maximum": 2100,
-//                 "minimum": 1900,
-//                 "type": "integer",
-//               },
-//               "sessionName": Object {
-//                 "description": "doc",
-//                 "maxLength": 30,
-//                 "type": "string",
-//               },
-//             },
-//             "required": Array [
-//               "localCourseCode",
-//               "schoolId",
-//               "schoolYear",
-//               "sessionName",
-//             ],
-//             "type": "object",
-//           },
-//           "sectionIdentifier": Object {
-//             "description": "doc",
-//             "maxLength": 30,
-//             "type": "string",
-//           },
-//         },
-//         "required": Array [
-//           "sectionIdentifier",
-//           "courseOfferingReference",
-//         ],
-//         "title": "EdFi.DomainEntityName",
-//         "type": "object",
-//       }
-//     `);
-//   });
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {},
+            "type": "object",
+          },
+          "courseOfferingReference": Object {
+            "additionalProperties": false,
+            "properties": Object {
+              "localCourseCode": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+              "schoolId": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+              "schoolYear": Object {
+                "description": "A school year between 1900 and 2100",
+                "maximum": 2100,
+                "minimum": 1900,
+                "type": "integer",
+              },
+              "sessionName": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "localCourseCode",
+              "schoolId",
+              "schoolYear",
+              "sessionName",
+            ],
+            "type": "object",
+          },
+          "sectionIdentifier": Object {
+            "description": "doc",
+            "maxLength": 30,
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "sectionIdentifier",
+          "courseOfferingReference",
+        ],
+        "title": "EdFi.DomainEntityName",
+        "type": "object",
+      }
+    `);
+  });
 
-//   it('should be well-formed according to ajv', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     ajv.compile(entity.data.edfiApiSchema.jsonSchema);
-//   });
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+  });
 
-//   it('should be correct entityJsonPaths', () => {
-//     const entity = namespace.entity.domainEntity.get(domainEntityName);
-//     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
-//       Object {
-//         ".LocalCourseCode": Array [
-//           "$.courseOfferingReference.localCourseCode",
-//         ],
-//         ".School": Array [
-//           "$.courseOfferingReference.schoolId",
-//         ],
-//         ".School.SchoolId": Array [
-//           "$.courseOfferingReference.schoolId",
-//         ],
-//         ".SchoolId": Array [
-//           "$.courseOfferingReference.schoolId",
-//         ],
-//         ".SchoolYear": Array [
-//           "$.courseOfferingReference.schoolYear",
-//         ],
-//         ".SessionName": Array [
-//           "$.courseOfferingReference.sessionName",
-//         ],
-//         "SectionIdentifier": Array [
-//           "$.sectionIdentifier",
-//         ],
-//       }
-//     `);
-//   });
-// });
+  it('should be correct entityJsonPaths', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "CourseOffering.LocalCourseCode": Array [
+          "$.courseOfferingReference.localCourseCode",
+        ],
+        "CourseOffering.School": Array [
+          "$.courseOfferingReference.schoolId",
+        ],
+        "CourseOffering.School.SchoolId": Array [
+          "$.courseOfferingReference.schoolId",
+        ],
+        "CourseOffering.SchoolId": Array [
+          "$.courseOfferingReference.schoolId",
+        ],
+        "CourseOffering.SchoolYear": Array [
+          "$.courseOfferingReference.schoolYear",
+        ],
+        "CourseOffering.SessionName": Array [
+          "$.courseOfferingReference.sessionName",
+        ],
+        "SectionIdentifier": Array [
+          "$.sectionIdentifier",
+        ],
+      }
+    `);
+  });
+});
 
 // describe('when building domain entity with nested choice and inline commons', () => {
 //   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();

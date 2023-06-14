@@ -1,4 +1,4 @@
-import { EntityProperty, TopLevelEntity } from '@edfi/metaed-core';
+import { EntityProperty, TopLevelEntity, isReferentialProperty } from '@edfi/metaed-core';
 import {
   ReferenceElement,
   ReferenceComponent,
@@ -93,10 +93,14 @@ export function flattenedIdentityPropertiesFrom(identityProperties: EntityProper
   const referenceElementsWithPaths: ReferenceElementsWithPaths = new Map();
 
   identityProperties.forEach((identityProperty) => {
+    const initialPropertyPath = (
+      isReferentialProperty(identityProperty) ? identityProperty.fullPropertyName : ''
+    ) as PropertyPath;
+
     flattenReferenceElementsFromComponent(
       identityProperty.data.edfiApiSchema.referenceComponent,
-      '' as PropertyPath,
-      [],
+      initialPropertyPath,
+      initialPropertyPath === '' ? [] : [initialPropertyPath],
       referenceElementsWithPaths,
     );
   });

@@ -100,6 +100,30 @@ describe('when demonstrating key unification via entity referencing two entities
     expect(apiMapping?.flattenedIdentityProperties[2].identityProperty.fullPropertyName).toBe('SectionIdentifier');
   });
 
+  it('should have correct property paths in Section flattened identity properties', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(section);
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "CourseOffering",
+        "CourseOffering.LocalCourseCode",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "CourseOffering",
+        "CourseOffering.School",
+        "CourseOffering.School.SchoolId",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[2].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SectionIdentifier",
+      ]
+    `);
+  });
+
   it('should not have any descriptor property mappings in Section', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(section);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
@@ -142,6 +166,23 @@ describe('when demonstrating key unification via entity referencing two entities
     expect(apiMapping?.descriptorCollectedProperties).toHaveLength(0);
   });
 
+  it('should have correct property paths in CourseOffering flattened identity properties', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(courseOffering);
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "LocalCourseCode",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "School",
+        "School.SchoolId",
+      ]
+    `);
+  });
+
   it('should have School in ClassPeriod reference groups', () => {
     const classPeriodEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(classPeriod);
     const apiMapping = classPeriodEntity?.data.edfiApiSchema.apiMapping;
@@ -178,6 +219,23 @@ describe('when demonstrating key unification via entity referencing two entities
     expect(apiMapping?.descriptorCollectedProperties).toHaveLength(0);
   });
 
+  it('should have correct property paths in ClassPeriod flattened identity properties', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(classPeriod);
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "ClassPeriodName",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "School",
+        "School.SchoolId",
+      ]
+    `);
+  });
+
   it('should no reference groups in School', () => {
     const schoolEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(school);
     const apiMapping = schoolEntity?.data.edfiApiSchema.apiMapping;
@@ -199,6 +257,17 @@ describe('when demonstrating key unification via entity referencing two entities
 
     expect(apiMapping?.flattenedIdentityProperties).toHaveLength(1);
     expect(apiMapping?.flattenedIdentityProperties[0].identityProperty.fullPropertyName).toBe('SchoolId');
+  });
+
+  it('should have correct property paths in School flattened identity properties', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(school);
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SchoolId",
+      ]
+    `);
   });
 
   it('should not have any descriptor property mappings in School', () => {
