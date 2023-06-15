@@ -1,5 +1,20 @@
-import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
+import {
+  getAllEntitiesOfType,
+  MetaEdEnvironment,
+  EnhancerResult,
+  TopLevelEntity,
+  isReferentialProperty,
+  ReferentialProperty,
+  MergeDirective,
+  EntityProperty,
+} from '@edfi/metaed-core';
+import invariant from 'ts-invariant';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
+import { JsonPath, PropertyPath } from '../model/BrandedTypes';
+
+function mergeDirectivePathStringsToPath(segments: string[]): PropertyPath {
+  return segments.join('.') as PropertyPath;
+}
 
 /**
  * Creates EqualityConstraints from entity merge directives using EntityJsonPaths to find the source and
@@ -11,9 +26,27 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const { entityJsonPaths, equalityConstraints } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
       // find properties on entity with merge directives
-      // read them
-      // look up paths in entityJsonPaths
-      // results go in equalityConstraints, one per jsonpath
+      (entity as TopLevelEntity).properties.forEach((property: EntityProperty) => {
+        if (isReferentialProperty(property)) {
+          const referentialProperty: ReferentialProperty = property as ReferentialProperty;
+          referentialProperty.mergeDirectives.forEach((mergeDirective: MergeDirective) => {
+            const sourceJsonPaths: JsonPath[] =
+              entityJsonPaths[mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)];
+            const targetJsonPaths: JsonPath[] =
+              entityJsonPaths[mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)];
+            invariant(
+              sourceJsonPaths.length === targetJsonPaths.length,
+              'Invariant failed in EqualityConstraintEnhancer: source and target JsonPath lengths not equal',
+            );
+            sourceJsonPaths.forEach((sourceJsonPath: JsonPath, matchingTargetJsonPathIndex: number) => {
+              equalityConstraints.push({
+                sourceJsonPath,
+                targetJsonPath: targetJsonPaths[matchingTargetJsonPathIndex],
+              });
+            });
+          });
+        }
+      });
     },
   );
 

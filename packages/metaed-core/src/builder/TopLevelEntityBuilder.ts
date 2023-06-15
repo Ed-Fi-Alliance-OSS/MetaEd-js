@@ -849,7 +849,6 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
       sourceMapFrom(context);
   }
 
-  // @ts-ignore
   enterMergeDirective(context: MetaEdGrammar.MergeDirectiveContext) {
     if (this.currentProperty === NoEntityProperty) return;
     if (context.exception) return;
