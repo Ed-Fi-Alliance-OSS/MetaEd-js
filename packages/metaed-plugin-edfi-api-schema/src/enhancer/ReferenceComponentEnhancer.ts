@@ -1,8 +1,3 @@
-// SPDX-License-Identifier: Apache-2.0
-// Licensed to the Ed-Fi Alliance under one or more agreements.
-// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
-// See the LICENSE and NOTICES files in the project root for more information.
-
 // may be a candidate for future addition to metaed-plugin-edfi-unified-advanced
 import { EnhancerResult, MetaEdEnvironment, ReferentialProperty, EntityProperty, getAllProperties } from '@edfi/metaed-core';
 import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';

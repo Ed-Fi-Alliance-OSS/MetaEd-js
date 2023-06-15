@@ -1,8 +1,3 @@
-// SPDX-License-Identifier: Apache-2.0
-// Licensed to the Ed-Fi Alliance under one or more agreements.
-// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
-// See the LICENSE and NOTICES files in the project root for more information.
-
 /* eslint-disable no-use-before-define */
 
 import {
@@ -18,7 +13,8 @@ import {
   ShortProperty,
 } from '@edfi/metaed-core';
 import { invariant } from 'ts-invariant';
-import type { EntityApiSchemaData, EntityJsonPaths } from '../model/EntityApiSchemaData';
+import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
+import type { EntityJsonPaths } from '../model/EntityJsonPaths';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import {
   newSchemaRoot,
@@ -568,6 +564,11 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
 
     schemaRoot.properties[schemaObjectBaseName] = schemaProperty;
     addRequired(isSchemaPropertyRequired(property, propertyModifier), schemaRoot, schemaObjectBaseName);
+
+    // ensure JsonPaths are in sorted order as the EntityJsonPaths type requires
+    Object.values(entityJsonPaths).forEach((jsonPaths: JsonPath[]) => {
+      jsonPaths.sort();
+    });
   });
 
   // eslint-disable-next-line no-underscore-dangle

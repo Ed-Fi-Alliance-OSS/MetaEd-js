@@ -1,4 +1,4 @@
-import { EntityProperty, TopLevelEntity, isReferentialProperty } from '@edfi/metaed-core';
+import type { EntityProperty, TopLevelEntity } from '@edfi/metaed-core';
 import {
   ReferenceElement,
   ReferenceComponent,
@@ -6,11 +6,11 @@ import {
   isReferenceGroup,
   isReferenceElement,
 } from '../model/ReferenceComponent';
-import { CollectedProperty } from '../model/CollectedProperty';
-import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
-import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
-import { PropertyPath } from '../model/BrandedTypes';
+import type { CollectedProperty } from '../model/CollectedProperty';
+import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
+import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
+import type { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
+import type { PropertyPath } from '../model/BrandedTypes';
 
 type ReferenceElementsWithPaths = Map<ReferenceElement, PropertyPath[]>;
 
@@ -94,7 +94,9 @@ export function flattenedIdentityPropertiesFrom(identityProperties: EntityProper
 
   identityProperties.forEach((identityProperty) => {
     const initialPropertyPath = (
-      isReferentialProperty(identityProperty) ? identityProperty.fullPropertyName : ''
+      identityProperty.type === 'association' || identityProperty.type === 'domainEntity'
+        ? identityProperty.fullPropertyName
+        : ''
     ) as PropertyPath;
 
     flattenReferenceElementsFromComponent(

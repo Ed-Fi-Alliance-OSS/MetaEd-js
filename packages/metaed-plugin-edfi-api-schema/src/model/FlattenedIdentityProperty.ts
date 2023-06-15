@@ -18,6 +18,7 @@ import { PropertyPath } from './BrandedTypes';
  * Section.CourseOffering.Session.School
  * Section.CourseOffering.Session
  * Section.CourseOffering
+ * Section
  */
 export type FlattenedIdentityProperty = {
   identityProperty: EntityProperty;

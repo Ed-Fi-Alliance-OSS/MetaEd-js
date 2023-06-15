@@ -1,8 +1,3 @@
-// SPDX-License-Identifier: Apache-2.0
-// Licensed to the Ed-Fi Alliance under one or more agreements.
-// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
-// See the LICENSE and NOTICES files in the project root for more information.
-
 import Ajv from 'ajv/dist/2020';
 import addFormatsTo from 'ajv-formats';
 import {
@@ -2596,9 +2591,6 @@ describe('when building domain entity with reference to domain entity with schoo
         "Calendar.SchoolYear": Array [
           "$.calendarReference.schoolYear",
         ],
-        "Calendar.SchoolYear.SchoolYear": Array [
-          "$.calendarReference.schoolYear",
-        ],
         "SchoolId": Array [
           "$.schoolId",
         ],
@@ -2607,262 +2599,262 @@ describe('when building domain entity with reference to domain entity with schoo
   });
 });
 
-// describe('when building a descriptor', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
+describe('when building a descriptor', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
 
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartDescriptor('GradeLevel')
-//       .withDocumentation('doc')
-//       .withEndDescriptor()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new DescriptorBuilder(metaEd, []));
-//     namespace = metaEd.namespace.get(namespaceName);
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDescriptor('GradeLevel')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []));
+    namespace = metaEd.namespace.get(namespaceName);
 
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
 
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.descriptor.get('GradeLevel');
-//     expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
-//       Object {
-//         "$schema": "https://json-schema.org/draft/2020-12/schema",
-//         "additionalProperties": false,
-//         "description": "An Ed-Fi Descriptor",
-//         "properties": Object {
-//           "codeValue": Object {
-//             "description": "The descriptor code value",
-//             "type": "string",
-//           },
-//           "description": Object {
-//             "description": "The descriptor description",
-//             "type": "string",
-//           },
-//           "namespace": Object {
-//             "description": "The descriptor namespace as a URI",
-//             "type": "string",
-//           },
-//           "shortDescription": Object {
-//             "description": "The descriptor short description",
-//             "type": "string",
-//           },
-//         },
-//         "required": Array [
-//           "namespace",
-//           "codeValue",
-//           "shortDescription",
-//         ],
-//         "title": "EdFi.Descriptor",
-//         "type": "object",
-//       }
-//     `);
-//   });
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.descriptor.get('GradeLevel');
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "An Ed-Fi Descriptor",
+        "properties": Object {
+          "codeValue": Object {
+            "description": "The descriptor code value",
+            "type": "string",
+          },
+          "description": Object {
+            "description": "The descriptor description",
+            "type": "string",
+          },
+          "namespace": Object {
+            "description": "The descriptor namespace as a URI",
+            "type": "string",
+          },
+          "shortDescription": Object {
+            "description": "The descriptor short description",
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "namespace",
+          "codeValue",
+          "shortDescription",
+        ],
+        "title": "EdFi.Descriptor",
+        "type": "object",
+      }
+    `);
+  });
 
-//   it('should be well-formed according to ajv', () => {
-//     const entity = namespace.entity.descriptor.get('GradeLevel');
-//     ajv.compile(entity.data.edfiApiSchema.jsonSchema);
-//   });
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.descriptor.get('GradeLevel');
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+  });
 
-//   it('should be correct entityJsonPaths', () => {
-//     const entity = namespace.entity.descriptor.get('GradeLevel');
-//     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`Object {}`);
-//   });
-// });
+  it('should be correct entityJsonPaths', () => {
+    const entity = namespace.entity.descriptor.get('GradeLevel');
+    expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`Object {}`);
+  });
+});
 
-// describe('when building a school year enumeration', () => {
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
+describe('when building a school year enumeration', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
 
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
-//       .withStartEnumeration('SchoolYear')
-//       .withDocumentation('doc')
-//       .withEnumerationItem('2022')
-//       .withEndEnumeration()
-//       .withEndNamespace()
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new EnumerationBuilder(metaEd, []));
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartEnumeration('SchoolYear')
+      .withDocumentation('doc')
+      .withEnumerationItem('2022')
+      .withEndEnumeration()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new EnumerationBuilder(metaEd, []));
 
-//     namespace = metaEd.namespace.get(namespaceName);
+    namespace = metaEd.namespace.get(namespaceName);
 
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
 
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
-//     expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
-//       Object {
-//         "$schema": "https://json-schema.org/draft/2020-12/schema",
-//         "additionalProperties": false,
-//         "description": "A school year enumeration",
-//         "properties": Object {
-//           "schoolYear": Object {
-//             "description": "A school year between 1900 and 2100",
-//             "maximum": 2100,
-//             "minimum": 1900,
-//             "type": "integer",
-//           },
-//         },
-//         "title": "EdFi.SchoolYearType",
-//         "type": "object",
-//       }
-//     `);
-//   });
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "A school year enumeration",
+        "properties": Object {
+          "schoolYear": Object {
+            "description": "A school year between 1900 and 2100",
+            "maximum": 2100,
+            "minimum": 1900,
+            "type": "integer",
+          },
+        },
+        "title": "EdFi.SchoolYearType",
+        "type": "object",
+      }
+    `);
+  });
 
-//   it('should be well-formed according to ajv', () => {
-//     const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
-//     ajv.compile(entity.data.edfiApiSchema.jsonSchema);
-//   });
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+  });
 
-//   it('should be correct entityJsonPaths', () => {
-//     const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
-//     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`Object {}`);
-//   });
-// });
+  it('should be correct entityJsonPaths', () => {
+    const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
+    expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`Object {}`);
+  });
+});
 
-// describe('when building a schema for studentEducationOrganizationAssociation', () => {
-//   // The core problem addressed by this test is in RND-456: The CohortYears schoolYearTypeReference was being interpreted as
-//   // an integer, rather than as a SchoolYearTypeEnumeration. This test builds the minimum components of
-//   // studentEducationOrganizationAssociation required to duplicate the issue.
+describe('when building a schema for studentEducationOrganizationAssociation', () => {
+  // The core problem addressed by this test is in RND-456: The CohortYears schoolYearTypeReference was being interpreted as
+  // an integer, rather than as a SchoolYearTypeEnumeration. This test builds the minimum components of
+  // studentEducationOrganizationAssociation required to duplicate the issue.
 
-//   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-//   const namespaceName = 'EdFi';
-//   let namespace: any = null;
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
 
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace(namespaceName)
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
 
-//       .withStartDomainEntity('StudentCohort')
-//       .withDocumentation('doc')
-//       .withCommonProperty('CohortYear', '', false, true)
-//       .withStringIdentity('StudentUniqueId', '', '100')
-//       .withEndDomainEntity()
+      .withStartDomainEntity('StudentCohort')
+      .withDocumentation('doc')
+      .withCommonProperty('CohortYear', '', false, true)
+      .withStringIdentity('StudentUniqueId', '', '100')
+      .withEndDomainEntity()
 
-//       .withStartEnumeration('SchoolYear')
-//       .withDocumentation('doc')
-//       .withEnumerationItem('2022')
-//       .withEndEnumeration()
+      .withStartEnumeration('SchoolYear')
+      .withDocumentation('doc')
+      .withEnumerationItem('2022')
+      .withEndEnumeration()
 
-//       .withStartCommon('CohortYear')
-//       .withDocumentation('doc')
-//       .withEnumerationIdentity('SchoolYear', '')
-//       .withEndCommon()
+      .withStartCommon('CohortYear')
+      .withDocumentation('doc')
+      .withEnumerationIdentity('SchoolYear', '')
+      .withEndCommon()
 
-//       .withEndNamespace()
+      .withEndNamespace()
 
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new EnumerationBuilder(metaEd, []))
-//       .sendToListener(new CommonBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new EnumerationBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
 
-//     namespace = metaEd.namespace.get(namespaceName);
+    namespace = metaEd.namespace.get(namespaceName);
 
-//     domainEntityReferenceEnhancer(metaEd);
-//     enumerationReferenceEnhancer(metaEd);
-//     commonReferenceEnhancer(metaEd);
+    domainEntityReferenceEnhancer(metaEd);
+    enumerationReferenceEnhancer(metaEd);
+    commonReferenceEnhancer(metaEd);
 
-//     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
-//     entityApiSchemaDataSetupEnhancer(metaEd);
-//     referenceComponentEnhancer(metaEd);
-//     apiPropertyMappingEnhancer(metaEd);
-//     propertyCollectingEnhancer(metaEd);
-//     apiEntityMappingEnhancer(metaEd);
-//     enhance(metaEd);
-//   });
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
 
-//   it('should be a correct schema', () => {
-//     const entity = namespace.entity.domainEntity.get('StudentCohort');
-//     expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
-//       Object {
-//         "$schema": "https://json-schema.org/draft/2020-12/schema",
-//         "additionalProperties": false,
-//         "description": "doc",
-//         "properties": Object {
-//           "_ext": Object {
-//             "additionalProperties": true,
-//             "description": "optional extension collection",
-//             "properties": Object {},
-//             "type": "object",
-//           },
-//           "cohortYears": Object {
-//             "items": Object {
-//               "additionalProperties": false,
-//               "properties": Object {
-//                 "schoolYearTypeReference": Object {
-//                   "$schema": "https://json-schema.org/draft/2020-12/schema",
-//                   "additionalProperties": false,
-//                   "description": "A school year enumeration",
-//                   "properties": Object {
-//                     "schoolYear": Object {
-//                       "description": "A school year between 1900 and 2100",
-//                       "maximum": 2100,
-//                       "minimum": 1900,
-//                       "type": "integer",
-//                     },
-//                   },
-//                   "title": "EdFi.SchoolYearType",
-//                   "type": "object",
-//                 },
-//               },
-//               "required": Array [
-//                 "schoolYearTypeReference",
-//               ],
-//               "type": "object",
-//             },
-//             "minItems": 0,
-//             "type": "array",
-//             "uniqueItems": false,
-//           },
-//           "studentUniqueId": Object {
-//             "description": "",
-//             "maxLength": 100,
-//             "type": "string",
-//           },
-//         },
-//         "required": Array [
-//           "studentUniqueId",
-//         ],
-//         "title": "EdFi.StudentCohort",
-//         "type": "object",
-//       }
-//     `);
-//   });
+  it('should be a correct schema', () => {
+    const entity = namespace.entity.domainEntity.get('StudentCohort');
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {},
+            "type": "object",
+          },
+          "cohortYears": Object {
+            "items": Object {
+              "additionalProperties": false,
+              "properties": Object {
+                "schoolYearTypeReference": Object {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "additionalProperties": false,
+                  "description": "A school year enumeration",
+                  "properties": Object {
+                    "schoolYear": Object {
+                      "description": "A school year between 1900 and 2100",
+                      "maximum": 2100,
+                      "minimum": 1900,
+                      "type": "integer",
+                    },
+                  },
+                  "title": "EdFi.SchoolYearType",
+                  "type": "object",
+                },
+              },
+              "required": Array [
+                "schoolYearTypeReference",
+              ],
+              "type": "object",
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": false,
+          },
+          "studentUniqueId": Object {
+            "description": "",
+            "maxLength": 100,
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "studentUniqueId",
+        ],
+        "title": "EdFi.StudentCohort",
+        "type": "object",
+      }
+    `);
+  });
 
-//   it('should be well-formed according to ajv', () => {
-//     const entity = namespace.entity.domainEntity.get('StudentCohort');
-//     ajv.compile(entity.data.edfiApiSchema.jsonSchema);
-//   });
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.domainEntity.get('StudentCohort');
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+  });
 
-//   it('should be correct entityJsonPaths', () => {
-//     const entity = namespace.entity.domainEntity.get('StudentCohort');
-//     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
-//       Object {
-//         "CohortYear.CohortYear": Array [
-//           "$.cohortYears[*].schoolYear",
-//         ],
-//         "StudentUniqueId": Array [
-//           "$.studentUniqueId",
-//         ],
-//       }
-//     `);
-//   });
-// });
+  it('should be correct entityJsonPaths', () => {
+    const entity = namespace.entity.domainEntity.get('StudentCohort');
+    expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "CohortYear.SchoolYear": Array [
+          "$.cohortYears[*].schoolYearTypeReference.schoolYear",
+        ],
+        "StudentUniqueId": Array [
+          "$.studentUniqueId",
+        ],
+      }
+    `);
+  });
+});

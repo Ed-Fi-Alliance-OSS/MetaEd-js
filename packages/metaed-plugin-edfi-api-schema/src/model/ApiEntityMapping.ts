@@ -1,9 +1,8 @@
 import deepFreeze from 'deep-freeze';
-import { TopLevelEntity } from '@edfi/metaed-core';
-import { CollectedProperty } from './CollectedProperty';
-import { ReferenceComponent, ReferenceGroup } from './ReferenceComponent';
-import { EqualityConstraint } from './EqualityConstraint';
-import { FlattenedIdentityProperty } from './FlattenedIdentityProperty';
+import type { TopLevelEntity } from '@edfi/metaed-core';
+import type { CollectedProperty } from './CollectedProperty';
+import type { ReferenceComponent, ReferenceGroup } from './ReferenceComponent';
+import type { FlattenedIdentityProperty } from './FlattenedIdentityProperty';
 
 /**
  * API shape metadata for a MetaEd entity.
@@ -41,8 +40,6 @@ export type ApiEntityMapping = {
    * Example 2: If the entity is GradingPeriod (not a subclass), assignableTo would be null.
    */
   superclass: TopLevelEntity | null;
-
-  equalityConstraints: EqualityConstraint[];
 };
 
 export function newApiEntityMapping(): ApiEntityMapping {
@@ -52,7 +49,6 @@ export function newApiEntityMapping(): ApiEntityMapping {
     referenceGroups: [],
     descriptorCollectedProperties: [],
     superclass: null,
-    equalityConstraints: [],
   };
 }
 

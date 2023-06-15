@@ -1,8 +1,3 @@
-// SPDX-License-Identifier: Apache-2.0
-// Licensed to the Ed-Fi Alliance under one or more agreements.
-// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
-// See the LICENSE and NOTICES files in the project root for more information.
-
 import { Enhancer } from '@edfi/metaed-core';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../model/EntityApiSchemaData';
@@ -14,6 +9,7 @@ import { enhance as subclassApiEntityMappingEnhancer } from './SubclassApiEntity
 import { enhance as propertyCollectingEnhancer } from './PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from './SubclassPropertyCollectingEnhancer';
 import { enhance as jsonSchemaEnhancer } from './JsonSchemaEnhancer';
+import { enhance as equalityConstraintEnhancer } from './EqualityConstraintEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -27,5 +23,6 @@ export function enhancerList(): Enhancer[] {
     apiEntityMappingEnhancer,
     subclassApiEntityMappingEnhancer,
     jsonSchemaEnhancer,
+    equalityConstraintEnhancer,
   ];
 }

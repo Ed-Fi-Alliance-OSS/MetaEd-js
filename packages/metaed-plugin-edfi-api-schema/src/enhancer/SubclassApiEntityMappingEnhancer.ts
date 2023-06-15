@@ -1,8 +1,3 @@
-// SPDX-License-Identifier: Apache-2.0
-// Licensed to the Ed-Fi Alliance under one or more agreements.
-// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
-// See the LICENSE and NOTICES files in the project root for more information.
-
 import { MetaEdEnvironment, EnhancerResult, EntityProperty, getAllEntitiesOfType, TopLevelEntity } from '@edfi/metaed-core';
 
 import { ApiEntityMapping, NoApiEntityMapping } from '../model/ApiEntityMapping';
@@ -13,7 +8,7 @@ import {
   descriptorCollectedPropertiesFrom,
   superclassFor,
 } from './ApiEntityMappingEnhancerBase';
-import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
+import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 
 /**
  * Returns properties sorted by name ascending, optionally with the given property removed
@@ -51,7 +46,6 @@ function buildApiEntityMappingForSubclass(entity: TopLevelEntity): ApiEntityMapp
     referenceGroups: referenceGroupsFrom(combinedProperties),
     descriptorCollectedProperties: descriptorCollectedPropertiesFrom(entity),
     superclass: superclassFor(entity),
-    equalityConstraints: [],
   };
 }
 
