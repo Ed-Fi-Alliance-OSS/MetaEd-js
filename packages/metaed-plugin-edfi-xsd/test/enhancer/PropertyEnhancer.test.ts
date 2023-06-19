@@ -61,6 +61,8 @@ describe('when enhancing core integer property', (): void => {
     ...newIntegerProperty(),
     metaEdName: propertyName,
     namespace,
+    hasRestriction: true,
+    hasBigHint: true,
     data: { edfiXsd: {} as any },
   };
 
@@ -73,7 +75,7 @@ describe('when enhancing core integer property', (): void => {
 
   it('should have correct xsdName and xsdType', (): void => {
     expect(property.data.edfiXsd.xsdName).toBe(propertyName);
-    expect(property.data.edfiXsd.xsdType).toBe('xs:int');
+    expect(property.data.edfiXsd.xsdType).toBe('xs:long');
   });
 });
 
