@@ -23,6 +23,6 @@ export function enhancerList(): Enhancer[] {
     apiEntityMappingEnhancer,
     subclassApiEntityMappingEnhancer,
     jsonSchemaEnhancer,
-    // equalityConstraintEnhancer, - Commented out while working on METAED-1468
+    // equalityConstraintEnhancer, *** Commented out while working on METAED-1468
   ];
 }
