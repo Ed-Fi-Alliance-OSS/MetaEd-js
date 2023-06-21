@@ -4,6 +4,7 @@ import { html as beautify } from 'js-beautify';
 import fs from 'fs';
 import path from 'path';
 import semver from 'semver';
+import { prerelease } from 'semver';
 import { SemVer, MetaEdEnvironment, Namespace, versionSatisfies, PluginEnvironment, V5OrGreater } from '@edfi/metaed-core';
 import { edfiXsdRepositoryForNamespace } from '../enhancer/EnhancerHelper';
 import { EdFiXsdEntityRepository } from '../model/EdFiXsdEntityRepository';
@@ -63,7 +64,7 @@ function isTargetTechnologyV5OrGreater(metaEd: MetaEdEnvironment): boolean {
 }
 
 export function formatVersionForSchema(metaEd: MetaEdEnvironment): string {
-  const prereleaseInfix = '-pre';
+  const prereleaseInfix = 'pre';
   const version: SemVer = metaEd.dataStandardVersion;
   if (isTargetTechnologyV5OrGreater(metaEd)) return version;
   if (!semver.valid(version)) return '';
@@ -74,11 +75,12 @@ export function formatVersionForSchema(metaEd: MetaEdEnvironment): string {
   // METAED-835 - Patch version isn't represented in schema version
   const patch = '0';
   // If prerelease includes -pre in its name, that part is ignored.
-  const prerelease: string =
-    semverified.prerelease.length && semverified.prerelease.includes(prereleaseInfix)
+  const prereleaseComponent: ReadonlyArray<string | number> = prerelease(semverified) ?? [];
+  const prereleaseValue: string =
+    prereleaseComponent.length > 0 && prereleaseComponent[0] === prereleaseInfix
       ? `${semverified.prerelease.join('.')}`
       : '';
-  return `${major}${minor}${patch}${prerelease}`;
+  return `${major}${minor}${patch}${prereleaseValue}`;
 }
 
 // METAED-997
