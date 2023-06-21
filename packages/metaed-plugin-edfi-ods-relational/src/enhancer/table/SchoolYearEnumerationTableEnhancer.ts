@@ -7,7 +7,7 @@ import {
   newTableNameGroup,
   newTableNameComponent,
   newTableExistenceReason,
-  addColumns,
+  addColumnsWithoutSort,
 } from '../../model/database/Table';
 import { newColumn, StringColumn, newColumnNameComponent } from '../../model/database/Column';
 import { ColumnTransformUnchanged } from '../../model/database/ColumnTransform';
@@ -15,8 +15,7 @@ import { ColumnType } from '../../model/database/ColumnType';
 
 const enhancerName = 'SchoolYearEnumerationTableEnhancer';
 
-// @ts-ignore - "metaEd" is never read
-function build(metaEd: MetaEdEnvironment, entity: SchoolYearEnumeration): Table {
+function build(_metaEd: MetaEdEnvironment, entity: SchoolYearEnumeration): Table {
   const { namespace, documentation } = entity;
   const table: Table = {
     ...newTable(),
@@ -47,7 +46,7 @@ function build(metaEd: MetaEdEnvironment, entity: SchoolYearEnumeration): Table 
     isAggregateRootTable: true,
   };
 
-  addColumns(
+  addColumnsWithoutSort(
     table,
     [
       {

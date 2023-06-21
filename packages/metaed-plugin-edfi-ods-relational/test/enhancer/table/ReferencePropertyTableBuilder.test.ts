@@ -10,6 +10,8 @@ import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
 import { Table } from '../../../src/model/database/Table';
 import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
 
+const targetTechnologyVersion = '6.1.0';
+
 describe('when building domain entity property table that is not an identity, required, optional, or a collection', (): void => {
   const tables: Table[] = [];
   let table: Table;
@@ -70,6 +72,7 @@ describe('when building domain entity property table that is not an identity, re
       primaryKeys,
       BuildStrategyDefault,
       tables,
+      targetTechnologyVersion,
       null,
     );
   });
@@ -155,6 +158,7 @@ describe('when building identity domain entity property table', (): void => {
       primaryKeys,
       BuildStrategyDefault,
       tables,
+      targetTechnologyVersion,
       null,
     );
   });
@@ -245,6 +249,7 @@ describe('when building required domain entity property table', (): void => {
       primaryKeys,
       BuildStrategyDefault,
       tables,
+      targetTechnologyVersion,
       null,
     );
   });
@@ -335,6 +340,7 @@ describe('when building optional domain entity property table', (): void => {
       primaryKeys,
       BuildStrategyDefault,
       tables,
+      targetTechnologyVersion,
       null,
     );
   });
@@ -356,7 +362,7 @@ describe('when building optional domain entity property table', (): void => {
 describe('when building collection domain entity property table', (): void => {
   const domainEntityName = 'DomainEntityName';
   const domainEntityPkName = 'domainEntityPkName';
-  const entityPkName = 'EntityPkName';
+  const entityPkName = 'entityPkName';
   const tableSchema = 'tableschema';
   const tableName = 'TableName';
   const tables: Table[] = [];
@@ -430,6 +436,7 @@ describe('when building collection domain entity property table', (): void => {
       primaryKeys,
       BuildStrategyDefault,
       tables,
+      targetTechnologyVersion,
       null,
     );
   });

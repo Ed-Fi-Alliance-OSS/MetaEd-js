@@ -1,6 +1,7 @@
 import * as R from 'ramda';
 import semver from 'semver';
-import { SemVer } from './MetaEdEnvironment';
+import type { MetaEdEnvironment, SemVer } from './MetaEdEnvironment';
+import type { PluginEnvironment } from './plugin/PluginEnvironment';
 
 export const nextMacroTask = async (): Promise<void> => new Promise((resolve) => setImmediate(resolve));
 
@@ -84,4 +85,8 @@ export function normalizeDescriptorSuffix(base: string) {
  */
 export function normalizeEnumerationSuffix(base: string) {
   return normalizeSuffix(base, type);
+}
+
+export function targetTechnologyVersionFor(pluginShortName: string, metaEd: MetaEdEnvironment) {
+  return (metaEd.plugin.get(pluginShortName) as PluginEnvironment).targetTechnologyVersion;
 }

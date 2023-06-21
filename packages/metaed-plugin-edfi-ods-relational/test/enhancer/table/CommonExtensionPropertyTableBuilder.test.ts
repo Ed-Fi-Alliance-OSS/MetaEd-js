@@ -6,6 +6,7 @@ import {
   newIntegerProperty,
   newNamespace,
   addEntityForNamespace,
+  SemVer,
 } from '@edfi/metaed-core';
 import {
   Common,
@@ -24,6 +25,8 @@ import { Column } from '../../../src/model/database/Column';
 import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
 import { Table } from '../../../src/model/database/Table';
 import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
+
+const targetTechnologyVersion: SemVer = '6.1.0';
 
 describe('when building common property extension table', (): void => {
   const tableName = 'TableName';
@@ -148,6 +151,7 @@ describe('when building common property extension table', (): void => {
       primaryKeys,
       BuildStrategyDefault,
       tables,
+      targetTechnologyVersion,
       null,
     );
   });

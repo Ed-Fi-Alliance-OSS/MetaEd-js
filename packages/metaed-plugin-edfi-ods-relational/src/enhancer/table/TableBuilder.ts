@@ -1,4 +1,4 @@
-import { EntityProperty } from '@edfi/metaed-core';
+import { EntityProperty, SemVer } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
 import { Table } from '../../model/database/Table';
@@ -11,6 +11,7 @@ export interface TableBuilder {
     primaryKeys: Column[],
     buildStrategy: BuildStrategy,
     tables: Table[],
+    targetTechnologyVersion: SemVer,
     parentIsRequired: boolean | null,
   ): void;
 }

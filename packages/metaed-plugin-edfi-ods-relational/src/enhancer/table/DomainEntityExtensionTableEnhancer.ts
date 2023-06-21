@@ -5,6 +5,8 @@ import {
   versionSatisfies,
   NoNamespace,
   V3OrGreater,
+  targetTechnologyVersionFor,
+  SemVer,
 } from '@edfi/metaed-core';
 import { EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, TopLevelEntity } from '@edfi/metaed-core';
 import { addTables } from './TableCreatingEntityEnhancerBase';
@@ -29,6 +31,7 @@ const enhancerName = 'DomainEntityExtensionTableEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (!versionSatisfies(metaEd.dataStandardVersion, V3OrGreater)) return { enhancerName, success: true };
+  const targetTechnologyVersion: SemVer = targetTechnologyVersionFor('edfiOdsRelational', metaEd);
 
   getEntitiesOfTypeForNamespaces(Array.from(metaEd.namespace.values()), 'domainEntityExtension')
     .map((x: ModelBase) => asTopLevelEntity(x))
@@ -105,7 +108,15 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
             : NoTableNameGroup,
         );
         const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(property);
-        tableBuilder.buildTables(property, tableStrategy, primaryKeys, BuildStrategyDefault, tables, null);
+        tableBuilder.buildTables(
+          property,
+          tableStrategy,
+          primaryKeys,
+          BuildStrategyDefault,
+          tables,
+          targetTechnologyVersion,
+          null,
+        );
       });
 
       entity.data.edfiOdsRelational.odsTables = tables;

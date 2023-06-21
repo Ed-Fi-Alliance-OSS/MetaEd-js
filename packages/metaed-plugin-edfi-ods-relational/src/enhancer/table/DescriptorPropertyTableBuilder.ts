@@ -1,7 +1,13 @@
 import * as R from 'ramda';
-import { EntityProperty, ReferentialProperty } from '@edfi/metaed-core';
+import { EntityProperty, ReferentialProperty, SemVer } from '@edfi/metaed-core';
 import { asReferentialProperty } from '@edfi/metaed-core';
-import { addColumns, addForeignKey, newTable, newTableExistenceReason } from '../../model/database/Table';
+import {
+  addColumnsWithSort,
+  addColumnsWithoutSort,
+  addForeignKey,
+  newTable,
+  newTableExistenceReason,
+} from '../../model/database/Table';
 import { joinTableNamer } from './TableNaming';
 import { ColumnTransform, ColumnTransformPrimaryKey, ColumnTransformUnchanged } from '../../model/database/ColumnTransform';
 import { ForeignKeyStrategy } from '../../model/database/ForeignKeyStrategy';
@@ -22,6 +28,7 @@ export function descriptorPropertyTableBuilder(factory: ColumnCreatorFactory): T
       parentPrimaryKeys: Column[],
       buildStrategy: BuildStrategy,
       tables: Table[],
+      targetTechnologyVersion: SemVer,
       parentIsRequired: boolean | null,
     ): void {
       const descriptor: ReferentialProperty = asReferentialProperty(property);
@@ -29,7 +36,11 @@ export function descriptorPropertyTableBuilder(factory: ColumnCreatorFactory): T
 
       if (!descriptor.data.edfiOdsRelational.odsIsCollection) {
         const descriptorColumn: Column = R.head(columnCreator.createColumns(descriptor, buildStrategy));
-        addColumns(parentTableStrategy.table, [descriptorColumn], buildStrategy.leafColumns(ColumnTransformUnchanged));
+        addColumnsWithoutSort(
+          parentTableStrategy.table,
+          [descriptorColumn],
+          buildStrategy.leafColumns(ColumnTransformUnchanged),
+        );
 
         const foreignKey: ForeignKey = createForeignKey(
           property,
@@ -73,10 +84,11 @@ export function descriptorPropertyTableBuilder(factory: ColumnCreatorFactory): T
           ),
         );
         addForeignKey(joinTable, parentForeignKey);
-        addColumns(
+        addColumnsWithSort(
           joinTable,
           parentPrimaryKeys,
           ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
+          targetTechnologyVersion,
         );
 
         const columns: Column[] = columnCreator.createColumns(descriptor, buildStrategy.columnNamerIgnoresRoleName());
@@ -89,7 +101,7 @@ export function descriptorPropertyTableBuilder(factory: ColumnCreatorFactory): T
           ForeignKeyStrategy.foreignColumnIdChange(`${descriptor.data.edfiOdsRelational.odsDescriptorifiedBaseName}Id`),
         );
         addForeignKey(joinTable, foreignKey);
-        addColumns(joinTable, columns, ColumnTransformPrimaryKey);
+        addColumnsWithSort(joinTable, columns, ColumnTransformPrimaryKey, targetTechnologyVersion);
       }
     },
   };

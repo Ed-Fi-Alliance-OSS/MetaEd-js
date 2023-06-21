@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { asTopLevelEntity, getEntitiesOfTypeForNamespaces } from '@edfi/metaed-core';
+import { asTopLevelEntity, getEntitiesOfTypeForNamespaces, targetTechnologyVersionFor } from '@edfi/metaed-core';
 import { EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, TopLevelEntity } from '@edfi/metaed-core';
 import { addForeignKey } from '../../model/database/Table';
 import { addTables, buildMainTable, buildTablesFromProperties } from './TableCreatingEntityEnhancerBase';
@@ -43,8 +43,7 @@ function addForeignKeyToPrimaryKeyRename(table: Table, entity: TopLevelEntity): 
       .map((x: Column) => x.columnId);
 
     const baseColumnProperty: EntityProperty = R.head(
-      // @ts-ignore - baseEntity can't be null/undefined due to setting above
-      entity.baseEntity.data.edfiOdsRelational.odsProperties.filter(
+      (entity.baseEntity as TopLevelEntity).data.edfiOdsRelational.odsProperties.filter(
         (property: EntityProperty) => property.data.edfiOdsRelational.odsName === keyRenameProperty.baseKeyName,
       ),
     );
@@ -74,7 +73,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       mainTable.existenceReason.isSubclassTable = true;
       tables.push(mainTable);
       addForeignKeyToPrimaryKeyRename(mainTable, entity);
-      buildTablesFromProperties(entity, mainTable, tables);
+      buildTablesFromProperties(entity, mainTable, tables, targetTechnologyVersionFor('edfiOdsRelational', metaEd));
       entity.data.edfiOdsRelational.odsTables = tables;
       addTables(metaEd, tables);
     });

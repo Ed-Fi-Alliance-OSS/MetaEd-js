@@ -1,4 +1,4 @@
-import { DomainEntity, Descriptor, DescriptorProperty, IntegerProperty } from '@edfi/metaed-core';
+import { DomainEntity, Descriptor, DescriptorProperty, IntegerProperty, SemVer } from '@edfi/metaed-core';
 import { newDomainEntity, newDescriptor, newDescriptorProperty, newIntegerProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
@@ -9,6 +9,8 @@ import { Column } from '../../../src/model/database/Column';
 import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
 import { Table } from '../../../src/model/database/Table';
 import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
+
+const targetTechnologyVersion: SemVer = '6.1.0';
 
 describe('when building descriptor property table', (): void => {
   const descriptorName = 'DescriptorName';
@@ -83,6 +85,7 @@ describe('when building descriptor property table', (): void => {
       primaryKeys,
       BuildStrategyDefault,
       tables,
+      targetTechnologyVersion,
       null,
     );
   });
@@ -186,6 +189,7 @@ describe('when building collection descriptor property table', (): void => {
       primaryKeys,
       BuildStrategyDefault,
       tables,
+      targetTechnologyVersion,
       null,
     );
   });

@@ -1,8 +1,8 @@
 import * as R from 'ramda';
-import { asReferentialProperty } from '@edfi/metaed-core';
+import { SemVer, asReferentialProperty } from '@edfi/metaed-core';
 import { EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
 import {
-  addColumns,
+  addColumnsWithSort,
   addForeignKey,
   newTable,
   newTableExistenceReason,
@@ -27,6 +27,7 @@ const referenceColumnBuilder =
     parentTableStrategy: TableStrategy,
     buildStrategy: BuildStrategy,
     factory: ColumnCreatorFactory,
+    targetTechnologyVersion: SemVer,
   ) =>
   (columnStrategy: ColumnTransform): void => {
     const primaryKeys: Column[] = collectPrimaryKeys(referenceProperty.referencedEntity, buildStrategy, factory);
@@ -36,7 +37,7 @@ const referenceColumnBuilder =
       addMergedReferenceContext(pk, pk.referenceContext);
       addSourceEntityProperty(pk, referenceProperty);
     });
-    addColumns(parentTableStrategy.table, primaryKeys, columnStrategy);
+    addColumnsWithSort(parentTableStrategy.table, primaryKeys, columnStrategy, targetTechnologyVersion);
   };
 
 export function referencePropertyTableBuilder(factory: ColumnCreatorFactory): TableBuilder {
@@ -47,6 +48,7 @@ export function referencePropertyTableBuilder(factory: ColumnCreatorFactory): Ta
       parentPrimaryKeys: Column[],
       buildStrategy: BuildStrategy,
       tables: Table[],
+      targetTechnologyVersion: SemVer,
       parentIsRequired: boolean | null,
     ): void {
       const referenceProperty: ReferentialProperty = asReferentialProperty(property);
@@ -58,7 +60,13 @@ export function referencePropertyTableBuilder(factory: ColumnCreatorFactory): Ta
         );
       }
 
-      const buildColumns = referenceColumnBuilder(referenceProperty, parentTableStrategy, strategy, factory);
+      const buildColumns = referenceColumnBuilder(
+        referenceProperty,
+        parentTableStrategy,
+        strategy,
+        factory,
+        targetTechnologyVersion,
+      );
       if (referenceProperty.isPartOfIdentity) {
         buildColumns(ColumnTransform.primaryKeyRoleNameCollapsible(referenceProperty));
       }
@@ -138,15 +146,21 @@ export function referencePropertyTableBuilder(factory: ColumnCreatorFactory): Ta
         ),
       );
       addForeignKey(joinTable, foreignKey);
-      addColumns(
+      addColumnsWithSort(
         joinTable,
         parentPrimaryKeys,
         ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
+        targetTechnologyVersion,
       );
 
       const primaryKeys: Column[] = collectPrimaryKeys(referenceProperty.referencedEntity, strategy, factory);
       primaryKeys.forEach((pk: Column) => addSourceEntityProperty(pk, property));
-      addColumns(joinTable, primaryKeys, ColumnTransform.primaryKeyRoleName(referenceProperty));
+      addColumnsWithSort(
+        joinTable,
+        primaryKeys,
+        ColumnTransform.primaryKeyRoleName(referenceProperty),
+        targetTechnologyVersion,
+      );
     },
   };
 }

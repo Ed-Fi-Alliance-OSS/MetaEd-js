@@ -1,4 +1,4 @@
-import { EntityProperty, MetaEdEnvironment, TopLevelEntity } from '@edfi/metaed-core';
+import { EntityProperty, MetaEdEnvironment, SemVer, TopLevelEntity } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from './BuildStrategy';
 import { cloneColumn } from '../../model/database/Column';
 import { collectPrimaryKeys } from './PrimaryKeyCollector';
@@ -13,19 +13,31 @@ import { TableBuilder } from './TableBuilder';
 
 // Build top level and sub level tables for the given top level entity,
 // including columns for each property and cascading through special property types as needed
-export function buildTablesFromProperties(entity: TopLevelEntity, mainTable: Table, tables: Table[]): void {
+export function buildTablesFromProperties(
+  entity: TopLevelEntity,
+  mainTable: Table,
+  tables: Table[],
+  targetTechnologyVersion: SemVer,
+): void {
   const primaryKeys: Column[] = collectPrimaryKeys(entity, BuildStrategyDefault, columnCreatorFactory).map((x: Column) =>
     cloneColumn(x),
   );
 
   entity.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
     const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(property);
-    tableBuilder.buildTables(property, TableStrategy.default(mainTable), primaryKeys, BuildStrategyDefault, tables, null);
+    tableBuilder.buildTables(
+      property,
+      TableStrategy.default(mainTable),
+      primaryKeys,
+      BuildStrategyDefault,
+      tables,
+      targetTechnologyVersion,
+      null,
+    );
   });
 }
 
-// @ts-ignore - "metaEd" is never read
-export function buildMainTable(metaEd: MetaEdEnvironment, entity: TopLevelEntity, aggregateRootTable: boolean): Table {
+export function buildMainTable(_metaEd: MetaEdEnvironment, entity: TopLevelEntity, aggregateRootTable: boolean): Table {
   const mainTable: Table = {
     ...newTable(),
     namespace: entity.namespace,

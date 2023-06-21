@@ -1,6 +1,6 @@
 import { EnhancerResult, MetaEdEnvironment, Namespace, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
 import { tableEntities, Column, Table, escapeSqlSingleQuote } from '@edfi/metaed-plugin-edfi-ods-relational';
-import { hasAlternateKeys, getAlternateKeys, getUniqueIndexes, getAllColumns, getPrimaryKeys } from './ColumnOrdering';
+import { hasAlternateKeys, getAlternateKeys, getPrimaryKeys, getUniqueIndexes, getAllColumns } from './ColumnOrdering';
 
 // Sets sorted table properties for use by the generator template
 const enhancerName = 'TemplateSpecificTablePropertyEnhancer';

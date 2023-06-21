@@ -1,9 +1,9 @@
 import * as R from 'ramda';
-import { asCommonProperty } from '@edfi/metaed-core';
+import { SemVer, asCommonProperty } from '@edfi/metaed-core';
 import { EntityProperty, MergeDirective, ReferentialProperty, Namespace } from '@edfi/metaed-core';
 import {
   TableNameGroup,
-  addColumns,
+  addColumnsWithSort,
   addForeignKey,
   newTable,
   newTableNameComponent,
@@ -34,6 +34,7 @@ function buildJoinTables(
   joinTableSchema: string,
   tables: Table[],
   tableFactory: TableBuilderFactory,
+  targetTechnologyVersion: SemVer,
   parentIsRequired: boolean | null,
 ): void {
   const joinTable: Table = {
@@ -65,7 +66,15 @@ function buildJoinTables(
 
   property.referencedEntity.data.edfiOdsRelational.odsProperties.forEach((referenceProperty: EntityProperty) => {
     const tableBuilder: TableBuilder = tableFactory.tableBuilderFor(referenceProperty);
-    tableBuilder.buildTables(referenceProperty, TableStrategy.default(joinTable), primaryKeys, strategy, tables, null);
+    tableBuilder.buildTables(
+      referenceProperty,
+      TableStrategy.default(joinTable),
+      primaryKeys,
+      strategy,
+      tables,
+      targetTechnologyVersion,
+      null,
+    );
   });
 
   const foreignKey: ForeignKey = createForeignKey(
@@ -77,7 +86,12 @@ function buildJoinTables(
     ForeignKeyStrategy.foreignColumnCascade(true, property.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates),
   );
   addForeignKey(joinTable, foreignKey);
-  addColumns(joinTable, parentPrimaryKeys, ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId));
+  addColumnsWithSort(
+    joinTable,
+    parentPrimaryKeys,
+    ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
+    targetTechnologyVersion,
+  );
 }
 
 export function commonPropertyTableBuilder(
@@ -91,6 +105,7 @@ export function commonPropertyTableBuilder(
       parentPrimaryKeys: Column[],
       buildStrategy: BuildStrategy,
       tables: Table[],
+      targetTechnologyVersion: SemVer,
       parentIsRequired: boolean | null,
     ): void {
       const commonProperty = asCommonProperty(property);
@@ -136,6 +151,7 @@ export function commonPropertyTableBuilder(
         parentTableStrategy.table.schema,
         tables,
         tableFactory,
+        targetTechnologyVersion,
         parentIsRequired,
       );
     },

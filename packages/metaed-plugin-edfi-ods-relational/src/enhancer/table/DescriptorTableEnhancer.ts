@@ -1,7 +1,7 @@
-import { getEntitiesOfTypeForNamespaces } from '@edfi/metaed-core';
+import { SemVer, getEntitiesOfTypeForNamespaces, targetTechnologyVersionFor } from '@edfi/metaed-core';
 import { Descriptor, EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, Namespace } from '@edfi/metaed-core';
 import {
-  addColumns,
+  addColumnsWithoutSort,
   addForeignKey,
   getPrimaryKeys,
   newTable,
@@ -89,7 +89,7 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
     isNullable: false,
     description: PRIMARY_KEY_DESCRIPTOR,
   };
-  addColumns(mainTable, [primaryKey], ColumnTransformUnchanged);
+  addColumnsWithoutSort(mainTable, [primaryKey], ColumnTransformUnchanged);
 
   const coreNamespace: Namespace | undefined = metaEd.namespace.get('EdFi');
   // Bail out if core namespace isn't defined
@@ -133,7 +133,7 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
       description: PRIMARY_KEY_DESCRIPTOR,
     };
 
-    addColumns(mainTable, [mapTypeColumn], ColumnTransformUnchanged);
+    addColumnsWithoutSort(mainTable, [mapTypeColumn], ColumnTransformUnchanged);
 
     const mapTypeForeignKey: ForeignKey = createForeignKeyUsingSourceReference(
       {
@@ -151,9 +151,19 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
 
   const primaryKeys: Column[] = collectPrimaryKeys(descriptor, BuildStrategyDefault, columnCreatorFactory);
   primaryKeys.push(primaryKey);
+
+  const targetTechnologyVersion: SemVer = targetTechnologyVersionFor('edfiOdsRelational', metaEd);
   descriptor.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
     const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(property);
-    tableBuilder.buildTables(property, TableStrategy.default(mainTable), primaryKeys, BuildStrategyDefault, tables, null);
+    tableBuilder.buildTables(
+      property,
+      TableStrategy.default(mainTable),
+      primaryKeys,
+      BuildStrategyDefault,
+      tables,
+      targetTechnologyVersion,
+      null,
+    );
   });
 
   return tables;

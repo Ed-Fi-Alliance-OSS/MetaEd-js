@@ -1,6 +1,6 @@
 import { EnhancerResult, MetaEdEnvironment, Namespace, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
 import {
-  addColumns,
+  addColumnsWithoutSort,
   newTable,
   newTableNameComponent,
   newTableExistenceReason,
@@ -52,7 +52,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     includeComputedDescriptorUriColumn: isVersion7,
   };
 
-  addColumns(
+  addColumnsWithoutSort(
     descriptorTable,
     [
       {

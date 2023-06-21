@@ -53,8 +53,7 @@ export class ColumnTransform {
     return ColumnTransform.myTransformTopOfStack(invertStrategies, originalColumns);
   }
 
-  // @ts-ignore,
-  transformSingle(column: Column): void {
+  transformSingle(_column: Column): void {
     /* noop */
   }
 }

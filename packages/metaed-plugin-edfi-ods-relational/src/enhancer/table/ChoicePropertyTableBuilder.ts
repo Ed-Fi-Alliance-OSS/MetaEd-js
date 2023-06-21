@@ -1,4 +1,4 @@
-import { EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
+import { EntityProperty, MergeDirective, ReferentialProperty, SemVer } from '@edfi/metaed-core';
 import { asReferentialProperty } from '@edfi/metaed-core';
 import { cloneColumn } from '../../model/database/Column';
 import { BuildStrategy } from './BuildStrategy';
@@ -16,8 +16,8 @@ export function choicePropertyTableBuilder(factory: TableBuilderFactory): TableB
       parentPrimaryKeys: Column[],
       buildStrategy: BuildStrategy,
       tables: Table[],
-      // @ts-ignore
-      parentIsRequired: boolean | null,
+      targetTechnologyVersion: SemVer,
+      _parentIsRequired: boolean | null,
     ): void {
       const choice: ReferentialProperty = asReferentialProperty(property);
       let strategy: BuildStrategy = buildStrategy;
@@ -37,6 +37,7 @@ export function choicePropertyTableBuilder(factory: TableBuilderFactory): TableB
           parentPrimaryKeys.map((pk) => cloneColumn(pk)),
           strategy.makeLeafColumnsNullable(),
           tables,
+          targetTechnologyVersion,
           choice.isRequired,
         );
       });

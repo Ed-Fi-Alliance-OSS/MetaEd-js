@@ -1,7 +1,13 @@
 import * as R from 'ramda';
-import { EntityProperty, MergeDirective } from '@edfi/metaed-core';
+import { EntityProperty, MergeDirective, SemVer } from '@edfi/metaed-core';
 import { isSharedProperty, asReferentialProperty } from '@edfi/metaed-core';
-import { addColumns, addForeignKey, newTable, newTableExistenceReason } from '../../model/database/Table';
+import {
+  addColumnsWithSort,
+  addColumnsWithoutSort,
+  addForeignKey,
+  newTable,
+  newTableExistenceReason,
+} from '../../model/database/Table';
 import { joinTableNamer } from './TableNaming';
 import { ColumnTransform, ColumnTransformPrimaryKey, ColumnTransformUnchanged } from '../../model/database/ColumnTransform';
 import { ForeignKeyStrategy } from '../../model/database/ForeignKeyStrategy';
@@ -22,6 +28,7 @@ export function simplePropertyTableBuilder(factory: ColumnCreatorFactory): Table
       parentPrimaryKeys: Column[],
       buildStrategy: BuildStrategy,
       tables: Table[],
+      targetTechnologyVersion: SemVer,
       parentIsRequired: boolean | null,
     ): void {
       const columnCreator: ColumnCreator = factory.columnCreatorFor(property);
@@ -69,12 +76,13 @@ export function simplePropertyTableBuilder(factory: ColumnCreatorFactory): Table
         );
         addForeignKey(joinTable, foreignKey);
 
-        addColumns(
+        addColumnsWithSort(
           joinTable,
           parentPrimaryKeys,
           ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
+          targetTechnologyVersion,
         );
-        addColumns(
+        addColumnsWithoutSort(
           joinTable,
           columnCreator.createColumns(property, strategy.columnNamerIgnoresRoleName()),
           ColumnTransformPrimaryKey,
@@ -82,7 +90,7 @@ export function simplePropertyTableBuilder(factory: ColumnCreatorFactory): Table
 
         tables.push(joinTable);
       } else {
-        addColumns(
+        addColumnsWithoutSort(
           parentTableStrategy.table,
           columnCreator.createColumns(property, strategy),
           strategy.leafColumns(ColumnTransformUnchanged),

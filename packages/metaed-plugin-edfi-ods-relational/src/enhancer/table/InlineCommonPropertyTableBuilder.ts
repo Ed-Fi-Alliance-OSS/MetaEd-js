@@ -1,4 +1,4 @@
-import { EntityProperty, ReferentialProperty } from '@edfi/metaed-core';
+import { EntityProperty, ReferentialProperty, SemVer } from '@edfi/metaed-core';
 import { asReferentialProperty } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
@@ -15,8 +15,8 @@ export function inlineCommonPropertyTableBuilder(factory: TableBuilderFactory): 
       parentPrimaryKeys: Column[],
       buildStrategy: BuildStrategy,
       tables: Table[],
-      // @ts-ignore
-      parentIsRequired: boolean | null,
+      targetTechnologyVersion: SemVer,
+      _parentIsRequired: boolean | null,
     ): void {
       const inlineCommonProperty: ReferentialProperty = asReferentialProperty(property);
 
@@ -33,6 +33,7 @@ export function inlineCommonPropertyTableBuilder(factory: TableBuilderFactory): 
           parentPrimaryKeys,
           strategy,
           tables,
+          targetTechnologyVersion,
           inlineCommonProperty.isRequired,
         );
       });

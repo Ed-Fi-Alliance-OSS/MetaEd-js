@@ -107,6 +107,9 @@ export function newColumn(): Column {
   };
 }
 
+/**
+ * Returns a shallow clone of the given column.
+ */
 export function cloneColumn(column: Column): Column {
   return {
     ...column,

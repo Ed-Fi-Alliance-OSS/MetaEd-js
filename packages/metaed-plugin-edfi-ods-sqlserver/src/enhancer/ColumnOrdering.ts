@@ -24,8 +24,16 @@ export function getUniqueIndexes(table: Table): Column[] {
   return orderByPath(['data', 'edfiOdsSqlServer', 'columnName'])(table.columns.filter((x) => x.isUniqueIndex));
 }
 
-export function getPrimaryKeys(table: Table): Column[] {
+export function getPrimaryKeysV6dot1(table: Table): Column[] {
   return orderByPath(['data', 'edfiOdsSqlServer', 'columnName'])(table.columns.filter((x) => x.isPartOfPrimaryKey));
+}
+
+export function getPrimaryKeys(table: Table): Column[] {
+  return table.columns.filter((x) => x.isPartOfPrimaryKey);
+}
+
+export function getAllColumnsV6dot1(table: Table): Column[] {
+  return [...getPrimaryKeysV6dot1(table), ...getNonPrimaryKeys(table)];
 }
 
 export function getAllColumns(table: Table): Column[] {

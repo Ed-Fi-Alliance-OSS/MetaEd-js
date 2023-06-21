@@ -1,8 +1,8 @@
-import { asCommonProperty, getEntityFromNamespaceChain, Namespace } from '@edfi/metaed-core';
+import { asCommonProperty, getEntityFromNamespaceChain, Namespace, SemVer } from '@edfi/metaed-core';
 import { ModelBase, EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
 import {
   TableNameGroup,
-  addColumns,
+  addColumnsWithSort,
   addForeignKey,
   newTable,
   newTableNameComponent,
@@ -34,6 +34,7 @@ function buildExtensionTables(
   joinTableNamespace: Namespace,
   tables: Table[],
   tableFactory: TableBuilderFactory,
+  targetTechnologyVersion: SemVer,
 ): void {
   const commonExtension: ModelBase | null = getEntityFromNamespaceChain(
     property.metaEdName,
@@ -105,7 +106,12 @@ function buildExtensionTables(
   );
 
   addForeignKey(extensionTable, foreignKey);
-  addColumns(extensionTable, primaryKeys, ColumnTransform.primaryKeyWithNewReferenceContext(joinTableId));
+  addColumnsWithSort(
+    extensionTable,
+    primaryKeys,
+    ColumnTransform.primaryKeyWithNewReferenceContext(joinTableId),
+    targetTechnologyVersion,
+  );
 
   commonExtension.data.edfiOdsRelational.odsProperties.forEach((odsProperty: EntityProperty) => {
     const tableBuilder: TableBuilder = tableFactory.tableBuilderFor(odsProperty);
@@ -115,6 +121,7 @@ function buildExtensionTables(
       primaryKeys,
       BuildStrategyDefault,
       tables,
+      targetTechnologyVersion,
       null,
     );
   });
@@ -131,6 +138,7 @@ export function commonExtensionPropertyTableBuilder(
       parentPrimaryKeys: Column[],
       buildStrategy: BuildStrategy,
       tables: Table[],
+      targetTechnologyVersion: SemVer,
     ): void {
       const commonProperty = asCommonProperty(property);
       let strategy: BuildStrategy = buildStrategy;
@@ -174,6 +182,7 @@ export function commonExtensionPropertyTableBuilder(
         commonProperty.referencedEntity.namespace,
         tables,
         tableFactory,
+        targetTechnologyVersion,
       );
     },
   };

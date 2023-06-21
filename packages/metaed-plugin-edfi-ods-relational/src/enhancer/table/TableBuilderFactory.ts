@@ -1,5 +1,4 @@
-import { EntityProperty, PropertyType } from '@edfi/metaed-core';
-import { asCommonProperty } from '@edfi/metaed-core';
+import type { CommonProperty, EntityProperty, PropertyType } from '@edfi/metaed-core';
 import { columnCreatorFactory } from './ColumnCreatorFactory';
 import { choicePropertyTableBuilder } from './ChoicePropertyTableBuilder';
 import { commonExtensionPropertyTableBuilder } from './CommonExtensionPropertyTableBuilder';
@@ -21,7 +20,7 @@ export const tableBuilderFactory: TableBuilderFactory = {
       association: () => referencePropertyTableBuilder(columnCreatorFactory),
       choice: () => choicePropertyTableBuilder(tableBuilderFactory),
       common: () =>
-        asCommonProperty(property).isExtensionOverride
+        (property as CommonProperty).isExtensionOverride
           ? commonExtensionPropertyTableBuilder(tableBuilderFactory, columnCreatorFactory)
           : commonPropertyTableBuilder(tableBuilderFactory, columnCreatorFactory),
       descriptor: () => descriptorPropertyTableBuilder(columnCreatorFactory),

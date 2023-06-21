@@ -1,4 +1,4 @@
-import { asTopLevelEntity, getEntitiesOfTypeForNamespaces } from '@edfi/metaed-core';
+import { asTopLevelEntity, getEntitiesOfTypeForNamespaces, targetTechnologyVersionFor } from '@edfi/metaed-core';
 import { TopLevelEntity, EnhancerResult, MetaEdEnvironment, ModelBase } from '@edfi/metaed-core';
 import { addTables, buildMainTable, buildTablesFromProperties } from './TableCreatingEntityEnhancerBase';
 import { Table } from '../../model/database/Table';
@@ -12,7 +12,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const tables: Table[] = [];
       const mainTable: Table = buildMainTable(metaEd, entity, true);
       tables.push(mainTable);
-      buildTablesFromProperties(entity, mainTable, tables);
+      buildTablesFromProperties(entity, mainTable, tables, targetTechnologyVersionFor('edfiOdsRelational', metaEd));
       entity.data.edfiOdsRelational.odsTables = tables;
       addTables(metaEd, tables);
     });

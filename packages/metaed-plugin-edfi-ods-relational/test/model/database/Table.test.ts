@@ -1,7 +1,8 @@
 import { newNamespace, Namespace } from '@edfi/metaed-core';
 import {
   addColumn,
-  addColumns,
+  addColumnsWithoutSort,
+  addColumnsWithSort,
   getAllColumns,
   getColumnWithStrongestConstraint,
   getNonPrimaryKeys,
@@ -86,34 +87,140 @@ describe('when using add column', (): void => {
   });
 });
 
-describe('when using add column range', (): void => {
+describe('when using add column range without sort', (): void => {
   let table: Table;
 
   beforeAll(() => {
     table = { ...newTable(), tableId: 'TableName' };
     table.columns.push({ ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' });
 
-    addColumns(
+    addColumnsWithoutSort(
       table,
       [
-        { ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' },
-        { ...newColumn(), type: 'currency', columnId: 'CurrencyColumnName' },
-        { ...newColumn(), type: 'date', columnId: 'DateColumnName' },
-        { ...newColumn(), type: 'decimal', scale: '10', precision: '4', columnId: 'DecimalColumnName' } as DecimalColumn,
-        { ...newColumn(), type: 'duration', columnId: 'DurationColumnName' },
-        { ...newColumn(), type: 'integer', columnId: 'IntegerColumnName' },
-        { ...newColumn(), type: 'percent', columnId: 'PercentColumnName' },
-        { ...newColumn(), type: 'short', columnId: 'ShortColumnName' },
-        { ...newColumn(), type: 'string', maxLength: '100', columnId: 'StringColumnName' } as StringColumn,
-        { ...newColumn(), type: 'time', columnId: 'TimeColumnName' },
         { ...newColumn(), type: 'year', columnId: 'YearColumnName' },
+        { ...newColumn(), type: 'time', columnId: 'TimeColumnName' },
+        { ...newColumn(), type: 'string', maxLength: '100', columnId: 'StringColumnName' } as StringColumn,
+        { ...newColumn(), type: 'short', columnId: 'ShortColumnName' },
+        { ...newColumn(), type: 'percent', columnId: 'PercentColumnName' },
+        { ...newColumn(), type: 'integer', columnId: 'IntegerColumnName' },
+        { ...newColumn(), type: 'duration', columnId: 'DurationColumnName' },
+        { ...newColumn(), type: 'decimal', scale: '10', precision: '4', columnId: 'DecimalColumnName' } as DecimalColumn,
+        { ...newColumn(), type: 'date', columnId: 'DateColumnName' },
+        { ...newColumn(), type: 'currency', columnId: 'CurrencyColumnName' },
+        { ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' },
       ],
       ColumnTransformUnchanged,
     );
   });
 
   it('should add all columns except existing', (): void => {
-    expect(table.columns).toHaveLength(11);
+    expect(table.columns.map((c) => c.columnId)).toMatchInlineSnapshot(`
+      Array [
+        "YearColumnName",
+        "TimeColumnName",
+        "StringColumnName",
+        "ShortColumnName",
+        "PercentColumnName",
+        "IntegerColumnName",
+        "DurationColumnName",
+        "DecimalColumnName",
+        "DateColumnName",
+        "CurrencyColumnName",
+        "BooleanColumnName",
+      ]
+    `);
+  });
+});
+
+describe('when using add column range with sort for version <7.0.0', (): void => {
+  let table: Table;
+
+  beforeAll(() => {
+    table = { ...newTable(), tableId: 'TableName' };
+    table.columns.push({ ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' });
+
+    addColumnsWithSort(
+      table,
+      [
+        { ...newColumn(), type: 'year', columnId: 'YearColumnName' },
+        { ...newColumn(), type: 'time', columnId: 'TimeColumnName' },
+        { ...newColumn(), type: 'string', maxLength: '100', columnId: 'StringColumnName' } as StringColumn,
+        { ...newColumn(), type: 'short', columnId: 'ShortColumnName' },
+        { ...newColumn(), type: 'percent', columnId: 'PercentColumnName' },
+        { ...newColumn(), type: 'integer', columnId: 'IntegerColumnName' },
+        { ...newColumn(), type: 'duration', columnId: 'DurationColumnName' },
+        { ...newColumn(), type: 'decimal', scale: '10', precision: '4', columnId: 'DecimalColumnName' } as DecimalColumn,
+        { ...newColumn(), type: 'date', columnId: 'DateColumnName' },
+        { ...newColumn(), type: 'currency', columnId: 'CurrencyColumnName' },
+        { ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' },
+      ],
+      ColumnTransformUnchanged,
+      '6.1.0',
+    );
+  });
+
+  it('should add all columns except existing', (): void => {
+    expect(table.columns.map((c) => c.columnId)).toMatchInlineSnapshot(`
+      Array [
+        "YearColumnName",
+        "TimeColumnName",
+        "StringColumnName",
+        "ShortColumnName",
+        "PercentColumnName",
+        "IntegerColumnName",
+        "DurationColumnName",
+        "DecimalColumnName",
+        "DateColumnName",
+        "CurrencyColumnName",
+        "BooleanColumnName",
+      ]
+    `);
+  });
+});
+
+describe('when using add column range with sort for ODS/API 7.0', (): void => {
+  let table: Table;
+
+  beforeAll(() => {
+    table = { ...newTable(), tableId: 'TableName' };
+    table.columns.push({ ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' });
+
+    addColumnsWithSort(
+      table,
+      [
+        { ...newColumn(), type: 'year', columnId: 'YearColumnName' },
+        { ...newColumn(), type: 'time', columnId: 'TimeColumnName' },
+        { ...newColumn(), type: 'string', maxLength: '100', columnId: 'StringColumnName' } as StringColumn,
+        { ...newColumn(), type: 'short', columnId: 'ShortColumnName' },
+        { ...newColumn(), type: 'percent', columnId: 'PercentColumnName' },
+        { ...newColumn(), type: 'integer', columnId: 'IntegerColumnName' },
+        { ...newColumn(), type: 'duration', columnId: 'DurationColumnName' },
+        { ...newColumn(), type: 'decimal', scale: '10', precision: '4', columnId: 'DecimalColumnName' } as DecimalColumn,
+        { ...newColumn(), type: 'date', columnId: 'DateColumnName' },
+        { ...newColumn(), type: 'currency', columnId: 'CurrencyColumnName' },
+        { ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' },
+      ],
+      ColumnTransformUnchanged,
+      '7.0.0',
+    );
+  });
+
+  it('should add all columns except existing', (): void => {
+    expect(table.columns.map((c) => c.columnId)).toMatchInlineSnapshot(`
+      Array [
+        "BooleanColumnName",
+        "CurrencyColumnName",
+        "DateColumnName",
+        "DecimalColumnName",
+        "DurationColumnName",
+        "IntegerColumnName",
+        "PercentColumnName",
+        "ShortColumnName",
+        "StringColumnName",
+        "TimeColumnName",
+        "YearColumnName",
+      ]
+    `);
   });
 });
 

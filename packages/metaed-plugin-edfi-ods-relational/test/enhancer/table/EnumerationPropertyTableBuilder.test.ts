@@ -1,4 +1,4 @@
-import { DomainEntity, Enumeration, EnumerationProperty, IntegerProperty } from '@edfi/metaed-core';
+import { DomainEntity, Enumeration, EnumerationProperty, IntegerProperty, SemVer } from '@edfi/metaed-core';
 import { newDomainEntity, newEnumeration, newEnumerationProperty, newIntegerProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
@@ -9,6 +9,8 @@ import { Column } from '../../../src/model/database/Column';
 import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
 import { Table } from '../../../src/model/database/Table';
 import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
+
+const targetTechnologyVersion: SemVer = '6.1.0';
 
 describe('when building enumeration property table', (): void => {
   const enumerationName = 'EnumerationName';
@@ -84,6 +86,7 @@ describe('when building enumeration property table', (): void => {
       primaryKeys,
       BuildStrategyDefault,
       tables,
+      targetTechnologyVersion,
       null,
     );
   });
@@ -188,6 +191,7 @@ describe('when building collection enumeration property table', (): void => {
       primaryKeys,
       BuildStrategyDefault,
       tables,
+      targetTechnologyVersion,
       null,
     );
   });

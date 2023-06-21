@@ -2,13 +2,15 @@ import deepFreeze from 'deep-freeze';
 import * as R from 'ramda';
 import {
   Logger,
-  orderByProp,
   NoTopLevelEntity,
   NoNamespace,
   ModelBase,
   TopLevelEntity,
   EntityProperty,
   Namespace,
+  orderByProp,
+  SemVer,
+  versionSatisfies,
 } from '@edfi/metaed-core';
 import { columnConstraintMerge, Column, NoColumn } from './Column';
 import { ColumnTransform } from './ColumnTransform';
@@ -230,8 +232,25 @@ export function addColumn(table: Table, column: Column): void {
   table.columns.push(clone);
 }
 
-export function addColumns(table: Table, columns: Column[], strategy: ColumnTransform): void {
+export function addColumnsWithoutSort(table: Table, columns: Column[], strategy: ColumnTransform): void {
   strategy.transform(columns).forEach((column) => addColumn(table, column));
+}
+
+/**
+ * Adds columns to table. Does so in sorted order if appropriate for the ODS/API targetTechnologyVersion
+ */
+export function addColumnsWithSort(
+  table: Table,
+  columns: Column[],
+  strategy: ColumnTransform,
+  targetTechnologyVersion: SemVer,
+): void {
+  if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {
+    const sortedColumns: Column[] = orderByProp('columnId')(strategy.transform(columns));
+    sortedColumns.forEach((column) => addColumn(table, column));
+  } else {
+    strategy.transform(columns).forEach((column) => addColumn(table, column));
+  }
 }
 
 export function getPrimaryKeys(table: Table): Column[] {
