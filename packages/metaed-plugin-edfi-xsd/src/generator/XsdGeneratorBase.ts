@@ -63,6 +63,7 @@ function isTargetTechnologyV5OrGreater(metaEd: MetaEdEnvironment): boolean {
 }
 
 export function formatVersionForSchema(metaEd: MetaEdEnvironment): string {
+  const prereleaseInfix = '-pre';
   const version: SemVer = metaEd.dataStandardVersion;
   if (isTargetTechnologyV5OrGreater(metaEd)) return version;
   if (!semver.valid(version)) return '';
@@ -72,7 +73,11 @@ export function formatVersionForSchema(metaEd: MetaEdEnvironment): string {
   const minor = `${semverified.minor}`;
   // METAED-835 - Patch version isn't represented in schema version
   const patch = '0';
-  const prerelease: string = semverified.prerelease.length ? `${semverified.prerelease.join('.')}` : '';
+  // If prerelease includes -pre in its name, that part is ignored.
+  const prerelease: string =
+    semverified.prerelease.length && semverified.prerelease.includes(prereleaseInfix)
+      ? `${semverified.prerelease.join('.')}`
+      : '';
   return `${major}${minor}${patch}${prerelease}`;
 }
 
