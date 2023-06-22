@@ -31,6 +31,11 @@ export async function metaEdConsole() {
       type: 'string',
       demandOption: true,
     })
+    .option('suppressPrereleaseVersion', {
+      describe: 'Suppress the prerelease identifier "pre" in the version',
+      type: 'boolean',
+      default: true,
+    })
     .help()
     .alias('help', 'h')
     .version()
@@ -66,6 +71,7 @@ export async function metaEdConsole() {
   } else {
     // eslint-disable-next-line prefer-destructuring
     state.metaEd.dataStandardVersion = dataStandardVersions[0];
+    state.metaEd.suppressPrereleaseVersion = argv['suppressPrereleaseVersion'];
     try {
       const { failure } = await executePipeline(state);
       process.exitCode = !state.validationFailure.some((vf) => vf.category === 'error') && !failure ? 0 : 1;

@@ -25,7 +25,9 @@ Options:
                                   plugins, in semver format            [string]
   -a, --accept-license            Accept the Ed-Fi License Agreement at
                                   https://www.ed-fi.org/getting-started/license-
-                                  ed-fi-technology           [string] [required]                                  
+                                  ed-fi-technology           [string] [required]
+  --suppressPrereleaseVersion     Suppress the prerelease identifier "pre" in 
+                                  the version         [boolean] [default: true]                                  
   --help, -h                      Show help                            [boolean]
   --version, -v                   Show version number                  [boolean]
 ```
@@ -79,6 +81,8 @@ Options:
   -a, --accept-license            Accept the Ed-Fi License Agreement at
                                   https://www.ed-fi.org/getting-started/license-
                                   ed-fi-technology           [string] [required]
+   --suppressPrereleaseVersion    Suppress the prerelease identifier "pre" in 
+                                  the version         [boolean] [default: true]
   -h, --help                      Show help                            [boolean]
   -v, --version                   Show version number                  [boolean]
 
@@ -133,7 +137,8 @@ directory paths. Example for ODS/API 3.0.0 and Data Standard 3.0:
         "projectPaths": ["./node_modules/@edfi/ed-fi-model-3.0/" ],
         "pluginConfigDirectories": [],
         "defaultPluginTechVersion": "3.0.0",
-        "allianceMode": true
+        "allianceMode": true,
+        "suppressPrereleaseVersion": true,
     }
 }
 ```
@@ -156,7 +161,8 @@ model (not in the `node_modules` directory).
         "projectPaths": ["./ed-fi-model-3.3b/" ],
         "pluginConfigDirectories": [],
         "defaultPluginTechVersion": "5.3.0",
-        "allianceMode": true
+        "allianceMode": true,
+        "suppressPrereleaseVersion": true,
     }
 }
 ```

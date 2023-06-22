@@ -77,7 +77,7 @@ export function formatVersionForSchema(metaEd: MetaEdEnvironment): string {
   // If prerelease includes -pre in its name, that part is ignored.
   const prereleaseComponent: ReadonlyArray<string | number> = prerelease(semverified) ?? [];
   const prereleaseValue: string =
-    prereleaseComponent.length > 0 && prereleaseComponent[0] === prereleaseInfix
+    metaEd.suppressPrereleaseVersion && prereleaseComponent.length > 0 && prereleaseComponent[0] === prereleaseInfix
       ? `${semverified.prerelease.join('.')}`
       : '';
   return `${major}${minor}${patch}${prereleaseValue}`;

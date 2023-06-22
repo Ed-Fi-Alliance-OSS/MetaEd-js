@@ -25,6 +25,7 @@
     ],
     "pluginConfigDirectories": [],
     "defaultPluginTechVersion": "5.3.0",
-    "allianceMode": true
+    "allianceMode": true,
+    "suppressPrereleaseVersion": true
   }
 }
