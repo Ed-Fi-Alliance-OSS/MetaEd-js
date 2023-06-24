@@ -4,8 +4,14 @@ import { html as beautify } from 'js-beautify';
 import fs from 'fs';
 import path from 'path';
 import semver from 'semver';
-import { prerelease } from 'semver';
-import { SemVer, MetaEdEnvironment, Namespace, versionSatisfies, PluginEnvironment, V5OrGreater } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  Namespace,
+  versionSatisfies,
+  PluginEnvironment,
+  V7OrGreater,
+  formatVersionWithSuppressPrereleaseVersion,
+} from '@edfi/metaed-core';
 import { edfiXsdRepositoryForNamespace } from '../enhancer/EnhancerHelper';
 import { EdFiXsdEntityRepository } from '../model/EdFiXsdEntityRepository';
 
@@ -59,28 +65,30 @@ export function formatAndPrependHeader(xsdBody: string): string {
   return formatXml(completeXsd);
 }
 
-function isTargetTechnologyV5OrGreater(metaEd: MetaEdEnvironment): boolean {
-  return versionSatisfies((metaEd.plugin.get('edfiXsd') as PluginEnvironment).targetTechnologyVersion, V5OrGreater);
+function isTargetTechnologyV7OrGreater(metaEd: MetaEdEnvironment): boolean {
+  return versionSatisfies((metaEd.plugin.get('edfiXsd') as PluginEnvironment).targetTechnologyVersion, V7OrGreater);
+}
+
+function isTargetTechnologyV5OrV6(metaEd: MetaEdEnvironment): boolean {
+  return versionSatisfies((metaEd.plugin.get('edfiXsd') as PluginEnvironment).targetTechnologyVersion, '>=5.0.0 <7.0.0');
 }
 
 export function formatVersionForSchema(metaEd: MetaEdEnvironment): string {
-  const prereleaseInfix = 'pre';
-  const version: SemVer = metaEd.dataStandardVersion;
-  if (isTargetTechnologyV5OrGreater(metaEd)) return version;
-  if (!semver.valid(version)) return '';
-  const semverified = semver.parse(version);
+  const { dataStandardVersion } = metaEd;
+  if (isTargetTechnologyV5OrV6(metaEd)) return dataStandardVersion;
+
+  if (isTargetTechnologyV7OrGreater(metaEd))
+    return formatVersionWithSuppressPrereleaseVersion(dataStandardVersion, metaEd.suppressPrereleaseVersion);
+
+  if (!semver.valid(dataStandardVersion)) return '';
+  const semverified = semver.parse(dataStandardVersion);
   if (semverified == null) return '';
   const major: string = semverified.major < 10 ? `0${semverified.major}` : `${semverified.major}`;
   const minor = `${semverified.minor}`;
   // METAED-835 - Patch version isn't represented in schema version
   const patch = '0';
-  // If prerelease includes -pre in its name, that part is ignored.
-  const prereleaseComponent: ReadonlyArray<string | number> = prerelease(semverified) ?? [];
-  const prereleaseValue: string =
-    metaEd.suppressPrereleaseVersion && prereleaseComponent.length > 0 && prereleaseComponent[0] === prereleaseInfix
-      ? `${semverified.prerelease.join('.')}`
-      : '';
-  return `${major}${minor}${patch}${prereleaseValue}`;
+  const prerelease: string = semverified.prerelease.length ? `${semverified.prerelease.join('.')}` : '';
+  return `${major}${minor}${patch}${prerelease}`;
 }
 
 // METAED-997

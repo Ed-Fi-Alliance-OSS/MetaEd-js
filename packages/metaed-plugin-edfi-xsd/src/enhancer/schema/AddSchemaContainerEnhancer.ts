@@ -1,6 +1,13 @@
 import * as R from 'ramda';
-import { MetaEdEnvironment, EnhancerResult, TopLevelEntity, SemVer } from '@edfi/metaed-core';
-import { getAllEntitiesOfType, orderByProp, V3OrGreater, versionSatisfies } from '@edfi/metaed-core';
+import { MetaEdEnvironment, EnhancerResult, TopLevelEntity, SemVer, PluginEnvironment } from '@edfi/metaed-core';
+import {
+  formatVersionWithSuppressPrereleaseVersion,
+  getAllEntitiesOfType,
+  orderByProp,
+  V3OrGreater,
+  V7OrGreater,
+  versionSatisfies,
+} from '@edfi/metaed-core';
 import { TopLevelEntityEdfiXsd } from '../../model/TopLevelEntity';
 import { NamespaceEdfiXsd } from '../../model/Namespace';
 import { EnumerationBase, EnumerationBaseEdfiXsd } from '../../model/EnumerationBase';
@@ -172,9 +179,15 @@ function baseSchemaSection() {
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };
+  const versionSatisfiesV7OrGreater = versionSatisfies(
+    (metaEd.plugin.get('edfiXsd') as PluginEnvironment).targetTechnologyVersion,
+    V7OrGreater,
+  );
 
   metaEd.namespace.forEach((namespace) => {
-    const versionString = metaEd.dataStandardVersion;
+    const versionString = versionSatisfiesV7OrGreater
+      ? formatVersionWithSuppressPrereleaseVersion(metaEd.dataStandardVersion, metaEd.suppressPrereleaseVersion)
+      : metaEd.dataStandardVersion;
     const schemaContainer: SchemaContainer = {
       ...newSchemaContainer(),
       isExtension: namespace.isExtension,

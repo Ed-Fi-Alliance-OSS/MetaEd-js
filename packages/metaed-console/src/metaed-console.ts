@@ -59,7 +59,9 @@ export async function metaEdConsole() {
 
   if (argv['defaultPluginTechVersion'] != null)
     state.metaEdConfiguration.defaultPluginTechVersion = argv['defaultPluginTechVersion'];
-
+  if (argv['suppressPrereleaseVersion'] != null)
+    state.metaEdConfiguration.suppressPrereleaseVersion = argv['suppressPrereleaseVersion'];
+  else state.metaEd.suppressPrereleaseVersion = true;
   const dataStandardVersions: SemVer[] = findDataStandardVersions(state.metaEdConfiguration.projects);
 
   if (dataStandardVersions.length === 0) {
@@ -71,7 +73,6 @@ export async function metaEdConsole() {
   } else {
     // eslint-disable-next-line prefer-destructuring
     state.metaEd.dataStandardVersion = dataStandardVersions[0];
-    state.metaEd.suppressPrereleaseVersion = argv['suppressPrereleaseVersion'];
     try {
       const { failure } = await executePipeline(state);
       process.exitCode = !state.validationFailure.some((vf) => vf.category === 'error') && !failure ? 0 : 1;
