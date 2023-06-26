@@ -180,7 +180,7 @@ function baseSchemaSection() {
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };
   const versionSatisfiesV7OrGreater = versionSatisfies(
-    (metaEd.plugin.get('edfiXsd') as PluginEnvironment).targetTechnologyVersion,
+    (metaEd.plugin.get('edfiXsd') as PluginEnvironment)?.targetTechnologyVersion,
     V7OrGreater,
   );
 

@@ -99,7 +99,7 @@ export async function metaEdDeploy() {
       demandOption: true,
     })
     .option('suppressPrereleaseVersion', {
-      describe: 'Suppress the prerelease identifier "pre" in the version',
+      describe: 'Suppress the prerelease identifier in the version',
       type: 'boolean',
       default: true,
     })

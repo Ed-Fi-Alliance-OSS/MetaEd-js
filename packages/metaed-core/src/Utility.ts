@@ -1,6 +1,5 @@
 import * as R from 'ramda';
 import semver from 'semver';
-import { prerelease } from 'semver';
 import { SemVer } from './MetaEdEnvironment';
 
 export const nextMacroTask = async (): Promise<void> => new Promise((resolve) => setImmediate(resolve));
@@ -52,20 +51,16 @@ export const versionSatisfies = (version: SemVer, range: SemVer): boolean => {
 };
 
 export function formatVersionWithSuppressPrereleaseVersion(dataStandardVersion: SemVer, suppressPrereleaseVersion: boolean) {
-  const prereleaseInfix = 'pre';
-  if (!semver.valid(dataStandardVersion)) return dataStandardVersion;
-  const semverified = semver.parse(dataStandardVersion);
-  if (semverified == null) return '';
-  const major: string = semverified.major < 10 ? `${semverified.major}` : `${semverified.major}`;
-  const minor = `${semverified.minor}`;
-  const patch = '0';
-  // If prerelease includes -pre in its name, that part is ignored.
-  const prereleaseComponent: ReadonlyArray<string | number> = prerelease(semverified) ?? [];
-  const prereleaseValue: string =
-    suppressPrereleaseVersion && prereleaseComponent.length > 0 && prereleaseComponent[0] === prereleaseInfix
-      ? ''
-      : `${semverified.prerelease.join('.')}`;
-  return `${major}.${minor}.${patch}${prereleaseValue}`;
+  if (suppressPrereleaseVersion) {
+    if (!semver.valid(dataStandardVersion)) return dataStandardVersion;
+    const semverified = semver.parse(dataStandardVersion);
+    if (semverified == null) return '';
+    const major: string = semverified.major < 10 ? `${semverified.major}` : `${semverified.major}`;
+    const minor = `${semverified.minor}`;
+    const patch = '0';
+    return `${major}.${minor}.${patch}`;
+  }
+  return dataStandardVersion;
 }
 /**
  *
