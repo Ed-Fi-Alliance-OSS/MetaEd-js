@@ -35,7 +35,7 @@ export type MetaEdEnvironment = {
   // whether we are running in Alliance mode - which means assuming this is an Ed-Fi Alliance user
   allianceMode: boolean;
 
-  // if set to true, the prerelease identifier "pre" is ignored in the version string.
+  // if set to true, the prerelease identifier is ignored in the version string.
   suppressPrereleaseVersion: boolean;
 
   // the earliest allowable school year enumeration

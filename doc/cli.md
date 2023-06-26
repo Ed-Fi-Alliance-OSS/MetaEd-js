@@ -26,7 +26,7 @@ Options:
   -a, --accept-license            Accept the Ed-Fi License Agreement at
                                   https://www.ed-fi.org/getting-started/license-
                                   ed-fi-technology           [string] [required]
-  --suppressPrereleaseVersion     Suppress the prerelease identifier "pre" in 
+  --suppressPrereleaseVersion     Suppress the prerelease identifier in 
                                   the version         [boolean] [default: true]                                  
   --help, -h                      Show help                            [boolean]
   --version, -v                   Show version number                  [boolean]
@@ -81,7 +81,7 @@ Options:
   -a, --accept-license            Accept the Ed-Fi License Agreement at
                                   https://www.ed-fi.org/getting-started/license-
                                   ed-fi-technology           [string] [required]
-   --suppressPrereleaseVersion    Suppress the prerelease identifier "pre" in 
+   --suppressPrereleaseVersion    Suppress the prerelease identifier in 
                                   the version         [boolean] [default: true]
   -h, --help                      Show help                            [boolean]
   -v, --version                   Show version number                  [boolean]
