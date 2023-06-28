@@ -107,7 +107,15 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
             : NoTableNameGroup,
         );
         const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(property);
-        tableBuilder.buildTables(property, tableStrategy, primaryKeys, BuildStrategyDefault, tables, targetTechnologyVersion, null);
+        tableBuilder.buildTables(
+          property,
+          tableStrategy,
+          primaryKeys,
+          BuildStrategyDefault,
+          tables,
+          targetTechnologyVersion,
+          null,
+        );
       });
 
       entity.data.edfiOdsRelational.odsTables = tables;

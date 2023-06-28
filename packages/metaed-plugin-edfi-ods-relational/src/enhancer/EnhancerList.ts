@@ -63,15 +63,16 @@ export function enhancerList(): Enhancer[] {
     // Table Creation Phase
     updateCascadeTopLevelEntityEnhancer,
 
-    associationExtensionTableEnhancer,
     associationSubclassTableEnhancer,
     associationTableEnhancer,
     descriptorTableEnhancer,
-    domainEntityExtensionTableEnhancer,
     domainEntitySubclassTableEnhancer,
     domainEntityTableEnhancer,
     enumerationTableEnhancer,
     schoolYearEnumerationTableEnhancer,
+
+    associationExtensionTableEnhancer,
+    domainEntityExtensionTableEnhancer,
 
     assessmentContentStandardTableDiminisher,
 

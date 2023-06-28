@@ -1,4 +1,4 @@
-import { EntityProperty, MetaEdEnvironment, SemVer, TopLevelEntity } from '@edfi/metaed-core';
+import { EntityProperty, MetaEdEnvironment, SemVer, TopLevelEntity, versionSatisfies } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from './BuildStrategy';
 import { cloneColumn } from '../../model/database/Column';
 import { collectPrimaryKeys } from './PrimaryKeyCollector';
@@ -35,6 +35,20 @@ export function buildTablesFromProperties(
       null,
     );
   });
+
+  // For ODS/API 7+, primary keys of main tables need to be brought to the front and sorted
+  if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {
+    mainTable.columns.sort((a: Column, b: Column) => {
+      // If neither are PKs, ignore
+      if (!a.isPartOfPrimaryKey && !b.isPartOfPrimaryKey) return 0;
+      // If first is a PK and second is not, it stays first
+      if (a.isPartOfPrimaryKey && !b.isPartOfPrimaryKey) return -1;
+      // If second is a PK and first is not, it needs to move up
+      if (!a.isPartOfPrimaryKey && b.isPartOfPrimaryKey) return 1;
+      // If they are both primary keys, order alphabetically
+      return a.columnId.localeCompare(b.columnId);
+    });
+  }
 }
 
 export function buildMainTable(_metaEd: MetaEdEnvironment, entity: TopLevelEntity, aggregateRootTable: boolean): Table {
