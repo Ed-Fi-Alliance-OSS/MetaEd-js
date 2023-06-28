@@ -1,4 +1,4 @@
-import { asCommonProperty, getEntityFromNamespaceChain, Namespace, SemVer } from '@edfi/metaed-core';
+import { asCommonProperty, getEntityFromNamespaceChain, Namespace, SemVer, versionSatisfies } from '@edfi/metaed-core';
 import { ModelBase, EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
 import {
   TableNameGroup,
@@ -153,7 +153,13 @@ export function commonExtensionPropertyTableBuilder(
       if (!commonProperty.isOptional) {
         primaryKeys.push(...collectPrimaryKeys(commonProperty.referencedEntity, strategy, columnFactory));
       }
-      primaryKeys.push(...parentPrimaryKeys);
+
+      // For ODS/API 7+, parent primary keys come first
+      if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {
+        primaryKeys.unshift(...parentPrimaryKeys);
+      } else {
+        primaryKeys.push(...parentPrimaryKeys);
+      }
 
       const joinTableId: string = parentTableStrategy.tableId + commonProperty.data.edfiOdsRelational.odsName;
 

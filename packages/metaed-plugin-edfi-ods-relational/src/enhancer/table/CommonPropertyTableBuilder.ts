@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { SemVer, asCommonProperty } from '@edfi/metaed-core';
+import { SemVer, asCommonProperty, versionSatisfies } from '@edfi/metaed-core';
 import { EntityProperty, MergeDirective, ReferentialProperty, Namespace } from '@edfi/metaed-core';
 import {
   TableNameGroup,
@@ -121,8 +121,13 @@ export function commonPropertyTableBuilder(
       if (!commonProperty.isOptional) {
         primaryKeys.push(...collectPrimaryKeys(commonProperty.referencedEntity, strategy, columnFactory));
       }
-      primaryKeys.push(...parentPrimaryKeys);
 
+      // For ODS/API 7+, parent primary keys come first
+      if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {
+        primaryKeys.unshift(...parentPrimaryKeys);
+      } else {
+        primaryKeys.push(...parentPrimaryKeys);
+      }
       const joinTableId: string = parentTableStrategy.tableId + commonProperty.data.edfiOdsRelational.odsName;
 
       const joinTableNameGroup: TableNameGroup = {

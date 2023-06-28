@@ -23,6 +23,11 @@ export function buildTablesFromProperties(
     cloneColumn(x),
   );
 
+  // For ODS/API 7+, collected primary keys of main tables need to be sorted
+  if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {
+    primaryKeys.sort((a: Column, b: Column) => a.columnId.localeCompare(b.columnId));
+  }
+
   entity.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
     const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(property);
     tableBuilder.buildTables(
@@ -36,7 +41,7 @@ export function buildTablesFromProperties(
     );
   });
 
-  // For ODS/API 7+, primary keys of main tables need to be brought to the front and sorted
+  // For ODS/API 7+, primary keys of main table needs to be brought to the front and sorted
   if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {
     mainTable.columns.sort((a: Column, b: Column) => {
       // If neither are PKs, ignore
