@@ -1,12 +1,6 @@
 import * as R from 'ramda';
 import { EntityProperty, ReferentialProperty, SemVer, asReferentialProperty } from '@edfi/metaed-core';
-import {
-  addColumnsWithSort,
-  addColumnsWithoutSort,
-  addForeignKey,
-  newTable,
-  newTableExistenceReason,
-} from '../../model/database/Table';
+import { addColumnsWithoutSort, addForeignKey, newTable, newTableExistenceReason } from '../../model/database/Table';
 import { joinTableNamer } from './TableNaming';
 import { ColumnTransform, ColumnTransformPrimaryKey, ColumnTransformUnchanged } from '../../model/database/ColumnTransform';
 import { ForeignKeyStrategy } from '../../model/database/ForeignKeyStrategy';
@@ -34,7 +28,7 @@ export function enumerationPropertyTableBuilder(factory: ColumnCreatorFactory): 
       parentPrimaryKeys: Column[],
       buildStrategy: BuildStrategy,
       tables: Table[],
-      targetTechnologyVersion: SemVer,
+      _targetTechnologyVersion: SemVer,
       parentIsRequired: boolean | null,
     ): void {
       const enumeration: ReferentialProperty = asReferentialProperty(property);
@@ -88,11 +82,10 @@ export function enumerationPropertyTableBuilder(factory: ColumnCreatorFactory): 
           ),
         );
         addForeignKey(joinTable, parentForeignKey);
-        addColumnsWithSort(
+        addColumnsWithoutSort(
           joinTable,
           parentPrimaryKeys,
           ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
-          targetTechnologyVersion,
         );
 
         const columns: Column[] = columnCreator.createColumns(enumeration, buildStrategy.columnNamerIgnoresRoleName());

@@ -2,12 +2,12 @@ import { asCommonProperty, getEntityFromNamespaceChain, Namespace, SemVer, versi
 import { ModelBase, EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
 import {
   TableNameGroup,
-  addColumnsWithSort,
   addForeignKey,
   newTable,
   newTableNameComponent,
   newTableExistenceReason,
   newTableNameGroup,
+  addColumnsWithoutSort,
 } from '../../model/database/Table';
 import { BuildStrategyDefault } from './BuildStrategy';
 import { collectPrimaryKeys } from './PrimaryKeyCollector';
@@ -106,12 +106,7 @@ function buildExtensionTables(
   );
 
   addForeignKey(extensionTable, foreignKey);
-  addColumnsWithSort(
-    extensionTable,
-    primaryKeys,
-    ColumnTransform.primaryKeyWithNewReferenceContext(joinTableId),
-    targetTechnologyVersion,
-  );
+  addColumnsWithoutSort(extensionTable, primaryKeys, ColumnTransform.primaryKeyWithNewReferenceContext(joinTableId));
 
   commonExtension.data.edfiOdsRelational.odsProperties.forEach((odsProperty: EntityProperty) => {
     const tableBuilder: TableBuilder = tableFactory.tableBuilderFor(odsProperty);

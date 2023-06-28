@@ -84,11 +84,10 @@ export function descriptorPropertyTableBuilder(factory: ColumnCreatorFactory): T
           ),
         );
         addForeignKey(joinTable, parentForeignKey);
-        addColumnsWithSort(
+        addColumnsWithoutSort(
           joinTable,
           parentPrimaryKeys,
           ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
-          targetTechnologyVersion,
         );
 
         const columns: Column[] = columnCreator.createColumns(descriptor, buildStrategy.columnNamerIgnoresRoleName());

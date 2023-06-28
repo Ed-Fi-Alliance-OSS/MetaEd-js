@@ -1,13 +1,7 @@
 import * as R from 'ramda';
 import { EntityProperty, MergeDirective, SemVer } from '@edfi/metaed-core';
 import { isSharedProperty, asReferentialProperty } from '@edfi/metaed-core';
-import {
-  addColumnsWithSort,
-  addColumnsWithoutSort,
-  addForeignKey,
-  newTable,
-  newTableExistenceReason,
-} from '../../model/database/Table';
+import { addColumnsWithoutSort, addForeignKey, newTable, newTableExistenceReason } from '../../model/database/Table';
 import { joinTableNamer } from './TableNaming';
 import { ColumnTransform, ColumnTransformPrimaryKey, ColumnTransformUnchanged } from '../../model/database/ColumnTransform';
 import { ForeignKeyStrategy } from '../../model/database/ForeignKeyStrategy';
@@ -28,7 +22,7 @@ export function simplePropertyTableBuilder(factory: ColumnCreatorFactory): Table
       parentPrimaryKeys: Column[],
       buildStrategy: BuildStrategy,
       tables: Table[],
-      targetTechnologyVersion: SemVer,
+      _targetTechnologyVersion: SemVer,
       parentIsRequired: boolean | null,
     ): void {
       const columnCreator: ColumnCreator = factory.columnCreatorFor(property);
@@ -76,11 +70,10 @@ export function simplePropertyTableBuilder(factory: ColumnCreatorFactory): Table
         );
         addForeignKey(joinTable, foreignKey);
 
-        addColumnsWithSort(
+        addColumnsWithoutSort(
           joinTable,
           parentPrimaryKeys,
           ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
-          targetTechnologyVersion,
         );
         addColumnsWithoutSort(
           joinTable,

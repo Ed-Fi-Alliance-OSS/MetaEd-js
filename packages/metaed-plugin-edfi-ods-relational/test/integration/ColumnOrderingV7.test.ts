@@ -3,10 +3,10 @@ import {
   AssociationBuilder,
   CommonBuilder,
   DescriptorBuilder,
-  // DomainEntity,
+  DomainEntity,
   DomainEntityBuilder,
   Enhancer,
-  // EnumerationBuilder,
+  EnumerationBuilder,
   MetaEdEnvironment,
   MetaEdTextBuilder,
   Namespace,
@@ -18,184 +18,184 @@ import { metaEdPluginEnhancers } from './PluginHelper';
 
 jest.setTimeout(40000);
 
-// describe('when StudentSchoolAssociation has a GraduationPlan and targeting ODS/API 7.0', (): void => {
-//   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0-pre.1' };
-//   metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '7.0.0' });
+describe('when StudentSchoolAssociation has a GraduationPlan and targeting ODS/API 7.0', (): void => {
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0-pre.1' };
+  metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '7.0.0' });
 
-//   const studentSchoolAssociationName = 'StudentSchoolAssociation';
-//   const graduationPlanName = 'GraduationPlan';
-//   let namespace: Namespace;
+  const studentSchoolAssociationName = 'StudentSchoolAssociation';
+  const graduationPlanName = 'GraduationPlan';
+  let namespace: Namespace;
 
-//   beforeAll(() => {
-//     MetaEdTextBuilder.build()
-//       .withBeginNamespace('EdFi')
-//       .withStartAssociation(studentSchoolAssociationName)
-//       .withDocumentation('doc')
-//       .withAssociationDomainEntityProperty('Student', 'doc')
-//       .withAssociationDomainEntityProperty('School', 'doc')
-//       .withDateIdentity('EntryDate', 'doc')
-//       .withDomainEntityProperty(graduationPlanName, 'doc', false, true, false, 'Alternative')
-//       .withEndAssociation()
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartAssociation(studentSchoolAssociationName)
+      .withDocumentation('doc')
+      .withAssociationDomainEntityProperty('Student', 'doc')
+      .withAssociationDomainEntityProperty('School', 'doc')
+      .withDateIdentity('EntryDate', 'doc')
+      .withDomainEntityProperty(graduationPlanName, 'doc', false, true, false, 'Alternative')
+      .withEndAssociation()
 
-//       .withStartDomainEntity('Student')
-//       .withDocumentation('doc')
-//       .withStringIdentity('StudentUniqueId', 'doc', '100')
-//       .withEndDomainEntity()
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withStringIdentity('StudentUniqueId', 'doc', '100')
+      .withEndDomainEntity()
 
-//       .withStartDomainEntity('School')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('SchoolId', 'doc')
-//       .withEndDomainEntity()
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
 
-//       .withStartDomainEntity(graduationPlanName)
-//       .withDocumentation('doc')
-//       .withDescriptorIdentity('GraduationPlanType', 'doc')
-//       .withDomainEntityIdentity('EducationOrganization', 'doc')
-//       .withEnumerationIdentity('SchoolYear', 'doc')
-//       .withEndDomainEntity()
+      .withStartDomainEntity(graduationPlanName)
+      .withDocumentation('doc')
+      .withDescriptorIdentity('GraduationPlanType', 'doc')
+      .withDomainEntityIdentity('EducationOrganization', 'doc')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withEndDomainEntity()
 
-//       .withStartDescriptor('GraduationPlanType')
-//       .withDocumentation('doc')
-//       .withEndDescriptor()
+      .withStartDescriptor('GraduationPlanType')
+      .withDocumentation('doc')
+      .withEndDescriptor()
 
-//       .withStartEnumeration('SchoolYear')
-//       .withDocumentation('doc')
-//       .withEndEnumeration()
+      .withStartEnumeration('SchoolYear')
+      .withDocumentation('doc')
+      .withEndEnumeration()
 
-//       .withStartDomainEntity('EducationOrganization')
-//       .withDocumentation('doc')
-//       .withIntegerIdentity('EducationOrganizationId', 'doc')
-//       .withEndDomainEntity()
-//       .withEndNamespace()
+      .withStartDomainEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
 
-//       .sendToListener(new NamespaceBuilder(metaEd, []))
-//       .sendToListener(new AssociationBuilder(metaEd, []))
-//       .sendToListener(new DescriptorBuilder(metaEd, []))
-//       .sendToListener(new EnumerationBuilder(metaEd, []))
-//       .sendToListener(new DomainEntityBuilder(metaEd, []));
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new EnumerationBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
 
-//     namespace = metaEd.namespace.get('EdFi') as Namespace;
-//     metaEdPluginEnhancers().forEach((enhancer: Enhancer) => {
-//       enhancer(metaEd);
-//     });
-//   });
+    namespace = metaEd.namespace.get('EdFi') as Namespace;
+    metaEdPluginEnhancers().forEach((enhancer: Enhancer) => {
+      enhancer(metaEd);
+    });
+  });
 
-//   it('should have two tables for association', (): void => {
-//     const studentSchoolAssociation: Association = namespace.entity.association.get(
-//       studentSchoolAssociationName,
-//     ) as Association;
-//     expect(studentSchoolAssociation.data.edfiOdsRelational.odsTables).toHaveLength(2);
-//   });
+  it('should have two tables for association', (): void => {
+    const studentSchoolAssociation: Association = namespace.entity.association.get(
+      studentSchoolAssociationName,
+    ) as Association;
+    expect(studentSchoolAssociation.data.edfiOdsRelational.odsTables).toHaveLength(2);
+  });
 
-//   it('should have correct column order for main table of association', (): void => {
-//     const studentSchoolAssociation: Association = namespace.entity.association.get(
-//       studentSchoolAssociationName,
-//     ) as Association;
-//     expect(studentSchoolAssociation.data.edfiOdsRelational.odsTables[0].columns.map((x) => x.columnId))
-//       .toMatchInlineSnapshot(`
-//       Array [
-//         "EntryDate",
-//         "SchoolId",
-//         "StudentUniqueId",
-//       ]
-//     `);
-//   });
+  it('should have correct column order for main table of association', (): void => {
+    const studentSchoolAssociation: Association = namespace.entity.association.get(
+      studentSchoolAssociationName,
+    ) as Association;
+    expect(studentSchoolAssociation.data.edfiOdsRelational.odsTables[0].columns.map((x) => x.columnId))
+      .toMatchInlineSnapshot(`
+      Array [
+        "EntryDate",
+        "SchoolId",
+        "StudentUniqueId",
+      ]
+    `);
+  });
 
-//   it('should have correct foreign key order for main table of association', (): void => {
-//     const studentSchoolAssociation: Association = namespace.entity.association.get(
-//       studentSchoolAssociationName,
-//     ) as Association;
-//     expect(studentSchoolAssociation.data.edfiOdsRelational.odsTables[0].foreignKeys.map((x) => x.columnPairs))
-//       .toMatchInlineSnapshot(`
-//       Array [
-//         Array [
-//           Object {
-//             "foreignTableColumnId": "SchoolId",
-//             "parentTableColumnId": "SchoolId",
-//           },
-//         ],
-//         Array [
-//           Object {
-//             "foreignTableColumnId": "StudentUniqueId",
-//             "parentTableColumnId": "StudentUniqueId",
-//           },
-//         ],
-//       ]
-//     `);
-//   });
+  it('should have correct foreign key order for main table of association', (): void => {
+    const studentSchoolAssociation: Association = namespace.entity.association.get(
+      studentSchoolAssociationName,
+    ) as Association;
+    expect(studentSchoolAssociation.data.edfiOdsRelational.odsTables[0].foreignKeys.map((x) => x.columnPairs))
+      .toMatchInlineSnapshot(`
+      Array [
+        Array [
+          Object {
+            "foreignTableColumnId": "SchoolId",
+            "parentTableColumnId": "SchoolId",
+          },
+        ],
+        Array [
+          Object {
+            "foreignTableColumnId": "StudentUniqueId",
+            "parentTableColumnId": "StudentUniqueId",
+          },
+        ],
+      ]
+    `);
+  });
 
-//   it('should have correct column order for sub table of association', (): void => {
-//     const studentSchoolAssociation: Association = namespace.entity.association.get(
-//       studentSchoolAssociationName,
-//     ) as Association;
-//     expect(studentSchoolAssociation.data.edfiOdsRelational.odsTables[1].columns.map((x) => x.columnId))
-//       .toMatchInlineSnapshot(`
-//       Array [
-//         "EntryDate",
-//         "SchoolId",
-//         "StudentUniqueId",
-//         "AlternativeEducationOrganizationId",
-//         "AlternativeGraduationPlanTypeDescriptorId",
-//         "AlternativeSchoolYear",
-//       ]
-//     `);
-//   });
+  it('should have correct column order for sub table of association', (): void => {
+    const studentSchoolAssociation: Association = namespace.entity.association.get(
+      studentSchoolAssociationName,
+    ) as Association;
+    expect(studentSchoolAssociation.data.edfiOdsRelational.odsTables[1].columns.map((x) => x.columnId))
+      .toMatchInlineSnapshot(`
+      Array [
+        "EntryDate",
+        "SchoolId",
+        "StudentUniqueId",
+        "AlternativeEducationOrganizationId",
+        "AlternativeGraduationPlanTypeDescriptorId",
+        "AlternativeSchoolYear",
+      ]
+    `);
+  });
 
-//   it('should have correct foreign key order for sub table of association', (): void => {
-//     const studentSchoolAssociation: Association = namespace.entity.association.get(
-//       studentSchoolAssociationName,
-//     ) as Association;
-//     expect(studentSchoolAssociation.data.edfiOdsRelational.odsTables[1].foreignKeys.map((x) => x.columnPairs))
-//       .toMatchInlineSnapshot(`
-//       Array [
-//         Array [
-//           Object {
-//             "foreignTableColumnId": "EntryDate",
-//             "parentTableColumnId": "EntryDate",
-//           },
-//           Object {
-//             "foreignTableColumnId": "SchoolId",
-//             "parentTableColumnId": "SchoolId",
-//           },
-//           Object {
-//             "foreignTableColumnId": "StudentUniqueId",
-//             "parentTableColumnId": "StudentUniqueId",
-//           },
-//         ],
-//         Array [
-//           Object {
-//             "foreignTableColumnId": "EducationOrganizationId",
-//             "parentTableColumnId": "AlternativeEducationOrganizationId",
-//           },
-//           Object {
-//             "foreignTableColumnId": "GraduationPlanTypeDescriptorId",
-//             "parentTableColumnId": "AlternativeGraduationPlanTypeDescriptorId",
-//           },
-//           Object {
-//             "foreignTableColumnId": "SchoolYear",
-//             "parentTableColumnId": "AlternativeSchoolYear",
-//           },
-//         ],
-//       ]
-//     `);
-//   });
+  it('should have correct foreign key order for sub table of association', (): void => {
+    const studentSchoolAssociation: Association = namespace.entity.association.get(
+      studentSchoolAssociationName,
+    ) as Association;
+    expect(studentSchoolAssociation.data.edfiOdsRelational.odsTables[1].foreignKeys.map((x) => x.columnPairs))
+      .toMatchInlineSnapshot(`
+      Array [
+        Array [
+          Object {
+            "foreignTableColumnId": "EntryDate",
+            "parentTableColumnId": "EntryDate",
+          },
+          Object {
+            "foreignTableColumnId": "SchoolId",
+            "parentTableColumnId": "SchoolId",
+          },
+          Object {
+            "foreignTableColumnId": "StudentUniqueId",
+            "parentTableColumnId": "StudentUniqueId",
+          },
+        ],
+        Array [
+          Object {
+            "foreignTableColumnId": "EducationOrganizationId",
+            "parentTableColumnId": "AlternativeEducationOrganizationId",
+          },
+          Object {
+            "foreignTableColumnId": "GraduationPlanTypeDescriptorId",
+            "parentTableColumnId": "AlternativeGraduationPlanTypeDescriptorId",
+          },
+          Object {
+            "foreignTableColumnId": "SchoolYear",
+            "parentTableColumnId": "AlternativeSchoolYear",
+          },
+        ],
+      ]
+    `);
+  });
 
-//   it('should have one table for GraduationPlan', (): void => {
-//     const graduationPlan: DomainEntity = namespace.entity.domainEntity.get(graduationPlanName) as DomainEntity;
-//     expect(graduationPlan.data.edfiOdsRelational.odsTables).toHaveLength(1);
-//   });
+  it('should have one table for GraduationPlan', (): void => {
+    const graduationPlan: DomainEntity = namespace.entity.domainEntity.get(graduationPlanName) as DomainEntity;
+    expect(graduationPlan.data.edfiOdsRelational.odsTables).toHaveLength(1);
+  });
 
-//   it('should have correct column order for main table of GraduationPlan', (): void => {
-//     const graduationPlan: DomainEntity = namespace.entity.domainEntity.get(graduationPlanName) as DomainEntity;
-//     expect(graduationPlan.data.edfiOdsRelational.odsTables[0].columns.map((x) => x.columnId)).toMatchInlineSnapshot(`
-//       Array [
-//         "EducationOrganizationId",
-//         "GraduationPlanTypeDescriptorId",
-//         "SchoolYear",
-//       ]
-//     `);
-//   });
-// });
+  it('should have correct column order for main table of GraduationPlan', (): void => {
+    const graduationPlan: DomainEntity = namespace.entity.domainEntity.get(graduationPlanName) as DomainEntity;
+    expect(graduationPlan.data.edfiOdsRelational.odsTables[0].columns.map((x) => x.columnId)).toMatchInlineSnapshot(`
+      Array [
+        "EducationOrganizationId",
+        "GraduationPlanTypeDescriptorId",
+        "SchoolYear",
+      ]
+    `);
+  });
+});
 
 describe('when StudentSpecialEducationProgramAssociation has a Disability common and targeting ODS/API 7.0', (): void => {
   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0-pre.1' };

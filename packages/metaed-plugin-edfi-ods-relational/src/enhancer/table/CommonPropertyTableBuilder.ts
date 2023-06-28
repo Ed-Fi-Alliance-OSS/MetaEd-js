@@ -3,12 +3,12 @@ import { SemVer, asCommonProperty, versionSatisfies } from '@edfi/metaed-core';
 import { EntityProperty, MergeDirective, ReferentialProperty, Namespace } from '@edfi/metaed-core';
 import {
   TableNameGroup,
-  addColumnsWithSort,
   addForeignKey,
   newTable,
   newTableNameComponent,
   newTableExistenceReason,
   newTableNameGroup,
+  addColumnsWithoutSort,
 } from '../../model/database/Table';
 import { collectPrimaryKeys } from './PrimaryKeyCollector';
 import { ColumnTransform } from '../../model/database/ColumnTransform';
@@ -64,6 +64,15 @@ function buildJoinTables(
     }
   }
 
+  // For ODS/API 7.0+, parent primary keys need to be added first
+  if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {
+    addColumnsWithoutSort(
+      joinTable,
+      parentPrimaryKeys,
+      ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
+    );
+  }
+
   property.referencedEntity.data.edfiOdsRelational.odsProperties.forEach((referenceProperty: EntityProperty) => {
     const tableBuilder: TableBuilder = tableFactory.tableBuilderFor(referenceProperty);
     tableBuilder.buildTables(
@@ -86,12 +95,15 @@ function buildJoinTables(
     ForeignKeyStrategy.foreignColumnCascade(true, property.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates),
   );
   addForeignKey(joinTable, foreignKey);
-  addColumnsWithSort(
-    joinTable,
-    parentPrimaryKeys,
-    ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
-    targetTechnologyVersion,
-  );
+
+  // For ODS/API before 7.0, this is where parent PKs where added
+  if (versionSatisfies(targetTechnologyVersion, '<7.0.0')) {
+    addColumnsWithoutSort(
+      joinTable,
+      parentPrimaryKeys,
+      ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
+    );
+  }
 }
 
 export function commonPropertyTableBuilder(

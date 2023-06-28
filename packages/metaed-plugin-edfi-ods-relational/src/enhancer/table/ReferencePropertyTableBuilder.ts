@@ -2,6 +2,7 @@ import * as R from 'ramda';
 import { SemVer, asReferentialProperty } from '@edfi/metaed-core';
 import { EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
 import {
+  addColumnsWithoutSort,
   addColumnsWithSort,
   addForeignKey,
   newTable,
@@ -146,11 +147,10 @@ export function referencePropertyTableBuilder(factory: ColumnCreatorFactory): Ta
         ),
       );
       addForeignKey(joinTable, foreignKey);
-      addColumnsWithSort(
+      addColumnsWithoutSort(
         joinTable,
         parentPrimaryKeys,
         ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
-        targetTechnologyVersion,
       );
 
       const primaryKeys: Column[] = collectPrimaryKeys(referenceProperty.referencedEntity, strategy, factory);
