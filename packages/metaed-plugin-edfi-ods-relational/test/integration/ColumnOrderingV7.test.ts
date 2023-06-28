@@ -402,3 +402,129 @@ describe('when StudentSpecialEducationProgramAssociation has a Disability common
     `);
   });
 });
+
+describe('when Session has an AcademicWeek collection and targeting ODS/API 7.0', (): void => {
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0-pre.1' };
+  metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '7.0.0' });
+
+  const entityName = 'Session';
+  let namespace: Namespace;
+
+  // Session has School in identity, and an AcademicWeek collection which also has School in identity
+  // so this has an implicit column merge
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity(entityName)
+      .withDocumentation('doc')
+      .withStringIdentity('SessionName', 'doc', '100')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withDomainEntityProperty('AcademicWeek', 'doc', false, true)
+      .withEndAssociation()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('AcademicWeek')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withStringIdentity('WeekIdentifier', 'doc', '100')
+      .withEndDomainEntity()
+
+      .withStartEnumeration('SchoolYear')
+      .withDocumentation('doc')
+      .withEndEnumeration()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new EnumerationBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get('EdFi') as Namespace;
+    metaEdPluginEnhancers().forEach((enhancer: Enhancer) => {
+      enhancer(metaEd);
+    });
+  });
+
+  it('should have two tables for entity', (): void => {
+    const session: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
+    expect(session.data.edfiOdsRelational.odsTables).toHaveLength(2);
+  });
+
+  it('should have correct column order for main table of entity', (): void => {
+    const session: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
+    expect(session.data.edfiOdsRelational.odsTables[0].columns.map((x) => x.columnId)).toMatchInlineSnapshot(`
+      Array [
+        "SchoolId",
+        "SchoolYear",
+        "SessionName",
+      ]
+    `);
+  });
+
+  it('should have correct foreign key order for main table of entity', (): void => {
+    const session: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
+    expect(session.data.edfiOdsRelational.odsTables[0].foreignKeys.map((x) => x.columnPairs)).toMatchInlineSnapshot(`
+      Array [
+        Array [
+          Object {
+            "foreignTableColumnId": "SchoolYear",
+            "parentTableColumnId": "SchoolYear",
+          },
+        ],
+        Array [
+          Object {
+            "foreignTableColumnId": "SchoolId",
+            "parentTableColumnId": "SchoolId",
+          },
+        ],
+      ]
+    `);
+  });
+
+  it('should have correct column order for sub table of entity', (): void => {
+    const session: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
+    expect(session.data.edfiOdsRelational.odsTables[1].columns.map((x) => x.columnId)).toMatchInlineSnapshot(`
+      Array [
+        "SchoolYear",
+        "SessionName",
+        "SchoolId",
+        "WeekIdentifier",
+      ]
+    `);
+  });
+
+  it('should have correct foreign key order for sub table of entity', (): void => {
+    const session: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
+    expect(session.data.edfiOdsRelational.odsTables[1].foreignKeys.map((x) => x.columnPairs)).toMatchInlineSnapshot(`
+      Array [
+        Array [
+          Object {
+            "foreignTableColumnId": "SchoolId",
+            "parentTableColumnId": "SchoolId",
+          },
+          Object {
+            "foreignTableColumnId": "SchoolYear",
+            "parentTableColumnId": "SchoolYear",
+          },
+          Object {
+            "foreignTableColumnId": "SessionName",
+            "parentTableColumnId": "SessionName",
+          },
+        ],
+        Array [
+          Object {
+            "foreignTableColumnId": "SchoolId",
+            "parentTableColumnId": "SchoolId",
+          },
+          Object {
+            "foreignTableColumnId": "WeekIdentifier",
+            "parentTableColumnId": "WeekIdentifier",
+          },
+        ],
+      ]
+    `);
+  });
+});
