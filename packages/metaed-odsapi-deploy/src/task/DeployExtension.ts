@@ -1,5 +1,12 @@
 import fs from 'fs-extra';
-import { MetaEdConfiguration, MetaEdProject, SemVer, isDataStandard } from '@edfi/metaed-core';
+import {
+  MetaEdConfiguration,
+  MetaEdProject,
+  SemVer,
+  V7OrGreater,
+  formatVersionWithSuppressPrereleaseVersion,
+  isDataStandard,
+} from '@edfi/metaed-core';
 import { Logger, versionSatisfies } from '@edfi/metaed-core';
 import path from 'path';
 import { CopyOptions } from '../CopyOptions';
@@ -21,7 +28,11 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration, data
   const projectsToDeploy: MetaEdProject[] = projects.filter((p: MetaEdProject) => !isDataStandard(p));
 
   projectsToDeploy.forEach((projectToDeploy: MetaEdProject) => {
-    const extensionPath: string = `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.${projectToDeploy.projectName}/Versions/${projectToDeploy.projectVersion}/Standard/${dataStandardVersion}/Artifacts`;
+    const versionSatisfiesV7OrGreater = !versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7OrGreater);
+    const dataStandardVersionFormatted = versionSatisfiesV7OrGreater
+      ? formatVersionWithSuppressPrereleaseVersion(dataStandardVersion, metaEdConfiguration.suppressPrereleaseVersion)
+      : dataStandardVersion;
+    const extensionPath: string = `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.${projectToDeploy.projectName}/Versions/${projectToDeploy.projectVersion}/Standard/${dataStandardVersionFormatted}/Artifacts`;
 
     deployPaths(extensionPath).forEach((deployPath: CopyOptions) => {
       const resolvedArtifact: CopyOptions = {
