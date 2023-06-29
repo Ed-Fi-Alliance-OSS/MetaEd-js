@@ -528,3 +528,110 @@ describe('when Session has an AcademicWeek collection and targeting ODS/API 7.0'
     `);
   });
 });
+
+describe('when Assessment has an AssessmentPerformanceLevel common and targeting ODS/API 7.0', (): void => {
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0-pre.1' };
+  metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '7.0.0' });
+
+  const entityName = 'Assessment';
+  let namespace: Namespace;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity(entityName)
+      .withDocumentation('doc')
+      .withStringIdentity('AssessmentIdentifier', 'doc', '100')
+      .withCommonProperty('AssessmentPerformanceLevel', 'doc', false, true)
+      .withStringIdentity('Namespace', 'doc', '100')
+      .withEndDomainEntity()
+
+      .withStartCommon('AssessmentPerformanceLevel')
+      .withDocumentation('doc')
+      .withDescriptorIdentity('PerformanceLevel', 'doc')
+      .withDescriptorIdentity('AssessmentReportingMethod', 'doc')
+      .withEndCommon()
+
+      .withStartDescriptor('PerformanceLevel')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withStartDescriptor('AssessmentReportingMethod')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get('EdFi') as Namespace;
+    metaEdPluginEnhancers().forEach((enhancer: Enhancer) => {
+      enhancer(metaEd);
+    });
+  });
+
+  it('should have two tables for entity', (): void => {
+    const entity: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
+    expect(entity.data.edfiOdsRelational.odsTables).toHaveLength(2);
+  });
+
+  it('should have correct column order for main table of entity', (): void => {
+    const entity: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
+    expect(entity.data.edfiOdsRelational.odsTables[0].columns.map((x) => x.columnId)).toMatchInlineSnapshot(`
+      Array [
+        "AssessmentIdentifier",
+        "Namespace",
+      ]
+    `);
+  });
+
+  it('should have correct foreign key order for main table of entity', (): void => {
+    const entity: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
+    expect(entity.data.edfiOdsRelational.odsTables[0].foreignKeys.map((x) => x.columnPairs)).toMatchInlineSnapshot(
+      `Array []`,
+    );
+  });
+
+  it('should have correct column order for sub table of entity', (): void => {
+    const entity: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
+    expect(entity.data.edfiOdsRelational.odsTables[1].columns.map((x) => x.columnId)).toMatchInlineSnapshot(`
+      Array [
+        "AssessmentIdentifier",
+        "Namespace",
+        "PerformanceLevelDescriptorId",
+        "AssessmentReportingMethodDescriptorId",
+      ]
+    `);
+  });
+
+  it('should have correct foreign key order for sub table of entity', (): void => {
+    const entity: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
+    expect(entity.data.edfiOdsRelational.odsTables[1].foreignKeys.map((x) => x.columnPairs)).toMatchInlineSnapshot(`
+      Array [
+        Array [
+          Object {
+            "foreignTableColumnId": "PerformanceLevelDescriptorId",
+            "parentTableColumnId": "PerformanceLevelDescriptorId",
+          },
+        ],
+        Array [
+          Object {
+            "foreignTableColumnId": "AssessmentReportingMethodDescriptorId",
+            "parentTableColumnId": "AssessmentReportingMethodDescriptorId",
+          },
+        ],
+        Array [
+          Object {
+            "foreignTableColumnId": "AssessmentIdentifier",
+            "parentTableColumnId": "AssessmentIdentifier",
+          },
+          Object {
+            "foreignTableColumnId": "Namespace",
+            "parentTableColumnId": "Namespace",
+          },
+        ],
+      ]
+    `);
+  });
+});
