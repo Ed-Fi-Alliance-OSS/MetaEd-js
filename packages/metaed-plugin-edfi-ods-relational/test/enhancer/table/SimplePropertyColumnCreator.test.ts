@@ -64,7 +64,7 @@ describe('when converting boolean property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -105,7 +105,7 @@ describe('when converting currency property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -146,7 +146,7 @@ describe('when converting date property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -187,7 +187,7 @@ describe('when converting datetime property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -232,7 +232,7 @@ describe('when converting decimal property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -275,7 +275,7 @@ describe('when converting duration property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -316,7 +316,7 @@ describe('when converting integer property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -359,7 +359,7 @@ describe('when converting integer property with big hint to column', (): void =>
       },
     };
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -400,7 +400,7 @@ describe('when converting percent property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -445,7 +445,7 @@ describe('when converting shared decimal property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -488,7 +488,7 @@ describe('when converting shared integer property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -529,7 +529,7 @@ describe('when converting shared short property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -572,7 +572,7 @@ describe('when converting shared string property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -614,7 +614,7 @@ describe('when converting short property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -657,7 +657,7 @@ describe('when converting string property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -699,7 +699,7 @@ describe('when converting time property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -740,7 +740,7 @@ describe('when converting year property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 

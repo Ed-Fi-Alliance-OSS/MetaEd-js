@@ -599,8 +599,8 @@ describe('when Assessment has an AssessmentPerformanceLevel common and targeting
       Array [
         "AssessmentIdentifier",
         "Namespace",
-        "PerformanceLevelDescriptorId",
         "AssessmentReportingMethodDescriptorId",
+        "PerformanceLevelDescriptorId",
       ]
     `);
   });

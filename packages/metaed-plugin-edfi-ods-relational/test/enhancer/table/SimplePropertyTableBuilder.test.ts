@@ -62,7 +62,7 @@ describe('when building simple entity property table with collection property an
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
     const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
 
     const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(entityProperty);

@@ -31,7 +31,12 @@ const referenceColumnBuilder =
     targetTechnologyVersion: SemVer,
   ) =>
   (columnStrategy: ColumnTransform): void => {
-    const primaryKeys: Column[] = collectPrimaryKeys(referenceProperty.referencedEntity, buildStrategy, factory);
+    const primaryKeys: Column[] = collectPrimaryKeys(
+      referenceProperty.referencedEntity,
+      buildStrategy,
+      factory,
+      targetTechnologyVersion,
+    );
 
     primaryKeys.forEach((pk: Column) => {
       pk.referenceContext = referenceProperty.data.edfiOdsRelational.odsName + pk.referenceContext;
@@ -154,7 +159,12 @@ export function referencePropertyTableBuilder(factory: ColumnCreatorFactory): Ta
         targetTechnologyVersion,
       );
 
-      const primaryKeys: Column[] = collectPrimaryKeys(referenceProperty.referencedEntity, strategy, factory);
+      const primaryKeys: Column[] = collectPrimaryKeys(
+        referenceProperty.referencedEntity,
+        strategy,
+        factory,
+        targetTechnologyVersion,
+      );
       primaryKeys.forEach((pk: Column) => addSourceEntityProperty(pk, property));
       addColumnsWithSort(
         joinTable,

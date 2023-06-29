@@ -32,7 +32,7 @@ export function descriptorPropertyTableBuilder(factory: ColumnCreatorFactory): T
       parentIsRequired: boolean | null,
     ): void {
       const descriptor: ReferentialProperty = asReferentialProperty(property);
-      const columnCreator: ColumnCreator = factory.columnCreatorFor(descriptor);
+      const columnCreator: ColumnCreator = factory.columnCreatorFor(descriptor, targetTechnologyVersion);
 
       if (!descriptor.data.edfiOdsRelational.odsIsCollection) {
         const descriptorColumn: Column = R.head(columnCreator.createColumns(descriptor, buildStrategy));

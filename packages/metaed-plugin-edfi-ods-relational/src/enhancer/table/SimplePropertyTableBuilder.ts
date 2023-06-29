@@ -25,7 +25,7 @@ export function simplePropertyTableBuilder(factory: ColumnCreatorFactory): Table
       targetTechnologyVersion: SemVer,
       parentIsRequired: boolean | null,
     ): void {
-      const columnCreator: ColumnCreator = factory.columnCreatorFor(property);
+      const columnCreator: ColumnCreator = factory.columnCreatorFor(property, targetTechnologyVersion);
 
       let strategy: BuildStrategy = buildStrategy;
 

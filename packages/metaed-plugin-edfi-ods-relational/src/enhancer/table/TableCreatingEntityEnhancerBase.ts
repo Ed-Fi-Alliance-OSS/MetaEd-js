@@ -19,9 +19,12 @@ export function buildTablesFromProperties(
   tables: Table[],
   targetTechnologyVersion: SemVer,
 ): void {
-  const primaryKeys: Column[] = collectPrimaryKeys(entity, BuildStrategyDefault, columnCreatorFactory).map((x: Column) =>
-    cloneColumn(x),
-  );
+  const primaryKeys: Column[] = collectPrimaryKeys(
+    entity,
+    BuildStrategyDefault,
+    columnCreatorFactory,
+    targetTechnologyVersion,
+  ).map((x: Column) => cloneColumn(x));
 
   // For ODS/API 7+, collected primary keys of main tables need to be sorted
   if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {

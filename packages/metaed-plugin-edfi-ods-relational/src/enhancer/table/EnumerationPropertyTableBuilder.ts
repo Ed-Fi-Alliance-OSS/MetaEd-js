@@ -32,7 +32,7 @@ export function enumerationPropertyTableBuilder(factory: ColumnCreatorFactory): 
       parentIsRequired: boolean | null,
     ): void {
       const enumeration: ReferentialProperty = asReferentialProperty(property);
-      const columnCreator: ColumnCreator = factory.columnCreatorFor(enumeration);
+      const columnCreator: ColumnCreator = factory.columnCreatorFor(enumeration, targetTechnologyVersion);
 
       if (!enumeration.data.edfiOdsRelational.odsIsCollection) {
         const enumerationColumn: Column = R.head(columnCreator.createColumns(enumeration, buildStrategy));

@@ -71,7 +71,7 @@ describe('when building inline common property table', (): void => {
     inlineCommon.data.edfiOdsRelational.odsProperties.push(inlineCommonEntityProperty1);
     inlineCommonProperty.referencedEntity = inlineCommon;
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
     const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
 
     const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(inlineCommonProperty);
@@ -155,7 +155,7 @@ describe('when building optional inline common property table', (): void => {
     inlineCommon.data.edfiOdsRelational.odsProperties.push(inlineCommonEntityProperty1);
     inlineCommonProperty.referencedEntity = inlineCommon;
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
     const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
 
     const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(inlineCommonProperty);

@@ -1,4 +1,4 @@
-import { EntityProperty, ReferentialProperty } from '@edfi/metaed-core';
+import { EntityProperty, ReferentialProperty, SemVer } from '@edfi/metaed-core';
 import { asReferentialProperty } from '@edfi/metaed-core';
 import { collectPrimaryKeys } from './PrimaryKeyCollector';
 import { BuildStrategy } from './BuildStrategy';
@@ -6,7 +6,10 @@ import { Column } from '../../model/database/Column';
 import { ColumnCreator } from './ColumnCreator';
 import { ColumnCreatorFactory } from './ColumnCreatorFactory';
 
-export function referencePropertyColumnCreator(factory: ColumnCreatorFactory): ColumnCreator {
+export function referencePropertyColumnCreator(
+  factory: ColumnCreatorFactory,
+  targetTechnologyVersion: SemVer,
+): ColumnCreator {
   return {
     createColumns: (property: EntityProperty, strategy: BuildStrategy): Column[] => {
       if (!strategy.buildColumns(property) || property.data.edfiOdsRelational.odsIsCollection) return [];
@@ -19,7 +22,12 @@ export function referencePropertyColumnCreator(factory: ColumnCreatorFactory): C
           ? buildStrategy.skipPath(referentialProperty.mergeDirectives.map((x) => x.sourcePropertyPathStrings.slice(1)))
           : buildStrategy;
 
-      const columns: Column[] = collectPrimaryKeys(referentialProperty.referencedEntity, buildStrategy, factory);
+      const columns: Column[] = collectPrimaryKeys(
+        referentialProperty.referencedEntity,
+        buildStrategy,
+        factory,
+        targetTechnologyVersion,
+      );
       columns.forEach((column: Column) => {
         column.referenceContext = referentialProperty.data.edfiOdsRelational.odsName + column.referenceContext;
       });

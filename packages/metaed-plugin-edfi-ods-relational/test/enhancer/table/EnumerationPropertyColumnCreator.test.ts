@@ -27,7 +27,7 @@ describe('when creating columns for enumeration property', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -65,7 +65,7 @@ describe('when creating columns for primary key enumeration property', (): void 
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -105,7 +105,7 @@ describe('when creating columns for identity rename enumeration property', (): v
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -144,7 +144,7 @@ describe('when creating columns for nullable enumeration property', (): void => 
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -183,7 +183,7 @@ describe('when creating columns for primary key enumeration property with suppre
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy());
   });
 
@@ -223,7 +223,7 @@ describe('when creating columns for identity rename enumeration property with su
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy());
   });
 

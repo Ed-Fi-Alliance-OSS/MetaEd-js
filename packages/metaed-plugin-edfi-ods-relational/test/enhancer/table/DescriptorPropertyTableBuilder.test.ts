@@ -75,7 +75,7 @@ describe('when building descriptor property table', (): void => {
     descriptor.data.edfiOdsRelational.odsProperties.push(descriptorEntityProperty1);
     entityDescriptorProperty.referencedEntity = descriptor;
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
     const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
 
     const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(entityDescriptorProperty);
@@ -179,7 +179,7 @@ describe('when building collection descriptor property table', (): void => {
     descriptor.data.edfiOdsRelational.odsProperties.push(descriptorEntityProperty1);
     entityDescriptorProperty.referencedEntity = descriptor;
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
     const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
 
     const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(entityDescriptorProperty);

@@ -51,7 +51,7 @@ describe('when creating columns for choice with is collection property', (): voi
 
     choice.data.edfiOdsRelational.odsProperties.push(property);
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(choiceProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(choiceProperty, '6.1.0');
     columns = columnCreator.createColumns(choiceProperty, BuildStrategyDefault);
   });
 
@@ -105,7 +105,7 @@ describe('when creating columns for choice with only one property', (): void => 
 
     choice.data.edfiOdsRelational.odsProperties.push(property);
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(choiceProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(choiceProperty, '6.1.0');
     columns = columnCreator.createColumns(choiceProperty, BuildStrategyDefault);
   });
 
@@ -184,7 +184,7 @@ describe('when creating columns for choice with two properties', (): void => {
     choice.data.edfiOdsRelational.odsProperties.push(stringProperty);
     choice.data.edfiOdsRelational.odsProperties.push(integerProperty);
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(choiceProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(choiceProperty, '6.1.0');
     columns = columnCreator.createColumns(choiceProperty, BuildStrategyDefault);
   });
 

@@ -133,7 +133,9 @@ export function commonPropertyTableBuilder(
 
       const primaryKeys: Column[] = [];
       if (!commonProperty.isOptional) {
-        primaryKeys.push(...collectPrimaryKeys(commonProperty.referencedEntity, strategy, columnFactory));
+        primaryKeys.push(
+          ...collectPrimaryKeys(commonProperty.referencedEntity, strategy, columnFactory, targetTechnologyVersion),
+        );
       }
 
       // For ODS/API 7+, parent primary keys come first

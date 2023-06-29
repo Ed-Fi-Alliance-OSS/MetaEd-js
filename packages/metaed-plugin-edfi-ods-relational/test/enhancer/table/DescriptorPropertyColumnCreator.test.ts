@@ -26,7 +26,7 @@ describe('when creating columns for descriptor property', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -64,7 +64,7 @@ describe('when creating columns for primary key descriptor property', (): void =
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -102,7 +102,7 @@ describe('when creating columns for nullable descriptor property', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -141,7 +141,7 @@ describe('when creating columns for descriptor property role name', (): void => 
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -185,7 +185,7 @@ describe('when creating columns for descriptor property role name and append par
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault.appendParentContextProperty(parentContextProperty));
   });
 
@@ -223,7 +223,7 @@ describe('when creating columns for collection descriptor property', (): void =>
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -261,7 +261,7 @@ describe('when creating columns for primary key descriptor property with suppres
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy());
   });
 
@@ -299,7 +299,7 @@ describe('when creating columns for collection descriptor property with suppress
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy());
   });
 

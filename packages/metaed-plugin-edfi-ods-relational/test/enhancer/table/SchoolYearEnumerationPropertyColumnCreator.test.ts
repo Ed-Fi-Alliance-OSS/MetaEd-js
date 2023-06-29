@@ -23,7 +23,7 @@ describe('when creating columns for school year enumeration property', (): void 
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -57,7 +57,7 @@ describe('when creating columns for school year enumeration property role name',
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -96,7 +96,7 @@ describe('when creating columns for school year enumeration property role name a
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault.appendParentContextProperty(parentContextProperty));
   });
 
@@ -129,7 +129,7 @@ describe('when creating columns for nullable school year enumeration property', 
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -162,7 +162,7 @@ describe('when creating columns for primary key school year enumeration property
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -195,7 +195,7 @@ describe('when creating columns for identity rename school year enumeration prop
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault);
   });
 
@@ -228,7 +228,7 @@ describe('when creating columns for primary key school year enumeration property
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy());
   });
 
@@ -261,7 +261,7 @@ describe('when creating columns for identity rename school year enumeration prop
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
     columns = columnCreator.createColumns(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy());
   });
 

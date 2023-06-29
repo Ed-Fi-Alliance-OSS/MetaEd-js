@@ -51,7 +51,7 @@ describe('when creating columns for common with is collection property', (): voi
 
     common.data.edfiOdsRelational.odsProperties.push(property);
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(commonProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(commonProperty, '6.1.0');
     columns = columnCreator.createColumns(commonProperty, BuildStrategyDefault);
   });
 
@@ -105,7 +105,7 @@ describe('when creating columns for common with only one property', (): void => 
 
     common.data.edfiOdsRelational.odsProperties.push(property);
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(commonProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(commonProperty, '6.1.0');
     columns = columnCreator.createColumns(commonProperty, BuildStrategyDefault);
   });
 
@@ -184,7 +184,7 @@ describe('when creating columns for common with two properties', (): void => {
     common.data.edfiOdsRelational.odsProperties.push(stringProperty);
     common.data.edfiOdsRelational.odsProperties.push(integerProperty);
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(commonProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(commonProperty, '6.1.0');
     columns = columnCreator.createColumns(commonProperty, BuildStrategyDefault);
   });
 

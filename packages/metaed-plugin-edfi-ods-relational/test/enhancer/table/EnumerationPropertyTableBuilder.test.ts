@@ -76,7 +76,7 @@ describe('when building enumeration property table', (): void => {
     enumeration.data.edfiOdsRelational.odsProperties.push(enumerationEntityProperty1);
     entityEnumerationProperty.referencedEntity = enumeration;
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
     const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
 
     const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(entityEnumerationProperty);
@@ -181,7 +181,7 @@ describe('when building collection enumeration property table', (): void => {
     enumeration.data.edfiOdsRelational.odsProperties.push(enumerationEntityProperty1);
     entityEnumerationProperty.referencedEntity = enumeration;
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
     const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
 
     const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(entityEnumerationProperty);

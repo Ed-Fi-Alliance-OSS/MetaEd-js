@@ -1,4 +1,4 @@
-import { EntityProperty, PropertyType } from '@edfi/metaed-core';
+import { EntityProperty, PropertyType, SemVer } from '@edfi/metaed-core';
 import { choicePropertyColumnCreator } from './ChoicePropertyColumnCreator';
 import { commonPropertyColumnCreator } from './CommonPropertyColumnCreator';
 import { descriptorPropertyColumnCreator } from './DescriptorPropertyColumnCreator';
@@ -10,17 +10,17 @@ import { simplePropertyColumnCreator } from './SimplePropertyColumnCreator';
 import { ColumnCreator, nullColumnCreator } from './ColumnCreator';
 
 export interface ColumnCreatorFactory {
-  columnCreatorFor(property: EntityProperty): ColumnCreator;
+  columnCreatorFor(property: EntityProperty, targetTechnologyVersion: SemVer): ColumnCreator;
 }
 
 export const columnCreatorFactory: ColumnCreatorFactory = {
-  columnCreatorFor: (property: EntityProperty): ColumnCreator => {
+  columnCreatorFor: (property: EntityProperty, targetTechnologyVersion: SemVer): ColumnCreator => {
     const columnCreator: { [propertyType in PropertyType]: () => ColumnCreator } = {
-      association: () => referencePropertyColumnCreator(columnCreatorFactory),
-      choice: () => choicePropertyColumnCreator(columnCreatorFactory),
-      common: () => commonPropertyColumnCreator(columnCreatorFactory),
-      domainEntity: () => referencePropertyColumnCreator(columnCreatorFactory),
-      inlineCommon: () => inlineCommonPropertyColumnCreator(columnCreatorFactory),
+      association: () => referencePropertyColumnCreator(columnCreatorFactory, targetTechnologyVersion),
+      choice: () => choicePropertyColumnCreator(columnCreatorFactory, targetTechnologyVersion),
+      common: () => commonPropertyColumnCreator(columnCreatorFactory, targetTechnologyVersion),
+      domainEntity: () => referencePropertyColumnCreator(columnCreatorFactory, targetTechnologyVersion),
+      inlineCommon: () => inlineCommonPropertyColumnCreator(columnCreatorFactory, targetTechnologyVersion),
 
       descriptor: () => descriptorPropertyColumnCreator(),
       enumeration: () => enumerationPropertyColumnCreator(),

@@ -140,7 +140,7 @@ describe('when building common property extension table', (): void => {
     entity.data.edfiOdsRelational.odsProperties.push(entityPkProperty, commonProperty);
     entity.data.edfiOdsRelational.odsIdentityProperties.push(entityPkProperty);
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
     const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
 
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };

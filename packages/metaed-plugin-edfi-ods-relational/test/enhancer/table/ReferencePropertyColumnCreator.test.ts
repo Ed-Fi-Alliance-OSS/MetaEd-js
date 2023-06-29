@@ -41,7 +41,7 @@ describe('when creating columns for identity collection reference property', ():
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(domainEntityProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(domainEntityProperty, '6.1.0');
     columns = columnCreator.createColumns(domainEntityProperty, BuildStrategyDefault);
   });
 
@@ -92,7 +92,7 @@ describe('when creating columns for identity reference property', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(domainEntityProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(domainEntityProperty, '6.1.0');
     columns = columnCreator.createColumns(domainEntityProperty, BuildStrategyDefault);
   });
 
@@ -166,7 +166,7 @@ describe('when creating columns for identity reference properties with composite
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(domainEntityProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(domainEntityProperty, '6.1.0');
     columns = columnCreator.createColumns(domainEntityProperty, BuildStrategyDefault);
   });
 
@@ -258,7 +258,7 @@ describe('when creating columns for identity reference property that references 
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(domainEntityProperty2);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(domainEntityProperty2, '6.1.0');
     columns = columnCreator.createColumns(domainEntityProperty2, BuildStrategyDefault);
   });
 

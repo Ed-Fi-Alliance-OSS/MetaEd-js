@@ -150,7 +150,12 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
     addForeignKey(mainTable, mapTypeForeignKey);
   }
 
-  const primaryKeys: Column[] = collectPrimaryKeys(descriptor, BuildStrategyDefault, columnCreatorFactory);
+  const primaryKeys: Column[] = collectPrimaryKeys(
+    descriptor,
+    BuildStrategyDefault,
+    columnCreatorFactory,
+    targetTechnologyVersion,
+  );
   primaryKeys.push(primaryKey);
 
   descriptor.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {

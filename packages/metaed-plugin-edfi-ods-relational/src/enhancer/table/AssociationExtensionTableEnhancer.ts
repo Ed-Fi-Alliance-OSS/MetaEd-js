@@ -83,7 +83,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         tables.push(mainTable);
       }
 
-      const primaryKeys: Column[] = collectPrimaryKeys(entity, BuildStrategyDefault, columnCreatorFactory);
+      const primaryKeys: Column[] = collectPrimaryKeys(
+        entity,
+        BuildStrategyDefault,
+        columnCreatorFactory,
+        targetTechnologyVersion,
+      );
 
       entity.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
         const tableStrategy: TableStrategy = TableStrategy.extension(

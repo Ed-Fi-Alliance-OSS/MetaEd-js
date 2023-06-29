@@ -75,7 +75,7 @@ describe('when building common property table', (): void => {
         },
       },
     });
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
     const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
 
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
@@ -184,7 +184,7 @@ describe('when building optional common property table', (): void => {
         },
       },
     });
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
     const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
 
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
@@ -292,7 +292,7 @@ describe('when building required collection common property table', (): void => 
         },
       },
     });
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
     const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
 
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
@@ -388,7 +388,7 @@ describe('when building required collection common property table with make leaf
         },
       },
     });
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty);
+    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
     const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
 
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
