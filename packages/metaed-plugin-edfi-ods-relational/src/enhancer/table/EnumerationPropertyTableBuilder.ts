@@ -28,7 +28,7 @@ export function enumerationPropertyTableBuilder(factory: ColumnCreatorFactory): 
       parentPrimaryKeys: Column[],
       buildStrategy: BuildStrategy,
       tables: Table[],
-      _targetTechnologyVersion: SemVer,
+      targetTechnologyVersion: SemVer,
       parentIsRequired: boolean | null,
     ): void {
       const enumeration: ReferentialProperty = asReferentialProperty(property);
@@ -49,6 +49,7 @@ export function enumerationPropertyTableBuilder(factory: ColumnCreatorFactory): 
           parentTableStrategy.table,
           [enumerationColumn],
           buildStrategy.leafColumns(ColumnTransformUnchanged),
+          targetTechnologyVersion,
         );
       } else {
         const { tableId, nameGroup } = joinTableNamer(enumeration, parentTableStrategy, buildStrategy);
@@ -86,6 +87,7 @@ export function enumerationPropertyTableBuilder(factory: ColumnCreatorFactory): 
           joinTable,
           parentPrimaryKeys,
           ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
+          targetTechnologyVersion,
         );
 
         const columns: Column[] = columnCreator.createColumns(enumeration, buildStrategy.columnNamerIgnoresRoleName());
@@ -98,7 +100,7 @@ export function enumerationPropertyTableBuilder(factory: ColumnCreatorFactory): 
           foreignKeyStrategyFor(enumeration),
         );
         addForeignKey(joinTable, foreignKey);
-        addColumnsWithoutSort(joinTable, columns, ColumnTransformPrimaryKey);
+        addColumnsWithoutSort(joinTable, columns, ColumnTransformPrimaryKey, targetTechnologyVersion);
       }
     },
   };

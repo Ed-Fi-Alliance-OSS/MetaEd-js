@@ -488,9 +488,9 @@ describe('when Session has an AcademicWeek collection and targeting ODS/API 7.0'
     const session: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
     expect(session.data.edfiOdsRelational.odsTables[1].columns.map((x) => x.columnId)).toMatchInlineSnapshot(`
       Array [
+        "SchoolId",
         "SchoolYear",
         "SessionName",
-        "SchoolId",
         "WeekIdentifier",
       ]
     `);

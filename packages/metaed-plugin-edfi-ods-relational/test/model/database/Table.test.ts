@@ -4,7 +4,6 @@ import {
   addColumnsWithoutSort,
   addColumnsWithSort,
   getAllColumns,
-  getColumnWithStrongestConstraint,
   getNonPrimaryKeys,
   getPrimaryKeys,
   newTable,
@@ -20,35 +19,25 @@ import {
 } from '../../../src/model/database/ForeignKey';
 import { ForeignKeyStrategyDefault } from '../../../src/model/database/ForeignKeyStrategy';
 
-describe('when getting strongest constrain column with no existing column', (): void => {
-  const mockStrategy = jest.fn((existing: Column) => existing);
+describe('when addColumn with no existing column', (): void => {
   const columnName = 'ColumnName';
-  let column: Column;
+  const table: Table = newTable();
 
   beforeAll(() => {
-    column = getColumnWithStrongestConstraint(
-      newTable(),
-      { ...newColumn(), type: 'boolean', columnId: columnName },
-      mockStrategy,
-    );
-  });
-
-  it('should not call strategy', (): void => {
-    expect(mockStrategy).not.toBeCalled();
+    addColumn(table, { ...newColumn(), type: 'boolean', columnId: columnName }, '6.1.0');
   });
 
   it('should return the column', (): void => {
-    expect(column.columnId).toBe(columnName);
-    expect(column.type).toBe('boolean');
+    expect(table.columns).toHaveLength(1);
+    expect(table.columns[0].columnId).toBe(columnName);
+    expect(table.columns[0].type).toBe('boolean');
   });
 });
 
 describe('when getting strongest constrain column with an existing column', (): void => {
-  const mockStrategy = jest.fn((existing: Column) => existing);
   const columnName = 'ColumnName';
   let existingColumn: Column;
   let receivedColumn: Column;
-  let column: Column;
   let table: Table;
 
   beforeAll(() => {
@@ -57,17 +46,12 @@ describe('when getting strongest constrain column with an existing column', (): 
     table.columns.push(existingColumn);
 
     receivedColumn = { ...newColumn(), type: 'boolean', columnId: columnName };
-    column = getColumnWithStrongestConstraint(table, receivedColumn, mockStrategy);
+    addColumn(table, receivedColumn, '6.1.0');
   });
 
-  it('should call strategy with both columns', (): void => {
-    expect(mockStrategy).toBeCalled();
-    expect(mockStrategy).toBeCalledWith(existingColumn, receivedColumn);
-    expect(column).toBe(existingColumn);
-  });
-
-  it('should remove existing column from table', (): void => {
-    expect(table.columns).toHaveLength(0);
+  it('should replace existing column', (): void => {
+    expect(table.columns).toHaveLength(1);
+    expect(table.columns[0]).toStrictEqual(receivedColumn);
   });
 });
 
@@ -77,7 +61,7 @@ describe('when using add column', (): void => {
 
   beforeAll(() => {
     table = newTable();
-    addColumn(table, { ...newColumn(), type: 'boolean', columnId: columnName });
+    addColumn(table, { ...newColumn(), type: 'boolean', columnId: columnName }, '6.1.0');
   });
 
   it('should add column to table', (): void => {
@@ -110,6 +94,7 @@ describe('when using add column range without sort', (): void => {
         { ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' },
       ],
       ColumnTransformUnchanged,
+      '6.1.0',
     );
   });
 

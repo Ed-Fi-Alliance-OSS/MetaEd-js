@@ -106,7 +106,12 @@ function buildExtensionTables(
   );
 
   addForeignKey(extensionTable, foreignKey);
-  addColumnsWithoutSort(extensionTable, primaryKeys, ColumnTransform.primaryKeyWithNewReferenceContext(joinTableId));
+  addColumnsWithoutSort(
+    extensionTable,
+    primaryKeys,
+    ColumnTransform.primaryKeyWithNewReferenceContext(joinTableId),
+    targetTechnologyVersion,
+  );
 
   commonExtension.data.edfiOdsRelational.odsProperties.forEach((odsProperty: EntityProperty) => {
     const tableBuilder: TableBuilder = tableFactory.tableBuilderFor(odsProperty);

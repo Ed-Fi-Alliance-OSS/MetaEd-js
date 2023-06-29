@@ -36,6 +36,7 @@ const PRIMARY_KEY_DESCRIPTOR =
   'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
 
 function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[] {
+  const targetTechnologyVersion: SemVer = targetTechnologyVersionFor('edfiOdsRelational', metaEd);
   const tables: Table[] = [];
 
   const mainTable: Table = {
@@ -89,7 +90,7 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
     isNullable: false,
     description: PRIMARY_KEY_DESCRIPTOR,
   };
-  addColumnsWithoutSort(mainTable, [primaryKey], ColumnTransformUnchanged);
+  addColumnsWithoutSort(mainTable, [primaryKey], ColumnTransformUnchanged, targetTechnologyVersion);
 
   const coreNamespace: Namespace | undefined = metaEd.namespace.get('EdFi');
   // Bail out if core namespace isn't defined
@@ -133,7 +134,7 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
       description: PRIMARY_KEY_DESCRIPTOR,
     };
 
-    addColumnsWithoutSort(mainTable, [mapTypeColumn], ColumnTransformUnchanged);
+    addColumnsWithoutSort(mainTable, [mapTypeColumn], ColumnTransformUnchanged, targetTechnologyVersion);
 
     const mapTypeForeignKey: ForeignKey = createForeignKeyUsingSourceReference(
       {
@@ -152,7 +153,6 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
   const primaryKeys: Column[] = collectPrimaryKeys(descriptor, BuildStrategyDefault, columnCreatorFactory);
   primaryKeys.push(primaryKey);
 
-  const targetTechnologyVersion: SemVer = targetTechnologyVersionFor('edfiOdsRelational', metaEd);
   descriptor.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
     const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(property);
     tableBuilder.buildTables(

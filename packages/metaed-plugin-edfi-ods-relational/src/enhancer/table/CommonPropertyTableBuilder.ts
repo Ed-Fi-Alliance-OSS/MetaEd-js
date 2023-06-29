@@ -70,6 +70,7 @@ function buildJoinTables(
       joinTable,
       parentPrimaryKeys,
       ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
+      targetTechnologyVersion,
     );
   }
 
@@ -102,6 +103,7 @@ function buildJoinTables(
       joinTable,
       parentPrimaryKeys,
       ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
+      targetTechnologyVersion,
     );
   }
 }

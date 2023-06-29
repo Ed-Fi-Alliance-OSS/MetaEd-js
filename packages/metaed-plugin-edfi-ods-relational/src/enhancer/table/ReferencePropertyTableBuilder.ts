@@ -151,6 +151,7 @@ export function referencePropertyTableBuilder(factory: ColumnCreatorFactory): Ta
         joinTable,
         parentPrimaryKeys,
         ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
+        targetTechnologyVersion,
       );
 
       const primaryKeys: Column[] = collectPrimaryKeys(referenceProperty.referencedEntity, strategy, factory);

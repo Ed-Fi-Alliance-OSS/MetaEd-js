@@ -1,4 +1,9 @@
-import { getEntitiesOfTypeForNamespaces, SchoolYearEnumeration } from '@edfi/metaed-core';
+import {
+  getEntitiesOfTypeForNamespaces,
+  SchoolYearEnumeration,
+  SemVer,
+  targetTechnologyVersionFor,
+} from '@edfi/metaed-core';
 import { EnhancerResult, MetaEdEnvironment, ModelBase } from '@edfi/metaed-core';
 import { addTables } from './TableCreatingEntityEnhancerBase';
 import {
@@ -15,7 +20,8 @@ import { ColumnType } from '../../model/database/ColumnType';
 
 const enhancerName = 'SchoolYearEnumerationTableEnhancer';
 
-function build(_metaEd: MetaEdEnvironment, entity: SchoolYearEnumeration): Table {
+function build(metaEd: MetaEdEnvironment, entity: SchoolYearEnumeration): Table {
+  const targetTechnologyVersion: SemVer = targetTechnologyVersionFor('edfiOdsRelational', metaEd);
   const { namespace, documentation } = entity;
   const table: Table = {
     ...newTable(),
@@ -79,6 +85,7 @@ function build(_metaEd: MetaEdEnvironment, entity: SchoolYearEnumeration): Table
       },
     ],
     ColumnTransformUnchanged,
+    targetTechnologyVersion,
   );
   return table;
 }

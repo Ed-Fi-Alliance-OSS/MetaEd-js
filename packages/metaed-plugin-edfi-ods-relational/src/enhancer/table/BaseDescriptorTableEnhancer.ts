@@ -140,6 +140,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       },
     ],
     ColumnTransformUnchanged,
+    targetTechnologyVersion,
   );
 
   tableEntities(metaEd, edfiNamespace).set(descriptorTable.tableId, descriptorTable);

@@ -22,7 +22,7 @@ export function simplePropertyTableBuilder(factory: ColumnCreatorFactory): Table
       parentPrimaryKeys: Column[],
       buildStrategy: BuildStrategy,
       tables: Table[],
-      _targetTechnologyVersion: SemVer,
+      targetTechnologyVersion: SemVer,
       parentIsRequired: boolean | null,
     ): void {
       const columnCreator: ColumnCreator = factory.columnCreatorFor(property);
@@ -74,11 +74,13 @@ export function simplePropertyTableBuilder(factory: ColumnCreatorFactory): Table
           joinTable,
           parentPrimaryKeys,
           ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
+          targetTechnologyVersion,
         );
         addColumnsWithoutSort(
           joinTable,
           columnCreator.createColumns(property, strategy.columnNamerIgnoresRoleName()),
           ColumnTransformPrimaryKey,
+          targetTechnologyVersion,
         );
 
         tables.push(joinTable);
@@ -87,6 +89,7 @@ export function simplePropertyTableBuilder(factory: ColumnCreatorFactory): Table
           parentTableStrategy.table,
           columnCreator.createColumns(property, strategy),
           strategy.leafColumns(ColumnTransformUnchanged),
+          targetTechnologyVersion,
         );
       }
     },

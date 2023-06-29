@@ -40,6 +40,7 @@ export function descriptorPropertyTableBuilder(factory: ColumnCreatorFactory): T
           parentTableStrategy.table,
           [descriptorColumn],
           buildStrategy.leafColumns(ColumnTransformUnchanged),
+          targetTechnologyVersion,
         );
 
         const foreignKey: ForeignKey = createForeignKey(
@@ -88,6 +89,7 @@ export function descriptorPropertyTableBuilder(factory: ColumnCreatorFactory): T
           joinTable,
           parentPrimaryKeys,
           ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
+          targetTechnologyVersion,
         );
 
         const columns: Column[] = columnCreator.createColumns(descriptor, buildStrategy.columnNamerIgnoresRoleName());

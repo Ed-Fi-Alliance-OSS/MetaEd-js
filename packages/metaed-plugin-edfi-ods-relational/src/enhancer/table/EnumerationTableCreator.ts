@@ -1,5 +1,12 @@
 import * as R from 'ramda';
-import { MetaEdEnvironment, Enumeration, Descriptor, normalizeEnumerationSuffix } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  Enumeration,
+  Descriptor,
+  normalizeEnumerationSuffix,
+  SemVer,
+  targetTechnologyVersionFor,
+} from '@edfi/metaed-core';
 import {
   addColumnsWithoutSort,
   newTable,
@@ -17,7 +24,8 @@ const removeTypeSuffix = R.when(R.endsWith('Type'), R.dropLast(4));
 export const enumerationTableCreator: {
   build(metaEd: MetaEdEnvironment, entity: Enumeration | Descriptor, documentation: string): Table;
 } = {
-  build(_metaEd: MetaEdEnvironment, entity: Enumeration | Descriptor, documentation: string): Table {
+  build(metaEd: MetaEdEnvironment, entity: Enumeration | Descriptor, documentation: string): Table {
+    const targetTechnologyVersion: SemVer = targetTechnologyVersionFor('edfiOdsRelational', metaEd);
     const { metaEdName, namespace } = entity;
     const normalizedName = normalizeEnumerationSuffix(metaEdName);
     const table: Table = {
@@ -96,6 +104,7 @@ export const enumerationTableCreator: {
         } as StringColumn,
       ],
       ColumnTransformUnchanged,
+      targetTechnologyVersion,
     );
     return table;
   },

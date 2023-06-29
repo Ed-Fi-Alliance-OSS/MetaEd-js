@@ -13,7 +13,7 @@ import { Table } from '../model/database/Table';
 // Assessment.Version collides with AssessmentContentStandard.Version
 // Rename ContentStandard.Version to ContentStandard.AssessmentVersion when ContentStandard hangs off of Assessment
 const enhancerName = 'AssessmentContentStandardTableDiminisher';
-const targetVersions = '3.0.0';
+const targetVersion = '3.0.0';
 
 const assessmentContentStandard = 'AssessmentContentStandard';
 const assessmentVersion = 'AssessmentVersion';
@@ -60,6 +60,7 @@ function renameVersionColumnOnAssessmentContentStandardTable(tablesForCoreNamesp
       }),
       false,
     ),
+    targetVersion,
   );
 
   column.isNullable = true;
@@ -89,7 +90,7 @@ function renameVersionColumnOnAssessmentContentStandardAuthorTable(tablesForCore
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (!versionSatisfies(metaEd.dataStandardVersion, targetVersions)) return { enhancerName, success: true };
+  if (!versionSatisfies(metaEd.dataStandardVersion, targetVersion)) return { enhancerName, success: true };
   const coreNamespace: Namespace | undefined = metaEd.namespace.get('EdFi');
   if (coreNamespace == null) return { enhancerName, success: false };
   const tablesForCoreNamespace: Map<string, Table> = tableEntities(metaEd, coreNamespace);
