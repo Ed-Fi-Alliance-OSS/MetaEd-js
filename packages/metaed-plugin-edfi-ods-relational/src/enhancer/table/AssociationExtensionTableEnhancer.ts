@@ -23,7 +23,7 @@ import {
 import { tableBuilderFactory } from './TableBuilderFactory';
 import { TableStrategy } from '../../model/database/TableStrategy';
 import { isOdsReferenceProperty } from '../../model/property/ReferenceProperty';
-import { Column } from '../../model/database/Column';
+import { Column, columnSortV7 } from '../../model/database/Column';
 import { Table } from '../../model/database/Table';
 import { TableBuilder } from './TableBuilder';
 
@@ -122,6 +122,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           null,
         );
       });
+
+      // For ODS/API 7.0+, we need to correct column sort order after iterating over odsProperties in MetaEd model order
+      if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {
+        columnSortV7(mainTable, []);
+      }
 
       entity.data.edfiOdsRelational.odsTables = tables;
       addTables(metaEd, tables);

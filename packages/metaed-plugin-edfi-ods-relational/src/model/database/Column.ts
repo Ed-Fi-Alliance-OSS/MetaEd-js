@@ -199,3 +199,37 @@ export function addMergedReferenceContext(column: Column, referenceContext: stri
     // Logger.warn(`Attempt to add duplicate merged reference context: ${referenceContext} to column ${column.columnId} failed.`);
   }
 }
+
+function isParentPrimaryKeyColumn(columnToTest: Column, parentPrimaryKeys: Column[]): boolean {
+  return parentPrimaryKeys.some((c) => c.columnId === columnToTest.columnId);
+}
+
+/**
+ * Makes explicit the V7+ implicitly built sort order which is:
+ * 1) Parent PKs alphabetically
+ * 2) Non-parent PKs (think sub tables) alphabetically
+ * 3) Non PKs alphabetically
+ */
+export function columnSortV7(table: Table, parentPrimaryKeys: Column[]) {
+  table.columns.sort((a: Column, b: Column) => {
+    // if both are parent pk columns, maintain the ordering (may be parents of parents)
+    if (isParentPrimaryKeyColumn(a, parentPrimaryKeys) && isParentPrimaryKeyColumn(b, parentPrimaryKeys)) return 0;
+
+    // if first is parent pk column and second is not, parent pk comes first
+    if (isParentPrimaryKeyColumn(a, parentPrimaryKeys) && !isParentPrimaryKeyColumn(b, parentPrimaryKeys)) return -1;
+
+    // if second is parent pk column and first is not, something is probably wrong programming-wise elsewhere. Still, correct it
+    if (!isParentPrimaryKeyColumn(a, parentPrimaryKeys) && isParentPrimaryKeyColumn(b, parentPrimaryKeys)) return 1;
+
+    // At this point, neither columns are parent pks
+
+    // If neither are PKs, sort
+    if (!a.isPartOfPrimaryKey && !b.isPartOfPrimaryKey) return a.columnId.localeCompare(b.columnId);
+    // If first is a PK and second is not, it stays first
+    if (a.isPartOfPrimaryKey && !b.isPartOfPrimaryKey) return -1;
+    // If second is a PK and first is not, it needs to move up
+    if (!a.isPartOfPrimaryKey && b.isPartOfPrimaryKey) return 1;
+    // If they are both primary keys, order alphabetically
+    return a.columnId.localeCompare(b.columnId);
+  });
+}

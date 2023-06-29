@@ -15,7 +15,7 @@ import { ColumnTransform } from '../../model/database/ColumnTransform';
 import { ForeignKeyStrategy } from '../../model/database/ForeignKeyStrategy';
 import { TableStrategy } from '../../model/database/TableStrategy';
 import { BuildStrategy } from './BuildStrategy';
-import { Column } from '../../model/database/Column';
+import { Column, columnSortV7 } from '../../model/database/Column';
 import { ColumnCreatorFactory } from './ColumnCreatorFactory';
 import { ForeignKey, createForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
@@ -86,6 +86,11 @@ function buildJoinTables(
       null,
     );
   });
+
+  // For ODS/API 7.0+, we need to correct column sort order after iterating over odsProperties in MetaEd model order
+  if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {
+    columnSortV7(joinTable, parentPrimaryKeys);
+  }
 
   const foreignKey: ForeignKey = createForeignKey(
     property,

@@ -47,8 +47,8 @@ export function buildTablesFromProperties(
   // For ODS/API 7+, primary keys of main table needs to be brought to the front and sorted
   if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {
     mainTable.columns.sort((a: Column, b: Column) => {
-      // If neither are PKs, ignore
-      if (!a.isPartOfPrimaryKey && !b.isPartOfPrimaryKey) return 0;
+      // If neither are PKs, order alphabetically
+      if (!a.isPartOfPrimaryKey && !b.isPartOfPrimaryKey) return a.columnId.localeCompare(b.columnId);
       // If first is a PK and second is not, it stays first
       if (a.isPartOfPrimaryKey && !b.isPartOfPrimaryKey) return -1;
       // If second is a PK and first is not, it needs to move up

@@ -1,4 +1,4 @@
-import { SemVer, getEntitiesOfTypeForNamespaces, targetTechnologyVersionFor } from '@edfi/metaed-core';
+import { SemVer, getEntitiesOfTypeForNamespaces, targetTechnologyVersionFor, versionSatisfies } from '@edfi/metaed-core';
 import { Descriptor, EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, Namespace } from '@edfi/metaed-core';
 import {
   addColumnsWithoutSort,
@@ -25,7 +25,7 @@ import {
 } from '../../model/database/ForeignKey';
 import { tableBuilderFactory } from './TableBuilderFactory';
 import { TableStrategy } from '../../model/database/TableStrategy';
-import { Column, newColumn, newColumnNameComponent } from '../../model/database/Column';
+import { Column, columnSortV7, newColumn, newColumnNameComponent } from '../../model/database/Column';
 import { ForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
 import { TableBuilder } from './TableBuilder';
@@ -170,6 +170,11 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
       null,
     );
   });
+
+  // For ODS/API 7.0+, we need to correct column sort order after iterating over odsProperties in MetaEd model order
+  if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {
+    columnSortV7(mainTable, []);
+  }
 
   return tables;
 }
