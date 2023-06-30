@@ -51,9 +51,9 @@ CREATE TABLE [extension].[StaffEvaluationComponentStaffRatingLevel] (
     [EvaluationComponent] [NVARCHAR](50) NOT NULL,
     [SchoolYear] [SMALLINT] NOT NULL,
     [StaffEvaluationTitle] [NVARCHAR](50) NOT NULL,
-    [StaffEvaluationLevel] [NVARCHAR](50) NOT NULL,
     [MaxLevel] [DECIMAL](6, 3) NOT NULL,
     [MinLevel] [DECIMAL](6, 3) NULL,
+    [StaffEvaluationLevel] [NVARCHAR](50) NOT NULL,
     [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [StaffEvaluationComponentStaffRatingLevel_PK] PRIMARY KEY CLUSTERED (
         [EvaluationComponent] ASC,
@@ -95,8 +95,8 @@ GO
 CREATE TABLE [extension].[StaffEvaluationSampleCommonSubclass] (
     [SchoolYear] [SMALLINT] NOT NULL,
     [StaffEvaluationTitle] [NVARCHAR](50) NOT NULL,
-    [StatusTwo] [BIT] NOT NULL,
     [StatusOne] [BIT] NOT NULL,
+    [StatusTwo] [BIT] NOT NULL,
     [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [StaffEvaluationSampleCommonSubclass_PK] PRIMARY KEY CLUSTERED (
         [SchoolYear] ASC,
@@ -110,15 +110,15 @@ GO
 -- Table [extension].[StaffEvaluationStaffRatingLevel] --
 CREATE TABLE [extension].[StaffEvaluationStaffRatingLevel] (
     [SchoolYear] [SMALLINT] NOT NULL,
-    [StaffEvaluationLevel] [NVARCHAR](50) NOT NULL,
     [StaffEvaluationTitle] [NVARCHAR](50) NOT NULL,
+    [StaffEvaluationLevel] [NVARCHAR](50) NOT NULL,
     [MaxLevel] [DECIMAL](6, 3) NOT NULL,
     [MinLevel] [DECIMAL](6, 3) NULL,
     [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [StaffEvaluationStaffRatingLevel_PK] PRIMARY KEY CLUSTERED (
         [SchoolYear] ASC,
-        [StaffEvaluationLevel] ASC,
-        [StaffEvaluationTitle] ASC
+        [StaffEvaluationTitle] ASC,
+        [StaffEvaluationLevel] ASC
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -127,12 +127,12 @@ GO
 
 -- Table [extension].[StaffMyCollection] --
 CREATE TABLE [extension].[StaffMyCollection] (
-    [MyCollection] [INT] NOT NULL,
     [StaffUSI] [INT] NOT NULL,
+    [MyCollection] [INT] NOT NULL,
     [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [StaffMyCollection_PK] PRIMARY KEY CLUSTERED (
-        [MyCollection] ASC,
-        [StaffUSI] ASC
+        [StaffUSI] ASC,
+        [MyCollection] ASC
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -142,9 +142,9 @@ GO
 -- Table [extension].[StaffRatingLevel] --
 CREATE TABLE [extension].[StaffRatingLevel] (
     [StaffUSI] [INT] NOT NULL,
-    [StaffEvaluationLevel] [NVARCHAR](50) NOT NULL,
     [MaxLevel] [DECIMAL](6, 3) NOT NULL,
     [MinLevel] [DECIMAL](6, 3) NULL,
+    [StaffEvaluationLevel] [NVARCHAR](50) NOT NULL,
     [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [StaffRatingLevel_PK] PRIMARY KEY CLUSTERED (
         [StaffUSI] ASC

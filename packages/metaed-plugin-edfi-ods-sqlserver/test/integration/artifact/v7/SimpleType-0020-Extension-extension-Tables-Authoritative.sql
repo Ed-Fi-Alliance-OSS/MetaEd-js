@@ -1,8 +1,3 @@
--- SPDX-License-Identifier: Apache-2.0
--- Licensed to the Ed-Fi Alliance under one or more agreements.
--- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
--- See the LICENSE and NOTICES files in the project root for more information.
-
 -- Table [extension].[AccountTypeDescriptor] --
 CREATE TABLE [extension].[AccountTypeDescriptor] (
     [AccountTypeDescriptorId] [INT] NOT NULL,
@@ -55,8 +50,8 @@ CREATE TABLE [extension].[ChartOfAccount] (
     [AccountIdentifier] [NVARCHAR](50) NOT NULL,
     [EducationOrganizationId] [INT] NOT NULL,
     [FiscalYear] [SMALLINT] NOT NULL,
-    [AccountTypeDescriptorId] [INT] NOT NULL,
     [AccountName] [NVARCHAR](100) NULL,
+    [AccountTypeDescriptorId] [INT] NOT NULL,
     [BalanceSheetCode] [NVARCHAR](16) NULL,
     [FunctionCode] [NVARCHAR](16) NULL,
     [FundCode] [NVARCHAR](16) NULL,
@@ -470,13 +465,13 @@ GO
 -- Table [extension].[SourceDimensionReportingTag] --
 CREATE TABLE [extension].[SourceDimensionReportingTag] (
     [FiscalYear] [SMALLINT] NOT NULL,
-    [ReportingTagDescriptorId] [INT] NOT NULL,
     [SourceCode] [NVARCHAR](16) NOT NULL,
+    [ReportingTagDescriptorId] [INT] NOT NULL,
     [CreateDate] [DATETIME2] NOT NULL,
     CONSTRAINT [SourceDimensionReportingTag_PK] PRIMARY KEY CLUSTERED (
         [FiscalYear] ASC,
-        [ReportingTagDescriptorId] ASC,
-        [SourceCode] ASC
+        [SourceCode] ASC,
+        [ReportingTagDescriptorId] ASC
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
