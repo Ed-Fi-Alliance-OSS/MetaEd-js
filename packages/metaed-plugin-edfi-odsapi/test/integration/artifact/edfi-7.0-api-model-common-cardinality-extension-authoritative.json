@@ -240,8 +240,8 @@
         {
           "identifierName": "CommonScalarCardinalityLanguageCollection_PK",
           "identifyingPropertyNames": [
-            "BeginDate",
-            "StudentUId"
+            "StudentUId",
+            "BeginDate"
           ],
           "isPrimary": true,
           "isUpdatable": false,
@@ -506,8 +506,8 @@
         {
           "identifierName": "PriorYearLeaverLanguage_PK",
           "identifyingPropertyNames": [
-            "LanguageDescriptorId",
-            "StudentUId"
+            "StudentUId",
+            "LanguageDescriptorId"
           ],
           "isPrimary": true,
           "isUpdatable": false,
@@ -550,9 +550,9 @@
         {
           "identifierName": "PriorYearLeaverLanguageUse_PK",
           "identifyingPropertyNames": [
+            "StudentUId",
             "LanguageDescriptorId",
-            "LanguageUseDescriptorId",
-            "StudentUId"
+            "LanguageUseDescriptorId"
           ],
           "isPrimary": true,
           "isUpdatable": false,
@@ -631,10 +631,10 @@
         {
           "identifierName": "StudentEducationOrganizationAssociationLanguageCollection_PK",
           "identifyingPropertyNames": [
-            "BeginDate",
             "EducationOrganizationId",
+            "StudentUSI",
             "LanguageDescriptorId",
-            "StudentUSI"
+            "BeginDate"
           ],
           "isPrimary": true,
           "isUpdatable": false,
@@ -713,10 +713,10 @@
         {
           "identifierName": "StudentEducationOrganizationAssociationLanguageSet_PK",
           "identifyingPropertyNames": [
-            "BeginDate",
             "EducationOrganizationId",
+            "StudentUSI",
             "LanguageDescriptorId",
-            "StudentUSI"
+            "BeginDate"
           ],
           "isPrimary": true,
           "isUpdatable": false,
@@ -759,11 +759,11 @@
         {
           "identifierName": "StudentEducationOrganizationAssociationLanguageSetLanguageUse_PK",
           "identifyingPropertyNames": [
-            "BeginDate",
             "EducationOrganizationId",
+            "StudentUSI",
             "LanguageDescriptorId",
-            "LanguageUseDescriptorId",
-            "StudentUSI"
+            "BeginDate",
+            "LanguageUseDescriptorId"
           ],
           "isPrimary": true,
           "isUpdatable": false,
@@ -1100,23 +1100,6 @@
       },
       "primaryEntityProperties": [
         {
-          "propertyName": "LanguageDescriptorId",
-          "propertyType": {
-            "dbType": "Int32",
-            "maxLength": 0,
-            "precision": 10,
-            "scale": 0,
-            "isNullable": false
-          },
-          "description": "A specification of which written or spoken communication is being used.",
-          "isIdentifying": true,
-          "isServerAssigned": false,
-          "columnNames": {
-            "sqlServer": "LanguageDescriptorId",
-            "postgreSql": "LanguageDescriptorId"
-          }
-        },
-        {
           "propertyName": "StudentUId",
           "propertyType": {
             "dbType": "String",
@@ -1132,6 +1115,23 @@
           "columnNames": {
             "sqlServer": "StudentUId",
             "postgreSql": "StudentUId"
+          }
+        },
+        {
+          "propertyName": "LanguageDescriptorId",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "A specification of which written or spoken communication is being used.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "LanguageDescriptorId",
+            "postgreSql": "LanguageDescriptorId"
           }
         }
       ],
@@ -1141,23 +1141,6 @@
       },
       "secondaryEntityProperties": [
         {
-          "propertyName": "LanguageDescriptorId",
-          "propertyType": {
-            "dbType": "Int32",
-            "maxLength": 0,
-            "precision": 10,
-            "scale": 0,
-            "isNullable": false
-          },
-          "description": "A specification of which written or spoken communication is being used.",
-          "isIdentifying": true,
-          "isServerAssigned": false,
-          "columnNames": {
-            "sqlServer": "LanguageDescriptorId",
-            "postgreSql": "LanguageDescriptorId"
-          }
-        },
-        {
           "propertyName": "StudentUId",
           "propertyType": {
             "dbType": "String",
@@ -1173,6 +1156,23 @@
           "columnNames": {
             "sqlServer": "StudentUId",
             "postgreSql": "StudentUId"
+          }
+        },
+        {
+          "propertyName": "LanguageDescriptorId",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "A specification of which written or spoken communication is being used.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "LanguageDescriptorId",
+            "postgreSql": "LanguageDescriptorId"
           }
         }
       ],
@@ -1213,23 +1213,6 @@
           }
         },
         {
-          "propertyName": "LanguageDescriptorId",
-          "propertyType": {
-            "dbType": "Int32",
-            "maxLength": 0,
-            "precision": 10,
-            "scale": 0,
-            "isNullable": false
-          },
-          "description": "A specification of which written or spoken communication is being used.",
-          "isIdentifying": true,
-          "isServerAssigned": false,
-          "columnNames": {
-            "sqlServer": "LanguageDescriptorId",
-            "postgreSql": "LanguageDescriptorId"
-          }
-        },
-        {
           "propertyName": "StudentUSI",
           "propertyType": {
             "dbType": "Int32",
@@ -1244,6 +1227,23 @@
           "columnNames": {
             "sqlServer": "StudentUSI",
             "postgreSql": "StudentUSI"
+          }
+        },
+        {
+          "propertyName": "LanguageDescriptorId",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "A specification of which written or spoken communication is being used.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "LanguageDescriptorId",
+            "postgreSql": "LanguageDescriptorId"
           }
         }
       ],
@@ -1270,23 +1270,6 @@
           }
         },
         {
-          "propertyName": "LanguageDescriptorId",
-          "propertyType": {
-            "dbType": "Int32",
-            "maxLength": 0,
-            "precision": 10,
-            "scale": 0,
-            "isNullable": false
-          },
-          "description": "A specification of which written or spoken communication is being used.",
-          "isIdentifying": true,
-          "isServerAssigned": false,
-          "columnNames": {
-            "sqlServer": "LanguageDescriptorId",
-            "postgreSql": "LanguageDescriptorId"
-          }
-        },
-        {
           "propertyName": "StudentUSI",
           "propertyType": {
             "dbType": "Int32",
@@ -1301,6 +1284,23 @@
           "columnNames": {
             "sqlServer": "StudentUSI",
             "postgreSql": "StudentUSI"
+          }
+        },
+        {
+          "propertyName": "LanguageDescriptorId",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "A specification of which written or spoken communication is being used.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "LanguageDescriptorId",
+            "postgreSql": "LanguageDescriptorId"
           }
         }
       ],
@@ -1341,23 +1341,6 @@
           }
         },
         {
-          "propertyName": "LanguageDescriptorId",
-          "propertyType": {
-            "dbType": "Int32",
-            "maxLength": 0,
-            "precision": 10,
-            "scale": 0,
-            "isNullable": false
-          },
-          "description": "A specification of which written or spoken communication is being used.",
-          "isIdentifying": true,
-          "isServerAssigned": false,
-          "columnNames": {
-            "sqlServer": "LanguageDescriptorId",
-            "postgreSql": "LanguageDescriptorId"
-          }
-        },
-        {
           "propertyName": "StudentUSI",
           "propertyType": {
             "dbType": "Int32",
@@ -1372,6 +1355,23 @@
           "columnNames": {
             "sqlServer": "StudentUSI",
             "postgreSql": "StudentUSI"
+          }
+        },
+        {
+          "propertyName": "LanguageDescriptorId",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "A specification of which written or spoken communication is being used.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "LanguageDescriptorId",
+            "postgreSql": "LanguageDescriptorId"
           }
         }
       ],
@@ -1398,23 +1398,6 @@
           }
         },
         {
-          "propertyName": "LanguageDescriptorId",
-          "propertyType": {
-            "dbType": "Int32",
-            "maxLength": 0,
-            "precision": 10,
-            "scale": 0,
-            "isNullable": false
-          },
-          "description": "A specification of which written or spoken communication is being used.",
-          "isIdentifying": true,
-          "isServerAssigned": false,
-          "columnNames": {
-            "sqlServer": "LanguageDescriptorId",
-            "postgreSql": "LanguageDescriptorId"
-          }
-        },
-        {
           "propertyName": "StudentUSI",
           "propertyType": {
             "dbType": "Int32",
@@ -1429,6 +1412,23 @@
           "columnNames": {
             "sqlServer": "StudentUSI",
             "postgreSql": "StudentUSI"
+          }
+        },
+        {
+          "propertyName": "LanguageDescriptorId",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "A specification of which written or spoken communication is being used.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "LanguageDescriptorId",
+            "postgreSql": "LanguageDescriptorId"
           }
         }
       ],
@@ -1512,24 +1512,6 @@
       },
       "primaryEntityProperties": [
         {
-          "propertyName": "BeginDate",
-          "propertyType": {
-            "dbType": "Date",
-            "minLength": 0,
-            "maxLength": 0,
-            "precision": 0,
-            "scale": 0,
-            "isNullable": false
-          },
-          "description": "Begin date of the effective date for the Language",
-          "isIdentifying": true,
-          "isServerAssigned": false,
-          "columnNames": {
-            "sqlServer": "BeginDate",
-            "postgreSql": "BeginDate"
-          }
-        },
-        {
           "propertyName": "EducationOrganizationId",
           "propertyType": {
             "dbType": "Int32",
@@ -1544,6 +1526,23 @@
           "columnNames": {
             "sqlServer": "EducationOrganizationId",
             "postgreSql": "EducationOrganizationId"
+          }
+        },
+        {
+          "propertyName": "StudentUSI",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "A unique alphanumeric code assigned to a student.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "StudentUSI",
+            "postgreSql": "StudentUSI"
           }
         },
         {
@@ -1564,20 +1563,21 @@
           }
         },
         {
-          "propertyName": "StudentUSI",
+          "propertyName": "BeginDate",
           "propertyType": {
-            "dbType": "Int32",
+            "dbType": "Date",
+            "minLength": 0,
             "maxLength": 0,
-            "precision": 10,
+            "precision": 0,
             "scale": 0,
             "isNullable": false
           },
-          "description": "A unique alphanumeric code assigned to a student.",
+          "description": "Begin date of the effective date for the Language",
           "isIdentifying": true,
           "isServerAssigned": false,
           "columnNames": {
-            "sqlServer": "StudentUSI",
-            "postgreSql": "StudentUSI"
+            "sqlServer": "BeginDate",
+            "postgreSql": "BeginDate"
           }
         }
       ],
@@ -1587,24 +1587,6 @@
       },
       "secondaryEntityProperties": [
         {
-          "propertyName": "BeginDate",
-          "propertyType": {
-            "dbType": "Date",
-            "minLength": 0,
-            "maxLength": 0,
-            "precision": 0,
-            "scale": 0,
-            "isNullable": false
-          },
-          "description": "Begin date of the effective date for the Language",
-          "isIdentifying": true,
-          "isServerAssigned": false,
-          "columnNames": {
-            "sqlServer": "BeginDate",
-            "postgreSql": "BeginDate"
-          }
-        },
-        {
           "propertyName": "EducationOrganizationId",
           "propertyType": {
             "dbType": "Int32",
@@ -1619,6 +1601,23 @@
           "columnNames": {
             "sqlServer": "EducationOrganizationId",
             "postgreSql": "EducationOrganizationId"
+          }
+        },
+        {
+          "propertyName": "StudentUSI",
+          "propertyType": {
+            "dbType": "Int32",
+            "maxLength": 0,
+            "precision": 10,
+            "scale": 0,
+            "isNullable": false
+          },
+          "description": "A unique alphanumeric code assigned to a student.",
+          "isIdentifying": true,
+          "isServerAssigned": false,
+          "columnNames": {
+            "sqlServer": "StudentUSI",
+            "postgreSql": "StudentUSI"
           }
         },
         {
@@ -1639,20 +1638,21 @@
           }
         },
         {
-          "propertyName": "StudentUSI",
+          "propertyName": "BeginDate",
           "propertyType": {
-            "dbType": "Int32",
+            "dbType": "Date",
+            "minLength": 0,
             "maxLength": 0,
-            "precision": 10,
+            "precision": 0,
             "scale": 0,
             "isNullable": false
           },
-          "description": "A unique alphanumeric code assigned to a student.",
+          "description": "Begin date of the effective date for the Language",
           "isIdentifying": true,
           "isServerAssigned": false,
           "columnNames": {
-            "sqlServer": "StudentUSI",
-            "postgreSql": "StudentUSI"
+            "sqlServer": "BeginDate",
+            "postgreSql": "BeginDate"
           }
         }
       ],
