@@ -28,7 +28,7 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration, data
   const projectsToDeploy: MetaEdProject[] = projects.filter((p: MetaEdProject) => !isDataStandard(p));
 
   projectsToDeploy.forEach((projectToDeploy: MetaEdProject) => {
-    const versionSatisfiesV7OrGreater = !versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7OrGreater);
+    const versionSatisfiesV7OrGreater = versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7OrGreater);
     const dataStandardVersionFormatted = versionSatisfiesV7OrGreater
       ? formatVersionWithSuppressPrereleaseVersion(dataStandardVersion, metaEdConfiguration.suppressPrereleaseVersion)
       : dataStandardVersion;

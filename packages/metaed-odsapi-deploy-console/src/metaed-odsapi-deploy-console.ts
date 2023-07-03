@@ -109,7 +109,6 @@ export async function metaEdDeploy() {
     .alias('version', 'v');
 
   let metaEdConfiguration: MetaEdConfiguration;
-
   if (yargs.argv['metaEdConfiguration'] == null) {
     // if this function was called outside the normal CLI flow, do nothing and return
     if (yargs.argv['source'] == null || yargs.argv['projectNames'] == null) return;
@@ -118,13 +117,16 @@ export async function metaEdDeploy() {
       yargs.argv['source'],
       yargs.argv['projectNames'],
     );
-
+    let suppressPrereleaseVersion: boolean;
+    if (yargs.argv['suppressPrereleaseVersion'] != null) suppressPrereleaseVersion = yargs.argv['suppressPrereleaseVersion'];
+    else suppressPrereleaseVersion = true;
     metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: path.join(resolvedProjects.slice(-1)[0].path, 'MetaEdOutput'),
       deployDirectory: yargs.argv['target'],
       projectPaths: resolvedProjects.map((projectPair: MetaEdProjectPathPairs) => projectPair.path),
       projects: resolvedProjects.map((projectPair: MetaEdProjectPathPairs) => projectPair.project),
+      suppressPrereleaseVersion,
     };
     if (yargs.argv['defaultPluginTechVersion'] != null) {
       metaEdConfiguration.defaultPluginTechVersion = yargs.argv['defaultPluginTechVersion'];
@@ -136,9 +138,6 @@ export async function metaEdDeploy() {
       runGenerators: true,
       stopOnValidationFailure: true,
     };
-    let suppressPrereleaseVersion: boolean;
-    if (yargs.argv['suppressPrereleaseVersion'] != null) suppressPrereleaseVersion = yargs.argv['suppressPrereleaseVersion'];
-    else suppressPrereleaseVersion = true;
     const dataStandardVersion: SemVer = dataStandardVersionFor(metaEdConfiguration.projects);
     const metaEd: MetaEdEnvironment = {
       ...newMetaEdEnvironment(),
@@ -146,7 +145,6 @@ export async function metaEdDeploy() {
       suppressPrereleaseVersion,
     };
     const state: State = { ...newState(), metaEdConfiguration, pipelineOptions, metaEd, metaEdPlugins: defaultPlugins() };
-
     try {
       const { failure } = await executePipeline(state);
       process.exitCode = !state.validationFailure.some((vf) => vf.category === 'error') && !failure ? 0 : 1;

@@ -19,12 +19,11 @@ function deployPaths(corePath: string): CopyOptions[] {
 function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStandardVersion: SemVer) {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectName: string = 'EdFi';
-  const versionSatisfiesV7OrGreater = !versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7OrGreater);
+  const versionSatisfiesV7OrGreater = versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7OrGreater);
   const dataStandardVersionFormatted = versionSatisfiesV7OrGreater
     ? formatVersionWithSuppressPrereleaseVersion(dataStandardVersion, metaEdConfiguration.suppressPrereleaseVersion)
     : dataStandardVersion;
   const corePath: string = `Ed-Fi-ODS/Application/EdFi.Ods.Standard/Standard/${dataStandardVersionFormatted}/Artifacts`;
-
   deployPaths(corePath).forEach((deployPath: CopyOptions) => {
     const resolvedDeployPath: CopyOptions = {
       ...deployPath,
