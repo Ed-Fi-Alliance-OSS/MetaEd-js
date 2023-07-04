@@ -487,3 +487,36 @@ describe('when building a domain entity with a descriptor collection that meets 
     expect(gradeLevelDescriptorApiName).toEqual('gradeLevels');
   });
 });
+
+describe('when building a domain entity with a optional collection that meets prefix removal conditions', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  let gradeLevelDescriptorApiName: any = null;
+  let meadowlarkData: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity('ObjectiveAssessment')
+      .withDocumentation('doc')
+      .withStringIdentity('IdentificationCode', 'doc', '30')
+      .withCommonProperty('AssessmentScore', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    enhance(metaEd);
+
+    meadowlarkData = metaEd.propertyIndex.common[0].data.edfiApiSchema;
+  });
+
+  it('should have the prefix removed from the name', () => {
+    gradeLevelDescriptorApiName = meadowlarkData.apiMapping.fullName;
+    expect(gradeLevelDescriptorApiName).toEqual('scores');
+  });
+});

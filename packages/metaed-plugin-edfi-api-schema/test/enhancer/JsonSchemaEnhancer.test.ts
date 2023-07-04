@@ -2881,7 +2881,12 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
             "properties": Object {},
             "type": "object",
           },
-          "cohortYears": Object {
+          "studentUniqueId": Object {
+            "description": "",
+            "maxLength": 100,
+            "type": "string",
+          },
+          "years": Object {
             "items": Object {
               "additionalProperties": false,
               "properties": Object {
@@ -2910,11 +2915,6 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
             "type": "array",
             "uniqueItems": false,
           },
-          "studentUniqueId": Object {
-            "description": "",
-            "maxLength": 100,
-            "type": "string",
-          },
         },
         "required": Array [
           "studentUniqueId",
@@ -2935,7 +2935,7 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
       Object {
         "CohortYear.SchoolYear": Array [
-          "$.cohortYears[*].schoolYearTypeReference.schoolYear",
+          "$.years[*].schoolYearTypeReference.schoolYear",
         ],
         "StudentUniqueId": Array [
           "$.studentUniqueId",
