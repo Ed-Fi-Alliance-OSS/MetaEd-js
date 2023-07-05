@@ -2,7 +2,7 @@ import * as R from 'ramda';
 import xmlParser from 'xml-js';
 import { createAnnotation } from '../GeneratorTestBase';
 import { nextSecondName, nextHeadText, nextHeadName, nextSecond, nextHead, nextLength } from './TemplateTestHelper';
-import { templateNamed } from '../../../src/generator/XsdGeneratorBase';
+import { registerHandleBarHelper, templateNamed } from '../../../src/generator/XsdGeneratorBase';
 
 const annotation = nextHead;
 
@@ -11,6 +11,7 @@ describe('when generating schema', (): void => {
   let result;
 
   beforeAll(() => {
+    registerHandleBarHelper();
     const testObject = createAnnotation(documentation);
     const rawXsd = templateNamed('annotation')(testObject);
     result = xmlParser.xml2js(rawXsd);
@@ -36,6 +37,7 @@ describe('when generating annotation with type group', (): void => {
   beforeAll(() => {
     const testObject = createAnnotation(documentation, typeGroup);
     const rawXsd = templateNamed('annotation')(testObject);
+    registerHandleBarHelper();
     result = xmlParser.xml2js(rawXsd);
   });
 

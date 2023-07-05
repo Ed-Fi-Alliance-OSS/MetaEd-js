@@ -29,6 +29,7 @@ import { addEdFiXsdEntityRepositoryTo } from '../../src/model/EdFiXsdEntityRepos
 import { newMergedInterchange, addMergedInterchangeToRepository } from '../../src/model/MergedInterchange';
 import { MergedInterchange } from '../../src/model/MergedInterchange';
 import { generate } from '../../src/generator/InterchangeGenerator';
+import { registerHandleBarHelper } from '../../src/generator/XsdGeneratorBase';
 
 describe('when generating single interchange', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
@@ -54,6 +55,7 @@ describe('when generating single interchange', (): void => {
   let result;
 
   beforeAll(async () => {
+    registerHandleBarHelper();
     const element: InterchangeItem = {
       ...newInterchangeItem(),
       metaEdName: elementBaseName,
