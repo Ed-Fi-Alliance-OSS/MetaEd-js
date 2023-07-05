@@ -33,6 +33,15 @@ export const template = R.memoizeWith(R.identity, () => ({
   xsdWithHeader: templateNamed('xsdWithHeader'),
 }));
 
+/**
+ * This function escapes XML characters to replace them with the encoded version or a word equivalent.
+ * @param xmlString string to be cleaned.
+ * @returns
+ */
+export function replaceXmlEscapeCharacters(xmlString: string): string {
+  return xmlString.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 export const registerPartials = R.once(() => {
   xsdHandlebars.registerPartial({
     annotation: templateString('annotation'),
@@ -41,6 +50,10 @@ export const registerPartials = R.once(() => {
     complexTypeItem: templateString('complexTypeItem'),
     simpleType: templateString('simpleType'),
   } as any);
+  // Add a helper to replace escape characters
+  xsdHandlebars.registerHelper('replaceXmlEscapeCharacters', (documentation: string) =>
+    replaceXmlEscapeCharacters(documentation),
+  );
 });
 
 function formatXml(unformattedXml: string): string {
