@@ -1,3 +1,4 @@
+import xmlParser from 'xml-js';
 import { MetaEdEnvironment } from '@edfi/metaed-core';
 import {
   newMetaEdEnvironment,
@@ -26,7 +27,7 @@ describe('when generating xsd for domain entity', (): void => {
       .withBeginNamespace('EdFi')
 
       .withStartDomainEntity(sample)
-      .withDocumentation('doc')
+      .withDocumentation('documentation with escape characters &, <, >')
       .withIntegerIdentity(property1, 'doc')
       .withEndDomainEntity()
 
@@ -38,6 +39,11 @@ describe('when generating xsd for domain entity', (): void => {
     ({ coreResult } = await enhanceAndGenerate(metaEd));
   });
 
+  it('should generate the documentation with the encoded escape characters', (): void => {
+    const documentation = xmlParser.xml2js(coreResult, { sanitize: true }).elements[0].elements[3].elements[0].elements[0]
+      .elements[0].text;
+    expect(documentation).toContain('documentation with escape characters &amp;, &lt;, &gt;');
+  });
   it('should generate domain entity', (): void => {
     const elements = xpathSelect("/xs:schema/xs:complexType[@name='Sample']", coreResult);
     expect(elements).toHaveLength(1);
@@ -196,14 +202,14 @@ describe('when generating xsd for domain entity in extension namespace with refe
     );
     expect(elements).toHaveLength(1);
   });
-  it('should generate extention domain entity primary key', (): void => {
+  it('should generate extension domain entity primary key', (): void => {
     const elements = xpathSelect(
       "/xs:schema/xs:complexType[@name='EXTENSION-ExtensionEntity']/xs:complexContent/xs:extension/xs:sequence/xs:element[@name='ExtensionEntityPk']",
       extensionResult,
     );
     expect(elements).toHaveLength(1);
   });
-  it('should generate extenion domain entity reference to core entity', (): void => {
+  it('should generate extension domain entity reference to core entity', (): void => {
     const elements = xpathSelect(
       "/xs:schema/xs:complexType[@name='EXTENSION-ExtensionEntity']/xs:complexContent/xs:extension/xs:sequence/xs:element[@name='CoreEntityReference'][@type='CoreEntityReferenceType']",
       extensionResult,
