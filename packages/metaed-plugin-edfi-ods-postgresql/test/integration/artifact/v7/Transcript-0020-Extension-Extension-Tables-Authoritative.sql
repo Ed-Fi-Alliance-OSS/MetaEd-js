@@ -13,9 +13,9 @@ CREATE TABLE extension.InstitutionLevelDescriptor (
 -- Table extension.PostSecondaryOrganization --
 CREATE TABLE extension.PostSecondaryOrganization (
     NameOfInstitution VARCHAR(75) NOT NULL,
-    InstitutionLevelDescriptorId INT NOT NULL,
-    InstitutionControlDescriptorId INT NOT NULL,
     AcceptanceIndicator BOOLEAN NOT NULL,
+    InstitutionControlDescriptorId INT NOT NULL,
+    InstitutionLevelDescriptorId INT NOT NULL,
     Discriminator VARCHAR(128) NULL,
     CreateDate TIMESTAMP NOT NULL,
     LastModifiedDate TIMESTAMP NOT NULL,

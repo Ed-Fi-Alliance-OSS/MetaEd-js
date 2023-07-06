@@ -1,5 +1,11 @@
 import * as R from 'ramda';
-import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import {
+  EnhancerResult,
+  MetaEdEnvironment,
+  Namespace,
+  targetTechnologyVersionFor,
+  versionSatisfies,
+} from '@edfi/metaed-core';
 import { getPrimaryKeys } from '../model/database/Table';
 import { getParentTableColumnIds } from '../model/database/ForeignKey';
 import { tableEntities } from './EnhancerHelper';
@@ -11,20 +17,22 @@ import { Table } from '../model/database/Table';
 const enhancerName = 'ForeignKeyReverseIndexEnhancer';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  metaEd.namespace.forEach((namespace: Namespace) => {
-    const tables: Map<string, Table> = tableEntities(metaEd, namespace);
-    tables.forEach((table: Table) => {
-      const primaryKeyColumnIds: string[] = getPrimaryKeys(table).map((pk: Column) => pk.columnId);
+  // Foreign key reverse indexing not needed after column + PK ordering changes for 7.0+
+  if (versionSatisfies(targetTechnologyVersionFor('edfiOdsRelational', metaEd), '<7.0.0')) {
+    metaEd.namespace.forEach((namespace: Namespace) => {
+      const tables: Map<string, Table> = tableEntities(metaEd, namespace);
+      tables.forEach((table: Table) => {
+        const primaryKeyColumnIds: string[] = getPrimaryKeys(table).map((pk: Column) => pk.columnId);
 
-      R.compose(
-        R.forEach((fk: ForeignKey) => {
-          fk.withReverseForeignKeyIndex = true;
-        }),
-        R.reject((fk: ForeignKey) => R.equals(getParentTableColumnIds(fk), primaryKeyColumnIds)),
-      )(table.foreignKeys);
+        R.compose(
+          R.forEach((fk: ForeignKey) => {
+            fk.withReverseForeignKeyIndex = true;
+          }),
+          R.reject((fk: ForeignKey) => R.equals(getParentTableColumnIds(fk), primaryKeyColumnIds)),
+        )(table.foreignKeys);
+      });
     });
-  });
-
+  }
   return {
     enhancerName,
     success: true,

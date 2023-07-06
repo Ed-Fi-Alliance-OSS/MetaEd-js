@@ -36,9 +36,9 @@ CREATE TABLE extension.StaffEvaluationComponentStaffRatingLevel (
     EvaluationComponent VARCHAR(50) NOT NULL,
     SchoolYear SMALLINT NOT NULL,
     StaffEvaluationTitle VARCHAR(50) NOT NULL,
-    StaffEvaluationLevel VARCHAR(50) NOT NULL,
     MaxLevel DECIMAL(6, 3) NOT NULL,
     MinLevel DECIMAL(6, 3) NULL,
+    StaffEvaluationLevel VARCHAR(50) NOT NULL,
     CreateDate TIMESTAMP NOT NULL,
     CONSTRAINT StaffEvaluationComponentStaffRatingLevel_PK PRIMARY KEY (EvaluationComponent, SchoolYear, StaffEvaluationTitle)
 ); 
@@ -64,30 +64,30 @@ ALTER TABLE extension.StaffEvaluationRating ALTER COLUMN LastModifiedDate SET DE
 -- Table extension.StaffEvaluationStaffRatingLevel --
 CREATE TABLE extension.StaffEvaluationStaffRatingLevel (
     SchoolYear SMALLINT NOT NULL,
-    StaffEvaluationLevel VARCHAR(50) NOT NULL,
     StaffEvaluationTitle VARCHAR(50) NOT NULL,
+    StaffEvaluationLevel VARCHAR(50) NOT NULL,
     MaxLevel DECIMAL(6, 3) NOT NULL,
     MinLevel DECIMAL(6, 3) NULL,
     CreateDate TIMESTAMP NOT NULL,
-    CONSTRAINT StaffEvaluationStaffRatingLevel_PK PRIMARY KEY (SchoolYear, StaffEvaluationLevel, StaffEvaluationTitle)
+    CONSTRAINT StaffEvaluationStaffRatingLevel_PK PRIMARY KEY (SchoolYear, StaffEvaluationTitle, StaffEvaluationLevel)
 ); 
 ALTER TABLE extension.StaffEvaluationStaffRatingLevel ALTER COLUMN CreateDate SET DEFAULT current_timestamp;
 
 -- Table extension.StaffMyCollection --
 CREATE TABLE extension.StaffMyCollection (
-    MyCollection INT NOT NULL,
     StaffUSI INT NOT NULL,
+    MyCollection INT NOT NULL,
     CreateDate TIMESTAMP NOT NULL,
-    CONSTRAINT StaffMyCollection_PK PRIMARY KEY (MyCollection, StaffUSI)
+    CONSTRAINT StaffMyCollection_PK PRIMARY KEY (StaffUSI, MyCollection)
 ); 
 ALTER TABLE extension.StaffMyCollection ALTER COLUMN CreateDate SET DEFAULT current_timestamp;
 
 -- Table extension.StaffRatingLevel --
 CREATE TABLE extension.StaffRatingLevel (
     StaffUSI INT NOT NULL,
-    StaffEvaluationLevel VARCHAR(50) NOT NULL,
     MaxLevel DECIMAL(6, 3) NOT NULL,
     MinLevel DECIMAL(6, 3) NULL,
+    StaffEvaluationLevel VARCHAR(50) NOT NULL,
     CreateDate TIMESTAMP NOT NULL,
     CONSTRAINT StaffRatingLevel_PK PRIMARY KEY (StaffUSI)
 ); 

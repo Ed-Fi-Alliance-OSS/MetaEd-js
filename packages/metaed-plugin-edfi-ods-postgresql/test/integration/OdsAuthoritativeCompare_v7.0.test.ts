@@ -26,7 +26,7 @@ import { metaEdPlugins } from './PluginHelper';
 
 jest.setTimeout(40000);
 
-describe.skip('when generating ods and comparing it to data standard 5.0 pre authoritative artifacts for ODS/API 7.0.0', (): void => {
+describe('when generating ods and comparing it to data standard 5.0 pre authoritative artifacts for ODS/API 7.0.0', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7/');
   const outputDirectory = `${artifactPath}`;
   let tablesResult: GeneratedOutput;
@@ -203,7 +203,7 @@ describe.skip('when generating ods and comparing it to data standard 5.0 pre aut
   });
 });
 
-describe.skip('when generating ods with simple extensions and comparing it to data standard 5.0 pre authoritative artifacts for ODS/API 7.0.0', (): void => {
+describe('when generating ods with simple extensions and comparing it to data standard 5.0 pre authoritative artifacts for ODS/API 7.0.0', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7/');
   const sampleExtensionPath: string = path.resolve(__dirname, './simple-extension-project');
 
@@ -296,7 +296,7 @@ describe.skip('when generating ods with simple extensions and comparing it to da
   });
 });
 
-describe.skip('when generating ods with student transcript extensions and comparing it to data standard 5.0 pre authoritative artifacts for ODS/API 7.0.0', (): void => {
+describe('when generating ods with student transcript extensions and comparing it to data standard 5.0 pre authoritative artifacts for ODS/API 7.0.0', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7/');
   const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
 

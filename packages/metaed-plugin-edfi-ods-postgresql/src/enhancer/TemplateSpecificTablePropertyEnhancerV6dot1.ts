@@ -1,6 +1,12 @@
 import { EnhancerResult, MetaEdEnvironment, Namespace, versionSatisfies, PluginEnvironment } from '@edfi/metaed-core';
 import { tableEntities, Column, Table, escapeSqlSingleQuote } from '@edfi/metaed-plugin-edfi-ods-relational';
-import { hasAlternateKeys, getAlternateKeys, getUniqueIndexes, getAllColumns, getPrimaryKeys } from './ColumnOrdering';
+import {
+  hasAlternateKeys,
+  getAlternateKeys,
+  getUniqueIndexes,
+  getAllColumnsV6dot1,
+  getPrimaryKeysV6dot1,
+} from './ColumnOrdering';
 
 // Sets sorted table properties for use by the generator template
 const enhancerName = 'TemplateSpecificTablePropertyEnhancerV6dot1';
@@ -22,8 +28,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         sqlEscapedDescription: escapeSqlSingleQuote(table.description),
         hasAlternateKeys: hasAlternateKeys(table),
         alternateKeys: getAlternateKeys(table),
-        columns: getAllColumns(table),
-        primaryKeys: table.primaryKeys.length === 0 ? getPrimaryKeys(table) : table.primaryKeys,
+        columns: getAllColumnsV6dot1(table),
+        primaryKeys: table.primaryKeys.length === 0 ? getPrimaryKeysV6dot1(table) : table.primaryKeys,
         uniqueIndexes: getUniqueIndexes(table),
         isTypeTable: table.tableId.endsWith('Type'), // TODO: this shouldn't rely on table ID, instead look at table parent entity
       });

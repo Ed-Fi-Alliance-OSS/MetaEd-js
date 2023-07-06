@@ -114,7 +114,7 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table with primary
   it('should have correct primary key order', (): void => {
     const { primaryKeys }: any = tableEntities(metaEd, namespace).get(tableName) as Table;
     expect(primaryKeys).toHaveLength(2);
-    expect(primaryKeys.map((x) => x.columnId)).toEqual([primaryKeyName1, primaryKeyName2]);
+    expect(primaryKeys.map((x) => x.columnId)).toEqual([primaryKeyName2, primaryKeyName1]);
   });
 });
 
@@ -340,9 +340,9 @@ describe('when TemplateSpecificTablePropertyEnhancer enhances table with primary
     const { columns } = tableEntities(metaEd, namespace).get(tableName) as Table;
     expect(columns).toHaveLength(5);
     expect(columns.map((x) => x.columnId)).toEqual([
-      primaryKeyName1,
-      primaryKeyName2,
       primaryKeyName3,
+      primaryKeyName2,
+      primaryKeyName1,
       columnName2,
       columnName1,
     ]);
