@@ -1348,6 +1348,92 @@ describe('when building domain entity with Association/DomainEntity collection n
   });
 });
 
+describe('when building domain entity with acronym property name', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'StudentSpecialEducationProgramAssociation';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('ContentIdentifier', 'doc', '30')
+      .withDatetimeIdentity(`IEPBeginDate`, 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be a correct schema - acronym with correct casing', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {},
+            "type": "object",
+          },
+          "contentIdentifier": Object {
+            "description": "doc",
+            "maxLength": 30,
+            "type": "string",
+          },
+          "iepBeginDate": Object {
+            "description": "doc",
+            "format": "date-time",
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "contentIdentifier",
+          "iepBeginDate",
+        ],
+        "title": "EdFi.StudentSpecialEducationProgramAssociation",
+        "type": "object",
+      }
+    `);
+  });
+
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+  });
+
+  it('should be correct entityJsonPaths', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "ContentIdentifier": Array [
+          "$.contentIdentifier",
+        ],
+        "IEPBeginDate": Array [
+          "$.iepBeginDate",
+        ],
+      }
+    `);
+  });
+});
+
 describe('when building domain entity with a simple common collection', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
