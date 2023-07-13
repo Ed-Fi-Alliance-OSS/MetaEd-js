@@ -56,7 +56,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
   });
 
   it('should have metaEd', async () => {
-    // Placeholder for better testing - right now the "test" is that nothing crashes
+    // The "test" is that nothing crashes
     expect(metaEd).not.toBeUndefined();
   });
 });
@@ -102,7 +102,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
   });
 
   it('should have metaEd', async () => {
-    // Placeholder for better testing - right now the "test" is that nothing crashes
+    // The "test" is that nothing crashes
     expect(metaEd).not.toBeUndefined();
   });
 });
@@ -148,7 +148,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
   });
 
   it('should have metaEd', async () => {
-    // Placeholder for better testing - right now the "test" is that nothing crashes
+    // The "test" is that nothing crashes
     expect(metaEd).not.toBeUndefined();
   });
 });

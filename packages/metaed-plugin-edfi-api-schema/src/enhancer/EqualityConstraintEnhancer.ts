@@ -30,10 +30,14 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         if (isReferentialProperty(property)) {
           const referentialProperty: ReferentialProperty = property as ReferentialProperty;
           referentialProperty.mergeDirectives.forEach((mergeDirective: MergeDirective) => {
-            const sourceJsonPaths: JsonPath[] =
+            const sourceJsonPaths: JsonPath[] | undefined =
               entityJsonPaths[mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)];
-            const targetJsonPaths: JsonPath[] =
+            const targetJsonPaths: JsonPath[] | undefined =
               entityJsonPaths[mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)];
+            invariant(
+              sourceJsonPaths != null && targetJsonPaths != null && sourceJsonPaths.length === targetJsonPaths.length,
+              'Invariant failed in EqualityConstraintEnhancer: source or target JsonPaths are undefined',
+            );
             invariant(
               sourceJsonPaths.length === targetJsonPaths.length,
               'Invariant failed in EqualityConstraintEnhancer: source and target JsonPath lengths not equal',

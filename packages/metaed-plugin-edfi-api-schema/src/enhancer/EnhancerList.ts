@@ -9,7 +9,7 @@ import { enhance as subclassApiEntityMappingEnhancer } from './SubclassApiEntity
 import { enhance as propertyCollectingEnhancer } from './PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from './SubclassPropertyCollectingEnhancer';
 import { enhance as jsonSchemaEnhancer } from './JsonSchemaEnhancer';
-// import { enhance as equalityConstraintEnhancer } from './EqualityConstraintEnhancer';
+import { enhance as equalityConstraintEnhancer } from './EqualityConstraintEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -23,6 +23,6 @@ export function enhancerList(): Enhancer[] {
     apiEntityMappingEnhancer,
     subclassApiEntityMappingEnhancer,
     jsonSchemaEnhancer,
-    // equalityConstraintEnhancer, *** Commented out while working on METAED-1468
+    equalityConstraintEnhancer,
   ];
 }
