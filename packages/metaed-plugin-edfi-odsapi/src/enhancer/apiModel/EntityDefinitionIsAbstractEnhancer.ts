@@ -14,8 +14,10 @@ function isAbstract(table: Table): boolean {
   return (
     (table.parentEntity.type === 'domainEntity' &&
       asDomainEntity(table.parentEntity).isAbstract &&
-      table.isEntityMainTable) ||
-    (table.parentEntity.type === 'association' && asAssociation(table.parentEntity).isAbstract && table.isEntityMainTable)
+      table.existenceReason.isEntityMainTable) ||
+    (table.parentEntity.type === 'association' &&
+      asAssociation(table.parentEntity).isAbstract &&
+      table.existenceReason.isEntityMainTable)
   );
 }
 

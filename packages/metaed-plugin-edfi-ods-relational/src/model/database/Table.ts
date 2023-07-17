@@ -109,7 +109,6 @@ export interface Table {
   uniqueIndexes: Column[];
   // not all tables have a parentEntity
   parentEntity: TopLevelEntity;
-  isEntityMainTable: boolean;
   isAggregateRootTable: boolean;
   hideFromApiMetadata: boolean;
   hasDiscriminatorColumn: boolean;
@@ -143,7 +142,6 @@ export function newTable(): Table {
     alternateKeys: [],
     uniqueIndexes: [],
     parentEntity: NoTopLevelEntity,
-    isEntityMainTable: false,
     isAggregateRootTable: false,
     hideFromApiMetadata: false,
     hasDiscriminatorColumn: false,

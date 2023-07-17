@@ -142,14 +142,17 @@ export function referencePropertyTableBuilder(factory: ColumnCreatorFactory): Ta
 
       const foreignKey: ForeignKey = createForeignKey(
         referenceProperty,
-        parentPrimaryKeys,
-        parentTableStrategy.schema,
-        parentTableStrategy.schemaNamespace,
-        parentTableStrategy.tableId,
-        ForeignKeyStrategy.foreignColumnCascade(
-          true,
-          referenceProperty.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates,
-        ),
+        {
+          foreignKeyColumns: parentPrimaryKeys,
+          foreignTableSchema: parentTableStrategy.schema,
+          foreignTableNamespace: parentTableStrategy.schemaNamespace,
+          foreignTableId: parentTableStrategy.tableId,
+          strategy: ForeignKeyStrategy.foreignColumnCascade(
+            true,
+            referenceProperty.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates,
+          ),
+        },
+        { isSubtableRelationship: true },
       );
       addForeignKey(joinTable, foreignKey);
       addColumnsWithoutSort(

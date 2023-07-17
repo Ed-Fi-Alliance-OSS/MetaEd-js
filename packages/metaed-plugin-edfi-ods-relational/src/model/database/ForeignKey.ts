@@ -24,9 +24,19 @@ export interface ForeignKeySourceReference {
   isSubclassRelationship: boolean;
   isExtensionRelationship: boolean;
   isSyntheticRelationship: boolean;
+  /** Is this is a FK back to a parent table */
+  isSubtableRelationship: boolean;
   isPotentiallyLogical: boolean;
   propertyType: PropertyType;
 }
+
+export type ForeignKeyInfo = {
+  foreignKeyColumns: Column[];
+  foreignTableSchema: string;
+  foreignTableNamespace: Namespace;
+  foreignTableId: string;
+  strategy: ForeignKeyStrategy;
+};
 
 export interface ForeignKey {
   name: string;
@@ -53,6 +63,7 @@ export function newForeignKeySourceReference(): ForeignKeySourceReference {
     isSubclassRelationship: false,
     isExtensionRelationship: false,
     isSyntheticRelationship: false,
+    isSubtableRelationship: false,
     isPotentiallyLogical: false,
     propertyType: 'unknown',
   };
@@ -93,7 +104,10 @@ function isExtensionRelationship(property: EntityProperty): boolean {
   return false;
 }
 
-export function foreignKeySourceReferenceFrom(property: EntityProperty): ForeignKeySourceReference {
+export function foreignKeySourceReferenceFrom(
+  property: EntityProperty,
+  { isSubtableRelationship }: { isSubtableRelationship: boolean },
+): ForeignKeySourceReference {
   return {
     isPartOfIdentity: property.isPartOfIdentity,
     isRequired: property.isPartOfIdentity || property.isRequired,
@@ -103,6 +117,7 @@ export function foreignKeySourceReferenceFrom(property: EntityProperty): Foreign
     isSubclassRelationship: isSubclassRelationship(property),
     isExtensionRelationship: isExtensionRelationship(property),
     isSyntheticRelationship: false,
+    isSubtableRelationship,
     isPotentiallyLogical:
       property.type === 'domainEntity' || property.type === 'association'
         ? (property as DomainEntityProperty | AssociationProperty).potentiallyLogical
@@ -173,11 +188,7 @@ export function getForeignTableColumns(foreignKey: ForeignKey, foreignTable: Tab
 
 function createForeignKeyInternal(
   sourceReference: ForeignKeySourceReference,
-  foreignKeyColumns: Column[],
-  foreignTableSchema: string,
-  foreignTableNamespace: Namespace,
-  foreignTableId: string,
-  strategy: ForeignKeyStrategy,
+  { foreignKeyColumns, foreignTableSchema, foreignTableNamespace, foreignTableId, strategy }: ForeignKeyInfo,
 ): ForeignKey {
   const foreignKey: ForeignKey = {
     ...newForeignKey(),
@@ -202,36 +213,15 @@ function createForeignKeyInternal(
 
 export function createForeignKey(
   sourceProperty: EntityProperty,
-  foreignKeyColumns: Column[],
-  foreignTableSchema: string,
-  foreignTableNamespace: Namespace,
-  foreignTableId: string,
-  strategy: ForeignKeyStrategy,
+  foreignKeyInfo: ForeignKeyInfo,
+  { isSubtableRelationship }: { isSubtableRelationship: boolean },
 ): ForeignKey {
-  return createForeignKeyInternal(
-    foreignKeySourceReferenceFrom(sourceProperty),
-    foreignKeyColumns,
-    foreignTableSchema,
-    foreignTableNamespace,
-    foreignTableId,
-    strategy,
-  );
+  return createForeignKeyInternal(foreignKeySourceReferenceFrom(sourceProperty, { isSubtableRelationship }), foreignKeyInfo);
 }
 
 export function createForeignKeyUsingSourceReference(
   sourceReference: ForeignKeySourceReference,
-  foreignKeyColumns: Column[],
-  foreignTableSchema: string,
-  foreignTableNamespace: Namespace,
-  foreignTableId: string,
-  strategy: ForeignKeyStrategy,
+  foreignKeyInfo: ForeignKeyInfo,
 ): ForeignKey {
-  return createForeignKeyInternal(
-    sourceReference,
-    foreignKeyColumns,
-    foreignTableSchema,
-    foreignTableNamespace,
-    foreignTableId,
-    strategy,
-  );
+  return createForeignKeyInternal(sourceReference, foreignKeyInfo);
 }

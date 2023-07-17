@@ -38,11 +38,14 @@ export function enumerationPropertyTableBuilder(factory: ColumnCreatorFactory): 
         const enumerationColumn: Column = R.head(columnCreator.createColumns(enumeration, buildStrategy));
         const foreignKey: ForeignKey = createForeignKey(
           property,
-          [enumerationColumn],
-          enumeration.referencedEntity.namespace.namespaceName.toLowerCase(),
-          enumeration.referencedEntity.namespace,
-          enumeration.referencedEntity.data.edfiOdsRelational.odsTableId,
-          foreignKeyStrategyFor(enumeration),
+          {
+            foreignKeyColumns: [enumerationColumn],
+            foreignTableSchema: enumeration.referencedEntity.namespace.namespaceName.toLowerCase(),
+            foreignTableNamespace: enumeration.referencedEntity.namespace,
+            foreignTableId: enumeration.referencedEntity.data.edfiOdsRelational.odsTableId,
+            strategy: foreignKeyStrategyFor(enumeration),
+          },
+          { isSubtableRelationship: false },
         );
         addForeignKey(parentTableStrategy.table, foreignKey);
         addColumnsWithoutSort(
@@ -73,14 +76,17 @@ export function enumerationPropertyTableBuilder(factory: ColumnCreatorFactory): 
 
         const parentForeignKey: ForeignKey = createForeignKey(
           property,
-          parentPrimaryKeys,
-          parentTableStrategy.schema,
-          parentTableStrategy.schemaNamespace,
-          parentTableStrategy.tableId,
-          ForeignKeyStrategy.foreignColumnCascade(
-            true,
-            enumeration.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates,
-          ),
+          {
+            foreignKeyColumns: parentPrimaryKeys,
+            foreignTableSchema: parentTableStrategy.schema,
+            foreignTableNamespace: parentTableStrategy.schemaNamespace,
+            foreignTableId: parentTableStrategy.tableId,
+            strategy: ForeignKeyStrategy.foreignColumnCascade(
+              true,
+              enumeration.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates,
+            ),
+          },
+          { isSubtableRelationship: true },
         );
         addForeignKey(joinTable, parentForeignKey);
         addColumnsWithoutSort(
@@ -93,11 +99,14 @@ export function enumerationPropertyTableBuilder(factory: ColumnCreatorFactory): 
         const columns: Column[] = columnCreator.createColumns(enumeration, buildStrategy.columnNamerIgnoresRoleName());
         const foreignKey: ForeignKey = createForeignKey(
           property,
-          columns,
-          enumeration.referencedEntity.namespace.namespaceName.toLowerCase(),
-          enumeration.referencedEntity.namespace,
-          enumeration.referencedEntity.data.edfiOdsRelational.odsTableId,
-          foreignKeyStrategyFor(enumeration),
+          {
+            foreignKeyColumns: columns,
+            foreignTableSchema: enumeration.referencedEntity.namespace.namespaceName.toLowerCase(),
+            foreignTableNamespace: enumeration.referencedEntity.namespace,
+            foreignTableId: enumeration.referencedEntity.data.edfiOdsRelational.odsTableId,
+            strategy: foreignKeyStrategyFor(enumeration),
+          },
+          { isSubtableRelationship: false },
         );
         addForeignKey(joinTable, foreignKey);
         addColumnsWithoutSort(joinTable, columns, ColumnTransformPrimaryKey, targetTechnologyVersion);

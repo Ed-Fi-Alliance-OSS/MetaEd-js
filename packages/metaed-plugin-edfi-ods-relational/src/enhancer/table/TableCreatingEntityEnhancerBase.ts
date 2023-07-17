@@ -85,7 +85,6 @@ export function buildMainTable(_metaEd: MetaEdEnvironment, entity: TopLevelEntit
     },
     description: entity.documentation,
     parentEntity: entity,
-    isEntityMainTable: true,
   };
 
   if (aggregateRootTable) {

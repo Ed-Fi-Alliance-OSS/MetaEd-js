@@ -15,7 +15,7 @@ function shouldIncludeAlternateKeys(table: Table): boolean {
 }
 
 function isUpdatable(table: Table): boolean {
-  return table.isEntityMainTable && table.parentEntity.allowPrimaryKeyUpdates;
+  return table.existenceReason.isEntityMainTable && table.parentEntity.allowPrimaryKeyUpdates;
 }
 
 // "identifiers" are the primary key columns of the table

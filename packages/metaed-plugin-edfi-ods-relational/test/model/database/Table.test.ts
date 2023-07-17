@@ -457,14 +457,13 @@ describe('when creating foreign key with single column', (): void => {
   let foreignKey: ForeignKey;
 
   beforeAll(() => {
-    foreignKey = createForeignKeyUsingSourceReference(
-      newForeignKeySourceReference(),
-      [{ ...newColumn(), type: 'boolean', columnId: booleanColumnName }],
+    foreignKey = createForeignKeyUsingSourceReference(newForeignKeySourceReference(), {
+      foreignKeyColumns: [{ ...newColumn(), type: 'boolean', columnId: booleanColumnName }],
       foreignTableSchema,
       foreignTableNamespace,
       foreignTableId,
-      ForeignKeyStrategyDefault,
-    );
+      strategy: ForeignKeyStrategyDefault,
+    });
   });
 
   it('should set foreign table schema', (): void => {
@@ -501,17 +500,16 @@ describe('when creating foreign key with multiple columns', (): void => {
   let foreignKey: ForeignKey;
 
   beforeAll(() => {
-    foreignKey = createForeignKeyUsingSourceReference(
-      newForeignKeySourceReference(),
-      [
+    foreignKey = createForeignKeyUsingSourceReference(newForeignKeySourceReference(), {
+      foreignKeyColumns: [
         { ...newColumn(), type: 'boolean', columnId: booleanColumnName1 },
         { ...newColumn(), type: 'boolean', columnId: booleanColumnName2 },
       ],
       foreignTableSchema,
       foreignTableNamespace,
       foreignTableId,
-      ForeignKeyStrategyDefault,
-    );
+      strategy: ForeignKeyStrategyDefault,
+    });
   });
 
   it('should set foreign table schema', (): void => {

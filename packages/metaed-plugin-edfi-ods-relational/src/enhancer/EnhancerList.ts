@@ -25,6 +25,7 @@ import { enhance as createUsisFromUniqueIdsEnhancer } from './CreateUsisFromUniq
 import { enhance as descriptorMapTypeRowEnhancer } from './DescriptorMapTypeRowEnhancer';
 import { enhance as enumerationRowEnhancer } from './EnumerationRowEnhancer';
 import { enhance as foreignKeyCreatingTableEnhancer } from './ForeignKeyCreatingTableEnhancer';
+import { enhance as foreignKeyReverseIndexEnhancerV7 } from './ForeignKeyReverseIndexEnhancerV7';
 import { enhance as foreignKeyReverseIndexEnhancer } from './ForeignKeyReverseIndexEnhancer';
 import { enhance as odsTableIdEnhancer } from './OdsTableIdEnhancer';
 import { enhance as schoolYearEnumerationRowEnhancer } from './SchoolYearEnumerationRowEnhancer';
@@ -85,6 +86,7 @@ export function enhancerList(): Enhancer[] {
     descriptorMapTypeRowEnhancer,
 
     // Post Ods Creation Phase
+    foreignKeyReverseIndexEnhancerV7,
     foreignKeyReverseIndexEnhancer,
 
     discriminatorColumnFlaggingEnhancer,

@@ -94,11 +94,17 @@ function buildJoinTables(
 
   const foreignKey: ForeignKey = createForeignKey(
     property,
-    parentPrimaryKeys,
-    parentTableStrategy.schema,
-    parentTableStrategy.schemaNamespace,
-    parentTableStrategy.tableId,
-    ForeignKeyStrategy.foreignColumnCascade(true, property.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates),
+    {
+      foreignKeyColumns: parentPrimaryKeys,
+      foreignTableSchema: parentTableStrategy.schema,
+      foreignTableNamespace: parentTableStrategy.schemaNamespace,
+      foreignTableId: parentTableStrategy.tableId,
+      strategy: ForeignKeyStrategy.foreignColumnCascade(
+        true,
+        property.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates,
+      ),
+    },
+    { isSubtableRelationship: true },
   );
   addForeignKey(joinTable, foreignKey);
 

@@ -45,11 +45,16 @@ export function descriptorPropertyTableBuilder(factory: ColumnCreatorFactory): T
 
         const foreignKey: ForeignKey = createForeignKey(
           property,
-          [descriptorColumn],
-          descriptor.referencedEntity.namespace.namespaceName.toLowerCase(),
-          descriptor.referencedEntity.namespace,
-          descriptor.referencedEntity.data.edfiOdsRelational.odsDescriptorName,
-          ForeignKeyStrategy.foreignColumnIdChange(`${descriptor.data.edfiOdsRelational.odsDescriptorifiedBaseName}Id`),
+          {
+            foreignKeyColumns: [descriptorColumn],
+            foreignTableSchema: descriptor.referencedEntity.namespace.namespaceName.toLowerCase(),
+            foreignTableNamespace: descriptor.referencedEntity.namespace,
+            foreignTableId: descriptor.referencedEntity.data.edfiOdsRelational.odsDescriptorName,
+            strategy: ForeignKeyStrategy.foreignColumnIdChange(
+              `${descriptor.data.edfiOdsRelational.odsDescriptorifiedBaseName}Id`,
+            ),
+          },
+          { isSubtableRelationship: false },
         );
         addForeignKey(parentTableStrategy.table, foreignKey);
       } else {
@@ -75,14 +80,17 @@ export function descriptorPropertyTableBuilder(factory: ColumnCreatorFactory): T
 
         const parentForeignKey: ForeignKey = createForeignKey(
           property,
-          parentPrimaryKeys,
-          parentTableStrategy.schema,
-          parentTableStrategy.schemaNamespace,
-          parentTableStrategy.tableId,
-          ForeignKeyStrategy.foreignColumnCascade(
-            true,
-            descriptor.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates,
-          ),
+          {
+            foreignKeyColumns: parentPrimaryKeys,
+            foreignTableSchema: parentTableStrategy.schema,
+            foreignTableNamespace: parentTableStrategy.schemaNamespace,
+            foreignTableId: parentTableStrategy.tableId,
+            strategy: ForeignKeyStrategy.foreignColumnCascade(
+              true,
+              descriptor.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates,
+            ),
+          },
+          { isSubtableRelationship: true },
         );
         addForeignKey(joinTable, parentForeignKey);
         addColumnsWithoutSort(
@@ -95,11 +103,16 @@ export function descriptorPropertyTableBuilder(factory: ColumnCreatorFactory): T
         const columns: Column[] = columnCreator.createColumns(descriptor, buildStrategy.columnNamerIgnoresRoleName());
         const foreignKey: ForeignKey = createForeignKey(
           property,
-          columns,
-          descriptor.referencedEntity.namespace.namespaceName.toLowerCase(),
-          descriptor.referencedEntity.namespace,
-          descriptor.referencedEntity.data.edfiOdsRelational.odsDescriptorName,
-          ForeignKeyStrategy.foreignColumnIdChange(`${descriptor.data.edfiOdsRelational.odsDescriptorifiedBaseName}Id`),
+          {
+            foreignKeyColumns: columns,
+            foreignTableSchema: descriptor.referencedEntity.namespace.namespaceName.toLowerCase(),
+            foreignTableNamespace: descriptor.referencedEntity.namespace,
+            foreignTableId: descriptor.referencedEntity.data.edfiOdsRelational.odsDescriptorName,
+            strategy: ForeignKeyStrategy.foreignColumnIdChange(
+              `${descriptor.data.edfiOdsRelational.odsDescriptorifiedBaseName}Id`,
+            ),
+          },
+          { isSubtableRelationship: false },
         );
         addForeignKey(joinTable, foreignKey);
         addColumnsWithSort(joinTable, columns, ColumnTransformPrimaryKey, targetTechnologyVersion);

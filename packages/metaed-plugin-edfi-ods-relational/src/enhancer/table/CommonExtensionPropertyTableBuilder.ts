@@ -95,14 +95,19 @@ function buildExtensionTables(
 
   const foreignKey: ForeignKey = createForeignKeyUsingSourceReference(
     {
-      ...foreignKeySourceReferenceFrom(property),
+      ...foreignKeySourceReferenceFrom(property, { isSubtableRelationship: false }),
       isExtensionRelationship: true,
     },
-    primaryKeys,
-    joinTableSchema,
-    joinTableNamespace,
-    joinTableId,
-    ForeignKeyStrategy.foreignColumnCascade(true, property.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates),
+    {
+      foreignKeyColumns: primaryKeys,
+      foreignTableSchema: joinTableSchema,
+      foreignTableNamespace: joinTableNamespace,
+      foreignTableId: joinTableId,
+      strategy: ForeignKeyStrategy.foreignColumnCascade(
+        true,
+        property.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates,
+      ),
+    },
   );
 
   addForeignKey(extensionTable, foreignKey);

@@ -44,7 +44,9 @@ describe('when creating foreign key sourceReference from identity property', ():
     isPartOfIdentity: true,
     data: { edfiOdsRelational: { odsIsReferenceToSuperclass: false, odsIsReferenceToExtensionParent: false } },
   });
-  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty);
+  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty, {
+    isSubtableRelationship: false,
+  });
 
   it('should create correct source reference', (): void => {
     expect(sourceReference.isPartOfIdentity).toBe(true);
@@ -63,7 +65,9 @@ describe('when creating foreign key sourceReference from required property', ():
     isRequired: true,
     data: { edfiOdsRelational: { odsIsReferenceToSuperclass: false, odsIsReferenceToExtensionParent: false } },
   });
-  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty);
+  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty, {
+    isSubtableRelationship: false,
+  });
 
   it('should create correct source reference', (): void => {
     expect(sourceReference.isPartOfIdentity).toBe(false);
@@ -82,7 +86,9 @@ describe('when creating foreign key sourceReference from optional property', ():
     isOptional: true,
     data: { edfiOdsRelational: { odsIsReferenceToSuperclass: false, odsIsReferenceToExtensionParent: false } },
   });
-  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty);
+  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty, {
+    isSubtableRelationship: false,
+  });
 
   it('should create correct source reference', (): void => {
     expect(sourceReference.isPartOfIdentity).toBe(false);
@@ -101,7 +107,9 @@ describe('when creating foreign key sourceReference from required collection pro
     isRequiredCollection: true,
     data: { edfiOdsRelational: { odsIsReferenceToSuperclass: false, odsIsReferenceToExtensionParent: false } },
   });
-  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty);
+  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty, {
+    isSubtableRelationship: false,
+  });
 
   it('should create correct source reference', (): void => {
     expect(sourceReference.isPartOfIdentity).toBe(false);
@@ -120,7 +128,9 @@ describe('when creating foreign key sourceReference from optional collection pro
     isOptionalCollection: true,
     data: { edfiOdsRelational: { odsIsReferenceToSuperclass: false, odsIsReferenceToExtensionParent: false } },
   });
-  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty);
+  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty, {
+    isSubtableRelationship: false,
+  });
 
   it('should create correct source reference', (): void => {
     expect(sourceReference.isPartOfIdentity).toBe(false);
@@ -139,7 +149,9 @@ describe('when creating foreign key sourceReference from subclass relationship p
     isPartOfIdentity: true,
     data: { edfiOdsRelational: { odsIsReferenceToSuperclass: true, odsIsReferenceToExtensionParent: false } },
   });
-  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty);
+  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty, {
+    isSubtableRelationship: false,
+  });
 
   it('should create correct source reference', (): void => {
     expect(sourceReference.isPartOfIdentity).toBe(true);
@@ -158,7 +170,9 @@ describe('when creating foreign key sourceReference from extension relationship 
     isPartOfIdentity: true,
     data: { edfiOdsRelational: { odsIsReferenceToSuperclass: false, odsIsReferenceToExtensionParent: true } },
   });
-  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty);
+  const sourceReference: ForeignKeySourceReference = foreignKeySourceReferenceFrom(entityProperty, {
+    isSubtableRelationship: false,
+  });
 
   it('should create correct source reference', (): void => {
     expect(sourceReference.isPartOfIdentity).toBe(true);

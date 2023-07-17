@@ -140,7 +140,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           foreignTableId: foreignTable.tableId,
           foreignTableSchema: foreignTable.schema,
           foreignTableNamespace: foreignTable.namespace,
-          sourceReference: foreignKeySourceReferenceFrom(parentTablePairs.property),
+          sourceReference: foreignKeySourceReferenceFrom(parentTablePairs.property, { isSubtableRelationship: false }),
         };
 
         getPrimaryKeys(foreignTable).forEach((foreignTablePk: Column) => {

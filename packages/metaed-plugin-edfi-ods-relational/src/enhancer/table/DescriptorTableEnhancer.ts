@@ -141,11 +141,13 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
         ...newForeignKeySourceReference(),
         isSyntheticRelationship: true,
       },
-      getPrimaryKeys(mapTypeTable),
-      mapTypeTable.schema,
-      mapTypeTable.namespace,
-      mapTypeTable.tableId,
-      ForeignKeyStrategyDefault,
+      {
+        foreignKeyColumns: getPrimaryKeys(mapTypeTable),
+        foreignTableSchema: mapTypeTable.schema,
+        foreignTableNamespace: mapTypeTable.namespace,
+        foreignTableId: mapTypeTable.tableId,
+        strategy: ForeignKeyStrategyDefault,
+      },
     );
     addForeignKey(mainTable, mapTypeForeignKey);
   }
