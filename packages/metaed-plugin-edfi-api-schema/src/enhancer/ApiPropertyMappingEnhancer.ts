@@ -29,21 +29,14 @@ function parentPrefixRemovalConvention(property: EntityProperty): string {
 
   if (name.startsWith(property.parentEntity.metaEdName)) return name.slice(property.parentEntity.metaEdName.length);
 
-  if (
-    property.roleName.length > 0 &&
-    property.parentEntity.metaEdName.endsWith(property.roleName) &&
-    name.startsWith(property.roleName)
-  ) {
-    return name.slice(property.roleName.length);
+  const parentLastWord = property.parentEntity.metaEdName.split(/(?=[A-Z])/).pop();
+  const nameFirstWord = name.split(/(?=[A-Z])/)[0];
+  if (parentLastWord === nameFirstWord) {
+    return name.slice(parentLastWord.length);
   }
 
-  if (property.type === 'common') {
-    const parentLastWord = property.parentEntity.metaEdName.split(/(?=[A-Z])/).pop();
-    const nameFirstWord = name.split(/(?=[A-Z])/)[0];
-
-    if (parentLastWord === nameFirstWord) {
-      return name.slice(parentLastWord.length);
-    }
+  if (property.parentEntity.metaEdName.endsWith(property.roleName) && name.startsWith(property.roleName)) {
+    return name.slice(property.roleName.length);
   }
 
   return name;
