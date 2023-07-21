@@ -29,6 +29,9 @@ function parentPrefixRemovalConvention(property: EntityProperty): string {
 
   if (name.startsWith(property.parentEntity.metaEdName)) return name.slice(property.parentEntity.metaEdName.length);
 
+  // For any collection (with the exception of domain entities and associations types),
+  // given that the collection name starts with how the parent name ends,
+  // then this overlapping text is collapsed.
   const parentLastWord = property.parentEntity.metaEdName.split(/(?=[A-Z])/).pop();
   const nameFirstWord = name.split(/(?=[A-Z])/)[0];
   if (parentLastWord === nameFirstWord) {
