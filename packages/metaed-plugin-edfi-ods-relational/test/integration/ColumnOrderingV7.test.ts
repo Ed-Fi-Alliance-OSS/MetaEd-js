@@ -124,6 +124,22 @@ describe('when StudentSchoolAssociation has a GraduationPlan and targeting ODS/A
     `);
   });
 
+  it('should have correct foreign key subtable relationship for main table of association', (): void => {
+    const studentSchoolAssociation: Association = namespace.entity.association.get(
+      studentSchoolAssociationName,
+    ) as Association;
+    expect(
+      studentSchoolAssociation.data.edfiOdsRelational.odsTables[0].foreignKeys.map(
+        (x) => x.sourceReference.isSubtableRelationship,
+      ),
+    ).toMatchInlineSnapshot(`
+      Array [
+        false,
+        false,
+      ]
+    `);
+  });
+
   it('should have correct column order for sub table of association', (): void => {
     const studentSchoolAssociation: Association = namespace.entity.association.get(
       studentSchoolAssociationName,
@@ -176,6 +192,22 @@ describe('when StudentSchoolAssociation has a GraduationPlan and targeting ODS/A
             "parentTableColumnId": "AlternativeSchoolYear",
           },
         ],
+      ]
+    `);
+  });
+
+  it('should have correct foreign key subtable relationship for sub table of association', (): void => {
+    const studentSchoolAssociation: Association = namespace.entity.association.get(
+      studentSchoolAssociationName,
+    ) as Association;
+    expect(
+      studentSchoolAssociation.data.edfiOdsRelational.odsTables[1].foreignKeys.map(
+        (x) => x.sourceReference.isSubtableRelationship,
+      ),
+    ).toMatchInlineSnapshot(`
+      Array [
+        true,
+        false,
       ]
     `);
   });
@@ -303,6 +335,21 @@ describe('when StudentSpecialEducationProgramAssociation has a Disability common
     `);
   });
 
+  it('should have correct foreign key subtable relationship for main table of association', (): void => {
+    const studentSchoolAssociation: Association = namespace.entity.association.get(associationName) as Association;
+    expect(
+      studentSchoolAssociation.data.edfiOdsRelational.odsTables[0].foreignKeys.map(
+        (x) => x.sourceReference.isSubtableRelationship,
+      ),
+    ).toMatchInlineSnapshot(`
+      Array [
+        false,
+        false,
+        false,
+      ]
+    `);
+  });
+
   it('should have correct column order for sub table of association', (): void => {
     const studentSchoolAssociation: Association = namespace.entity.association.get(associationName) as Association;
     expect(studentSchoolAssociation.data.edfiOdsRelational.odsTables[1].columns.map((x) => x.columnId))
@@ -346,6 +393,20 @@ describe('when StudentSpecialEducationProgramAssociation has a Disability common
             "parentTableColumnId": "StudentUniqueId",
           },
         ],
+      ]
+    `);
+  });
+
+  it('should have correct foreign key subtable relationship for sub table of association', (): void => {
+    const studentSchoolAssociation: Association = namespace.entity.association.get(associationName) as Association;
+    expect(
+      studentSchoolAssociation.data.edfiOdsRelational.odsTables[1].foreignKeys.map(
+        (x) => x.sourceReference.isSubtableRelationship,
+      ),
+    ).toMatchInlineSnapshot(`
+      Array [
+        false,
+        true,
       ]
     `);
   });
@@ -398,6 +459,20 @@ describe('when StudentSpecialEducationProgramAssociation has a Disability common
             "parentTableColumnId": "DisabilityDesignationDescriptorId",
           },
         ],
+      ]
+    `);
+  });
+
+  it('should have correct foreign key subtable relationship for sub-sub table of association', (): void => {
+    const studentSchoolAssociation: Association = namespace.entity.association.get(associationName) as Association;
+    expect(
+      studentSchoolAssociation.data.edfiOdsRelational.odsTables[2].foreignKeys.map(
+        (x) => x.sourceReference.isSubtableRelationship,
+      ),
+    ).toMatchInlineSnapshot(`
+      Array [
+        true,
+        false,
       ]
     `);
   });
@@ -484,6 +559,17 @@ describe('when Session has an AcademicWeek collection and targeting ODS/API 7.0'
     `);
   });
 
+  it('should have correct foreign key subtable relationship for main table of entity', (): void => {
+    const session: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
+    expect(session.data.edfiOdsRelational.odsTables[0].foreignKeys.map((x) => x.sourceReference.isSubtableRelationship))
+      .toMatchInlineSnapshot(`
+      Array [
+        false,
+        false,
+      ]
+    `);
+  });
+
   it('should have correct column order for sub table of entity', (): void => {
     const session: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
     expect(session.data.edfiOdsRelational.odsTables[1].columns.map((x) => x.columnId)).toMatchInlineSnapshot(`
@@ -524,6 +610,17 @@ describe('when Session has an AcademicWeek collection and targeting ODS/API 7.0'
             "parentTableColumnId": "WeekIdentifier",
           },
         ],
+      ]
+    `);
+  });
+
+  it('should have correct foreign key subtable relationship for sub table of entity', (): void => {
+    const session: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
+    expect(session.data.edfiOdsRelational.odsTables[1].foreignKeys.map((x) => x.sourceReference.isSubtableRelationship))
+      .toMatchInlineSnapshot(`
+      Array [
+        true,
+        false,
       ]
     `);
   });
@@ -631,6 +728,18 @@ describe('when Assessment has an AssessmentPerformanceLevel common and targeting
             "parentTableColumnId": "Namespace",
           },
         ],
+      ]
+    `);
+  });
+
+  it('should have correct foreign key subtable relationship for sub table of entity', (): void => {
+    const entity: DomainEntity = namespace.entity.domainEntity.get(entityName) as DomainEntity;
+    expect(entity.data.edfiOdsRelational.odsTables[1].foreignKeys.map((x) => x.sourceReference.isSubtableRelationship))
+      .toMatchInlineSnapshot(`
+      Array [
+        false,
+        false,
+        true,
       ]
     `);
   });

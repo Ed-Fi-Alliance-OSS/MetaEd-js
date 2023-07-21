@@ -18,8 +18,8 @@ import { metaEdPluginEnhancers } from './PluginHelper';
 
 jest.setTimeout(40000);
 
-describe('when StudentSchoolAssociation has a GraduationPlan and targeting ODS/API 7.0', (): void => {
-  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0-pre.1' };
+describe('when StudentSchoolAssociation has a GraduationPlan and targeting ODS/API 6.1', (): void => {
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '4.0.0' };
   metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '6.1.0' });
 
   const studentSchoolAssociationName = 'StudentSchoolAssociation';
@@ -197,8 +197,8 @@ describe('when StudentSchoolAssociation has a GraduationPlan and targeting ODS/A
   });
 });
 
-describe('when StudentSpecialEducationProgramAssociation has a Disability common and targeting ODS/API 7.0', (): void => {
-  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0-pre.1' };
+describe('when StudentSpecialEducationProgramAssociation has a Disability common and targeting ODS/API 6.1', (): void => {
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '4.0.0' };
   metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '6.1.0' });
 
   const associationName = 'StudentSpecialEducationProgramAssociation';
@@ -403,8 +403,8 @@ describe('when StudentSpecialEducationProgramAssociation has a Disability common
   });
 });
 
-describe('when Session has an AcademicWeek collection and targeting ODS/API 7.0', (): void => {
-  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0-pre.1' };
+describe('when Session has an AcademicWeek collection and targeting ODS/API 6.1', (): void => {
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '4.0.0' };
   metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '6.1.0' });
 
   const entityName = 'Session';
@@ -529,8 +529,8 @@ describe('when Session has an AcademicWeek collection and targeting ODS/API 7.0'
   });
 });
 
-describe('when Assessment has an AssessmentPerformanceLevel common and targeting ODS/API 7.0', (): void => {
-  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0-pre.1' };
+describe('when Assessment has an AssessmentPerformanceLevel common and targeting ODS/API 6.1', (): void => {
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '4.0.0' };
   metaEd.plugin.set('edfiOdsRelational', { ...newPluginEnvironment(), targetTechnologyVersion: '6.1.0' });
 
   const entityName = 'Assessment';
