@@ -39,7 +39,4 @@ export function prefixedName(apiMappingName: string, property: EntityProperty, p
     return `${uncapitalize(prefix)}${capitalize(apiMappingName)}`;
 
   return `${uncapitalize(prefix)}${pluralize(property.fullPropertyName)}`;
-  // console.log(property.isOptional);
-  // if (prefix.length === 0) return apiMappingName;
-  // return `${uncapitalize(prefix)}${capitalize(apiMappingName)}`;
 }
