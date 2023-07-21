@@ -33,7 +33,13 @@ export const defaultPropertyModifier: PropertyModifier = {
 export function prefixedName(apiMappingName: string, property: EntityProperty, propertyModifier: PropertyModifier): string {
   const prefix: string = propertyModifier.parentPrefixes.join('');
   if (prefix.length === 0) return apiMappingName;
+
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-  if (apiMapping.isReferenceCollection) return `${uncapitalize(prefix)}${capitalize(apiMappingName)}`;
+  if (apiMapping.isReferenceCollection || property.type === 'descriptor')
+    return `${uncapitalize(prefix)}${capitalize(apiMappingName)}`;
+
   return `${uncapitalize(prefix)}${pluralize(property.fullPropertyName)}`;
+  // console.log(property.isOptional);
+  // if (prefix.length === 0) return apiMappingName;
+  // return `${uncapitalize(prefix)}${capitalize(apiMappingName)}`;
 }

@@ -2944,3 +2944,89 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
     `);
   });
 });
+
+describe('when building a domain entity with an inline common property with a descriptor', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDescriptor('CreditType')
+      .withDocumentation('Documentation')
+      .withEndDescriptor()
+      .withStartInlineCommon('Credits')
+      .withDocumentation('Documentation')
+      .withDescriptorProperty('CreditType', 'Documentation', false, false)
+      .withEndInlineCommon()
+
+      .withStartDomainEntity('Section')
+      .withDocumentation('Documentation')
+      .withIntegerIdentity('SectionIdentifier', 'Documentation')
+      .withInlineCommonProperty('Credits', 'Documentation', false, false, 'Available')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    inlineCommonReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+
+    namespace = metaEd.namespace.get(namespaceName);
+  });
+
+  it('common descriptor decollisioned top level name should be correct', () => {
+    const common = namespace.entity.common.get('Credits');
+    expect(common.properties[0].data.edfiApiSchema.apiMapping.decollisionedTopLevelName).toBe('creditTypeDescriptor');
+  });
+
+  it('should be a correct schema for section', () => {
+    const entity = namespace.entity.domainEntity.get('Section');
+    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    Object {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "description": "Documentation",
+      "properties": Object {
+        "_ext": Object {
+          "additionalProperties": true,
+          "description": "optional extension collection",
+          "properties": Object {},
+          "type": "object",
+        },
+        "availableCreditTypeDescriptor": Object {
+          "description": "Documentation",
+          "type": "string",
+        },
+        "sectionIdentifier": Object {
+          "description": "Documentation",
+          "type": "integer",
+        },
+      },
+      "required": Array [
+        "sectionIdentifier",
+      ],
+      "title": "EdFi.Section",
+      "type": "object",
+    }
+    `);
+  });
+
+  it('should be well-formed according to ajv', () => {
+    const entity = namespace.entity.domainEntity.get('Section');
+    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+  });
+});
