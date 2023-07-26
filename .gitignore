@@ -15,9 +15,6 @@ tmp
 ## Babel target directory
 dist/
 
-## Generated documentation
-docs/
-
 ## Test artifacts
 /packages/metaed-plugin-edfi-xsd/test/integration/artifact/*
 !/packages/metaed-plugin-edfi-xsd/test/integration/artifact/*-Authoritative.xsd
