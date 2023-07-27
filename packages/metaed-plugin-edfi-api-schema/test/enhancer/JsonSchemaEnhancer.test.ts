@@ -961,9 +961,15 @@ describe('when building domain entity with nested choice and inline commons', ()
       .withInlineCommonProperty('LearningResource', 'doc', true, false)
       .withEndChoice()
 
+      .withStartDescriptor('ContentClass')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
       .withStartInlineCommon('LearningResource')
       .withDocumentation('doc')
       .withStringProperty('Description', 'doc', false, false, '30')
+      .withStringProperty('ShortDescription', 'doc', true, false, '30')
+      .withDescriptorProperty('ContentClass', 'doc', true, false)
       .withInlineCommonProperty('EducationContentSource', 'doc', false, false, 'DerivativeSource')
       .withEndInlineCommon()
 
@@ -974,6 +980,7 @@ describe('when building domain entity with nested choice and inline commons', ()
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
       .sendToListener(new ChoiceBuilder(metaEd, []))
       .sendToListener(new CommonBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
@@ -983,6 +990,7 @@ describe('when building domain entity with nested choice and inline commons', ()
     domainEntityReferenceEnhancer(metaEd);
     choiceReferenceEnhancer(metaEd);
     inlineCommonReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
@@ -1005,6 +1013,10 @@ describe('when building domain entity with nested choice and inline commons', ()
             "description": "optional extension collection",
             "properties": Object {},
             "type": "object",
+          },
+          "contentClassDescriptor": Object {
+            "description": "doc",
+            "type": "string",
           },
           "contentIdentifier": Object {
             "description": "doc",
@@ -1084,10 +1096,14 @@ describe('when building domain entity with nested choice and inline commons', ()
             "type": "array",
             "uniqueItems": false,
           },
+          "shortDescription": Object {
+            "description": "doc",
+            "maxLength": 30,
+            "type": "string",
+          },
         },
         "required": Array [
           "contentIdentifier",
-          "learningResourceMetadataURI",
           "requiredURIs",
         ],
         "title": "EdFi.EducationContent",
@@ -1105,6 +1121,9 @@ describe('when building domain entity with nested choice and inline commons', ()
     const entity = namespace.entity.domainEntity.get(domainEntityName);
     expect(entity.data.edfiApiSchema.entityJsonPaths).toMatchInlineSnapshot(`
       Object {
+        "ContentClass": Array [
+          "$.contentClassDescriptor",
+        ],
         "ContentIdentifier": Array [
           "$.contentIdentifier",
         ],
@@ -1122,6 +1141,9 @@ describe('when building domain entity with nested choice and inline commons', ()
         ],
         "RequiredURI": Array [
           "$.requiredURIs[*].requiredURI",
+        ],
+        "ShortDescription": Array [
+          "$.shortDescription",
         ],
         "URI": Array [
           "$.derivativeSourceURIs[*].derivativeSourceURI",
