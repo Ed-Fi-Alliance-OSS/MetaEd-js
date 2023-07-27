@@ -22,9 +22,8 @@ export function collectProperties(
   propertyModifier: PropertyModifier,
 ) {
   // InlineCommon and Choice are never objects in the API document. Instead pull up their property collections.
-  let optionalDueToParent = false;
   if (currentProperty.type === 'inlineCommon' || currentProperty.type === 'choice') {
-    optionalDueToParent =
+    const optionalDueToParent =
       currentProperty.isOptional ||
       currentProperty.isOptionalCollection ||
       propertyModifier.optionalDueToParent ||
