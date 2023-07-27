@@ -6,7 +6,7 @@ indicates if the task is run either explicitly or implicitly in GitHub Actions.
 | Command                                | CI                       | Purpose                                                                                                           |
 | -------------------------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------- |
 | `test`                                 | no                       | runs `test:lint` amd `test:unit`                                                                                  |
-| `test:coverage`                        | no                       | runs all tests allong with code coverag analysis                                                                  |
+| `test:coverage`                        | no                       | runs all tests along with code coverage analysis                                                                  |
 | `test:lint`                            | X                        | Runs `test:lint:ts` and `test:lint:eslint`                                                                        |
 | `test:lint:eslint`                     | via `test:lint`          | Eslint on all JS and TS files                                                                                     |
 | `test:lint:ts`                         | via `test:lint`          | Compile TypeScript project                                                                                        |
