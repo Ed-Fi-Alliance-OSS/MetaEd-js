@@ -27,9 +27,9 @@ export type ApiEntityMapping = {
   referenceGroups: ReferenceGroup[];
 
   /**
-   * ApiPropertyMappings of all of the descriptor properties on the entity.
+   * ApiPropertyMappings of all of the descriptor API-expressed properties on the entity.
    */
-  descriptorCollectedProperties: CollectedProperty[];
+  descriptorCollectedApiProperties: CollectedProperty[];
 
   /**
    * If the entity for this mapping is in a subclass/superclass relationship, this is the superclass entity
@@ -47,7 +47,7 @@ export function newApiEntityMapping(): ApiEntityMapping {
     flattenedIdentityProperties: [],
     identityReferenceComponents: [],
     referenceGroups: [],
-    descriptorCollectedProperties: [],
+    descriptorCollectedApiProperties: [],
     superclass: null,
   };
 }

@@ -1,4 +1,4 @@
-import { PropertyPath, JsonPath } from './BrandedTypes';
+import { PropertyPath, JsonPath } from './PathTypes';
 
 /**
  * A mapping of dot-separated MetaEd property paths to corresponding JsonPaths to data elements
@@ -10,4 +10,4 @@ import { PropertyPath, JsonPath } from './BrandedTypes';
  *
  * The JsonPaths array is always is sorted order.
  */
-export type EntityJsonPaths = { [key: PropertyPath]: JsonPath[] };
+export type JsonPathsMapping = { [key: PropertyPath]: JsonPath[] };

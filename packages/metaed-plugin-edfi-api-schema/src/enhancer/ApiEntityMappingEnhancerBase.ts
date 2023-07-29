@@ -10,7 +10,7 @@ import type { CollectedProperty } from '../model/CollectedProperty';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import type { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
-import type { PropertyPath } from '../model/BrandedTypes';
+import type { PropertyPath } from '../model/PathTypes';
 
 type ReferenceElementsWithPaths = Map<ReferenceElement, PropertyPath[]>;
 
@@ -118,10 +118,10 @@ export function flattenedIdentityPropertiesFrom(identityProperties: EntityProper
 }
 
 /**
- * CollectedProperties of all of the descriptor properties on the entity.
+ * CollectedApiProperties of all of the descriptor properties on the entity.
  */
-export function descriptorCollectedPropertiesFrom(entity: TopLevelEntity): CollectedProperty[] {
-  return (entity.data.edfiApiSchema as EntityApiSchemaData).collectedProperties.filter(
+export function descriptorCollectedApiPropertiesFrom(entity: TopLevelEntity): CollectedProperty[] {
+  return (entity.data.edfiApiSchema as EntityApiSchemaData).collectedApiProperties.filter(
     (cp) => cp.property.type === 'descriptor',
   );
 }

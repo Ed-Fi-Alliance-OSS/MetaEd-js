@@ -40,3 +40,15 @@ export function prefixedName(apiMappingName: string, property: EntityProperty, p
 
   return `${uncapitalize(prefix)}${pluralize(property.fullPropertyName)}`;
 }
+
+/**
+ * Returns a new PropertyModifier that is the concatenation of two. Used for Commons and sub-Commons,
+ * where there is a chain of parent modifiers that cannot be completely pre-computed
+ * (without a different design, like pre-computing all possible paths).
+ */
+export function propertyModifierConcat(p1: PropertyModifier, p2: PropertyModifier): PropertyModifier {
+  return {
+    optionalDueToParent: p1.optionalDueToParent || p2.optionalDueToParent,
+    parentPrefixes: [...p1.parentPrefixes, ...p2.parentPrefixes],
+  };
+}

@@ -2,7 +2,7 @@ import { MetaEdEnvironment, EnhancerResult, TopLevelEntity, getAllEntitiesOfType
 import { ApiEntityMapping, NoApiEntityMapping } from '../model/ApiEntityMapping';
 import {
   superclassFor,
-  descriptorCollectedPropertiesFrom,
+  descriptorCollectedApiPropertiesFrom,
   flattenedIdentityPropertiesFrom,
   identityReferenceComponentsFrom,
   referenceGroupsFrom,
@@ -21,7 +21,7 @@ function buildApiEntityMapping(entity: TopLevelEntity): ApiEntityMapping {
     flattenedIdentityProperties: flattenedIdentityPropertiesFrom(identityProperties),
     identityReferenceComponents: identityReferenceComponentsFrom(identityProperties),
     referenceGroups: referenceGroupsFrom(properties),
-    descriptorCollectedProperties: descriptorCollectedPropertiesFrom(entity),
+    descriptorCollectedApiProperties: descriptorCollectedApiPropertiesFrom(entity),
     superclass: superclassFor(entity),
   };
 }

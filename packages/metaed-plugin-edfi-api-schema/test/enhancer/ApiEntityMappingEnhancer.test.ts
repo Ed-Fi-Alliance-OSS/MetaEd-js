@@ -126,7 +126,7 @@ describe('when demonstrating key unification via entity referencing two entities
   it('should not have any descriptor property mappings in Section', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(section);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
-    expect(apiMapping?.descriptorCollectedProperties).toHaveLength(0);
+    expect(apiMapping?.descriptorCollectedApiProperties).toHaveLength(0);
   });
 
   it('should have School in CourseOffering reference groups', () => {
@@ -162,7 +162,7 @@ describe('when demonstrating key unification via entity referencing two entities
   it('should not have any descriptor property mappings in CourseOffering', () => {
     const courseOfferingEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(courseOffering);
     const apiMapping = courseOfferingEntity?.data.edfiApiSchema.apiMapping;
-    expect(apiMapping?.descriptorCollectedProperties).toHaveLength(0);
+    expect(apiMapping?.descriptorCollectedApiProperties).toHaveLength(0);
   });
 
   it('should have correct property paths in CourseOffering flattened identity properties', () => {
@@ -215,7 +215,7 @@ describe('when demonstrating key unification via entity referencing two entities
   it('should not have any descriptor property mappings in ClassPeriod', () => {
     const classPeriodEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(classPeriod);
     const apiMapping = classPeriodEntity?.data.edfiApiSchema.apiMapping;
-    expect(apiMapping?.descriptorCollectedProperties).toHaveLength(0);
+    expect(apiMapping?.descriptorCollectedApiProperties).toHaveLength(0);
   });
 
   it('should have correct property paths in ClassPeriod flattened identity properties', () => {
@@ -272,7 +272,7 @@ describe('when demonstrating key unification via entity referencing two entities
   it('should not have any descriptor property mappings in School', () => {
     const schoolEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(school);
     const apiMapping = schoolEntity?.data.edfiApiSchema.apiMapping;
-    expect(apiMapping?.descriptorCollectedProperties).toHaveLength(0);
+    expect(apiMapping?.descriptorCollectedApiProperties).toHaveLength(0);
   });
 });
 
@@ -422,31 +422,31 @@ describe('when demonstrating descriptor collections and scalar descriptors on on
 
   it('should have two descriptor collected properties', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedApiProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedApiProperties;
 
-    expect(collectedProperties).toHaveLength(2);
+    expect(collectedApiProperties).toHaveLength(2);
   });
 
   it('should have one collection collected property', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedApiProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedApiProperties;
 
-    expect(collectedProperties[0].property.type).toBe('descriptor');
-    expect(collectedProperties[0].property.metaEdName).toBe(descriptorName);
-    expect(collectedProperties[0].property.isRequiredCollection).toBe(true);
-    expect(collectedProperties[0].propertyModifier.optionalDueToParent).toBe(false);
-    expect(collectedProperties[0].propertyModifier.parentPrefixes).toHaveLength(0);
+    expect(collectedApiProperties[0].property.type).toBe('descriptor');
+    expect(collectedApiProperties[0].property.metaEdName).toBe(descriptorName);
+    expect(collectedApiProperties[0].property.isRequiredCollection).toBe(true);
+    expect(collectedApiProperties[0].propertyModifier.optionalDueToParent).toBe(false);
+    expect(collectedApiProperties[0].propertyModifier.parentPrefixes).toHaveLength(0);
   });
 
   it('should have one scalar collected property', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedApiProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedApiProperties;
 
-    expect(collectedProperties[1].property.type).toBe('descriptor');
-    expect(collectedProperties[1].property.metaEdName).toBe(descriptorName);
-    expect(collectedProperties[1].property.isRequiredCollection).toBe(false);
-    expect(collectedProperties[1].propertyModifier.optionalDueToParent).toBe(false);
-    expect(collectedProperties[1].propertyModifier.parentPrefixes).toHaveLength(0);
+    expect(collectedApiProperties[1].property.type).toBe('descriptor');
+    expect(collectedApiProperties[1].property.metaEdName).toBe(descriptorName);
+    expect(collectedApiProperties[1].property.isRequiredCollection).toBe(false);
+    expect(collectedApiProperties[1].propertyModifier.optionalDueToParent).toBe(false);
+    expect(collectedApiProperties[1].propertyModifier.parentPrefixes).toHaveLength(0);
   });
 });
 
@@ -493,21 +493,21 @@ describe('when one entity has a descriptor on an inline common reference', () =>
 
   it('should have one descriptor collected property', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedApiProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedApiProperties;
 
-    expect(collectedProperties).toHaveLength(1);
+    expect(collectedApiProperties).toHaveLength(1);
   });
 
   it('should have correct collected property values', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedApiProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedApiProperties;
 
-    expect(collectedProperties[0].property.type).toBe('descriptor');
-    expect(collectedProperties[0].property.metaEdName).toBe(descriptorName);
-    expect(collectedProperties[0].property.isRequiredCollection).toBe(false);
-    expect(collectedProperties[0].propertyModifier.optionalDueToParent).toBe(false);
-    expect(collectedProperties[0].propertyModifier.parentPrefixes).toHaveLength(1);
-    expect(collectedProperties[0].propertyModifier.parentPrefixes[0]).toBe('');
+    expect(collectedApiProperties[0].property.type).toBe('descriptor');
+    expect(collectedApiProperties[0].property.metaEdName).toBe(descriptorName);
+    expect(collectedApiProperties[0].property.isRequiredCollection).toBe(false);
+    expect(collectedApiProperties[0].propertyModifier.optionalDueToParent).toBe(false);
+    expect(collectedApiProperties[0].propertyModifier.parentPrefixes).toHaveLength(1);
+    expect(collectedApiProperties[0].propertyModifier.parentPrefixes[0]).toBe('');
   });
 });
 
@@ -555,20 +555,20 @@ describe('when one entity has a descriptor on an inline common reference which i
 
   it('should have one descriptor collected property', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedApiProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedApiProperties;
 
-    expect(collectedProperties).toHaveLength(1);
+    expect(collectedApiProperties).toHaveLength(1);
   });
 
   it('should have correct descriptor name', () => {
     const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
-    const collectedProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedProperties;
+    const collectedApiProperties = entity?.data.edfiApiSchema.apiMapping.descriptorCollectedApiProperties;
 
-    expect(collectedProperties[0].property.type).toBe('descriptor');
-    expect(collectedProperties[0].property.metaEdName).toBe(descriptorName);
-    expect(collectedProperties[0].property.isRequiredCollection).toBe(false);
-    expect(collectedProperties[0].propertyModifier.optionalDueToParent).toBe(false);
-    expect(collectedProperties[0].propertyModifier.parentPrefixes).toHaveLength(1);
-    expect(collectedProperties[0].propertyModifier.parentPrefixes[0]).toBe(inlineCommonRoleName);
+    expect(collectedApiProperties[0].property.type).toBe('descriptor');
+    expect(collectedApiProperties[0].property.metaEdName).toBe(descriptorName);
+    expect(collectedApiProperties[0].property.isRequiredCollection).toBe(false);
+    expect(collectedApiProperties[0].propertyModifier.optionalDueToParent).toBe(false);
+    expect(collectedApiProperties[0].propertyModifier.parentPrefixes).toHaveLength(1);
+    expect(collectedApiProperties[0].propertyModifier.parentPrefixes[0]).toBe(inlineCommonRoleName);
   });
 });

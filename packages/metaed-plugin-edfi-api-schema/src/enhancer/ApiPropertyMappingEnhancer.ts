@@ -161,6 +161,8 @@ function buildApiPropertyMapping(property: EntityProperty): ApiPropertyMapping {
     descriptorCollectionName: isDescriptorCollection ? apiDescriptorReferenceName(property as DescriptorProperty) : '',
     isCommonCollection,
     isScalarCommon,
+    isChoice: property.type === 'choice',
+    isInlineCommon: property.type === 'inlineCommon',
     isScalarReference,
   };
 }

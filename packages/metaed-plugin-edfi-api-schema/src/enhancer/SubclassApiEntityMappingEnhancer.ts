@@ -5,7 +5,7 @@ import {
   flattenedIdentityPropertiesFrom,
   identityReferenceComponentsFrom,
   referenceGroupsFrom,
-  descriptorCollectedPropertiesFrom,
+  descriptorCollectedApiPropertiesFrom,
   superclassFor,
 } from './ApiEntityMappingEnhancerBase';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
@@ -44,7 +44,7 @@ function buildApiEntityMappingForSubclass(entity: TopLevelEntity): ApiEntityMapp
     flattenedIdentityProperties: flattenedIdentityPropertiesFrom(combinedIdentityProperties),
     identityReferenceComponents: identityReferenceComponentsFrom(combinedIdentityProperties),
     referenceGroups: referenceGroupsFrom(combinedProperties),
-    descriptorCollectedProperties: descriptorCollectedPropertiesFrom(entity),
+    descriptorCollectedApiProperties: descriptorCollectedApiPropertiesFrom(entity),
     superclass: superclassFor(entity),
   };
 }

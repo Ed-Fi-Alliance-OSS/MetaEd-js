@@ -2,18 +2,23 @@ import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, TopLevelEntity
 import { CollectedProperty } from '../model/CollectedProperty';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { defaultPropertyModifier } from '../model/PropertyModifier';
-import { collectProperties } from './BasePropertyCollectingEnhancer';
+import { collectAllProperties, collectApiProperties } from './BasePropertyCollectingEnhancer';
 
 /**
  * Accumulates properties that belong under an entity in the API body.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'common').forEach((entity) => {
-    const collectedProperties: CollectedProperty[] = [];
+  getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'common', 'choice').forEach((entity) => {
+    const collectedApiProperties: CollectedProperty[] = [];
+    const allProperties: CollectedProperty[] = [];
+
     (entity as TopLevelEntity).properties.forEach((property) => {
-      collectProperties(collectedProperties, property, defaultPropertyModifier);
+      collectApiProperties(collectedApiProperties, property, defaultPropertyModifier);
+      collectAllProperties(allProperties, property);
     });
-    (entity.data.edfiApiSchema as EntityApiSchemaData).collectedProperties = collectedProperties;
+
+    (entity.data.edfiApiSchema as EntityApiSchemaData).collectedApiProperties = collectedApiProperties;
+    (entity.data.edfiApiSchema as EntityApiSchemaData).allProperties = allProperties;
   });
 
   return {

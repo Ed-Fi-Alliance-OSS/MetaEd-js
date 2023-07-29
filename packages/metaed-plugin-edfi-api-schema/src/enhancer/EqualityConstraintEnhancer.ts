@@ -10,20 +10,20 @@ import {
 } from '@edfi/metaed-core';
 import invariant from 'ts-invariant';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { JsonPath, PropertyPath } from '../model/BrandedTypes';
+import { JsonPath, PropertyPath } from '../model/PathTypes';
 
 function mergeDirectivePathStringsToPath(segments: string[]): PropertyPath {
   return segments.join('.') as PropertyPath;
 }
 
 /**
- * Creates EqualityConstraints from entity merge directives using EntityJsonPaths to find the source and
+ * Creates EqualityConstraints from entity merge directives using JsonPathsMapping to find the source and
  * target JsonPaths.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
     (entity) => {
-      const { entityJsonPaths, equalityConstraints } = entity.data.edfiApiSchema as EntityApiSchemaData;
+      const { jsonPathsMapping, equalityConstraints } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
       // find properties on entity with merge directives
       (entity as TopLevelEntity).properties.forEach((property: EntityProperty) => {
@@ -31,9 +31,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           const referentialProperty: ReferentialProperty = property as ReferentialProperty;
           referentialProperty.mergeDirectives.forEach((mergeDirective: MergeDirective) => {
             const sourceJsonPaths: JsonPath[] | undefined =
-              entityJsonPaths[mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)];
+              jsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)];
             const targetJsonPaths: JsonPath[] | undefined =
-              entityJsonPaths[mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)];
+              jsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)];
             invariant(
               sourceJsonPaths != null && targetJsonPaths != null && sourceJsonPaths.length === targetJsonPaths.length,
               'Invariant failed in EqualityConstraintEnhancer: source or target JsonPaths are undefined',

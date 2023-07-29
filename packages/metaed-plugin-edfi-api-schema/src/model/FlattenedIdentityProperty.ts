@@ -1,5 +1,5 @@
 import { EntityProperty } from '@edfi/metaed-core';
-import { PropertyPath } from './BrandedTypes';
+import { PropertyPath } from './PathTypes';
 
 /**
  * A flattened identity property is a simple property that is part of a reference identity for an

@@ -1,4 +1,4 @@
-import { JsonPath } from './BrandedTypes';
+import { JsonPath } from './PathTypes';
 
 /**
  * A pair of JsonPaths, the value of which must be equal in an Ed-Fi API JSON document.

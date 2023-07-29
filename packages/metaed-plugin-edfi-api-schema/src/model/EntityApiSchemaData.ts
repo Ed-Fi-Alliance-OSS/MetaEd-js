@@ -3,7 +3,7 @@ import { ApiEntityMapping, NoApiEntityMapping } from './ApiEntityMapping';
 import type { CollectedProperty } from './CollectedProperty';
 import { SchemaRoot, NoSchemaRoot } from './JsonSchema';
 import type { EqualityConstraint } from './EqualityConstraint';
-import type { EntityJsonPaths } from './EntityJsonPaths';
+import type { JsonPathsMapping } from './JsonPathsMapping';
 
 export type EntityApiSchemaData = {
   /**
@@ -16,9 +16,16 @@ export type EntityApiSchemaData = {
   jsonSchema: SchemaRoot;
 
   /**
-   * Properties that belong under this entity in the API body
+   * Properties that belong under this entity in the API body. Excludes Choice and Inline Common properties
+   * as they have no expression in API body. Instead, the properties on the Choice and Inline Common referenced
+   * entities are "pulled-up" to this entity.
    */
-  collectedProperties: CollectedProperty[];
+  collectedApiProperties: CollectedProperty[];
+
+  /**
+   * All the properties that belong under this entity, including superclass properties if the entity is a subclass.
+   */
+  allProperties: CollectedProperty[];
 
   /**
    * A mapping of dot-separated MetaEd property paths to corresponding JsonPaths to data elements
@@ -30,7 +37,7 @@ export type EntityApiSchemaData = {
    *
    * The JsonPaths array is always is sorted order.
    */
-  entityJsonPaths: EntityJsonPaths;
+  jsonPathsMapping: JsonPathsMapping;
 
   /**
    * A list of EqualityConstraints to be applied to an Ed-Fi API document. An EqualityConstraint
@@ -48,8 +55,8 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
   Object.assign(entity.data.edfiApiSchema, {
     apiMapping: NoApiEntityMapping,
     jsonSchema: NoSchemaRoot,
-    collectedProperties: [],
-    entityJsonPaths: {},
+    collectedApiProperties: [],
+    jsonPathsMapping: {},
     equalityConstraints: [],
   });
 }
@@ -66,6 +73,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     'associationSubclass',
     'descriptor',
     'common',
+    'choice',
     'schoolYearEnumeration',
   ).forEach((entity) => {
     if (entity.data.edfiApiSchema == null) entity.data.edfiApiSchema = {};

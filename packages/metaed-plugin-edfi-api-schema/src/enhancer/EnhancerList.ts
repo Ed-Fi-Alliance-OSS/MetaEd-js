@@ -9,6 +9,7 @@ import { enhance as subclassApiEntityMappingEnhancer } from './SubclassApiEntity
 import { enhance as propertyCollectingEnhancer } from './PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from './SubclassPropertyCollectingEnhancer';
 import { enhance as jsonSchemaEnhancer } from './JsonSchemaEnhancer';
+import { enhance as jsonPathsMappingEnhancer } from './JsonPathsMappingEnhancer';
 import { enhance as equalityConstraintEnhancer } from './EqualityConstraintEnhancer';
 
 export function enhancerList(): Enhancer[] {
@@ -23,6 +24,7 @@ export function enhancerList(): Enhancer[] {
     apiEntityMappingEnhancer,
     subclassApiEntityMappingEnhancer,
     jsonSchemaEnhancer,
+    jsonPathsMappingEnhancer,
     equalityConstraintEnhancer,
   ];
 }

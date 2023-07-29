@@ -1,6 +1,6 @@
 import { EntityProperty, InlineCommonProperty, ChoiceProperty } from '@edfi/metaed-core';
 import { CollectedProperty } from '../model/CollectedProperty';
-import { PropertyModifier } from '../model/PropertyModifier';
+import { PropertyModifier, defaultPropertyModifier } from '../model/PropertyModifier';
 
 /**
  * Recursively collects properties in the currentCollection accumulator by following entities
@@ -16,7 +16,7 @@ import { PropertyModifier } from '../model/PropertyModifier';
  * Example 2: If a reference property has a role name, all properties in the chain below it inherit that
  * naming prefix.
  */
-export function collectProperties(
+export function collectApiProperties(
   currentCollection: CollectedProperty[],
   currentProperty: EntityProperty,
   propertyModifier: PropertyModifier,
@@ -33,9 +33,16 @@ export function collectProperties(
         ? [...propertyModifier.parentPrefixes]
         : [...propertyModifier.parentPrefixes, currentProperty.roleName];
     (currentProperty as InlineCommonProperty | ChoiceProperty).referencedEntity.properties.forEach((property) => {
-      collectProperties(currentCollection, property, { optionalDueToParent, parentPrefixes });
+      collectApiProperties(currentCollection, property, { optionalDueToParent, parentPrefixes });
     });
   } else {
     currentCollection.push({ property: currentProperty, propertyModifier });
   }
+}
+
+/**
+ * Adds the property to the collection, setting the PropertyModifier to the default
+ */
+export function collectAllProperties(currentCollection: CollectedProperty[], currentProperty: EntityProperty) {
+  currentCollection.push({ property: currentProperty, propertyModifier: defaultPropertyModifier });
 }

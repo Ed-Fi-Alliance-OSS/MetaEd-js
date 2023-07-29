@@ -53,6 +53,16 @@ export type ApiPropertyMapping = {
   isScalarCommon: boolean;
 
   /**
+   * Whether the property is an inline common.
+   */
+  isInlineCommon: boolean;
+
+  /**
+   * Whether the property is a choice.
+   */
+  isChoice: boolean;
+
+  /**
    * Whether the property is a scalar reference.
    */
   isScalarReference: boolean;
@@ -71,6 +81,8 @@ export function newApiPropertyMapping(): ApiPropertyMapping {
     descriptorCollectionName: '',
     isCommonCollection: false,
     isScalarCommon: false,
+    isInlineCommon: false,
+    isChoice: false,
     isScalarReference: false,
   };
 }
