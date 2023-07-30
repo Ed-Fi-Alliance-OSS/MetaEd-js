@@ -13,8 +13,12 @@ import invariant from 'ts-invariant';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath, PropertyPath } from '../model/PathTypes';
 
-// StudentCompetency/LearningObjective.StudentCompetency/LearningObjectiveSectionOrProgramChoice appear to have
-// an invalid merge directive target in GradingPeriod.Session
+/**
+ * StudentCompetency/LearningObjective.StudentCompetency/LearningObjectiveSectionOrProgramChoice appear to have
+ * an invalid merge directive target in GradingPeriod.Session
+ *
+ * METAED-1488 and METAED-1489 will address this. Once implemented, this check can be removed.
+ */
 function isErrorInDataStandard(entity: ModelBase, property: EntityProperty, mergeDirective: MergeDirective) {
   return (
     (entity.metaEdName === 'StudentCompetencyObjective' || entity.metaEdName === 'StudentLearningObjective') &&
