@@ -7,10 +7,24 @@ import {
   ReferentialProperty,
   MergeDirective,
   EntityProperty,
+  ModelBase,
 } from '@edfi/metaed-core';
 import invariant from 'ts-invariant';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath, PropertyPath } from '../model/PathTypes';
+
+// StudentCompetency/LearningObjective.StudentCompetency/LearningObjectiveSectionOrProgramChoice appear to have
+// an invalid merge directive target in GradingPeriod.Session
+function isErrorInDataStandard(entity: ModelBase, property: EntityProperty, mergeDirective: MergeDirective) {
+  return (
+    (entity.metaEdName === 'StudentCompetencyObjective' || entity.metaEdName === 'StudentLearningObjective') &&
+    (property.metaEdName === 'StudentCompetencyObjectiveSectionOrProgramChoice' ||
+      property.metaEdName === 'StudentLearningObjectiveSectionOrProgramChoice') &&
+    mergeDirective.targetPropertyPathStrings.length === 2 &&
+    mergeDirective.targetPropertyPathStrings[0] === 'GradingPeriod' &&
+    mergeDirective.targetPropertyPathStrings[1] === 'Session'
+  );
+}
 
 function mergeDirectivePathStringsToPath(segments: string[]): PropertyPath {
   return segments.join('.') as PropertyPath;
@@ -30,12 +44,16 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         if (isReferentialProperty(property)) {
           const referentialProperty: ReferentialProperty = property as ReferentialProperty;
           referentialProperty.mergeDirectives.forEach((mergeDirective: MergeDirective) => {
+            // StudentCompetencyObjective.StudentCompetencyObjectiveSectionOrProgramChoice appears to have
+            // an invalid merge directive target in GradingPeriod.Session
+            if (isErrorInDataStandard(entity, property, mergeDirective)) return;
+
             const sourceJsonPaths: JsonPath[] | undefined =
               jsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)];
             const targetJsonPaths: JsonPath[] | undefined =
               jsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)];
             invariant(
-              sourceJsonPaths != null && targetJsonPaths != null && sourceJsonPaths.length === targetJsonPaths.length,
+              sourceJsonPaths != null && targetJsonPaths != null,
               'Invariant failed in EqualityConstraintEnhancer: source or target JsonPaths are undefined',
             );
             invariant(

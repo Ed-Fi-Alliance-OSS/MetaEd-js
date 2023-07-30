@@ -22,6 +22,7 @@ import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPro
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
 import { enhance as jsonSchemaEnhancer } from '../../src/enhancer/JsonSchemaEnhancer';
+import { enhance as jsonPathsMappingEnhancer } from '../../src/enhancer/JsonPathsMappingEnhancer';
 
 import { enhance } from '../../src/enhancer/EqualityConstraintEnhancer';
 
@@ -58,7 +59,7 @@ describe('when building domain entity with DomainEntity collection and single me
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonSchemaEnhancer(metaEd);
-
+    jsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -112,6 +113,7 @@ describe('when building domain entity with single merge directive', () => {
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonSchemaEnhancer(metaEd);
+    jsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -169,6 +171,7 @@ describe('when building domain entity with DomainEntity collection and two merge
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonSchemaEnhancer(metaEd);
+    jsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -241,6 +244,7 @@ describe('when building domain entity with DomainEntity collection and single me
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonSchemaEnhancer(metaEd);
+    jsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -309,6 +313,7 @@ describe('when building domain entity with DomainEntity collection and single me
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonSchemaEnhancer(metaEd);
+    jsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -388,6 +393,7 @@ describe('when two domain entities with all four possible simple identities are 
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonSchemaEnhancer(metaEd);
+    jsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -476,6 +482,7 @@ describe('when merging on both a reference and a simple identity down multiple l
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonSchemaEnhancer(metaEd);
+    jsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -556,6 +563,7 @@ describe('when merging on a reference with multiple levels of domain entities be
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonSchemaEnhancer(metaEd);
+    jsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -632,6 +640,7 @@ describe('when merging on a reference through a choice', () => {
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonSchemaEnhancer(metaEd);
+    jsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -693,6 +702,7 @@ describe('when merging on a reference through a common collection', () => {
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonSchemaEnhancer(metaEd);
+    jsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
