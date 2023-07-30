@@ -461,32 +461,32 @@ describe('when building domain entity with nested choice and inline commons', ()
     const entity = namespace.entity.domainEntity.get(domainEntityName);
     expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
       Object {
-        "ContentClass": Array [
-          "$.contentClassDescriptor",
-        ],
         "ContentIdentifier": Array [
           "$.contentIdentifier",
         ],
-        "Description": Array [
+        "LearningResourceChoice.LearningResource.ContentClass": Array [
+          "$.contentClassDescriptor",
+        ],
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent": Array [
+          "$.derivativeSourceEducationContents[*].derivativeSourceEducationContentReference.contentIdentifier",
+        ],
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent.ContentIdentifier": Array [
+          "$.derivativeSourceEducationContents[*].derivativeSourceEducationContentReference.contentIdentifier",
+        ],
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.URI": Array [
+          "$.derivativeSourceURIs[*].derivativeSourceURI",
+        ],
+        "LearningResourceChoice.LearningResource.Description": Array [
           "$.description",
         ],
-        "EducationContent": Array [
-          "$.derivativeSourceEducationContents[*].derivativeSourceEducationContentReference.contentIdentifier",
+        "LearningResourceChoice.LearningResource.ShortDescription": Array [
+          "$.shortDescription",
         ],
-        "EducationContent.ContentIdentifier": Array [
-          "$.derivativeSourceEducationContents[*].derivativeSourceEducationContentReference.contentIdentifier",
-        ],
-        "LearningResourceMetadataURI": Array [
+        "LearningResourceChoice.LearningResourceMetadataURI": Array [
           "$.learningResourceMetadataURI",
         ],
         "RequiredURI": Array [
           "$.requiredURIs[*].requiredURI",
-        ],
-        "ShortDescription": Array [
-          "$.shortDescription",
-        ],
-        "URI": Array [
-          "$.derivativeSourceURIs[*].derivativeSourceURI",
         ],
       }
     `);
@@ -1423,19 +1423,20 @@ describe('when building a domain entity with an inline common property with a de
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName)
-      .withStartDescriptor('CreditType')
-      .withDocumentation('Documentation')
-      .withEndDescriptor()
-      .withStartInlineCommon('Credits')
-      .withDocumentation('Documentation')
-      .withDescriptorProperty('CreditType', 'Documentation', false, false)
-      .withEndInlineCommon()
-
       .withStartDomainEntity('Section')
       .withDocumentation('Documentation')
       .withIntegerIdentity('SectionIdentifier', 'Documentation')
       .withInlineCommonProperty('Credits', 'Documentation', false, false, 'Available')
       .withEndDomainEntity()
+
+      .withStartInlineCommon('Credits')
+      .withDocumentation('Documentation')
+      .withDescriptorProperty('CreditType', 'Documentation', false, false)
+      .withEndInlineCommon()
+
+      .withStartDescriptor('CreditType')
+      .withDocumentation('Documentation')
+      .withEndDescriptor()
       .withEndNamespace()
 
       .sendToListener(new NamespaceBuilder(metaEd, []))
@@ -1462,7 +1463,7 @@ describe('when building a domain entity with an inline common property with a de
     const entity = namespace.entity.domainEntity.get('Section');
     expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
       Object {
-        "CreditType": Array [
+        "AvailableCredits.CreditType": Array [
           "$.availableCreditTypeDescriptor",
         ],
         "SectionIdentifier": Array [

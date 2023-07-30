@@ -8,6 +8,8 @@ import {
   EntityProperty,
   CommonProperty,
   TopLevelEntity,
+  InlineCommonProperty,
+  ChoiceProperty,
 } from '@edfi/metaed-core';
 import { invariant } from 'ts-invariant';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
@@ -20,6 +22,22 @@ import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 
 const enhancerName = 'JsonPathsMappingEnhancer';
 
+type AppendNextJsonPathNameOptions = { singularizeName: boolean };
+
+function appendNextJsonPathName(
+  currentJsonPath: JsonPath,
+  apiMappingName: string,
+  property: EntityProperty,
+  propertyModifier: PropertyModifier,
+  { singularizeName }: AppendNextJsonPathNameOptions = { singularizeName: false },
+): JsonPath {
+  if (property.type === 'inlineCommon' || property.type === 'choice') return currentJsonPath;
+
+  let nextName = prefixedName(apiMappingName, property, propertyModifier);
+  if (singularizeName) nextName = singularize(nextName);
+
+  return `${currentJsonPath}.${nextName}` as JsonPath;
+}
 /**
  * Adds a JsonPath to the JsonPathsMapping for a given list of PropertyPaths. Handles array initialization when needed.
  */
@@ -52,11 +70,6 @@ function jsonPathsForReferentialProperty(
     const identityPropertyApiMapping = (
       flattenedIdentityProperty.identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
     ).apiMapping;
-    const schemaPropertyName: string = prefixedName(
-      identityPropertyApiMapping.fullName,
-      flattenedIdentityProperty.identityProperty,
-      propertyModifier,
-    );
 
     // Because these are flattened, we know they are non-reference properties
     jsonPathsForNonReference(
@@ -65,7 +78,12 @@ function jsonPathsForReferentialProperty(
       flattenedIdentityProperty.propertyPaths.map(
         (propertyPath) => `${currentPropertyPath}.${propertyPath}` as PropertyPath,
       ),
-      `${currentJsonPath}.${schemaPropertyName}` as JsonPath,
+      appendNextJsonPathName(
+        currentJsonPath,
+        identityPropertyApiMapping.fullName,
+        flattenedIdentityProperty.identityProperty,
+        propertyModifier,
+      ),
     );
 
     // Take the JsonPaths for entire property and apply to jsonPathsMapping for the property,
@@ -98,20 +116,62 @@ function jsonPathsForScalarCommonProperty(
       collectedApiProperty.propertyModifier,
     );
 
-    const referencePropertyApiMapping = (collectedApiProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData)
+    const childPropertyApiMapping = (collectedApiProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData)
       .apiMapping;
-    const schemaPropertyName: string = prefixedName(
-      referencePropertyApiMapping.topLevelName,
-      collectedApiProperty.property,
-      concatenatedPropertyModifier,
-    );
 
     jsonPathsFor(
       collectedApiProperty.property,
       concatenatedPropertyModifier,
       jsonPathsMapping,
       `${currentPropertyPath}.${collectedApiProperty.property.fullPropertyName}` as PropertyPath,
-      `${currentJsonPath}.${schemaPropertyName}` as JsonPath,
+      appendNextJsonPathName(
+        currentJsonPath,
+        childPropertyApiMapping.topLevelName,
+        collectedApiProperty.property,
+        concatenatedPropertyModifier,
+      ),
+    );
+  });
+}
+
+/**
+ * Adds JSON Paths to the jsonPathsMapping for the API body shape corresponding to the given
+ * choice or inline common property.
+ */
+function jsonPathsForChoiceAndInlineCommonProperty(
+  property: ChoiceProperty | InlineCommonProperty,
+  propertyModifier: PropertyModifier,
+  jsonPathsMapping: JsonPathsMapping,
+  currentPropertyPath: PropertyPath,
+  currentJsonPath: JsonPath,
+) {
+  // prefixes from choice and inline common that affect child properties
+  const parentPrefixes: string[] =
+    property.roleName === property.metaEdName
+      ? [...propertyModifier.parentPrefixes]
+      : [...propertyModifier.parentPrefixes, property.roleName];
+
+  const { allProperties } = property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
+
+  allProperties.forEach((allProperty) => {
+    const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
+      { optionalDueToParent: propertyModifier.optionalDueToParent, parentPrefixes },
+      allProperty.propertyModifier,
+    );
+
+    const childPropertyApiMapping = (allProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData).apiMapping;
+
+    jsonPathsFor(
+      allProperty.property,
+      concatenatedPropertyModifier,
+      jsonPathsMapping,
+      `${currentPropertyPath}.${allProperty.property.fullPropertyName}` as PropertyPath,
+      appendNextJsonPathName(
+        currentJsonPath,
+        childPropertyApiMapping.topLevelName,
+        allProperty.property,
+        concatenatedPropertyModifier,
+      ),
     );
   });
 }
@@ -146,7 +206,6 @@ function jsonPathsForReferenceCollection(
   currentJsonPath: JsonPath,
 ) {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-  const referenceName = prefixedName(apiMapping.referenceCollectionName, property, propertyModifier);
 
   jsonPathsForReferentialProperty(
     property as ReferentialProperty,
@@ -156,7 +215,12 @@ function jsonPathsForReferenceCollection(
     },
     jsonPathsMapping,
     currentPropertyPath,
-    `${currentJsonPath}[*].${referenceName}` as JsonPath,
+    appendNextJsonPathName(
+      `${currentJsonPath}[*]` as JsonPath,
+      apiMapping.referenceCollectionName,
+      property,
+      propertyModifier,
+    ),
   );
 }
 
@@ -171,9 +235,17 @@ function jsonPathsForDescriptorCollection(
   currentJsonPath: JsonPath,
 ) {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-  const descriptorName = prefixedName(apiMapping.descriptorCollectionName, property, propertyModifier);
 
-  addJsonPathTo(jsonPathsMapping, [currentPropertyPath], `${currentJsonPath}[*].${descriptorName}` as JsonPath);
+  addJsonPathTo(
+    jsonPathsMapping,
+    [currentPropertyPath],
+    appendNextJsonPathName(
+      `${currentJsonPath}[*]` as JsonPath,
+      apiMapping.descriptorCollectionName,
+      property,
+      propertyModifier,
+    ),
+  );
 }
 
 /**
@@ -188,13 +260,14 @@ function jsonPathsForNonReferenceCollection(
   currentJsonPath: JsonPath,
 ) {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-  const propertyName = singularize(prefixedName(apiMapping.fullName, property, propertyModifier));
 
   jsonPathsForNonReference(
     property,
     jsonPathsMapping,
     [currentPropertyPath],
-    `${currentJsonPath}[*].${propertyName}` as JsonPath,
+    appendNextJsonPathName(`${currentJsonPath}[*]` as JsonPath, apiMapping.fullName, property, propertyModifier, {
+      singularizeName: true,
+    }),
   );
 }
 
@@ -252,11 +325,19 @@ function jsonPathsFor(
     );
     return;
   }
-
-  // TODO: temporary to have this be multiples
-  if (apiMapping.isScalarCommon || apiMapping.isChoice || apiMapping.isInlineCommon) {
+  if (apiMapping.isScalarCommon) {
     jsonPathsForScalarCommonProperty(
       property as CommonProperty,
+      propertyModifier,
+      jsonPathsMapping,
+      currentPropertyPath,
+      currentJsonPath,
+    );
+    return;
+  }
+  if (apiMapping.isChoice || apiMapping.isInlineCommon) {
+    jsonPathsForChoiceAndInlineCommonProperty(
+      property as ChoiceProperty | InlineCommonProperty,
       propertyModifier,
       jsonPathsMapping,
       currentPropertyPath,
@@ -280,14 +361,14 @@ function buildJsonPathsMapping(entity: TopLevelEntity) {
 
   allProperties.forEach(({ property, propertyModifier }) => {
     const topLevelName = topLevelApiNameOnEntity(entity, property);
-    const schemaObjectBaseName = prefixedName(topLevelName, property, propertyModifier);
+    const schemaObjectBaseName = appendNextJsonPathName('$' as JsonPath, topLevelName, property, propertyModifier);
 
     if (property.type === 'schoolYearEnumeration')
       jsonPathsForSchoolYearEnumeration(
         property,
         jsonPathsMapping,
         property.fullPropertyName as PropertyPath,
-        `$.${schemaObjectBaseName}` as JsonPath,
+        schemaObjectBaseName,
       );
     else
       jsonPathsFor(
@@ -295,7 +376,7 @@ function buildJsonPathsMapping(entity: TopLevelEntity) {
         propertyModifier,
         jsonPathsMapping,
         property.fullPropertyName as PropertyPath,
-        `$.${schemaObjectBaseName}` as JsonPath,
+        schemaObjectBaseName,
       );
 
     // ensure JsonPaths are in sorted order as the JsonPathsMapping type requires

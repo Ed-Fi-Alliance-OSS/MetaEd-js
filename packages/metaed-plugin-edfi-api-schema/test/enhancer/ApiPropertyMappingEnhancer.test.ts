@@ -6,8 +6,13 @@ import {
   NamespaceBuilder,
   DomainEntitySubclassBuilder,
   CommonBuilder,
+  ChoiceBuilder,
 } from '@edfi/metaed-core';
-import { domainEntityReferenceEnhancer } from '@edfi/metaed-plugin-edfi-unified';
+import {
+  choiceReferenceEnhancer,
+  domainEntityReferenceEnhancer,
+  inlineCommonReferenceEnhancer,
+} from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
@@ -60,8 +65,10 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "sectionIdentifier",
         "descriptorCollectionName": "",
         "fullName": "sectionIdentifier",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": false,
@@ -76,8 +83,10 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "localCourseCode",
         "descriptorCollectionName": "",
         "fullName": "localCourseCode",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": false,
@@ -92,8 +101,10 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "classPeriodName",
         "descriptorCollectionName": "",
         "fullName": "classPeriodName",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": false,
@@ -108,8 +119,10 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "schoolId",
         "descriptorCollectionName": "",
         "fullName": "schoolId",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": false,
@@ -126,8 +139,10 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "courseOfferingReference",
         "descriptorCollectionName": "",
         "fullName": "courseOffering",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": true,
@@ -142,8 +157,10 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "classPeriods",
         "descriptorCollectionName": "",
         "fullName": "classPeriods",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": true,
         "isScalarCommon": false,
         "isScalarReference": false,
@@ -158,8 +175,10 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "schoolReference",
         "descriptorCollectionName": "",
         "fullName": "school",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": true,
@@ -174,8 +193,10 @@ describe('when building simple domain entity referencing another referencing ano
         "decollisionedTopLevelName": "schoolReference",
         "descriptorCollectionName": "",
         "fullName": "school",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": true,
@@ -235,8 +256,10 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "sectionIdentifier",
         "descriptorCollectionName": "",
         "fullName": "sectionIdentifier",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": false,
@@ -251,8 +274,10 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "localCourseCode",
         "descriptorCollectionName": "",
         "fullName": "localCourseCode",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": false,
@@ -267,8 +292,10 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "classPeriodName",
         "descriptorCollectionName": "",
         "fullName": "classPeriodName",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": false,
@@ -283,8 +310,10 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "schoolId",
         "descriptorCollectionName": "",
         "fullName": "schoolId",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": false,
@@ -301,8 +330,10 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "courseOfferingReference",
         "descriptorCollectionName": "",
         "fullName": "courseOffering",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": true,
@@ -317,8 +348,10 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "classPeriods",
         "descriptorCollectionName": "",
         "fullName": "classPeriods",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": true,
         "isScalarCommon": false,
         "isScalarReference": false,
@@ -333,8 +366,10 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "schoolReference",
         "descriptorCollectionName": "",
         "fullName": "school",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": true,
@@ -349,8 +384,10 @@ describe('when domain entity has a reference with same role name as entity name'
         "decollisionedTopLevelName": "schoolReference",
         "descriptorCollectionName": "",
         "fullName": "school",
+        "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": true,
@@ -441,8 +478,10 @@ describe('when building simple domain entity with common collection', () => {
         "decollisionedTopLevelName": "meetingTimes",
         "descriptorCollectionName": "",
         "fullName": "meetingTimes",
+        "isChoice": false,
         "isCommonCollection": true,
         "isDescriptorCollection": false,
+        "isInlineCommon": false,
         "isReferenceCollection": false,
         "isScalarCommon": false,
         "isScalarReference": false,
@@ -559,5 +598,213 @@ describe('when building a domain entity with a optional collection with prefix o
   it('should have the prefix removed from the name', () => {
     discussionTopicAWithRoleNameApiName = meadowlarkData.apiMapping.fullName;
     expect(discussionTopicAWithRoleNameApiName).toEqual('topicWithRoleNameTopics');
+  });
+});
+
+describe('when building simple domain entity with inline common', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity('ClassPeriod')
+      .withDocumentation('doc')
+      .withStringIdentity('ClassPeriodName', 'doc', '30')
+      .withInlineCommonProperty('MeetingTime', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartInlineCommon('MeetingTime')
+      .withIntegerIdentity('StartTime', 'doc')
+      .withEndInlineCommon()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    inlineCommonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be valid', () => {
+    expect(metaEd.propertyIndex.inlineCommon).toHaveLength(1);
+    expect(metaEd.propertyIndex.inlineCommon[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
+      Object {
+        "decollisionedTopLevelName": "meetingTime",
+        "descriptorCollectionName": "",
+        "fullName": "meetingTime",
+        "isChoice": false,
+        "isCommonCollection": false,
+        "isDescriptorCollection": false,
+        "isInlineCommon": true,
+        "isReferenceCollection": false,
+        "isScalarCommon": false,
+        "isScalarReference": false,
+        "metaEdName": "MeetingTime",
+        "metaEdType": "common",
+        "referenceCollectionName": "",
+        "topLevelName": "meetingTime",
+      }
+    `);
+  });
+});
+
+describe('when building simple domain entity with inline common with role name', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity('ClassPeriod')
+      .withDocumentation('doc')
+      .withStringIdentity('ClassPeriodName', 'doc', '30')
+      .withInlineCommonProperty('MeetingTime', 'doc', false, false, 'RoleName')
+      .withEndDomainEntity()
+
+      .withStartInlineCommon('MeetingTime')
+      .withIntegerIdentity('StartTime', 'doc')
+      .withEndInlineCommon()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    inlineCommonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be valid', () => {
+    expect(metaEd.propertyIndex.inlineCommon).toHaveLength(1);
+    expect(metaEd.propertyIndex.inlineCommon[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
+      Object {
+        "decollisionedTopLevelName": "roleNameMeetingTime",
+        "descriptorCollectionName": "",
+        "fullName": "roleNameMeetingTime",
+        "isChoice": false,
+        "isCommonCollection": false,
+        "isDescriptorCollection": false,
+        "isInlineCommon": true,
+        "isReferenceCollection": false,
+        "isScalarCommon": false,
+        "isScalarReference": false,
+        "metaEdName": "MeetingTime",
+        "metaEdType": "common",
+        "referenceCollectionName": "",
+        "topLevelName": "roleNameMeetingTime",
+      }
+    `);
+  });
+});
+
+describe('when building simple domain entity with choice', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity('ClassPeriod')
+      .withDocumentation('doc')
+      .withStringIdentity('ClassPeriodName', 'doc', '30')
+      .withChoiceProperty('MeetingTime', 'doc', false, false)
+      .withEndDomainEntity()
+
+      .withStartChoice('MeetingTime')
+      .withIntegerIdentity('StartTime', 'doc')
+      .withEndChoice()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new ChoiceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    choiceReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be valid', () => {
+    expect(metaEd.propertyIndex.choice).toHaveLength(1);
+    expect(metaEd.propertyIndex.choice[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
+      Object {
+        "decollisionedTopLevelName": "meetingTime",
+        "descriptorCollectionName": "",
+        "fullName": "meetingTime",
+        "isChoice": true,
+        "isCommonCollection": false,
+        "isDescriptorCollection": false,
+        "isInlineCommon": false,
+        "isReferenceCollection": false,
+        "isScalarCommon": false,
+        "isScalarReference": false,
+        "metaEdName": "MeetingTime",
+        "metaEdType": "choice",
+        "referenceCollectionName": "",
+        "topLevelName": "meetingTime",
+      }
+    `);
+  });
+});
+
+describe('when building simple domain entity with choice with role name', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity('ClassPeriod')
+      .withDocumentation('doc')
+      .withStringIdentity('ClassPeriodName', 'doc', '30')
+      .withChoiceProperty('MeetingTime', 'doc', false, false, 'RoleName')
+      .withEndDomainEntity()
+
+      .withStartChoice('MeetingTime')
+      .withIntegerIdentity('StartTime', 'doc')
+      .withEndChoice()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new ChoiceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    choiceReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be valid', () => {
+    expect(metaEd.propertyIndex.choice).toHaveLength(1);
+    expect(metaEd.propertyIndex.choice[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
+      Object {
+        "decollisionedTopLevelName": "roleNameMeetingTime",
+        "descriptorCollectionName": "",
+        "fullName": "roleNameMeetingTime",
+        "isChoice": true,
+        "isCommonCollection": false,
+        "isDescriptorCollection": false,
+        "isInlineCommon": false,
+        "isReferenceCollection": false,
+        "isScalarCommon": false,
+        "isScalarReference": false,
+        "metaEdName": "MeetingTime",
+        "metaEdType": "choice",
+        "referenceCollectionName": "",
+        "topLevelName": "roleNameMeetingTime",
+      }
+    `);
   });
 });
