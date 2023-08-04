@@ -1,15 +1,18 @@
 import type { MetaEdPlugin } from '@edfi/metaed-core';
 import { enhancerList } from './enhancer/EnhancerList';
 
-export { enhance as entityPropertyApiSchemaDataSetupEnhancer } from './model/EntityPropertyApiSchemaData';
 export { enhance as entityApiSchemaDataSetupEnhancer } from './model/EntityApiSchemaData';
-export { enhance as referenceComponentEnhancer } from './enhancer/ReferenceComponentEnhancer';
-export { enhance as apiPropertyMappingEnhancer } from './enhancer/ApiPropertyMappingEnhancer';
-export { enhance as propertyCollectingEnhancer } from './enhancer/PropertyCollectingEnhancer';
+export { enhance as entityPropertyApiSchemaDataSetupEnhancer } from './model/EntityPropertyApiSchemaData';
 export { enhance as apiEntityMappingEnhancer } from './enhancer/ApiEntityMappingEnhancer';
-export { enhance as subclassPropertyNamingCollisionEnhancer } from './enhancer/SubclassPropertyNamingCollisionEnhancer';
-export { enhance as subclassPropertyCollectingEnhancer } from './enhancer/SubclassPropertyCollectingEnhancer';
+export { enhance as apiPropertyMappingEnhancer } from './enhancer/ApiPropertyMappingEnhancer';
+export { enhance as equalityConstraintEnhancer } from './enhancer/EqualityConstraintEnhancer';
+export { enhance as jsonPathsMappingEnhancer } from './enhancer/JsonPathsMappingEnhancer';
+export { enhance as jsonSchemaEnhancer } from './enhancer/JsonSchemaEnhancer';
+export { enhance as propertyCollectingEnhancer } from './enhancer/PropertyCollectingEnhancer';
+export { enhance as referenceComponentEnhancer } from './enhancer/ReferenceComponentEnhancer';
 export { enhance as subclassApiEntityMappingEnhancer } from './enhancer/SubclassApiEntityMappingEnhancer';
+export { enhance as subclassPropertyCollectingEnhancer } from './enhancer/SubclassPropertyCollectingEnhancer';
+export { enhance as subclassPropertyNamingCollisionEnhancer } from './enhancer/SubclassPropertyNamingCollisionEnhancer';
 
 export type { CollectedProperty } from './model/CollectedProperty';
 export type { EntityApiSchemaData } from './model/EntityApiSchemaData';
