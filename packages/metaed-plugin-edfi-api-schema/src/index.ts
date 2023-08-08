@@ -7,7 +7,8 @@ export { enhance as apiEntityMappingEnhancer } from './enhancer/ApiEntityMapping
 export { enhance as apiPropertyMappingEnhancer } from './enhancer/ApiPropertyMappingEnhancer';
 export { enhance as equalityConstraintEnhancer } from './enhancer/EqualityConstraintEnhancer';
 export { enhance as jsonPathsMappingEnhancer } from './enhancer/JsonPathsMappingEnhancer';
-export { enhance as jsonSchemaEnhancer } from './enhancer/JsonSchemaEnhancer';
+export { enhance as jsonSchemaEnhancerForInsert } from './enhancer/JsonSchemaEnhancerForInsert';
+export { enhance as jsonSchemaEnhancerForUpdate } from './enhancer/JsonSchemaEnhancerForUpdate';
 export { enhance as propertyCollectingEnhancer } from './enhancer/PropertyCollectingEnhancer';
 export { enhance as referenceComponentEnhancer } from './enhancer/ReferenceComponentEnhancer';
 export { enhance as subclassApiEntityMappingEnhancer } from './enhancer/SubclassApiEntityMappingEnhancer';
