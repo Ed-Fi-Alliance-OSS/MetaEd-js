@@ -23,23 +23,15 @@ const id: SchemaProperty = {
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   // Build schemas for each domain entity and association
-  getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
-    (entity) => {
-      const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
-      const { jsonSchemaForInsert } = entityApiSchemaData;
-      entityApiSchemaData.jsonSchemaForUpdate = {
-        ...jsonSchemaForInsert,
-        properties: {
-          id,
-          ...jsonSchemaForInsert.properties,
-        },
-        required: ['id', ...(jsonSchemaForInsert.required ?? [])],
-      };
-    },
-  );
-
-  // Attach descriptor schema to each descriptor
-  getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
+  getAllEntitiesOfType(
+    metaEd,
+    'descriptor',
+    'domainEntity',
+    'association',
+    'domainEntitySubclass',
+    'associationSubclass',
+    'schoolYearEnumeration',
+  ).forEach((entity) => {
     const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
     const { jsonSchemaForInsert } = entityApiSchemaData;
     entityApiSchemaData.jsonSchemaForUpdate = {
@@ -51,21 +43,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       required: ['id', ...(jsonSchemaForInsert.required ?? [])],
     };
   });
-
-  // Attach school year enumeration schema
-  getAllEntitiesOfType(metaEd, 'schoolYearEnumeration').forEach((entity) => {
-    const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
-    const { jsonSchemaForInsert } = entityApiSchemaData;
-    entityApiSchemaData.jsonSchemaForUpdate = {
-      ...jsonSchemaForInsert,
-      properties: {
-        id,
-        ...jsonSchemaForInsert.properties,
-      },
-      required: ['id', ...(jsonSchemaForInsert.required ?? [])],
-    };
-  });
-
   return {
     enhancerName,
     success: true,
