@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
 import Ajv from 'ajv/dist/2020';
 import addFormatsTo from 'ajv-formats';
 import {
@@ -30,7 +35,8 @@ import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntit
 import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
-import { enhance } from '../../src/enhancer/JsonSchemaEnhancer';
+import { enhance as jsonSchemaEnhancerForInsert } from '../../src/enhancer/JsonSchemaEnhancerForInsert';
+import { enhance } from '../../src/enhancer/JsonSchemaEnhancerForUpdate';
 
 const ajv = new Ajv({ allErrors: true });
 addFormatsTo(ajv);
@@ -73,12 +79,13 @@ describe('when building simple domain entity with all the simple non-collections
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -89,6 +96,10 @@ describe('when building simple domain entity with all the simple non-collections
             "description": "optional extension collection",
             "properties": Object {},
             "type": "object",
+          },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
           },
           "optionalBooleanProperty": Object {
             "description": "doc1",
@@ -162,6 +173,7 @@ describe('when building simple domain entity with all the simple non-collections
           },
         },
         "required": Array [
+          "id",
           "requiredCurrencyProperty",
           "requiredDurationProperty",
           "requiredDateProperty",
@@ -178,7 +190,7 @@ describe('when building simple domain entity with all the simple non-collections
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -221,12 +233,13 @@ describe('when building simple domain entity with all the simple collections', (
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -237,6 +250,10 @@ describe('when building simple domain entity with all the simple collections', (
             "description": "optional extension collection",
             "properties": Object {},
             "type": "object",
+          },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
           },
           "optionalBooleanProperties": Object {
             "items": Object {
@@ -484,6 +501,7 @@ describe('when building simple domain entity with all the simple collections', (
           },
         },
         "required": Array [
+          "id",
           "requiredCurrencyProperties",
           "requiredDurationProperties",
           "requiredDateProperties",
@@ -501,7 +519,7 @@ describe('when building simple domain entity with all the simple collections', (
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -550,12 +568,13 @@ describe('when building a domain entity referencing another referencing another 
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -621,6 +640,10 @@ describe('when building a domain entity referencing another referencing another 
             ],
             "type": "object",
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
           "sectionIdentifier": Object {
             "description": "doc",
             "maxLength": 30,
@@ -628,6 +651,7 @@ describe('when building a domain entity referencing another referencing another 
           },
         },
         "required": Array [
+          "id",
           "sectionIdentifier",
           "courseOfferingReference",
           "classPeriods",
@@ -640,7 +664,7 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -690,12 +714,13 @@ describe('when building a domain entity referencing CourseOffering with an impli
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -740,6 +765,10 @@ describe('when building a domain entity referencing CourseOffering with an impli
             ],
             "type": "object",
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
           "sectionIdentifier": Object {
             "description": "doc",
             "maxLength": 30,
@@ -747,6 +776,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
           },
         },
         "required": Array [
+          "id",
           "sectionIdentifier",
           "courseOfferingReference",
         ],
@@ -758,7 +788,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -820,12 +850,13 @@ describe('when building domain entity with nested choice and inline commons', ()
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -895,6 +926,10 @@ describe('when building domain entity with nested choice and inline commons', ()
             "maxLength": 30,
             "type": "string",
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
           "learningResourceMetadataURI": Object {
             "description": "doc",
             "maxLength": 30,
@@ -926,6 +961,7 @@ describe('when building domain entity with nested choice and inline commons', ()
           },
         },
         "required": Array [
+          "id",
           "contentIdentifier",
           "requiredURIs",
         ],
@@ -937,7 +973,7 @@ describe('when building domain entity with nested choice and inline commons', ()
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -969,12 +1005,13 @@ describe('when building domain entity with scalar collection named with prefix o
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema - parent name prefix removed', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -989,6 +1026,10 @@ describe('when building domain entity with scalar collection named with prefix o
           "contentIdentifier": Object {
             "description": "doc",
             "maxLength": 30,
+            "type": "string",
+          },
+          "id": Object {
+            "description": "The item id",
             "type": "string",
           },
           "suffixNames": Object {
@@ -1012,6 +1053,7 @@ describe('when building domain entity with scalar collection named with prefix o
           },
         },
         "required": Array [
+          "id",
           "contentIdentifier",
           "suffixNames",
         ],
@@ -1023,7 +1065,7 @@ describe('when building domain entity with scalar collection named with prefix o
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -1060,12 +1102,13 @@ describe('when building domain entity with Association/DomainEntity collection n
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema - parent name prefix retained', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1110,8 +1153,13 @@ describe('when building domain entity with Association/DomainEntity collection n
             "type": "array",
             "uniqueItems": false,
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
         },
         "required": Array [
+          "id",
           "contentIdentifier",
           "educationContentSuffixNames",
         ],
@@ -1123,7 +1171,7 @@ describe('when building domain entity with Association/DomainEntity collection n
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -1155,12 +1203,13 @@ describe('when building domain entity with acronym property name', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema - acronym with correct casing', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1177,6 +1226,10 @@ describe('when building domain entity with acronym property name', () => {
             "maxLength": 30,
             "type": "string",
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
           "iepBeginDate": Object {
             "description": "doc",
             "format": "date-time",
@@ -1184,6 +1237,7 @@ describe('when building domain entity with acronym property name', () => {
           },
         },
         "required": Array [
+          "id",
           "contentIdentifier",
           "iepBeginDate",
         ],
@@ -1195,7 +1249,7 @@ describe('when building domain entity with acronym property name', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -1239,12 +1293,13 @@ describe('when building domain entity with a simple common collection', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1259,6 +1314,10 @@ describe('when building domain entity with a simple common collection', () => {
           "assessmentIdentifier": Object {
             "description": "doc",
             "type": "integer",
+          },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
           },
           "identificationCodes": Object {
             "items": Object {
@@ -1286,6 +1345,7 @@ describe('when building domain entity with a simple common collection', () => {
           },
         },
         "required": Array [
+          "id",
           "assessmentIdentifier",
         ],
         "title": "EdFi.Assessment",
@@ -1296,7 +1356,7 @@ describe('when building domain entity with a simple common collection', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -1351,12 +1411,13 @@ describe('when building domain entity subclass with common collection and descri
     subclassPropertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     subclassApiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntitySubclass.get(domainEntitySubclassName);
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1371,6 +1432,10 @@ describe('when building domain entity subclass with common collection and descri
           "communityOrganizationId": Object {
             "description": "doc",
             "type": "integer",
+          },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
           },
           "identificationCodes": Object {
             "items": Object {
@@ -1398,6 +1463,7 @@ describe('when building domain entity subclass with common collection and descri
           },
         },
         "required": Array [
+          "id",
           "communityOrganizationId",
         ],
         "title": "EdFi.CommunityOrganization",
@@ -1408,7 +1474,7 @@ describe('when building domain entity subclass with common collection and descri
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntitySubclass.get(domainEntitySubclassName);
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -1452,12 +1518,13 @@ describe('when building association with a common collection in a common collect
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('StudentEducationOrganizationAssociation');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1510,12 +1577,17 @@ describe('when building association with a common collection in a common collect
             "type": "array",
             "uniqueItems": false,
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
           "studentId": Object {
             "description": "doc",
             "type": "integer",
           },
         },
         "required": Array [
+          "id",
           "studentId",
         ],
         "title": "EdFi.StudentEducationOrganizationAssociation",
@@ -1526,7 +1598,7 @@ describe('when building association with a common collection in a common collect
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('StudentEducationOrganizationAssociation');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -1563,12 +1635,13 @@ describe('when building domain entity with a descriptor with role name', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1588,8 +1661,13 @@ describe('when building domain entity with a descriptor with role name', () => {
             "description": "doc",
             "type": "integer",
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
         },
         "required": Array [
+          "id",
           "assessmentIdentifier",
         ],
         "title": "EdFi.Assessment",
@@ -1600,7 +1678,7 @@ describe('when building domain entity with a descriptor with role name', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -1637,12 +1715,13 @@ describe('when building domain entity with a descriptor collection with role nam
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1676,8 +1755,13 @@ describe('when building domain entity with a descriptor collection with role nam
             "description": "doc",
             "type": "integer",
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
         },
         "required": Array [
+          "id",
           "assessmentIdentifier",
         ],
         "title": "EdFi.Assessment",
@@ -1688,7 +1772,7 @@ describe('when building domain entity with a descriptor collection with role nam
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -1734,12 +1818,13 @@ describe('when building domain entity with a common with a choice', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1776,8 +1861,13 @@ describe('when building domain entity with a common with a choice', () => {
             },
             "type": "object",
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
         },
         "required": Array [
+          "id",
           "assessmentIdentifier",
         ],
         "title": "EdFi.Assessment",
@@ -1788,7 +1878,7 @@ describe('when building domain entity with a common with a choice', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -1831,12 +1921,13 @@ describe('when building domain entity with a common and a common collection with
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1851,6 +1942,10 @@ describe('when building domain entity with a common and a common collection with
           "assessmentIdentifier": Object {
             "description": "doc",
             "type": "integer",
+          },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
           },
           "period": Object {
             "additionalProperties": false,
@@ -1884,6 +1979,7 @@ describe('when building domain entity with a common and a common collection with
           },
         },
         "required": Array [
+          "id",
           "assessmentIdentifier",
           "scores",
         ],
@@ -1895,7 +1991,7 @@ describe('when building domain entity with a common and a common collection with
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -1924,12 +2020,13 @@ describe('when building domain entity with an all-caps property', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -1945,6 +2042,10 @@ describe('when building domain entity with an all-caps property', () => {
             "description": "doc",
             "type": "integer",
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
           "uri": Object {
             "description": "doc",
             "maxLength": 30,
@@ -1952,6 +2053,7 @@ describe('when building domain entity with an all-caps property', () => {
           },
         },
         "required": Array [
+          "id",
           "assessmentIdentifier",
         ],
         "title": "EdFi.Assessment",
@@ -1962,7 +2064,7 @@ describe('when building domain entity with an all-caps property', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -2006,12 +2108,13 @@ describe('when building domain entity with a common with a domain entity referen
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2051,8 +2154,13 @@ describe('when building domain entity with a common with a domain entity referen
             },
             "type": "object",
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
         },
         "required": Array [
+          "id",
           "assessmentIdentifier",
         ],
         "title": "EdFi.Assessment",
@@ -2063,7 +2171,7 @@ describe('when building domain entity with a common with a domain entity referen
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -2101,12 +2209,13 @@ describe('when building domain entity with two school year enumerations, one rol
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2133,6 +2242,10 @@ describe('when building domain entity with two school year enumerations, one rol
             "title": "EdFi.SchoolYearType",
             "type": "object",
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
           "schoolId": Object {
             "description": "doc",
             "type": "integer",
@@ -2154,6 +2267,7 @@ describe('when building domain entity with two school year enumerations, one rol
           },
         },
         "required": Array [
+          "id",
           "schoolId",
         ],
         "title": "EdFi.StudentSchoolAssociation",
@@ -2164,7 +2278,7 @@ describe('when building domain entity with two school year enumerations, one rol
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -2202,12 +2316,13 @@ describe('when building domain entity with reference to domain entity with schoo
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2239,12 +2354,17 @@ describe('when building domain entity with reference to domain entity with schoo
             ],
             "type": "object",
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
           "schoolId": Object {
             "description": "doc",
             "type": "integer",
           },
         },
         "required": Array [
+          "id",
           "schoolId",
         ],
         "title": "EdFi.StudentSchoolAssociation",
@@ -2255,7 +2375,7 @@ describe('when building domain entity with reference to domain entity with schoo
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -2281,12 +2401,13 @@ describe('when building a descriptor', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.descriptor.get('GradeLevel');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2300,6 +2421,10 @@ describe('when building a descriptor', () => {
             "description": "The descriptor description",
             "type": "string",
           },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
           "namespace": Object {
             "description": "The descriptor namespace as a URI",
             "type": "string",
@@ -2310,6 +2435,7 @@ describe('when building a descriptor', () => {
           },
         },
         "required": Array [
+          "id",
           "namespace",
           "codeValue",
           "shortDescription",
@@ -2322,7 +2448,7 @@ describe('when building a descriptor', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.descriptor.get('GradeLevel');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -2350,17 +2476,22 @@ describe('when building a school year enumeration', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
         "description": "A school year enumeration",
         "properties": Object {
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
           "schoolYear": Object {
             "description": "A school year between 1900 and 2100",
             "maximum": 2100,
@@ -2368,6 +2499,9 @@ describe('when building a school year enumeration', () => {
             "type": "integer",
           },
         },
+        "required": Array [
+          "id",
+        ],
         "title": "EdFi.SchoolYearType",
         "type": "object",
       }
@@ -2376,7 +2510,7 @@ describe('when building a school year enumeration', () => {
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -2428,12 +2562,13 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
   });
 
   it('should be a correct schema', () => {
     const entity = namespace.entity.domainEntity.get('StudentCohort');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2444,6 +2579,10 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
             "description": "optional extension collection",
             "properties": Object {},
             "type": "object",
+          },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
           },
           "studentUniqueId": Object {
             "description": "",
@@ -2481,6 +2620,7 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
           },
         },
         "required": Array [
+          "id",
           "studentUniqueId",
         ],
         "title": "EdFi.StudentCohort",
@@ -2491,7 +2631,7 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('StudentCohort');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });
 
@@ -2533,6 +2673,7 @@ describe('when building a domain entity with an inline common property with a de
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
+    jsonSchemaEnhancerForInsert(metaEd);
     enhance(metaEd);
 
     namespace = metaEd.namespace.get(namespaceName);
@@ -2545,7 +2686,7 @@ describe('when building a domain entity with an inline common property with a de
 
   it('should be a correct schema for section', () => {
     const entity = namespace.entity.domainEntity.get('Section');
-    expect(entity.data.edfiApiSchema.jsonSchema).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
     Object {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
@@ -2561,12 +2702,17 @@ describe('when building a domain entity with an inline common property with a de
           "description": "Documentation",
           "type": "string",
         },
+        "id": Object {
+          "description": "The item id",
+          "type": "string",
+        },
         "sectionIdentifier": Object {
           "description": "Documentation",
           "type": "integer",
         },
       },
       "required": Array [
+        "id",
         "sectionIdentifier",
       ],
       "title": "EdFi.Section",
@@ -2577,6 +2723,6 @@ describe('when building a domain entity with an inline common property with a de
 
   it('should be well-formed according to ajv', () => {
     const entity = namespace.entity.domainEntity.get('Section');
-    ajv.compile(entity.data.edfiApiSchema.jsonSchema);
+    ajv.compile(entity.data.edfiApiSchema.jsonSchemaForUpdate);
   });
 });

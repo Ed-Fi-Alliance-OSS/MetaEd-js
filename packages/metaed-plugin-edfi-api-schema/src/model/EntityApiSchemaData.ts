@@ -13,7 +13,12 @@ export type EntityApiSchemaData = {
   /**
    * The API document JSON schema that corresponds to this MetaEd entity.
    */
-  jsonSchema: SchemaRoot;
+  jsonSchemaForInsert: SchemaRoot;
+
+  /**
+   * The API document JSON schema that corresponds to this MetaEd entity on update.
+   */
+  jsonSchemaForUpdate: SchemaRoot;
 
   /**
    * Properties that belong under this entity in the API body. Excludes Choice and Inline Common properties
@@ -54,7 +59,7 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
 
   Object.assign(entity.data.edfiApiSchema, {
     apiMapping: NoApiEntityMapping,
-    jsonSchema: NoSchemaRoot,
+    jsonSchemaForInsert: NoSchemaRoot,
     collectedApiProperties: [],
     jsonPathsMapping: {},
     equalityConstraints: [],
