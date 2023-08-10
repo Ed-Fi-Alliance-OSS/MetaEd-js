@@ -211,30 +211,6 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     `);
   });
 
-  it('should create the correct equality constraints for StudentAssessment', () => {
-    const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentAssessment');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
-          "targetJsonPath": "$.assessmentReference.assessmentIdentifier",
-        },
-        Object {
-          "sourceJsonPath": "$.items[*].assessmentItemReference.namespace",
-          "targetJsonPath": "$.assessmentReference.namespace",
-        },
-        Object {
-          "sourceJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
-          "targetJsonPath": "$.assessmentReference.assessmentIdentifier",
-        },
-        Object {
-          "sourceJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
-          "targetJsonPath": "$.assessmentReference.namespace",
-        },
-      ]
-    `);
-  });
-
   it('should create the correct JSON path mappings for Session', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('Session');
     expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
@@ -298,22 +274,6 @@ describe('when generating api schema targeting tech version 5.3 with data standa
           "$.totalInstructionalDays",
         ],
       }
-    `);
-  });
-
-  it('should create the correct equality constraints for Session', () => {
-    const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('Session');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
-          "targetJsonPath": "$.schoolYearTypeReference.schoolYear",
-        },
-        Object {
-          "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
-          "targetJsonPath": "$.schoolReference.schoolId",
-        },
-      ]
     `);
   });
 
@@ -474,21 +434,6 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     `);
   });
 
-  it('should create the correct equality constraints for StudentCompetencyObjective', () => {
-    const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentCompetencyObjective');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
-          "targetJsonPath": "$.studentReference.studentUniqueId",
-        },
-        Object {
-          "sourceJsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
-          "targetJsonPath": "$.studentReference.studentUniqueId",
-        },
-      ]
-    `);
-  });
   it('should create the correct JSON path mappings for StudentLearningObjective', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentLearningObjective');
     expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
@@ -636,22 +581,6 @@ describe('when generating api schema targeting tech version 5.3 with data standa
           "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
         ],
       }
-    `);
-  });
-
-  it('should create the correct equality constraints for StudentLearningObjective', () => {
-    const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentLearningObjective');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
-          "targetJsonPath": "$.studentReference.studentUniqueId",
-        },
-        Object {
-          "sourceJsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
-          "targetJsonPath": "$.studentReference.studentUniqueId",
-        },
-      ]
     `);
   });
 });
@@ -885,30 +814,6 @@ describe('when generating api schema targeting tech version 6.1 with data standa
     `);
   });
 
-  it('should create the correct equality constraints for StudentAssessment', () => {
-    const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentAssessment');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
-          "targetJsonPath": "$.assessmentReference.assessmentIdentifier",
-        },
-        Object {
-          "sourceJsonPath": "$.items[*].assessmentItemReference.namespace",
-          "targetJsonPath": "$.assessmentReference.namespace",
-        },
-        Object {
-          "sourceJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
-          "targetJsonPath": "$.assessmentReference.assessmentIdentifier",
-        },
-        Object {
-          "sourceJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
-          "targetJsonPath": "$.assessmentReference.namespace",
-        },
-      ]
-    `);
-  });
-
   it('should create the correct JSON path mappings for Session', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('Session');
     expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
@@ -972,22 +877,6 @@ describe('when generating api schema targeting tech version 6.1 with data standa
           "$.totalInstructionalDays",
         ],
       }
-    `);
-  });
-
-  it('should create the correct equality constraints for Session', () => {
-    const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('Session');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
-          "targetJsonPath": "$.schoolYearTypeReference.schoolYear",
-        },
-        Object {
-          "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
-          "targetJsonPath": "$.schoolReference.schoolId",
-        },
-      ]
     `);
   });
 
@@ -1145,22 +1034,6 @@ describe('when generating api schema targeting tech version 6.1 with data standa
           "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
         ],
       }
-    `);
-  });
-
-  it('should create the correct equality constraints for StudentCompetencyObjective', () => {
-    const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentCompetencyObjective');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
-          "targetJsonPath": "$.studentReference.studentUniqueId",
-        },
-        Object {
-          "sourceJsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
-          "targetJsonPath": "$.studentReference.studentUniqueId",
-        },
-      ]
     `);
   });
 });
@@ -1394,30 +1267,6 @@ describe('when generating api schema targeting tech version 7.0 with data standa
     `);
   });
 
-  it('should create the correct equality constraints for StudentAssessment', () => {
-    const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentAssessment');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
-          "targetJsonPath": "$.assessmentReference.assessmentIdentifier",
-        },
-        Object {
-          "sourceJsonPath": "$.items[*].assessmentItemReference.namespace",
-          "targetJsonPath": "$.assessmentReference.namespace",
-        },
-        Object {
-          "sourceJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
-          "targetJsonPath": "$.assessmentReference.assessmentIdentifier",
-        },
-        Object {
-          "sourceJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
-          "targetJsonPath": "$.assessmentReference.namespace",
-        },
-      ]
-    `);
-  });
-
   it('should create the correct JSON path mappings for Session', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('Session');
     expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
@@ -1481,22 +1330,6 @@ describe('when generating api schema targeting tech version 7.0 with data standa
           "$.totalInstructionalDays",
         ],
       }
-    `);
-  });
-
-  it('should create the correct equality constraints for Session', () => {
-    const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('Session');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
-          "targetJsonPath": "$.schoolYearTypeReference.schoolYear",
-        },
-        Object {
-          "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
-          "targetJsonPath": "$.schoolReference.schoolId",
-        },
-      ]
     `);
   });
 
@@ -1654,22 +1487,6 @@ describe('when generating api schema targeting tech version 7.0 with data standa
           "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
         ],
       }
-    `);
-  });
-
-  it('should create the correct equality constraints for StudentCompetencyObjective', () => {
-    const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentCompetencyObjective');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
-          "targetJsonPath": "$.studentReference.studentUniqueId",
-        },
-        Object {
-          "sourceJsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
-          "targetJsonPath": "$.studentReference.studentUniqueId",
-        },
-      ]
     `);
   });
 });

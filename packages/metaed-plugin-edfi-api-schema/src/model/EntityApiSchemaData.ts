@@ -2,7 +2,6 @@ import { MetaEdEnvironment, EnhancerResult, getAllEntitiesOfType, ModelBase } fr
 import { ApiEntityMapping, NoApiEntityMapping } from './ApiEntityMapping';
 import type { CollectedProperty } from './CollectedProperty';
 import { SchemaRoot, NoSchemaRoot } from './JsonSchema';
-import type { EqualityConstraint } from './EqualityConstraint';
 import type { JsonPathsMapping } from './JsonPathsMapping';
 
 export type EntityApiSchemaData = {
@@ -43,12 +42,6 @@ export type EntityApiSchemaData = {
    * The JsonPaths array is always is sorted order.
    */
   jsonPathsMapping: JsonPathsMapping;
-
-  /**
-   * A list of EqualityConstraints to be applied to an Ed-Fi API document. An EqualityConstraint
-   * is a source/target JsonPath pair.
-   */
-  equalityConstraints: EqualityConstraint[];
 };
 
 /**
@@ -62,7 +55,6 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     jsonSchemaForInsert: NoSchemaRoot,
     collectedApiProperties: [],
     jsonPathsMapping: {},
-    equalityConstraints: [],
   });
 }
 

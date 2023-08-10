@@ -1,6 +1,7 @@
 import type { MetaEdPlugin } from '@edfi/metaed-core';
 
 import { initialize as edfiApiSchema } from '@edfi/metaed-plugin-edfi-api-schema';
+import { initialize as edfiApiSchemaAdvanced } from '@edfi/metaed-plugin-edfi-api-schema-advanced';
 import { initialize as edfiHandbook } from '@edfi/metaed-plugin-edfi-handbook';
 import { initialize as edfiOdsChangequery } from '@edfi/metaed-plugin-edfi-ods-changequery';
 import { initialize as edfiOdsChangequeryPostgresql } from '@edfi/metaed-plugin-edfi-ods-changequery-postgresql';
@@ -31,6 +32,7 @@ export function defaultPlugins(): MetaEdPlugin[] {
     edfiUnifiedAdvanced(),
 
     edfiApiSchema(),
+    edfiApiSchemaAdvanced(),
 
     edfiXsd(),
 

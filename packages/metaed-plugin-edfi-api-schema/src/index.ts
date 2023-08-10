@@ -5,7 +5,6 @@ export { enhance as entityApiSchemaDataSetupEnhancer } from './model/EntityApiSc
 export { enhance as entityPropertyApiSchemaDataSetupEnhancer } from './model/EntityPropertyApiSchemaData';
 export { enhance as apiEntityMappingEnhancer } from './enhancer/ApiEntityMappingEnhancer';
 export { enhance as apiPropertyMappingEnhancer } from './enhancer/ApiPropertyMappingEnhancer';
-export { enhance as equalityConstraintEnhancer } from './enhancer/EqualityConstraintEnhancer';
 export { enhance as jsonPathsMappingEnhancer } from './enhancer/JsonPathsMappingEnhancer';
 export { enhance as jsonSchemaEnhancerForInsert } from './enhancer/JsonSchemaEnhancerForInsert';
 export { enhance as jsonSchemaEnhancerForUpdate } from './enhancer/JsonSchemaEnhancerForUpdate';
@@ -23,7 +22,7 @@ export { isReferenceElement } from './model/ReferenceComponent';
 export type { ReferenceComponent, ReferenceGroup } from './model/ReferenceComponent';
 export { topLevelApiNameOnEntity, pluralize, uncapitalize } from './Utility';
 export type { ApiPropertyMapping } from './model/ApiPropertyMapping';
-export type { EqualityConstraint } from './model/EqualityConstraint';
+export type { JsonPath, PropertyPath } from './model/PathTypes';
 
 export function initialize(): MetaEdPlugin {
   return {

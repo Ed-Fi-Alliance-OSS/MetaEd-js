@@ -7,6 +7,7 @@ import {
   AssociationBuilder,
   ChoiceBuilder,
   CommonBuilder,
+  ValidationFailure,
 } from '@edfi/metaed-core';
 import {
   associationReferenceEnhancer,
@@ -15,19 +16,22 @@ import {
   domainEntityReferenceEnhancer,
   mergeDirectiveEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
-import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
-import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
-import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
-import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
-import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
-import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
-import { enhance as jsonPathsMappingEnhancer } from '../../src/enhancer/JsonPathsMappingEnhancer';
+import {
+  entityPropertyApiSchemaDataSetupEnhancer,
+  entityApiSchemaDataSetupEnhancer,
+  referenceComponentEnhancer,
+  propertyCollectingEnhancer,
+  apiEntityMappingEnhancer,
+  apiPropertyMappingEnhancer,
+  jsonPathsMappingEnhancer,
+} from '@edfi/metaed-plugin-edfi-api-schema';
 
-import { enhance } from '../../src/enhancer/EqualityConstraintEnhancer';
+import { validate } from '../../src/validator/MergeDirectiveMustBeAValidPath';
+import { enhance as entityApiSchemaAdvancedDataSetupEnhancer } from '../../src/model/EntityApiSchemaAdvancedData';
 
 describe('when building domain entity with DomainEntity collection and single merge directive', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  const namespace = 'EdFi';
+  let result: ValidationFailure[];
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
@@ -53,30 +57,23 @@ describe('when building domain entity with DomainEntity collection and single me
     mergeDirectiveEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaAdvancedDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonPathsMappingEnhancer(metaEd);
-    enhance(metaEd);
+    result = validate(metaEd);
   });
 
-  it('should create the correct equality constraints', () => {
-    const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
-          "targetJsonPath": "$.schoolYearTypeReference.schoolYear",
-        },
-      ]
-    `);
+  it('should have no failures', () => {
+    expect(result).toHaveLength(0);
   });
 });
 
 describe('when building domain entity with single merge directive', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  const namespace = 'EdFi';
+  let result: ValidationFailure[];
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
@@ -106,21 +103,205 @@ describe('when building domain entity with single merge directive', () => {
     mergeDirectiveEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaAdvancedDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonPathsMappingEnhancer(metaEd);
-    enhance(metaEd);
+    result = validate(metaEd);
   });
 
-  it('should create the correct equality constraints', () => {
-    const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('CourseOffering');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
+  it('should have no failures', () => {
+    expect(result).toHaveLength(0);
+  });
+});
+
+describe('when building domain entity with an invalid merge directive source', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  let result: ValidationFailure[];
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('CourseOffering')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Session', 'doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withMergeDirective('NotValid', 'Session.School')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaAdvancedDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    jsonPathsMappingEnhancer(metaEd);
+    result = validate(metaEd);
+  });
+
+  it('should have one failure', () => {
+    expect(result).toMatchInlineSnapshot(`
       Array [
         Object {
-          "sourceJsonPath": "$.schoolReference.schoolId",
-          "targetJsonPath": "$.sessionReference.schoolId",
+          "category": "error",
+          "fileMap": null,
+          "message": "Merge directive path NotValid is not a valid path on CourseOffering",
+          "sourceMap": Object {
+            "column": 10,
+            "line": 27,
+            "tokenText": "NotValid",
+          },
+          "validatorName": "MergeDirectiveMustBeAValidPath",
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building domain entity with an invalid merge directive target', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  let result: ValidationFailure[];
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('CourseOffering')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Session', 'doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withMergeDirective('School', 'Not.Valid')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaAdvancedDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    jsonPathsMappingEnhancer(metaEd);
+    result = validate(metaEd);
+  });
+
+  it('should have one failure', () => {
+    expect(result).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "category": "error",
+          "fileMap": null,
+          "message": "Merge directive path Not.Valid is not a valid path on CourseOffering",
+          "sourceMap": Object {
+            "column": 22,
+            "line": 27,
+            "tokenText": "Not",
+          },
+          "validatorName": "MergeDirectiveMustBeAValidPath",
+        },
+      ]
+    `);
+  });
+});
+
+describe('when building domain entity with an invalid merge directive source and target', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  let result: ValidationFailure[];
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('CourseOffering')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('Session', 'doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withMergeDirective('NotValid', 'Also.Not.Valid')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaAdvancedDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    jsonPathsMappingEnhancer(metaEd);
+    result = validate(metaEd);
+  });
+
+  it('should have two failures', () => {
+    expect(result).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "category": "error",
+          "fileMap": null,
+          "message": "Merge directive path NotValid is not a valid path on CourseOffering",
+          "sourceMap": Object {
+            "column": 10,
+            "line": 27,
+            "tokenText": "NotValid",
+          },
+          "validatorName": "MergeDirectiveMustBeAValidPath",
+        },
+        Object {
+          "category": "error",
+          "fileMap": null,
+          "message": "Merge directive path Also.Not.Valid is not a valid path on CourseOffering",
+          "sourceMap": Object {
+            "column": 24,
+            "line": 27,
+            "tokenText": "Also",
+          },
+          "validatorName": "MergeDirectiveMustBeAValidPath",
         },
       ]
     `);
@@ -129,7 +310,7 @@ describe('when building domain entity with single merge directive', () => {
 
 describe('when building domain entity with DomainEntity collection and two merge directives', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  const namespace = 'EdFi';
+  let result: ValidationFailure[];
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
@@ -163,34 +344,23 @@ describe('when building domain entity with DomainEntity collection and two merge
     mergeDirectiveEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaAdvancedDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonPathsMappingEnhancer(metaEd);
-    enhance(metaEd);
+    result = validate(metaEd);
   });
 
-  it('should create the correct equality constraints', () => {
-    const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('Session');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
-          "targetJsonPath": "$.schoolYearTypeReference.schoolYear",
-        },
-        Object {
-          "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
-          "targetJsonPath": "$.schoolReference.schoolId",
-        },
-      ]
-    `);
+  it('should have no failures', () => {
+    expect(result).toHaveLength(0);
   });
 });
 
 describe('when building domain entity with DomainEntity collection and single merge directive with multiple levels on target reference', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  const namespace = 'EdFi';
+  let result: ValidationFailure[];
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
@@ -235,30 +405,23 @@ describe('when building domain entity with DomainEntity collection and single me
     mergeDirectiveEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaAdvancedDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonPathsMappingEnhancer(metaEd);
-    enhance(metaEd);
+    result = validate(metaEd);
   });
 
-  it('should create the correct equality constraints', () => {
-    const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('StudentSectionAttendanceEvent');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.classPeriods[*].classPeriodReference.schoolId",
-          "targetJsonPath": "$.sectionReference.schoolId",
-        },
-      ]
-    `);
+  it('should have no failures', () => {
+    expect(result).toHaveLength(0);
   });
 });
 
 describe('when building domain entity with DomainEntity collection and single merge directive with multiple levels ending with simple type', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  const namespace = 'EdFi';
+  let result: ValidationFailure[];
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
@@ -303,24 +466,17 @@ describe('when building domain entity with DomainEntity collection and single me
     mergeDirectiveEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaAdvancedDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonPathsMappingEnhancer(metaEd);
-    enhance(metaEd);
+    result = validate(metaEd);
   });
 
-  it('should create the correct equality constraints', () => {
-    const entity = metaEd.namespace.get(namespace)?.entity.domainEntity.get('StudentSectionAttendanceEvent');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.classPeriods[*].classPeriodReference.schoolId",
-          "targetJsonPath": "$.sectionReference.schoolId",
-        },
-      ]
-    `);
+  it('should have no failures', () => {
+    expect(result).toHaveLength(0);
   });
 });
 
@@ -334,6 +490,7 @@ describe('when two domain entities with all four possible simple identities are 
   const schoolYear = 'SchoolYear';
   const integerProperty = 'IntegerProperty';
   const stringProperty = 'StringProperty';
+  let result: ValidationFailure[];
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
@@ -382,42 +539,24 @@ describe('when two domain entities with all four possible simple identities are 
     mergeDirectiveEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaAdvancedDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonPathsMappingEnhancer(metaEd);
-    enhance(metaEd);
+    result = validate(metaEd);
   });
 
-  it('should create the correct equality constraints', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get(domainEntityWithMerges);
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.domainEntityBeingMergedFromReference.booleanProperty",
-          "targetJsonPath": "$.domainEntityBeingMergedToReference.booleanProperty",
-        },
-        Object {
-          "sourceJsonPath": "$.domainEntityBeingMergedFromReference.schoolYear",
-          "targetJsonPath": "$.domainEntityBeingMergedToReference.schoolYear",
-        },
-        Object {
-          "sourceJsonPath": "$.domainEntityBeingMergedFromReference.integerProperty",
-          "targetJsonPath": "$.domainEntityBeingMergedToReference.integerProperty",
-        },
-        Object {
-          "sourceJsonPath": "$.domainEntityBeingMergedFromReference.stringProperty",
-          "targetJsonPath": "$.domainEntityBeingMergedToReference.stringProperty",
-        },
-      ]
-    `);
+  it('should have no failures', () => {
+    expect(result).toHaveLength(0);
   });
 });
 
 describe('when merging on both a reference and a simple identity down multiple levels on both references', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
+  let result: ValidationFailure[];
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
@@ -470,34 +609,24 @@ describe('when merging on both a reference and a simple identity down multiple l
     mergeDirectiveEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaAdvancedDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonPathsMappingEnhancer(metaEd);
-    enhance(metaEd);
+    result = validate(metaEd);
   });
 
-  it('should create the correct equality constraints', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('SectionAttendanceTakenEvent');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.calendarDateReference.schoolId",
-          "targetJsonPath": "$.sectionReference.schoolId",
-        },
-        Object {
-          "sourceJsonPath": "$.calendarDateReference.schoolYear",
-          "targetJsonPath": "$.sectionReference.schoolYear",
-        },
-      ]
-    `);
+  it('should have no failures', () => {
+    expect(result).toHaveLength(0);
   });
 });
 
 describe('when merging on a reference with multiple levels of domain entities below it', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
+  let result: ValidationFailure[];
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
@@ -550,38 +679,24 @@ describe('when merging on a reference with multiple levels of domain entities be
     mergeDirectiveEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaAdvancedDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonPathsMappingEnhancer(metaEd);
-    enhance(metaEd);
+    result = validate(metaEd);
   });
 
-  it('should create the correct equality constraints', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('DomainEntityName');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.courseOfferingReference.days",
-          "targetJsonPath": "$.sectionReference.days",
-        },
-        Object {
-          "sourceJsonPath": "$.courseOfferingReference.schoolId",
-          "targetJsonPath": "$.sectionReference.schoolId",
-        },
-        Object {
-          "sourceJsonPath": "$.courseOfferingReference.schoolYear",
-          "targetJsonPath": "$.sectionReference.schoolYear",
-        },
-      ]
-    `);
+  it('should have no failures', () => {
+    expect(result).toHaveLength(0);
   });
 });
 
 describe('when merging on a reference through a choice', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
+  let result: ValidationFailure[];
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
@@ -626,30 +741,24 @@ describe('when merging on a reference through a choice', () => {
     mergeDirectiveEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaAdvancedDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonPathsMappingEnhancer(metaEd);
-    enhance(metaEd);
+    result = validate(metaEd);
   });
 
-  it('should create the correct equality constraints', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentCompetencyObjective');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentId",
-          "targetJsonPath": "$.studentReference.studentId",
-        },
-      ]
-    `);
+  it('should have no failures', () => {
+    expect(result).toHaveLength(0);
   });
 });
 
 describe('when merging on a reference through a common collection', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
+  let result: ValidationFailure[];
 
   beforeAll(() => {
     MetaEdTextBuilder.build()
@@ -687,23 +796,16 @@ describe('when merging on a reference through a common collection', () => {
     mergeDirectiveEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaAdvancedDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
     jsonPathsMappingEnhancer(metaEd);
-    enhance(metaEd);
+    result = validate(metaEd);
   });
 
-  it('should create the correct equality constraints', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentAssessment');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "sourceJsonPath": "$.items[*].assessmentItemReference.assessmentId",
-          "targetJsonPath": "$.assessmentReference.assessmentId",
-        },
-      ]
-    `);
+  it('should have no failures', () => {
+    expect(result).toHaveLength(0);
   });
 });

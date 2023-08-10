@@ -11,7 +11,6 @@ import { enhance as subclassPropertyCollectingEnhancer } from './SubclassPropert
 import { enhance as jsonSchemaEnhancerForInsert } from './JsonSchemaEnhancerForInsert';
 import { enhance as jsonSchemaEnhancerForUpdate } from './JsonSchemaEnhancerForUpdate';
 import { enhance as jsonPathsMappingEnhancer } from './JsonPathsMappingEnhancer';
-import { enhance as equalityConstraintEnhancer } from './EqualityConstraintEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
@@ -27,6 +26,5 @@ export function enhancerList(): Enhancer[] {
     jsonSchemaEnhancerForInsert,
     jsonSchemaEnhancerForUpdate,
     jsonPathsMappingEnhancer,
-    equalityConstraintEnhancer,
   ];
 }
