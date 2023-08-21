@@ -356,8 +356,8 @@ describe('when building association extension with no property', (): void => {
   it('should have mismatched input error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
       Array [
-        "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'datetime', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'deprecated'}, column: 0, line: 3, token: End Namespace",
-        "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'datetime', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'deprecated'}, column: 0, line: 3, token: End Namespace",
+        "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'datetime', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'deprecated', METAED_ID}, column: 0, line: 3, token: End Namespace",
+        "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'datetime', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'deprecated', METAED_ID}, column: 0, line: 3, token: End Namespace",
       ]
     `);
   });
@@ -460,10 +460,6 @@ describe('when building association extension source map', (): void => {
     namespace = metaEd.namespace.get(namespaceName);
   });
 
-  it('should have a metaEdId property', (): void => {
-    expect(getAssociationExtension(namespace.entity, entityName).sourceMap.metaEdId).toBeDefined();
-  });
-
   it('should have a metaEdName property', (): void => {
     expect(getAssociationExtension(namespace.entity, entityName).sourceMap.metaEdName).toBeDefined();
   });
@@ -474,61 +470,56 @@ describe('when building association extension source map', (): void => {
 
   it('should have source map data', (): void => {
     expect(getAssociationExtension(namespace.entity, entityName).sourceMap).toMatchInlineSnapshot(`
-            Object {
-              "allowPrimaryKeyUpdates": Object {
-                "column": 0,
-                "line": 0,
-                "tokenText": "NoSourceMap",
-              },
-              "baseEntity": Object {
-                "column": 0,
-                "line": 0,
-                "tokenText": "NoSourceMap",
-              },
-              "baseEntityName": Object {
-                "column": 14,
-                "line": 2,
-                "tokenText": "EntityName",
-              },
-              "baseEntityNamespaceName": Object {
-                "column": 14,
-                "line": 2,
-                "tokenText": "EntityName",
-              },
-              "deprecationReason": Object {
-                "column": 0,
-                "line": 0,
-                "tokenText": "NoSourceMap",
-              },
-              "documentation": Object {
-                "column": 0,
-                "line": 0,
-                "tokenText": "NoSourceMap",
-              },
-              "identityProperties": Array [],
-              "isDeprecated": Object {
-                "column": 0,
-                "line": 0,
-                "tokenText": "NoSourceMap",
-              },
-              "metaEdId": Object {
-                "column": 35,
-                "line": 2,
-                "tokenText": "[1]",
-              },
-              "metaEdName": Object {
-                "column": 14,
-                "line": 2,
-                "tokenText": "EntityName",
-              },
-              "properties": Array [],
-              "queryableFields": Array [],
-              "type": Object {
-                "column": 2,
-                "line": 2,
-                "tokenText": "Association",
-              },
-            }
-        `);
+      Object {
+        "allowPrimaryKeyUpdates": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "baseEntity": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "baseEntityName": Object {
+          "column": 14,
+          "line": 2,
+          "tokenText": "EntityName",
+        },
+        "baseEntityNamespaceName": Object {
+          "column": 14,
+          "line": 2,
+          "tokenText": "EntityName",
+        },
+        "deprecationReason": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "documentation": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "identityProperties": Array [],
+        "isDeprecated": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "metaEdName": Object {
+          "column": 14,
+          "line": 2,
+          "tokenText": "EntityName",
+        },
+        "properties": Array [],
+        "queryableFields": Array [],
+        "type": Object {
+          "column": 2,
+          "line": 2,
+          "tokenText": "Association",
+        },
+      }
+    `);
   });
 });

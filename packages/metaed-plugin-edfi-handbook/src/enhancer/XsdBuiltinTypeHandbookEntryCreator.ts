@@ -40,9 +40,9 @@ export function createDefaultHandbookEntry(
   return {
     ...newHandbookEntry(),
     definition: property.documentation,
-    metaEdId: property.metaEdId,
+    entityUuid: property.propertyUuid,
     // This is the way the UI seaches for entities
-    uniqueIdentifier: property.metaEdName + property.metaEdId,
+    uniqueIdentifier: property.metaEdName + property.propertyUuid,
     metaEdType,
     umlType,
     modelReferencesUsedBy: [parentNameAndPropertyCardinality(property)],

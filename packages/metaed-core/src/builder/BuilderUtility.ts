@@ -2,10 +2,6 @@ function quoteCorrection(rawDocumentation: string): string {
   return rawDocumentation.substr(1, rawDocumentation.length - 2).replace(/""/g, '"');
 }
 
-export function squareBracketRemoval(metaEdIdWithBrackets: string) {
-  return metaEdIdWithBrackets.substr(1, metaEdIdWithBrackets.length - 2);
-}
-
 // ANTLR provides token text of the form <xyz> for some error conditions
 // Our language has no valid text tokens that start with '<'
 // (even documentation free text, as it starts with double-quote).

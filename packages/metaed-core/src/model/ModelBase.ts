@@ -13,7 +13,6 @@ export interface ModelBaseSourceMap {
   deprecationReason: SourceMap;
   documentation: SourceMap;
   metaEdName: SourceMap;
-  metaEdId: SourceMap;
 }
 
 /**
@@ -26,7 +25,6 @@ export function newModelBaseSourceMap() {
     deprecationReason: NoSourceMap,
     documentation: NoSourceMap,
     metaEdName: NoSourceMap,
-    metaEdId: NoSourceMap,
   };
 }
 
@@ -34,12 +32,13 @@ export function newModelBaseSourceMap() {
  *
  */
 export interface ModelBase {
+  //  entityUuid is a unique identifier for this entity. It is transient, meaning it will differ between runs.
+  entityUuid: string;
   type: ModelType;
   isDeprecated: boolean;
   deprecationReason: string;
   documentation: string;
   metaEdName: string;
-  metaEdId: string;
   namespace: Namespace;
   data: any;
   config: any;
@@ -50,12 +49,12 @@ export interface ModelBase {
  */
 export function newModelBase(): ModelBase {
   return {
+    entityUuid: '',
     type: 'unknown',
     isDeprecated: false,
     deprecationReason: '',
     documentation: '',
     metaEdName: '',
-    metaEdId: '',
     namespace: NoNamespace,
     data: {},
     config: {},

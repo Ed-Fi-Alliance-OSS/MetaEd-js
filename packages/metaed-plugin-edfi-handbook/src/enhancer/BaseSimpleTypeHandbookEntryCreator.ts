@@ -5,12 +5,12 @@ function generatedTableSqlFor(name: string, columnDefinition: string): string[] 
 }
 
 export function createDefaultHandbookEntry({
-  metaEdId,
+  entityUuid,
   name,
   definition,
   columnDefinition,
 }: {
-  metaEdId: string;
+  entityUuid: string;
   name: string;
   definition: string;
   columnDefinition: string;
@@ -18,9 +18,8 @@ export function createDefaultHandbookEntry({
   return {
     ...newHandbookEntry(),
     definition,
-    metaEdId,
     // This is the way the UI searches for entities
-    uniqueIdentifier: name + metaEdId,
+    uniqueIdentifier: name + entityUuid,
     metaEdType: `${name} Base Type`,
     modelReferencesUsedBy: [],
     umlType: name,

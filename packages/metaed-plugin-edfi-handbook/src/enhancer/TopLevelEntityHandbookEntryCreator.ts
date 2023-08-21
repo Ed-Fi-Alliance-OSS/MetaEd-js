@@ -23,7 +23,7 @@ import { HandbookMergeProperty } from '../model/HandbookMergeProperty';
 import { umlDatatypeMatrix, jsonDatatypeMatrix, getSqlDatatype, getMetaEdDatatype } from './DatatypeLookup';
 
 function generateUniqueId(entity: TopLevelEntity): string {
-  return entity.metaEdName + entity.metaEdId;
+  return entity.metaEdName + entity.entityUuid;
 }
 
 function getCardinalityStringFor(property: EntityProperty, isHandbookEntityReferenceProperty: boolean = false): string {
@@ -86,24 +86,24 @@ function findEntityByMetaEdName(allEntities: ModelBase[], metaEdName: string): b
 }
 
 function findEntityByUniqueId(allEntities: ModelBase[], uniqueId: string): boolean {
-  return allEntities.some((x) => x.metaEdName + x.metaEdId === uniqueId);
+  return allEntities.some((x) => x.metaEdName + x.entityUuid === uniqueId);
 }
 
 function getReferenceUniqueIdentifier(allEntities: ModelBase[], property: EntityProperty): string {
   // Search to see if we find one in top level entities.
   if ((property as ReferentialProperty).referencedEntity != null) {
     const { referencedEntity } = property as ReferentialProperty;
-    return referencedEntity.metaEdName + referencedEntity.metaEdId;
+    return referencedEntity.metaEdName + referencedEntity.entityUuid;
   }
 
-  // If we have a metaEdId then this can be one of 3 scenarios:
+  // This can be one of 3 scenarios:
   // 1) A reference entity with a child id that matches ids
   // I.E.: AcademicHonor has 702-HonorAwardDate and the entity is the same
   // 2) A reference entity with a child id that does not match the parent identity.
   // I.E.: AcademicHonor has 700-AcademicHonorCategory but the real entity is 120-AcademicHonorCategory
   // 3) A reference entity that has and Id but does not match
 
-  const uniqueIdCandidate: string = property.metaEdName + property.metaEdId;
+  const uniqueIdCandidate: string = property.metaEdName + property.propertyUuid;
 
   // First deal with reference enties that are matching.
   if (findEntityByUniqueId(allEntities, uniqueIdCandidate)) return uniqueIdCandidate;
@@ -133,8 +133,8 @@ function entityPropertyToHandbookEntityReferenceProperty(
     property.parentEntity.type,
   );
   return {
-    metaEdId: property.metaEdId,
-    targetPropertyId: referentialProperty.referencedEntity ? referentialProperty.referencedEntity.metaEdId : '',
+    propertyUuid: property.propertyUuid,
+    targetPropertyId: referentialProperty.referencedEntity ? referentialProperty.referencedEntity.entityUuid : '',
     referenceUniqueIdentifier: getReferenceUniqueIdentifier(allEntities, property),
     name: property.roleName === property.metaEdName ? `${property.roleName}` : `${property.roleName}${property.metaEdName}`,
     deprecationText: property.isDeprecated ? 'DEPRECATED' : '',
@@ -185,7 +185,7 @@ export function createDefaultHandbookEntry(
   return {
     ...newHandbookEntry(),
     definition: entity.documentation,
-    metaEdId: entity.metaEdId,
+    entityUuid: entity.entityUuid,
     // This is the way the UI searches for entities
     uniqueIdentifier: generateUniqueId(entity),
     metaEdType,

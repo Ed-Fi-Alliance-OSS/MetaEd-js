@@ -999,11 +999,6 @@ describe('when building decimal property', (): void => {
           "line": 0,
           "tokenText": "NoSourceMap",
         },
-        "metaEdId": Object {
-          "column": 0,
-          "line": 0,
-          "tokenText": "NoSourceMap",
-        },
         "metaEdName": Object {
           "column": 12,
           "line": 5,
@@ -1460,7 +1455,6 @@ describe('when building required entity properties', (): void => {
   const propertyType = 'association';
   const propertyName = 'PropertyName';
   const propertyDocumentation = 'PropertyDocumentation';
-  const metaEdId = '1';
   let namespace: any = null;
 
   beforeAll(() => {
@@ -1470,7 +1464,7 @@ describe('when building required entity properties', (): void => {
       .withBeginNamespace(namespaceName)
       .withStartDomainEntity(entityName)
       .withDocumentation(entityDocumentation)
-      .withAssociationProperty(propertyName, propertyDocumentation, true, false, false, null, metaEdId)
+      .withAssociationProperty(propertyName, propertyDocumentation, true, false, false)
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -1498,10 +1492,6 @@ describe('when building required entity properties', (): void => {
 
   it('should have metaEdName', (): void => {
     expect(getDomainEntity(namespace.entity, entityName).properties[0].metaEdName).toBe(propertyName);
-  });
-
-  it('should have metaEdId', (): void => {
-    expect(getDomainEntity(namespace.entity, entityName).properties[0].metaEdId).toBe(metaEdId);
   });
 
   it('should have namespace', (): void => {
@@ -1533,11 +1523,6 @@ describe('when building required entity properties', (): void => {
   it('should have source map for metaEdName', (): void => {
     expect(getDomainEntity(namespace.entity, entityName).properties[0].sourceMap.metaEdName).toBeDefined();
     expect(getDomainEntity(namespace.entity, entityName).properties[0].sourceMap.metaEdName).not.toBe(NoSourceMap);
-  });
-
-  it('should have source map for metaEdId', (): void => {
-    expect(getDomainEntity(namespace.entity, entityName).properties[0].sourceMap.metaEdId).toBeDefined();
-    expect(getDomainEntity(namespace.entity, entityName).properties[0].sourceMap.metaEdId).not.toBe(NoSourceMap);
   });
 
   it('should have source map for parentEntityName', (): void => {
@@ -1643,11 +1628,6 @@ describe('when building required entity properties', (): void => {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",
-        },
-        "metaEdId": Object {
-          "column": 29,
-          "line": 5,
-          "tokenText": "[1]",
         },
         "metaEdName": Object {
           "column": 16,
@@ -2627,11 +2607,6 @@ describe('when building integer property', (): void => {
           "tokenText": "max value",
         },
         "mergeTargetedBy": Object {
-          "column": 0,
-          "line": 0,
-          "tokenText": "NoSourceMap",
-        },
-        "metaEdId": Object {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",
@@ -3949,11 +3924,6 @@ describe('when building short property', (): void => {
           "line": 0,
           "tokenText": "NoSourceMap",
         },
-        "metaEdId": Object {
-          "column": 0,
-          "line": 0,
-          "tokenText": "NoSourceMap",
-        },
         "metaEdName": Object {
           "column": 10,
           "line": 5,
@@ -4185,11 +4155,6 @@ describe('when building string property', (): void => {
           "tokenText": "max length",
         },
         "mergeTargetedBy": Object {
-          "column": 0,
-          "line": 0,
-          "tokenText": "NoSourceMap",
-        },
-        "metaEdId": Object {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",

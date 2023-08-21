@@ -4,7 +4,7 @@ import { Namespace } from '../model/Namespace';
 import { ValidationFailure } from '../validator/ValidationFailure';
 import { newIntegerType, newShortType, NoIntegerType } from '../model/IntegerType';
 import { namespaceNameFrom } from './NamespaceBuilder';
-import { extractDocumentation, extractDeprecationReason, squareBracketRemoval, isErrorText } from './BuilderUtility';
+import { extractDocumentation, extractDeprecationReason, isErrorText } from './BuilderUtility';
 import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
 import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
 import { sourceMapFrom } from '../model/SourceMap';
@@ -120,20 +120,6 @@ export class IntegerTypeBuilder extends MetaEdGrammarListener {
     if (context.exception || context.ID() == null || context.ID().exception || isErrorText(context.ID().getText())) return;
     this.currentIntegerType.metaEdName = context.ID().getText();
     this.currentIntegerType.sourceMap.metaEdName = sourceMapFrom(context);
-  }
-
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
-    if (this.currentIntegerType === NoIntegerType) return;
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
-
-    this.currentIntegerType.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
-    this.currentIntegerType.sourceMap.metaEdId = sourceMapFrom(context);
   }
 
   enterMinValue(context: MetaEdGrammar.MinValueContext) {

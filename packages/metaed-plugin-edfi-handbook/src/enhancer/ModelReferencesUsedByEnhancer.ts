@@ -30,7 +30,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           ).length,
       )
       .map((entry) => ({
-        metaEdId: entry.metaEdId,
         referenceUniqueIdentifier: entry.uniqueIdentifier,
         name: entry.name,
         cardinality: entry.modelReferencesContainsProperties.filter(

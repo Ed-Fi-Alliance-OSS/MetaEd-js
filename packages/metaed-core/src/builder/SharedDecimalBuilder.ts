@@ -19,8 +19,7 @@ export class SharedDecimalBuilder extends SharedSimpleBuilder {
     }
   }
 
-  // @ts-ignore
-  exitSharedDecimal(context: MetaEdGrammar.SharedDecimalContext) {
+  exitSharedDecimal(_context: MetaEdGrammar.SharedDecimalContext) {
     this.exitingSharedSimple();
   }
 

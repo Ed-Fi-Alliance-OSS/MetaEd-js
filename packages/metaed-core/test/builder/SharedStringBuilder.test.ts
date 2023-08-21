@@ -14,7 +14,6 @@ describe('when building shared string in extension namespace', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minLength = '2';
   const maxLength = '100';
@@ -24,7 +23,7 @@ describe('when building shared string in extension namespace', (): void => {
     const builder = new SharedStringBuilder(metaEd, validationFailures);
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedString(entityName, metaEdId)
+      .withStartSharedString(entityName)
       .withDocumentation(documentation)
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
@@ -54,10 +53,6 @@ describe('when building shared string in extension namespace', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedString(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedString(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -230,11 +225,11 @@ describe('when building shared string with no shared string name', (): void => {
 
   it('should have missing id error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "missing ID at '[123]', column: 17, line: 2, token: [123]",
-              "missing ID at '[123]', column: 17, line: 2, token: [123]",
-            ]
-        `);
+      Array [
+        "missing ID at 'documentation', column: 4, line: 3, token: documentation",
+        "missing ID at 'documentation', column: 4, line: 3, token: documentation",
+      ]
+    `);
   });
 });
 
@@ -290,7 +285,6 @@ describe('when building shared string with no documentation', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const minLength = '2';
   const maxLength = '100';
   let namespace: any = null;
@@ -300,7 +294,7 @@ describe('when building shared string with no documentation', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedString(entityName, metaEdId)
+      .withStartSharedString(entityName)
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
       .withEndNamespace()
@@ -316,10 +310,6 @@ describe('when building shared string with no documentation', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedString(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedString(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should not have documentation', (): void => {
@@ -336,11 +326,11 @@ describe('when building shared string with no documentation', (): void => {
 
   it('should have mismatched input error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "mismatched input 'min length' expecting {'deprecated', 'documentation'}, column: 6, line: 3, token: min length",
-              "mismatched input 'min length' expecting {'deprecated', 'documentation'}, column: 6, line: 3, token: min length",
-            ]
-        `);
+      Array [
+        "mismatched input 'min length' expecting {'deprecated', 'documentation', METAED_ID}, column: 6, line: 3, token: min length",
+        "mismatched input 'min length' expecting {'deprecated', 'documentation', METAED_ID}, column: 6, line: 3, token: min length",
+      ]
+    `);
   });
 });
 
@@ -352,7 +342,6 @@ describe('when building shared string with no min length', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minLength = '';
   const maxLength = '100';
@@ -363,7 +352,7 @@ describe('when building shared string with no min length', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedString(entityName, metaEdId)
+      .withStartSharedString(entityName)
       .withDocumentation(documentation)
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
@@ -380,10 +369,6 @@ describe('when building shared string with no min length', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedString(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedString(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -418,7 +403,6 @@ describe('when building shared string with no max length', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minLength = '2';
   const maxLength = '';
@@ -429,7 +413,7 @@ describe('when building shared string with no max length', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedString(entityName, metaEdId)
+      .withStartSharedString(entityName)
       .withDocumentation(documentation)
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
@@ -446,10 +430,6 @@ describe('when building shared string with no max length', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedString(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedString(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -482,7 +462,6 @@ describe('when building shared string with invalid trailing text', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minLength = '2';
   const maxLength = '100';
@@ -494,7 +473,7 @@ describe('when building shared string with invalid trailing text', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedString(entityName, metaEdId)
+      .withStartSharedString(entityName)
       .withDocumentation(documentation)
       .withStringRestrictions(minLength, maxLength)
       .withTrailingText(trailingText)
@@ -512,10 +491,6 @@ describe('when building shared string with invalid trailing text', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedString(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedString(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -547,7 +522,6 @@ describe('when building shared string source map', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minLength = '2';
   const maxLength = '100';
@@ -558,7 +532,7 @@ describe('when building shared string source map', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedString(entityName, metaEdId)
+      .withStartSharedString(entityName)
       .withDocumentation(documentation)
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
@@ -581,11 +555,6 @@ describe('when building shared string source map', (): void => {
   it('should have metaEdName', (): void => {
     expect(getSharedString(namespace.entity, entityName).sourceMap.metaEdName).toBeDefined();
     expect(getSharedString(namespace.entity, entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
-  });
-
-  it('should have metaEdId', (): void => {
-    expect(getSharedString(namespace.entity, entityName).sourceMap.metaEdId).toBeDefined();
-    expect(getSharedString(namespace.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
   });
 
   // SharedStringSourceMap
@@ -619,11 +588,6 @@ describe('when building shared string source map', (): void => {
           "column": 6,
           "line": 6,
           "tokenText": "max length",
-        },
-        "metaEdId": Object {
-          "column": 27,
-          "line": 2,
-          "tokenText": "[123]",
         },
         "metaEdName": Object {
           "column": 16,

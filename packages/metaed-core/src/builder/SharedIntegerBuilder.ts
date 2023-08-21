@@ -30,13 +30,11 @@ export class SharedIntegerBuilder extends SharedSimpleBuilder {
     }
   }
 
-  // @ts-ignore
-  exitSharedInteger(context: MetaEdGrammar.SharedIntegerContext) {
+  exitSharedInteger(_context: MetaEdGrammar.SharedIntegerContext) {
     this.exitingSharedSimple();
   }
 
-  // @ts-ignore
-  exitSharedShort(context: MetaEdGrammar.SharedShortContext) {
+  exitSharedShort(_context: MetaEdGrammar.SharedShortContext) {
     this.exitingSharedSimple();
   }
 

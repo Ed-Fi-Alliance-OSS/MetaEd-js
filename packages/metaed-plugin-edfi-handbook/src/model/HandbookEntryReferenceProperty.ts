@@ -2,7 +2,7 @@ import { HandbookMergeProperty } from './HandbookMergeProperty';
 
 // A row in the "References" table on an Entity Handbook page
 export type HandbookEntityReferenceProperty = {
-  metaEdId: string;
+  propertyUuid: string;
   targetPropertyId: string;
   referenceUniqueIdentifier: string;
   name: string;

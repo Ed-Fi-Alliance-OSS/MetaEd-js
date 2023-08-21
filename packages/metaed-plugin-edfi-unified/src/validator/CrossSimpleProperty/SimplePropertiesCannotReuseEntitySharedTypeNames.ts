@@ -24,7 +24,6 @@ function propertiesNeedingDuplicateChecking(properties: PropertyIndex, namespace
   result.push(...properties.integer.filter((property: EntityProperty) => namespace === property.namespace));
   result.push(...properties.short.filter((property: EntityProperty) => namespace === property.namespace));
 
-  // @ts-ignore -- typescript not correctly typing map() operation as SimpleProperty => [string, SimpleProperty] tuples
   return new Map(result.map((i) => [i.metaEdName, i]));
 }
 

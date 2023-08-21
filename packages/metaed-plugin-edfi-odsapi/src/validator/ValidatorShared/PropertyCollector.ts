@@ -39,10 +39,8 @@ export function propertyCollector(entity: TopLevelEntity): EntityProperty[] {
     const result: { referencedEntities: any[]; properties: any[] } = collectSingleEntity(
       currentEntity,
       false,
-      // @ts-ignore - "property" never read
-      (referencedEntity, property) => referencedEntity,
-      // @ts-ignore - "referencedEntity" never read
-      (referencedEntity, property) => property,
+      (referencedEntity, _property) => referencedEntity,
+      (_referencedEntity, property) => property,
     );
 
     entities.push(...result.referencedEntities);

@@ -13,7 +13,6 @@ describe('when building shared decimal in extension namespace', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const totalDigits = '10';
   const decimalPlaces = '3';
@@ -26,7 +25,7 @@ describe('when building shared decimal in extension namespace', (): void => {
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
@@ -63,10 +62,6 @@ describe('when building shared decimal in extension namespace', (): void => {
 
   it('should have type humanized name', (): void => {
     expect(getDecimalType(namespace.entity, expectedRepositoryId).typeHumanizedName).toBe('Decimal Type');
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getDecimalType(namespace.entity, expectedRepositoryId).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -166,7 +161,7 @@ describe('when building domain entity with decimal property in extension namespa
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity('DomainEntity', '1')
+      .withStartDomainEntity('DomainEntity')
       .withDocumentation(documentation)
       .withDecimalProperty(
         entityName,
@@ -214,10 +209,6 @@ describe('when building domain entity with decimal property in extension namespa
 
   it('should have type humanized name', (): void => {
     expect(getDecimalType(namespace.entity, expectedRepositoryId).typeHumanizedName).toBe('Decimal Type');
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getDecimalType(namespace.entity, expectedRepositoryId).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {

@@ -16,8 +16,7 @@ export class CommonBuilder extends TopLevelEntityBuilder {
     }
   }
 
-  // @ts-ignore
-  exitCommon(context: MetaEdGrammar.CommonContext) {
+  exitCommon(_context: MetaEdGrammar.CommonContext) {
     this.exitingEntity();
   }
 
@@ -35,8 +34,7 @@ export class CommonBuilder extends TopLevelEntityBuilder {
     }
   }
 
-  // @ts-ignore
-  exitInlineCommon(context: MetaEdGrammar.InlineCommonContext) {
+  exitInlineCommon(_context: MetaEdGrammar.InlineCommonContext) {
     this.exitingEntity();
   }
 

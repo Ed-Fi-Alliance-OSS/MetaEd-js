@@ -5,7 +5,7 @@ import { newSchoolYearEnumeration } from '../model/SchoolYearEnumeration';
 import { EnumerationSourceMap } from '../model/Enumeration';
 import { EnumerationItem } from '../model/EnumerationItem';
 import { newEnumerationItem, NoEnumerationItem } from '../model/EnumerationItem';
-import { extractDocumentation, extractShortDescription, squareBracketRemoval, isErrorText } from './BuilderUtility';
+import { extractDocumentation, extractShortDescription, isErrorText } from './BuilderUtility';
 import { NoTopLevelEntity } from '../model/TopLevelEntity';
 import { MetaEdEnvironment } from '../MetaEdEnvironment';
 import { ValidationFailure } from '../validator/ValidationFailure';
@@ -31,8 +31,7 @@ export class EnumerationBuilder extends TopLevelEntityBuilder {
     }
   }
 
-  // @ts-ignore
-  exitEnumeration(context: MetaEdGrammar.EnumerationContext) {
+  exitEnumeration(_context: MetaEdGrammar.EnumerationContext) {
     this.exitingEntity();
   }
 
@@ -72,22 +71,6 @@ export class EnumerationBuilder extends TopLevelEntityBuilder {
     asEnumeration(this.currentTopLevelEntity).enumerationItems.push(this.currentEnumerationItem);
     (this.currentTopLevelEntity.sourceMap as EnumerationSourceMap).enumerationItems.push(sourceMapFrom(context));
     this.currentEnumerationItem = NoEnumerationItem;
-  }
-
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception != null ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
-    if (this.currentEnumerationItem !== NoEnumerationItem) {
-      this.currentEnumerationItem.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
-      this.currentEnumerationItem.sourceMap.metaEdId = sourceMapFrom(context);
-    } else {
-      super.enterMetaEdId(context);
-    }
   }
 
   enterShortDescription(context: MetaEdGrammar.ShortDescriptionContext) {

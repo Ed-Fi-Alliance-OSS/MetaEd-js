@@ -4,26 +4,22 @@ export const repository = {
       domainEntity: {
         School: {
           metaEdName: 'School',
-          metaEdId: '123',
           property: {
             Name: {
               type: 'StringProperty',
               metaEdName: 'Name',
-              metaEdId: '456',
               maxLength: 123,
               roleName: '',
             },
             EducationOrganization: {
               type: 'domainEntityProperty',
               metaEdName: 'EducationOrganization',
-              metaEdId: '789',
               reference: 'core/domainEntity/EducationOrganization',
               roleName: '',
             },
             AlternateEducationOrganization: {
               type: 'domainEntityProperty',
               metaEdName: 'EducationOrganization',
-              metaEdId: '789',
               roleName: 'Alternate',
               reference: 'core/domainEntity/EducationOrganization',
             },
@@ -31,12 +27,10 @@ export const repository = {
         },
         EducationOrganization: {
           metaEdName: 'EducationOrganization',
-          metaEdId: '1234',
           property: {
             Name: {
               type: 'StringProperty',
               metaEdName: 'Name',
-              metaEdId: '4564',
             },
           },
         },

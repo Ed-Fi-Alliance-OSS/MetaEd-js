@@ -4,7 +4,7 @@ import { Namespace } from '../model/Namespace';
 import { ValidationFailure } from '../validator/ValidationFailure';
 import { newStringType, NoStringType } from '../model/StringType';
 import { namespaceNameFrom } from './NamespaceBuilder';
-import { extractDocumentation, squareBracketRemoval, isErrorText, extractDeprecationReason } from './BuilderUtility';
+import { extractDocumentation, isErrorText, extractDeprecationReason } from './BuilderUtility';
 import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
 import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
 import { sourceMapFrom } from '../model/SourceMap';
@@ -100,20 +100,6 @@ export class StringTypeBuilder extends MetaEdGrammarListener {
     this.currentStringType.sourceMap.metaEdName = sourceMapFrom(localPropertyNameContext);
   }
 
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
-    if (this.currentStringType === NoStringType) return;
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
-
-    this.currentStringType.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
-    this.currentStringType.sourceMap.metaEdId = sourceMapFrom(context);
-  }
-
   enterMinLength(context: MetaEdGrammar.MinLengthContext) {
     if (this.currentStringType === NoStringType) return;
     if (
@@ -140,13 +126,11 @@ export class StringTypeBuilder extends MetaEdGrammarListener {
     this.currentStringType.sourceMap.maxLength = sourceMapFrom(context);
   }
 
-  // @ts-ignore
-  exitStringProperty(context: MetaEdGrammar.StringPropertyContext) {
+  exitStringProperty(_context: MetaEdGrammar.StringPropertyContext) {
     this.exitingStringType();
   }
 
-  // @ts-ignore
-  exitSharedString(context: MetaEdGrammar.SharedStringContext) {
+  exitSharedString(_context: MetaEdGrammar.SharedStringContext) {
     this.exitingStringType();
   }
 

@@ -102,8 +102,6 @@ import { validate as interchangeExtensionMustNotRedeclareIdentityName } from './
 import { validate as mergeDirectiveMustStartSourcePathWithPropertyName } from './validator/MergeDirective/MergeDirectiveMustStartSourcePathWithPropertyName';
 import { validate as namespacesNamesMustNotHaveOnlyDifferentCasing } from './validator/Namespace/NamespacesNamesMustNotHaveOnlyDifferentCasing';
 
-import { validate as mustNotDuplicateMetaEdId } from './validator/MetaEdId/MustNotDuplicateMetaEdId';
-
 import { validate as sharedDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits } from './validator/SharedDecimal/SharedDecimalDecimalPlacesMustNotBeGreaterThanTotalDigits';
 import { validate as sharedDecimalMinValueMustNotBeGreaterThanMaxValue } from './validator/SharedDecimal/SharedDecimalMinValueMustNotBeGreaterThanMaxValue';
 import { validate as sharedIntegerMinValueMustNotBeGreaterThanMaxValue } from './validator/SharedInteger/SharedIntegerMinValueMustNotBeGreaterThanMaxValue';
@@ -303,8 +301,6 @@ function validatorList(): Validator[] {
     interchangeExtensionMustNotRedeclareIdentityName,
 
     mergeDirectiveMustStartSourcePathWithPropertyName,
-
-    mustNotDuplicateMetaEdId,
 
     namespacesNamesMustNotHaveOnlyDifferentCasing,
 

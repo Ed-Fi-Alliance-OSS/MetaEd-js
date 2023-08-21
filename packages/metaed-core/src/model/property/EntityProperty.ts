@@ -24,7 +24,6 @@ export interface EntityPropertySourceMap {
   documentation: SourceMap;
   documentationInherited: SourceMap;
   metaEdName: SourceMap;
-  metaEdId: SourceMap;
   namespace: SourceMap;
   baseKeyName: SourceMap;
   shortenTo: SourceMap;
@@ -57,7 +56,6 @@ export function newEntityPropertySourceMap(): EntityPropertySourceMap {
     documentation: NoSourceMap,
     documentationInherited: NoSourceMap,
     metaEdName: NoSourceMap,
-    metaEdId: NoSourceMap,
     namespace: NoSourceMap,
     baseKeyName: NoSourceMap,
     shortenTo: NoSourceMap,
@@ -83,6 +81,8 @@ export function newEntityPropertySourceMap(): EntityPropertySourceMap {
 /**
  * EntityProperty is the base type for all properties.
  *
+ * **propertyUuid** is a unique identifier for this property. It is transient, meaning it will differ between runs.
+ *
  * **type** is the property type as a string enumeration.  Examples are "domainEntity", "descriptor", "sharedString".
  *
  * **typeHumanizedName** is the property type as a displayable string for end user messages.
@@ -96,8 +96,6 @@ export function newEntityPropertySourceMap(): EntityPropertySourceMap {
  * **documentationInherited** is true if the "documentation inherited" keyword was used.
  *
  * **metaEdName** is the property name as defined by the identifier.  The metaEdName uniquely identifies a property on an entity.
- *
- * **metaEdId** is the optional MetaEdId as a string.
  *
  * **namespace** is a reference to the namespace this property (and its parent entity) is in.
  *
@@ -144,6 +142,7 @@ export function newEntityPropertySourceMap(): EntityPropertySourceMap {
  * **data** is the place where plugins are allowed to annotate the property with their own plugin-specfic data.
  */
 export interface EntityProperty {
+  propertyUuid: string;
   type: PropertyType;
   typeHumanizedName: string;
   isDeprecated: boolean;
@@ -151,7 +150,6 @@ export interface EntityProperty {
   documentation: string;
   documentationInherited: boolean;
   metaEdName: string;
-  metaEdId: string;
   namespace: Namespace;
   baseKeyName: string;
   shortenTo: string;
@@ -181,6 +179,7 @@ export interface EntityProperty {
  */
 export function newEntityProperty(): EntityProperty {
   return {
+    propertyUuid: '',
     type: 'unknown',
     typeHumanizedName: '',
     isDeprecated: false,
@@ -188,7 +187,6 @@ export function newEntityProperty(): EntityProperty {
     documentation: '',
     documentationInherited: false,
     metaEdName: '',
-    metaEdId: '',
     namespace: newNamespace(),
     baseKeyName: '',
     shortenTo: '',

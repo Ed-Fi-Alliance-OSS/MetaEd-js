@@ -713,7 +713,7 @@ describe('when building association subclass source map', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartAssociationSubclass(entityName, baseEntityName, '1')
+      .withStartAssociationSubclass(entityName, baseEntityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationSubclass()
@@ -729,10 +729,6 @@ describe('when building association subclass source map', (): void => {
 
   it('should have a documentation property', (): void => {
     expect(getAssociationSubclass(namespace.entity, entityName).sourceMap.documentation).toBeDefined();
-  });
-
-  it('should have a metaEdId property', (): void => {
-    expect(getAssociationSubclass(namespace.entity, entityName).sourceMap.metaEdId).toBeDefined();
   });
 
   it('should have a metaEdName property', (): void => {
@@ -781,11 +777,6 @@ describe('when building association subclass source map', (): void => {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",
-        },
-        "metaEdId": Object {
-          "column": 49,
-          "line": 2,
-          "tokenText": "[1]",
         },
         "metaEdName": Object {
           "column": 14,

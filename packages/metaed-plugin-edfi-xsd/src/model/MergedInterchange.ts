@@ -10,7 +10,6 @@ interface MergedInterchangeBase {
   data: any;
   documentation: string;
   metaEdName: string;
-  metaEdId: string;
   namespace: Namespace;
 
   elements: InterchangeItem[];
@@ -57,7 +56,6 @@ export function newMergedInterchange(): MergedInterchange {
     data: {},
     documentation: '',
     metaEdName: '',
-    metaEdId: '',
     namespace: newNamespace(),
 
     elements: [],

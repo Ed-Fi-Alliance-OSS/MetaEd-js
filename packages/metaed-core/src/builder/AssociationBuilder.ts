@@ -18,8 +18,7 @@ export class AssociationBuilder extends TopLevelEntityBuilder {
     }
   }
 
-  // @ts-ignore
-  exitAssociation(context: MetaEdGrammar.AssociationContext) {
+  exitAssociation(_context: MetaEdGrammar.AssociationContext) {
     this.exitingEntity();
   }
 
@@ -51,8 +50,7 @@ export class AssociationBuilder extends TopLevelEntityBuilder {
     this.enteringIdentity(context);
   }
 
-  // @ts-ignore
-  exitDefiningDomainEntity(context: MetaEdGrammar.DefiningDomainEntityContext) {
+  exitDefiningDomainEntity(_context: MetaEdGrammar.DefiningDomainEntityContext) {
     this.exitingProperty();
   }
 }

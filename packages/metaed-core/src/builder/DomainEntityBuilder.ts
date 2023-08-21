@@ -30,13 +30,11 @@ export class DomainEntityBuilder extends TopLevelEntityBuilder {
     }
   }
 
-  // @ts-ignore
-  exitAbstractEntity(context: MetaEdGrammar.AbstractEntityContext) {
+  exitAbstractEntity(_context: MetaEdGrammar.AbstractEntityContext) {
     this.exitingEntity();
   }
 
-  // @ts-ignore
-  exitDomainEntity(context: MetaEdGrammar.DomainEntityContext) {
+  exitDomainEntity(_context: MetaEdGrammar.DomainEntityContext) {
     this.exitingEntity();
   }
 

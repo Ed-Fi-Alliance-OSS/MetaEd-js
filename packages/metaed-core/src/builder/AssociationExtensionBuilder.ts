@@ -15,8 +15,7 @@ export class AssociationExtensionBuilder extends TopLevelEntityBuilder {
     }
   }
 
-  // @ts-ignore
-  exitAssociationExtension(context: MetaEdGrammar.AssociationExtensionContext) {
+  exitAssociationExtension(_context: MetaEdGrammar.AssociationExtensionContext) {
     this.exitingEntity();
   }
 

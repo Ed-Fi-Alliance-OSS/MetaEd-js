@@ -371,8 +371,8 @@ describe('when building domain entity extension with no property', (): void => {
   it('should have mismatched input error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
       Array [
-        "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'datetime', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'deprecated'}, column: 0, line: 3, token: End Namespace",
-        "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'datetime', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'deprecated'}, column: 0, line: 3, token: End Namespace",
+        "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'datetime', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'deprecated', METAED_ID}, column: 0, line: 3, token: End Namespace",
+        "mismatched input 'End Namespace' expecting {'association', 'bool', 'choice', 'common', 'common extension', 'currency', 'date', 'datetime', 'decimal', 'descriptor', 'domain entity', 'duration', 'enumeration', 'inline common', 'integer', 'percent', 'shared decimal', 'shared integer', 'shared short', 'shared string', 'short', 'string', 'time', 'year', 'deprecated', METAED_ID}, column: 0, line: 3, token: End Namespace",
       ]
     `);
   });
@@ -461,7 +461,6 @@ describe('when building domain entity extension source map', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '10';
   const propertyName = 'PropertyName';
   let namespace: any = null;
 
@@ -470,7 +469,7 @@ describe('when building domain entity extension source map', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntityExtension(entityName, metaEdId)
+      .withStartDomainEntityExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
@@ -494,68 +493,58 @@ describe('when building domain entity extension source map', (): void => {
     expect(getDomainEntityExtension(namespace.entity, entityName).sourceMap.baseEntityName.tokenText).toBe(entityName);
   });
 
-  it('should have metaEdId', (): void => {
-    expect(getDomainEntityExtension(namespace.entity, entityName).sourceMap.metaEdId).toBeDefined();
-    expect(getDomainEntityExtension(namespace.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
-  });
-
   it('should have correct line, column, text', (): void => {
     expect(getDomainEntityExtension(namespace.entity, entityName).sourceMap).toMatchInlineSnapshot(`
-            Object {
-              "allowPrimaryKeyUpdates": Object {
-                "column": 0,
-                "line": 0,
-                "tokenText": "NoSourceMap",
-              },
-              "baseEntity": Object {
-                "column": 0,
-                "line": 0,
-                "tokenText": "NoSourceMap",
-              },
-              "baseEntityName": Object {
-                "column": 16,
-                "line": 2,
-                "tokenText": "EntityName",
-              },
-              "baseEntityNamespaceName": Object {
-                "column": 16,
-                "line": 2,
-                "tokenText": "EntityName",
-              },
-              "deprecationReason": Object {
-                "column": 0,
-                "line": 0,
-                "tokenText": "NoSourceMap",
-              },
-              "documentation": Object {
-                "column": 0,
-                "line": 0,
-                "tokenText": "NoSourceMap",
-              },
-              "identityProperties": Array [],
-              "isDeprecated": Object {
-                "column": 0,
-                "line": 0,
-                "tokenText": "NoSourceMap",
-              },
-              "metaEdId": Object {
-                "column": 37,
-                "line": 2,
-                "tokenText": "[10]",
-              },
-              "metaEdName": Object {
-                "column": 16,
-                "line": 2,
-                "tokenText": "EntityName",
-              },
-              "properties": Array [],
-              "queryableFields": Array [],
-              "type": Object {
-                "column": 2,
-                "line": 2,
-                "tokenText": "Domain Entity",
-              },
-            }
-        `);
+      Object {
+        "allowPrimaryKeyUpdates": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "baseEntity": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "baseEntityName": Object {
+          "column": 16,
+          "line": 2,
+          "tokenText": "EntityName",
+        },
+        "baseEntityNamespaceName": Object {
+          "column": 16,
+          "line": 2,
+          "tokenText": "EntityName",
+        },
+        "deprecationReason": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "documentation": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "identityProperties": Array [],
+        "isDeprecated": Object {
+          "column": 0,
+          "line": 0,
+          "tokenText": "NoSourceMap",
+        },
+        "metaEdName": Object {
+          "column": 16,
+          "line": 2,
+          "tokenText": "EntityName",
+        },
+        "properties": Array [],
+        "queryableFields": Array [],
+        "type": Object {
+          "column": 2,
+          "line": 2,
+          "tokenText": "Domain Entity",
+        },
+      }
+    `);
   });
 });

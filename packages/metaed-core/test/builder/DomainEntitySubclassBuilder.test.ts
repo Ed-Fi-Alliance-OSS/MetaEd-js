@@ -721,7 +721,6 @@ describe('when building domain entity subclass source map', (): void => {
 
   const entityName = 'EntityName';
   const baseEntityName = 'BaseEntityName';
-  const metaEdId = '1';
   const documentation = 'Doc';
   const propertyName = 'PropertyName';
   let namespace: any = null;
@@ -731,7 +730,7 @@ describe('when building domain entity subclass source map', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntitySubclass(entityName, baseEntityName, metaEdId)
+      .withStartDomainEntitySubclass(entityName, baseEntityName)
       .withDocumentation(documentation)
       .withCascadeUpdate()
       .withIntegerProperty(propertyName, 'Doc', true, false)
@@ -754,11 +753,6 @@ describe('when building domain entity subclass source map', (): void => {
   it('should have metaEdName', (): void => {
     expect(getDomainEntitySubclass(namespace.entity, entityName).sourceMap.metaEdName).toBeDefined();
     expect(getDomainEntitySubclass(namespace.entity, entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
-  });
-
-  it('should have metaEdId', (): void => {
-    expect(getDomainEntitySubclass(namespace.entity, entityName).sourceMap.metaEdId).toBeDefined();
-    expect(getDomainEntitySubclass(namespace.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
   });
 
   it('should have baseEntityName', (): void => {
@@ -808,11 +802,6 @@ describe('when building domain entity subclass source map', (): void => {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",
-        },
-        "metaEdId": Object {
-          "column": 51,
-          "line": 2,
-          "tokenText": "[1]",
         },
         "metaEdName": Object {
           "column": 16,

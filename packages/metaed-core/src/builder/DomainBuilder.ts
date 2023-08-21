@@ -11,7 +11,7 @@ import { newDomainItem, NoDomainItem } from '../model/DomainItem';
 import { newDomain, NoDomain } from '../model/Domain';
 import { newSubdomain } from '../model/Subdomain';
 import { namespaceNameFrom } from './NamespaceBuilder';
-import { extractDocumentation, extractDeprecationReason, squareBracketRemoval, isErrorText } from './BuilderUtility';
+import { extractDocumentation, extractDeprecationReason, isErrorText } from './BuilderUtility';
 import { ValidationFailure } from '../validator/ValidationFailure';
 import { sourceMapFrom } from '../model/SourceMap';
 import { TopLevelEntity } from '../model/TopLevelEntity';
@@ -61,25 +61,6 @@ export class DomainBuilder extends MetaEdGrammarListener {
     this.currentDomain.sourceMap.documentation = sourceMapFrom(context);
   }
 
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
-    if (this.currentDomain === NoDomain) return;
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception != null ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
-
-    if (this.currentDomainItem !== NoDomainItem) {
-      this.currentDomainItem.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
-      this.currentDomainItem.sourceMap.metaEdId = sourceMapFrom(context);
-    } else {
-      this.currentDomain.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
-      this.currentDomain.sourceMap.metaEdId = sourceMapFrom(context);
-    }
-  }
-
   enterDomain(context: MetaEdGrammar.DomainContext) {
     this.currentDomain = { ...newDomain(), namespace: this.currentNamespace };
     this.currentDomain.sourceMap.type = sourceMapFrom(context);
@@ -119,13 +100,11 @@ export class DomainBuilder extends MetaEdGrammarListener {
     this.currentDomain = NoDomain;
   }
 
-  // @ts-ignore
-  exitDomain(context: MetaEdGrammar.DomainContext) {
+  exitDomain(_context: MetaEdGrammar.DomainContext) {
     this.exitingEntity();
   }
 
-  // @ts-ignore
-  exitSubdomain(context: MetaEdGrammar.DomainContext) {
+  exitSubdomain(_context: MetaEdGrammar.DomainContext) {
     this.exitingEntity();
   }
 

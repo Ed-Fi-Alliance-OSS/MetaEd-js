@@ -12,7 +12,7 @@ import { newInterchange, NoInterchange } from '../model/Interchange';
 import { newInterchangeItem, NoInterchangeItem } from '../model/InterchangeItem';
 import { newInterchangeExtension } from '../model/InterchangeExtension';
 import { namespaceNameFrom } from './NamespaceBuilder';
-import { extractDocumentation, squareBracketRemoval, isErrorText, extractDeprecationReason } from './BuilderUtility';
+import { extractDocumentation, isErrorText, extractDeprecationReason } from './BuilderUtility';
 import { sourceMapFrom } from '../model/SourceMap';
 import { ValidationFailure } from '../validator/ValidationFailure';
 
@@ -75,25 +75,6 @@ export class InterchangeBuilder extends MetaEdGrammarListener {
     (this.currentInterchange.sourceMap as InterchangeSourceMap).useCaseDocumentation = sourceMapFrom(context);
   }
 
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
-    if (this.currentInterchange === NoInterchange) return;
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception != null ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
-
-    if (this.currentInterchangeItem !== NoInterchangeItem) {
-      this.currentInterchangeItem.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
-      this.currentInterchangeItem.sourceMap.metaEdId = sourceMapFrom(context);
-    } else {
-      this.currentInterchange.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
-      this.currentInterchange.sourceMap.metaEdId = sourceMapFrom(context);
-    }
-  }
-
   enterInterchange(context: MetaEdGrammar.InterchangeContext) {
     this.currentInterchange = { ...newInterchange(), namespace: this.currentNamespace };
 
@@ -141,13 +122,11 @@ export class InterchangeBuilder extends MetaEdGrammarListener {
     this.currentInterchange = NoInterchange;
   }
 
-  // @ts-ignore
-  exitInterchange(context: MetaEdGrammar.InterchangeContext) {
+  exitInterchange(_context: MetaEdGrammar.InterchangeContext) {
     this.exitingInterchange();
   }
 
-  // @ts-ignore
-  exitInterchangeExtension(context: MetaEdGrammar.InterchangeExtensionContext) {
+  exitInterchangeExtension(_context: MetaEdGrammar.InterchangeExtensionContext) {
     this.exitingInterchange();
   }
 
@@ -252,7 +231,6 @@ export class InterchangeBuilder extends MetaEdGrammarListener {
     }
   }
 
-  // @ts-ignore
   exitInterchangeElement(context: MetaEdGrammar.InterchangeElementContext) {
     if (this.currentInterchange === NoInterchange || this.currentInterchangeItem === NoInterchangeItem) return;
     this.currentInterchange.elements.push(this.currentInterchangeItem);
@@ -260,7 +238,6 @@ export class InterchangeBuilder extends MetaEdGrammarListener {
     this.currentInterchangeItem = NoInterchangeItem;
   }
 
-  // @ts-ignore
   exitInterchangeIdentity(context: MetaEdGrammar.InterchangeIdentityContext) {
     if (this.currentInterchange === NoInterchange || this.currentInterchangeItem === NoInterchangeItem) return;
     this.currentInterchange.identityTemplates.push(this.currentInterchangeItem);

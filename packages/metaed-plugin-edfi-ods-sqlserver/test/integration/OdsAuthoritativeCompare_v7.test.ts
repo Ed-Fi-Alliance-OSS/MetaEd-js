@@ -122,8 +122,8 @@ describe('when generating ods and comparing it to data standard 5.0 pre authorit
   it('should have core with no differences', async () => {
     expect(coreResult).toBeDefined();
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCoreOds} ${generatedCoreOds}`;
-    // @ts-ignore "error" not used
-    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -205,8 +205,8 @@ describe('when generating ods with simple extensions and comparing it to data st
   it('should have core with no differences', async () => {
     expect(generatedCoreOutput).toBeDefined();
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCoreOdsFilename} ${generatedCoreOdsFilename}`;
-    // @ts-ignore "error" not used
-    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -215,8 +215,8 @@ describe('when generating ods with simple extensions and comparing it to data st
   it('should have extension with no differences', async () => {
     expect(generatedExtensionOutput).toBeDefined();
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtensionOdsFilename} ${generatedExtensionOdsFilename}`;
-    // @ts-ignore "error" not used
-    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -298,8 +298,8 @@ describe('when generating ods with student transcript extensions and comparing i
   it('should have core with no differences', async () => {
     expect(generatedCoreOutput).toBeDefined();
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeCoreOdsFilename} ${generatedCoreOdsFilename}`;
-    // @ts-ignore "error" not used
-    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);
@@ -308,8 +308,8 @@ describe('when generating ods with student transcript extensions and comparing i
   it('should have extension with no differences', async () => {
     expect(generatedExtensionOutput).toBeDefined();
     const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritativeExtensionOdsFilename} ${generatedExtensionOdsFilename}`;
-    // @ts-ignore "error" not used
-    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
+
+    const result = await new Promise((resolve) => exec(gitCommand, (_error, stdout) => resolve(stdout)));
     // two different ways to show no difference, depending on platform line endings
     const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
     expect(expectOneOf).toContain(result);

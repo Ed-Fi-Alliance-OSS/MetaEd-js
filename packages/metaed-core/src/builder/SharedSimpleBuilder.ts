@@ -4,7 +4,7 @@ import { Namespace } from '../model/Namespace';
 import { ValidationFailure } from '../validator/ValidationFailure';
 import { NoSharedSimple } from '../model/SharedSimple';
 import { namespaceNameFrom } from './NamespaceBuilder';
-import { extractDocumentation, isErrorText, squareBracketRemoval, extractDeprecationReason } from './BuilderUtility';
+import { extractDocumentation, extractDeprecationReason } from './BuilderUtility';
 import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
 import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
 import { sourceMapFrom } from '../model/SourceMap';
@@ -91,20 +91,6 @@ export class SharedSimpleBuilder extends MetaEdGrammarListener {
       this.currentSharedSimple.deprecationReason = extractDeprecationReason(context);
       this.currentSharedSimple.sourceMap.isDeprecated = sourceMapFrom(context);
       this.currentSharedSimple.sourceMap.deprecationReason = sourceMapFrom(context);
-    }
-  }
-
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception != null ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
-    if (this.currentSharedSimple !== NoSharedSimple) {
-      this.currentSharedSimple.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
-      this.currentSharedSimple.sourceMap.metaEdId = sourceMapFrom(context);
     }
   }
 }

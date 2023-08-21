@@ -713,7 +713,7 @@ describe('when building common subclass source map', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartCommonSubclass(entityName, baseEntityName, '1')
+      .withStartCommonSubclass(entityName, baseEntityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndCommonSubclass()
@@ -729,10 +729,6 @@ describe('when building common subclass source map', (): void => {
 
   it('should have a documentation property', (): void => {
     expect(getCommonSubclass(namespace.entity, entityName).sourceMap.documentation).toBeDefined();
-  });
-
-  it('should have a metaEdId property', (): void => {
-    expect(getCommonSubclass(namespace.entity, entityName).sourceMap.metaEdId).toBeDefined();
   });
 
   it('should have a metaEdName property', (): void => {
@@ -781,11 +777,6 @@ describe('when building common subclass source map', (): void => {
           "column": 0,
           "line": 0,
           "tokenText": "NoSourceMap",
-        },
-        "metaEdId": Object {
-          "column": 44,
-          "line": 2,
-          "tokenText": "[1]",
         },
         "metaEdName": Object {
           "column": 9,

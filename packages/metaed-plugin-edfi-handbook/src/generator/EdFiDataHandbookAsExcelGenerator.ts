@@ -59,7 +59,6 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
 
   orderedHandbookEntries.forEach((handbookEntry: HandbookEntry) => {
     const handbookRow: Row = newRow();
-    setRow(handbookRow, 'Ed-Fi ID', handbookEntry.metaEdId);
     setRow(
       handbookRow,
       'Name',

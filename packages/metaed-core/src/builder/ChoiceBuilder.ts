@@ -16,8 +16,7 @@ export class ChoiceBuilder extends TopLevelEntityBuilder {
     }
   }
 
-  // @ts-ignore
-  exitChoice(context: MetaEdGrammar.ChoiceContext) {
+  exitChoice(_context: MetaEdGrammar.ChoiceContext) {
     this.exitingEntity();
   }
 

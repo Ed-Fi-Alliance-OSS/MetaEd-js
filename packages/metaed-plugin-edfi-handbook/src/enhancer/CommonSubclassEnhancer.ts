@@ -14,7 +14,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       handbookRepository.handbookEntries.push({
         ...createDefaultHandbookEntry(entity, 'Common Subclass', 'Composite Part', metaEd),
         baseMetaEdType: entity.baseEntityName,
-        baseEntityUniqueIdentifier: entity.baseEntity ? entity.baseEntityName + entity.baseEntity.metaEdId : '',
+        baseEntityUniqueIdentifier: entity.baseEntity ? entity.baseEntityName + entity.baseEntity.entityUuid : '',
       });
     });
   });

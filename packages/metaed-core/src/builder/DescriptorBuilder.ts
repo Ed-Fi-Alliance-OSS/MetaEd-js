@@ -7,7 +7,7 @@ import { MapTypeEnumeration } from '../model/MapTypeEnumeration';
 import { EnumerationItem } from '../model/EnumerationItem';
 import { newMapTypeEnumeration, NoMapTypeEnumeration } from '../model/MapTypeEnumeration';
 import { NoEnumerationItem, newEnumerationItem } from '../model/EnumerationItem';
-import { extractDocumentation, extractShortDescription, squareBracketRemoval, isErrorText } from './BuilderUtility';
+import { extractDocumentation, extractShortDescription, isErrorText } from './BuilderUtility';
 import { NoTopLevelEntity } from '../model/TopLevelEntity';
 import { MetaEdEnvironment } from '../MetaEdEnvironment';
 import { ValidationFailure } from '../validator/ValidationFailure';
@@ -33,8 +33,7 @@ export class DescriptorBuilder extends TopLevelEntityBuilder {
     this.currentTopLevelEntity.sourceMap.type = sourceMapFrom(context);
   }
 
-  // @ts-ignore
-  exitDescriptor(context: MetaEdGrammar.DescriptorContext) {
+  exitDescriptor(_context: MetaEdGrammar.DescriptorContext) {
     this.exitingEntity();
   }
 
@@ -82,8 +81,7 @@ export class DescriptorBuilder extends TopLevelEntityBuilder {
     this.currentEnumerationItem.sourceMap.documentation = sourceMapFrom(context);
   }
 
-  // @ts-ignore
-  exitWithMapType(context: MetaEdGrammar.WithMapTypeContext) {
+  exitWithMapType(_context: MetaEdGrammar.WithMapTypeContext) {
     if (this.currentMapTypeEnumeration === NoMapTypeEnumeration) return;
     if (this.currentTopLevelEntity !== NoTopLevelEntity) {
       asDescriptor(this.currentTopLevelEntity).mapTypeEnumeration = this.currentMapTypeEnumeration;
@@ -108,22 +106,6 @@ export class DescriptorBuilder extends TopLevelEntityBuilder {
       (this.currentMapTypeEnumeration.sourceMap as EnumerationSourceMap).enumerationItems.push(sourceMapFrom(context));
     }
     this.currentEnumerationItem = NoEnumerationItem;
-  }
-
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception != null ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
-    if (this.currentEnumerationItem !== NoEnumerationItem) {
-      this.currentEnumerationItem.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
-      this.currentEnumerationItem.sourceMap.metaEdId = sourceMapFrom(context);
-    } else {
-      super.enterMetaEdId(context);
-    }
   }
 
   enterShortDescription(context: MetaEdGrammar.ShortDescriptionContext) {

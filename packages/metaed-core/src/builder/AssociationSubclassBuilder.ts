@@ -16,8 +16,7 @@ export class AssociationSubclassBuilder extends TopLevelEntityBuilder {
     }
   }
 
-  // @ts-ignore
-  exitAssociationSubclass(context: MetaEdGrammar.AssociationSubclassContext) {
+  exitAssociationSubclass(_context: MetaEdGrammar.AssociationSubclassContext) {
     this.exitingEntity();
   }
 

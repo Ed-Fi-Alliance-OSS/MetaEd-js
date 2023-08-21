@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import { EnhancerResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { ColumnDataTypes } from '@edfi/metaed-plugin-edfi-ods-sqlserver';
 import { createDefaultHandbookEntry } from './BaseSimpleTypeHandbookEntryCreator';
@@ -7,7 +8,6 @@ import { edfiHandbookRepositoryForNamespace } from './EnhancerHelper';
 const enhancerName = 'PercentMetaEdHandbookEnhancer';
 const percentName = 'Percent';
 const percentDocumentation = 'A proportion in relation to the whole (as measured in parts per one hundred).';
-const percentEdfiId = '80';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const coreNamespace: Namespace | undefined = metaEd.namespace.get('EdFi');
@@ -17,7 +17,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
   handbookRepository.handbookEntries.push(
     createDefaultHandbookEntry({
-      metaEdId: percentEdfiId,
+      entityUuid: randomUUID(),
       name: percentName,
       definition: percentDocumentation,
       columnDefinition: ColumnDataTypes.percent,

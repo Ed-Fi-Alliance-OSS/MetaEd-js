@@ -14,7 +14,6 @@ describe('when building shared integer in extension namespace', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '2';
   const maxValue = '100';
@@ -24,7 +23,7 @@ describe('when building shared integer in extension namespace', (): void => {
     const builder = new SharedIntegerBuilder(metaEd, validationFailures);
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedInteger(entityName, metaEdId)
+      .withStartSharedInteger(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
@@ -54,10 +53,6 @@ describe('when building shared integer in extension namespace', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -209,7 +204,6 @@ describe('when building shared short in extension namespace', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '2';
   const maxValue = '100';
@@ -219,7 +213,7 @@ describe('when building shared short in extension namespace', (): void => {
     const builder = new SharedIntegerBuilder(metaEd, validationFailures);
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedShort(entityName, metaEdId)
+      .withStartSharedShort(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedShort()
@@ -245,10 +239,6 @@ describe('when building shared short in extension namespace', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -304,11 +294,11 @@ describe('when building shared integer with no shared integer name', (): void =>
 
   it('should have missing id error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "missing ID at '[123]', column: 18, line: 2, token: [123]",
-              "missing ID at '[123]', column: 18, line: 2, token: [123]",
-            ]
-        `);
+      Array [
+        "missing ID at 'documentation', column: 4, line: 3, token: documentation",
+        "missing ID at 'documentation', column: 4, line: 3, token: documentation",
+      ]
+    `);
   });
 });
 
@@ -364,7 +354,6 @@ describe('when building shared integer with no documentation', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const minValue = '2';
   const maxValue = '100';
   let namespace: any = null;
@@ -374,7 +363,7 @@ describe('when building shared integer with no documentation', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedInteger(entityName, metaEdId)
+      .withStartSharedInteger(entityName)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
       .withEndNamespace()
@@ -390,10 +379,6 @@ describe('when building shared integer with no documentation', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -414,11 +399,11 @@ describe('when building shared integer with no documentation', (): void => {
 
   it('should have mismatched input error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "mismatched input 'min value' expecting {'deprecated', 'documentation'}, column: 6, line: 3, token: min value",
-              "mismatched input 'min value' expecting {'deprecated', 'documentation'}, column: 6, line: 3, token: min value",
-            ]
-        `);
+      Array [
+        "mismatched input 'min value' expecting {'deprecated', 'documentation', METAED_ID}, column: 6, line: 3, token: min value",
+        "mismatched input 'min value' expecting {'deprecated', 'documentation', METAED_ID}, column: 6, line: 3, token: min value",
+      ]
+    `);
   });
 });
 
@@ -430,7 +415,6 @@ describe('when building shared integer with empty min value', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '';
   const maxValue = '100';
@@ -441,7 +425,7 @@ describe('when building shared integer with empty min value', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedInteger(entityName, metaEdId)
+      .withStartSharedInteger(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
@@ -458,10 +442,6 @@ describe('when building shared integer with empty min value', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -490,7 +470,6 @@ describe('when building shared integer with empty max value', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '2';
   const maxValue = '';
@@ -501,7 +480,7 @@ describe('when building shared integer with empty max value', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedInteger(entityName, metaEdId)
+      .withStartSharedInteger(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
@@ -518,10 +497,6 @@ describe('when building shared integer with empty max value', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -673,7 +648,6 @@ describe('when building shared integer with invalid trailing text', (): void => 
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '2';
   const maxValue = '100';
@@ -685,7 +659,7 @@ describe('when building shared integer with invalid trailing text', (): void => 
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedInteger(entityName, metaEdId)
+      .withStartSharedInteger(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withTrailingText(trailingText)
@@ -703,10 +677,6 @@ describe('when building shared integer with invalid trailing text', (): void => 
 
   it('should have project extension', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -771,11 +741,11 @@ describe('when building shared short with no shared short name', (): void => {
 
   it('should have missing id error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "missing ID at '[123]', column: 16, line: 2, token: [123]",
-              "missing ID at '[123]', column: 16, line: 2, token: [123]",
-            ]
-        `);
+      Array [
+        "missing ID at 'documentation', column: 4, line: 3, token: documentation",
+        "missing ID at 'documentation', column: 4, line: 3, token: documentation",
+      ]
+    `);
   });
 });
 
@@ -831,7 +801,6 @@ describe('when building shared short with no documentation', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const minValue = '2';
   const maxValue = '100';
   let namespace: any = null;
@@ -841,7 +810,7 @@ describe('when building shared short with no documentation', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedShort(entityName, metaEdId)
+      .withStartSharedShort(entityName)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedShort()
       .withEndNamespace()
@@ -857,10 +826,6 @@ describe('when building shared short with no documentation', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should not have documentation', (): void => {
@@ -881,11 +846,11 @@ describe('when building shared short with no documentation', (): void => {
 
   it('should have mismatched input error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "mismatched input 'min value' expecting {'deprecated', 'documentation'}, column: 6, line: 3, token: min value",
-              "mismatched input 'min value' expecting {'deprecated', 'documentation'}, column: 6, line: 3, token: min value",
-            ]
-        `);
+      Array [
+        "mismatched input 'min value' expecting {'deprecated', 'documentation', METAED_ID}, column: 6, line: 3, token: min value",
+        "mismatched input 'min value' expecting {'deprecated', 'documentation', METAED_ID}, column: 6, line: 3, token: min value",
+      ]
+    `);
   });
 });
 
@@ -897,7 +862,6 @@ describe('when building shared short with empty min value', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '';
   const maxValue = '100';
@@ -908,7 +872,7 @@ describe('when building shared short with empty min value', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedShort(entityName, metaEdId)
+      .withStartSharedShort(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedShort()
@@ -925,10 +889,6 @@ describe('when building shared short with empty min value', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -957,7 +917,6 @@ describe('when building shared short with empty max value', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '2';
   const maxValue = '';
@@ -968,7 +927,7 @@ describe('when building shared short with empty max value', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedShort(entityName, metaEdId)
+      .withStartSharedShort(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedShort()
@@ -985,10 +944,6 @@ describe('when building shared short with empty max value', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should not have documentation', (): void => {
@@ -1025,7 +980,6 @@ describe('when building shared short with invalid trailing text', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '2';
   const maxValue = '100';
@@ -1037,7 +991,7 @@ describe('when building shared short with invalid trailing text', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedShort(entityName, metaEdId)
+      .withStartSharedShort(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withTrailingText(trailingText)
@@ -1055,10 +1009,6 @@ describe('when building shared short with invalid trailing text', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should not have documentation', (): void => {
@@ -1094,7 +1044,6 @@ describe('when building shared integer source map', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'documentation';
   const minValue = '2';
   const maxValue = '100';
@@ -1105,7 +1054,7 @@ describe('when building shared integer source map', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedInteger(entityName, metaEdId)
+      .withStartSharedInteger(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
@@ -1124,12 +1073,6 @@ describe('when building shared integer source map', (): void => {
   it('should have metaEdName', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).sourceMap.metaEdName).toBeDefined();
     expect(getSharedInteger(namespace.entity, entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
-  });
-
-  it('should have metaEdId', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).sourceMap.metaEdId).toBeDefined();
-
-    expect(getSharedInteger(namespace.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
   });
 
   it('should have documentation', (): void => {
@@ -1176,11 +1119,6 @@ describe('when building shared integer source map', (): void => {
           "column": 6,
           "line": 6,
           "tokenText": "max value",
-        },
-        "metaEdId": Object {
-          "column": 28,
-          "line": 2,
-          "tokenText": "[123]",
         },
         "metaEdName": Object {
           "column": 17,
@@ -1245,11 +1183,6 @@ describe('when building shared short source map', (): void => {
     expect(getSharedInteger(namespace.entity, entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
   });
 
-  it('should have metaEdId', (): void => {
-    expect(getSharedInteger(namespace.entity, entityName).sourceMap.metaEdId).toBeDefined();
-    expect(getSharedInteger(namespace.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
-  });
-
   // SharedIntegerSourceMap
   it('should have isShort', (): void => {
     expect((getSharedInteger(namespace.entity, entityName).sourceMap as SharedIntegerSourceMap).isShort).toBeDefined();
@@ -1290,11 +1223,6 @@ describe('when building shared short source map', (): void => {
           "column": 6,
           "line": 6,
           "tokenText": "max value",
-        },
-        "metaEdId": Object {
-          "column": 26,
-          "line": 2,
-          "tokenText": "[123]",
         },
         "metaEdName": Object {
           "column": 15,

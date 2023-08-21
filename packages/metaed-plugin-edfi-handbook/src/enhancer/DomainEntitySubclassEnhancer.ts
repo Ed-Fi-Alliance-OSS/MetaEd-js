@@ -14,7 +14,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       handbookRepository.handbookEntries.push({
         ...createDefaultHandbookEntry(entity, 'Domain Entity Subclass', 'Subclass', metaEd),
         baseMetaEdType: entity.baseEntityName,
-        baseEntityUniqueIdentifier: entity.baseEntity ? entity.baseEntityName + entity.baseEntity.metaEdId : '',
+        baseEntityUniqueIdentifier: entity.baseEntity ? entity.baseEntityName + entity.baseEntity.entityUuid : '',
       });
     });
   });

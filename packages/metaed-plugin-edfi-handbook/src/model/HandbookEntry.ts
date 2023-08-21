@@ -2,10 +2,10 @@ import { HandbookEntityReferenceProperty } from './HandbookEntryReferencePropert
 import { HandbookUsedByProperty } from './HandbookUsedByProperty';
 
 export interface HandbookEntry {
+  entityUuid: string;
   definition: string;
   deprecationText: string;
   deprecationReason: string;
-  metaEdId: string;
   uniqueIdentifier: string;
 
   umlType: string;
@@ -29,10 +29,10 @@ export interface HandbookEntry {
 
 export function newHandbookEntry(): HandbookEntry {
   return {
+    entityUuid: '',
     definition: '',
     deprecationText: '',
     deprecationReason: '',
-    metaEdId: '',
     uniqueIdentifier: '',
 
     umlType: '',

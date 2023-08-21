@@ -18,8 +18,7 @@ export class DomainEntitySubclassBuilder extends TopLevelEntityBuilder {
     }
   }
 
-  // @ts-ignore
-  exitDomainEntitySubclass(context: MetaEdGrammar.DomainEntitySubclassContext) {
+  exitDomainEntitySubclass(_context: MetaEdGrammar.DomainEntitySubclassContext) {
     this.exitingEntity();
   }
 

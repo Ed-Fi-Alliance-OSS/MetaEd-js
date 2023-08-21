@@ -79,7 +79,6 @@ describe('when generating excel version of handbook', (): void => {
   it('should have a Tables sheet with the correct headers', (): void => {
     expect(workbook.sheets[0].rows[0].headers).toMatchInlineSnapshot(`
       Array [
-        "Ed-Fi ID",
         "Name",
         "Definition",
         "UML Type",
@@ -94,18 +93,18 @@ describe('when generating excel version of handbook', (): void => {
   it('should have a Tables sheet with the correct rows', (): void => {
     expect(workbook.sheets[0].rows).toHaveLength(7);
     expect(workbook.sheets[0].rows[0].values.reduce(rowToString)).toMatchInlineSnapshot(
-      `"36, Currency, U.S. currency in dollars and cents., Currency, , , , Currency [MONEY]"`,
+      `"Currency, U.S. currency in dollars and cents., Currency, , , , Currency [MONEY]"`,
     );
     expect(workbook.sheets[0].rows[1].values.reduce(rowToString)).toMatchInlineSnapshot(`
-      ", Entity1DateCollection, Entity1DateCollection doc, Date, , , Used By:
+      "Entity1DateCollection, Entity1DateCollection doc, Date, , , Used By:
       Entity1.Entity1DateCollection (as optional collection), Entity1DateCollection [DATE]"
     `);
     expect(workbook.sheets[0].rows[2].values.reduce(rowToString)).toMatchInlineSnapshot(`
-      ", Entity2DateCollection, Entity2DateCollection doc, Date, , , Used By:
+      "Entity2DateCollection, Entity2DateCollection doc, Date, , , Used By:
       Entity2.Entity2DateCollection (as optional collection), Entity2DateCollection [DATE]"
     `);
     expect(workbook.sheets[0].rows[3].values.reduce(rowToString)).toMatchInlineSnapshot(`
-      ", Entity1 (EdFi), Entity1 doc, Class, , , Contains:
+      "Entity1 (EdFi), Entity1 doc, Class, , , Contains:
       Entity1DateCollection (optional collection)
       Entity1Integer (identity)
       Entity1String (required), edfi.Entity1
@@ -135,7 +134,7 @@ describe('when generating excel version of handbook', (): void => {
       "
     `);
     expect(workbook.sheets[0].rows[4].values.reduce(rowToString)).toMatchInlineSnapshot(`
-      ", Entity2 (EdFi), Entity2 doc, Class, , , Contains:
+      "Entity2 (EdFi), Entity2 doc, Class, , , Contains:
       Entity2DateCollection (optional collection)
       Entity2Integer (identity)
       Entity2String (required), edfi.Entity2

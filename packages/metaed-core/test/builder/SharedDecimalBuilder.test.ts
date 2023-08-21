@@ -14,7 +14,6 @@ describe('when building shared decimal in extension namespace', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const totalDigits = '10';
   const decimalPlaces = '3';
@@ -27,7 +26,7 @@ describe('when building shared decimal in extension namespace', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
@@ -57,10 +56,6 @@ describe('when building shared decimal in extension namespace', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedDecimal(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedDecimal(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -248,11 +243,11 @@ describe('when building shared decimal with no shared decimal name', (): void =>
 
   it('should have missing id error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "missing ID at '[123]', column: 18, line: 2, token: [123]",
-              "missing ID at '[123]', column: 18, line: 2, token: [123]",
-            ]
-        `);
+      Array [
+        "missing ID at 'documentation', column: 4, line: 3, token: documentation",
+        "missing ID at 'documentation', column: 4, line: 3, token: documentation",
+      ]
+    `);
   });
 });
 
@@ -310,7 +305,6 @@ describe('when building shared decimal with no documentation', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const totalDigits = '10';
   const decimalPlaces = '3';
   const minValue = '2';
@@ -322,7 +316,7 @@ describe('when building shared decimal with no documentation', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
       .withEndNamespace()
@@ -338,10 +332,6 @@ describe('when building shared decimal with no documentation', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedDecimal(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedDecimal(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should not have documentation', (): void => {
@@ -366,50 +356,11 @@ describe('when building shared decimal with no documentation', (): void => {
 
   it('should have mismatched input error', (): void => {
     expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "mismatched input 'total digits' expecting {'deprecated', 'documentation'}, column: 6, line: 3, token: total digits",
-              "mismatched input 'total digits' expecting {'deprecated', 'documentation'}, column: 6, line: 3, token: total digits",
-            ]
-        `);
-  });
-});
-
-describe('when building shared decimal with no metaed id', (): void => {
-  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  const validationFailures: ValidationFailure[] = [];
-  const textBuilder: MetaEdTextBuilder = MetaEdTextBuilder.build();
-  const namespaceName = 'Namespace';
-  const projectExtension = 'ProjectExtension';
-
-  const entityName = 'EntityName';
-  const metaEdId = '';
-  const documentation = 'doc';
-  const totalDigits = '10';
-  const decimalPlaces = '3';
-  const minValue = '2';
-  const maxValue = '100';
-
-  beforeAll(() => {
-    const builder = new SharedDecimalBuilder(metaEd, validationFailures);
-
-    textBuilder
-      .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
-      .withDocumentation(documentation)
-      .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
-      .withEndSharedDecimal()
-      .withEndNamespace()
-      .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
-      .sendToListener(builder);
-  });
-
-  it('should have token recognition error', (): void => {
-    expect(textBuilder.errorMessages).toMatchInlineSnapshot(`
-            Array [
-              "mismatched input '[' expecting {'deprecated', 'documentation', METAED_ID}, column: 28, line: 2, token: [",
-              "mismatched input '[' expecting {'deprecated', 'documentation', METAED_ID}, column: 28, line: 2, token: [",
-            ]
-        `);
+      Array [
+        "mismatched input 'total digits' expecting {'deprecated', 'documentation', METAED_ID}, column: 6, line: 3, token: total digits",
+        "mismatched input 'total digits' expecting {'deprecated', 'documentation', METAED_ID}, column: 6, line: 3, token: total digits",
+      ]
+    `);
   });
 });
 
@@ -421,7 +372,6 @@ describe('when building shared decimal with no total digits property', (): void 
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const decimalPlaces = '3';
   const minValue = '2';
@@ -433,7 +383,7 @@ describe('when building shared decimal with no total digits property', (): void 
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withDecimalPlaces(decimalPlaces)
       .withMinValue(minValue)
@@ -452,10 +402,6 @@ describe('when building shared decimal with no total digits property', (): void 
 
   it('should have project extension', (): void => {
     expect(getSharedDecimal(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedDecimal(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -496,7 +442,6 @@ describe('when building shared decimal with no total digits value', (): void => 
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const totalDigits = '';
   const decimalPlaces = '3';
@@ -509,7 +454,7 @@ describe('when building shared decimal with no total digits value', (): void => 
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withTotalDigits(totalDigits)
       .withDecimalPlaces(decimalPlaces)
@@ -529,10 +474,6 @@ describe('when building shared decimal with no total digits value', (): void => 
 
   it('should have project extension', (): void => {
     expect(getSharedDecimal(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedDecimal(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -575,7 +516,6 @@ describe('when building shared decimal with no decimal places property', (): voi
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const totalDigits = '10';
   const minValue = '2';
@@ -587,7 +527,7 @@ describe('when building shared decimal with no decimal places property', (): voi
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withTotalDigits(totalDigits)
       .withMinValue(minValue)
@@ -606,10 +546,6 @@ describe('when building shared decimal with no decimal places property', (): voi
 
   it('should have project extension', (): void => {
     expect(getSharedDecimal(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedDecimal(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -650,7 +586,6 @@ describe('when building shared decimal with no min value', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const totalDigits = '10';
   const decimalPlaces = '3';
@@ -663,7 +598,7 @@ describe('when building shared decimal with no min value', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withTotalDigits(totalDigits)
       .withDecimalPlaces(decimalPlaces)
@@ -683,10 +618,6 @@ describe('when building shared decimal with no min value', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedDecimal(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedDecimal(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -727,7 +658,6 @@ describe('when building shared decimal with no max value', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const totalDigits = '10';
   const decimalPlaces = '3';
@@ -740,7 +670,7 @@ describe('when building shared decimal with no max value', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withTotalDigits(totalDigits)
       .withDecimalPlaces(decimalPlaces)
@@ -760,10 +690,6 @@ describe('when building shared decimal with no max value', (): void => {
 
   it('should have project extension', (): void => {
     expect(getSharedDecimal(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedDecimal(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -804,7 +730,6 @@ describe('when building shared decimal with invalid trailing text', (): void => 
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const totalDigits = '10';
   const decimalPlaces = '3';
@@ -818,7 +743,7 @@ describe('when building shared decimal with invalid trailing text', (): void => 
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withTrailingText(trailingText)
@@ -836,10 +761,6 @@ describe('when building shared decimal with invalid trailing text', (): void => 
 
   it('should have project extension', (): void => {
     expect(getSharedDecimal(namespace.entity, entityName).namespace.projectExtension).toBe(projectExtension);
-  });
-
-  it('should have metaed id', (): void => {
-    expect(getSharedDecimal(namespace.entity, entityName).metaEdId).toBe(metaEdId);
   });
 
   it('should have documentation', (): void => {
@@ -879,7 +800,6 @@ describe('when building shared decimal source map', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const totalDigits = '10';
   const decimalPlaces = '3';
@@ -892,7 +812,7 @@ describe('when building shared decimal source map', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
@@ -915,11 +835,6 @@ describe('when building shared decimal source map', (): void => {
   it('should have metaEdName', (): void => {
     expect(getSharedDecimal(namespace.entity, entityName).sourceMap.metaEdName).toBeDefined();
     expect(getSharedDecimal(namespace.entity, entityName).sourceMap.metaEdName.tokenText).toBe(entityName);
-  });
-
-  it('should have metaEdId', (): void => {
-    expect(getSharedDecimal(namespace.entity, entityName).sourceMap.metaEdId).toBeDefined();
-    expect(getSharedDecimal(namespace.entity, entityName).sourceMap.metaEdId.tokenText).toBe(`[${metaEdId}]`);
   });
 
   // SharedDecimalSourceMap
@@ -966,11 +881,6 @@ describe('when building shared decimal source map', (): void => {
           "column": 6,
           "line": 8,
           "tokenText": "max value",
-        },
-        "metaEdId": Object {
-          "column": 28,
-          "line": 2,
-          "tokenText": "[123]",
         },
         "metaEdName": Object {
           "column": 17,

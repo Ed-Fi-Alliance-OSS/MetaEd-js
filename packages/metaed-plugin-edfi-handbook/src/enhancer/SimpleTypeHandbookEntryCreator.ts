@@ -49,9 +49,9 @@ export function createDefaultHandbookEntry(
   return {
     ...newHandbookEntry(),
     definition: xsdType.documentation,
-    metaEdId: xsdType.metaEdId,
+    entityUuid: xsdType.entityUuid,
     // This is the way the UI searches for entities
-    uniqueIdentifier: xsdType.metaEdName + xsdType.metaEdId,
+    uniqueIdentifier: xsdType.metaEdName + xsdType.entityUuid,
     odsFragment: generatedTableSqlFor(xsdType),
     metaEdType,
     umlType,

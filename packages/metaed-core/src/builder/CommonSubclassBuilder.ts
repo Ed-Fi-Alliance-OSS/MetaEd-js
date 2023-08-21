@@ -16,8 +16,7 @@ export class CommonSubclassBuilder extends TopLevelEntityBuilder {
     }
   }
 
-  // @ts-ignore
-  exitCommonSubclass(context: MetaEdGrammar.CommonSubclassContext) {
+  exitCommonSubclass(_context: MetaEdGrammar.CommonSubclassContext) {
     this.exitingEntity();
   }
 

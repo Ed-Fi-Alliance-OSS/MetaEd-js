@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import * as R from 'ramda';
 
 import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
@@ -14,7 +15,7 @@ import { Namespace } from '../model/Namespace';
 import { NoNamespace } from '../model/Namespace';
 import { isSharedProperty } from '../model/property/PropertyType';
 import { namespaceNameFrom } from './NamespaceBuilder';
-import { extractDocumentation, extractDeprecationReason, isErrorText, squareBracketRemoval } from './BuilderUtility';
+import { extractDocumentation, extractDeprecationReason, isErrorText } from './BuilderUtility';
 import { newBooleanProperty } from '../model/property/BooleanProperty';
 import { newCurrencyProperty } from '../model/property/CurrencyProperty';
 import { newDateProperty } from '../model/property/DateProperty';
@@ -96,7 +97,7 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
   }
 
   enteringEntity(entityFactory: () => TopLevelEntity) {
-    this.currentTopLevelEntity = { ...entityFactory(), namespace: this.currentNamespace };
+    this.currentTopLevelEntity = { ...entityFactory(), namespace: this.currentNamespace, entityUuid: randomUUID() };
     this.currentTopLevelEntityPropertyLookup.clear();
   }
 
@@ -220,24 +221,6 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
   enteringName(name: string) {
     if (this.currentTopLevelEntity === NoTopLevelEntity) return;
     this.currentTopLevelEntity.metaEdName = name;
-  }
-
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception != null ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
-
-    if (this.currentProperty !== NoEntityProperty) {
-      this.currentProperty.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
-      this.currentProperty.sourceMap.metaEdId = sourceMapFrom(context);
-    } else if (this.currentTopLevelEntity !== NoTopLevelEntity) {
-      this.currentTopLevelEntity.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
-      this.currentTopLevelEntity.sourceMap.metaEdId = sourceMapFrom(context);
-    }
   }
 
   enterBooleanProperty(context: MetaEdGrammar.BooleanPropertyContext) {
@@ -409,8 +392,7 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
     this.currentProperty.sourceMap.type = sourceMapFrom(context);
   }
 
-  // @ts-ignore
-  exitProperty(context: MetaEdGrammar.PropertyContext) {
+  exitProperty(_context: MetaEdGrammar.PropertyContext) {
     this.exitingProperty();
   }
 
@@ -448,6 +430,8 @@ export class TopLevelEntityBuilder extends MetaEdGrammarListener {
 
   exitingProperty() {
     if (this.currentProperty === NoEntityProperty) return;
+    this.currentProperty.propertyUuid = randomUUID();
+
     this.currentProperty.namespace = this.currentTopLevelEntity.namespace;
 
     // a property references entities in its own namespace by default

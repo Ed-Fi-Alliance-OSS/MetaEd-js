@@ -15,8 +15,7 @@ export class CommonExtensionBuilder extends TopLevelEntityBuilder {
     }
   }
 
-  // @ts-ignore
-  exitCommonExtension(context: MetaEdGrammar.CommonExtensionContext) {
+  exitCommonExtension(_context: MetaEdGrammar.CommonExtensionContext) {
     this.exitingEntity();
   }
 

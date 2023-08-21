@@ -19,8 +19,7 @@ export class SharedStringBuilder extends SharedSimpleBuilder {
     }
   }
 
-  // @ts-ignore
-  exitSharedString(context: MetaEdGrammar.SharedStringContext) {
+  exitSharedString(_context: MetaEdGrammar.SharedStringContext) {
     this.exitingSharedSimple();
   }
 

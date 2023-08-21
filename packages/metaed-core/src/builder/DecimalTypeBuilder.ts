@@ -4,7 +4,7 @@ import { Namespace } from '../model/Namespace';
 import { ValidationFailure } from '../validator/ValidationFailure';
 import { newDecimalType, NoDecimalType } from '../model/DecimalType';
 import { namespaceNameFrom } from './NamespaceBuilder';
-import { extractDocumentation, extractDeprecationReason, squareBracketRemoval, isErrorText } from './BuilderUtility';
+import { extractDocumentation, extractDeprecationReason, isErrorText } from './BuilderUtility';
 import { MetaEdGrammar } from '../grammar/gen/MetaEdGrammar';
 import { MetaEdGrammarListener } from '../grammar/gen/MetaEdGrammarListener';
 import { sourceMapFrom } from '../model/SourceMap';
@@ -100,20 +100,6 @@ export class DecimalTypeBuilder extends MetaEdGrammarListener {
     this.currentDecimalType.sourceMap.metaEdName = sourceMapFrom(localPropertyNameContext);
   }
 
-  enterMetaEdId(context: MetaEdGrammar.MetaEdIdContext) {
-    if (this.currentDecimalType === NoDecimalType) return;
-    if (
-      context.exception ||
-      context.METAED_ID() == null ||
-      context.METAED_ID().exception ||
-      isErrorText(context.METAED_ID().getText())
-    )
-      return;
-
-    this.currentDecimalType.metaEdId = squareBracketRemoval(context.METAED_ID().getText());
-    this.currentDecimalType.sourceMap.metaEdId = sourceMapFrom(context);
-  }
-
   enterTotalDigits(context: MetaEdGrammar.TotalDigitsContext) {
     if (this.currentDecimalType === NoDecimalType) return;
     if (
@@ -166,13 +152,11 @@ export class DecimalTypeBuilder extends MetaEdGrammarListener {
     this.currentDecimalType.sourceMap.maxValue = sourceMapFrom(context);
   }
 
-  // @ts-ignore
-  exitDecimalProperty(context: MetaEdGrammar.DecimalPropertyContext) {
+  exitDecimalProperty(_context: MetaEdGrammar.DecimalPropertyContext) {
     this.exitingDecimalType();
   }
 
-  // @ts-ignore
-  exitSharedDecimal(context: MetaEdGrammar.SharedDecimalContext) {
+  exitSharedDecimal(_context: MetaEdGrammar.SharedDecimalContext) {
     this.exitingDecimalType();
   }
 
