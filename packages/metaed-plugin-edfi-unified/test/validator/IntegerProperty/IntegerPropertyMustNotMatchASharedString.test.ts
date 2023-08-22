@@ -62,7 +62,7 @@ describe('when validating integer property matches shared string', (): void => {
 
       .withStartAbstractEntity('EntityName')
       .withDocumentation('EntityDocumentation')
-      .withIntegerIdentity(entityName, 'PropertyDocumentation', '10', '2', '0', '10')
+      .withIntegerIdentity(entityName, 'PropertyDocumentation', '10', '2', '0')
       .withEndAbstractEntity()
       .withEndNamespace()
 

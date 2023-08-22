@@ -20,7 +20,7 @@ describe('when validating domain entity domain item matches top level entity', (
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withDomainEntityDomainItem(domainEntityName)
       .withFooterDocumentation('FooterDocumentation')
@@ -67,7 +67,7 @@ describe('when validating domain entity domain item matches top level entity acr
       .withEndNamespace()
 
       .withBeginNamespace('Extension')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withDomainEntityDomainItem(`EdFi.${domainEntityName}`)
       .withFooterDocumentation('FooterDocumentation')
@@ -105,7 +105,7 @@ describe('when validating domain entity domain item matches top level entity sub
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withDomainEntityDomainItem(domainEntitySubclassName)
       .withFooterDocumentation('FooterDocumentation')
@@ -152,7 +152,7 @@ describe('when validating domain entity domain item does not match top level ent
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withDomainEntityDomainItem('DomainEntityDomainItemName')
       .withFooterDocumentation('FooterDocumentation')

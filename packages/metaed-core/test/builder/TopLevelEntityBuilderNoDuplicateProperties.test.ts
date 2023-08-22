@@ -13,7 +13,6 @@ describe('when building domain entity with duplicate decimal properties in exten
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const totalDigits = '10';
   const decimalPlaces = '3';
@@ -23,32 +22,10 @@ describe('when building domain entity with duplicate decimal properties in exten
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity('DomainEntity', '1')
+      .withStartDomainEntity('DomainEntity')
       .withDocumentation(documentation)
-      .withDecimalProperty(
-        entityName,
-        documentation,
-        true,
-        false,
-        totalDigits,
-        decimalPlaces,
-        minValue,
-        maxValue,
-        null,
-        metaEdId,
-      )
-      .withDecimalProperty(
-        entityName,
-        documentation,
-        true,
-        false,
-        totalDigits,
-        decimalPlaces,
-        minValue,
-        maxValue,
-        null,
-        metaEdId,
-      )
+      .withDecimalProperty(entityName, documentation, true, false, totalDigits, decimalPlaces, minValue, maxValue)
+      .withDecimalProperty(entityName, documentation, true, false, totalDigits, decimalPlaces, minValue, maxValue)
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -78,7 +55,6 @@ describe('when building domain entity with duplicate integer properties in exten
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '2';
   const maxValue = '100';
@@ -86,10 +62,10 @@ describe('when building domain entity with duplicate integer properties in exten
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity('DomainEntity', '1')
+      .withStartDomainEntity('DomainEntity')
       .withDocumentation(documentation)
-      .withIntegerProperty(entityName, documentation, true, false, maxValue, minValue, null, metaEdId)
-      .withIntegerProperty(entityName, documentation, true, false, maxValue, minValue, null, metaEdId)
+      .withIntegerProperty(entityName, documentation, true, false, maxValue, minValue)
+      .withIntegerProperty(entityName, documentation, true, false, maxValue, minValue)
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -120,7 +96,6 @@ describe('when building domain entity with duplicate string properties in extens
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minLength = '2';
   const maxLength = '100';
@@ -128,10 +103,10 @@ describe('when building domain entity with duplicate string properties in extens
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity('DomainEntity', '1')
+      .withStartDomainEntity('DomainEntity')
       .withDocumentation(documentation)
-      .withStringProperty(entityName, documentation, true, false, maxLength, minLength, null, metaEdId)
-      .withStringProperty(entityName, documentation, true, false, maxLength, minLength, null, metaEdId)
+      .withStringProperty(entityName, documentation, true, false, maxLength, minLength)
+      .withStringProperty(entityName, documentation, true, false, maxLength, minLength)
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))

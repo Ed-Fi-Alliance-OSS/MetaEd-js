@@ -21,7 +21,7 @@ describe('when building association extension in extension namespace', (): void 
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartAssociationExtension(entityName, '1')
+      .withStartAssociationExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
@@ -131,7 +131,7 @@ describe('when building association extension in extension namespace extending c
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartAssociationExtension(`${coreNamespaceName}.${entityName}`, '1')
+      .withStartAssociationExtension(`${coreNamespaceName}.${entityName}`)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
@@ -168,11 +168,11 @@ describe('when building duplicate association extensions', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartAssociationExtension(entityName, '1')
+      .withStartAssociationExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationExtension()
 
-      .withStartAssociationExtension(entityName, '1')
+      .withStartAssociationExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
@@ -239,7 +239,7 @@ describe('when building association extension with no association extension name
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartAssociationExtension(entityName, '1')
+      .withStartAssociationExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
@@ -278,7 +278,7 @@ describe('when building association extension with lowercase association extensi
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartAssociationExtension(entityName, '1')
+      .withStartAssociationExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()
@@ -316,7 +316,7 @@ describe('when building association extension with no property', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartAssociationExtension(entityName, '1')
+      .withStartAssociationExtension(entityName)
       .withEndAssociationExtension()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -380,7 +380,7 @@ describe('when building association extension with invalid trailing text', (): v
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartAssociationExtension(entityName, '1')
+      .withStartAssociationExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withTrailingText(trailingText)
       .withEndAssociationExtension()
@@ -451,7 +451,7 @@ describe('when building association extension source map', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartAssociationExtension(entityName, '1')
+      .withStartAssociationExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndAssociationExtension()
       .withEndNamespace()

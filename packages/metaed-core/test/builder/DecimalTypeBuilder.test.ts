@@ -148,7 +148,6 @@ describe('when building domain entity with decimal property in extension namespa
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const totalDigits = '10';
   const decimalPlaces = '3';
@@ -163,18 +162,7 @@ describe('when building domain entity with decimal property in extension namespa
       .withBeginNamespace(namespaceName, projectExtension)
       .withStartDomainEntity('DomainEntity')
       .withDocumentation(documentation)
-      .withDecimalProperty(
-        entityName,
-        documentation,
-        true,
-        false,
-        totalDigits,
-        decimalPlaces,
-        minValue,
-        maxValue,
-        null,
-        metaEdId,
-      )
+      .withDecimalProperty(entityName, documentation, true, false, totalDigits, decimalPlaces, minValue, maxValue)
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -247,9 +235,7 @@ describe('when building multiple shared decimals in extension namespace', (): vo
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const entityName2 = 'EntityName2';
-  const metaEdId2 = '1234';
   const documentation = 'doc';
   const totalDigits = '10';
   const decimalPlaces = '3';
@@ -263,12 +249,12 @@ describe('when building multiple shared decimals in extension namespace', (): vo
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
 
-      .withStartSharedDecimal(entityName2, metaEdId2)
+      .withStartSharedDecimal(entityName2)
       .withDocumentation(documentation)
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
@@ -300,9 +286,7 @@ describe('when building domain entity with multiple decimal properties in extens
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const entityName2 = 'EntityName2';
-  const metaEdId2 = '1234';
   const documentation = 'doc';
   const totalDigits = '10';
   const decimalPlaces = '3';
@@ -316,32 +300,10 @@ describe('when building domain entity with multiple decimal properties in extens
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity('DomainEntity', '1')
+      .withStartDomainEntity('DomainEntity')
       .withDocumentation(documentation)
-      .withDecimalProperty(
-        entityName,
-        documentation,
-        true,
-        false,
-        totalDigits,
-        decimalPlaces,
-        minValue,
-        maxValue,
-        null,
-        metaEdId,
-      )
-      .withDecimalProperty(
-        entityName2,
-        documentation,
-        true,
-        false,
-        totalDigits,
-        decimalPlaces,
-        minValue,
-        maxValue,
-        null,
-        metaEdId2,
-      )
+      .withDecimalProperty(entityName, documentation, true, false, totalDigits, decimalPlaces, minValue, maxValue)
+      .withDecimalProperty(entityName2, documentation, true, false, totalDigits, decimalPlaces, minValue, maxValue)
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))

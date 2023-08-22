@@ -158,13 +158,13 @@ describe('when building interchange with additional element and identity types',
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, 'ProjectExtension')
-      .withStartInterchange(interchangeName, '1')
+      .withStartInterchange(interchangeName)
       .withDocumentation('doc')
       .withExtendedDocumentation('doc')
       .withUseCaseDocumentation('doc')
-      .withAssociationElement(interchangeElementName1, '2')
-      .withDescriptorElement(interchangeElementName2, '3')
-      .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName, '4')
+      .withAssociationElement(interchangeElementName1)
+      .withDescriptorElement(interchangeElementName2)
+      .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName)
       .withEndInterchange()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -203,14 +203,11 @@ describe('when building duplicate interchanges', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const interchangeName = 'InterchangeName';
-  const interchangeMetaEdId = '1';
   const interchangeDocumentation = 'InterchangeDocumentation';
   const extendedDocumentation = 'ExtendedDocumentation';
   const useCaseDocumentation = 'UseCaseDocumentation';
   const interchangeElementName = 'InterchangeElementName';
-  const interchangeElementMetaEdId = '2';
   const interchangeIdentityTemplateName = 'InterchangeIdentityTemplateName';
-  const interchangeIdentityTemplateMetaEdId = '3';
   let namespace: any = null;
 
   beforeAll(() => {
@@ -218,20 +215,20 @@ describe('when building duplicate interchanges', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartInterchange(interchangeName, interchangeMetaEdId)
+      .withStartInterchange(interchangeName)
       .withDocumentation(interchangeDocumentation)
       .withExtendedDocumentation(extendedDocumentation)
       .withUseCaseDocumentation(useCaseDocumentation)
-      .withDomainEntityElement(interchangeElementName, interchangeElementMetaEdId)
-      .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName, interchangeIdentityTemplateMetaEdId)
+      .withDomainEntityElement(interchangeElementName)
+      .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName)
       .withEndInterchange()
 
-      .withStartInterchange(interchangeName, interchangeMetaEdId)
+      .withStartInterchange(interchangeName)
       .withDocumentation(interchangeDocumentation)
       .withExtendedDocumentation(extendedDocumentation)
       .withUseCaseDocumentation(useCaseDocumentation)
-      .withDomainEntityElement(interchangeElementName, interchangeElementMetaEdId)
-      .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName, interchangeIdentityTemplateMetaEdId)
+      .withDomainEntityElement(interchangeElementName)
+      .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName)
       .withEndInterchange()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -516,11 +513,8 @@ describe('when building duplicate interchange extensions', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const interchangeName = 'InterchangeName';
-  const interchangeMetaEdId = '1';
   const interchangeElementName = 'InterchangeElementName';
-  const interchangeElementMetaEdId = '2';
   const interchangeIdentityTemplateName = 'InterchangeIdentityTemplateName';
-  const interchangeIdentityTemplateMetaEdId = '3';
   let namespace: any = null;
 
   beforeAll(() => {
@@ -528,14 +522,14 @@ describe('when building duplicate interchange extensions', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartInterchangeExtension(interchangeName, interchangeMetaEdId)
-      .withDomainEntityElement(interchangeElementName, interchangeElementMetaEdId)
-      .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName, interchangeIdentityTemplateMetaEdId)
+      .withStartInterchangeExtension(interchangeName)
+      .withDomainEntityElement(interchangeElementName)
+      .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName)
       .withEndInterchangeExtension()
 
-      .withStartInterchangeExtension(interchangeName, interchangeMetaEdId)
-      .withDomainEntityElement(interchangeElementName, interchangeElementMetaEdId)
-      .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName, interchangeIdentityTemplateMetaEdId)
+      .withStartInterchangeExtension(interchangeName)
+      .withDomainEntityElement(interchangeElementName)
+      .withDomainEntityIdentityTemplate(interchangeIdentityTemplateName)
       .withEndInterchangeExtension()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -594,10 +588,8 @@ describe('when building interchange with no interchange name', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const interchangeName = '';
-  const interchangeMetaEdId = '1';
   const interchangeDocumentation = 'InterchangeDocumentation';
   const interchangeElementName = 'InterchangeElementName';
-  const interchangeElementMetaEdId = '2';
   let namespace: any = null;
 
   beforeAll(() => {
@@ -605,9 +597,9 @@ describe('when building interchange with no interchange name', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartInterchange(interchangeName, interchangeMetaEdId)
+      .withStartInterchange(interchangeName)
       .withDocumentation(interchangeDocumentation)
-      .withDomainEntityElement(interchangeElementName, interchangeElementMetaEdId)
+      .withDomainEntityElement(interchangeElementName)
       .withEndInterchange()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -638,10 +630,8 @@ describe('when building interchange with lowercase interchange name', (): void =
   const projectExtension = 'ProjectExtension';
 
   const interchangeName = 'interchangeName';
-  const interchangeMetaEdId = '1';
   const interchangeDocumentation = 'InterchangeDocumentation';
   const interchangeElementName = 'InterchangeElementName';
-  const interchangeElementMetaEdId = '2';
   let namespace: any = null;
 
   beforeAll(() => {
@@ -649,9 +639,9 @@ describe('when building interchange with lowercase interchange name', (): void =
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartInterchange(interchangeName, interchangeMetaEdId)
+      .withStartInterchange(interchangeName)
       .withDocumentation(interchangeDocumentation)
-      .withDomainEntityElement(interchangeElementName, interchangeElementMetaEdId)
+      .withDomainEntityElement(interchangeElementName)
       .withEndInterchange()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -841,9 +831,7 @@ describe('when building interchange extension with no interchange extension name
   const projectExtension = 'ProjectExtension';
 
   const interchangeName = '';
-  const interchangeMetaEdId = '1';
   const interchangeElementName = 'InterchangeElementName';
-  const interchangeElementMetaEdId = '2';
   let namespace: any = null;
 
   beforeAll(() => {
@@ -851,8 +839,8 @@ describe('when building interchange extension with no interchange extension name
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartInterchangeExtension(interchangeName, interchangeMetaEdId)
-      .withDomainEntityElement(interchangeElementName, interchangeElementMetaEdId)
+      .withStartInterchangeExtension(interchangeName)
+      .withDomainEntityElement(interchangeElementName)
       .withEndInterchangeExtension()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -883,9 +871,7 @@ describe('when building interchange extension with lowercase interchange extensi
   const projectExtension = 'ProjectExtension';
 
   const interchangeName = 'interchangeName';
-  const interchangeMetaEdId = '1';
   const interchangeElementName = 'InterchangeElementName';
-  const interchangeElementMetaEdId = '2';
   let namespace: any = null;
 
   beforeAll(() => {
@@ -893,8 +879,8 @@ describe('when building interchange extension with lowercase interchange extensi
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartInterchangeExtension(interchangeName, interchangeMetaEdId)
-      .withDomainEntityElement(interchangeElementName, interchangeElementMetaEdId)
+      .withStartInterchangeExtension(interchangeName)
+      .withDomainEntityElement(interchangeElementName)
       .withEndInterchangeExtension()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))

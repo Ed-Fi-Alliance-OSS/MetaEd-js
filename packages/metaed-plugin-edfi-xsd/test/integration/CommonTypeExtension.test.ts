@@ -36,7 +36,7 @@ describe('when generating xsd for common type extension in extension namespace b
       .withEndNamespace()
       .withBeginNamespace(namespaceName, projectExtension)
 
-      .withStartCommonExtension(`EdFi.${coreEntity}`, '1')
+      .withStartCommonExtension(`EdFi.${coreEntity}`)
       .withIntegerProperty(extensionProperty, 'doc', true, false)
       .withEndCommonExtension()
 

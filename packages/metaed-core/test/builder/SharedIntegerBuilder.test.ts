@@ -129,7 +129,6 @@ describe('when building duplicate shared integers', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '2';
   const maxValue = '100';
@@ -139,12 +138,12 @@ describe('when building duplicate shared integers', (): void => {
     const builder = new SharedIntegerBuilder(metaEd, validationFailures);
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedInteger(entityName, metaEdId)
+      .withStartSharedInteger(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
 
-      .withStartSharedInteger(entityName, metaEdId)
+      .withStartSharedInteger(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
@@ -266,7 +265,6 @@ describe('when building shared integer with no shared integer name', (): void =>
   const projectExtension = 'ProjectExtension';
 
   const entityName = '';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '2';
   const maxValue = '100';
@@ -277,7 +275,7 @@ describe('when building shared integer with no shared integer name', (): void =>
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedInteger(entityName, metaEdId)
+      .withStartSharedInteger(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
@@ -310,7 +308,6 @@ describe('when building shared integer with lowercase shared integer name', (): 
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'entityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '2';
   const maxValue = '100';
@@ -321,7 +318,7 @@ describe('when building shared integer with lowercase shared integer name', (): 
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedInteger(entityName, metaEdId)
+      .withStartSharedInteger(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()
@@ -533,7 +530,6 @@ describe('when building shared integer with big min value', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   let namespace: any = null;
 
@@ -542,7 +538,7 @@ describe('when building shared integer with big min value', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedInteger(entityName, metaEdId)
+      .withStartSharedInteger(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(null, null, true, false)
       .withEndSharedInteger()
@@ -570,7 +566,6 @@ describe('when building shared integer with big max value', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   let namespace: any = null;
 
@@ -579,7 +574,7 @@ describe('when building shared integer with big max value', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedInteger(entityName, metaEdId)
+      .withStartSharedInteger(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(null, null, false, true)
       .withEndSharedInteger()
@@ -607,7 +602,6 @@ describe('when building shared integer with big min and big max value', (): void
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   let namespace: any = null;
 
@@ -616,7 +610,7 @@ describe('when building shared integer with big min and big max value', (): void
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedInteger(entityName, metaEdId)
+      .withStartSharedInteger(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(null, null, true, true)
       .withEndSharedInteger()
@@ -713,7 +707,6 @@ describe('when building shared short with no shared short name', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = '';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '2';
   const maxValue = '100';
@@ -724,7 +717,7 @@ describe('when building shared short with no shared short name', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedShort(entityName, metaEdId)
+      .withStartSharedShort(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedShort()
@@ -757,7 +750,6 @@ describe('when building shared short with lowercase shared short name', (): void
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'entityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minValue = '2';
   const maxValue = '100';
@@ -768,7 +760,7 @@ describe('when building shared short with lowercase shared short name', (): void
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedShort(entityName, metaEdId)
+      .withStartSharedShort(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedShort()
@@ -1147,7 +1139,6 @@ describe('when building shared short source map', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'documentation';
   const minValue = '2';
   const maxValue = '100';
@@ -1158,7 +1149,7 @@ describe('when building shared short source map', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedShort(entityName, metaEdId)
+      .withStartSharedShort(entityName)
       .withDocumentation(documentation)
       .withNumericRestrictions(minValue, maxValue)
       .withEndSharedInteger()

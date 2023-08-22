@@ -24,7 +24,7 @@ describe('when validating short property does not match shared integer', (): voi
       .withDocumentation('doc')
       .withEndSharedInteger()
 
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withShortIdentity('ShortIdentity', 'doc', maxValue, minValue)
       .withShortProperty('ShortProperty', 'doc', true, false, maxValue, minValue)
@@ -65,7 +65,7 @@ describe('when validating string identity matches shared integer', (): void => {
       .withDocumentation('doc')
       .withEndSharedInteger()
 
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withShortIdentity(integerProperty, 'doc', maxValue, minValue)
       .withEndAbstractEntity()
@@ -109,7 +109,7 @@ describe('when validating short property matches shared integer', (): void => {
       .withDocumentation('doc')
       .withEndSharedInteger()
 
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withShortProperty(integerProperty, 'doc', true, false, maxValue, minValue)
       .withEndAbstractEntity()

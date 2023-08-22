@@ -125,9 +125,7 @@ describe('when building duplicate choices', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const entityMetaEdId = '1';
   const propertyName = 'PropertyName';
-  const propertyMetaEdId = '2';
   const propertyDocumentation = 'PropertyDocumentation';
   const entityDocumentation = 'EntityDocumentation';
   let namespace: any = null;
@@ -137,14 +135,14 @@ describe('when building duplicate choices', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartChoice(entityName, entityMetaEdId)
+      .withStartChoice(entityName)
       .withDocumentation(entityDocumentation)
-      .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
+      .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndChoice()
 
-      .withStartChoice(entityName, entityMetaEdId)
+      .withStartChoice(entityName)
       .withDocumentation(entityDocumentation)
-      .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
+      .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndChoice()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -203,11 +201,9 @@ describe('when building choice with no choice name', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = '';
-  const entityMetaEdId = '1';
   const entityDocumentation = 'EntityDocumentation';
   const propertyName = 'PropertyName';
   const propertyDocumentation = 'PropertyDocumentation';
-  const propertyMetaEdId = '2';
   let namespace: any = null;
 
   beforeAll(() => {
@@ -215,9 +211,9 @@ describe('when building choice with no choice name', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartChoice(entityName, entityMetaEdId)
+      .withStartChoice(entityName)
       .withDocumentation(entityDocumentation)
-      .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
+      .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndChoice()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -248,11 +244,9 @@ describe('when building choice with lowercase choice name', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'entityName';
-  const entityMetaEdId = '1';
   const entityDocumentation = 'EntityDocumentation';
   const propertyName = 'PropertyName';
   const propertyDocumentation = 'PropertyDocumentation';
-  const propertyMetaEdId = '2';
   let namespace: any = null;
 
   beforeAll(() => {
@@ -260,9 +254,9 @@ describe('when building choice with lowercase choice name', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartChoice(entityName, entityMetaEdId)
+      .withStartChoice(entityName)
       .withDocumentation(entityDocumentation)
-      .withIntegerProperty(propertyName, propertyDocumentation, true, false, null, null, null, propertyMetaEdId)
+      .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndChoice()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -355,7 +349,6 @@ describe('when building choice with no property', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const entityMetaEdId = '1';
   const entityDocumentation = 'EntityDocumentation';
   let namespace: any = null;
 
@@ -364,7 +357,7 @@ describe('when building choice with no property', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartChoice(entityName, entityMetaEdId)
+      .withStartChoice(entityName)
       .withDocumentation(entityDocumentation)
       .withEndChoice()
       .withEndNamespace()

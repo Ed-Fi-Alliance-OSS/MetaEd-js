@@ -20,7 +20,7 @@ describe('when validating association domain item matches top level entity', ():
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withAssociationDomainItem(associationName)
       .withFooterDocumentation('FooterDocumentation')
@@ -67,7 +67,7 @@ describe('when validating association domain item matches top level entity acros
       .withEndNamespace()
 
       .withBeginNamespace('Extension')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withAssociationDomainItem(`EdFi.${associationName}`)
       .withFooterDocumentation('FooterDocumentation')
@@ -105,7 +105,7 @@ describe('when validating association domain item matches top level entity subcl
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withAssociationDomainItem(associationSubclassName)
       .withFooterDocumentation('FooterDocumentation')
@@ -152,7 +152,7 @@ describe('when validating association domain item does not match top level entit
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withAssociationDomainItem('AssociationDomainItemName')
       .withFooterDocumentation('FooterDocumentation')

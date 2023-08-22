@@ -15,7 +15,6 @@ describe('when building association in extension namespace', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const entityMetaEdId = '1';
   const documentation1 = 'documentation1';
   const firstDomainEntityName = 'FirstDomainEntityName';
   const documentation2 = 'documentation2';
@@ -28,7 +27,7 @@ describe('when building association in extension namespace', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartAssociation(entityName, entityMetaEdId)
+      .withStartAssociation(entityName)
       .withDocumentation(documentation1)
       .withAssociationDomainEntityProperty(firstDomainEntityName, documentation2, null)
       .withAssociationDomainEntityProperty(secondDomainEntityName, documentation3, null)
@@ -158,7 +157,6 @@ describe('when building association without extension', (): void => {
   const namespaceName = 'Namespace';
 
   const entityName = 'EntityName';
-  const entityMetaEdId = '1';
   const documentation1 = 'documentation1';
   const firstDomainEntityName = 'FirstDomainEntityName';
   const documentation2 = 'documentation2';
@@ -171,7 +169,7 @@ describe('when building association without extension', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName)
-      .withStartAssociation(entityName, entityMetaEdId)
+      .withStartAssociation(entityName)
       .withDocumentation(documentation1)
       .withAssociationDomainEntityProperty(firstDomainEntityName, documentation2, null)
       .withAssociationDomainEntityProperty(secondDomainEntityName, documentation3, null)
@@ -336,10 +334,10 @@ describe('when building association with additional identity property', (): void
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName)
-      .withStartAssociation(entityName, '1')
+      .withStartAssociation(entityName)
       .withDocumentation('doc')
-      .withAssociationDomainEntityProperty(firstDomainEntityName, 'doc', null, '2')
-      .withAssociationDomainEntityProperty(secondDomainEntityName, 'doc', null, '3')
+      .withAssociationDomainEntityProperty(firstDomainEntityName, 'doc')
+      .withAssociationDomainEntityProperty(secondDomainEntityName, 'doc')
       .withDomainEntityIdentity(identityProperty, 'doc')
       .withEndAssociation()
       .withEndNamespace()
@@ -410,13 +408,10 @@ describe('when building association with no association name', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = '';
-  const entityMetaEdId = '1';
   const documentation1 = 'documentation1';
   const firstDomainEntityName = 'FirstDomainEntityName';
-  const firstDomainEntityMetaEdId = '2';
   const documentation2 = 'documentation2';
   const secondDomainEntityName = 'SecondDomainEntityName';
-  const secondDomainEntityMetaEdId = '3';
   const documentation3 = 'documentation3';
   let namespace: any = null;
 
@@ -425,10 +420,10 @@ describe('when building association with no association name', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartAssociation(entityName, entityMetaEdId)
+      .withStartAssociation(entityName)
       .withDocumentation(documentation1)
-      .withAssociationDomainEntityProperty(firstDomainEntityName, documentation2, null, firstDomainEntityMetaEdId)
-      .withAssociationDomainEntityProperty(secondDomainEntityName, documentation3, null, secondDomainEntityMetaEdId)
+      .withAssociationDomainEntityProperty(firstDomainEntityName, documentation2)
+      .withAssociationDomainEntityProperty(secondDomainEntityName, documentation3)
       .withEndAssociation()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -459,13 +454,10 @@ describe('when building association with lowercase association name', (): void =
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'entityName';
-  const entityMetaEdId = '1';
   const documentation1 = 'documentation1';
   const firstDomainEntityName = 'FirstDomainEntityName';
-  const firstDomainEntityMetaEdId = '2';
   const documentation2 = 'documentation2';
   const secondDomainEntityName = 'SecondDomainEntityName';
-  const secondDomainEntityMetaEdId = '3';
   const documentation3 = 'documentation3';
   let namespace: any = null;
 
@@ -474,10 +466,10 @@ describe('when building association with lowercase association name', (): void =
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartAssociation(entityName, entityMetaEdId)
+      .withStartAssociation(entityName)
       .withDocumentation(documentation1)
-      .withAssociationDomainEntityProperty(firstDomainEntityName, documentation2, null, firstDomainEntityMetaEdId)
-      .withAssociationDomainEntityProperty(secondDomainEntityName, documentation3, null, secondDomainEntityMetaEdId)
+      .withAssociationDomainEntityProperty(firstDomainEntityName, documentation2)
+      .withAssociationDomainEntityProperty(secondDomainEntityName, documentation3)
       .withEndAssociation()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))

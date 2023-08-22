@@ -20,7 +20,7 @@ describe('when validating common domain item matches top level entity', (): void
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withCommonDomainItem(commonName)
       .withFooterDocumentation('FooterDocumentation')
@@ -60,7 +60,7 @@ describe('when validating common domain item matches subclass', (): void => {
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withCommonDomainItem(commonName)
       .withFooterDocumentation('FooterDocumentation')
@@ -107,7 +107,7 @@ describe('when validating common domain item matches top level entity across nam
       .withEndNamespace()
 
       .withBeginNamespace('Extension')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withCommonDomainItem(`EdFi.${commonName}`)
       .withFooterDocumentation('FooterDocumentation')
@@ -144,7 +144,7 @@ describe('when validating common domain item does not match top level entity', (
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withCommonDomainItem('CommonDomainItemName')
       .withFooterDocumentation('FooterDocumentation')

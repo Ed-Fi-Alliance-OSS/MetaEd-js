@@ -13,7 +13,7 @@ describe('when validating short property with correct minimum value and maximum 
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi', 'ProjectExtension')
-      .withStartAbstractEntity('EntityName', '1')
+      .withStartAbstractEntity('EntityName')
       .withDocumentation('EntityDocumentation')
       .withShortIdentity('ShortIdentity', 'doc', maxValue, minValue)
       .withShortProperty('ShortProperty', 'doc', true, false, maxValue, minValue)
@@ -47,7 +47,7 @@ describe('when validating short property with same minimum value and maximum val
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi', 'ProjectExtension')
-      .withStartAbstractEntity('EntityName', '1')
+      .withStartAbstractEntity('EntityName')
       .withDocumentation('EntityDocumentation')
       .withShortIdentity('ShortIdentity', 'doc', maxValue, minValue)
       .withShortProperty('ShortProperty', 'doc', true, false, maxValue, minValue)
@@ -81,7 +81,7 @@ describe('when validating short property with minimum value greater than maximum
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi', 'ProjectExtension')
-      .withStartAbstractEntity('EntityName', '1')
+      .withStartAbstractEntity('EntityName')
       .withDocumentation('EntityDocumentation')
       .withShortIdentity('ShortIdentity', 'doc', maxValue, minValue)
       .withShortProperty('ShortProperty', 'doc', true, false, maxValue, minValue)

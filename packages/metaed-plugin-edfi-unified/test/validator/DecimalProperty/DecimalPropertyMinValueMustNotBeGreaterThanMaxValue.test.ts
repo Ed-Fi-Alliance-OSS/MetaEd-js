@@ -16,7 +16,7 @@ describe('when validating decimal property with correct minimum value and maximu
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi', 'ProjectExtension')
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withDecimalIdentity('DecimalIdentity', 'doc', totalDigits, decimalPlaces, minValue, maxValue)
       .withDecimalProperty('DecimalProperty', 'doc', true, false, totalDigits, decimalPlaces, minValue, maxValue)
@@ -57,7 +57,7 @@ describe('when validating decimal property with same minimum value and maximum v
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi', 'ProjectExtension')
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withDecimalIdentity('DecimalIdentity', 'doc', totalDigits, decimalPlaces, minValue, maxValue)
       .withDecimalProperty('DecimalProperty', 'doc', true, false, totalDigits, decimalPlaces, minValue, maxValue)
@@ -98,7 +98,7 @@ describe('when validating decimal property with minimum value greater than maxim
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi', 'ProjectExtension')
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withDecimalIdentity('DecimalIdentity', 'doc', totalDigits, decimalPlaces, minValue, maxValue)
       .withDecimalProperty('DecimalProperty', 'doc', true, false, totalDigits, decimalPlaces, minValue, maxValue)

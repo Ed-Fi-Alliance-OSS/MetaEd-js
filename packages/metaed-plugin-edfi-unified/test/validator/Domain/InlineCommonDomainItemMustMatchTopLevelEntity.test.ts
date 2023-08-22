@@ -13,7 +13,7 @@ describe('when validating inline common domain item matches top level entity', (
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withInlineCommonDomainItem(inlineCommonName)
       .withFooterDocumentation('FooterDocumentation')
@@ -62,7 +62,7 @@ describe('when validating inline common domain item matches top level entity acr
       .withEndNamespace()
 
       .withBeginNamespace('Extension')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withInlineCommonDomainItem(`EdFi.${inlineCommonName}`)
       .withFooterDocumentation('FooterDocumentation')
@@ -99,7 +99,7 @@ describe('when validating inline common domain item does not match top level ent
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withInlineCommonDomainItem('InlineCommonDomainItemName')
       .withFooterDocumentation('FooterDocumentation')

@@ -121,7 +121,6 @@ describe('when building duplicate shared strings', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minLength = '2';
   const maxLength = '100';
@@ -131,12 +130,12 @@ describe('when building duplicate shared strings', (): void => {
     const builder = new SharedStringBuilder(metaEd, validationFailures);
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedString(entityName, metaEdId)
+      .withStartSharedString(entityName)
       .withDocumentation(documentation)
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
 
-      .withStartSharedString(entityName, metaEdId)
+      .withStartSharedString(entityName)
       .withDocumentation(documentation)
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
@@ -197,7 +196,6 @@ describe('when building shared string with no shared string name', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = '';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minLength = '2';
   const maxLength = '100';
@@ -208,7 +206,7 @@ describe('when building shared string with no shared string name', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedString(entityName, metaEdId)
+      .withStartSharedString(entityName)
       .withDocumentation(documentation)
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
@@ -241,7 +239,6 @@ describe('when building shared string with lowercase shared string name', (): vo
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'entityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const minLength = '2';
   const maxLength = '100';
@@ -252,7 +249,7 @@ describe('when building shared string with lowercase shared string name', (): vo
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedString(entityName, metaEdId)
+      .withStartSharedString(entityName)
       .withDocumentation(documentation)
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()

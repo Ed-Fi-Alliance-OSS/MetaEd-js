@@ -22,7 +22,7 @@ describe('when building domain entity extension in extension namespace', (): voi
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntityExtension(entityName, '1')
+      .withStartDomainEntityExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
@@ -136,7 +136,7 @@ describe('when building domain entity extension in extension namespace extending
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntityExtension(`${coreNamespaceName}.${entityName}`, '1')
+      .withStartDomainEntityExtension(`${coreNamespaceName}.${entityName}`)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
@@ -174,11 +174,11 @@ describe('when building duplicate domain entity extensions', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntityExtension(entityName, '1')
+      .withStartDomainEntityExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
 
-      .withStartDomainEntityExtension(entityName, '1')
+      .withStartDomainEntityExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
@@ -238,7 +238,6 @@ describe('when building domain entity extension with no domain entity extension 
   const projectExtension = 'ProjectExtension';
 
   const entityName = '';
-  const MetaEdId = '10';
   const documentation = 'Documentation';
   const propertyName = 'PropertyName';
   let namespace: any = null;
@@ -248,7 +247,7 @@ describe('when building domain entity extension with no domain entity extension 
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntityExtension(entityName, MetaEdId)
+      .withStartDomainEntityExtension(entityName)
       .withIntegerProperty(propertyName, documentation, true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
@@ -280,7 +279,6 @@ describe('when building domain entity extension with lowercase domain entity ext
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'entityName';
-  const MetaEdId = '10';
   const documentation = 'Documentation';
   const propertyName = 'PropertyName';
   let namespace: any = null;
@@ -290,7 +288,7 @@ describe('when building domain entity extension with lowercase domain entity ext
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntityExtension(entityName, MetaEdId)
+      .withStartDomainEntityExtension(entityName)
       .withIntegerProperty(propertyName, documentation, true, false)
       .withEndDomainEntityExtension()
       .withEndNamespace()
@@ -322,7 +320,6 @@ describe('when building domain entity extension with no property', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const MetaEdId = '10';
   let namespace: any = null;
 
   beforeAll(() => {
@@ -330,7 +327,7 @@ describe('when building domain entity extension with no property', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntityExtension(entityName, MetaEdId)
+      .withStartDomainEntityExtension(entityName)
       .withEndDomainEntityExtension()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -386,7 +383,6 @@ describe('when building domain entity extension with invalid trailing text', ():
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const MetaEdId = '10';
   const documentation = 'Documentation';
   const propertyName = 'PropertyName';
   const trailingText = '\r\nTrailingText';
@@ -397,7 +393,7 @@ describe('when building domain entity extension with invalid trailing text', ():
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntityExtension(entityName, MetaEdId)
+      .withStartDomainEntityExtension(entityName)
       .withIntegerProperty(propertyName, documentation, true, false)
       .withTrailingText(trailingText)
       .withEndDomainEntityExtension()

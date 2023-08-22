@@ -14,7 +14,7 @@ describe('when validating string property with correct minimum length and maximu
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withStringIdentity('StringIdentity', 'doc', maxLength, minLength)
       .withStringProperty('StringProperty', 'doc', true, false, maxLength, minLength)
@@ -53,7 +53,7 @@ describe('when validating string property with same minimum length and maximum l
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withStringIdentity('StringIdentity', 'doc', maxLength, minLength)
       .withStringProperty('StringProperty', 'doc', true, false, maxLength, minLength)
@@ -92,7 +92,7 @@ describe('when validating string property with minimum length greater than maxim
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withStringIdentity('StringIdentity', 'doc', maxLength, minLength)
       .withStringProperty('StringProperty', 'doc', true, false, maxLength, minLength)

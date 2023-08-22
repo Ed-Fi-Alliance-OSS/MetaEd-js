@@ -22,7 +22,7 @@ describe('when validating integer property does not match shared integer', (): v
 
       .withStartAbstractEntity('EntityName')
       .withDocumentation('EntityDocumentation')
-      .withIntegerIdentity('PropertyName', 'PropertyDocumentation', '10', '2', '0', '10')
+      .withIntegerIdentity('PropertyName', 'PropertyDocumentation', '10', '2', '0')
       .withEndAbstractEntity()
       .withEndNamespace()
 
@@ -56,9 +56,9 @@ describe('when validating integer property matches shared integer', (): void => 
       .withDocumentation('doc')
       .withEndSharedInteger()
 
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
-      .withIntegerIdentity(entityName, 'PropertyDocumentation', '10', '2', '0', '10')
+      .withIntegerIdentity(entityName, 'PropertyDocumentation', '10', '2', '0')
       .withEndAbstractEntity()
       .withEndNamespace()
 

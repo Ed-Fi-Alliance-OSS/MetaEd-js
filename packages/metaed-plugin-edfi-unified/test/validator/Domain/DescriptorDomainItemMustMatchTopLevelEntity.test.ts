@@ -19,7 +19,7 @@ describe('when validating descriptor domain item matches top level entity', (): 
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withDescriptorDomainItem(descriptorName)
       .withFooterDocumentation('FooterDocumentation')
@@ -66,7 +66,7 @@ describe('when validating descriptor domain item matches top level entity across
       .withEndNamespace()
 
       .withBeginNamespace('Extension')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withDescriptorDomainItem(`EdFi.${descriptorName}`)
       .withFooterDocumentation('FooterDocumentation')
@@ -103,7 +103,7 @@ describe('when validating descriptor domain item does not match top level entity
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomain(domainName, '1')
+      .withStartDomain(domainName)
       .withDocumentation('doc')
       .withDescriptorDomainItem('DescriptorDomainItemName')
       .withFooterDocumentation('FooterDocumentation')

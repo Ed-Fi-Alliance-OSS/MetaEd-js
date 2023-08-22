@@ -128,7 +128,6 @@ describe('when building multiple descriptors', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '1';
   const documentation = 'Documentation';
   const propertyName = 'PropertyName';
   let namespace: any = null;
@@ -138,12 +137,12 @@ describe('when building multiple descriptors', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDescriptor(entityName, metaEdId)
+      .withStartDescriptor(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDescriptor()
 
-      .withStartDescriptor(entityName, metaEdId)
+      .withStartDescriptor(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDescriptor()
@@ -386,7 +385,6 @@ describe('when building descriptor with no descriptor name', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = '';
-  const metaEdId = '1';
   const documentation = 'Documentation';
   let namespace: any = null;
 
@@ -395,7 +393,7 @@ describe('when building descriptor with no descriptor name', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDescriptor(entityName, metaEdId)
+      .withStartDescriptor(entityName)
       .withDocumentation(documentation)
       .withEndDescriptor()
       .withEndNamespace()
@@ -427,7 +425,6 @@ describe('when building descriptor with lowercase descriptor name', (): void => 
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'entityName';
-  const metaEdId = '1';
   const documentation = 'Documentation';
   const propertyName = 'PropertyName';
   let namespace: any = null;
@@ -437,7 +434,7 @@ describe('when building descriptor with lowercase descriptor name', (): void => 
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDescriptor(entityName, metaEdId)
+      .withStartDescriptor(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndDescriptor()
@@ -921,7 +918,6 @@ describe('when building descriptor source map with required map type', (): void 
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '1';
   const documentation = 'Documentation';
   const propertyName = 'PropertyName';
   let namespace: any = null;
@@ -931,7 +927,7 @@ describe('when building descriptor source map with required map type', (): void 
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDescriptor(entityName, metaEdId)
+      .withStartDescriptor(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStartMapType(true)
@@ -1030,7 +1026,6 @@ describe('when building required map type enumeration source map', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '1';
   const documentation = 'Documentation';
   const propertyName = 'PropertyName';
   const mapDocumentation = 'MapDocumentation';
@@ -1042,12 +1037,12 @@ describe('when building required map type enumeration source map', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDescriptor(entityName, metaEdId)
+      .withStartDescriptor(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', false, false)
       .withStartMapType(true)
       .withDocumentation(mapDocumentation)
-      .withEnumerationItem(shortDescription, 'doc', '2')
+      .withEnumerationItem(shortDescription, 'doc')
       .withEndMapType()
       .withEndDescriptor()
       .withEndNamespace()
@@ -1162,7 +1157,7 @@ describe('when building map type enumeration item source map', (): void => {
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStartMapType(true)
       .withDocumentation(mapDocumentation)
-      .withEnumerationItem(shortDescription, 'doc', '2')
+      .withEnumerationItem(shortDescription, 'doc')
       .withEndMapType()
       .withEndDescriptor()
       .withEndNamespace()

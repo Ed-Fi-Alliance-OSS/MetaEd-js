@@ -29,7 +29,7 @@ describe('when validating decimal property does not match shared decimal', (): v
       .withDecimalPlaces('2')
       .withEndSharedDecimal()
 
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withDecimalIdentity(decimalProperty, 'doc', totalDigits, decimalPlaces, minValue, maxValue)
       .withEndAbstractEntity()
@@ -73,7 +73,7 @@ describe('when validating decimal property matches shared decimal', (): void => 
       .withDecimalPlaces('2')
       .withEndSharedDecimal()
 
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withDecimalIdentity(decimalProperty, 'doc', totalDigits, decimalPlaces, minValue, maxValue)
       .withEndAbstractEntity()

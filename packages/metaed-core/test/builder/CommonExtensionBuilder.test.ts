@@ -21,7 +21,7 @@ describe('when building common extension in extension namespace', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartCommonExtension(entityName, '1')
+      .withStartCommonExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
@@ -135,7 +135,7 @@ describe('when building common extension in extension namespace extending core e
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartCommonExtension(`${coreNamespaceName}.${entityName}`, '1')
+      .withStartCommonExtension(`${coreNamespaceName}.${entityName}`)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
@@ -174,11 +174,11 @@ describe('when building multiple common extensions', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartCommonExtension(entityName, '1')
+      .withStartCommonExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndCommonExtension()
 
-      .withStartCommonExtension(entityName, '1')
+      .withStartCommonExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
@@ -245,7 +245,7 @@ describe('when building common extension with missing common extension name', ()
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartCommonExtension(entityName, '1')
+      .withStartCommonExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
@@ -278,7 +278,7 @@ describe('when building common extension with lowercase common extension name', 
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartCommonExtension(entityName, '1')
+      .withStartCommonExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
@@ -310,7 +310,7 @@ describe('when building common extension with missing property', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartCommonExtension(entityName, '1')
+      .withStartCommonExtension(entityName)
       .withEndCommonExtension()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -343,7 +343,7 @@ describe('when building common extension with invalid trailing text', (): void =
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartCommonExtension(entityName, '1')
+      .withStartCommonExtension(entityName)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withTrailingText(trailingText)
       .withEndCommonExtension()

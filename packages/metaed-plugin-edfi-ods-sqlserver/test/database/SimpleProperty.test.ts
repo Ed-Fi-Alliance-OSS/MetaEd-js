@@ -128,7 +128,7 @@ describe('when entity has integer property with big hint', (): void => {
       .withStartDomainEntity(domainEntityName)
       .withDocumentation('Documentation')
       .withIntegerIdentity('IdentityPropertyName', 'Documentation')
-      .withIntegerProperty(integerName, integerDocumentation, false, false, null, null, null, null, null, false, true)
+      .withIntegerProperty(integerName, integerDocumentation, false, false, null, null, null, null, false, true)
       .withEndDomainEntity()
       .withEndNamespace()
 

@@ -134,7 +134,6 @@ describe('when building duplicate shared decimals', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const totalDigits = '10';
   const decimalPlaces = '3';
@@ -147,12 +146,12 @@ describe('when building duplicate shared decimals', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
 
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
@@ -213,7 +212,6 @@ describe('when building shared decimal with no shared decimal name', (): void =>
   const projectExtension = 'ProjectExtension';
 
   const entityName = '';
-  const metaEdId = '123';
   const documentation = 'doc';
   const totalDigits = '10';
   const decimalPlaces = '3';
@@ -226,7 +224,7 @@ describe('when building shared decimal with no shared decimal name', (): void =>
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()
@@ -259,7 +257,6 @@ describe('when building shared decimal with lowercase shared decimal name', (): 
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'entityName';
-  const metaEdId = '123';
   const documentation = 'doc';
   const totalDigits = '10';
   const decimalPlaces = '3';
@@ -272,7 +269,7 @@ describe('when building shared decimal with lowercase shared decimal name', (): 
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartSharedDecimal(entityName, metaEdId)
+      .withStartSharedDecimal(entityName)
       .withDocumentation(documentation)
       .withDecimalRestrictions(totalDigits, decimalPlaces, minValue, maxValue)
       .withEndSharedDecimal()

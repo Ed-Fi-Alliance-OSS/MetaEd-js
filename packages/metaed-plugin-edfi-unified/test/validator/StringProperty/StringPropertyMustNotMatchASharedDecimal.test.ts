@@ -26,7 +26,7 @@ describe('when validating string property does not match shared decimal', (): vo
       .withDecimalPlaces('2')
       .withEndSharedDecimal()
 
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withStringIdentity('StringIdentity', 'doc', maxLength, minLength)
       .withStringProperty('StringProperty', 'doc', true, false, maxLength, minLength)
@@ -69,7 +69,7 @@ describe('when validating string identity matches shared decimal', (): void => {
       .withDecimalPlaces('2')
       .withEndSharedDecimal()
 
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withStringIdentity(decimalProperty, 'doc', maxLength, minLength)
       .withEndAbstractEntity()
@@ -114,7 +114,7 @@ describe('when validating string property matches shared decimal', (): void => {
       .withDecimalPlaces('2')
       .withEndSharedDecimal()
 
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withStringProperty(decimalProperty, 'doc', true, false, maxLength, minLength)
       .withEndAbstractEntity()

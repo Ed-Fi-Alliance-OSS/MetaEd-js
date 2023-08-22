@@ -25,7 +25,7 @@ describe('when common extension extends common', (): void => {
       .withEndNamespace()
 
       .withBeginNamespace('Extension', 'ProjectExtension')
-      .withStartCommonExtension(`EdFi.${commonName}`, '1')
+      .withStartCommonExtension(`EdFi.${commonName}`)
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
@@ -67,7 +67,7 @@ describe('when common extension extends an invalid identifier', (): void => {
       .withEndNamespace()
 
       .withBeginNamespace('Extension', 'ProjectExtension')
-      .withStartCommonExtension(`EdFi.${commonName}`, '1')
+      .withStartCommonExtension(`EdFi.${commonName}`)
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()
@@ -112,7 +112,7 @@ describe('when common extension specifies wrong namespace', (): void => {
       .withEndNamespace()
 
       .withBeginNamespace('Extension', 'ProjectExtension')
-      .withStartCommonExtension(`Extension.${commonName}`, '1')
+      .withStartCommonExtension(`Extension.${commonName}`)
       .withBooleanProperty('PropertyName2', 'doc', true, false)
       .withEndCommonExtension()
       .withEndNamespace()

@@ -55,14 +55,14 @@ describe('when properties are deprecated in alliance mode', (): void => {
       .withBeginNamespace('EdFi')
       .withStartDomainEntity('EntityName')
       .withDocumentation('doc')
-      .withBooleanProperty('CoreProperty', 'doc', true, false, null, null, coreDeprecationReason)
+      .withBooleanProperty('CoreProperty', 'doc', true, false, null, coreDeprecationReason)
       .withEndDomainEntity()
       .withEndNamespace()
 
       .withBeginNamespace('Extension', 'ProjectExtension')
       .withStartDomainEntity('ExtensionEntity')
       .withDocumentation('doc')
-      .withBooleanProperty('ExtensionProperty', 'doc', true, false, null, null, extensionDeprecationReason)
+      .withBooleanProperty('ExtensionProperty', 'doc', true, false, null, extensionDeprecationReason)
       .withEndDomainEntity()
       .withEndNamespace()
 
@@ -110,14 +110,14 @@ describe('when properties are deprecated not in alliance mode', (): void => {
       .withBeginNamespace('EdFi')
       .withStartDomainEntity('EntityName')
       .withDocumentation('doc')
-      .withBooleanProperty('CoreProperty', 'doc', true, false, null, null, coreDeprecationReason)
+      .withBooleanProperty('CoreProperty', 'doc', true, false, null, coreDeprecationReason)
       .withEndDomainEntity()
       .withEndNamespace()
 
       .withBeginNamespace('Extension', 'ProjectExtension')
       .withStartDomainEntity('ExtensionEntity')
       .withDocumentation('doc')
-      .withBooleanProperty('ExtensionProperty', 'doc', true, false, null, null, extensionDeprecationReason)
+      .withBooleanProperty('ExtensionProperty', 'doc', true, false, null, extensionDeprecationReason)
       .withEndDomainEntity()
       .withEndNamespace()
 

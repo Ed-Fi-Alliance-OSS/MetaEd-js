@@ -13,7 +13,7 @@ describe('when validating subdomain entity domain item does not duplicate domain
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartSubdomain(subdomainName, domainName, '1')
+      .withStartSubdomain(subdomainName, domainName)
       .withDocumentation('doc')
       .withDomainEntityDomainItem('DomainItem1')
       .withDomainEntityDomainItem('DomainItem2')
@@ -56,7 +56,7 @@ describe('when validating subdomain entity domain item has duplicate domain item
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartSubdomain(subdomainName, domainName, '1')
+      .withStartSubdomain(subdomainName, domainName)
       .withDocumentation('doc')
       .withDomainEntityDomainItem(domainEntityName)
       .withDomainEntityDomainItem(domainEntityName)
@@ -96,7 +96,7 @@ describe('when validating subdomain entity domain item has multiple duplicate do
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartSubdomain(subdomainName, domainName, '1')
+      .withStartSubdomain(subdomainName, domainName)
       .withDocumentation('doc')
       .withDomainEntityDomainItem('NotDuplicate')
       .withDomainEntityDomainItem(domainEntityName)

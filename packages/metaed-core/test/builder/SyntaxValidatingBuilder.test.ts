@@ -215,7 +215,7 @@ describe('when building domain entity with shorten to property', (): void => {
       .withBeginNamespace('Namespace', 'ProjectExtension')
       .withStartDomainEntity('EntityName')
       .withDocumentation('doc')
-      .withCommonProperty('Property', 'doc', true, false, 'Context', null, 'ShortenTo')
+      .withCommonProperty('Property', 'doc', true, false, 'Context', 'ShortenTo')
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))

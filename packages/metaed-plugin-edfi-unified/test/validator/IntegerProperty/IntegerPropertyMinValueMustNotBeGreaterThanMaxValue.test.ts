@@ -10,7 +10,7 @@ describe('when validating integer property with correct minimum value and maximu
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartAbstractEntity('EntityName', '1')
+      .withStartAbstractEntity('EntityName')
       .withDocumentation('EntityDocumentation')
       .withIntegerIdentity('IntegerProperty', 'PropertyDocumentation', '10', '2')
       .withEndAbstractEntity()
@@ -40,7 +40,7 @@ describe('when validating integer property with same minimum value and maximum v
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartAbstractEntity('EntityName', '1')
+      .withStartAbstractEntity('EntityName')
       .withDocumentation('EntityDocumentation')
       .withIntegerIdentity('IntegerProperty', 'PropertyDocumentation', '5', '5')
       .withEndAbstractEntity()
@@ -70,7 +70,7 @@ describe('when validating integer property with minimum value greater than maxim
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartAbstractEntity('EntityName', '1')
+      .withStartAbstractEntity('EntityName')
       .withDocumentation('EntityDocumentation')
       .withIntegerIdentity('IntegerProperty', 'PropertyDocumentation', '0', '10')
       .withEndAbstractEntity()

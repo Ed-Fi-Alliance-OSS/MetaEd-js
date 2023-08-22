@@ -22,7 +22,7 @@ describe('when building shared integer with duplicate integer property in core n
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomainEntity('DomainEntity', '1')
+      .withStartDomainEntity('DomainEntity')
       .withDocumentation(documentation)
       .withIntegerProperty(entityName, documentation, true, false, maxValue, minValue)
       .withEndDomainEntity()
@@ -75,7 +75,7 @@ describe('when building shared integer with duplicate integer property in extens
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomainEntity('DomainEntity', '1')
+      .withStartDomainEntity('DomainEntity')
       .withDocumentation(documentation)
       .withIntegerProperty(entityName, documentation, true, false, maxValue, minValue)
       .withEndDomainEntity()
@@ -125,7 +125,7 @@ describe('when building shared decimal with duplicate decimal property in extens
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartDomainEntity('DomainEntity', '1')
+      .withStartDomainEntity('DomainEntity')
       .withDocumentation(documentation)
       .withDecimalProperty(entityName, documentation, true, false, totalDigits, decimalPlaces, minValue, maxValue)
       .withEndDomainEntity()
@@ -181,7 +181,7 @@ describe('when building shared string with duplicate string property in extensio
       .withEndNamespace()
 
       .withBeginNamespace('Extension', 'Extension')
-      .withStartDomainEntity('DomainEntity', '1')
+      .withStartDomainEntity('DomainEntity')
       .withDocumentation(documentation)
       .withStringProperty(entityName, documentation, true, false, minLength, maxLength)
       .withEndDomainEntity()
@@ -224,7 +224,7 @@ describe('when building shared string with duplicate integer property in core na
       .withStringRestrictions(minLength, maxLength)
       .withEndSharedString()
 
-      .withStartDomainEntity('DomainEntity', '1')
+      .withStartDomainEntity('DomainEntity')
       .withDocumentation(documentation)
       .withIntegerProperty(entityName, documentation, true, false)
       .withEndDomainEntity()

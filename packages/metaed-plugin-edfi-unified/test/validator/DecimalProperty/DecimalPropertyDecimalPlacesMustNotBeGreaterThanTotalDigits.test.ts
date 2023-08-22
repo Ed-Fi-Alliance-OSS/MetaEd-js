@@ -14,7 +14,7 @@ describe('when validating decimal property with correct total digits and decimal
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withDecimalIdentity('DecimalProperty', 'doc', totalDigits, decimalPlaces)
       .withEndAbstractEntity()
@@ -48,7 +48,7 @@ describe('when validating decimal property with same total digits and decimal pl
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withDecimalIdentity('DecimalProperty', 'doc', totalDigits, decimalPlaces)
       .withEndAbstractEntity()
@@ -82,7 +82,7 @@ describe('when validating decimal property with decimal places greater than tota
   beforeAll(() => {
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withDecimalIdentity('DecimalProperty', 'doc', totalDigits, decimalPlaces)
       .withEndAbstractEntity()

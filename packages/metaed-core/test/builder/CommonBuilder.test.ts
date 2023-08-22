@@ -129,7 +129,6 @@ describe('when building duplicate commons', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const entityMetaEdId = '1';
   const entityDocumentation = 'EntityDocumentation';
   const propertyName = 'PropertyName';
   const propertyDocumentation = 'PropertyDocumentation';
@@ -140,12 +139,12 @@ describe('when building duplicate commons', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartCommon(entityName, entityMetaEdId)
+      .withStartCommon(entityName)
       .withDocumentation(entityDocumentation)
       .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndCommon()
 
-      .withStartCommon(entityName, entityMetaEdId)
+      .withStartCommon(entityName)
       .withDocumentation(entityDocumentation)
       .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndCommon()
@@ -205,7 +204,6 @@ describe('when building inline common in extension namespace', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const entityMetaEdId = '1';
   const entityDocumentation = 'EntityDocumentation';
   const propertyName = 'PropertyName';
   const propertyDocumentation = 'PropertyDocumentation';
@@ -216,7 +214,7 @@ describe('when building inline common in extension namespace', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartInlineCommon(entityName, entityMetaEdId)
+      .withStartInlineCommon(entityName)
       .withDocumentation(entityDocumentation)
       .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndInlineCommon()
@@ -274,7 +272,6 @@ describe('when building common with no common name', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = '';
-  const entityMetaEdId = '1';
   const entityDocumentation = 'EntityDocumentation';
   const propertyName = 'PropertyName';
   const propertyDocumentation = 'PropertyDocumentation';
@@ -285,7 +282,7 @@ describe('when building common with no common name', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartCommon(entityName, entityMetaEdId)
+      .withStartCommon(entityName)
       .withDocumentation(entityDocumentation)
       .withIntegerProperty(propertyName, propertyDocumentation, true, false)
       .withEndCommon()

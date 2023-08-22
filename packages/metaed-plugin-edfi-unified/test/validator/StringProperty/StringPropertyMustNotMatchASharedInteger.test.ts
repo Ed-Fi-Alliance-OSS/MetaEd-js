@@ -24,7 +24,7 @@ describe('when validating string property does not match shared integer', (): vo
       .withDocumentation('doc')
       .withEndSharedInteger()
 
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withStringIdentity('StringIdentity', 'doc', maxLength, minLength)
       .withStringProperty('StringProperty', 'doc', true, false, maxLength, minLength)
@@ -65,7 +65,7 @@ describe('when validating string identity matches shared integer', (): void => {
       .withDocumentation('doc')
       .withEndSharedInteger()
 
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withStringIdentity(integerProperty, 'doc', maxLength, minLength)
       .withEndAbstractEntity()
@@ -109,7 +109,7 @@ describe('when validating string property matches shared integer', (): void => {
       .withDocumentation('doc')
       .withEndSharedInteger()
 
-      .withStartAbstractEntity(entityName, '1')
+      .withStartAbstractEntity(entityName)
       .withDocumentation('doc')
       .withStringProperty(integerProperty, 'doc', true, false, maxLength, minLength)
       .withEndAbstractEntity()

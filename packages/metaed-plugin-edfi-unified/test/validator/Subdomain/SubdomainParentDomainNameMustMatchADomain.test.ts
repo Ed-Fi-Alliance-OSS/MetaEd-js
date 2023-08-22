@@ -17,7 +17,7 @@ describe('when validating subdomain entity parent domain name does match a domai
       .withDocumentation('doc')
       .withEndDomain()
 
-      .withStartSubdomain(subdomainName, domainName, '1')
+      .withStartSubdomain(subdomainName, domainName)
       .withDocumentation('doc')
       .withSubdomainPosition(1)
       .withFooterDocumentation('FooterDocumentation')
@@ -56,7 +56,7 @@ describe('when validating subdomain entity parent domain name does not match a d
       .withDocumentation('doc')
       .withEndDomain()
 
-      .withStartSubdomain(subdomainName, domainName, '1')
+      .withStartSubdomain(subdomainName, domainName)
       .withDocumentation('doc')
       .withSubdomainPosition(1)
       .withFooterDocumentation('FooterDocumentation')

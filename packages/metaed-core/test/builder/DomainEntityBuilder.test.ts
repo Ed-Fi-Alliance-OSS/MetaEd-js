@@ -151,7 +151,6 @@ describe('when building duplicate domain entities', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const validationFailures: ValidationFailure[] = [];
   const namespaceName = 'Namespace';
-  const metaEdId = '1';
   const projectExtension = 'ProjectExtension';
   const entityName = 'EntityName';
   const propertyName = 'PropertyName';
@@ -164,13 +163,13 @@ describe('when building duplicate domain entities', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity(entityName, metaEdId)
+      .withStartDomainEntity(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
       .withEndDomainEntity()
 
-      .withStartDomainEntity(entityName, metaEdId)
+      .withStartDomainEntity(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
@@ -228,7 +227,6 @@ describe('when building duplicate property names', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const validationFailures: ValidationFailure[] = [];
   const namespaceName = 'Namespace';
-  const metaEdId = '1';
   const projectExtension = 'ProjectExtension';
   const entityName = 'EntityName';
   const propertyName = 'PropertyName';
@@ -240,7 +238,7 @@ describe('when building duplicate property names', (): void => {
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity(entityName, metaEdId)
+      .withStartDomainEntity(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
@@ -288,7 +286,6 @@ describe('when building duplicate property names with different role name names'
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const validationFailures: ValidationFailure[] = [];
   const namespaceName = 'Namespace';
-  const metaEdId = '1';
   const projectExtension = 'ProjectExtension';
   const entityName = 'EntityName';
   const propertyName = 'PropertyName';
@@ -300,7 +297,7 @@ describe('when building duplicate property names with different role name names'
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity(entityName, metaEdId)
+      .withStartDomainEntity(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2', 'Context1')
@@ -320,7 +317,6 @@ describe('when building duplicate property names with same role name name', (): 
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const validationFailures: ValidationFailure[] = [];
   const namespaceName = 'Namespace';
-  const metaEdId = '1';
   const projectExtension = 'ProjectExtension';
   const entityName = 'EntityName';
   const propertyName = 'PropertyName';
@@ -332,7 +328,7 @@ describe('when building duplicate property names with same role name name', (): 
 
     MetaEdTextBuilder.build()
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity(entityName, metaEdId)
+      .withStartDomainEntity(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2', 'Context')
@@ -488,7 +484,7 @@ describe('when building domain entity with a role name and shorten to', (): void
       .withBeginNamespace(namespaceName)
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withCommonProperty(propertyName, 'doc', true, false, roleNameName, null, shortenToName)
+      .withCommonProperty(propertyName, 'doc', true, false, roleNameName, shortenToName)
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -1436,7 +1432,6 @@ describe('when building domain entity with no project extension', (): void => {
   const projectExtension = '';
 
   const entityName = 'EntityName';
-  const metaEdId = '1';
   const documentation = 'Doc';
   const propertyName = 'PropertyName';
   const stringPropertyName = 'StringPropertyName';
@@ -1446,7 +1441,7 @@ describe('when building domain entity with no project extension', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity(entityName, metaEdId)
+      .withStartDomainEntity(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
@@ -1476,7 +1471,6 @@ describe('when building domain entity with lowercase project extension', (): voi
   const projectExtension = 'projectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '1';
   const documentation = 'Doc';
   const propertyName = 'PropertyName';
   const stringPropertyName = 'StringPropertyName';
@@ -1486,7 +1480,7 @@ describe('when building domain entity with lowercase project extension', (): voi
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity(entityName, metaEdId)
+      .withStartDomainEntity(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
@@ -1514,7 +1508,6 @@ describe('when building domain entity with no namespace', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '1';
   const documentation = 'Doc';
   const propertyName = 'PropertyName';
   const stringPropertyName = 'StringPropertyName';
@@ -1524,7 +1517,7 @@ describe('when building domain entity with no namespace', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity(entityName, metaEdId)
+      .withStartDomainEntity(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
@@ -1554,7 +1547,6 @@ describe('when building domain entity with no end namespace', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'EntityName';
-  const metaEdId = '1';
   const documentation = 'Doc';
   const propertyName = 'PropertyName';
   const stringPropertyName = 'StringPropertyName';
@@ -1564,7 +1556,7 @@ describe('when building domain entity with no end namespace', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity(entityName, metaEdId)
+      .withStartDomainEntity(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
@@ -1625,7 +1617,6 @@ describe('when building domain entity with no domain entity name', (): void => {
   const projectExtension = 'ProjectExtension';
 
   const entityName = '';
-  const metaEdId = '1';
   const documentation = 'Doc';
   const propertyName = 'PropertyName';
   const stringPropertyName = 'StringPropertyName';
@@ -1636,7 +1627,7 @@ describe('when building domain entity with no domain entity name', (): void => {
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity(entityName, metaEdId)
+      .withStartDomainEntity(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
@@ -1670,7 +1661,6 @@ describe('when building domain entity with lowercase domain entity name', (): vo
   const projectExtension = 'ProjectExtension';
 
   const entityName = 'entityName';
-  const metaEdId = '1';
   const documentation = 'Doc';
   const propertyName = 'PropertyName';
   const stringPropertyName = 'StringPropertyName';
@@ -1681,7 +1671,7 @@ describe('when building domain entity with lowercase domain entity name', (): vo
 
     textBuilder
       .withBeginNamespace(namespaceName, projectExtension)
-      .withStartDomainEntity(entityName, metaEdId)
+      .withStartDomainEntity(entityName)
       .withDocumentation(documentation)
       .withIntegerProperty(propertyName, 'doc', true, false)
       .withStringProperty(stringPropertyName, 'doc', true, false, '10', '2')
@@ -2095,7 +2085,7 @@ describe('when building domain entity with a potentially logical association pro
       .withBeginNamespace(namespaceName)
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withAssociationProperty(propertyName, 'doc', true, false, false, null, null, null, true)
+      .withAssociationProperty(propertyName, 'doc', true, false, false, null, null, true)
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))
@@ -2126,7 +2116,7 @@ describe('when building domain entity with a potentially logical domain entity p
       .withBeginNamespace(namespaceName)
       .withStartDomainEntity(entityName)
       .withDocumentation('doc')
-      .withDomainEntityProperty(propertyName, 'doc', true, false, false, null, null, null, true)
+      .withDomainEntityProperty(propertyName, 'doc', true, false, false, null, null, true)
       .withEndDomainEntity()
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, validationFailures))

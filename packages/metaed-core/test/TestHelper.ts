@@ -29,102 +29,102 @@ function getEntity(repository: EntityRepository, entityName: string, modelType: 
   return repository[modelType].get(entityName);
 }
 
-export function getUnknown(repository: EntityRepository, metaEdId: string): any {
-  return getEntity(repository, metaEdId, 'unknown') as Association;
+export function getUnknown(repository: EntityRepository, entityName: string): any {
+  return getEntity(repository, entityName, 'unknown') as Association;
 }
 
-export function getAssociation(repository: EntityRepository, metaEdId: string): Association {
-  return getEntity(repository, metaEdId, 'association') as Association;
+export function getAssociation(repository: EntityRepository, entityName: string): Association {
+  return getEntity(repository, entityName, 'association') as Association;
 }
 
-export function getAssociationExtension(repository: EntityRepository, metaEdId: string): AssociationExtension {
-  return getEntity(repository, metaEdId, 'associationExtension') as AssociationExtension;
+export function getAssociationExtension(repository: EntityRepository, entityName: string): AssociationExtension {
+  return getEntity(repository, entityName, 'associationExtension') as AssociationExtension;
 }
 
-export function getAssociationSubclass(repository: EntityRepository, metaEdId: string): AssociationSubclass {
-  return getEntity(repository, metaEdId, 'associationSubclass') as AssociationSubclass;
+export function getAssociationSubclass(repository: EntityRepository, entityName: string): AssociationSubclass {
+  return getEntity(repository, entityName, 'associationSubclass') as AssociationSubclass;
 }
 
-export function getChoice(repository: EntityRepository, metaEdId: string): Choice {
-  return getEntity(repository, metaEdId, 'choice') as Choice;
+export function getChoice(repository: EntityRepository, entityName: string): Choice {
+  return getEntity(repository, entityName, 'choice') as Choice;
 }
 
-export function getCommon(repository: EntityRepository, metaEdId: string): Common {
-  return getEntity(repository, metaEdId, 'common') as Common;
+export function getCommon(repository: EntityRepository, entityName: string): Common {
+  return getEntity(repository, entityName, 'common') as Common;
 }
 
-export function getCommonExtension(repository: EntityRepository, metaEdId: string): CommonExtension {
-  return getEntity(repository, metaEdId, 'commonExtension') as CommonExtension;
+export function getCommonExtension(repository: EntityRepository, entityName: string): CommonExtension {
+  return getEntity(repository, entityName, 'commonExtension') as CommonExtension;
 }
 
-export function getCommonSubclass(repository: EntityRepository, metaEdId: string): CommonSubclass {
-  return getEntity(repository, metaEdId, 'commonSubclass') as AssociationSubclass;
+export function getCommonSubclass(repository: EntityRepository, entityName: string): CommonSubclass {
+  return getEntity(repository, entityName, 'commonSubclass') as AssociationSubclass;
 }
 
-export function getDecimalType(repository: EntityRepository, metaEdId: string): DecimalType {
-  return getEntity(repository, metaEdId, 'decimalType') as DecimalType;
+export function getDecimalType(repository: EntityRepository, entityName: string): DecimalType {
+  return getEntity(repository, entityName, 'decimalType') as DecimalType;
 }
 
-export function getDescriptor(repository: EntityRepository, metaEdId: string): Descriptor {
-  return getEntity(repository, metaEdId, 'descriptor') as Descriptor;
+export function getDescriptor(repository: EntityRepository, entityName: string): Descriptor {
+  return getEntity(repository, entityName, 'descriptor') as Descriptor;
 }
 
-export function getDomainEntity(repository: EntityRepository, metaEdId: string): DomainEntity {
-  return getEntity(repository, metaEdId, 'domainEntity') as DomainEntity;
+export function getDomainEntity(repository: EntityRepository, entityName: string): DomainEntity {
+  return getEntity(repository, entityName, 'domainEntity') as DomainEntity;
 }
 
-export function getDomainEntityExtension(repository: EntityRepository, metaEdId: string): DomainEntityExtension {
-  return getEntity(repository, metaEdId, 'domainEntityExtension') as DomainEntityExtension;
+export function getDomainEntityExtension(repository: EntityRepository, entityName: string): DomainEntityExtension {
+  return getEntity(repository, entityName, 'domainEntityExtension') as DomainEntityExtension;
 }
 
-export function getDomainEntitySubclass(repository: EntityRepository, metaEdId: string): DomainEntitySubclass {
-  return getEntity(repository, metaEdId, 'domainEntitySubclass') as DomainEntitySubclass;
+export function getDomainEntitySubclass(repository: EntityRepository, entityName: string): DomainEntitySubclass {
+  return getEntity(repository, entityName, 'domainEntitySubclass') as DomainEntitySubclass;
 }
 
-export function getEnumeration(repository: EntityRepository, metaEdId: string): Enumeration {
-  return getEntity(repository, metaEdId, 'enumeration') as Enumeration;
+export function getEnumeration(repository: EntityRepository, entityName: string): Enumeration {
+  return getEntity(repository, entityName, 'enumeration') as Enumeration;
 }
 
-export function getIntegerType(repository: EntityRepository, metaEdId: string): IntegerType {
-  return getEntity(repository, metaEdId, 'integerType') as IntegerType;
+export function getIntegerType(repository: EntityRepository, entityName: string): IntegerType {
+  return getEntity(repository, entityName, 'integerType') as IntegerType;
 }
 
-export function getInterchange(repository: EntityRepository, metaEdId: string): Interchange {
-  return getEntity(repository, metaEdId, 'interchange') as Interchange;
+export function getInterchange(repository: EntityRepository, entityName: string): Interchange {
+  return getEntity(repository, entityName, 'interchange') as Interchange;
 }
 
-export function getInterchangeExtension(repository: EntityRepository, metaEdId: string): InterchangeExtension {
-  return getEntity(repository, metaEdId, 'interchangeExtension') as InterchangeExtension;
+export function getInterchangeExtension(repository: EntityRepository, entityName: string): InterchangeExtension {
+  return getEntity(repository, entityName, 'interchangeExtension') as InterchangeExtension;
 }
 
-export function getMapTypeEnumeration(repository: EntityRepository, metaEdId: string): MapTypeEnumeration {
-  return getEntity(repository, metaEdId, 'mapTypeEnumeration') as MapTypeEnumeration;
+export function getMapTypeEnumeration(repository: EntityRepository, entityName: string): MapTypeEnumeration {
+  return getEntity(repository, entityName, 'mapTypeEnumeration') as MapTypeEnumeration;
 }
 
-export function getSchoolYearEnumeration(repository: EntityRepository, metaEdId: string): SchoolYearEnumeration {
-  return getEntity(repository, metaEdId, 'schoolYearEnumeration') as SchoolYearEnumeration;
+export function getSchoolYearEnumeration(repository: EntityRepository, entityName: string): SchoolYearEnumeration {
+  return getEntity(repository, entityName, 'schoolYearEnumeration') as SchoolYearEnumeration;
 }
 
-export function getSharedDecimal(repository: EntityRepository, metaEdId: string): SharedDecimal {
-  return getEntity(repository, metaEdId, 'sharedDecimal') as SharedDecimal;
+export function getSharedDecimal(repository: EntityRepository, entityName: string): SharedDecimal {
+  return getEntity(repository, entityName, 'sharedDecimal') as SharedDecimal;
 }
 
-export function getSharedInteger(repository: EntityRepository, metaEdId: string): SharedInteger {
-  return getEntity(repository, metaEdId, 'sharedInteger') as SharedInteger;
+export function getSharedInteger(repository: EntityRepository, entityName: string): SharedInteger {
+  return getEntity(repository, entityName, 'sharedInteger') as SharedInteger;
 }
 
-export function getSharedString(repository: EntityRepository, metaEdId: string): SharedString {
-  return getEntity(repository, metaEdId, 'sharedString') as SharedString;
+export function getSharedString(repository: EntityRepository, entityName: string): SharedString {
+  return getEntity(repository, entityName, 'sharedString') as SharedString;
 }
 
-export function getStringType(repository: EntityRepository, metaEdId: string): StringType {
-  return getEntity(repository, metaEdId, 'stringType') as StringType;
+export function getStringType(repository: EntityRepository, entityName: string): StringType {
+  return getEntity(repository, entityName, 'stringType') as StringType;
 }
 
-export function getDomain(repository: EntityRepository, metaEdId: string): Domain {
-  return getEntity(repository, metaEdId, 'domain') as Domain;
+export function getDomain(repository: EntityRepository, entityName: string): Domain {
+  return getEntity(repository, entityName, 'domain') as Domain;
 }
 
-export function getSubdomain(repository: EntityRepository, metaEdId: string): Subdomain {
-  return getEntity(repository, metaEdId, 'subdomain') as Subdomain;
+export function getSubdomain(repository: EntityRepository, entityName: string): Subdomain {
+  return getEntity(repository, entityName, 'subdomain') as Subdomain;
 }
