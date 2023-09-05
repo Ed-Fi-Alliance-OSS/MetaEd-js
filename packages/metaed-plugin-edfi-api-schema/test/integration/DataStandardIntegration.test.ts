@@ -57,7 +57,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
 
   it('should create the correct JSON path mappings for StudentAssessment', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentAssessment');
-    expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity?.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "Accommodation": Array [
           "$.accommodations[*].accommodationDescriptor",
@@ -237,7 +237,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
 
   it('should create the correct JSON path mappings for Session', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('Session');
-    expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity?.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "AcademicWeek": Array [
           "$.academicWeeks[*].academicWeekReference.schoolId",
@@ -319,7 +319,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
 
   it('should create the correct JSON path mappings for StudentCompetencyObjective', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentCompetencyObjective');
-    expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity?.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "CompetencyLevel": Array [
           "$.competencyLevelDescriptor",
@@ -491,7 +491,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
   });
   it('should create the correct JSON path mappings for StudentLearningObjective', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentLearningObjective');
-    expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity?.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "CompetencyLevel": Array [
           "$.competencyLevelDescriptor",
@@ -698,7 +698,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
 
   it('should create the correct JSON path mappings for StudentAssessment', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentAssessment');
-    expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity?.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "Accommodation": Array [
           "$.accommodations[*].accommodationDescriptor",
@@ -911,7 +911,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
 
   it('should create the correct JSON path mappings for Session', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('Session');
-    expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity?.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "AcademicWeek": Array [
           "$.academicWeeks[*].academicWeekReference.schoolId",
@@ -993,7 +993,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
 
   it('should create the correct JSON path mappings for StudentCompetencyObjective', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentCompetencyObjective');
-    expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity?.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "CompetencyLevel": Array [
           "$.competencyLevelDescriptor",
@@ -1207,7 +1207,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
 
   it('should create the correct JSON path mappings for StudentAssessment', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentAssessment');
-    expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity?.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "Accommodation": Array [
           "$.accommodations[*].accommodationDescriptor",
@@ -1420,7 +1420,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
 
   it('should create the correct JSON path mappings for Session', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('Session');
-    expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity?.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "AcademicWeek": Array [
           "$.academicWeeks[*].academicWeekReference.schoolId",
@@ -1502,7 +1502,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
 
   it('should create the correct JSON path mappings for StudentCompetencyObjective', () => {
     const entity = metaEd.namespace.get('EdFi')?.entity.domainEntity.get('StudentCompetencyObjective');
-    expect(entity?.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity?.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "CompetencyLevel": Array [
           "$.competencyLevelDescriptor",

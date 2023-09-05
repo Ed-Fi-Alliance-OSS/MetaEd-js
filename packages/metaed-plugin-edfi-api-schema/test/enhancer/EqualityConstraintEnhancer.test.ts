@@ -21,7 +21,7 @@ import { enhance as referenceComponentEnhancer } from '../../src/enhancer/Refere
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
-import { enhance as jsonPathsMappingEnhancer } from '../../src/enhancer/JsonPathsMappingEnhancer';
+import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
 
 import { enhance } from '../../src/enhancer/EqualityConstraintEnhancer';
 
@@ -57,7 +57,7 @@ describe('when building domain entity with DomainEntity collection and single me
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    jsonPathsMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -110,7 +110,7 @@ describe('when building domain entity with single merge directive', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    jsonPathsMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -167,7 +167,7 @@ describe('when building domain entity with DomainEntity collection and two merge
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    jsonPathsMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -239,7 +239,7 @@ describe('when building domain entity with DomainEntity collection and single me
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    jsonPathsMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -307,7 +307,7 @@ describe('when building domain entity with DomainEntity collection and single me
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    jsonPathsMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -386,7 +386,7 @@ describe('when two domain entities with all four possible simple identities are 
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    jsonPathsMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -474,7 +474,7 @@ describe('when merging on both a reference and a simple identity down multiple l
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    jsonPathsMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -554,7 +554,7 @@ describe('when merging on a reference with multiple levels of domain entities be
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    jsonPathsMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -630,7 +630,7 @@ describe('when merging on a reference through a choice', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    jsonPathsMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -691,7 +691,7 @@ describe('when merging on a reference through a common collection', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    jsonPathsMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 

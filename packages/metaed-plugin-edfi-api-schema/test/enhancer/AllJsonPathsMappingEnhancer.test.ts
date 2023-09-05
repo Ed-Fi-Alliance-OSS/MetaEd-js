@@ -30,7 +30,7 @@ import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntit
 import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/SubclassApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
-import { enhance } from '../../src/enhancer/JsonPathsMappingEnhancer';
+import { enhance } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
 
 const ajv = new Ajv({ allErrors: true });
 addFormatsTo(ajv);
@@ -76,9 +76,9 @@ describe('when building simple domain entity with all the simple non-collections
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "OptionalBooleanProperty": Array [
           "$.optionalBooleanProperty",
@@ -166,9 +166,9 @@ describe('when building simple domain entity with all the simple collections', (
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "OptionalBooleanProperty": Array [
           "$.optionalBooleanProperties[*].optionalBooleanProperty",
@@ -265,9 +265,9 @@ describe('when building a domain entity referencing another referencing another 
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "ClassPeriod": Array [
           "$.classPeriods[*].classPeriodReference.classPeriodName",
@@ -352,9 +352,9 @@ describe('when building a domain entity referencing CourseOffering with an impli
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping for DomainEntityName', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "CourseOffering": Array [
           "$.courseOfferingReference.localCourseCode",
@@ -390,6 +390,71 @@ describe('when building a domain entity referencing CourseOffering with an impli
         ],
         "SectionIdentifier": Array [
           "$.sectionIdentifier",
+        ],
+      }
+    `);
+  });
+
+  it('should be correct allJsonPathsMapping for CourseOffering', () => {
+    const entity = namespace.entity.domainEntity.get('CourseOffering');
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "LocalCourseCode": Array [
+          "$.localCourseCode",
+        ],
+        "School": Array [
+          "$.schoolReference.schoolId",
+        ],
+        "School.SchoolId": Array [
+          "$.schoolReference.schoolId",
+        ],
+        "Session": Array [
+          "$.sessionReference.schoolId",
+          "$.sessionReference.schoolYear",
+          "$.sessionReference.sessionName",
+        ],
+        "Session.School": Array [
+          "$.sessionReference.schoolId",
+        ],
+        "Session.School.SchoolId": Array [
+          "$.sessionReference.schoolId",
+        ],
+        "Session.SchoolYear": Array [
+          "$.sessionReference.schoolYear",
+        ],
+        "Session.SessionName": Array [
+          "$.sessionReference.sessionName",
+        ],
+      }
+    `);
+  });
+
+  it('should be correct allJsonPathsMapping for Session', () => {
+    const entity = namespace.entity.domainEntity.get('Session');
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "School": Array [
+          "$.schoolReference.schoolId",
+        ],
+        "School.SchoolId": Array [
+          "$.schoolReference.schoolId",
+        ],
+        "SchoolYear": Array [
+          "$.schoolYearTypeReference.schoolYear",
+        ],
+        "SessionName": Array [
+          "$.sessionName",
+        ],
+      }
+    `);
+  });
+
+  it('should be correct allJsonPathsMapping for School', () => {
+    const entity = namespace.entity.domainEntity.get('School');
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "SchoolId": Array [
+          "$.schoolId",
         ],
       }
     `);
@@ -457,9 +522,9 @@ describe('when building domain entity with nested choice and inline commons', ()
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": Array [
           "$.contentIdentifier",
@@ -524,9 +589,9 @@ describe('when building domain entity with scalar collection named with prefix o
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": Array [
           "$.contentIdentifier",
@@ -575,9 +640,9 @@ describe('when building domain entity with Association/DomainEntity collection n
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": Array [
           "$.contentIdentifier",
@@ -624,9 +689,9 @@ describe('when building domain entity with acronym property name', () => {
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": Array [
           "$.contentIdentifier",
@@ -682,9 +747,9 @@ describe('when building domain entity with a simple common collection', () => {
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentificationCode.AssessmentIdentificationSystem": Array [
           "$.identificationCodes[*].assessmentIdentificationSystemDescriptor",
@@ -754,9 +819,9 @@ describe('when building domain entity subclass with common collection and descri
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntitySubclass.get(domainEntitySubclassName);
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "CommunityOrganizationId": Array [
           "$.communityOrganizationId",
@@ -815,9 +880,9 @@ describe('when building association with a common collection in a common collect
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('StudentEducationOrganizationAssociation');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "Address.Period.BeginDate": Array [
           "$.addresses[*].periods[*].beginDate",
@@ -872,9 +937,9 @@ describe('when building domain entity with a descriptor with role name', () => {
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "AssessedGradeLevel": Array [
           "$.assessedGradeLevelDescriptor",
@@ -923,9 +988,9 @@ describe('when building domain entity with a descriptor collection with role nam
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "AssessedGradeLevel": Array [
           "$.assessedGradeLevels[*].gradeLevelDescriptor",
@@ -983,9 +1048,9 @@ describe('when building domain entity with a common with a choice', () => {
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": Array [
           "$.assessmentIdentifier",
@@ -1046,9 +1111,9 @@ describe('when building domain entity with a common and a common collection with
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": Array [
           "$.assessmentIdentifier",
@@ -1092,9 +1157,9 @@ describe('when building domain entity with an all-caps property', () => {
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": Array [
           "$.assessmentIdentifier",
@@ -1150,9 +1215,9 @@ describe('when building domain entity with a common with a domain entity referen
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": Array [
           "$.assessmentIdentifier",
@@ -1208,9 +1273,9 @@ describe('when building domain entity with two school year enumerations, one rol
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "ClassOfSchoolYear": Array [
           "$.classOfSchoolYearTypeReference.schoolYear",
@@ -1263,9 +1328,9 @@ describe('when building domain entity with reference to domain entity with schoo
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "Calendar": Array [
           "$.calendarReference.schoolId",
@@ -1310,9 +1375,9 @@ describe('when building a descriptor', () => {
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.descriptor.get('GradeLevel');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`Object {}`);
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`Object {}`);
   });
 });
 
@@ -1343,9 +1408,9 @@ describe('when building a school year enumeration', () => {
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`Object {}`);
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`Object {}`);
   });
 });
 
@@ -1400,9 +1465,9 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
     enhance(metaEd);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('StudentCohort');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "CohortYear.SchoolYear": Array [
           "$.years[*].schoolYearTypeReference.schoolYear",
@@ -1459,9 +1524,9 @@ describe('when building a domain entity with an inline common property with a de
     namespace = metaEd.namespace.get(namespaceName);
   });
 
-  it('should be correct jsonPathsMapping', () => {
+  it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Section');
-    expect(entity.data.edfiApiSchema.jsonPathsMapping).toMatchInlineSnapshot(`
+    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
       Object {
         "AvailableCredits.CreditType": Array [
           "$.availableCreditTypeDescriptor",

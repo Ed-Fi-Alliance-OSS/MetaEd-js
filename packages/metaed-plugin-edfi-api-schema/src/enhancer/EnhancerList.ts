@@ -1,6 +1,7 @@
 import { Enhancer } from '@edfi/metaed-core';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../model/EntityPropertyApiSchemaData';
 import { enhance as entityApiSchemaDataSetupEnhancer } from '../model/EntityApiSchemaData';
+import { enhance as pluginEnvironmentSetupEnhancer } from '../model/PluginEnvironment';
 import { enhance as subclassPropertyNamingCollisionEnhancer } from './SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from './ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from './ApiPropertyMappingEnhancer';
@@ -10,13 +11,20 @@ import { enhance as propertyCollectingEnhancer } from './PropertyCollectingEnhan
 import { enhance as subclassPropertyCollectingEnhancer } from './SubclassPropertyCollectingEnhancer';
 import { enhance as jsonSchemaEnhancerForInsert } from './JsonSchemaEnhancerForInsert';
 import { enhance as jsonSchemaEnhancerForUpdate } from './JsonSchemaEnhancerForUpdate';
-import { enhance as jsonPathsMappingEnhancer } from './JsonPathsMappingEnhancer';
+import { enhance as jsonSchemaEnhancerForQuery } from './JsonSchemaEnhancerForQuery';
+import { enhance as allJsonPathsMappingEnhancer } from './AllJsonPathsMappingEnhancer';
 import { enhance as equalityConstraintEnhancer } from './EqualityConstraintEnhancer';
+import { enhance as resourceNameEnhancer } from './ResourceNameEnhancer';
+import { enhance as identityFullnameEnhancer } from './IdentityFullnameEnhancer';
+import { enhance as subclassIdentityFullnameEnhancer } from './SubclassIdentityFullnameEnhancer';
+import { enhance as documentPathsMappingEnhancer } from './DocumentPathsMappingEnhancer';
+import { enhance as apiSchemaBuildingEnhancer } from './ApiSchemaBuildingEnhancer';
 
 export function enhancerList(): Enhancer[] {
   return [
     entityPropertyApiSchemaDataSetupEnhancer,
     entityApiSchemaDataSetupEnhancer,
+    pluginEnvironmentSetupEnhancer,
     subclassPropertyNamingCollisionEnhancer,
     referenceComponentEnhancer,
     apiPropertyMappingEnhancer,
@@ -26,7 +34,13 @@ export function enhancerList(): Enhancer[] {
     subclassApiEntityMappingEnhancer,
     jsonSchemaEnhancerForInsert,
     jsonSchemaEnhancerForUpdate,
-    jsonPathsMappingEnhancer,
+    jsonSchemaEnhancerForQuery,
+    allJsonPathsMappingEnhancer,
     equalityConstraintEnhancer,
+    resourceNameEnhancer,
+    identityFullnameEnhancer,
+    subclassIdentityFullnameEnhancer,
+    documentPathsMappingEnhancer,
+    apiSchemaBuildingEnhancer,
   ];
 }

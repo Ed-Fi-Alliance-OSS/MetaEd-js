@@ -41,7 +41,7 @@ function mergeDirectivePathStringsToPath(segments: string[]): PropertyPath {
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
     (entity) => {
-      const { jsonPathsMapping, equalityConstraints } = entity.data.edfiApiSchema as EntityApiSchemaData;
+      const { allJsonPathsMapping, equalityConstraints } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
       // find properties on entity with merge directives
       (entity as TopLevelEntity).properties.forEach((property: EntityProperty) => {
@@ -53,9 +53,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
             if (isErrorInDataStandard(entity, property, mergeDirective)) return;
 
             const sourceJsonPaths: JsonPath[] | undefined =
-              jsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)];
+              allJsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)];
             const targetJsonPaths: JsonPath[] | undefined =
-              jsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)];
+              allJsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)];
             invariant(
               sourceJsonPaths != null && targetJsonPaths != null,
               'Invariant failed in EqualityConstraintEnhancer: source or target JsonPaths are undefined',

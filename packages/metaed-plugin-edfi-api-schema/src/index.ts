@@ -6,7 +6,7 @@ export { enhance as entityPropertyApiSchemaDataSetupEnhancer } from './model/Ent
 export { enhance as apiEntityMappingEnhancer } from './enhancer/ApiEntityMappingEnhancer';
 export { enhance as apiPropertyMappingEnhancer } from './enhancer/ApiPropertyMappingEnhancer';
 export { enhance as equalityConstraintEnhancer } from './enhancer/EqualityConstraintEnhancer';
-export { enhance as jsonPathsMappingEnhancer } from './enhancer/JsonPathsMappingEnhancer';
+export { enhance as allJsonPathsMappingEnhancer } from './enhancer/AllJsonPathsMappingEnhancer';
 export { enhance as jsonSchemaEnhancerForInsert } from './enhancer/JsonSchemaEnhancerForInsert';
 export { enhance as jsonSchemaEnhancerForUpdate } from './enhancer/JsonSchemaEnhancerForUpdate';
 export { enhance as propertyCollectingEnhancer } from './enhancer/PropertyCollectingEnhancer';

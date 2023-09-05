@@ -5,19 +5,13 @@
 
 import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { SchemaProperty } from '../model/JsonSchema';
 
-const enhancerName = 'JsonSchemaEnhancerForUpdate';
-
-const id: SchemaProperty = {
-  type: 'string',
-  description: 'The item id',
-};
+const enhancerName = 'JsonSchemaEnhancerForQuery';
 
 /**
- * This enhancer uses the results of the ApiMappingEnhancer to create a JSON schema for update
- * for each MetaEd entity. This schema is used to validate the API JSON document body
- * shape for each resource that corresponds to the MetaEd entity.
+ * This enhancer uses the results of the ApiMappingEnhancer to create a JSON schema for query
+ * for each MetaEd entity. This schema is used to validate API query strings as objects
+ * for each resource that corresponds to the MetaEd entity.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   // Build schemas for each domain entity and association
@@ -32,13 +26,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   ).forEach((entity) => {
     const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
     const { jsonSchemaForInsert } = entityApiSchemaData;
-    entityApiSchemaData.jsonSchemaForUpdate = {
+    entityApiSchemaData.jsonSchemaForQuery = {
       ...jsonSchemaForInsert,
-      properties: {
-        id,
-        ...jsonSchemaForInsert.properties,
-      },
-      required: ['id', ...(jsonSchemaForInsert.required ?? [])],
+      // Need to relax the validation such that no fields are "required" in the query string
+      required: [],
     };
   });
   return {

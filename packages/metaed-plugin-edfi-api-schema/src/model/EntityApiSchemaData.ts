@@ -4,6 +4,9 @@ import type { CollectedProperty } from './CollectedProperty';
 import { SchemaRoot, NoSchemaRoot } from './JsonSchema';
 import type { EqualityConstraint } from './EqualityConstraint';
 import type { JsonPathsMapping } from './JsonPathsMapping';
+import { ResourceName } from './api-schema/ResourceName';
+import { EndpointName } from './api-schema/EndpointName';
+import { PropertyFullName } from './api-schema/PropertyFullName';
 
 export type EntityApiSchemaData = {
   /**
@@ -19,6 +22,11 @@ export type EntityApiSchemaData = {
    * The API document JSON schema that corresponds to this MetaEd entity on update.
    */
   jsonSchemaForUpdate: SchemaRoot;
+
+  /**
+   * The API document JSON schema that corresponds to valid query strings as objects for this MetaEd entity.
+   */
+  jsonSchemaForQuery: SchemaRoot;
 
   /**
    * Properties that belong under this entity in the API body. Excludes Choice and Inline Common properties
@@ -42,13 +50,38 @@ export type EntityApiSchemaData = {
    *
    * The JsonPaths array is always is sorted order.
    */
-  jsonPathsMapping: JsonPathsMapping;
+  allJsonPathsMapping: JsonPathsMapping;
 
   /**
    * A list of EqualityConstraints to be applied to an Ed-Fi API document. An EqualityConstraint
    * is a source/target JsonPath pair.
    */
   equalityConstraints: EqualityConstraint[];
+
+  /**
+   * The API resource endpoint name for this entity, if it is a TopLevelEntity.
+   */
+  endpointName: EndpointName;
+
+  /**
+   * The API resource name for this entity, if it is a TopLevelEntity.
+   */
+  resourceName: ResourceName;
+
+  /**
+   * The property fullnames for every identity property on this entity, in sorted order
+   */
+  identityFullnames: PropertyFullName[];
+
+  /**
+   * A mapping of MetaEd property full names to corresponding JsonPaths to data elements
+   * in the API document. This is a subset of allJsonPathsMapping, omitting property paths
+   * of referenced entities. Like allJsonPathsMapping, a scalar property will have a single
+   * JsonPath, while reference properties may have multiple JsonPaths.
+   *
+   * The JsonPaths array is always is sorted order.
+   */
+  documentPathsMapping: JsonPathsMapping;
 };
 
 /**
@@ -61,8 +94,11 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     apiMapping: NoApiEntityMapping,
     jsonSchemaForInsert: NoSchemaRoot,
     collectedApiProperties: [],
-    jsonPathsMapping: {},
+    allJsonPathsMapping: {},
     equalityConstraints: [],
+    endpointName: '' as EndpointName,
+    resourceName: '' as ResourceName,
+    identityFullnames: [],
   });
 }
 

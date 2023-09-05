@@ -1,5 +1,4 @@
-// This is a generic "brand" type used to create branded types
-type Brand<K, T> = K & { __brand: T };
+import { Brand } from './BrandType';
 
 /**
  *  A string type branded as a PropertyPath, which is a dot-separated MetaEd property name list

@@ -433,7 +433,7 @@ function buildJsonSchema(entityForSchema: TopLevelEntity, schoolYearSchemas: Sch
 }
 
 /**
- * This enhancer uses the results of the ApiMappingEnhancer to create a JSON schema
+ * This enhancer uses the results of the ApiMappingEnhancer to create a JSON schema for insert
  * for each MetaEd entity. This schema is used to validate the API JSON document body
  * shape for each resource that corresponds to the MetaEd entity.
  */

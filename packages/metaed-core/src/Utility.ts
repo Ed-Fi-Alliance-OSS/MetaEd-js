@@ -90,3 +90,9 @@ export function normalizeEnumerationSuffix(base: string) {
 export function targetTechnologyVersionFor(pluginShortName: string, metaEd: MetaEdEnvironment) {
   return (metaEd.plugin.get(pluginShortName) as PluginEnvironment).targetTechnologyVersion;
 }
+
+export function decapitalize(str: string): string {
+  if (str.length === 0) return str;
+  if (str.length === 1) return str.toLowerCase();
+  return str[0].toLowerCase() + str.slice(1);
+}

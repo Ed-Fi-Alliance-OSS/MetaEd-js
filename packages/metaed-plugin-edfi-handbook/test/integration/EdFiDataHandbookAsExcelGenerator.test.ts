@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, GeneratorResult, SemVer, PluginEnvironment } from '@edfi/metaed-core';
+import { MetaEdEnvironment, GeneratorResult, SemVer, PluginEnvironment, newPluginEnvironment } from '@edfi/metaed-core';
 import {
   newMetaEdEnvironment,
   MetaEdTextBuilder,
@@ -60,6 +60,7 @@ describe('when generating excel version of handbook', (): void => {
     const edfiOdsRelationalPluginEnvironment: PluginEnvironment | undefined = metaEd.plugin.get('edfiOdsRelational');
     if (edfiOdsRelationalPluginEnvironment != null) edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = '3.0.0';
     initializeOdsSqlServerPlugin().enhancer.forEach((enhance) => enhance(metaEd));
+    metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
     initializeApiSchemaPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     initializeHandbookPlugin().enhancer.forEach((enhance) => enhance(metaEd));
 
