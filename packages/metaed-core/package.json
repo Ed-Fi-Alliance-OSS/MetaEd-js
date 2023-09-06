@@ -27,7 +27,7 @@
     "semver": "^7.3.8",
     "sugar": "^2.0.6",
     "topo": "^3.0.3",
-    "winston": "3.8.2"
+    "winston": "^3.10.0"
   },
   "devDependencies": {
     "@types/klaw-sync": "^6.0.1",
