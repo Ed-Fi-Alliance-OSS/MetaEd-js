@@ -20,7 +20,7 @@
     "deep-freeze": "^0.0.1",
     "handlebars": "^4.7.7",
     "hash.js": "^1.1.7",
-    "ramda": "^0.28.0",
+    "ramda": "^0.29.0",
     "sugar": "^2.0.6",
     "ts-invariant": "^0.10.3"
   },
