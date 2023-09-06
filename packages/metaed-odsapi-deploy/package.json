@@ -17,6 +17,7 @@
     "@edfi/metaed-core": "4.2.2-dev.4",
     "chalk": "^5.3.0",
     "fs-extra": "^11.1.1",
+    "klaw-sync": "^6.0.0",
     "ramda": "^0.28.0",
     "semver": "^5.7.1",
     "sugar": "^2.0.6",
