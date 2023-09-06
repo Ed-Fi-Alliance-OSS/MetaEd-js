@@ -69,6 +69,7 @@
     "test:unit:everything-else": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest \"packages/(?!metaed-plugin-edfi-ods|metaed-plugin-edfi-unified)\"",
     "test:unit:debug": "node --inspect-brk ./node_modules/.bin/jest --runInBand",
     "test:code-duplication": "npx jsinspect -t 50 --ignore \"test|gen|dist\" ./packages",
-    "version": "npm install && git stage package-lock.json"
+    "version": "npm install && git stage package-lock.json",
+    "test:mine": "cross-env NODE_OPTIONS=--max-old-space-size=4096 jest packages/metaed-core"
   }
 }
