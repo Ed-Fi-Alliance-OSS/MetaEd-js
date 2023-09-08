@@ -1,5 +1,6 @@
 import type { MetaEdPlugin } from '@edfi/metaed-core';
 import { enhancerList } from './enhancer/EnhancerList';
+import { generate as apiSchemaGenerator } from './generator/ApiSchemaGenerator';
 
 export { enhance as entityApiSchemaDataSetupEnhancer } from './model/EntityApiSchemaData';
 export { enhance as entityPropertyApiSchemaDataSetupEnhancer } from './model/EntityPropertyApiSchemaData';
@@ -29,7 +30,7 @@ export function initialize(): MetaEdPlugin {
   return {
     enhancer: enhancerList(),
     validator: [],
-    generator: [],
+    generator: [apiSchemaGenerator],
     shortName: 'edfiApiSchema',
   };
 }
