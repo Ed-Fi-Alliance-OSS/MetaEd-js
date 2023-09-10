@@ -19,7 +19,7 @@
     "@edfi/metaed-plugin-edfi-ods-sqlserver": "4.2.2-dev.6",
     "@edfi/metaed-plugin-edfi-unified-advanced": "4.2.2-dev.6",
     "handlebars": "^4.7.7",
-    "ramda": "^0.28.0"
+    "ramda": "^0.29.0"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",

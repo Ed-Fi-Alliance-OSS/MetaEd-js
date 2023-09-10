@@ -22,7 +22,7 @@
     "@edfi/metaed-plugin-edfi-unified-advanced": "4.2.2-dev.6",
     "handlebars": "^4.7.7",
     "js-beautify": "^1.14.7",
-    "ramda": "^0.28.0",
+    "ramda": "^0.29.0",
     "sort-array": "^2.0.0",
     "xlsx": "0.18.5"
   },
