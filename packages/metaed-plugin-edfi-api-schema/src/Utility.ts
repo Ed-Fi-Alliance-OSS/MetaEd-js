@@ -1,5 +1,5 @@
 import { EntityProperty, NoEntityProperty, TopLevelEntity } from '@edfi/metaed-core';
-import inflection from 'inflection';
+import * as inflection from 'inflection';
 import { EntityPropertyApiSchemaData } from './model/EntityPropertyApiSchemaData';
 
 /**
