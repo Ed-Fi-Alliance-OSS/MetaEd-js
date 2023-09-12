@@ -46,6 +46,7 @@ export function loadFiles(state: State): boolean {
 
     try {
       const filenames: string[] = klawSync(inputDirectory.path, {
+        traverseAll: true,
         filter: (item) => ['.metaed', '.metaEd', '.MetaEd', '.METAED'].includes(path.extname(item.path)),
       }).map((klawObject) => klawObject.path);
 
