@@ -13,6 +13,7 @@ import { ProjectSchema } from '../model/api-schema/ProjectSchema';
 import { SemVer } from '../model/api-schema/SemVer';
 import { ResourceSchema } from '../model/api-schema/ResourceSchema';
 import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping';
+import { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
 
 /**
  *
@@ -48,7 +49,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       resourceSchemaMapping,
     };
 
-    apiSchema.projects.push(projectSchema);
+    const projectNamespace: ProjectNamespace = projectSchema.projectName.toLowerCase() as ProjectNamespace;
+
+    apiSchema.projectSchemas[projectNamespace] = projectSchema;
 
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntity').forEach((domainEntity) => {
       // Abstract entities are not resources (e.g. EducationOrganization)
