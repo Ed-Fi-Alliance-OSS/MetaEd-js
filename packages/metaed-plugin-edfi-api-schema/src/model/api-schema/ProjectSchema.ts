@@ -22,7 +22,7 @@ export type ProjectSchema = {
   /**
    * A collection of EndpointNames mapped to ResourceSchema objects.
    */
-  resourceSchemaMapping: ResourceSchemaMapping;
+  resourceSchemas: ResourceSchemaMapping;
 
   /**
    * SchoolYearEnumeration is not a resource but has a ResourceSchema

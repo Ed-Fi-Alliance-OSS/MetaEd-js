@@ -104,14 +104,14 @@ describe('when building simple domain entity with all the simple non-collections
 
   it('should be correct equalityConstraints for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
@@ -122,7 +122,7 @@ describe('when building simple domain entity with all the simple non-collections
 
   it('should be correct jsonSchemaForInsert for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -224,7 +224,7 @@ describe('when building simple domain entity with all the simple non-collections
 
   it('should be correct jsonSchemaForQuery for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
@@ -318,7 +318,7 @@ describe('when building simple domain entity with all the simple non-collections
 
   it('should be correct jsonSchemaForUpdate for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -425,7 +425,7 @@ describe('when building simple domain entity with all the simple non-collections
 
   it('should be correct resourceName for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames.resourceName,
     ).toMatchInlineSnapshot(`"DomainEntityName"`);
   });
 });
@@ -466,14 +466,14 @@ describe('when building simple domain entity with all the simple collections', (
 
   it('should be correct equalityConstraints for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
@@ -484,7 +484,7 @@ describe('when building simple domain entity with all the simple collections', (
 
   it('should be correct jsonSchemaForInsert for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -761,7 +761,7 @@ describe('when building simple domain entity with all the simple collections', (
 
   it('should be correct jsonSchemaForQuery for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
@@ -1029,7 +1029,7 @@ describe('when building simple domain entity with all the simple collections', (
 
   it('should be correct jsonSchemaForUpdate for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -1311,7 +1311,7 @@ describe('when building simple domain entity with all the simple collections', (
 
   it('should be correct resourceName for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames.resourceName,
     ).toMatchInlineSnapshot(`"DomainEntityName"`);
   });
 });
@@ -1358,14 +1358,14 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be correct equalityConstraint for DomainEntityNames', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
@@ -1377,7 +1377,7 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be correct jsonSchemaForInsert for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -1464,7 +1464,7 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be correct jsonSchemaForQuery for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
@@ -1547,7 +1547,7 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be correct jsonSchemaForUpdate for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -1639,7 +1639,7 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be correct resourceName for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames.resourceName,
     ).toMatchInlineSnapshot(`"DomainEntityName"`);
   });
 });
@@ -1687,14 +1687,14 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct equalityConstraints for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
@@ -1706,7 +1706,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct jsonSchemaForInsert for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -1771,7 +1771,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct jsonSchemaForQuery for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
@@ -1833,7 +1833,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct jsonSchemaForUpdate for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
         .jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -1903,20 +1903,21 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct resourceName for DomainEntityName', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.domainEntityNames.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames.resourceName,
     ).toMatchInlineSnapshot(`"DomainEntityName"`);
   });
 
   it('should be correct equalityConstraints for CourseOffering', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.courseOfferings
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.courseOfferings
         .equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for CourseOffering', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.courseOfferings.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.courseOfferings
+        .identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
         "LocalCourseCode",
@@ -1928,7 +1929,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct jsonSchemaForInsert for CourseOffering', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.courseOfferings
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.courseOfferings
         .jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -2002,7 +2003,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct jsonSchemaForQuery for CourseOffering', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.courseOfferings
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.courseOfferings
         .jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
@@ -2072,7 +2073,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct jsonSchemaForUpdate for CourseOffering', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.courseOfferings
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.courseOfferings
         .jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -2151,18 +2152,18 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct resourceName for CourseOffering', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.courseOfferings.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.courseOfferings.resourceName,
     ).toMatchInlineSnapshot(`"CourseOffering"`);
   });
 
   it('should be correct equalityConstraints for Session', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.sessions.equalityConstraints,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sessions.equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for Session', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.sessions.identityFullnames)
+    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sessions.identityFullnames)
       .toMatchInlineSnapshot(`
       Array [
         "SessionName",
@@ -2173,8 +2174,9 @@ describe('when building a domain entity referencing CourseOffering with an impli
   });
 
   it('should be correct jsonSchemaForInsert for Session', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.sessions.jsonSchemaForInsert)
-      .toMatchInlineSnapshot(`
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sessions.jsonSchemaForInsert,
+    ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2233,8 +2235,9 @@ describe('when building a domain entity referencing CourseOffering with an impli
   });
 
   it('should be correct jsonSchemaForQuery for Session', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.sessions.jsonSchemaForQuery)
-      .toMatchInlineSnapshot(`
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sessions.jsonSchemaForQuery,
+    ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2289,8 +2292,9 @@ describe('when building a domain entity referencing CourseOffering with an impli
   });
 
   it('should be correct jsonSchemaForUpdate for Session', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.sessions.jsonSchemaForUpdate)
-      .toMatchInlineSnapshot(`
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sessions.jsonSchemaForUpdate,
+    ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2355,18 +2359,18 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct resourceName for Session', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.sessions.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sessions.resourceName,
     ).toMatchInlineSnapshot(`"Session"`);
   });
 
   it('should be correct equalityConstraints for School', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.schools.equalityConstraints,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for School', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.schools.identityFullnames)
+    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.identityFullnames)
       .toMatchInlineSnapshot(`
       Array [
         "SchoolId",
@@ -2375,8 +2379,9 @@ describe('when building a domain entity referencing CourseOffering with an impli
   });
 
   it('should be correct jsonSchemaForInsert for School', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.schools.jsonSchemaForInsert)
-      .toMatchInlineSnapshot(`
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.jsonSchemaForInsert,
+    ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2404,7 +2409,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
   });
 
   it('should be correct jsonSchemaForQuery for School', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.schools.jsonSchemaForQuery)
+    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.jsonSchemaForQuery)
       .toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -2431,8 +2436,9 @@ describe('when building a domain entity referencing CourseOffering with an impli
   });
 
   it('should be correct jsonSchemaForUpdate for School', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.schools.jsonSchemaForUpdate)
-      .toMatchInlineSnapshot(`
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.jsonSchemaForUpdate,
+    ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -2466,7 +2472,7 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct resourceName for School', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.schools.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.resourceName,
     ).toMatchInlineSnapshot(`"School"`);
   });
 });
@@ -2526,14 +2532,14 @@ describe('when building domain entity with nested choice and inline commons', ()
 
   it('should be correct equalityConstraints for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
@@ -2544,7 +2550,7 @@ describe('when building domain entity with nested choice and inline commons', ()
 
   it('should be correct jsonSchemaForInsert for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -2658,7 +2664,7 @@ describe('when building domain entity with nested choice and inline commons', ()
 
   it('should be correct jsonSchemaForQuery for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
@@ -2769,7 +2775,7 @@ describe('when building domain entity with nested choice and inline commons', ()
 
   it('should be correct jsonSchemaForUpdate for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -2888,7 +2894,7 @@ describe('when building domain entity with nested choice and inline commons', ()
 
   it('should be correct resourceName for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents.resourceName,
     ).toMatchInlineSnapshot(`"EducationContent"`);
   });
 });
@@ -2918,14 +2924,14 @@ describe('when building domain entity with scalar collection named with prefix o
 
   it('should be correct equalityConstraints for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
@@ -2936,7 +2942,7 @@ describe('when building domain entity with scalar collection named with prefix o
 
   it('should be correct jsonSchemaForInsert for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -2987,7 +2993,7 @@ describe('when building domain entity with scalar collection named with prefix o
 
   it('should be correct jsonSchemaForQuery for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
@@ -3035,7 +3041,7 @@ describe('when building domain entity with scalar collection named with prefix o
 
   it('should be correct jsonSchemaForUpdate for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -3091,7 +3097,7 @@ describe('when building domain entity with scalar collection named with prefix o
 
   it('should be correct resourceName for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents.resourceName,
     ).toMatchInlineSnapshot(`"EducationContent"`);
   });
 });
@@ -3126,14 +3132,14 @@ describe('when building domain entity with Association/DomainEntity collection n
 
   it('should be correct equalityConstraints for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
@@ -3144,7 +3150,7 @@ describe('when building domain entity with Association/DomainEntity collection n
 
   it('should be correct jsonSchemaForInsert for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -3204,7 +3210,7 @@ describe('when building domain entity with Association/DomainEntity collection n
 
   it('should be correct jsonSchemaForQuery for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
@@ -3261,7 +3267,7 @@ describe('when building domain entity with Association/DomainEntity collection n
 
   it('should be correct jsonSchemaForUpdate for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
         .jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -3326,7 +3332,7 @@ describe('when building domain entity with Association/DomainEntity collection n
 
   it('should be correct resourceName for EducationContent', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.educationContents.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents.resourceName,
     ).toMatchInlineSnapshot(`"EducationContent"`);
   });
 });
@@ -3356,14 +3362,14 @@ describe('when building domain entity with acronym property name', () => {
 
   it('should be correct equalityConstraints for StudentSpecialEducationProgramAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
         .studentSpecialEducationProgramAssociations.equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for StudentSpecialEducationProgramAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
         .studentSpecialEducationProgramAssociations.identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
@@ -3375,7 +3381,7 @@ describe('when building domain entity with acronym property name', () => {
 
   it('should be correct jsonSchemaForInsert for StudentSpecialEducationProgramAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
         .studentSpecialEducationProgramAssociations.jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -3412,7 +3418,7 @@ describe('when building domain entity with acronym property name', () => {
 
   it('should be correct jsonSchemaForQuery for StudentSpecialEducationProgramAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
         .studentSpecialEducationProgramAssociations.jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
@@ -3446,7 +3452,7 @@ describe('when building domain entity with acronym property name', () => {
 
   it('should be correct jsonSchemaForUpdate for StudentSpecialEducationProgramAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
         .studentSpecialEducationProgramAssociations.jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -3488,7 +3494,7 @@ describe('when building domain entity with acronym property name', () => {
 
   it('should be correct resourceName for StudentSpecialEducationProgramAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
         .studentSpecialEducationProgramAssociations.resourceName,
     ).toMatchInlineSnapshot(`"StudentSpecialEducationProgramAssociation"`);
   });
@@ -3530,13 +3536,13 @@ describe('when building domain entity with a simple common collection', () => {
 
   it('should be correct equalityConstraints for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.equalityConstraints,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
         "AssessmentIdentifier",
@@ -3546,7 +3552,7 @@ describe('when building domain entity with a simple common collection', () => {
 
   it('should be correct jsonSchemaForInsert for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForInsert,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -3599,7 +3605,7 @@ describe('when building domain entity with a simple common collection', () => {
 
   it('should be correct jsonSchemaForQuery for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForQuery,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -3650,7 +3656,7 @@ describe('when building domain entity with a simple common collection', () => {
 
   it('should be correct jsonSchemaForUpdate for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForUpdate,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -3708,7 +3714,7 @@ describe('when building domain entity with a simple common collection', () => {
 
   it('should be correct resourceName for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.resourceName,
     ).toMatchInlineSnapshot(`"Assessment"`);
   });
 });
@@ -3757,14 +3763,14 @@ describe('when building domain entity subclass with common collection and descri
 
   it('should be correct equalityConstraints for CommunityOrganization', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.communityOrganizations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.communityOrganizations
         .equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for CommunityOrganization', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.communityOrganizations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.communityOrganizations
         .identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
@@ -3775,7 +3781,7 @@ describe('when building domain entity subclass with common collection and descri
 
   it('should be correct jsonSchemaForInsert for CommunityOrganization', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.communityOrganizations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.communityOrganizations
         .jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -3829,7 +3835,7 @@ describe('when building domain entity subclass with common collection and descri
 
   it('should be correct jsonSchemaForQuery for CommunityOrganization', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.communityOrganizations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.communityOrganizations
         .jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
@@ -3881,7 +3887,7 @@ describe('when building domain entity subclass with common collection and descri
 
   it('should be correct jsonSchemaForUpdate for CommunityOrganization', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.communityOrganizations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.communityOrganizations
         .jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -3940,7 +3946,7 @@ describe('when building domain entity subclass with common collection and descri
 
   it('should be correct resourceName for CommunityOrganization', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.communityOrganizations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.communityOrganizations
         .resourceName,
     ).toMatchInlineSnapshot(`"CommunityOrganization"`);
   });
@@ -3982,14 +3988,14 @@ describe('when building association with a common collection in a common collect
 
   it('should be correct equalityConstraints for StudentEducationOrganizationAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
         .studentEducationOrganizationAssociations.equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for StudentEducationOrganizationAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
         .studentEducationOrganizationAssociations.identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
@@ -4000,7 +4006,7 @@ describe('when building association with a common collection in a common collect
 
   it('should be correct jsonSchemaForInsert for StudentEducationOrganizationAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
         .studentEducationOrganizationAssociations.jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -4071,7 +4077,7 @@ describe('when building association with a common collection in a common collect
 
   it('should be correct jsonSchemaForQuery for StudentEducationOrganizationAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
         .studentEducationOrganizationAssociations.jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
@@ -4140,7 +4146,7 @@ describe('when building association with a common collection in a common collect
 
   it('should be correct jsonSchemaForUpdate for StudentEducationOrganizationAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
         .studentEducationOrganizationAssociations.jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -4216,7 +4222,7 @@ describe('when building association with a common collection in a common collect
 
   it('should be correct resourceName for StudentEducationOrganizationAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
         .studentEducationOrganizationAssociations.resourceName,
     ).toMatchInlineSnapshot(`"StudentEducationOrganizationAssociation"`);
   });
@@ -4251,13 +4257,13 @@ describe('when building domain entity with a descriptor with role name', () => {
 
   it('should be correct equalityConstraints for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.equalityConstraints,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
         "AssessmentIdentifier",
@@ -4267,7 +4273,7 @@ describe('when building domain entity with a descriptor with role name', () => {
 
   it('should be correct jsonSchemaForInsert for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForInsert,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -4300,7 +4306,7 @@ describe('when building domain entity with a descriptor with role name', () => {
 
   it('should be correct jsonSchemaForQuery for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForQuery,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -4331,7 +4337,7 @@ describe('when building domain entity with a descriptor with role name', () => {
 
   it('should be correct jsonSchemaForUpdate for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForUpdate,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -4369,7 +4375,7 @@ describe('when building domain entity with a descriptor with role name', () => {
 
   it('should be correct resourceName for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.resourceName,
     ).toMatchInlineSnapshot(`"Assessment"`);
   });
 });
@@ -4403,13 +4409,13 @@ describe('when building domain entity with a descriptor collection with role nam
 
   it('should be correct equalityConstraints for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.equalityConstraints,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
         "AssessmentIdentifier",
@@ -4419,7 +4425,7 @@ describe('when building domain entity with a descriptor collection with role nam
 
   it('should be correct jsonSchemaForInsert for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForInsert,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -4466,7 +4472,7 @@ describe('when building domain entity with a descriptor collection with role nam
 
   it('should be correct jsonSchemaForQuery for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForQuery,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -4511,7 +4517,7 @@ describe('when building domain entity with a descriptor collection with role nam
 
   it('should be correct jsonSchemaForUpdate for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForUpdate,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -4563,7 +4569,7 @@ describe('when building domain entity with a descriptor collection with role nam
 
   it('should be correct resourceName for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.resourceName,
     ).toMatchInlineSnapshot(`"Assessment"`);
   });
 });
@@ -4606,13 +4612,13 @@ describe('when building domain entity with a common with a choice', () => {
 
   it('should be correct equalityConstraints for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.equalityConstraints,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
         "AssessmentIdentifier",
@@ -4622,7 +4628,7 @@ describe('when building domain entity with a common with a choice', () => {
 
   it('should be correct jsonSchemaForInsert for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForInsert,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -4672,7 +4678,7 @@ describe('when building domain entity with a common with a choice', () => {
 
   it('should be correct jsonSchemaForQuery for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForQuery,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -4720,7 +4726,7 @@ describe('when building domain entity with a common with a choice', () => {
 
   it('should be correct jsonSchemaForUpdate for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForUpdate,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -4775,7 +4781,7 @@ describe('when building domain entity with a common with a choice', () => {
 
   it('should be correct resourceName for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.resourceName,
     ).toMatchInlineSnapshot(`"Assessment"`);
   });
 });
@@ -4815,13 +4821,13 @@ describe('when building domain entity with a common and a common collection with
 
   it('should be correct equalityConstraints for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.equalityConstraints,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
         "AssessmentIdentifier",
@@ -4831,7 +4837,7 @@ describe('when building domain entity with a common and a common collection with
 
   it('should be correct jsonSchemaForInsert for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForInsert,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -4891,7 +4897,7 @@ describe('when building domain entity with a common and a common collection with
 
   it('should be correct jsonSchemaForQuery for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForQuery,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -4948,7 +4954,7 @@ describe('when building domain entity with a common and a common collection with
 
   it('should be correct jsonSchemaForUpdate for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForUpdate,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -5013,7 +5019,7 @@ describe('when building domain entity with a common and a common collection with
 
   it('should be correct resourceName for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.resourceName,
     ).toMatchInlineSnapshot(`"Assessment"`);
   });
 });
@@ -5040,13 +5046,13 @@ describe('when building domain entity with an all-caps property', () => {
 
   it('should be correct equalityConstraints for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.equalityConstraints,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
         "AssessmentIdentifier",
@@ -5056,7 +5062,7 @@ describe('when building domain entity with an all-caps property', () => {
 
   it('should be correct jsonSchemaForInsert for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForInsert,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -5090,7 +5096,7 @@ describe('when building domain entity with an all-caps property', () => {
 
   it('should be correct jsonSchemaForQuery for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForQuery,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -5122,7 +5128,7 @@ describe('when building domain entity with an all-caps property', () => {
 
   it('should be correct jsonSchemaForUpdate for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForUpdate,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -5161,7 +5167,7 @@ describe('when building domain entity with an all-caps property', () => {
 
   it('should be correct resourceName for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.resourceName,
     ).toMatchInlineSnapshot(`"Assessment"`);
   });
 });
@@ -5202,13 +5208,13 @@ describe('when building domain entity with a common with a domain entity referen
 
   it('should be correct equalityConstraints for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.equalityConstraints,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
         "AssessmentIdentifier",
@@ -5218,7 +5224,7 @@ describe('when building domain entity with a common with a domain entity referen
 
   it('should be correct jsonSchemaForInsert for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForInsert,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -5271,7 +5277,7 @@ describe('when building domain entity with a common with a domain entity referen
 
   it('should be correct jsonSchemaForQuery for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForQuery,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -5322,7 +5328,7 @@ describe('when building domain entity with a common with a domain entity referen
 
   it('should be correct jsonSchemaForUpdate for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.jsonSchemaForUpdate,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -5380,7 +5386,7 @@ describe('when building domain entity with a common with a domain entity referen
 
   it('should be correct resourceName for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.assessments.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.resourceName,
     ).toMatchInlineSnapshot(`"Assessment"`);
   });
 });
@@ -5415,14 +5421,14 @@ describe('when building domain entity with two school year enumerations, one rol
 
   it('should be correct equalityConstraints for StudentSchoolAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentSchoolAssociations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
         .equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for StudentSchoolAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentSchoolAssociations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
         .identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
@@ -5433,7 +5439,7 @@ describe('when building domain entity with two school year enumerations, one rol
 
   it('should be correct jsonSchemaForInsert for StudentSchoolAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentSchoolAssociations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
         .jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -5493,7 +5499,7 @@ describe('when building domain entity with two school year enumerations, one rol
 
   it('should be correct jsonSchemaForQuery for StudentSchoolAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentSchoolAssociations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
         .jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
@@ -5551,7 +5557,7 @@ describe('when building domain entity with two school year enumerations, one rol
 
   it('should be correct jsonSchemaForUpdate for StudentSchoolAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentSchoolAssociations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
         .jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -5616,7 +5622,7 @@ describe('when building domain entity with two school year enumerations, one rol
 
   it('should be correct resourceName for StudentSchoolAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentSchoolAssociations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
         .resourceName,
     ).toMatchInlineSnapshot(`"StudentSchoolAssociation"`);
   });
@@ -5652,14 +5658,14 @@ describe('when building domain entity with reference to domain entity with schoo
 
   it('should be correct equalityConstraints for StudentSchoolAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentSchoolAssociations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
         .equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for StudentSchoolAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentSchoolAssociations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
         .identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
@@ -5670,7 +5676,7 @@ describe('when building domain entity with reference to domain entity with schoo
 
   it('should be correct jsonSchemaForInsert for StudentSchoolAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentSchoolAssociations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
         .jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -5720,7 +5726,7 @@ describe('when building domain entity with reference to domain entity with schoo
 
   it('should be correct jsonSchemaForQuery for StudentSchoolAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentSchoolAssociations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
         .jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
@@ -5768,7 +5774,7 @@ describe('when building domain entity with reference to domain entity with schoo
 
   it('should be correct jsonSchemaForUpdate for StudentSchoolAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentSchoolAssociations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
         .jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -5823,7 +5829,7 @@ describe('when building domain entity with reference to domain entity with schoo
 
   it('should be correct resourceName for StudentSchoolAssociation', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentSchoolAssociations
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
         .resourceName,
     ).toMatchInlineSnapshot(`"StudentSchoolAssociation"`);
   });
@@ -5873,14 +5879,15 @@ describe('when building a schema for StudentCohort', () => {
 
   it('should be correct equalityConstraints for StudentCohort', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentCohorts
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentCohorts
         .equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for StudentCohort', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentCohorts.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentCohorts
+        .identityFullnames,
     ).toMatchInlineSnapshot(`
       Array [
         "StudentUniqueId",
@@ -5890,7 +5897,7 @@ describe('when building a schema for StudentCohort', () => {
 
   it('should be correct jsonSchemaForInsert for StudentCohort', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentCohorts
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentCohorts
         .jsonSchemaForInsert,
     ).toMatchInlineSnapshot(`
       Object {
@@ -5950,7 +5957,8 @@ describe('when building a schema for StudentCohort', () => {
 
   it('should be correct jsonSchemaForQuery for StudentCohort', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentCohorts.jsonSchemaForQuery,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentCohorts
+        .jsonSchemaForQuery,
     ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -6007,7 +6015,7 @@ describe('when building a schema for StudentCohort', () => {
 
   it('should be correct jsonSchemaForUpdate for StudentCohort', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentCohorts
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentCohorts
         .jsonSchemaForUpdate,
     ).toMatchInlineSnapshot(`
       Object {
@@ -6072,7 +6080,7 @@ describe('when building a schema for StudentCohort', () => {
 
   it('should be correct resourceName for StudentCohort', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.studentCohorts.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentCohorts.resourceName,
     ).toMatchInlineSnapshot(`"StudentCohort"`);
   });
 });
@@ -6114,12 +6122,12 @@ describe('when building a domain entity with an inline common property with a de
 
   it('should be correct equalityConstraints for Section', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.sections.equalityConstraints,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sections.equalityConstraints,
     ).toMatchInlineSnapshot(`Array []`);
   });
 
   it('should be correct identityFullnames for Section', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.sections.identityFullnames)
+    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sections.identityFullnames)
       .toMatchInlineSnapshot(`
       Array [
         "SectionIdentifier",
@@ -6128,8 +6136,9 @@ describe('when building a domain entity with an inline common property with a de
   });
 
   it('should be correct jsonSchemaForInsert for Section', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.sections.jsonSchemaForInsert)
-      .toMatchInlineSnapshot(`
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sections.jsonSchemaForInsert,
+    ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -6160,8 +6169,9 @@ describe('when building a domain entity with an inline common property with a de
   });
 
   it('should be correct jsonSchemaForQuery for Section', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.sections.jsonSchemaForQuery)
-      .toMatchInlineSnapshot(`
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sections.jsonSchemaForQuery,
+    ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -6190,8 +6200,9 @@ describe('when building a domain entity with an inline common property with a de
   });
 
   it('should be correct jsonSchemaForUpdate for Section', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.sections.jsonSchemaForUpdate)
-      .toMatchInlineSnapshot(`
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sections.jsonSchemaForUpdate,
+    ).toMatchInlineSnapshot(`
       Object {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "additionalProperties": false,
@@ -6228,7 +6239,7 @@ describe('when building a domain entity with an inline common property with a de
 
   it('should be correct resourceName for Section', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projects[0].resourceSchemaMapping.sections.resourceName,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sections.resourceName,
     ).toMatchInlineSnapshot(`"Section"`);
   });
 });
