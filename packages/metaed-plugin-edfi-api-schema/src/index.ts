@@ -15,6 +15,7 @@ export { enhance as referenceComponentEnhancer } from './enhancer/ReferenceCompo
 export { enhance as subclassApiEntityMappingEnhancer } from './enhancer/SubclassApiEntityMappingEnhancer';
 export { enhance as subclassPropertyCollectingEnhancer } from './enhancer/SubclassPropertyCollectingEnhancer';
 export { enhance as subclassPropertyNamingCollisionEnhancer } from './enhancer/SubclassPropertyNamingCollisionEnhancer';
+export { enhance as apiSchemaBuildingEnhancer } from './enhancer/ApiSchemaBuildingEnhancer';
 
 export type { CollectedProperty } from './model/CollectedProperty';
 export type { EntityApiSchemaData } from './model/EntityApiSchemaData';
