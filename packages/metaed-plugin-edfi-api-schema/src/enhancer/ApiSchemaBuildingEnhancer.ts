@@ -1,3 +1,4 @@
+import { invariant } from 'ts-invariant';
 import {
   MetaEdEnvironment,
   EnhancerResult,
@@ -6,21 +7,24 @@ import {
   PluginEnvironment,
   DomainEntity,
   TopLevelEntity,
+  EntityProperty,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { PluginEnvironmentEdfiApiSchema } from '../model/PluginEnvironment';
 import { ProjectSchema } from '../model/api-schema/ProjectSchema';
 import { SemVer } from '../model/api-schema/SemVer';
-import { ResourceSchema } from '../model/api-schema/ResourceSchema';
+import { BaseResourceSchema, ResourceSchema } from '../model/api-schema/ResourceSchema';
 import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping';
 import { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
+import { ProjectName } from '../model/api-schema/ProjectName';
+import { PropertyFullName } from '../model/api-schema/PropertyFullName';
 
 /**
  *
  */
 function buildResourceSchema(entity: TopLevelEntity): ResourceSchema {
   const entityApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
-  return {
+  const baseResourceSchema: BaseResourceSchema = {
     resourceName: entityApiSchemaData.resourceName,
     isDescriptor: entity.type === 'descriptor',
     allowIdentityUpdates: entity.allowPrimaryKeyUpdates,
@@ -30,6 +34,26 @@ function buildResourceSchema(entity: TopLevelEntity): ResourceSchema {
     equalityConstraints: entityApiSchemaData.equalityConstraints,
     identityFullnames: entityApiSchemaData.identityFullnames,
     documentPathsMapping: entityApiSchemaData.documentPathsMapping,
+  };
+  if (entity.baseEntity == null) {
+    return {
+      ...baseResourceSchema,
+      isSubclass: false,
+    };
+  }
+
+  const superclassEntityApiSchemaData = entity.baseEntity.data.edfiApiSchema as EntityApiSchemaData;
+
+  const subclassIdentityRenameProperty: EntityProperty | undefined = entity.properties.find((p) => p.isIdentityRename);
+  invariant(subclassIdentityRenameProperty != null, `Subclass ${entity.metaEdName} must have an identity rename property`);
+
+  return {
+    ...baseResourceSchema,
+    superclassProjectName: entity.baseEntity.namespace.projectName as ProjectName,
+    superclassResourceName: superclassEntityApiSchemaData.resourceName,
+    superclassIdentityFullname: subclassIdentityRenameProperty.baseKeyName as PropertyFullName,
+    subclassIdentityFullname: subclassIdentityRenameProperty.fullPropertyName as PropertyFullName,
+    isSubclass: true,
   };
 }
 /**

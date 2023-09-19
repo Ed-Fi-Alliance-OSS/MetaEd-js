@@ -6243,3 +6243,220 @@ describe('when building a domain entity with an inline common property with a de
     ).toMatchInlineSnapshot(`"Section"`);
   });
 });
+
+describe('when building superclass and subclass', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartAbstractEntity('EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentity('EducationOrganizationId', 'doc')
+      .withIntegerProperty('SuperclassProperty', 'doc', true, false)
+      .withEndAbstractEntity()
+
+      .withStartDomainEntitySubclass('School', 'EducationOrganization')
+      .withDocumentation('doc')
+      .withIntegerIdentityRename('SchoolId', 'EducationOrganizationId', 'doc')
+      .withIntegerProperty('SubclassProperty', 'doc', true, false)
+      .withEndDomainEntitySubclass()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
+
+    domainEntitySubclassBaseClassEnhancer(metaEd);
+    runApiSchemaEnhancers(metaEd);
+  });
+
+  it('should be correct equalityConstraints for School', () => {
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.equalityConstraints,
+    ).toMatchInlineSnapshot(`Array []`);
+  });
+
+  it('should be correct identityFullnames for School', () => {
+    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.identityFullnames)
+      .toMatchInlineSnapshot(`
+      Array [
+        "SchoolId",
+      ]
+    `);
+  });
+
+  it('should be correct jsonSchemaForInsert for School', () => {
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.jsonSchemaForInsert,
+    ).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {},
+            "type": "object",
+          },
+          "schoolId": Object {
+            "description": "doc",
+            "type": "integer",
+          },
+          "subclassProperty": Object {
+            "description": "doc",
+            "type": "integer",
+          },
+          "superclassProperty": Object {
+            "description": "doc",
+            "type": "integer",
+          },
+        },
+        "required": Array [
+          "schoolId",
+          "subclassProperty",
+          "superclassProperty",
+        ],
+        "title": "EdFi.School",
+        "type": "object",
+      }
+    `);
+  });
+
+  it('should be correct jsonSchemaForQuery for School', () => {
+    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.jsonSchemaForQuery)
+      .toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {},
+            "type": "object",
+          },
+          "schoolId": Object {
+            "description": "doc",
+            "type": "integer",
+          },
+          "subclassProperty": Object {
+            "description": "doc",
+            "type": "integer",
+          },
+          "superclassProperty": Object {
+            "description": "doc",
+            "type": "integer",
+          },
+        },
+        "required": Array [],
+        "title": "EdFi.School",
+        "type": "object",
+      }
+    `);
+  });
+
+  it('should be correct jsonSchemaForUpdate for School', () => {
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.jsonSchemaForUpdate,
+    ).toMatchInlineSnapshot(`
+      Object {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "description": "doc",
+        "properties": Object {
+          "_ext": Object {
+            "additionalProperties": true,
+            "description": "optional extension collection",
+            "properties": Object {},
+            "type": "object",
+          },
+          "id": Object {
+            "description": "The item id",
+            "type": "string",
+          },
+          "schoolId": Object {
+            "description": "doc",
+            "type": "integer",
+          },
+          "subclassProperty": Object {
+            "description": "doc",
+            "type": "integer",
+          },
+          "superclassProperty": Object {
+            "description": "doc",
+            "type": "integer",
+          },
+        },
+        "required": Array [
+          "id",
+          "schoolId",
+          "subclassProperty",
+          "superclassProperty",
+        ],
+        "title": "EdFi.School",
+        "type": "object",
+      }
+    `);
+  });
+
+  it('should be correct resourceName for School', () => {
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.resourceName,
+    ).toMatchInlineSnapshot(`"School"`);
+  });
+
+  it('should have isSubclass flag for School', () => {
+    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.isSubclass).toBe(
+      true,
+    );
+  });
+
+  it('should have correct superclassProjectName for School', () => {
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.superclassProjectName,
+    ).toMatchInlineSnapshot(`"EdFi"`);
+  });
+
+  it('should have correct superclassResourceName for School', () => {
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.superclassResourceName,
+    ).toMatchInlineSnapshot(`"EducationOrganization"`);
+  });
+
+  it('should have correct superclassIdentityFullname for School', () => {
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools
+        .superclassIdentityFullname,
+    ).toMatchInlineSnapshot(`"EducationOrganizationId"`);
+  });
+
+  it('should have correct subclassIdentityFullname for School', () => {
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools
+        .subclassIdentityFullname,
+    ).toMatchInlineSnapshot(`"SchoolId"`);
+  });
+
+  it('should have correct documentPathsMapping for School', () => {
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.documentPathsMapping,
+    ).toMatchInlineSnapshot(`
+      Object {
+        "SchoolId": Array [
+          "$.schoolId",
+        ],
+        "SubclassProperty": Array [
+          "$.subclassProperty",
+        ],
+        "SuperclassProperty": Array [
+          "$.superclassProperty",
+        ],
+      }
+    `);
+  });
+});

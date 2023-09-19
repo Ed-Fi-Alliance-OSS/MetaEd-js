@@ -8,11 +8,12 @@ import { DocumentPaths } from './DocumentPaths';
 import { SchemaRoot } from './JsonSchema';
 import { PropertyFullName } from './PropertyFullName';
 import { ResourceName } from './ResourceName';
+import { ProjectName } from './ProjectName';
 
 /**
- * API resource schema information
+ * API resource schema information common between regular and subclass resources
  */
-export type ResourceSchema = {
+export type BaseResourceSchema = {
   /**
    * The resource name. Typically, this is the entity metaEdName.
    */
@@ -61,3 +62,34 @@ export type ResourceSchema = {
    */
   documentPathsMapping: { [key: PropertyFullName]: DocumentPaths };
 };
+
+/**
+ * The additional ResourceSchema fields for a subclass
+ */
+type SubclassResourceSchema = BaseResourceSchema & {
+  /**
+   * The project name and resource name for the superclass
+   */
+  superclassProjectName: ProjectName;
+  superclassResourceName: ResourceName;
+
+  /**
+   * The superclass identity field and the matching subclass identity field name.
+   * This is found in MetaEd as an "identity rename". MetaEd only allows the super/subclass
+   * relationship to have a single common identity field.
+   */
+  superclassIdentityFullname: PropertyFullName;
+  subclassIdentityFullname: PropertyFullName;
+};
+
+/**
+ * API resource schema information as a whole, with "isSubclass" as a differentiator between
+ * regular and subclass resources.
+ */
+export type ResourceSchema =
+  | (BaseResourceSchema & {
+      isSubclass: false;
+    })
+  | (SubclassResourceSchema & {
+      isSubclass: true;
+    });
