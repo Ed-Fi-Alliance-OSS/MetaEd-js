@@ -64,19 +64,24 @@ export type BaseResourceSchema = {
 };
 
 /**
- * The additional ResourceSchema fields for a subclass
+ * The additional ResourceSchema fields for an Association subclass
  */
-type SubclassResourceSchema = BaseResourceSchema & {
+export type AssociationSubclassResourceSchema = BaseResourceSchema & {
   /**
    * The project name and resource name for the superclass
    */
   superclassProjectName: ProjectName;
   superclassResourceName: ResourceName;
+};
 
+/**
+ * The additional ResourceSchema fields for a DomainEntity subclass
+ */
+export type DomainEntitySubclassResourceSchema = AssociationSubclassResourceSchema & {
   /**
    * The superclass identity field and the matching subclass identity field name.
    * This is found in MetaEd as an "identity rename". MetaEd only allows the super/subclass
-   * relationship to have a single common identity field.
+   * relationship of Domain Entities to have a single common identity field.
    */
   superclassIdentityFullname: PropertyFullName;
   subclassIdentityFullname: PropertyFullName;
@@ -90,6 +95,11 @@ export type ResourceSchema =
   | (BaseResourceSchema & {
       isSubclass: false;
     })
-  | (SubclassResourceSchema & {
+  | (AssociationSubclassResourceSchema & {
       isSubclass: true;
+      subclassType: 'association';
+    })
+  | (DomainEntitySubclassResourceSchema & {
+      isSubclass: true;
+      subclassType: 'domainEntity';
     });
