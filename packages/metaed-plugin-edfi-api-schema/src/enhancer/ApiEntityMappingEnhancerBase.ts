@@ -10,9 +10,9 @@ import type { CollectedProperty } from '../model/CollectedProperty';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import type { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
-import type { PropertyPath } from '../model/PathTypes';
+import { MetaEdPropertyPath } from '../model/api-schema/MetaEdPropertyPath';
 
-type ReferenceElementsWithPaths = Map<ReferenceElement, PropertyPath[]>;
+type ReferenceElementsWithPaths = Map<ReferenceElement, MetaEdPropertyPath[]>;
 
 /**
  * All of the identity properties of the given entity, in sorted order
@@ -35,9 +35,12 @@ export function referenceGroupsFrom(sortedProperties: EntityProperty[]): Referen
 /**
  * Takes two property paths and joins them, returning a new dot-separated path.
  */
-function joinPropertyPaths(currentPropertyPath: PropertyPath, newPropertyPath: PropertyPath): PropertyPath {
+function joinPropertyPaths(
+  currentPropertyPath: MetaEdPropertyPath,
+  newPropertyPath: MetaEdPropertyPath,
+): MetaEdPropertyPath {
   if (currentPropertyPath === '') return newPropertyPath;
-  return `${currentPropertyPath}.${newPropertyPath}` as PropertyPath;
+  return `${currentPropertyPath}.${newPropertyPath}` as MetaEdPropertyPath;
 }
 
 /**
@@ -46,15 +49,15 @@ function joinPropertyPaths(currentPropertyPath: PropertyPath, newPropertyPath: P
  */
 function flattenReferenceElementsFromComponent(
   referenceComponent: ReferenceComponent,
-  currentPropertyPath: PropertyPath,
-  propertyPathAccumulator: PropertyPath[],
+  currentPropertyPath: MetaEdPropertyPath,
+  propertyPathAccumulator: MetaEdPropertyPath[],
   referenceElementsAccumulator: ReferenceElementsWithPaths,
 ) {
   if (isReferenceElement(referenceComponent)) {
     referenceElementsAccumulator.set(
       referenceComponent,
       propertyPathAccumulator.concat(
-        joinPropertyPaths(currentPropertyPath, referenceComponent.sourceProperty.fullPropertyName as PropertyPath),
+        joinPropertyPaths(currentPropertyPath, referenceComponent.sourceProperty.fullPropertyName as MetaEdPropertyPath),
       ),
     );
   } else {
@@ -64,13 +67,16 @@ function flattenReferenceElementsFromComponent(
         referenceElementsAccumulator.set(
           subReferenceElement,
           propertyPathAccumulator.concat(
-            joinPropertyPaths(currentPropertyPath, subReferenceElement.sourceProperty.fullPropertyName as PropertyPath),
+            joinPropertyPaths(
+              currentPropertyPath,
+              subReferenceElement.sourceProperty.fullPropertyName as MetaEdPropertyPath,
+            ),
           ),
         );
       } else {
-        const nextPropertyPath: PropertyPath = joinPropertyPaths(
+        const nextPropertyPath: MetaEdPropertyPath = joinPropertyPaths(
           currentPropertyPath,
-          subReferenceComponent.sourceProperty.fullPropertyName as PropertyPath,
+          subReferenceComponent.sourceProperty.fullPropertyName as MetaEdPropertyPath,
         );
 
         flattenReferenceElementsFromComponent(
@@ -97,7 +103,7 @@ export function flattenedIdentityPropertiesFrom(identityProperties: EntityProper
       identityProperty.type === 'association' || identityProperty.type === 'domainEntity'
         ? identityProperty.fullPropertyName
         : ''
-    ) as PropertyPath;
+    ) as MetaEdPropertyPath;
 
     flattenReferenceElementsFromComponent(
       identityProperty.data.edfiApiSchema.referenceComponent,

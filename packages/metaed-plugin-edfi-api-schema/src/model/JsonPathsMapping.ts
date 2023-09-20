@@ -1,4 +1,5 @@
-import { PropertyPath, JsonPath } from './PathTypes';
+import { JsonPath } from './api-schema/JsonPath';
+import { MetaEdPropertyPath } from './api-schema/MetaEdPropertyPath';
 
 /**
  * A mapping of dot-separated MetaEd property paths to corresponding JsonPaths to data elements
@@ -10,4 +11,4 @@ import { PropertyPath, JsonPath } from './PathTypes';
  *
  * The JsonPaths array is always is sorted order.
  */
-export type JsonPathsMapping = { [key: PropertyPath]: JsonPath[] };
+export type JsonPathsMapping = { [key: MetaEdPropertyPath]: JsonPath[] };

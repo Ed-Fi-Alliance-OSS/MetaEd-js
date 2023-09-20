@@ -6,9 +6,9 @@
 import { Brand } from '../BrandType';
 
 /**
- * A string type branded as a ResourceName, which is the name of an API resource. Typically, this is the same
+ * A string type branded as a MetaEdResourceName, which is the name of an API resource. Typically, this is the same
  * as the corresponding MetaEd entity name. However, there are exceptions, for example descriptors have a
  * "Descriptor" suffix on their resource name.
  */
 
-export type ResourceName = Brand<string, 'ResourceName'>;
+export type MetaEdResourceName = Brand<string, 'MetaEdResourceName'>;

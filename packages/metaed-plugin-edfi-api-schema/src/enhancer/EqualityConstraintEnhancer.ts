@@ -11,7 +11,8 @@ import {
 } from '@edfi/metaed-core';
 import invariant from 'ts-invariant';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { JsonPath, PropertyPath } from '../model/PathTypes';
+import { JsonPath } from '../model/api-schema/JsonPath';
+import { MetaEdPropertyPath } from '../model/api-schema/MetaEdPropertyPath';
 
 /**
  * StudentCompetency/LearningObjective.StudentCompetency/LearningObjectiveSectionOrProgramChoice appear to have
@@ -30,8 +31,8 @@ function isErrorInDataStandard(entity: ModelBase, property: EntityProperty, merg
   );
 }
 
-function mergeDirectivePathStringsToPath(segments: string[]): PropertyPath {
-  return segments.join('.') as PropertyPath;
+function mergeDirectivePathStringsToPath(segments: string[]): MetaEdPropertyPath {
+  return segments.join('.') as MetaEdPropertyPath;
 }
 
 /**

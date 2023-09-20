@@ -6456,15 +6456,33 @@ describe('when building a Domain Entity subclass', () => {
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.documentPathsMapping,
     ).toMatchInlineSnapshot(`
       Object {
-        "SchoolId": Array [
-          "$.schoolId",
-        ],
-        "SubclassProperty": Array [
-          "$.subclassProperty",
-        ],
-        "SuperclassProperty": Array [
-          "$.superclassProperty",
-        ],
+        "SchoolId": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "schoolId",
+          ],
+          "paths": Object {
+            "schoolId": "$.schoolId",
+          },
+        },
+        "SubclassProperty": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "subclassProperty",
+          ],
+          "paths": Object {
+            "subclassProperty": "$.subclassProperty",
+          },
+        },
+        "SuperclassProperty": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "superclassProperty",
+          ],
+          "paths": Object {
+            "superclassProperty": "$.superclassProperty",
+          },
+        },
       }
     `);
   });
@@ -6493,11 +6511,13 @@ describe('when building an Association subclass', () => {
       .withStartDomainEntity('School')
       .withDocumentation('doc')
       .withIntegerIdentity('SchoolId', 'doc')
+      .withStringIdentity('SchoolName', 'doc', '30')
       .withEndDomainEntity()
 
       .withStartDomainEntity('Program')
       .withDocumentation('doc')
       .withIntegerIdentity('ProgramId', 'doc')
+      .withStringIdentity('ProgramName', 'doc', '30')
       .withEndDomainEntity()
 
       .withEndNamespace()
@@ -6553,9 +6573,15 @@ describe('when building an Association subclass', () => {
                 "description": "doc",
                 "type": "integer",
               },
+              "programName": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
             },
             "required": Array [
               "programId",
+              "programName",
             ],
             "type": "object",
           },
@@ -6566,9 +6592,15 @@ describe('when building an Association subclass', () => {
                 "description": "doc",
                 "type": "integer",
               },
+              "schoolName": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
             },
             "required": Array [
               "schoolId",
+              "schoolName",
             ],
             "type": "object",
           },
@@ -6616,9 +6648,15 @@ describe('when building an Association subclass', () => {
                 "description": "doc",
                 "type": "integer",
               },
+              "programName": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
             },
             "required": Array [
               "programId",
+              "programName",
             ],
             "type": "object",
           },
@@ -6629,9 +6667,15 @@ describe('when building an Association subclass', () => {
                 "description": "doc",
                 "type": "integer",
               },
+              "schoolName": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
             },
             "required": Array [
               "schoolId",
+              "schoolName",
             ],
             "type": "object",
           },
@@ -6678,9 +6722,15 @@ describe('when building an Association subclass', () => {
                 "description": "doc",
                 "type": "integer",
               },
+              "programName": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
             },
             "required": Array [
               "programId",
+              "programName",
             ],
             "type": "object",
           },
@@ -6691,9 +6741,15 @@ describe('when building an Association subclass', () => {
                 "description": "doc",
                 "type": "integer",
               },
+              "schoolName": Object {
+                "description": "doc",
+                "maxLength": 30,
+                "type": "string",
+              },
             },
             "required": Array [
               "schoolId",
+              "schoolName",
             ],
             "type": "object",
           },
@@ -6760,18 +6816,52 @@ describe('when building an Association subclass', () => {
         .documentPathsMapping,
     ).toMatchInlineSnapshot(`
       Object {
-        "Program": Array [
-          "$.programReference.programId",
-        ],
-        "School": Array [
-          "$.schoolReference.schoolId",
-        ],
-        "SubclassProperty": Array [
-          "$.subclassProperty",
-        ],
-        "SuperclassProperty": Array [
-          "$.superclassProperty",
-        ],
+        "Program": Object {
+          "isDescriptor": false,
+          "isReference": true,
+          "pathOrder": Array [
+            "programId",
+            "programName",
+          ],
+          "paths": Object {
+            "programId": "$.programReference.programId",
+            "programName": "$.programReference.programName",
+          },
+          "projectName": "EdFi",
+          "resourceName": "Program",
+        },
+        "School": Object {
+          "isDescriptor": false,
+          "isReference": true,
+          "pathOrder": Array [
+            "schoolId",
+            "schoolName",
+          ],
+          "paths": Object {
+            "schoolId": "$.schoolReference.schoolId",
+            "schoolName": "$.schoolReference.schoolName",
+          },
+          "projectName": "EdFi",
+          "resourceName": "School",
+        },
+        "SubclassProperty": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "subclassProperty",
+          ],
+          "paths": Object {
+            "subclassProperty": "$.subclassProperty",
+          },
+        },
+        "SuperclassProperty": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "superclassProperty",
+          ],
+          "paths": Object {
+            "superclassProperty": "$.superclassProperty",
+          },
+        },
       }
     `);
   });

@@ -1,6 +1,6 @@
 import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, TopLevelEntity } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { PropertyFullName } from '../model/api-schema/PropertyFullName';
+import { MetaEdPropertyFullName } from '../model/api-schema/MetaEdPropertyFullName';
 
 /**
  * Accumulates the identity fullnames for a subclass entity that maps to an API resource.
@@ -9,7 +9,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'domainEntitySubclass', 'associationSubclass').forEach((entity) => {
     const subclass: TopLevelEntity = entity as TopLevelEntity;
 
-    const identityFullnames: PropertyFullName[] = [];
+    const identityFullnames: MetaEdPropertyFullName[] = [];
 
     let renamedPropertyMetaEdName: string | null = null;
 
@@ -20,7 +20,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       if (property.isIdentityRename) renamedPropertyMetaEdName = property.baseKeyName;
 
       if (property.isPartOfIdentity) {
-        identityFullnames.push(property.fullPropertyName as PropertyFullName);
+        identityFullnames.push(property.fullPropertyName as MetaEdPropertyFullName);
       }
     });
 
@@ -30,7 +30,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         .filter((p) => p.metaEdName !== renamedPropertyMetaEdName)
         .forEach((property) => {
           if (property.isPartOfIdentity) {
-            identityFullnames.push(property.fullPropertyName as PropertyFullName);
+            identityFullnames.push(property.fullPropertyName as MetaEdPropertyFullName);
           }
         });
     }

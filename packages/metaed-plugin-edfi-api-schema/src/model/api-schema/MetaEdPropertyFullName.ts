@@ -6,8 +6,8 @@
 import { Brand } from '../BrandType';
 
 /**
- * A string type branded as a PropertyFullName, which is the full property name of a MetaEd
+ * A string type branded as a MetaEdPropertyFullName, which is the full property name of a MetaEd
  * property on a MetaEd entity. Role names on a property are expressed by prefix on the property name.
  */
 
-export type PropertyFullName = Brand<string, 'PropertyFullName'>;
+export type MetaEdPropertyFullName = Brand<string, 'MetaEdPropertyFullName'>;

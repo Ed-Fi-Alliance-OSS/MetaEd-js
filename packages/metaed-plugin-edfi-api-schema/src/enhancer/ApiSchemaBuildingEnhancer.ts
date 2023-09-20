@@ -18,8 +18,8 @@ import { SemVer } from '../model/api-schema/SemVer';
 import { ResourceSchema } from '../model/api-schema/ResourceSchema';
 import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping';
 import { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
-import { ProjectName } from '../model/api-schema/ProjectName';
-import { PropertyFullName } from '../model/api-schema/PropertyFullName';
+import { MetaEdProjectName } from '../model/api-schema/MetaEdProjectName';
+import { MetaEdPropertyFullName } from '../model/api-schema/MetaEdPropertyFullName';
 
 /**
  *
@@ -57,10 +57,10 @@ function buildDomainEntitySubclassResourceSchema(entity: DomainEntitySubclass): 
 
   return {
     ...baseResourceSchema,
-    superclassProjectName: entity.baseEntity.namespace.projectName as ProjectName,
+    superclassProjectName: entity.baseEntity.namespace.projectName as MetaEdProjectName,
     superclassResourceName: superclassEntityApiSchemaData.resourceName,
-    superclassIdentityFullname: subclassIdentityRenameProperty.baseKeyName as PropertyFullName,
-    subclassIdentityFullname: subclassIdentityRenameProperty.fullPropertyName as PropertyFullName,
+    superclassIdentityFullname: subclassIdentityRenameProperty.baseKeyName as MetaEdPropertyFullName,
+    subclassIdentityFullname: subclassIdentityRenameProperty.fullPropertyName as MetaEdPropertyFullName,
     isSubclass: true,
     subclassType: 'domainEntity',
   };
@@ -77,7 +77,7 @@ function buildAssociationSubclassResourceSchema(entity: AssociationSubclass): Re
 
   return {
     ...baseResourceSchema,
-    superclassProjectName: entity.baseEntity.namespace.projectName as ProjectName,
+    superclassProjectName: entity.baseEntity.namespace.projectName as MetaEdProjectName,
     superclassResourceName: superclassEntityApiSchemaData.resourceName,
     isSubclass: true,
     subclassType: 'association',

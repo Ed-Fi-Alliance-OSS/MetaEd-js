@@ -6,9 +6,9 @@
 import { EqualityConstraint } from './EqualityConstraint';
 import { DocumentPaths } from './DocumentPaths';
 import { SchemaRoot } from './JsonSchema';
-import { PropertyFullName } from './PropertyFullName';
-import { ResourceName } from './ResourceName';
-import { ProjectName } from './ProjectName';
+import { MetaEdPropertyFullName } from './MetaEdPropertyFullName';
+import { MetaEdResourceName } from './MetaEdResourceName';
+import { MetaEdProjectName } from './MetaEdProjectName';
 
 /**
  * API resource schema information common between regular and subclass resources
@@ -17,7 +17,7 @@ export type BaseResourceSchema = {
   /**
    * The resource name. Typically, this is the entity metaEdName.
    */
-  resourceName: ResourceName;
+  resourceName: MetaEdResourceName;
 
   /**
    * Whether this resource is a descriptor. Descriptors are treated differently from other resources
@@ -54,13 +54,13 @@ export type BaseResourceSchema = {
    * A list of the MetaEd property fullnames for each property that is part of the identity
    * for this resource, in lexical order
    */
-  identityFullnames: PropertyFullName[];
+  identityFullnames: MetaEdPropertyFullName[];
 
   /**
    * A collection of MetaEd property fullnames mapped to DocumentPaths objects,
    * which provide JsonPaths to the corresponding values in a resource document.
    */
-  documentPathsMapping: { [key: PropertyFullName]: DocumentPaths };
+  documentPathsMapping: { [key: MetaEdPropertyFullName]: DocumentPaths };
 };
 
 /**
@@ -70,8 +70,8 @@ export type AssociationSubclassResourceSchema = BaseResourceSchema & {
   /**
    * The project name and resource name for the superclass
    */
-  superclassProjectName: ProjectName;
-  superclassResourceName: ResourceName;
+  superclassProjectName: MetaEdProjectName;
+  superclassResourceName: MetaEdResourceName;
 };
 
 /**
@@ -83,8 +83,8 @@ export type DomainEntitySubclassResourceSchema = AssociationSubclassResourceSche
    * This is found in MetaEd as an "identity rename". MetaEd only allows the super/subclass
    * relationship of Domain Entities to have a single common identity field.
    */
-  superclassIdentityFullname: PropertyFullName;
-  subclassIdentityFullname: PropertyFullName;
+  superclassIdentityFullname: MetaEdPropertyFullName;
+  subclassIdentityFullname: MetaEdPropertyFullName;
 };
 
 /**

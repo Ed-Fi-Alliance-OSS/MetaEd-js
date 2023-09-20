@@ -7,8 +7,8 @@ import {
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { pluralize } from '../Utility';
-import { ResourceName } from '../model/api-schema/ResourceName';
 import { EndpointName } from '../model/api-schema/EndpointName';
+import { MetaEdResourceName } from '../model/api-schema/MetaEdResourceName';
 
 /**
  * Converts a MetaEd model name to its endpoint name
@@ -24,7 +24,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
     (entity) => {
       (entity.data.edfiApiSchema as EntityApiSchemaData).endpointName = endpointNameFrom(entity.metaEdName);
-      (entity.data.edfiApiSchema as EntityApiSchemaData).resourceName = entity.metaEdName as ResourceName;
+      (entity.data.edfiApiSchema as EntityApiSchemaData).resourceName = entity.metaEdName as MetaEdResourceName;
     },
   );
 
@@ -35,7 +35,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     ) as EndpointName;
     (descriptor.data.edfiApiSchema as EntityApiSchemaData).resourceName = normalizeDescriptorSuffix(
       descriptor.metaEdName,
-    ) as ResourceName;
+    ) as MetaEdResourceName;
   });
 
   return {
