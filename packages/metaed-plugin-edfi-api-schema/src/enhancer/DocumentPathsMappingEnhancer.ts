@@ -36,7 +36,7 @@ function leafOfPath(jsonPath: JsonPath): DocumentObjectKey {
 /**
  * Takes a MetaEdPropertyPath that is equivalent to a MetaEdPropertyFullname
  */
-function x(entity: TopLevelEntity, propertyPath: MetaEdPropertyPath, jsonPaths: JsonPath[]): DocumentPaths {
+function buildDocumentPaths(entity: TopLevelEntity, propertyPath: MetaEdPropertyPath, jsonPaths: JsonPath[]): DocumentPaths {
   const propertyFullName: MetaEdPropertyFullName = propertyPath as unknown as MetaEdPropertyFullName;
   const property: EntityProperty = findProperty(entity, propertyFullName);
 
@@ -81,7 +81,7 @@ function documentPathsMappingFor(entity: TopLevelEntity): DocumentPathsMapping {
     // Only want paths at the top level, which are equivalent to a MetaEdPropertyFullName
     .filter((propertyPath) => !propertyPath.includes('.'))
     .forEach((propertyPath: MetaEdPropertyPath) => {
-      result[propertyPath] = x(entity, propertyPath, allJsonPathsMapping[propertyPath]);
+      result[propertyPath] = buildDocumentPaths(entity, propertyPath, allJsonPathsMapping[propertyPath]);
     });
 
   return result;
