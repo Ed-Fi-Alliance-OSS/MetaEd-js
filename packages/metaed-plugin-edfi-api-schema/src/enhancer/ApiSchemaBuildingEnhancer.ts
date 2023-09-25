@@ -29,6 +29,7 @@ function buildResourceSchema(entity: TopLevelEntity): ResourceSchema {
   return {
     resourceName: entityApiSchemaData.resourceName,
     isDescriptor: entity.type === 'descriptor',
+    isSchoolYearEnumeration: entity.type === 'schoolYearEnumeration',
     allowIdentityUpdates: entity.allowPrimaryKeyUpdates,
     jsonSchemaForInsert: entityApiSchemaData.jsonSchemaForInsert,
     jsonSchemaForUpdate: entityApiSchemaData.jsonSchemaForUpdate,
