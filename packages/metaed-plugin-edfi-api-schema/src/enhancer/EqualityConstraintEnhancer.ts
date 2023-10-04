@@ -54,9 +54,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
             if (isErrorInDataStandard(entity, property, mergeDirective)) return;
 
             const sourceJsonPaths: JsonPath[] | undefined =
-              allJsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)];
+              allJsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)].jsonPaths;
             const targetJsonPaths: JsonPath[] | undefined =
-              allJsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)];
+              allJsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)].jsonPaths;
             invariant(
               sourceJsonPaths != null && targetJsonPaths != null,
               'Invariant failed in EqualityConstraintEnhancer: source or target JsonPaths are undefined',

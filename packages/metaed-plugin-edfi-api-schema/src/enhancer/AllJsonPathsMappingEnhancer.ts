@@ -13,7 +13,7 @@ import {
 } from '@edfi/metaed-core';
 import { invariant } from 'ts-invariant';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import type { JsonPathsMapping } from '../model/JsonPathsMapping';
+import type { JsonPathsInfo, JsonPathsMapping } from '../model/JsonPathsMapping';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { PropertyModifier, prefixedName, propertyModifierConcat } from '../model/PropertyModifier';
 import { singularize, topLevelApiNameOnEntity } from '../Utility';
@@ -42,14 +42,26 @@ function appendNextJsonPathName(
 /**
  * Adds a JsonPath to the JsonPathsMapping for a given list of PropertyPaths. Handles array initialization when needed.
  */
-function addJsonPathTo(allJsonPathsMapping: JsonPathsMapping, propertyPaths: MetaEdPropertyPath[], jsonPath: JsonPath) {
+function addJsonPathTo(
+  allJsonPathsMapping: JsonPathsMapping,
+  propertyPaths: MetaEdPropertyPath[],
+  jsonPath: JsonPath,
+  isTopLevel: boolean,
+  terminalProperty: EntityProperty,
+) {
   propertyPaths.forEach((propertyPath) => {
-    // initalize if necessary
-    if (allJsonPathsMapping[propertyPath] == null) allJsonPathsMapping[propertyPath] = [];
-    // Avoid duplicates
-    if (allJsonPathsMapping[propertyPath].includes(jsonPath)) return;
+    // initialize if necessary
+    if (allJsonPathsMapping[propertyPath] == null) {
+      const initialJsonPathsInfo: JsonPathsInfo = isTopLevel
+        ? { jsonPaths: [], isTopLevel, terminalProperty }
+        : { jsonPaths: [], isTopLevel };
+      allJsonPathsMapping[propertyPath] = initialJsonPathsInfo;
+    }
 
-    allJsonPathsMapping[propertyPath].push(jsonPath);
+    // Avoid duplicates
+    if (allJsonPathsMapping[propertyPath].jsonPaths.includes(jsonPath)) return;
+
+    allJsonPathsMapping[propertyPath].jsonPaths.push(jsonPath);
   });
 }
 
@@ -62,6 +74,7 @@ function jsonPathsForReferentialProperty(
   allJsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
+  isTopLevel: boolean,
 ) {
   const referencedEntityApiMapping = (property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData).apiMapping;
 
@@ -85,15 +98,18 @@ function jsonPathsForReferentialProperty(
         flattenedIdentityProperty.identityProperty,
         propertyModifier,
       ),
+      false,
     );
 
     // Take the JsonPaths for entire property and apply to allJsonPathsMapping for the property,
     // then add those collected results individually to allJsonPathsMapping
     Object.values(jsonPathsMappingForThisProperty)
       .flat()
-      .forEach((jsonPath: JsonPath) => {
-        // This relies on deduping in addJsonPathTo(), because we can expect multiple property paths to a json path
-        addJsonPathTo(allJsonPathsMapping, [currentPropertyPath], jsonPath);
+      .forEach((jsonPathsInfo: JsonPathsInfo) => {
+        jsonPathsInfo.jsonPaths.forEach((jsonPath: JsonPath) => {
+          // This relies on deduping in addJsonPathTo(), because we can expect multiple property paths to a json path
+          addJsonPathTo(allJsonPathsMapping, [currentPropertyPath], jsonPath, isTopLevel, property);
+        });
       });
     Object.assign(allJsonPathsMapping, jsonPathsMappingForThisProperty);
   });
@@ -108,6 +124,7 @@ function jsonPathsForScalarCommonProperty(
   allJsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
+  isTopLevel: boolean,
 ) {
   const { collectedApiProperties } = property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
 
@@ -131,6 +148,7 @@ function jsonPathsForScalarCommonProperty(
         collectedApiProperty.property,
         concatenatedPropertyModifier,
       ),
+      isTopLevel,
     );
   });
 }
@@ -145,6 +163,7 @@ function jsonPathsForChoiceAndInlineCommonProperty(
   allJsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
+  isTopLevel: boolean,
 ) {
   // prefixes from choice and inline common that affect child properties
   const parentPrefixes: string[] =
@@ -173,6 +192,7 @@ function jsonPathsForChoiceAndInlineCommonProperty(
         allProperty.property,
         concatenatedPropertyModifier,
       ),
+      isTopLevel,
     );
   });
 }
@@ -185,14 +205,21 @@ function jsonPathsForNonReference(
   allJsonPathsMapping: JsonPathsMapping,
   currentPropertyPaths: MetaEdPropertyPath[],
   currentJsonPath: JsonPath,
+  isTopLevel: boolean,
 ) {
   invariant(property.type !== 'association' && property.type !== 'common' && property.type !== 'domainEntity');
 
   if (property.type === 'schoolYearEnumeration' && property.parentEntity.type === 'common') {
     // For a common, the school year ends up being nested under a reference object
-    addJsonPathTo(allJsonPathsMapping, currentPropertyPaths, `${currentJsonPath}.schoolYear` as JsonPath);
+    addJsonPathTo(
+      allJsonPathsMapping,
+      currentPropertyPaths,
+      `${currentJsonPath}.schoolYear` as JsonPath,
+      isTopLevel,
+      property,
+    );
   } else {
-    addJsonPathTo(allJsonPathsMapping, currentPropertyPaths, currentJsonPath);
+    addJsonPathTo(allJsonPathsMapping, currentPropertyPaths, currentJsonPath, isTopLevel, property);
   }
 }
 
@@ -205,6 +232,7 @@ function jsonPathsForReferenceCollection(
   allJsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
+  isTopLevel: boolean,
 ) {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
@@ -222,6 +250,7 @@ function jsonPathsForReferenceCollection(
       property,
       propertyModifier,
     ),
+    isTopLevel,
   );
 }
 
@@ -234,6 +263,7 @@ function jsonPathsForDescriptorCollection(
   allJsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
+  isTopLevel: boolean,
 ) {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
@@ -246,6 +276,8 @@ function jsonPathsForDescriptorCollection(
       property,
       propertyModifier,
     ),
+    isTopLevel,
+    property,
   );
 }
 
@@ -259,6 +291,7 @@ function jsonPathsForNonReferenceCollection(
   allJsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
+  isTopLevel: boolean,
 ) {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
@@ -269,6 +302,7 @@ function jsonPathsForNonReferenceCollection(
     appendNextJsonPathName(`${currentJsonPath}[*]` as JsonPath, apiMapping.fullName, property, propertyModifier, {
       singularizeName: true,
     }),
+    isTopLevel,
   );
 }
 
@@ -280,10 +314,17 @@ function jsonPathsForSchoolYearEnumeration(
   allJsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
+  isTopLevel: boolean,
 ) {
   invariant(property.type === 'schoolYearEnumeration');
 
-  addJsonPathTo(allJsonPathsMapping, [currentPropertyPath], `${currentJsonPath}.schoolYear` as JsonPath);
+  addJsonPathTo(
+    allJsonPathsMapping,
+    [currentPropertyPath],
+    `${currentJsonPath}.schoolYear` as JsonPath,
+    isTopLevel,
+    property,
+  );
 }
 
 /**
@@ -295,11 +336,19 @@ function jsonPathsFor(
   allJsonPathsMapping: JsonPathsMapping,
   currentPropertyPath: MetaEdPropertyPath,
   currentJsonPath: JsonPath,
+  isTopLevel: boolean,
 ) {
   const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
 
   if (apiMapping.isReferenceCollection) {
-    jsonPathsForReferenceCollection(property, propertyModifier, allJsonPathsMapping, currentPropertyPath, currentJsonPath);
+    jsonPathsForReferenceCollection(
+      property,
+      propertyModifier,
+      allJsonPathsMapping,
+      currentPropertyPath,
+      currentJsonPath,
+      isTopLevel,
+    );
     return;
   }
   if (apiMapping.isScalarReference) {
@@ -309,11 +358,19 @@ function jsonPathsFor(
       allJsonPathsMapping,
       currentPropertyPath,
       currentJsonPath,
+      isTopLevel,
     );
     return;
   }
   if (apiMapping.isDescriptorCollection) {
-    jsonPathsForDescriptorCollection(property, propertyModifier, allJsonPathsMapping, currentPropertyPath, currentJsonPath);
+    jsonPathsForDescriptorCollection(
+      property,
+      propertyModifier,
+      allJsonPathsMapping,
+      currentPropertyPath,
+      currentJsonPath,
+      isTopLevel,
+    );
     return;
   }
   if (apiMapping.isCommonCollection) {
@@ -323,6 +380,7 @@ function jsonPathsFor(
       allJsonPathsMapping,
       currentPropertyPath,
       `${currentJsonPath}[*]` as JsonPath,
+      isTopLevel,
     );
     return;
   }
@@ -333,6 +391,7 @@ function jsonPathsFor(
       allJsonPathsMapping,
       currentPropertyPath,
       currentJsonPath,
+      isTopLevel,
     );
     return;
   }
@@ -343,6 +402,7 @@ function jsonPathsFor(
       allJsonPathsMapping,
       currentPropertyPath,
       currentJsonPath,
+      isTopLevel,
     );
     return;
   }
@@ -353,11 +413,12 @@ function jsonPathsFor(
       allJsonPathsMapping,
       currentPropertyPath,
       currentJsonPath,
+      isTopLevel,
     );
     return;
   }
 
-  jsonPathsForNonReference(property, allJsonPathsMapping, [currentPropertyPath], currentJsonPath);
+  jsonPathsForNonReference(property, allJsonPathsMapping, [currentPropertyPath], currentJsonPath, isTopLevel);
 }
 
 /**
@@ -376,6 +437,7 @@ function buildJsonPathsMapping(entity: TopLevelEntity) {
         allJsonPathsMapping,
         property.fullPropertyName as MetaEdPropertyPath,
         schemaObjectBaseName,
+        true,
       );
     else
       jsonPathsFor(
@@ -384,11 +446,12 @@ function buildJsonPathsMapping(entity: TopLevelEntity) {
         allJsonPathsMapping,
         property.fullPropertyName as MetaEdPropertyPath,
         schemaObjectBaseName,
+        true,
       );
 
     // ensure JsonPaths are in sorted order as the JsonPathsMapping type requires
-    Object.values(allJsonPathsMapping).forEach((jsonPaths: JsonPath[]) => {
-      jsonPaths.sort();
+    Object.values(allJsonPathsMapping).forEach((jsonPathsInfo: JsonPathsInfo) => {
+      jsonPathsInfo.jsonPaths.sort();
     });
   });
 }

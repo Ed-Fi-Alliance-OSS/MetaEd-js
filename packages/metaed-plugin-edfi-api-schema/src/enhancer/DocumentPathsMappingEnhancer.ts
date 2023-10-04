@@ -1,4 +1,3 @@
-import invariant from 'ts-invariant';
 import {
   getAllEntitiesOfType,
   MetaEdEnvironment,
@@ -8,25 +7,10 @@ import {
   ReferentialProperty,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { MetaEdPropertyPath } from '../model/api-schema/MetaEdPropertyPath';
-import { MetaEdPropertyFullName } from '../model/api-schema/MetaEdPropertyFullName';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { DocumentObjectKey } from '../model/api-schema/DocumentObjectKey';
 import { DocumentPathsMapping } from '../model/api-schema/DocumentPathsMapping';
 import { DocumentPaths } from '../model/api-schema/DocumentPaths';
-
-function findProperty(entity: TopLevelEntity, propertyFullName: MetaEdPropertyFullName): EntityProperty {
-  // Need to match up with the property
-  const property: EntityProperty | undefined = entity.properties.find((p) => p.fullPropertyName === propertyFullName);
-  if (property != null) return property;
-
-  // If not found, check superclass
-  const superclassProperty: EntityProperty | undefined = entity.baseEntity?.properties.find(
-    (p) => p.fullPropertyName === propertyFullName,
-  );
-  invariant(superclassProperty != null, `Property ${propertyFullName} must exist`);
-  return superclassProperty;
-}
 
 function leafOfPath(jsonPath: JsonPath): DocumentObjectKey {
   const keys: DocumentObjectKey[] = jsonPath.split('.') as DocumentObjectKey[];
@@ -36,10 +20,7 @@ function leafOfPath(jsonPath: JsonPath): DocumentObjectKey {
 /**
  * Takes a MetaEdPropertyPath that is equivalent to a MetaEdPropertyFullname
  */
-function buildDocumentPaths(entity: TopLevelEntity, propertyPath: MetaEdPropertyPath, jsonPaths: JsonPath[]): DocumentPaths {
-  const propertyFullName: MetaEdPropertyFullName = propertyPath as unknown as MetaEdPropertyFullName;
-  const property: EntityProperty = findProperty(entity, propertyFullName);
-
+function buildDocumentPaths(jsonPaths: JsonPath[], property: EntityProperty): DocumentPaths {
   // Gather up the paths and pathOrder
   const listOfKeys: DocumentObjectKey[] = [];
   const paths: { [key: DocumentObjectKey]: JsonPath } = {};
@@ -77,12 +58,12 @@ function documentPathsMappingFor(entity: TopLevelEntity): DocumentPathsMapping {
   const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
   const { allJsonPathsMapping } = edfiApiSchemaData;
 
-  Object.keys(allJsonPathsMapping)
-    // Only want paths at the top level, which are equivalent to a MetaEdPropertyFullName
-    .filter((propertyPath) => !propertyPath.includes('.'))
-    .forEach((propertyPath: MetaEdPropertyPath) => {
-      result[propertyPath] = buildDocumentPaths(entity, propertyPath, allJsonPathsMapping[propertyPath]);
-    });
+  Object.entries(allJsonPathsMapping).forEach(([propertyPath, jsonPathsInfo]) => {
+    // Only want paths at the top level
+    if (jsonPathsInfo.isTopLevel) {
+      result[propertyPath] = buildDocumentPaths(jsonPathsInfo.jsonPaths, jsonPathsInfo.terminalProperty);
+    }
+  });
 
   return result;
 }

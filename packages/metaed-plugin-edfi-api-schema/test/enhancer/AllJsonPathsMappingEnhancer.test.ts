@@ -10,6 +10,7 @@ import {
   NamespaceBuilder,
   DomainEntitySubclassBuilder,
   DescriptorBuilder,
+  TopLevelEntity,
   EnumerationBuilder,
 } from '@edfi/metaed-core';
 import {
@@ -22,7 +23,7 @@ import {
   enumerationReferenceEnhancer,
 } from '@edfi/metaed-plugin-edfi-unified';
 import { enhance as entityPropertyApiSchemaDataSetupEnhancer } from '../../src/model/EntityPropertyApiSchemaData';
-import { enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
+import { EntityApiSchemaData, enhance as entityApiSchemaDataSetupEnhancer } from '../../src/model/EntityApiSchemaData';
 import { enhance as subclassPropertyNamingCollisionEnhancer } from '../../src/enhancer/SubclassPropertyNamingCollisionEnhancer';
 import { enhance as referenceComponentEnhancer } from '../../src/enhancer/ReferenceComponentEnhancer';
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
@@ -31,9 +32,39 @@ import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
+import { MetaEdPropertyPath } from '../../src/model/api-schema/MetaEdPropertyPath';
+import { JsonPathsInfo } from '../../src/model/JsonPathsMapping';
 
 const ajv = new Ajv({ allErrors: true });
 addFormatsTo(ajv);
+
+type Snapshotable = {
+  jsonPaths: { [key: MetaEdPropertyPath]: JsonPathsInfo };
+  isTopLevel: { [key: MetaEdPropertyPath]: boolean };
+  terminalPropertyFullName: { [key: MetaEdPropertyPath]: string };
+};
+
+function snapshotify(entity: TopLevelEntity): Snapshotable {
+  const { allJsonPathsMapping } = entity.data.edfiApiSchema as EntityApiSchemaData;
+
+  const jsonPaths = {} as { [key: MetaEdPropertyPath]: JsonPathsInfo };
+  const isTopLevel = {} as { [key: MetaEdPropertyPath]: boolean };
+  const terminalPropertyFullName = {} as { [key: MetaEdPropertyPath]: string };
+
+  Object.entries(allJsonPathsMapping).forEach(([key, value]) => {
+    jsonPaths[key] = value.jsonPaths;
+    isTopLevel[key] = value.isTopLevel;
+    if (value.isTopLevel) {
+      terminalPropertyFullName[key] = value.terminalProperty.fullPropertyName;
+    }
+  });
+
+  return {
+    jsonPaths,
+    isTopLevel,
+    terminalPropertyFullName,
+  };
+}
 
 describe('when building simple domain entity with all the simple non-collections', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
@@ -78,7 +109,8 @@ describe('when building simple domain entity with all the simple non-collections
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "OptionalBooleanProperty": Array [
           "$.optionalBooleanProperty",
@@ -119,6 +151,40 @@ describe('when building simple domain entity with all the simple non-collections
         "StringIdentity": Array [
           "$.stringIdentity",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "OptionalBooleanProperty": true,
+        "OptionalDecimalProperty": true,
+        "OptionalPercentProperty": true,
+        "OptionalShortProperty": true,
+        "OptionalYear": true,
+        "RequiredCurrencyProperty": true,
+        "RequiredDateProperty": true,
+        "RequiredDatetimeProperty": true,
+        "RequiredDurationProperty": true,
+        "RequiredIntegerProperty": true,
+        "RequiredTimeProperty": true,
+        "SchoolYear": true,
+        "StringIdentity": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "OptionalBooleanProperty": "OptionalBooleanProperty",
+        "OptionalDecimalProperty": "OptionalDecimalProperty",
+        "OptionalPercentProperty": "OptionalPercentProperty",
+        "OptionalShortProperty": "OptionalShortProperty",
+        "OptionalYear": "OptionalYear",
+        "RequiredCurrencyProperty": "RequiredCurrencyProperty",
+        "RequiredDateProperty": "RequiredDateProperty",
+        "RequiredDatetimeProperty": "RequiredDatetimeProperty",
+        "RequiredDurationProperty": "RequiredDurationProperty",
+        "RequiredIntegerProperty": "RequiredIntegerProperty",
+        "RequiredTimeProperty": "RequiredTimeProperty",
+        "SchoolYear": "SchoolYear",
+        "StringIdentity": "StringIdentity",
       }
     `);
   });
@@ -168,7 +234,8 @@ describe('when building simple domain entity with all the simple collections', (
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "OptionalBooleanProperty": Array [
           "$.optionalBooleanProperties[*].optionalBooleanProperty",
@@ -212,6 +279,42 @@ describe('when building simple domain entity with all the simple collections', (
         "StringIdentity": Array [
           "$.stringIdentity",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "OptionalBooleanProperty": true,
+        "OptionalDecimalProperty": true,
+        "OptionalPercentProperty": true,
+        "OptionalShortProperty": true,
+        "OptionalYear": true,
+        "RequiredCurrencyProperty": true,
+        "RequiredDateProperty": true,
+        "RequiredDatetimeProperty": true,
+        "RequiredDurationProperty": true,
+        "RequiredIntegerProperty": true,
+        "RequiredStringProperty": true,
+        "RequiredTimeProperty": true,
+        "SchoolYear": true,
+        "StringIdentity": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "OptionalBooleanProperty": "OptionalBooleanProperty",
+        "OptionalDecimalProperty": "OptionalDecimalProperty",
+        "OptionalPercentProperty": "OptionalPercentProperty",
+        "OptionalShortProperty": "OptionalShortProperty",
+        "OptionalYear": "OptionalYear",
+        "RequiredCurrencyProperty": "RequiredCurrencyProperty",
+        "RequiredDateProperty": "RequiredDateProperty",
+        "RequiredDatetimeProperty": "RequiredDatetimeProperty",
+        "RequiredDurationProperty": "RequiredDurationProperty",
+        "RequiredIntegerProperty": "RequiredIntegerProperty",
+        "RequiredStringProperty": "RequiredStringProperty",
+        "RequiredTimeProperty": "RequiredTimeProperty",
+        "SchoolYear": "SchoolYear",
+        "StringIdentity": "StringIdentity",
       }
     `);
   });
@@ -267,7 +370,8 @@ describe('when building a domain entity referencing another referencing another 
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "ClassPeriod": Array [
           "$.classPeriods[*].classPeriodReference.classPeriodName",
@@ -298,6 +402,26 @@ describe('when building a domain entity referencing another referencing another 
         "SectionIdentifier": Array [
           "$.sectionIdentifier",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "ClassPeriod": true,
+        "ClassPeriod.ClassPeriodName": false,
+        "ClassPeriod.School": false,
+        "ClassPeriod.School.SchoolId": false,
+        "CourseOffering": true,
+        "CourseOffering.LocalCourseCode": false,
+        "CourseOffering.School": false,
+        "CourseOffering.School.SchoolId": false,
+        "SectionIdentifier": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "ClassPeriod": "ClassPeriod",
+        "CourseOffering": "CourseOffering",
+        "SectionIdentifier": "SectionIdentifier",
       }
     `);
   });
@@ -354,7 +478,8 @@ describe('when building a domain entity referencing CourseOffering with an impli
 
   it('should be correct allJsonPathsMapping for DomainEntityName', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "CourseOffering": Array [
           "$.courseOfferingReference.localCourseCode",
@@ -393,11 +518,32 @@ describe('when building a domain entity referencing CourseOffering with an impli
         ],
       }
     `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "CourseOffering": true,
+        "CourseOffering.LocalCourseCode": false,
+        "CourseOffering.School": false,
+        "CourseOffering.School.SchoolId": false,
+        "CourseOffering.Session": false,
+        "CourseOffering.Session.School": false,
+        "CourseOffering.Session.School.SchoolId": false,
+        "CourseOffering.Session.SchoolYear": false,
+        "CourseOffering.Session.SessionName": false,
+        "SectionIdentifier": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "CourseOffering": "CourseOffering",
+        "SectionIdentifier": "SectionIdentifier",
+      }
+    `);
   });
 
   it('should be correct allJsonPathsMapping for CourseOffering', () => {
     const entity = namespace.entity.domainEntity.get('CourseOffering');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "LocalCourseCode": Array [
           "$.localCourseCode",
@@ -427,11 +573,31 @@ describe('when building a domain entity referencing CourseOffering with an impli
         ],
       }
     `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "LocalCourseCode": true,
+        "School": true,
+        "School.SchoolId": false,
+        "Session": true,
+        "Session.School": false,
+        "Session.School.SchoolId": false,
+        "Session.SchoolYear": false,
+        "Session.SessionName": false,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "LocalCourseCode": "LocalCourseCode",
+        "School": "School",
+        "Session": "Session",
+      }
+    `);
   });
 
   it('should be correct allJsonPathsMapping for Session', () => {
     const entity = namespace.entity.domainEntity.get('Session');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "School": Array [
           "$.schoolReference.schoolId",
@@ -447,15 +613,41 @@ describe('when building a domain entity referencing CourseOffering with an impli
         ],
       }
     `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "School": true,
+        "School.SchoolId": false,
+        "SchoolYear": true,
+        "SessionName": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "School": "School",
+        "SchoolYear": "SchoolYear",
+        "SessionName": "SessionName",
+      }
+    `);
   });
 
   it('should be correct allJsonPathsMapping for School', () => {
     const entity = namespace.entity.domainEntity.get('School');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "SchoolId": Array [
           "$.schoolId",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "SchoolId": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "SchoolId": "SchoolId",
       }
     `);
   });
@@ -524,7 +716,8 @@ describe('when building domain entity with nested choice and inline commons', ()
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": Array [
           "$.contentIdentifier",
@@ -553,6 +746,31 @@ describe('when building domain entity with nested choice and inline commons', ()
         "RequiredURI": Array [
           "$.requiredURIs[*].requiredURI",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "ContentIdentifier": true,
+        "LearningResourceChoice.LearningResource.ContentClass": true,
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent": true,
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent.ContentIdentifier": false,
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.URI": true,
+        "LearningResourceChoice.LearningResource.Description": true,
+        "LearningResourceChoice.LearningResource.ShortDescription": true,
+        "LearningResourceChoice.LearningResourceMetadataURI": true,
+        "RequiredURI": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "ContentIdentifier": "ContentIdentifier",
+        "LearningResourceChoice.LearningResource.ContentClass": "ContentClass",
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent": "EducationContent",
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.URI": "URI",
+        "LearningResourceChoice.LearningResource.Description": "Description",
+        "LearningResourceChoice.LearningResource.ShortDescription": "ShortDescription",
+        "LearningResourceChoice.LearningResourceMetadataURI": "LearningResourceMetadataURI",
+        "RequiredURI": "RequiredURI",
       }
     `);
   });
@@ -591,7 +809,8 @@ describe('when building domain entity with scalar collection named with prefix o
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": Array [
           "$.contentIdentifier",
@@ -599,6 +818,18 @@ describe('when building domain entity with scalar collection named with prefix o
         "EducationContentSuffixName": Array [
           "$.suffixNames[*].suffixName",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "ContentIdentifier": true,
+        "EducationContentSuffixName": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "ContentIdentifier": "ContentIdentifier",
+        "EducationContentSuffixName": "EducationContentSuffixName",
       }
     `);
   });
@@ -642,7 +873,8 @@ describe('when building domain entity with Association/DomainEntity collection n
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": Array [
           "$.contentIdentifier",
@@ -653,6 +885,19 @@ describe('when building domain entity with Association/DomainEntity collection n
         "EducationContentSuffixName.StringIdentity": Array [
           "$.educationContentSuffixNames[*].educationContentSuffixNameReference.stringIdentity",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "ContentIdentifier": true,
+        "EducationContentSuffixName": true,
+        "EducationContentSuffixName.StringIdentity": false,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "ContentIdentifier": "ContentIdentifier",
+        "EducationContentSuffixName": "EducationContentSuffixName",
       }
     `);
   });
@@ -691,7 +936,8 @@ describe('when building domain entity with acronym property name', () => {
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get(domainEntityName);
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": Array [
           "$.contentIdentifier",
@@ -699,6 +945,18 @@ describe('when building domain entity with acronym property name', () => {
         "IEPBeginDate": Array [
           "$.iepBeginDate",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "ContentIdentifier": true,
+        "IEPBeginDate": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "ContentIdentifier": "ContentIdentifier",
+        "IEPBeginDate": "IEPBeginDate",
       }
     `);
   });
@@ -749,7 +1007,8 @@ describe('when building domain entity with a simple common collection', () => {
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentificationCode.AssessmentIdentificationSystem": Array [
           "$.identificationCodes[*].assessmentIdentificationSystemDescriptor",
@@ -760,6 +1019,20 @@ describe('when building domain entity with a simple common collection', () => {
         "AssessmentIdentifier": Array [
           "$.assessmentIdentifier",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentificationCode.AssessmentIdentificationSystem": true,
+        "AssessmentIdentificationCode.IdentificationCode": true,
+        "AssessmentIdentifier": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentificationCode.AssessmentIdentificationSystem": "AssessmentIdentificationSystem",
+        "AssessmentIdentificationCode.IdentificationCode": "IdentificationCode",
+        "AssessmentIdentifier": "AssessmentIdentifier",
       }
     `);
   });
@@ -821,7 +1094,8 @@ describe('when building domain entity subclass with common collection and descri
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntitySubclass.get(domainEntitySubclassName);
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "CommunityOrganizationId": Array [
           "$.communityOrganizationId",
@@ -832,6 +1106,20 @@ describe('when building domain entity subclass with common collection and descri
         "EducationOrganizationIdentificationCode.IdentificationCode": Array [
           "$.identificationCodes[*].identificationCode",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "CommunityOrganizationId": true,
+        "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": true,
+        "EducationOrganizationIdentificationCode.IdentificationCode": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "CommunityOrganizationId": "CommunityOrganizationId",
+        "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": "EducationOrganizationIdentificationSystem",
+        "EducationOrganizationIdentificationCode.IdentificationCode": "IdentificationCode",
       }
     `);
   });
@@ -882,7 +1170,8 @@ describe('when building association with a common collection in a common collect
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('StudentEducationOrganizationAssociation');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "Address.Period.BeginDate": Array [
           "$.addresses[*].periods[*].beginDate",
@@ -896,6 +1185,22 @@ describe('when building association with a common collection in a common collect
         "StudentId": Array [
           "$.studentId",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "Address.Period.BeginDate": true,
+        "Address.Period.EndDate": true,
+        "Address.StreetNumberName": true,
+        "StudentId": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "Address.Period.BeginDate": "BeginDate",
+        "Address.Period.EndDate": "EndDate",
+        "Address.StreetNumberName": "StreetNumberName",
+        "StudentId": "StudentId",
       }
     `);
   });
@@ -939,7 +1244,8 @@ describe('when building domain entity with a descriptor with role name', () => {
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessedGradeLevel": Array [
           "$.assessedGradeLevelDescriptor",
@@ -947,6 +1253,18 @@ describe('when building domain entity with a descriptor with role name', () => {
         "AssessmentIdentifier": Array [
           "$.assessmentIdentifier",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "AssessedGradeLevel": true,
+        "AssessmentIdentifier": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "AssessedGradeLevel": "AssessedGradeLevel",
+        "AssessmentIdentifier": "AssessmentIdentifier",
       }
     `);
   });
@@ -990,7 +1308,8 @@ describe('when building domain entity with a descriptor collection with role nam
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessedGradeLevel": Array [
           "$.assessedGradeLevels[*].gradeLevelDescriptor",
@@ -998,6 +1317,18 @@ describe('when building domain entity with a descriptor collection with role nam
         "AssessmentIdentifier": Array [
           "$.assessmentIdentifier",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "AssessedGradeLevel": true,
+        "AssessmentIdentifier": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "AssessedGradeLevel": "AssessedGradeLevel",
+        "AssessmentIdentifier": "AssessmentIdentifier",
       }
     `);
   });
@@ -1050,7 +1381,8 @@ describe('when building domain entity with a common with a choice', () => {
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": Array [
           "$.assessmentIdentifier",
@@ -1064,6 +1396,22 @@ describe('when building domain entity with a common with a choice', () => {
         "ContentStandard.Title": Array [
           "$.contentStandard.title",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": true,
+        "ContentStandard.PublicationDate": true,
+        "ContentStandard.PublicationYear": true,
+        "ContentStandard.Title": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": "AssessmentIdentifier",
+        "ContentStandard.PublicationDate": "PublicationDate",
+        "ContentStandard.PublicationYear": "PublicationYear",
+        "ContentStandard.Title": "Title",
       }
     `);
   });
@@ -1113,7 +1461,8 @@ describe('when building domain entity with a common and a common collection with
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": Array [
           "$.assessmentIdentifier",
@@ -1124,6 +1473,20 @@ describe('when building domain entity with a common and a common collection with
         "AssessmentScore.MinimumScore": Array [
           "$.scores[*].minimumScore",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": true,
+        "AssessmentPeriod.BeginDate": true,
+        "AssessmentScore.MinimumScore": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": "AssessmentIdentifier",
+        "AssessmentPeriod.BeginDate": "BeginDate",
+        "AssessmentScore.MinimumScore": "MinimumScore",
       }
     `);
   });
@@ -1159,7 +1522,8 @@ describe('when building domain entity with an all-caps property', () => {
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": Array [
           "$.assessmentIdentifier",
@@ -1167,6 +1531,18 @@ describe('when building domain entity with an all-caps property', () => {
         "URI": Array [
           "$.uri",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": true,
+        "URI": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": "AssessmentIdentifier",
+        "URI": "URI",
       }
     `);
   });
@@ -1217,7 +1593,8 @@ describe('when building domain entity with a common with a domain entity referen
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Assessment');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": Array [
           "$.assessmentIdentifier",
@@ -1231,6 +1608,21 @@ describe('when building domain entity with a common with a domain entity referen
         "ContentStandard.Title": Array [
           "$.contentStandard.title",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": true,
+        "ContentStandard.MandatingEducationOrganization": true,
+        "ContentStandard.MandatingEducationOrganization.EducationOrganizationId": false,
+        "ContentStandard.Title": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "AssessmentIdentifier": "AssessmentIdentifier",
+        "ContentStandard.MandatingEducationOrganization": "MandatingEducationOrganization",
+        "ContentStandard.Title": "Title",
       }
     `);
   });
@@ -1275,7 +1667,8 @@ describe('when building domain entity with two school year enumerations, one rol
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "ClassOfSchoolYear": Array [
           "$.classOfSchoolYearTypeReference.schoolYear",
@@ -1286,6 +1679,20 @@ describe('when building domain entity with two school year enumerations, one rol
         "SchoolYear": Array [
           "$.schoolYearTypeReference.schoolYear",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "ClassOfSchoolYear": true,
+        "SchoolId": true,
+        "SchoolYear": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "ClassOfSchoolYear": "ClassOfSchoolYear",
+        "SchoolId": "SchoolId",
+        "SchoolYear": "SchoolYear",
       }
     `);
   });
@@ -1330,7 +1737,8 @@ describe('when building domain entity with reference to domain entity with schoo
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('StudentSchoolAssociation');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "Calendar": Array [
           "$.calendarReference.schoolId",
@@ -1345,6 +1753,20 @@ describe('when building domain entity with reference to domain entity with schoo
         "SchoolId": Array [
           "$.schoolId",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "Calendar": true,
+        "Calendar.SchoolId": false,
+        "Calendar.SchoolYear": false,
+        "SchoolId": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "Calendar": "Calendar",
+        "SchoolId": "SchoolId",
       }
     `);
   });
@@ -1377,7 +1799,10 @@ describe('when building a descriptor', () => {
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.descriptor.get('GradeLevel');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`Object {}`);
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`Object {}`);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`Object {}`);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`Object {}`);
   });
 });
 
@@ -1410,7 +1835,10 @@ describe('when building a school year enumeration', () => {
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.schoolYearEnumeration.get('SchoolYear');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`Object {}`);
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`Object {}`);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`Object {}`);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`Object {}`);
   });
 });
 
@@ -1467,7 +1895,8 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('StudentCohort');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "CohortYear.SchoolYear": Array [
           "$.years[*].schoolYearTypeReference.schoolYear",
@@ -1475,6 +1904,18 @@ describe('when building a schema for studentEducationOrganizationAssociation', (
         "StudentUniqueId": Array [
           "$.studentUniqueId",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "CohortYear.SchoolYear": true,
+        "StudentUniqueId": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "CohortYear.SchoolYear": "SchoolYear",
+        "StudentUniqueId": "StudentUniqueId",
       }
     `);
   });
@@ -1526,7 +1967,8 @@ describe('when building a domain entity with an inline common property with a de
 
   it('should be correct allJsonPathsMapping', () => {
     const entity = namespace.entity.domainEntity.get('Section');
-    expect(entity.data.edfiApiSchema.allJsonPathsMapping).toMatchInlineSnapshot(`
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AvailableCredits.CreditType": Array [
           "$.availableCreditTypeDescriptor",
@@ -1534,6 +1976,18 @@ describe('when building a domain entity with an inline common property with a de
         "SectionIdentifier": Array [
           "$.sectionIdentifier",
         ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "AvailableCredits.CreditType": true,
+        "SectionIdentifier": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "AvailableCredits.CreditType": "CreditType",
+        "SectionIdentifier": "SectionIdentifier",
       }
     `);
   });
