@@ -1387,10 +1387,10 @@ describe('when building domain entity with a common with a choice', () => {
         "AssessmentIdentifier": Array [
           "$.assessmentIdentifier",
         ],
-        "ContentStandard.PublicationDate": Array [
+        "ContentStandard.PublicationDateChoice.PublicationDate": Array [
           "$.contentStandard.publicationDate",
         ],
-        "ContentStandard.PublicationYear": Array [
+        "ContentStandard.PublicationDateChoice.PublicationYear": Array [
           "$.contentStandard.publicationYear",
         ],
         "ContentStandard.Title": Array [

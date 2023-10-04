@@ -735,6 +735,66 @@ describe('when building domain entity with nested choice and inline commons', ()
             "contentIdentifier": "$.contentIdentifier",
           },
         },
+        "LearningResourceChoice.LearningResource.ContentClass": Object {
+          "isDescriptor": true,
+          "isReference": true,
+          "pathOrder": Array [
+            "contentClassDescriptor",
+          ],
+          "paths": Object {
+            "contentClassDescriptor": "$.contentClassDescriptor",
+          },
+          "projectName": "EdFi",
+          "resourceName": "ContentClassDescriptor",
+        },
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent": Object {
+          "isDescriptor": false,
+          "isReference": true,
+          "pathOrder": Array [
+            "contentIdentifier",
+          ],
+          "paths": Object {
+            "contentIdentifier": "$.derivativeSourceEducationContents[*].derivativeSourceEducationContentReference.contentIdentifier",
+          },
+          "projectName": "EdFi",
+          "resourceName": "EducationContent",
+        },
+        "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.URI": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "derivativeSourceURI",
+          ],
+          "paths": Object {
+            "derivativeSourceURI": "$.derivativeSourceURIs[*].derivativeSourceURI",
+          },
+        },
+        "LearningResourceChoice.LearningResource.Description": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "description",
+          ],
+          "paths": Object {
+            "description": "$.description",
+          },
+        },
+        "LearningResourceChoice.LearningResource.ShortDescription": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "shortDescription",
+          ],
+          "paths": Object {
+            "shortDescription": "$.shortDescription",
+          },
+        },
+        "LearningResourceChoice.LearningResourceMetadataURI": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "learningResourceMetadataURI",
+          ],
+          "paths": Object {
+            "learningResourceMetadataURI": "$.learningResourceMetadataURI",
+          },
+        },
         "RequiredURI": Object {
           "isReference": false,
           "pathOrder": Array [
@@ -949,6 +1009,27 @@ describe('when building domain entity with a simple common collection', () => {
     const documentPathsMapping = entity?.data.edfiApiSchema.documentPathsMapping;
     expect(documentPathsMapping).toMatchInlineSnapshot(`
       Object {
+        "AssessmentIdentificationCode.AssessmentIdentificationSystem": Object {
+          "isDescriptor": true,
+          "isReference": true,
+          "pathOrder": Array [
+            "assessmentIdentificationSystemDescriptor",
+          ],
+          "paths": Object {
+            "assessmentIdentificationSystemDescriptor": "$.identificationCodes[*].assessmentIdentificationSystemDescriptor",
+          },
+          "projectName": "EdFi",
+          "resourceName": "AssessmentIdentificationSystemDescriptor",
+        },
+        "AssessmentIdentificationCode.IdentificationCode": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "identificationCode",
+          ],
+          "paths": Object {
+            "identificationCode": "$.identificationCodes[*].identificationCode",
+          },
+        },
         "AssessmentIdentifier": Object {
           "isReference": false,
           "pathOrder": Array [
@@ -1017,6 +1098,27 @@ describe('when building domain entity subclass with common collection and descri
           ],
           "paths": Object {
             "communityOrganizationId": "$.communityOrganizationId",
+          },
+        },
+        "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": Object {
+          "isDescriptor": true,
+          "isReference": true,
+          "pathOrder": Array [
+            "educationOrganizationIdentificationSystemDescriptor",
+          ],
+          "paths": Object {
+            "educationOrganizationIdentificationSystemDescriptor": "$.identificationCodes[*].educationOrganizationIdentificationSystemDescriptor",
+          },
+          "projectName": "EdFi",
+          "resourceName": "EducationOrganizationIdentificationSystemDescriptor",
+        },
+        "EducationOrganizationIdentificationCode.IdentificationCode": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "identificationCode",
+          ],
+          "paths": Object {
+            "identificationCode": "$.identificationCodes[*].identificationCode",
           },
         },
       }
@@ -1231,6 +1333,33 @@ describe('when building domain entity with a common with a choice', () => {
             "assessmentIdentifier": "$.assessmentIdentifier",
           },
         },
+        "ContentStandard.PublicationDateChoice.PublicationDate": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "publicationDate",
+          ],
+          "paths": Object {
+            "publicationDate": "$.contentStandard.publicationDate",
+          },
+        },
+        "ContentStandard.PublicationDateChoice.PublicationYear": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "publicationYear",
+          ],
+          "paths": Object {
+            "publicationYear": "$.contentStandard.publicationYear",
+          },
+        },
+        "ContentStandard.Title": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "title",
+          ],
+          "paths": Object {
+            "title": "$.contentStandard.title",
+          },
+        },
       }
     `);
   });
@@ -1281,6 +1410,24 @@ describe('when building domain entity with a common and a common collection with
           ],
           "paths": Object {
             "assessmentIdentifier": "$.assessmentIdentifier",
+          },
+        },
+        "AssessmentPeriod.BeginDate": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "beginDate",
+          ],
+          "paths": Object {
+            "beginDate": "$.period.beginDate",
+          },
+        },
+        "AssessmentScore.MinimumScore": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "minimumScore",
+          ],
+          "paths": Object {
+            "minimumScore": "$.scores[*].minimumScore",
           },
         },
       }
@@ -1382,6 +1529,27 @@ describe('when building domain entity with a common with a domain entity referen
           ],
           "paths": Object {
             "assessmentIdentifier": "$.assessmentIdentifier",
+          },
+        },
+        "ContentStandard.MandatingEducationOrganization": Object {
+          "isDescriptor": false,
+          "isReference": true,
+          "pathOrder": Array [
+            "educationOrganizationId",
+          ],
+          "paths": Object {
+            "educationOrganizationId": "$.contentStandard.mandatingEducationOrganizationReference.educationOrganizationId",
+          },
+          "projectName": "EdFi",
+          "resourceName": "EducationOrganization",
+        },
+        "ContentStandard.Title": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "title",
+          ],
+          "paths": Object {
+            "title": "$.contentStandard.title",
           },
         },
       }
@@ -1506,6 +1674,15 @@ describe('when building a schema for StudentCohort', () => {
     const documentPathsMapping = entity?.data.edfiApiSchema.documentPathsMapping;
     expect(documentPathsMapping).toMatchInlineSnapshot(`
       Object {
+        "CohortYear.SchoolYear": Object {
+          "isReference": false,
+          "pathOrder": Array [
+            "schoolYear",
+          ],
+          "paths": Object {
+            "schoolYear": "$.years[*].schoolYearTypeReference.schoolYear",
+          },
+        },
         "StudentUniqueId": Object {
           "isReference": false,
           "pathOrder": Array [
@@ -1560,6 +1737,18 @@ describe('when building a domain entity with an inline common property with a de
     const documentPathsMapping = entity?.data.edfiApiSchema.documentPathsMapping;
     expect(documentPathsMapping).toMatchInlineSnapshot(`
       Object {
+        "AvailableCredits.CreditType": Object {
+          "isDescriptor": true,
+          "isReference": true,
+          "pathOrder": Array [
+            "availableCreditTypeDescriptor",
+          ],
+          "paths": Object {
+            "availableCreditTypeDescriptor": "$.availableCreditTypeDescriptor",
+          },
+          "projectName": "EdFi",
+          "resourceName": "CreditTypeDescriptor",
+        },
         "SectionIdentifier": Object {
           "isReference": false,
           "pathOrder": Array [
