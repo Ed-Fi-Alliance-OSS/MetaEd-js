@@ -126,26 +126,25 @@ function jsonPathsForScalarCommonProperty(
   currentJsonPath: JsonPath,
   isTopLevel: boolean,
 ) {
-  const { collectedApiProperties } = property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
+  const { allProperties } = property.referencedEntity.data.edfiApiSchema as EntityApiSchemaData;
 
-  collectedApiProperties.forEach((collectedApiProperty) => {
+  allProperties.forEach((allProperty) => {
     const concatenatedPropertyModifier: PropertyModifier = propertyModifierConcat(
       propertyModifier,
-      collectedApiProperty.propertyModifier,
+      allProperty.propertyModifier,
     );
 
-    const childPropertyApiMapping = (collectedApiProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData)
-      .apiMapping;
+    const childPropertyApiMapping = (allProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData).apiMapping;
 
     jsonPathsFor(
-      collectedApiProperty.property,
+      allProperty.property,
       concatenatedPropertyModifier,
       allJsonPathsMapping,
-      `${currentPropertyPath}.${collectedApiProperty.property.fullPropertyName}` as MetaEdPropertyPath,
+      `${currentPropertyPath}.${allProperty.property.fullPropertyName}` as MetaEdPropertyPath,
       appendNextJsonPathName(
         currentJsonPath,
         childPropertyApiMapping.topLevelName,
-        collectedApiProperty.property,
+        allProperty.property,
         concatenatedPropertyModifier,
       ),
       isTopLevel,

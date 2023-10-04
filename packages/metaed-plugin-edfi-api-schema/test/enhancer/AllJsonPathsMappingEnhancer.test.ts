@@ -38,14 +38,14 @@ import { JsonPathsInfo } from '../../src/model/JsonPathsMapping';
 const ajv = new Ajv({ allErrors: true });
 addFormatsTo(ajv);
 
-type Snapshotable = {
+export type Snapshotable = {
   jsonPaths: { [key: MetaEdPropertyPath]: JsonPathsInfo };
   isTopLevel: { [key: MetaEdPropertyPath]: boolean };
   terminalPropertyFullName: { [key: MetaEdPropertyPath]: string };
 };
 
-function snapshotify(entity: TopLevelEntity): Snapshotable {
-  const { allJsonPathsMapping } = entity.data.edfiApiSchema as EntityApiSchemaData;
+export function snapshotify(entity: TopLevelEntity | undefined): Snapshotable {
+  const { allJsonPathsMapping } = entity?.data.edfiApiSchema as EntityApiSchemaData;
 
   const jsonPaths = {} as { [key: MetaEdPropertyPath]: JsonPathsInfo };
   const isTopLevel = {} as { [key: MetaEdPropertyPath]: boolean };
@@ -1401,16 +1401,16 @@ describe('when building domain entity with a common with a choice', () => {
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": true,
-        "ContentStandard.PublicationDate": true,
-        "ContentStandard.PublicationYear": true,
+        "ContentStandard.PublicationDateChoice.PublicationDate": true,
+        "ContentStandard.PublicationDateChoice.PublicationYear": true,
         "ContentStandard.Title": true,
       }
     `);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
         "AssessmentIdentifier": "AssessmentIdentifier",
-        "ContentStandard.PublicationDate": "PublicationDate",
-        "ContentStandard.PublicationYear": "PublicationYear",
+        "ContentStandard.PublicationDateChoice.PublicationDate": "PublicationDate",
+        "ContentStandard.PublicationDateChoice.PublicationYear": "PublicationYear",
         "ContentStandard.Title": "Title",
       }
     `);
