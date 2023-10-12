@@ -8,6 +8,7 @@ import { MetaEdResourceName } from './api-schema/MetaEdResourceName';
 import { EndpointName } from './api-schema/EndpointName';
 import { MetaEdPropertyFullName } from './api-schema/MetaEdPropertyFullName';
 import { DocumentPathsMapping } from './api-schema/DocumentPathsMapping';
+import { DocumentObjectKey } from './api-schema/DocumentObjectKey';
 
 export type EntityApiSchemaData = {
   /**
@@ -73,6 +74,12 @@ export type EntityApiSchemaData = {
    * The property fullnames for every identity property on this entity, in sorted order
    */
   identityFullnames: MetaEdPropertyFullName[];
+
+  /**
+   * A list of the DocumentObjectKey paths that are part of the identity for this resource, in sorted order.
+   * Duplicates due to key unification are removed.
+   */
+  identityPathOrder: DocumentObjectKey[];
 
   /**
    * A mapping of PropertyFullNames to DocumentPaths, which are JsonPaths in an API document for a specific MetaEd

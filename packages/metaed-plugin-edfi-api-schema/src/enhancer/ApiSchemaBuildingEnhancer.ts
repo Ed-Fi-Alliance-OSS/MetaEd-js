@@ -37,6 +37,7 @@ function buildResourceSchema(entity: TopLevelEntity): ResourceSchema {
     equalityConstraints: entityApiSchemaData.equalityConstraints,
     identityFullnames: entityApiSchemaData.identityFullnames,
     documentPathsMapping: entityApiSchemaData.documentPathsMapping,
+    identityPathOrder: entityApiSchemaData.identityPathOrder,
     isSubclass: false,
   };
 }
