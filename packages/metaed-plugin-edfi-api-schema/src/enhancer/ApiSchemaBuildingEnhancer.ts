@@ -20,6 +20,7 @@ import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping
 import { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
 import { MetaEdProjectName } from '../model/api-schema/MetaEdProjectName';
 import { MetaEdPropertyFullName } from '../model/api-schema/MetaEdPropertyFullName';
+import { ResourceNameMapping } from '../model/api-schema/ResourceNameMapping';
 
 /**
  *
@@ -94,50 +95,54 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
   Array.from(metaEd.namespace.values()).forEach((namespace: Namespace) => {
     const resourceSchemas: ResourceSchemaMapping = {};
+    const resourceNameMapping: ResourceNameMapping = {};
 
     const projectSchema: ProjectSchema = {
-      projectName: namespace.projectName,
+      projectName: namespace.projectName as MetaEdProjectName,
       projectVersion: namespace.projectVersion as SemVer,
       isExtensionProject: namespace.isExtension,
       description: namespace.projectDescription,
       resourceSchemas,
+      resourceNameMapping,
     };
 
     const projectNamespace: ProjectNamespace = projectSchema.projectName.toLowerCase() as ProjectNamespace;
-
     apiSchema.projectSchemas[projectNamespace] = projectSchema;
+    apiSchema.projectNameMapping[projectSchema.projectName] = projectNamespace;
 
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntity').forEach((domainEntity) => {
       // Abstract entities are not resources (e.g. EducationOrganization)
       if ((domainEntity as DomainEntity).isAbstract) return;
-      resourceSchemas[(domainEntity.data.edfiApiSchema as EntityApiSchemaData).endpointName] = buildResourceSchema(
-        domainEntity as TopLevelEntity,
-      );
+      const { endpointName } = domainEntity.data.edfiApiSchema as EntityApiSchemaData;
+      resourceNameMapping[domainEntity.metaEdName] = endpointName;
+      resourceSchemas[endpointName] = buildResourceSchema(domainEntity as TopLevelEntity);
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'association').forEach((association) => {
       // This is a workaround for the fact that the ODS/API required GeneralStudentProgramAssociation to
       // be abstract although there is no MetaEd language annotation to make an Association abstract.
       if (association.metaEdName !== 'GeneralStudentProgramAssociation') return;
-      resourceSchemas[(association.data.edfiApiSchema as EntityApiSchemaData).endpointName] = buildResourceSchema(
-        association as TopLevelEntity,
-      );
+      const { endpointName } = association.data.edfiApiSchema as EntityApiSchemaData;
+      resourceNameMapping[association.metaEdName] = endpointName;
+      resourceSchemas[endpointName] = buildResourceSchema(association as TopLevelEntity);
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'descriptor').forEach((entity) => {
-      resourceSchemas[(entity.data.edfiApiSchema as EntityApiSchemaData).endpointName] = buildResourceSchema(
-        entity as TopLevelEntity,
-      );
+      const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
+      resourceNameMapping[entity.metaEdName] = endpointName;
+      resourceSchemas[endpointName] = buildResourceSchema(entity as TopLevelEntity);
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'domainEntitySubclass').forEach((entity) => {
-      resourceSchemas[(entity.data.edfiApiSchema as EntityApiSchemaData).endpointName] =
-        buildDomainEntitySubclassResourceSchema(entity as TopLevelEntity);
+      const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
+      resourceNameMapping[entity.metaEdName] = endpointName;
+      resourceSchemas[endpointName] = buildDomainEntitySubclassResourceSchema(entity as TopLevelEntity);
     });
 
     getEntitiesOfTypeForNamespaces([namespace], 'associationSubclass').forEach((entity) => {
-      resourceSchemas[(entity.data.edfiApiSchema as EntityApiSchemaData).endpointName] =
-        buildAssociationSubclassResourceSchema(entity as TopLevelEntity);
+      const { endpointName } = entity.data.edfiApiSchema as EntityApiSchemaData;
+      resourceNameMapping[entity.metaEdName] = endpointName;
+      resourceSchemas[endpointName] = buildAssociationSubclassResourceSchema(entity as TopLevelEntity);
     });
   });
   return {
