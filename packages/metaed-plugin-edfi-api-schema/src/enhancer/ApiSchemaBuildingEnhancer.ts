@@ -121,7 +121,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     getEntitiesOfTypeForNamespaces([namespace], 'association').forEach((association) => {
       // This is a workaround for the fact that the ODS/API required GeneralStudentProgramAssociation to
       // be abstract although there is no MetaEd language annotation to make an Association abstract.
-      if (association.metaEdName !== 'GeneralStudentProgramAssociation') return;
+      if (association.metaEdName === 'GeneralStudentProgramAssociation') return;
       const { endpointName } = association.data.edfiApiSchema as EntityApiSchemaData;
       resourceNameMapping[association.metaEdName] = endpointName;
       resourceSchemas[endpointName] = buildResourceSchema(association as TopLevelEntity);

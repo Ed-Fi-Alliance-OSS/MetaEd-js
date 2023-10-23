@@ -6531,6 +6531,13 @@ describe('when building an Association subclass', () => {
     runApiSchemaEnhancers(metaEd);
   });
 
+  it('should not have GeneralStudentProgramAssociation', () => {
+    expect(
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
+        .generalStudentProgramAssociations,
+    ).toBeUndefined();
+  });
+
   it('should be correct equalityConstraints for StudentProgramAssociation', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentProgramAssociations
