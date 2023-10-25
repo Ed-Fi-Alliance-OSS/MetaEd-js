@@ -59,6 +59,32 @@ export async function generateForeignKeys(metaEd: MetaEdEnvironment): Promise<Ge
   };
 }
 
+export async function generateIndexesForEdOrgIds(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
+  const results: GeneratedOutput[] = [];
+  const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
+
+  metaEd.namespace.forEach((namespace) => {
+    const generatedResult: string = template().indexesForEdOrgIds({
+      indexForEdOrgIds: namespace.data.edfiOdsSqlServer.odsSchema.indexForEdOrgIds,
+      useLicenseHeader,
+    });
+
+    results.push({
+      name: 'ODS SQL Server Create indexes for EdOrgIds',
+      namespace: namespace.namespaceName,
+      folderName: structurePath,
+      fileName: fileNameFor('1410', namespace, 'Create-indexes-for-EdOrgIds-for-relationship-auth-performance'),
+      resultString: generatedResult,
+      resultStream: null,
+    });
+  });
+
+  return {
+    generatorName: 'edfiOdsSqlServer.CreateIndexesForEdOrgIds',
+    generatedOutput: results,
+  };
+}
+
 export async function generateExtendedProperties(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
   const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
@@ -143,6 +169,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
 
   const tablesResult: GeneratorResult = await generateTables(metaEd);
   const foreignKeysResult: GeneratorResult = await generateForeignKeys(metaEd);
+  const indexesForEdOrgIdsResult: GeneratorResult = await generateIndexesForEdOrgIds(metaEd);
   const extendedPropertiesResult: GeneratorResult = await generateExtendedProperties(metaEd);
   const enumerationsResult: GeneratorResult = await generateEnumerations(metaEd);
   const schoolYearsResult: GeneratorResult = await generateSchoolYears(metaEd);
@@ -150,6 +177,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
   const generatorResults: GeneratorResult[] = [
     tablesResult,
     foreignKeysResult,
+    indexesForEdOrgIdsResult,
     extendedPropertiesResult,
     enumerationsResult,
     schoolYearsResult,

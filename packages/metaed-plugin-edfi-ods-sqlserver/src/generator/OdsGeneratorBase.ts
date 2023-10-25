@@ -31,6 +31,7 @@ export const template = R.memoizeWith(R.identity, () => ({
   coreSchema: templateNamed('coreSchema'),
   table: templateNamed('table'),
   foreignKey: templateNamed('foreignKey'),
+  indexesForEdOrgIds: templateNamed('indexesForEdOrgIdsResult'),
   idIndexes: templateNamed('idIndexes'),
   extendedProperties: templateNamed('extendedProperties'),
   enumerationRow: templateNamed('enumerationRow'),
