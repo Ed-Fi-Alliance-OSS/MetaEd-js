@@ -567,7 +567,11 @@ describe('when building domain entity subclass with common collection and descri
   it('should be correct identityPathOrder for domainEntitySubclassName', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntitySubclass.get(domainEntitySubclassName);
     const identityPathOrder = entity?.data.edfiApiSchema.identityPathOrder;
-    expect(identityPathOrder).toMatchInlineSnapshot(`undefined`);
+    expect(identityPathOrder).toMatchInlineSnapshot(`
+      Array [
+        "communityOrganizationId",
+      ]
+    `);
   });
 });
 
@@ -606,9 +610,13 @@ describe('when building association with a common collection in a common collect
   });
 
   it('should be correct identityPathOrder for StudentEducationOrganizationAssociation', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.association.get('StudentEducationOrganizationAssociation');
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentEducationOrganizationAssociation');
     const identityPathOrder = entity?.data.edfiApiSchema.identityPathOrder;
-    expect(identityPathOrder).toMatchInlineSnapshot(`undefined`);
+    expect(identityPathOrder).toMatchInlineSnapshot(`
+      Array [
+        "studentId",
+      ]
+    `);
   });
 });
 
@@ -884,9 +892,13 @@ describe('when building domain entity with two school year enumerations, one rol
   });
 
   it('should be correct identityPathOrder for StudentSchoolAssociation', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.association.get('StudentSchoolAssociation');
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentSchoolAssociation');
     const identityPathOrder = entity?.data.edfiApiSchema.identityPathOrder;
-    expect(identityPathOrder).toMatchInlineSnapshot(`undefined`);
+    expect(identityPathOrder).toMatchInlineSnapshot(`
+      Array [
+        "schoolId",
+      ]
+    `);
   });
 });
 
@@ -919,9 +931,13 @@ describe('when building domain entity with reference to domain entity with schoo
   });
 
   it('should be correct identityPathOrder for StudentSchoolAssociation', () => {
-    const entity = metaEd.namespace.get(namespaceName)?.entity.association.get('StudentSchoolAssociation');
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentSchoolAssociation');
     const identityPathOrder = entity?.data.edfiApiSchema.identityPathOrder;
-    expect(identityPathOrder).toMatchInlineSnapshot(`undefined`);
+    expect(identityPathOrder).toMatchInlineSnapshot(`
+      Array [
+        "schoolId",
+      ]
+    `);
   });
 });
 
@@ -1055,7 +1071,11 @@ describe('when building a Domain Entity subclass', () => {
   it('should be correct identityPathOrder for School', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntitySubclass.get('School');
     const identityPathOrder = entity?.data.edfiApiSchema.identityPathOrder;
-    expect(identityPathOrder).toMatchInlineSnapshot(`undefined`);
+    expect(identityPathOrder).toMatchInlineSnapshot(`
+      Array [
+        "schoolId",
+      ]
+    `);
   });
 });
 
@@ -1105,6 +1125,13 @@ describe('when building an Association subclass', () => {
   it('should be correct identityPathOrder for StudentProgramAssociation', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.associationSubclass.get('StudentProgramAssociation');
     const identityPathOrder = entity?.data.edfiApiSchema.identityPathOrder;
-    expect(identityPathOrder).toMatchInlineSnapshot(`undefined`);
+    expect(identityPathOrder).toMatchInlineSnapshot(`
+      Array [
+        "programId",
+        "programName",
+        "schoolId",
+        "schoolName",
+      ]
+    `);
   });
 });

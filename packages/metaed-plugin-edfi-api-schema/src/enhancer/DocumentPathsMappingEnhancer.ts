@@ -80,6 +80,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     },
   );
 
+  // Descriptors have no document paths
+  getAllEntitiesOfType(metaEd, 'descriptor').forEach((entity) => {
+    const edfiApiSchemaData = entity.data.edfiApiSchema as EntityApiSchemaData;
+    edfiApiSchemaData.documentPathsMapping = {};
+  });
+
   return {
     enhancerName: 'DocumentPathsMappingEnhancer',
     success: true,

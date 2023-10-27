@@ -9,20 +9,27 @@ import { DocumentPaths } from '../model/api-schema/DocumentPaths';
  * in an absolute order.
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  getAllEntitiesOfType(metaEd, 'domainEntity', 'association').forEach((entity) => {
-    // Using Set to remove duplicates
-    const result: Set<DocumentObjectKey> = new Set();
+  getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
+    (entity) => {
+      // Using Set to remove duplicates
+      const result: Set<DocumentObjectKey> = new Set();
 
-    const { identityFullnames, documentPathsMapping } = entity.data.edfiApiSchema as EntityApiSchemaData;
+      const { identityFullnames, documentPathsMapping } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
-    identityFullnames.forEach((identityFullname: MetaEdPropertyFullName) => {
-      const documentPaths: DocumentPaths = documentPathsMapping[identityFullname];
-      documentPaths.pathOrder.forEach((path: DocumentObjectKey) => {
-        result.add(path);
+      identityFullnames.forEach((identityFullname: MetaEdPropertyFullName) => {
+        const documentPaths: DocumentPaths = documentPathsMapping[identityFullname];
+        documentPaths.pathOrder.forEach((path: DocumentObjectKey) => {
+          result.add(path);
+        });
       });
-    });
 
-    (entity.data.edfiApiSchema as EntityApiSchemaData).identityPathOrder = [...result].sort();
+      (entity.data.edfiApiSchema as EntityApiSchemaData).identityPathOrder = [...result].sort();
+    },
+  );
+
+  // Descriptors have no identity paths
+  getAllEntitiesOfType(metaEd, 'descriptor').forEach((descriptor) => {
+    (descriptor.data.edfiApiSchema as EntityApiSchemaData).identityPathOrder = [];
   });
 
   return {
