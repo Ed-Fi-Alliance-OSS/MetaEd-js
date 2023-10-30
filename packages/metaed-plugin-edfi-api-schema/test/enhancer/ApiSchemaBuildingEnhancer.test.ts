@@ -6440,15 +6440,15 @@ describe('when building a Domain Entity subclass', () => {
   it('should have correct superclassIdentityFullname for School', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools
-        .superclassIdentityFullname,
-    ).toMatchInlineSnapshot(`"EducationOrganizationId"`);
+        .superclassIdentityDocumentKey,
+    ).toMatchInlineSnapshot(`"educationOrganizationId"`);
   });
 
   it('should have correct subclassIdentityFullname for School', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools
-        .subclassIdentityFullname,
-    ).toMatchInlineSnapshot(`"SchoolId"`);
+        .subclassIdentityDocumentKey,
+    ).toMatchInlineSnapshot(`"schoolId"`);
   });
 
   it('should have correct documentPathsMapping for School', () => {

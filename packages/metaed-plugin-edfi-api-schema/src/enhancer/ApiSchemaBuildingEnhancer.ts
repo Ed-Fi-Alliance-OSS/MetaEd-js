@@ -19,8 +19,9 @@ import { ResourceSchema } from '../model/api-schema/ResourceSchema';
 import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping';
 import { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
 import { MetaEdProjectName } from '../model/api-schema/MetaEdProjectName';
-import { MetaEdPropertyFullName } from '../model/api-schema/MetaEdPropertyFullName';
 import { ResourceNameMapping } from '../model/api-schema/ResourceNameMapping';
+import { DocumentObjectKey } from '../model/api-schema/DocumentObjectKey';
+import { uncapitalize } from '../Utility';
 
 /**
  *
@@ -62,8 +63,8 @@ function buildDomainEntitySubclassResourceSchema(entity: DomainEntitySubclass): 
     ...baseResourceSchema,
     superclassProjectName: entity.baseEntity.namespace.projectName as MetaEdProjectName,
     superclassResourceName: superclassEntityApiSchemaData.resourceName,
-    superclassIdentityFullname: subclassIdentityRenameProperty.baseKeyName as MetaEdPropertyFullName,
-    subclassIdentityFullname: subclassIdentityRenameProperty.fullPropertyName as MetaEdPropertyFullName,
+    superclassIdentityDocumentKey: uncapitalize(subclassIdentityRenameProperty.baseKeyName) as DocumentObjectKey,
+    subclassIdentityDocumentKey: uncapitalize(subclassIdentityRenameProperty.fullPropertyName) as DocumentObjectKey,
     isSubclass: true,
     subclassType: 'domainEntity',
   };
