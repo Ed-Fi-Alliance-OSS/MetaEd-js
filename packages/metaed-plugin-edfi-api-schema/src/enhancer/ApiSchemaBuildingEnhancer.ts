@@ -120,6 +120,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         abstractResources[domainEntity.metaEdName] = {
           identityPathOrder: (domainEntity.data.edfiApiSchema as EntityApiSchemaData).identityPathOrder,
         };
+        return;
       }
       const { endpointName } = domainEntity.data.edfiApiSchema as EntityApiSchemaData;
       resourceNameMapping[domainEntity.metaEdName] = endpointName;
