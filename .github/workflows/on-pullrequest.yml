@@ -75,7 +75,7 @@ jobs:
         env:
           JEST_JUNIT_OUTPUT_DIR: unit-tests
 
-      # Enable tmate debugging if the input option was provided (https://github.com/marketplace/actions/debugging-with-tmate)
+      # Enable tmate debugging if the input option was provided (cd )
       - name: Setup tmate session
         if: always() && inputs.debug_enabled == 'true'
         uses: mxschmitt/action-tmate@28f608baaa037465aa887c21a7924e9e6b66a9e0 # v3.13
