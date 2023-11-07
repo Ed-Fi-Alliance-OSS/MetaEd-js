@@ -8,7 +8,6 @@ import { enhance as templateSpecificTablePropertyEnhancerV6dot1 } from './enhanc
 import { enhance as sqlServerTableNamingEnhancer } from './enhancer/SqlServerTableNamingEnhancer';
 import { enhance as sqlServerColumnNamingEnhancer } from './enhancer/SqlServerColumnNamingEnhancer';
 import { enhance as sqlServerForeignKeyNamingEnhancer } from './enhancer/SqlServerForeignKeyNamingEnhancer';
-import { enhance as sqlServerIndexesEdOrgIdsEnhancer } from './enhancer/SqlServerIndexesEdOrgIdsEnhancer';
 import { enhance as addSchemaContainerEnhancer } from './enhancer/AddSchemaContainerEnhancer';
 import { enhance as sqlServerTableSetupEnhancer } from './model/Table';
 import { enhance as namespaceSetupEnhancer } from './model/Namespace';
@@ -16,7 +15,6 @@ import { enhance as namespaceSetupEnhancer } from './model/Namespace';
 export { ColumnDataTypes } from './model/ColumnDataTypes';
 export { enhance as sqlServerTableSetupEnhancer } from './model/Table';
 export { enhance as sqlServerTableNamingEnhancer } from './enhancer/SqlServerTableNamingEnhancer';
-export { enhance as sqlServerIndexesEdOrgIdsEnhancer } from './enhancer/SqlServerIndexesEdOrgIdsEnhancer';
 export { enhance as sqlServerColumnNamingEnhancer, constructColumnNameFrom } from './enhancer/SqlServerColumnNamingEnhancer';
 export { enhance as sqlServerForeignKeyNamingEnhancer } from './enhancer/SqlServerForeignKeyNamingEnhancer';
 
@@ -31,7 +29,6 @@ export function initialize(): MetaEdPlugin {
       templateSpecificTablePropertyEnhancer,
       templateSpecificTablePropertyEnhancerV6dot1,
       sqlServerForeignKeyNamingEnhancer,
-      sqlServerIndexesEdOrgIdsEnhancer,
       addSchemaContainerEnhancer,
     ],
     generator: [SchemaGenerator, OdsGenerator, IdIndexesGenerator],
