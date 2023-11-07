@@ -28,6 +28,10 @@ export interface ForeignKeySourceReference {
   isSubtableRelationship: boolean;
   isPotentiallyLogical: boolean;
   propertyType: PropertyType;
+  isRoleNamed: boolean;
+
+  // For some reason, this is where all of the source columns in the foreign key are part of the parent PK
+  isIdentifying: boolean;
 }
 
 export type ForeignKeyInfo = {
@@ -66,6 +70,8 @@ export function newForeignKeySourceReference(): ForeignKeySourceReference {
     isSubtableRelationship: false,
     isPotentiallyLogical: false,
     propertyType: 'unknown',
+    isRoleNamed: false,
+    isIdentifying: false,
   };
 }
 
@@ -123,6 +129,8 @@ export function foreignKeySourceReferenceFrom(
         ? (property as DomainEntityProperty | AssociationProperty).potentiallyLogical
         : false,
     propertyType: property.type,
+    isRoleNamed: property.roleName !== '',
+    isIdentifying: false,
   };
 }
 
@@ -164,10 +172,7 @@ export function addColumnPairs(foreignKey: ForeignKey, columnPairs: ColumnPair[]
 }
 
 export function getParentTableColumnIds(foreignKey: ForeignKey, foreignTable: Table | null = null): string[] {
-  const pairs = getOrderedColumnPairs(foreignKey, foreignTable);
-  const result = pairs.map((x: ColumnPair) => x.parentTableColumnId);
-  return result;
-  // return getOrderedColumnPairs(foreignKey, foreignTable).map((x: ColumnPair) => x.parentTableColumnId);
+  return getOrderedColumnPairs(foreignKey, foreignTable).map((x: ColumnPair) => x.parentTableColumnId);
 }
 
 export function getParentTableColumns(foreignKey: ForeignKey, foreignTable: Table | null = null): Column[] {
