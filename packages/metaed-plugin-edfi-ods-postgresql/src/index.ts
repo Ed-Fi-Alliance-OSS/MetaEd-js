@@ -1,7 +1,8 @@
 import type { MetaEdPlugin } from '@edfi/metaed-core';
-import { generate as OdsGenerator } from './generator/OdsGenerator';
-import { generate as SchemaGenerator } from './generator/SchemaGenerator';
-import { generate as IdIndexesGenerator } from './generator/IdIndexesGenerator';
+import { generate as odsGenerator } from './generator/OdsGenerator';
+import { generate as schemaGenerator } from './generator/SchemaGenerator';
+import { generate as idIndexesGenerator } from './generator/IdIndexesGenerator';
+import { generate as educationOrganizationAuthorizationIndexesGenerator } from './generator/EducationOrganizationAuthorizationIndexesGenerator';
 
 import { enhance as templateSpecificTablePropertyEnhancer } from './enhancer/TemplateSpecificTablePropertyEnhancer';
 import { enhance as templateSpecificTablePropertyEnhancerV6dot1 } from './enhancer/TemplateSpecificTablePropertyEnhancerV6dot1';
@@ -35,7 +36,7 @@ export function initialize(): MetaEdPlugin {
       postgreSqlForeignKeyNamingEnhancer,
       addSchemaContainerEnhancer,
     ],
-    generator: [SchemaGenerator, OdsGenerator, IdIndexesGenerator],
+    generator: [schemaGenerator, odsGenerator, idIndexesGenerator, educationOrganizationAuthorizationIndexesGenerator],
     shortName: 'edfiOdsPostgresql',
   };
 }

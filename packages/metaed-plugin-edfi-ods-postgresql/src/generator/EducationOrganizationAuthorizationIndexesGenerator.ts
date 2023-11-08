@@ -10,7 +10,7 @@ import { shouldApplyLicenseHeader, tableEntities, Table } from '@edfi/metaed-plu
 import { fileNameFor, structurePath, template } from './OdsGeneratorBase';
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
-  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment;
+  const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment;
   const results: GeneratedOutput[] = [];
 
   if (versionSatisfies(targetTechnologyVersion, '>=7.1.0')) {
@@ -27,7 +27,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
         });
 
         results.push({
-          name: 'ODS SQL Server EducationOrganization Authorization Indexes Generator',
+          name: 'ODS PostgreSQL EducationOrganization Authorization Indexes Generator',
           namespace: namespace.namespaceName,
           folderName: structurePath,
           fileName: fileNameFor(prefix, namespace, 'Create-indexes-for-EdOrgIds-for-relationship-auth-performance'),
@@ -38,7 +38,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
     });
   }
   return {
-    generatorName: 'edfiOdsSqlServer.EducationOrganizationAuthorizationIndexesGenerator',
+    generatorName: 'edfiOdsPostgresql.EducationOrganizationAuthorizationIndexesGenerator',
     generatedOutput: results,
   };
 }
