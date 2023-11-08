@@ -36,6 +36,7 @@ export const template = R.memoizeWith(R.identity, () => ({
   enumerationRow: templateNamed('enumerationRow'),
   schoolYearEnumerationRow: templateNamed('schoolYearEnumerationRow'),
   extensionSchema: templateNamed('extensionSchema'),
+  educationOrganizationAuthorizationIndexesGenerator: templateNamed('educationOrganizationAuthorizationIndexes'),
 }));
 
 export const registerPartials = R.once(() => {

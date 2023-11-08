@@ -38,6 +38,7 @@ import { enhance as columnDeprecationEnhancer } from './ColumnDeprecationEnhance
 import { enhance as tableDeprecationEnhancer } from './TableDeprecationEnhancer';
 
 import { enhance as foreignKeyIsIdentifyingEnhancer } from './ForeignKeyIsIdentifyingEnhancer';
+import { enhance as educationOrganizationIdColumnEnhancer } from './EducationOrganizationIdColumnEnhancer';
 
 import { enhance as assessmentContentStandardTableDiminisher } from '../diminisher/AssessmentContentStandardTableDiminisher';
 
@@ -95,6 +96,8 @@ export function enhancerList(): Enhancer[] {
     columnDeprecationEnhancer,
     tableDeprecationEnhancer,
     foreignKeyForeignTableReferenceEnhancer,
+
     foreignKeyIsIdentifyingEnhancer,
+    educationOrganizationIdColumnEnhancer,
   ];
 }

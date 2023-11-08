@@ -107,6 +107,11 @@ export interface Table {
   foreignKeys: ForeignKey[];
   alternateKeys: Column[];
   uniqueIndexes: Column[];
+
+  // The educationOrganizationId columns that are is part of the PK of this table, if there are any.
+  educationOrganizationIdColumns: Column[];
+  hasEducationOrganizationIdColumns: boolean;
+
   // not all tables have a parentEntity
   parentEntity: TopLevelEntity;
   isAggregateRootTable: boolean;
@@ -141,6 +146,10 @@ export function newTable(): Table {
     foreignKeys: [],
     alternateKeys: [],
     uniqueIndexes: [],
+
+    educationOrganizationIdColumns: [],
+    hasEducationOrganizationIdColumns: false,
+
     parentEntity: NoTopLevelEntity,
     isAggregateRootTable: false,
     hideFromApiMetadata: false,
