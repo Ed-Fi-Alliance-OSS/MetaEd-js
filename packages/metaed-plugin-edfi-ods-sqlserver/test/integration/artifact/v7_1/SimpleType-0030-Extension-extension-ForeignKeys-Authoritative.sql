@@ -36,10 +36,6 @@ ALTER TABLE [extension].[ChartOfAccount] WITH CHECK ADD CONSTRAINT [FK_ChartOfAc
 REFERENCES [edfi].[EducationOrganization] ([EducationOrganizationId])
 GO
 
-CREATE NONCLUSTERED INDEX [FK_ChartOfAccount_EducationOrganization]
-ON [extension].[ChartOfAccount] ([EducationOrganizationId] ASC)
-GO
-
 ALTER TABLE [extension].[ChartOfAccount] WITH CHECK ADD CONSTRAINT [FK_ChartOfAccount_FunctionDimension] FOREIGN KEY ([FiscalYear], [FunctionCode])
 REFERENCES [extension].[FunctionDimension] ([FiscalYear], [FunctionCode])
 GO
@@ -150,10 +146,6 @@ GO
 
 ALTER TABLE [extension].[LocalAccount] WITH CHECK ADD CONSTRAINT [FK_LocalAccount_EducationOrganization] FOREIGN KEY ([EducationOrganizationId])
 REFERENCES [edfi].[EducationOrganization] ([EducationOrganizationId])
-GO
-
-CREATE NONCLUSTERED INDEX [FK_LocalAccount_EducationOrganization]
-ON [extension].[LocalAccount] ([EducationOrganizationId] ASC)
 GO
 
 ALTER TABLE [extension].[LocalAccountReportingTag] WITH CHECK ADD CONSTRAINT [FK_LocalAccountReportingTag_LocalAccount] FOREIGN KEY ([AccountIdentifier], [EducationOrganizationId], [FiscalYear])

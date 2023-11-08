@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import { MetaEdEnvironment, Namespace, newPluginEnvironment } from '@edfi/metaed-core';
 import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
-import { enhance } from '../../src/enhancer/ForeignKeyReverseIndexEnhancer';
+import { enhance } from '../../src/enhancer/ForeignKeyReverseIndexEnhancerV6dot1';
 import { enhance as initializeEdFiOdsRelationalEntityRepository } from '../../src/model/EdFiOdsRelationalEntityRepository';
 import { newColumn } from '../../src/model/database/Column';
 import { newColumnPair } from '../../src/model/database/ColumnPair';

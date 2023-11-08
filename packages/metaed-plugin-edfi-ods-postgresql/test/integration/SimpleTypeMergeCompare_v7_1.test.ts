@@ -75,7 +75,7 @@ describe('when generating ods tables file with simple merges for ODS/API 7.1', (
     }
 
     const generatorResult: GeneratorResult = state.generatorResults.filter(
-      (x) => x.generatorName === 'edfiOdsSqlServer.OdsGenerator',
+      (x) => x.generatorName === 'edfiOdsPostgresql.OdsGenerator',
     )[0];
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
@@ -168,7 +168,7 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
     }
 
     const generatorResult: GeneratorResult = state.generatorResults.filter(
-      (x) => x.generatorName === 'edfiOdsSqlServer.OdsGenerator',
+      (x) => x.generatorName === 'edfiOdsPostgresql.OdsGenerator',
     )[0];
     [, , generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 
@@ -261,7 +261,7 @@ describe('when generating EducationOrganizationAuthorizationIndexes with simple 
     }
 
     const generatorResult: GeneratorResult = state.generatorResults.filter(
-      (x) => x.generatorName === 'edfiOdsSqlServer.EducationOrganizationAuthorizationIndexesGenerator',
+      (x) => x.generatorName === 'edfiOdsPostgresql.EducationOrganizationAuthorizationIndexesGenerator',
     )[0];
     [generatedCoreOutput, generatedExtensionOutput] = generatorResult.generatedOutput;
 

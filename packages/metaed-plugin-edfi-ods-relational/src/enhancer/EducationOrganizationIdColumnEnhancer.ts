@@ -12,8 +12,12 @@ import { Table } from '../model/database/Table';
 
 const enhancerName = 'EducationOrganizationIdColumnEnhancer';
 
+/**
+ * From METAED-1485, flag indexes for creation that would improve the performance of the filters applied to queries
+ * for relationship-based authorization on non-role named educationOrganizationIds (including renames).
+ */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (versionSatisfies(targetTechnologyVersionFor('edfiOdsRelational', metaEd), '>=7.0.0')) {
+  if (versionSatisfies(targetTechnologyVersionFor('edfiOdsRelational', metaEd), '>=7.1.0')) {
     metaEd.namespace.forEach((namespace: Namespace) => {
       const tables: Map<string, Table> = tableEntities(metaEd, namespace);
       tables.forEach((table: Table) => {

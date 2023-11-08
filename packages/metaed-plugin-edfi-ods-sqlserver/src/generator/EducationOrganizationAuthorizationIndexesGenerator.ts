@@ -30,7 +30,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
           name: 'ODS SQL Server EducationOrganization Authorization Indexes Generator',
           namespace: namespace.namespaceName,
           folderName: structurePath,
-          fileName: fileNameFor(prefix, namespace, 'Create-indexes-for-EdOrgIds-for-relationship-auth-performance'),
+          fileName: fileNameFor(prefix, namespace, 'CreateIndex-EdOrgIdsRelationship-AuthPerformance'),
           resultString: generatedResult,
           resultStream: null,
         });

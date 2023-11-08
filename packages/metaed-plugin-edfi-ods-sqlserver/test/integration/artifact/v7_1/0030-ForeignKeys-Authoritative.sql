@@ -89,10 +89,6 @@ CREATE NONCLUSTERED INDEX [FK_AssessmentAcademicSubject_AcademicSubjectDescripto
 ON [edfi].[AssessmentAcademicSubject] ([AcademicSubjectDescriptorId] ASC)
 GO
 
-CREATE NONCLUSTERED INDEX [FK_Assessment_EducationOrganization]
-ON [edfi].[Assessment] ([EducationOrganizationId] ASC)
-GO
-
 ALTER TABLE [edfi].[AssessmentAcademicSubject] WITH CHECK ADD CONSTRAINT [FK_AssessmentAcademicSubject_Assessment] FOREIGN KEY ([AssessmentIdentifier], [Namespace])
 REFERENCES [edfi].[Assessment] ([AssessmentIdentifier], [Namespace])
 ON DELETE CASCADE
@@ -694,6 +690,10 @@ ALTER TABLE [edfi].[CommunityProvider] WITH CHECK ADD CONSTRAINT [FK_CommunityPr
 REFERENCES [edfi].[CommunityOrganization] ([CommunityOrganizationId])
 GO
 
+CREATE NONCLUSTERED INDEX [FK_CommunityProvider_CommunityOrganization]
+ON [edfi].[CommunityProvider] ([CommunityOrganizationId] ASC)
+GO
+
 ALTER TABLE [edfi].[CommunityProvider] WITH CHECK ADD CONSTRAINT [FK_CommunityProvider_EducationOrganization] FOREIGN KEY ([CommunityProviderId])
 REFERENCES [edfi].[EducationOrganization] ([EducationOrganizationId])
 ON DELETE CASCADE
@@ -721,10 +721,6 @@ GO
 
 CREATE NONCLUSTERED INDEX [FK_CommunityProvider_ProviderStatusDescriptor]
 ON [edfi].[CommunityProvider] ([ProviderStatusDescriptorId] ASC)
-GO
-
-CREATE NONCLUSTERED INDEX [FK_CommunityProvider_CommunityOrganization]
-ON [edfi].[CommunityProvider] ([CommunityOrganizationId] ASC)
 GO
 
 ALTER TABLE [edfi].[CommunityProviderLicense] WITH CHECK ADD CONSTRAINT [FK_CommunityProviderLicense_CommunityProvider] FOREIGN KEY ([CommunityProviderId])
@@ -3502,10 +3498,6 @@ GO
 
 ALTER TABLE [edfi].[PostSecondaryEvent] WITH CHECK ADD CONSTRAINT [FK_PostSecondaryEvent_PostSecondaryInstitution] FOREIGN KEY ([PostSecondaryInstitutionId])
 REFERENCES [edfi].[PostSecondaryInstitution] ([PostSecondaryInstitutionId])
-GO
-
-CREATE NONCLUSTERED INDEX [FK_PostSecondaryEvent_PostSecondaryInstitution]
-ON [edfi].[PostSecondaryEvent] ([PostSecondaryInstitutionId] ASC)
 GO
 
 ALTER TABLE [edfi].[PostSecondaryEvent] WITH CHECK ADD CONSTRAINT [FK_PostSecondaryEvent_Student] FOREIGN KEY ([StudentUSI])
@@ -6394,10 +6386,6 @@ ALTER TABLE [edfi].[StudentProgramAttendanceEvent] WITH CHECK ADD CONSTRAINT [FK
 REFERENCES [edfi].[EducationOrganization] ([EducationOrganizationId])
 GO
 
-CREATE NONCLUSTERED INDEX [FK_StudentProgramAttendanceEvent_EducationOrganization]
-ON [edfi].[StudentProgramAttendanceEvent] ([EducationOrganizationId] ASC)
-GO
-
 ALTER TABLE [edfi].[StudentProgramAttendanceEvent] WITH CHECK ADD CONSTRAINT [FK_StudentProgramAttendanceEvent_Program] FOREIGN KEY ([ProgramEducationOrganizationId], [ProgramName], [ProgramTypeDescriptorId])
 REFERENCES [edfi].[Program] ([EducationOrganizationId], [ProgramName], [ProgramTypeDescriptorId])
 GO
@@ -6878,10 +6866,6 @@ GO
 
 ALTER TABLE [edfi].[Survey] WITH CHECK ADD CONSTRAINT [FK_Survey_EducationOrganization] FOREIGN KEY ([EducationOrganizationId])
 REFERENCES [edfi].[EducationOrganization] ([EducationOrganizationId])
-GO
-
-CREATE NONCLUSTERED INDEX [FK_Survey_EducationOrganization]
-ON [edfi].[Survey] ([EducationOrganizationId] ASC)
 GO
 
 ALTER TABLE [edfi].[Survey] WITH CHECK ADD CONSTRAINT [FK_Survey_SchoolYearType] FOREIGN KEY ([SchoolYear])
