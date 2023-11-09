@@ -31,8 +31,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
             if (
               column.sourceEntityProperties.some(
                 (p: EntityProperty) =>
-                  (p.metaEdName === 'EducationOrganizationId' || p.baseKeyName === 'EducationOrganizationId') &&
-                  p.roleName === '',
+                  p.metaEdName === 'EducationOrganizationId' || p.baseKeyName === 'EducationOrganizationId',
               )
             ) {
               table.educationOrganizationIdColumns.push(column);
