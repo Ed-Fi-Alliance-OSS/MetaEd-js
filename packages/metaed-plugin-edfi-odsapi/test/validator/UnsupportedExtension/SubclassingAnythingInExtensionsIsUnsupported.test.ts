@@ -100,7 +100,7 @@ describe('when an association subclass in an extension project subclasses an ass
     const entity = coreNamespace.entity.association.get(baseEntityName);
     const subclass = extensionNamespace.entity.associationSubclass.get(subclassName);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
 
     if (entity && subclass) subclass.baseEntity = entity;
 

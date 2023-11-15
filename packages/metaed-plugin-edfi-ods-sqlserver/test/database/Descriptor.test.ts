@@ -1416,7 +1416,7 @@ describe('when descriptor is generated for ODS/API version 7+', (): void => {
   const namespaceName = 'EdFi';
   const baseDescriptorTableName = 'Descriptor';
   const descriptorName = 'DescriptorName';
-  const targetTechnologyVersion: SemVer = '7.0.0';
+  const targetTechnologyVersion: SemVer = '7.1.0';
 
   beforeAll(async () => {
     MetaEdTextBuilder.build()

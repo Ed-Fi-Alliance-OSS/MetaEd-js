@@ -63,13 +63,13 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
           targetTechnologyVersion: '3.1.0',
         },
       },
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.1/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.1.0',
+          projectVersion: '3.2.0-c',
           description: '',
         },
       ],
@@ -80,7 +80,7 @@ describe('when generating xsd and comparing it to data standard 3.1 authoritativ
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.1.0';
+    state.metaEd.dataStandardVersion = '3.2.0-c';
 
     setupPlugins(state);
     loadFiles(state);
@@ -190,7 +190,7 @@ describe('when generating xsd with extension and comparing it to data standard 3
           targetTechnologyVersion: '3.1.0',
         },
       },
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.1/', path.resolve(__dirname, 'artifact', 'EdFiXFinance')],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/', path.resolve(__dirname, 'artifact', 'EdFiXFinance')],
       projects: [
         {
           projectName: 'Ed-Fi',
@@ -214,7 +214,7 @@ describe('when generating xsd with extension and comparing it to data standard 3
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.1.0';
+    state.metaEd.dataStandardVersion = '3.2.0-c';
 
     setupPlugins(state);
     loadFiles(state);

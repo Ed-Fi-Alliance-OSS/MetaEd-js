@@ -19,7 +19,7 @@ function rowToString(obj, value, i) {
 }
 
 describe('when generating a simple sql data dictionary', (): void => {
-  const dataStandardVersion: SemVer = '3.0.0';
+  const dataStandardVersion: SemVer = '3.2.0-c';
   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion };
 
   let generatorResults: GeneratorResult;

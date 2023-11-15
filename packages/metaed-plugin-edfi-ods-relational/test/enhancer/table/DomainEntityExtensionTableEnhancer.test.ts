@@ -95,7 +95,7 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
     domainEntityExtension.data.edfiOdsRelational.odsProperties.push(domainEntityExtensionProperty);
     addEntityForNamespace(domainEntityExtension);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     enhance(metaEd);
   });
@@ -191,7 +191,7 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
     domainEntityExtension.data.edfiOdsRelational.odsProperties.push(domainEntityExtensionPkProperty);
     addEntityForNamespace(domainEntityExtension);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     enhance(metaEd);
   });
@@ -370,7 +370,7 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
     domainEntityExtension.data.edfiOdsRelational.odsProperties.push(domainEntityExtensionCommonExtensionOverrideProperty);
     addEntityForNamespace(domainEntityExtension);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     enhance(metaEd);
   });
@@ -522,7 +522,7 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
     domainEntityExtension.data.edfiOdsRelational.odsProperties.push(domainEntityExtensionCommonProperty);
     addEntityForNamespace(domainEntityExtension);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     enhance(metaEd);
   });
@@ -641,7 +641,7 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
     domainEntityExtension.data.edfiOdsRelational.odsProperties.push(domainEntityExtensionCommonProperty);
     addEntityForNamespace(domainEntityExtension);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     enhance(metaEd);
   });
@@ -771,7 +771,7 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
     domainEntityExtension.data.edfiOdsRelational.odsProperties.push(domainEntityExtensionCommonProperty2);
     addEntityForNamespace(domainEntityExtension);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     enhance(metaEd);
   });
@@ -895,7 +895,7 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
     domainEntityExtension.data.edfiOdsRelational.odsProperties.push(domainEntityExtensionCommonProperty);
     addEntityForNamespace(domainEntityExtension);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     enhance(metaEd);
   });

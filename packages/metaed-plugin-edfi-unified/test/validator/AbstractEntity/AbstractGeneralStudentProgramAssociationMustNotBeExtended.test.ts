@@ -9,7 +9,7 @@ import { MetaEdEnvironment, ValidationFailure, Namespace } from '@edfi/metaed-co
 import { validate } from '../../../src/validator/AbstractEntity/AbstractGeneralStudentProgramAssociationMustNotBeExtended';
 
 describe('when validating association additions', (): void => {
-  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '3.0.0' };
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '3.2.0-c' };
   const associationName = 'AssociationName';
   let coreNamespace: Namespace;
   let extensionNamespace: Namespace;
@@ -56,7 +56,7 @@ describe('when validating association additions', (): void => {
 });
 
 describe('when validating abstract GeneralStudentProgramAssociation additions', (): void => {
-  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '3.0.0' };
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '3.2.0-c' };
   const generalStudentProgramAssociation = 'GeneralStudentProgramAssociation';
   let coreNamespace: Namespace;
   let extensionNamespace: Namespace;

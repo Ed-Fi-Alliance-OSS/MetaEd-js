@@ -88,6 +88,8 @@ ALTER TABLE edfi.Parent ADD ChangeVersion BIGINT DEFAULT nextval('changes.Change
 
 ALTER TABLE edfi.Payroll ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
 
+ALTER TABLE edfi.Person ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
 ALTER TABLE edfi.PostSecondaryEvent ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
 
 ALTER TABLE edfi.Program ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
@@ -161,4 +163,30 @@ ALTER TABLE edfi.StudentSchoolAttendanceEvent ADD ChangeVersion BIGINT DEFAULT n
 ALTER TABLE edfi.StudentSectionAssociation ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
 
 ALTER TABLE edfi.StudentSectionAttendanceEvent ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
+ALTER TABLE edfi.Survey ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
+ALTER TABLE edfi.SurveyCourseAssociation ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
+ALTER TABLE edfi.SurveyProgramAssociation ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
+ALTER TABLE edfi.SurveyQuestion ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
+ALTER TABLE edfi.SurveyQuestionResponse ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
+ALTER TABLE edfi.SurveyResponse ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
+ALTER TABLE edfi.SurveyResponseEducationOrganizationTargetAssociation ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
+ALTER TABLE edfi.SurveyResponseStaffTargetAssociation ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
+ALTER TABLE edfi.SurveySection ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
+ALTER TABLE edfi.SurveySectionAssociation ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
+ALTER TABLE edfi.SurveySectionResponse ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
+ALTER TABLE edfi.SurveySectionResponseEducationOrganizationTargetAssociation ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
+
+ALTER TABLE edfi.SurveySectionResponseStaffTargetAssociation ADD ChangeVersion BIGINT DEFAULT nextval('changes.ChangeVersionSequence') NOT NULL;
 

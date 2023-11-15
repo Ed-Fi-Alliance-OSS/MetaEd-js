@@ -79,7 +79,7 @@ describe('when ForeignKeyReverseIndexEnhancer enhances table with foreign key no
   metaEd.plugin.set('edfiOdsRelational', {
     ...newPluginEnvironment(),
     shortName: 'edfiOdsRelational',
-    targetTechnologyVersion: '7.0.0',
+    targetTechnologyVersion: '7.1.0',
   });
 
   metaEd.namespace.set(namespace.namespaceName, namespace);

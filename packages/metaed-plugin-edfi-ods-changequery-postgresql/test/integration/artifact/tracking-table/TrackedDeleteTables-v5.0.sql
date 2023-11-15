@@ -570,6 +570,14 @@ CREATE TABLE tracked_deletes_edfi.CredentialTypeDescriptor
        CONSTRAINT CredentialTypeDescriptor_PK PRIMARY KEY (ChangeVersion)
 );
 
+CREATE TABLE tracked_deletes_edfi.CreditCategoryDescriptor
+(
+       CreditCategoryDescriptorId INT NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT CreditCategoryDescriptor_PK PRIMARY KEY (ChangeVersion)
+);
+
 CREATE TABLE tracked_deletes_edfi.CreditTypeDescriptor
 (
        CreditTypeDescriptorId INT NOT NULL,
@@ -882,12 +890,12 @@ CREATE TABLE tracked_deletes_edfi.GradeLevelDescriptor
        CONSTRAINT GradeLevelDescriptor_PK PRIMARY KEY (ChangeVersion)
 );
 
-CREATE TABLE tracked_deletes_edfi.GradePointAverageWeightSystemDescriptor
+CREATE TABLE tracked_deletes_edfi.GradePointAverageTypeDescriptor
 (
-       GradePointAverageWeightSystemDescriptorId INT NOT NULL,
+       GradePointAverageTypeDescriptorId INT NOT NULL,
        Id UUID NOT NULL,
        ChangeVersion BIGINT NOT NULL,
-       CONSTRAINT GradePointAverageWeightSystemDescriptor_PK PRIMARY KEY (ChangeVersion)
+       CONSTRAINT GradePointAverageTypeDescriptor_PK PRIMARY KEY (ChangeVersion)
 );
 
 CREATE TABLE tracked_deletes_edfi.GradeTypeDescriptor
@@ -995,6 +1003,30 @@ CREATE TABLE tracked_deletes_edfi.IncidentLocationDescriptor
        Id UUID NOT NULL,
        ChangeVersion BIGINT NOT NULL,
        CONSTRAINT IncidentLocationDescriptor_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.IndicatorDescriptor
+(
+       IndicatorDescriptorId INT NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT IndicatorDescriptor_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.IndicatorGroupDescriptor
+(
+       IndicatorGroupDescriptorId INT NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT IndicatorGroupDescriptor_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.IndicatorLevelDescriptor
+(
+       IndicatorLevelDescriptorId INT NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT IndicatorLevelDescriptor_PK PRIMARY KEY (ChangeVersion)
 );
 
 CREATE TABLE tracked_deletes_edfi.InstitutionTelephoneNumberTypeDescriptor
@@ -1363,6 +1395,15 @@ CREATE TABLE tracked_deletes_edfi.PerformanceLevelDescriptor
        CONSTRAINT PerformanceLevelDescriptor_PK PRIMARY KEY (ChangeVersion)
 );
 
+CREATE TABLE tracked_deletes_edfi.Person
+(
+       PersonId VARCHAR(32) NOT NULL,
+       SourceSystemDescriptorId INT NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT Person_PK PRIMARY KEY (ChangeVersion)
+);
+
 CREATE TABLE tracked_deletes_edfi.PersonalInformationVerificationDescriptor
 (
        PersonalInformationVerificationDescriptorId INT NOT NULL,
@@ -1525,6 +1566,14 @@ CREATE TABLE tracked_deletes_edfi.PublicationStatusDescriptor
        Id UUID NOT NULL,
        ChangeVersion BIGINT NOT NULL,
        CONSTRAINT PublicationStatusDescriptor_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.QuestionFormDescriptor
+(
+       QuestionFormDescriptorId INT NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT QuestionFormDescriptor_PK PRIMARY KEY (ChangeVersion)
 );
 
 CREATE TABLE tracked_deletes_edfi.RaceDescriptor
@@ -1768,6 +1817,14 @@ CREATE TABLE tracked_deletes_edfi.SexDescriptor
        Id UUID NOT NULL,
        ChangeVersion BIGINT NOT NULL,
        CONSTRAINT SexDescriptor_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SourceSystemDescriptor
+(
+       SourceSystemDescriptorId INT NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SourceSystemDescriptor_PK PRIMARY KEY (ChangeVersion)
 );
 
 CREATE TABLE tracked_deletes_edfi.SpecialEducationProgramServiceDescriptor
@@ -2294,6 +2351,166 @@ CREATE TABLE tracked_deletes_edfi.StudentTitleIPartAProgramAssociation
        Id UUID NOT NULL,
        ChangeVersion BIGINT NOT NULL,
        CONSTRAINT StudentTitleIPartAProgramAssociation_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.Survey
+(
+       Namespace VARCHAR(255) NOT NULL,
+       SurveyIdentifier VARCHAR(60) NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT Survey_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveyCategoryDescriptor
+(
+       SurveyCategoryDescriptorId INT NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveyCategoryDescriptor_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveyCourseAssociation
+(
+       CourseCode VARCHAR(60) NOT NULL,
+       EducationOrganizationId INT NOT NULL,
+       Namespace VARCHAR(255) NOT NULL,
+       SurveyIdentifier VARCHAR(60) NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveyCourseAssociation_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveyLevelDescriptor
+(
+       SurveyLevelDescriptorId INT NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveyLevelDescriptor_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveyProgramAssociation
+(
+       EducationOrganizationId INT NOT NULL,
+       Namespace VARCHAR(255) NOT NULL,
+       ProgramName VARCHAR(60) NOT NULL,
+       ProgramTypeDescriptorId INT NOT NULL,
+       SurveyIdentifier VARCHAR(60) NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveyProgramAssociation_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveyQuestion
+(
+       Namespace VARCHAR(255) NOT NULL,
+       QuestionCode VARCHAR(60) NOT NULL,
+       SurveyIdentifier VARCHAR(60) NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveyQuestion_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveyQuestionResponse
+(
+       Namespace VARCHAR(255) NOT NULL,
+       QuestionCode VARCHAR(60) NOT NULL,
+       SurveyIdentifier VARCHAR(60) NOT NULL,
+       SurveyResponseIdentifier VARCHAR(60) NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveyQuestionResponse_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveyResponse
+(
+       Namespace VARCHAR(255) NOT NULL,
+       SurveyIdentifier VARCHAR(60) NOT NULL,
+       SurveyResponseIdentifier VARCHAR(60) NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveyResponse_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveyResponseEducationOrganizationTargetAssociation
+(
+       EducationOrganizationId INT NOT NULL,
+       Namespace VARCHAR(255) NOT NULL,
+       SurveyIdentifier VARCHAR(60) NOT NULL,
+       SurveyResponseIdentifier VARCHAR(60) NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveyResponseEducationOrganizationTargetAssociation_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveyResponseStaffTargetAssociation
+(
+       Namespace VARCHAR(255) NOT NULL,
+       StaffUSI INT NOT NULL,
+       SurveyIdentifier VARCHAR(60) NOT NULL,
+       SurveyResponseIdentifier VARCHAR(60) NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveyResponseStaffTargetAssociation_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveySection
+(
+       Namespace VARCHAR(255) NOT NULL,
+       SurveyIdentifier VARCHAR(60) NOT NULL,
+       SurveySectionTitle VARCHAR(255) NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveySection_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveySectionAssociation
+(
+       LocalCourseCode VARCHAR(60) NOT NULL,
+       Namespace VARCHAR(255) NOT NULL,
+       SchoolId INT NOT NULL,
+       SchoolYear SMALLINT NOT NULL,
+       SectionIdentifier VARCHAR(255) NOT NULL,
+       SessionName VARCHAR(60) NOT NULL,
+       SurveyIdentifier VARCHAR(60) NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveySectionAssociation_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveySectionResponse
+(
+       Namespace VARCHAR(255) NOT NULL,
+       SurveyIdentifier VARCHAR(60) NOT NULL,
+       SurveyResponseIdentifier VARCHAR(60) NOT NULL,
+       SurveySectionTitle VARCHAR(255) NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveySectionResponse_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveySectionResponseEducationOrganizationTargetAssociation
+(
+       EducationOrganizationId INT NOT NULL,
+       Namespace VARCHAR(255) NOT NULL,
+       SurveyIdentifier VARCHAR(60) NOT NULL,
+       SurveyResponseIdentifier VARCHAR(60) NOT NULL,
+       SurveySectionTitle VARCHAR(255) NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveySectionResponseEducationOrganizationTargetAssociation_PK PRIMARY KEY (ChangeVersion)
+);
+
+CREATE TABLE tracked_deletes_edfi.SurveySectionResponseStaffTargetAssociation
+(
+       Namespace VARCHAR(255) NOT NULL,
+       StaffUSI INT NOT NULL,
+       SurveyIdentifier VARCHAR(60) NOT NULL,
+       SurveyResponseIdentifier VARCHAR(60) NOT NULL,
+       SurveySectionTitle VARCHAR(255) NOT NULL,
+       Id UUID NOT NULL,
+       ChangeVersion BIGINT NOT NULL,
+       CONSTRAINT SurveySectionResponseStaffTargetAssociation_PK PRIMARY KEY (ChangeVersion)
 );
 
 CREATE TABLE tracked_deletes_edfi.TeachingCredentialBasisDescriptor

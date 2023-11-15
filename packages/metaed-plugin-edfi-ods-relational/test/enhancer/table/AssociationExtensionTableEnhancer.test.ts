@@ -97,7 +97,7 @@ describe('when AssociationExtensionTableEnhancer enhances association extension'
     associationExtension.data.edfiOdsRelational.odsProperties.push(associationExtensionProperty);
     addEntityForNamespace(associationExtension);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     enhance(metaEd);
   });
@@ -198,7 +198,7 @@ describe('when AssociationExtensionTableEnhancer enhances association extension 
     associationExtension.data.edfiOdsRelational.odsProperties.push(associationExtensionPkProperty);
     addEntityForNamespace(associationExtension);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     enhance(metaEd);
   });
@@ -379,7 +379,7 @@ describe('when AssociationExtensionTableEnhancer enhances association extension 
     associationExtension.data.edfiOdsRelational.odsProperties.push(associationExtensionCommonExtensionOverrideProperty);
     addEntityForNamespace(associationExtension);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     enhance(metaEd);
   });
@@ -532,7 +532,7 @@ describe('when AssociationExtensionTableEnhancer enhances association extension 
     associationExtension.data.edfiOdsRelational.odsProperties.push(associationExtensionCommonProperty);
     addEntityForNamespace(associationExtension);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     enhance(metaEd);
   });
@@ -653,7 +653,7 @@ describe('when AssociationExtensionTableEnhancer enhances association extension 
     associationExtension.data.edfiOdsRelational.odsProperties.push(associationExtensionCommonProperty);
     addEntityForNamespace(associationExtension);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     enhance(metaEd);
   });
@@ -785,7 +785,7 @@ describe('when AssociationExtensionTableEnhancer enhances association extension 
     associationExtension.data.edfiOdsRelational.odsProperties.push(associationExtensionCommonProperty2);
     addEntityForNamespace(associationExtension);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     enhance(metaEd);
   });

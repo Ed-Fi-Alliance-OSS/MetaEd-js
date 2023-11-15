@@ -14,7 +14,7 @@ const category: ValidationFailureCategory = 'warning';
 
 const willBeDeprecated = 'will be deprecated in a future version of MetaEd.';
 
-const targetDataStandardVersion330a: string = '>=3.3.0-a';
+const targetDataStandardVersion331b: string = '>=3.3.1-b';
 
 function newValidationFailure(context: ParserRuleContext, message: string): ValidationFailure {
   return {
@@ -54,7 +54,7 @@ export class SyntaxValidatingBuilder extends MetaEdGrammarListener {
 
   // Deprecate 'is weak'
   enterIsWeakReference(context: MetaEdGrammar.IsWeakReferenceContext) {
-    if (versionSatisfies(this.metaEd.dataStandardVersion, targetDataStandardVersion330a)) {
+    if (versionSatisfies(this.metaEd.dataStandardVersion, targetDataStandardVersion331b)) {
       this.validationFailures.push({
         validatorName,
         category: 'error',

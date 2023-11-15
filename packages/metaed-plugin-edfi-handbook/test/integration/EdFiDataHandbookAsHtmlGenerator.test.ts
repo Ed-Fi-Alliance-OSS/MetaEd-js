@@ -10,11 +10,12 @@ import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-
 import { initialize as initializeOdsRelationalPlugin } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { initialize as initializeOdsSqlServerPlugin } from '@edfi/metaed-plugin-edfi-ods-sqlserver';
 import { initialize as initializeApiSchemaPlugin } from '@edfi/metaed-plugin-edfi-api-schema';
+import { defaultPluginTechVersion } from '@edfi/metaed-core';
 import { initialize as initializeHandbookPlugin } from '../../src/index';
 import { generate } from '../../src/generator/EdFiDataHandbookAsHtmlIndexGenerator';
 
 describe('when generating HTML version of handbook', (): void => {
-  const dataStandardVersion: SemVer = '3.0.0';
+  const dataStandardVersion: SemVer = '3.2.0-c';
   const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion };
 
   let generatorResults: GeneratorResult;
@@ -50,7 +51,8 @@ describe('when generating HTML version of handbook', (): void => {
     initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     initializeOdsRelationalPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     const edfiOdsRelationalPluginEnvironment: PluginEnvironment | undefined = metaEd.plugin.get('edfiOdsRelational');
-    if (edfiOdsRelationalPluginEnvironment != null) edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = '3.0.0';
+    if (edfiOdsRelationalPluginEnvironment != null)
+      edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = defaultPluginTechVersion;
     initializeOdsSqlServerPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     metaEd.plugin.set('edfiApiSchema', newPluginEnvironment());
     initializeApiSchemaPlugin().enhancer.forEach((enhance) => enhance(metaEd));

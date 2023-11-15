@@ -1,4 +1,5 @@
 import {
+  defaultPluginTechVersion,
   newMetaEdConfiguration,
   newState,
   State,
@@ -20,14 +21,14 @@ describe('when generating api model and comparing it to data standard 3.1 author
   const metaEdConfiguration = {
     ...newMetaEdConfiguration(),
     artifactDirectory: './MetaEdOutput/',
-    defaultPluginTechVersion: '3.1.0',
-    projectPaths: ['./node_modules/@edfi/ed-fi-model-3.1/'],
+    defaultPluginTechVersion,
+    projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/'],
     projects: [
       {
         projectName: 'Ed-Fi',
         namespaceName: 'EdFi',
         projectExtension: '',
-        projectVersion: '3.1.0',
+        projectVersion: '3.2.0-c',
         description: '',
       },
     ],
@@ -38,7 +39,7 @@ describe('when generating api model and comparing it to data standard 3.1 author
     metaEdConfiguration,
     metaEdPlugins: metaEdPlugins(),
   };
-  state.metaEd.dataStandardVersion = '3.1.0';
+  state.metaEd.dataStandardVersion = '3.2.0-c';
   beforeAll(async () => {
     setupPlugins(state);
     loadFiles(state);

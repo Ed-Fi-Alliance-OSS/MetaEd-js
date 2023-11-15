@@ -1,7 +1,7 @@
 import { MetaEdEnvironment, ValidationFailure, SemVer, PluginEnvironment } from '@edfi/metaed-core';
 import { getAllProperties, versionSatisfies } from '@edfi/metaed-core';
 
-const targetTechnologyVersion: SemVer = '>=3.1';
+const targetTechnologyVersion: SemVer = '>=5.1.0';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];

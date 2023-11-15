@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
+import { defaultPluginTechVersion, MetaEdEnvironment, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
 import { TableNameGroup, isTableNameGroup, isTableNameComponent, TableNameComponent } from '../model/database/Table';
 import { flattenNameComponentsFromGroup } from '../model/database/TableNameGroupHelper';
 
@@ -63,7 +63,7 @@ export function shouldApplyLicenseHeader(metaEd: MetaEdEnvironment): Boolean {
   const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment) ||
     (metaEd.plugin.get('edfiOdsSqlServer') as PluginEnvironment) ||
     (metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment) || {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
     };
   return metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
 }

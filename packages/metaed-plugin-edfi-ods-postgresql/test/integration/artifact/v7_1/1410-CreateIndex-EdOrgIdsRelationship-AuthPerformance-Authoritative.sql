@@ -39,6 +39,8 @@ CREATE INDEX IF NOT EXISTS IX_EducationOrganizationNetworkAssociation_EducationO
 
 CREATE INDEX IF NOT EXISTS IX_EducationOrganizationPeerAssociation_EducationOrganizationId ON edfi.EducationOrganizationPeerAssociation(EducationOrganizationId) INCLUDE (Id);
 
+CREATE INDEX IF NOT EXISTS IX_EvaluationRubricDimension_ProgramEducationOrganizationId ON edfi.EvaluationRubricDimension(ProgramEducationOrganizationId) INCLUDE (Id);
+
 CREATE INDEX IF NOT EXISTS IX_FeederSchoolAssociation_SchoolId ON edfi.FeederSchoolAssociation(SchoolId) INCLUDE (Id);
 
 CREATE INDEX IF NOT EXISTS IX_GeneralStudentProgramAssociation_EducationOrganizationId ON edfi.GeneralStudentProgramAssociation(EducationOrganizationId) INCLUDE (Id);
@@ -76,6 +78,10 @@ CREATE INDEX IF NOT EXISTS IX_OpenStaffPosition_EducationOrganizationId ON edfi.
 CREATE INDEX IF NOT EXISTS IX_PostSecondaryEvent_PostSecondaryInstitutionId ON edfi.PostSecondaryEvent(PostSecondaryInstitutionId) INCLUDE (Id);
 
 CREATE INDEX IF NOT EXISTS IX_Program_EducationOrganizationId ON edfi.Program(EducationOrganizationId) INCLUDE (Id);
+
+CREATE INDEX IF NOT EXISTS IX_ProgramEvaluationElement_ProgramEducationOrganizationId ON edfi.ProgramEvaluationElement(ProgramEducationOrganizationId) INCLUDE (Id);
+
+CREATE INDEX IF NOT EXISTS IX_ProgramEvaluationObjective_ProgramEducationOrganizationId ON edfi.ProgramEvaluationObjective(ProgramEducationOrganizationId) INCLUDE (Id);
 
 CREATE INDEX IF NOT EXISTS IX_ReportCard_EducationOrganizationId ON edfi.ReportCard(EducationOrganizationId) INCLUDE (Id);
 
@@ -120,6 +126,10 @@ CREATE INDEX IF NOT EXISTS IX_StudentInterventionAssociation_EducationOrganizati
 CREATE INDEX IF NOT EXISTS IX_StudentInterventionAttendanceEvent_EducationOrganizationId ON edfi.StudentInterventionAttendanceEvent(EducationOrganizationId) INCLUDE (Id);
 
 CREATE INDEX IF NOT EXISTS IX_StudentProgramAttendanceEvent_EducationOrganizationId ON edfi.StudentProgramAttendanceEvent(EducationOrganizationId) INCLUDE (Id);
+
+CREATE INDEX IF NOT EXISTS IX_StudentProgramEvaluation_ProgramEducationOrganizationId ON edfi.StudentProgramEvaluation(ProgramEducationOrganizationId) INCLUDE (Id);
+
+CREATE INDEX IF NOT EXISTS IX_StudentProgramEvaluation_EducationOrganizationId ON edfi.StudentProgramEvaluation(EducationOrganizationId) INCLUDE (Id);
 
 CREATE INDEX IF NOT EXISTS IX_StudentSchoolAssociation_SchoolId ON edfi.StudentSchoolAssociation(SchoolId) INCLUDE (Id);
 

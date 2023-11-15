@@ -42,7 +42,7 @@ describe('when an association subclass subclasses GeneralStudentProgramAssociati
     const entity = coreNamespace.entity.association.get(baseEntityName);
     const subclass = extensionNamespace.entity.associationSubclass.get(subclassName);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
 
     if (entity && subclass) subclass.baseEntity = entity;
     failures = validate(metaEd);
@@ -87,7 +87,7 @@ describe('when an association subclass subclasses a non-GeneralStudentProgramAss
     const entity = coreNamespace.entity.association.get(baseEntityName);
     const subclass = extensionNamespace.entity.associationSubclass.get(subclassName);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
 
     if (entity && subclass) subclass.baseEntity = entity;
 
@@ -141,7 +141,7 @@ describe('when an association subclass subclasses StudentProgramAssociation asso
     const entity = coreNamespace.entity.association.get(baseEntityName);
     const subclass = extensionNamespace.entity.associationSubclass.get(subclassName);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
 
     if (entity && subclass) subclass.baseEntity = entity;
 

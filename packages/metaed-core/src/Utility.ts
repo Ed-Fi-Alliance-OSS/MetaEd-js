@@ -34,12 +34,17 @@ export const V3OrGreater: SemVer = '>=3.0.0';
 /**
  *
  */
-export const V5OrGreater: SemVer = '>=5.0.0';
+export const V5OrGreater: SemVer = '>=5.3.0';
 
 /**
  *
  */
-export const V7OrGreater: SemVer = '>=7.0.0';
+export const V6OrGreater: SemVer = '>=6.1.0';
+
+/**
+ *
+ */
+export const V7OrGreater: SemVer = '>=7.1.0';
 
 /**
  * https://github.com/npm/node-semver

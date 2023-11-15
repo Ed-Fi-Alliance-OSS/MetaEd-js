@@ -1,7 +1,7 @@
 import { Client } from 'pg';
 import pgStructure, { Db } from 'pg-structure';
 
-import { Logger, MetaEdEnvironment, SemVer, newPluginEnvironment } from '@edfi/metaed-core';
+import { defaultPluginTechVersion, Logger, MetaEdEnvironment, SemVer, newPluginEnvironment } from '@edfi/metaed-core';
 import { initialize as initializeUnifiedPlugin } from '@edfi/metaed-plugin-edfi-unified';
 import { initialize as initializeOdsRelationalPlugin } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { initialize as initializeOdsPostgresqlPlugin } from '../../index';
@@ -65,9 +65,9 @@ export async function rollbackAndEnd() {
 
 export async function enhanceGenerateAndExecuteSql(
   metaEd: MetaEdEnvironment,
-  targetTechnologyVersion: SemVer = '3.0.0',
+  targetTechnologyVersion: SemVer = defaultPluginTechVersion,
 ): Promise<Db | null> {
-  metaEd.dataStandardVersion = metaEd.dataStandardVersion === '0.0.0' ? '3.0.0' : metaEd.dataStandardVersion;
+  metaEd.dataStandardVersion = metaEd.dataStandardVersion === '0.0.0' ? '3.2.0-c' : metaEd.dataStandardVersion;
   metaEd.plugin.set('edfiOdsRelational', {
     ...newPluginEnvironment(),
     targetTechnologyVersion,

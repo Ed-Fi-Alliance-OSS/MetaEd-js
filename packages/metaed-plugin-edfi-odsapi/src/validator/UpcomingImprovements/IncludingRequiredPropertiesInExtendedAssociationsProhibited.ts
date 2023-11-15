@@ -2,7 +2,7 @@
 import { MetaEdEnvironment, ValidationFailure, AssociationExtension, SemVer, PluginEnvironment } from '@edfi/metaed-core';
 import { getAllEntitiesOfType, versionSatisfies } from '@edfi/metaed-core';
 
-const targetTechnologyVersion: SemVer = '<3.1';
+const targetTechnologyVersion: SemVer = '<5.3';
 
 function isTargetTechnologyVersion(metaEd: MetaEdEnvironment): boolean {
   return versionSatisfies(

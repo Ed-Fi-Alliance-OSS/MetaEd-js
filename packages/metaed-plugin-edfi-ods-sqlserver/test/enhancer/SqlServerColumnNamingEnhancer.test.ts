@@ -42,7 +42,7 @@ describe('when a table has a string longer than 4000 bytes', (): void => {
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     tableSetupEnhancer(metaEd);
     sqlServerColumnNamingEnhancer(metaEd);
     enhance(metaEd);

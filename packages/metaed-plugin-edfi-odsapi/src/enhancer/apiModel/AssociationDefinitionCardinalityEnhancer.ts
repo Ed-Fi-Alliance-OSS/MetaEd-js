@@ -103,7 +103,7 @@ function cardinalityFrom(
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsApi') as PluginEnvironment;
-  if (versionSatisfies(targetTechnologyVersion, '<7.0.0')) return { enhancerName, success: true };
+  if (versionSatisfies(targetTechnologyVersion, '<7.1.0')) return { enhancerName, success: true };
 
   metaEd.namespace.forEach((namespace: Namespace) => {
     const { domainModelDefinition, aggregates } = namespace.data.edfiOdsApi as NamespaceEdfiOdsApi;

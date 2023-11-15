@@ -16,10 +16,9 @@ describe('when deploying 3.0 extension artifacts', (): void => {
       ...newMetaEdConfiguration(),
       artifactDirectory: path.resolve(__dirname, './artifact'),
       deployDirectory,
-      defaultPluginTechVersion: '3.0.0',
     };
 
-    await DeployExtensionV3(metaEdConfiguration, '3.0.0', true, false);
+    await DeployExtensionV3(metaEdConfiguration, '3.2.0-c', true, false);
 
     const normalizePath = (x: string) => path.relative(deployDirectory, x).split(path.sep).join('/');
 

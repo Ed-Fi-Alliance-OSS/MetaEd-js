@@ -16,7 +16,7 @@ describe('when deploying 7.0 core artifacts', (): void => {
       ...newMetaEdConfiguration(),
       artifactDirectory: path.resolve(__dirname, './artifact'),
       deployDirectory,
-      defaultPluginTechVersion: '7.0.0',
+      defaultPluginTechVersion: '7.1.0',
     };
 
     await deployCore(metaEdConfiguration, '5.0.0', true, false);

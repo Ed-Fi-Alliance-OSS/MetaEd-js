@@ -911,7 +911,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '4.0.0',
+          projectVersion: '5.0.0',
           description: '',
         },
       ],
@@ -1612,21 +1612,21 @@ describe('when generating api schema targeting tech version 6.1 with data standa
   });
 });
 
-describe('when generating api schema targeting tech version 7.0 with data standard 5.0-pre.1', (): void => {
+describe('when generating api schema targeting tech version 7.0 with data standard 5.0', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
 
   beforeAll(async () => {
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '7.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0-pre.1/'],
+      defaultPluginTechVersion: '7.1.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '4.0.0',
+          projectVersion: '5.0.0',
           description: '',
         },
       ],
@@ -2004,15 +2004,15 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         ],
         "GradingPeriod": Array [
           "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
-          "$.gradingPeriods[*].gradingPeriodReference.periodSequence",
+          "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodName",
           "$.gradingPeriods[*].gradingPeriodReference.schoolId",
           "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
         ],
         "GradingPeriod.GradingPeriod": Array [
           "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
         ],
-        "GradingPeriod.PeriodSequence": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.periodSequence",
+        "GradingPeriod.GradingPeriodName": Array [
+          "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodName",
         ],
         "GradingPeriod.School": Array [
           "$.gradingPeriods[*].gradingPeriodReference.schoolId",
@@ -2053,7 +2053,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         "EndDate": true,
         "GradingPeriod": true,
         "GradingPeriod.GradingPeriod": false,
-        "GradingPeriod.PeriodSequence": false,
+        "GradingPeriod.GradingPeriodName": false,
         "GradingPeriod.School": false,
         "GradingPeriod.School.SchoolId": false,
         "GradingPeriod.SchoolYear": false,
@@ -2126,15 +2126,15 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         ],
         "GradingPeriod": Array [
           "$.gradingPeriodReference.gradingPeriodDescriptor",
-          "$.gradingPeriodReference.periodSequence",
+          "$.gradingPeriodReference.gradingPeriodName",
           "$.gradingPeriodReference.schoolId",
           "$.gradingPeriodReference.schoolYear",
         ],
         "GradingPeriod.GradingPeriod": Array [
           "$.gradingPeriodReference.gradingPeriodDescriptor",
         ],
-        "GradingPeriod.PeriodSequence": Array [
-          "$.gradingPeriodReference.periodSequence",
+        "GradingPeriod.GradingPeriodName": Array [
+          "$.gradingPeriodReference.gradingPeriodName",
         ],
         "GradingPeriod.School": Array [
           "$.gradingPeriodReference.schoolId",
@@ -2263,7 +2263,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         "DiagnosticStatement": true,
         "GradingPeriod": true,
         "GradingPeriod.GradingPeriod": false,
-        "GradingPeriod.PeriodSequence": false,
+        "GradingPeriod.GradingPeriodName": false,
         "GradingPeriod.School": false,
         "GradingPeriod.School.SchoolId": false,
         "GradingPeriod.SchoolYear": false,

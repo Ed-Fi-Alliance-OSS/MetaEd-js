@@ -1,4 +1,11 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace, versionSatisfies, PluginEnvironment } from '@edfi/metaed-core';
+import {
+  defaultPluginTechVersion,
+  EnhancerResult,
+  MetaEdEnvironment,
+  Namespace,
+  versionSatisfies,
+  PluginEnvironment,
+} from '@edfi/metaed-core';
 import { tableEntities, Column, Table, escapeSqlSingleQuote } from '@edfi/metaed-plugin-edfi-ods-relational';
 import {
   hasAlternateKeys,
@@ -13,7 +20,8 @@ const enhancerName = 'TemplateSpecificTablePropertyEnhancerV6dot1';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
-  if (!versionSatisfies(targetTechnologyVersion, '>=3.0.0 <7.0.0')) return { enhancerName, success: true };
+  if (!versionSatisfies(targetTechnologyVersion, `>=${defaultPluginTechVersion} <7.1.0`))
+    return { enhancerName, success: true };
 
   metaEd.namespace.forEach((namespace: Namespace) => {
     const tables: Map<string, Table> = tableEntities(metaEd, namespace);

@@ -32,14 +32,13 @@ describe('when generating add column changeversion and comparing to ODS/API 5.0 
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '5.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0',
+          projectVersion: '3.2.0-c',
           description: '',
         },
       ],
@@ -50,7 +49,7 @@ describe('when generating add column changeversion and comparing to ODS/API 5.0 
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0';
+    state.metaEd.dataStandardVersion = '3.2.0-c';
 
     setupPlugins(state);
     loadFiles(state);
@@ -100,20 +99,20 @@ describe('when generating add column changeversion with simple extensions and co
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '6.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-4.0a/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-4.0/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '4.0.0-a',
+          projectVersion: '4.0.0',
           description: '',
         },
         {
           projectName: 'Sample',
           namespaceName: 'Sample',
           projectExtension: 'Sample',
-          projectVersion: '3.0.0',
+          projectVersion: '3.2.0',
           description: '',
         },
       ],
@@ -124,7 +123,7 @@ describe('when generating add column changeversion with simple extensions and co
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '4.0.0-a';
+    state.metaEd.dataStandardVersion = '4.0.0';
 
     setupPlugins(state);
     loadFiles(state);

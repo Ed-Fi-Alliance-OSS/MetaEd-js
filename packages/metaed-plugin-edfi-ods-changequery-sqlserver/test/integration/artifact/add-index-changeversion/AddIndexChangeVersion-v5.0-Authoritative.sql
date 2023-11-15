@@ -269,6 +269,12 @@ BEGIN TRANSACTION
 COMMIT
 
 BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.Person') AND name = N'UX_Person_ChangeVersion')
+    CREATE INDEX [UX_Person_ChangeVersion] ON [edfi].[Person] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
     IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.PostSecondaryEvent') AND name = N'UX_PostSecondaryEvent_ChangeVersion')
     CREATE INDEX [UX_PostSecondaryEvent_ChangeVersion] ON [edfi].[PostSecondaryEvent] ([ChangeVersion] ASC)
     GO
@@ -487,6 +493,84 @@ COMMIT
 BEGIN TRANSACTION
     IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.StudentSectionAttendanceEvent') AND name = N'UX_StudentSectionAttendanceEvent_ChangeVersion')
     CREATE INDEX [UX_StudentSectionAttendanceEvent_ChangeVersion] ON [edfi].[StudentSectionAttendanceEvent] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.Survey') AND name = N'UX_Survey_ChangeVersion')
+    CREATE INDEX [UX_Survey_ChangeVersion] ON [edfi].[Survey] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.SurveyCourseAssociation') AND name = N'UX_SurveyCourseAssociation_ChangeVersion')
+    CREATE INDEX [UX_SurveyCourseAssociation_ChangeVersion] ON [edfi].[SurveyCourseAssociation] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.SurveyProgramAssociation') AND name = N'UX_SurveyProgramAssociation_ChangeVersion')
+    CREATE INDEX [UX_SurveyProgramAssociation_ChangeVersion] ON [edfi].[SurveyProgramAssociation] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.SurveyQuestion') AND name = N'UX_SurveyQuestion_ChangeVersion')
+    CREATE INDEX [UX_SurveyQuestion_ChangeVersion] ON [edfi].[SurveyQuestion] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.SurveyQuestionResponse') AND name = N'UX_SurveyQuestionResponse_ChangeVersion')
+    CREATE INDEX [UX_SurveyQuestionResponse_ChangeVersion] ON [edfi].[SurveyQuestionResponse] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.SurveyResponse') AND name = N'UX_SurveyResponse_ChangeVersion')
+    CREATE INDEX [UX_SurveyResponse_ChangeVersion] ON [edfi].[SurveyResponse] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.SurveyResponseEducationOrganizationTargetAssociation') AND name = N'UX_SurveyResponseEducationOrganizationTargetAssociation_ChangeVersion')
+    CREATE INDEX [UX_SurveyResponseEducationOrganizationTargetAssociation_ChangeVersion] ON [edfi].[SurveyResponseEducationOrganizationTargetAssociation] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.SurveyResponseStaffTargetAssociation') AND name = N'UX_SurveyResponseStaffTargetAssociation_ChangeVersion')
+    CREATE INDEX [UX_SurveyResponseStaffTargetAssociation_ChangeVersion] ON [edfi].[SurveyResponseStaffTargetAssociation] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.SurveySection') AND name = N'UX_SurveySection_ChangeVersion')
+    CREATE INDEX [UX_SurveySection_ChangeVersion] ON [edfi].[SurveySection] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.SurveySectionAssociation') AND name = N'UX_SurveySectionAssociation_ChangeVersion')
+    CREATE INDEX [UX_SurveySectionAssociation_ChangeVersion] ON [edfi].[SurveySectionAssociation] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.SurveySectionResponse') AND name = N'UX_SurveySectionResponse_ChangeVersion')
+    CREATE INDEX [UX_SurveySectionResponse_ChangeVersion] ON [edfi].[SurveySectionResponse] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.SurveySectionResponseEducationOrganizationTargetAssociation') AND name = N'UX_SurveySectionResponseEducationOrganizationTargetAssociation_ChangeVersion')
+    CREATE INDEX [UX_SurveySectionResponseEducationOrganizationTargetAssociation_ChangeVersion] ON [edfi].[SurveySectionResponseEducationOrganizationTargetAssociation] ([ChangeVersion] ASC)
+    GO
+COMMIT
+
+BEGIN TRANSACTION
+    IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'edfi.SurveySectionResponseStaffTargetAssociation') AND name = N'UX_SurveySectionResponseStaffTargetAssociation_ChangeVersion')
+    CREATE INDEX [UX_SurveySectionResponseStaffTargetAssociation_ChangeVersion] ON [edfi].[SurveySectionResponseStaffTargetAssociation] ([ChangeVersion] ASC)
     GO
 COMMIT
 

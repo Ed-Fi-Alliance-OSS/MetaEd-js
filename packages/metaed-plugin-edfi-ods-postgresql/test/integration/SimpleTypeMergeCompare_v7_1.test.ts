@@ -36,13 +36,13 @@ describe('when generating ods tables file with simple merges for ODS/API 7.1', (
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '7.1.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0-pre.1/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.0.0-pre.1',
+          projectVersion: '5.0.0',
           description: '',
         },
         {
@@ -60,7 +60,7 @@ describe('when generating ods tables file with simple merges for ODS/API 7.1', (
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '5.0.0-pre.1';
+    state.metaEd.dataStandardVersion = '5.0.0';
 
     setupPlugins(state);
     loadFiles(state);
@@ -129,13 +129,13 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '7.1.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0-pre.1/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.0.0-pre.1',
+          projectVersion: '5.0.0',
           description: '',
         },
         {
@@ -153,7 +153,7 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '5.0.0-pre.1';
+    state.metaEd.dataStandardVersion = '5.0.0';
 
     setupPlugins(state);
     loadFiles(state);
@@ -222,13 +222,13 @@ describe('when generating EducationOrganizationAuthorizationIndexes with simple 
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '7.1.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0-pre.1/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.0.0-pre.1',
+          projectVersion: '5.0.0',
           description: '',
         },
         {
@@ -246,7 +246,7 @@ describe('when generating EducationOrganizationAuthorizationIndexes with simple 
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '5.0.0-pre.1';
+    state.metaEd.dataStandardVersion = '5.0.0';
 
     setupPlugins(state);
     loadFiles(state);

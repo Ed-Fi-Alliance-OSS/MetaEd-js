@@ -2,16 +2,21 @@ import { MetaEdProject } from './project/ProjectTypes';
 import { SemVer } from './MetaEdEnvironment';
 
 /**
- *
+ * The default plugin technology version, which is typically the lowest supported technology version of the ODS/API.
  */
-export interface PluginTargetTechnologyVersion {
-  targetTechnologyVersion: SemVer;
-}
+export const defaultPluginTechVersion: SemVer = '5.1.0';
 
 /**
  *
  */
-export interface MetaEdConfiguration {
+export type PluginTargetTechnologyVersion = {
+  targetTechnologyVersion: SemVer;
+};
+
+/**
+ *
+ */
+export type MetaEdConfiguration = {
   artifactDirectory: string;
   deployDirectory: string;
   pluginTechVersion: {
@@ -26,13 +31,13 @@ export interface MetaEdConfiguration {
   pluginConfigDirectories: string[];
   allianceMode: boolean;
   suppressPrereleaseVersion: boolean;
-}
+};
 
 /**
  *
  */
 export const newPluginTargetTechnologyVersion: () => PluginTargetTechnologyVersion = () => ({
-  targetTechnologyVersion: '0.0.0',
+  targetTechnologyVersion: defaultPluginTechVersion,
 });
 
 /**
@@ -45,7 +50,7 @@ export const newMetaEdConfiguration: () => MetaEdConfiguration = () => ({
   projects: [],
   projectPaths: [],
   pluginConfigDirectories: [],
-  defaultPluginTechVersion: '3.0.0',
+  defaultPluginTechVersion,
   allianceMode: false,
   suppressPrereleaseVersion: true,
 });

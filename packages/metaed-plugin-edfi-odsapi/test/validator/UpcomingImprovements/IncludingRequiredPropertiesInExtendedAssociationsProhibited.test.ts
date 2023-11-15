@@ -1,4 +1,5 @@
 import {
+  defaultPluginTechVersion,
   newMetaEdEnvironment,
   newPluginEnvironment,
   MetaEdTextBuilder,
@@ -14,7 +15,7 @@ describe('when an association extension extends an association with no required 
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
     }),
   );
   const entityName = 'EntityName';
@@ -51,7 +52,7 @@ describe('when an association extension extends an association with a required p
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
     }),
   );
   const entityName = 'EntityName';
@@ -90,12 +91,12 @@ describe('when an association extension extends an association with a required p
   });
 });
 
-describe('when an association extension extends an association with a required property for ODS/API >3.0', (): void => {
+describe('when an association extension extends an association with a required property for ODS/API >5.1', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '3.1.0',
+      targetTechnologyVersion: '5.3.0',
     }),
   );
 

@@ -6,7 +6,7 @@ import { ValidationFailure } from '../../src/validator/ValidationFailure';
 
 describe('given data standard 3.2 when building EdFi domain entity with is weak property without Alliance mode', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  metaEd.dataStandardVersion = '3.2.0';
+  metaEd.dataStandardVersion = '3.2.0-c';
   const validationFailures: ValidationFailure[] = [];
 
   beforeAll(() => {
@@ -28,7 +28,7 @@ describe('given data standard 3.2 when building EdFi domain entity with is weak 
 
 describe('given data standard 3.2 when building EdFi domain entity with is weak property with Alliance mode', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  metaEd.dataStandardVersion = '3.2.0';
+  metaEd.dataStandardVersion = '3.2.0-c';
   metaEd.allianceMode = true;
   const validationFailures: ValidationFailure[] = [];
 
@@ -65,7 +65,7 @@ describe('given data standard 3.2 when building EdFi domain entity with is weak 
 
 describe('given data standard 3.2 when building extension domain entity with is weak property', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  metaEd.dataStandardVersion = '3.2.0';
+  metaEd.dataStandardVersion = '3.2.0-c';
   const validationFailures: ValidationFailure[] = [];
 
   beforeAll(() => {
@@ -99,9 +99,9 @@ describe('given data standard 3.2 when building extension domain entity with is 
   });
 });
 
-describe('given data standard 3.3a when building extension domain entity with is weak property', (): void => {
+describe('given data standard 3.3b when building extension domain entity with is weak property', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
-  metaEd.dataStandardVersion = '3.3.0-a';
+  metaEd.dataStandardVersion = '3.3.1-b';
   const validationFailures: ValidationFailure[] = [];
 
   beforeAll(() => {

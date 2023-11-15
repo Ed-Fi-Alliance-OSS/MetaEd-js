@@ -33,7 +33,7 @@ describe('when an entity has a role named collection of entities with role named
       .sendToListener(new NamespaceBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeUnifiedPlugin().enhancer.forEach((enhance) => enhance(metaEd));
     initializeOdsPlugin().enhancer.forEach((enhance) => enhance(metaEd));
   });

@@ -177,6 +177,7 @@ export { NoSharedSimple } from './model/SharedSimple';
 export { NoNamespace } from './model/Namespace';
 export { NoInterchangeItem } from './model/InterchangeItem';
 export { NoEntityProperty } from './model/property/EntityProperty';
+export { defaultPluginTechVersion } from './MetaEdConfiguration';
 
 // Factories
 export { newMetaEdEnvironment } from './MetaEdEnvironment';

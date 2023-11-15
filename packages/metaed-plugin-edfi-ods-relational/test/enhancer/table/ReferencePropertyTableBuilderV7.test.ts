@@ -10,7 +10,7 @@ import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
 import { Table } from '../../../src/model/database/Table';
 import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
 
-const targetTechnologyVersion = '7.0.0';
+const targetTechnologyVersion = '7.1.0';
 
 describe('when building domain entity property table that is not an identity, required, optional, or a collection', (): void => {
   const tables: Table[] = [];

@@ -5,7 +5,7 @@ import {
   NamespaceBuilder,
   newPluginEnvironment,
 } from '@edfi/metaed-core';
-import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
+import { defaultPluginTechVersion, MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/Descriptor/DescriptorMustNotHaveAttributes';
 
 describe('when descriptor does not have properties', (): void => {
@@ -73,7 +73,7 @@ describe('when version does not satisfy >= 5.2.0', (): void => {
   metaEd.plugin.set(
     'edfiUnified',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
     }),
   );
 

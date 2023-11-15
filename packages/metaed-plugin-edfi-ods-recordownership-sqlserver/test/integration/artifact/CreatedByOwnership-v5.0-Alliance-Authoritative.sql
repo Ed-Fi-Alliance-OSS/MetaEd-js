@@ -93,6 +93,8 @@ ALTER TABLE [edfi].[Parent] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
 
 ALTER TABLE [edfi].[Payroll] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
 
+ALTER TABLE [edfi].[Person] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
 ALTER TABLE [edfi].[PostSecondaryEvent] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
 
 ALTER TABLE [edfi].[Program] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
@@ -166,4 +168,30 @@ ALTER TABLE [edfi].[StudentSchoolAttendanceEvent] ADD [CreatedByOwnershipTokenId
 ALTER TABLE [edfi].[StudentSectionAssociation] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
 
 ALTER TABLE [edfi].[StudentSectionAttendanceEvent] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
+ALTER TABLE [edfi].[Survey] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
+ALTER TABLE [edfi].[SurveyCourseAssociation] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
+ALTER TABLE [edfi].[SurveyProgramAssociation] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
+ALTER TABLE [edfi].[SurveyQuestion] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
+ALTER TABLE [edfi].[SurveyQuestionResponse] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
+ALTER TABLE [edfi].[SurveyResponse] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
+ALTER TABLE [edfi].[SurveyResponseEducationOrganizationTargetAssociation] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
+ALTER TABLE [edfi].[SurveyResponseStaffTargetAssociation] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
+ALTER TABLE [edfi].[SurveySection] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
+ALTER TABLE [edfi].[SurveySectionAssociation] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
+ALTER TABLE [edfi].[SurveySectionResponse] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
+ALTER TABLE [edfi].[SurveySectionResponseEducationOrganizationTargetAssociation] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
+
+ALTER TABLE [edfi].[SurveySectionResponseStaffTargetAssociation] ADD [CreatedByOwnershipTokenId] SMALLINT NULL;
 

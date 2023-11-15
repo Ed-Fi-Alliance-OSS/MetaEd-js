@@ -16,7 +16,7 @@ describe('when deploying 7.0 extension artifacts', (): void => {
       ...newMetaEdConfiguration(),
       artifactDirectory: path.resolve(__dirname, './artifact'),
       deployDirectory,
-      defaultPluginTechVersion: '7.0.0',
+      defaultPluginTechVersion: '7.1.0',
       projects: [{ ...newMetaEdProject(), projectName: 'Sample', projectVersion: '1.0.0' }],
     };
 

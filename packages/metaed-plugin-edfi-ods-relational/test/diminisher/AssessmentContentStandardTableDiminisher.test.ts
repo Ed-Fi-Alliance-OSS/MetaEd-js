@@ -38,7 +38,7 @@ describe('when AssessmentContentStandardTableDiminisher diminishes AssessmentCon
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     enhance(metaEd);
   });
 
@@ -92,7 +92,7 @@ describe('when AssessmentContentStandardTableDiminisher diminishes AssessmentCon
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     enhance(metaEd);
   });
 
@@ -138,7 +138,7 @@ describe('when AssessmentContentStandardTableDiminisher diminishes AssessmentCon
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     enhance(metaEd);
   });
 
@@ -184,7 +184,7 @@ describe('when AssessmentContentStandardTableDiminisher diminishes AssessmentCon
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     enhance(metaEd);
   });
 

@@ -1,5 +1,5 @@
 import type { MetaEdConfiguration, SemVer } from '@edfi/metaed-core';
-import { Logger, versionSatisfies } from '@edfi/metaed-core';
+import { defaultPluginTechVersion, Logger, versionSatisfies } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
 import { CopyOptions } from '../CopyOptions';
@@ -48,7 +48,7 @@ export async function execute(
   _suppressDelete: boolean,
 ): Promise<boolean> {
   if (!deployCore) return true;
-  if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=3.0.0 <3.3.0')) {
+  if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, `>=${defaultPluginTechVersion} <5.3.0`)) {
     return true;
   }
 

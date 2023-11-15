@@ -21,7 +21,6 @@ jest.setTimeout(100000);
 const metaEdConfiguration = {
   ...newMetaEdConfiguration(),
   artifactDirectory: './MetaEdOutput/',
-  defaultPluginTechVersion: '3.0.0',
   projectPaths: [
     path.resolve(__dirname, 'projects', 'edfi'),
     path.resolve(__dirname, 'projects', 'gb'),
@@ -32,7 +31,7 @@ const metaEdConfiguration = {
       projectName: 'Ed-Fi',
       namespaceName: 'EdFi',
       projectExtension: '',
-      projectVersion: '3.0.0',
+      projectVersion: '3.2.0-c',
       description: '',
     },
     {
@@ -62,7 +61,7 @@ describe('when building a simple core and two simple extension projects', (): vo
       metaEdPlugins: metaEdPlugins(),
     };
 
-    state.metaEd.dataStandardVersion = '3.0.0';
+    state.metaEd.dataStandardVersion = '3.2.0-c';
 
     setupPlugins(state);
     loadFiles(state);

@@ -1,4 +1,5 @@
 import {
+  defaultPluginTechVersion,
   newMetaEdEnvironment,
   newPluginEnvironment,
   MetaEdTextBuilder,
@@ -14,7 +15,7 @@ describe('when a domain entity extension extends a domain entity with no require
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
     }),
   );
   const entityName = 'EntityName';
@@ -51,7 +52,7 @@ describe('when a domain entity extension extends a domain entity with a required
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
     }),
   );
   const entityName = 'EntityName';
@@ -90,12 +91,12 @@ describe('when a domain entity extension extends a domain entity with a required
   });
 });
 
-describe('when a domain entity extension extends a domain entity with a required property for ODS/API >3.0', (): void => {
+describe('when a domain entity extension extends a domain entity with a required property for ODS/API >5.1', (): void => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '3.1.0',
+      targetTechnologyVersion: '5.3.0',
     }),
   );
   const entityName = 'EntityName';

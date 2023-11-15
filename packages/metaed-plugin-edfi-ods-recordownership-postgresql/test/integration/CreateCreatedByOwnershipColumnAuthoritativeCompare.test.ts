@@ -19,68 +19,6 @@ import { metaEdPlugins } from './PluginHelper';
 
 jest.setTimeout(40000);
 
-describe('when generating CreatedByOwnership columns and comparing to ODS/API 3.3 authoritative artifacts', (): void => {
-  const artifactPath: string = path.resolve(__dirname, './artifact');
-  const authoritativeFilename = 'CreatedByOwnership-v3.3-Authoritative.sql';
-  const generatedFilename = 'CreatedByOwnership-v3.3.sql';
-
-  let generatedOutput: GeneratedOutput;
-
-  beforeAll(async () => {
-    const metaEdConfiguration = {
-      ...newMetaEdConfiguration(),
-      artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '3.3.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
-      projects: [
-        {
-          projectName: 'Ed-Fi',
-          namespaceName: 'EdFi',
-          projectExtension: '',
-          projectVersion: '3.2.0-a',
-          description: '',
-        },
-      ],
-    };
-
-    const state: State = {
-      ...newState(),
-      metaEdConfiguration,
-      metaEdPlugins: metaEdPlugins(),
-    };
-    state.metaEd.dataStandardVersion = '3.2.0-a';
-
-    setupPlugins(state);
-    loadFiles(state);
-    loadFileIndex(state);
-    buildParseTree(buildMetaEd, state);
-    await walkBuilders(state);
-    initializeNamespaces(state);
-    // eslint-disable-next-line no-restricted-syntax
-    for (const metaEdPlugin of state.metaEdPlugins) {
-      await runEnhancers(metaEdPlugin, state);
-      await runGenerators(metaEdPlugin, state);
-    }
-
-    [generatedOutput] = state.generatorResults.filter(
-      (x) => x.generatorName === 'edfiOdsRecordOwnershipPostgresql.AddCreatedByOwnershipColumnForTableGenerator',
-    )[0].generatedOutput;
-
-    await fs.writeFile(path.resolve(artifactPath, generatedFilename), generatedOutput.resultString);
-  });
-
-  it('should have no differences', async () => {
-    const authoritative: string = path.resolve(artifactPath, authoritativeFilename);
-    const generated: string = path.resolve(artifactPath, generatedFilename);
-    const gitCommand = `git diff --shortstat --no-index --ignore-space-at-eol --ignore-cr-at-eol -- ${authoritative} ${generated}`;
-    // @ts-ignore "error" not used
-    const result = await new Promise((resolve) => exec(gitCommand, (error, stdout) => resolve(stdout)));
-    // two different ways to show no difference, depending on platform line endings
-    const expectOneOf: string[] = ['', ' 1 file changed, 0 insertions(+), 0 deletions(-)\n'];
-    expect(expectOneOf).toContain(result);
-  });
-});
-
 describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.0 authoritative artifacts', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact');
   const authoritativeFilename = 'CreatedByOwnership-v5.0-Authoritative.sql';
@@ -92,14 +30,13 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '5.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0-a',
+          projectVersion: '3.2.0',
           description: '',
         },
       ],
@@ -110,7 +47,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0-a';
+    state.metaEd.dataStandardVersion = '3.2.0-c';
 
     setupPlugins(state);
     loadFiles(state);
@@ -154,14 +91,13 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '5.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0-a',
+          projectVersion: '3.2.0',
           description: '',
         },
       ],
@@ -173,7 +109,7 @@ describe('when generating CreatedByOwnership columns and comparing to ODS/API 5.
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0-a';
+    state.metaEd.dataStandardVersion = '3.2.0-c';
 
     setupPlugins(state);
     loadFiles(state);

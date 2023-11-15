@@ -1,4 +1,11 @@
-import { newMetaEdEnvironment, newNamespace, GeneratorResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
+import {
+  defaultPluginTechVersion,
+  newMetaEdEnvironment,
+  newNamespace,
+  GeneratorResult,
+  MetaEdEnvironment,
+  Namespace,
+} from '@edfi/metaed-core';
 import {
   newTable,
   tableEntities,
@@ -15,7 +22,7 @@ describe('when generating id indexes for core namespace table with no id', (): v
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
     metaEd.namespace.set(namespace.namespaceName, namespace);
     metaEd.plugin.set('edfiOdsPostgresql', {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
       shortName: '',
       namespace: new Map(),
       config: {},
@@ -127,7 +134,7 @@ describe('when generating id indexes for extension namespace table with no type'
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
     metaEd.namespace.set(namespace.namespaceName, namespace);
     metaEd.plugin.set('edfiOdsPostgresql', {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
       shortName: '',
       namespace: new Map(),
       config: {},

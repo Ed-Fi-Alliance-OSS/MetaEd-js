@@ -10,7 +10,7 @@ import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
 import { Table } from '../../../src/model/database/Table';
 import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
 
-const targetTechnologyVersion: SemVer = '7.0.0';
+const targetTechnologyVersion: SemVer = '7.1.0';
 
 describe('when building choice property table with two integer properties', (): void => {
   const choiceEntityPropertyName1 = 'ChoiceEntityPropertyName1';

@@ -453,7 +453,7 @@ describe('when association extension has a reference property', (): void => {
 });
 
 describe('when association extension has multiple common properties', (): void => {
-  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '3.0.0' };
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '3.2.0-c' };
   const namespaceName = 'Namespace';
   const extension = 'Extension';
   const domainEntityName1 = 'DomainEntityName1';

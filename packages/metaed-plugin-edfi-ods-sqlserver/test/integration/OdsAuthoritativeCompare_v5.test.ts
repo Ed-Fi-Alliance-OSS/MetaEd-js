@@ -27,7 +27,7 @@ import { metaEdPlugins } from './PluginHelper';
 
 jest.setTimeout(40000);
 
-describe('when generating ods and comparing it to data standard 3.2 authoritative artifacts for ODS/API 5.0', (): void => {
+describe('when generating ods and comparing it to data standard 3.2c authoritative artifacts for ODS/API 5.0', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v5/');
   const outputDirectory = `${artifactPath}`;
   let coreResult: GeneratedOutput;
@@ -42,14 +42,13 @@ describe('when generating ods and comparing it to data standard 3.2 authoritativ
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '5.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0',
+          projectVersion: '3.2.0-c',
           description: '',
         },
       ],
@@ -60,7 +59,7 @@ describe('when generating ods and comparing it to data standard 3.2 authoritativ
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0';
+    state.metaEd.dataStandardVersion = '3.2.0-c';
 
     setupPlugins(state);
     loadFiles(state);
@@ -130,7 +129,7 @@ describe('when generating ods and comparing it to data standard 3.2 authoritativ
   });
 });
 
-describe('when generating ods with simple extensions and comparing it to data standard 3.2 authoritative artifacts for ODS/API 5.0', (): void => {
+describe('when generating ods with simple extensions and comparing it to data standard 3.2c authoritative artifacts for ODS/API 5.0', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v5/');
   const sampleExtensionPath: string = path.resolve(__dirname, './simple-extension-project');
 
@@ -146,14 +145,13 @@ describe('when generating ods with simple extensions and comparing it to data st
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '5.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0',
+          projectVersion: '3.2.0-c',
           description: '',
         },
         {
@@ -171,7 +169,7 @@ describe('when generating ods with simple extensions and comparing it to data st
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0';
+    state.metaEd.dataStandardVersion = '3.2.0-c';
 
     setupPlugins(state);
     loadFiles(state);
@@ -223,7 +221,7 @@ describe('when generating ods with simple extensions and comparing it to data st
   });
 });
 
-describe('when generating ods with student transcript extensions and comparing it to data standard 3.2 authoritative artifacts for ODS/API 5.0', (): void => {
+describe('when generating ods with student transcript extensions and comparing it to data standard 3.2c authoritative artifacts for ODS/API 5.0', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v5/');
   const sampleExtensionPath: string = path.resolve(__dirname, './student-transcript-extension-project');
 
@@ -239,14 +237,13 @@ describe('when generating ods with student transcript extensions and comparing i
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '5.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0',
+          projectVersion: '3.2.0-c',
           description: '',
         },
         {
@@ -264,7 +261,7 @@ describe('when generating ods with student transcript extensions and comparing i
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0';
+    state.metaEd.dataStandardVersion = '3.2.0-c';
 
     setupPlugins(state);
     loadFiles(state);

@@ -35,14 +35,13 @@ describe('when generating ods tables file with simple merges for ODS/API 5.0 in 
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '5.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0',
+          projectVersion: '3.2.0-c',
           description: '',
         },
         {
@@ -61,7 +60,7 @@ describe('when generating ods tables file with simple merges for ODS/API 5.0 in 
       metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.allianceMode = true;
-    state.metaEd.dataStandardVersion = '3.2.0';
+    state.metaEd.dataStandardVersion = '3.2.0-c';
 
     setupPlugins(state);
     loadFiles(state);
@@ -129,14 +128,13 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '5.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/', sampleExtensionPath],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0',
+          projectVersion: '3.2.0-c',
           description: '',
         },
         {
@@ -155,7 +153,7 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
       metaEdPlugins: metaEdPlugins(),
     };
     state.metaEd.allianceMode = true;
-    state.metaEd.dataStandardVersion = '3.2.0';
+    state.metaEd.dataStandardVersion = '3.2.0-c';
 
     setupPlugins(state);
     loadFiles(state);

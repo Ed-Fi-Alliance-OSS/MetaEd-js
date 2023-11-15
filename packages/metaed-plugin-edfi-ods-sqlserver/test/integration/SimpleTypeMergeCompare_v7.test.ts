@@ -19,7 +19,7 @@ import { metaEdPlugins } from './PluginHelper';
 
 jest.setTimeout(40000);
 
-describe('when generating ods tables file with simple merges for ODS/API 7.0', (): void => {
+describe('when generating ods tables file with simple merges for ODS/API 7.1', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7/');
   const sampleExtensionPath: string = path.resolve(__dirname, './simple-type-merge-project');
 
@@ -35,14 +35,14 @@ describe('when generating ods tables file with simple merges for ODS/API 7.0', (
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '7.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0-pre.1/', sampleExtensionPath],
+      defaultPluginTechVersion: '7.1.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.0.0-pre.1',
+          projectVersion: '5.0.0',
           description: '',
         },
         {
@@ -60,7 +60,7 @@ describe('when generating ods tables file with simple merges for ODS/API 7.0', (
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '5.0.0-pre.1';
+    state.metaEd.dataStandardVersion = '5.0.0';
 
     setupPlugins(state);
     loadFiles(state);
@@ -112,7 +112,7 @@ describe('when generating ods tables file with simple merges for ODS/API 7.0', (
   });
 });
 
-describe('when generating ods foreign keys file with simple merges for ODS/API v7.0', (): void => {
+describe('when generating ods foreign keys file with simple merges for ODS/API v7.1', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7/');
   const sampleExtensionPath: string = path.resolve(__dirname, './simple-type-merge-project');
 
@@ -128,14 +128,14 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '7.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0-pre.1/', sampleExtensionPath],
+      defaultPluginTechVersion: '7.1.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.0.0-pre.1',
+          projectVersion: '5.0.0',
           description: '',
         },
         {
@@ -153,7 +153,7 @@ describe('when generating ods foreign keys file with simple merges for ODS/API v
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '5.0.0-pre.1';
+    state.metaEd.dataStandardVersion = '5.0.0';
 
     setupPlugins(state);
     loadFiles(state);

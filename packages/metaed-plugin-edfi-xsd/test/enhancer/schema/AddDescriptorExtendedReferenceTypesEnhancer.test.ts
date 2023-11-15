@@ -32,7 +32,7 @@ describe('when enhancing descriptor', (): void => {
     addModelBaseEdfiXsdTo(enhancedItem);
     namespace.entity.descriptor.set(enhancedItem.metaEdName, enhancedItem);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     initializeTopLevelEntities(metaEd);
     enhance(metaEd);
 

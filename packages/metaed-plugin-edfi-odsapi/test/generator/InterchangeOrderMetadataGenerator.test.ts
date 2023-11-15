@@ -1,6 +1,12 @@
 import * as R from 'ramda';
 import xmlParser from 'xml-js';
-import { GeneratorResult, newMetaEdEnvironment, newNamespace, newPluginEnvironment } from '@edfi/metaed-core';
+import {
+  defaultPluginTechVersion,
+  GeneratorResult,
+  newMetaEdEnvironment,
+  newNamespace,
+  newPluginEnvironment,
+} from '@edfi/metaed-core';
 import { MetaEdEnvironment, Namespace, GeneratedOutput } from '@edfi/metaed-core';
 import {
   addEdFiXsdEntityRepositoryTo,
@@ -12,14 +18,14 @@ import { nextHead, nextSecond, nextThird, nextLength, xsdAttributeName, xsdAttri
 import { generate } from '../../src/generator/interchangeOrderMetadata/InterchangeOrderMetadataGenerator';
 
 describe('when generating core interchange', (): void => {
-  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.0.0' });
+  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
   const namespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
   metaEd.namespace.set(namespace.namespaceName, namespace);
   addEdFiXsdEntityRepositoryTo(metaEd);
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
     }),
   );
 
@@ -62,15 +68,15 @@ describe('when generating core interchange', (): void => {
   });
 });
 
-describe('when generating core interchange on DS 3.0', (): void => {
-  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.0.0' });
+describe('when generating core interchange on DS 5.1', (): void => {
+  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
   const namespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
   metaEd.namespace.set(namespace.namespaceName, namespace);
   addEdFiXsdEntityRepositoryTo(metaEd);
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
     }),
   );
 
@@ -114,7 +120,7 @@ describe('when generating core interchange on DS 3.0', (): void => {
 });
 
 describe('when generating extension interchange', (): void => {
-  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.0.0' });
+  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
   const coreNamespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
   metaEd.namespace.set(coreNamespace.namespaceName, coreNamespace);
   const extensionNamespace: Namespace = Object.assign(newNamespace(), {
@@ -128,7 +134,7 @@ describe('when generating extension interchange', (): void => {
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
     }),
   );
 
@@ -173,7 +179,7 @@ describe('when generating extension interchange', (): void => {
 });
 
 describe('when generating core and extension interchange', (): void => {
-  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.0.0' });
+  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
   const coreNamespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
   metaEd.namespace.set(coreNamespace.namespaceName, coreNamespace);
   const extensionNamespace: Namespace = Object.assign(newNamespace(), {
@@ -187,7 +193,7 @@ describe('when generating core and extension interchange', (): void => {
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
     }),
   );
 
@@ -273,7 +279,7 @@ describe('when generating core and extension interchange', (): void => {
 });
 
 describe('when generating core and extension interchange with same interchange name', (): void => {
-  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.0.0' });
+  const metaEd: MetaEdEnvironment = Object.assign(newMetaEdEnvironment(), { dataStandardVersion: '3.2.0-c' });
   const coreNamespace: Namespace = Object.assign(newNamespace(), { namespaceName: 'EdFi' });
   metaEd.namespace.set(coreNamespace.namespaceName, coreNamespace);
   const extensionNamespace: Namespace = Object.assign(newNamespace(), {
@@ -287,7 +293,7 @@ describe('when generating core and extension interchange with same interchange n
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
     }),
   );
 
@@ -410,15 +416,15 @@ describe('when generating core and extension interchange with same interchange n
   });
 });
 
-describe('when generating in targetTechnologyVersion >= 5.0.0', (): void => {
-  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '3.0.0' };
+describe('when generating in targetTechnologyVersion >= 6.1.0', (): void => {
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '3.3.1-b' };
   const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
   metaEd.namespace.set(namespace.namespaceName, namespace);
   addEdFiXsdEntityRepositoryTo(metaEd);
   metaEd.plugin.set(
     'edfiOdsApi',
     Object.assign(newPluginEnvironment(), {
-      targetTechnologyVersion: '5.0.1',
+      targetTechnologyVersion: '5.3.0',
     }),
   );
   let result: GeneratorResult;

@@ -33,13 +33,13 @@ describe('when generating add index changeversion and comparing to ODS/API 5.0 a
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '5.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2a/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.2.0',
+          projectVersion: '3.2.0-c',
           description: '',
         },
       ],
@@ -50,7 +50,7 @@ describe('when generating add index changeversion and comparing to ODS/API 5.0 a
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.2.0';
+    state.metaEd.dataStandardVersion = '3.2.0-c';
 
     setupPlugins(state);
     loadFiles(state);
@@ -97,13 +97,13 @@ describe('when generating add index changeversion and comparing to ODS/API 6.0.0
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
       defaultPluginTechVersion: '6.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-4.0a/'],
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-4.0/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '4.0.0-a',
+          projectVersion: '4.0.0',
           description: '',
         },
       ],
@@ -114,7 +114,7 @@ describe('when generating add index changeversion and comparing to ODS/API 6.0.0
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '4.0.0-a';
+    state.metaEd.dataStandardVersion = '4.0.0';
 
     setupPlugins(state);
     loadFiles(state);

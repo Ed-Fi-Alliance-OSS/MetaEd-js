@@ -10,7 +10,7 @@ describe('when diminishing with no matching entity', (): void => {
 
   beforeAll(() => {
     const namespace: Namespace = { ...newNamespace(), namespaceName };
-    const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '3.0.0' };
+    const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '3.2.0-c' };
     metaEd.namespace.set(namespace.namespaceName, namespace);
 
     association = { ...newAssociation(), namespace, metaEdName: entityName };
@@ -36,7 +36,7 @@ describe('when diminishing with matching entity', (): void => {
 
   beforeAll(() => {
     const namespace: Namespace = { ...newNamespace(), namespaceName };
-    const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '3.0.0' };
+    const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '3.2.0-c' };
     metaEd.namespace.set(namespace.namespaceName, namespace);
 
     association1 = { ...newAssociation(), namespace, metaEdName: generalStudentProgramAssociationName };

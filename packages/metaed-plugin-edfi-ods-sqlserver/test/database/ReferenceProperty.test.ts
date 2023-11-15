@@ -226,7 +226,7 @@ describe('when entity has collection descriptor property', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(5);
   });
 
   it('should have identity column', async () => {
@@ -536,7 +536,7 @@ describe('when entity has collection enumeration property', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(5);
   });
 
   it('should have identity column', async () => {
@@ -676,7 +676,7 @@ describe('when entity has collection enumeration property', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName + overlapName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName + overlapName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName + overlapName))).toBe(5);
   });
 
   it('should have identity column', async () => {

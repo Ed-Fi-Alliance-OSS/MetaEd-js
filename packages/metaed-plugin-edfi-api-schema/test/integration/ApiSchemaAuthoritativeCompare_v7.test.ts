@@ -21,24 +21,24 @@ import { metaEdPlugins } from './PluginHelper';
 jest.setTimeout(40000);
 
 // Skipping because there is an ordering problem in the JSON file between running locally on Ubuntu and on GitHub actions
-describe.skip('when generating ods and comparing it to data standard 5.0 pre.1 authoritative artifacts for ODS/API 7.0', (): void => {
+describe.skip('when generating ods and comparing it to data standard 5.0 authoritative artifacts for ODS/API 7.0', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7/');
-  const authoritativeCoreFilename = 'ds-5.0-pre.1-api-schema-authoritative.json';
-  const generatedCoreFilename = 'ds-5.0-pre.1-api-schema-generated.json';
+  const authoritativeCoreFilename = 'ds-5.0-api-schema-authoritative.json';
+  const generatedCoreFilename = 'ds-5.0-api-schema-generated.json';
 
   beforeAll(async () => {
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '7.0.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0-pre.1/'],
+      defaultPluginTechVersion: '7.1.0',
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-5.0/'],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '5.0.0-pre.1',
-          description: 'The Ed-Fi Data Standard v5.0-pre.1',
+          projectVersion: '5.0.0',
+          description: 'The Ed-Fi Data Standard v5.0',
         },
       ],
     };
@@ -48,7 +48,7 @@ describe.skip('when generating ods and comparing it to data standard 5.0 pre.1 a
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '5.0.0-pre.1';
+    state.metaEd.dataStandardVersion = '5.0.0';
 
     setupPlugins(state);
     loadFiles(state);

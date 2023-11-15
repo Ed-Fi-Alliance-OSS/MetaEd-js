@@ -1,4 +1,4 @@
-import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { defaultPluginTechVersion, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import { GeneratorResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { generate } from '../../src/generator/SchemaGenerator';
 
@@ -14,7 +14,7 @@ describe('when generating schemas for core namespace', (): void => {
     };
     metaEd.namespace.set('EdFi', namespace);
     metaEd.plugin.set('edfiOdsPostgresql', {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
       shortName: '',
       namespace: new Map(),
       config: {},

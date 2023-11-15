@@ -48,7 +48,7 @@ GO
 -- Table [extension].[ChartOfAccount] --
 CREATE TABLE [extension].[ChartOfAccount] (
     [AccountIdentifier] [NVARCHAR](50) NOT NULL,
-    [EducationOrganizationId] [INT] NOT NULL,
+    [EducationOrganizationId] [BIGINT] NOT NULL,
     [FiscalYear] [SMALLINT] NOT NULL,
     [AccountName] [NVARCHAR](100) NULL,
     [AccountTypeDescriptorId] [INT] NOT NULL,
@@ -81,7 +81,7 @@ GO
 -- Table [extension].[ChartOfAccountReportingTag] --
 CREATE TABLE [extension].[ChartOfAccountReportingTag] (
     [AccountIdentifier] [NVARCHAR](50) NOT NULL,
-    [EducationOrganizationId] [INT] NOT NULL,
+    [EducationOrganizationId] [BIGINT] NOT NULL,
     [FiscalYear] [SMALLINT] NOT NULL,
     [ReportingTagDescriptorId] [INT] NOT NULL,
     [CreateDate] [DATETIME2] NOT NULL,
@@ -184,11 +184,11 @@ GO
 -- Table [extension].[LocalAccount] --
 CREATE TABLE [extension].[LocalAccount] (
     [AccountIdentifier] [NVARCHAR](50) NOT NULL,
-    [EducationOrganizationId] [INT] NOT NULL,
+    [EducationOrganizationId] [BIGINT] NOT NULL,
     [FiscalYear] [SMALLINT] NOT NULL,
     [AccountName] [NVARCHAR](100) NULL,
     [ChartOfAccountIdentifier] [NVARCHAR](50) NOT NULL,
-    [ChartOfAccountEducationOrganizationId] [INT] NOT NULL,
+    [ChartOfAccountEducationOrganizationId] [BIGINT] NOT NULL,
     [Discriminator] [NVARCHAR](128) NULL,
     [CreateDate] [DATETIME2] NOT NULL,
     [LastModifiedDate] [DATETIME2] NOT NULL,
@@ -210,7 +210,7 @@ GO
 -- Table [extension].[LocalAccountReportingTag] --
 CREATE TABLE [extension].[LocalAccountReportingTag] (
     [AccountIdentifier] [NVARCHAR](50) NOT NULL,
-    [EducationOrganizationId] [INT] NOT NULL,
+    [EducationOrganizationId] [BIGINT] NOT NULL,
     [FiscalYear] [SMALLINT] NOT NULL,
     [ReportingTagDescriptorId] [INT] NOT NULL,
     [CreateDate] [DATETIME2] NOT NULL,
@@ -229,7 +229,7 @@ GO
 CREATE TABLE [extension].[LocalActual] (
     [AccountIdentifier] [NVARCHAR](50) NOT NULL,
     [AsOfDate] [DATE] NOT NULL,
-    [EducationOrganizationId] [INT] NOT NULL,
+    [EducationOrganizationId] [BIGINT] NOT NULL,
     [FiscalYear] [SMALLINT] NOT NULL,
     [Amount] [MONEY] NOT NULL,
     [FinancialCollectionDescriptorId] [INT] NULL,
@@ -256,7 +256,7 @@ GO
 CREATE TABLE [extension].[LocalBudget] (
     [AccountIdentifier] [NVARCHAR](50) NOT NULL,
     [AsOfDate] [DATE] NOT NULL,
-    [EducationOrganizationId] [INT] NOT NULL,
+    [EducationOrganizationId] [BIGINT] NOT NULL,
     [FiscalYear] [SMALLINT] NOT NULL,
     [Amount] [MONEY] NOT NULL,
     [FinancialCollectionDescriptorId] [INT] NULL,

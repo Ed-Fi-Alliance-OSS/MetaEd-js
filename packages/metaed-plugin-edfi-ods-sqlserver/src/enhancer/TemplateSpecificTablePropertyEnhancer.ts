@@ -13,7 +13,7 @@ function findUniqueIndexIncludeColumnName(table: Table): string | undefined {
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
-  if (!versionSatisfies(targetTechnologyVersion, '>=7.0.0')) return { enhancerName, success: true };
+  if (!versionSatisfies(targetTechnologyVersion, '>=7.1.0')) return { enhancerName, success: true };
 
   metaEd.namespace.forEach((namespace: Namespace) => {
     const tables: Map<string, Table> = tableEntities(metaEd, namespace);

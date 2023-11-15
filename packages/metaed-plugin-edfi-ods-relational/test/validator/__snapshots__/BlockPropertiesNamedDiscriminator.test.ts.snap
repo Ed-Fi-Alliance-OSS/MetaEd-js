@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`when domain entity has property named Discriminator on tech version 3.1 should have validation failure 1`] = `
+exports[`when domain entity has property named Discriminator on tech version 5.1 should have validation failure 1`] = `
 Array [
   Object {
     "category": "warning",

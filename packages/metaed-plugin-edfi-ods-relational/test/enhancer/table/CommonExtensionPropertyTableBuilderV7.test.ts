@@ -26,7 +26,7 @@ import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
 import { Table } from '../../../src/model/database/Table';
 import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
 
-const targetTechnologyVersion: SemVer = '7.0.0';
+const targetTechnologyVersion: SemVer = '7.1.0';
 
 describe('when building common property extension table', (): void => {
   const tableName = 'TableName';

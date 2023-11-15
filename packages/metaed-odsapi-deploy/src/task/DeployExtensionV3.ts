@@ -45,7 +45,7 @@ export async function execute(
   _deployCore: boolean,
   _suppressDelete: boolean,
 ): Promise<boolean> {
-  if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=3.0.0 <3.3.0')) {
+  if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '<5.3.0')) {
     return true;
   }
 

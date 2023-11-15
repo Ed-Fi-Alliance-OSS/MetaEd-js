@@ -273,7 +273,7 @@ describe('when entity has collection decimal properties', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(5);
   });
 
   it('should have identity column', async () => {
@@ -448,7 +448,7 @@ describe('when entity has collection boolean properties', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(5);
   });
 
   it('should have identity column', async () => {
@@ -619,7 +619,7 @@ describe('when entity has collection currency properties', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(5);
   });
 
   it('should have identity column', async () => {
@@ -790,7 +790,7 @@ describe('when entity has collection date properties', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(5);
   });
 
   it('should have identity column', async () => {
@@ -953,7 +953,7 @@ describe('when entity has collection datetime properties', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(5);
   });
 
   it('should have identity column', async () => {
@@ -1124,7 +1124,7 @@ describe('when entity has collection duration properties', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(5);
   });
 
   it('should have identity column', async () => {
@@ -1295,7 +1295,7 @@ describe('when entity has collection percent properties', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(5);
   });
 
   it('should have identity column', async () => {
@@ -1466,7 +1466,7 @@ describe('when entity has collection short properties', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(5);
   });
 
   it('should have identity column', async () => {
@@ -1651,7 +1651,7 @@ describe('when entity has collection string properties', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(5);
   });
 
   it('should have identity column', async () => {
@@ -1820,7 +1820,7 @@ describe('when entity has collection time properties', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(5);
   });
 
   it('should have identity column', async () => {
@@ -1983,7 +1983,7 @@ describe('when entity has collection year properties', (): void => {
 
   it('should have entity table', async () => {
     expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
-    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(4);
+    expect(await tableColumnCount(table(namespaceName, domainEntityName))).toBe(5);
   });
 
   it('should have identity column', async () => {

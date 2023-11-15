@@ -1,5 +1,6 @@
 import path from 'path';
 import {
+  defaultPluginTechVersion,
   State,
   ValidationFailure,
   buildMetaEd,
@@ -18,7 +19,7 @@ import { metaEdPlugins } from '../PluginHelper';
 
 jest.setTimeout(100000);
 
-describe('when running enhancers and validators against DS 3.1 and a simple extension', (): void => {
+describe('when running enhancers and validators against DS 3.2c and a simple extension', (): void => {
   const sampleExtensionPath: string = path.resolve(__dirname, './simple-extension-project');
   let failures: ValidationFailure[] = [];
 
@@ -26,21 +27,21 @@ describe('when running enhancers and validators against DS 3.1 and a simple exte
     const metaEdConfiguration = {
       ...newMetaEdConfiguration(),
       artifactDirectory: './MetaEdOutput/',
-      defaultPluginTechVersion: '3.1.0',
-      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.1/', sampleExtensionPath],
+      defaultPluginTechVersion,
+      projectPaths: ['./node_modules/@edfi/ed-fi-model-3.2c/', sampleExtensionPath],
       projects: [
         {
           projectName: 'Ed-Fi',
           namespaceName: 'EdFi',
           projectExtension: '',
-          projectVersion: '3.1.0',
+          projectVersion: '3.2.0-c',
           description: '',
         },
         {
           projectName: 'Sample',
           namespaceName: 'Sample',
           projectExtension: 'Sample',
-          projectVersion: '3.0.0',
+          projectVersion: '3.1.0',
           description: '',
         },
       ],
@@ -51,7 +52,7 @@ describe('when running enhancers and validators against DS 3.1 and a simple exte
       metaEdConfiguration,
       metaEdPlugins: metaEdPlugins(),
     };
-    state.metaEd.dataStandardVersion = '3.1.0';
+    state.metaEd.dataStandardVersion = '3.2.0-c';
 
     setupPlugins(state);
     loadFiles(state);

@@ -1,4 +1,11 @@
-import { versionSatisfies, GeneratedOutput, GeneratorResult, MetaEdEnvironment, PluginEnvironment } from '@edfi/metaed-core';
+import {
+  defaultPluginTechVersion,
+  versionSatisfies,
+  GeneratedOutput,
+  GeneratorResult,
+  MetaEdEnvironment,
+  PluginEnvironment,
+} from '@edfi/metaed-core';
 import { shouldApplyLicenseHeader } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { dataPath, fileNameFor, registerPartials, structurePath, template } from './OdsGeneratorBase';
 import { NamespaceEdfiOdsPostgresql } from '../model/Namespace';
@@ -6,7 +13,7 @@ import { NamespaceEdfiOdsPostgresql } from '../model/Namespace';
 export async function generateTables(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
   const results: GeneratedOutput[] = [];
   const { targetTechnologyVersion } = (metaEd.plugin.get('edfiOdsPostgresql') as PluginEnvironment) || {
-    targetTechnologyVersion: '3.0.0',
+    targetTechnologyVersion: defaultPluginTechVersion,
   };
   const useLicenseHeader = shouldApplyLicenseHeader(metaEd);
 

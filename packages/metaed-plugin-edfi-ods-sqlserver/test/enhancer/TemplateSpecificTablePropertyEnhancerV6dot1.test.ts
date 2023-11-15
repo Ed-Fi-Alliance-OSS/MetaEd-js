@@ -1,5 +1,12 @@
 import * as R from 'ramda';
-import { MetaEdEnvironment, Namespace, PluginEnvironment, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import {
+  defaultPluginTechVersion,
+  MetaEdEnvironment,
+  Namespace,
+  PluginEnvironment,
+  newMetaEdEnvironment,
+  newNamespace,
+} from '@edfi/metaed-core';
 import {
   initializeEdFiOdsRelationalEntityRepository,
   newColumn,
@@ -29,7 +36,8 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with a
   beforeAll(() => {
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     const edfiOdsRelationalPluginEnvironment: PluginEnvironment | undefined = metaEd.plugin.get('edfiOdsRelational');
-    if (edfiOdsRelationalPluginEnvironment != null) edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = '3.0.0';
+    if (edfiOdsRelationalPluginEnvironment != null)
+      edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = defaultPluginTechVersion;
 
     const table: Table = {
       ...newTable(),
@@ -53,7 +61,7 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with a
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     tableSetupEnhancer(metaEd);
     sqlServerColumnNamingEnhancer(metaEd);
     enhance(metaEd);
@@ -81,7 +89,8 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with p
   beforeAll(() => {
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     const edfiOdsRelationalPluginEnvironment: PluginEnvironment | undefined = metaEd.plugin.get('edfiOdsRelational');
-    if (edfiOdsRelationalPluginEnvironment != null) edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = '3.0.0';
+    if (edfiOdsRelationalPluginEnvironment != null)
+      edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = defaultPluginTechVersion;
 
     const table: Table = {
       ...newTable(),
@@ -105,7 +114,7 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with p
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     tableSetupEnhancer(metaEd);
     sqlServerColumnNamingEnhancer(metaEd);
     enhance(metaEd);
@@ -133,7 +142,8 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with f
   beforeAll(() => {
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     const edfiOdsRelationalPluginEnvironment: PluginEnvironment | undefined = metaEd.plugin.get('edfiOdsRelational');
-    if (edfiOdsRelationalPluginEnvironment != null) edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = '3.0.0';
+    if (edfiOdsRelationalPluginEnvironment != null)
+      edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = defaultPluginTechVersion;
 
     const table: Table = {
       ...newTable(),
@@ -205,7 +215,7 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with f
     tableEntities(metaEd, namespace).set(foreignTable1.tableId, foreignTable1);
     tableEntities(metaEd, namespace).set(foreignTable2.tableId, foreignTable2);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     tableSetupEnhancer(metaEd);
     sqlServerTableNamingEnhancer(metaEd);
     sqlServerColumnNamingEnhancer(metaEd);
@@ -248,7 +258,8 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with u
   beforeAll(() => {
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     const edfiOdsRelationalPluginEnvironment: PluginEnvironment | undefined = metaEd.plugin.get('edfiOdsRelational');
-    if (edfiOdsRelationalPluginEnvironment != null) edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = '3.0.0';
+    if (edfiOdsRelationalPluginEnvironment != null)
+      edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = defaultPluginTechVersion;
 
     const table: Table = {
       ...newTable(),
@@ -272,7 +283,7 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with u
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     tableSetupEnhancer(metaEd);
     sqlServerColumnNamingEnhancer(metaEd);
     enhance(metaEd);
@@ -299,7 +310,8 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with p
   beforeAll(() => {
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     const edfiOdsRelationalPluginEnvironment: PluginEnvironment | undefined = metaEd.plugin.get('edfiOdsRelational');
-    if (edfiOdsRelationalPluginEnvironment != null) edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = '3.0.0';
+    if (edfiOdsRelationalPluginEnvironment != null)
+      edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = defaultPluginTechVersion;
 
     const table: Table = {
       ...newTable(),
@@ -330,7 +342,7 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with p
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     tableSetupEnhancer(metaEd);
     sqlServerColumnNamingEnhancer(metaEd);
     enhance(metaEd);
@@ -360,7 +372,8 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table and co
     const description = "Test 'description' with 'quotes'";
     initializeEdFiOdsRelationalEntityRepository(metaEd);
     const edfiOdsRelationalPluginEnvironment: PluginEnvironment | undefined = metaEd.plugin.get('edfiOdsRelational');
-    if (edfiOdsRelationalPluginEnvironment != null) edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = '3.0.0';
+    if (edfiOdsRelationalPluginEnvironment != null)
+      edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = defaultPluginTechVersion;
 
     const table: Table = {
       ...newTable(),
@@ -374,7 +387,7 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table and co
     };
     tableEntities(metaEd, namespace).set(table.tableId, table);
 
-    metaEd.dataStandardVersion = '3.0.0';
+    metaEd.dataStandardVersion = '3.2.0-c';
     tableSetupEnhancer(metaEd);
     sqlServerColumnNamingEnhancer(metaEd);
     enhance(metaEd);

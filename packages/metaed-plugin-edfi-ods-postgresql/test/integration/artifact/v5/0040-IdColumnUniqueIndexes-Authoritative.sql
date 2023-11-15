@@ -88,6 +88,8 @@ CREATE UNIQUE INDEX IF NOT EXISTS UX_5f7953_Id ON edfi.Parent(Id);
 
 CREATE UNIQUE INDEX IF NOT EXISTS UX_53fe8d_Id ON edfi.Payroll(Id);
 
+CREATE UNIQUE INDEX IF NOT EXISTS UX_6007db_Id ON edfi.Person(Id);
+
 CREATE UNIQUE INDEX IF NOT EXISTS UX_b8b6d7_Id ON edfi.PostSecondaryEvent(Id);
 
 CREATE UNIQUE INDEX IF NOT EXISTS UX_90920d_Id ON edfi.Program(Id);
@@ -161,4 +163,30 @@ CREATE UNIQUE INDEX IF NOT EXISTS UX_78fd7f_Id ON edfi.StudentSchoolAttendanceEv
 CREATE UNIQUE INDEX IF NOT EXISTS UX_39aa3c_Id ON edfi.StudentSectionAssociation(Id);
 
 CREATE UNIQUE INDEX IF NOT EXISTS UX_61b087_Id ON edfi.StudentSectionAttendanceEvent(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_211bb3_Id ON edfi.Survey(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_9f1246_Id ON edfi.SurveyCourseAssociation(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_e3e5a4_Id ON edfi.SurveyProgramAssociation(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_1bb88c_Id ON edfi.SurveyQuestion(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_eddd02_Id ON edfi.SurveyQuestionResponse(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_8d6383_Id ON edfi.SurveyResponse(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_b2bd0a_Id ON edfi.SurveyResponseEducationOrganizationTargetAssociation(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_f9457e_Id ON edfi.SurveyResponseStaffTargetAssociation(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_e5572a_Id ON edfi.SurveySection(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_c16804_Id ON edfi.SurveySectionAssociation(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_2189c3_Id ON edfi.SurveySectionResponse(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_730be1_Id ON edfi.SurveySectionResponseEducationOrganizationTargetAssociation(Id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS UX_39073d_Id ON edfi.SurveySectionResponseStaffTargetAssociation(Id);
 

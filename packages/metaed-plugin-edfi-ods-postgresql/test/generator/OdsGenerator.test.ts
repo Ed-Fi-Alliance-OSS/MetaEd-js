@@ -1,4 +1,4 @@
-import { newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
+import { defaultPluginTechVersion, newMetaEdEnvironment, newNamespace } from '@edfi/metaed-core';
 import { GeneratorResult, MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import { newSchemaContainer } from '../../src/model/SchemaContainer';
 import { generate } from '../../src/generator/OdsGenerator';
@@ -10,7 +10,7 @@ describe('when generating output for namespace', (): void => {
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
     metaEd.plugin.set('edfiOdsPostgresql', {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
       shortName: '',
       namespace: new Map(),
       config: {},
@@ -47,7 +47,7 @@ describe('when generating output for core namespace', (): void => {
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
     metaEd.plugin.set('edfiOdsPostgresql', {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
       shortName: '',
       namespace: new Map(),
       config: {},
@@ -81,7 +81,7 @@ describe('when generating output for extension namespace', (): void => {
   beforeAll(async () => {
     const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
     metaEd.plugin.set('edfiOdsPostgresql', {
-      targetTechnologyVersion: '3.0.0',
+      targetTechnologyVersion: defaultPluginTechVersion,
       shortName: '',
       namespace: new Map(),
       config: {},

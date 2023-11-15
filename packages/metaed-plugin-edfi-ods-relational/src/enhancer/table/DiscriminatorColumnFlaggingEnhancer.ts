@@ -1,10 +1,10 @@
 import { EnhancerResult, MetaEdEnvironment, Namespace, SemVer, PluginEnvironment } from '@edfi/metaed-core';
-import { versionSatisfies, NoTopLevelEntity } from '@edfi/metaed-core';
+import { defaultPluginTechVersion, versionSatisfies, NoTopLevelEntity } from '@edfi/metaed-core';
 import { tableEntities } from '../EnhancerHelper';
 import { Table } from '../../model/database/Table';
 
 const enhancerName = 'DiscriminatorColumnFlaggingEnhancer';
-const targetTechnologyVersion: SemVer = '>=3.1';
+const targetTechnologyVersion: SemVer = `>=${defaultPluginTechVersion}`;
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   if (
