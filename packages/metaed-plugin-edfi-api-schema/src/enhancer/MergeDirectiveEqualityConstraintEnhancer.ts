@@ -7,29 +7,11 @@ import {
   ReferentialProperty,
   MergeDirective,
   EntityProperty,
-  ModelBase,
 } from '@edfi/metaed-core';
 import invariant from 'ts-invariant';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { MetaEdPropertyPath } from '../model/api-schema/MetaEdPropertyPath';
-
-/**
- * StudentCompetency/LearningObjective.StudentCompetency/LearningObjectiveSectionOrProgramChoice appear to have
- * an invalid merge directive target in GradingPeriod.Session
- *
- * METAED-1488 and METAED-1489 will address this. Once implemented, this check can be removed.
- */
-function isErrorInDataStandard(entity: ModelBase, property: EntityProperty, mergeDirective: MergeDirective) {
-  return (
-    (entity.metaEdName === 'StudentCompetencyObjective' || entity.metaEdName === 'StudentLearningObjective') &&
-    (property.metaEdName === 'StudentCompetencyObjectiveSectionOrProgramChoice' ||
-      property.metaEdName === 'StudentLearningObjectiveSectionOrProgramChoice') &&
-    mergeDirective.targetPropertyPathStrings.length === 2 &&
-    mergeDirective.targetPropertyPathStrings[0] === 'GradingPeriod' &&
-    mergeDirective.targetPropertyPathStrings[1] === 'Session'
-  );
-}
 
 function mergeDirectivePathStringsToPath(segments: string[]): MetaEdPropertyPath {
   return segments.join('.') as MetaEdPropertyPath;
@@ -49,10 +31,6 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         if (isReferentialProperty(property)) {
           const referentialProperty: ReferentialProperty = property as ReferentialProperty;
           referentialProperty.mergeDirectives.forEach((mergeDirective: MergeDirective) => {
-            // StudentCompetencyObjective.StudentCompetencyObjectiveSectionOrProgramChoice appears to have
-            // an invalid merge directive target in GradingPeriod.Session
-            if (isErrorInDataStandard(entity, property, mergeDirective)) return;
-
             const sourceJsonPaths: JsonPath[] | undefined =
               allJsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)].jsonPaths;
             const targetJsonPaths: JsonPath[] | undefined =
@@ -78,7 +56,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   );
 
   return {
-    enhancerName: 'EqualityConstraintEnhancer',
+    enhancerName: 'MergeDirectiveEqualityConstraintEnhancer',
     success: true,
   };
 }

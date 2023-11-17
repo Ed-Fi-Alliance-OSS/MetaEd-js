@@ -23,7 +23,7 @@ import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/Proper
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
 import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
 
-import { enhance } from '../../src/enhancer/EqualityConstraintEnhancer';
+import { enhance } from '../../src/enhancer/MergeDirectiveEqualityConstraintEnhancer';
 
 describe('when building domain entity with DomainEntity collection and single merge directive', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
