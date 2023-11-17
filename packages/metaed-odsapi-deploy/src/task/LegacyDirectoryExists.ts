@@ -1,6 +1,7 @@
 import { Logger, MetaEdConfiguration, SemVer, versionSatisfies } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
+import { directoryExcludeList } from './DeployConstants';
 
 export function legacyCoreDirectoryExists(metaEdConfiguration: MetaEdConfiguration): void {
   const { deployDirectory } = metaEdConfiguration;
@@ -19,9 +20,7 @@ export function legacyCoreDirectoryExists(metaEdConfiguration: MetaEdConfigurati
 
 export function legacyExtensionDirectoryExists(metaEdConfiguration: MetaEdConfiguration): void {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
-  const projectsNames: string[] = fs
-    .readdirSync(artifactDirectory)
-    .filter((x: string) => !['Documentation', 'EdFi'].includes(x));
+  const projectsNames: string[] = fs.readdirSync(artifactDirectory).filter((x: string) => !directoryExcludeList.includes(x));
 
   projectsNames.forEach((projectName: string) => {
     const legacyDirectoryPaths: string[] = [

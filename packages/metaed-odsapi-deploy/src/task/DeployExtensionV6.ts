@@ -4,6 +4,7 @@ import { Logger, versionSatisfies } from '@edfi/metaed-core';
 import path from 'path';
 import Sugar from 'sugar';
 import { CopyOptions } from '../CopyOptions';
+import { directoryExcludeList } from './DeployConstants';
 
 const extensionPath: string = 'Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/Artifacts';
 const artifacts: CopyOptions[] = [
@@ -18,9 +19,7 @@ const artifacts: CopyOptions[] = [
 
 function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): void {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
-  const projectsNames: string[] = fs
-    .readdirSync(artifactDirectory)
-    .filter((x: string) => !['Documentation', 'EdFi'].includes(x));
+  const projectsNames: string[] = fs.readdirSync(artifactDirectory).filter((x: string) => !directoryExcludeList.includes(x));
 
   projectsNames.forEach((projectName: string) => {
     artifacts.forEach((artifact: CopyOptions) => {

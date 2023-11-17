@@ -2,14 +2,13 @@ import { Logger, MetaEdConfiguration, SemVer, versionSatisfies } from '@edfi/met
 import fs from 'fs-extra';
 import path from 'path';
 import Sugar from 'sugar';
+import { directoryExcludeList } from './DeployConstants';
 
 const projectPaths: string[] = ['Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/'];
 
 export function extensionProjectsExists(metaEdConfiguration: MetaEdConfiguration): boolean {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
-  const projectsNames: string[] = fs
-    .readdirSync(artifactDirectory)
-    .filter((x: string) => !['Documentation', 'EdFi'].includes(x));
+  const projectsNames: string[] = fs.readdirSync(artifactDirectory).filter((x: string) => !directoryExcludeList.includes(x));
 
   let result: boolean = true;
 

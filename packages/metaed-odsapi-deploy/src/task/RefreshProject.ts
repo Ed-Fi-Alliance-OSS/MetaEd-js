@@ -4,6 +4,7 @@ import fs from 'fs-extra';
 import touch from 'touch';
 import path from 'path';
 import Sugar from 'sugar';
+import { directoryExcludeList } from './DeployConstants';
 
 const projectPaths: string[] = [
   'Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/EdFi.Ods.Extensions.{projectName}.csproj',
@@ -11,9 +12,7 @@ const projectPaths: string[] = [
 
 export function refreshProject(metaEdConfiguration: MetaEdConfiguration): void {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
-  const projectsNames: string[] = fs
-    .readdirSync(artifactDirectory)
-    .filter((x: string) => !['Documentation', 'EdFi'].includes(x));
+  const projectsNames: string[] = fs.readdirSync(artifactDirectory).filter((x: string) => !directoryExcludeList.includes(x));
 
   projectsNames.forEach((projectName: string) => {
     projectPaths.forEach((projectPath: string) => {

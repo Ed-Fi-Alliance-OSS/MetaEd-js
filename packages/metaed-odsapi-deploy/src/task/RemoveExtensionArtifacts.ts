@@ -1,10 +1,11 @@
 import { Logger, MetaEdConfiguration, SemVer, versionSatisfies } from '@edfi/metaed-core';
 import fs from 'fs-extra';
 import path from 'path';
+import { directoryExcludeList } from './DeployConstants';
 
 export function removeExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): boolean {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
-  const projectsNames = fs.readdirSync(artifactDirectory).filter((x: string) => !['Documentation', 'EdFi'].includes(x));
+  const projectsNames = fs.readdirSync(artifactDirectory).filter((x: string) => !directoryExcludeList.includes(x));
 
   let result: boolean = true;
 
