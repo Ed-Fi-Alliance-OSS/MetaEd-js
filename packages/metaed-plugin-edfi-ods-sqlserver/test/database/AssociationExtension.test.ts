@@ -125,13 +125,13 @@ describe('when association extension has a single property', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 
   it('should not have standard resource columns on association extension', async () => {
@@ -536,13 +536,13 @@ describe('when association extension has multiple common properties', (): void =
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 
   it('should not have association extension table', async () => {

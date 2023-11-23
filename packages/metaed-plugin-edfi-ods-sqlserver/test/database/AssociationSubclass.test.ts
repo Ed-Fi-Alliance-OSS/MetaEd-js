@@ -113,13 +113,13 @@ describe('when association subclass has a single property', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 
   it('should not have standard resource columns on association subclass', async () => {
@@ -225,13 +225,13 @@ describe('when extension association subclasses core association', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 
   it('should not have standard resource columns on association subclass', async () => {
@@ -334,13 +334,13 @@ describe('when extension association subclasses extension association', (): void
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
 
     const createDateColumn: DatabaseColumn = column(extension, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 
   it('should not have standard resource columns on association subclass', async () => {

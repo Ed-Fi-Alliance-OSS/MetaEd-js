@@ -95,13 +95,13 @@ describe('when association references two different domain entities', (): void =
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 });
 
@@ -710,13 +710,13 @@ describe('when extension association references core domain entities', (): void 
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
 
     const createDateColumn: DatabaseColumn = column(extension, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 });
 
@@ -803,12 +803,12 @@ describe('when extension association references extension domain entities', (): 
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
 
     const createDateColumn: DatabaseColumn = column(extension, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 });

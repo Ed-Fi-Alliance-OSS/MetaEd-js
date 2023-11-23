@@ -100,13 +100,13 @@ describe('when enumeration has single item', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, enumerationTableName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 });
 
@@ -189,13 +189,13 @@ describe('when enumeration has multiple items', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, enumerationTableName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 });
 
@@ -278,13 +278,13 @@ describe('when enumeration name ends in type', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, enumerationTableName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 });
 
@@ -378,12 +378,12 @@ describe('when extension enumeration has single item', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
 
     const createDateColumn: DatabaseColumn = column(extension, enumerationTableName2, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 });
