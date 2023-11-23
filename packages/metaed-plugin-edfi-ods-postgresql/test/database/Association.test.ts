@@ -535,12 +535,12 @@ describe('when extension association references core domain entities', (): void 
     const lastModifiedDateColumn = table.columns.get('lastmodifieddate');
     expect(lastModifiedDateColumn.notNull).toBe(true);
     expect(lastModifiedDateColumn.type.name).toBe('timestamp without time zone');
-    expect(lastModifiedDateColumn.default).toBe('CURRENT_TIMESTAMP');
+    expect(lastModifiedDateColumn.default).toBe("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)");
 
     const createDateColumn = table.columns.get('createdate');
     expect(createDateColumn.notNull).toBe(true);
     expect(createDateColumn.type.name).toBe('timestamp without time zone');
-    expect(createDateColumn.default).toBe('CURRENT_TIMESTAMP');
+    expect(createDateColumn.default).toBe("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)");
 
     await rollbackAndEnd();
   });
@@ -649,12 +649,12 @@ describe('when extension association references extension domain entities', (): 
     const lastModifiedDateColumn = table.columns.get('lastmodifieddate');
     expect(lastModifiedDateColumn.notNull).toBe(true);
     expect(lastModifiedDateColumn.type.name).toBe('timestamp without time zone');
-    expect(lastModifiedDateColumn.default).toBe('CURRENT_TIMESTAMP');
+    expect(lastModifiedDateColumn.default).toBe("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)");
 
     const createDateColumn = table.columns.get('createdate');
     expect(createDateColumn.notNull).toBe(true);
     expect(createDateColumn.type.name).toBe('timestamp without time zone');
-    expect(createDateColumn.default).toBe('CURRENT_TIMESTAMP');
+    expect(createDateColumn.default).toBe("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)");
 
     await rollbackAndEnd();
   });
