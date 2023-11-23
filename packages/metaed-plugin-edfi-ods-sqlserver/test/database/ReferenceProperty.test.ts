@@ -261,7 +261,7 @@ describe('when entity has collection descriptor property', (): void => {
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 
   it('should not have id and last modified date resource columns', async () => {
@@ -571,7 +571,7 @@ describe('when entity has collection enumeration property', (): void => {
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 
   it('should not have id and last modified date resource columns', async () => {
@@ -714,7 +714,7 @@ describe('when entity has collection enumeration property', (): void => {
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 
   it('should not have id and last modified date resource columns', async () => {

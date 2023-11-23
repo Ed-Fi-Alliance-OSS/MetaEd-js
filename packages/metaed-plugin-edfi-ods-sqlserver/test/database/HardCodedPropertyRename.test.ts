@@ -764,13 +764,13 @@ describe('when enumeration is school year', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, schoolYearTableName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 
   it('should have correct inserted values', async () => {

@@ -35,11 +35,11 @@ CREATE TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} (
 CREATE UNIQUE INDEX {{{data.edfiOdsPostgresql.tableName}}}_UI_{{{uniqueIndexes.0.data.edfiOdsPostgresql.columnName}}} ON {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ({{#uniqueIndexes}}{{{data.edfiOdsPostgresql.columnName}}}{{#unless @last}}, {{/unless}}{{/uniqueIndexes}}){{#if data.edfiOdsPostgresql.uniqueIndexIncludeColumnName}} INCLUDE ({{{data.edfiOdsPostgresql.uniqueIndexIncludeColumnName}}}){{/if}};
 {{/if}}
 {{#if includeCreateDateColumn}}
-ALTER TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ALTER COLUMN CreateDate SET DEFAULT current_timestamp;
+ALTER TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ALTER COLUMN CreateDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
 {{/if}}
 {{#if includeLastModifiedDateAndIdColumn}}
 ALTER TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ALTER COLUMN Id SET DEFAULT gen_random_uuid();
-ALTER TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ALTER COLUMN LastModifiedDate SET DEFAULT current_timestamp;
+ALTER TABLE {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} ALTER COLUMN LastModifiedDate SET DEFAULT current_timestamp AT TIME ZONE 'UTC';
 {{/if}}
 {{~#if includeComputedDescriptorUriColumn}}
 CREATE UNIQUE INDEX UX_{{{data.edfiOdsPostgresql.tableName}}}_Uri ON {{{schema}}}.{{{data.edfiOdsPostgresql.tableName}}} (Uri) INCLUDE (DescriptorId, Discriminator);
