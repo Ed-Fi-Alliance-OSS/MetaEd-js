@@ -41,7 +41,7 @@ import { enhance as tableDeprecationEnhancer } from './TableDeprecationEnhancer'
 import { enhance as foreignKeyIsIdentifyingEnhancer } from './ForeignKeyIsIdentifyingEnhancer';
 import { enhance as educationOrganizationIdColumnEnhancer } from './EducationOrganizationIdColumnEnhancer';
 
-export function enhancerList(): Enhancer[] {
+export function preTableCreationEnhancerList(): Enhancer[] {
   return [
     // Property Collection Cloning Phase
     edFiOdsEntityRepository,
@@ -63,9 +63,13 @@ export function enhancerList(): Enhancer[] {
     // Static Database Item Creation Phase
     baseDescriptorTableCreatingEnhancer,
 
-    // Table Creation Phase
     updateCascadeTopLevelEntityEnhancer,
+  ];
+}
 
+function tableCreationEnhancerList(): Enhancer[] {
+  return [
+    // Table Creation Phase
     associationSubclassTableEnhancer,
     associationTableEnhancer,
     descriptorTableEnhancer,
@@ -77,6 +81,14 @@ export function enhancerList(): Enhancer[] {
     associationExtensionTableEnhancer,
     domainEntityExtensionTableEnhancer,
 
+  ];
+}
+
+export function enhancerList(): Enhancer[] {
+  return [
+    ...preTableCreationEnhancerList(),
+
+    ...tableCreationEnhancerList(),
     // Foreign Key Creation Phase
     foreignKeyCreatingTableEnhancer,
 

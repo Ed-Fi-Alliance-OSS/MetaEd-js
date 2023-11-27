@@ -196,7 +196,9 @@ export function addMergedReferenceContext(column: Column, referenceContext: stri
   if (existingProperty == null) {
     column.mergedReferenceContexts.push(referenceContext);
   } else {
-    // Logger.warn(`Attempt to add duplicate merged reference context: ${referenceContext} to column ${column.columnId} failed.`);
+    Logger.warn(
+      `Attempt to add duplicate merged reference context: ${referenceContext} to column ${column.columnId} failed.`,
+    );
   }
 }
 
