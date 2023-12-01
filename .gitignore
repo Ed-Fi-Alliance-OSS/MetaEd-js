@@ -48,36 +48,24 @@ SimpleType-1410-Extension-Extension-CreateIndex-EdOrgIdsRelationship-AuthPerform
 /packages/metaed-plugin-edfi-odsapi/test/integration/artifact/*
 !/packages/metaed-plugin-edfi-odsapi/test/integration/artifact/*-authoritative.json
 
-/packages/metaed-plugin-edfi-api-schema/test/integration/artifact/v7/*-generated.json
+/packages/metaed-plugin-edfi-api-schema/test/integration/artifact/v7_1/*-generated.json
 
 /packages/metaed-odsapi-deploy/test/integration/output/*
 
-TrackedDeleteTables-v3.1.sql
-TrackedDeleteTables-v3.4.sql
 TrackedDeleteTables-v6.0.sql
-sample-TrackedDeleteTables-v3.1.sql
-sample-TrackedDeleteTables-v3.4.sql
 sample-TrackedDeleteTables-v6.0.sql
-DeleteTrackingTrigger-v3.1.sql
-DeleteTrackingTrigger-v3.4.sql
 DeleteTrackingTrigger-v5.0.sql
 DeleteTrackingTrigger-v5.0-Alliance.sql
 DeleteTrackingTrigger-v6.0.sql
 DeleteTrackingTrigger-v6.0-Alliance.sql
-sample-DeleteTrackingTrigger-v3.1.sql
-sample-DeleteTrackingTrigger-v3.4.sql
 sample-DeleteTrackingTrigger-v5.0.sql
 sample-DeleteTrackingTrigger-v5.0-Alliance.sql
 sample-DeleteTrackingTrigger-v6.0.sql
 sample-DeleteTrackingTrigger-v6.0-Alliance.sql
-TriggerUpdateChangeVersion-v3.1.sql
-TriggerUpdateChangeVersion-v3.4.sql
 TriggerUpdateChangeVersion-v5.0.sql
 TriggerUpdateChangeVersion-v5.0-Alliance.sql
 TriggerUpdateChangeVersion-v6.0.sql
 TriggerUpdateChangeVersion-v6.0-Alliance.sql
-sample-TriggerUpdateChangeVersion-v3.1.sql
-sample-TriggerUpdateChangeVersion-v3.4.sql
 sample-TriggerUpdateChangeVersion-v6.0.sql
 sample-TriggerUpdateChangeVersion-v6.0-Alliance.sql
 AddColumnChangeVersion-v5.0.sql
@@ -86,7 +74,6 @@ sample-AddColumnChangeVersion-v6.0.sql
 AddIndexChangeVersion-v5.0.sql
 AddIndexChangeVersion-v6.0.sql
 
-CreatedByOwnership-v3.3.sql
 CreatedByOwnership-v5.0.sql
 CreatedByOwnership-v5.0-Alliance.sql
 

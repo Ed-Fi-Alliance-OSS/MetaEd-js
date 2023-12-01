@@ -41,8 +41,6 @@ import { enhance as tableDeprecationEnhancer } from './TableDeprecationEnhancer'
 import { enhance as foreignKeyIsIdentifyingEnhancer } from './ForeignKeyIsIdentifyingEnhancer';
 import { enhance as educationOrganizationIdColumnEnhancer } from './EducationOrganizationIdColumnEnhancer';
 
-import { enhance as assessmentContentStandardTableDiminisher } from '../diminisher/AssessmentContentStandardTableDiminisher';
-
 export function enhancerList(): Enhancer[] {
   return [
     // Property Collection Cloning Phase
@@ -78,8 +76,6 @@ export function enhancerList(): Enhancer[] {
 
     associationExtensionTableEnhancer,
     domainEntityExtensionTableEnhancer,
-
-    assessmentContentStandardTableDiminisher,
 
     // Foreign Key Creation Phase
     foreignKeyCreatingTableEnhancer,
