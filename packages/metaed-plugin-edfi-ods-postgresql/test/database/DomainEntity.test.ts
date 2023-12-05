@@ -239,15 +239,21 @@ describe('when creating domain entity based on abstract entity with ODS/API 7.2+
     expect(idColumn.type.name).toBe('uuid');
     expect(idColumn.default).toBe('gen_random_uuid()');
 
+    // Apparently Postgresql returns either one depending on version for utc current timestamp
+    const expectedUtcNowPossiblities = [
+      "timezone('UTC'::text, CURRENT_TIMESTAMP)",
+      "(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)",
+    ];
+
     const lastModifiedDateColumn = table.columns.get('lastmodifieddate');
     expect(lastModifiedDateColumn.notNull).toBe(true);
     expect(lastModifiedDateColumn.type.name).toBe('timestamp without time zone');
-    expect(lastModifiedDateColumn.default).toBe("timezone('UTC'::text, CURRENT_TIMESTAMP)");
+    expect(expectedUtcNowPossiblities).toContain(lastModifiedDateColumn.default);
 
     const createDateColumn = table.columns.get('createdate');
     expect(createDateColumn.notNull).toBe(true);
     expect(createDateColumn.type.name).toBe('timestamp without time zone');
-    expect(createDateColumn.default).toBe("timezone('UTC'::text, CURRENT_TIMESTAMP)");
+    expect(expectedUtcNowPossiblities).toContain(createDateColumn.default);
 
     await rollbackAndEnd();
   });
