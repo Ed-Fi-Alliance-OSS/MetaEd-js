@@ -4,6 +4,7 @@ import {
   MetaEdTextBuilder,
   NamespaceBuilder,
   newMetaEdEnvironment,
+  newPluginEnvironment,
 } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import {
@@ -764,12 +765,131 @@ describe('when enumeration is school year', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, schoolYearTableName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+  });
+
+  it('should have correct inserted values', async () => {
+    const schoolYearColumn: DatabaseColumn = column(namespaceName, schoolYearTableName, schoolYear);
+    expect(await columnExists(schoolYearColumn)).toBe(true);
+    expect(await columnNthRowValue(schoolYearColumn, schoolYear, '1')).toBe(parseInt(year2, 10));
+    expect(await columnNthRowValue(schoolYearColumn, schoolYear, '2')).toBe(parseInt(year3, 10));
+    expect(await columnNthRowValue(schoolYearColumn, schoolYear, '3')).toBe(parseInt(year4, 10));
+    expect(await columnNthRowValue(schoolYearColumn, schoolYear, '4')).toBe(parseInt(year5, 10));
+    expect(await columnNthRowValue(schoolYearColumn, schoolYear, '5')).toBe(parseInt(year6, 10));
+    expect(await columnNthRowValue(schoolYearColumn, schoolYear, '6')).toBe(parseInt(year7, 10));
+    expect(await columnNthRowValue(schoolYearColumn, schoolYear, '7')).toBe(parseInt(year8, 10));
+    expect(await columnNthRowValue(schoolYearColumn, schoolYear, '8')).toBe(parseInt(year9, 10));
+
+    const schoolYearDescriptionColumn: DatabaseColumn = column(
+      namespaceName,
+      schoolYearTableName,
+      `${schoolYear}Description`,
+    );
+    expect(await columnExists(schoolYearDescriptionColumn)).toBe(true);
+    expect(await columnNthRowValue(schoolYearDescriptionColumn, schoolYear, '1')).toBe(`${year1}-${year2}`);
+    expect(await columnNthRowValue(schoolYearDescriptionColumn, schoolYear, '2')).toBe(`${year2}-${year3}`);
+    expect(await columnNthRowValue(schoolYearDescriptionColumn, schoolYear, '3')).toBe(`${year3}-${year4}`);
+    expect(await columnNthRowValue(schoolYearDescriptionColumn, schoolYear, '4')).toBe(`${year4}-${year5}`);
+    expect(await columnNthRowValue(schoolYearDescriptionColumn, schoolYear, '5')).toBe(`${year5}-${year6}`);
+    expect(await columnNthRowValue(schoolYearDescriptionColumn, schoolYear, '6')).toBe(`${year6}-${year7}`);
+    expect(await columnNthRowValue(schoolYearDescriptionColumn, schoolYear, '7')).toBe(`${year7}-${year8}`);
+    expect(await columnNthRowValue(schoolYearDescriptionColumn, schoolYear, '8')).toBe(`${year8}-${year9}`);
+  });
+});
+
+describe('when enumeration is school year for ODS/API 7.2+', (): void => {
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0' };
+  metaEd.plugin.set('edfiOdsSqlServer', { ...newPluginEnvironment(), targetTechnologyVersion: '7.2.0' });
+  const namespaceName = 'Namespace';
+  const schoolYear = 'SchoolYear';
+  const schoolYearTableName = `${schoolYear}Type`;
+  const year1 = '1991';
+  const year2 = '1992';
+  const year3 = '1993';
+  const year4 = '1994';
+  const year5 = '1995';
+  const year6 = '1996';
+  const year7 = '1997';
+  const year8 = '1998';
+  const year9 = '1999';
+
+  beforeAll(async () => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartEnumeration(schoolYear)
+      .withDocumentation('Documentation')
+      .withEnumerationItem(`${year1}-${year2}`)
+      .withEnumerationItem(`${year2}-${year3}`)
+      .withEnumerationItem(`${year3}-${year4}`)
+      .withEnumerationItem(`${year4}-${year5}`)
+      .withEnumerationItem(`${year5}-${year6}`)
+      .withEnumerationItem(`${year6}-${year7}`)
+      .withEnumerationItem(`${year7}-${year8}`)
+      .withEnumerationItem(`${year8}-${year9}`)
+      .withEndEnumeration()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new EnumerationBuilder(metaEd, []));
+
+    return enhanceGenerateAndExecuteSql(metaEd);
+  });
+
+  afterAll(async () => testTearDown());
+
+  it('should have domain entity table', async () => {
+    expect(await tableExists(table(namespaceName, schoolYearTableName))).toBe(true);
+  });
+
+  it('should have correct columns', async () => {
+    const schoolYearColumn: DatabaseColumn = column(namespaceName, schoolYearTableName, schoolYear);
+    expect(await columnExists(schoolYearColumn)).toBe(true);
+    expect(await columnIsNullable(schoolYearColumn)).toBe(false);
+    expect(await columnDataType(schoolYearColumn)).toBe(columnDataTypes.smallint);
+
+    const schoolYearDescriptionColumn: DatabaseColumn = column(
+      namespaceName,
+      schoolYearTableName,
+      `${schoolYear}Description`,
+    );
+    expect(await columnExists(schoolYearDescriptionColumn)).toBe(true);
+    expect(await columnIsNullable(schoolYearDescriptionColumn)).toBe(false);
+    expect(await columnDataType(schoolYearDescriptionColumn)).toBe(columnDataTypes.nvarchar);
+    expect(await columnLength(schoolYearDescriptionColumn)).toBe(50);
+
+    const currentSchoolYearColumn: DatabaseColumn = column(namespaceName, schoolYearTableName, `Current${schoolYear}`);
+    expect(await columnExists(currentSchoolYearColumn)).toBe(true);
+    expect(await columnIsNullable(currentSchoolYearColumn)).toBe(false);
+    expect(await columnDataType(currentSchoolYearColumn)).toBe(columnDataTypes.bit);
+  });
+
+  it('should have correct primary keys', async () => {
+    expect(await tablePrimaryKeys(table(namespaceName, schoolYearTableName))).toEqual([schoolYear]);
+  });
+
+  it('should have standard resource columns', async () => {
+    const idColumn: DatabaseColumn = column(namespaceName, schoolYearTableName, 'Id');
+    expect(await columnExists(idColumn)).toBe(true);
+    expect(await columnIsNullable(idColumn)).toBe(false);
+    expect(await columnDataType(idColumn)).toBe(columnDataTypes.uniqueIdentifier);
+    expect(await columnDefaultConstraint(idColumn)).toBe('(newid())');
+
+    const lastModifiedDateColumn: DatabaseColumn = column(namespaceName, schoolYearTableName, 'LastModifiedDate');
+    expect(await columnExists(lastModifiedDateColumn)).toBe(true);
+    expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
+    expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime2);
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+
+    const createDateColumn: DatabaseColumn = column(namespaceName, schoolYearTableName, 'CreateDate');
+    expect(await columnExists(createDateColumn)).toBe(true);
+    expect(await columnIsNullable(createDateColumn)).toBe(false);
+    expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime2);
     expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 

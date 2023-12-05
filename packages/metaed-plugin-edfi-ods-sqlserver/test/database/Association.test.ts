@@ -5,6 +5,7 @@ import {
   MetaEdTextBuilder,
   NamespaceBuilder,
   newMetaEdEnvironment,
+  newPluginEnvironment,
 } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import {
@@ -95,12 +96,92 @@ describe('when association references two different domain entities', (): void =
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+  });
+});
+
+describe('when association references two different domain entities for ODS/API 7.2+', (): void => {
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0' };
+  metaEd.plugin.set('edfiOdsSqlServer', { ...newPluginEnvironment(), targetTechnologyVersion: '7.2.0' });
+  const namespaceName = 'Namespace';
+  const associationName = 'AssociationName';
+  const domainEntityName1 = 'DomainEntityName1';
+  const domainEntityName2 = 'DomainEntityName2';
+  const integerPropertyName1 = 'IntegerPropertyName1';
+  const integerPropertyName2 = 'IntegerPropertyName2';
+
+  beforeAll(async () => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName1)
+      .withDocumentation('Documentation')
+      .withIntegerIdentity(integerPropertyName1, 'Documentation')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity(domainEntityName2)
+      .withDocumentation('Documentation')
+      .withIntegerIdentity(integerPropertyName2, 'Documentation')
+      .withEndDomainEntity()
+
+      .withStartAssociation(associationName)
+      .withDocumentation('Documentation')
+      .withAssociationDomainEntityProperty(domainEntityName1, 'Documentation')
+      .withAssociationDomainEntityProperty(domainEntityName2, 'Documentation')
+      .withEndAssociation()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []));
+
+    return enhanceGenerateAndExecuteSql(metaEd);
+  });
+
+  afterAll(async () => testTearDown());
+
+  it('should have association table', async () => {
+    expect(await tableExists(table(namespaceName, associationName))).toBe(true);
+  });
+
+  it('should have correct foreign key relationship', async () => {
+    const foreignKey1: DatabaseForeignKey = foreignKey(
+      [column(namespaceName, associationName, integerPropertyName1)],
+      [column(namespaceName, domainEntityName1, integerPropertyName1)],
+    );
+    expect(await foreignKeyExists(foreignKey1)).toBe(true);
+    expect(await foreignKeyDeleteCascades(foreignKey1)).toBe(false);
+
+    const foreignKey2: DatabaseForeignKey = foreignKey(
+      [column(namespaceName, associationName, integerPropertyName2)],
+      [column(namespaceName, domainEntityName2, integerPropertyName2)],
+    );
+    expect(await foreignKeyExists(foreignKey2)).toBe(true);
+    expect(await foreignKeyDeleteCascades(foreignKey2)).toBe(false);
+  });
+
+  it('should have standard resource columns', async () => {
+    const idColumn: DatabaseColumn = column(namespaceName, associationName, 'Id');
+    expect(await columnExists(idColumn)).toBe(true);
+    expect(await columnIsNullable(idColumn)).toBe(false);
+    expect(await columnDataType(idColumn)).toBe(columnDataTypes.uniqueIdentifier);
+    expect(await columnDefaultConstraint(idColumn)).toBe('(newid())');
+
+    const lastModifiedDateColumn: DatabaseColumn = column(namespaceName, associationName, 'LastModifiedDate');
+    expect(await columnExists(lastModifiedDateColumn)).toBe(true);
+    expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
+    expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime2);
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+
+    const createDateColumn: DatabaseColumn = column(namespaceName, associationName, 'CreateDate');
+    expect(await columnExists(createDateColumn)).toBe(true);
+    expect(await columnIsNullable(createDateColumn)).toBe(false);
+    expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime2);
     expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 });
@@ -710,13 +791,13 @@ describe('when extension association references core domain entities', (): void 
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(extension, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
 });
 
@@ -803,12 +884,12 @@ describe('when extension association references extension domain entities', (): 
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(extension, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
 });

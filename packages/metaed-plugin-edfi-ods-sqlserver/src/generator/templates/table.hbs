@@ -49,13 +49,13 @@ CREATE UNIQUE NONCLUSTERED INDEX [{{{data.edfiOdsSqlServer.tableName}}}_UI_{{{un
 GO
 {{/if}}
 {{#if includeCreateDateColumn}}
-ALTER TABLE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] ADD CONSTRAINT [{{{data.edfiOdsSqlServer.tableName}}}_DF_CreateDate] DEFAULT (getutcdate()) FOR [CreateDate]
+ALTER TABLE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] ADD CONSTRAINT [{{{data.edfiOdsSqlServer.tableName}}}_DF_CreateDate] DEFAULT ({{#if @root.useUtcOnDefaultTimestamp}}getutcdate(){{else}}getdate(){{/if}}) FOR [CreateDate]
 GO
 {{/if}}
 {{#if includeLastModifiedDateAndIdColumn}}
 ALTER TABLE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] ADD CONSTRAINT [{{{data.edfiOdsSqlServer.tableName}}}_DF_Id] DEFAULT (newid()) FOR [Id]
 GO
-ALTER TABLE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] ADD CONSTRAINT [{{{data.edfiOdsSqlServer.tableName}}}_DF_LastModifiedDate] DEFAULT (getutcdate()) FOR [LastModifiedDate]
+ALTER TABLE [{{{schema}}}].[{{{data.edfiOdsSqlServer.tableName}}}] ADD CONSTRAINT [{{{data.edfiOdsSqlServer.tableName}}}_DF_LastModifiedDate] DEFAULT ({{#if @root.useUtcOnDefaultTimestamp}}getutcdate(){{else}}getdate(){{/if}}) FOR [LastModifiedDate]
 GO
 {{/if}}
 {{~#if includeComputedDescriptorUriColumn}}

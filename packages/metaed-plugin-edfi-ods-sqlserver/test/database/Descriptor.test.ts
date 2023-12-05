@@ -163,13 +163,13 @@ describe('when descriptor is defined', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, baseDescriptorTableName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
 });
 
@@ -383,13 +383,13 @@ describe('when descriptor has required map type', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, typeTableName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
 });
 
@@ -831,7 +831,7 @@ describe('when descriptor has required collection property', (): void => {
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
 
   it('should not have id and last modified date resource columns', async () => {
@@ -952,7 +952,7 @@ describe('when descriptor has optional collection property', (): void => {
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
 
   it('should not have id and last modified date resource columns', async () => {
@@ -1219,7 +1219,7 @@ describe('when descriptor has collection descriptor property', (): void => {
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
 
   it('should not have id and last modified date resource columns', async () => {
@@ -1400,13 +1400,13 @@ describe('when extension descriptor has required reference properties to core en
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(extension, typeTableName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
 });
 

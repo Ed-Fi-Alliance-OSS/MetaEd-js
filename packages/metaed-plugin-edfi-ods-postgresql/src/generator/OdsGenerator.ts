@@ -22,6 +22,7 @@ export async function generateTables(metaEd: MetaEdEnvironment): Promise<Generat
       tables: (namespace.data.edfiOdsPostgresql as NamespaceEdfiOdsPostgresql).odsSchema.tables,
       useDatetime2: versionSatisfies(targetTechnologyVersion, '>=3.1.1'),
       useLicenseHeader,
+      useUtcOnDefaultTimestamp: versionSatisfies(targetTechnologyVersion, '>=7.2.0'),
     });
 
     results.push({

@@ -5,6 +5,7 @@ import {
   MetaEdTextBuilder,
   NamespaceBuilder,
   newMetaEdEnvironment,
+  newPluginEnvironment,
 } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import {
@@ -113,12 +114,116 @@ describe('when association subclass has a single property', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+  });
+
+  it('should not have standard resource columns on association subclass', async () => {
+    expect(await columnExists(column(namespaceName, associationSubclassName, 'Id'))).toBe(false);
+    expect(await columnExists(column(namespaceName, associationSubclassName, 'LastModifiedDate'))).toBe(false);
+    expect(await columnExists(column(namespaceName, associationSubclassName, 'CreateDate'))).toBe(false);
+  });
+});
+
+describe('when association subclass has a single property for ODS/API 7.2+', (): void => {
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0' };
+  metaEd.plugin.set('edfiOdsSqlServer', { ...newPluginEnvironment(), targetTechnologyVersion: '7.2.0' });
+  const namespaceName = 'Namespace';
+  const associationName = 'AssociationName';
+  const associationSubclassName = 'AssociationSubclassName';
+  const domainEntityName1 = 'DomainEntityName1';
+  const domainEntityName2 = 'DomainEntityName2';
+  const integerPropertyName1 = 'IntegerPropertyName1';
+  const integerPropertyName2 = 'IntegerPropertyName2';
+  const integerPropertyName3 = 'IntegerPropertyName3';
+
+  beforeAll(async () => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName1)
+      .withDocumentation('Documentation')
+      .withIntegerIdentity(integerPropertyName1, 'Documentation')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity(domainEntityName2)
+      .withDocumentation('Documentation')
+      .withIntegerIdentity(integerPropertyName2, 'Documentation')
+      .withEndDomainEntity()
+
+      .withStartAssociation(associationName)
+      .withDocumentation('Documentation')
+      .withAssociationDomainEntityProperty(domainEntityName1, 'Documentation')
+      .withAssociationDomainEntityProperty(domainEntityName2, 'Documentation')
+      .withEndAssociation()
+
+      .withStartAssociationSubclass(associationSubclassName, associationName)
+      .withDocumentation('Documentation')
+      .withIntegerProperty(integerPropertyName3, 'Documentation', false, false)
+      .withEndAssociationSubclass()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []))
+      .sendToListener(new AssociationSubclassBuilder(metaEd, []));
+
+    return enhanceGenerateAndExecuteSql(metaEd);
+  });
+
+  afterAll(async () => testTearDown());
+
+  it('should have association subclass table', async () => {
+    expect(await tableExists(table(namespaceName, associationSubclassName))).toBe(true);
+  });
+
+  it('should have association subclass column', async () => {
+    expect(await columnExists(column(namespaceName, associationSubclassName, integerPropertyName3))).toBe(true);
+  });
+
+  it('should have domain entity primary keys as association primary key', async () => {
+    expect(await tablePrimaryKeys(table(namespaceName, associationSubclassName))).toEqual([
+      integerPropertyName1,
+      integerPropertyName2,
+    ]);
+  });
+
+  it('should have correct foreign key relationship', async () => {
+    const foreignKey1: DatabaseForeignKey = foreignKey(
+      [
+        column(namespaceName, associationSubclassName, integerPropertyName1),
+        column(namespaceName, associationSubclassName, integerPropertyName2),
+      ],
+      [
+        column(namespaceName, associationName, integerPropertyName1),
+        column(namespaceName, associationName, integerPropertyName2),
+      ],
+    );
+    expect(await foreignKeyExists(foreignKey1)).toBe(true);
+    expect(await foreignKeyDeleteCascades(foreignKey1)).toBe(true);
+  });
+
+  it('should have standard resource columns on association', async () => {
+    const idColumn: DatabaseColumn = column(namespaceName, associationName, 'Id');
+    expect(await columnExists(idColumn)).toBe(true);
+    expect(await columnIsNullable(idColumn)).toBe(false);
+    expect(await columnDataType(idColumn)).toBe(columnDataTypes.uniqueIdentifier);
+    expect(await columnDefaultConstraint(idColumn)).toBe('(newid())');
+
+    const lastModifiedDateColumn: DatabaseColumn = column(namespaceName, associationName, 'LastModifiedDate');
+    expect(await columnExists(lastModifiedDateColumn)).toBe(true);
+    expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
+    expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime2);
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+
+    const createDateColumn: DatabaseColumn = column(namespaceName, associationName, 'CreateDate');
+    expect(await columnExists(createDateColumn)).toBe(true);
+    expect(await columnIsNullable(createDateColumn)).toBe(false);
+    expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime2);
     expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 
@@ -225,13 +330,13 @@ describe('when extension association subclasses core association', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
 
   it('should not have standard resource columns on association subclass', async () => {
@@ -334,13 +439,13 @@ describe('when extension association subclasses extension association', (): void
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(extension, associationName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
 
   it('should not have standard resource columns on association subclass', async () => {

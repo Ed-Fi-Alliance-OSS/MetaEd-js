@@ -5,6 +5,7 @@ import {
   MetaEdTextBuilder,
   NamespaceBuilder,
   newMetaEdEnvironment,
+  newPluginEnvironment,
 } from '@edfi/metaed-core';
 import { MetaEdEnvironment, Namespace } from '@edfi/metaed-core';
 import {
@@ -91,12 +92,208 @@ describe('when domain entity extension has multiple properties', (): void => {
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, domainEntityName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
+  });
+
+  it('should have domain entity extension table', async () => {
+    expect(await tableExists(table(extension, domainEntityExtensionName))).toBe(true);
+  });
+
+  it('should have domain entity extension column', async () => {
+    expect(await columnExists(column(extension, domainEntityExtensionName, integerPropertyName3))).toBe(true);
+  });
+
+  it('should have domain entity primary keys as domain entity extension primary key', async () => {
+    expect(await tablePrimaryKeys(table(extension, domainEntityExtensionName))).toEqual([integerPropertyName1]);
+  });
+
+  it('should have correct foreign key relationship', async () => {
+    const foreignKey1: DatabaseForeignKey = foreignKey(
+      [column(extension, domainEntityExtensionName, integerPropertyName1)],
+      [column(namespaceName, domainEntityName, integerPropertyName1)],
+    );
+    expect(await foreignKeyExists(foreignKey1)).toBe(true);
+    expect(await foreignKeyDeleteCascades(foreignKey1)).toBe(true);
+  });
+
+  it('should have create date column', async () => {
+    expect(await columnExists(column(extension, domainEntityExtensionName, 'CreateDate'))).toBe(true);
+  });
+
+  it('should not have id and last modified data columns', async () => {
+    expect(await columnExists(column(extension, domainEntityExtensionName, 'Id'))).toBe(false);
+    expect(await columnExists(column(extension, domainEntityExtensionName, 'LastModifiedDate'))).toBe(false);
+  });
+
+  it('should have common table', async () => {
+    expect(await tableExists(table(extension, domainEntityName + commonName))).toBe(true);
+  });
+
+  it('should have correct columns', async () => {
+    const referenceColumn1: DatabaseColumn = column(extension, domainEntityName + commonName, integerPropertyName1);
+    expect(await columnExists(referenceColumn1)).toBe(true);
+    expect(await columnIsNullable(referenceColumn1)).toBe(false);
+    expect(await columnDataType(referenceColumn1)).toBe(columnDataTypes.integer);
+
+    const referenceColumn2: DatabaseColumn = column(extension, domainEntityName + commonName, integerPropertyName2);
+    expect(await columnExists(referenceColumn2)).toBe(true);
+    expect(await columnIsNullable(referenceColumn2)).toBe(false);
+    expect(await columnDataType(referenceColumn2)).toBe(columnDataTypes.integer);
+  });
+
+  it('should have correct primary keys', async () => {
+    expect(await tablePrimaryKeys(table(extension, domainEntityName + commonName))).toEqual([
+      integerPropertyName1,
+      integerPropertyName2,
+    ]);
+  });
+
+  it('should have correct foreign key relationship', async () => {
+    const foreignKey1: DatabaseForeignKey = foreignKey(
+      [column(extension, domainEntityName + commonName, integerPropertyName1)],
+      [column(namespaceName, domainEntityName, integerPropertyName1)],
+    );
+    expect(await foreignKeyExists(foreignKey1)).toBe(true);
+    expect(await foreignKeyDeleteCascades(foreignKey1)).toBe(true);
+  });
+
+  it('should have create date column', async () => {
+    expect(await columnExists(column(extension, domainEntityName + commonName, 'CreateDate'))).toBe(true);
+  });
+
+  it('should not have id and last modified data columns', async () => {
+    expect(await columnExists(column(extension, domainEntityName + commonName, 'Id'))).toBe(false);
+    expect(await columnExists(column(extension, domainEntityName + commonName, 'LastModifiedDate'))).toBe(false);
+  });
+
+  it('should have collection table', async () => {
+    expect(await tableExists(table(extension, domainEntityName + integerPropertyName4))).toBe(true);
+  });
+
+  it('should have correct columns', async () => {
+    const referenceColumn1: DatabaseColumn = column(
+      extension,
+      domainEntityName + integerPropertyName4,
+      integerPropertyName1,
+    );
+    expect(await columnExists(referenceColumn1)).toBe(true);
+    expect(await columnIsNullable(referenceColumn1)).toBe(false);
+    expect(await columnDataType(referenceColumn1)).toBe(columnDataTypes.integer);
+
+    const referenceColumn2: DatabaseColumn = column(
+      extension,
+      domainEntityName + integerPropertyName4,
+      integerPropertyName4,
+    );
+    expect(await columnExists(referenceColumn2)).toBe(true);
+    expect(await columnIsNullable(referenceColumn2)).toBe(false);
+    expect(await columnDataType(referenceColumn2)).toBe(columnDataTypes.integer);
+  });
+
+  it('should have correct primary keys', async () => {
+    expect(await tablePrimaryKeys(table(extension, domainEntityName + integerPropertyName4))).toEqual([
+      integerPropertyName1,
+      integerPropertyName4,
+    ]);
+  });
+
+  it('should have correct foreign key relationship', async () => {
+    const foreignKey1: DatabaseForeignKey = foreignKey(
+      [column(extension, domainEntityName + integerPropertyName4, integerPropertyName1)],
+      [column(namespaceName, domainEntityName, integerPropertyName1)],
+    );
+    expect(await foreignKeyExists(foreignKey1)).toBe(true);
+    expect(await foreignKeyDeleteCascades(foreignKey1)).toBe(true);
+  });
+
+  it('should have create date column', async () => {
+    expect(await columnExists(column(extension, domainEntityName + integerPropertyName4, 'CreateDate'))).toBe(true);
+  });
+
+  it('should not have id and last modified data columns', async () => {
+    expect(await columnExists(column(extension, domainEntityName + integerPropertyName4, 'Id'))).toBe(false);
+    expect(await columnExists(column(extension, domainEntityName + integerPropertyName4, 'LastModifiedDate'))).toBe(false);
+  });
+});
+
+describe('when domain entity extension has multiple properties for ODS/API 7.2+', (): void => {
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0' };
+  metaEd.plugin.set('edfiOdsSqlServer', { ...newPluginEnvironment(), targetTechnologyVersion: '7.2.0' });
+  const namespaceName = 'Namespace';
+  const extension = 'Extension';
+  const commonName = 'CommonName';
+  const domainEntityName = 'DomainEntityName';
+  const domainEntityExtensionName = `${domainEntityName}Extension`;
+  const integerPropertyName1 = 'IntegerPropertyName1';
+  const integerPropertyName2 = 'IntegerPropertyName2';
+  const integerPropertyName3 = 'IntegerPropertyName3';
+  const integerPropertyName4 = 'IntegerPropertyName4';
+
+  beforeAll(async () => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('Documentation')
+      .withIntegerIdentity(integerPropertyName1, 'Documentation')
+      .withEndDomainEntity()
+
+      .withStartCommon(commonName)
+      .withDocumentation('Documentation')
+      .withIntegerIdentity(integerPropertyName2, 'Documentation')
+      .withEndCommon()
+      .withEndNamespace()
+
+      .withBeginNamespace(extension)
+      .withStartDomainEntityExtension(`${namespaceName}.${domainEntityName}`)
+      .withIntegerProperty(integerPropertyName3, 'Documentation', false, false)
+      .withIntegerProperty(integerPropertyName4, 'Documentation', false, true)
+      .withCommonProperty(`${namespaceName}.${commonName}`, 'Documentation', true, false)
+      .withEndDomainEntityExtension()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new DomainEntityExtensionBuilder(metaEd, []));
+
+    const coreNamespace: Namespace | undefined = metaEd.namespace.get(namespaceName);
+    if (coreNamespace == null) throw new Error();
+    const extensionNamespace: Namespace | undefined = metaEd.namespace.get(extension);
+    if (extensionNamespace == null) throw new Error();
+    extensionNamespace.dependencies.push(coreNamespace);
+
+    return enhanceGenerateAndExecuteSql(metaEd);
+  });
+
+  afterAll(async () => testTearDown());
+
+  it('should have domain entity table', async () => {
+    expect(await tableExists(table(namespaceName, domainEntityName))).toBe(true);
+  });
+
+  it('should have standard resource columns', async () => {
+    const idColumn: DatabaseColumn = column(namespaceName, domainEntityName, 'Id');
+    expect(await columnExists(idColumn)).toBe(true);
+    expect(await columnIsNullable(idColumn)).toBe(false);
+    expect(await columnDataType(idColumn)).toBe(columnDataTypes.uniqueIdentifier);
+    expect(await columnDefaultConstraint(idColumn)).toBe('(newid())');
+
+    const lastModifiedDateColumn: DatabaseColumn = column(namespaceName, domainEntityName, 'LastModifiedDate');
+    expect(await columnExists(lastModifiedDateColumn)).toBe(true);
+    expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
+    expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime2);
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+
+    const createDateColumn: DatabaseColumn = column(namespaceName, domainEntityName, 'CreateDate');
+    expect(await columnExists(createDateColumn)).toBe(true);
+    expect(await columnIsNullable(createDateColumn)).toBe(false);
+    expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime2);
     expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
   });
 
@@ -274,13 +471,13 @@ describe('when domain entity extension has optional collection property', (): vo
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, domainEntityName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
 
   it('should not have domain entity extension table', async () => {
@@ -386,13 +583,13 @@ describe('when domain entity extension has required collection property', (): vo
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, domainEntityName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
 
   it('should not have domain entity extension table', async () => {
@@ -514,13 +711,13 @@ describe('when domain entity extension has multiple common properties', (): void
     expect(await columnExists(lastModifiedDateColumn)).toBe(true);
     expect(await columnIsNullable(lastModifiedDateColumn)).toBe(false);
     expect(await columnDataType(lastModifiedDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(lastModifiedDateColumn)).toBe('(getdate())');
 
     const createDateColumn: DatabaseColumn = column(namespaceName, domainEntityName, 'CreateDate');
     expect(await columnExists(createDateColumn)).toBe(true);
     expect(await columnIsNullable(createDateColumn)).toBe(false);
     expect(await columnDataType(createDateColumn)).toBe(columnDataTypes.datetime);
-    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getutcdate())');
+    expect(await columnDefaultConstraint(createDateColumn)).toBe('(getdate())');
   });
 
   it('should not have domain entity extension table', async () => {
