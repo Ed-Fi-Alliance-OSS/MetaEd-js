@@ -109,7 +109,7 @@ describe('when common is a required property', (): void => {
     const createDateColumn = table.columns.get('createdate');
     expect(createDateColumn.notNull).toBe(true);
     expect(createDateColumn.type.name).toBe('timestamp without time zone');
-    expect(createDateColumn.default).toBe("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)");
+    expect(createDateColumn.default).toBe('CURRENT_TIMESTAMP');
 
     await rollbackAndEnd();
   });
@@ -183,7 +183,7 @@ describe('when common is a required property', (): void => {
     const createDateColumn = table.columns.get('createdate');
     expect(createDateColumn.notNull).toBe(true);
     expect(createDateColumn.type.name).toBe('timestamp without time zone');
-    expect(createDateColumn.default).toBe("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)");
+    expect(createDateColumn.default).toBe('CURRENT_TIMESTAMP');
 
     await rollbackAndEnd();
   });
@@ -301,7 +301,7 @@ describe('when common is a required property role name', (): void => {
     const createDateColumn = table.columns.get('createdate');
     expect(createDateColumn.notNull).toBe(true);
     expect(createDateColumn.type.name).toBe('timestamp without time zone');
-    expect(createDateColumn.default).toBe("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)");
+    expect(createDateColumn.default).toBe('CURRENT_TIMESTAMP');
 
     await rollbackAndEnd();
   });
@@ -375,7 +375,7 @@ describe('when common is a required property role name', (): void => {
     const createDateColumn = table.columns.get('createdate');
     expect(createDateColumn.notNull).toBe(true);
     expect(createDateColumn.type.name).toBe('timestamp without time zone');
-    expect(createDateColumn.default).toBe("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)");
+    expect(createDateColumn.default).toBe('CURRENT_TIMESTAMP');
 
     await rollbackAndEnd();
   });

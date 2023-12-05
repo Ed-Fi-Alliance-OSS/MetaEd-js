@@ -63,12 +63,12 @@ describe('when core domain entity subclass has identity rename property', (): vo
     const lastModifiedDateColumn = table.columns.get('lastmodifieddate');
     expect(lastModifiedDateColumn.notNull).toBe(true);
     expect(lastModifiedDateColumn.type.name).toBe('timestamp without time zone');
-    expect(lastModifiedDateColumn.default).toBe("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)");
+    expect(lastModifiedDateColumn.default).toBe('CURRENT_TIMESTAMP');
 
     const createDateColumn = table.columns.get('createdate');
     expect(createDateColumn.notNull).toBe(true);
     expect(createDateColumn.type.name).toBe('timestamp without time zone');
-    expect(createDateColumn.default).toBe("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)");
+    expect(createDateColumn.default).toBe('CURRENT_TIMESTAMP');
 
     await rollbackAndEnd();
   });

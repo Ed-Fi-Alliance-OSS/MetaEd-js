@@ -8,6 +8,7 @@ import {
   DomainEntitySubclassBuilder,
   CommonBuilder,
   DescriptorBuilder,
+  newPluginEnvironment,
 } from '@edfi/metaed-core';
 import { enhanceGenerateAndExecuteSql, rollbackAndEnd } from './DatabaseTestBase';
 
@@ -92,12 +93,161 @@ describe('when creating domain entity based on abstract entity', (): void => {
     const lastModifiedDateColumn = table.columns.get('lastmodifieddate');
     expect(lastModifiedDateColumn.notNull).toBe(true);
     expect(lastModifiedDateColumn.type.name).toBe('timestamp without time zone');
-    expect(lastModifiedDateColumn.default).toBe("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)");
+    expect(lastModifiedDateColumn.default).toBe('CURRENT_TIMESTAMP');
 
     const createDateColumn = table.columns.get('createdate');
     expect(createDateColumn.notNull).toBe(true);
     expect(createDateColumn.type.name).toBe('timestamp without time zone');
-    expect(createDateColumn.default).toBe("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)");
+    expect(createDateColumn.default).toBe('CURRENT_TIMESTAMP');
+
+    await rollbackAndEnd();
+  });
+
+  it('should have subclass table', async () => {
+    const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
+    const table = db.schemas.get(schemaName).tables.get(domainEntitySubclassTableName);
+    expect(table).toBeDefined();
+
+    await rollbackAndEnd();
+  });
+
+  it('should have correct subclass columns', async () => {
+    const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
+    const table = db.schemas.get(schemaName).tables.get(domainEntitySubclassTableName);
+
+    const referenceColumn = table.columns.get(integerPropertyColumnName1);
+    expect(referenceColumn.notNull).toBe(true);
+    expect(referenceColumn.type.name).toBe('integer');
+
+    const optionalColumn = table.columns.get(integerPropertyColumnName3);
+    expect(optionalColumn.notNull).toBe(false);
+    expect(optionalColumn.type.name).toBe('integer');
+
+    await rollbackAndEnd();
+  });
+
+  it('should not have standard resource columns', async () => {
+    const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
+    const table = db.schemas.get(schemaName).tables.get(domainEntitySubclassTableName);
+    expect(() => table.columns.get('id')).toThrow();
+    expect(() => table.columns.get('lastmodifieddate')).toThrow();
+    expect(() => table.columns.get('createdate')).toThrow();
+    await rollbackAndEnd();
+  });
+
+  it('should have correct subclass primary key', async () => {
+    const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
+    const table = db.schemas.get(schemaName).tables.get(domainEntitySubclassTableName);
+    expect((table.primaryKey as PrimaryKey).columns).toHaveLength(1);
+    expect((table.primaryKey as PrimaryKey).columns[0].name).toBe(integerPropertyColumnName1);
+
+    await rollbackAndEnd();
+  });
+
+  it('should have correct foreign key relationship', async () => {
+    const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
+    const table = db.schemas.get(schemaName).tables.get(domainEntitySubclassTableName);
+
+    expect(table.m2oRelations).toHaveLength(1);
+
+    const relation1 = table.m2oRelations[0];
+    expect(relation1.targetTable.name).toBe(abstractEntityTableName);
+    expect(relation1.foreignKey.columns).toHaveLength(1);
+    expect(relation1.foreignKey.columns[0].name).toBe(integerPropertyColumnName1);
+    expect(relation1.foreignKey.referencedColumns).toHaveLength(1);
+    expect(relation1.foreignKey.referencedColumns[0].name).toBe(integerPropertyColumnName1);
+    expect(relation1.foreignKey.onDelete).toBe(Action.Cascade);
+
+    await rollbackAndEnd();
+  });
+});
+
+describe('when creating domain entity based on abstract entity with ODS/API 7.2+', (): void => {
+  const metaEd: MetaEdEnvironment = { ...newMetaEdEnvironment(), dataStandardVersion: '5.0.0' };
+  metaEd.plugin.set('edfiOdsPostgresql', { ...newPluginEnvironment(), targetTechnologyVersion: '7.2.0' });
+  const namespaceName = 'EdFi';
+  const schemaName = namespaceName.toLowerCase();
+  const abstractEntityName = 'AbstractEntityName';
+  const abstractEntityTableName = abstractEntityName.toLowerCase();
+  const domainEntitySubclassName = 'DomainEntitySubclassName';
+  const domainEntitySubclassTableName = domainEntitySubclassName.toLowerCase();
+  const integerPropertyName1 = 'IntegerPropertyName1';
+  const integerPropertyColumnName1 = integerPropertyName1.toLowerCase();
+  const integerPropertyName2 = 'IntegerPropertyName2';
+  const integerPropertyColumnName2 = integerPropertyName2.toLowerCase();
+  const integerPropertyName3 = 'IntegerPropertyName3';
+  const integerPropertyColumnName3 = integerPropertyName3.toLowerCase();
+
+  beforeAll(async () => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartAbstractEntity(abstractEntityName)
+      .withDocumentation('Documentation')
+      .withIntegerIdentity(integerPropertyName1, 'Documentation')
+      .withIntegerProperty(integerPropertyName2, 'Documentation', false, false)
+      .withEndAbstractEntity()
+
+      .withStartDomainEntitySubclass(domainEntitySubclassName, abstractEntityName)
+      .withDocumentation('Documentation')
+      .withIntegerProperty(integerPropertyName3, 'Documentation', false, false)
+      .withEndDomainEntitySubclass()
+      .withEndNamespace()
+
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []))
+      .sendToListener(new DomainEntitySubclassBuilder(metaEd, []));
+  });
+
+  it('should have abstract entity table', async () => {
+    const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
+    const table = db.schemas.get(schemaName).tables.get(abstractEntityTableName);
+    expect(table).toBeDefined();
+
+    await rollbackAndEnd();
+  });
+
+  it('should have correct columns', async () => {
+    const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
+    const table = db.schemas.get(schemaName).tables.get(abstractEntityTableName);
+
+    const identityColumn = table.columns.get(integerPropertyColumnName1);
+    expect(identityColumn.notNull).toBe(true);
+    expect(identityColumn.type.name).toBe('integer');
+
+    const optionalColumn = table.columns.get(integerPropertyColumnName2);
+    expect(optionalColumn.notNull).toBe(false);
+    expect(optionalColumn.type.name).toBe('integer');
+
+    await rollbackAndEnd();
+  });
+
+  it('should have correct primary key', async () => {
+    const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
+    const table = db.schemas.get(schemaName).tables.get(abstractEntityTableName);
+    expect((table.primaryKey as PrimaryKey).columns).toHaveLength(1);
+    expect((table.primaryKey as PrimaryKey).columns[0].name).toBe(integerPropertyColumnName1);
+
+    await rollbackAndEnd();
+  });
+
+  it('should have standard resource columns', async () => {
+    const db: Db = (await enhanceGenerateAndExecuteSql(metaEd)) as Db;
+    const table = db.schemas.get(schemaName).tables.get(abstractEntityTableName);
+
+    const idColumn = table.columns.get('id');
+    expect(idColumn.notNull).toBe(true);
+    expect(idColumn.type.name).toBe('uuid');
+    expect(idColumn.default).toBe('gen_random_uuid()');
+
+    const lastModifiedDateColumn = table.columns.get('lastmodifieddate');
+    expect(lastModifiedDateColumn.notNull).toBe(true);
+    expect(lastModifiedDateColumn.type.name).toBe('timestamp without time zone');
+    expect(lastModifiedDateColumn.default).toBe("timezone('UTC'::text, CURRENT_TIMESTAMP)");
+
+    const createDateColumn = table.columns.get('createdate');
+    expect(createDateColumn.notNull).toBe(true);
+    expect(createDateColumn.type.name).toBe('timestamp without time zone');
+    expect(createDateColumn.default).toBe("timezone('UTC'::text, CURRENT_TIMESTAMP)");
 
     await rollbackAndEnd();
   });
