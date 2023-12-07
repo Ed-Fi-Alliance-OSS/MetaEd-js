@@ -1,7 +1,6 @@
-import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
+import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, MetaEdPropertyFullName } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { DocumentObjectKey } from '../model/api-schema/DocumentObjectKey';
-import { MetaEdPropertyFullName } from '../model/api-schema/MetaEdPropertyFullName';
 import { DocumentPaths } from '../model/api-schema/DocumentPaths';
 
 /**

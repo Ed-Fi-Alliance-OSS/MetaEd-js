@@ -1,6 +1,6 @@
 import deepFreeze from 'deep-freeze';
 import * as R from 'ramda';
-import { EntityProperty, Logger, TopLevelEntity } from '@edfi/metaed-core';
+import { EntityProperty, Logger, MetaEdPropertyPath, TopLevelEntity } from '@edfi/metaed-core';
 import { ColumnType } from './ColumnType';
 import { NoTable, Table } from './Table';
 
@@ -50,6 +50,9 @@ export interface Column {
   /** The string identifier for the column, independent of the column name */
   columnId: string;
 
+  // The dot-separated MetaEd property path that leads to this column. Empty string if this is a synthetic column.
+  propertyPath: MetaEdPropertyPath;
+
   type: ColumnType;
   referenceContext: string;
   description: string;
@@ -87,6 +90,7 @@ export function newColumn(): Column {
     nameComponents: [],
     parentTable: NoTable,
     columnId: '',
+    propertyPath: '' as MetaEdPropertyPath,
     type: 'unknown',
     referenceContext: '',
     description: '',

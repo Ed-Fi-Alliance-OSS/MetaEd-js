@@ -10,6 +10,7 @@ import {
   EntityProperty,
   DomainEntitySubclass,
   AssociationSubclass,
+  MetaEdProjectName,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { PluginEnvironmentEdfiApiSchema } from '../model/PluginEnvironment';
@@ -18,7 +19,6 @@ import { SemVer } from '../model/api-schema/SemVer';
 import { ResourceSchema } from '../model/api-schema/ResourceSchema';
 import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping';
 import { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
-import { MetaEdProjectName } from '../model/api-schema/MetaEdProjectName';
 import { ResourceNameMapping } from '../model/api-schema/ResourceNameMapping';
 import { DocumentObjectKey } from '../model/api-schema/DocumentObjectKey';
 import { uncapitalize } from '../Utility';

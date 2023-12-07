@@ -13,7 +13,7 @@ import { enhance as jsonSchemaEnhancerForInsert } from './JsonSchemaEnhancerForI
 import { enhance as jsonSchemaEnhancerForUpdate } from './JsonSchemaEnhancerForUpdate';
 import { enhance as jsonSchemaEnhancerForQuery } from './JsonSchemaEnhancerForQuery';
 import { enhance as allJsonPathsMappingEnhancer } from './AllJsonPathsMappingEnhancer';
-import { enhance as equalityConstraintEnhancer } from './EqualityConstraintEnhancer';
+import { enhance as mergeDirectiveEqualityConstraintEnhancer } from './MergeDirectiveEqualityConstraintEnhancer';
 import { enhance as resourceNameEnhancer } from './ResourceNameEnhancer';
 import { enhance as identityFullnameEnhancer } from './IdentityFullnameEnhancer';
 import { enhance as subclassIdentityFullnameEnhancer } from './SubclassIdentityFullnameEnhancer';
@@ -37,7 +37,7 @@ export function enhancerList(): Enhancer[] {
     jsonSchemaEnhancerForUpdate,
     jsonSchemaEnhancerForQuery,
     allJsonPathsMappingEnhancer,
-    equalityConstraintEnhancer,
+    mergeDirectiveEqualityConstraintEnhancer,
     resourceNameEnhancer,
     identityFullnameEnhancer,
     subclassIdentityFullnameEnhancer,

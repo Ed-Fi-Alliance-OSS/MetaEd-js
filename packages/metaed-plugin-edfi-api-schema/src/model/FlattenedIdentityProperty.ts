@@ -1,5 +1,4 @@
-import { EntityProperty } from '@edfi/metaed-core';
-import { MetaEdPropertyPath } from './api-schema/MetaEdPropertyPath';
+import { EntityProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
 
 /**
  * A flattened identity property is a simple property that is part of a reference identity for an

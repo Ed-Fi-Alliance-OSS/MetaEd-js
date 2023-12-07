@@ -17,7 +17,6 @@ export class TableStrategy {
     this.table = table;
     this.schema = table.schema;
     this.schemaNamespace = table.namespace;
-    /* eslint-disable-next-line no-underscore-dangle */
     this.tableId = table.tableId;
     this.nameGroup = table.nameGroup;
   }

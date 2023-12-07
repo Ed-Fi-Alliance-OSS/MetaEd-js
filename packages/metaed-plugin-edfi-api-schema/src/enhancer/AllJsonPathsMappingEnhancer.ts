@@ -10,6 +10,7 @@ import {
   TopLevelEntity,
   InlineCommonProperty,
   ChoiceProperty,
+  MetaEdPropertyPath,
 } from '@edfi/metaed-core';
 import { invariant } from 'ts-invariant';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
@@ -19,7 +20,6 @@ import { PropertyModifier, prefixedName, propertyModifierConcat } from '../model
 import { singularize, topLevelApiNameOnEntity } from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { JsonPath } from '../model/api-schema/JsonPath';
-import { MetaEdPropertyPath } from '../model/api-schema/MetaEdPropertyPath';
 
 const enhancerName = 'JsonPathsMappingEnhancer';
 

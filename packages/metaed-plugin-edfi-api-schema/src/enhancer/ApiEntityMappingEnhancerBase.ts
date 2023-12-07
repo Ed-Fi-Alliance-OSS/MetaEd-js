@@ -1,4 +1,4 @@
-import type { EntityProperty, TopLevelEntity } from '@edfi/metaed-core';
+import type { EntityProperty, TopLevelEntity, MetaEdPropertyPath } from '@edfi/metaed-core';
 import {
   ReferenceElement,
   ReferenceComponent,
@@ -10,7 +10,6 @@ import type { CollectedProperty } from '../model/CollectedProperty';
 import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import type { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
-import { MetaEdPropertyPath } from '../model/api-schema/MetaEdPropertyPath';
 
 type ReferenceElementsWithPaths = Map<ReferenceElement, MetaEdPropertyPath[]>;
 

@@ -80,7 +80,6 @@ function tableCreationEnhancerList(): Enhancer[] {
 
     associationExtensionTableEnhancer,
     domainEntityExtensionTableEnhancer,
-
   ];
 }
 

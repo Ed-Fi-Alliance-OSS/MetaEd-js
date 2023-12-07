@@ -1,6 +1,11 @@
-import { getAllEntitiesOfType, MetaEdEnvironment, EnhancerResult, TopLevelEntity } from '@edfi/metaed-core';
+import {
+  getAllEntitiesOfType,
+  MetaEdEnvironment,
+  EnhancerResult,
+  TopLevelEntity,
+  MetaEdPropertyFullName,
+} from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
-import { MetaEdPropertyFullName } from '../model/api-schema/MetaEdPropertyFullName';
 
 /**
  * Accumulates the identity fullnames for a subclass entity that maps to an API resource.

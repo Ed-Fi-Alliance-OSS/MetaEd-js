@@ -11,6 +11,7 @@ import {
   orderByProp,
   SemVer,
   versionSatisfies,
+  MetaEdPropertyPath,
 } from '@edfi/metaed-core';
 import { columnConstraintMerge, Column, NoColumn } from './Column';
 import { ColumnTransform } from './ColumnTransform';
@@ -89,6 +90,9 @@ export interface Table {
   existenceReason: TableExistenceReason;
   tableId: string;
 
+  // The dot-separated MetaEd property path that leads to this table. Empty string for root tables.
+  propertyPath: MetaEdPropertyPath;
+
   namespace: Namespace;
   schema: string;
   type: string;
@@ -127,6 +131,8 @@ export function newTable(): Table {
     nameGroup: NoTableNameGroup,
     existenceReason: NoTableExistenceReason,
     tableId: '',
+
+    propertyPath: '' as MetaEdPropertyPath,
 
     namespace: NoNamespace,
     schema: '',

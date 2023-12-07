@@ -7,11 +7,11 @@ import {
   ReferentialProperty,
   MergeDirective,
   EntityProperty,
+  MetaEdPropertyPath,
 } from '@edfi/metaed-core';
 import invariant from 'ts-invariant';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
-import { MetaEdPropertyPath } from '../model/api-schema/MetaEdPropertyPath';
 
 function mergeDirectivePathStringsToPath(segments: string[]): MetaEdPropertyPath {
   return segments.join('.') as MetaEdPropertyPath;

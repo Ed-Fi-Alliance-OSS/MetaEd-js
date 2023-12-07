@@ -1,5 +1,5 @@
+import { MetaEdPropertyFullName } from '@edfi/metaed-core';
 import { DocumentPaths } from './DocumentPaths';
-import { MetaEdPropertyFullName } from './MetaEdPropertyFullName';
 
 /**
  */

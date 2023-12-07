@@ -1,4 +1,10 @@
-import { MetaEdEnvironment, EnhancerResult, getAllEntitiesOfType, ModelBase } from '@edfi/metaed-core';
+import {
+  MetaEdEnvironment,
+  EnhancerResult,
+  getAllEntitiesOfType,
+  ModelBase,
+  MetaEdPropertyFullName,
+} from '@edfi/metaed-core';
 import { ApiEntityMapping, NoApiEntityMapping } from './ApiEntityMapping';
 import type { CollectedProperty } from './CollectedProperty';
 import { SchemaRoot, NoSchemaRoot } from './JsonSchema';
@@ -6,7 +12,6 @@ import type { EqualityConstraint } from './EqualityConstraint';
 import type { JsonPathsMapping } from './JsonPathsMapping';
 import { MetaEdResourceName } from './api-schema/MetaEdResourceName';
 import { EndpointName } from './api-schema/EndpointName';
-import { MetaEdPropertyFullName } from './api-schema/MetaEdPropertyFullName';
 import { DocumentPathsMapping } from './api-schema/DocumentPathsMapping';
 import { DocumentObjectKey } from './api-schema/DocumentObjectKey';
 

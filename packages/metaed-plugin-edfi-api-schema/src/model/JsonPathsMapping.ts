@@ -1,6 +1,5 @@
-import type { EntityProperty } from '@edfi/metaed-core';
+import type { EntityProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
 import type { JsonPath } from './api-schema/JsonPath';
-import type { MetaEdPropertyPath } from './api-schema/MetaEdPropertyPath';
 
 /**
  * For a MetaEdPropertyPath, this is the set of JsonPaths along with two pieces of additional

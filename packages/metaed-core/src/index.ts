@@ -258,3 +258,9 @@ export { scanForProjects, overrideProjectNameAndNamespace } from './project/Proj
 export { MetaEdTextBuilder } from './grammar/MetaEdTextBuilder';
 
 export { Logger } from './Logger';
+
+// Branded types
+export { BrandType } from './model/BrandType';
+export { MetaEdProjectName } from './model/MetaEdProjectName';
+export { MetaEdPropertyFullName } from './model/MetaEdPropertyFullName';
+export { MetaEdPropertyPath } from './model/MetaEdPropertyPath';
