@@ -12,7 +12,6 @@ import {
 import { addTables } from './TableCreatingEntityEnhancerBase';
 import { BuildStrategyDefault } from './BuildStrategy';
 import { collectPrimaryKeys } from './PrimaryKeyCollector';
-import { columnCreatorFactory } from './ColumnCreatorFactory';
 import { ColumnTransformUnchanged } from '../../model/database/ColumnTransform';
 import { enumerationTableCreator } from './EnumerationTableCreator';
 import { ForeignKeyStrategyDefault } from '../../model/database/ForeignKeyStrategy';
@@ -23,12 +22,11 @@ import {
   newForeignKeySourceReference,
   createForeignKeyUsingSourceReference,
 } from '../../model/database/ForeignKey';
-import { tableBuilderFactory } from './TableBuilderFactory';
 import { TableStrategy } from '../../model/database/TableStrategy';
 import { Column, columnSortV7, newColumn, newColumnNameComponent } from '../../model/database/Column';
 import { ForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
-import { TableBuilder } from './TableBuilder';
+import { tableBuilderFor } from './TableBuilderFactory';
 
 const enhancerName = 'DescriptorTableEnhancer';
 
@@ -152,17 +150,11 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
     addForeignKey(mainTable, mapTypeForeignKey);
   }
 
-  const primaryKeys: Column[] = collectPrimaryKeys(
-    descriptor,
-    BuildStrategyDefault,
-    columnCreatorFactory,
-    targetTechnologyVersion,
-  );
+  const primaryKeys: Column[] = collectPrimaryKeys(descriptor, BuildStrategyDefault, targetTechnologyVersion);
   primaryKeys.push(primaryKey);
 
   descriptor.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
-    const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(property);
-    tableBuilder.buildTables(
+    tableBuilderFor(property).buildTables(
       property,
       TableStrategy.default(mainTable),
       primaryKeys,

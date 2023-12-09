@@ -1,14 +1,13 @@
 import { SemVer, newCommon, newCommonProperty, newDomainEntity, newIntegerProperty } from '@edfi/metaed-core';
 import { Common, CommonProperty, DomainEntity, IntegerProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
-import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { newTable } from '../../../src/model/database/Table';
-import { tableBuilderFactory } from '../../../src/enhancer/table/TableBuilderFactory';
 import { TableStrategy } from '../../../src/model/database/TableStrategy';
 import { Column } from '../../../src/model/database/Column';
-import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
 import { Table } from '../../../src/model/database/Table';
 import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
+import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreatorFactory';
+import { tableBuilderFor } from '../../../src/enhancer/table/TableBuilderFactory';
 
 const targetTechnologyVersion: SemVer = '6.1.0';
 
@@ -75,11 +74,13 @@ describe('when building common property table', (): void => {
         },
       },
     });
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
-    const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
+    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, '6.1.0').createColumns(
+      entityPkProperty,
+      BuildStrategyDefault,
+    );
 
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
-    const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(commonProperty);
+    const tableBuilder: TableBuilder = tableBuilderFor(commonProperty);
     tableBuilder.buildTables(
       commonProperty,
       TableStrategy.default(mainTable),
@@ -184,11 +185,13 @@ describe('when building optional common property table', (): void => {
         },
       },
     });
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
-    const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
+    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, '6.1.0').createColumns(
+      entityPkProperty,
+      BuildStrategyDefault,
+    );
 
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
-    const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(commonProperty);
+    const tableBuilder: TableBuilder = tableBuilderFor(commonProperty);
     tableBuilder.buildTables(
       commonProperty,
       TableStrategy.default(mainTable),
@@ -292,11 +295,13 @@ describe('when building required collection common property table', (): void => 
         },
       },
     });
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
-    const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
+    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, '6.1.0').createColumns(
+      entityPkProperty,
+      BuildStrategyDefault,
+    );
 
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
-    const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(commonProperty);
+    const tableBuilder: TableBuilder = tableBuilderFor(commonProperty);
     tableBuilder.buildTables(
       commonProperty,
       TableStrategy.default(mainTable),
@@ -388,11 +393,13 @@ describe('when building required collection common property table with make leaf
         },
       },
     });
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
-    const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
+    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, '6.1.0').createColumns(
+      entityPkProperty,
+      BuildStrategyDefault,
+    );
 
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
-    const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(commonProperty);
+    const tableBuilder: TableBuilder = tableBuilderFor(commonProperty);
     tableBuilder.buildTables(
       commonProperty,
       TableStrategy.default(mainTable),

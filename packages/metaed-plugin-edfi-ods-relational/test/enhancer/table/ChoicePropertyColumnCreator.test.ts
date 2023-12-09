@@ -1,9 +1,8 @@
 import { newChoice, newChoiceProperty, newIntegerProperty, newStringProperty } from '@edfi/metaed-core';
 import { Choice, ChoiceProperty, IntegerProperty, StringProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
-import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { Column, StringColumn } from '../../../src/model/database/Column';
-import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
+import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreatorFactory';
 
 describe('when creating columns for choice with is collection property', (): void => {
   const propertyName = 'PropertyName';
@@ -51,8 +50,7 @@ describe('when creating columns for choice with is collection property', (): voi
 
     choice.data.edfiOdsRelational.odsProperties.push(property);
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(choiceProperty, '6.1.0');
-    columns = columnCreator.createColumns(choiceProperty, BuildStrategyDefault);
+    columns = columnCreatorFor(choiceProperty, '6.1.0').createColumns(choiceProperty, BuildStrategyDefault);
   });
 
   it('should return no columns', (): void => {
@@ -105,8 +103,7 @@ describe('when creating columns for choice with only one property', (): void => 
 
     choice.data.edfiOdsRelational.odsProperties.push(property);
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(choiceProperty, '6.1.0');
-    columns = columnCreator.createColumns(choiceProperty, BuildStrategyDefault);
+    columns = columnCreatorFor(choiceProperty, '6.1.0').createColumns(choiceProperty, BuildStrategyDefault);
   });
 
   it('should return a single column', (): void => {
@@ -184,8 +181,7 @@ describe('when creating columns for choice with two properties', (): void => {
     choice.data.edfiOdsRelational.odsProperties.push(stringProperty);
     choice.data.edfiOdsRelational.odsProperties.push(integerProperty);
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(choiceProperty, '6.1.0');
-    columns = columnCreator.createColumns(choiceProperty, BuildStrategyDefault);
+    columns = columnCreatorFor(choiceProperty, '6.1.0').createColumns(choiceProperty, BuildStrategyDefault);
   });
 
   it('should return two columns', (): void => {

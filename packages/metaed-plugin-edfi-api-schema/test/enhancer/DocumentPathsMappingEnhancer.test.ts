@@ -39,7 +39,7 @@ import { enhance as jsonSchemaEnhancerForInsert } from '../../src/enhancer/JsonS
 import { enhance as jsonSchemaEnhancerForUpdate } from '../../src/enhancer/JsonSchemaEnhancerForUpdate';
 import { enhance as jsonSchemaEnhancerForQuery } from '../../src/enhancer/JsonSchemaEnhancerForQuery';
 import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
-import { enhance as equalityConstraintEnhancer } from '../../src/enhancer/EqualityConstraintEnhancer';
+import { enhance as mergeDirectiveEqualityConstraintEnhancer } from '../../src/enhancer/MergeDirectiveEqualityConstraintEnhancer';
 import { enhance as resourceNameEnhancer } from '../../src/enhancer/ResourceNameEnhancer';
 import { enhance as identityFullnameEnhancer } from '../../src/enhancer/IdentityFullnameEnhancer';
 import { enhance as subclassIdentityFullnameEnhancer } from '../../src/enhancer/SubclassIdentityFullnameEnhancer';
@@ -63,7 +63,7 @@ function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   jsonSchemaEnhancerForUpdate(metaEd);
   jsonSchemaEnhancerForQuery(metaEd);
   allJsonPathsMappingEnhancer(metaEd);
-  equalityConstraintEnhancer(metaEd);
+  mergeDirectiveEqualityConstraintEnhancer(metaEd);
   resourceNameEnhancer(metaEd);
   identityFullnameEnhancer(metaEd);
   subclassIdentityFullnameEnhancer(metaEd);

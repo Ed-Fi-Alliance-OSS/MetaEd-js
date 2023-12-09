@@ -1,9 +1,8 @@
 import { DescriptorProperty, EntityProperty, newBooleanProperty } from '@edfi/metaed-core';
 import { newDescriptorProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
-import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { Column } from '../../../src/model/database/Column';
-import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
+import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreatorFactory';
 
 describe('when creating columns for descriptor property', (): void => {
   const propertyName = 'PropertyName';
@@ -26,8 +25,7 @@ describe('when creating columns for descriptor property', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '6.1.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a column', (): void => {
@@ -64,8 +62,7 @@ describe('when creating columns for primary key descriptor property', (): void =
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '6.1.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a primary key column', (): void => {
@@ -102,8 +99,7 @@ describe('when creating columns for nullable descriptor property', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '6.1.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a nullable column', (): void => {
@@ -141,8 +137,7 @@ describe('when creating columns for descriptor property role name', (): void => 
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '6.1.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a nullable column', (): void => {
@@ -185,8 +180,10 @@ describe('when creating columns for descriptor property role name and append par
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault.appendParentContextProperty(parentContextProperty));
+    columns = columnCreatorFor(property, '6.1.0').createColumns(
+      property,
+      BuildStrategyDefault.appendParentContextProperty(parentContextProperty),
+    );
   });
 
   it('should return a nullable column', (): void => {
@@ -223,8 +220,7 @@ describe('when creating columns for collection descriptor property', (): void =>
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '6.1.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a primary key column', (): void => {
@@ -261,8 +257,10 @@ describe('when creating columns for primary key descriptor property with suppres
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy());
+    columns = columnCreatorFor(property, '6.1.0').createColumns(
+      property,
+      BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(),
+    );
   });
 
   it('should return a column', (): void => {
@@ -299,8 +297,10 @@ describe('when creating columns for collection descriptor property with suppress
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy());
+    columns = columnCreatorFor(property, '6.1.0').createColumns(
+      property,
+      BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(),
+    );
   });
 
   it('should return a column', (): void => {

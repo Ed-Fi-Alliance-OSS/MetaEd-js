@@ -5,10 +5,10 @@ import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
 import { Table } from '../../model/database/Table';
 import { TableBuilder } from './TableBuilder';
-import { TableBuilderFactory } from './TableBuilderFactory';
 import { TableStrategy } from '../../model/database/TableStrategy';
+import { tableBuilderFor } from './TableBuilderFactory';
 
-export function choicePropertyTableBuilder(factory: TableBuilderFactory): TableBuilder {
+export function choicePropertyTableBuilder(): TableBuilder {
   return {
     buildTables(
       property: EntityProperty,
@@ -29,9 +29,7 @@ export function choicePropertyTableBuilder(factory: TableBuilderFactory): TableB
       }
 
       choice.referencedEntity.data.edfiOdsRelational.odsProperties.forEach((odsProperty: EntityProperty) => {
-        const tableBuilder: TableBuilder = factory.tableBuilderFor(odsProperty);
-
-        tableBuilder.buildTables(
+        tableBuilderFor(odsProperty).buildTables(
           odsProperty,
           parentTableStrategy,
           parentPrimaryKeys.map((pk) => cloneColumn(pk)),

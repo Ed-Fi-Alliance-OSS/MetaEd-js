@@ -3,11 +3,10 @@ import { collectColumns } from './CommonPropertyColumnCreatorBase';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
 import { ColumnCreator } from './ColumnCreator';
-import { ColumnCreatorFactory } from './ColumnCreatorFactory';
 
-export function choicePropertyColumnCreator(factory: ColumnCreatorFactory, targetTechnologyVersion: SemVer): ColumnCreator {
+export function choicePropertyColumnCreator(targetTechnologyVersion: SemVer): ColumnCreator {
   return {
     createColumns: (property: EntityProperty, strategy: BuildStrategy): Column[] =>
-      collectColumns(property, strategy, factory, targetTechnologyVersion),
+      collectColumns(property, strategy, targetTechnologyVersion),
   };
 }

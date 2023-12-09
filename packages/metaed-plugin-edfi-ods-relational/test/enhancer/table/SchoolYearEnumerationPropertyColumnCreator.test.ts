@@ -1,9 +1,8 @@
 import { newSchoolYearEnumerationProperty, EntityProperty, newBooleanProperty } from '@edfi/metaed-core';
 import { SchoolYearEnumerationProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
-import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { Column } from '../../../src/model/database/Column';
-import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
+import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreatorFactory';
 
 describe('when creating columns for school year enumeration property', (): void => {
   const propertyDocumentation = 'PropertyDocumentation';
@@ -23,8 +22,7 @@ describe('when creating columns for school year enumeration property', (): void 
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '6.1.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a column', (): void => {
@@ -57,8 +55,7 @@ describe('when creating columns for school year enumeration property role name',
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '6.1.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a column role name', (): void => {
@@ -96,8 +93,10 @@ describe('when creating columns for school year enumeration property role name a
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault.appendParentContextProperty(parentContextProperty));
+    columns = columnCreatorFor(property, '6.1.0').createColumns(
+      property,
+      BuildStrategyDefault.appendParentContextProperty(parentContextProperty),
+    );
   });
 
   it('should return a column role name', (): void => {
@@ -129,8 +128,7 @@ describe('when creating columns for nullable school year enumeration property', 
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '6.1.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a nullable column', (): void => {
@@ -162,8 +160,7 @@ describe('when creating columns for primary key school year enumeration property
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '6.1.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a primary key column', (): void => {
@@ -195,8 +192,7 @@ describe('when creating columns for identity rename school year enumeration prop
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '6.1.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a identity rename column', (): void => {
@@ -228,8 +224,10 @@ describe('when creating columns for primary key school year enumeration property
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy());
+    columns = columnCreatorFor(property, '6.1.0').createColumns(
+      property,
+      BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(),
+    );
   });
 
   it('should return a primary key column', (): void => {
@@ -261,8 +259,10 @@ describe('when creating columns for identity rename school year enumeration prop
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '6.1.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy());
+    columns = columnCreatorFor(property, '6.1.0').createColumns(
+      property,
+      BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(),
+    );
   });
 
   it('should return a identity rename column', (): void => {

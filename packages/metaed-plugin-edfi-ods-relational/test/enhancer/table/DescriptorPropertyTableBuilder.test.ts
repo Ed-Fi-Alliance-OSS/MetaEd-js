@@ -1,14 +1,13 @@
 import { DomainEntity, Descriptor, DescriptorProperty, IntegerProperty, SemVer } from '@edfi/metaed-core';
 import { newDomainEntity, newDescriptor, newDescriptorProperty, newIntegerProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
-import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { newTable } from '../../../src/model/database/Table';
-import { tableBuilderFactory } from '../../../src/enhancer/table/TableBuilderFactory';
 import { TableStrategy } from '../../../src/model/database/TableStrategy';
 import { Column } from '../../../src/model/database/Column';
-import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
 import { Table } from '../../../src/model/database/Table';
 import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
+import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreatorFactory';
+import { tableBuilderFor } from '../../../src/enhancer/table/TableBuilderFactory';
 
 const targetTechnologyVersion: SemVer = '6.1.0';
 
@@ -75,10 +74,12 @@ describe('when building descriptor property table', (): void => {
     descriptor.data.edfiOdsRelational.odsProperties.push(descriptorEntityProperty1);
     entityDescriptorProperty.referencedEntity = descriptor;
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
-    const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
+    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, '6.1.0').createColumns(
+      entityPkProperty,
+      BuildStrategyDefault,
+    );
 
-    const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(entityDescriptorProperty);
+    const tableBuilder: TableBuilder = tableBuilderFor(entityDescriptorProperty);
     tableBuilder.buildTables(
       entityDescriptorProperty,
       TableStrategy.default(table),
@@ -179,10 +180,12 @@ describe('when building collection descriptor property table', (): void => {
     descriptor.data.edfiOdsRelational.odsProperties.push(descriptorEntityProperty1);
     entityDescriptorProperty.referencedEntity = descriptor;
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(entityPkProperty, '6.1.0');
-    const primaryKeys: Column[] = columnCreator.createColumns(entityPkProperty, BuildStrategyDefault);
+    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, '6.1.0').createColumns(
+      entityPkProperty,
+      BuildStrategyDefault,
+    );
 
-    const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(entityDescriptorProperty);
+    const tableBuilder: TableBuilder = tableBuilderFor(entityDescriptorProperty);
     tableBuilder.buildTables(
       entityDescriptorProperty,
       TableStrategy.default(table),

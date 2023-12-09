@@ -7,7 +7,7 @@ import { ForeignKeyStrategy } from '../../model/database/ForeignKeyStrategy';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
 import { ColumnCreator } from './ColumnCreator';
-import { ColumnCreatorFactory } from './ColumnCreatorFactory';
+import { columnCreatorFor } from './ColumnCreatorFactory';
 import { ForeignKey, createForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
 import { TableBuilder } from './TableBuilder';
@@ -20,7 +20,7 @@ const foreignKeyStrategyFor = (property: EntityProperty): ForeignKeyStrategy => 
   throw new Error('EnumerationPropertyTableBuilder received non-enumeration property');
 };
 
-export function enumerationPropertyTableBuilder(factory: ColumnCreatorFactory): TableBuilder {
+export function enumerationPropertyTableBuilder(): TableBuilder {
   return {
     buildTables(
       property: EntityProperty,
@@ -32,7 +32,7 @@ export function enumerationPropertyTableBuilder(factory: ColumnCreatorFactory): 
       parentIsRequired: boolean | null,
     ): void {
       const enumeration: ReferentialProperty = asReferentialProperty(property);
-      const columnCreator: ColumnCreator = factory.columnCreatorFor(enumeration, targetTechnologyVersion);
+      const columnCreator: ColumnCreator = columnCreatorFor(enumeration, targetTechnologyVersion);
 
       if (!enumeration.data.edfiOdsRelational.odsIsCollection) {
         const enumerationColumn: Column = R.head(columnCreator.createColumns(enumeration, buildStrategy));

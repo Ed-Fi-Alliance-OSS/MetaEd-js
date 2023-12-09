@@ -8,13 +8,13 @@ import { ForeignKeyStrategy } from '../../model/database/ForeignKeyStrategy';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
 import { ColumnCreator } from './ColumnCreator';
-import { ColumnCreatorFactory } from './ColumnCreatorFactory';
+import { columnCreatorFor } from './ColumnCreatorFactory';
 import { ForeignKey, createForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
 import { TableBuilder } from './TableBuilder';
 import { TableStrategy } from '../../model/database/TableStrategy';
 
-export function simplePropertyTableBuilder(factory: ColumnCreatorFactory): TableBuilder {
+export function simplePropertyTableBuilder(): TableBuilder {
   return {
     buildTables(
       property: EntityProperty,
@@ -25,7 +25,7 @@ export function simplePropertyTableBuilder(factory: ColumnCreatorFactory): Table
       targetTechnologyVersion: SemVer,
       parentIsRequired: boolean | null,
     ): void {
-      const columnCreator: ColumnCreator = factory.columnCreatorFor(property, targetTechnologyVersion);
+      const columnCreator: ColumnCreator = columnCreatorFor(property, targetTechnologyVersion);
 
       let strategy: BuildStrategy = buildStrategy;
 

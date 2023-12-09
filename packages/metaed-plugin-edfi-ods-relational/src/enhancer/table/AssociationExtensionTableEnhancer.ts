@@ -12,7 +12,6 @@ import { EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, TopLevelE
 import { addTables } from './TableCreatingEntityEnhancerBase';
 import { BuildStrategyDefault } from './BuildStrategy';
 import { collectPrimaryKeys } from './PrimaryKeyCollector';
-import { columnCreatorFactory } from './ColumnCreatorFactory';
 import {
   newTable,
   newTableNameComponent,
@@ -20,12 +19,11 @@ import {
   newTableNameGroup,
   NoTableNameGroup,
 } from '../../model/database/Table';
-import { tableBuilderFactory } from './TableBuilderFactory';
 import { TableStrategy } from '../../model/database/TableStrategy';
 import { isOdsReferenceProperty } from '../../model/property/ReferenceProperty';
 import { Column, columnSortV7 } from '../../model/database/Column';
 import { Table } from '../../model/database/Table';
-import { TableBuilder } from './TableBuilder';
+import { tableBuilderFor } from './TableBuilderFactory';
 
 const enhancerName = 'AssociationExtensionTableEnhancer';
 
@@ -83,12 +81,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         tables.push(mainTable);
       }
 
-      const primaryKeys: Column[] = collectPrimaryKeys(
-        entity,
-        BuildStrategyDefault,
-        columnCreatorFactory,
-        targetTechnologyVersion,
-      );
+      const primaryKeys: Column[] = collectPrimaryKeys(entity, BuildStrategyDefault, targetTechnologyVersion);
 
       entity.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
         const tableStrategy: TableStrategy = TableStrategy.extension(
@@ -111,8 +104,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
               }
             : NoTableNameGroup,
         );
-        const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(property);
-        tableBuilder.buildTables(
+        tableBuilderFor(property).buildTables(
           property,
           tableStrategy,
           primaryKeys,

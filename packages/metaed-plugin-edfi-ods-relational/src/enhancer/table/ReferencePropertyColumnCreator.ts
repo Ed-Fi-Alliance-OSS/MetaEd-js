@@ -4,12 +4,8 @@ import { collectPrimaryKeys } from './PrimaryKeyCollector';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
 import { ColumnCreator } from './ColumnCreator';
-import { ColumnCreatorFactory } from './ColumnCreatorFactory';
 
-export function referencePropertyColumnCreator(
-  factory: ColumnCreatorFactory,
-  targetTechnologyVersion: SemVer,
-): ColumnCreator {
+export function referencePropertyColumnCreator(targetTechnologyVersion: SemVer): ColumnCreator {
   return {
     createColumns: (property: EntityProperty, strategy: BuildStrategy): Column[] => {
       if (!strategy.buildColumns(property) || property.data.edfiOdsRelational.odsIsCollection) return [];
@@ -25,7 +21,6 @@ export function referencePropertyColumnCreator(
       const columns: Column[] = collectPrimaryKeys(
         referentialProperty.referencedEntity,
         buildStrategy,
-        factory,
         targetTechnologyVersion,
       );
       columns.forEach((column: Column) => {

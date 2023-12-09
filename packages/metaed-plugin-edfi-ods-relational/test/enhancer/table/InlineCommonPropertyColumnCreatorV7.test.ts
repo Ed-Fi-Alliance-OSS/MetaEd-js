@@ -1,9 +1,8 @@
 import { newInlineCommon, newInlineCommonProperty, newStringProperty, newIntegerProperty } from '@edfi/metaed-core';
 import { Common, InlineCommonProperty, StringProperty, IntegerProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
-import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { Column, StringColumn } from '../../../src/model/database/Column';
-import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
+import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreatorFactory';
 
 describe('when creating columns for inline common with is collection property', (): void => {
   const propertyName = 'PropertyName';
@@ -51,8 +50,7 @@ describe('when creating columns for inline common with is collection property', 
 
     common.data.edfiOdsRelational.odsProperties.push(property);
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(commonProperty, '7.0.0');
-    columns = columnCreator.createColumns(commonProperty, BuildStrategyDefault);
+    columns = columnCreatorFor(commonProperty, '7.0.0').createColumns(commonProperty, BuildStrategyDefault);
   });
 
   it('should return no columns', (): void => {
@@ -108,8 +106,7 @@ describe('when creating columns for inline common with only one property', (): v
 
     common.data.edfiOdsRelational.odsProperties.push(property);
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(commonProperty, '7.0.0');
-    columns = columnCreator.createColumns(commonProperty, BuildStrategyDefault);
+    columns = columnCreatorFor(commonProperty, '7.0.0').createColumns(commonProperty, BuildStrategyDefault);
   });
 
   it('should return a single column', (): void => {
@@ -191,8 +188,7 @@ describe('when creating columns for inline common with two properties', (): void
     common.data.edfiOdsRelational.odsProperties.push(stringProperty);
     common.data.edfiOdsRelational.odsProperties.push(integerProperty);
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(commonProperty, '7.0.0');
-    columns = columnCreator.createColumns(commonProperty, BuildStrategyDefault);
+    columns = columnCreatorFor(commonProperty, '7.0.0').createColumns(commonProperty, BuildStrategyDefault);
   });
 
   it('should return two columns', (): void => {

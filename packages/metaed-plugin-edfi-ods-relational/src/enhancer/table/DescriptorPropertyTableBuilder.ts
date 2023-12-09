@@ -1,6 +1,5 @@
 import * as R from 'ramda';
-import { EntityProperty, ReferentialProperty, SemVer } from '@edfi/metaed-core';
-import { asReferentialProperty } from '@edfi/metaed-core';
+import type { EntityProperty, ReferentialProperty, SemVer } from '@edfi/metaed-core';
 import {
   addColumnsWithSort,
   addColumnsWithoutSort,
@@ -13,14 +12,14 @@ import { ColumnTransform, ColumnTransformPrimaryKey, ColumnTransformUnchanged } 
 import { ForeignKeyStrategy } from '../../model/database/ForeignKeyStrategy';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
-import { ColumnCreator } from './ColumnCreator';
-import { ColumnCreatorFactory } from './ColumnCreatorFactory';
 import { ForeignKey, createForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
 import { TableBuilder } from './TableBuilder';
 import { TableStrategy } from '../../model/database/TableStrategy';
+import { columnCreatorFor } from './ColumnCreatorFactory';
+import { ColumnCreator } from './ColumnCreator';
 
-export function descriptorPropertyTableBuilder(factory: ColumnCreatorFactory): TableBuilder {
+export function descriptorPropertyTableBuilder(): TableBuilder {
   return {
     buildTables(
       property: EntityProperty,
@@ -31,11 +30,11 @@ export function descriptorPropertyTableBuilder(factory: ColumnCreatorFactory): T
       targetTechnologyVersion: SemVer,
       parentIsRequired: boolean | null,
     ): void {
-      const descriptor: ReferentialProperty = asReferentialProperty(property);
-      const columnCreator: ColumnCreator = factory.columnCreatorFor(descriptor, targetTechnologyVersion);
+      const descriptor: ReferentialProperty = property as ReferentialProperty;
+      const columnCreator: ColumnCreator = columnCreatorFor(descriptor, targetTechnologyVersion);
 
       if (!descriptor.data.edfiOdsRelational.odsIsCollection) {
-        const descriptorColumn: Column = R.head(columnCreator.createColumns(descriptor, buildStrategy));
+        const descriptorColumn: Column = columnCreator.createColumns(descriptor, buildStrategy)[0];
         addColumnsWithoutSort(
           parentTableStrategy.table,
           [descriptorColumn],

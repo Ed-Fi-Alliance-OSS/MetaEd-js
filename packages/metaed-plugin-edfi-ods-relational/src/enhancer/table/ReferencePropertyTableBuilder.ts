@@ -16,7 +16,6 @@ import { ColumnTransform } from '../../model/database/ColumnTransform';
 import { ForeignKeyStrategy } from '../../model/database/ForeignKeyStrategy';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
-import { ColumnCreatorFactory } from './ColumnCreatorFactory';
 import { ForeignKey, createForeignKey } from '../../model/database/ForeignKey';
 import { Table, newTableNameComponent } from '../../model/database/Table';
 import { TableBuilder } from './TableBuilder';
@@ -27,14 +26,12 @@ const referenceColumnBuilder =
     referenceProperty: ReferentialProperty,
     parentTableStrategy: TableStrategy,
     buildStrategy: BuildStrategy,
-    factory: ColumnCreatorFactory,
     targetTechnologyVersion: SemVer,
   ) =>
   (columnStrategy: ColumnTransform): void => {
     const primaryKeys: Column[] = collectPrimaryKeys(
       referenceProperty.referencedEntity,
       buildStrategy,
-      factory,
       targetTechnologyVersion,
     );
 
@@ -46,7 +43,7 @@ const referenceColumnBuilder =
     addColumnsWithSort(parentTableStrategy.table, primaryKeys, columnStrategy, targetTechnologyVersion);
   };
 
-export function referencePropertyTableBuilder(factory: ColumnCreatorFactory): TableBuilder {
+export function referencePropertyTableBuilder(): TableBuilder {
   return {
     buildTables(
       property: EntityProperty,
@@ -66,13 +63,7 @@ export function referencePropertyTableBuilder(factory: ColumnCreatorFactory): Ta
         );
       }
 
-      const buildColumns = referenceColumnBuilder(
-        referenceProperty,
-        parentTableStrategy,
-        strategy,
-        factory,
-        targetTechnologyVersion,
-      );
+      const buildColumns = referenceColumnBuilder(referenceProperty, parentTableStrategy, strategy, targetTechnologyVersion);
       if (referenceProperty.isPartOfIdentity) {
         buildColumns(ColumnTransform.primaryKeyRoleNameCollapsible(referenceProperty));
       }
@@ -165,7 +156,6 @@ export function referencePropertyTableBuilder(factory: ColumnCreatorFactory): Ta
       const primaryKeys: Column[] = collectPrimaryKeys(
         referenceProperty.referencedEntity,
         strategy,
-        factory,
         targetTechnologyVersion,
       );
       primaryKeys.forEach((pk: Column) => addSourceEntityProperty(pk, property));

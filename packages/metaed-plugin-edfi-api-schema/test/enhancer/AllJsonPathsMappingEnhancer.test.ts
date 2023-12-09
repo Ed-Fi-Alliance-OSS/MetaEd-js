@@ -12,6 +12,7 @@ import {
   DescriptorBuilder,
   TopLevelEntity,
   EnumerationBuilder,
+  MetaEdPropertyPath,
 } from '@edfi/metaed-core';
 import {
   domainEntityReferenceEnhancer,
@@ -32,7 +33,6 @@ import { enhance as subclassApiEntityMappingEnhancer } from '../../src/enhancer/
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from '../../src/enhancer/SubclassPropertyCollectingEnhancer';
 import { enhance } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
-import { MetaEdPropertyPath } from '../../src/model/api-schema/MetaEdPropertyPath';
 import { JsonPathsInfo } from '../../src/model/JsonPathsMapping';
 
 const ajv = new Ajv({ allErrors: true });

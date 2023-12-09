@@ -2,14 +2,12 @@ import { EntityProperty, MetaEdEnvironment, SemVer, TopLevelEntity, versionSatis
 import { BuildStrategyDefault } from './BuildStrategy';
 import { cloneColumn } from '../../model/database/Column';
 import { collectPrimaryKeys } from './PrimaryKeyCollector';
-import { columnCreatorFactory } from './ColumnCreatorFactory';
 import { newTable, newTableNameComponent, newTableExistenceReason, newTableNameGroup } from '../../model/database/Table';
 import { tableEntities } from '../EnhancerHelper';
-import { tableBuilderFactory } from './TableBuilderFactory';
 import { TableStrategy } from '../../model/database/TableStrategy';
 import { Column } from '../../model/database/Column';
 import { Table } from '../../model/database/Table';
-import { TableBuilder } from './TableBuilder';
+import { tableBuilderFor } from './TableBuilderFactory';
 
 // Build top level and sub level tables for the given top level entity,
 // including columns for each property and cascading through special property types as needed
@@ -19,12 +17,9 @@ export function buildTablesFromProperties(
   tables: Table[],
   targetTechnologyVersion: SemVer,
 ): void {
-  const primaryKeys: Column[] = collectPrimaryKeys(
-    entity,
-    BuildStrategyDefault,
-    columnCreatorFactory,
-    targetTechnologyVersion,
-  ).map((x: Column) => cloneColumn(x));
+  const primaryKeys: Column[] = collectPrimaryKeys(entity, BuildStrategyDefault, targetTechnologyVersion).map((x: Column) =>
+    cloneColumn(x),
+  );
 
   // For ODS/API 7+, collected primary keys of main tables need to be sorted
   if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {
@@ -32,8 +27,7 @@ export function buildTablesFromProperties(
   }
 
   entity.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
-    const tableBuilder: TableBuilder = tableBuilderFactory.tableBuilderFor(property);
-    tableBuilder.buildTables(
+    tableBuilderFor(property).buildTables(
       property,
       TableStrategy.default(mainTable),
       primaryKeys,

@@ -4,13 +4,13 @@ import { EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, TopLevelE
 import { addForeignKey } from '../../model/database/Table';
 import { addTables, buildMainTable, buildTablesFromProperties } from './TableCreatingEntityEnhancerBase';
 import { BuildStrategyDefault } from './BuildStrategy';
-import { columnCreatorFactory } from './ColumnCreatorFactory';
 import { newColumnPair } from '../../model/database/ColumnPair';
 import { newForeignKey, addColumnPairs, newForeignKeySourceReference } from '../../model/database/ForeignKey';
 import { Column } from '../../model/database/Column';
 import { ColumnPair } from '../../model/database/ColumnPair';
 import { ForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
+import { columnCreatorFor } from './ColumnCreatorFactory';
 
 const enhancerName = 'DomainEntitySubclassTableEnhancer';
 
@@ -37,8 +37,7 @@ function addForeignKeyToPrimaryKeyRename(table: Table, entity: TopLevelEntity, t
       foreignKey.foreignTableId = entity.baseEntity.data.edfiOdsRelational.odsTableId;
     }
 
-    const localColumnIds: string[] = columnCreatorFactory
-      .columnCreatorFor(keyRenameProperty, targetTechnologyVersion)
+    const localColumnIds: string[] = columnCreatorFor(keyRenameProperty, targetTechnologyVersion)
       .createColumns(keyRenameProperty, BuildStrategyDefault)
       .map((x: Column) => x.columnId);
 
@@ -48,8 +47,7 @@ function addForeignKeyToPrimaryKeyRename(table: Table, entity: TopLevelEntity, t
       ),
     );
 
-    const baseColumnIds: string[] = columnCreatorFactory
-      .columnCreatorFor(baseColumnProperty, targetTechnologyVersion)
+    const baseColumnIds: string[] = columnCreatorFor(baseColumnProperty, targetTechnologyVersion)
       .createColumns(baseColumnProperty, BuildStrategyDefault)
       .map((x: Column) => x.columnId);
 

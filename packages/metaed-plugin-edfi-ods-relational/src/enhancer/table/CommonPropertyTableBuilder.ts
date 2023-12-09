@@ -16,11 +16,10 @@ import { ForeignKeyStrategy } from '../../model/database/ForeignKeyStrategy';
 import { TableStrategy } from '../../model/database/TableStrategy';
 import { BuildStrategy } from './BuildStrategy';
 import { Column, columnSortV7 } from '../../model/database/Column';
-import { ColumnCreatorFactory } from './ColumnCreatorFactory';
 import { ForeignKey, createForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
 import { TableBuilder } from './TableBuilder';
-import { TableBuilderFactory } from './TableBuilderFactory';
+import { tableBuilderFor } from './TableBuilderFactory';
 
 function buildJoinTables(
   property: ReferentialProperty,
@@ -33,7 +32,6 @@ function buildJoinTables(
   joinTableNamespace: Namespace,
   joinTableSchema: string,
   tables: Table[],
-  tableFactory: TableBuilderFactory,
   targetTechnologyVersion: SemVer,
   parentIsRequired: boolean | null,
 ): void {
@@ -75,8 +73,7 @@ function buildJoinTables(
   }
 
   property.referencedEntity.data.edfiOdsRelational.odsProperties.forEach((referenceProperty: EntityProperty) => {
-    const tableBuilder: TableBuilder = tableFactory.tableBuilderFor(referenceProperty);
-    tableBuilder.buildTables(
+    tableBuilderFor(referenceProperty).buildTables(
       referenceProperty,
       TableStrategy.default(joinTable),
       primaryKeys,
@@ -119,10 +116,7 @@ function buildJoinTables(
   }
 }
 
-export function commonPropertyTableBuilder(
-  tableFactory: TableBuilderFactory,
-  columnFactory: ColumnCreatorFactory,
-): TableBuilder {
+export function commonPropertyTableBuilder(): TableBuilder {
   return {
     buildTables(
       property: EntityProperty,
@@ -144,9 +138,7 @@ export function commonPropertyTableBuilder(
 
       const primaryKeys: Column[] = [];
       if (!commonProperty.isOptional) {
-        primaryKeys.push(
-          ...collectPrimaryKeys(commonProperty.referencedEntity, strategy, columnFactory, targetTechnologyVersion),
-        );
+        primaryKeys.push(...collectPrimaryKeys(commonProperty.referencedEntity, strategy, targetTechnologyVersion));
       }
 
       // For ODS/API 7+, parent primary keys come first
@@ -182,7 +174,6 @@ export function commonPropertyTableBuilder(
         parentTableStrategy.table.namespace,
         parentTableStrategy.table.schema,
         tables,
-        tableFactory,
         targetTechnologyVersion,
         parentIsRequired,
       );

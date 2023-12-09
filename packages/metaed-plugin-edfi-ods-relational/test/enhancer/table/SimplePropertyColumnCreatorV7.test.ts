@@ -35,10 +35,9 @@ import {
   TimeProperty,
   YearProperty,
 } from '@edfi/metaed-core';
-import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { Column, DecimalColumn, StringColumn } from '../../../src/model/database/Column';
-import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
+import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreatorFactory';
 
 describe('when converting boolean property to column', (): void => {
   const propertyName = 'PropertyName';
@@ -64,8 +63,7 @@ describe('when converting boolean property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -105,8 +103,7 @@ describe('when converting currency property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -146,8 +143,7 @@ describe('when converting date property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -187,8 +183,7 @@ describe('when converting datetime property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -232,8 +227,7 @@ describe('when converting decimal property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -275,8 +269,7 @@ describe('when converting duration property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -316,8 +309,7 @@ describe('when converting integer property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -359,8 +351,7 @@ describe('when converting integer property with big hint to column', (): void =>
       },
     };
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -400,8 +391,7 @@ describe('when converting percent property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -445,8 +435,7 @@ describe('when converting shared decimal property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -488,8 +477,7 @@ describe('when converting shared integer property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -529,8 +517,7 @@ describe('when converting shared short property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -572,8 +559,7 @@ describe('when converting shared string property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -614,8 +600,7 @@ describe('when converting short property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -657,8 +642,7 @@ describe('when converting string property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -699,8 +683,7 @@ describe('when converting time property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {
@@ -740,8 +723,7 @@ describe('when converting year property to column', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return converted column', (): void => {

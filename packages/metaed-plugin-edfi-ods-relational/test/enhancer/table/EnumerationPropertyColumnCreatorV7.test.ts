@@ -1,9 +1,8 @@
 import { EnumerationProperty } from '@edfi/metaed-core';
 import { newEnumerationProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
-import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { Column } from '../../../src/model/database/Column';
-import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
+import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreatorFactory';
 
 describe('when creating columns for enumeration property', (): void => {
   const propertyName = 'PropertyName';
@@ -27,8 +26,7 @@ describe('when creating columns for enumeration property', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a column', (): void => {
@@ -65,8 +63,7 @@ describe('when creating columns for primary key enumeration property', (): void 
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a primary key column', (): void => {
@@ -105,8 +102,7 @@ describe('when creating columns for identity rename enumeration property', (): v
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a primary key column with base key name', (): void => {
@@ -144,8 +140,7 @@ describe('when creating columns for nullable enumeration property', (): void => 
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault);
+    columns = columnCreatorFor(property, '7.0.0').createColumns(property, BuildStrategyDefault);
   });
 
   it('should return a column', (): void => {
@@ -183,8 +178,10 @@ describe('when creating columns for primary key enumeration property with suppre
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy());
+    columns = columnCreatorFor(property, '7.0.0').createColumns(
+      property,
+      BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(),
+    );
   });
 
   it('should return a column', (): void => {
@@ -223,8 +220,10 @@ describe('when creating columns for identity rename enumeration property with su
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(property, '7.0.0');
-    columns = columnCreator.createColumns(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy());
+    columns = columnCreatorFor(property, '7.0.0').createColumns(
+      property,
+      BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(),
+    );
   });
 
   it('should return a column with base key name', (): void => {

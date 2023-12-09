@@ -4,10 +4,10 @@ import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
 import { Table } from '../../model/database/Table';
 import { TableBuilder } from './TableBuilder';
-import { TableBuilderFactory } from './TableBuilderFactory';
 import { TableStrategy } from '../../model/database/TableStrategy';
+import { tableBuilderFor } from './TableBuilderFactory';
 
-export function inlineCommonPropertyTableBuilder(factory: TableBuilderFactory): TableBuilder {
+export function inlineCommonPropertyTableBuilder(): TableBuilder {
   return {
     buildTables(
       property: EntityProperty,
@@ -26,8 +26,7 @@ export function inlineCommonPropertyTableBuilder(factory: TableBuilderFactory): 
       }
 
       inlineCommonProperty.referencedEntity.data.edfiOdsRelational.odsProperties.forEach((odsProperty: EntityProperty) => {
-        const tableBuilder: TableBuilder = factory.tableBuilderFor(odsProperty);
-        tableBuilder.buildTables(
+        tableBuilderFor(odsProperty).buildTables(
           odsProperty,
           parentTableStrategy,
           parentPrimaryKeys,

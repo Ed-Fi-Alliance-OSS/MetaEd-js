@@ -3,7 +3,6 @@ import { Common, DomainEntity, InlineCommonProperty, IntegerProperty } from '@ed
 import { Column } from '../../../src/model/database/Column';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { collectPrimaryKeys } from '../../../src/enhancer/table/PrimaryKeyCollector';
-import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 
 describe('when collecting primary key columns for identity property', (): void => {
   const propertyName = 'PropertyName';
@@ -34,7 +33,7 @@ describe('when collecting primary key columns for identity property', (): void =
       },
     });
 
-    columns = collectPrimaryKeys(entity, BuildStrategyDefault, columnCreatorFactory, '6.1.0');
+    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '6.1.0');
   });
 
   it('should return a primary key column', (): void => {
@@ -99,7 +98,7 @@ describe('when collecting primary key columns for inline common property', (): v
       },
     });
 
-    columns = collectPrimaryKeys(entity, BuildStrategyDefault, columnCreatorFactory, '6.1.0');
+    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '6.1.0');
   });
 
   it('should return a primary key column', (): void => {
@@ -179,7 +178,7 @@ describe('when collecting primary key columns for identity property and inline c
       },
     });
 
-    columns = collectPrimaryKeys(entity, BuildStrategyDefault, columnCreatorFactory, '6.1.0');
+    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '6.1.0');
   });
 
   it('should return two columns', (): void => {
@@ -270,7 +269,7 @@ describe('when collecting primary key columns for two inline common properties w
       },
     });
 
-    columns = collectPrimaryKeys(entity, BuildStrategyDefault, columnCreatorFactory, '6.1.0');
+    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '6.1.0');
   });
 
   it('should return two columns', (): void => {

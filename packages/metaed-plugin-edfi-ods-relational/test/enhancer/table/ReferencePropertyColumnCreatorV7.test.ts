@@ -1,9 +1,8 @@
 import { DomainEntity, DomainEntityProperty, IntegerProperty } from '@edfi/metaed-core';
 import { newDomainEntity, newDomainEntityProperty, newIntegerProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
-import { columnCreatorFactory } from '../../../src/enhancer/table/ColumnCreatorFactory';
 import { Column } from '../../../src/model/database/Column';
-import { ColumnCreator } from '../../../src/enhancer/table/ColumnCreator';
+import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreatorFactory';
 
 describe('when creating columns for identity collection reference property', (): void => {
   let columns: Column[];
@@ -41,8 +40,7 @@ describe('when creating columns for identity collection reference property', ():
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(domainEntityProperty, '7.0.0');
-    columns = columnCreator.createColumns(domainEntityProperty, BuildStrategyDefault);
+    columns = columnCreatorFor(domainEntityProperty, '7.0.0').createColumns(domainEntityProperty, BuildStrategyDefault);
   });
 
   it('should return no columns', (): void => {
@@ -92,8 +90,7 @@ describe('when creating columns for identity reference property', (): void => {
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(domainEntityProperty, '7.0.0');
-    columns = columnCreator.createColumns(domainEntityProperty, BuildStrategyDefault);
+    columns = columnCreatorFor(domainEntityProperty, '7.0.0').createColumns(domainEntityProperty, BuildStrategyDefault);
   });
 
   it('should return a primary key column', (): void => {
@@ -166,8 +163,7 @@ describe('when creating columns for identity reference properties with composite
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(domainEntityProperty, '7.0.0');
-    columns = columnCreator.createColumns(domainEntityProperty, BuildStrategyDefault);
+    columns = columnCreatorFor(domainEntityProperty, '7.0.0').createColumns(domainEntityProperty, BuildStrategyDefault);
   });
 
   it('should return two columns', (): void => {
@@ -258,8 +254,7 @@ describe('when creating columns for identity reference property that references 
       },
     });
 
-    const columnCreator: ColumnCreator = columnCreatorFactory.columnCreatorFor(domainEntityProperty2, '7.0.0');
-    columns = columnCreator.createColumns(domainEntityProperty2, BuildStrategyDefault);
+    columns = columnCreatorFor(domainEntityProperty2, '7.0.0').createColumns(domainEntityProperty2, BuildStrategyDefault);
   });
 
   it('should return a primary key column', (): void => {
