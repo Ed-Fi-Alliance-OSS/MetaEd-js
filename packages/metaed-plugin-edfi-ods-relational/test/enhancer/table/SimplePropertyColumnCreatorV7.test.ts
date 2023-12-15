@@ -37,7 +37,7 @@ import {
 } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { Column, DecimalColumn, StringColumn } from '../../../src/model/database/Column';
-import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreator';
+import { createColumnFor } from '../../../src/enhancer/table/ColumnCreator';
 
 describe('when converting boolean property to column', (): void => {
   const propertyName = 'PropertyName';
@@ -63,7 +63,7 @@ describe('when converting boolean property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -103,7 +103,7 @@ describe('when converting currency property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -143,7 +143,7 @@ describe('when converting date property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -183,7 +183,7 @@ describe('when converting datetime property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -227,7 +227,7 @@ describe('when converting decimal property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -269,7 +269,7 @@ describe('when converting duration property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -309,7 +309,7 @@ describe('when converting integer property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -351,7 +351,7 @@ describe('when converting integer property with big hint to column', (): void =>
       },
     };
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -391,7 +391,7 @@ describe('when converting percent property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -435,7 +435,7 @@ describe('when converting shared decimal property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -477,7 +477,7 @@ describe('when converting shared integer property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -517,7 +517,7 @@ describe('when converting shared short property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -559,7 +559,7 @@ describe('when converting shared string property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -600,7 +600,7 @@ describe('when converting short property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -642,7 +642,7 @@ describe('when converting string property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -683,7 +683,7 @@ describe('when converting time property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {
@@ -723,7 +723,7 @@ describe('when converting year property to column', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return converted column', (): void => {

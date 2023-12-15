@@ -2,7 +2,7 @@ import { DescriptorProperty, EntityProperty, newBooleanProperty } from '@edfi/me
 import { newDescriptorProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { Column } from '../../../src/model/database/Column';
-import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreator';
+import { createColumnFor } from '../../../src/enhancer/table/ColumnCreator';
 
 describe('when creating columns for descriptor property', (): void => {
   const propertyName = 'PropertyName';
@@ -25,7 +25,7 @@ describe('when creating columns for descriptor property', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '6.1.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '6.1.0');
   });
 
   it('should return a column', (): void => {
@@ -62,7 +62,7 @@ describe('when creating columns for primary key descriptor property', (): void =
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '6.1.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '6.1.0');
   });
 
   it('should return a primary key column', (): void => {
@@ -99,7 +99,7 @@ describe('when creating columns for nullable descriptor property', (): void => {
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '6.1.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '6.1.0');
   });
 
   it('should return a nullable column', (): void => {
@@ -137,7 +137,7 @@ describe('when creating columns for descriptor property role name', (): void => 
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '6.1.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '6.1.0');
   });
 
   it('should return a nullable column', (): void => {
@@ -180,7 +180,7 @@ describe('when creating columns for descriptor property role name and append par
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault.appendParentContextProperty(parentContextProperty), '6.1.0');
+    columns = createColumnFor(property, BuildStrategyDefault.appendParentContextProperty(parentContextProperty), '6.1.0');
   });
 
   it('should return a nullable column', (): void => {
@@ -217,7 +217,7 @@ describe('when creating columns for collection descriptor property', (): void =>
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault, '6.1.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '6.1.0');
   });
 
   it('should return a primary key column', (): void => {
@@ -254,7 +254,7 @@ describe('when creating columns for primary key descriptor property with suppres
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(), '6.1.0');
+    columns = createColumnFor(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(), '6.1.0');
   });
 
   it('should return a column', (): void => {
@@ -291,7 +291,7 @@ describe('when creating columns for collection descriptor property with suppress
       },
     });
 
-    columns = columnCreatorFor(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(), '6.1.0');
+    columns = createColumnFor(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(), '6.1.0');
   });
 
   it('should return a column', (): void => {

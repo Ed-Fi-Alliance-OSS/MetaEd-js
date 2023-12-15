@@ -23,7 +23,7 @@ import { TableStrategy } from '../../model/database/TableStrategy';
 import { isOdsReferenceProperty } from '../../model/property/ReferenceProperty';
 import { Column, columnSortV7 } from '../../model/database/Column';
 import { Table } from '../../model/database/Table';
-import { tableBuilderFor } from './TableBuilderFactory';
+import { buildTableFor } from './TableBuilder';
 
 const enhancerName = 'DomainEntityExtensionTableEnhancer';
 
@@ -106,15 +106,15 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
             : NoTableNameGroup,
         );
 
-        tableBuilderFor(property).buildTables(
+        buildTableFor({
           property,
-          tableStrategy,
-          primaryKeys,
-          BuildStrategyDefault,
+          parentTableStrategy: tableStrategy,
+          parentPrimaryKeys: primaryKeys,
+          buildStrategy: BuildStrategyDefault,
           tables,
           targetTechnologyVersion,
-          null,
-        );
+          parentIsRequired: null,
+        });
       });
 
       // For ODS/API 7.0+, we need to correct column sort order after iterating over odsProperties in MetaEd model order

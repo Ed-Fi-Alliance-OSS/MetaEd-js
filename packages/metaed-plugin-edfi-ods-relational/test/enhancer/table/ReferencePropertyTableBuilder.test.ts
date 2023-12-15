@@ -5,9 +5,8 @@ import { newTable } from '../../../src/model/database/Table';
 import { TableStrategy } from '../../../src/model/database/TableStrategy';
 import { Column } from '../../../src/model/database/Column';
 import { Table } from '../../../src/model/database/Table';
-import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
-import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreator';
-import { tableBuilderFor } from '../../../src/enhancer/table/TableBuilderFactory';
+import { createColumnFor } from '../../../src/enhancer/table/ColumnCreator';
+import { buildTableFor } from '../../../src/enhancer/table/TableBuilder';
 
 const targetTechnologyVersion = '6.1.0';
 
@@ -61,18 +60,17 @@ describe('when building domain entity property table that is not an identity, re
     domainEntity.data.edfiOdsRelational.odsProperties.push(domainEntityEntityProperty1);
     entityDomainEntityProperty.referencedEntity = domainEntity;
 
-    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
+    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
 
-    const tableBuilder: TableBuilder = tableBuilderFor(entityDomainEntityProperty);
-    tableBuilder.buildTables(
-      entityDomainEntityProperty,
-      TableStrategy.default(table),
-      primaryKeys,
-      BuildStrategyDefault,
+    buildTableFor({
+      property: entityDomainEntityProperty,
+      parentTableStrategy: TableStrategy.default(table),
+      parentPrimaryKeys: primaryKeys,
+      buildStrategy: BuildStrategyDefault,
       tables,
       targetTechnologyVersion,
-      null,
-    );
+      parentIsRequired: null,
+    });
   });
 
   it('should return no join table', (): void => {
@@ -146,18 +144,17 @@ describe('when building identity domain entity property table', (): void => {
     domainEntity.data.edfiOdsRelational.odsIdentityProperties.push(domainEntityPk);
     entityDomainEntityProperty.referencedEntity = domainEntity;
 
-    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
+    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
 
-    const tableBuilder: TableBuilder = tableBuilderFor(entityDomainEntityProperty);
-    tableBuilder.buildTables(
-      entityDomainEntityProperty,
-      TableStrategy.default(table),
-      primaryKeys,
-      BuildStrategyDefault,
+    buildTableFor({
+      property: entityDomainEntityProperty,
+      parentTableStrategy: TableStrategy.default(table),
+      parentPrimaryKeys: primaryKeys,
+      buildStrategy: BuildStrategyDefault,
       tables,
       targetTechnologyVersion,
-      null,
-    );
+      parentIsRequired: null,
+    });
   });
 
   it('should return no join table', (): void => {
@@ -236,18 +233,17 @@ describe('when building required domain entity property table', (): void => {
     domainEntity.data.edfiOdsRelational.odsIdentityProperties.push(domainEntityPk);
     entityDomainEntityProperty.referencedEntity = domainEntity;
 
-    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
+    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
 
-    const tableBuilder: TableBuilder = tableBuilderFor(entityDomainEntityProperty);
-    tableBuilder.buildTables(
-      entityDomainEntityProperty,
-      TableStrategy.default(table),
-      primaryKeys,
-      BuildStrategyDefault,
+    buildTableFor({
+      property: entityDomainEntityProperty,
+      parentTableStrategy: TableStrategy.default(table),
+      parentPrimaryKeys: primaryKeys,
+      buildStrategy: BuildStrategyDefault,
       tables,
       targetTechnologyVersion,
-      null,
-    );
+      parentIsRequired: null,
+    });
   });
 
   it('should return no join table', (): void => {
@@ -326,18 +322,17 @@ describe('when building optional domain entity property table', (): void => {
     domainEntity.data.edfiOdsRelational.odsIdentityProperties.push(domainEntityPk);
     entityDomainEntityProperty.referencedEntity = domainEntity;
 
-    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
+    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
 
-    const tableBuilder: TableBuilder = tableBuilderFor(entityDomainEntityProperty);
-    tableBuilder.buildTables(
-      entityDomainEntityProperty,
-      TableStrategy.default(table),
-      primaryKeys,
-      BuildStrategyDefault,
+    buildTableFor({
+      property: entityDomainEntityProperty,
+      parentTableStrategy: TableStrategy.default(table),
+      parentPrimaryKeys: primaryKeys,
+      buildStrategy: BuildStrategyDefault,
       tables,
       targetTechnologyVersion,
-      null,
-    );
+      parentIsRequired: null,
+    });
   });
 
   it('should return no join table', (): void => {
@@ -421,18 +416,17 @@ describe('when building collection domain entity property table', (): void => {
     domainEntity.data.edfiOdsRelational.odsIdentityProperties.push(domainEntityEntityProperty1);
     entityDomainEntityProperty.referencedEntity = domainEntity;
 
-    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
+    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
 
-    const tableBuilder: TableBuilder = tableBuilderFor(entityDomainEntityProperty);
-    tableBuilder.buildTables(
-      entityDomainEntityProperty,
-      TableStrategy.default(table),
-      primaryKeys,
-      BuildStrategyDefault,
+    buildTableFor({
+      property: entityDomainEntityProperty,
+      parentTableStrategy: TableStrategy.default(table),
+      parentPrimaryKeys: primaryKeys,
+      buildStrategy: BuildStrategyDefault,
       tables,
       targetTechnologyVersion,
-      null,
-    );
+      parentIsRequired: null,
+    });
   });
 
   it('should return join table', (): void => {

@@ -2,7 +2,7 @@ import { DomainEntity, DomainEntityProperty, IntegerProperty } from '@edfi/metae
 import { newDomainEntity, newDomainEntityProperty, newIntegerProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { Column } from '../../../src/model/database/Column';
-import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreator';
+import { createColumnFor } from '../../../src/enhancer/table/ColumnCreator';
 
 describe('when creating columns for identity collection reference property', (): void => {
   let columns: Column[];
@@ -40,7 +40,7 @@ describe('when creating columns for identity collection reference property', ():
       },
     });
 
-    columns = columnCreatorFor(domainEntityProperty, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(domainEntityProperty, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return no columns', (): void => {
@@ -90,7 +90,7 @@ describe('when creating columns for identity reference property', (): void => {
       },
     });
 
-    columns = columnCreatorFor(domainEntityProperty, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(domainEntityProperty, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return a primary key column', (): void => {
@@ -163,7 +163,7 @@ describe('when creating columns for identity reference properties with composite
       },
     });
 
-    columns = columnCreatorFor(domainEntityProperty, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(domainEntityProperty, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return two columns', (): void => {
@@ -254,7 +254,7 @@ describe('when creating columns for identity reference property that references 
       },
     });
 
-    columns = columnCreatorFor(domainEntityProperty2, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(domainEntityProperty2, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return a primary key column', (): void => {

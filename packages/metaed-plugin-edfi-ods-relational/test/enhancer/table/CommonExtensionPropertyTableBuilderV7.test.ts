@@ -21,9 +21,8 @@ import { newTable } from '../../../src/model/database/Table';
 import { TableStrategy } from '../../../src/model/database/TableStrategy';
 import { Column } from '../../../src/model/database/Column';
 import { Table } from '../../../src/model/database/Table';
-import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
-import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreator';
-import { tableBuilderFor } from '../../../src/enhancer/table/TableBuilderFactory';
+import { createColumnFor } from '../../../src/enhancer/table/ColumnCreator';
+import { buildTableFor } from '../../../src/enhancer/table/TableBuilder';
 
 const targetTechnologyVersion: SemVer = '7.1.0';
 
@@ -139,19 +138,19 @@ describe('when building common property extension table', (): void => {
     entity.data.edfiOdsRelational.odsProperties.push(entityPkProperty, commonProperty);
     entity.data.edfiOdsRelational.odsIdentityProperties.push(entityPkProperty);
 
-    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, BuildStrategyDefault, '7.0.0');
+    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '7.0.0');
 
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
-    const tableBuilder: TableBuilder = tableBuilderFor(commonProperty);
-    tableBuilder.buildTables(
-      commonProperty,
-      TableStrategy.default(mainTable),
-      primaryKeys,
-      BuildStrategyDefault,
+
+    buildTableFor({
+      property: commonProperty,
+      parentTableStrategy: TableStrategy.default(mainTable),
+      parentPrimaryKeys: primaryKeys,
+      buildStrategy: BuildStrategyDefault,
       tables,
       targetTechnologyVersion,
-      null,
-    );
+      parentIsRequired: null,
+    });
   });
 
   it('should return join table', (): void => {

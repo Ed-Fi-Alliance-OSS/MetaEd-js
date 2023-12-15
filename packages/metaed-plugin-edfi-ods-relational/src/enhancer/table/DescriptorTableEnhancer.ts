@@ -26,7 +26,7 @@ import { TableStrategy } from '../../model/database/TableStrategy';
 import { Column, columnSortV7, newColumn, newColumnNameComponent } from '../../model/database/Column';
 import { ForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
-import { tableBuilderFor } from './TableBuilderFactory';
+import { buildTableFor } from './TableBuilder';
 
 const enhancerName = 'DescriptorTableEnhancer';
 
@@ -154,15 +154,15 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
   primaryKeys.push(primaryKey);
 
   descriptor.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
-    tableBuilderFor(property).buildTables(
+    buildTableFor({
       property,
-      TableStrategy.default(mainTable),
-      primaryKeys,
-      BuildStrategyDefault,
+      parentTableStrategy: TableStrategy.default(mainTable),
+      parentPrimaryKeys: primaryKeys,
+      buildStrategy: BuildStrategyDefault,
       tables,
       targetTechnologyVersion,
-      null,
-    );
+      parentIsRequired: null,
+    });
   });
 
   // For ODS/API 7.0+, we need to correct column sort order after iterating over odsProperties in MetaEd model order

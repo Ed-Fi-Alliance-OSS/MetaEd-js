@@ -5,9 +5,8 @@ import { newTable } from '../../../src/model/database/Table';
 import { TableStrategy } from '../../../src/model/database/TableStrategy';
 import { Column } from '../../../src/model/database/Column';
 import { Table } from '../../../src/model/database/Table';
-import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
-import { tableBuilderFor } from '../../../src/enhancer/table/TableBuilderFactory';
-import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreator';
+import { buildTableFor } from '../../../src/enhancer/table/TableBuilder';
+import { createColumnFor } from '../../../src/enhancer/table/ColumnCreator';
 
 const targetTechnologyVersion: SemVer = '7.1.0';
 
@@ -77,18 +76,17 @@ describe('when building choice property table with two integer properties', (): 
     choice.data.edfiOdsRelational.odsProperties.push(...[choiceEntityProperty1, choiceEntityProperty2]);
     entityChoiceProperty.referencedEntity = choice;
 
-    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, BuildStrategyDefault, '7.0.0');
+    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '7.0.0');
 
-    const tableBuilder: TableBuilder = tableBuilderFor(entityChoiceProperty);
-    tableBuilder.buildTables(
-      entityChoiceProperty,
-      TableStrategy.default(table),
-      primaryKeys,
-      BuildStrategyDefault,
+    buildTableFor({
+      property: entityChoiceProperty,
+      parentTableStrategy: TableStrategy.default(table),
+      parentPrimaryKeys: primaryKeys,
+      buildStrategy: BuildStrategyDefault,
       tables,
       targetTechnologyVersion,
-      null,
-    );
+      parentIsRequired: null,
+    });
   });
 
   it('should return no join table', (): void => {

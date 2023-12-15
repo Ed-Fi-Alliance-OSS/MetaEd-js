@@ -10,7 +10,7 @@ import { simplePropertyColumnCreator } from './SimplePropertyColumnCreator';
 import { Column } from '../../model/database/Column';
 import { BuildStrategy } from './BuildStrategy';
 
-export function columnCreatorFor(
+export function createColumnFor(
   property: EntityProperty,
   buildStrategy: BuildStrategy,
   targetTechnologyVersion: SemVer,

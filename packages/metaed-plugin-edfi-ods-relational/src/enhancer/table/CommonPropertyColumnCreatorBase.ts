@@ -1,19 +1,21 @@
-import * as R from 'ramda';
-import { EntityProperty, SemVer, TopLevelEntity } from '@edfi/metaed-core';
+import { CommonProperty, EntityProperty, SemVer } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
-import { columnCreatorFor } from './ColumnCreator';
+import { createColumnFor } from './ColumnCreator';
 
 export function collectColumns(
   entityProperty: EntityProperty,
   strategy: BuildStrategy,
   targetTechnologyVersion: SemVer,
 ): Column[] {
-  const entity: TopLevelEntity = R.prop('referencedEntity', entityProperty);
+  const { referencedEntity } = entityProperty as CommonProperty;
 
-  return entity.data.edfiOdsRelational.odsProperties.reduce((columns: Column[], property: EntityProperty): Column[] => {
-    if (property.data.edfiOdsRelational.odsIsCollection) return columns;
+  return referencedEntity.data.edfiOdsRelational.odsProperties.reduce(
+    (columns: Column[], property: EntityProperty): Column[] => {
+      if (property.data.edfiOdsRelational.odsIsCollection) return columns;
 
-    return columns.concat(columnCreatorFor(property, strategy, targetTechnologyVersion));
-  }, []);
+      return columns.concat(createColumnFor(property, strategy, targetTechnologyVersion));
+    },
+    [],
+  );
 }

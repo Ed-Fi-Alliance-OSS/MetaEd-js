@@ -1,7 +1,7 @@
 import { newChoice, newChoiceProperty, newIntegerProperty, newStringProperty } from '@edfi/metaed-core';
 import { Choice, ChoiceProperty, IntegerProperty, StringProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
-import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreator';
+import { createColumnFor } from '../../../src/enhancer/table/ColumnCreator';
 import { Column, StringColumn } from '../../../src/model/database/Column';
 
 describe('when creating columns for choice with is collection property', (): void => {
@@ -50,7 +50,7 @@ describe('when creating columns for choice with is collection property', (): voi
 
     choice.data.edfiOdsRelational.odsProperties.push(property);
 
-    columns = columnCreatorFor(choiceProperty, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(choiceProperty, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return no columns', (): void => {
@@ -103,7 +103,7 @@ describe('when creating columns for choice with only one property', (): void => 
 
     choice.data.edfiOdsRelational.odsProperties.push(property);
 
-    columns = columnCreatorFor(choiceProperty, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(choiceProperty, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return a single column', (): void => {
@@ -181,7 +181,7 @@ describe('when creating columns for choice with two properties', (): void => {
     choice.data.edfiOdsRelational.odsProperties.push(stringProperty);
     choice.data.edfiOdsRelational.odsProperties.push(integerProperty);
 
-    columns = columnCreatorFor(choiceProperty, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(choiceProperty, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return two columns', (): void => {

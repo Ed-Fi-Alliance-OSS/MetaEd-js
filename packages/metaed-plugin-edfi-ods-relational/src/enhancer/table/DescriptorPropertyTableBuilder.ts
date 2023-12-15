@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import type { EntityProperty, ReferentialProperty, SemVer } from '@edfi/metaed-core';
+import type { ReferentialProperty } from '@edfi/metaed-core';
 import {
   addColumnsWithSort,
   addColumnsWithoutSort,
@@ -10,110 +10,104 @@ import {
 import { joinTableNamer } from './TableNaming';
 import { ColumnTransform, ColumnTransformPrimaryKey, ColumnTransformUnchanged } from '../../model/database/ColumnTransform';
 import { ForeignKeyStrategy } from '../../model/database/ForeignKeyStrategy';
-import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
 import { ForeignKey, createForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
-import { TableBuilder } from './TableBuilder';
-import { TableStrategy } from '../../model/database/TableStrategy';
 import { descriptorPropertyColumnCreator } from './DescriptorPropertyColumnCreator';
+import { TableBuilderParameters } from './TableBuilder';
 
-export function descriptorPropertyTableBuilder(): TableBuilder {
-  return {
-    buildTables(
-      property: EntityProperty,
-      parentTableStrategy: TableStrategy,
-      parentPrimaryKeys: Column[],
-      buildStrategy: BuildStrategy,
-      tables: Table[],
-      targetTechnologyVersion: SemVer,
-      parentIsRequired: boolean | null,
-    ): void {
-      const descriptor: ReferentialProperty = property as ReferentialProperty;
+export function descriptorPropertyTableBuilder({
+  property,
+  parentTableStrategy,
+  parentPrimaryKeys,
+  buildStrategy,
+  tables,
+  targetTechnologyVersion,
+  parentIsRequired,
+}: TableBuilderParameters): void {
+  const descriptor: ReferentialProperty = property as ReferentialProperty;
 
-      if (!descriptor.data.edfiOdsRelational.odsIsCollection) {
-        const descriptorColumn: Column = descriptorPropertyColumnCreator(descriptor, buildStrategy)[0];
-        addColumnsWithoutSort(
-          parentTableStrategy.table,
-          [descriptorColumn],
-          buildStrategy.leafColumns(ColumnTransformUnchanged),
-          targetTechnologyVersion,
-        );
+  if (!descriptor.data.edfiOdsRelational.odsIsCollection) {
+    const descriptorColumn: Column = descriptorPropertyColumnCreator(descriptor, buildStrategy)[0];
+    addColumnsWithoutSort(
+      parentTableStrategy.table,
+      [descriptorColumn],
+      buildStrategy.leafColumns(ColumnTransformUnchanged),
+      targetTechnologyVersion,
+    );
 
-        const foreignKey: ForeignKey = createForeignKey(
-          property,
-          {
-            foreignKeyColumns: [descriptorColumn],
-            foreignTableSchema: descriptor.referencedEntity.namespace.namespaceName.toLowerCase(),
-            foreignTableNamespace: descriptor.referencedEntity.namespace,
-            foreignTableId: descriptor.referencedEntity.data.edfiOdsRelational.odsDescriptorName,
-            strategy: ForeignKeyStrategy.foreignColumnIdChange(
-              `${descriptor.data.edfiOdsRelational.odsDescriptorifiedBaseName}Id`,
-            ),
-          },
-          { isSubtableRelationship: false },
-        );
-        addForeignKey(parentTableStrategy.table, foreignKey);
-      } else {
-        const { tableId, nameGroup } = joinTableNamer(descriptor, parentTableStrategy, buildStrategy);
-        const joinTable: Table = {
-          ...newTable(),
-          // Are the next two lines correct?  EnumerationPropertyTableBuilder uses strategy properties directly rather than get from table, seems more correct
-          namespace: parentTableStrategy.table.namespace,
-          schema: parentTableStrategy.table.schema.toLowerCase(),
-          tableId,
-          nameGroup,
-          existenceReason: {
-            ...newTableExistenceReason(),
-            isImplementingCollection: true,
-            sourceProperty: descriptor,
-          },
-          description: descriptor.documentation,
-          isRequiredCollectionTable: descriptor.isRequiredCollection && R.defaultTo(true)(parentIsRequired),
-          includeCreateDateColumn: true,
-          parentEntity: descriptor.parentEntity,
-        };
-        tables.push(joinTable);
+    const foreignKey: ForeignKey = createForeignKey(
+      property,
+      {
+        foreignKeyColumns: [descriptorColumn],
+        foreignTableSchema: descriptor.referencedEntity.namespace.namespaceName.toLowerCase(),
+        foreignTableNamespace: descriptor.referencedEntity.namespace,
+        foreignTableId: descriptor.referencedEntity.data.edfiOdsRelational.odsDescriptorName,
+        strategy: ForeignKeyStrategy.foreignColumnIdChange(
+          `${descriptor.data.edfiOdsRelational.odsDescriptorifiedBaseName}Id`,
+        ),
+      },
+      { isSubtableRelationship: false },
+    );
+    addForeignKey(parentTableStrategy.table, foreignKey);
+  } else {
+    const { tableId, nameGroup } = joinTableNamer(descriptor, parentTableStrategy, buildStrategy);
+    const joinTable: Table = {
+      ...newTable(),
+      // Are the next two lines correct?  EnumerationPropertyTableBuilder uses strategy properties directly rather than get from table, seems more correct
+      namespace: parentTableStrategy.table.namespace,
+      schema: parentTableStrategy.table.schema.toLowerCase(),
+      tableId,
+      nameGroup,
+      existenceReason: {
+        ...newTableExistenceReason(),
+        isImplementingCollection: true,
+        sourceProperty: descriptor,
+      },
+      description: descriptor.documentation,
+      isRequiredCollectionTable: descriptor.isRequiredCollection && R.defaultTo(true)(parentIsRequired),
+      includeCreateDateColumn: true,
+      parentEntity: descriptor.parentEntity,
+    };
+    tables.push(joinTable);
 
-        const parentForeignKey: ForeignKey = createForeignKey(
-          property,
-          {
-            foreignKeyColumns: parentPrimaryKeys,
-            foreignTableSchema: parentTableStrategy.schema,
-            foreignTableNamespace: parentTableStrategy.schemaNamespace,
-            foreignTableId: parentTableStrategy.tableId,
-            strategy: ForeignKeyStrategy.foreignColumnCascade(
-              true,
-              descriptor.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates,
-            ),
-          },
-          { isSubtableRelationship: true },
-        );
-        addForeignKey(joinTable, parentForeignKey);
-        addColumnsWithoutSort(
-          joinTable,
-          parentPrimaryKeys,
-          ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
-          targetTechnologyVersion,
-        );
+    const parentForeignKey: ForeignKey = createForeignKey(
+      property,
+      {
+        foreignKeyColumns: parentPrimaryKeys,
+        foreignTableSchema: parentTableStrategy.schema,
+        foreignTableNamespace: parentTableStrategy.schemaNamespace,
+        foreignTableId: parentTableStrategy.tableId,
+        strategy: ForeignKeyStrategy.foreignColumnCascade(
+          true,
+          descriptor.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates,
+        ),
+      },
+      { isSubtableRelationship: true },
+    );
+    addForeignKey(joinTable, parentForeignKey);
+    addColumnsWithoutSort(
+      joinTable,
+      parentPrimaryKeys,
+      ColumnTransform.primaryKeyWithNewReferenceContext(parentTableStrategy.tableId),
+      targetTechnologyVersion,
+    );
 
-        const columns: Column[] = descriptorPropertyColumnCreator(descriptor, buildStrategy.columnNamerIgnoresRoleName());
-        const foreignKey: ForeignKey = createForeignKey(
-          property,
-          {
-            foreignKeyColumns: columns,
-            foreignTableSchema: descriptor.referencedEntity.namespace.namespaceName.toLowerCase(),
-            foreignTableNamespace: descriptor.referencedEntity.namespace,
-            foreignTableId: descriptor.referencedEntity.data.edfiOdsRelational.odsDescriptorName,
-            strategy: ForeignKeyStrategy.foreignColumnIdChange(
-              `${descriptor.data.edfiOdsRelational.odsDescriptorifiedBaseName}Id`,
-            ),
-          },
-          { isSubtableRelationship: false },
-        );
-        addForeignKey(joinTable, foreignKey);
-        addColumnsWithSort(joinTable, columns, ColumnTransformPrimaryKey, targetTechnologyVersion);
-      }
-    },
-  };
+    const columns: Column[] = descriptorPropertyColumnCreator(descriptor, buildStrategy.columnNamerIgnoresRoleName());
+    const foreignKey: ForeignKey = createForeignKey(
+      property,
+      {
+        foreignKeyColumns: columns,
+        foreignTableSchema: descriptor.referencedEntity.namespace.namespaceName.toLowerCase(),
+        foreignTableNamespace: descriptor.referencedEntity.namespace,
+        foreignTableId: descriptor.referencedEntity.data.edfiOdsRelational.odsDescriptorName,
+        strategy: ForeignKeyStrategy.foreignColumnIdChange(
+          `${descriptor.data.edfiOdsRelational.odsDescriptorifiedBaseName}Id`,
+        ),
+      },
+      { isSubtableRelationship: false },
+    );
+    addForeignKey(joinTable, foreignKey);
+    addColumnsWithSort(joinTable, columns, ColumnTransformPrimaryKey, targetTechnologyVersion);
+  }
 }

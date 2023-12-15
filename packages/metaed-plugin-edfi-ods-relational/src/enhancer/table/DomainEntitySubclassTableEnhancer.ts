@@ -10,7 +10,7 @@ import { Column } from '../../model/database/Column';
 import { ColumnPair } from '../../model/database/ColumnPair';
 import { ForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
-import { columnCreatorFor } from './ColumnCreator';
+import { createColumnFor } from './ColumnCreator';
 
 const enhancerName = 'DomainEntitySubclassTableEnhancer';
 
@@ -37,7 +37,7 @@ function addForeignKeyToPrimaryKeyRename(table: Table, entity: TopLevelEntity, t
       foreignKey.foreignTableId = entity.baseEntity.data.edfiOdsRelational.odsTableId;
     }
 
-    const localColumnIds: string[] = columnCreatorFor(keyRenameProperty, BuildStrategyDefault, targetTechnologyVersion).map(
+    const localColumnIds: string[] = createColumnFor(keyRenameProperty, BuildStrategyDefault, targetTechnologyVersion).map(
       (x: Column) => x.columnId,
     );
 
@@ -47,7 +47,7 @@ function addForeignKeyToPrimaryKeyRename(table: Table, entity: TopLevelEntity, t
       ),
     );
 
-    const baseColumnIds: string[] = columnCreatorFor(baseColumnProperty, BuildStrategyDefault, targetTechnologyVersion).map(
+    const baseColumnIds: string[] = createColumnFor(baseColumnProperty, BuildStrategyDefault, targetTechnologyVersion).map(
       (x: Column) => x.columnId,
     );
 

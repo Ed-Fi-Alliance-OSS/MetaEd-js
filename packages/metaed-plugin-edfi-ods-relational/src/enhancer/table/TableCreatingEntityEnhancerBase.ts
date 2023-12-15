@@ -7,7 +7,7 @@ import { tableEntities } from '../EnhancerHelper';
 import { TableStrategy } from '../../model/database/TableStrategy';
 import { Column } from '../../model/database/Column';
 import { Table } from '../../model/database/Table';
-import { tableBuilderFor } from './TableBuilderFactory';
+import { buildTableFor } from './TableBuilder';
 
 // Build top level and sub level tables for the given top level entity,
 // including columns for each property and cascading through special property types as needed
@@ -27,15 +27,15 @@ export function buildTablesFromProperties(
   }
 
   entity.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
-    tableBuilderFor(property).buildTables(
+    buildTableFor({
       property,
-      TableStrategy.default(mainTable),
-      primaryKeys,
-      BuildStrategyDefault,
+      parentTableStrategy: TableStrategy.default(mainTable),
+      parentPrimaryKeys: primaryKeys,
+      buildStrategy: BuildStrategyDefault,
       tables,
       targetTechnologyVersion,
-      null,
-    );
+      parentIsRequired: null,
+    });
   });
 
   // For ODS/API 7+, primary keys of main table needs to be brought to the front and sorted
