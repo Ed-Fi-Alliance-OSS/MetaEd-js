@@ -1,7 +1,7 @@
 import { ReferentialProperty, SemVer, TopLevelEntity, versionSatisfies } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
-import { columnCreatorFor } from './ColumnCreatorFactory';
+import { columnCreatorFor } from './ColumnCreator';
 
 export function collectPrimaryKeys(
   entity: TopLevelEntity,
@@ -13,7 +13,7 @@ export function collectPrimaryKeys(
   const columns: Column[] = [];
 
   entity.data.edfiOdsRelational.odsIdentityProperties.forEach((property: ReferentialProperty) => {
-    columns.push(...columnCreatorFor(property, targetTechnologyVersion).createColumns(property, strategy));
+    columns.push(...columnCreatorFor(property, strategy, targetTechnologyVersion));
   });
 
   entity.data.edfiOdsRelational.odsProperties.forEach((property: ReferentialProperty) => {

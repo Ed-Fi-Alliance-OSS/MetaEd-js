@@ -2,7 +2,7 @@ import { newInlineCommon, newInlineCommonProperty, newStringProperty, newInteger
 import { Common, InlineCommonProperty, StringProperty, IntegerProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { Column, StringColumn } from '../../../src/model/database/Column';
-import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreatorFactory';
+import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreator';
 
 describe('when creating columns for inline common with is collection property', (): void => {
   const propertyName = 'PropertyName';
@@ -50,7 +50,7 @@ describe('when creating columns for inline common with is collection property', 
 
     common.data.edfiOdsRelational.odsProperties.push(property);
 
-    columns = columnCreatorFor(commonProperty, '7.0.0').createColumns(commonProperty, BuildStrategyDefault);
+    columns = columnCreatorFor(commonProperty, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return no columns', (): void => {
@@ -106,7 +106,7 @@ describe('when creating columns for inline common with only one property', (): v
 
     common.data.edfiOdsRelational.odsProperties.push(property);
 
-    columns = columnCreatorFor(commonProperty, '7.0.0').createColumns(commonProperty, BuildStrategyDefault);
+    columns = columnCreatorFor(commonProperty, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return a single column', (): void => {
@@ -188,7 +188,7 @@ describe('when creating columns for inline common with two properties', (): void
     common.data.edfiOdsRelational.odsProperties.push(stringProperty);
     common.data.edfiOdsRelational.odsProperties.push(integerProperty);
 
-    columns = columnCreatorFor(commonProperty, '7.0.0').createColumns(commonProperty, BuildStrategyDefault);
+    columns = columnCreatorFor(commonProperty, BuildStrategyDefault, '7.0.0');
   });
 
   it('should return two columns', (): void => {

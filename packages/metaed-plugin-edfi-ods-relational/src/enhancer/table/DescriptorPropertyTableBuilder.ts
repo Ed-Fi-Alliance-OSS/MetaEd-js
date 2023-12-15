@@ -16,8 +16,7 @@ import { ForeignKey, createForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
 import { TableBuilder } from './TableBuilder';
 import { TableStrategy } from '../../model/database/TableStrategy';
-import { columnCreatorFor } from './ColumnCreatorFactory';
-import { ColumnCreator } from './ColumnCreator';
+import { descriptorPropertyColumnCreator } from './DescriptorPropertyColumnCreator';
 
 export function descriptorPropertyTableBuilder(): TableBuilder {
   return {
@@ -31,10 +30,9 @@ export function descriptorPropertyTableBuilder(): TableBuilder {
       parentIsRequired: boolean | null,
     ): void {
       const descriptor: ReferentialProperty = property as ReferentialProperty;
-      const columnCreator: ColumnCreator = columnCreatorFor(descriptor, targetTechnologyVersion);
 
       if (!descriptor.data.edfiOdsRelational.odsIsCollection) {
-        const descriptorColumn: Column = columnCreator.createColumns(descriptor, buildStrategy)[0];
+        const descriptorColumn: Column = descriptorPropertyColumnCreator(descriptor, buildStrategy)[0];
         addColumnsWithoutSort(
           parentTableStrategy.table,
           [descriptorColumn],
@@ -99,7 +97,7 @@ export function descriptorPropertyTableBuilder(): TableBuilder {
           targetTechnologyVersion,
         );
 
-        const columns: Column[] = columnCreator.createColumns(descriptor, buildStrategy.columnNamerIgnoresRoleName());
+        const columns: Column[] = descriptorPropertyColumnCreator(descriptor, buildStrategy.columnNamerIgnoresRoleName());
         const foreignKey: ForeignKey = createForeignKey(
           property,
           {

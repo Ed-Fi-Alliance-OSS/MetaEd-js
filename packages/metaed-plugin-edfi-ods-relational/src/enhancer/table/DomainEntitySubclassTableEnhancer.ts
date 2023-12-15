@@ -10,7 +10,7 @@ import { Column } from '../../model/database/Column';
 import { ColumnPair } from '../../model/database/ColumnPair';
 import { ForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
-import { columnCreatorFor } from './ColumnCreatorFactory';
+import { columnCreatorFor } from './ColumnCreator';
 
 const enhancerName = 'DomainEntitySubclassTableEnhancer';
 
@@ -37,9 +37,9 @@ function addForeignKeyToPrimaryKeyRename(table: Table, entity: TopLevelEntity, t
       foreignKey.foreignTableId = entity.baseEntity.data.edfiOdsRelational.odsTableId;
     }
 
-    const localColumnIds: string[] = columnCreatorFor(keyRenameProperty, targetTechnologyVersion)
-      .createColumns(keyRenameProperty, BuildStrategyDefault)
-      .map((x: Column) => x.columnId);
+    const localColumnIds: string[] = columnCreatorFor(keyRenameProperty, BuildStrategyDefault, targetTechnologyVersion).map(
+      (x: Column) => x.columnId,
+    );
 
     const baseColumnProperty: EntityProperty = R.head(
       (entity.baseEntity as TopLevelEntity).data.edfiOdsRelational.odsProperties.filter(
@@ -47,9 +47,9 @@ function addForeignKeyToPrimaryKeyRename(table: Table, entity: TopLevelEntity, t
       ),
     );
 
-    const baseColumnIds: string[] = columnCreatorFor(baseColumnProperty, targetTechnologyVersion)
-      .createColumns(baseColumnProperty, BuildStrategyDefault)
-      .map((x: Column) => x.columnId);
+    const baseColumnIds: string[] = columnCreatorFor(baseColumnProperty, BuildStrategyDefault, targetTechnologyVersion).map(
+      (x: Column) => x.columnId,
+    );
 
     const columnPairs: ColumnPair[] = R.zipWith((localColumnName, baseColumnName) => ({
       ...newColumnPair(),

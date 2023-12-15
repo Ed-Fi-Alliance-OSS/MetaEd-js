@@ -9,7 +9,6 @@ import {
 } from '../../model/database/Column';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
-import { ColumnCreator } from './ColumnCreator';
 
 const createDecimalColumn = (property: DecimalProperty): DecimalColumn => ({
   ...newColumn(),
@@ -25,7 +24,7 @@ const createStringColumn = (property: StringProperty): StringColumn => ({
   maxLength: property.maxLength || '0',
 });
 
-export function createNewColumnFor(property: SimpleProperty): Column {
+function createNewColumnFor(property: SimpleProperty): Column {
   const createNewColumn: { [propertyType: string]: () => Column } = {
     boolean: () => ({
       ...newColumn(),
@@ -84,37 +83,33 @@ export function createNewColumnFor(property: SimpleProperty): Column {
   return createNewColumn[property.type]();
 }
 
-export function simplePropertyColumnCreator(): ColumnCreator {
-  return {
-    createColumns: (property: EntityProperty, strategy: BuildStrategy): Column[] => {
-      if (!strategy.buildColumns(property)) return [];
+export function simplePropertyColumnCreator(property: EntityProperty, strategy: BuildStrategy): Column[] {
+  if (!strategy.buildColumns(property)) return [];
 
-      const column: Column = {
-        ...createNewColumnFor(property as SimpleProperty),
-        referenceContext: property.data.edfiOdsRelational.odsName,
-        mergedReferenceContexts: [property.data.edfiOdsRelational.odsName],
-      };
-      const columnNamer: () => ColumnNaming = strategy.columnNamer(
-        strategy.parentContext(),
-        strategy.parentContextProperties(),
-        property.data.edfiOdsRelational.odsContextPrefix,
-        {
-          ...newColumnNameComponent(),
-          name: property.data.edfiOdsRelational.odsContextPrefix,
-          isPropertyRoleName: true,
-          sourceProperty: property,
-        },
-        property.metaEdName,
-        {
-          ...newColumnNameComponent(),
-          name: property.metaEdName,
-          isMetaEdName: true,
-          sourceProperty: property,
-        },
-      );
-      const suppressPrimaryKey: boolean = strategy.suppressPrimaryKeyCreation();
-
-      return [initializeColumn(column, property, columnNamer, suppressPrimaryKey)];
-    },
+  const column: Column = {
+    ...createNewColumnFor(property as SimpleProperty),
+    referenceContext: property.data.edfiOdsRelational.odsName,
+    mergedReferenceContexts: [property.data.edfiOdsRelational.odsName],
   };
+  const columnNamer: () => ColumnNaming = strategy.columnNamer(
+    strategy.parentContext(),
+    strategy.parentContextProperties(),
+    property.data.edfiOdsRelational.odsContextPrefix,
+    {
+      ...newColumnNameComponent(),
+      name: property.data.edfiOdsRelational.odsContextPrefix,
+      isPropertyRoleName: true,
+      sourceProperty: property,
+    },
+    property.metaEdName,
+    {
+      ...newColumnNameComponent(),
+      name: property.metaEdName,
+      isMetaEdName: true,
+      sourceProperty: property,
+    },
+  );
+  const suppressPrimaryKey: boolean = strategy.suppressPrimaryKeyCreation();
+
+  return [initializeColumn(column, property, columnNamer, suppressPrimaryKey)];
 }

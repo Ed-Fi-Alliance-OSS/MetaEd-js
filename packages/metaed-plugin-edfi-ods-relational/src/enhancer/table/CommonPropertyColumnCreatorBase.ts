@@ -2,7 +2,7 @@ import * as R from 'ramda';
 import { EntityProperty, SemVer, TopLevelEntity } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
-import { columnCreatorFor } from './ColumnCreatorFactory';
+import { columnCreatorFor } from './ColumnCreator';
 
 export function collectColumns(
   entityProperty: EntityProperty,
@@ -14,6 +14,6 @@ export function collectColumns(
   return entity.data.edfiOdsRelational.odsProperties.reduce((columns: Column[], property: EntityProperty): Column[] => {
     if (property.data.edfiOdsRelational.odsIsCollection) return columns;
 
-    return columns.concat(columnCreatorFor(property, targetTechnologyVersion).createColumns(property, strategy));
+    return columns.concat(columnCreatorFor(property, strategy, targetTechnologyVersion));
   }, []);
 }

@@ -7,7 +7,7 @@ import { Column } from '../../../src/model/database/Column';
 import { Table } from '../../../src/model/database/Table';
 import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
 import { tableBuilderFor } from '../../../src/enhancer/table/TableBuilderFactory';
-import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreatorFactory';
+import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreator';
 
 const targetTechnologyVersion: SemVer = '7.1.0';
 
@@ -61,10 +61,7 @@ describe('when building simple entity property table with collection property an
       },
     });
 
-    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, '7.0.0').createColumns(
-      entityPkProperty,
-      BuildStrategyDefault,
-    );
+    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, BuildStrategyDefault, '7.0.0');
 
     const tableBuilder: TableBuilder = tableBuilderFor(entityProperty);
     tableBuilder.buildTables(

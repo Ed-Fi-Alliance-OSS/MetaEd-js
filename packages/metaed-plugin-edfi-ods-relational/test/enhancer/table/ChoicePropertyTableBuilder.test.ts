@@ -6,7 +6,7 @@ import { TableStrategy } from '../../../src/model/database/TableStrategy';
 import { Column } from '../../../src/model/database/Column';
 import { Table } from '../../../src/model/database/Table';
 import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
-import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreatorFactory';
+import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreator';
 import { tableBuilderFor } from '../../../src/enhancer/table/TableBuilderFactory';
 
 const targetTechnologyVersion: SemVer = '6.1.0';
@@ -77,10 +77,7 @@ describe('when building choice property table with two integer properties', (): 
     choice.data.edfiOdsRelational.odsProperties.push(...[choiceEntityProperty1, choiceEntityProperty2]);
     entityChoiceProperty.referencedEntity = choice;
 
-    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, '6.1.0').createColumns(
-      entityPkProperty,
-      BuildStrategyDefault,
-    );
+    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
 
     const tableBuilder: TableBuilder = tableBuilderFor(entityChoiceProperty);
     tableBuilder.buildTables(

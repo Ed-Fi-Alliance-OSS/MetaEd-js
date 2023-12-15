@@ -6,7 +6,7 @@ import { TableStrategy } from '../../../src/model/database/TableStrategy';
 import { Column } from '../../../src/model/database/Column';
 import { Table } from '../../../src/model/database/Table';
 import { TableBuilder } from '../../../src/enhancer/table/TableBuilder';
-import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreatorFactory';
+import { columnCreatorFor } from '../../../src/enhancer/table/ColumnCreator';
 import { tableBuilderFor } from '../../../src/enhancer/table/TableBuilderFactory';
 
 const targetTechnologyVersion: SemVer = '6.1.0';
@@ -74,10 +74,7 @@ describe('when building descriptor property table', (): void => {
     descriptor.data.edfiOdsRelational.odsProperties.push(descriptorEntityProperty1);
     entityDescriptorProperty.referencedEntity = descriptor;
 
-    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, '6.1.0').createColumns(
-      entityPkProperty,
-      BuildStrategyDefault,
-    );
+    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
 
     const tableBuilder: TableBuilder = tableBuilderFor(entityDescriptorProperty);
     tableBuilder.buildTables(
@@ -180,10 +177,7 @@ describe('when building collection descriptor property table', (): void => {
     descriptor.data.edfiOdsRelational.odsProperties.push(descriptorEntityProperty1);
     entityDescriptorProperty.referencedEntity = descriptor;
 
-    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, '6.1.0').createColumns(
-      entityPkProperty,
-      BuildStrategyDefault,
-    );
+    const primaryKeys: Column[] = columnCreatorFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
 
     const tableBuilder: TableBuilder = tableBuilderFor(entityDescriptorProperty);
     tableBuilder.buildTables(

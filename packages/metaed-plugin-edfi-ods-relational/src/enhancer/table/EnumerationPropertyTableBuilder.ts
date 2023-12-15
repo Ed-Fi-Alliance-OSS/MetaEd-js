@@ -6,12 +6,11 @@ import { ColumnTransform, ColumnTransformPrimaryKey, ColumnTransformUnchanged } 
 import { ForeignKeyStrategy } from '../../model/database/ForeignKeyStrategy';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
-import { ColumnCreator } from './ColumnCreator';
-import { columnCreatorFor } from './ColumnCreatorFactory';
 import { ForeignKey, createForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
 import { TableBuilder } from './TableBuilder';
 import { TableStrategy } from '../../model/database/TableStrategy';
+import { enumerationPropertyColumnCreator } from './EnumerationPropertyColumnCreator';
 
 const foreignKeyStrategyFor = (property: EntityProperty): ForeignKeyStrategy => {
   if (property.type === 'enumeration')
@@ -32,10 +31,9 @@ export function enumerationPropertyTableBuilder(): TableBuilder {
       parentIsRequired: boolean | null,
     ): void {
       const enumeration: ReferentialProperty = asReferentialProperty(property);
-      const columnCreator: ColumnCreator = columnCreatorFor(enumeration, targetTechnologyVersion);
 
       if (!enumeration.data.edfiOdsRelational.odsIsCollection) {
-        const enumerationColumn: Column = R.head(columnCreator.createColumns(enumeration, buildStrategy));
+        const enumerationColumn: Column = enumerationPropertyColumnCreator(enumeration, buildStrategy)[0];
         const foreignKey: ForeignKey = createForeignKey(
           property,
           {
@@ -96,7 +94,7 @@ export function enumerationPropertyTableBuilder(): TableBuilder {
           targetTechnologyVersion,
         );
 
-        const columns: Column[] = columnCreator.createColumns(enumeration, buildStrategy.columnNamerIgnoresRoleName());
+        const columns: Column[] = enumerationPropertyColumnCreator(enumeration, buildStrategy.columnNamerIgnoresRoleName());
         const foreignKey: ForeignKey = createForeignKey(
           property,
           {

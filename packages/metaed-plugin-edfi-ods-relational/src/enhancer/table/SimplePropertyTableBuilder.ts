@@ -7,12 +7,11 @@ import { ColumnTransform, ColumnTransformPrimaryKey, ColumnTransformUnchanged } 
 import { ForeignKeyStrategy } from '../../model/database/ForeignKeyStrategy';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
-import { ColumnCreator } from './ColumnCreator';
-import { columnCreatorFor } from './ColumnCreatorFactory';
 import { ForeignKey, createForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
 import { TableBuilder } from './TableBuilder';
 import { TableStrategy } from '../../model/database/TableStrategy';
+import { simplePropertyColumnCreator } from './SimplePropertyColumnCreator';
 
 export function simplePropertyTableBuilder(): TableBuilder {
   return {
@@ -25,8 +24,6 @@ export function simplePropertyTableBuilder(): TableBuilder {
       targetTechnologyVersion: SemVer,
       parentIsRequired: boolean | null,
     ): void {
-      const columnCreator: ColumnCreator = columnCreatorFor(property, targetTechnologyVersion);
-
       let strategy: BuildStrategy = buildStrategy;
 
       // TODO: As of METAED-881, the property here could be a shared simple property, which
@@ -81,7 +78,7 @@ export function simplePropertyTableBuilder(): TableBuilder {
         );
         addColumnsWithoutSort(
           joinTable,
-          columnCreator.createColumns(property, strategy.columnNamerIgnoresRoleName()),
+          simplePropertyColumnCreator(property, strategy.columnNamerIgnoresRoleName()),
           ColumnTransformPrimaryKey,
           targetTechnologyVersion,
         );
@@ -90,7 +87,7 @@ export function simplePropertyTableBuilder(): TableBuilder {
       } else {
         addColumnsWithoutSort(
           parentTableStrategy.table,
-          columnCreator.createColumns(property, strategy),
+          simplePropertyColumnCreator(property, strategy),
           strategy.leafColumns(ColumnTransformUnchanged),
           targetTechnologyVersion,
         );
