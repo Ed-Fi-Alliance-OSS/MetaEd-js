@@ -1,4 +1,11 @@
-import { asCommonProperty, getEntityFromNamespaceChain, Namespace, SemVer, versionSatisfies } from '@edfi/metaed-core';
+import {
+  CommonProperty,
+  getEntityFromNamespaceChain,
+  MetaEdPropertyPath,
+  Namespace,
+  SemVer,
+  versionSatisfies,
+} from '@edfi/metaed-core';
 import { ModelBase, EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
 import {
   TableNameGroup,
@@ -20,6 +27,7 @@ import { foreignKeySourceReferenceFrom } from '../../model/database/ForeignKey';
 import { ForeignKey, createForeignKeyUsingSourceReference } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
 import { buildTableFor, TableBuilderParameters } from './TableBuilder';
+import { appendToPropertyPath } from '../EnhancerHelper';
 
 function buildExtensionTables(
   property: ReferentialProperty,
@@ -31,6 +39,7 @@ function buildExtensionTables(
   joinTableSchema: string,
   joinTableNamespace: Namespace,
   tables: Table[],
+  currentPropertyPath: MetaEdPropertyPath,
   targetTechnologyVersion: SemVer,
 ): void {
   const commonExtension: ModelBase | null = getEntityFromNamespaceChain(
@@ -130,6 +139,7 @@ function buildExtensionTables(
       tables,
       targetTechnologyVersion,
       parentIsRequired: null,
+      currentPropertyPath: appendToPropertyPath(currentPropertyPath, odsProperty),
     });
   });
 
@@ -146,8 +156,9 @@ export function commonExtensionPropertyTableBuilder({
   buildStrategy,
   tables,
   targetTechnologyVersion,
+  currentPropertyPath,
 }: TableBuilderParameters): void {
-  const commonProperty = asCommonProperty(property);
+  const commonProperty: CommonProperty = property as CommonProperty;
   let strategy: BuildStrategy = buildStrategy;
 
   if (commonProperty.mergeDirectives.length > 0) {
@@ -158,7 +169,9 @@ export function commonExtensionPropertyTableBuilder({
 
   const primaryKeys: Column[] = [];
   if (!commonProperty.isOptional) {
-    primaryKeys.push(...collectPrimaryKeys(commonProperty.referencedEntity, strategy, targetTechnologyVersion));
+    primaryKeys.push(
+      ...collectPrimaryKeys(commonProperty.referencedEntity, strategy, currentPropertyPath, targetTechnologyVersion),
+    );
   }
 
   // For ODS/API 7+, parent primary keys come first
@@ -194,6 +207,7 @@ export function commonExtensionPropertyTableBuilder({
     commonProperty.referencedEntity.namespace.namespaceName.toLowerCase(),
     commonProperty.referencedEntity.namespace,
     tables,
+    currentPropertyPath,
     targetTechnologyVersion,
   );
 }

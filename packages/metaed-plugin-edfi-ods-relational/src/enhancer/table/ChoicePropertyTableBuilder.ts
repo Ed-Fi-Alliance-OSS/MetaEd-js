@@ -1,8 +1,8 @@
-import { EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
-import { asReferentialProperty } from '@edfi/metaed-core';
+import type { EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
 import { cloneColumn } from '../../model/database/Column';
 import { BuildStrategy } from './BuildStrategy';
 import { TableBuilderParameters, buildTableFor } from './TableBuilder';
+import { appendToPropertyPath } from '../EnhancerHelper';
 
 export function choicePropertyTableBuilder({
   property,
@@ -11,8 +11,9 @@ export function choicePropertyTableBuilder({
   buildStrategy,
   tables,
   targetTechnologyVersion,
+  currentPropertyPath,
 }: TableBuilderParameters): void {
-  const choice: ReferentialProperty = asReferentialProperty(property);
+  const choice: ReferentialProperty = property as ReferentialProperty;
   let strategy: BuildStrategy = buildStrategy;
 
   if (choice.mergeDirectives.length > 0) {
@@ -28,6 +29,7 @@ export function choicePropertyTableBuilder({
       tables,
       targetTechnologyVersion,
       parentIsRequired: choice.isRequired,
+      currentPropertyPath: appendToPropertyPath(currentPropertyPath, odsProperty),
     });
   });
 }

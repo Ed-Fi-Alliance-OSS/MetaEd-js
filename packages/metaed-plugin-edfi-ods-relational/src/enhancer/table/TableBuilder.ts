@@ -1,4 +1,4 @@
-import type { CommonProperty, EntityProperty, SemVer } from '@edfi/metaed-core';
+import type { CommonProperty, EntityProperty, MetaEdPropertyPath, SemVer } from '@edfi/metaed-core';
 import { choicePropertyTableBuilder } from './ChoicePropertyTableBuilder';
 import { commonExtensionPropertyTableBuilder } from './CommonExtensionPropertyTableBuilder';
 import { commonPropertyTableBuilder } from './CommonPropertyTableBuilder';
@@ -20,6 +20,8 @@ export type TableBuilderParameters = {
   tables: Table[];
   targetTechnologyVersion: SemVer;
   parentIsRequired: boolean | null;
+  /** The current property path for the given property */
+  currentPropertyPath: MetaEdPropertyPath;
 };
 
 export function buildTableFor(tableBuilderParameters: TableBuilderParameters): void {

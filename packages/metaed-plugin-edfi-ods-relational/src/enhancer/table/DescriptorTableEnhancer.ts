@@ -1,4 +1,10 @@
-import { SemVer, getEntitiesOfTypeForNamespaces, targetTechnologyVersionFor, versionSatisfies } from '@edfi/metaed-core';
+import {
+  MetaEdPropertyPath,
+  SemVer,
+  getEntitiesOfTypeForNamespaces,
+  targetTechnologyVersionFor,
+  versionSatisfies,
+} from '@edfi/metaed-core';
 import { Descriptor, EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, Namespace } from '@edfi/metaed-core';
 import {
   addColumnsWithoutSort,
@@ -87,6 +93,7 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
     isPartOfPrimaryKey: true,
     isNullable: false,
     description: PRIMARY_KEY_DESCRIPTOR,
+    propertyPath: '' as MetaEdPropertyPath, // Synthetic column
   };
   addColumnsWithoutSort(mainTable, [primaryKey], ColumnTransformUnchanged, targetTechnologyVersion);
 
@@ -150,7 +157,12 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
     addForeignKey(mainTable, mapTypeForeignKey);
   }
 
-  const primaryKeys: Column[] = collectPrimaryKeys(descriptor, BuildStrategyDefault, targetTechnologyVersion);
+  const primaryKeys: Column[] = collectPrimaryKeys(
+    descriptor,
+    BuildStrategyDefault,
+    '' as MetaEdPropertyPath,
+    targetTechnologyVersion,
+  );
   primaryKeys.push(primaryKey);
 
   descriptor.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
@@ -162,6 +174,7 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
       tables,
       targetTechnologyVersion,
       parentIsRequired: null,
+      currentPropertyPath: property.fullPropertyName as MetaEdPropertyPath,
     });
   });
 

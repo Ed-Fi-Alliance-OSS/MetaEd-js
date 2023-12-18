@@ -1,4 +1,4 @@
-import { newCommon, newCommonProperty, newIntegerProperty, newStringProperty } from '@edfi/metaed-core';
+import { MetaEdPropertyPath, newCommon, newCommonProperty, newIntegerProperty, newStringProperty } from '@edfi/metaed-core';
 import { Common, CommonProperty, IntegerProperty, StringProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { Column, StringColumn } from '../../../src/model/database/Column';
@@ -25,6 +25,7 @@ describe('when creating columns for common with is collection property', (): voi
 
     const commonProperty: CommonProperty = Object.assign(newCommonProperty(), {
       metaEdName: commonName,
+      fullPropertyName: commonName,
       referencedEntity: common,
       data: {
         edfiOdsRelational: {
@@ -35,6 +36,7 @@ describe('when creating columns for common with is collection property', (): voi
 
     property = Object.assign(newStringProperty(), {
       metaEdName: propertyName,
+      fullPropertyName: propertyName,
       documentation: propertyDocumentation,
       maxLength: length,
       data: {
@@ -50,7 +52,12 @@ describe('when creating columns for common with is collection property', (): voi
 
     common.data.edfiOdsRelational.odsProperties.push(property);
 
-    columns = createColumnFor(commonProperty, BuildStrategyDefault, '6.1.0');
+    columns = createColumnFor(
+      commonProperty,
+      BuildStrategyDefault,
+      commonProperty.fullPropertyName as MetaEdPropertyPath,
+      '6.1.0',
+    );
   });
 
   it('should return no columns', (): void => {
@@ -79,6 +86,7 @@ describe('when creating columns for common with only one property', (): void => 
 
     const commonProperty: CommonProperty = Object.assign(newCommonProperty(), {
       metaEdName: commonName,
+      fullPropertyName: commonName,
       referencedEntity: common,
       data: {
         edfiOdsRelational: {
@@ -89,6 +97,7 @@ describe('when creating columns for common with only one property', (): void => 
 
     property = Object.assign(newStringProperty(), {
       metaEdName: propertyName,
+      fullPropertyName: propertyName,
       documentation: propertyDocumentation,
       maxLength: length,
       data: {
@@ -103,7 +112,12 @@ describe('when creating columns for common with only one property', (): void => 
 
     common.data.edfiOdsRelational.odsProperties.push(property);
 
-    columns = createColumnFor(commonProperty, BuildStrategyDefault, '6.1.0');
+    columns = createColumnFor(
+      commonProperty,
+      BuildStrategyDefault,
+      commonProperty.fullPropertyName as MetaEdPropertyPath,
+      '6.1.0',
+    );
   });
 
   it('should return a single column', (): void => {
@@ -117,6 +131,7 @@ describe('when creating columns for common with only one property', (): void => 
     expect(columns[0].isPartOfPrimaryKey).toBe(false);
     expect(columns[0].originalContextPrefix).toBe('');
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"CommonName.PropertyName"`);
   });
 });
 
@@ -143,6 +158,7 @@ describe('when creating columns for common with two properties', (): void => {
 
     const commonProperty: CommonProperty = Object.assign(newCommonProperty(), {
       metaEdName: commonName,
+      fullPropertyName: commonName,
       referencedEntity: common,
       data: {
         edfiOdsRelational: {
@@ -153,6 +169,7 @@ describe('when creating columns for common with two properties', (): void => {
 
     stringProperty = Object.assign(newStringProperty(), {
       metaEdName: stringPropertyName,
+      fullPropertyName: stringPropertyName,
       documentation: propertyDocumentation,
       maxLength: length,
       data: {
@@ -167,6 +184,7 @@ describe('when creating columns for common with two properties', (): void => {
 
     integerProperty = Object.assign(newIntegerProperty(), {
       metaEdName: integerPropertyName,
+      fullPropertyName: integerPropertyName,
       documentation: propertyDocumentation,
       data: {
         edfiOdsRelational: {
@@ -181,7 +199,12 @@ describe('when creating columns for common with two properties', (): void => {
     common.data.edfiOdsRelational.odsProperties.push(stringProperty);
     common.data.edfiOdsRelational.odsProperties.push(integerProperty);
 
-    columns = createColumnFor(commonProperty, BuildStrategyDefault, '6.1.0');
+    columns = createColumnFor(
+      commonProperty,
+      BuildStrategyDefault,
+      commonProperty.fullPropertyName as MetaEdPropertyPath,
+      '6.1.0',
+    );
   });
 
   it('should return two columns', (): void => {
@@ -198,6 +221,7 @@ describe('when creating columns for common with two properties', (): void => {
     expect(columns[0].isPartOfPrimaryKey).toBe(false);
     expect(columns[0].originalContextPrefix).toBe('');
     expect(columns[0].sourceEntityProperties[0]).toBe(stringProperty);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"CommonName.StringPropertyName"`);
   });
 
   it('should return an integer column', (): void => {
@@ -209,5 +233,6 @@ describe('when creating columns for common with two properties', (): void => {
     expect(columns[1].isPartOfPrimaryKey).toBe(false);
     expect(columns[1].originalContextPrefix).toBe('');
     expect(columns[1].sourceEntityProperties[0]).toBe(integerProperty);
+    expect(columns[1].propertyPath).toMatchInlineSnapshot(`"CommonName.IntegerPropertyName"`);
   });
 });

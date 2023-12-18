@@ -1,8 +1,12 @@
-import { EntityProperty } from '@edfi/metaed-core';
+import { EntityProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { Column, newColumn, newColumnNameComponent, ColumnNameComponent } from '../../model/database/Column';
 
-export function schoolYearEnumerationPropertyColumnCreator(property: EntityProperty, strategy: BuildStrategy): Column[] {
+export function schoolYearEnumerationPropertyColumnCreator(
+  property: EntityProperty,
+  strategy: BuildStrategy,
+  currentPropertyPath: MetaEdPropertyPath,
+): Column[] {
   const nameComponents: ColumnNameComponent[] = [];
   strategy.parentContextProperties().forEach((parentContextProperty) => {
     if (parentContextProperty.data.edfiOdsRelational.odsContextPrefix !== '') {
@@ -35,6 +39,7 @@ export function schoolYearEnumerationPropertyColumnCreator(property: EntityPrope
     isNullable: property.isOptional,
     isPartOfPrimaryKey: !strategy.suppressPrimaryKeyCreation() && (property.isPartOfIdentity || property.isIdentityRename),
     sourceEntityProperties: [property],
+    propertyPath: currentPropertyPath,
   };
   return [column];
 }

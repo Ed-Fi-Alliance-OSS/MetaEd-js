@@ -11,12 +11,12 @@ import {
   orderByProp,
   SemVer,
   versionSatisfies,
-  MetaEdPropertyPath,
 } from '@edfi/metaed-core';
 import { columnConstraintMerge, Column, NoColumn } from './Column';
 import { ColumnTransform } from './ColumnTransform';
 import { ForeignKey } from './ForeignKey';
 import { simpleTableNameGroupConcat } from './TableNameGroupHelper';
+import { ColumnConflictPaths } from './ColumnConflictPaths';
 
 // eslint-disable-next-line no-use-before-define
 export type TableNameElement = TableNameComponent | TableNameGroup;
@@ -90,8 +90,8 @@ export interface Table {
   existenceReason: TableExistenceReason;
   tableId: string;
 
-  // The dot-separated MetaEd property path that leads to this table. Empty string for root tables.
-  propertyPath: MetaEdPropertyPath;
+  /** A list of all the column conflict paths that lead to the creation of this table */
+  columnConflictPaths: ColumnConflictPaths[];
 
   namespace: Namespace;
   schema: string;
@@ -132,7 +132,7 @@ export function newTable(): Table {
     existenceReason: NoTableExistenceReason,
     tableId: '',
 
-    propertyPath: '' as MetaEdPropertyPath,
+    columnConflictPaths: [],
 
     namespace: NoNamespace,
     schema: '',

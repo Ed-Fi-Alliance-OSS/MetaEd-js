@@ -1,5 +1,11 @@
 import * as R from 'ramda';
-import { SemVer, asTopLevelEntity, getEntitiesOfTypeForNamespaces, targetTechnologyVersionFor } from '@edfi/metaed-core';
+import {
+  MetaEdPropertyPath,
+  SemVer,
+  asTopLevelEntity,
+  getEntitiesOfTypeForNamespaces,
+  targetTechnologyVersionFor,
+} from '@edfi/metaed-core';
 import { EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, TopLevelEntity } from '@edfi/metaed-core';
 import { addForeignKey } from '../../model/database/Table';
 import { addTables, buildMainTable, buildTablesFromProperties } from './TableCreatingEntityEnhancerBase';
@@ -37,9 +43,12 @@ function addForeignKeyToPrimaryKeyRename(table: Table, entity: TopLevelEntity, t
       foreignKey.foreignTableId = entity.baseEntity.data.edfiOdsRelational.odsTableId;
     }
 
-    const localColumnIds: string[] = createColumnFor(keyRenameProperty, BuildStrategyDefault, targetTechnologyVersion).map(
-      (x: Column) => x.columnId,
-    );
+    const localColumnIds: string[] = createColumnFor(
+      keyRenameProperty,
+      BuildStrategyDefault,
+      keyRenameProperty.fullPropertyName as MetaEdPropertyPath,
+      targetTechnologyVersion,
+    ).map((x: Column) => x.columnId);
 
     const baseColumnProperty: EntityProperty = R.head(
       (entity.baseEntity as TopLevelEntity).data.edfiOdsRelational.odsProperties.filter(
@@ -47,9 +56,12 @@ function addForeignKeyToPrimaryKeyRename(table: Table, entity: TopLevelEntity, t
       ),
     );
 
-    const baseColumnIds: string[] = createColumnFor(baseColumnProperty, BuildStrategyDefault, targetTechnologyVersion).map(
-      (x: Column) => x.columnId,
-    );
+    const baseColumnIds: string[] = createColumnFor(
+      baseColumnProperty,
+      BuildStrategyDefault,
+      baseColumnProperty.fullPropertyName as MetaEdPropertyPath,
+      targetTechnologyVersion,
+    ).map((x: Column) => x.columnId);
 
     const columnPairs: ColumnPair[] = R.zipWith((localColumnName, baseColumnName) => ({
       ...newColumnPair(),

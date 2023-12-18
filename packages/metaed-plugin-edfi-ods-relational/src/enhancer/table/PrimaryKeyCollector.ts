@@ -1,11 +1,17 @@
-import { ReferentialProperty, SemVer, TopLevelEntity, versionSatisfies } from '@edfi/metaed-core';
+import { MetaEdPropertyPath, ReferentialProperty, SemVer, TopLevelEntity, versionSatisfies } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
 import { createColumnFor } from './ColumnCreator';
+import { appendToPropertyPath } from '../EnhancerHelper';
 
+/**
+ * Collects the primary keys for a given entity. Includes BuildStrategy to adjust column naming/attributes.
+ * Collects currentPropertyPath to assign to columns.
+ */
 export function collectPrimaryKeys(
   entity: TopLevelEntity,
   strategy: BuildStrategy,
+  currentPropertyPath: MetaEdPropertyPath,
   targetTechnologyVersion: SemVer,
 ): Column[] {
   if (!entity.data.edfiOdsRelational) return [];
@@ -13,7 +19,9 @@ export function collectPrimaryKeys(
   const columns: Column[] = [];
 
   entity.data.edfiOdsRelational.odsIdentityProperties.forEach((property: ReferentialProperty) => {
-    columns.push(...createColumnFor(property, strategy, targetTechnologyVersion));
+    columns.push(
+      ...createColumnFor(property, strategy, appendToPropertyPath(currentPropertyPath, property), targetTechnologyVersion),
+    );
   });
 
   entity.data.edfiOdsRelational.odsProperties.forEach((property: ReferentialProperty) => {
@@ -22,6 +30,7 @@ export function collectPrimaryKeys(
       ...collectPrimaryKeys(
         property.referencedEntity,
         strategy.appendParentContextProperty(property),
+        appendToPropertyPath(currentPropertyPath, property),
         targetTechnologyVersion,
       ),
     );

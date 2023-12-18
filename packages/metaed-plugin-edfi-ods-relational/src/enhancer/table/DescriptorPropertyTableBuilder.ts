@@ -24,11 +24,13 @@ export function descriptorPropertyTableBuilder({
   tables,
   targetTechnologyVersion,
   parentIsRequired,
+  currentPropertyPath,
 }: TableBuilderParameters): void {
   const descriptor: ReferentialProperty = property as ReferentialProperty;
 
   if (!descriptor.data.edfiOdsRelational.odsIsCollection) {
-    const descriptorColumn: Column = descriptorPropertyColumnCreator(descriptor, buildStrategy)[0];
+    const descriptorColumn: Column = descriptorPropertyColumnCreator(descriptor, buildStrategy, currentPropertyPath)[0];
+
     addColumnsWithoutSort(
       parentTableStrategy.table,
       [descriptorColumn],
@@ -93,7 +95,11 @@ export function descriptorPropertyTableBuilder({
       targetTechnologyVersion,
     );
 
-    const columns: Column[] = descriptorPropertyColumnCreator(descriptor, buildStrategy.columnNamerIgnoresRoleName());
+    const columns: Column[] = descriptorPropertyColumnCreator(
+      descriptor,
+      buildStrategy.columnNamerIgnoresRoleName(),
+      currentPropertyPath,
+    );
     const foreignKey: ForeignKey = createForeignKey(
       property,
       {

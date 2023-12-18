@@ -7,6 +7,7 @@ import {
   V3OrGreater,
   targetTechnologyVersionFor,
   SemVer,
+  MetaEdPropertyPath,
 } from '@edfi/metaed-core';
 import { EnhancerResult, EntityProperty, MetaEdEnvironment, ModelBase, TopLevelEntity } from '@edfi/metaed-core';
 import { addTables } from './TableCreatingEntityEnhancerBase';
@@ -81,7 +82,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         tables.push(mainTable);
       }
 
-      const primaryKeys: Column[] = collectPrimaryKeys(entity, BuildStrategyDefault, targetTechnologyVersion);
+      const primaryKeys: Column[] = collectPrimaryKeys(
+        entity,
+        BuildStrategyDefault,
+        '' as MetaEdPropertyPath,
+        targetTechnologyVersion,
+      );
 
       entity.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
         const tableStrategy: TableStrategy = TableStrategy.extension(
@@ -112,6 +118,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           tables,
           targetTechnologyVersion,
           parentIsRequired: null,
+          currentPropertyPath: property.fullPropertyName as MetaEdPropertyPath,
         });
       });
 

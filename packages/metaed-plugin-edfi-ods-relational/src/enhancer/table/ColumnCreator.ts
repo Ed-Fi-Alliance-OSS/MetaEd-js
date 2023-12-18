@@ -1,4 +1,4 @@
-import { EntityProperty, SemVer } from '@edfi/metaed-core';
+import { EntityProperty, MetaEdPropertyPath, SemVer } from '@edfi/metaed-core';
 import { choicePropertyColumnCreator } from './ChoicePropertyColumnCreator';
 import { commonPropertyColumnCreator } from './CommonPropertyColumnCreator';
 import { descriptorPropertyColumnCreator } from './DescriptorPropertyColumnCreator';
@@ -10,28 +10,33 @@ import { simplePropertyColumnCreator } from './SimplePropertyColumnCreator';
 import { Column } from '../../model/database/Column';
 import { BuildStrategy } from './BuildStrategy';
 
+/**
+ * Creates column(s) for the given property. Includes BuildStrategy to adjust column naming/attributes.
+ * currentPropertyPath is for the given property.
+ */
 export function createColumnFor(
   property: EntityProperty,
   buildStrategy: BuildStrategy,
+  currentPropertyPath: MetaEdPropertyPath,
   targetTechnologyVersion: SemVer,
 ): Column[] {
   switch (property.type) {
     case 'association':
     case 'domainEntity':
-      return referencePropertyColumnCreator(property, buildStrategy, targetTechnologyVersion);
+      return referencePropertyColumnCreator(property, buildStrategy, currentPropertyPath, targetTechnologyVersion);
 
     case 'choice':
-      return choicePropertyColumnCreator(property, buildStrategy, targetTechnologyVersion);
+      return choicePropertyColumnCreator(property, buildStrategy, currentPropertyPath, targetTechnologyVersion);
     case 'common':
-      return commonPropertyColumnCreator(property, buildStrategy, targetTechnologyVersion);
+      return commonPropertyColumnCreator(property, buildStrategy, currentPropertyPath, targetTechnologyVersion);
     case 'inlineCommon':
-      return inlineCommonPropertyColumnCreator(property, buildStrategy, targetTechnologyVersion);
+      return inlineCommonPropertyColumnCreator(property, buildStrategy, currentPropertyPath, targetTechnologyVersion);
     case 'descriptor':
-      return descriptorPropertyColumnCreator(property, buildStrategy);
+      return descriptorPropertyColumnCreator(property, buildStrategy, currentPropertyPath);
     case 'enumeration':
-      return enumerationPropertyColumnCreator(property, buildStrategy);
+      return enumerationPropertyColumnCreator(property, buildStrategy, currentPropertyPath);
     case 'schoolYearEnumeration':
-      return schoolYearEnumerationPropertyColumnCreator(property, buildStrategy);
+      return schoolYearEnumerationPropertyColumnCreator(property, buildStrategy, currentPropertyPath);
 
     case 'boolean':
     case 'currency':
@@ -49,7 +54,7 @@ export function createColumnFor(
     case 'string':
     case 'time':
     case 'year':
-      return simplePropertyColumnCreator(property, buildStrategy);
+      return simplePropertyColumnCreator(property, buildStrategy, currentPropertyPath);
 
     default:
       return [];

@@ -1,8 +1,12 @@
-import { EntityProperty } from '@edfi/metaed-core';
+import { EntityProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { Column, newColumn, ColumnNaming, newColumnNameComponent } from '../../model/database/Column';
 
-export function descriptorPropertyColumnCreator(property: EntityProperty, strategy: BuildStrategy): Column[] {
+export function descriptorPropertyColumnCreator(
+  property: EntityProperty,
+  strategy: BuildStrategy,
+  currentPropertyPath: MetaEdPropertyPath,
+): Column[] {
   if (!strategy.buildColumns(property)) return [];
 
   const columnNamer: () => ColumnNaming = strategy.columnNamer(
@@ -38,6 +42,7 @@ export function descriptorPropertyColumnCreator(property: EntityProperty, strate
     referenceContext: property.data.edfiOdsRelational.odsName,
     mergedReferenceContexts: [property.data.edfiOdsRelational.odsName],
     sourceEntityProperties: [property],
+    propertyPath: currentPropertyPath,
   };
   return [column];
 }

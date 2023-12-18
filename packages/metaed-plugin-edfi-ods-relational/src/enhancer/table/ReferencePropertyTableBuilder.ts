@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { SemVer, asReferentialProperty } from '@edfi/metaed-core';
+import { MetaEdPropertyPath, SemVer } from '@edfi/metaed-core';
 import { MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
 import {
   addColumnsWithoutSort,
@@ -26,12 +26,14 @@ const referenceColumnBuilder =
     referenceProperty: ReferentialProperty,
     parentTableStrategy: TableStrategy,
     buildStrategy: BuildStrategy,
+    currentPropertyPath: MetaEdPropertyPath,
     targetTechnologyVersion: SemVer,
   ) =>
   (columnStrategy: ColumnTransform): void => {
     const primaryKeys: Column[] = collectPrimaryKeys(
       referenceProperty.referencedEntity,
       buildStrategy,
+      currentPropertyPath,
       targetTechnologyVersion,
     );
 
@@ -50,9 +52,10 @@ export function referencePropertyTableBuilder({
   buildStrategy,
   tables,
   targetTechnologyVersion,
+  currentPropertyPath,
   parentIsRequired,
 }: TableBuilderParameters): void {
-  const referenceProperty: ReferentialProperty = asReferentialProperty(property);
+  const referenceProperty: ReferentialProperty = property as ReferentialProperty;
   let strategy: BuildStrategy = buildStrategy;
 
   if (!R.isEmpty(referenceProperty.mergeDirectives)) {
@@ -61,7 +64,13 @@ export function referencePropertyTableBuilder({
     );
   }
 
-  const buildColumns = referenceColumnBuilder(referenceProperty, parentTableStrategy, strategy, targetTechnologyVersion);
+  const buildColumns = referenceColumnBuilder(
+    referenceProperty,
+    parentTableStrategy,
+    strategy,
+    currentPropertyPath,
+    targetTechnologyVersion,
+  );
   if (referenceProperty.isPartOfIdentity) {
     buildColumns(ColumnTransform.primaryKeyRoleNameCollapsible(referenceProperty));
   }
@@ -150,7 +159,12 @@ export function referencePropertyTableBuilder({
     targetTechnologyVersion,
   );
 
-  const primaryKeys: Column[] = collectPrimaryKeys(referenceProperty.referencedEntity, strategy, targetTechnologyVersion);
+  const primaryKeys: Column[] = collectPrimaryKeys(
+    referenceProperty.referencedEntity,
+    strategy,
+    currentPropertyPath,
+    targetTechnologyVersion,
+  );
   primaryKeys.forEach((pk: Column) => addSourceEntityProperty(pk, property));
   addColumnsWithSort(joinTable, primaryKeys, ColumnTransform.primaryKeyRoleName(referenceProperty), targetTechnologyVersion);
 }

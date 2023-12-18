@@ -54,6 +54,7 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
     const domainEntityPkPropertyName = 'DomainEntityPkPropertyName';
     const domainEntityPkProperty: IntegerProperty = Object.assign(newIntegerProperty(), {
       metaEdName: domainEntityPkPropertyName,
+      fullPropertyName: domainEntityPkPropertyName,
       isPartOfIdentity: true,
       parentEntity: domainEntity,
       data: {
@@ -83,6 +84,7 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
     const domainEntityExtensionProperty: IntegerProperty = Object.assign(newIntegerProperty(), {
       namespace: extensionNamespace,
       metaEdName: domainEntityExtensionPropertyName,
+      fullPropertyName: domainEntityExtensionPropertyName,
       isPartOfIdentity: false,
       parentEntity: domainEntityExtension,
       data: {
@@ -117,11 +119,12 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
     );
   });
 
-  it('should have two columns', (): void => {
+  it('should have one columns', (): void => {
     const table: Table = tableEntities(metaEd, extensionNamespace).get(domainEntityExtensionTableName) as Table;
     expect(table.columns).toHaveLength(1);
     expect(table.columns[0].columnId).toBe(domainEntityExtensionPropertyName);
     expect(table.columns[0].isPartOfPrimaryKey).toBe(false);
+    expect(table.columns[0].propertyPath).toMatchInlineSnapshot(`"DomainEntityExtensionPropertyName"`);
   });
 });
 
@@ -151,6 +154,7 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
     const domainEntityPkPropertyName = 'DomainEntityPkPropertyName';
     const domainEntityPkProperty: IntegerProperty = Object.assign(newIntegerProperty(), {
       metaEdName: domainEntityPkPropertyName,
+      fullPropertyName: domainEntityPkPropertyName,
       isPartOfIdentity: true,
       parentEntity: domainEntity,
       data: {
@@ -179,6 +183,7 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
     const domainEntityExtensionPkProperty: IntegerProperty = Object.assign(newIntegerProperty(), {
       namespace: extensionNamespace,
       metaEdName: domainEntityExtensionPkPropertyName,
+      fullPropertyName: domainEntityExtensionPkPropertyName,
       isPartOfIdentity: true,
       parentEntity: domainEntityExtension,
       data: {
@@ -206,6 +211,7 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
     expect(table.columns).toHaveLength(1);
     expect(table.columns[0].columnId).toBe(domainEntityExtensionPkPropertyName);
     expect(table.columns[0].isPartOfPrimaryKey).toBe(true);
+    expect(table.columns[0].propertyPath).toMatchInlineSnapshot(`"DomainEntityExtensionPkPropertyName"`);
   });
 
   it('should include create date column', (): void => {
@@ -901,9 +907,7 @@ describe('when DomainEntityExtensionTableEnhancer enhances domain entity extensi
   });
 
   it('should create one tables', (): void => {
-    const x = tableEntities(metaEd, extensionNamespace);
-    // expect(tableEntities(metaEd, extensionNamespace).size).toBe(1);
-    expect(x.size).toBe(1);
+    expect(tableEntities(metaEd, extensionNamespace).size).toBe(1);
   });
 
   it('should not create a table for domain entity extension', (): void => {

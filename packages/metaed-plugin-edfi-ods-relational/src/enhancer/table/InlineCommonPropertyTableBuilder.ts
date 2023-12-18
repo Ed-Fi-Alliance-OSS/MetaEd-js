@@ -2,6 +2,7 @@ import { EntityProperty, ReferentialProperty } from '@edfi/metaed-core';
 import { asReferentialProperty } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { TableBuilderParameters, buildTableFor } from './TableBuilder';
+import { appendToPropertyPath } from '../EnhancerHelper';
 
 export function inlineCommonPropertyTableBuilder({
   property,
@@ -9,6 +10,7 @@ export function inlineCommonPropertyTableBuilder({
   parentPrimaryKeys,
   buildStrategy,
   tables,
+  currentPropertyPath,
   targetTechnologyVersion,
 }: TableBuilderParameters): void {
   const inlineCommonProperty: ReferentialProperty = asReferentialProperty(property);
@@ -27,6 +29,7 @@ export function inlineCommonPropertyTableBuilder({
       tables,
       targetTechnologyVersion,
       parentIsRequired: inlineCommonProperty.isRequired,
+      currentPropertyPath: appendToPropertyPath(currentPropertyPath, odsProperty),
     });
   });
 }

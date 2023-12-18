@@ -39,6 +39,7 @@ describe('when DomainEntitySubclassTableEnhancer enhances domain entity subclass
     const domainEntityPkPropertyName = 'DomainEntityPkPropertyName';
     const domainEntityPkProperty: IntegerProperty = Object.assign(newIntegerProperty(), {
       metaEdName: domainEntityPkPropertyName,
+      fullPropertyName: domainEntityPkPropertyName,
       isPartOfIdentity: true,
       parentEntity: domainEntity,
       data: {
@@ -68,6 +69,7 @@ describe('when DomainEntitySubclassTableEnhancer enhances domain entity subclass
     const domainEntitySubclassProperty: IntegerProperty = Object.assign(newIntegerProperty(), {
       namespace: extensionNamespace,
       metaEdName: domainEntitySubclassPropertyName,
+      fullPropertyName: domainEntitySubclassPropertyName,
       isPartOfIdentity: false,
       parentEntity: domainEntitySubclass,
       data: {
@@ -104,6 +106,7 @@ describe('when DomainEntitySubclassTableEnhancer enhances domain entity subclass
     expect(table.columns).toHaveLength(1);
     expect(table.columns[0].columnId).toBe(domainEntitySubclassPropertyName);
     expect(table.columns[0].isPartOfPrimaryKey).toBe(false);
+    expect(table.columns[0].propertyPath).toMatchInlineSnapshot(`"DomainEntitySubclassPropertyName"`);
   });
 });
 

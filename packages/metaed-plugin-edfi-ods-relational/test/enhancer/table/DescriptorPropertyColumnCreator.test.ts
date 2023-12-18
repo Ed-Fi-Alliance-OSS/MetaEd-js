@@ -1,4 +1,4 @@
-import { DescriptorProperty, EntityProperty, newBooleanProperty } from '@edfi/metaed-core';
+import { DescriptorProperty, EntityProperty, MetaEdPropertyPath, newBooleanProperty } from '@edfi/metaed-core';
 import { newDescriptorProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { Column } from '../../../src/model/database/Column';
@@ -12,6 +12,8 @@ describe('when creating columns for descriptor property', (): void => {
 
   beforeAll(() => {
     property = Object.assign(newDescriptorProperty(), {
+      metaEdName: propertyName,
+      fullPropertyName: propertyName,
       documentation: propertyDocumentation,
       isPartOfIdentity: false,
       isOptional: false,
@@ -25,7 +27,7 @@ describe('when creating columns for descriptor property', (): void => {
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, '6.1.0');
+    columns = createColumnFor(property, BuildStrategyDefault, property.fullPropertyName as MetaEdPropertyPath, '6.1.0');
   });
 
   it('should return a column', (): void => {
@@ -38,6 +40,7 @@ describe('when creating columns for descriptor property', (): void => {
     expect(columns[0].referenceContext).toBe(propertyName);
     expect(columns[0].mergedReferenceContexts).toEqual([propertyName]);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
   });
 });
 
@@ -49,6 +52,8 @@ describe('when creating columns for primary key descriptor property', (): void =
 
   beforeAll(() => {
     property = Object.assign(newDescriptorProperty(), {
+      metaEdName: propertyName,
+      fullPropertyName: propertyName,
       documentation: propertyDocumentation,
       isPartOfIdentity: true,
       isOptional: false,
@@ -62,7 +67,7 @@ describe('when creating columns for primary key descriptor property', (): void =
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, '6.1.0');
+    columns = createColumnFor(property, BuildStrategyDefault, property.fullPropertyName as MetaEdPropertyPath, '6.1.0');
   });
 
   it('should return a primary key column', (): void => {
@@ -75,6 +80,7 @@ describe('when creating columns for primary key descriptor property', (): void =
     expect(columns[0].referenceContext).toBe(propertyName);
     expect(columns[0].mergedReferenceContexts).toEqual([propertyName]);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
   });
 });
 
@@ -86,6 +92,8 @@ describe('when creating columns for nullable descriptor property', (): void => {
 
   beforeAll(() => {
     property = Object.assign(newDescriptorProperty(), {
+      metaEdName: propertyName,
+      fullPropertyName: propertyName,
       documentation: propertyDocumentation,
       isPartOfIdentity: false,
       isOptional: true,
@@ -99,7 +107,7 @@ describe('when creating columns for nullable descriptor property', (): void => {
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, '6.1.0');
+    columns = createColumnFor(property, BuildStrategyDefault, property.fullPropertyName as MetaEdPropertyPath, '6.1.0');
   });
 
   it('should return a nullable column', (): void => {
@@ -112,6 +120,7 @@ describe('when creating columns for nullable descriptor property', (): void => {
     expect(columns[0].referenceContext).toBe(propertyName);
     expect(columns[0].mergedReferenceContexts).toEqual([propertyName]);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
   });
 });
 
@@ -124,6 +133,8 @@ describe('when creating columns for descriptor property role name', (): void => 
 
   beforeAll(() => {
     property = Object.assign(newDescriptorProperty(), {
+      metaEdName: propertyName,
+      fullPropertyName: `${contextName}${propertyName}`,
       documentation: propertyDocumentation,
       isPartOfIdentity: false,
       isOptional: false,
@@ -137,7 +148,7 @@ describe('when creating columns for descriptor property role name', (): void => 
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, '6.1.0');
+    columns = createColumnFor(property, BuildStrategyDefault, property.fullPropertyName as MetaEdPropertyPath, '6.1.0');
   });
 
   it('should return a nullable column', (): void => {
@@ -150,6 +161,7 @@ describe('when creating columns for descriptor property role name', (): void => 
     expect(columns[0].referenceContext).toBe(propertyName);
     expect(columns[0].mergedReferenceContexts).toEqual([propertyName]);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"ContextNamePropertyName"`);
   });
 });
 
@@ -167,6 +179,8 @@ describe('when creating columns for descriptor property role name and append par
 
   beforeAll(() => {
     property = Object.assign(newDescriptorProperty(), {
+      metaEdName: propertyName,
+      fullPropertyName: `${contextName}${propertyName}`,
       documentation: propertyDocumentation,
       isPartOfIdentity: false,
       isOptional: false,
@@ -180,7 +194,12 @@ describe('when creating columns for descriptor property role name and append par
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault.appendParentContextProperty(parentContextProperty), '6.1.0');
+    columns = createColumnFor(
+      property,
+      BuildStrategyDefault.appendParentContextProperty(parentContextProperty),
+      property.fullPropertyName as MetaEdPropertyPath,
+      '6.1.0',
+    );
   });
 
   it('should return a nullable column', (): void => {
@@ -193,6 +212,7 @@ describe('when creating columns for descriptor property role name and append par
     expect(columns[0].referenceContext).toBe(propertyName);
     expect(columns[0].mergedReferenceContexts).toEqual([propertyName]);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"ContextNamePropertyName"`);
   });
 });
 
@@ -204,6 +224,8 @@ describe('when creating columns for collection descriptor property', (): void =>
 
   beforeAll(() => {
     property = Object.assign(newDescriptorProperty(), {
+      metaEdName: propertyName,
+      fullPropertyName: propertyName,
       documentation: propertyDocumentation,
       isPartOfIdentity: false,
       isOptional: false,
@@ -217,7 +239,7 @@ describe('when creating columns for collection descriptor property', (): void =>
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, '6.1.0');
+    columns = createColumnFor(property, BuildStrategyDefault, property.fullPropertyName as MetaEdPropertyPath, '6.1.0');
   });
 
   it('should return a primary key column', (): void => {
@@ -230,6 +252,7 @@ describe('when creating columns for collection descriptor property', (): void =>
     expect(columns[0].referenceContext).toBe(propertyName);
     expect(columns[0].mergedReferenceContexts).toEqual([propertyName]);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
   });
 });
 
@@ -241,6 +264,8 @@ describe('when creating columns for primary key descriptor property with suppres
 
   beforeAll(() => {
     property = Object.assign(newDescriptorProperty(), {
+      metaEdName: propertyName,
+      fullPropertyName: propertyName,
       documentation: propertyDocumentation,
       isPartOfIdentity: true,
       isOptional: false,
@@ -254,7 +279,12 @@ describe('when creating columns for primary key descriptor property with suppres
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(), '6.1.0');
+    columns = createColumnFor(
+      property,
+      BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(),
+      property.fullPropertyName as MetaEdPropertyPath,
+      '6.1.0',
+    );
   });
 
   it('should return a column', (): void => {
@@ -267,6 +297,7 @@ describe('when creating columns for primary key descriptor property with suppres
     expect(columns[0].referenceContext).toBe(propertyName);
     expect(columns[0].mergedReferenceContexts).toEqual([propertyName]);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
   });
 });
 
@@ -278,6 +309,8 @@ describe('when creating columns for collection descriptor property with suppress
 
   beforeAll(() => {
     property = Object.assign(newDescriptorProperty(), {
+      metaEdName: propertyName,
+      fullPropertyName: propertyName,
       documentation: propertyDocumentation,
       isPartOfIdentity: false,
       isOptional: false,
@@ -291,7 +324,12 @@ describe('when creating columns for collection descriptor property with suppress
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(), '6.1.0');
+    columns = createColumnFor(
+      property,
+      BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(),
+      property.fullPropertyName as MetaEdPropertyPath,
+      '6.1.0',
+    );
   });
 
   it('should return a column', (): void => {
@@ -304,5 +342,6 @@ describe('when creating columns for collection descriptor property with suppress
     expect(columns[0].referenceContext).toBe(propertyName);
     expect(columns[0].mergedReferenceContexts).toEqual([propertyName]);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
   });
 });

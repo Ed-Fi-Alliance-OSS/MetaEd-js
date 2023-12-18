@@ -18,6 +18,7 @@ export function simplePropertyTableBuilder({
   buildStrategy,
   tables,
   targetTechnologyVersion,
+  currentPropertyPath,
   parentIsRequired,
 }: TableBuilderParameters): void {
   let strategy: BuildStrategy = buildStrategy;
@@ -74,7 +75,7 @@ export function simplePropertyTableBuilder({
     );
     addColumnsWithoutSort(
       joinTable,
-      simplePropertyColumnCreator(property, strategy.columnNamerIgnoresRoleName()),
+      simplePropertyColumnCreator(property, strategy.columnNamerIgnoresRoleName(), currentPropertyPath),
       ColumnTransformPrimaryKey,
       targetTechnologyVersion,
     );
@@ -83,7 +84,7 @@ export function simplePropertyTableBuilder({
   } else {
     addColumnsWithoutSort(
       parentTableStrategy.table,
-      simplePropertyColumnCreator(property, strategy),
+      simplePropertyColumnCreator(property, strategy, currentPropertyPath),
       strategy.leafColumns(ColumnTransformUnchanged),
       targetTechnologyVersion,
     );

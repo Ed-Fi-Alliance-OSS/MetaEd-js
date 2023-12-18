@@ -1,4 +1,4 @@
-import { MetaEdEnvironment, PluginEnvironment, Namespace } from '@edfi/metaed-core';
+import { MetaEdEnvironment, PluginEnvironment, Namespace, MetaEdPropertyPath } from '@edfi/metaed-core';
 import { EdFiOdsRelationalEntityRepository } from '../model/EdFiOdsRelationalEntityRepository';
 import { Table } from '../model/database/Table';
 import { EnumerationRow } from '../model/database/EnumerationRow';
@@ -35,4 +35,13 @@ export function rowEntities(
 ): Map<string, EnumerationRow | SchoolYearEnumerationRow> {
   const repository: EdFiOdsRelationalEntityRepository | null = edfiOdsRepositoryForNamespace(metaEd, namespace);
   return repository == null ? new Map() : repository.row;
+}
+
+/**
+ * Appends the given property's fullname to the current property path.
+ */
+export function appendToPropertyPath(currentPropertyPath, property): MetaEdPropertyPath {
+  return (
+    currentPropertyPath === '' ? property.fullPropertyName : `${currentPropertyPath}.${property.fullPropertyName}`
+  ) as MetaEdPropertyPath;
 }

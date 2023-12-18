@@ -25,11 +25,17 @@ export function enumerationPropertyTableBuilder({
   tables,
   targetTechnologyVersion,
   parentIsRequired,
+  currentPropertyPath,
 }: TableBuilderParameters): void {
   const enumeration: ReferentialProperty = asReferentialProperty(property);
 
   if (!enumeration.data.edfiOdsRelational.odsIsCollection) {
-    const enumerationColumn: Column = createColumnFor(enumeration, buildStrategy, targetTechnologyVersion)[0];
+    const enumerationColumn: Column = createColumnFor(
+      enumeration,
+      buildStrategy,
+      currentPropertyPath,
+      targetTechnologyVersion,
+    )[0];
     const foreignKey: ForeignKey = createForeignKey(
       property,
       {
@@ -93,6 +99,7 @@ export function enumerationPropertyTableBuilder({
     const columns: Column[] = createColumnFor(
       enumeration,
       buildStrategy.columnNamerIgnoresRoleName(),
+      currentPropertyPath,
       targetTechnologyVersion,
     );
     const foreignKey: ForeignKey = createForeignKey(

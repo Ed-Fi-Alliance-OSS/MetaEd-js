@@ -2,7 +2,6 @@ import path from 'path';
 import {
   newMetaEdConfiguration,
   newState,
-  asReferentialProperty,
   buildMetaEd,
   buildParseTree,
   initializeNamespaces,
@@ -12,6 +11,7 @@ import {
   runValidators,
   setupPlugins,
   walkBuilders,
+  ReferentialProperty,
 } from '@edfi/metaed-core';
 import { State } from '@edfi/metaed-core';
 import { metaEdPlugins } from './PluginHelper';
@@ -93,7 +93,7 @@ describe('when building a simple core and two simple extension projects', (): vo
     if (gbDomainEntity == null) throw new Error();
     expect(gbDomainEntity.namespace.namespaceName).toBe('Gb');
     expect(gbDomainEntity.properties[2].metaEdName).toBe('EdfiDomainEntity');
-    expect(asReferentialProperty(gbDomainEntity.properties[2]).referencedEntity).toBe(edfiDomainEntity);
+    expect((gbDomainEntity.properties[2] as ReferentialProperty).referencedEntity).toBe(edfiDomainEntity);
 
     const sampleNamespace = state.metaEd.namespace.get('Sample');
     if (sampleNamespace == null) throw new Error();
@@ -101,6 +101,6 @@ describe('when building a simple core and two simple extension projects', (): vo
     if (sampleDomainEntity == null) throw new Error();
     expect(sampleDomainEntity.namespace.namespaceName).toBe('Sample');
     expect(sampleDomainEntity.properties[2].metaEdName).toBe('EdfiDomainEntity');
-    expect(asReferentialProperty(sampleDomainEntity.properties[2]).referencedEntity).toBe(edfiDomainEntity);
+    expect((sampleDomainEntity.properties[2] as ReferentialProperty).referencedEntity).toBe(edfiDomainEntity);
   });
 });

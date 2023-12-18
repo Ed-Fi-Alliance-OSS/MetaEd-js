@@ -1,12 +1,13 @@
-import { EntityProperty, SemVer } from '@edfi/metaed-core';
-import { collectColumns } from './CommonPropertyColumnCreatorBase';
+import { EntityProperty, MetaEdPropertyPath, SemVer } from '@edfi/metaed-core';
+import { collectColumns } from './CommonAndChoicePropertyColumnCreatorBase';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
 
 export function choicePropertyColumnCreator(
   property: EntityProperty,
   strategy: BuildStrategy,
+  currentPropertyPath: MetaEdPropertyPath,
   targetTechnologyVersion: SemVer,
 ): Column[] {
-  return collectColumns(property, strategy, targetTechnologyVersion);
+  return collectColumns(property, strategy, currentPropertyPath, targetTechnologyVersion);
 }

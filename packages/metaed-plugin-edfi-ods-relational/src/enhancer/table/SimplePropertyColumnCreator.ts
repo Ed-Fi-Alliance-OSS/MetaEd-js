@@ -1,4 +1,11 @@
-import { EntityProperty, DecimalProperty, StringProperty, SimpleProperty, IntegerProperty } from '@edfi/metaed-core';
+import {
+  EntityProperty,
+  DecimalProperty,
+  StringProperty,
+  SimpleProperty,
+  IntegerProperty,
+  MetaEdPropertyPath,
+} from '@edfi/metaed-core';
 import {
   initializeColumn,
   newColumn,
@@ -83,13 +90,18 @@ function createNewColumnFor(property: SimpleProperty): Column {
   return createNewColumn[property.type]();
 }
 
-export function simplePropertyColumnCreator(property: EntityProperty, strategy: BuildStrategy): Column[] {
+export function simplePropertyColumnCreator(
+  property: EntityProperty,
+  strategy: BuildStrategy,
+  currentPropertyPath: MetaEdPropertyPath,
+): Column[] {
   if (!strategy.buildColumns(property)) return [];
 
   const column: Column = {
     ...createNewColumnFor(property as SimpleProperty),
     referenceContext: property.data.edfiOdsRelational.odsName,
     mergedReferenceContexts: [property.data.edfiOdsRelational.odsName],
+    propertyPath: currentPropertyPath,
   };
   const columnNamer: () => ColumnNaming = strategy.columnNamer(
     strategy.parentContext(),

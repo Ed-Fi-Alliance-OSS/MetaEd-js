@@ -1,9 +1,16 @@
-import { EntityProperty, MetaEdEnvironment, SemVer, TopLevelEntity, versionSatisfies } from '@edfi/metaed-core';
+import {
+  EntityProperty,
+  MetaEdEnvironment,
+  MetaEdPropertyPath,
+  SemVer,
+  TopLevelEntity,
+  versionSatisfies,
+} from '@edfi/metaed-core';
 import { BuildStrategyDefault } from './BuildStrategy';
 import { cloneColumn } from '../../model/database/Column';
 import { collectPrimaryKeys } from './PrimaryKeyCollector';
 import { newTable, newTableNameComponent, newTableExistenceReason, newTableNameGroup } from '../../model/database/Table';
-import { tableEntities } from '../EnhancerHelper';
+import { appendToPropertyPath, tableEntities } from '../EnhancerHelper';
 import { TableStrategy } from '../../model/database/TableStrategy';
 import { Column } from '../../model/database/Column';
 import { Table } from '../../model/database/Table';
@@ -17,9 +24,14 @@ export function buildTablesFromProperties(
   tables: Table[],
   targetTechnologyVersion: SemVer,
 ): void {
-  const primaryKeys: Column[] = collectPrimaryKeys(entity, BuildStrategyDefault, targetTechnologyVersion).map((x: Column) =>
-    cloneColumn(x),
-  );
+  const currentPropertyPath: MetaEdPropertyPath = '' as MetaEdPropertyPath;
+
+  const primaryKeys: Column[] = collectPrimaryKeys(
+    entity,
+    BuildStrategyDefault,
+    currentPropertyPath,
+    targetTechnologyVersion,
+  ).map((x: Column) => cloneColumn(x));
 
   // For ODS/API 7+, collected primary keys of main tables need to be sorted
   if (versionSatisfies(targetTechnologyVersion, '>=7.0.0')) {
@@ -34,6 +46,7 @@ export function buildTablesFromProperties(
       buildStrategy: BuildStrategyDefault,
       tables,
       targetTechnologyVersion,
+      currentPropertyPath: appendToPropertyPath(currentPropertyPath, property),
       parentIsRequired: null,
     });
   });

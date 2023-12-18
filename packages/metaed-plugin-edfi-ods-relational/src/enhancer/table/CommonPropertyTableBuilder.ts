@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { SemVer, asCommonProperty, versionSatisfies } from '@edfi/metaed-core';
+import { MetaEdPropertyPath, SemVer, asCommonProperty, versionSatisfies } from '@edfi/metaed-core';
 import { EntityProperty, MergeDirective, ReferentialProperty, Namespace } from '@edfi/metaed-core';
 import {
   TableNameGroup,
@@ -19,6 +19,7 @@ import { Column, columnSortV7 } from '../../model/database/Column';
 import { ForeignKey, createForeignKey } from '../../model/database/ForeignKey';
 import { Table } from '../../model/database/Table';
 import { TableBuilderParameters, buildTableFor } from './TableBuilder';
+import { appendToPropertyPath } from '../EnhancerHelper';
 
 function buildJoinTables(
   property: ReferentialProperty,
@@ -33,6 +34,7 @@ function buildJoinTables(
   tables: Table[],
   targetTechnologyVersion: SemVer,
   parentIsRequired: boolean | null,
+  currentPropertyPath: MetaEdPropertyPath,
 ): void {
   const joinTable: Table = {
     ...newTable(),
@@ -80,6 +82,7 @@ function buildJoinTables(
       tables,
       targetTechnologyVersion,
       parentIsRequired: null,
+      currentPropertyPath: appendToPropertyPath(currentPropertyPath, referenceProperty),
     });
   });
 
@@ -123,6 +126,7 @@ export function commonPropertyTableBuilder({
   tables,
   targetTechnologyVersion,
   parentIsRequired,
+  currentPropertyPath,
 }: TableBuilderParameters): void {
   const commonProperty = asCommonProperty(property);
   let strategy: BuildStrategy = buildStrategy;
@@ -135,7 +139,9 @@ export function commonPropertyTableBuilder({
 
   const primaryKeys: Column[] = [];
   if (!commonProperty.isOptional) {
-    primaryKeys.push(...collectPrimaryKeys(commonProperty.referencedEntity, strategy, targetTechnologyVersion));
+    primaryKeys.push(
+      ...collectPrimaryKeys(commonProperty.referencedEntity, strategy, currentPropertyPath, targetTechnologyVersion),
+    );
   }
 
   // For ODS/API 7+, parent primary keys come first
@@ -173,5 +179,6 @@ export function commonPropertyTableBuilder({
     tables,
     targetTechnologyVersion,
     parentIsRequired,
+    currentPropertyPath,
   );
 }
