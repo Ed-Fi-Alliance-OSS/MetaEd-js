@@ -49,7 +49,8 @@ describe('when SchoolYearEnumerationTableEnhancer enhances schoolYearEnumeration
     expect(table.columns[0].columnId).toBe(schoolYear);
     expect(table.columns[0].isPartOfPrimaryKey).toBe(true);
     expect(table.columns[0].isNullable).toBe(false);
-    expect(table.columns[table.columns.length - 1].description).not.toBe('');
+    expect(table.columns[0].description).toMatchInlineSnapshot(`"Key for School Year"`);
+    expect(table.columns[0].propertyPath).toMatchInlineSnapshot(`""`);
   });
 
   it('should have school year description column', (): void => {
@@ -59,7 +60,8 @@ describe('when SchoolYearEnumerationTableEnhancer enhances schoolYearEnumeration
     expect(column.maxLength).toBe('50');
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
-    expect(column.description).not.toBe('');
+    expect(column.description).toMatchInlineSnapshot(`"The description for the SchoolYear type."`);
+    expect(column.propertyPath).toMatchInlineSnapshot(`""`);
   });
 
   it('should have current school year column', (): void => {
@@ -68,6 +70,7 @@ describe('when SchoolYearEnumerationTableEnhancer enhances schoolYearEnumeration
     expect(column).toBeDefined();
     expect(column.isPartOfPrimaryKey).toBe(false);
     expect(column.isNullable).toBe(false);
-    expect(column.description).not.toBe('');
+    expect(column.description).toMatchInlineSnapshot(`"The code for the current school year."`);
+    expect(column.propertyPath).toMatchInlineSnapshot(`""`);
   });
 });
