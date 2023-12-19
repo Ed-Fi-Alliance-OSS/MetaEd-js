@@ -1,4 +1,11 @@
-import { DomainEntity, Enumeration, EnumerationProperty, IntegerProperty, SemVer } from '@edfi/metaed-core';
+import {
+  DomainEntity,
+  Enumeration,
+  EnumerationProperty,
+  IntegerProperty,
+  MetaEdPropertyPath,
+  SemVer,
+} from '@edfi/metaed-core';
 import { newDomainEntity, newEnumeration, newEnumerationProperty, newIntegerProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { newTable } from '../../../src/model/database/Table';
@@ -74,7 +81,7 @@ describe('when building enumeration property table', (): void => {
     enumeration.data.edfiOdsRelational.odsProperties.push(enumerationEntityProperty1);
     entityEnumerationProperty.referencedEntity = enumeration;
 
-    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '7.0.0');
+    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
 
     buildTableFor({
       property: entityEnumerationProperty,
@@ -84,6 +91,7 @@ describe('when building enumeration property table', (): void => {
       tables,
       targetTechnologyVersion,
       parentIsRequired: null,
+      currentPropertyPath: '' as MetaEdPropertyPath,
     });
   });
 
@@ -177,7 +185,7 @@ describe('when building collection enumeration property table', (): void => {
     enumeration.data.edfiOdsRelational.odsProperties.push(enumerationEntityProperty1);
     entityEnumerationProperty.referencedEntity = enumeration;
 
-    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '7.0.0');
+    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
 
     buildTableFor({
       property: entityEnumerationProperty,
@@ -187,6 +195,7 @@ describe('when building collection enumeration property table', (): void => {
       tables,
       targetTechnologyVersion,
       parentIsRequired: null,
+      currentPropertyPath: '' as MetaEdPropertyPath,
     });
   });
 

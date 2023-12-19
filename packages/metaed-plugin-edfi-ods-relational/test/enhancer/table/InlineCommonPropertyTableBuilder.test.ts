@@ -1,4 +1,4 @@
-import { DomainEntity, Common, InlineCommonProperty, IntegerProperty, SemVer } from '@edfi/metaed-core';
+import { DomainEntity, Common, InlineCommonProperty, IntegerProperty, SemVer, MetaEdPropertyPath } from '@edfi/metaed-core';
 import { newDomainEntity, newInlineCommon, newInlineCommonProperty, newIntegerProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { newTable } from '../../../src/model/database/Table';
@@ -12,6 +12,7 @@ const targetTechnologyVersion: SemVer = '6.1.0';
 
 describe('when building inline common property table', (): void => {
   const inlineCommonEntityPropertyName1 = 'InlineCommonEntityPropertyName1';
+  const inlineCommonPropertyName = 'InlineCommonPropertyName';
   const contextName = 'ContextName';
   const entityPkName = 'EntityPkName';
   const tables: Table[] = [];
@@ -29,6 +30,7 @@ describe('when building inline common property table', (): void => {
     });
     const entityPkProperty: IntegerProperty = Object.assign(newIntegerProperty(), {
       metaEdName: entityPkName,
+      fullPropertyName: entityPkName,
       parentEntity: entity,
       isPartOfIdentity: true,
       data: {
@@ -42,6 +44,8 @@ describe('when building inline common property table', (): void => {
       },
     });
     const inlineCommonProperty: InlineCommonProperty = Object.assign(newInlineCommonProperty(), {
+      metaEdName: inlineCommonPropertyName,
+      fullPropertyName: inlineCommonPropertyName,
       parentEntity: entity,
       data: {
         edfiOdsRelational: {
@@ -59,6 +63,7 @@ describe('when building inline common property table', (): void => {
     });
     const inlineCommonEntityProperty1: IntegerProperty = Object.assign(newIntegerProperty(), {
       metaEdName: inlineCommonEntityPropertyName1,
+      fullPropertyName: inlineCommonEntityPropertyName1,
       data: {
         edfiOdsRelational: {
           odsContextPrefix: '',
@@ -69,7 +74,12 @@ describe('when building inline common property table', (): void => {
     inlineCommon.data.edfiOdsRelational.odsProperties.push(inlineCommonEntityProperty1);
     inlineCommonProperty.referencedEntity = inlineCommon;
 
-    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
+    const primaryKeys: Column[] = createColumnFor(
+      entityPkProperty,
+      BuildStrategyDefault,
+      entityPkProperty.fullPropertyName as MetaEdPropertyPath,
+      '6.1.0',
+    );
 
     buildTableFor({
       property: inlineCommonProperty,
@@ -79,6 +89,7 @@ describe('when building inline common property table', (): void => {
       tables,
       targetTechnologyVersion,
       parentIsRequired: null,
+      currentPropertyPath: inlineCommonProperty.fullPropertyName as MetaEdPropertyPath,
     });
   });
 
@@ -90,10 +101,17 @@ describe('when building inline common property table', (): void => {
     expect(table.columns).toHaveLength(1);
     expect(table.columns[0].columnId).toBe(contextName + inlineCommonEntityPropertyName1);
   });
+
+  it('should have correct property paths', (): void => {
+    expect(table.columns[0].propertyPath).toMatchInlineSnapshot(
+      `"InlineCommonPropertyName.InlineCommonEntityPropertyName1"`,
+    );
+  });
 });
 
 describe('when building optional inline common property table', (): void => {
   const inlineCommonEntityPropertyName1 = 'InlineCommonEntityPropertyName1';
+  const inlineCommonPropertyName = 'InlineCommonPropertyName';
   const entityPkName = 'EntityPkName';
   const tables: Table[] = [];
   let table: Table;
@@ -110,6 +128,7 @@ describe('when building optional inline common property table', (): void => {
     });
     const entityPkProperty: IntegerProperty = Object.assign(newIntegerProperty(), {
       metaEdName: entityPkName,
+      fullPropertyName: entityPkName,
       parentEntity: entity,
       isPartOfIdentity: true,
       data: {
@@ -123,6 +142,8 @@ describe('when building optional inline common property table', (): void => {
       },
     });
     const inlineCommonProperty: InlineCommonProperty = Object.assign(newInlineCommonProperty(), {
+      metaEdName: inlineCommonPropertyName,
+      fullPropertyName: inlineCommonPropertyName,
       parentEntity: entity,
       isOptional: true,
       data: {
@@ -141,6 +162,7 @@ describe('when building optional inline common property table', (): void => {
     });
     const inlineCommonEntityProperty1: IntegerProperty = Object.assign(newIntegerProperty(), {
       metaEdName: inlineCommonEntityPropertyName1,
+      fullPropertyName: inlineCommonEntityPropertyName1,
       data: {
         edfiOdsRelational: {
           odsContextPrefix: '',
@@ -151,7 +173,12 @@ describe('when building optional inline common property table', (): void => {
     inlineCommon.data.edfiOdsRelational.odsProperties.push(inlineCommonEntityProperty1);
     inlineCommonProperty.referencedEntity = inlineCommon;
 
-    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '6.1.0');
+    const primaryKeys: Column[] = createColumnFor(
+      entityPkProperty,
+      BuildStrategyDefault,
+      entityPkProperty.fullPropertyName as MetaEdPropertyPath,
+      '6.1.0',
+    );
 
     buildTableFor({
       property: inlineCommonProperty,
@@ -161,6 +188,7 @@ describe('when building optional inline common property table', (): void => {
       tables,
       targetTechnologyVersion,
       parentIsRequired: null,
+      currentPropertyPath: inlineCommonProperty.fullPropertyName as MetaEdPropertyPath,
     });
   });
 
@@ -174,5 +202,11 @@ describe('when building optional inline common property table', (): void => {
     expect(table.columns[0].isPartOfPrimaryKey).toBe(false);
     expect(table.columns[0].isNullable).toBe(true);
     expect(table.columns[0].isIdentityDatabaseType).toBe(false);
+  });
+
+  it('should have correct property paths', (): void => {
+    expect(table.columns[0].propertyPath).toMatchInlineSnapshot(
+      `"InlineCommonPropertyName.InlineCommonEntityPropertyName1"`,
+    );
   });
 });

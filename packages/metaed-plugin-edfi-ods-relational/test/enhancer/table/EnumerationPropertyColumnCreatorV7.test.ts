@@ -1,4 +1,4 @@
-import { EnumerationProperty } from '@edfi/metaed-core';
+import { EnumerationProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
 import { newEnumerationProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { Column } from '../../../src/model/database/Column';
@@ -26,7 +26,7 @@ describe('when creating columns for enumeration property', (): void => {
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
   });
 
   it('should return a column', (): void => {
@@ -63,7 +63,7 @@ describe('when creating columns for primary key enumeration property', (): void 
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
   });
 
   it('should return a primary key column', (): void => {
@@ -102,7 +102,7 @@ describe('when creating columns for identity rename enumeration property', (): v
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
   });
 
   it('should return a primary key column with base key name', (): void => {
@@ -140,7 +140,7 @@ describe('when creating columns for nullable enumeration property', (): void => 
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, '7.0.0');
+    columns = createColumnFor(property, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
   });
 
   it('should return a column', (): void => {
@@ -178,7 +178,12 @@ describe('when creating columns for primary key enumeration property with suppre
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(), '7.0.0');
+    columns = createColumnFor(
+      property,
+      BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(),
+      '' as MetaEdPropertyPath,
+      '7.0.0',
+    );
   });
 
   it('should return a column', (): void => {
@@ -217,7 +222,12 @@ describe('when creating columns for identity rename enumeration property with su
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(), '7.0.0');
+    columns = createColumnFor(
+      property,
+      BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(),
+      '' as MetaEdPropertyPath,
+      '7.0.0',
+    );
   });
 
   it('should return a column with base key name', (): void => {

@@ -1,4 +1,10 @@
-import { newDomainEntity, newInlineCommon, newInlineCommonProperty, newIntegerProperty } from '@edfi/metaed-core';
+import {
+  MetaEdPropertyPath,
+  newDomainEntity,
+  newInlineCommon,
+  newInlineCommonProperty,
+  newIntegerProperty,
+} from '@edfi/metaed-core';
 import { Common, DomainEntity, InlineCommonProperty, IntegerProperty } from '@edfi/metaed-core';
 import { Column } from '../../../src/model/database/Column';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
@@ -13,6 +19,7 @@ describe('when collecting primary key columns for identity property', (): void =
   beforeAll(() => {
     property = Object.assign(newIntegerProperty(), {
       metaEdName: propertyName,
+      fullPropertyName: propertyName,
       documentation: propertyDocumentation,
       isPartOfIdentity: true,
       data: {
@@ -33,7 +40,7 @@ describe('when collecting primary key columns for identity property', (): void =
       },
     });
 
-    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '7.0.0');
+    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
   });
 
   it('should return a primary key column', (): void => {
@@ -46,18 +53,21 @@ describe('when collecting primary key columns for identity property', (): void =
     expect(columns[0].isPartOfPrimaryKey).toBe(true);
     expect(columns[0].originalContextPrefix).toBe('');
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
   });
 });
 
 describe('when collecting primary key columns for inline common property', (): void => {
   const propertyName = 'PropertyName';
   const propertyDocumentation = 'PropertyDocumentation';
+  const inlineCommonPropertyName = 'InlineCommonPropertyName';
   let property: IntegerProperty;
   let columns: Column[];
 
   beforeAll(() => {
     property = Object.assign(newIntegerProperty(), {
       metaEdName: propertyName,
+      fullPropertyName: propertyName,
       documentation: propertyDocumentation,
       isPartOfIdentity: true,
       data: {
@@ -79,6 +89,8 @@ describe('when collecting primary key columns for inline common property', (): v
     });
 
     const inlineCommonProperty: InlineCommonProperty = Object.assign(newInlineCommonProperty(), {
+      metaEdName: inlineCommonPropertyName,
+      fullPropertyName: inlineCommonPropertyName,
       referencedEntity: inlineCommon,
       data: {
         edfiOdsRelational: {
@@ -98,7 +110,7 @@ describe('when collecting primary key columns for inline common property', (): v
       },
     });
 
-    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '7.0.0');
+    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
   });
 
   it('should return a primary key column', (): void => {
@@ -111,6 +123,7 @@ describe('when collecting primary key columns for inline common property', (): v
     expect(columns[0].isPartOfPrimaryKey).toBe(true);
     expect(columns[0].originalContextPrefix).toBe('');
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"InlineCommonPropertyName.PropertyName"`);
   });
 });
 
@@ -118,6 +131,7 @@ describe('when collecting primary key columns for identity property and inline c
   const propertyName1 = 'PropertyName1';
   const propertyName2 = 'PropertyName2';
   const propertyDocumentation = 'PropertyDocumentation';
+  const inlineCommonPropertyName = 'InlineCommonPropertyName';
   let property1: IntegerProperty;
   let property2: IntegerProperty;
   let columns: Column[];
@@ -125,6 +139,7 @@ describe('when collecting primary key columns for identity property and inline c
   beforeAll(() => {
     property1 = Object.assign(newIntegerProperty(), {
       metaEdName: propertyName1,
+      fullPropertyName: propertyName1,
       documentation: propertyDocumentation,
       isPartOfIdentity: true,
       data: {
@@ -138,6 +153,7 @@ describe('when collecting primary key columns for identity property and inline c
 
     property2 = Object.assign(newIntegerProperty(), {
       metaEdName: propertyName2,
+      fullPropertyName: propertyName2,
       documentation: propertyDocumentation,
       isPartOfIdentity: true,
       data: {
@@ -159,6 +175,8 @@ describe('when collecting primary key columns for identity property and inline c
     });
 
     const inlineCommonProperty: InlineCommonProperty = Object.assign(newInlineCommonProperty(), {
+      metaEdName: inlineCommonPropertyName,
+      fullPropertyName: inlineCommonPropertyName,
       referencedEntity: inlineCommon,
       data: {
         edfiOdsRelational: {
@@ -178,7 +196,7 @@ describe('when collecting primary key columns for identity property and inline c
       },
     });
 
-    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '7.0.0');
+    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
   });
 
   it('should return two columns', (): void => {
@@ -194,6 +212,7 @@ describe('when collecting primary key columns for identity property and inline c
     expect(columns[0].isPartOfPrimaryKey).toBe(true);
     expect(columns[0].originalContextPrefix).toBe('');
     expect(columns[0].sourceEntityProperties[0]).toBe(property1);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName1"`);
   });
 
   it('should return a primary key column for inline common property', (): void => {
@@ -205,12 +224,15 @@ describe('when collecting primary key columns for identity property and inline c
     expect(columns[1].isPartOfPrimaryKey).toBe(true);
     expect(columns[1].originalContextPrefix).toBe('');
     expect(columns[1].sourceEntityProperties[0]).toBe(property2);
+    expect(columns[1].propertyPath).toMatchInlineSnapshot(`"InlineCommonPropertyName.PropertyName2"`);
   });
 });
 
 describe('when collecting primary key columns for two inline common properties with primary key to same inline common entity', (): void => {
   const propertyName = 'PropertyName';
   const propertyDocumentation = 'PropertyDocumentation';
+  const inlineCommonPropertyName1 = 'InlineCommonPropertyName1';
+  const inlineCommonPropertyName2 = 'InlineCommonPropertyName2';
   const contextName = 'ContextName';
   let property: IntegerProperty;
   let columns: Column[];
@@ -218,6 +240,7 @@ describe('when collecting primary key columns for two inline common properties w
   beforeAll(() => {
     property = Object.assign(newIntegerProperty(), {
       metaEdName: propertyName,
+      fullPropertyName: propertyName,
       documentation: propertyDocumentation,
       isPartOfIdentity: true,
       data: {
@@ -239,6 +262,8 @@ describe('when collecting primary key columns for two inline common properties w
     });
 
     const inlineCommonProperty1: InlineCommonProperty = Object.assign(newInlineCommonProperty(), {
+      metaEdName: inlineCommonPropertyName1,
+      fullPropertyName: inlineCommonPropertyName1,
       referencedEntity: inlineCommon,
       data: {
         edfiOdsRelational: {
@@ -250,6 +275,8 @@ describe('when collecting primary key columns for two inline common properties w
     });
 
     const inlineCommonProperty2: InlineCommonProperty = Object.assign(newInlineCommonProperty(), {
+      metaEdName: inlineCommonPropertyName2,
+      fullPropertyName: inlineCommonPropertyName2,
       referencedEntity: inlineCommon,
       data: {
         edfiOdsRelational: {
@@ -269,7 +296,7 @@ describe('when collecting primary key columns for two inline common properties w
       },
     });
 
-    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '7.0.0');
+    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
   });
 
   it('should return two columns', (): void => {
@@ -285,6 +312,7 @@ describe('when collecting primary key columns for two inline common properties w
     expect(columns[0].isPartOfPrimaryKey).toBe(true);
     expect(columns[0].originalContextPrefix).toBe('');
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
+    expect(columns[0].propertyPath).toMatchInlineSnapshot(`"InlineCommonPropertyName2.PropertyName"`);
   });
 
   it('should return a primary key column role named second', (): void => {
@@ -296,5 +324,6 @@ describe('when collecting primary key columns for two inline common properties w
     expect(columns[1].isPartOfPrimaryKey).toBe(true);
     expect(columns[1].originalContextPrefix).toBe('');
     expect(columns[1].sourceEntityProperties[0]).toBe(property);
+    expect(columns[1].propertyPath).toMatchInlineSnapshot(`"InlineCommonPropertyName1.PropertyName"`);
   });
 });
