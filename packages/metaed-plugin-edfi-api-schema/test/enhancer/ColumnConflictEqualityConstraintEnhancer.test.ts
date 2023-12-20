@@ -20,7 +20,7 @@ import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJs
 import { enhance } from '../../src/enhancer/ColumnConflictEqualityConstraintEnhancer';
 import { metaEdPluginEnhancers } from '../integration/PluginHelper';
 
-describe('when building domain entity with DomainEntity collection and single merge directive', () => {
+describe('when building domain entity with DomainEntity collection with single column conflict', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespace = 'EdFi';
 
@@ -75,7 +75,7 @@ describe('when building domain entity with DomainEntity collection and single me
   });
 });
 
-describe('when building domain entity with single merge directive', () => {
+describe('when building domain entity with single column conflict', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespace = 'EdFi';
 
@@ -127,7 +127,7 @@ describe('when building domain entity with single merge directive', () => {
   });
 });
 
-describe('when building domain entity with DomainEntity collection and two merge directives', () => {
+describe('when building domain entity with DomainEntity collection with two column conflicts', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespace = 'EdFi';
 
@@ -194,7 +194,7 @@ describe('when building domain entity with DomainEntity collection and two merge
   });
 });
 
-describe('when building domain entity with DomainEntity collection and single merge directive with multiple levels on target reference', () => {
+describe('when building domain entity with DomainEntity collection with single multi-level column conflict', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespace = 'EdFi';
 
@@ -261,7 +261,7 @@ describe('when building domain entity with DomainEntity collection and single me
   });
 });
 
-describe('when building domain entity with DomainEntity collection and single merge directive with multiple levels ending with simple type', () => {
+describe('when building domain entity with DomainEntity collection with single multi-level column conflict on a simple type', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespace = 'EdFi';
 
@@ -328,7 +328,7 @@ describe('when building domain entity with DomainEntity collection and single me
   });
 });
 
-describe('when two domain entities with all four possible simple identities are merged on a reference', () => {
+describe('when two domain entities with all four possible simple identities have a column conflict on a reference', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
   const domainEntityWithMerges = 'DomainEntityWithMerges';
@@ -424,7 +424,7 @@ describe('when two domain entities with all four possible simple identities are 
   });
 });
 
-describe('when merging on both a reference and a simple identity down multiple levels on both references', () => {
+describe('when both a reference and a simple identity have a column conflict down multiple levels on both references', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
 
@@ -509,7 +509,7 @@ describe('when merging on both a reference and a simple identity down multiple l
   });
 });
 
-describe('when merging on a reference with multiple levels of domain entities below it', () => {
+describe('when a reference has a column conflict with multiple levels of domain entities below it', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
 
@@ -609,7 +609,7 @@ describe('when merging on a reference with multiple levels of domain entities be
   });
 });
 
-describe('when merging on a reference through a choice', () => {
+describe('when a reference through a choice has a column conflict', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
 
@@ -674,7 +674,7 @@ describe('when merging on a reference through a choice', () => {
   });
 });
 
-describe('when merging on a reference through a common collection', () => {
+describe('when a reference through a common collection has a column conflict', () => {
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   const namespaceName = 'EdFi';
 
