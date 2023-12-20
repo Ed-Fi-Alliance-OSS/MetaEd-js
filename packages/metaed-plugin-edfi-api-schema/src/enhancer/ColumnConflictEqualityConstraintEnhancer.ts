@@ -3,6 +3,7 @@ import { MetaEdEnvironment, EnhancerResult, Namespace } from '@edfi/metaed-core'
 import { ColumnConflictPath, Table, tableEntities } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
+import { EqualityConstraint } from '../model/EqualityConstraint';
 
 /**
  * Returns all the relational Table objects
@@ -13,6 +14,29 @@ function allTables(metaEd: MetaEdEnvironment): Table[] {
     tables.push(...tableEntities(metaEd, namespace).values());
   });
   return tables;
+}
+
+/**
+ * Returns true if the path is in the given equalityConstraint, either source or target
+ */
+function isJsonPathInConstraint(equalityConstraint: EqualityConstraint, jsonPath: JsonPath) {
+  return equalityConstraint.sourceJsonPath === jsonPath || equalityConstraint.targetJsonPath === jsonPath;
+}
+
+/**
+ * Returns true if the source and target path pair is already present in the given equalityConstraints array,
+ * regardless of path order.
+ */
+function areDuplicateConstraintPaths(
+  equalityConstraints: EqualityConstraint[],
+  sourceJsonPath: JsonPath,
+  targetJsonPath: JsonPath,
+) {
+  return equalityConstraints.some(
+    (equalityConstraint) =>
+      isJsonPathInConstraint(equalityConstraint, sourceJsonPath) &&
+      isJsonPathInConstraint(equalityConstraint, targetJsonPath),
+  );
 }
 
 /**
@@ -43,8 +67,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       );
 
       sourceJsonPaths.forEach((sourceJsonPath: JsonPath, matchingTargetJsonPathIndex: number) => {
+        const targetJsonPath: JsonPath = targetJsonPaths[matchingTargetJsonPathIndex];
         // Can ignore conflicts that result in the same path
-        if (sourceJsonPath === targetJsonPaths[matchingTargetJsonPathIndex]) return;
+        if (sourceJsonPath === targetJsonPath) return;
+
+        if (areDuplicateConstraintPaths(equalityConstraints, sourceJsonPath, targetJsonPath)) return;
 
         equalityConstraints.push({
           sourceJsonPath,

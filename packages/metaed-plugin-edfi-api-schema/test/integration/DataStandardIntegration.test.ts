@@ -324,22 +324,6 @@ describe('when generating api schema targeting tech version 5.3 with data standa
           "sourceJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
           "targetJsonPath": "$.assessmentReference.namespace",
         },
-        Object {
-          "sourceJsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
-          "targetJsonPath": "$.assessmentReference.assessmentIdentifier",
-        },
-        Object {
-          "sourceJsonPath": "$.items[*].assessmentItemReference.namespace",
-          "targetJsonPath": "$.assessmentReference.namespace",
-        },
-        Object {
-          "sourceJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
-          "targetJsonPath": "$.assessmentReference.assessmentIdentifier",
-        },
-        Object {
-          "sourceJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
-          "targetJsonPath": "$.assessmentReference.namespace",
-        },
       ]
     `);
   });
@@ -457,10 +441,6 @@ describe('when generating api schema targeting tech version 5.3 with data standa
         Object {
           "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
           "targetJsonPath": "$.schoolReference.schoolId",
-        },
-        Object {
-          "sourceJsonPath": "$.schoolYearTypeReference.schoolYear",
-          "targetJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
         },
         Object {
           "sourceJsonPath": "$.schoolReference.schoolId",
@@ -1283,22 +1263,6 @@ describe('when generating api schema targeting tech version 6.1 with data standa
           "sourceJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
           "targetJsonPath": "$.assessmentReference.namespace",
         },
-        Object {
-          "sourceJsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
-          "targetJsonPath": "$.assessmentReference.assessmentIdentifier",
-        },
-        Object {
-          "sourceJsonPath": "$.items[*].assessmentItemReference.namespace",
-          "targetJsonPath": "$.assessmentReference.namespace",
-        },
-        Object {
-          "sourceJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
-          "targetJsonPath": "$.assessmentReference.assessmentIdentifier",
-        },
-        Object {
-          "sourceJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
-          "targetJsonPath": "$.assessmentReference.namespace",
-        },
       ]
     `);
   });
@@ -1416,10 +1380,6 @@ describe('when generating api schema targeting tech version 6.1 with data standa
         Object {
           "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
           "targetJsonPath": "$.schoolReference.schoolId",
-        },
-        Object {
-          "sourceJsonPath": "$.schoolYearTypeReference.schoolYear",
-          "targetJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
         },
         Object {
           "sourceJsonPath": "$.schoolReference.schoolId",
@@ -2022,22 +1982,6 @@ describe('when generating api schema targeting tech version 7.0 with data standa
           "sourceJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
           "targetJsonPath": "$.assessmentReference.namespace",
         },
-        Object {
-          "sourceJsonPath": "$.assessmentReference.assessmentIdentifier",
-          "targetJsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
-        },
-        Object {
-          "sourceJsonPath": "$.assessmentReference.namespace",
-          "targetJsonPath": "$.items[*].assessmentItemReference.namespace",
-        },
-        Object {
-          "sourceJsonPath": "$.assessmentReference.assessmentIdentifier",
-          "targetJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
-        },
-        Object {
-          "sourceJsonPath": "$.assessmentReference.namespace",
-          "targetJsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
-        },
       ]
     `);
   });
@@ -2155,10 +2099,6 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         Object {
           "sourceJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
           "targetJsonPath": "$.schoolReference.schoolId",
-        },
-        Object {
-          "sourceJsonPath": "$.schoolYearTypeReference.schoolYear",
-          "targetJsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
         },
         Object {
           "sourceJsonPath": "$.schoolReference.schoolId",

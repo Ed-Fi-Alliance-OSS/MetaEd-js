@@ -596,10 +596,6 @@ describe('when a reference has a column conflict with multiple levels of domain 
           "sourceJsonPath": "$.sectionReference.schoolYear",
           "targetJsonPath": "$.courseOfferingReference.schoolYear",
         },
-        Object {
-          "sourceJsonPath": "$.sectionReference.schoolYear",
-          "targetJsonPath": "$.courseOfferingReference.schoolYear",
-        },
       ]
     `);
   });
