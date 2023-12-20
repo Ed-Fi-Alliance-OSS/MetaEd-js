@@ -37,7 +37,7 @@ describe('when building domain entity with DomainEntity collection and single me
       .withStringIdentity('SessionName', 'doc', '30')
       .withEnumerationIdentity('SchoolYear', 'doc')
       .withDomainEntityProperty('GradingPeriod', 'doc', false, true)
-      // .withMergeDirective('GradingPeriod.SchoolYear', 'SchoolYear')
+      // Would normally go here: .withMergeDirective('GradingPeriod.SchoolYear', 'SchoolYear')
       .withEndDomainEntity()
 
       .withStartEnumeration('SchoolYear')
@@ -96,7 +96,7 @@ describe('when building domain entity with single merge directive', () => {
       .withDocumentation('doc')
       .withDomainEntityIdentity('Session', 'doc')
       .withDomainEntityIdentity('School', 'doc')
-      // .withMergeDirective('School', 'Session.School')
+      // Would normally go here: .withMergeDirective('School', 'Session.School')
       .withEndDomainEntity()
       .withEndNamespace()
 
@@ -151,8 +151,8 @@ describe('when building domain entity with DomainEntity collection and two merge
       .withEnumerationIdentity('SchoolYear', 'doc')
       .withDomainEntityIdentity('School', 'doc')
       .withDomainEntityProperty('GradingPeriod', 'doc', false, true)
-      // .withMergeDirective('GradingPeriod.SchoolYear', 'SchoolYear')
-      // .withMergeDirective('GradingPeriod.School', 'School')
+      // Would normally go here: .withMergeDirective('GradingPeriod.SchoolYear', 'SchoolYear')
+      // Would normally go here: .withMergeDirective('GradingPeriod.School', 'School')
       .withEndDomainEntity()
 
       .withStartEnumeration('SchoolYear')
@@ -230,7 +230,7 @@ describe('when building domain entity with DomainEntity collection and single me
       .withDocumentation('doc')
       .withDomainEntityProperty('ClassPeriod', 'doc', false, true)
       .withDomainEntityIdentity('Section', 'doc')
-      // .withMergeDirective('ClassPeriod.School', 'Section.CourseOffering.Session.School')
+      // Would normally go here: .withMergeDirective('ClassPeriod.School', 'Section.CourseOffering.Session.School')
       .withEndDomainEntity()
       .withEndNamespace()
 
@@ -297,7 +297,7 @@ describe('when building domain entity with DomainEntity collection and single me
       .withDocumentation('doc')
       .withDomainEntityProperty('ClassPeriod', 'doc', false, true)
       .withDomainEntityIdentity('Section', 'doc')
-      // .withMergeDirective('ClassPeriod.School.SchoolId', 'Section.CourseOffering.Session.School.SchoolId')
+      // Would normally go here: .withMergeDirective('ClassPeriod.School.SchoolId', 'Section.CourseOffering.Session.School.SchoolId')
       .withEndDomainEntity()
       .withEndNamespace()
 
@@ -362,16 +362,16 @@ describe('when two domain entities with all four possible simple identities are 
       .withDocumentation('doc')
 
       .withDomainEntityIdentity(domainEntityBeingMergedFrom, 'doc')
-      // .withMergeDirective(
+      // Would normally go here: .withMergeDirective(
       //   `${domainEntityBeingMergedFrom}.${booleanProperty}`,
       //   `${domainEntityBeingMergedTo}.${booleanProperty}`,
       // )
-      // .withMergeDirective(`${domainEntityBeingMergedFrom}.${schoolYear}`, `${domainEntityBeingMergedTo}.${schoolYear}`)
-      // .withMergeDirective(
+      // Would normally go here: .withMergeDirective(`${domainEntityBeingMergedFrom}.${schoolYear}`, `${domainEntityBeingMergedTo}.${schoolYear}`)
+      // Would normally go here: .withMergeDirective(
       //   `${domainEntityBeingMergedFrom}.${integerProperty}`,
       //   `${domainEntityBeingMergedTo}.${integerProperty}`,
       // )
-      // .withMergeDirective(
+      // Would normally go here: .withMergeDirective(
       //   `${domainEntityBeingMergedFrom}.${stringProperty}`,
       //   `${domainEntityBeingMergedTo}.${stringProperty}`,
       // )
@@ -435,8 +435,8 @@ describe('when merging on both a reference and a simple identity down multiple l
       .withDocumentation('doc')
       .withDomainEntityIdentity('Section', 'doc')
       .withDomainEntityIdentity('CalendarDate', 'doc')
-      // .withMergeDirective('CalendarDate.Calendar.School', 'Section.CourseOffering.Session.School')
-      // .withMergeDirective('CalendarDate.Calendar.SchoolYear', 'Section.CourseOffering.Session.SchoolYear')
+      // Would normally go here: .withMergeDirective('CalendarDate.Calendar.School', 'Section.CourseOffering.Session.School')
+      // Would normally go here: .withMergeDirective('CalendarDate.Calendar.SchoolYear', 'Section.CourseOffering.Session.SchoolYear')
       .withEndDomainEntity()
 
       .withStartDomainEntity('Section')
@@ -520,7 +520,7 @@ describe('when merging on a reference with multiple levels of domain entities be
       .withDocumentation('doc')
       .withDomainEntityIdentity('Section', 'doc')
       .withDomainEntityIdentity('CourseOffering', 'doc')
-      // .withMergeDirective('CourseOffering', 'Section.CourseOffering')
+      // Would normally go here: .withMergeDirective('CourseOffering', 'Section.CourseOffering')
       .withEndDomainEntity()
 
       .withStartDomainEntity('Section')
@@ -579,6 +579,9 @@ describe('when merging on a reference with multiple levels of domain entities be
 
   it('should create the correct equality constraints', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('DomainEntityName');
+
+    // Note: Some of these look like duplicates, but this is actually the correct list expressing
+    // every column conflict that occurred (given there is no merge directive)
     expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
       Array [
         Object {
@@ -617,7 +620,7 @@ describe('when merging on a reference through a choice', () => {
       .withDocumentation('doc')
       .withDomainEntityIdentity('Student', 'doc')
       .withChoiceProperty('StudentCompetencyObjectiveChoice', 'doc', false, false)
-      // .withMergeDirective('StudentCompetencyObjectiveChoice.StudentSectionAssociation.Student', 'Student')
+      // Would normally go here: .withMergeDirective('StudentCompetencyObjectiveChoice.StudentSectionAssociation.Student', 'Student')
       .withEndDomainEntity()
 
       .withStartDomainEntity('Student')
@@ -683,7 +686,7 @@ describe('when merging on a reference through a common collection', () => {
       .withDocumentation('doc')
       .withDomainEntityIdentity('Assessment', 'doc')
       .withCommonProperty('StudentAssessmentItem', 'doc', false, true)
-      // .withMergeDirective('StudentAssessmentItem.AssessmentItem.Assessment', 'Assessment')
+      // Would normally go here: .withMergeDirective('StudentAssessmentItem.AssessmentItem.Assessment', 'Assessment')
       .withEndDomainEntity()
 
       .withStartDomainEntity('Assessment')
