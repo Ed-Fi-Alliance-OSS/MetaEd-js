@@ -1,4 +1,4 @@
-import { newNamespace, Namespace } from '@edfi/metaed-core';
+import { newNamespace, Namespace, NoTopLevelEntity } from '@edfi/metaed-core';
 import {
   addColumn,
   addColumnsWithoutSort,
@@ -42,10 +42,10 @@ describe('when getting strongest constrain column with an existing column', (): 
 
   beforeAll(() => {
     table = { ...newTable(), tableId: 'TableName' };
-    existingColumn = { ...newColumn(), type: 'boolean', columnId: columnName };
+    existingColumn = { ...newColumn(), type: 'boolean', columnId: columnName, originalEntity: NoTopLevelEntity };
     table.columns.push(existingColumn);
 
-    receivedColumn = { ...newColumn(), type: 'boolean', columnId: columnName };
+    receivedColumn = { ...newColumn(), type: 'boolean', columnId: columnName, originalEntity: NoTopLevelEntity };
     addColumn(table, receivedColumn, '6.1.0');
   });
 
@@ -76,7 +76,7 @@ describe('when using add column range without sort', (): void => {
 
   beforeAll(() => {
     table = { ...newTable(), tableId: 'TableName' };
-    table.columns.push({ ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' });
+    table.columns.push({ ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName', originalEntity: NoTopLevelEntity });
 
     addColumnsWithoutSort(
       table,
@@ -91,7 +91,7 @@ describe('when using add column range without sort', (): void => {
         { ...newColumn(), type: 'decimal', scale: '10', precision: '4', columnId: 'DecimalColumnName' } as DecimalColumn,
         { ...newColumn(), type: 'date', columnId: 'DateColumnName' },
         { ...newColumn(), type: 'currency', columnId: 'CurrencyColumnName' },
-        { ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' },
+        { ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName', originalEntity: NoTopLevelEntity },
       ],
       ColumnTransformUnchanged,
       '6.1.0',
@@ -122,7 +122,7 @@ describe('when using add column range with sort for version <7.0.0', (): void =>
 
   beforeAll(() => {
     table = { ...newTable(), tableId: 'TableName' };
-    table.columns.push({ ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' });
+    table.columns.push({ ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName', originalEntity: NoTopLevelEntity });
 
     addColumnsWithSort(
       table,
@@ -137,7 +137,7 @@ describe('when using add column range with sort for version <7.0.0', (): void =>
         { ...newColumn(), type: 'decimal', scale: '10', precision: '4', columnId: 'DecimalColumnName' } as DecimalColumn,
         { ...newColumn(), type: 'date', columnId: 'DateColumnName' },
         { ...newColumn(), type: 'currency', columnId: 'CurrencyColumnName' },
-        { ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' },
+        { ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName', originalEntity: NoTopLevelEntity },
       ],
       ColumnTransformUnchanged,
       '6.1.0',
@@ -168,7 +168,7 @@ describe('when using add column range with sort for ODS/API 7.0', (): void => {
 
   beforeAll(() => {
     table = { ...newTable(), tableId: 'TableName' };
-    table.columns.push({ ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' });
+    table.columns.push({ ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName', originalEntity: NoTopLevelEntity });
 
     addColumnsWithSort(
       table,
@@ -183,7 +183,7 @@ describe('when using add column range with sort for ODS/API 7.0', (): void => {
         { ...newColumn(), type: 'decimal', scale: '10', precision: '4', columnId: 'DecimalColumnName' } as DecimalColumn,
         { ...newColumn(), type: 'date', columnId: 'DateColumnName' },
         { ...newColumn(), type: 'currency', columnId: 'CurrencyColumnName' },
-        { ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName' },
+        { ...newColumn(), type: 'boolean', columnId: 'BooleanColumnName', originalEntity: NoTopLevelEntity },
       ],
       ColumnTransformUnchanged,
       '7.0.0',
