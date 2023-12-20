@@ -1,5 +1,6 @@
 import deepFreeze from 'deep-freeze';
 import * as R from 'ramda';
+import { invariant } from 'ts-invariant';
 import {
   Logger,
   NoTopLevelEntity,
@@ -237,7 +238,25 @@ function addColumnV5(table: Table, column: Column) {
   } else {
     Logger.debug(`  Duplicate column ${column.columnId} on table ${simpleTableNameGroupConcat(table.nameGroup)}.`);
 
-    table.columnConflictPaths.push({ firstPath: existingColumn.propertyPath, secondPath: column.propertyPath });
+    const firstColumn: Column = existingColumn;
+    const secondColumn: Column = column;
+
+    invariant(
+      firstColumn.originalEntity != null,
+      `Column ${firstColumn.columnId} for Table ${table.tableId} is duplicate column with no originalEntity`,
+    );
+    invariant(
+      secondColumn.originalEntity != null,
+      `Column ${secondColumn.columnId} for Table ${table.tableId} is duplicate column with no originalEntity`,
+    );
+
+    table.columnConflictPaths.push({
+      firstPath: firstColumn.propertyPath,
+      secondPath: secondColumn.propertyPath,
+      firstOriginalEntity: firstColumn.originalEntity,
+      secondOriginalEntity: secondColumn.originalEntity,
+    });
+
     table.columns = R.reject((c: Column) => c.columnId === column.columnId)(table.columns);
     table.columns.push(columnConstraintMerge(existingColumn, column));
   }
@@ -253,9 +272,23 @@ function addColumnV7(table: Table, column: Column) {
   } else {
     Logger.debug(`  Duplicate column ${column.columnId} on table ${simpleTableNameGroupConcat(table.nameGroup)}.`);
 
+    const firstColumn: Column = table.columns[existingColumnIndex];
+    const secondColumn: Column = column;
+
+    invariant(
+      firstColumn.originalEntity != null,
+      `Column ${firstColumn.columnId} for Table ${table.tableId} is duplicate column with no originalEntity`,
+    );
+    invariant(
+      secondColumn.originalEntity != null,
+      `Column ${secondColumn.columnId} for Table ${table.tableId} is duplicate column with no originalEntity`,
+    );
+
     table.columnConflictPaths.push({
-      firstPath: table.columns[existingColumnIndex].propertyPath,
-      secondPath: column.propertyPath,
+      firstPath: firstColumn.propertyPath,
+      secondPath: secondColumn.propertyPath,
+      firstOriginalEntity: firstColumn.originalEntity,
+      secondOriginalEntity: secondColumn.originalEntity,
     });
     table.columns[existingColumnIndex] = columnConstraintMerge(table.columns[existingColumnIndex], column);
   }

@@ -22,7 +22,7 @@ describe('when building inline common property table', (): void => {
     table = { ...newTable(), schema: 'TableSchema', tableId: 'TableName' };
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
-      metaEdName: entityPkName,
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -127,7 +127,7 @@ describe('when building optional inline common property table', (): void => {
     table = { ...newTable(), schema: 'TableSchema', tableId: 'TableName' };
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
-      metaEdName: entityPkName,
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
