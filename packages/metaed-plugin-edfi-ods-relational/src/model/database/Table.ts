@@ -17,7 +17,7 @@ import { columnConstraintMerge, Column, NoColumn } from './Column';
 import { ColumnTransform } from './ColumnTransform';
 import { ForeignKey } from './ForeignKey';
 import { simpleTableNameGroupConcat } from './TableNameGroupHelper';
-import { ColumnConflictPaths } from './ColumnConflictPaths';
+import { ColumnConflictPath } from './ColumnConflictPath';
 
 // eslint-disable-next-line no-use-before-define
 export type TableNameElement = TableNameComponent | TableNameGroup;
@@ -92,7 +92,7 @@ export interface Table {
   tableId: string;
 
   /** A list of all the column conflict paths that lead to the creation of this table */
-  columnConflictPaths: ColumnConflictPaths[];
+  columnConflictPaths: ColumnConflictPath[];
 
   namespace: Namespace;
   schema: string;

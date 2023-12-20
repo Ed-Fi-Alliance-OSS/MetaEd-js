@@ -37,11 +37,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
               allJsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)].jsonPaths;
             invariant(
               sourceJsonPaths != null && targetJsonPaths != null,
-              'Invariant failed in EqualityConstraintEnhancer: source or target JsonPaths are undefined',
+              'Invariant failed in MergeDirectiveEqualityConstraintEnhancer: source or target JsonPaths are undefined',
             );
             invariant(
               sourceJsonPaths.length === targetJsonPaths.length,
-              'Invariant failed in EqualityConstraintEnhancer: source and target JsonPath lengths not equal',
+              'Invariant failed in MergeDirectiveEqualityConstraintEnhancer: source and target JsonPath lengths not equal',
             );
             sourceJsonPaths.forEach((sourceJsonPath: JsonPath, matchingTargetJsonPathIndex: number) => {
               equalityConstraints.push({
