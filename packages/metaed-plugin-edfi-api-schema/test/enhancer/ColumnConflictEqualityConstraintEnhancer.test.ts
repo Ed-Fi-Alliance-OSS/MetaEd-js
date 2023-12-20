@@ -585,10 +585,6 @@ describe('when a reference has a column conflict with multiple levels of domain 
     expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
       Array [
         Object {
-          "sourceJsonPath": "$.sectionReference.schoolYear",
-          "targetJsonPath": "$.sectionReference.schoolYear",
-        },
-        Object {
           "sourceJsonPath": "$.sectionReference.schoolId",
           "targetJsonPath": "$.courseOfferingReference.schoolId",
         },

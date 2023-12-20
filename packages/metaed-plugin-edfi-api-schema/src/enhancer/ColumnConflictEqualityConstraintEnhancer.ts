@@ -43,6 +43,9 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       );
 
       sourceJsonPaths.forEach((sourceJsonPath: JsonPath, matchingTargetJsonPathIndex: number) => {
+        // Can ignore conflicts that result in the same path
+        if (sourceJsonPath === targetJsonPaths[matchingTargetJsonPathIndex]) return;
+
         equalityConstraints.push({
           sourceJsonPath,
           targetJsonPath: targetJsonPaths[matchingTargetJsonPathIndex],

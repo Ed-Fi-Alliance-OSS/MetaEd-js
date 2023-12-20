@@ -229,6 +229,35 @@ export function isTableNameComponent(nameElement: TableNameElement): nameElement
 }
 
 /**
+ * Add columnConflictPaths to the table
+ */
+function addColumnConflictPaths(table: Table, firstColumn: Column, secondColumn: Column) {
+  // Ignore synthetic USI columns
+  if (
+    firstColumn.sourceEntityProperties.length === 1 &&
+    firstColumn.sourceEntityProperties[0].data.edfiOdsRelational.isUsiProperty
+  ) {
+    return;
+  }
+
+  invariant(
+    firstColumn.originalEntity != null,
+    `Column ${firstColumn.columnId} for Table ${table.tableId} is duplicate column with no originalEntity`,
+  );
+  invariant(
+    secondColumn.originalEntity != null,
+    `Column ${secondColumn.columnId} for Table ${table.tableId} is duplicate column with no originalEntity`,
+  );
+
+  table.columnConflictPaths.push({
+    firstPath: firstColumn.propertyPath,
+    secondPath: secondColumn.propertyPath,
+    firstOriginalEntity: firstColumn.originalEntity,
+    secondOriginalEntity: secondColumn.originalEntity,
+  });
+}
+
+/**
  * Adds a column while doing delete and append for duplicate columns rather than replacement
  */
 function addColumnV5(table: Table, column: Column) {
@@ -238,24 +267,7 @@ function addColumnV5(table: Table, column: Column) {
   } else {
     Logger.debug(`  Duplicate column ${column.columnId} on table ${simpleTableNameGroupConcat(table.nameGroup)}.`);
 
-    const firstColumn: Column = existingColumn;
-    const secondColumn: Column = column;
-
-    invariant(
-      firstColumn.originalEntity != null,
-      `Column ${firstColumn.columnId} for Table ${table.tableId} is duplicate column with no originalEntity`,
-    );
-    invariant(
-      secondColumn.originalEntity != null,
-      `Column ${secondColumn.columnId} for Table ${table.tableId} is duplicate column with no originalEntity`,
-    );
-
-    table.columnConflictPaths.push({
-      firstPath: firstColumn.propertyPath,
-      secondPath: secondColumn.propertyPath,
-      firstOriginalEntity: firstColumn.originalEntity,
-      secondOriginalEntity: secondColumn.originalEntity,
-    });
+    addColumnConflictPaths(table, existingColumn, column);
 
     table.columns = R.reject((c: Column) => c.columnId === column.columnId)(table.columns);
     table.columns.push(columnConstraintMerge(existingColumn, column));
@@ -272,24 +284,8 @@ function addColumnV7(table: Table, column: Column) {
   } else {
     Logger.debug(`  Duplicate column ${column.columnId} on table ${simpleTableNameGroupConcat(table.nameGroup)}.`);
 
-    const firstColumn: Column = table.columns[existingColumnIndex];
-    const secondColumn: Column = column;
+    addColumnConflictPaths(table, table.columns[existingColumnIndex], column);
 
-    invariant(
-      firstColumn.originalEntity != null,
-      `Column ${firstColumn.columnId} for Table ${table.tableId} is duplicate column with no originalEntity`,
-    );
-    invariant(
-      secondColumn.originalEntity != null,
-      `Column ${secondColumn.columnId} for Table ${table.tableId} is duplicate column with no originalEntity`,
-    );
-
-    table.columnConflictPaths.push({
-      firstPath: firstColumn.propertyPath,
-      secondPath: secondColumn.propertyPath,
-      firstOriginalEntity: firstColumn.originalEntity,
-      secondOriginalEntity: secondColumn.originalEntity,
-    });
     table.columns[existingColumnIndex] = columnConstraintMerge(table.columns[existingColumnIndex], column);
   }
 }
