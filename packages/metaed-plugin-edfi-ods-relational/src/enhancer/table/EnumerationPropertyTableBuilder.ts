@@ -18,6 +18,7 @@ const foreignKeyStrategyFor = (property: EntityProperty): ForeignKeyStrategy => 
 };
 
 export function enumerationPropertyTableBuilder({
+  originalEntity,
   property,
   parentTableStrategy,
   parentPrimaryKeys,
@@ -27,11 +28,12 @@ export function enumerationPropertyTableBuilder({
   parentIsRequired,
   currentPropertyPath,
 }: TableBuilderParameters): void {
-  const enumeration: ReferentialProperty = asReferentialProperty(property);
+  const enumerationProperty: ReferentialProperty = asReferentialProperty(property);
 
-  if (!enumeration.data.edfiOdsRelational.odsIsCollection) {
+  if (!enumerationProperty.data.edfiOdsRelational.odsIsCollection) {
     const enumerationColumn: Column = createColumnFor(
-      enumeration,
+      originalEntity,
+      enumerationProperty,
       buildStrategy,
       currentPropertyPath,
       targetTechnologyVersion,
@@ -40,10 +42,10 @@ export function enumerationPropertyTableBuilder({
       property,
       {
         foreignKeyColumns: [enumerationColumn],
-        foreignTableSchema: enumeration.referencedEntity.namespace.namespaceName.toLowerCase(),
-        foreignTableNamespace: enumeration.referencedEntity.namespace,
-        foreignTableId: enumeration.referencedEntity.data.edfiOdsRelational.odsTableId,
-        strategy: foreignKeyStrategyFor(enumeration),
+        foreignTableSchema: enumerationProperty.referencedEntity.namespace.namespaceName.toLowerCase(),
+        foreignTableNamespace: enumerationProperty.referencedEntity.namespace,
+        foreignTableId: enumerationProperty.referencedEntity.data.edfiOdsRelational.odsTableId,
+        strategy: foreignKeyStrategyFor(enumerationProperty),
       },
       { isSubtableRelationship: false },
     );
@@ -55,7 +57,7 @@ export function enumerationPropertyTableBuilder({
       targetTechnologyVersion,
     );
   } else {
-    const { tableId, nameGroup } = joinTableNamer(enumeration, parentTableStrategy, buildStrategy);
+    const { tableId, nameGroup } = joinTableNamer(enumerationProperty, parentTableStrategy, buildStrategy);
     const joinTable: Table = {
       ...newTable(),
       namespace: parentTableStrategy.schemaNamespace,
@@ -65,12 +67,12 @@ export function enumerationPropertyTableBuilder({
       existenceReason: {
         ...newTableExistenceReason(),
         isImplementingCollection: true,
-        sourceProperty: enumeration,
+        sourceProperty: enumerationProperty,
       },
-      description: enumeration.documentation,
-      isRequiredCollectionTable: enumeration.isRequiredCollection && R.defaultTo(true)(parentIsRequired),
+      description: enumerationProperty.documentation,
+      isRequiredCollectionTable: enumerationProperty.isRequiredCollection && R.defaultTo(true)(parentIsRequired),
       includeCreateDateColumn: true,
-      parentEntity: enumeration.parentEntity,
+      parentEntity: enumerationProperty.parentEntity,
     };
     tables.push(joinTable);
 
@@ -83,7 +85,7 @@ export function enumerationPropertyTableBuilder({
         foreignTableId: parentTableStrategy.tableId,
         strategy: ForeignKeyStrategy.foreignColumnCascade(
           true,
-          enumeration.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates,
+          enumerationProperty.parentEntity.data.edfiOdsRelational.odsCascadePrimaryKeyUpdates,
         ),
       },
       { isSubtableRelationship: true },
@@ -97,7 +99,8 @@ export function enumerationPropertyTableBuilder({
     );
 
     const columns: Column[] = createColumnFor(
-      enumeration,
+      originalEntity,
+      enumerationProperty,
       buildStrategy.columnNamerIgnoresRoleName(),
       currentPropertyPath,
       targetTechnologyVersion,
@@ -106,10 +109,10 @@ export function enumerationPropertyTableBuilder({
       property,
       {
         foreignKeyColumns: columns,
-        foreignTableSchema: enumeration.referencedEntity.namespace.namespaceName.toLowerCase(),
-        foreignTableNamespace: enumeration.referencedEntity.namespace,
-        foreignTableId: enumeration.referencedEntity.data.edfiOdsRelational.odsTableId,
-        strategy: foreignKeyStrategyFor(enumeration),
+        foreignTableSchema: enumerationProperty.referencedEntity.namespace.namespaceName.toLowerCase(),
+        foreignTableNamespace: enumerationProperty.referencedEntity.namespace,
+        foreignTableId: enumerationProperty.referencedEntity.data.edfiOdsRelational.odsTableId,
+        strategy: foreignKeyStrategyFor(enumerationProperty),
       },
       { isSubtableRelationship: false },
     );

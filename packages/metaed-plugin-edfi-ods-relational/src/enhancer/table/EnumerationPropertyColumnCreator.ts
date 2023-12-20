@@ -1,8 +1,9 @@
-import { EntityProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
+import { EntityProperty, MetaEdPropertyPath, TopLevelEntity } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { Column, newColumn, newColumnNameComponent, ColumnNaming } from '../../model/database/Column';
 
 export function enumerationPropertyColumnCreator(
+  originalEntity: TopLevelEntity,
   property: EntityProperty,
   strategy: BuildStrategy,
   currentPropertyPath: MetaEdPropertyPath,
@@ -41,6 +42,7 @@ export function enumerationPropertyColumnCreator(
     mergedReferenceContexts: [property.data.edfiOdsRelational.odsName],
     sourceEntityProperties: [property],
     propertyPath: currentPropertyPath,
+    originalEntity,
   };
   return [column];
 }

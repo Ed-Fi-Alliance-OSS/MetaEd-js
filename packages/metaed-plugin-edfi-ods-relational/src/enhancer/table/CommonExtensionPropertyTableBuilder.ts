@@ -4,6 +4,7 @@ import {
   MetaEdPropertyPath,
   Namespace,
   SemVer,
+  TopLevelEntity,
   versionSatisfies,
 } from '@edfi/metaed-core';
 import { ModelBase, EntityProperty, MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
@@ -30,6 +31,7 @@ import { buildTableFor, TableBuilderParameters } from './TableBuilder';
 import { appendToPropertyPath } from '../EnhancerHelper';
 
 function buildExtensionTables(
+  originalEntity: TopLevelEntity,
   property: ReferentialProperty,
   parentTableStrategy: TableStrategy,
   primaryKeys: Column[],
@@ -126,6 +128,7 @@ function buildExtensionTables(
 
   commonExtension.data.edfiOdsRelational.odsProperties.forEach((odsProperty: EntityProperty) => {
     buildTableFor({
+      originalEntity,
       property: odsProperty,
       parentTableStrategy: TableStrategy.extension(
         extensionTable,
@@ -150,6 +153,7 @@ function buildExtensionTables(
 }
 
 export function commonExtensionPropertyTableBuilder({
+  originalEntity,
   property,
   parentTableStrategy,
   parentPrimaryKeys,
@@ -170,7 +174,13 @@ export function commonExtensionPropertyTableBuilder({
   const primaryKeys: Column[] = [];
   if (!commonProperty.isOptional) {
     primaryKeys.push(
-      ...collectPrimaryKeys(commonProperty.referencedEntity, strategy, currentPropertyPath, targetTechnologyVersion),
+      ...collectPrimaryKeys(
+        originalEntity,
+        commonProperty.referencedEntity,
+        strategy,
+        currentPropertyPath,
+        targetTechnologyVersion,
+      ),
     );
   }
 
@@ -198,6 +208,7 @@ export function commonExtensionPropertyTableBuilder({
   };
 
   buildExtensionTables(
+    originalEntity,
     commonProperty,
     parentTableStrategy,
     primaryKeys,

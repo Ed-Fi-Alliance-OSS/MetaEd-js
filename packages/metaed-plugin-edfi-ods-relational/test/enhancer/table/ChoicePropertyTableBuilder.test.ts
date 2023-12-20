@@ -22,6 +22,7 @@ describe('when building choice property table with two integer properties', (): 
     table = { ...newTable(), schema: 'TableSchema', tableId: 'TableName' };
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -84,6 +85,7 @@ describe('when building choice property table with two integer properties', (): 
     entityChoiceProperty.referencedEntity = choice;
 
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -91,6 +93,7 @@ describe('when building choice property table with two integer properties', (): 
     );
 
     buildTableFor({
+      originalEntity: entity,
       property: entityChoiceProperty,
       parentTableStrategy: TableStrategy.default(table),
       parentPrimaryKeys: primaryKeys,
@@ -113,5 +116,8 @@ describe('when building choice property table with two integer properties', (): 
 
     expect(table.columns[0].propertyPath).toMatchInlineSnapshot(`"ChoiceName.ChoiceEntityPropertyName1"`);
     expect(table.columns[1].propertyPath).toMatchInlineSnapshot(`"ChoiceName.ChoiceEntityPropertyName2"`);
+
+    expect(table.columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
+    expect(table.columns[1].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });

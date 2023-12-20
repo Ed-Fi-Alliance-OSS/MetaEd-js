@@ -1,4 +1,12 @@
-import { MetaEdPropertyPath, newCommon, newCommonProperty, newIntegerProperty, newStringProperty } from '@edfi/metaed-core';
+import {
+  DomainEntity,
+  MetaEdPropertyPath,
+  newCommon,
+  newCommonProperty,
+  newDomainEntity,
+  newIntegerProperty,
+  newStringProperty,
+} from '@edfi/metaed-core';
 import { Common, CommonProperty, IntegerProperty, StringProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { Column, StringColumn } from '../../../src/model/database/Column';
@@ -34,6 +42,17 @@ describe('when creating columns for common with is collection property', (): voi
       },
     });
 
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [commonProperty],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
     property = Object.assign(newStringProperty(), {
       metaEdName: propertyName,
       fullPropertyName: propertyName,
@@ -53,6 +72,7 @@ describe('when creating columns for common with is collection property', (): voi
     common.data.edfiOdsRelational.odsProperties.push(property);
 
     columns = createColumnFor(
+      entity,
       commonProperty,
       BuildStrategyDefault,
       commonProperty.fullPropertyName as MetaEdPropertyPath,
@@ -95,6 +115,17 @@ describe('when creating columns for common with only one property', (): void => 
       },
     });
 
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [commonProperty],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
     property = Object.assign(newStringProperty(), {
       metaEdName: propertyName,
       fullPropertyName: propertyName,
@@ -113,6 +144,7 @@ describe('when creating columns for common with only one property', (): void => 
     common.data.edfiOdsRelational.odsProperties.push(property);
 
     columns = createColumnFor(
+      entity,
       commonProperty,
       BuildStrategyDefault,
       commonProperty.fullPropertyName as MetaEdPropertyPath,
@@ -132,6 +164,7 @@ describe('when creating columns for common with only one property', (): void => 
     expect(columns[0].originalContextPrefix).toBe('');
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
     expect(columns[0].propertyPath).toMatchInlineSnapshot(`"CommonName.PropertyName"`);
+    expect(columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });
 
@@ -163,6 +196,17 @@ describe('when creating columns for common with two properties', (): void => {
       data: {
         edfiOdsRelational: {
           odsIsCollection: false,
+        },
+      },
+    });
+
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [commonProperty],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
         },
       },
     });
@@ -200,6 +244,7 @@ describe('when creating columns for common with two properties', (): void => {
     common.data.edfiOdsRelational.odsProperties.push(integerProperty);
 
     columns = createColumnFor(
+      entity,
       commonProperty,
       BuildStrategyDefault,
       commonProperty.fullPropertyName as MetaEdPropertyPath,
@@ -222,6 +267,7 @@ describe('when creating columns for common with two properties', (): void => {
     expect(columns[0].originalContextPrefix).toBe('');
     expect(columns[0].sourceEntityProperties[0]).toBe(stringProperty);
     expect(columns[0].propertyPath).toMatchInlineSnapshot(`"CommonName.StringPropertyName"`);
+    expect(columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 
   it('should return an integer column', (): void => {
@@ -234,5 +280,6 @@ describe('when creating columns for common with two properties', (): void => {
     expect(columns[1].originalContextPrefix).toBe('');
     expect(columns[1].sourceEntityProperties[0]).toBe(integerProperty);
     expect(columns[1].propertyPath).toMatchInlineSnapshot(`"CommonName.IntegerPropertyName"`);
+    expect(columns[1].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });

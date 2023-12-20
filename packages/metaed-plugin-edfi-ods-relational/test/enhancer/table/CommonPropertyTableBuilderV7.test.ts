@@ -53,6 +53,7 @@ describe('when building common property table', (): void => {
     common.data.edfiOdsRelational.odsIdentityProperties.push(commonPkProperty);
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -86,6 +87,7 @@ describe('when building common property table', (): void => {
       },
     });
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -95,6 +97,7 @@ describe('when building common property table', (): void => {
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
 
     buildTableFor({
+      originalEntity: entity,
       property: commonProperty,
       parentTableStrategy: TableStrategy.default(mainTable),
       parentPrimaryKeys: primaryKeys,
@@ -123,6 +126,11 @@ describe('when building common property table', (): void => {
   it('should have correct property paths', (): void => {
     expect(tables[0].columns[0].propertyPath).toMatchInlineSnapshot(`"EntityPkName"`);
     expect(tables[0].columns[1].propertyPath).toMatchInlineSnapshot(`"CommonName.CommonPkName"`);
+  });
+
+  it('should have correct original entities', (): void => {
+    expect(tables[0].columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
+    expect(tables[0].columns[1].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 
   it('should have one foreign key', (): void => {
@@ -175,6 +183,7 @@ describe('when building optional common property table', (): void => {
     common.data.edfiOdsRelational.odsIdentityProperties.push(commonPkProperty);
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -209,6 +218,7 @@ describe('when building optional common property table', (): void => {
       },
     });
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -218,6 +228,7 @@ describe('when building optional common property table', (): void => {
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
 
     buildTableFor({
+      originalEntity: entity,
       property: commonProperty,
       parentTableStrategy: TableStrategy.default(mainTable),
       parentPrimaryKeys: primaryKeys,
@@ -246,6 +257,11 @@ describe('when building optional common property table', (): void => {
   it('should have correct property paths', (): void => {
     expect(tables[0].columns[0].propertyPath).toMatchInlineSnapshot(`"EntityPkName"`);
     expect(tables[0].columns[1].propertyPath).toMatchInlineSnapshot(`"CommonName.CommonPkName"`);
+  });
+
+  it('should have correct original entities', (): void => {
+    expect(tables[0].columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
+    expect(tables[0].columns[1].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 
   it('should have one foreign key', (): void => {
@@ -298,6 +314,7 @@ describe('when building required collection common property table', (): void => 
     common.data.edfiOdsRelational.odsIdentityProperties.push(commonPkProperty);
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -332,6 +349,7 @@ describe('when building required collection common property table', (): void => 
       },
     });
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -341,6 +359,7 @@ describe('when building required collection common property table', (): void => 
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
 
     buildTableFor({
+      originalEntity: entity,
       property: commonProperty,
       parentTableStrategy: TableStrategy.default(mainTable),
       parentPrimaryKeys: primaryKeys,
@@ -370,6 +389,11 @@ describe('when building required collection common property table', (): void => 
   it('should have correct property paths', (): void => {
     expect(tables[0].columns[0].propertyPath).toMatchInlineSnapshot(`"EntityPkName"`);
     expect(tables[0].columns[1].propertyPath).toMatchInlineSnapshot(`"CommonName.CommonPkName"`);
+  });
+
+  it('should have correct original entities', (): void => {
+    expect(tables[0].columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
+    expect(tables[0].columns[1].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });
 
@@ -409,6 +433,7 @@ describe('when building required collection common property table with make leaf
     common.data.edfiOdsRelational.odsIdentityProperties.push(commonPkProperty);
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -443,6 +468,7 @@ describe('when building required collection common property table with make leaf
       },
     });
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -452,6 +478,7 @@ describe('when building required collection common property table with make leaf
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
 
     buildTableFor({
+      originalEntity: entity,
       property: commonProperty,
       parentTableStrategy: TableStrategy.default(mainTable),
       parentPrimaryKeys: primaryKeys,
@@ -481,5 +508,10 @@ describe('when building required collection common property table with make leaf
   it('should have correct property paths', (): void => {
     expect(tables[0].columns[0].propertyPath).toMatchInlineSnapshot(`"EntityPkName"`);
     expect(tables[0].columns[1].propertyPath).toMatchInlineSnapshot(`"CommonName.CommonPkName"`);
+  });
+
+  it('should have correct original entities', (): void => {
+    expect(tables[0].columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
+    expect(tables[0].columns[1].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });

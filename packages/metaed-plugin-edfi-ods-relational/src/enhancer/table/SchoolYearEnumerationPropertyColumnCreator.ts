@@ -1,8 +1,9 @@
-import { EntityProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
+import { EntityProperty, MetaEdPropertyPath, TopLevelEntity } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { Column, newColumn, newColumnNameComponent, ColumnNameComponent } from '../../model/database/Column';
 
 export function schoolYearEnumerationPropertyColumnCreator(
+  originalEntity: TopLevelEntity,
   property: EntityProperty,
   strategy: BuildStrategy,
   currentPropertyPath: MetaEdPropertyPath,
@@ -40,6 +41,7 @@ export function schoolYearEnumerationPropertyColumnCreator(
     isPartOfPrimaryKey: !strategy.suppressPrimaryKeyCreation() && (property.isPartOfIdentity || property.isIdentityRename),
     sourceEntityProperties: [property],
     propertyPath: currentPropertyPath,
+    originalEntity,
   };
   return [column];
 }

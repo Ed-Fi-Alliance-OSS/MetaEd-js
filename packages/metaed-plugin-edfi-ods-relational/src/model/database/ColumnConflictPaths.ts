@@ -1,6 +1,6 @@
 import { MetaEdPropertyPath } from '@edfi/metaed-core';
 
 /**
- * A list of MetaEdPropertyPaths for properties that resolve to a single column conflict in a table.
+ * A pair of MetaEdPropertyPaths for two properties that resolve to a single column conflict in a table.
  */
-export type ColumnConflictPaths = MetaEdPropertyPath[];
+export type ColumnConflictPaths = { firstPath: MetaEdPropertyPath; secondPath: MetaEdPropertyPath };

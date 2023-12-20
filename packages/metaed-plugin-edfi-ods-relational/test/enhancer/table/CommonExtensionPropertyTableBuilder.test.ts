@@ -100,6 +100,7 @@ describe('when building common property extension table', (): void => {
     commonExtension.data.edfiOdsRelational.odsProperties.push(commonExtensionProperty);
 
     const entity: DomainEntityExtension = Object.assign(newDomainEntityExtension(), {
+      metaEdName: 'Entity',
       namespace: extensionNamespace,
       data: {
         edfiOdsRelational: {
@@ -144,6 +145,7 @@ describe('when building common property extension table', (): void => {
     entity.data.edfiOdsRelational.odsIdentityProperties.push(entityPkProperty);
 
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -153,6 +155,7 @@ describe('when building common property extension table', (): void => {
     const mainTable: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
 
     buildTableFor({
+      originalEntity: entity,
       property: commonProperty,
       parentTableStrategy: TableStrategy.default(mainTable),
       parentPrimaryKeys: primaryKeys,
@@ -184,6 +187,12 @@ describe('when building common property extension table', (): void => {
     expect(tables[0].columns[0].propertyPath).toMatchInlineSnapshot(`"CommonName.CommonPkName"`);
     expect(tables[0].columns[1].propertyPath).toMatchInlineSnapshot(`"EntityPkName"`);
     expect(tables[0].columns[2].propertyPath).toMatchInlineSnapshot(`"CommonName.CommonExtensionPropertyName"`);
+  });
+
+  it('should have correct original entities', (): void => {
+    expect(tables[0].columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
+    expect(tables[0].columns[1].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
+    expect(tables[0].columns[2].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 
   it('should have one foreign key', (): void => {

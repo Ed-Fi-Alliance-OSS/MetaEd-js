@@ -833,6 +833,18 @@ describe('when DomainEntityTableEnhancer enhances entity with two reference prop
     expect(table.columns[0].isPartOfPrimaryKey).toBe(true);
     expect(table.columns[0].propertyPath).toMatchInlineSnapshot(`"ReferencedEntityName1.CommonPkPropertyName"`);
   });
+
+  it('should record the column collision', (): void => {
+    const table: Table = tableEntities(metaEd, namespace).get(entityName) as Table;
+    expect(table.columnConflictPaths).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "firstPath": "ReferencedEntityName1.CommonPkPropertyName",
+          "secondPath": "ReferencedEntityName2.CommonPkPropertyName",
+        },
+      ]
+    `);
+  });
 });
 
 describe('when DomainEntityTableEnhancer enhances entity with two reference properties that have same primary key names', (): void => {
@@ -956,12 +968,25 @@ describe('when DomainEntityTableEnhancer enhances entity with two reference prop
     expect(tableEntities(metaEd, namespace).get(referencedEntityName1)).toBeDefined();
     expect(tableEntities(metaEd, namespace).get(referencedEntityName2)).toBeDefined();
   });
+
   it('should create single column in entity table', (): void => {
     const table: Table = tableEntities(metaEd, namespace).get(entityName) as Table;
     expect(table.columns).toHaveLength(1);
     expect(table.columns[0].columnId).toBe(commonPkPropertyName);
     expect(table.columns[0].isPartOfPrimaryKey).toBe(true);
     expect(table.columns[0].propertyPath).toMatchInlineSnapshot(`"ReferencedEntityName1.CommonPkPropertyName"`);
+  });
+
+  it('should record the column collision', (): void => {
+    const table: Table = tableEntities(metaEd, namespace).get(entityName) as Table;
+    expect(table.columnConflictPaths).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "firstPath": "ReferencedEntityName1.CommonPkPropertyName",
+          "secondPath": "ReferencedEntityName2.CommonPkPropertyName",
+        },
+      ]
+    `);
   });
 });
 

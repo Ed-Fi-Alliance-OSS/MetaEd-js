@@ -5,6 +5,7 @@ import { SchoolYearEnumerationRow } from './database/SchoolYearEnumerationRow';
 import { Table } from './database/Table';
 
 export interface EdFiOdsRelationalEntityRepository {
+  /** A mapping from tableId to Table object for all tables in the repository */
   table: Map<string, Table>;
   row: Map<string, EnumerationRow | SchoolYearEnumerationRow>;
 }

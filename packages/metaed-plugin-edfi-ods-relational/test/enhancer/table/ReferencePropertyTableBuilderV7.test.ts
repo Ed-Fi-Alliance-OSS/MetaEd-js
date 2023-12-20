@@ -19,6 +19,7 @@ describe('when building domain entity property table that is not an identity, re
     table = { ...newTable(), schema: 'TableSchema', tableId: 'TableName' };
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -66,6 +67,7 @@ describe('when building domain entity property table that is not an identity, re
     entityDomainEntityProperty.referencedEntity = domainEntity;
 
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -73,6 +75,7 @@ describe('when building domain entity property table that is not an identity, re
     );
 
     buildTableFor({
+      originalEntity: entity,
       property: entityDomainEntityProperty,
       parentTableStrategy: TableStrategy.default(table),
       parentPrimaryKeys: primaryKeys,
@@ -103,6 +106,7 @@ describe('when building identity domain entity property table', (): void => {
     table = { ...newTable(), schema: 'TableSchema', tableId: 'TableName' };
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -161,6 +165,7 @@ describe('when building identity domain entity property table', (): void => {
     entityDomainEntityProperty.referencedEntity = domainEntity;
 
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -168,6 +173,7 @@ describe('when building identity domain entity property table', (): void => {
     );
 
     buildTableFor({
+      originalEntity: entity,
       property: entityDomainEntityProperty,
       parentTableStrategy: TableStrategy.default(table),
       parentPrimaryKeys: primaryKeys,
@@ -192,6 +198,10 @@ describe('when building identity domain entity property table', (): void => {
     expect(table.columns[0].propertyPath).toMatchInlineSnapshot(`"DomainEntityName.DomainEntityPkName"`);
   });
 
+  it('should have correct original entities', (): void => {
+    expect(table.columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
+  });
+
   it('should create no foreign keys', (): void => {
     expect(table.foreignKeys).toHaveLength(0);
   });
@@ -207,6 +217,7 @@ describe('when building required domain entity property table', (): void => {
     table = { ...newTable(), schema: 'TableSchema', tableId: 'TableName' };
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -265,6 +276,7 @@ describe('when building required domain entity property table', (): void => {
     entityDomainEntityProperty.referencedEntity = domainEntity;
 
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -272,6 +284,7 @@ describe('when building required domain entity property table', (): void => {
     );
 
     buildTableFor({
+      originalEntity: entity,
       property: entityDomainEntityProperty,
       parentTableStrategy: TableStrategy.default(table),
       parentPrimaryKeys: primaryKeys,
@@ -296,6 +309,10 @@ describe('when building required domain entity property table', (): void => {
     expect(table.columns[0].propertyPath).toMatchInlineSnapshot(`"DomainEntityName.DomainEntityPkName"`);
   });
 
+  it('should have correct original entities', (): void => {
+    expect(table.columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
+  });
+
   it('should create no foreign keys', (): void => {
     expect(table.foreignKeys).toHaveLength(0);
   });
@@ -311,6 +328,7 @@ describe('when building optional domain entity property table', (): void => {
     table = { ...newTable(), schema: 'TableSchema', tableId: 'TableName' };
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -369,6 +387,7 @@ describe('when building optional domain entity property table', (): void => {
     entityDomainEntityProperty.referencedEntity = domainEntity;
 
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -376,6 +395,7 @@ describe('when building optional domain entity property table', (): void => {
     );
 
     buildTableFor({
+      originalEntity: entity,
       property: entityDomainEntityProperty,
       parentTableStrategy: TableStrategy.default(table),
       parentPrimaryKeys: primaryKeys,
@@ -400,6 +420,10 @@ describe('when building optional domain entity property table', (): void => {
     expect(table.columns[0].propertyPath).toMatchInlineSnapshot(`"DomainEntityName.DomainEntityPkName"`);
   });
 
+  it('should have correct original entities', (): void => {
+    expect(table.columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
+  });
+
   it('should create no foreign keys', (): void => {
     expect(table.foreignKeys).toHaveLength(0);
   });
@@ -418,6 +442,7 @@ describe('when building collection domain entity property table', (): void => {
     table = { ...newTable(), schema: tableSchema, tableId: tableName };
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -476,6 +501,7 @@ describe('when building collection domain entity property table', (): void => {
     entityDomainEntityProperty.referencedEntity = domainEntity;
 
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -483,6 +509,7 @@ describe('when building collection domain entity property table', (): void => {
     );
 
     buildTableFor({
+      originalEntity: entity,
       property: entityDomainEntityProperty,
       parentTableStrategy: TableStrategy.default(table),
       parentPrimaryKeys: primaryKeys,
@@ -511,6 +538,11 @@ describe('when building collection domain entity property table', (): void => {
   it('should have correct property paths', (): void => {
     expect(tables[0].columns[0].propertyPath).toMatchInlineSnapshot(`"entityPkName"`);
     expect(tables[0].columns[1].propertyPath).toMatchInlineSnapshot(`"DomainEntityName.domainEntityPkName"`);
+  });
+
+  it('should have correct original entities', (): void => {
+    expect(tables[0].columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
+    expect(tables[0].columns[1].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 
   it('should create one foreign key', (): void => {

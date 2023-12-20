@@ -6,9 +6,11 @@ import { appendToPropertyPath } from '../EnhancerHelper';
 
 /**
  * Collects the primary keys for a given entity. Includes BuildStrategy to adjust column naming/attributes.
- * Collects currentPropertyPath to assign to columns.
+ * Collects currentPropertyPath to assign to columns, and originalEntity to track the initial source.
+ * originalEntity differs from entity when, for example, the referencedEntity of a ReferentialProperty is followed.
  */
 export function collectPrimaryKeys(
+  originalEntity: TopLevelEntity,
   entity: TopLevelEntity,
   strategy: BuildStrategy,
   currentPropertyPath: MetaEdPropertyPath,
@@ -20,7 +22,13 @@ export function collectPrimaryKeys(
 
   entity.data.edfiOdsRelational.odsIdentityProperties.forEach((property: ReferentialProperty) => {
     columns.push(
-      ...createColumnFor(property, strategy, appendToPropertyPath(currentPropertyPath, property), targetTechnologyVersion),
+      ...createColumnFor(
+        originalEntity,
+        property,
+        strategy,
+        appendToPropertyPath(currentPropertyPath, property),
+        targetTechnologyVersion,
+      ),
     );
   });
 
@@ -28,6 +36,7 @@ export function collectPrimaryKeys(
     if (property.type !== 'inlineCommon') return;
     columns.push(
       ...collectPrimaryKeys(
+        originalEntity,
         property.referencedEntity,
         strategy.appendParentContextProperty(property),
         appendToPropertyPath(currentPropertyPath, property),

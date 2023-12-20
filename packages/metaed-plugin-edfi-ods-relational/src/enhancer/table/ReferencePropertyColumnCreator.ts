@@ -1,4 +1,4 @@
-import { EntityProperty, MetaEdPropertyPath, ReferentialProperty, SemVer } from '@edfi/metaed-core';
+import { EntityProperty, MetaEdPropertyPath, ReferentialProperty, SemVer, TopLevelEntity } from '@edfi/metaed-core';
 import { collectPrimaryKeys } from './PrimaryKeyCollector';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
@@ -8,6 +8,7 @@ import { Column } from '../../model/database/Column';
  * currentPropertyPath is for the given property.
  */
 export function referencePropertyColumnCreator(
+  originalEntity: TopLevelEntity,
   property: EntityProperty,
   strategy: BuildStrategy,
   currentPropertyPath: MetaEdPropertyPath,
@@ -24,6 +25,7 @@ export function referencePropertyColumnCreator(
       : buildStrategy;
 
   const columns: Column[] = collectPrimaryKeys(
+    originalEntity,
     referentialProperty.referencedEntity,
     buildStrategy,
     currentPropertyPath,

@@ -17,6 +17,7 @@ import { descriptorPropertyColumnCreator } from './DescriptorPropertyColumnCreat
 import { TableBuilderParameters } from './TableBuilder';
 
 export function descriptorPropertyTableBuilder({
+  originalEntity,
   property,
   parentTableStrategy,
   parentPrimaryKeys,
@@ -29,7 +30,12 @@ export function descriptorPropertyTableBuilder({
   const descriptor: ReferentialProperty = property as ReferentialProperty;
 
   if (!descriptor.data.edfiOdsRelational.odsIsCollection) {
-    const descriptorColumn: Column = descriptorPropertyColumnCreator(descriptor, buildStrategy, currentPropertyPath)[0];
+    const descriptorColumn: Column = descriptorPropertyColumnCreator(
+      originalEntity,
+      descriptor,
+      buildStrategy,
+      currentPropertyPath,
+    )[0];
 
     addColumnsWithoutSort(
       parentTableStrategy.table,
@@ -96,6 +102,7 @@ export function descriptorPropertyTableBuilder({
     );
 
     const columns: Column[] = descriptorPropertyColumnCreator(
+      originalEntity,
       descriptor,
       buildStrategy.columnNamerIgnoresRoleName(),
       currentPropertyPath,

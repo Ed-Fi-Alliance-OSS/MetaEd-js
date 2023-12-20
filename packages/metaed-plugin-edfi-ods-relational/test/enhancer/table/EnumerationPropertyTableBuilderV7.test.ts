@@ -81,9 +81,16 @@ describe('when building enumeration property table', (): void => {
     enumeration.data.edfiOdsRelational.odsProperties.push(enumerationEntityProperty1);
     entityEnumerationProperty.referencedEntity = enumeration;
 
-    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
+    const primaryKeys: Column[] = createColumnFor(
+      entity,
+      entityPkProperty,
+      BuildStrategyDefault,
+      '' as MetaEdPropertyPath,
+      '7.0.0',
+    );
 
     buildTableFor({
+      originalEntity: entity,
       property: entityEnumerationProperty,
       parentTableStrategy: TableStrategy.default(table),
       parentPrimaryKeys: primaryKeys,
@@ -185,9 +192,16 @@ describe('when building collection enumeration property table', (): void => {
     enumeration.data.edfiOdsRelational.odsProperties.push(enumerationEntityProperty1);
     entityEnumerationProperty.referencedEntity = enumeration;
 
-    const primaryKeys: Column[] = createColumnFor(entityPkProperty, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
+    const primaryKeys: Column[] = createColumnFor(
+      entity,
+      entityPkProperty,
+      BuildStrategyDefault,
+      '' as MetaEdPropertyPath,
+      '7.0.0',
+    );
 
     buildTableFor({
+      originalEntity: entity,
       property: entityEnumerationProperty,
       parentTableStrategy: TableStrategy.default(table),
       parentPrimaryKeys: primaryKeys,

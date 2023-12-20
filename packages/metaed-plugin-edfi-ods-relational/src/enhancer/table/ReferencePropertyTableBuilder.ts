@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { MetaEdPropertyPath, SemVer } from '@edfi/metaed-core';
+import { MetaEdPropertyPath, SemVer, TopLevelEntity } from '@edfi/metaed-core';
 import { MergeDirective, ReferentialProperty } from '@edfi/metaed-core';
 import {
   addColumnsWithoutSort,
@@ -23,6 +23,7 @@ import { TableBuilderParameters } from './TableBuilder';
 
 const referenceColumnBuilder =
   (
+    originalEntity: TopLevelEntity,
     referenceProperty: ReferentialProperty,
     parentTableStrategy: TableStrategy,
     buildStrategy: BuildStrategy,
@@ -31,6 +32,7 @@ const referenceColumnBuilder =
   ) =>
   (columnStrategy: ColumnTransform): void => {
     const primaryKeys: Column[] = collectPrimaryKeys(
+      originalEntity,
       referenceProperty.referencedEntity,
       buildStrategy,
       currentPropertyPath,
@@ -46,6 +48,7 @@ const referenceColumnBuilder =
   };
 
 export function referencePropertyTableBuilder({
+  originalEntity,
   property,
   parentTableStrategy,
   parentPrimaryKeys,
@@ -65,6 +68,7 @@ export function referencePropertyTableBuilder({
   }
 
   const buildColumns = referenceColumnBuilder(
+    originalEntity,
     referenceProperty,
     parentTableStrategy,
     strategy,
@@ -160,6 +164,7 @@ export function referencePropertyTableBuilder({
   );
 
   const primaryKeys: Column[] = collectPrimaryKeys(
+    originalEntity,
     referenceProperty.referencedEntity,
     strategy,
     currentPropertyPath,

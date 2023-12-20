@@ -30,13 +30,14 @@ export function defaultPlugins(): MetaEdPlugin[] {
     edfiUnified(),
     edfiUnifiedAdvanced(),
 
+    edfiOdsRelational(),
+
     edfiApiSchema(),
 
-    edfiXsd(),
-
-    edfiOdsRelational(),
     edfiOdsSqlserver(),
     edfiOdsPostgresql(),
+
+    edfiXsd(),
 
     edfiOdsChangequery(),
     edfiOdsChangequerySqlserver(),

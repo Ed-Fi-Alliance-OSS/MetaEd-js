@@ -12,6 +12,7 @@ import { simplePropertyColumnCreator } from './SimplePropertyColumnCreator';
 import { TableBuilderParameters } from './TableBuilder';
 
 export function simplePropertyTableBuilder({
+  originalEntity,
   property,
   parentTableStrategy,
   parentPrimaryKeys,
@@ -75,7 +76,7 @@ export function simplePropertyTableBuilder({
     );
     addColumnsWithoutSort(
       joinTable,
-      simplePropertyColumnCreator(property, strategy.columnNamerIgnoresRoleName(), currentPropertyPath),
+      simplePropertyColumnCreator(originalEntity, property, strategy.columnNamerIgnoresRoleName(), currentPropertyPath),
       ColumnTransformPrimaryKey,
       targetTechnologyVersion,
     );
@@ -84,7 +85,7 @@ export function simplePropertyTableBuilder({
   } else {
     addColumnsWithoutSort(
       parentTableStrategy.table,
-      simplePropertyColumnCreator(property, strategy, currentPropertyPath),
+      simplePropertyColumnCreator(originalEntity, property, strategy, currentPropertyPath),
       strategy.leafColumns(ColumnTransformUnchanged),
       targetTechnologyVersion,
     );

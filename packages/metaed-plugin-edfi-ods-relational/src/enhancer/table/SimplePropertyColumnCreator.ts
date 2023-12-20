@@ -5,6 +5,7 @@ import {
   SimpleProperty,
   IntegerProperty,
   MetaEdPropertyPath,
+  TopLevelEntity,
 } from '@edfi/metaed-core';
 import {
   initializeColumn,
@@ -91,6 +92,7 @@ function createNewColumnFor(property: SimpleProperty): Column {
 }
 
 export function simplePropertyColumnCreator(
+  originalEntity: TopLevelEntity,
   property: EntityProperty,
   strategy: BuildStrategy,
   currentPropertyPath: MetaEdPropertyPath,
@@ -102,6 +104,7 @@ export function simplePropertyColumnCreator(
     referenceContext: property.data.edfiOdsRelational.odsName,
     mergedReferenceContexts: [property.data.edfiOdsRelational.odsName],
     propertyPath: currentPropertyPath,
+    originalEntity,
   };
   const columnNamer: () => ColumnNaming = strategy.columnNamer(
     strategy.parentContext(),

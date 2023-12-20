@@ -22,6 +22,7 @@ describe('when building inline common property table', (): void => {
     table = { ...newTable(), schema: 'TableSchema', tableId: 'TableName' };
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -75,6 +76,7 @@ describe('when building inline common property table', (): void => {
     inlineCommonProperty.referencedEntity = inlineCommon;
 
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -82,6 +84,7 @@ describe('when building inline common property table', (): void => {
     );
 
     buildTableFor({
+      originalEntity: entity,
       property: inlineCommonProperty,
       parentTableStrategy: TableStrategy.default(table),
       parentPrimaryKeys: primaryKeys,
@@ -107,6 +110,10 @@ describe('when building inline common property table', (): void => {
       `"InlineCommonPropertyName.InlineCommonEntityPropertyName1"`,
     );
   });
+
+  it('should have correct original entities', (): void => {
+    expect(table.columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
+  });
 });
 
 describe('when building optional inline common property table', (): void => {
@@ -120,6 +127,7 @@ describe('when building optional inline common property table', (): void => {
     table = { ...newTable(), schema: 'TableSchema', tableId: 'TableName' };
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -174,6 +182,7 @@ describe('when building optional inline common property table', (): void => {
     inlineCommonProperty.referencedEntity = inlineCommon;
 
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -181,6 +190,7 @@ describe('when building optional inline common property table', (): void => {
     );
 
     buildTableFor({
+      originalEntity: entity,
       property: inlineCommonProperty,
       parentTableStrategy: TableStrategy.default(table),
       parentPrimaryKeys: primaryKeys,
@@ -208,5 +218,9 @@ describe('when building optional inline common property table', (): void => {
     expect(table.columns[0].propertyPath).toMatchInlineSnapshot(
       `"InlineCommonPropertyName.InlineCommonEntityPropertyName1"`,
     );
+  });
+
+  it('should have correct original entities', (): void => {
+    expect(table.columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });

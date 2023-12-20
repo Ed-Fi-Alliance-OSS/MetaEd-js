@@ -1,10 +1,11 @@
-import { CommonProperty, EntityProperty, MetaEdPropertyPath, SemVer } from '@edfi/metaed-core';
+import { CommonProperty, EntityProperty, MetaEdPropertyPath, SemVer, TopLevelEntity } from '@edfi/metaed-core';
 import { BuildStrategy } from './BuildStrategy';
 import { Column } from '../../model/database/Column';
 import { createColumnFor } from './ColumnCreator';
 import { appendToPropertyPath } from '../EnhancerHelper';
 
 export function collectColumns(
+  originalEntity: TopLevelEntity,
   entityProperty: EntityProperty,
   strategy: BuildStrategy,
   currentPropertyPath: MetaEdPropertyPath,
@@ -17,7 +18,13 @@ export function collectColumns(
       if (property.data.edfiOdsRelational.odsIsCollection) return columns;
 
       return columns.concat(
-        createColumnFor(property, strategy, appendToPropertyPath(currentPropertyPath, property), targetTechnologyVersion),
+        createColumnFor(
+          originalEntity,
+          property,
+          strategy,
+          appendToPropertyPath(currentPropertyPath, property),
+          targetTechnologyVersion,
+        ),
       );
     },
     [],

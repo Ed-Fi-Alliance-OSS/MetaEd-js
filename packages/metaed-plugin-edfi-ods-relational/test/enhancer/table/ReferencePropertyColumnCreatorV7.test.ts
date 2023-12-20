@@ -43,7 +43,19 @@ describe('when creating columns for identity collection reference property', ():
       },
     });
 
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [domainEntityProperty],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
     columns = createColumnFor(
+      entity,
       domainEntityProperty,
       BuildStrategyDefault,
       'DomainEntityProperty' as MetaEdPropertyPath,
@@ -101,7 +113,19 @@ describe('when creating columns for identity reference property', (): void => {
       },
     });
 
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [domainEntityProperty],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
     columns = createColumnFor(
+      entity,
       domainEntityProperty,
       BuildStrategyDefault,
       domainEntityProperty.fullPropertyName as MetaEdPropertyPath,
@@ -119,6 +143,7 @@ describe('when creating columns for identity reference property', (): void => {
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
     expect(columns[0].referenceContext).toBe(domainEntityPropertyName + propertyName);
     expect(columns[0].propertyPath).toMatchInlineSnapshot(`"DomainEntityPropertyName.PropertyName"`);
+    expect(columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });
 
@@ -184,7 +209,19 @@ describe('when creating columns for identity reference properties with composite
       },
     });
 
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [domainEntityProperty],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
     columns = createColumnFor(
+      entity,
       domainEntityProperty,
       BuildStrategyDefault,
       domainEntityProperty.fullPropertyName as MetaEdPropertyPath,
@@ -205,6 +242,7 @@ describe('when creating columns for identity reference properties with composite
     expect(columns[0].sourceEntityProperties[0]).toBe(property1);
     expect(columns[0].referenceContext).toBe(domainEntityPropertyName + propertyName1);
     expect(columns[0].propertyPath).toMatchInlineSnapshot(`"DomainEntityPropertyName.PropertyName1"`);
+    expect(columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 
   it('should return a primary key column for second property', (): void => {
@@ -216,6 +254,7 @@ describe('when creating columns for identity reference properties with composite
     expect(columns[1].sourceEntityProperties[0]).toBe(property2);
     expect(columns[1].referenceContext).toBe(domainEntityPropertyName + propertyName2);
     expect(columns[1].propertyPath).toMatchInlineSnapshot(`"DomainEntityPropertyName.PropertyName2"`);
+    expect(columns[1].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });
 
@@ -287,7 +326,19 @@ describe('when creating columns for identity reference property that references 
       },
     });
 
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [domainEntityProperty2],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
     columns = createColumnFor(
+      entity,
       domainEntityProperty2,
       BuildStrategyDefault,
       domainEntityProperty2.fullPropertyName as MetaEdPropertyPath,
@@ -307,5 +358,6 @@ describe('when creating columns for identity reference property that references 
     expect(columns[0].propertyPath).toMatchInlineSnapshot(
       `"DomainEntityPropertyName2.DomainEntityPropertyName1.PropertyName1"`,
     );
+    expect(columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });

@@ -28,6 +28,7 @@ export function buildTablesFromProperties(
 
   const primaryKeys: Column[] = collectPrimaryKeys(
     entity,
+    entity,
     BuildStrategyDefault,
     currentPropertyPath,
     targetTechnologyVersion,
@@ -40,6 +41,7 @@ export function buildTablesFromProperties(
 
   entity.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
     buildTableFor({
+      originalEntity: entity,
       property,
       parentTableStrategy: TableStrategy.default(mainTable),
       parentPrimaryKeys: primaryKeys,

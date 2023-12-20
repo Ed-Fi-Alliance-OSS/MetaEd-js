@@ -22,6 +22,7 @@ describe('when building simple entity property table with collection property an
     const table: Table = { ...newTable(), schema: tableSchema, tableId: tableName };
 
     const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
       data: {
         edfiOdsRelational: {
           odsCascadePrimaryKeyUpdates: false,
@@ -63,6 +64,7 @@ describe('when building simple entity property table with collection property an
     });
 
     const primaryKeys: Column[] = createColumnFor(
+      entity,
       entityPkProperty,
       BuildStrategyDefault,
       entityPkProperty.fullPropertyName as MetaEdPropertyPath,
@@ -70,6 +72,7 @@ describe('when building simple entity property table with collection property an
     );
 
     buildTableFor({
+      originalEntity: entity,
       property: entityProperty,
       parentTableStrategy: TableStrategy.default(table),
       parentPrimaryKeys: primaryKeys,
@@ -106,6 +109,11 @@ describe('when building simple entity property table with collection property an
   it('should have correct property paths', (): void => {
     expect(tables[0].columns[0].propertyPath).toMatchInlineSnapshot(`"EntityPkName"`);
     expect(tables[0].columns[1].propertyPath).toMatchInlineSnapshot(`"EntityPropertyName"`);
+  });
+
+  it('should have correct original entities', (): void => {
+    expect(tables[0].columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
+    expect(tables[0].columns[1].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 
   it('should have foreign key', (): void => {

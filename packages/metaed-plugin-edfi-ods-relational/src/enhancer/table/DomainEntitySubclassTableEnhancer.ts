@@ -44,6 +44,7 @@ function addForeignKeyToPrimaryKeyRename(table: Table, entity: TopLevelEntity, t
     }
 
     const localColumnIds: string[] = createColumnFor(
+      entity,
       keyRenameProperty,
       BuildStrategyDefault,
       keyRenameProperty.fullPropertyName as MetaEdPropertyPath,
@@ -57,6 +58,7 @@ function addForeignKeyToPrimaryKeyRename(table: Table, entity: TopLevelEntity, t
     );
 
     const baseColumnIds: string[] = createColumnFor(
+      entity,
       baseColumnProperty,
       BuildStrategyDefault,
       baseColumnProperty.fullPropertyName as MetaEdPropertyPath,

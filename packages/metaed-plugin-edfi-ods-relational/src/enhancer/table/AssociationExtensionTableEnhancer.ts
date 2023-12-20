@@ -84,6 +84,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
       const primaryKeys: Column[] = collectPrimaryKeys(
         entity,
+        entity,
         BuildStrategyDefault,
         '' as MetaEdPropertyPath,
         targetTechnologyVersion,
@@ -119,6 +120,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           targetTechnologyVersion,
           parentIsRequired: null,
           currentPropertyPath: property.fullPropertyName as MetaEdPropertyPath,
+          originalEntity: entity,
         });
       });
 

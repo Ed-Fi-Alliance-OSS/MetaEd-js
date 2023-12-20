@@ -5,6 +5,7 @@ import { TableBuilderParameters, buildTableFor } from './TableBuilder';
 import { appendToPropertyPath } from '../EnhancerHelper';
 
 export function choicePropertyTableBuilder({
+  originalEntity,
   property,
   parentTableStrategy,
   parentPrimaryKeys,
@@ -30,6 +31,7 @@ export function choicePropertyTableBuilder({
       targetTechnologyVersion,
       parentIsRequired: choice.isRequired,
       currentPropertyPath: appendToPropertyPath(currentPropertyPath, odsProperty),
+      originalEntity,
     });
   });
 }

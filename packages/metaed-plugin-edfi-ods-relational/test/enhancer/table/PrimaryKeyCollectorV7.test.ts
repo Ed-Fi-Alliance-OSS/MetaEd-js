@@ -40,7 +40,7 @@ describe('when collecting primary key columns for identity property', (): void =
       },
     });
 
-    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
+    columns = collectPrimaryKeys(entity, entity, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
   });
 
   it('should return a primary key column', (): void => {
@@ -110,7 +110,7 @@ describe('when collecting primary key columns for inline common property', (): v
       },
     });
 
-    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
+    columns = collectPrimaryKeys(entity, entity, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
   });
 
   it('should return a primary key column', (): void => {
@@ -196,7 +196,7 @@ describe('when collecting primary key columns for identity property and inline c
       },
     });
 
-    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
+    columns = collectPrimaryKeys(entity, entity, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
   });
 
   it('should return two columns', (): void => {
@@ -296,7 +296,7 @@ describe('when collecting primary key columns for two inline common properties w
       },
     });
 
-    columns = collectPrimaryKeys(entity, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
+    columns = collectPrimaryKeys(entity, entity, BuildStrategyDefault, '' as MetaEdPropertyPath, '7.0.0');
   });
 
   it('should return two columns', (): void => {

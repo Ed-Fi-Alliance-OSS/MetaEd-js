@@ -236,6 +236,8 @@ function addColumnV5(table: Table, column: Column) {
     table.columns.push(column);
   } else {
     Logger.debug(`  Duplicate column ${column.columnId} on table ${simpleTableNameGroupConcat(table.nameGroup)}.`);
+
+    table.columnConflictPaths.push({ firstPath: existingColumn.propertyPath, secondPath: column.propertyPath });
     table.columns = R.reject((c: Column) => c.columnId === column.columnId)(table.columns);
     table.columns.push(columnConstraintMerge(existingColumn, column));
   }
@@ -250,6 +252,11 @@ function addColumnV7(table: Table, column: Column) {
     table.columns.push(column);
   } else {
     Logger.debug(`  Duplicate column ${column.columnId} on table ${simpleTableNameGroupConcat(table.nameGroup)}.`);
+
+    table.columnConflictPaths.push({
+      firstPath: table.columns[existingColumnIndex].propertyPath,
+      secondPath: column.propertyPath,
+    });
     table.columns[existingColumnIndex] = columnConstraintMerge(table.columns[existingColumnIndex], column);
   }
 }

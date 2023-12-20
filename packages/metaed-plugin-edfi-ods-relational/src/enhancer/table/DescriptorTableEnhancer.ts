@@ -159,6 +159,7 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
 
   const primaryKeys: Column[] = collectPrimaryKeys(
     descriptor,
+    descriptor,
     BuildStrategyDefault,
     '' as MetaEdPropertyPath,
     targetTechnologyVersion,
@@ -167,6 +168,7 @@ function createTables(metaEd: MetaEdEnvironment, descriptor: Descriptor): Table[
 
   descriptor.data.edfiOdsRelational.odsProperties.forEach((property: EntityProperty) => {
     buildTableFor({
+      originalEntity: descriptor,
       property,
       parentTableStrategy: TableStrategy.default(mainTable),
       parentPrimaryKeys: primaryKeys,

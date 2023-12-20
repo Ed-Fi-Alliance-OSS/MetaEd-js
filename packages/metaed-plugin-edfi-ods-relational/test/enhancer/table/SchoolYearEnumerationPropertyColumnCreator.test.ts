@@ -1,4 +1,11 @@
-import { newSchoolYearEnumerationProperty, EntityProperty, newBooleanProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
+import {
+  newSchoolYearEnumerationProperty,
+  EntityProperty,
+  newBooleanProperty,
+  MetaEdPropertyPath,
+  DomainEntity,
+  newDomainEntity,
+} from '@edfi/metaed-core';
 import { SchoolYearEnumerationProperty } from '@edfi/metaed-core';
 import { BuildStrategyDefault } from '../../../src/enhancer/table/BuildStrategy';
 import { Column } from '../../../src/model/database/Column';
@@ -25,7 +32,24 @@ describe('when creating columns for school year enumeration property', (): void 
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, property.fullPropertyName as MetaEdPropertyPath, '6.1.0');
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [property],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
+    columns = createColumnFor(
+      entity,
+      property,
+      BuildStrategyDefault,
+      property.fullPropertyName as MetaEdPropertyPath,
+      '6.1.0',
+    );
   });
 
   it('should return a column', (): void => {
@@ -37,6 +61,7 @@ describe('when creating columns for school year enumeration property', (): void 
     expect(columns[0].isPartOfPrimaryKey).toBe(false);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
     expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
+    expect(columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });
 
@@ -62,7 +87,24 @@ describe('when creating columns for school year enumeration property role name',
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, property.fullPropertyName as MetaEdPropertyPath, '6.1.0');
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [property],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
+    columns = createColumnFor(
+      entity,
+      property,
+      BuildStrategyDefault,
+      property.fullPropertyName as MetaEdPropertyPath,
+      '6.1.0',
+    );
   });
 
   it('should return a column role name', (): void => {
@@ -74,6 +116,7 @@ describe('when creating columns for school year enumeration property role name',
     expect(columns[0].isPartOfPrimaryKey).toBe(false);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
     expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
+    expect(columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });
 
@@ -104,7 +147,19 @@ describe('when creating columns for school year enumeration property role name a
       },
     });
 
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [property],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
     columns = createColumnFor(
+      entity,
       property,
       BuildStrategyDefault.appendParentContextProperty(parentContextProperty),
       property.fullPropertyName as MetaEdPropertyPath,
@@ -121,6 +176,7 @@ describe('when creating columns for school year enumeration property role name a
     expect(columns[0].isPartOfPrimaryKey).toBe(false);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
     expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
+    expect(columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });
 
@@ -145,7 +201,24 @@ describe('when creating columns for nullable school year enumeration property', 
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, property.fullPropertyName as MetaEdPropertyPath, '6.1.0');
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [property],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
+    columns = createColumnFor(
+      entity,
+      property,
+      BuildStrategyDefault,
+      property.fullPropertyName as MetaEdPropertyPath,
+      '6.1.0',
+    );
   });
 
   it('should return a nullable column', (): void => {
@@ -157,6 +230,7 @@ describe('when creating columns for nullable school year enumeration property', 
     expect(columns[0].isPartOfPrimaryKey).toBe(false);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
     expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
+    expect(columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });
 
@@ -181,7 +255,24 @@ describe('when creating columns for primary key school year enumeration property
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, property.fullPropertyName as MetaEdPropertyPath, '6.1.0');
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [property],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
+    columns = createColumnFor(
+      entity,
+      property,
+      BuildStrategyDefault,
+      property.fullPropertyName as MetaEdPropertyPath,
+      '6.1.0',
+    );
   });
 
   it('should return a primary key column', (): void => {
@@ -193,6 +284,7 @@ describe('when creating columns for primary key school year enumeration property
     expect(columns[0].isPartOfPrimaryKey).toBe(true);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
     expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
+    expect(columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });
 
@@ -217,7 +309,24 @@ describe('when creating columns for identity rename school year enumeration prop
       },
     });
 
-    columns = createColumnFor(property, BuildStrategyDefault, property.fullPropertyName as MetaEdPropertyPath, '6.1.0');
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [property],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
+    columns = createColumnFor(
+      entity,
+      property,
+      BuildStrategyDefault,
+      property.fullPropertyName as MetaEdPropertyPath,
+      '6.1.0',
+    );
   });
 
   it('should return a identity rename column', (): void => {
@@ -229,6 +338,7 @@ describe('when creating columns for identity rename school year enumeration prop
     expect(columns[0].isPartOfPrimaryKey).toBe(true);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
     expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
+    expect(columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });
 
@@ -253,7 +363,19 @@ describe('when creating columns for primary key school year enumeration property
       },
     });
 
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [property],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
     columns = createColumnFor(
+      entity,
       property,
       BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(),
       property.fullPropertyName as MetaEdPropertyPath,
@@ -270,6 +392,7 @@ describe('when creating columns for primary key school year enumeration property
     expect(columns[0].isPartOfPrimaryKey).toBe(false);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
     expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
+    expect(columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });
 
@@ -294,7 +417,19 @@ describe('when creating columns for identity rename school year enumeration prop
       },
     });
 
+    const entity: DomainEntity = Object.assign(newDomainEntity(), {
+      metaEdName: 'Entity',
+      properties: [property],
+      data: {
+        edfiOdsRelational: {
+          odsTableId: 'Entity',
+          odsProperties: [],
+        },
+      },
+    });
+
     columns = createColumnFor(
+      entity,
       property,
       BuildStrategyDefault.suppressPrimaryKeyCreationFromPropertiesStrategy(),
       property.fullPropertyName as MetaEdPropertyPath,
@@ -311,5 +446,6 @@ describe('when creating columns for identity rename school year enumeration prop
     expect(columns[0].isPartOfPrimaryKey).toBe(false);
     expect(columns[0].sourceEntityProperties[0]).toBe(property);
     expect(columns[0].propertyPath).toMatchInlineSnapshot(`"PropertyName"`);
+    expect(columns[0].originalEntity?.metaEdName).toMatchInlineSnapshot(`"Entity"`);
   });
 });

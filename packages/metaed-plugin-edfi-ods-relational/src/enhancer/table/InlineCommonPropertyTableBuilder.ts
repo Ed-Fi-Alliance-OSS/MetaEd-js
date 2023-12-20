@@ -5,6 +5,7 @@ import { TableBuilderParameters, buildTableFor } from './TableBuilder';
 import { appendToPropertyPath } from '../EnhancerHelper';
 
 export function inlineCommonPropertyTableBuilder({
+  originalEntity,
   property,
   parentTableStrategy,
   parentPrimaryKeys,
@@ -22,6 +23,7 @@ export function inlineCommonPropertyTableBuilder({
 
   inlineCommonProperty.referencedEntity.data.edfiOdsRelational.odsProperties.forEach((odsProperty: EntityProperty) => {
     buildTableFor({
+      originalEntity,
       property: odsProperty,
       parentTableStrategy,
       parentPrimaryKeys,

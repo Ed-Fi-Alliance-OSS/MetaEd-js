@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { MetaEdPropertyPath, SemVer, asCommonProperty, versionSatisfies } from '@edfi/metaed-core';
+import { MetaEdPropertyPath, SemVer, TopLevelEntity, asCommonProperty, versionSatisfies } from '@edfi/metaed-core';
 import { EntityProperty, MergeDirective, ReferentialProperty, Namespace } from '@edfi/metaed-core';
 import {
   TableNameGroup,
@@ -22,6 +22,7 @@ import { TableBuilderParameters, buildTableFor } from './TableBuilder';
 import { appendToPropertyPath } from '../EnhancerHelper';
 
 function buildJoinTables(
+  originalEntity: TopLevelEntity,
   property: ReferentialProperty,
   parentTableStrategy: TableStrategy,
   parentPrimaryKeys: Column[],
@@ -75,6 +76,7 @@ function buildJoinTables(
 
   property.referencedEntity.data.edfiOdsRelational.odsProperties.forEach((referenceProperty: EntityProperty) => {
     buildTableFor({
+      originalEntity,
       property: referenceProperty,
       parentTableStrategy: TableStrategy.default(joinTable),
       parentPrimaryKeys: primaryKeys,
@@ -119,6 +121,7 @@ function buildJoinTables(
 }
 
 export function commonPropertyTableBuilder({
+  originalEntity,
   property,
   parentTableStrategy,
   parentPrimaryKeys,
@@ -140,7 +143,13 @@ export function commonPropertyTableBuilder({
   const primaryKeys: Column[] = [];
   if (!commonProperty.isOptional) {
     primaryKeys.push(
-      ...collectPrimaryKeys(commonProperty.referencedEntity, strategy, currentPropertyPath, targetTechnologyVersion),
+      ...collectPrimaryKeys(
+        originalEntity,
+        commonProperty.referencedEntity,
+        strategy,
+        currentPropertyPath,
+        targetTechnologyVersion,
+      ),
     );
   }
 
@@ -167,6 +176,7 @@ export function commonPropertyTableBuilder({
   };
 
   buildJoinTables(
+    originalEntity,
     commonProperty,
     parentTableStrategy,
     parentPrimaryKeys,

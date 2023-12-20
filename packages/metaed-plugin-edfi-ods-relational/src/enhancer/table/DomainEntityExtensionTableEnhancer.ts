@@ -85,6 +85,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
       const primaryKeys: Column[] = collectPrimaryKeys(
         entity,
+        entity,
         BuildStrategyDefault,
         '' as MetaEdPropertyPath,
         targetTechnologyVersion,
@@ -113,6 +114,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
         );
 
         buildTableFor({
+          originalEntity: entity,
           property,
           parentTableStrategy: tableStrategy,
           parentPrimaryKeys: primaryKeys,
