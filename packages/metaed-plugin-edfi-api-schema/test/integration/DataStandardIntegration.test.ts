@@ -459,21 +459,21 @@ describe('when generating api schema targeting tech version 5.3 with data standa
           "$.competencyLevelDescriptor",
         ],
         "CompetencyObjective": Array [
-          "$.competencyObjectiveReference.educationOrganizationId",
-          "$.competencyObjectiveReference.objective",
-          "$.competencyObjectiveReference.objectiveGradeLevelDescriptor",
+          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+          "$.objectiveCompetencyObjectiveReference.objective",
+          "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
         ],
         "CompetencyObjective.EducationOrganization": Array [
-          "$.competencyObjectiveReference.educationOrganizationId",
+          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
         ],
         "CompetencyObjective.EducationOrganization.EducationOrganizationId": Array [
-          "$.competencyObjectiveReference.educationOrganizationId",
+          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
         ],
         "CompetencyObjective.Objective": Array [
-          "$.competencyObjectiveReference.objective",
+          "$.objectiveCompetencyObjectiveReference.objective",
         ],
         "CompetencyObjective.ObjectiveGradeLevel": Array [
-          "$.competencyObjectiveReference.objectiveGradeLevelDescriptor",
+          "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
         ],
         "DiagnosticStatement": Array [
           "$.diagnosticStatement",
@@ -1398,21 +1398,21 @@ describe('when generating api schema targeting tech version 6.1 with data standa
           "$.competencyLevelDescriptor",
         ],
         "CompetencyObjective": Array [
-          "$.competencyObjectiveReference.educationOrganizationId",
-          "$.competencyObjectiveReference.objective",
-          "$.competencyObjectiveReference.objectiveGradeLevelDescriptor",
+          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+          "$.objectiveCompetencyObjectiveReference.objective",
+          "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
         ],
         "CompetencyObjective.EducationOrganization": Array [
-          "$.competencyObjectiveReference.educationOrganizationId",
+          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
         ],
         "CompetencyObjective.EducationOrganization.EducationOrganizationId": Array [
-          "$.competencyObjectiveReference.educationOrganizationId",
+          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
         ],
         "CompetencyObjective.Objective": Array [
-          "$.competencyObjectiveReference.objective",
+          "$.objectiveCompetencyObjectiveReference.objective",
         ],
         "CompetencyObjective.ObjectiveGradeLevel": Array [
-          "$.competencyObjectiveReference.objectiveGradeLevelDescriptor",
+          "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
         ],
         "DiagnosticStatement": Array [
           "$.diagnosticStatement",
@@ -2117,21 +2117,21 @@ describe('when generating api schema targeting tech version 7.0 with data standa
           "$.competencyLevelDescriptor",
         ],
         "CompetencyObjective": Array [
-          "$.competencyObjectiveReference.educationOrganizationId",
-          "$.competencyObjectiveReference.objective",
-          "$.competencyObjectiveReference.objectiveGradeLevelDescriptor",
+          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+          "$.objectiveCompetencyObjectiveReference.objective",
+          "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
         ],
         "CompetencyObjective.EducationOrganization": Array [
-          "$.competencyObjectiveReference.educationOrganizationId",
+          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
         ],
         "CompetencyObjective.EducationOrganization.EducationOrganizationId": Array [
-          "$.competencyObjectiveReference.educationOrganizationId",
+          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
         ],
         "CompetencyObjective.Objective": Array [
-          "$.competencyObjectiveReference.objective",
+          "$.objectiveCompetencyObjectiveReference.objective",
         ],
         "CompetencyObjective.ObjectiveGradeLevel": Array [
-          "$.competencyObjectiveReference.objectiveGradeLevelDescriptor",
+          "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
         ],
         "DiagnosticStatement": Array [
           "$.diagnosticStatement",

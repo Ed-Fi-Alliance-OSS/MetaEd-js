@@ -106,3 +106,14 @@ export function topLevelApiNameOnEntity(entity: TopLevelEntity, property: Entity
 
   return propertyApiSchemaData.apiMapping.topLevelName;
 }
+
+/**
+ * Returns the full property name of the given property, taking into account shortenTo
+ */
+export function adjustedFullPropertyName(property: EntityProperty): string {
+  if (property.roleName === property.metaEdName && property.shortenTo === '') {
+    return property.metaEdName;
+  }
+  const roleNamePrefix = property.shortenTo === '' ? property.roleName : property.shortenTo;
+  return roleNamePrefix + property.metaEdName;
+}

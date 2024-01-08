@@ -1410,6 +1410,34 @@ export class MetaEdTextBuilder {
     return this;
   }
 
+  /**
+   *
+   */
+  withDomainEntityPropertyWithShortenTo(
+    propertyIdentifier: string,
+    documentation: string,
+    isRequired: boolean,
+    isCollection: boolean,
+    isWeak: boolean = false,
+    context: string | null = null,
+    shortenTo: string | null = null,
+    deprecatedReason: string | null = null,
+    potentiallyLogical: boolean = false,
+  ): MetaEdTextBuilder {
+    this.withProperty(
+      'domain entity',
+      propertyIdentifier,
+      documentation,
+      isRequired,
+      isCollection,
+      context,
+      shortenTo,
+      deprecatedReason,
+    );
+    this.withReferenceAdditions(isWeak, potentiallyLogical);
+    return this;
+  }
+
   withQueryableOnlyDomainEntityProperty(propertyIdentifier: string, documentation: string): MetaEdTextBuilder {
     this.withStartProperty('domain entity', propertyIdentifier);
     this.withDocumentation(documentation);

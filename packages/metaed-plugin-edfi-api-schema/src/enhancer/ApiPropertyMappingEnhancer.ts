@@ -8,7 +8,7 @@ import {
   normalizeDescriptorSuffix,
   DescriptorProperty,
 } from '@edfi/metaed-core';
-import { isTopLevelReference, isDescriptor, uncapitalize, pluralize } from '../Utility';
+import { isTopLevelReference, isDescriptor, uncapitalize, pluralize, adjustedFullPropertyName } from '../Utility';
 import { ApiPropertyMapping } from '../model/ApiPropertyMapping';
 import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 
@@ -22,7 +22,7 @@ type NamingOptions = { removePrefixes: boolean };
  * This is derived from the ODS/API JSON naming pattern for collections.
  */
 function parentPrefixRemovalConvention(property: EntityProperty): string {
-  const name = property.fullPropertyName;
+  const name = adjustedFullPropertyName(property);
 
   // collections from association and domain entity properties don't get table names collapsed
   if (property.type === 'association' || property.type === 'domainEntity') return name;
@@ -65,18 +65,18 @@ function apiFullName(property: EntityProperty, { removePrefixes }: NamingOptions
     return uncapitalize(parentPrefixRemovalConvention(property));
   }
   if (property.isCollection && !removePrefixes) {
-    return uncapitalize(pluralize(property.fullPropertyName));
+    return uncapitalize(pluralize(adjustedFullPropertyName(property)));
   }
   if (isDescriptor(property)) return apiDescriptorReferenceName(property as DescriptorProperty);
 
-  return uncapitalize(property.fullPropertyName);
+  return uncapitalize(adjustedFullPropertyName(property));
 }
 
 /**
  * API reference property names are suffixed with "Reference"
  */
 function apiReferenceName(property: EntityProperty): string {
-  return `${uncapitalize(property.fullPropertyName)}Reference`;
+  return `${uncapitalize(adjustedFullPropertyName(property))}Reference`;
 }
 
 /**

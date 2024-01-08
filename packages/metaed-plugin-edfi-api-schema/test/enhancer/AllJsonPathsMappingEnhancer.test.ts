@@ -1992,3 +1992,78 @@ describe('when building a domain entity with an inline common property with a de
     `);
   });
 });
+
+describe('when building a domain entity referencing another using a shortenTo directive', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('StudentCompetencyObjective')
+      .withDocumentation('doc')
+      .withStringIdentity('Identity1', 'doc', '30')
+      .withDomainEntityPropertyWithShortenTo(
+        'CompetencyObjective',
+        'doc',
+        true,
+        false,
+        false,
+        'CompetencyObjective',
+        'Objective',
+      )
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('CompetencyObjective')
+      .withDocumentation('doc')
+      .withStringIdentity('Identity2', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct allJsonPathsMapping', () => {
+    const entity = namespace.entity.domainEntity.get('StudentCompetencyObjective');
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "CompetencyObjective": Array [
+          "$.objectiveCompetencyObjectiveReference.identity2",
+        ],
+        "CompetencyObjective.Identity2": Array [
+          "$.objectiveCompetencyObjectiveReference.identity2",
+        ],
+        "Identity1": Array [
+          "$.identity1",
+        ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "CompetencyObjective": true,
+        "CompetencyObjective.Identity2": false,
+        "Identity1": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "CompetencyObjective": "CompetencyObjective",
+        "Identity1": "Identity1",
+      }
+    `);
+  });
+});
