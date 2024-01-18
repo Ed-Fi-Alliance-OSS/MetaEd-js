@@ -55,6 +55,16 @@ const descriptorSchema: SchemaRoot = {
       type: 'string',
       description: 'The descriptor description',
     },
+    effectiveBeginDate: {
+      type: 'string',
+      format: 'date',
+      description: 'The descriptor effective begin date',
+    },
+    effectiveEndDate: {
+      type: 'string',
+      format: 'date',
+      description: 'The descriptor effective end date',
+    },
   },
   additionalProperties: false,
   required: ['namespace', 'codeValue', 'shortDescription'],

@@ -2300,6 +2300,16 @@ describe('when building a descriptor', () => {
             "description": "The descriptor description",
             "type": "string",
           },
+          "effectiveBeginDate": Object {
+            "description": "The descriptor effective begin date",
+            "format": "date",
+            "type": "string",
+          },
+          "effectiveEndDate": Object {
+            "description": "The descriptor effective end date",
+            "format": "date",
+            "type": "string",
+          },
           "namespace": Object {
             "description": "The descriptor namespace as a URI",
             "type": "string",

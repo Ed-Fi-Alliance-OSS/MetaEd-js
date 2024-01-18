@@ -2421,6 +2421,16 @@ describe('when building a descriptor', () => {
             "description": "The descriptor description",
             "type": "string",
           },
+          "effectiveBeginDate": Object {
+            "description": "The descriptor effective begin date",
+            "format": "date",
+            "type": "string",
+          },
+          "effectiveEndDate": Object {
+            "description": "The descriptor effective end date",
+            "format": "date",
+            "type": "string",
+          },
           "id": Object {
             "description": "The item id",
             "type": "string",
@@ -2687,38 +2697,38 @@ describe('when building a domain entity with an inline common property with a de
   it('should be a correct schema for section', () => {
     const entity = namespace.entity.domainEntity.get('Section');
     expect(entity.data.edfiApiSchema.jsonSchemaForUpdate).toMatchInlineSnapshot(`
-    Object {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "additionalProperties": false,
-      "description": "Documentation",
-      "properties": Object {
-        "_ext": Object {
-          "additionalProperties": true,
-          "description": "optional extension collection",
-          "properties": Object {},
-          "type": "object",
-        },
-        "availableCreditTypeDescriptor": Object {
-          "description": "Documentation",
-          "type": "string",
-        },
-        "id": Object {
-          "description": "The item id",
-          "type": "string",
-        },
-        "sectionIdentifier": Object {
-          "description": "Documentation",
-          "type": "integer",
-        },
-      },
-      "required": Array [
-        "id",
-        "sectionIdentifier",
-      ],
-      "title": "EdFi.Section",
-      "type": "object",
-    }
-    `);
+          Object {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "additionalProperties": false,
+            "description": "Documentation",
+            "properties": Object {
+              "_ext": Object {
+                "additionalProperties": true,
+                "description": "optional extension collection",
+                "properties": Object {},
+                "type": "object",
+              },
+              "availableCreditTypeDescriptor": Object {
+                "description": "Documentation",
+                "type": "string",
+              },
+              "id": Object {
+                "description": "The item id",
+                "type": "string",
+              },
+              "sectionIdentifier": Object {
+                "description": "Documentation",
+                "type": "integer",
+              },
+            },
+            "required": Array [
+              "id",
+              "sectionIdentifier",
+            ],
+            "title": "EdFi.Section",
+            "type": "object",
+          }
+        `);
   });
 
   it('should be well-formed according to ajv', () => {
