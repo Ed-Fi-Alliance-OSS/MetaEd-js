@@ -54,8 +54,12 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       const { equalityConstraints, allJsonPathsMapping } = columnConflictPath.firstOriginalEntity.data
         .edfiApiSchema as EntityApiSchemaData;
 
-      const sourceJsonPaths: JsonPath[] | undefined = allJsonPathsMapping[columnConflictPath.firstPath].jsonPaths;
-      const targetJsonPaths: JsonPath[] | undefined = allJsonPathsMapping[columnConflictPath.secondPath].jsonPaths;
+      const sourceJsonPaths: JsonPath[] | undefined = allJsonPathsMapping[
+        columnConflictPath.firstPath
+      ].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
+      const targetJsonPaths: JsonPath[] | undefined = allJsonPathsMapping[
+        columnConflictPath.secondPath
+      ].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
 
       invariant(
         sourceJsonPaths != null && targetJsonPaths != null,

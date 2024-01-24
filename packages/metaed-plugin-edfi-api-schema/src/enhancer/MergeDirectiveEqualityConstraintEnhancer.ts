@@ -30,11 +30,16 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       (entity as TopLevelEntity).properties.forEach((property: EntityProperty) => {
         if (isReferentialProperty(property)) {
           const referentialProperty: ReferentialProperty = property as ReferentialProperty;
+
           referentialProperty.mergeDirectives.forEach((mergeDirective: MergeDirective) => {
-            const sourceJsonPaths: JsonPath[] | undefined =
-              allJsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)].jsonPaths;
-            const targetJsonPaths: JsonPath[] | undefined =
-              allJsonPathsMapping[mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)].jsonPaths;
+            const sourceJsonPaths: JsonPath[] | undefined = allJsonPathsMapping[
+              mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)
+            ].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
+
+            const targetJsonPaths: JsonPath[] | undefined = allJsonPathsMapping[
+              mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)
+            ].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
+
             invariant(
               sourceJsonPaths != null && targetJsonPaths != null,
               'Invariant failed in MergeDirectiveEqualityConstraintEnhancer: source or target JsonPaths are undefined',
@@ -43,6 +48,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
               sourceJsonPaths.length === targetJsonPaths.length,
               'Invariant failed in MergeDirectiveEqualityConstraintEnhancer: source and target JsonPath lengths not equal',
             );
+
             sourceJsonPaths.forEach((sourceJsonPath: JsonPath, matchingTargetJsonPathIndex: number) => {
               equalityConstraints.push({
                 sourceJsonPath,

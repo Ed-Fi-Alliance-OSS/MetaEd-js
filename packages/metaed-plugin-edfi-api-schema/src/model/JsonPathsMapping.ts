@@ -2,8 +2,17 @@ import type { EntityProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
 import type { JsonPath } from './api-schema/JsonPath';
 
 /**
- * For a MetaEdPropertyPath, this is the set of JsonPaths along with two pieces of additional
- * information. First, whether the paths are "top level" paths, meaning the paths are for a property
+ * A pairing of a JsonPath for the API document for a resource along with the source property
+ * being expressed by that JsonPath.
+ */
+export type JsonPathPropertyPair = {
+  jsonPath: JsonPath;
+  sourceProperty: EntityProperty;
+};
+
+/**
+ * For a MetaEdPropertyPath, this is the set of JsonPaths + source properties along with two pieces of additional
+ * information. First, whether the paths/properties are "top level", meaning the paths are for a property
  * on the Domain Entity/Association it starts from as a whole (allowing for properties that are on e.g. inline commons to
  * be functionally on the DE/A itself). As an example, domain entity properties
  * have MetaEdPropertyPaths both for the property as a whole as well as separate MetaEdPropertyPaths that descend to the
@@ -11,9 +20,9 @@ import type { JsonPath } from './api-schema/JsonPath';
  */
 type BaseJsonPathsInfo = {
   /**
-   * The JsonPaths for a MetaEdPropertyPath, in sorted order
+   * The JsonPathPropertyPairs for a MetaEdPropertyPath, in JsonPath sorted order
    */
-  jsonPaths: JsonPath[];
+  jsonPathPropertyPairs: JsonPathPropertyPair[];
 };
 
 /**
@@ -39,18 +48,7 @@ type NonTopLevelJsonPathsInfo = BaseJsonPathsInfo & {
 };
 
 /**
- * For a MetaEdPropertyPath, this is the set of JsonPaths along with two pieces of additional
- * information.
- *
- * First, whether the paths are "top level" paths, meaning the paths are for a property
- * on the Domain Entity/Association it starts from as a whole (allowing for properties that are on e.g. inline commons to
- * be functionally on the DE/A itself). As an example, domain entity properties
- * have MetaEdPropertyPaths both for the property as a whole as well as separate MetaEdPropertyPaths that descend to the
- * the individual identity properties on the referenced entity.
- *
- * Second, if the path is a top level parth, the final EntityProperty in the MetaEdPropertyPath. This will be a property
- *  on the entity
- * itself, or one pulled up from a e.g. inline common or choice.
+ * The combination of top level and non top level JsonPathsInfo
  */
 export type JsonPathsInfo = TopLevelJsonPathsInfo | NonTopLevelJsonPathsInfo;
 

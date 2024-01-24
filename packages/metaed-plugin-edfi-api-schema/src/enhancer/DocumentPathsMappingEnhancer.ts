@@ -61,7 +61,10 @@ function documentPathsMappingFor(entity: TopLevelEntity): DocumentPathsMapping {
   Object.entries(allJsonPathsMapping).forEach(([propertyPath, jsonPathsInfo]) => {
     // Only want paths at the top level
     if (jsonPathsInfo.isTopLevel) {
-      result[propertyPath] = buildDocumentPaths(jsonPathsInfo.jsonPaths, jsonPathsInfo.terminalProperty);
+      result[propertyPath] = buildDocumentPaths(
+        jsonPathsInfo.jsonPathPropertyPairs.map((jppp) => jppp.jsonPath),
+        jsonPathsInfo.terminalProperty,
+      );
     }
   });
 

@@ -39,6 +39,7 @@ function appendNextJsonPathName(
 
   return `${currentJsonPath}.${nextName}` as JsonPath;
 }
+
 /**
  * Adds a JsonPath to the JsonPathsMapping for a given list of PropertyPaths. Handles array initialization when needed.
  */
@@ -53,15 +54,18 @@ function addJsonPathTo(
     // initialize if necessary
     if (allJsonPathsMapping[propertyPath] == null) {
       const initialJsonPathsInfo: JsonPathsInfo = isTopLevel
-        ? { jsonPaths: [], isTopLevel, terminalProperty }
-        : { jsonPaths: [], isTopLevel };
+        ? { jsonPathPropertyPairs: [], isTopLevel, terminalProperty }
+        : { jsonPathPropertyPairs: [], isTopLevel };
       allJsonPathsMapping[propertyPath] = initialJsonPathsInfo;
     }
 
     // Avoid duplicates
-    if (allJsonPathsMapping[propertyPath].jsonPaths.includes(jsonPath)) return;
+    if (allJsonPathsMapping[propertyPath].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath).includes(jsonPath)) return;
 
-    allJsonPathsMapping[propertyPath].jsonPaths.push(jsonPath);
+    allJsonPathsMapping[propertyPath].jsonPathPropertyPairs.push({
+      jsonPath,
+      sourceProperty: terminalProperty,
+    });
   });
 }
 
@@ -106,10 +110,12 @@ function jsonPathsForReferentialProperty(
     Object.values(jsonPathsMappingForThisProperty)
       .flat()
       .forEach((jsonPathsInfo: JsonPathsInfo) => {
-        jsonPathsInfo.jsonPaths.forEach((jsonPath: JsonPath) => {
-          // This relies on deduping in addJsonPathTo(), because we can expect multiple property paths to a json path
-          addJsonPathTo(allJsonPathsMapping, [currentPropertyPath], jsonPath, isTopLevel, property);
-        });
+        jsonPathsInfo.jsonPathPropertyPairs
+          .map((jppp) => jppp.jsonPath)
+          .forEach((jsonPath: JsonPath) => {
+            // This relies on deduping in addJsonPathTo(), because we can expect multiple property paths to a json path
+            addJsonPathTo(allJsonPathsMapping, [currentPropertyPath], jsonPath, isTopLevel, property);
+          });
       });
     Object.assign(allJsonPathsMapping, jsonPathsMappingForThisProperty);
   });
@@ -448,9 +454,9 @@ function buildJsonPathsMapping(entity: TopLevelEntity) {
         true,
       );
 
-    // ensure JsonPaths are in sorted order as the JsonPathsMapping type requires
+    // ensure JsonPathPropertyPairs are in sorted order by JsonPath as the JsonPathsMapping type requires
     Object.values(allJsonPathsMapping).forEach((jsonPathsInfo: JsonPathsInfo) => {
-      jsonPathsInfo.jsonPaths.sort();
+      jsonPathsInfo.jsonPathPropertyPairs.sort((a, b) => a.jsonPath.localeCompare(b.jsonPath));
     });
   });
 }
