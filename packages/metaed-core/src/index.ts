@@ -47,7 +47,12 @@ export {
   getPropertiesOfType,
   newPropertyIndex,
 } from './model/property/PropertyRepository';
-export { isReferentialProperty, isSharedProperty, allPropertyTypes } from './model/property/PropertyType';
+export {
+  isReferentialProperty,
+  isSharedProperty,
+  allPropertyTypes,
+  scalarPropertyTypes,
+} from './model/property/PropertyType';
 export {
   allEntityModelTypes,
   allEntityModelTypesNoSimpleTypes,

@@ -62,152 +62,368 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "Accommodation": Array [
-          "$.accommodations[*].accommodationDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.accommodations[*].accommodationDescriptor",
+            "propertyName": "Accommodation",
+          },
         ],
         "AdministrationDate": Array [
-          "$.administrationDate",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.administrationDate",
+            "propertyName": "AdministrationDate",
+          },
         ],
         "AdministrationEndDate": Array [
-          "$.administrationEndDate",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.administrationEndDate",
+            "propertyName": "AdministrationEndDate",
+          },
         ],
         "AdministrationEnvironment": Array [
-          "$.administrationEnvironmentDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.administrationEnvironmentDescriptor",
+            "propertyName": "AdministrationEnvironment",
+          },
         ],
         "AdministrationLanguage": Array [
-          "$.administrationLanguageDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.administrationLanguageDescriptor",
+            "propertyName": "Language",
+          },
         ],
         "Assessment": Array [
-          "$.assessmentReference.assessmentIdentifier",
-          "$.assessmentReference.namespace",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.assessmentReference.assessmentIdentifier",
+            "propertyName": "Assessment",
+          },
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.assessmentReference.namespace",
+            "propertyName": "Assessment",
+          },
         ],
         "Assessment.AssessmentIdentifier": Array [
-          "$.assessmentReference.assessmentIdentifier",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.assessmentReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
         ],
         "Assessment.Namespace": Array [
-          "$.assessmentReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.assessmentReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "EventCircumstance": Array [
-          "$.eventCircumstanceDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.eventCircumstanceDescriptor",
+            "propertyName": "EventCircumstance",
+          },
         ],
         "EventDescription": Array [
-          "$.eventDescription",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.eventDescription",
+            "propertyName": "Description",
+          },
         ],
         "PerformanceLevel.AssessmentReportingMethod": Array [
-          "$.performanceLevels[*].assessmentReportingMethodDescriptor",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.performanceLevels[*].assessmentReportingMethodDescriptor",
+            "propertyName": "AssessmentReportingMethod",
+          },
         ],
         "PerformanceLevel.PerformanceLevel": Array [
-          "$.performanceLevels[*].performanceLevelDescriptor",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.performanceLevels[*].performanceLevelDescriptor",
+            "propertyName": "PerformanceLevel",
+          },
         ],
         "PerformanceLevel.PerformanceLevelMet": Array [
-          "$.performanceLevels[*].performanceLevelMet",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.performanceLevels[*].performanceLevelMet",
+            "propertyName": "PerformanceLevelMet",
+          },
         ],
         "PlatformType": Array [
-          "$.platformTypeDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.platformTypeDescriptor",
+            "propertyName": "PlatformType",
+          },
         ],
         "ReasonNotTested": Array [
-          "$.reasonNotTestedDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.reasonNotTestedDescriptor",
+            "propertyName": "ReasonNotTested",
+          },
         ],
         "RetestIndicator": Array [
-          "$.retestIndicatorDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.retestIndicatorDescriptor",
+            "propertyName": "RetestIndicator",
+          },
         ],
         "SchoolYear": Array [
-          "$.schoolYearTypeReference.schoolYear",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.schoolYearTypeReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "ScoreResult.AssessmentReportingMethod": Array [
-          "$.scoreResults[*].assessmentReportingMethodDescriptor",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.scoreResults[*].assessmentReportingMethodDescriptor",
+            "propertyName": "AssessmentReportingMethod",
+          },
         ],
         "ScoreResult.Result": Array [
-          "$.scoreResults[*].result",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.scoreResults[*].result",
+            "propertyName": "Result",
+          },
         ],
         "ScoreResult.ResultDatatypeType": Array [
-          "$.scoreResults[*].resultDatatypeTypeDescriptor",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.scoreResults[*].resultDatatypeTypeDescriptor",
+            "propertyName": "ResultDatatypeType",
+          },
         ],
         "SerialNumber": Array [
-          "$.serialNumber",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.serialNumber",
+            "propertyName": "SerialNumber",
+          },
         ],
         "Student": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "Student",
+          },
         ],
         "Student.StudentUniqueId": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentAssessmentIdentifier": Array [
-          "$.studentAssessmentIdentifier",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.studentAssessmentIdentifier",
+            "propertyName": "StudentAssessmentIdentifier",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem": Array [
-          "$.items[*].assessmentItemReference.assessmentIdentifier",
-          "$.items[*].assessmentItemReference.identificationCode",
-          "$.items[*].assessmentItemReference.namespace",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
+            "propertyName": "AssessmentItem",
+          },
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemReference.identificationCode",
+            "propertyName": "AssessmentItem",
+          },
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemReference.namespace",
+            "propertyName": "AssessmentItem",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem.Assessment": Array [
-          "$.items[*].assessmentItemReference.assessmentIdentifier",
-          "$.items[*].assessmentItemReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.items[*].assessmentItemReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem.Assessment.AssessmentIdentifier": Array [
-          "$.items[*].assessmentItemReference.assessmentIdentifier",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem.Assessment.Namespace": Array [
-          "$.items[*].assessmentItemReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.items[*].assessmentItemReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem.IdentificationCode": Array [
-          "$.items[*].assessmentItemReference.identificationCode",
+          Object {
+            "entityName": "AssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemReference.identificationCode",
+            "propertyName": "IdentificationCode",
+          },
         ],
         "StudentAssessmentItem.AssessmentItemResult": Array [
-          "$.items[*].assessmentItemResultDescriptor",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemResultDescriptor",
+            "propertyName": "AssessmentItemResult",
+          },
         ],
         "StudentAssessmentItem.AssessmentResponse": Array [
-          "$.items[*].assessmentResponse",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentResponse",
+            "propertyName": "AssessmentResponse",
+          },
         ],
         "StudentAssessmentItem.DescriptiveFeedback": Array [
-          "$.items[*].descriptiveFeedback",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].descriptiveFeedback",
+            "propertyName": "DescriptiveFeedback",
+          },
         ],
         "StudentAssessmentItem.RawScoreResult": Array [
-          "$.items[*].rawScoreResult",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].rawScoreResult",
+            "propertyName": "RawScoreResult",
+          },
         ],
         "StudentAssessmentItem.ResponseIndicator": Array [
-          "$.items[*].responseIndicatorDescriptor",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].responseIndicatorDescriptor",
+            "propertyName": "ResponseIndicator",
+          },
         ],
         "StudentAssessmentItem.TimeAssessed": Array [
-          "$.items[*].timeAssessed",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].timeAssessed",
+            "propertyName": "TimeAssessed",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.identificationCode",
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
+            "propertyName": "ObjectiveAssessment",
+          },
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.identificationCode",
+            "propertyName": "ObjectiveAssessment",
+          },
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+            "propertyName": "ObjectiveAssessment",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment.AssessmentIdentifier": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment.Namespace": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment.IdentificationCode": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.identificationCode",
+          Object {
+            "entityName": "ObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.identificationCode",
+            "propertyName": "IdentificationCode",
+          },
         ],
         "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethod": Array [
-          "$.studentObjectiveAssessments[*].performanceLevels[*].assessmentReportingMethodDescriptor",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].assessmentReportingMethodDescriptor",
+            "propertyName": "AssessmentReportingMethod",
+          },
         ],
         "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevel": Array [
-          "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelDescriptor",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelDescriptor",
+            "propertyName": "PerformanceLevel",
+          },
         ],
         "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelMet": Array [
-          "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelMet",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelMet",
+            "propertyName": "PerformanceLevelMet",
+          },
         ],
         "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethod": Array [
-          "$.studentObjectiveAssessments[*].scoreResults[*].assessmentReportingMethodDescriptor",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].assessmentReportingMethodDescriptor",
+            "propertyName": "AssessmentReportingMethod",
+          },
         ],
         "StudentObjectiveAssessment.ScoreResult.Result": Array [
-          "$.studentObjectiveAssessments[*].scoreResults[*].result",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].result",
+            "propertyName": "Result",
+          },
         ],
         "StudentObjectiveAssessment.ScoreResult.ResultDatatypeType": Array [
-          "$.studentObjectiveAssessments[*].scoreResults[*].resultDatatypeTypeDescriptor",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].resultDatatypeTypeDescriptor",
+            "propertyName": "ResultDatatypeType",
+          },
         ],
         "WhenAssessedGradeLevel": Array [
-          "$.whenAssessedGradeLevelDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.whenAssessedGradeLevelDescriptor",
+            "propertyName": "GradeLevel",
+          },
         ],
       }
     `);
@@ -334,62 +550,150 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AcademicWeek": Array [
-          "$.academicWeeks[*].academicWeekReference.schoolId",
-          "$.academicWeeks[*].academicWeekReference.weekIdentifier",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.schoolId",
+            "propertyName": "AcademicWeek",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.weekIdentifier",
+            "propertyName": "AcademicWeek",
+          },
         ],
         "AcademicWeek.School": Array [
-          "$.academicWeeks[*].academicWeekReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "AcademicWeek.School.SchoolId": Array [
-          "$.academicWeeks[*].academicWeekReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "AcademicWeek.WeekIdentifier": Array [
-          "$.academicWeeks[*].academicWeekReference.weekIdentifier",
+          Object {
+            "entityName": "AcademicWeek",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.weekIdentifier",
+            "propertyName": "WeekIdentifier",
+          },
         ],
         "BeginDate": Array [
-          "$.beginDate",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.beginDate",
+            "propertyName": "BeginDate",
+          },
         ],
         "EndDate": Array [
-          "$.endDate",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.endDate",
+            "propertyName": "EndDate",
+          },
         ],
         "GradingPeriod": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
-          "$.gradingPeriods[*].gradingPeriodReference.periodSequence",
-          "$.gradingPeriods[*].gradingPeriodReference.schoolId",
-          "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.periodSequence",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.GradingPeriod": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.PeriodSequence": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.periodSequence",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.periodSequence",
+            "propertyName": "PeriodSequence",
+          },
         ],
         "GradingPeriod.School": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.School.SchoolId": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.SchoolYear": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "School": Array [
-          "$.schoolReference.schoolId",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.schoolReference.schoolId",
+            "propertyName": "School",
+          },
         ],
         "School.SchoolId": Array [
-          "$.schoolReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.schoolReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "SchoolYear": Array [
-          "$.schoolYearTypeReference.schoolYear",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.schoolYearTypeReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "SessionName": Array [
-          "$.sessionName",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "Term": Array [
-          "$.termDescriptor",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.termDescriptor",
+            "propertyName": "Term",
+          },
         ],
         "TotalInstructionalDays": Array [
-          "$.totalInstructionalDays",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.totalInstructionalDays",
+            "propertyName": "TotalInstructionalDays",
+          },
         ],
       }
     `);
@@ -456,153 +760,421 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "CompetencyLevel": Array [
-          "$.competencyLevelDescriptor",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.competencyLevelDescriptor",
+            "propertyName": "CompetencyLevel",
+          },
         ],
         "CompetencyObjective": Array [
-          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
-          "$.objectiveCompetencyObjectiveReference.objective",
-          "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+            "propertyName": "CompetencyObjective",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.objective",
+            "propertyName": "CompetencyObjective",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
+            "propertyName": "CompetencyObjective",
+          },
         ],
         "CompetencyObjective.EducationOrganization": Array [
-          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "CompetencyObjective.EducationOrganization.EducationOrganizationId": Array [
-          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "CompetencyObjective.Objective": Array [
-          "$.objectiveCompetencyObjectiveReference.objective",
+          Object {
+            "entityName": "CompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.objective",
+            "propertyName": "Objective",
+          },
         ],
         "CompetencyObjective.ObjectiveGradeLevel": Array [
-          "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
+          Object {
+            "entityName": "CompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
+            "propertyName": "GradeLevel",
+          },
         ],
         "DiagnosticStatement": Array [
-          "$.diagnosticStatement",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.diagnosticStatement",
+            "propertyName": "DiagnosticStatement",
+          },
         ],
         "GradingPeriod": Array [
-          "$.gradingPeriodReference.gradingPeriodDescriptor",
-          "$.gradingPeriodReference.periodSequence",
-          "$.gradingPeriodReference.schoolId",
-          "$.gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.gradingPeriodReference.periodSequence",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.gradingPeriodReference.schoolId",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.gradingPeriodReference.schoolYear",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.GradingPeriod": Array [
-          "$.gradingPeriodReference.gradingPeriodDescriptor",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.PeriodSequence": Array [
-          "$.gradingPeriodReference.periodSequence",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriodReference.periodSequence",
+            "propertyName": "PeriodSequence",
+          },
         ],
         "GradingPeriod.School": Array [
-          "$.gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.School.SchoolId": Array [
-          "$.gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.SchoolYear": Array [
-          "$.gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriodReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "Student": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "Student",
+          },
         ],
         "Student.StudentUniqueId": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.BeginDate": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
+          Object {
+            "entityName": "GeneralStudentProgramAssociation",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
+            "propertyName": "BeginDate",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.EducationOrganization": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.EducationOrganization.EducationOrganizationId": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+            "propertyName": "ProgramName",
+          },
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+            "propertyName": "ProgramType",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization.EducationOrganizationId": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramName": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+            "propertyName": "ProgramName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramType": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+            "propertyName": "ProgramType",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student.StudentUniqueId": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+            "propertyName": "StudentSectionAssociation",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.BeginDate": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
+          Object {
+            "entityName": "StudentSectionAssociation",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
+            "propertyName": "BeginDate",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "CourseOffering",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "LocalCourseCode",
+          },
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+          Object {
+            "entityName": "Section",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+            "propertyName": "SectionIdentifier",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "CourseOffering",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "LocalCourseCode",
+          },
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.LocalCourseCode": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+          Object {
+            "entityName": "CourseOffering",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "LocalCourseCode",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.School": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.School": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.SessionName": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.SectionIdentifier": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+          Object {
+            "entityName": "Section",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+            "propertyName": "SectionIdentifier",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Student": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Student.StudentUniqueId": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
       }
     `);
@@ -685,146 +1257,402 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "CompetencyLevel": Array [
-          "$.competencyLevelDescriptor",
+          Object {
+            "entityName": "StudentLearningObjective",
+            "jsonPath": "$.competencyLevelDescriptor",
+            "propertyName": "CompetencyLevel",
+          },
         ],
         "DiagnosticStatement": Array [
-          "$.diagnosticStatement",
+          Object {
+            "entityName": "StudentLearningObjective",
+            "jsonPath": "$.diagnosticStatement",
+            "propertyName": "DiagnosticStatement",
+          },
         ],
         "GradingPeriod": Array [
-          "$.gradingPeriodReference.gradingPeriodDescriptor",
-          "$.gradingPeriodReference.periodSequence",
-          "$.gradingPeriodReference.schoolId",
-          "$.gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "StudentLearningObjective",
+            "jsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "StudentLearningObjective",
+            "jsonPath": "$.gradingPeriodReference.periodSequence",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "StudentLearningObjective",
+            "jsonPath": "$.gradingPeriodReference.schoolId",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "StudentLearningObjective",
+            "jsonPath": "$.gradingPeriodReference.schoolYear",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.GradingPeriod": Array [
-          "$.gradingPeriodReference.gradingPeriodDescriptor",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.PeriodSequence": Array [
-          "$.gradingPeriodReference.periodSequence",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriodReference.periodSequence",
+            "propertyName": "PeriodSequence",
+          },
         ],
         "GradingPeriod.School": Array [
-          "$.gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.School.SchoolId": Array [
-          "$.gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.SchoolYear": Array [
-          "$.gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriodReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "LearningObjective": Array [
-          "$.learningObjectiveReference.learningObjectiveId",
-          "$.learningObjectiveReference.namespace",
+          Object {
+            "entityName": "StudentLearningObjective",
+            "jsonPath": "$.learningObjectiveReference.learningObjectiveId",
+            "propertyName": "LearningObjective",
+          },
+          Object {
+            "entityName": "StudentLearningObjective",
+            "jsonPath": "$.learningObjectiveReference.namespace",
+            "propertyName": "LearningObjective",
+          },
         ],
         "LearningObjective.LearningObjectiveId": Array [
-          "$.learningObjectiveReference.learningObjectiveId",
+          Object {
+            "entityName": "LearningObjective",
+            "jsonPath": "$.learningObjectiveReference.learningObjectiveId",
+            "propertyName": "LearningObjectiveId",
+          },
         ],
         "LearningObjective.Namespace": Array [
-          "$.learningObjectiveReference.namespace",
+          Object {
+            "entityName": "LearningObjective",
+            "jsonPath": "$.learningObjectiveReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "Student": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "StudentLearningObjective",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "Student",
+          },
         ],
         "Student.StudentUniqueId": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.BeginDate": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
+          Object {
+            "entityName": "GeneralStudentProgramAssociation",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
+            "propertyName": "BeginDate",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.EducationOrganization": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.EducationOrganization.EducationOrganizationId": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+            "propertyName": "ProgramName",
+          },
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+            "propertyName": "ProgramType",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization.EducationOrganizationId": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramName": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+            "propertyName": "ProgramName",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramType": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+            "propertyName": "ProgramType",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student.StudentUniqueId": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+            "propertyName": "StudentSectionAssociation",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.BeginDate": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
+          Object {
+            "entityName": "StudentSectionAssociation",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
+            "propertyName": "BeginDate",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "CourseOffering",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "LocalCourseCode",
+          },
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+          Object {
+            "entityName": "Section",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+            "propertyName": "SectionIdentifier",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "CourseOffering",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "LocalCourseCode",
+          },
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.LocalCourseCode": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+          Object {
+            "entityName": "CourseOffering",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "LocalCourseCode",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.School": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.School": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.SessionName": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.SectionIdentifier": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+          Object {
+            "entityName": "Section",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+            "propertyName": "SectionIdentifier",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.Student": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation.Student.StudentUniqueId": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
       }
     `);
@@ -947,185 +1775,445 @@ describe('when generating api schema targeting tech version 6.1 with data standa
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "Accommodation": Array [
-          "$.accommodations[*].accommodationDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.accommodations[*].accommodationDescriptor",
+            "propertyName": "Accommodation",
+          },
         ],
         "AdministrationDate": Array [
-          "$.administrationDate",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.administrationDate",
+            "propertyName": "AdministrationDate",
+          },
         ],
         "AdministrationEndDate": Array [
-          "$.administrationEndDate",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.administrationEndDate",
+            "propertyName": "AdministrationEndDate",
+          },
         ],
         "AdministrationEnvironment": Array [
-          "$.administrationEnvironmentDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.administrationEnvironmentDescriptor",
+            "propertyName": "AdministrationEnvironment",
+          },
         ],
         "AdministrationLanguage": Array [
-          "$.administrationLanguageDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.administrationLanguageDescriptor",
+            "propertyName": "Language",
+          },
         ],
         "AssessedMinutes": Array [
-          "$.assessedMinutes",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.assessedMinutes",
+            "propertyName": "AssessedMinutes",
+          },
         ],
         "Assessment": Array [
-          "$.assessmentReference.assessmentIdentifier",
-          "$.assessmentReference.namespace",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.assessmentReference.assessmentIdentifier",
+            "propertyName": "Assessment",
+          },
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.assessmentReference.namespace",
+            "propertyName": "Assessment",
+          },
         ],
         "Assessment.AssessmentIdentifier": Array [
-          "$.assessmentReference.assessmentIdentifier",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.assessmentReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
         ],
         "Assessment.Namespace": Array [
-          "$.assessmentReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.assessmentReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "AssessmentPeriod.AssessmentPeriod": Array [
-          "$.period.assessmentPeriodDescriptor",
+          Object {
+            "entityName": "AssessmentPeriod",
+            "jsonPath": "$.period.assessmentPeriodDescriptor",
+            "propertyName": "AssessmentPeriod",
+          },
         ],
         "AssessmentPeriod.BeginDate": Array [
-          "$.period.beginDate",
+          Object {
+            "entityName": "AssessmentPeriod",
+            "jsonPath": "$.period.beginDate",
+            "propertyName": "BeginDate",
+          },
         ],
         "AssessmentPeriod.EndDate": Array [
-          "$.period.endDate",
+          Object {
+            "entityName": "AssessmentPeriod",
+            "jsonPath": "$.period.endDate",
+            "propertyName": "EndDate",
+          },
         ],
         "EventCircumstance": Array [
-          "$.eventCircumstanceDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.eventCircumstanceDescriptor",
+            "propertyName": "EventCircumstance",
+          },
         ],
         "EventDescription": Array [
-          "$.eventDescription",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.eventDescription",
+            "propertyName": "Description",
+          },
         ],
         "PerformanceLevel.AssessmentReportingMethod": Array [
-          "$.performanceLevels[*].assessmentReportingMethodDescriptor",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.performanceLevels[*].assessmentReportingMethodDescriptor",
+            "propertyName": "AssessmentReportingMethod",
+          },
         ],
         "PerformanceLevel.PerformanceLevel": Array [
-          "$.performanceLevels[*].performanceLevelDescriptor",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.performanceLevels[*].performanceLevelDescriptor",
+            "propertyName": "PerformanceLevel",
+          },
         ],
         "PerformanceLevel.PerformanceLevelIndicatorName": Array [
-          "$.performanceLevels[*].performanceLevelIndicatorName",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.performanceLevels[*].performanceLevelIndicatorName",
+            "propertyName": "PerformanceLevelIndicatorName",
+          },
         ],
         "PlatformType": Array [
-          "$.platformTypeDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.platformTypeDescriptor",
+            "propertyName": "PlatformType",
+          },
         ],
         "ReasonNotTested": Array [
-          "$.reasonNotTestedDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.reasonNotTestedDescriptor",
+            "propertyName": "ReasonNotTested",
+          },
         ],
         "ReportedSchool": Array [
-          "$.reportedSchoolReference.schoolId",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.reportedSchoolReference.schoolId",
+            "propertyName": "School",
+          },
         ],
         "ReportedSchool.SchoolId": Array [
-          "$.reportedSchoolReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.reportedSchoolReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "ReportedSchoolIdentifier": Array [
-          "$.reportedSchoolIdentifier",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.reportedSchoolIdentifier",
+            "propertyName": "SchoolIdentifier",
+          },
         ],
         "RetestIndicator": Array [
-          "$.retestIndicatorDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.retestIndicatorDescriptor",
+            "propertyName": "RetestIndicator",
+          },
         ],
         "SchoolYear": Array [
-          "$.schoolYearTypeReference.schoolYear",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.schoolYearTypeReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "ScoreResult.AssessmentReportingMethod": Array [
-          "$.scoreResults[*].assessmentReportingMethodDescriptor",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.scoreResults[*].assessmentReportingMethodDescriptor",
+            "propertyName": "AssessmentReportingMethod",
+          },
         ],
         "ScoreResult.Result": Array [
-          "$.scoreResults[*].result",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.scoreResults[*].result",
+            "propertyName": "Result",
+          },
         ],
         "ScoreResult.ResultDatatypeType": Array [
-          "$.scoreResults[*].resultDatatypeTypeDescriptor",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.scoreResults[*].resultDatatypeTypeDescriptor",
+            "propertyName": "ResultDatatypeType",
+          },
         ],
         "SerialNumber": Array [
-          "$.serialNumber",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.serialNumber",
+            "propertyName": "SerialNumber",
+          },
         ],
         "Student": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "Student",
+          },
         ],
         "Student.StudentUniqueId": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentAssessmentIdentifier": Array [
-          "$.studentAssessmentIdentifier",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.studentAssessmentIdentifier",
+            "propertyName": "StudentAssessmentIdentifier",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem": Array [
-          "$.items[*].assessmentItemReference.assessmentIdentifier",
-          "$.items[*].assessmentItemReference.identificationCode",
-          "$.items[*].assessmentItemReference.namespace",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
+            "propertyName": "AssessmentItem",
+          },
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemReference.identificationCode",
+            "propertyName": "AssessmentItem",
+          },
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemReference.namespace",
+            "propertyName": "AssessmentItem",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem.Assessment": Array [
-          "$.items[*].assessmentItemReference.assessmentIdentifier",
-          "$.items[*].assessmentItemReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.items[*].assessmentItemReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem.Assessment.AssessmentIdentifier": Array [
-          "$.items[*].assessmentItemReference.assessmentIdentifier",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem.Assessment.Namespace": Array [
-          "$.items[*].assessmentItemReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.items[*].assessmentItemReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem.IdentificationCode": Array [
-          "$.items[*].assessmentItemReference.identificationCode",
+          Object {
+            "entityName": "AssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemReference.identificationCode",
+            "propertyName": "IdentificationCode",
+          },
         ],
         "StudentAssessmentItem.AssessmentItemResult": Array [
-          "$.items[*].assessmentItemResultDescriptor",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemResultDescriptor",
+            "propertyName": "AssessmentItemResult",
+          },
         ],
         "StudentAssessmentItem.AssessmentResponse": Array [
-          "$.items[*].assessmentResponse",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentResponse",
+            "propertyName": "AssessmentResponse",
+          },
         ],
         "StudentAssessmentItem.DescriptiveFeedback": Array [
-          "$.items[*].descriptiveFeedback",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].descriptiveFeedback",
+            "propertyName": "DescriptiveFeedback",
+          },
         ],
         "StudentAssessmentItem.ItemNumber": Array [
-          "$.items[*].itemNumber",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].itemNumber",
+            "propertyName": "ItemNumber",
+          },
         ],
         "StudentAssessmentItem.RawScoreResult": Array [
-          "$.items[*].rawScoreResult",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].rawScoreResult",
+            "propertyName": "RawScoreResult",
+          },
         ],
         "StudentAssessmentItem.ResponseIndicator": Array [
-          "$.items[*].responseIndicatorDescriptor",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].responseIndicatorDescriptor",
+            "propertyName": "ResponseIndicator",
+          },
         ],
         "StudentAssessmentItem.TimeAssessed": Array [
-          "$.items[*].timeAssessed",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].timeAssessed",
+            "propertyName": "TimeAssessed",
+          },
         ],
         "StudentObjectiveAssessment.AdministrationDate": Array [
-          "$.studentObjectiveAssessments[*].administrationDate",
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].administrationDate",
+            "propertyName": "AdministrationDate",
+          },
         ],
         "StudentObjectiveAssessment.AdministrationEndDate": Array [
-          "$.studentObjectiveAssessments[*].administrationEndDate",
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].administrationEndDate",
+            "propertyName": "AdministrationEndDate",
+          },
         ],
         "StudentObjectiveAssessment.AssessedMinutes": Array [
-          "$.studentObjectiveAssessments[*].assessedMinutes",
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].assessedMinutes",
+            "propertyName": "AssessedMinutes",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.identificationCode",
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
+            "propertyName": "ObjectiveAssessment",
+          },
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.identificationCode",
+            "propertyName": "ObjectiveAssessment",
+          },
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+            "propertyName": "ObjectiveAssessment",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment.AssessmentIdentifier": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment.Namespace": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment.IdentificationCode": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.identificationCode",
+          Object {
+            "entityName": "ObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.identificationCode",
+            "propertyName": "IdentificationCode",
+          },
         ],
         "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethod": Array [
-          "$.studentObjectiveAssessments[*].performanceLevels[*].assessmentReportingMethodDescriptor",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].assessmentReportingMethodDescriptor",
+            "propertyName": "AssessmentReportingMethod",
+          },
         ],
         "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevel": Array [
-          "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelDescriptor",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelDescriptor",
+            "propertyName": "PerformanceLevel",
+          },
         ],
         "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelIndicatorName": Array [
-          "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelIndicatorName",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelIndicatorName",
+            "propertyName": "PerformanceLevelIndicatorName",
+          },
         ],
         "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethod": Array [
-          "$.studentObjectiveAssessments[*].scoreResults[*].assessmentReportingMethodDescriptor",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].assessmentReportingMethodDescriptor",
+            "propertyName": "AssessmentReportingMethod",
+          },
         ],
         "StudentObjectiveAssessment.ScoreResult.Result": Array [
-          "$.studentObjectiveAssessments[*].scoreResults[*].result",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].result",
+            "propertyName": "Result",
+          },
         ],
         "StudentObjectiveAssessment.ScoreResult.ResultDatatypeType": Array [
-          "$.studentObjectiveAssessments[*].scoreResults[*].resultDatatypeTypeDescriptor",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].resultDatatypeTypeDescriptor",
+            "propertyName": "ResultDatatypeType",
+          },
         ],
         "WhenAssessedGradeLevel": Array [
-          "$.whenAssessedGradeLevelDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.whenAssessedGradeLevelDescriptor",
+            "propertyName": "GradeLevel",
+          },
         ],
       }
     `);
@@ -1273,62 +2361,150 @@ describe('when generating api schema targeting tech version 6.1 with data standa
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AcademicWeek": Array [
-          "$.academicWeeks[*].academicWeekReference.schoolId",
-          "$.academicWeeks[*].academicWeekReference.weekIdentifier",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.schoolId",
+            "propertyName": "AcademicWeek",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.weekIdentifier",
+            "propertyName": "AcademicWeek",
+          },
         ],
         "AcademicWeek.School": Array [
-          "$.academicWeeks[*].academicWeekReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "AcademicWeek.School.SchoolId": Array [
-          "$.academicWeeks[*].academicWeekReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "AcademicWeek.WeekIdentifier": Array [
-          "$.academicWeeks[*].academicWeekReference.weekIdentifier",
+          Object {
+            "entityName": "AcademicWeek",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.weekIdentifier",
+            "propertyName": "WeekIdentifier",
+          },
         ],
         "BeginDate": Array [
-          "$.beginDate",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.beginDate",
+            "propertyName": "BeginDate",
+          },
         ],
         "EndDate": Array [
-          "$.endDate",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.endDate",
+            "propertyName": "EndDate",
+          },
         ],
         "GradingPeriod": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
-          "$.gradingPeriods[*].gradingPeriodReference.periodSequence",
-          "$.gradingPeriods[*].gradingPeriodReference.schoolId",
-          "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.periodSequence",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.GradingPeriod": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.PeriodSequence": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.periodSequence",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.periodSequence",
+            "propertyName": "PeriodSequence",
+          },
         ],
         "GradingPeriod.School": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.School.SchoolId": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.SchoolYear": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "School": Array [
-          "$.schoolReference.schoolId",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.schoolReference.schoolId",
+            "propertyName": "School",
+          },
         ],
         "School.SchoolId": Array [
-          "$.schoolReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.schoolReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "SchoolYear": Array [
-          "$.schoolYearTypeReference.schoolYear",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.schoolYearTypeReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "SessionName": Array [
-          "$.sessionName",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "Term": Array [
-          "$.termDescriptor",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.termDescriptor",
+            "propertyName": "Term",
+          },
         ],
         "TotalInstructionalDays": Array [
-          "$.totalInstructionalDays",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.totalInstructionalDays",
+            "propertyName": "TotalInstructionalDays",
+          },
         ],
       }
     `);
@@ -1395,153 +2571,421 @@ describe('when generating api schema targeting tech version 6.1 with data standa
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "CompetencyLevel": Array [
-          "$.competencyLevelDescriptor",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.competencyLevelDescriptor",
+            "propertyName": "CompetencyLevel",
+          },
         ],
         "CompetencyObjective": Array [
-          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
-          "$.objectiveCompetencyObjectiveReference.objective",
-          "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+            "propertyName": "CompetencyObjective",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.objective",
+            "propertyName": "CompetencyObjective",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
+            "propertyName": "CompetencyObjective",
+          },
         ],
         "CompetencyObjective.EducationOrganization": Array [
-          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "CompetencyObjective.EducationOrganization.EducationOrganizationId": Array [
-          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "CompetencyObjective.Objective": Array [
-          "$.objectiveCompetencyObjectiveReference.objective",
+          Object {
+            "entityName": "CompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.objective",
+            "propertyName": "Objective",
+          },
         ],
         "CompetencyObjective.ObjectiveGradeLevel": Array [
-          "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
+          Object {
+            "entityName": "CompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
+            "propertyName": "GradeLevel",
+          },
         ],
         "DiagnosticStatement": Array [
-          "$.diagnosticStatement",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.diagnosticStatement",
+            "propertyName": "DiagnosticStatement",
+          },
         ],
         "GradingPeriod": Array [
-          "$.gradingPeriodReference.gradingPeriodDescriptor",
-          "$.gradingPeriodReference.periodSequence",
-          "$.gradingPeriodReference.schoolId",
-          "$.gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.gradingPeriodReference.periodSequence",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.gradingPeriodReference.schoolId",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.gradingPeriodReference.schoolYear",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.GradingPeriod": Array [
-          "$.gradingPeriodReference.gradingPeriodDescriptor",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.PeriodSequence": Array [
-          "$.gradingPeriodReference.periodSequence",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriodReference.periodSequence",
+            "propertyName": "PeriodSequence",
+          },
         ],
         "GradingPeriod.School": Array [
-          "$.gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.School.SchoolId": Array [
-          "$.gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.SchoolYear": Array [
-          "$.gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriodReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "Student": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "Student",
+          },
         ],
         "Student.StudentUniqueId": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.BeginDate": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
+          Object {
+            "entityName": "GeneralStudentProgramAssociation",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
+            "propertyName": "BeginDate",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.EducationOrganization": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.EducationOrganization.EducationOrganizationId": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+            "propertyName": "ProgramName",
+          },
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+            "propertyName": "ProgramType",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization.EducationOrganizationId": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramName": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+            "propertyName": "ProgramName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramType": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+            "propertyName": "ProgramType",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student.StudentUniqueId": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+            "propertyName": "StudentSectionAssociation",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.BeginDate": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
+          Object {
+            "entityName": "StudentSectionAssociation",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
+            "propertyName": "BeginDate",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "CourseOffering",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "LocalCourseCode",
+          },
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+          Object {
+            "entityName": "Section",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+            "propertyName": "SectionIdentifier",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "CourseOffering",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "LocalCourseCode",
+          },
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.LocalCourseCode": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+          Object {
+            "entityName": "CourseOffering",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "LocalCourseCode",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.School": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.School": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.SessionName": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.SectionIdentifier": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+          Object {
+            "entityName": "Section",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+            "propertyName": "SectionIdentifier",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Student": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Student.StudentUniqueId": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
       }
     `);
@@ -1666,185 +3110,445 @@ describe('when generating api schema targeting tech version 7.0 with data standa
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "Accommodation": Array [
-          "$.accommodations[*].accommodationDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.accommodations[*].accommodationDescriptor",
+            "propertyName": "Accommodation",
+          },
         ],
         "AdministrationDate": Array [
-          "$.administrationDate",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.administrationDate",
+            "propertyName": "AdministrationDate",
+          },
         ],
         "AdministrationEndDate": Array [
-          "$.administrationEndDate",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.administrationEndDate",
+            "propertyName": "AdministrationEndDate",
+          },
         ],
         "AdministrationEnvironment": Array [
-          "$.administrationEnvironmentDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.administrationEnvironmentDescriptor",
+            "propertyName": "AdministrationEnvironment",
+          },
         ],
         "AdministrationLanguage": Array [
-          "$.administrationLanguageDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.administrationLanguageDescriptor",
+            "propertyName": "Language",
+          },
         ],
         "AssessedMinutes": Array [
-          "$.assessedMinutes",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.assessedMinutes",
+            "propertyName": "AssessedMinutes",
+          },
         ],
         "Assessment": Array [
-          "$.assessmentReference.assessmentIdentifier",
-          "$.assessmentReference.namespace",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.assessmentReference.assessmentIdentifier",
+            "propertyName": "Assessment",
+          },
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.assessmentReference.namespace",
+            "propertyName": "Assessment",
+          },
         ],
         "Assessment.AssessmentIdentifier": Array [
-          "$.assessmentReference.assessmentIdentifier",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.assessmentReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
         ],
         "Assessment.Namespace": Array [
-          "$.assessmentReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.assessmentReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "AssessmentPeriod.AssessmentPeriod": Array [
-          "$.period.assessmentPeriodDescriptor",
+          Object {
+            "entityName": "AssessmentPeriod",
+            "jsonPath": "$.period.assessmentPeriodDescriptor",
+            "propertyName": "AssessmentPeriod",
+          },
         ],
         "AssessmentPeriod.BeginDate": Array [
-          "$.period.beginDate",
+          Object {
+            "entityName": "AssessmentPeriod",
+            "jsonPath": "$.period.beginDate",
+            "propertyName": "BeginDate",
+          },
         ],
         "AssessmentPeriod.EndDate": Array [
-          "$.period.endDate",
+          Object {
+            "entityName": "AssessmentPeriod",
+            "jsonPath": "$.period.endDate",
+            "propertyName": "EndDate",
+          },
         ],
         "EventCircumstance": Array [
-          "$.eventCircumstanceDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.eventCircumstanceDescriptor",
+            "propertyName": "EventCircumstance",
+          },
         ],
         "EventDescription": Array [
-          "$.eventDescription",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.eventDescription",
+            "propertyName": "Description",
+          },
         ],
         "PerformanceLevel.AssessmentReportingMethod": Array [
-          "$.performanceLevels[*].assessmentReportingMethodDescriptor",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.performanceLevels[*].assessmentReportingMethodDescriptor",
+            "propertyName": "AssessmentReportingMethod",
+          },
         ],
         "PerformanceLevel.PerformanceLevel": Array [
-          "$.performanceLevels[*].performanceLevelDescriptor",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.performanceLevels[*].performanceLevelDescriptor",
+            "propertyName": "PerformanceLevel",
+          },
         ],
         "PerformanceLevel.PerformanceLevelIndicatorName": Array [
-          "$.performanceLevels[*].performanceLevelIndicatorName",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.performanceLevels[*].performanceLevelIndicatorName",
+            "propertyName": "PerformanceLevelIndicatorName",
+          },
         ],
         "PlatformType": Array [
-          "$.platformTypeDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.platformTypeDescriptor",
+            "propertyName": "PlatformType",
+          },
         ],
         "ReasonNotTested": Array [
-          "$.reasonNotTestedDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.reasonNotTestedDescriptor",
+            "propertyName": "ReasonNotTested",
+          },
         ],
         "ReportedSchool": Array [
-          "$.reportedSchoolReference.schoolId",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.reportedSchoolReference.schoolId",
+            "propertyName": "School",
+          },
         ],
         "ReportedSchool.SchoolId": Array [
-          "$.reportedSchoolReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.reportedSchoolReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "ReportedSchoolIdentifier": Array [
-          "$.reportedSchoolIdentifier",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.reportedSchoolIdentifier",
+            "propertyName": "SchoolIdentifier",
+          },
         ],
         "RetestIndicator": Array [
-          "$.retestIndicatorDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.retestIndicatorDescriptor",
+            "propertyName": "RetestIndicator",
+          },
         ],
         "SchoolYear": Array [
-          "$.schoolYearTypeReference.schoolYear",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.schoolYearTypeReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "ScoreResult.AssessmentReportingMethod": Array [
-          "$.scoreResults[*].assessmentReportingMethodDescriptor",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.scoreResults[*].assessmentReportingMethodDescriptor",
+            "propertyName": "AssessmentReportingMethod",
+          },
         ],
         "ScoreResult.Result": Array [
-          "$.scoreResults[*].result",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.scoreResults[*].result",
+            "propertyName": "Result",
+          },
         ],
         "ScoreResult.ResultDatatypeType": Array [
-          "$.scoreResults[*].resultDatatypeTypeDescriptor",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.scoreResults[*].resultDatatypeTypeDescriptor",
+            "propertyName": "ResultDatatypeType",
+          },
         ],
         "SerialNumber": Array [
-          "$.serialNumber",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.serialNumber",
+            "propertyName": "SerialNumber",
+          },
         ],
         "Student": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "Student",
+          },
         ],
         "Student.StudentUniqueId": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentAssessmentIdentifier": Array [
-          "$.studentAssessmentIdentifier",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.studentAssessmentIdentifier",
+            "propertyName": "StudentAssessmentIdentifier",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem": Array [
-          "$.items[*].assessmentItemReference.assessmentIdentifier",
-          "$.items[*].assessmentItemReference.identificationCode",
-          "$.items[*].assessmentItemReference.namespace",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
+            "propertyName": "AssessmentItem",
+          },
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemReference.identificationCode",
+            "propertyName": "AssessmentItem",
+          },
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemReference.namespace",
+            "propertyName": "AssessmentItem",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem.Assessment": Array [
-          "$.items[*].assessmentItemReference.assessmentIdentifier",
-          "$.items[*].assessmentItemReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.items[*].assessmentItemReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem.Assessment.AssessmentIdentifier": Array [
-          "$.items[*].assessmentItemReference.assessmentIdentifier",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.items[*].assessmentItemReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem.Assessment.Namespace": Array [
-          "$.items[*].assessmentItemReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.items[*].assessmentItemReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "StudentAssessmentItem.AssessmentItem.IdentificationCode": Array [
-          "$.items[*].assessmentItemReference.identificationCode",
+          Object {
+            "entityName": "AssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemReference.identificationCode",
+            "propertyName": "IdentificationCode",
+          },
         ],
         "StudentAssessmentItem.AssessmentItemResult": Array [
-          "$.items[*].assessmentItemResultDescriptor",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentItemResultDescriptor",
+            "propertyName": "AssessmentItemResult",
+          },
         ],
         "StudentAssessmentItem.AssessmentResponse": Array [
-          "$.items[*].assessmentResponse",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].assessmentResponse",
+            "propertyName": "AssessmentResponse",
+          },
         ],
         "StudentAssessmentItem.DescriptiveFeedback": Array [
-          "$.items[*].descriptiveFeedback",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].descriptiveFeedback",
+            "propertyName": "DescriptiveFeedback",
+          },
         ],
         "StudentAssessmentItem.ItemNumber": Array [
-          "$.items[*].itemNumber",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].itemNumber",
+            "propertyName": "ItemNumber",
+          },
         ],
         "StudentAssessmentItem.RawScoreResult": Array [
-          "$.items[*].rawScoreResult",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].rawScoreResult",
+            "propertyName": "RawScoreResult",
+          },
         ],
         "StudentAssessmentItem.ResponseIndicator": Array [
-          "$.items[*].responseIndicatorDescriptor",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].responseIndicatorDescriptor",
+            "propertyName": "ResponseIndicator",
+          },
         ],
         "StudentAssessmentItem.TimeAssessed": Array [
-          "$.items[*].timeAssessed",
+          Object {
+            "entityName": "StudentAssessmentItem",
+            "jsonPath": "$.items[*].timeAssessed",
+            "propertyName": "TimeAssessed",
+          },
         ],
         "StudentObjectiveAssessment.AdministrationDate": Array [
-          "$.studentObjectiveAssessments[*].administrationDate",
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].administrationDate",
+            "propertyName": "AdministrationDate",
+          },
         ],
         "StudentObjectiveAssessment.AdministrationEndDate": Array [
-          "$.studentObjectiveAssessments[*].administrationEndDate",
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].administrationEndDate",
+            "propertyName": "AdministrationEndDate",
+          },
         ],
         "StudentObjectiveAssessment.AssessedMinutes": Array [
-          "$.studentObjectiveAssessments[*].assessedMinutes",
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].assessedMinutes",
+            "propertyName": "AssessedMinutes",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.identificationCode",
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
+            "propertyName": "ObjectiveAssessment",
+          },
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.identificationCode",
+            "propertyName": "ObjectiveAssessment",
+          },
+          Object {
+            "entityName": "StudentObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+            "propertyName": "ObjectiveAssessment",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment.AssessmentIdentifier": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.assessmentIdentifier",
+            "propertyName": "AssessmentIdentifier",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment.Namespace": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+          Object {
+            "entityName": "Assessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.namespace",
+            "propertyName": "Namespace",
+          },
         ],
         "StudentObjectiveAssessment.ObjectiveAssessment.IdentificationCode": Array [
-          "$.studentObjectiveAssessments[*].objectiveAssessmentReference.identificationCode",
+          Object {
+            "entityName": "ObjectiveAssessment",
+            "jsonPath": "$.studentObjectiveAssessments[*].objectiveAssessmentReference.identificationCode",
+            "propertyName": "IdentificationCode",
+          },
         ],
         "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethod": Array [
-          "$.studentObjectiveAssessments[*].performanceLevels[*].assessmentReportingMethodDescriptor",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].assessmentReportingMethodDescriptor",
+            "propertyName": "AssessmentReportingMethod",
+          },
         ],
         "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevel": Array [
-          "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelDescriptor",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelDescriptor",
+            "propertyName": "PerformanceLevel",
+          },
         ],
         "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelIndicatorName": Array [
-          "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelIndicatorName",
+          Object {
+            "entityName": "PerformanceLevel",
+            "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelIndicatorName",
+            "propertyName": "PerformanceLevelIndicatorName",
+          },
         ],
         "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethod": Array [
-          "$.studentObjectiveAssessments[*].scoreResults[*].assessmentReportingMethodDescriptor",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].assessmentReportingMethodDescriptor",
+            "propertyName": "AssessmentReportingMethod",
+          },
         ],
         "StudentObjectiveAssessment.ScoreResult.Result": Array [
-          "$.studentObjectiveAssessments[*].scoreResults[*].result",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].result",
+            "propertyName": "Result",
+          },
         ],
         "StudentObjectiveAssessment.ScoreResult.ResultDatatypeType": Array [
-          "$.studentObjectiveAssessments[*].scoreResults[*].resultDatatypeTypeDescriptor",
+          Object {
+            "entityName": "ScoreResult",
+            "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].resultDatatypeTypeDescriptor",
+            "propertyName": "ResultDatatypeType",
+          },
         ],
         "WhenAssessedGradeLevel": Array [
-          "$.whenAssessedGradeLevelDescriptor",
+          Object {
+            "entityName": "StudentAssessment",
+            "jsonPath": "$.whenAssessedGradeLevelDescriptor",
+            "propertyName": "GradeLevel",
+          },
         ],
       }
     `);
@@ -1992,62 +3696,150 @@ describe('when generating api schema targeting tech version 7.0 with data standa
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "AcademicWeek": Array [
-          "$.academicWeeks[*].academicWeekReference.schoolId",
-          "$.academicWeeks[*].academicWeekReference.weekIdentifier",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.schoolId",
+            "propertyName": "AcademicWeek",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.weekIdentifier",
+            "propertyName": "AcademicWeek",
+          },
         ],
         "AcademicWeek.School": Array [
-          "$.academicWeeks[*].academicWeekReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "AcademicWeek.School.SchoolId": Array [
-          "$.academicWeeks[*].academicWeekReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "AcademicWeek.WeekIdentifier": Array [
-          "$.academicWeeks[*].academicWeekReference.weekIdentifier",
+          Object {
+            "entityName": "AcademicWeek",
+            "jsonPath": "$.academicWeeks[*].academicWeekReference.weekIdentifier",
+            "propertyName": "WeekIdentifier",
+          },
         ],
         "BeginDate": Array [
-          "$.beginDate",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.beginDate",
+            "propertyName": "BeginDate",
+          },
         ],
         "EndDate": Array [
-          "$.endDate",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.endDate",
+            "propertyName": "EndDate",
+          },
         ],
         "GradingPeriod": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
-          "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodName",
-          "$.gradingPeriods[*].gradingPeriodReference.schoolId",
-          "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodName",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.GradingPeriod": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.GradingPeriodName": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodName",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodName",
+            "propertyName": "GradingPeriodName",
+          },
         ],
         "GradingPeriod.School": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.School.SchoolId": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.SchoolYear": Array [
-          "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "School": Array [
-          "$.schoolReference.schoolId",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.schoolReference.schoolId",
+            "propertyName": "School",
+          },
         ],
         "School.SchoolId": Array [
-          "$.schoolReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.schoolReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "SchoolYear": Array [
-          "$.schoolYearTypeReference.schoolYear",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.schoolYearTypeReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "SessionName": Array [
-          "$.sessionName",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "Term": Array [
-          "$.termDescriptor",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.termDescriptor",
+            "propertyName": "Term",
+          },
         ],
         "TotalInstructionalDays": Array [
-          "$.totalInstructionalDays",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.totalInstructionalDays",
+            "propertyName": "TotalInstructionalDays",
+          },
         ],
       }
     `);
@@ -2114,153 +3906,421 @@ describe('when generating api schema targeting tech version 7.0 with data standa
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
         "CompetencyLevel": Array [
-          "$.competencyLevelDescriptor",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.competencyLevelDescriptor",
+            "propertyName": "CompetencyLevel",
+          },
         ],
         "CompetencyObjective": Array [
-          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
-          "$.objectiveCompetencyObjectiveReference.objective",
-          "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+            "propertyName": "CompetencyObjective",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.objective",
+            "propertyName": "CompetencyObjective",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
+            "propertyName": "CompetencyObjective",
+          },
         ],
         "CompetencyObjective.EducationOrganization": Array [
-          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "CompetencyObjective.EducationOrganization.EducationOrganizationId": Array [
-          "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "CompetencyObjective.Objective": Array [
-          "$.objectiveCompetencyObjectiveReference.objective",
+          Object {
+            "entityName": "CompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.objective",
+            "propertyName": "Objective",
+          },
         ],
         "CompetencyObjective.ObjectiveGradeLevel": Array [
-          "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
+          Object {
+            "entityName": "CompetencyObjective",
+            "jsonPath": "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
+            "propertyName": "GradeLevel",
+          },
         ],
         "DiagnosticStatement": Array [
-          "$.diagnosticStatement",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.diagnosticStatement",
+            "propertyName": "DiagnosticStatement",
+          },
         ],
         "GradingPeriod": Array [
-          "$.gradingPeriodReference.gradingPeriodDescriptor",
-          "$.gradingPeriodReference.gradingPeriodName",
-          "$.gradingPeriodReference.schoolId",
-          "$.gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.gradingPeriodReference.gradingPeriodName",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.gradingPeriodReference.schoolId",
+            "propertyName": "GradingPeriod",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.gradingPeriodReference.schoolYear",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.GradingPeriod": Array [
-          "$.gradingPeriodReference.gradingPeriodDescriptor",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
+            "propertyName": "GradingPeriod",
+          },
         ],
         "GradingPeriod.GradingPeriodName": Array [
-          "$.gradingPeriodReference.gradingPeriodName",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriodReference.gradingPeriodName",
+            "propertyName": "GradingPeriodName",
+          },
         ],
         "GradingPeriod.School": Array [
-          "$.gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.School.SchoolId": Array [
-          "$.gradingPeriodReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.gradingPeriodReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "GradingPeriod.SchoolYear": Array [
-          "$.gradingPeriodReference.schoolYear",
+          Object {
+            "entityName": "GradingPeriod",
+            "jsonPath": "$.gradingPeriodReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "Student": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "StudentCompetencyObjective",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "Student",
+          },
         ],
         "Student.StudentUniqueId": Array [
-          "$.studentReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.BeginDate": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
+          Object {
+            "entityName": "GeneralStudentProgramAssociation",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.beginDate",
+            "propertyName": "BeginDate",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.EducationOrganization": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.EducationOrganization.EducationOrganizationId": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+            "propertyName": "ProgramName",
+          },
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+            "propertyName": "ProgramType",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization.EducationOrganizationId": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+          Object {
+            "entityName": "EducationOrganization",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "propertyName": "EducationOrganizationId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramName": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
+            "propertyName": "ProgramName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramType": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+          Object {
+            "entityName": "Program",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
+            "propertyName": "ProgramType",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student.StudentUniqueId": Array [
-          "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "StudentSectionAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+            "propertyName": "StudentSectionAssociation",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.BeginDate": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
+          Object {
+            "entityName": "StudentSectionAssociation",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.beginDate",
+            "propertyName": "BeginDate",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "CourseOffering",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "LocalCourseCode",
+          },
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+          Object {
+            "entityName": "Section",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+            "propertyName": "SectionIdentifier",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "CourseOffering",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "LocalCourseCode",
+          },
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.LocalCourseCode": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+          Object {
+            "entityName": "CourseOffering",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.localCourseCode",
+            "propertyName": "LocalCourseCode",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.School": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.School.SchoolId": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.School": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.School.SchoolId": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolId",
+            "propertyName": "SchoolId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.SchoolYear": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.schoolYear",
+            "propertyName": "SchoolYear",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.CourseOffering.Session.SessionName": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+          Object {
+            "entityName": "Session",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sessionName",
+            "propertyName": "SessionName",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Section.SectionIdentifier": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+          Object {
+            "entityName": "Section",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.sectionIdentifier",
+            "propertyName": "SectionIdentifier",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Student": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation.Student.StudentUniqueId": Array [
-          "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+          Object {
+            "entityName": "Student",
+            "jsonPath": "$.studentSectionAssociations[*].studentSectionAssociationReference.studentUniqueId",
+            "propertyName": "UniqueId",
+          },
         ],
       }
     `);

@@ -32,7 +32,7 @@ type BaseDocumentPaths = {
 /**
  * JsonPath information for a reference MetaEd property
  */
-export type ReferencePaths = BaseDocumentPaths & {
+type DocumentReferencePaths = BaseDocumentPaths & {
   /**
    * Discriminator between reference and scalar path types
    */
@@ -68,4 +68,4 @@ export type ScalarPath = BaseDocumentPaths & {
 /**
  * DocumentPaths provides JsonPaths to values corresponding to reference and scalar MetaEd properties in a resource document.
  */
-export type DocumentPaths = ReferencePaths | ScalarPath;
+export type DocumentPaths = DocumentReferencePaths | ScalarPath;

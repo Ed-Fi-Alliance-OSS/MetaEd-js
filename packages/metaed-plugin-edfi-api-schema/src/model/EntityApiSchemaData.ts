@@ -14,6 +14,7 @@ import { MetaEdResourceName } from './api-schema/MetaEdResourceName';
 import { EndpointName } from './api-schema/EndpointName';
 import { DocumentPathsMapping } from './api-schema/DocumentPathsMapping';
 import { DocumentObjectKey } from './api-schema/DocumentObjectKey';
+import { ReferenceJsonPathsMapping } from './api-schema/ReferenceJsonPathsMapping';
 
 export type EntityApiSchemaData = {
   /**
@@ -91,6 +92,12 @@ export type EntityApiSchemaData = {
    * property.
    */
   documentPathsMapping: DocumentPathsMapping;
+
+  /**
+   * For each reference in a document, maps from the JsonPaths of the reference to the identity JsonPaths
+   * in the document being referred to.
+   */
+  referenceJsonPathsMapping: ReferenceJsonPathsMapping;
 };
 
 /**

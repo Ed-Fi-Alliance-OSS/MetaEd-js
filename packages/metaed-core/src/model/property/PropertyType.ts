@@ -86,3 +86,25 @@ export const allPropertyTypes: PropertyType[] = [
   'time',
   'year',
 ];
+
+export const scalarPropertyTypes: PropertyType[] = [
+  'boolean',
+  'currency',
+  'date',
+  'datetime',
+  'decimal',
+  'descriptor',
+  'duration',
+  'enumeration',
+  'integer',
+  'percent',
+  'schoolYearEnumeration',
+  'sharedDecimal',
+  'sharedInteger',
+  'sharedShort',
+  'sharedString',
+  'short',
+  'string',
+  'time',
+  'year',
+];
