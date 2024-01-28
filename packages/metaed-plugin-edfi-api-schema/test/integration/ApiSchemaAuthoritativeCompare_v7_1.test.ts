@@ -21,7 +21,7 @@ import { metaEdPlugins } from './PluginHelper';
 jest.setTimeout(40000);
 
 // Skipping because there is an ordering problem in the JSON file between running locally on Ubuntu and on GitHub actions
-describe('when generating ods and comparing it to data standard 5.0 authoritative artifacts for ODS/API 7.1', (): void => {
+describe.skip('when generating ods and comparing it to data standard 5.0 authoritative artifacts for ODS/API 7.1', (): void => {
   const artifactPath: string = path.resolve(__dirname, './artifact/v7_1/');
   const authoritativeCoreFilename = 'ds-5.0-api-schema-authoritative.json';
   const generatedCoreFilename = 'ds-5.0-api-schema-generated.json';
