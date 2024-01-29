@@ -7,6 +7,7 @@ import {
   MetaEdTextBuilder,
   NamespaceBuilder,
   DescriptorBuilder,
+  EnumerationBuilder,
 } from '@edfi/metaed-core';
 import {
   domainEntityReferenceEnhancer,
@@ -664,6 +665,140 @@ describe('when building a domain entity referencing another using a shortenTo di
           Object {
             "identityJsonPath": "$.identity2",
             "referenceJsonPath": "$.objectiveCompetencyObjectiveReference.identity2",
+          },
+        ],
+      }
+    `);
+  });
+});
+
+describe('when building a domain entity referencing ReportCard referencing GradingPeriod where ReportCard has GradingPeriod role named GradingPeriod', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('StudentAcademicRecord')
+      .withDocumentation('doc')
+      .withStringIdentity('Term', 'doc', '30')
+      .withDomainEntityProperty('ReportCard', 'doc', false, true)
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('ReportCard')
+      .withDocumentation('doc')
+      .withStringIdentity('StudentId', 'doc', '30')
+      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('GradingPeriod')
+      .withDocumentation('doc')
+      .withStringIdentity('GradingPeriodName', 'doc', '30')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withDescriptorIdentity('GradingPeriod', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withStringIdentity('SchoolId', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withStartDescriptor('GradingPeriod')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
+      .withStartEnumeration('SchoolYear')
+      .withDocumentation('doc')
+      .withEnumerationItem('2030')
+      .withEndEnumeration()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
+      .sendToListener(new EnumerationBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    domainEntityReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
+    enumerationReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct referenceJsonPathsMapping', () => {
+    const entity = namespace.entity.domainEntity.get('StudentAcademicRecord');
+    expect(entity.data.edfiApiSchema.referenceJsonPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "ReportCard": Array [
+          Object {
+            "identityJsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
+            "referenceJsonPath": "$.reportCards[*].reportCardReference.gradingPeriodDescriptor",
+          },
+          Object {
+            "identityJsonPath": "$.gradingPeriodReference.gradingPeriodName",
+            "referenceJsonPath": "$.reportCards[*].reportCardReference.gradingPeriodName",
+          },
+          Object {
+            "identityJsonPath": "$.gradingPeriodReference.schoolId",
+            "referenceJsonPath": "$.reportCards[*].reportCardReference.gradingPeriodSchoolId",
+          },
+          Object {
+            "identityJsonPath": "$.gradingPeriodReference.schoolYear",
+            "referenceJsonPath": "$.reportCards[*].reportCardReference.gradingPeriodSchoolYear",
+          },
+          Object {
+            "identityJsonPath": "$.studentId",
+            "referenceJsonPath": "$.reportCards[*].reportCardReference.studentId",
+          },
+        ],
+      }
+    `);
+  });
+
+  it('should be correct referenceJsonPathsMapping for ReportCard', () => {
+    const entity = namespace.entity.domainEntity.get('ReportCard');
+    expect(entity.data.edfiApiSchema.referenceJsonPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "GradingPeriod": Array [
+          Object {
+            "identityJsonPath": "$.gradingPeriodDescriptor",
+            "referenceJsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
+          },
+          Object {
+            "identityJsonPath": "$.gradingPeriodName",
+            "referenceJsonPath": "$.gradingPeriodReference.gradingPeriodName",
+          },
+          Object {
+            "identityJsonPath": "$.schoolReference.schoolId",
+            "referenceJsonPath": "$.gradingPeriodReference.schoolId",
+          },
+          Object {
+            "identityJsonPath": "$.schoolYearTypeReference.schoolYear",
+            "referenceJsonPath": "$.gradingPeriodReference.schoolYear",
+          },
+        ],
+      }
+    `);
+  });
+
+  it('should be correct referenceJsonPathsMapping for GradingPeriod', () => {
+    const entity = namespace.entity.domainEntity.get('GradingPeriod');
+    expect(entity.data.edfiApiSchema.referenceJsonPathsMapping).toMatchInlineSnapshot(`
+      Object {
+        "School": Array [
+          Object {
+            "identityJsonPath": "$.schoolId",
+            "referenceJsonPath": "$.schoolReference.schoolId",
           },
         ],
       }
