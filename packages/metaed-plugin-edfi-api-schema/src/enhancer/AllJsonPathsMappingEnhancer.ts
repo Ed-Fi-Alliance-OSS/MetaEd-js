@@ -69,6 +69,14 @@ function addJsonPathTo(
   });
 }
 
+// function adjustForIdenticalRoleNamePattern(property: EntityProperty, propertyModifier: PropertyModifier): PropertyModifier {
+//   if (property.metaEdName === property.roleName && property.shortenTo === '') {
+//     return propertyModifierConcat(propertyModifier, { optionalDueToParent: false, parentPrefixes: [property.roleName] });
+//   }
+
+//   return propertyModifier;
+// }
+
 /**
  * Adds JSON Paths to the allJsonPathsMapping for the API body shape corresponding to the given referential property.
  */
@@ -100,6 +108,7 @@ function jsonPathsForReferentialProperty(
         currentJsonPath,
         identityPropertyApiMapping.fullName,
         flattenedIdentityProperty.identityProperty,
+        // adjustForIdenticalRoleNamePattern(property, propertyModifier),
         propertyModifier,
       ),
       false,

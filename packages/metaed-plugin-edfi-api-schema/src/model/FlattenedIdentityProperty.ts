@@ -22,4 +22,5 @@ import { EntityProperty, MetaEdPropertyPath } from '@edfi/metaed-core';
 export type FlattenedIdentityProperty = {
   identityProperty: EntityProperty;
   propertyPaths: MetaEdPropertyPath[];
+  propertyChain: EntityProperty[];
 };

@@ -123,6 +123,30 @@ describe('when demonstrating key unification via entity referencing two entities
     `);
   });
 
+  it('should have correct property chain in Section flattened identity properties', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(section);
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "CourseOffering",
+        "LocalCourseCode",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "CourseOffering",
+        "School",
+        "SchoolId",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[2].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "SectionIdentifier",
+      ]
+    `);
+  });
+
   it('should not have any descriptor property mappings in Section', () => {
     const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(section);
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
@@ -182,6 +206,23 @@ describe('when demonstrating key unification via entity referencing two entities
     `);
   });
 
+  it('should have correct property chain in CourseOffering flattened identity properties', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(courseOffering);
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "LocalCourseCode",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "School",
+        "SchoolId",
+      ]
+    `);
+  });
+
   it('should have School in ClassPeriod reference groups', () => {
     const classPeriodEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(classPeriod);
     const apiMapping = classPeriodEntity?.data.edfiApiSchema.apiMapping;
@@ -235,7 +276,24 @@ describe('when demonstrating key unification via entity referencing two entities
     `);
   });
 
-  it('should no reference groups in School', () => {
+  it('should have correct property chain in ClassPeriod flattened identity properties', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(classPeriod);
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "ClassPeriodName",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "School",
+        "SchoolId",
+      ]
+    `);
+  });
+
+  it('should have no reference groups in School', () => {
     const schoolEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(school);
     const apiMapping = schoolEntity?.data.edfiApiSchema.apiMapping;
     expect(apiMapping?.referenceGroups).toHaveLength(0);
@@ -263,6 +321,17 @@ describe('when demonstrating key unification via entity referencing two entities
     const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
 
     expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SchoolId",
+      ]
+    `);
+  });
+
+  it('should have correct property chain in School flattened identity properties', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(school);
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "SchoolId",
       ]
@@ -344,6 +413,17 @@ describe('when building domain entity with reference to domain entity with schoo
     `);
   });
 
+  it('should have correct property chain in flattened identity properties for DomainEntityName', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(domainEntityName);
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "SchoolId",
+      ]
+    `);
+  });
+
   it('should have no reference groups for Calendar', () => {
     const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(calendar);
     const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
@@ -378,6 +458,22 @@ describe('when building domain entity with reference to domain entity with schoo
       ]
     `);
     expect(apiMapping?.flattenedIdentityProperties[1].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SchoolYear",
+      ]
+    `);
+  });
+
+  it('should have correct property chain in flattened identity properties for Calendar', () => {
+    const sectionEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(calendar);
+    const apiMapping = sectionEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "SchoolId",
+      ]
+    `);
+    expect(apiMapping?.flattenedIdentityProperties[1].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
       Array [
         "SchoolYear",
       ]
@@ -448,6 +544,28 @@ describe('when demonstrating descriptor collections and scalar descriptors on on
     expect(collectedApiProperties[1].propertyModifier.optionalDueToParent).toBe(false);
     expect(collectedApiProperties[1].propertyModifier.parentPrefixes).toHaveLength(0);
   });
+
+  it('should have correct property paths in flattened identity properties', () => {
+    const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
+    const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SectionIdentifier",
+      ]
+    `);
+  });
+
+  it('should have correct property chain in flattened identity properties', () => {
+    const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
+    const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "SectionIdentifier",
+      ]
+    `);
+  });
 });
 
 describe('when one entity has a descriptor on an inline common reference', () => {
@@ -508,6 +626,28 @@ describe('when one entity has a descriptor on an inline common reference', () =>
     expect(collectedApiProperties[0].propertyModifier.optionalDueToParent).toBe(false);
     expect(collectedApiProperties[0].propertyModifier.parentPrefixes).toHaveLength(1);
     expect(collectedApiProperties[0].propertyModifier.parentPrefixes[0]).toBe('');
+  });
+
+  it('should have correct property paths in flattened identity properties', () => {
+    const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
+    const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SectionIdentifier",
+      ]
+    `);
+  });
+
+  it('should have correct property chain in flattened identity properties', () => {
+    const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
+    const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "SectionIdentifier",
+      ]
+    `);
   });
 });
 
@@ -570,5 +710,27 @@ describe('when one entity has a descriptor on an inline common reference which i
     expect(collectedApiProperties[0].propertyModifier.optionalDueToParent).toBe(false);
     expect(collectedApiProperties[0].propertyModifier.parentPrefixes).toHaveLength(1);
     expect(collectedApiProperties[0].propertyModifier.parentPrefixes[0]).toBe(inlineCommonRoleName);
+  });
+
+  it('should have correct property paths in flattened identity properties', () => {
+    const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
+    const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyPaths).toMatchInlineSnapshot(`
+      Array [
+        "SectionIdentifier",
+      ]
+    `);
+  });
+
+  it('should have correct property chain in flattened identity properties', () => {
+    const domainEntity = metaEd.namespace.get(namespace)?.entity.domainEntity.get(resourceName);
+    const apiMapping = domainEntity?.data.edfiApiSchema.apiMapping;
+
+    expect(apiMapping?.flattenedIdentityProperties[0].propertyChain.map((x) => x.fullPropertyName)).toMatchInlineSnapshot(`
+      Array [
+        "SectionIdentifier",
+      ]
+    `);
   });
 });

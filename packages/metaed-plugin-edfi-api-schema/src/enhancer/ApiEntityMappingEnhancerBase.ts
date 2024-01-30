@@ -11,7 +11,15 @@ import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import type { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 
-type ReferenceElementsWithPaths = Map<ReferenceElement, MetaEdPropertyPath[]>;
+/**
+ * A list of property paths along with the chain of properties that make up the path
+ */
+type PathsAndPropertiesPair = { propertyPaths: MetaEdPropertyPath[]; propertyChain: EntityProperty[] };
+
+/**
+ * A leaf reference element mapped to the property paths and chain of properties that lead to it
+ */
+type ReferenceElementsWithPaths = Map<ReferenceElement, PathsAndPropertiesPair>;
 
 /**
  * All of the identity properties of the given entity, in sorted order
@@ -44,34 +52,36 @@ function joinPropertyPaths(
 
 /**
  * Flatten a graph of ReferenceComponents into an array of ReferenceElements, discarding any
- * ReferenceGroups that are part of the graph but preserving the path information.
+ * ReferenceGroups that are part of the graph but preserving the property and property path information.
  */
 function flattenReferenceElementsFromComponent(
   referenceComponent: ReferenceComponent,
   currentPropertyPath: MetaEdPropertyPath,
+  currentPropertyChain: EntityProperty[],
   propertyPathAccumulator: MetaEdPropertyPath[],
+  propertyChainAccumulator: EntityProperty[],
   referenceElementsAccumulator: ReferenceElementsWithPaths,
 ) {
   if (isReferenceElement(referenceComponent)) {
-    referenceElementsAccumulator.set(
-      referenceComponent,
-      propertyPathAccumulator.concat(
+    referenceElementsAccumulator.set(referenceComponent, {
+      propertyPaths: propertyPathAccumulator.concat(
         joinPropertyPaths(currentPropertyPath, referenceComponent.sourceProperty.fullPropertyName as MetaEdPropertyPath),
       ),
-    );
+      propertyChain: [...currentPropertyChain, referenceComponent.sourceProperty],
+    });
   } else {
     (referenceComponent as ReferenceGroup).referenceComponents.forEach((subReferenceComponent) => {
       if (isReferenceElement(subReferenceComponent)) {
         const subReferenceElement: ReferenceElement = subReferenceComponent as ReferenceElement;
-        referenceElementsAccumulator.set(
-          subReferenceElement,
-          propertyPathAccumulator.concat(
+        referenceElementsAccumulator.set(subReferenceElement, {
+          propertyPaths: propertyPathAccumulator.concat(
             joinPropertyPaths(
               currentPropertyPath,
               subReferenceElement.sourceProperty.fullPropertyName as MetaEdPropertyPath,
             ),
           ),
-        );
+          propertyChain: [...currentPropertyChain, subReferenceElement.sourceProperty],
+        });
       } else {
         const nextPropertyPath: MetaEdPropertyPath = joinPropertyPaths(
           currentPropertyPath,
@@ -81,7 +91,9 @@ function flattenReferenceElementsFromComponent(
         flattenReferenceElementsFromComponent(
           subReferenceComponent,
           nextPropertyPath,
+          [...currentPropertyChain, subReferenceComponent.sourceProperty],
           propertyPathAccumulator.concat(nextPropertyPath),
+          propertyChainAccumulator,
           referenceElementsAccumulator,
         );
       }
@@ -104,10 +116,15 @@ export function flattenedIdentityPropertiesFrom(identityProperties: EntityProper
         : ''
     ) as MetaEdPropertyPath;
 
+    const initialPropertyChain: EntityProperty[] =
+      identityProperty.type === 'association' || identityProperty.type === 'domainEntity' ? [identityProperty] : [];
+
     flattenReferenceElementsFromComponent(
       identityProperty.data.edfiApiSchema.referenceComponent,
       initialPropertyPath,
+      initialPropertyChain,
       initialPropertyPath === '' ? [] : [initialPropertyPath],
+      initialPropertyChain,
       referenceElementsWithPaths,
     );
   });
@@ -115,8 +132,12 @@ export function flattenedIdentityPropertiesFrom(identityProperties: EntityProper
   const result: FlattenedIdentityProperty[] = [];
 
   // eslint-disable-next-line no-restricted-syntax
-  for (const [referenceElement, propertyPaths] of referenceElementsWithPaths) {
-    result.push({ identityProperty: referenceElement.sourceProperty, propertyPaths });
+  for (const [referenceElement, pathsAndPropertiesPair] of referenceElementsWithPaths) {
+    result.push({
+      identityProperty: referenceElement.sourceProperty,
+      propertyPaths: pathsAndPropertiesPair.propertyPaths,
+      propertyChain: pathsAndPropertiesPair.propertyChain,
+    });
   }
 
   return result;
