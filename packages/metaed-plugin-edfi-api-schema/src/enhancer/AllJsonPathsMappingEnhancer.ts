@@ -17,25 +17,35 @@ import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { JsonPathsInfo, JsonPathsMapping } from '../model/JsonPathsMapping';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { PropertyModifier, prefixedName, propertyModifierConcat } from '../model/PropertyModifier';
-import { singularize, topLevelApiNameOnEntity } from '../Utility';
+import { capitalize, singularize, topLevelApiNameOnEntity, uncapitalize } from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { JsonPath } from '../model/api-schema/JsonPath';
 
 const enhancerName = 'JsonPathsMappingEnhancer';
 
-type AppendNextJsonPathNameOptions = { singularizeName: boolean };
+type AppendNextJsonPathNameOptions = { singularizeName: boolean; specialPrefix: string | undefined };
+
+function addPrefix(name: string, prefix: string): string {
+  const prefixLowercased = uncapitalize(prefix);
+  if (name.startsWith(prefixLowercased)) return name;
+  return `${prefixLowercased}${capitalize(name)}`;
+}
 
 function appendNextJsonPathName(
   currentJsonPath: JsonPath,
   apiMappingName: string,
   property: EntityProperty,
   propertyModifier: PropertyModifier,
-  { singularizeName }: AppendNextJsonPathNameOptions = { singularizeName: false },
+  { singularizeName, specialPrefix }: AppendNextJsonPathNameOptions = { singularizeName: false, specialPrefix: undefined },
 ): JsonPath {
   if (property.type === 'inlineCommon' || property.type === 'choice') return currentJsonPath;
 
   let nextName = prefixedName(apiMappingName, property, propertyModifier);
   if (singularizeName) nextName = singularize(nextName);
+
+  if (specialPrefix != null) {
+    nextName = addPrefix(nextName, specialPrefix);
+  }
 
   return `${currentJsonPath}.${nextName}` as JsonPath;
 }
@@ -69,13 +79,12 @@ function addJsonPathTo(
   });
 }
 
-// function adjustForIdenticalRoleNamePattern(property: EntityProperty, propertyModifier: PropertyModifier): PropertyModifier {
-//   if (property.metaEdName === property.roleName && property.shortenTo === '') {
-//     return propertyModifierConcat(propertyModifier, { optionalDueToParent: false, parentPrefixes: [property.roleName] });
-//   }
+function isIdenticalRoleNamePattern(propertyChain: EntityProperty[]): boolean {
+  invariant(propertyChain.length > 0, 'propertyChain should not be empty');
 
-//   return propertyModifier;
-// }
+  const propertyToCheck = propertyChain[0];
+  return propertyToCheck.metaEdName === propertyToCheck.roleName && propertyToCheck.shortenTo === '';
+}
 
 /**
  * Adds JSON Paths to the allJsonPathsMapping for the API body shape corresponding to the given referential property.
@@ -97,6 +106,10 @@ function jsonPathsForReferentialProperty(
       flattenedIdentityProperty.identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
     ).apiMapping;
 
+    const specialPrefix: string | undefined = isIdenticalRoleNamePattern(flattenedIdentityProperty.propertyChain)
+      ? flattenedIdentityProperty.propertyChain[0].roleName
+      : undefined;
+
     // Because these are flattened, we know they are non-reference properties
     jsonPathsForNonReference(
       flattenedIdentityProperty.identityProperty,
@@ -108,8 +121,8 @@ function jsonPathsForReferentialProperty(
         currentJsonPath,
         identityPropertyApiMapping.fullName,
         flattenedIdentityProperty.identityProperty,
-        // adjustForIdenticalRoleNamePattern(property, propertyModifier),
         propertyModifier,
+        { singularizeName: false, specialPrefix },
       ),
       false,
     );
@@ -315,6 +328,7 @@ function jsonPathsForNonReferenceCollection(
     [currentPropertyPath],
     appendNextJsonPathName(`${currentJsonPath}[*]` as JsonPath, apiMapping.fullName, property, propertyModifier, {
       singularizeName: true,
+      specialPrefix: undefined,
     }),
     isTopLevel,
   );
