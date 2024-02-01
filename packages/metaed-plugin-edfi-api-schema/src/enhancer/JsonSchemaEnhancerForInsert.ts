@@ -25,7 +25,12 @@ import {
   SchemaRoot,
 } from '../model/JsonSchema';
 import { PropertyModifier, prefixedName, propertyModifierConcat } from '../model/PropertyModifier';
-import { singularize, topLevelApiNameOnEntity } from '../Utility';
+import {
+  findIdenticalRoleNamePatternPrefix,
+  singularize,
+  topLevelApiNameOnEntity,
+  prependPrefixWithCollapse,
+} from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 
 const enhancerName = 'JsonSchemaEnhancer';
@@ -126,8 +131,16 @@ function schemaObjectForReferentialProperty(
     const identityPropertyApiMapping = (
       flattenedIdentityProperty.identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
     ).apiMapping;
+
+    const specialPrefix: string = findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty);
+
+    const adjustedName =
+      specialPrefix === ''
+        ? identityPropertyApiMapping.fullName
+        : prependPrefixWithCollapse(identityPropertyApiMapping.fullName, specialPrefix);
+
     const schemaPropertyName: string = prefixedName(
-      identityPropertyApiMapping.fullName,
+      adjustedName,
       flattenedIdentityProperty.identityProperty,
       propertyModifier,
     );

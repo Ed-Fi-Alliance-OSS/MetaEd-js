@@ -902,6 +902,11 @@ describe('when generating api schema targeting tech version 5.3 with data standa
           },
           Object {
             "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
             "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
             "propertyName": "GeneralStudentProgramAssociation",
           },
@@ -940,7 +945,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program": Array [
           Object {
             "entityName": "EducationOrganization",
-            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
             "propertyName": "EducationOrganizationId",
           },
           Object {
@@ -957,14 +962,14 @@ describe('when generating api schema targeting tech version 5.3 with data standa
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization": Array [
           Object {
             "entityName": "EducationOrganization",
-            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
             "propertyName": "EducationOrganizationId",
           },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization.EducationOrganizationId": Array [
           Object {
             "entityName": "EducationOrganization",
-            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
             "propertyName": "EducationOrganizationId",
           },
         ],
@@ -1380,6 +1385,11 @@ describe('when generating api schema targeting tech version 5.3 with data standa
           },
           Object {
             "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentLearningObjectiveSectionOrProgramChoice",
             "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
             "propertyName": "GeneralStudentProgramAssociation",
           },
@@ -1418,7 +1428,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program": Array [
           Object {
             "entityName": "EducationOrganization",
-            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
             "propertyName": "EducationOrganizationId",
           },
           Object {
@@ -1435,14 +1445,14 @@ describe('when generating api schema targeting tech version 5.3 with data standa
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization": Array [
           Object {
             "entityName": "EducationOrganization",
-            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
             "propertyName": "EducationOrganizationId",
           },
         ],
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization.EducationOrganizationId": Array [
           Object {
             "entityName": "EducationOrganization",
-            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
             "propertyName": "EducationOrganizationId",
           },
         ],
@@ -2713,6 +2723,11 @@ describe('when generating api schema targeting tech version 6.1 with data standa
           },
           Object {
             "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
             "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
             "propertyName": "GeneralStudentProgramAssociation",
           },
@@ -2751,7 +2766,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program": Array [
           Object {
             "entityName": "EducationOrganization",
-            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
             "propertyName": "EducationOrganizationId",
           },
           Object {
@@ -2768,14 +2783,14 @@ describe('when generating api schema targeting tech version 6.1 with data standa
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization": Array [
           Object {
             "entityName": "EducationOrganization",
-            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
             "propertyName": "EducationOrganizationId",
           },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization.EducationOrganizationId": Array [
           Object {
             "entityName": "EducationOrganization",
-            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
             "propertyName": "EducationOrganizationId",
           },
         ],
@@ -4048,6 +4063,11 @@ describe('when generating api schema targeting tech version 7.0 with data standa
           },
           Object {
             "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
+            "propertyName": "GeneralStudentProgramAssociation",
+          },
+          Object {
+            "entityName": "StudentCompetencyObjectiveSectionOrProgramChoice",
             "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programName",
             "propertyName": "GeneralStudentProgramAssociation",
           },
@@ -4086,7 +4106,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program": Array [
           Object {
             "entityName": "EducationOrganization",
-            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
             "propertyName": "EducationOrganizationId",
           },
           Object {
@@ -4103,14 +4123,14 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization": Array [
           Object {
             "entityName": "EducationOrganization",
-            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
             "propertyName": "EducationOrganizationId",
           },
         ],
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization.EducationOrganizationId": Array [
           Object {
             "entityName": "EducationOrganization",
-            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.educationOrganizationId",
+            "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programEducationOrganizationId",
             "propertyName": "EducationOrganizationId",
           },
         ],
