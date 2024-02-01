@@ -1,4 +1,6 @@
 import { MetaEdEnvironment, GeneratorResult, GeneratedOutput, PluginEnvironment } from '@edfi/metaed-core';
+import stringify from 'json-stable-stringify';
+
 import { PluginEnvironmentEdfiApiSchema } from '../model/PluginEnvironment';
 
 export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResult> {
@@ -10,7 +12,7 @@ export async function generate(metaEd: MetaEdEnvironment): Promise<GeneratorResu
       namespace: 'ApiSchema',
       folderName: 'ApiSchema',
       fileName: 'ApiSchema.json',
-      resultString: JSON.stringify(apiSchema, null, 2).replace(/\\r\\n/g, ''),
+      resultString: stringify(apiSchema, { space: 2 }),
       resultStream: null,
     },
   ];
