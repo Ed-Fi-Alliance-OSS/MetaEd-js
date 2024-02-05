@@ -121,24 +121,35 @@ export function adjustedFullPropertyName(property: EntityProperty): string {
 }
 
 /**
- * Determines if the given property chain from a FlattenedIdentityProperty has the identical
- * role name pattern, which affects name prefixing, and provides the prefix if it does.
- */
-export function findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty: FlattenedIdentityProperty): string {
-  invariant(flattenedIdentityProperty.propertyChain.length > 0, 'propertyChain should not be empty');
-
-  const propertyToCheck = flattenedIdentityProperty.propertyChain[0];
-  if (propertyToCheck.metaEdName === propertyToCheck.roleName && propertyToCheck.shortenTo === '') {
-    return flattenedIdentityProperty.propertyChain[0].roleName;
-  }
-  return '';
-}
-
-/**
  * Prepend a prefix to a name in lower camel case, unless the prefix already exists
  */
 export function prependPrefixWithCollapse(name: string, prefix: string): string {
   const prefixLowercased = uncapitalize(prefix);
   if (name.startsWith(prefixLowercased)) return name;
   return `${prefixLowercased}${capitalize(name)}`;
+}
+
+/**
+ * Accumulates the role name prefixes, if any, for a chain of properties, collapsing the prefixes along the way
+ */
+function identicalRoleNamePatternPrefixReducer(accumulatedPrefix: string, currentProperty: EntityProperty): string {
+  if (currentProperty.metaEdName === currentProperty.roleName && currentProperty.shortenTo === '') {
+    return prependPrefixWithCollapse(currentProperty.roleName, accumulatedPrefix);
+  }
+
+  if (currentProperty.metaEdName === currentProperty.roleName && currentProperty.shortenTo !== '') {
+    return prependPrefixWithCollapse(currentProperty.shortenTo, accumulatedPrefix);
+  }
+
+  return accumulatedPrefix;
+}
+
+/**
+ * Determines if the given property chain from a FlattenedIdentityProperty has the identical
+ * role name pattern, which affects name prefixing, and provides the prefix if it does.
+ */
+export function findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty: FlattenedIdentityProperty): string {
+  invariant(flattenedIdentityProperty.propertyChain.length > 0, 'propertyChain should not be empty');
+
+  return flattenedIdentityProperty.propertyChain.reduce(identicalRoleNamePatternPrefixReducer, '');
 }
