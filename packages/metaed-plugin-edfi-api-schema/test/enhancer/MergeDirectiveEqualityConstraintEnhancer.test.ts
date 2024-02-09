@@ -707,3 +707,67 @@ describe('when merging on a reference through a common collection', () => {
     `);
   });
 });
+
+describe('when a role named merge follows a role named merge with school year enumeration as one leaf target', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('ReportCard')
+      .withDocumentation('doc')
+      .withIntegerIdentity('ReportCardIdentity', 'doc')
+      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
+      .withDomainEntityProperty('Grade', 'doc', false, true)
+      .withMergeDirective('Grade.GradingPeriod', 'GradingPeriod')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Grade')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('GradingPeriod', 'doc', 'GradingPeriod')
+      .withMergeDirective('GradingPeriod.School', 'Session.School')
+      .withMergeDirective('GradingPeriod.SchoolYear', 'Session.SchoolYear')
+      .withDomainEntityIdentity('Session', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('Session')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withIntegerIdentity('SessionIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('GradingPeriod')
+      .withDocumentation('doc')
+      .withDomainEntityIdentity('School', 'doc')
+      .withEnumerationIdentity('SchoolYear', 'doc')
+      .withIntegerIdentity('GradingPeriodIdentity', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    mergeDirectiveEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    allJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should not have any equality constraints', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('ReportCard');
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
+  });
+});
