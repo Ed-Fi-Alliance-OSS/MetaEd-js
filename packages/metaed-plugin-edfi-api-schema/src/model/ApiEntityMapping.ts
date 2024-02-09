@@ -1,7 +1,7 @@
 import deepFreeze from 'deep-freeze';
 import type { TopLevelEntity } from '@edfi/metaed-core';
 import type { CollectedProperty } from './CollectedProperty';
-import type { ReferenceComponent, ReferenceGroup } from './ReferenceComponent';
+import type { ReferenceGroup } from './ReferenceComponent';
 import type { FlattenedIdentityProperty } from './FlattenedIdentityProperty';
 
 /**
@@ -14,12 +14,6 @@ export type ApiEntityMapping = {
    * how the property came to be part of the identity.
    */
   flattenedIdentityProperties: FlattenedIdentityProperty[];
-
-  /**
-   * The ReferenceComponents of all of the identity properties
-   * of the entity.
-   */
-  identityReferenceComponents: ReferenceComponent[];
 
   /**
    * The ReferenceGroups of all of the properties of the entity.
@@ -45,7 +39,6 @@ export type ApiEntityMapping = {
 export function newApiEntityMapping(): ApiEntityMapping {
   return {
     flattenedIdentityProperties: [],
-    identityReferenceComponents: [],
     referenceGroups: [],
     descriptorCollectedApiProperties: [],
     superclass: null,

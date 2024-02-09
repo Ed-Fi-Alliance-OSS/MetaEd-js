@@ -4,7 +4,6 @@ import {
   superclassFor,
   descriptorCollectedApiPropertiesFrom,
   flattenedIdentityPropertiesFrom,
-  identityReferenceComponentsFrom,
   referenceGroupsFrom,
 } from './ApiEntityMappingEnhancerBase';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
@@ -19,7 +18,6 @@ function buildApiEntityMapping(entity: TopLevelEntity): ApiEntityMapping {
   const properties = [...entity.properties].sort((a, b) => a.fullPropertyName.localeCompare(b.fullPropertyName));
   return {
     flattenedIdentityProperties: flattenedIdentityPropertiesFrom(identityProperties),
-    identityReferenceComponents: identityReferenceComponentsFrom(identityProperties),
     referenceGroups: referenceGroupsFrom(properties),
     descriptorCollectedApiProperties: descriptorCollectedApiPropertiesFrom(entity),
     superclass: superclassFor(entity),

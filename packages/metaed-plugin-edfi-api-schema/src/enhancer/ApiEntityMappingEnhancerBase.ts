@@ -22,15 +22,6 @@ type PathsAndPropertiesPair = { propertyPaths: MetaEdPropertyPath[]; propertyCha
 type ReferenceElementsWithPaths = Map<ReferenceElement, PathsAndPropertiesPair>;
 
 /**
- * All of the identity properties of the given entity, in sorted order
- */
-export function identityReferenceComponentsFrom(identityProperties: EntityProperty[]): ReferenceComponent[] {
-  return identityProperties.map(
-    (property) => (property.data.edfiApiSchema as EntityPropertyApiSchemaData).referenceComponent,
-  );
-}
-
-/**
  * All of the reference groups of all of the properties of the given entity, in sorted order
  */
 export function referenceGroupsFrom(sortedProperties: EntityProperty[]): ReferenceGroup[] {
