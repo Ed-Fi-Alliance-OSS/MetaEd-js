@@ -110,23 +110,31 @@ export function topLevelApiNameOnEntity(entity: TopLevelEntity, property: Entity
 }
 
 /**
- * Returns the full property name of the given property, taking into account shortenTo
- */
-export function adjustedFullPropertyName(property: EntityProperty): string {
-  if (property.roleName === property.metaEdName && property.shortenTo === '') {
-    return property.metaEdName;
-  }
-  const roleNamePrefix = property.shortenTo === '' ? property.roleName : property.shortenTo;
-  return roleNamePrefix + property.metaEdName;
-}
-
-/**
  * Prepend a prefix to a name in lower camel case, unless the prefix already exists
  */
 export function prependPrefixWithCollapse(name: string, prefix: string): string {
   const prefixLowercased = uncapitalize(prefix);
   if (name.startsWith(prefixLowercased)) return name;
   return `${prefixLowercased}${capitalize(name)}`;
+}
+
+/**
+ * Returns the full property name of the given property, taking into account shortenTo
+ */
+export function adjustedFullPropertyName(property: EntityProperty): string {
+  // The rule where the role name is ignored if same as property name
+  if (property.roleName === property.metaEdName && property.shortenTo === '') {
+    return property.metaEdName;
+  }
+
+  // The rule where the role name is collapsed into the property name if the role name is a prefix
+  if (property.metaEdName.startsWith(property.roleName) && property.shortenTo === '') {
+    return property.metaEdName;
+  }
+
+  // If "shorten to" is specified, it overrides all role name rules and is simply the prefix
+  const roleNamePrefix = property.shortenTo === '' ? property.roleName : property.shortenTo;
+  return roleNamePrefix + property.metaEdName;
 }
 
 /**

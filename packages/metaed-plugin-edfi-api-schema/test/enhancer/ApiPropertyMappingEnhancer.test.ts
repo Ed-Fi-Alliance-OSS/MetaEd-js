@@ -808,3 +808,54 @@ describe('when building simple domain entity with choice with role name', () => 
     `);
   });
 });
+
+describe('when building domain entity with role name as prefix name of referenced entity BalanceSheetDimension', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace('EdFi')
+      .withStartDomainEntity('ChartOfAccount')
+      .withDocumentation('doc')
+      .withStringIdentity('IdentityProperty', 'doc', '30')
+      .withDomainEntityProperty('BalanceSheetDimension', 'doc', true, false, false, 'BalanceSheet')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('BalanceSheetDimension')
+      .withDocumentation('doc')
+      .withStringIdentity('IdentityProperty', 'doc', '30')
+      .withEndDomainEntity()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    domainEntityReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should not have BalanceSheet repeated in naming', () => {
+    expect(metaEd.propertyIndex.domainEntity).toHaveLength(1);
+    expect(metaEd.propertyIndex.domainEntity[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
+      Object {
+        "decollisionedTopLevelName": "balanceSheetDimensionReference",
+        "descriptorCollectionName": "",
+        "fullName": "balanceSheetDimension",
+        "isChoice": false,
+        "isCommonCollection": false,
+        "isDescriptorCollection": false,
+        "isInlineCommon": false,
+        "isReferenceCollection": false,
+        "isScalarCommon": false,
+        "isScalarReference": true,
+        "metaEdName": "BalanceSheetDimension",
+        "metaEdType": "domainEntity",
+        "referenceCollectionName": "",
+        "topLevelName": "balanceSheetDimensionReference",
+      }
+    `);
+  });
+});
