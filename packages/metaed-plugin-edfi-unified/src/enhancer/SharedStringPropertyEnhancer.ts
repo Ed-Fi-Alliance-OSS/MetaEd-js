@@ -1,5 +1,6 @@
 import { MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
 import { asStringType, NoSharedSimple } from '@edfi/metaed-core';
+import { withEmptyAsNull } from './SharedPropertyEnhancerUtility';
 
 const enhancerName = 'SharedStringPropertyEnhancer';
 
@@ -8,8 +9,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     if (property.referencedEntity === NoSharedSimple) return;
 
     const referencedEntity = asStringType(property.referencedEntity);
-    property.minLength = referencedEntity.minLength;
-    property.maxLength = referencedEntity.maxLength;
+    property.minLength = withEmptyAsNull(referencedEntity.minLength);
+    property.maxLength = withEmptyAsNull(referencedEntity.maxLength);
   });
 
   return {

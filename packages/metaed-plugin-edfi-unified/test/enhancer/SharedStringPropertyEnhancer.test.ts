@@ -32,3 +32,33 @@ describe('when shared string property refers to a shared string', (): void => {
     expect(property.minLength).toBe(minLength);
   });
 });
+
+describe('when shared string property refers to a shared string with empty min/max values', (): void => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const metaEdName = 'ReferencedEntityName';
+
+  const maxLength = '';
+  const minLength = '';
+
+  beforeAll(() => {
+    const referencedEntity = Object.assign(newSharedString(), {
+      metaEdName,
+      maxLength,
+      minLength,
+    });
+
+    const property = Object.assign(newSharedStringProperty(), {
+      metaEdName,
+      referencedEntity,
+    });
+    addProperty(metaEd.propertyIndex, property);
+
+    enhance(metaEd);
+  });
+
+  it('should have the shared string restrictions as null', (): void => {
+    const property = R.head(metaEd.propertyIndex.sharedString.filter((p) => p.metaEdName === metaEdName));
+    expect(property.maxLength).toBeNull();
+    expect(property.minLength).toBeNull();
+  });
+});

@@ -1,12 +1,13 @@
 import { MetaEdEnvironment, EnhancerResult } from '@edfi/metaed-core';
 import { asIntegerType, NoSharedSimple } from '@edfi/metaed-core';
+import { withEmptyAsNull } from './SharedPropertyEnhancerUtility';
 
 const enhancerName = 'SharedIntegerPropertyEnhancer';
 
 function copyRestrictions(property) {
   const referencedEntity = asIntegerType(property.referencedEntity);
-  property.minValue = referencedEntity.minValue;
-  property.maxValue = referencedEntity.maxValue;
+  property.minValue = withEmptyAsNull(referencedEntity.minValue);
+  property.maxValue = withEmptyAsNull(referencedEntity.maxValue);
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
