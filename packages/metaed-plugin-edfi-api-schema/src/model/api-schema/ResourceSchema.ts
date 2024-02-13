@@ -36,16 +36,6 @@ export type BaseResourceSchema = {
   jsonSchemaForInsert: SchemaRoot;
 
   /**
-   * The API document JSON schema that corresponds to this resource on update.
-   */
-  jsonSchemaForUpdate: SchemaRoot;
-
-  /**
-   * The API document JSON schema that corresponds to this resource on query.
-   */
-  jsonSchemaForQuery: SchemaRoot;
-
-  /**
    * A list of EqualityConstraints to be applied to a resource document. An EqualityConstraint
    * is a source/target JsonPath pair.
    */

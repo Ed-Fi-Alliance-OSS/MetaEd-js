@@ -27,16 +27,6 @@ export type EntityApiSchemaData = {
   jsonSchemaForInsert: SchemaRoot;
 
   /**
-   * The API document JSON schema that corresponds to this MetaEd entity on update.
-   */
-  jsonSchemaForUpdate: SchemaRoot;
-
-  /**
-   * The API document JSON schema that corresponds to valid query strings as objects for this MetaEd entity.
-   */
-  jsonSchemaForQuery: SchemaRoot;
-
-  /**
    * Properties that belong under this entity in the API body. Excludes Choice and Inline Common properties
    * as they have no expression in API body. Instead, the properties on the Choice and Inline Common referenced
    * entities are "pulled-up" to this entity.

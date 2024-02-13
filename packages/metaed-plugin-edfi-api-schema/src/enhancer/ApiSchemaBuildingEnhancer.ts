@@ -35,8 +35,6 @@ function buildResourceSchema(entity: TopLevelEntity): ResourceSchema {
     isSchoolYearEnumeration: entity.type === 'schoolYearEnumeration',
     allowIdentityUpdates: entity.allowPrimaryKeyUpdates,
     jsonSchemaForInsert: entityApiSchemaData.jsonSchemaForInsert,
-    jsonSchemaForUpdate: entityApiSchemaData.jsonSchemaForUpdate,
-    jsonSchemaForQuery: entityApiSchemaData.jsonSchemaForQuery,
     equalityConstraints: entityApiSchemaData.equalityConstraints,
     identityFullnames: entityApiSchemaData.identityFullnames,
     documentPathsMapping: entityApiSchemaData.documentPathsMapping,

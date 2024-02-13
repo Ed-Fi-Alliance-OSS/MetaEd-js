@@ -9,7 +9,6 @@ export { enhance as apiPropertyMappingEnhancer } from './enhancer/ApiPropertyMap
 export { enhance as mergeDirectiveEqualityConstraintEnhancer } from './enhancer/MergeDirectiveEqualityConstraintEnhancer';
 export { enhance as allJsonPathsMappingEnhancer } from './enhancer/AllJsonPathsMappingEnhancer';
 export { enhance as jsonSchemaEnhancerForInsert } from './enhancer/JsonSchemaEnhancerForInsert';
-export { enhance as jsonSchemaEnhancerForUpdate } from './enhancer/JsonSchemaEnhancerForUpdate';
 export { enhance as propertyCollectingEnhancer } from './enhancer/PropertyCollectingEnhancer';
 export { enhance as referenceComponentEnhancer } from './enhancer/ReferenceComponentEnhancer';
 export { enhance as subclassApiEntityMappingEnhancer } from './enhancer/SubclassApiEntityMappingEnhancer';

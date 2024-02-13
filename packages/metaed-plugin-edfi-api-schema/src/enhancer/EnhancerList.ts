@@ -10,8 +10,6 @@ import { enhance as subclassApiEntityMappingEnhancer } from './SubclassApiEntity
 import { enhance as propertyCollectingEnhancer } from './PropertyCollectingEnhancer';
 import { enhance as subclassPropertyCollectingEnhancer } from './SubclassPropertyCollectingEnhancer';
 import { enhance as jsonSchemaEnhancerForInsert } from './JsonSchemaEnhancerForInsert';
-import { enhance as jsonSchemaEnhancerForUpdate } from './JsonSchemaEnhancerForUpdate';
-import { enhance as jsonSchemaEnhancerForQuery } from './JsonSchemaEnhancerForQuery';
 import { enhance as allJsonPathsMappingEnhancer } from './AllJsonPathsMappingEnhancer';
 import { enhance as mergeDirectiveEqualityConstraintEnhancer } from './MergeDirectiveEqualityConstraintEnhancer';
 import { enhance as columnConflictEqualityConstraintEnhancer } from './ColumnConflictEqualityConstraintEnhancer';
@@ -36,8 +34,6 @@ export function enhancerList(): Enhancer[] {
     apiEntityMappingEnhancer,
     subclassApiEntityMappingEnhancer,
     jsonSchemaEnhancerForInsert,
-    jsonSchemaEnhancerForUpdate,
-    jsonSchemaEnhancerForQuery,
     allJsonPathsMappingEnhancer,
     mergeDirectiveEqualityConstraintEnhancer,
     columnConflictEqualityConstraintEnhancer,
