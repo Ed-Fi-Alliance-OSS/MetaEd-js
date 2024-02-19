@@ -4,6 +4,7 @@ import { ResourceNameMapping } from './ResourceNameMapping';
 import { ResourceSchema } from './ResourceSchema';
 import { ResourceSchemaMapping } from './ResourceSchemaMapping';
 import { SemVer } from './SemVer';
+import { CaseInsensitiveEndpointNameMapping } from './CaseInsensitiveEndpointNameMapping';
 
 /**
  * API project information
@@ -28,6 +29,12 @@ export type ProjectSchema = {
   resourceNameMapping: ResourceNameMapping;
 
   /**
+   * A collection of lowercased EndpointNames mapped to correct-cased EndpointNames,
+   * used to allow for case-insensitive endpoints.
+   */
+  caseInsensitiveEndpointNameMapping: CaseInsensitiveEndpointNameMapping;
+
+  /**
    * SchoolYearEnumeration is not a resource but has a ResourceSchema
    */
   schoolYearEnumeration?: ResourceSchema;
@@ -46,5 +53,6 @@ export const NoProjectSchema: ProjectSchema = {
   description: 'NoProjectSchema',
   resourceSchemas: {},
   resourceNameMapping: {},
+  caseInsensitiveEndpointNameMapping: {},
   abstractResources: {},
 };
