@@ -70,27 +70,6 @@ export class SyntaxValidatingBuilder extends MetaEdGrammarListener {
     }
   }
 
-  // Deprecate 'is queryable only'
-  enterIsQueryableOnly(context: MetaEdGrammar.IsQueryableOnlyContext) {
-    if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
-      this.validationFailures.push(deprecationWarning(context, `The 'is queryable only' keyword`));
-    }
-  }
-
-  // Deprecate 'is queryable field'
-  enterIsQueryableField(context: MetaEdGrammar.IsQueryableFieldContext) {
-    if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
-      this.validationFailures.push(deprecationWarning(context, `The 'is queryable field' keyword`));
-    }
-  }
-
-  // deprecate 'shorten to'
-  enterShortenToName(context: MetaEdGrammar.ShortenToNameContext) {
-    if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
-      this.validationFailures.push(deprecationWarning(context, `The 'shorten to' keyword`));
-    }
-  }
-
   // deprecate 'renames identity property' in extensions
   enterIdentityRename(context: MetaEdGrammar.IdentityRenameContext) {
     if (this.currentNamespace.isExtension) {
