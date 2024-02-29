@@ -76,37 +76,4 @@ export class SyntaxValidatingBuilder extends MetaEdGrammarListener {
       this.validationFailures.push(deprecationWarning(context, `The 'renames identity property' keyword`));
     }
   }
-
-  // deprecate 'Shared Short'
-  enterSharedShort(context: MetaEdGrammar.SharedShortContext) {
-    if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
-      this.validationFailures.push(
-        newValidationFailure(
-          context,
-          `The 'Shared Short' entity ${willBeDeprecated} Use 'Shared Integer' with a max value instead.`,
-        ),
-      );
-    }
-  }
-
-  // deprecate 'shared short'
-  enterSharedShortProperty(context: MetaEdGrammar.SharedShortPropertyContext) {
-    if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
-      this.validationFailures.push(
-        newValidationFailure(
-          context,
-          `The 'shared short' property ${willBeDeprecated} Use 'shared integer' and reference a Shared Integer with a max value instead.`,
-        ),
-      );
-    }
-  }
-
-  // deprecate 'short'
-  enterShortProperty(context: MetaEdGrammar.ShortPropertyContext) {
-    if (this.currentNamespace.isExtension || this.metaEd.allianceMode) {
-      this.validationFailures.push(
-        newValidationFailure(context, `The 'short' property ${willBeDeprecated} Use 'integer' with a max value instead.`),
-      );
-    }
-  }
 }
