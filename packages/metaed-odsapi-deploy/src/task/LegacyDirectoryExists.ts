@@ -2,6 +2,7 @@ import { Logger, MetaEdConfiguration, SemVer, versionSatisfies } from '@edfi/met
 import fs from 'fs-extra';
 import path from 'path';
 import { directoryExcludeList } from './DeployConstants';
+import { DeployResult } from './DeployResult';
 
 export function legacyCoreDirectoryExists(metaEdConfiguration: MetaEdConfiguration): void {
   const { deployDirectory } = metaEdConfiguration;
@@ -44,12 +45,12 @@ export async function execute(
   _dataStandardVersion: SemVer,
   _deployCore: boolean,
   _suppressDelete: boolean,
-): Promise<boolean> {
+): Promise<DeployResult> {
   if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=3.3.0')) {
-    return true;
+    return { success: true };
   }
 
   legacyCoreDirectoryExists(metaEdConfiguration);
   legacyExtensionDirectoryExists(metaEdConfiguration);
-  return true;
+  return { success: true };
 }

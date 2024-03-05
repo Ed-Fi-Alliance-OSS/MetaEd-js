@@ -5,15 +5,20 @@ import touch from 'touch';
 import path from 'path';
 import Sugar from 'sugar';
 import { directoryExcludeList } from './DeployConstants';
+import { DeployResult } from './DeployResult';
 
 const projectPaths: string[] = [
   'Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/EdFi.Ods.Extensions.{projectName}.csproj',
 ];
 
-export function refreshProject(metaEdConfiguration: MetaEdConfiguration): void {
+export function refreshProject(metaEdConfiguration: MetaEdConfiguration): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectsNames: string[] = fs.readdirSync(artifactDirectory).filter((x: string) => !directoryExcludeList.includes(x));
 
+  const result: DeployResult = {
+    success: true,
+    failureMessage: undefined,
+  };
   projectsNames.forEach((projectName: string) => {
     projectPaths.forEach((projectPath: string) => {
       const resolvedPath = path.resolve(deployDirectory, Sugar.String.format(projectPath, { projectName }));
@@ -24,10 +29,14 @@ export function refreshProject(metaEdConfiguration: MetaEdConfiguration): void {
 
         touch.sync(resolvedPath, { nocreate: true });
       } catch (err) {
-        Logger.error(`Attempted modification of ${chalk.red(resolvedPath)} failed due to issue: ${err.message}`);
+        result.success = false;
+        result.failureMessage = `Attempted modification of ${chalk.red(resolvedPath)} failed due to issue: ${err.message}`;
+        Logger.error(result.failureMessage);
       }
     });
   });
+
+  return result;
 }
 
 export async function execute(
@@ -35,7 +44,6 @@ export async function execute(
   _dataStandardVersion: SemVer,
   _deployCore: boolean,
   _suppressDelete: boolean,
-): Promise<boolean> {
-  refreshProject(metaEdConfiguration);
-  return true;
+): Promise<DeployResult> {
+  return refreshProject(metaEdConfiguration);
 }

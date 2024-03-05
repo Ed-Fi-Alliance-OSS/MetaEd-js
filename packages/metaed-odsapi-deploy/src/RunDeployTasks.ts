@@ -10,6 +10,7 @@ import { execute as legacyDirectoryExistsTask } from './task/LegacyDirectoryExis
 import { execute as refreshProjectTask } from './task/RefreshProject';
 import { execute as removeExtensionArtifactsTask } from './task/RemoveExtensionArtifacts';
 import { execute as removeExtensionArtifactsV2andV3Task } from './task/RemoveExtensionArtifactsV2andV3';
+import { DeployResult } from './task/DeployResult';
 import { DeployTask } from './task/DeployTask';
 
 /**
@@ -26,7 +27,7 @@ export async function runDeployTasks(
   dataStandardVersion: SemVer,
   deployCore: boolean,
   suppressDelete: boolean,
-): Promise<boolean> {
+): Promise<DeployResult> {
   try {
     const tasks: DeployTask[] = [
       extensionProjectsExistsTask,
@@ -49,12 +50,18 @@ export async function runDeployTasks(
 
     // eslint-disable-next-line no-restricted-syntax
     for (const task of tasks) {
-      const success: boolean = await task(metaEdConfiguration, dataStandardVersion, deployCore, suppressDelete);
-      if (!success) return false;
+      const deployResult: DeployResult = await task(metaEdConfiguration, dataStandardVersion, deployCore, suppressDelete);
+      if (!deployResult.success) return deployResult;
     }
   } catch (error) {
     Logger.error(error);
-    return false;
+    return {
+      success: false,
+      failureMessage: error,
+    };
   }
-  return true;
+  return {
+    success: true,
+    failureMessage: undefined,
+  };
 }

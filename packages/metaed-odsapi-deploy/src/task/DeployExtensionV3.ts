@@ -4,6 +4,7 @@ import path from 'path';
 import Sugar from 'sugar';
 import { CopyOptions } from '../CopyOptions';
 import { directoryExcludeList } from './DeployConstants';
+import { DeployResult } from './DeployResult';
 
 const extensionPath: string = 'Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.{projectName}/SupportingArtifacts';
 const artifacts: CopyOptions[] = [
@@ -14,10 +15,14 @@ const artifacts: CopyOptions[] = [
   { src: 'XSD/', dest: `${extensionPath}/Schemas/` },
 ];
 
-function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): void {
+function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectsNames: string[] = fs.readdirSync(artifactDirectory).filter((x: string) => !directoryExcludeList.includes(x));
 
+  const result: DeployResult = {
+    success: true,
+    failureMessage: undefined,
+  };
   projectsNames.forEach((projectName: string) => {
     artifacts.forEach((artifact: CopyOptions) => {
       const dest = Sugar.String.format(artifact.dest, { projectName });
@@ -33,10 +38,14 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): voi
 
         fs.copySync(resolvedArtifact.src, resolvedArtifact.dest, resolvedArtifact.options);
       } catch (err) {
-        Logger.error(`Attempted deploy of ${artifact.src} failed due to issue: ${err.message}`);
+        result.success = false;
+        result.failureMessage = `Attempted deploy of ${artifact.src} failed due to issue: ${err.message}`;
+        Logger.error(result.failureMessage);
       }
     });
   });
+
+  return result;
 }
 
 export async function execute(
@@ -44,12 +53,10 @@ export async function execute(
   _dataStandardVersion: SemVer,
   _deployCore: boolean,
   _suppressDelete: boolean,
-): Promise<boolean> {
+): Promise<DeployResult> {
   if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '<5.3.0')) {
-    return true;
+    return { success: true };
   }
 
-  deployExtensionArtifacts(metaEdConfiguration);
-
-  return true;
+  return deployExtensionArtifacts(metaEdConfiguration);
 }

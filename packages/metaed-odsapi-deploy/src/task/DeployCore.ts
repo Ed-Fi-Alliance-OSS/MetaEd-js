@@ -3,6 +3,7 @@ import { versionSatisfies, Logger, formatVersionWithSuppressPrereleaseVersion, V
 import fs from 'fs-extra';
 import path from 'path';
 import { CopyOptions } from '../CopyOptions';
+import { DeployResult } from './DeployResult';
 
 function deployPaths(corePath: string): CopyOptions[] {
   return [
@@ -16,7 +17,7 @@ function deployPaths(corePath: string): CopyOptions[] {
   ];
 }
 
-function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStandardVersion: SemVer) {
+function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStandardVersion: SemVer): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectName: string = 'EdFi';
   const versionSatisfiesV7OrGreater = versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7OrGreater);
@@ -24,6 +25,12 @@ function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStand
     ? formatVersionWithSuppressPrereleaseVersion(dataStandardVersion, metaEdConfiguration.suppressPrereleaseVersion)
     : dataStandardVersion;
   const corePath: string = `Ed-Fi-ODS/Application/EdFi.Ods.Standard/Standard/${dataStandardVersionFormatted}/Artifacts`;
+
+  const result: DeployResult = {
+    success: true,
+    failureMessage: undefined,
+  };
+
   deployPaths(corePath).forEach((deployPath: CopyOptions) => {
     const resolvedDeployPath: CopyOptions = {
       ...deployPath,
@@ -38,9 +45,13 @@ function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStand
 
       fs.copySync(resolvedDeployPath.src, resolvedDeployPath.dest, resolvedDeployPath.options);
     } catch (err) {
-      Logger.error(`Attempted deploy of ${deployPath.src} failed due to issue: ${err.message}`);
+      result.success = false;
+      result.failureMessage = `Attempted deploy of ${deployPath.src} failed due to issue: ${err.message}`;
+      Logger.error(result.failureMessage);
     }
   });
+
+  return result;
 }
 
 export async function execute(
@@ -48,13 +59,11 @@ export async function execute(
   dataStandardVersion: SemVer,
   deployCore: boolean,
   _suppressDelete: boolean,
-): Promise<boolean> {
-  if (!deployCore) return true;
+): Promise<DeployResult> {
+  if (!deployCore) return { success: true };
   if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=7.0.0')) {
-    return true;
+    return { success: true };
   }
 
-  deployCoreArtifacts(metaEdConfiguration, dataStandardVersion);
-
-  return true;
+  return deployCoreArtifacts(metaEdConfiguration, dataStandardVersion);
 }

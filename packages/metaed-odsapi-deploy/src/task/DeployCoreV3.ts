@@ -3,6 +3,7 @@ import { defaultPluginTechVersion, Logger, versionSatisfies } from '@edfi/metaed
 import fs from 'fs-extra';
 import path from 'path';
 import { CopyOptions } from '../CopyOptions';
+import { DeployResult } from './DeployResult';
 
 const excludeApiModel = (_src: string, dest: string): boolean => !dest.endsWith('ApiModel.json');
 
@@ -18,10 +19,14 @@ const artifacts: CopyOptions[] = [
   { src: 'XSD/', dest: 'Ed-Fi-ODS/Standard/Schemas/' },
 ];
 
-function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration) {
+function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectName: string = 'EdFi';
 
+  const result: DeployResult = {
+    success: true,
+    failureMessage: undefined,
+  };
   artifacts.forEach((artifact: CopyOptions) => {
     const resolvedArtifact: CopyOptions = {
       ...artifact,
@@ -36,9 +41,13 @@ function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration) {
 
       fs.copySync(resolvedArtifact.src, resolvedArtifact.dest, resolvedArtifact.options);
     } catch (err) {
-      Logger.error(`Attempted deploy of ${artifact.src} failed due to issue: ${err.message}`);
+      result.success = false;
+      result.failureMessage = `Attempted deploy of ${artifact.src} failed due to issue: ${err.message}`;
+      Logger.error(result.failureMessage);
     }
   });
+
+  return result;
 }
 
 export async function execute(
@@ -46,13 +55,11 @@ export async function execute(
   _dataStandardVersion: SemVer,
   deployCore: boolean,
   _suppressDelete: boolean,
-): Promise<boolean> {
-  if (!deployCore) return true;
+): Promise<DeployResult> {
+  if (!deployCore) return { success: true };
   if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, `>=${defaultPluginTechVersion} <5.3.0`)) {
-    return true;
+    return { success: true };
   }
 
-  deployCoreArtifacts(metaEdConfiguration);
-
-  return true;
+  return deployCoreArtifacts(metaEdConfiguration);
 }

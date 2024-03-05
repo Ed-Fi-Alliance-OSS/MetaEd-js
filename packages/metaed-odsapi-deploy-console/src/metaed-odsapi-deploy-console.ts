@@ -166,7 +166,7 @@ export async function metaEdDeploy() {
     yargs.argv['core'],
     yargs.argv['suppressDelete'],
   );
-  if (!deploySuccess) process.exitCode = 1;
+  if (!deploySuccess.success) process.exitCode = 1;
 
   const endTime = Date.now() - startTime;
   Logger.info(`Done in ${chalk.green(endTime > 1000 ? `${endTime / 1000}s` : `${endTime}ms`)}.`);

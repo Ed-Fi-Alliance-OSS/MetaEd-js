@@ -10,6 +10,7 @@ import {
 import { Logger, versionSatisfies } from '@edfi/metaed-core';
 import path from 'path';
 import { CopyOptions } from '../CopyOptions';
+import { DeployResult } from './DeployResult';
 
 function deployPaths(extensionPath: string): CopyOptions[] {
   return [
@@ -23,10 +24,14 @@ function deployPaths(extensionPath: string): CopyOptions[] {
   ];
 }
 
-function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStandardVersion: SemVer): void {
+function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStandardVersion: SemVer): DeployResult {
   const { artifactDirectory, deployDirectory, projects } = metaEdConfiguration;
   const projectsToDeploy: MetaEdProject[] = projects.filter((p: MetaEdProject) => !isDataStandard(p));
 
+  const result: DeployResult = {
+    success: true,
+    failureMessage: undefined,
+  };
   projectsToDeploy.forEach((projectToDeploy: MetaEdProject) => {
     const versionSatisfiesV7OrGreater = versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7OrGreater);
     const dataStandardVersionFormatted = versionSatisfiesV7OrGreater
@@ -47,10 +52,14 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration, data
 
         fs.copySync(resolvedArtifact.src, resolvedArtifact.dest, resolvedArtifact.options);
       } catch (err) {
-        Logger.error(`Attempted deploy of ${deployPath.src} failed due to issue: ${err.message}`);
+        result.success = false;
+        result.failureMessage = `Attempted deploy of ${deployPath.src} failed due to issue: ${err.message}`;
+        Logger.error(result.failureMessage);
       }
     });
   });
+
+  return result;
 }
 
 export async function execute(
@@ -58,12 +67,10 @@ export async function execute(
   dataStandardVersion: SemVer,
   _deployCore: boolean,
   _suppressDelete: boolean,
-): Promise<boolean> {
+): Promise<DeployResult> {
   if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=7.0.0')) {
-    return true;
+    return { success: true };
   }
 
-  deployExtensionArtifacts(metaEdConfiguration, dataStandardVersion);
-
-  return true;
+  return deployExtensionArtifacts(metaEdConfiguration, dataStandardVersion);
 }

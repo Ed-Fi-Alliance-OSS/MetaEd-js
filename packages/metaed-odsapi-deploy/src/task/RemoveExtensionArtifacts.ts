@@ -2,13 +2,16 @@ import { Logger, MetaEdConfiguration, SemVer, versionSatisfies } from '@edfi/met
 import fs from 'fs-extra';
 import path from 'path';
 import { directoryExcludeList } from './DeployConstants';
+import { DeployResult } from './DeployResult';
 
-export function removeExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): boolean {
+export function removeExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectsNames = fs.readdirSync(artifactDirectory).filter((x: string) => !directoryExcludeList.includes(x));
 
-  let result: boolean = true;
-
+  const result: DeployResult = {
+    success: true,
+    failureMessage: undefined,
+  };
   projectsNames.forEach((projectName: string) => {
     const removeablePaths: string[] = [`Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.${projectName}/Artifacts`];
 
@@ -21,8 +24,9 @@ export function removeExtensionArtifacts(metaEdConfiguration: MetaEdConfiguratio
 
         fs.removeSync(resolvedPath);
       } catch (err) {
-        Logger.error(`Attempted removal of ${resolvedPath} failed due to issue: ${err.message}`);
-        result = false;
+        result.success = false;
+        result.failureMessage = `Attempted removal of ${resolvedPath} failed due to issue: ${err.message}`;
+        Logger.error(result.failureMessage);
       }
     });
   });
@@ -35,10 +39,10 @@ export async function execute(
   _dataStandardVersion: SemVer,
   _deployCore: boolean,
   suppressDelete: boolean,
-): Promise<boolean> {
-  if (suppressDelete) return true;
+): Promise<DeployResult> {
+  if (suppressDelete) return { success: true };
   if (!versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, '>=3.3.0')) {
-    return true;
+    return { success: true };
   }
 
   return removeExtensionArtifacts(metaEdConfiguration);
