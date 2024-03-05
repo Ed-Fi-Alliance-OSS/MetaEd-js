@@ -21,10 +21,10 @@ const artifacts: CopyOptions[] = [
 function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectsNames: string[] = fs.readdirSync(artifactDirectory).filter((x: string) => !directoryExcludeList.includes(x));
-
-  const result: DeployResult = {
+  let deployResult: DeployResult = {
     success: true,
   };
+
   projectsNames.forEach((projectName: string) => {
     artifacts.forEach((artifact: CopyOptions) => {
       const dest = Sugar.String.format(artifact.dest, { projectName });
@@ -40,14 +40,16 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): Dep
 
         fs.copySync(resolvedArtifact.src, resolvedArtifact.dest, resolvedArtifact.options);
       } catch (err) {
-        result.success = false;
-        result.failureMessage = `Attempted deploy of ${artifact.src} failed due to issue: ${err.message}`;
-        Logger.error(result.failureMessage);
+        deployResult = {
+          success: false,
+          failureMessage: `Attempted deploy of ${artifact.src} failed due to issue: ${err.message}`,
+        };
+        Logger.error(deployResult.failureMessage);
       }
     });
   });
 
-  return result;
+  return deployResult;
 }
 
 export async function execute(

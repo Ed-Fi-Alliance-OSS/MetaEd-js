@@ -7,10 +7,10 @@ import { DeployResult } from './DeployResult';
 export function removeExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectsNames: string[] = fs.readdirSync(artifactDirectory).filter((x: string) => !directoryExcludeList.includes(x));
-
-  const result: DeployResult = {
+  let deployResult: DeployResult = {
     success: true,
   };
+
   projectsNames.forEach((projectName: string) => {
     const removeablePaths: string[] = [
       `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.${projectName}/SupportingArtifacts`,
@@ -25,14 +25,16 @@ export function removeExtensionArtifacts(metaEdConfiguration: MetaEdConfiguratio
 
         fs.removeSync(resolvedPath);
       } catch (err) {
-        result.success = false;
-        result.failureMessage = `Attempted removal of ${resolvedPath} failed due to issue: ${err.message}`;
-        Logger.error(result.failureMessage);
+        deployResult = {
+          success: false,
+          failureMessage: `Attempted removal of ${resolvedPath} failed due to issue: ${err.message}`,
+        };
+        Logger.error(deployResult.failureMessage);
       }
     });
   });
 
-  return result;
+  return deployResult;
 }
 
 export async function execute(

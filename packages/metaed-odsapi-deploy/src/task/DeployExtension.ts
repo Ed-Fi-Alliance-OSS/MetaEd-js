@@ -27,10 +27,10 @@ function deployPaths(extensionPath: string): CopyOptions[] {
 function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStandardVersion: SemVer): DeployResult {
   const { artifactDirectory, deployDirectory, projects } = metaEdConfiguration;
   const projectsToDeploy: MetaEdProject[] = projects.filter((p: MetaEdProject) => !isDataStandard(p));
-
-  const result: DeployResult = {
+  let deployResult: DeployResult = {
     success: true,
   };
+
   projectsToDeploy.forEach((projectToDeploy: MetaEdProject) => {
     const versionSatisfiesV7OrGreater = versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7OrGreater);
     const dataStandardVersionFormatted = versionSatisfiesV7OrGreater
@@ -51,14 +51,16 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration, data
 
         fs.copySync(resolvedArtifact.src, resolvedArtifact.dest, resolvedArtifact.options);
       } catch (err) {
-        result.success = false;
-        result.failureMessage = `Attempted deploy of ${deployPath.src} failed due to issue: ${err.message}`;
-        Logger.error(result.failureMessage);
+        deployResult = {
+          success: false,
+          failureMessage: `Attempted deploy of ${deployPath.src} failed due to issue: ${err.message}`,
+        };
+        Logger.error(deployResult.failureMessage);
       }
     });
   });
 
-  return result;
+  return deployResult;
 }
 
 export async function execute(

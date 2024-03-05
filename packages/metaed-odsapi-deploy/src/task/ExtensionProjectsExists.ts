@@ -10,22 +10,23 @@ const projectPaths: string[] = ['Ed-Fi-ODS-Implementation/Application/EdFi.Ods.E
 export function extensionProjectsExists(metaEdConfiguration: MetaEdConfiguration): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectsNames: string[] = fs.readdirSync(artifactDirectory).filter((x: string) => !directoryExcludeList.includes(x));
-
-  const result: DeployResult = {
+  let deployResult: DeployResult = {
     success: true,
   };
+
   projectsNames.forEach((projectName: string) => {
     projectPaths.forEach((projectPath: string) => {
       const resolvedPath = path.resolve(deployDirectory, Sugar.String.format(projectPath, { projectName }));
       if (fs.pathExistsSync(resolvedPath)) return;
-
-      result.success = false;
-      result.failureMessage = `Expected ${projectName} project but was not at path: ${resolvedPath}`;
-      Logger.error(result.failureMessage);
+      deployResult = {
+        success: false,
+        failureMessage: `Expected ${projectName} project but was not at path: ${resolvedPath}`,
+      };
+      Logger.error(deployResult.failureMessage);
     });
   });
 
-  return result;
+  return deployResult;
 }
 
 export async function execute(

@@ -14,10 +14,10 @@ const projectPaths: string[] = [
 export function refreshProject(metaEdConfiguration: MetaEdConfiguration): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectsNames: string[] = fs.readdirSync(artifactDirectory).filter((x: string) => !directoryExcludeList.includes(x));
-
-  const result: DeployResult = {
+  let deployResult: DeployResult = {
     success: true,
   };
+
   projectsNames.forEach((projectName: string) => {
     projectPaths.forEach((projectPath: string) => {
       const resolvedPath = path.resolve(deployDirectory, Sugar.String.format(projectPath, { projectName }));
@@ -28,14 +28,16 @@ export function refreshProject(metaEdConfiguration: MetaEdConfiguration): Deploy
 
         touch.sync(resolvedPath, { nocreate: true });
       } catch (err) {
-        result.success = false;
-        result.failureMessage = `Attempted modification of ${chalk.red(resolvedPath)} failed due to issue: ${err.message}`;
-        Logger.error(result.failureMessage);
+        deployResult = {
+          success: false,
+          failureMessage: `Attempted modification of ${chalk.red(resolvedPath)} failed due to issue: ${err.message}`,
+        };
+        Logger.error(deployResult.failureMessage);
       }
     });
   });
 
-  return result;
+  return deployResult;
 }
 
 export async function execute(

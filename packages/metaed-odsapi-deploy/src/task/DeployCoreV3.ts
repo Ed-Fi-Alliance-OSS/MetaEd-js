@@ -22,10 +22,10 @@ const artifacts: CopyOptions[] = [
 function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration): DeployResult {
   const { artifactDirectory, deployDirectory } = metaEdConfiguration;
   const projectName: string = 'EdFi';
-
-  const result: DeployResult = {
+  let deployResult: DeployResult = {
     success: true,
   };
+
   artifacts.forEach((artifact: CopyOptions) => {
     const resolvedArtifact: CopyOptions = {
       ...artifact,
@@ -40,13 +40,15 @@ function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration): DeployRe
 
       fs.copySync(resolvedArtifact.src, resolvedArtifact.dest, resolvedArtifact.options);
     } catch (err) {
-      result.success = false;
-      result.failureMessage = `Attempted deploy of ${artifact.src} failed due to issue: ${err.message}`;
-      Logger.error(result.failureMessage);
+      deployResult = {
+        success: false,
+        failureMessage: `Attempted deploy of ${artifact.src} failed due to issue: ${err.message}`,
+      };
+      Logger.error(deployResult.failureMessage);
     }
   });
 
-  return result;
+  return deployResult;
 }
 
 export async function execute(

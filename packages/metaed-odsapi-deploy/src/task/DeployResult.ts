@@ -1,4 +1,10 @@
-export interface DeployResult {
-  success: boolean;
-  failureMessage?: string;
+export interface SuccessfulDeployResult {
+  success: true;
 }
+
+export interface FailureDeployResult {
+  success: false;
+  failureMessage: string;
+}
+
+export type DeployResult = SuccessfulDeployResult | FailureDeployResult;

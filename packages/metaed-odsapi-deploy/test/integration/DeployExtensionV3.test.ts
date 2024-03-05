@@ -8,7 +8,10 @@ import { DeployResult } from '../../src/task/DeployResult';
 
 describe('when deploying 3.0 extension artifacts', (): void => {
   let result: string[];
-  let deployResult: DeployResult = { success: false };
+  let deployResult: DeployResult = {
+    success: false,
+    failureMessage: 'Error',
+  };
 
   beforeAll(async () => {
     const deployDirectory: string = path.resolve(__dirname, './output/v3Extension');

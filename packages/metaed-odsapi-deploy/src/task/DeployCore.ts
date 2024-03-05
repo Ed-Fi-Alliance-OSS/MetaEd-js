@@ -25,8 +25,7 @@ function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStand
     ? formatVersionWithSuppressPrereleaseVersion(dataStandardVersion, metaEdConfiguration.suppressPrereleaseVersion)
     : dataStandardVersion;
   const corePath: string = `Ed-Fi-ODS/Application/EdFi.Ods.Standard/Standard/${dataStandardVersionFormatted}/Artifacts`;
-
-  const result: DeployResult = {
+  let deployResult: DeployResult = {
     success: true,
   };
 
@@ -44,13 +43,15 @@ function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStand
 
       fs.copySync(resolvedDeployPath.src, resolvedDeployPath.dest, resolvedDeployPath.options);
     } catch (err) {
-      result.success = false;
-      result.failureMessage = `Attempted deploy of ${deployPath.src} failed due to issue: ${err.message}`;
-      Logger.error(result.failureMessage);
+      deployResult = {
+        success: false,
+        failureMessage: `Attempted deploy of ${deployPath.src} failed due to issue: ${err.message}`,
+      };
+      Logger.error(deployResult.failureMessage);
     }
   });
 
-  return result;
+  return deployResult;
 }
 
 export async function execute(
