@@ -4,9 +4,11 @@ import klawSync from 'klaw-sync';
 import fs from 'fs-extra';
 import path from 'path';
 import { execute as deployExtension } from '../../src/task/DeployExtension';
+import { DeployResult } from '../../src/task/DeployResult';
 
 describe('when deploying 7.0 extension artifacts', (): void => {
   let result: string[];
+  let deployResult: DeployResult = { success: false };
 
   beforeAll(async () => {
     const deployDirectory: string = path.resolve(__dirname, './output/Extension');
@@ -20,13 +22,17 @@ describe('when deploying 7.0 extension artifacts', (): void => {
       projects: [{ ...newMetaEdProject(), projectName: 'Sample', projectVersion: '1.0.0' }],
     };
 
-    await deployExtension(metaEdConfiguration, '5.0.0', true, false);
+    deployResult = await deployExtension(metaEdConfiguration, '5.0.0', true, false);
 
     const normalizePath = (x: string) => path.relative(deployDirectory, x).split(path.sep).join('/');
 
     result = klawSync(deployDirectory, { nodir: true })
       .map((x) => normalizePath(x.path))
       .sort();
+  });
+
+  it('should have successful deploy result', (): void => {
+    expect(deployResult).toMatchObject({ success: true });
   });
 
   it('should have correct directory paths', (): void => {

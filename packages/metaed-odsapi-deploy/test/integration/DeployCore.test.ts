@@ -4,9 +4,11 @@ import klawSync from 'klaw-sync';
 import fs from 'fs-extra';
 import path from 'path';
 import { execute as deployCore } from '../../src/task/DeployCore';
+import { DeployResult } from '../../src/task/DeployResult';
 
 describe('when deploying 7.0 core artifacts', (): void => {
   let result: string[];
+  let deployResult: DeployResult = { success: false };
 
   beforeAll(async () => {
     const deployDirectory: string = path.resolve(__dirname, './output/Core');
@@ -19,13 +21,17 @@ describe('when deploying 7.0 core artifacts', (): void => {
       defaultPluginTechVersion: '7.1.0',
     };
 
-    await deployCore(metaEdConfiguration, '5.0.0', true, false);
+    deployResult = await deployCore(metaEdConfiguration, '5.0.0', true, false);
 
     const normalizePath = (x: string) => path.relative(deployDirectory, x).split(path.sep).join('/');
 
     result = klawSync(deployDirectory, { nodir: true })
       .map((x) => normalizePath(x.path))
       .sort();
+  });
+
+  it('should have successful deploy result', (): void => {
+    expect(deployResult).toMatchObject({ success: true });
   });
 
   it('should have correct directory paths', (): void => {
