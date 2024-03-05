@@ -10,7 +10,6 @@ export function removeExtensionArtifacts(metaEdConfiguration: MetaEdConfiguratio
 
   const result: DeployResult = {
     success: true,
-    failureMessage: undefined,
   };
   projectsNames.forEach((projectName: string) => {
     const removeablePaths: string[] = [`Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.${projectName}/Artifacts`];

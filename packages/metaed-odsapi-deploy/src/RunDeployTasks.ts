@@ -62,6 +62,5 @@ export async function runDeployTasks(
   }
   return {
     success: true,
-    failureMessage: undefined,
   };
 }

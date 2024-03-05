@@ -25,7 +25,6 @@ function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration): DeployRe
 
   const result: DeployResult = {
     success: true,
-    failureMessage: undefined,
   };
   artifacts.forEach((artifact: CopyOptions) => {
     const resolvedArtifact: CopyOptions = {

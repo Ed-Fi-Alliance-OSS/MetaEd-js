@@ -21,7 +21,6 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): Dep
 
   const result: DeployResult = {
     success: true,
-    failureMessage: undefined,
   };
   projectsNames.forEach((projectName: string) => {
     artifacts.forEach((artifact: CopyOptions) => {

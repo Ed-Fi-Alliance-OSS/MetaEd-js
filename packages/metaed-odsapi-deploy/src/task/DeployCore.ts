@@ -28,7 +28,6 @@ function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration, dataStand
 
   const result: DeployResult = {
     success: true,
-    failureMessage: undefined,
   };
 
   deployPaths(corePath).forEach((deployPath: CopyOptions) => {

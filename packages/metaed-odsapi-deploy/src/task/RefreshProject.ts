@@ -17,7 +17,6 @@ export function refreshProject(metaEdConfiguration: MetaEdConfiguration): Deploy
 
   const result: DeployResult = {
     success: true,
-    failureMessage: undefined,
   };
   projectsNames.forEach((projectName: string) => {
     projectPaths.forEach((projectPath: string) => {

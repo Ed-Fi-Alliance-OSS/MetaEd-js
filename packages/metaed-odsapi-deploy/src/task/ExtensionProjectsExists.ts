@@ -13,7 +13,6 @@ export function extensionProjectsExists(metaEdConfiguration: MetaEdConfiguration
 
   const result: DeployResult = {
     success: true,
-    failureMessage: undefined,
   };
   projectsNames.forEach((projectName: string) => {
     projectPaths.forEach((projectPath: string) => {

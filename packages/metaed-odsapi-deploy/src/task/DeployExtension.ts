@@ -30,7 +30,6 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration, data
 
   const result: DeployResult = {
     success: true,
-    failureMessage: undefined,
   };
   projectsToDeploy.forEach((projectToDeploy: MetaEdProject) => {
     const versionSatisfiesV7OrGreater = versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7OrGreater);
