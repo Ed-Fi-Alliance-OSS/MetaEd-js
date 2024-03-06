@@ -14,6 +14,14 @@ export function extensionProjectsExists(metaEdConfiguration: MetaEdConfiguration
     success: true,
   };
 
+  if (projectsNames.length === 0) {
+    deployResult = {
+      success: false,
+      failureMessage: `There are no projects in the artifact directory: ${artifactDirectory}`,
+    };
+    Logger.error(deployResult.failureMessage);
+  }
+
   projectsNames.every((projectName: string) =>
     projectPaths.every((projectPath: string) => {
       const resolvedPath = path.resolve(deployDirectory, Sugar.String.format(projectPath, { projectName }));

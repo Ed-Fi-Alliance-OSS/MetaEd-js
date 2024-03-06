@@ -15,12 +15,12 @@ import { DeployTask } from './task/DeployTask';
 
 /**
  * Runs the full set of deployment tasks in order, returning true if they are all successful.
- * If any task is unsuccessful, task execution stops and false is returned.
+ * If any task is unsuccessful, task execution stops and false is returned along with a failure message.
  *
  * @param metaEdConfiguration the MetaEdConfiguration for the deployment
  * @param deployCore whether the core data model should be deployed along with an extension
  * @param suppressDelete whether deletion of the existing ODS/API configuration should be suppressed
- * @returns true if the deploy was successful
+ * @returns deploy result with success indicating if the deploy was successful and a failureMessage if it was not
  */
 export async function runDeployTasks(
   metaEdConfiguration: MetaEdConfiguration,
