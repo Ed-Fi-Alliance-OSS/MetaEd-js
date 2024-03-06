@@ -31,31 +31,33 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration, data
     success: true,
   };
 
-  projectsToDeploy.forEach((projectToDeploy: MetaEdProject) => {
+  projectsToDeploy.every((projectToDeploy: MetaEdProject) => {
     const versionSatisfiesV7OrGreater = versionSatisfies(metaEdConfiguration.defaultPluginTechVersion, V7OrGreater);
     const dataStandardVersionFormatted = versionSatisfiesV7OrGreater
       ? formatVersionWithSuppressPrereleaseVersion(dataStandardVersion, metaEdConfiguration.suppressPrereleaseVersion)
       : dataStandardVersion;
     const extensionPath: string = `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.${projectToDeploy.projectName}/Versions/${projectToDeploy.projectVersion}/Standard/${dataStandardVersionFormatted}/Artifacts`;
 
-    deployPaths(extensionPath).forEach((deployPath: CopyOptions) => {
+    return deployPaths(extensionPath).every((deployPath: CopyOptions) => {
       const resolvedArtifact: CopyOptions = {
         ...deployPath,
         src: path.resolve(artifactDirectory, projectToDeploy.projectName, deployPath.src),
         dest: path.resolve(deployDirectory, deployPath.dest),
       };
-      if (!fs.pathExistsSync(resolvedArtifact.src)) return;
+      if (!fs.pathExistsSync(resolvedArtifact.src)) return true;
 
       try {
         Logger.info(`Deploy ${resolvedArtifact.src} to ${resolvedArtifact.dest}`);
 
         fs.copySync(resolvedArtifact.src, resolvedArtifact.dest, resolvedArtifact.options);
+        return true;
       } catch (err) {
         deployResult = {
           success: false,
           failureMessage: `Attempted deploy of ${deployPath.src} failed due to issue: ${err.message}`,
         };
         Logger.error(deployResult.failureMessage);
+        return false;
       }
     });
   });

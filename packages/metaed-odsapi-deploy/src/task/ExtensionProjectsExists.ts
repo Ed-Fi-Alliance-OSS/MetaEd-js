@@ -14,17 +14,18 @@ export function extensionProjectsExists(metaEdConfiguration: MetaEdConfiguration
     success: true,
   };
 
-  projectsNames.forEach((projectName: string) => {
-    projectPaths.forEach((projectPath: string) => {
+  projectsNames.every((projectName: string) =>
+    projectPaths.every((projectPath: string) => {
       const resolvedPath = path.resolve(deployDirectory, Sugar.String.format(projectPath, { projectName }));
-      if (fs.pathExistsSync(resolvedPath)) return;
+      if (fs.pathExistsSync(resolvedPath)) return true;
       deployResult = {
         success: false,
         failureMessage: `Expected ${projectName} project but was not at path: ${resolvedPath}`,
       };
       Logger.error(deployResult.failureMessage);
-    });
-  });
+      return false;
+    }),
+  );
 
   return deployResult;
 }

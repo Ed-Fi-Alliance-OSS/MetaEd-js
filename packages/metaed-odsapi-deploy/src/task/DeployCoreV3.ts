@@ -26,25 +26,27 @@ function deployCoreArtifacts(metaEdConfiguration: MetaEdConfiguration): DeployRe
     success: true,
   };
 
-  artifacts.forEach((artifact: CopyOptions) => {
+  artifacts.every((artifact: CopyOptions) => {
     const resolvedArtifact: CopyOptions = {
       ...artifact,
       src: path.resolve(artifactDirectory, projectName, artifact.src),
       dest: path.resolve(deployDirectory, artifact.dest),
     };
-    if (!fs.pathExistsSync(resolvedArtifact.src)) return;
+    if (!fs.pathExistsSync(resolvedArtifact.src)) return true;
 
     try {
       const relativeArtifactSource = path.relative(artifactDirectory, resolvedArtifact.src);
       Logger.info(`Deploy ${relativeArtifactSource} to ${artifact.dest}`);
 
       fs.copySync(resolvedArtifact.src, resolvedArtifact.dest, resolvedArtifact.options);
+      return true;
     } catch (err) {
       deployResult = {
         success: false,
         failureMessage: `Attempted deploy of ${artifact.src} failed due to issue: ${err.message}`,
       };
       Logger.error(deployResult.failureMessage);
+      return false;
     }
   });
 

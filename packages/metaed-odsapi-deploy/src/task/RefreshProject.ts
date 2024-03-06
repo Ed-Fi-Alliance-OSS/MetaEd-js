@@ -18,24 +18,26 @@ export function refreshProject(metaEdConfiguration: MetaEdConfiguration): Deploy
     success: true,
   };
 
-  projectsNames.forEach((projectName: string) => {
-    projectPaths.forEach((projectPath: string) => {
+  projectsNames.every((projectName: string) =>
+    projectPaths.every((projectPath: string) => {
       const resolvedPath = path.resolve(deployDirectory, Sugar.String.format(projectPath, { projectName }));
-      if (!fs.pathExistsSync(resolvedPath)) return;
+      if (!fs.pathExistsSync(resolvedPath)) return true;
 
       try {
         Logger.info(`Refresh ${resolvedPath}`);
 
         touch.sync(resolvedPath, { nocreate: true });
+        return true;
       } catch (err) {
         deployResult = {
           success: false,
           failureMessage: `Attempted modification of ${chalk.red(resolvedPath)} failed due to issue: ${err.message}`,
         };
         Logger.error(deployResult.failureMessage);
+        return false;
       }
-    });
-  });
+    }),
+  );
 
   return deployResult;
 }

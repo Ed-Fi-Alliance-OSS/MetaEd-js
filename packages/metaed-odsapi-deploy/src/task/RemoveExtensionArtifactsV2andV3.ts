@@ -11,25 +11,27 @@ export function removeExtensionArtifacts(metaEdConfiguration: MetaEdConfiguratio
     success: true,
   };
 
-  projectsNames.forEach((projectName: string) => {
+  projectsNames.every((projectName: string) => {
     const removeablePaths: string[] = [
       `Ed-Fi-ODS-Implementation/Application/EdFi.Ods.Extensions.${projectName}/SupportingArtifacts`,
     ];
 
-    removeablePaths.forEach((removeablePath: string) => {
+    return removeablePaths.every((removeablePath: string) => {
       const resolvedPath = path.resolve(deployDirectory, removeablePath);
-      if (!fs.pathExistsSync(resolvedPath)) return;
+      if (!fs.pathExistsSync(resolvedPath)) return true;
 
       try {
         Logger.info(`Remove ${projectName} artifacts ${resolvedPath}`);
 
         fs.removeSync(resolvedPath);
+        return true;
       } catch (err) {
         deployResult = {
           success: false,
           failureMessage: `Attempted removal of ${resolvedPath} failed due to issue: ${err.message}`,
         };
         Logger.error(deployResult.failureMessage);
+        return false;
       }
     });
   });

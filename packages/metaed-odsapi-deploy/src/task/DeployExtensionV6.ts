@@ -25,29 +25,31 @@ function deployExtensionArtifacts(metaEdConfiguration: MetaEdConfiguration): Dep
     success: true,
   };
 
-  projectsNames.forEach((projectName: string) => {
-    artifacts.forEach((artifact: CopyOptions) => {
+  projectsNames.every((projectName: string) =>
+    artifacts.every((artifact: CopyOptions) => {
       const dest = Sugar.String.format(artifact.dest, { projectName });
       const resolvedArtifact: CopyOptions = {
         ...artifact,
         src: path.resolve(artifactDirectory, projectName, artifact.src),
         dest: path.resolve(deployDirectory, dest),
       };
-      if (!fs.pathExistsSync(resolvedArtifact.src)) return;
+      if (!fs.pathExistsSync(resolvedArtifact.src)) return true;
 
       try {
         Logger.info(`Deploy ${resolvedArtifact.src} to ${resolvedArtifact.dest}`);
 
         fs.copySync(resolvedArtifact.src, resolvedArtifact.dest, resolvedArtifact.options);
+        return true;
       } catch (err) {
         deployResult = {
           success: false,
           failureMessage: `Attempted deploy of ${artifact.src} failed due to issue: ${err.message}`,
         };
         Logger.error(deployResult.failureMessage);
+        return false;
       }
-    });
-  });
+    }),
+  );
 
   return deployResult;
 }
