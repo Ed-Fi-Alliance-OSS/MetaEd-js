@@ -257,6 +257,7 @@
         "schoolfoodserviceprogramservicedescriptors": "schoolFoodServiceProgramServiceDescriptors",
         "schools": "schools",
         "schooltypedescriptors": "schoolTypeDescriptors",
+        "schoolyeartype": "schoolYearTypes",
         "sectionattendancetakenevents": "sectionAttendanceTakenEvents",
         "sectioncharacteristicdescriptors": "sectionCharacteristicDescriptors",
         "sections": "sections",
@@ -589,6 +590,7 @@
         "SchoolChoiceImplementStatus": "schoolChoiceImplementStatusDescriptors",
         "SchoolFoodServiceProgramService": "schoolFoodServiceProgramServiceDescriptors",
         "SchoolType": "schoolTypeDescriptors",
+        "SchoolYearType": "schoolYearTypes",
         "Section": "sections",
         "SectionAttendanceTakenEvent": "sectionAttendanceTakenEvents",
         "SectionCharacteristic": "sectionCharacteristicDescriptors",
@@ -34147,6 +34149,80 @@
             "type": "object"
           },
           "resourceName": "SchoolTypeDescriptor"
+        },
+        "schoolYearTypes": {
+          "allowIdentityUpdates": false,
+          "documentPathsMapping": {
+            "CurrentSchoolYear": {
+              "isReference": false,
+              "pathOrder": [
+                "currentSchoolYear"
+              ],
+              "paths": {
+                "schoolYear": "$.currentSchoolYear"
+              }
+            },
+            "SchoolYear": {
+              "isReference": false,
+              "pathOrder": [
+                "schoolYear"
+              ],
+              "paths": {
+                "schoolYear": "$.schoolYear"
+              }
+            },
+            "SchoolYearDescription": {
+              "isReference": false,
+              "pathOrder": [
+                "schoolYearDescription"
+              ],
+              "paths": {
+                "schoolYear": "$.schoolYearDescription"
+              }
+            }
+          },
+          "equalityConstraints": [
+          ],
+          "identityFullnames": [
+            "SchoolYear"
+          ],
+          "identityPathOrder": [
+            "schoolYear"
+          ],
+          "isDescriptor": false,
+          "isSchoolYearEnumeration": true,
+          "isSubclass": false,
+          "jsonSchemaForInsert": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "additionalProperties": false,
+            "description": "Identifier for a school year.",
+            "properties": {
+              "currentSchoolYear": {
+                "description": "The code for the current school year.",
+                "type": "boolean"
+              },
+              "schoolYear": {
+                "description": "Key for School Year",
+                "minimum": 0,
+                "type": "integer"
+              },
+              "schoolYearDescription": {
+                "description": "The description for the SchoolYear type.",
+                "maxLength": 50,
+                "type": "string"
+              }
+            },
+            "required": [
+              "schoolYear",
+              "currentSchoolYear",
+              "schoolYearDescription"
+            ],
+            "title": "Ed-Fi.SchoolYear",
+            "type": "object"
+          },
+          "referenceJsonPathsMapping": {
+          },
+          "resourceName": "schoolYearTypes"
         },
         "schools": {
           "allowIdentityUpdates": false,
