@@ -165,6 +165,69 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       caseInsensitiveEndpointNameMapping[endpointName.toLowerCase()] = endpointName;
       resourceSchemas[endpointName] = buildAssociationSubclassResourceSchema(entity as TopLevelEntity);
     });
+
+    const schoolYearTypeEndpointName = 'SchoolYearType';
+    const schoolYearTypeResourceName = 'schoolYearTypes';
+    resourceNameMapping[schoolYearTypeEndpointName] = schoolYearTypeResourceName;
+    caseInsensitiveEndpointNameMapping[schoolYearTypeEndpointName.toLowerCase()] = 'schoolYearTypes';
+    resourceSchemas[schoolYearTypeResourceName] = {
+      resourceName: schoolYearTypeResourceName,
+      isDescriptor: false,
+      isSchoolYearEnumeration: true,
+      allowIdentityUpdates: false,
+      jsonSchemaForInsert: {
+        $schema: 'https://json-schema.org/draft/2020-12/schema',
+        additionalProperties: false,
+        description: 'Identifier for a school year.',
+        properties: {
+          schoolYear: {
+            description: 'Key for School Year',
+            minimum: 0,
+            type: 'integer',
+          },
+          currentSchoolYear: {
+            description: 'The code for the current school year.',
+            type: 'boolean',
+          },
+          schoolYearDescription: {
+            description: 'The description for the SchoolYear type.',
+            maxLength: 50,
+            type: 'string',
+          },
+        },
+        required: ['schoolYear', 'currentSchoolYear', 'schoolYearDescription'],
+        title: 'Ed-Fi.SchoolYear',
+        type: 'object',
+      },
+      equalityConstraints: [],
+      identityFullnames: ['SchoolYear'],
+      documentPathsMapping: {
+        SchoolYear: {
+          isReference: false,
+          pathOrder: ['schoolYear'],
+          paths: {
+            schoolYear: '$.schoolYear',
+          },
+        },
+        CurrentSchoolYear: {
+          isReference: false,
+          pathOrder: ['currentSchoolYear'],
+          paths: {
+            currentSchoolYear: '$.currentSchoolYear',
+          },
+        },
+        SchoolYearDescription: {
+          isReference: false,
+          pathOrder: ['schoolYearDescription'],
+          paths: {
+            schoolYearDescription: '$.schoolYearDescription',
+          },
+        },
+      },
+      referenceJsonPathsMapping: {},
+      identityPathOrder: ['schoolYear', 'currentSchoolYear', 'schoolYearDescription'],
+      isSubclass: false,
+    };
   });
   return {
     enhancerName: 'ApiSchemaBuildingEnhancer',
