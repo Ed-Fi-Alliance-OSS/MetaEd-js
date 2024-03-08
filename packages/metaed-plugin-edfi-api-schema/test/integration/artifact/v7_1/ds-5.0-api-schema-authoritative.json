@@ -257,7 +257,7 @@
         "schoolfoodserviceprogramservicedescriptors": "schoolFoodServiceProgramServiceDescriptors",
         "schools": "schools",
         "schooltypedescriptors": "schoolTypeDescriptors",
-        "schoolyeartype": "schoolYearTypes",
+        "schoolyeartypes": "schoolYearTypes",
         "sectionattendancetakenevents": "sectionAttendanceTakenEvents",
         "sectioncharacteristicdescriptors": "sectionCharacteristicDescriptors",
         "sections": "sections",
@@ -34159,7 +34159,7 @@
                 "currentSchoolYear"
               ],
               "paths": {
-                "schoolYear": "$.currentSchoolYear"
+                "currentSchoolYear": "$.currentSchoolYear"
               }
             },
             "SchoolYear": {
@@ -34177,7 +34177,7 @@
                 "schoolYearDescription"
               ],
               "paths": {
-                "schoolYear": "$.schoolYearDescription"
+                "schoolYearDescription": "$.schoolYearDescription"
               }
             }
           },
@@ -34222,7 +34222,7 @@
           },
           "referenceJsonPathsMapping": {
           },
-          "resourceName": "schoolYearTypes"
+          "resourceName": "SchoolYearTypes"
         },
         "schools": {
           "allowIdentityUpdates": false,

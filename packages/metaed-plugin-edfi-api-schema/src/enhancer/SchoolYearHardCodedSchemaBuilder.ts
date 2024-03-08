@@ -6,33 +6,22 @@ import { DocumentPaths, ScalarPath } from '../model/api-schema/DocumentPaths';
 import { ResourceNameMapping } from '../model/api-schema/ResourceNameMapping';
 import { CaseInsensitiveEndpointNameMapping } from '../model/api-schema/CaseInsensitiveEndpointNameMapping';
 import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping';
+import { capitalize } from '../Utility';
+import { JsonPath } from '../model/api-schema/JsonPath';
 
-function buildDocumentPathsMapping(): { [key: DocumentObjectKey]: DocumentPaths } {
+function buildDocumentPathsMapping(documentObjectPathsLowerCamel: string[]): { [key: DocumentObjectKey]: DocumentPaths } {
   const documentPathsMapping: { [key: DocumentObjectKey]: DocumentPaths } = {};
 
-  documentPathsMapping['SchoolYear' as DocumentObjectKey] = {
-    isReference: false,
-    pathOrder: ['schoolYear' as DocumentObjectKey],
-    paths: {
-      schoolYear: '$.schoolYear',
-    },
-  } as ScalarPath;
+  documentObjectPathsLowerCamel.forEach((lowerCamel) => {
+    documentPathsMapping[capitalize(lowerCamel) as DocumentObjectKey] = {
+      isReference: false,
+      pathOrder: [lowerCamel as DocumentObjectKey],
+      paths: {},
+    } as ScalarPath;
 
-  documentPathsMapping['CurrentSchoolYear' as DocumentObjectKey] = {
-    isReference: false,
-    pathOrder: ['currentSchoolYear' as DocumentObjectKey],
-    paths: {
-      schoolYear: '$.currentSchoolYear',
-    },
-  } as ScalarPath;
-
-  documentPathsMapping['SchoolYearDescription' as DocumentObjectKey] = {
-    isReference: false,
-    pathOrder: ['schoolYearDescription' as DocumentObjectKey],
-    paths: {
-      schoolYear: '$.schoolYearDescription',
-    },
-  } as ScalarPath;
+    documentPathsMapping[capitalize(lowerCamel) as DocumentObjectKey].paths[lowerCamel as DocumentObjectKey] =
+      `$.${lowerCamel}` as JsonPath;
+  });
 
   return documentPathsMapping;
 }
@@ -42,14 +31,16 @@ export function buildSchoolYearResourceSchema(
   caseInsensitiveEndpointNameMapping: CaseInsensitiveEndpointNameMapping,
   resourceSchemaMapping: ResourceSchemaMapping,
 ) {
-  const schoolYearTypeResourceName = 'schoolYearTypes' as MetaEdResourceName;
-  const schoolYearTypeEndpointName = 'SchoolYearType';
+  const nameCamelSingular = 'SchoolYearType';
+  const nameCamelPlural = 'SchoolYearTypes';
+  const nameLowerCamelPlural = 'schoolYearTypes';
+  const documentObjectPathsLowerCamel = ['schoolYear', 'currentSchoolYear', 'schoolYearDescription'];
 
-  resourceNameMapping[schoolYearTypeEndpointName] = schoolYearTypeResourceName;
-  caseInsensitiveEndpointNameMapping[schoolYearTypeEndpointName.toLowerCase()] = 'schoolYearTypes';
+  resourceNameMapping[nameCamelSingular] = nameLowerCamelPlural;
+  caseInsensitiveEndpointNameMapping[nameLowerCamelPlural.toLowerCase()] = nameLowerCamelPlural;
 
   const schoolYearResourceSchema = {
-    resourceName: schoolYearTypeResourceName,
+    resourceName: nameCamelPlural as MetaEdResourceName,
     isDescriptor: false,
     isSchoolYearEnumeration: true,
     allowIdentityUpdates: false,
@@ -73,7 +64,7 @@ export function buildSchoolYearResourceSchema(
           type: 'string',
         },
       },
-      required: ['schoolYear', 'currentSchoolYear', 'schoolYearDescription'],
+      required: documentObjectPathsLowerCamel,
       title: 'Ed-Fi.SchoolYear',
       type: 'object',
     },
@@ -82,8 +73,8 @@ export function buildSchoolYearResourceSchema(
     referenceJsonPathsMapping: {},
     identityPathOrder: ['schoolYear'] as DocumentObjectKey[],
     isSubclass: false,
-    documentPathsMapping: buildDocumentPathsMapping(),
+    documentPathsMapping: buildDocumentPathsMapping(documentObjectPathsLowerCamel),
   } as ResourceSchema;
 
-  resourceSchemaMapping[schoolYearTypeResourceName] = schoolYearResourceSchema;
+  resourceSchemaMapping[nameLowerCamelPlural] = schoolYearResourceSchema;
 }
