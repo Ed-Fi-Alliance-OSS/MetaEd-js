@@ -21,7 +21,7 @@ const logger = winston.createLogger({
   level: process.env.LOG_LEVEL?.toLocaleLowerCase() ?? 'info',
   transports: [
     new winston.transports.Console({
-      format: winston.format.cli(),
+      format: winston.format.align(),
     }),
   ],
 });
