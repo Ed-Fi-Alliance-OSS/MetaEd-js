@@ -14,6 +14,7 @@
           "identityPathOrder": [
             "beginDate",
             "educationOrganizationId",
+            "programEducationOrganizationId",
             "programName",
             "programTypeDescriptor",
             "studentUniqueId"
@@ -44998,12 +44999,12 @@
               "isDescriptor": false,
               "isReference": true,
               "pathOrder": [
-                "educationOrganizationId",
+                "programEducationOrganizationId",
                 "programName",
                 "programTypeDescriptor"
               ],
               "paths": {
-                "educationOrganizationId": "$.programReference.educationOrganizationId",
+                "programEducationOrganizationId": "$.programReference.educationOrganizationId",
                 "programName": "$.programReference.programName",
                 "programTypeDescriptor": "$.programReference.programTypeDescriptor"
               },
@@ -45106,6 +45107,7 @@
           "identityPathOrder": [
             "beginDate",
             "educationOrganizationId",
+            "programEducationOrganizationId",
             "programName",
             "programTypeDescriptor",
             "studentUniqueId"
@@ -48635,12 +48637,12 @@
               "isDescriptor": false,
               "isReference": true,
               "pathOrder": [
-                "educationOrganizationId",
+                "programEducationOrganizationId",
                 "programName",
                 "programTypeDescriptor"
               ],
               "paths": {
-                "educationOrganizationId": "$.programReference.educationOrganizationId",
+                "programEducationOrganizationId": "$.programReference.educationOrganizationId",
                 "programName": "$.programReference.programName",
                 "programTypeDescriptor": "$.programReference.programTypeDescriptor"
               },
@@ -48731,6 +48733,7 @@
           "identityPathOrder": [
             "beginDate",
             "educationOrganizationId",
+            "programEducationOrganizationId",
             "programName",
             "programTypeDescriptor",
             "studentUniqueId"
@@ -49644,12 +49647,12 @@
               "isDescriptor": false,
               "isReference": true,
               "pathOrder": [
-                "educationOrganizationId",
+                "programEducationOrganizationId",
                 "programName",
                 "programTypeDescriptor"
               ],
               "paths": {
-                "educationOrganizationId": "$.programReference.educationOrganizationId",
+                "programEducationOrganizationId": "$.programReference.educationOrganizationId",
                 "programName": "$.programReference.programName",
                 "programTypeDescriptor": "$.programReference.programTypeDescriptor"
               },
@@ -49740,6 +49743,7 @@
           "identityPathOrder": [
             "beginDate",
             "educationOrganizationId",
+            "programEducationOrganizationId",
             "programName",
             "programTypeDescriptor",
             "studentUniqueId"
@@ -50108,12 +50112,12 @@
               "isDescriptor": false,
               "isReference": true,
               "pathOrder": [
-                "educationOrganizationId",
+                "programEducationOrganizationId",
                 "programName",
                 "programTypeDescriptor"
               ],
               "paths": {
-                "educationOrganizationId": "$.programReference.educationOrganizationId",
+                "programEducationOrganizationId": "$.programReference.educationOrganizationId",
                 "programName": "$.programReference.programName",
                 "programTypeDescriptor": "$.programReference.programTypeDescriptor"
               },
@@ -50249,6 +50253,7 @@
           "identityPathOrder": [
             "beginDate",
             "educationOrganizationId",
+            "programEducationOrganizationId",
             "programName",
             "programTypeDescriptor",
             "studentUniqueId"
@@ -50606,12 +50611,12 @@
               "isDescriptor": false,
               "isReference": true,
               "pathOrder": [
-                "educationOrganizationId",
+                "programEducationOrganizationId",
                 "programName",
                 "programTypeDescriptor"
               ],
               "paths": {
-                "educationOrganizationId": "$.programReference.educationOrganizationId",
+                "programEducationOrganizationId": "$.programReference.educationOrganizationId",
                 "programName": "$.programReference.programName",
                 "programTypeDescriptor": "$.programReference.programTypeDescriptor"
               },
@@ -50702,6 +50707,7 @@
           "identityPathOrder": [
             "beginDate",
             "educationOrganizationId",
+            "programEducationOrganizationId",
             "programName",
             "programTypeDescriptor",
             "studentUniqueId"
@@ -51006,12 +51012,12 @@
               "isDescriptor": false,
               "isReference": true,
               "pathOrder": [
-                "educationOrganizationId",
+                "programEducationOrganizationId",
                 "programName",
                 "programTypeDescriptor"
               ],
               "paths": {
-                "educationOrganizationId": "$.programReference.educationOrganizationId",
+                "programEducationOrganizationId": "$.programReference.educationOrganizationId",
                 "programName": "$.programReference.programName",
                 "programTypeDescriptor": "$.programReference.programTypeDescriptor"
               },
@@ -51141,6 +51147,7 @@
           "identityPathOrder": [
             "beginDate",
             "educationOrganizationId",
+            "programEducationOrganizationId",
             "programName",
             "programTypeDescriptor",
             "studentUniqueId"
@@ -53256,12 +53263,12 @@
               "isDescriptor": false,
               "isReference": true,
               "pathOrder": [
-                "educationOrganizationId",
+                "programEducationOrganizationId",
                 "programName",
                 "programTypeDescriptor"
               ],
               "paths": {
-                "educationOrganizationId": "$.programReference.educationOrganizationId",
+                "programEducationOrganizationId": "$.programReference.educationOrganizationId",
                 "programName": "$.programReference.programName",
                 "programTypeDescriptor": "$.programReference.programTypeDescriptor"
               },
@@ -53391,6 +53398,7 @@
           "identityPathOrder": [
             "beginDate",
             "educationOrganizationId",
+            "programEducationOrganizationId",
             "programName",
             "programTypeDescriptor",
             "studentUniqueId"
@@ -54410,12 +54418,12 @@
               "isDescriptor": false,
               "isReference": true,
               "pathOrder": [
-                "educationOrganizationId",
+                "programEducationOrganizationId",
                 "programName",
                 "programTypeDescriptor"
               ],
               "paths": {
-                "educationOrganizationId": "$.programReference.educationOrganizationId",
+                "programEducationOrganizationId": "$.programReference.educationOrganizationId",
                 "programName": "$.programReference.programName",
                 "programTypeDescriptor": "$.programReference.programTypeDescriptor"
               },
@@ -54647,6 +54655,7 @@
           "identityPathOrder": [
             "beginDate",
             "educationOrganizationId",
+            "programEducationOrganizationId",
             "programName",
             "programTypeDescriptor",
             "studentUniqueId"
@@ -55472,12 +55481,12 @@
               "isDescriptor": false,
               "isReference": true,
               "pathOrder": [
-                "educationOrganizationId",
+                "programEducationOrganizationId",
                 "programName",
                 "programTypeDescriptor"
               ],
               "paths": {
-                "educationOrganizationId": "$.programReference.educationOrganizationId",
+                "programEducationOrganizationId": "$.programReference.educationOrganizationId",
                 "programName": "$.programReference.programName",
                 "programTypeDescriptor": "$.programReference.programTypeDescriptor"
               },
@@ -55619,6 +55628,7 @@
           "identityPathOrder": [
             "beginDate",
             "educationOrganizationId",
+            "programEducationOrganizationId",
             "programName",
             "programTypeDescriptor",
             "studentUniqueId"

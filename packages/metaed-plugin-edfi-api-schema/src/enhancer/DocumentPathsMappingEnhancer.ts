@@ -5,12 +5,15 @@ import {
   TopLevelEntity,
   EntityProperty,
   ReferentialProperty,
+  NoTopLevelEntity,
+  asDomainEntity,
 } from '@edfi/metaed-core';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 import { DocumentObjectKey } from '../model/api-schema/DocumentObjectKey';
 import { DocumentPathsMapping } from '../model/api-schema/DocumentPathsMapping';
 import { DocumentPaths } from '../model/api-schema/DocumentPaths';
+import { prependPrefixWithCollapse } from '../Utility';
 
 function leafOfPath(jsonPath: JsonPath): DocumentObjectKey {
   const keys: DocumentObjectKey[] = jsonPath.split('.') as DocumentObjectKey[];
@@ -25,8 +28,12 @@ function buildDocumentPaths(jsonPaths: JsonPath[], property: EntityProperty): Do
   const listOfKeys: DocumentObjectKey[] = [];
   const paths: { [key: DocumentObjectKey]: JsonPath } = {};
   jsonPaths.forEach((jsonPath: JsonPath) => {
-    listOfKeys.push(leafOfPath(jsonPath));
-    paths[leafOfPath(jsonPath)] = jsonPath;
+    const keyName =
+      property.parentEntity !== NoTopLevelEntity && asDomainEntity(property.parentEntity).isAbstract
+        ? prependPrefixWithCollapse(leafOfPath(jsonPath), property.roleName)
+        : leafOfPath(jsonPath);
+    listOfKeys.push(keyName as DocumentObjectKey);
+    paths[keyName] = jsonPath;
   });
 
   if (property.type === 'association' || property.type === 'domainEntity' || property.type === 'descriptor') {
