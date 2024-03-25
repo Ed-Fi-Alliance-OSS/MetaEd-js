@@ -198,11 +198,16 @@ function jsonPathsForChoiceAndInlineCommonProperty(
 
     const childPropertyApiMapping = (allProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData).apiMapping;
 
+    const propertyPath =
+      allProperty.property.type === 'descriptor'
+        ? (`${currentPropertyPath}.${allProperty.property.fullPropertyName}Descriptor` as MetaEdPropertyPath)
+        : (`${currentPropertyPath}.${allProperty.property.fullPropertyName}` as MetaEdPropertyPath);
+
     jsonPathsFor(
       allProperty.property,
       concatenatedPropertyModifier,
       allJsonPathsMapping,
-      `${currentPropertyPath}.${allProperty.property.fullPropertyName}` as MetaEdPropertyPath,
+      propertyPath,
       appendNextJsonPathName(
         currentJsonPath,
         childPropertyApiMapping.topLevelName,

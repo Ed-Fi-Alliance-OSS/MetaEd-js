@@ -999,7 +999,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             "propertyName": "ContentIdentifier",
           },
         ],
-        "LearningResourceChoice.LearningResource.ContentClass": Array [
+        "LearningResourceChoice.LearningResource.ContentClassDescriptor": Array [
           Object {
             "entityName": "LearningResource",
             "jsonPath": "$.contentClassDescriptor",
@@ -1060,7 +1060,7 @@ describe('when building domain entity with nested choice and inline commons', ()
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": true,
-        "LearningResourceChoice.LearningResource.ContentClass": true,
+        "LearningResourceChoice.LearningResource.ContentClassDescriptor": true,
         "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent": true,
         "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent.ContentIdentifier": false,
         "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.URI": true,
@@ -1073,7 +1073,7 @@ describe('when building domain entity with nested choice and inline commons', ()
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
         "ContentIdentifier": "ContentIdentifier",
-        "LearningResourceChoice.LearningResource.ContentClass": "ContentClass",
+        "LearningResourceChoice.LearningResource.ContentClassDescriptor": "ContentClass",
         "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.EducationContent": "EducationContent",
         "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.URI": "URI",
         "LearningResourceChoice.LearningResource.Description": "Description",
@@ -2455,7 +2455,7 @@ describe('when building a domain entity with an inline common property with a de
     const mappings: Snapshotable = snapshotify(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
-        "AvailableCredits.CreditType": Array [
+        "AvailableCredits.CreditTypeDescriptor": Array [
           Object {
             "entityName": "Credits",
             "jsonPath": "$.availableCreditTypeDescriptor",
@@ -2473,13 +2473,13 @@ describe('when building a domain entity with an inline common property with a de
     `);
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
-        "AvailableCredits.CreditType": true,
+        "AvailableCredits.CreditTypeDescriptor": true,
         "SectionIdentifier": true,
       }
     `);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
-        "AvailableCredits.CreditType": "CreditType",
+        "AvailableCredits.CreditTypeDescriptor": "CreditType",
         "SectionIdentifier": "SectionIdentifier",
       }
     `);
