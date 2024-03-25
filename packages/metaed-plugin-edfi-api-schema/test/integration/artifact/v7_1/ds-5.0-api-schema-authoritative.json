@@ -6862,7 +6862,7 @@
                 "licenseIssueDate": "$.licenseIssueDate"
               }
             },
-            "License.LicenseStatus": {
+            "License.LicenseStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -6874,7 +6874,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "LicenseStatusDescriptor"
             },
-            "License.LicenseType": {
+            "License.LicenseTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -10308,7 +10308,7 @@
                 "attemptedCreditConversions": "$.attemptedCreditConversions"
               }
             },
-            "AttemptedCredits.CreditType": {
+            "AttemptedCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -10443,7 +10443,7 @@
                 "earnedCreditConversions": "$.earnedCreditConversions"
               }
             },
-            "EarnedCredits.CreditType": {
+            "EarnedCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11348,7 +11348,7 @@
                 "maximumAvailableCreditConversions": "$.maximumAvailableCreditConversions"
               }
             },
-            "MaximumAvailableCredits.CreditType": {
+            "MaximumAvailableCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11378,7 +11378,7 @@
                 "minimumAvailableCreditConversions": "$.minimumAvailableCreditConversions"
               }
             },
-            "MinimumAvailableCredits.CreditType": {
+            "MinimumAvailableCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -13758,7 +13758,7 @@
                 "additionalAuthorsIndicator": "$.additionalAuthorsIndicator"
               }
             },
-            "LearningResourceChoice.LearningResource.AppropriateGradeLevel": {
+            "LearningResourceChoice.LearningResource.AppropriateGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -13770,7 +13770,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "GradeLevelDescriptor"
             },
-            "LearningResourceChoice.LearningResource.AppropriateSex": {
+            "LearningResourceChoice.LearningResource.AppropriateSexDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -13791,7 +13791,7 @@
                 "author": "$.authors[*].author"
               }
             },
-            "LearningResourceChoice.LearningResource.ContentClass": {
+            "LearningResourceChoice.LearningResource.ContentClassDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -13842,7 +13842,7 @@
                 "description": "$.description"
               }
             },
-            "LearningResourceChoice.LearningResource.InteractivityStyle": {
+            "LearningResourceChoice.LearningResource.InteractivityStyleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -13854,7 +13854,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "InteractivityStyleDescriptor"
             },
-            "LearningResourceChoice.LearningResource.Language": {
+            "LearningResourceChoice.LearningResource.LanguageDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -19164,7 +19164,7 @@
                 "creditConversion": "$.creditsByCourses[*].creditConversion"
               }
             },
-            "CreditsByCourse.Credits.CreditType": {
+            "CreditsByCourse.Credits.CreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -19218,7 +19218,7 @@
                 "creditConversion": "$.creditsByCreditCategories[*].creditConversion"
               }
             },
-            "CreditsByCreditCategory.Credits.CreditType": {
+            "CreditsByCreditCategory.Credits.CreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -19260,7 +19260,7 @@
                 "creditConversion": "$.creditsBySubjects[*].creditConversion"
               }
             },
-            "CreditsBySubject.Credits.CreditType": {
+            "CreditsBySubject.Credits.CreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -19451,7 +19451,7 @@
                 "totalRequiredCreditConversions": "$.totalRequiredCreditConversions"
               }
             },
-            "TotalRequiredCredits.CreditType": {
+            "TotalRequiredCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -35640,7 +35640,7 @@
                 "availableCreditConversions": "$.availableCreditConversions"
               }
             },
-            "AvailableCredits.CreditType": {
+            "AvailableCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -38480,7 +38480,7 @@
                 "hireDate": "$.hireDate"
               }
             },
-            "EmploymentPeriod.Separation": {
+            "EmploymentPeriod.SeparationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -38492,7 +38492,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "SeparationDescriptor"
             },
-            "EmploymentPeriod.SeparationReason": {
+            "EmploymentPeriod.SeparationReasonDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -39844,7 +39844,7 @@
                 "birthDate": "$.birthDate"
               }
             },
-            "Citizenship.CitizenshipStatus": {
+            "Citizenship.CitizenshipStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -39928,7 +39928,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "PersonalInformationVerificationDescriptor"
             },
-            "Citizenship.Visa": {
+            "Citizenship.VisaDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40388,7 +40388,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "RaceDescriptor"
             },
-            "Recognition.Achievement.AchievementCategory": {
+            "Recognition.Achievement.AchievementCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -42452,7 +42452,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "AcademicHonorCategoryDescriptor"
             },
-            "AcademicHonor.Achievement.AchievementCategory": {
+            "AcademicHonor.Achievement.AchievementCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -42608,7 +42608,7 @@
                 "cumulativeAttemptedCreditConversions": "$.cumulativeAttemptedCreditConversions"
               }
             },
-            "CumulativeAttemptedCredits.CreditType": {
+            "CumulativeAttemptedCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -42638,7 +42638,7 @@
                 "cumulativeEarnedCreditConversions": "$.cumulativeEarnedCreditConversions"
               }
             },
-            "CumulativeEarnedCredits.CreditType": {
+            "CumulativeEarnedCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -42659,7 +42659,7 @@
                 "cumulativeEarnedCredits": "$.cumulativeEarnedCredits"
               }
             },
-            "Diploma.Achievement.AchievementCategory": {
+            "Diploma.Achievement.AchievementCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -42863,7 +42863,7 @@
                 "projectedGraduationDate": "$.projectedGraduationDate"
               }
             },
-            "Recognition.Achievement.AchievementCategory": {
+            "Recognition.Achievement.AchievementCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -43026,7 +43026,7 @@
                 "sessionAttemptedCreditConversions": "$.sessionAttemptedCreditConversions"
               }
             },
-            "SessionAttemptedCredits.CreditType": {
+            "SessionAttemptedCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -43056,7 +43056,7 @@
                 "sessionEarnedCreditConversions": "$.sessionEarnedCreditConversions"
               }
             },
-            "SessionEarnedCredits.CreditType": {
+            "SessionEarnedCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -49286,7 +49286,7 @@
         "studentInterventionAttendanceEvents": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AttendanceEvent.AttendanceEventCategory": {
+            "AttendanceEvent.AttendanceEventCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -49307,7 +49307,7 @@
                 "attendanceEventReason": "$.attendanceEventReason"
               }
             },
-            "AttendanceEvent.EducationalEnvironment": {
+            "AttendanceEvent.EducationalEnvironmentDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -51344,7 +51344,7 @@
         "studentProgramAttendanceEvents": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AttendanceEvent.AttendanceEventCategory": {
+            "AttendanceEvent.AttendanceEventCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -51365,7 +51365,7 @@
                 "attendanceEventReason": "$.attendanceEventReason"
               }
             },
-            "AttendanceEvent.EducationalEnvironment": {
+            "AttendanceEvent.EducationalEnvironmentDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -52933,7 +52933,7 @@
                 "arrivalTime": "$.arrivalTime"
               }
             },
-            "AttendanceEvent.AttendanceEventCategory": {
+            "AttendanceEvent.AttendanceEventCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -52954,7 +52954,7 @@
                 "attendanceEventReason": "$.attendanceEventReason"
               }
             },
-            "AttendanceEvent.EducationalEnvironment": {
+            "AttendanceEvent.EducationalEnvironmentDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -53926,7 +53926,7 @@
                 "arrivalTime": "$.arrivalTime"
               }
             },
-            "AttendanceEvent.AttendanceEventCategory": {
+            "AttendanceEvent.AttendanceEventCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -53947,7 +53947,7 @@
                 "attendanceEventReason": "$.attendanceEventReason"
               }
             },
-            "AttendanceEvent.EducationalEnvironment": {
+            "AttendanceEvent.EducationalEnvironmentDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55836,7 +55836,7 @@
                 "birthCity": "$.birthCity"
               }
             },
-            "BirthData.BirthCountry": {
+            "BirthData.BirthCountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55866,7 +55866,7 @@
                 "birthInternationalProvince": "$.birthInternationalProvince"
               }
             },
-            "BirthData.BirthSex": {
+            "BirthData.BirthSexDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55878,7 +55878,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "SexDescriptor"
             },
-            "BirthData.BirthStateAbbreviation": {
+            "BirthData.BirthStateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55908,7 +55908,7 @@
                 "multipleBirthStatus": "$.multipleBirthStatus"
               }
             },
-            "Citizenship.CitizenshipStatus": {
+            "Citizenship.CitizenshipStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55992,7 +55992,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "PersonalInformationVerificationDescriptor"
             },
-            "Citizenship.Visa": {
+            "Citizenship.VisaDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
