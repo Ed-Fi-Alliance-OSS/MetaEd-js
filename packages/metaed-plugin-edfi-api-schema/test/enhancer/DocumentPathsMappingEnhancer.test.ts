@@ -731,7 +731,7 @@ describe('when building domain entity with nested choice and inline commons', ()
             "contentIdentifier": "$.contentIdentifier",
           },
         },
-        "LearningResourceChoice.LearningResource.ContentClass": Object {
+        "LearningResourceChoice.LearningResource.ContentClassDescriptor": Object {
           "isDescriptor": true,
           "isReference": true,
           "pathOrder": Array [
@@ -1005,7 +1005,7 @@ describe('when building domain entity with a simple common collection', () => {
     const documentPathsMapping = entity?.data.edfiApiSchema.documentPathsMapping;
     expect(documentPathsMapping).toMatchInlineSnapshot(`
       Object {
-        "AssessmentIdentificationCode.AssessmentIdentificationSystem": Object {
+        "AssessmentIdentificationCode.AssessmentIdentificationSystemDescriptor": Object {
           "isDescriptor": true,
           "isReference": true,
           "pathOrder": Array [
@@ -1096,7 +1096,7 @@ describe('when building domain entity subclass with common collection and descri
             "communityOrganizationId": "$.communityOrganizationId",
           },
         },
-        "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": Object {
+        "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": Object {
           "isDescriptor": true,
           "isReference": true,
           "pathOrder": Array [
@@ -1195,7 +1195,7 @@ describe('when building domain entity with a descriptor with role name', () => {
     const documentPathsMapping = entity?.data.edfiApiSchema.documentPathsMapping;
     expect(documentPathsMapping).toMatchInlineSnapshot(`
       Object {
-        "AssessedGradeLevel": Object {
+        "AssessedGradeLevelDescriptor": Object {
           "isDescriptor": true,
           "isReference": true,
           "pathOrder": Array [
@@ -1253,7 +1253,7 @@ describe('when building domain entity with a descriptor collection with role nam
     const documentPathsMapping = entity?.data.edfiApiSchema.documentPathsMapping;
     expect(documentPathsMapping).toMatchInlineSnapshot(`
       Object {
-        "AssessedGradeLevel": Object {
+        "AssessedGradeLevelDescriptor": Object {
           "isDescriptor": true,
           "isReference": true,
           "pathOrder": Array [
@@ -1733,7 +1733,7 @@ describe('when building a domain entity with an inline common property with a de
     const documentPathsMapping = entity?.data.edfiApiSchema.documentPathsMapping;
     expect(documentPathsMapping).toMatchInlineSnapshot(`
       Object {
-        "AvailableCredits.CreditType": Object {
+        "AvailableCredits.CreditTypeDescriptor": Object {
           "isDescriptor": true,
           "isReference": true,
           "pathOrder": Array [

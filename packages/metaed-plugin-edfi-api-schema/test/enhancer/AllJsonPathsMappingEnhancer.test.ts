@@ -460,14 +460,22 @@ describe('when building a domain entity referencing another referencing another 
       .withStartDomainEntity('School')
       .withDocumentation('doc')
       .withStringIdentity('SchoolId', 'doc', '30')
+      .withDescriptorIdentity('SchoolType', 'doc')
       .withEndDomainEntity()
+
+      .withStartDescriptor('SchoolType')
+      .withDocumentation('doc')
+      .withEndDescriptor()
+
       .withEndNamespace()
       .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DescriptorBuilder(metaEd, []))
       .sendToListener(new DomainEntityBuilder(metaEd, []));
 
     namespace = metaEd.namespace.get(namespaceName);
 
     domainEntityReferenceEnhancer(metaEd);
+    descriptorReferenceEnhancer(metaEd);
     entityPropertyApiSchemaDataSetupEnhancer(metaEd);
     entityApiSchemaDataSetupEnhancer(metaEd);
     referenceComponentEnhancer(metaEd);
@@ -493,6 +501,11 @@ describe('when building a domain entity referencing another referencing another 
             "jsonPath": "$.classPeriods[*].classPeriodReference.schoolId",
             "propertyName": "ClassPeriod",
           },
+          Object {
+            "entityName": "DomainEntityName",
+            "jsonPath": "$.classPeriods[*].classPeriodReference.schoolTypeDescriptor",
+            "propertyName": "ClassPeriod",
+          },
         ],
         "ClassPeriod.ClassPeriodName": Array [
           Object {
@@ -507,12 +520,24 @@ describe('when building a domain entity referencing another referencing another 
             "jsonPath": "$.classPeriods[*].classPeriodReference.schoolId",
             "propertyName": "SchoolId",
           },
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.classPeriods[*].classPeriodReference.schoolTypeDescriptor",
+            "propertyName": "SchoolType",
+          },
         ],
         "ClassPeriod.School.SchoolId": Array [
           Object {
             "entityName": "School",
             "jsonPath": "$.classPeriods[*].classPeriodReference.schoolId",
             "propertyName": "SchoolId",
+          },
+        ],
+        "ClassPeriod.School.SchoolTypeDescriptor": Array [
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.classPeriods[*].classPeriodReference.schoolTypeDescriptor",
+            "propertyName": "SchoolType",
           },
         ],
         "CourseOffering": Array [
@@ -524,6 +549,11 @@ describe('when building a domain entity referencing another referencing another 
           Object {
             "entityName": "DomainEntityName",
             "jsonPath": "$.courseOfferingReference.schoolId",
+            "propertyName": "CourseOffering",
+          },
+          Object {
+            "entityName": "DomainEntityName",
+            "jsonPath": "$.courseOfferingReference.schoolTypeDescriptor",
             "propertyName": "CourseOffering",
           },
         ],
@@ -540,12 +570,24 @@ describe('when building a domain entity referencing another referencing another 
             "jsonPath": "$.courseOfferingReference.schoolId",
             "propertyName": "SchoolId",
           },
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.courseOfferingReference.schoolTypeDescriptor",
+            "propertyName": "SchoolType",
+          },
         ],
         "CourseOffering.School.SchoolId": Array [
           Object {
             "entityName": "School",
             "jsonPath": "$.courseOfferingReference.schoolId",
             "propertyName": "SchoolId",
+          },
+        ],
+        "CourseOffering.School.SchoolTypeDescriptor": Array [
+          Object {
+            "entityName": "School",
+            "jsonPath": "$.courseOfferingReference.schoolTypeDescriptor",
+            "propertyName": "SchoolType",
           },
         ],
         "SectionIdentifier": Array [
@@ -563,10 +605,12 @@ describe('when building a domain entity referencing another referencing another 
         "ClassPeriod.ClassPeriodName": false,
         "ClassPeriod.School": false,
         "ClassPeriod.School.SchoolId": false,
+        "ClassPeriod.School.SchoolTypeDescriptor": false,
         "CourseOffering": true,
         "CourseOffering.LocalCourseCode": false,
         "CourseOffering.School": false,
         "CourseOffering.School.SchoolId": false,
+        "CourseOffering.School.SchoolTypeDescriptor": false,
         "SectionIdentifier": true,
       }
     `);
@@ -1347,7 +1391,7 @@ describe('when building domain entity with a simple common collection', () => {
     const mappings: Snapshotable = snapshotify(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
-        "AssessmentIdentificationCode.AssessmentIdentificationSystem": Array [
+        "AssessmentIdentificationCode.AssessmentIdentificationSystemDescriptor": Array [
           Object {
             "entityName": "AssessmentIdentificationCode",
             "jsonPath": "$.identificationCodes[*].assessmentIdentificationSystemDescriptor",
@@ -1372,14 +1416,14 @@ describe('when building domain entity with a simple common collection', () => {
     `);
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
-        "AssessmentIdentificationCode.AssessmentIdentificationSystem": true,
+        "AssessmentIdentificationCode.AssessmentIdentificationSystemDescriptor": true,
         "AssessmentIdentificationCode.IdentificationCode": true,
         "AssessmentIdentifier": true,
       }
     `);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
-        "AssessmentIdentificationCode.AssessmentIdentificationSystem": "AssessmentIdentificationSystem",
+        "AssessmentIdentificationCode.AssessmentIdentificationSystemDescriptor": "AssessmentIdentificationSystem",
         "AssessmentIdentificationCode.IdentificationCode": "IdentificationCode",
         "AssessmentIdentifier": "AssessmentIdentifier",
       }
@@ -1453,7 +1497,7 @@ describe('when building domain entity subclass with common collection and descri
             "propertyName": "CommunityOrganizationId",
           },
         ],
-        "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": Array [
+        "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": Array [
           Object {
             "entityName": "EducationOrganizationIdentificationCode",
             "jsonPath": "$.identificationCodes[*].educationOrganizationIdentificationSystemDescriptor",
@@ -1472,14 +1516,14 @@ describe('when building domain entity subclass with common collection and descri
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
         "CommunityOrganizationId": true,
-        "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": true,
+        "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": true,
         "EducationOrganizationIdentificationCode.IdentificationCode": true,
       }
     `);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
         "CommunityOrganizationId": "CommunityOrganizationId",
-        "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": "EducationOrganizationIdentificationSystem",
+        "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": "EducationOrganizationIdentificationSystem",
         "EducationOrganizationIdentificationCode.IdentificationCode": "IdentificationCode",
       }
     `);
@@ -1624,7 +1668,7 @@ describe('when building domain entity with a descriptor with role name', () => {
     const mappings: Snapshotable = snapshotify(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
-        "AssessedGradeLevel": Array [
+        "AssessedGradeLevelDescriptor": Array [
           Object {
             "entityName": "Assessment",
             "jsonPath": "$.assessedGradeLevelDescriptor",
@@ -1642,13 +1686,13 @@ describe('when building domain entity with a descriptor with role name', () => {
     `);
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
-        "AssessedGradeLevel": true,
+        "AssessedGradeLevelDescriptor": true,
         "AssessmentIdentifier": true,
       }
     `);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
-        "AssessedGradeLevel": "AssessedGradeLevel",
+        "AssessedGradeLevelDescriptor": "AssessedGradeLevel",
         "AssessmentIdentifier": "AssessmentIdentifier",
       }
     `);
@@ -1696,7 +1740,7 @@ describe('when building domain entity with a descriptor collection with role nam
     const mappings: Snapshotable = snapshotify(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
-        "AssessedGradeLevel": Array [
+        "AssessedGradeLevelDescriptor": Array [
           Object {
             "entityName": "Assessment",
             "jsonPath": "$.assessedGradeLevels[*].gradeLevelDescriptor",
@@ -1714,13 +1758,13 @@ describe('when building domain entity with a descriptor collection with role nam
     `);
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
-        "AssessedGradeLevel": true,
+        "AssessedGradeLevelDescriptor": true,
         "AssessmentIdentifier": true,
       }
     `);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
-        "AssessedGradeLevel": "AssessedGradeLevel",
+        "AssessedGradeLevelDescriptor": "AssessedGradeLevel",
         "AssessmentIdentifier": "AssessmentIdentifier",
       }
     `);

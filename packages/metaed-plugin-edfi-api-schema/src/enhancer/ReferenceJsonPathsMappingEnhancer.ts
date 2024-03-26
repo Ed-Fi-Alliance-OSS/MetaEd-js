@@ -74,10 +74,16 @@ function matchupJsonPaths(
   const result: ReferenceJsonPathsMapping = {};
 
   Object.entries(fromReferencingEntity).forEach(([referencingPropertyPath, referencingJsonPathsInfo]) => {
-    invariant(fromReferencedEntity[referencingPropertyPath] != null);
     invariant(referencingJsonPathsInfo.jsonPathPropertyPairs.length === 1);
 
-    const matchingJsonPathsInfo: JsonPathsInfo = fromReferencedEntity[referencingPropertyPath];
+    const isDescriptor = referencingJsonPathsInfo.jsonPathPropertyPairs[0].sourceProperty.type === 'descriptor';
+    const descriptorCorrectedPath =
+      isDescriptor && !referencingPropertyPath.endsWith('Descriptor')
+        ? `${referencingPropertyPath}Descriptor`
+        : referencingPropertyPath;
+    invariant(fromReferencedEntity[descriptorCorrectedPath] != null);
+
+    const matchingJsonPathsInfo: JsonPathsInfo = fromReferencedEntity[descriptorCorrectedPath];
 
     // Only scalar paths are relevant
     if (

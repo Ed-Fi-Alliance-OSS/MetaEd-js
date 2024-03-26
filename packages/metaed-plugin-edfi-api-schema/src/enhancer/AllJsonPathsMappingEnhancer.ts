@@ -94,19 +94,33 @@ function jsonPathsForReferentialProperty(
   const jsonPathsMappingForThisProperty: JsonPathsMapping = {};
 
   referencedEntityApiMapping.flattenedIdentityProperties.forEach((flattenedIdentityProperty: FlattenedIdentityProperty) => {
+    const isDescriptor = flattenedIdentityProperty.identityProperty.type === 'descriptor';
     const identityPropertyApiMapping = (
       flattenedIdentityProperty.identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
     ).apiMapping;
 
     const specialPrefix: string = findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty);
 
+    const thing = flattenedIdentityProperty.propertyPaths.map(
+      // problem... this is mapping the suffix to all propertypaths in the array. It only needs to append to the property
+      // path corresponding to the identityProperty fullName.
+      (propertyPath) => {
+        if (!isDescriptor) {
+          return `${currentPropertyPath}.${propertyPath}` as MetaEdPropertyPath;
+        }
+        // for example GradingPeriod.GradingPeriod
+        if (propertyPath.endsWith(`.${flattenedIdentityProperty.identityProperty.fullPropertyName}`)) {
+          return `${currentPropertyPath}.${propertyPath}Descriptor` as MetaEdPropertyPath;
+        }
+        return `${currentPropertyPath}.${propertyPath}` as MetaEdPropertyPath;
+      },
+    );
+
     // Because these are flattened, we know they are non-reference properties
     jsonPathsForNonReference(
       flattenedIdentityProperty.identityProperty,
       jsonPathsMappingForThisProperty,
-      flattenedIdentityProperty.propertyPaths.map(
-        (propertyPath) => `${currentPropertyPath}.${propertyPath}` as MetaEdPropertyPath,
-      ),
+      thing,
       appendNextJsonPathName(
         currentJsonPath,
         identityPropertyApiMapping.fullName,
@@ -198,16 +212,11 @@ function jsonPathsForChoiceAndInlineCommonProperty(
 
     const childPropertyApiMapping = (allProperty.property.data.edfiApiSchema as EntityPropertyApiSchemaData).apiMapping;
 
-    const propertyPath =
-      allProperty.property.type === 'descriptor'
-        ? (`${currentPropertyPath}.${allProperty.property.fullPropertyName}Descriptor` as MetaEdPropertyPath)
-        : (`${currentPropertyPath}.${allProperty.property.fullPropertyName}` as MetaEdPropertyPath);
-
     jsonPathsFor(
       allProperty.property,
       concatenatedPropertyModifier,
       allJsonPathsMapping,
-      propertyPath,
+      `${currentPropertyPath}.${allProperty.property.fullPropertyName}` as MetaEdPropertyPath,
       appendNextJsonPathName(
         currentJsonPath,
         childPropertyApiMapping.topLevelName,
@@ -390,7 +399,7 @@ function jsonPathsFor(
       property,
       propertyModifier,
       allJsonPathsMapping,
-      currentPropertyPath,
+      `${currentPropertyPath}Descriptor` as MetaEdPropertyPath,
       currentJsonPath,
       isTopLevel,
     );
@@ -441,7 +450,11 @@ function jsonPathsFor(
     return;
   }
 
-  jsonPathsForNonReference(property, allJsonPathsMapping, [currentPropertyPath], currentJsonPath, isTopLevel);
+  const propertyPath =
+    property.type === 'descriptor'
+      ? (`${currentPropertyPath}Descriptor` as MetaEdPropertyPath)
+      : (currentPropertyPath as MetaEdPropertyPath);
+  jsonPathsForNonReference(property, allJsonPathsMapping, [propertyPath], currentJsonPath, isTopLevel);
 }
 
 /**

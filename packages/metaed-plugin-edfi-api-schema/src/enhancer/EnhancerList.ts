@@ -11,14 +11,14 @@ import { enhance as propertyCollectingEnhancer } from './PropertyCollectingEnhan
 import { enhance as subclassPropertyCollectingEnhancer } from './SubclassPropertyCollectingEnhancer';
 import { enhance as jsonSchemaEnhancerForInsert } from './JsonSchemaEnhancerForInsert';
 import { enhance as allJsonPathsMappingEnhancer } from './AllJsonPathsMappingEnhancer';
-import { enhance as mergeDirectiveEqualityConstraintEnhancer } from './MergeDirectiveEqualityConstraintEnhancer';
-import { enhance as columnConflictEqualityConstraintEnhancer } from './ColumnConflictEqualityConstraintEnhancer';
+// import { enhance as mergeDirectiveEqualityConstraintEnhancer } from './MergeDirectiveEqualityConstraintEnhancer';
+// import { enhance as columnConflictEqualityConstraintEnhancer } from './ColumnConflictEqualityConstraintEnhancer';
 import { enhance as resourceNameEnhancer } from './ResourceNameEnhancer';
 import { enhance as identityFullnameEnhancer } from './IdentityFullnameEnhancer';
 import { enhance as subclassIdentityFullnameEnhancer } from './SubclassIdentityFullnameEnhancer';
 import { enhance as documentPathsMappingEnhancer } from './DocumentPathsMappingEnhancer';
 import { enhance as identityPathOrderEnhancer } from './IdentityPathOrderEnhancer';
-import { enhance as referenceJsonPathsMappingEnhancer } from './ReferenceJsonPathsMappingEnhancer';
+// import { enhance as referenceJsonPathsMappingEnhancer } from './ReferenceJsonPathsMappingEnhancer';
 import { enhance as apiSchemaBuildingEnhancer } from './ApiSchemaBuildingEnhancer';
 
 export function enhancerList(): Enhancer[] {
@@ -35,14 +35,14 @@ export function enhancerList(): Enhancer[] {
     subclassApiEntityMappingEnhancer,
     jsonSchemaEnhancerForInsert,
     allJsonPathsMappingEnhancer,
-    mergeDirectiveEqualityConstraintEnhancer,
-    columnConflictEqualityConstraintEnhancer,
+    // mergeDirectiveEqualityConstraintEnhancer,
+    // columnConflictEqualityConstraintEnhancer,
     resourceNameEnhancer,
     identityFullnameEnhancer,
     subclassIdentityFullnameEnhancer,
     documentPathsMappingEnhancer,
     identityPathOrderEnhancer,
-    referenceJsonPathsMappingEnhancer,
+    // referenceJsonPathsMappingEnhancer,
     apiSchemaBuildingEnhancer,
   ];
 }

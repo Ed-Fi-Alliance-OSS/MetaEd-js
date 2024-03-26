@@ -50,6 +50,9 @@ export type EntityApiSchemaData = {
    */
   allJsonPathsMapping: JsonPathsMapping;
 
+  /** TODO */
+  mergePathsMapping: JsonPathsMapping;
+
   /**
    * A list of EqualityConstraints to be applied to an Ed-Fi API document. An EqualityConstraint
    * is a source/target JsonPath pair.
