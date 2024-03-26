@@ -16,6 +16,15 @@ export type ApiEntityMapping = {
   flattenedIdentityProperties: FlattenedIdentityProperty[];
 
   /**
+   * The non-reference properties that make up the identity
+   * of the entity, in sorted order. Includes the paths showing
+   * how the property came to be part of the identity. Does not
+   * include properties that have been "merged away" by merge
+   * directives
+   */
+  flattenedIdentityPropertiesOmittingMerges: FlattenedIdentityProperty[];
+
+  /**
    * The ReferenceGroups of all of the properties of the entity.
    */
   referenceGroups: ReferenceGroup[];
@@ -39,6 +48,7 @@ export type ApiEntityMapping = {
 export function newApiEntityMapping(): ApiEntityMapping {
   return {
     flattenedIdentityProperties: [],
+    flattenedIdentityPropertiesOmittingMerges: [],
     referenceGroups: [],
     descriptorCollectedApiProperties: [],
     superclass: null,

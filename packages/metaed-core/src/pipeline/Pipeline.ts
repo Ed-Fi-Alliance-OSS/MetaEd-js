@@ -99,7 +99,7 @@ export async function executePipeline(state: State): Promise<{ state: State; fai
 
   if (state.pipelineOptions.runGenerators && !failure) {
     Logger.info('Writing output');
-    if (!writeOutput(state)) return { state, failure: true };
+    if (!(await writeOutput(state))) return { state, failure: true };
     await nextMacroTask();
   }
 

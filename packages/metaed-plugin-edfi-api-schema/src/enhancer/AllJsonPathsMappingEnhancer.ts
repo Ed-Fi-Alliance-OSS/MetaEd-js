@@ -93,55 +93,57 @@ function jsonPathsForReferentialProperty(
 
   const jsonPathsMappingForThisProperty: JsonPathsMapping = {};
 
-  referencedEntityApiMapping.flattenedIdentityProperties.forEach((flattenedIdentityProperty: FlattenedIdentityProperty) => {
-    const isDescriptor = flattenedIdentityProperty.identityProperty.type === 'descriptor';
-    const identityPropertyApiMapping = (
-      flattenedIdentityProperty.identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
-    ).apiMapping;
+  referencedEntityApiMapping.flattenedIdentityPropertiesOmittingMerges.forEach(
+    (flattenedIdentityProperty: FlattenedIdentityProperty) => {
+      const isDescriptor = flattenedIdentityProperty.identityProperty.type === 'descriptor';
+      const identityPropertyApiMapping = (
+        flattenedIdentityProperty.identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
+      ).apiMapping;
 
-    const specialPrefix: string = findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty);
+      const specialPrefix: string = findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty);
 
-    const propertyPathsFromIdentityProperty: MetaEdPropertyPath[] = flattenedIdentityProperty.propertyPaths.map(
-      (propertyPath) => {
-        if (!isDescriptor) {
+      const propertyPathsFromIdentityProperty: MetaEdPropertyPath[] = flattenedIdentityProperty.propertyPaths.map(
+        (propertyPath) => {
+          if (!isDescriptor) {
+            return `${currentPropertyPath}.${propertyPath}` as MetaEdPropertyPath;
+          }
+          if (propertyPath.endsWith(`.${flattenedIdentityProperty.identityProperty.fullPropertyName}`)) {
+            return `${currentPropertyPath}.${propertyPath}Descriptor` as MetaEdPropertyPath;
+          }
           return `${currentPropertyPath}.${propertyPath}` as MetaEdPropertyPath;
-        }
-        if (propertyPath.endsWith(`.${flattenedIdentityProperty.identityProperty.fullPropertyName}`)) {
-          return `${currentPropertyPath}.${propertyPath}Descriptor` as MetaEdPropertyPath;
-        }
-        return `${currentPropertyPath}.${propertyPath}` as MetaEdPropertyPath;
-      },
-    );
+        },
+      );
 
-    // Because these are flattened, we know they are non-reference properties
-    jsonPathsForNonReference(
-      flattenedIdentityProperty.identityProperty,
-      jsonPathsMappingForThisProperty,
-      propertyPathsFromIdentityProperty,
-      appendNextJsonPathName(
-        currentJsonPath,
-        identityPropertyApiMapping.fullName,
+      // Because these are flattened, we know they are non-reference properties
+      jsonPathsForNonReference(
         flattenedIdentityProperty.identityProperty,
-        propertyModifier,
-        { singularizeName: false, specialPrefix },
-      ),
-      false,
-    );
+        jsonPathsMappingForThisProperty,
+        propertyPathsFromIdentityProperty,
+        appendNextJsonPathName(
+          currentJsonPath,
+          identityPropertyApiMapping.fullName,
+          flattenedIdentityProperty.identityProperty,
+          propertyModifier,
+          { singularizeName: false, specialPrefix },
+        ),
+        false,
+      );
 
-    // Take the JsonPaths for entire property and apply to allJsonPathsMapping for the property,
-    // then add those collected results individually to allJsonPathsMapping
-    Object.values(jsonPathsMappingForThisProperty)
-      .flat()
-      .forEach((jsonPathsInfo: JsonPathsInfo) => {
-        jsonPathsInfo.jsonPathPropertyPairs
-          .map((jppp) => jppp.jsonPath)
-          .forEach((jsonPath: JsonPath) => {
-            // This relies on deduping in addJsonPathTo(), because we can expect multiple property paths to a json path
-            addJsonPathTo(allJsonPathsMapping, [currentPropertyPath], jsonPath, isTopLevel, property);
-          });
-      });
-    Object.assign(allJsonPathsMapping, jsonPathsMappingForThisProperty);
-  });
+      // Take the JsonPaths for entire property and apply to allJsonPathsMapping for the property,
+      // then add those collected results individually to allJsonPathsMapping
+      Object.values(jsonPathsMappingForThisProperty)
+        .flat()
+        .forEach((jsonPathsInfo: JsonPathsInfo) => {
+          jsonPathsInfo.jsonPathPropertyPairs
+            .map((jppp) => jppp.jsonPath)
+            .forEach((jsonPath: JsonPath) => {
+              // This relies on deduping in addJsonPathTo(), because we can expect multiple property paths to a json path
+              addJsonPathTo(allJsonPathsMapping, [currentPropertyPath], jsonPath, isTopLevel, property);
+            });
+        });
+      Object.assign(allJsonPathsMapping, jsonPathsMappingForThisProperty);
+    },
+  );
 }
 
 /**

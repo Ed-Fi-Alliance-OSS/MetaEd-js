@@ -766,8 +766,23 @@ describe('when a role named merge follows a role named merge with school year en
     enhance(metaEd);
   });
 
-  it('should not have any equality constraints', () => {
+  it('should have any equality constraints', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('ReportCard');
-    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "sourceJsonPath": "$.grades[*].gradeReference.gradingPeriodIdentity",
+          "targetJsonPath": "$.gradingPeriodReference.gradingPeriodIdentity",
+        },
+        Object {
+          "sourceJsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolId",
+          "targetJsonPath": "$.gradingPeriodReference.schoolId",
+        },
+        Object {
+          "sourceJsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolYear",
+          "targetJsonPath": "$.gradingPeriodReference.schoolYear",
+        },
+      ]
+    `);
   });
 });

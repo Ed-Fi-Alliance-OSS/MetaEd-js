@@ -13,6 +13,19 @@
       ],
       "console": "integratedTerminal",
       "sourceMaps": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "MetaEd console using metaed.json.example2",
+      "program": "${workspaceRoot}/packages/metaed-console/dist/index.js",
+      "args": [
+        "-a",
+        "-c",
+        "${workspaceRoot}/packages/metaed-console/src/metaed.json.example2"
+      ],
+      "console": "integratedTerminal",
+      "sourceMaps": true
     }
   ]
 }

@@ -32741,6 +32741,22 @@
           },
           "equalityConstraints": [
             {
+              "sourceJsonPath": "$.grades[*].gradeReference.gradingPeriodDescriptor",
+              "targetJsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor"
+            },
+            {
+              "sourceJsonPath": "$.grades[*].gradeReference.gradingPeriodName",
+              "targetJsonPath": "$.gradingPeriodReference.gradingPeriodName"
+            },
+            {
+              "sourceJsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolId",
+              "targetJsonPath": "$.gradingPeriodReference.schoolId"
+            },
+            {
+              "sourceJsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolYear",
+              "targetJsonPath": "$.gradingPeriodReference.schoolYear"
+            },
+            {
               "sourceJsonPath": "$.grades[*].gradeReference.studentUniqueId",
               "targetJsonPath": "$.studentReference.studentUniqueId"
             },
@@ -33087,6 +33103,10 @@
               {
                 "identityJsonPath": "$.gradingPeriodReference.gradingPeriodName",
                 "referenceJsonPath": "$.grades[*].gradeReference.gradingPeriodName"
+              },
+              {
+                "identityJsonPath": "$.gradingPeriodReference.schoolId",
+                "referenceJsonPath": "$.grades[*].gradeReference.gradingPeriodSchoolId"
               },
               {
                 "identityJsonPath": "$.gradingPeriodReference.schoolYear",
@@ -58587,16 +58607,16 @@
             ],
             "SurveySectionResponse": [
               {
-                "identityJsonPath": "$.surveyResponseReference.surveyResponseIdentifier",
-                "referenceJsonPath": "$.surveySectionResponseReference.surveyResponseIdentifier"
-              },
-              {
-                "identityJsonPath": "$.surveySectionReference.namespace",
+                "identityJsonPath": "$.surveyResponseReference.namespace",
                 "referenceJsonPath": "$.surveySectionResponseReference.namespace"
               },
               {
-                "identityJsonPath": "$.surveySectionReference.surveyIdentifier",
+                "identityJsonPath": "$.surveyResponseReference.surveyIdentifier",
                 "referenceJsonPath": "$.surveySectionResponseReference.surveyIdentifier"
+              },
+              {
+                "identityJsonPath": "$.surveyResponseReference.surveyResponseIdentifier",
+                "referenceJsonPath": "$.surveySectionResponseReference.surveyResponseIdentifier"
               },
               {
                 "identityJsonPath": "$.surveySectionReference.surveySectionTitle",
@@ -58736,16 +58756,16 @@
             ],
             "SurveySectionResponse": [
               {
-                "identityJsonPath": "$.surveyResponseReference.surveyResponseIdentifier",
-                "referenceJsonPath": "$.surveySectionResponseReference.surveyResponseIdentifier"
-              },
-              {
-                "identityJsonPath": "$.surveySectionReference.namespace",
+                "identityJsonPath": "$.surveyResponseReference.namespace",
                 "referenceJsonPath": "$.surveySectionResponseReference.namespace"
               },
               {
-                "identityJsonPath": "$.surveySectionReference.surveyIdentifier",
+                "identityJsonPath": "$.surveyResponseReference.surveyIdentifier",
                 "referenceJsonPath": "$.surveySectionResponseReference.surveyIdentifier"
+              },
+              {
+                "identityJsonPath": "$.surveyResponseReference.surveyResponseIdentifier",
+                "referenceJsonPath": "$.surveySectionResponseReference.surveyResponseIdentifier"
               },
               {
                 "identityJsonPath": "$.surveySectionReference.surveySectionTitle",

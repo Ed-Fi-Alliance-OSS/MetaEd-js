@@ -62,19 +62,28 @@ function isMergedAway(property: EntityProperty, propertyChain: EntityProperty[])
  * Flatten a graph of ReferenceComponents into an array of ReferenceElements, discarding any
  * ReferenceGroups that are part of the graph but preserving the property and property path information.
  *
- * Omits properties that have been "merged away", meaning the property is marked as a merge directive source
+ * Optionally omits properties that have been "merged away", meaning the property is marked as a merge directive source
  * along this property chain.
  */
-function flattenReferenceElementsFromComponent(
-  referenceComponent: ReferenceComponent,
-  currentPropertyPath: MetaEdPropertyPath,
-  currentPropertyChain: EntityProperty[],
-  propertyPathAccumulator: MetaEdPropertyPath[],
-  propertyChainAccumulator: EntityProperty[],
-  referenceElementsAccumulator: ReferenceElementsWithPaths,
-) {
+function flattenReferenceElementsFromComponent({
+  referenceComponent,
+  currentPropertyPath,
+  currentPropertyChain,
+  propertyPathAccumulator,
+  propertyChainAccumulator,
+  referenceElementsAccumulator,
+  omitMergedAwayProperties,
+}: {
+  referenceComponent: ReferenceComponent;
+  currentPropertyPath: MetaEdPropertyPath;
+  currentPropertyChain: EntityProperty[];
+  propertyPathAccumulator: MetaEdPropertyPath[];
+  propertyChainAccumulator: EntityProperty[];
+  referenceElementsAccumulator: ReferenceElementsWithPaths;
+  omitMergedAwayProperties: boolean;
+}) {
   if (isReferenceElement(referenceComponent)) {
-    if (isMergedAway(referenceComponent.sourceProperty, currentPropertyChain)) return;
+    if (omitMergedAwayProperties && isMergedAway(referenceComponent.sourceProperty, currentPropertyChain)) return;
 
     referenceElementsAccumulator.set(referenceComponent, {
       propertyPaths: propertyPathAccumulator.concat(
@@ -84,7 +93,7 @@ function flattenReferenceElementsFromComponent(
     });
   } else {
     (referenceComponent as ReferenceGroup).referenceComponents.forEach((subReferenceComponent) => {
-      if (isMergedAway(subReferenceComponent.sourceProperty, currentPropertyChain)) return;
+      if (omitMergedAwayProperties && isMergedAway(subReferenceComponent.sourceProperty, currentPropertyChain)) return;
 
       if (isReferenceElement(subReferenceComponent)) {
         const subReferenceElement: ReferenceElement = subReferenceComponent as ReferenceElement;
@@ -103,14 +112,15 @@ function flattenReferenceElementsFromComponent(
           subReferenceComponent.sourceProperty.fullPropertyName as MetaEdPropertyPath,
         );
 
-        flattenReferenceElementsFromComponent(
-          subReferenceComponent,
-          nextPropertyPath,
-          [...currentPropertyChain, subReferenceComponent.sourceProperty],
-          propertyPathAccumulator.concat(nextPropertyPath),
+        flattenReferenceElementsFromComponent({
+          referenceComponent: subReferenceComponent,
+          currentPropertyPath: nextPropertyPath,
+          currentPropertyChain: [...currentPropertyChain, subReferenceComponent.sourceProperty],
+          propertyPathAccumulator: propertyPathAccumulator.concat(nextPropertyPath),
           propertyChainAccumulator,
           referenceElementsAccumulator,
-        );
+          omitMergedAwayProperties,
+        });
       }
     });
   }
@@ -124,7 +134,13 @@ function flattenReferenceElementsFromComponent(
  * Omits properties that have been "merged away", meaning the property is marked as a merge directive source
  * along this property chain.
  */
-export function flattenedIdentityPropertiesFrom(identityProperties: EntityProperty[]): FlattenedIdentityProperty[] {
+export function flattenIdentityPropertiesFrom({
+  identityProperties,
+  omitMergedAwayProperties,
+}: {
+  identityProperties: EntityProperty[];
+  omitMergedAwayProperties: boolean;
+}): FlattenedIdentityProperty[] {
   const referenceElementsWithPaths: ReferenceElementsWithPaths = new Map();
 
   identityProperties.forEach((identityProperty) => {
@@ -137,14 +153,15 @@ export function flattenedIdentityPropertiesFrom(identityProperties: EntityProper
     const initialPropertyChain: EntityProperty[] =
       identityProperty.type === 'association' || identityProperty.type === 'domainEntity' ? [identityProperty] : [];
 
-    flattenReferenceElementsFromComponent(
-      identityProperty.data.edfiApiSchema.referenceComponent,
-      initialPropertyPath,
-      initialPropertyChain,
-      initialPropertyPath === '' ? [] : [initialPropertyPath],
-      initialPropertyChain,
-      referenceElementsWithPaths,
-    );
+    flattenReferenceElementsFromComponent({
+      referenceComponent: identityProperty.data.edfiApiSchema.referenceComponent,
+      currentPropertyPath: initialPropertyPath,
+      currentPropertyChain: initialPropertyChain,
+      propertyPathAccumulator: initialPropertyPath === '' ? [] : [initialPropertyPath],
+      propertyChainAccumulator: initialPropertyChain,
+      referenceElementsAccumulator: referenceElementsWithPaths,
+      omitMergedAwayProperties,
+    });
   });
 
   const result: FlattenedIdentityProperty[] = [];

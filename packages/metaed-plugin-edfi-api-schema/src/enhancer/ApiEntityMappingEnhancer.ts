@@ -3,7 +3,7 @@ import { ApiEntityMapping, NoApiEntityMapping } from '../model/ApiEntityMapping'
 import {
   superclassFor,
   descriptorCollectedApiPropertiesFrom,
-  flattenedIdentityPropertiesFrom,
+  flattenIdentityPropertiesFrom,
   referenceGroupsFrom,
 } from './ApiEntityMappingEnhancerBase';
 import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
@@ -17,7 +17,14 @@ function buildApiEntityMapping(entity: TopLevelEntity): ApiEntityMapping {
   );
   const properties = [...entity.properties].sort((a, b) => a.fullPropertyName.localeCompare(b.fullPropertyName));
   return {
-    flattenedIdentityProperties: flattenedIdentityPropertiesFrom(identityProperties),
+    flattenedIdentityProperties: flattenIdentityPropertiesFrom({
+      identityProperties,
+      omitMergedAwayProperties: false,
+    }),
+    flattenedIdentityPropertiesOmittingMerges: flattenIdentityPropertiesFrom({
+      identityProperties,
+      omitMergedAwayProperties: true,
+    }),
     referenceGroups: referenceGroupsFrom(properties),
     descriptorCollectedApiProperties: descriptorCollectedApiPropertiesFrom(entity),
     superclass: superclassFor(entity),
