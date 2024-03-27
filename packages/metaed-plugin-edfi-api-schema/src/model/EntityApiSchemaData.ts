@@ -51,8 +51,13 @@ export type EntityApiSchemaData = {
   allJsonPathsMapping: JsonPathsMapping;
 
   /**
-   * TODO
-   * */
+   * A mapping of dot-separated MetaEd property paths to corresponding JsonPaths to data elements
+   * in the API document.
+   *
+   * Similar to allJsonPathsMapping in structure, but preserves original MetaEd naming
+   *
+   * The JsonPaths array is always is sorted order.
+   */
   mergeJsonPathsMapping: JsonPathsMapping;
 
   /**

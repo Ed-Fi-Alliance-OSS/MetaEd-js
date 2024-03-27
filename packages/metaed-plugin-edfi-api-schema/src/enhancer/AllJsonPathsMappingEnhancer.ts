@@ -101,14 +101,11 @@ function jsonPathsForReferentialProperty(
 
     const specialPrefix: string = findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty);
 
-    const thing = flattenedIdentityProperty.propertyPaths.map(
-      // problem... this is mapping the suffix to all propertypaths in the array. It only needs to append to the property
-      // path corresponding to the identityProperty fullName.
+    const propertyPathsFromIdentityProperty: MetaEdPropertyPath[] = flattenedIdentityProperty.propertyPaths.map(
       (propertyPath) => {
         if (!isDescriptor) {
           return `${currentPropertyPath}.${propertyPath}` as MetaEdPropertyPath;
         }
-        // for example GradingPeriod.GradingPeriod
         if (propertyPath.endsWith(`.${flattenedIdentityProperty.identityProperty.fullPropertyName}`)) {
           return `${currentPropertyPath}.${propertyPath}Descriptor` as MetaEdPropertyPath;
         }
@@ -120,7 +117,7 @@ function jsonPathsForReferentialProperty(
     jsonPathsForNonReference(
       flattenedIdentityProperty.identityProperty,
       jsonPathsMappingForThisProperty,
-      thing,
+      propertyPathsFromIdentityProperty,
       appendNextJsonPathName(
         currentJsonPath,
         identityPropertyApiMapping.fullName,
@@ -449,12 +446,18 @@ function jsonPathsFor(
     );
     return;
   }
+  if (property.type === 'descriptor') {
+    jsonPathsForNonReference(
+      property,
+      allJsonPathsMapping,
+      [`${currentPropertyPath}Descriptor` as MetaEdPropertyPath],
+      currentJsonPath,
+      isTopLevel,
+    );
+    return;
+  }
 
-  const propertyPath =
-    property.type === 'descriptor'
-      ? (`${currentPropertyPath}Descriptor` as MetaEdPropertyPath)
-      : (currentPropertyPath as MetaEdPropertyPath);
-  jsonPathsForNonReference(property, allJsonPathsMapping, [propertyPath], currentJsonPath, isTopLevel);
+  jsonPathsForNonReference(property, allJsonPathsMapping, [currentPropertyPath], currentJsonPath, isTopLevel);
 }
 
 /**

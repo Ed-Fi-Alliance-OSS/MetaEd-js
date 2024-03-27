@@ -15,7 +15,10 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     const identityFullnames: MetaEdPropertyFullName[] = [];
 
     (entity as TopLevelEntity).properties.forEach((property) => {
-      if (property.isPartOfIdentity) identityFullnames.push(property.fullPropertyName as MetaEdPropertyFullName);
+      if (property.isPartOfIdentity)
+        identityFullnames.push(
+          `${property.fullPropertyName}${property.type === 'descriptor' ? 'Descriptor' : ''}` as MetaEdPropertyFullName,
+        );
     });
 
     (entity.data.edfiApiSchema as EntityApiSchemaData).identityFullnames = identityFullnames;
