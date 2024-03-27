@@ -61,7 +61,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     const mappings: Snapshotable = snapshotify(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
-        "Accommodation": Array [
+        "AccommodationDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.accommodations[*].accommodationDescriptor",
@@ -82,14 +82,14 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "AdministrationEndDate",
           },
         ],
-        "AdministrationEnvironment": Array [
+        "AdministrationEnvironmentDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.administrationEnvironmentDescriptor",
             "propertyName": "AdministrationEnvironment",
           },
         ],
-        "AdministrationLanguage": Array [
+        "AdministrationLanguageDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.administrationLanguageDescriptor",
@@ -122,7 +122,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "Namespace",
           },
         ],
-        "EventCircumstance": Array [
+        "EventCircumstanceDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.eventCircumstanceDescriptor",
@@ -136,14 +136,14 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "Description",
           },
         ],
-        "PerformanceLevel.AssessmentReportingMethod": Array [
+        "PerformanceLevel.AssessmentReportingMethodDescriptor": Array [
           Object {
             "entityName": "PerformanceLevel",
             "jsonPath": "$.performanceLevels[*].assessmentReportingMethodDescriptor",
             "propertyName": "AssessmentReportingMethod",
           },
         ],
-        "PerformanceLevel.PerformanceLevel": Array [
+        "PerformanceLevel.PerformanceLevelDescriptor": Array [
           Object {
             "entityName": "PerformanceLevel",
             "jsonPath": "$.performanceLevels[*].performanceLevelDescriptor",
@@ -157,21 +157,21 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "PerformanceLevelMet",
           },
         ],
-        "PlatformType": Array [
+        "PlatformTypeDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.platformTypeDescriptor",
             "propertyName": "PlatformType",
           },
         ],
-        "ReasonNotTested": Array [
+        "ReasonNotTestedDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.reasonNotTestedDescriptor",
             "propertyName": "ReasonNotTested",
           },
         ],
-        "RetestIndicator": Array [
+        "RetestIndicatorDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.retestIndicatorDescriptor",
@@ -185,7 +185,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "SchoolYear",
           },
         ],
-        "ScoreResult.AssessmentReportingMethod": Array [
+        "ScoreResult.AssessmentReportingMethodDescriptor": Array [
           Object {
             "entityName": "ScoreResult",
             "jsonPath": "$.scoreResults[*].assessmentReportingMethodDescriptor",
@@ -199,7 +199,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "Result",
           },
         ],
-        "ScoreResult.ResultDatatypeType": Array [
+        "ScoreResult.ResultDatatypeTypeDescriptor": Array [
           Object {
             "entityName": "ScoreResult",
             "jsonPath": "$.scoreResults[*].resultDatatypeTypeDescriptor",
@@ -284,7 +284,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "IdentificationCode",
           },
         ],
-        "StudentAssessmentItem.AssessmentItemResult": Array [
+        "StudentAssessmentItem.AssessmentItemResultDescriptor": Array [
           Object {
             "entityName": "StudentAssessmentItem",
             "jsonPath": "$.items[*].assessmentItemResultDescriptor",
@@ -312,7 +312,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "RawScoreResult",
           },
         ],
-        "StudentAssessmentItem.ResponseIndicator": Array [
+        "StudentAssessmentItem.ResponseIndicatorDescriptor": Array [
           Object {
             "entityName": "StudentAssessmentItem",
             "jsonPath": "$.items[*].responseIndicatorDescriptor",
@@ -376,14 +376,14 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "IdentificationCode",
           },
         ],
-        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethod": Array [
+        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethodDescriptor": Array [
           Object {
             "entityName": "PerformanceLevel",
             "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].assessmentReportingMethodDescriptor",
             "propertyName": "AssessmentReportingMethod",
           },
         ],
-        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevel": Array [
+        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelDescriptor": Array [
           Object {
             "entityName": "PerformanceLevel",
             "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelDescriptor",
@@ -397,7 +397,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "PerformanceLevelMet",
           },
         ],
-        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethod": Array [
+        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethodDescriptor": Array [
           Object {
             "entityName": "ScoreResult",
             "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].assessmentReportingMethodDescriptor",
@@ -411,14 +411,14 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "Result",
           },
         ],
-        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeType": Array [
+        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeTypeDescriptor": Array [
           Object {
             "entityName": "ScoreResult",
             "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].resultDatatypeTypeDescriptor",
             "propertyName": "ResultDatatypeType",
           },
         ],
-        "WhenAssessedGradeLevel": Array [
+        "WhenAssessedGradeLevelDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.whenAssessedGradeLevelDescriptor",
@@ -429,26 +429,26 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     `);
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
-        "Accommodation": true,
+        "AccommodationDescriptor": true,
         "AdministrationDate": true,
         "AdministrationEndDate": true,
-        "AdministrationEnvironment": true,
-        "AdministrationLanguage": true,
+        "AdministrationEnvironmentDescriptor": true,
+        "AdministrationLanguageDescriptor": true,
         "Assessment": true,
         "Assessment.AssessmentIdentifier": false,
         "Assessment.Namespace": false,
-        "EventCircumstance": true,
+        "EventCircumstanceDescriptor": true,
         "EventDescription": true,
-        "PerformanceLevel.AssessmentReportingMethod": true,
-        "PerformanceLevel.PerformanceLevel": true,
+        "PerformanceLevel.AssessmentReportingMethodDescriptor": true,
+        "PerformanceLevel.PerformanceLevelDescriptor": true,
         "PerformanceLevel.PerformanceLevelMet": true,
-        "PlatformType": true,
-        "ReasonNotTested": true,
-        "RetestIndicator": true,
+        "PlatformTypeDescriptor": true,
+        "ReasonNotTestedDescriptor": true,
+        "RetestIndicatorDescriptor": true,
         "SchoolYear": true,
-        "ScoreResult.AssessmentReportingMethod": true,
+        "ScoreResult.AssessmentReportingMethodDescriptor": true,
         "ScoreResult.Result": true,
-        "ScoreResult.ResultDatatypeType": true,
+        "ScoreResult.ResultDatatypeTypeDescriptor": true,
         "SerialNumber": true,
         "Student": true,
         "Student.StudentUniqueId": false,
@@ -458,64 +458,64 @@ describe('when generating api schema targeting tech version 5.3 with data standa
         "StudentAssessmentItem.AssessmentItem.Assessment.AssessmentIdentifier": false,
         "StudentAssessmentItem.AssessmentItem.Assessment.Namespace": false,
         "StudentAssessmentItem.AssessmentItem.IdentificationCode": false,
-        "StudentAssessmentItem.AssessmentItemResult": true,
+        "StudentAssessmentItem.AssessmentItemResultDescriptor": true,
         "StudentAssessmentItem.AssessmentResponse": true,
         "StudentAssessmentItem.DescriptiveFeedback": true,
         "StudentAssessmentItem.RawScoreResult": true,
-        "StudentAssessmentItem.ResponseIndicator": true,
+        "StudentAssessmentItem.ResponseIndicatorDescriptor": true,
         "StudentAssessmentItem.TimeAssessed": true,
         "StudentObjectiveAssessment.ObjectiveAssessment": true,
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment": false,
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment.AssessmentIdentifier": false,
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment.Namespace": false,
         "StudentObjectiveAssessment.ObjectiveAssessment.IdentificationCode": false,
-        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethod": true,
-        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevel": true,
+        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethodDescriptor": true,
+        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelDescriptor": true,
         "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelMet": true,
-        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethod": true,
+        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethodDescriptor": true,
         "StudentObjectiveAssessment.ScoreResult.Result": true,
-        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeType": true,
-        "WhenAssessedGradeLevel": true,
+        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeTypeDescriptor": true,
+        "WhenAssessedGradeLevelDescriptor": true,
       }
     `);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
-        "Accommodation": "Accommodation",
+        "AccommodationDescriptor": "Accommodation",
         "AdministrationDate": "AdministrationDate",
         "AdministrationEndDate": "AdministrationEndDate",
-        "AdministrationEnvironment": "AdministrationEnvironment",
-        "AdministrationLanguage": "AdministrationLanguage",
+        "AdministrationEnvironmentDescriptor": "AdministrationEnvironment",
+        "AdministrationLanguageDescriptor": "AdministrationLanguage",
         "Assessment": "Assessment",
-        "EventCircumstance": "EventCircumstance",
+        "EventCircumstanceDescriptor": "EventCircumstance",
         "EventDescription": "EventDescription",
-        "PerformanceLevel.AssessmentReportingMethod": "AssessmentReportingMethod",
-        "PerformanceLevel.PerformanceLevel": "PerformanceLevel",
+        "PerformanceLevel.AssessmentReportingMethodDescriptor": "AssessmentReportingMethod",
+        "PerformanceLevel.PerformanceLevelDescriptor": "PerformanceLevel",
         "PerformanceLevel.PerformanceLevelMet": "PerformanceLevelMet",
-        "PlatformType": "PlatformType",
-        "ReasonNotTested": "ReasonNotTested",
-        "RetestIndicator": "RetestIndicator",
+        "PlatformTypeDescriptor": "PlatformType",
+        "ReasonNotTestedDescriptor": "ReasonNotTested",
+        "RetestIndicatorDescriptor": "RetestIndicator",
         "SchoolYear": "SchoolYear",
-        "ScoreResult.AssessmentReportingMethod": "AssessmentReportingMethod",
+        "ScoreResult.AssessmentReportingMethodDescriptor": "AssessmentReportingMethod",
         "ScoreResult.Result": "Result",
-        "ScoreResult.ResultDatatypeType": "ResultDatatypeType",
+        "ScoreResult.ResultDatatypeTypeDescriptor": "ResultDatatypeType",
         "SerialNumber": "SerialNumber",
         "Student": "Student",
         "StudentAssessmentIdentifier": "StudentAssessmentIdentifier",
         "StudentAssessmentItem.AssessmentItem": "AssessmentItem",
-        "StudentAssessmentItem.AssessmentItemResult": "AssessmentItemResult",
+        "StudentAssessmentItem.AssessmentItemResultDescriptor": "AssessmentItemResult",
         "StudentAssessmentItem.AssessmentResponse": "AssessmentResponse",
         "StudentAssessmentItem.DescriptiveFeedback": "DescriptiveFeedback",
         "StudentAssessmentItem.RawScoreResult": "RawScoreResult",
-        "StudentAssessmentItem.ResponseIndicator": "ResponseIndicator",
+        "StudentAssessmentItem.ResponseIndicatorDescriptor": "ResponseIndicator",
         "StudentAssessmentItem.TimeAssessed": "TimeAssessed",
         "StudentObjectiveAssessment.ObjectiveAssessment": "ObjectiveAssessment",
-        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethod": "AssessmentReportingMethod",
-        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevel": "PerformanceLevel",
+        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethodDescriptor": "AssessmentReportingMethod",
+        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelDescriptor": "PerformanceLevel",
         "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelMet": "PerformanceLevelMet",
-        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethod": "AssessmentReportingMethod",
+        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethodDescriptor": "AssessmentReportingMethod",
         "StudentObjectiveAssessment.ScoreResult.Result": "Result",
-        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeType": "ResultDatatypeType",
-        "WhenAssessedGradeLevel": "WhenAssessedGradeLevel",
+        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeTypeDescriptor": "ResultDatatypeType",
+        "WhenAssessedGradeLevelDescriptor": "WhenAssessedGradeLevel",
       }
     `);
   });
@@ -681,7 +681,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "SessionName",
           },
         ],
-        "Term": Array [
+        "TermDescriptor": Array [
           Object {
             "entityName": "Session",
             "jsonPath": "$.termDescriptor",
@@ -715,7 +715,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
         "School.SchoolId": false,
         "SchoolYear": true,
         "SessionName": true,
-        "Term": true,
+        "TermDescriptor": true,
         "TotalInstructionalDays": true,
       }
     `);
@@ -728,7 +728,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
         "School": "School",
         "SchoolYear": "SchoolYear",
         "SessionName": "SessionName",
-        "Term": "Term",
+        "TermDescriptor": "Term",
         "TotalInstructionalDays": "TotalInstructionalDays",
       }
     `);
@@ -759,7 +759,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     const mappings: Snapshotable = snapshotify(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
-        "CompetencyLevel": Array [
+        "CompetencyLevelDescriptor": Array [
           Object {
             "entityName": "StudentCompetencyObjective",
             "jsonPath": "$.competencyLevelDescriptor",
@@ -980,7 +980,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "ProgramName",
           },
         ],
-        "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramType": Array [
+        "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramTypeDescriptor": Array [
           Object {
             "entityName": "Program",
             "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
@@ -1185,7 +1185,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     `);
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
-        "CompetencyLevel": true,
+        "CompetencyLevelDescriptor": true,
         "CompetencyObjective": true,
         "CompetencyObjective.EducationOrganization": false,
         "CompetencyObjective.EducationOrganization.EducationOrganizationId": false,
@@ -1208,7 +1208,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization.EducationOrganizationId": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramName": false,
-        "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramType": false,
+        "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramTypeDescriptor": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student.StudentUniqueId": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation": true,
@@ -1230,7 +1230,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     `);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
-        "CompetencyLevel": "CompetencyLevel",
+        "CompetencyLevelDescriptor": "CompetencyLevel",
         "CompetencyObjective": "CompetencyObjective",
         "DiagnosticStatement": "DiagnosticStatement",
         "GradingPeriod": "GradingPeriod",
@@ -1261,7 +1261,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     const mappings: Snapshotable = snapshotify(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
-        "CompetencyLevel": Array [
+        "CompetencyLevelDescriptor": Array [
           Object {
             "entityName": "StudentLearningObjective",
             "jsonPath": "$.competencyLevelDescriptor",
@@ -1463,7 +1463,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "ProgramName",
           },
         ],
-        "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramType": Array [
+        "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramTypeDescriptor": Array [
           Object {
             "entityName": "Program",
             "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
@@ -1668,7 +1668,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     `);
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
-        "CompetencyLevel": true,
+        "CompetencyLevelDescriptor": true,
         "DiagnosticStatement": true,
         "GradingPeriod": true,
         "GradingPeriod.GradingPeriod": false,
@@ -1689,7 +1689,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization": false,
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization.EducationOrganizationId": false,
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramName": false,
-        "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramType": false,
+        "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramTypeDescriptor": false,
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student": false,
         "StudentLearningObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student.StudentUniqueId": false,
         "StudentLearningObjectiveSectionOrProgramChoice.StudentSectionAssociation": true,
@@ -1711,7 +1711,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
     `);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
-        "CompetencyLevel": "CompetencyLevel",
+        "CompetencyLevelDescriptor": "CompetencyLevel",
         "DiagnosticStatement": "DiagnosticStatement",
         "GradingPeriod": "GradingPeriod",
         "LearningObjective": "LearningObjective",
@@ -1784,7 +1784,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
     const mappings: Snapshotable = snapshotify(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
-        "Accommodation": Array [
+        "AccommodationDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.accommodations[*].accommodationDescriptor",
@@ -1805,14 +1805,14 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "AdministrationEndDate",
           },
         ],
-        "AdministrationEnvironment": Array [
+        "AdministrationEnvironmentDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.administrationEnvironmentDescriptor",
             "propertyName": "AdministrationEnvironment",
           },
         ],
-        "AdministrationLanguage": Array [
+        "AdministrationLanguageDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.administrationLanguageDescriptor",
@@ -1852,7 +1852,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "Namespace",
           },
         ],
-        "AssessmentPeriod.AssessmentPeriod": Array [
+        "AssessmentPeriod.AssessmentPeriodDescriptor": Array [
           Object {
             "entityName": "AssessmentPeriod",
             "jsonPath": "$.period.assessmentPeriodDescriptor",
@@ -1873,7 +1873,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "EndDate",
           },
         ],
-        "EventCircumstance": Array [
+        "EventCircumstanceDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.eventCircumstanceDescriptor",
@@ -1887,14 +1887,14 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "Description",
           },
         ],
-        "PerformanceLevel.AssessmentReportingMethod": Array [
+        "PerformanceLevel.AssessmentReportingMethodDescriptor": Array [
           Object {
             "entityName": "PerformanceLevel",
             "jsonPath": "$.performanceLevels[*].assessmentReportingMethodDescriptor",
             "propertyName": "AssessmentReportingMethod",
           },
         ],
-        "PerformanceLevel.PerformanceLevel": Array [
+        "PerformanceLevel.PerformanceLevelDescriptor": Array [
           Object {
             "entityName": "PerformanceLevel",
             "jsonPath": "$.performanceLevels[*].performanceLevelDescriptor",
@@ -1908,14 +1908,14 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "PerformanceLevelIndicatorName",
           },
         ],
-        "PlatformType": Array [
+        "PlatformTypeDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.platformTypeDescriptor",
             "propertyName": "PlatformType",
           },
         ],
-        "ReasonNotTested": Array [
+        "ReasonNotTestedDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.reasonNotTestedDescriptor",
@@ -1943,7 +1943,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "SchoolIdentifier",
           },
         ],
-        "RetestIndicator": Array [
+        "RetestIndicatorDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.retestIndicatorDescriptor",
@@ -1957,7 +1957,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "SchoolYear",
           },
         ],
-        "ScoreResult.AssessmentReportingMethod": Array [
+        "ScoreResult.AssessmentReportingMethodDescriptor": Array [
           Object {
             "entityName": "ScoreResult",
             "jsonPath": "$.scoreResults[*].assessmentReportingMethodDescriptor",
@@ -1971,7 +1971,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "Result",
           },
         ],
-        "ScoreResult.ResultDatatypeType": Array [
+        "ScoreResult.ResultDatatypeTypeDescriptor": Array [
           Object {
             "entityName": "ScoreResult",
             "jsonPath": "$.scoreResults[*].resultDatatypeTypeDescriptor",
@@ -2056,7 +2056,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "IdentificationCode",
           },
         ],
-        "StudentAssessmentItem.AssessmentItemResult": Array [
+        "StudentAssessmentItem.AssessmentItemResultDescriptor": Array [
           Object {
             "entityName": "StudentAssessmentItem",
             "jsonPath": "$.items[*].assessmentItemResultDescriptor",
@@ -2091,7 +2091,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "RawScoreResult",
           },
         ],
-        "StudentAssessmentItem.ResponseIndicator": Array [
+        "StudentAssessmentItem.ResponseIndicatorDescriptor": Array [
           Object {
             "entityName": "StudentAssessmentItem",
             "jsonPath": "$.items[*].responseIndicatorDescriptor",
@@ -2176,14 +2176,14 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "IdentificationCode",
           },
         ],
-        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethod": Array [
+        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethodDescriptor": Array [
           Object {
             "entityName": "PerformanceLevel",
             "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].assessmentReportingMethodDescriptor",
             "propertyName": "AssessmentReportingMethod",
           },
         ],
-        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevel": Array [
+        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelDescriptor": Array [
           Object {
             "entityName": "PerformanceLevel",
             "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelDescriptor",
@@ -2197,7 +2197,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "PerformanceLevelIndicatorName",
           },
         ],
-        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethod": Array [
+        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethodDescriptor": Array [
           Object {
             "entityName": "ScoreResult",
             "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].assessmentReportingMethodDescriptor",
@@ -2211,14 +2211,14 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "Result",
           },
         ],
-        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeType": Array [
+        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeTypeDescriptor": Array [
           Object {
             "entityName": "ScoreResult",
             "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].resultDatatypeTypeDescriptor",
             "propertyName": "ResultDatatypeType",
           },
         ],
-        "WhenAssessedGradeLevel": Array [
+        "WhenAssessedGradeLevelDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.whenAssessedGradeLevelDescriptor",
@@ -2229,33 +2229,33 @@ describe('when generating api schema targeting tech version 6.1 with data standa
     `);
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
-        "Accommodation": true,
+        "AccommodationDescriptor": true,
         "AdministrationDate": true,
         "AdministrationEndDate": true,
-        "AdministrationEnvironment": true,
-        "AdministrationLanguage": true,
+        "AdministrationEnvironmentDescriptor": true,
+        "AdministrationLanguageDescriptor": true,
         "AssessedMinutes": true,
         "Assessment": true,
         "Assessment.AssessmentIdentifier": false,
         "Assessment.Namespace": false,
-        "AssessmentPeriod.AssessmentPeriod": true,
+        "AssessmentPeriod.AssessmentPeriodDescriptor": true,
         "AssessmentPeriod.BeginDate": true,
         "AssessmentPeriod.EndDate": true,
-        "EventCircumstance": true,
+        "EventCircumstanceDescriptor": true,
         "EventDescription": true,
-        "PerformanceLevel.AssessmentReportingMethod": true,
-        "PerformanceLevel.PerformanceLevel": true,
+        "PerformanceLevel.AssessmentReportingMethodDescriptor": true,
+        "PerformanceLevel.PerformanceLevelDescriptor": true,
         "PerformanceLevel.PerformanceLevelIndicatorName": true,
-        "PlatformType": true,
-        "ReasonNotTested": true,
+        "PlatformTypeDescriptor": true,
+        "ReasonNotTestedDescriptor": true,
         "ReportedSchool": true,
         "ReportedSchool.SchoolId": false,
         "ReportedSchoolIdentifier": true,
-        "RetestIndicator": true,
+        "RetestIndicatorDescriptor": true,
         "SchoolYear": true,
-        "ScoreResult.AssessmentReportingMethod": true,
+        "ScoreResult.AssessmentReportingMethodDescriptor": true,
         "ScoreResult.Result": true,
-        "ScoreResult.ResultDatatypeType": true,
+        "ScoreResult.ResultDatatypeTypeDescriptor": true,
         "SerialNumber": true,
         "Student": true,
         "Student.StudentUniqueId": false,
@@ -2265,12 +2265,12 @@ describe('when generating api schema targeting tech version 6.1 with data standa
         "StudentAssessmentItem.AssessmentItem.Assessment.AssessmentIdentifier": false,
         "StudentAssessmentItem.AssessmentItem.Assessment.Namespace": false,
         "StudentAssessmentItem.AssessmentItem.IdentificationCode": false,
-        "StudentAssessmentItem.AssessmentItemResult": true,
+        "StudentAssessmentItem.AssessmentItemResultDescriptor": true,
         "StudentAssessmentItem.AssessmentResponse": true,
         "StudentAssessmentItem.DescriptiveFeedback": true,
         "StudentAssessmentItem.ItemNumber": true,
         "StudentAssessmentItem.RawScoreResult": true,
-        "StudentAssessmentItem.ResponseIndicator": true,
+        "StudentAssessmentItem.ResponseIndicatorDescriptor": true,
         "StudentAssessmentItem.TimeAssessed": true,
         "StudentObjectiveAssessment.AdministrationDate": true,
         "StudentObjectiveAssessment.AdministrationEndDate": true,
@@ -2280,63 +2280,63 @@ describe('when generating api schema targeting tech version 6.1 with data standa
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment.AssessmentIdentifier": false,
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment.Namespace": false,
         "StudentObjectiveAssessment.ObjectiveAssessment.IdentificationCode": false,
-        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethod": true,
-        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevel": true,
+        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethodDescriptor": true,
+        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelDescriptor": true,
         "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelIndicatorName": true,
-        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethod": true,
+        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethodDescriptor": true,
         "StudentObjectiveAssessment.ScoreResult.Result": true,
-        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeType": true,
-        "WhenAssessedGradeLevel": true,
+        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeTypeDescriptor": true,
+        "WhenAssessedGradeLevelDescriptor": true,
       }
     `);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
-        "Accommodation": "Accommodation",
+        "AccommodationDescriptor": "Accommodation",
         "AdministrationDate": "AdministrationDate",
         "AdministrationEndDate": "AdministrationEndDate",
-        "AdministrationEnvironment": "AdministrationEnvironment",
-        "AdministrationLanguage": "AdministrationLanguage",
+        "AdministrationEnvironmentDescriptor": "AdministrationEnvironment",
+        "AdministrationLanguageDescriptor": "AdministrationLanguage",
         "AssessedMinutes": "AssessedMinutes",
         "Assessment": "Assessment",
-        "AssessmentPeriod.AssessmentPeriod": "AssessmentPeriod",
+        "AssessmentPeriod.AssessmentPeriodDescriptor": "AssessmentPeriod",
         "AssessmentPeriod.BeginDate": "BeginDate",
         "AssessmentPeriod.EndDate": "EndDate",
-        "EventCircumstance": "EventCircumstance",
+        "EventCircumstanceDescriptor": "EventCircumstance",
         "EventDescription": "EventDescription",
-        "PerformanceLevel.AssessmentReportingMethod": "AssessmentReportingMethod",
-        "PerformanceLevel.PerformanceLevel": "PerformanceLevel",
+        "PerformanceLevel.AssessmentReportingMethodDescriptor": "AssessmentReportingMethod",
+        "PerformanceLevel.PerformanceLevelDescriptor": "PerformanceLevel",
         "PerformanceLevel.PerformanceLevelIndicatorName": "PerformanceLevelIndicatorName",
-        "PlatformType": "PlatformType",
-        "ReasonNotTested": "ReasonNotTested",
+        "PlatformTypeDescriptor": "PlatformType",
+        "ReasonNotTestedDescriptor": "ReasonNotTested",
         "ReportedSchool": "ReportedSchool",
         "ReportedSchoolIdentifier": "ReportedSchoolIdentifier",
-        "RetestIndicator": "RetestIndicator",
+        "RetestIndicatorDescriptor": "RetestIndicator",
         "SchoolYear": "SchoolYear",
-        "ScoreResult.AssessmentReportingMethod": "AssessmentReportingMethod",
+        "ScoreResult.AssessmentReportingMethodDescriptor": "AssessmentReportingMethod",
         "ScoreResult.Result": "Result",
-        "ScoreResult.ResultDatatypeType": "ResultDatatypeType",
+        "ScoreResult.ResultDatatypeTypeDescriptor": "ResultDatatypeType",
         "SerialNumber": "SerialNumber",
         "Student": "Student",
         "StudentAssessmentIdentifier": "StudentAssessmentIdentifier",
         "StudentAssessmentItem.AssessmentItem": "AssessmentItem",
-        "StudentAssessmentItem.AssessmentItemResult": "AssessmentItemResult",
+        "StudentAssessmentItem.AssessmentItemResultDescriptor": "AssessmentItemResult",
         "StudentAssessmentItem.AssessmentResponse": "AssessmentResponse",
         "StudentAssessmentItem.DescriptiveFeedback": "DescriptiveFeedback",
         "StudentAssessmentItem.ItemNumber": "ItemNumber",
         "StudentAssessmentItem.RawScoreResult": "RawScoreResult",
-        "StudentAssessmentItem.ResponseIndicator": "ResponseIndicator",
+        "StudentAssessmentItem.ResponseIndicatorDescriptor": "ResponseIndicator",
         "StudentAssessmentItem.TimeAssessed": "TimeAssessed",
         "StudentObjectiveAssessment.AdministrationDate": "AdministrationDate",
         "StudentObjectiveAssessment.AdministrationEndDate": "AdministrationEndDate",
         "StudentObjectiveAssessment.AssessedMinutes": "AssessedMinutes",
         "StudentObjectiveAssessment.ObjectiveAssessment": "ObjectiveAssessment",
-        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethod": "AssessmentReportingMethod",
-        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevel": "PerformanceLevel",
+        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethodDescriptor": "AssessmentReportingMethod",
+        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelDescriptor": "PerformanceLevel",
         "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelIndicatorName": "PerformanceLevelIndicatorName",
-        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethod": "AssessmentReportingMethod",
+        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethodDescriptor": "AssessmentReportingMethod",
         "StudentObjectiveAssessment.ScoreResult.Result": "Result",
-        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeType": "ResultDatatypeType",
-        "WhenAssessedGradeLevel": "WhenAssessedGradeLevel",
+        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeTypeDescriptor": "ResultDatatypeType",
+        "WhenAssessedGradeLevelDescriptor": "WhenAssessedGradeLevel",
       }
     `);
   });
@@ -2502,7 +2502,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "SessionName",
           },
         ],
-        "Term": Array [
+        "TermDescriptor": Array [
           Object {
             "entityName": "Session",
             "jsonPath": "$.termDescriptor",
@@ -2536,7 +2536,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
         "School.SchoolId": false,
         "SchoolYear": true,
         "SessionName": true,
-        "Term": true,
+        "TermDescriptor": true,
         "TotalInstructionalDays": true,
       }
     `);
@@ -2549,7 +2549,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
         "School": "School",
         "SchoolYear": "SchoolYear",
         "SessionName": "SessionName",
-        "Term": "Term",
+        "TermDescriptor": "Term",
         "TotalInstructionalDays": "TotalInstructionalDays",
       }
     `);
@@ -2580,7 +2580,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
     const mappings: Snapshotable = snapshotify(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
-        "CompetencyLevel": Array [
+        "CompetencyLevelDescriptor": Array [
           Object {
             "entityName": "StudentCompetencyObjective",
             "jsonPath": "$.competencyLevelDescriptor",
@@ -2801,7 +2801,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "ProgramName",
           },
         ],
-        "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramType": Array [
+        "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramTypeDescriptor": Array [
           Object {
             "entityName": "Program",
             "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
@@ -3006,7 +3006,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
     `);
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
-        "CompetencyLevel": true,
+        "CompetencyLevelDescriptor": true,
         "CompetencyObjective": true,
         "CompetencyObjective.EducationOrganization": false,
         "CompetencyObjective.EducationOrganization.EducationOrganizationId": false,
@@ -3029,7 +3029,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization.EducationOrganizationId": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramName": false,
-        "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramType": false,
+        "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramTypeDescriptor": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student.StudentUniqueId": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation": true,
@@ -3051,7 +3051,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
     `);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
-        "CompetencyLevel": "CompetencyLevel",
+        "CompetencyLevelDescriptor": "CompetencyLevel",
         "CompetencyObjective": "CompetencyObjective",
         "DiagnosticStatement": "DiagnosticStatement",
         "GradingPeriod": "GradingPeriod",
@@ -3124,7 +3124,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
     const mappings: Snapshotable = snapshotify(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
-        "Accommodation": Array [
+        "AccommodationDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.accommodations[*].accommodationDescriptor",
@@ -3145,14 +3145,14 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "AdministrationEndDate",
           },
         ],
-        "AdministrationEnvironment": Array [
+        "AdministrationEnvironmentDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.administrationEnvironmentDescriptor",
             "propertyName": "AdministrationEnvironment",
           },
         ],
-        "AdministrationLanguage": Array [
+        "AdministrationLanguageDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.administrationLanguageDescriptor",
@@ -3192,7 +3192,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "Namespace",
           },
         ],
-        "AssessmentPeriod.AssessmentPeriod": Array [
+        "AssessmentPeriod.AssessmentPeriodDescriptor": Array [
           Object {
             "entityName": "AssessmentPeriod",
             "jsonPath": "$.period.assessmentPeriodDescriptor",
@@ -3213,7 +3213,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "EndDate",
           },
         ],
-        "EventCircumstance": Array [
+        "EventCircumstanceDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.eventCircumstanceDescriptor",
@@ -3227,14 +3227,14 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "Description",
           },
         ],
-        "PerformanceLevel.AssessmentReportingMethod": Array [
+        "PerformanceLevel.AssessmentReportingMethodDescriptor": Array [
           Object {
             "entityName": "PerformanceLevel",
             "jsonPath": "$.performanceLevels[*].assessmentReportingMethodDescriptor",
             "propertyName": "AssessmentReportingMethod",
           },
         ],
-        "PerformanceLevel.PerformanceLevel": Array [
+        "PerformanceLevel.PerformanceLevelDescriptor": Array [
           Object {
             "entityName": "PerformanceLevel",
             "jsonPath": "$.performanceLevels[*].performanceLevelDescriptor",
@@ -3248,14 +3248,14 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "PerformanceLevelIndicatorName",
           },
         ],
-        "PlatformType": Array [
+        "PlatformTypeDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.platformTypeDescriptor",
             "propertyName": "PlatformType",
           },
         ],
-        "ReasonNotTested": Array [
+        "ReasonNotTestedDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.reasonNotTestedDescriptor",
@@ -3283,7 +3283,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "SchoolIdentifier",
           },
         ],
-        "RetestIndicator": Array [
+        "RetestIndicatorDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.retestIndicatorDescriptor",
@@ -3297,7 +3297,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "SchoolYear",
           },
         ],
-        "ScoreResult.AssessmentReportingMethod": Array [
+        "ScoreResult.AssessmentReportingMethodDescriptor": Array [
           Object {
             "entityName": "ScoreResult",
             "jsonPath": "$.scoreResults[*].assessmentReportingMethodDescriptor",
@@ -3311,7 +3311,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "Result",
           },
         ],
-        "ScoreResult.ResultDatatypeType": Array [
+        "ScoreResult.ResultDatatypeTypeDescriptor": Array [
           Object {
             "entityName": "ScoreResult",
             "jsonPath": "$.scoreResults[*].resultDatatypeTypeDescriptor",
@@ -3396,7 +3396,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "IdentificationCode",
           },
         ],
-        "StudentAssessmentItem.AssessmentItemResult": Array [
+        "StudentAssessmentItem.AssessmentItemResultDescriptor": Array [
           Object {
             "entityName": "StudentAssessmentItem",
             "jsonPath": "$.items[*].assessmentItemResultDescriptor",
@@ -3431,7 +3431,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "RawScoreResult",
           },
         ],
-        "StudentAssessmentItem.ResponseIndicator": Array [
+        "StudentAssessmentItem.ResponseIndicatorDescriptor": Array [
           Object {
             "entityName": "StudentAssessmentItem",
             "jsonPath": "$.items[*].responseIndicatorDescriptor",
@@ -3516,14 +3516,14 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "IdentificationCode",
           },
         ],
-        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethod": Array [
+        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethodDescriptor": Array [
           Object {
             "entityName": "PerformanceLevel",
             "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].assessmentReportingMethodDescriptor",
             "propertyName": "AssessmentReportingMethod",
           },
         ],
-        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevel": Array [
+        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelDescriptor": Array [
           Object {
             "entityName": "PerformanceLevel",
             "jsonPath": "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelDescriptor",
@@ -3537,7 +3537,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "PerformanceLevelIndicatorName",
           },
         ],
-        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethod": Array [
+        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethodDescriptor": Array [
           Object {
             "entityName": "ScoreResult",
             "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].assessmentReportingMethodDescriptor",
@@ -3551,14 +3551,14 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "Result",
           },
         ],
-        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeType": Array [
+        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeTypeDescriptor": Array [
           Object {
             "entityName": "ScoreResult",
             "jsonPath": "$.studentObjectiveAssessments[*].scoreResults[*].resultDatatypeTypeDescriptor",
             "propertyName": "ResultDatatypeType",
           },
         ],
-        "WhenAssessedGradeLevel": Array [
+        "WhenAssessedGradeLevelDescriptor": Array [
           Object {
             "entityName": "StudentAssessment",
             "jsonPath": "$.whenAssessedGradeLevelDescriptor",
@@ -3569,33 +3569,33 @@ describe('when generating api schema targeting tech version 7.0 with data standa
     `);
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
-        "Accommodation": true,
+        "AccommodationDescriptor": true,
         "AdministrationDate": true,
         "AdministrationEndDate": true,
-        "AdministrationEnvironment": true,
-        "AdministrationLanguage": true,
+        "AdministrationEnvironmentDescriptor": true,
+        "AdministrationLanguageDescriptor": true,
         "AssessedMinutes": true,
         "Assessment": true,
         "Assessment.AssessmentIdentifier": false,
         "Assessment.Namespace": false,
-        "AssessmentPeriod.AssessmentPeriod": true,
+        "AssessmentPeriod.AssessmentPeriodDescriptor": true,
         "AssessmentPeriod.BeginDate": true,
         "AssessmentPeriod.EndDate": true,
-        "EventCircumstance": true,
+        "EventCircumstanceDescriptor": true,
         "EventDescription": true,
-        "PerformanceLevel.AssessmentReportingMethod": true,
-        "PerformanceLevel.PerformanceLevel": true,
+        "PerformanceLevel.AssessmentReportingMethodDescriptor": true,
+        "PerformanceLevel.PerformanceLevelDescriptor": true,
         "PerformanceLevel.PerformanceLevelIndicatorName": true,
-        "PlatformType": true,
-        "ReasonNotTested": true,
+        "PlatformTypeDescriptor": true,
+        "ReasonNotTestedDescriptor": true,
         "ReportedSchool": true,
         "ReportedSchool.SchoolId": false,
         "ReportedSchoolIdentifier": true,
-        "RetestIndicator": true,
+        "RetestIndicatorDescriptor": true,
         "SchoolYear": true,
-        "ScoreResult.AssessmentReportingMethod": true,
+        "ScoreResult.AssessmentReportingMethodDescriptor": true,
         "ScoreResult.Result": true,
-        "ScoreResult.ResultDatatypeType": true,
+        "ScoreResult.ResultDatatypeTypeDescriptor": true,
         "SerialNumber": true,
         "Student": true,
         "Student.StudentUniqueId": false,
@@ -3605,12 +3605,12 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         "StudentAssessmentItem.AssessmentItem.Assessment.AssessmentIdentifier": false,
         "StudentAssessmentItem.AssessmentItem.Assessment.Namespace": false,
         "StudentAssessmentItem.AssessmentItem.IdentificationCode": false,
-        "StudentAssessmentItem.AssessmentItemResult": true,
+        "StudentAssessmentItem.AssessmentItemResultDescriptor": true,
         "StudentAssessmentItem.AssessmentResponse": true,
         "StudentAssessmentItem.DescriptiveFeedback": true,
         "StudentAssessmentItem.ItemNumber": true,
         "StudentAssessmentItem.RawScoreResult": true,
-        "StudentAssessmentItem.ResponseIndicator": true,
+        "StudentAssessmentItem.ResponseIndicatorDescriptor": true,
         "StudentAssessmentItem.TimeAssessed": true,
         "StudentObjectiveAssessment.AdministrationDate": true,
         "StudentObjectiveAssessment.AdministrationEndDate": true,
@@ -3620,63 +3620,63 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment.AssessmentIdentifier": false,
         "StudentObjectiveAssessment.ObjectiveAssessment.Assessment.Namespace": false,
         "StudentObjectiveAssessment.ObjectiveAssessment.IdentificationCode": false,
-        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethod": true,
-        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevel": true,
+        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethodDescriptor": true,
+        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelDescriptor": true,
         "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelIndicatorName": true,
-        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethod": true,
+        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethodDescriptor": true,
         "StudentObjectiveAssessment.ScoreResult.Result": true,
-        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeType": true,
-        "WhenAssessedGradeLevel": true,
+        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeTypeDescriptor": true,
+        "WhenAssessedGradeLevelDescriptor": true,
       }
     `);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
-        "Accommodation": "Accommodation",
+        "AccommodationDescriptor": "Accommodation",
         "AdministrationDate": "AdministrationDate",
         "AdministrationEndDate": "AdministrationEndDate",
-        "AdministrationEnvironment": "AdministrationEnvironment",
-        "AdministrationLanguage": "AdministrationLanguage",
+        "AdministrationEnvironmentDescriptor": "AdministrationEnvironment",
+        "AdministrationLanguageDescriptor": "AdministrationLanguage",
         "AssessedMinutes": "AssessedMinutes",
         "Assessment": "Assessment",
-        "AssessmentPeriod.AssessmentPeriod": "AssessmentPeriod",
+        "AssessmentPeriod.AssessmentPeriodDescriptor": "AssessmentPeriod",
         "AssessmentPeriod.BeginDate": "BeginDate",
         "AssessmentPeriod.EndDate": "EndDate",
-        "EventCircumstance": "EventCircumstance",
+        "EventCircumstanceDescriptor": "EventCircumstance",
         "EventDescription": "EventDescription",
-        "PerformanceLevel.AssessmentReportingMethod": "AssessmentReportingMethod",
-        "PerformanceLevel.PerformanceLevel": "PerformanceLevel",
+        "PerformanceLevel.AssessmentReportingMethodDescriptor": "AssessmentReportingMethod",
+        "PerformanceLevel.PerformanceLevelDescriptor": "PerformanceLevel",
         "PerformanceLevel.PerformanceLevelIndicatorName": "PerformanceLevelIndicatorName",
-        "PlatformType": "PlatformType",
-        "ReasonNotTested": "ReasonNotTested",
+        "PlatformTypeDescriptor": "PlatformType",
+        "ReasonNotTestedDescriptor": "ReasonNotTested",
         "ReportedSchool": "ReportedSchool",
         "ReportedSchoolIdentifier": "ReportedSchoolIdentifier",
-        "RetestIndicator": "RetestIndicator",
+        "RetestIndicatorDescriptor": "RetestIndicator",
         "SchoolYear": "SchoolYear",
-        "ScoreResult.AssessmentReportingMethod": "AssessmentReportingMethod",
+        "ScoreResult.AssessmentReportingMethodDescriptor": "AssessmentReportingMethod",
         "ScoreResult.Result": "Result",
-        "ScoreResult.ResultDatatypeType": "ResultDatatypeType",
+        "ScoreResult.ResultDatatypeTypeDescriptor": "ResultDatatypeType",
         "SerialNumber": "SerialNumber",
         "Student": "Student",
         "StudentAssessmentIdentifier": "StudentAssessmentIdentifier",
         "StudentAssessmentItem.AssessmentItem": "AssessmentItem",
-        "StudentAssessmentItem.AssessmentItemResult": "AssessmentItemResult",
+        "StudentAssessmentItem.AssessmentItemResultDescriptor": "AssessmentItemResult",
         "StudentAssessmentItem.AssessmentResponse": "AssessmentResponse",
         "StudentAssessmentItem.DescriptiveFeedback": "DescriptiveFeedback",
         "StudentAssessmentItem.ItemNumber": "ItemNumber",
         "StudentAssessmentItem.RawScoreResult": "RawScoreResult",
-        "StudentAssessmentItem.ResponseIndicator": "ResponseIndicator",
+        "StudentAssessmentItem.ResponseIndicatorDescriptor": "ResponseIndicator",
         "StudentAssessmentItem.TimeAssessed": "TimeAssessed",
         "StudentObjectiveAssessment.AdministrationDate": "AdministrationDate",
         "StudentObjectiveAssessment.AdministrationEndDate": "AdministrationEndDate",
         "StudentObjectiveAssessment.AssessedMinutes": "AssessedMinutes",
         "StudentObjectiveAssessment.ObjectiveAssessment": "ObjectiveAssessment",
-        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethod": "AssessmentReportingMethod",
-        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevel": "PerformanceLevel",
+        "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethodDescriptor": "AssessmentReportingMethod",
+        "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelDescriptor": "PerformanceLevel",
         "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelIndicatorName": "PerformanceLevelIndicatorName",
-        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethod": "AssessmentReportingMethod",
+        "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethodDescriptor": "AssessmentReportingMethod",
         "StudentObjectiveAssessment.ScoreResult.Result": "Result",
-        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeType": "ResultDatatypeType",
-        "WhenAssessedGradeLevel": "WhenAssessedGradeLevel",
+        "StudentObjectiveAssessment.ScoreResult.ResultDatatypeTypeDescriptor": "ResultDatatypeType",
+        "WhenAssessedGradeLevelDescriptor": "WhenAssessedGradeLevel",
       }
     `);
   });
@@ -3842,7 +3842,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "SessionName",
           },
         ],
-        "Term": Array [
+        "TermDescriptor": Array [
           Object {
             "entityName": "Session",
             "jsonPath": "$.termDescriptor",
@@ -3876,7 +3876,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         "School.SchoolId": false,
         "SchoolYear": true,
         "SessionName": true,
-        "Term": true,
+        "TermDescriptor": true,
         "TotalInstructionalDays": true,
       }
     `);
@@ -3889,7 +3889,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         "School": "School",
         "SchoolYear": "SchoolYear",
         "SessionName": "SessionName",
-        "Term": "Term",
+        "TermDescriptor": "Term",
         "TotalInstructionalDays": "TotalInstructionalDays",
       }
     `);
@@ -3920,7 +3920,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
     const mappings: Snapshotable = snapshotify(entity);
     expect(mappings.jsonPaths).toMatchInlineSnapshot(`
       Object {
-        "CompetencyLevel": Array [
+        "CompetencyLevelDescriptor": Array [
           Object {
             "entityName": "StudentCompetencyObjective",
             "jsonPath": "$.competencyLevelDescriptor",
@@ -4141,7 +4141,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "ProgramName",
           },
         ],
-        "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramType": Array [
+        "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramTypeDescriptor": Array [
           Object {
             "entityName": "Program",
             "jsonPath": "$.generalStudentProgramAssociations[*].generalStudentProgramAssociationReference.programTypeDescriptor",
@@ -4346,7 +4346,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
     `);
     expect(mappings.isTopLevel).toMatchInlineSnapshot(`
       Object {
-        "CompetencyLevel": true,
+        "CompetencyLevelDescriptor": true,
         "CompetencyObjective": true,
         "CompetencyObjective.EducationOrganization": false,
         "CompetencyObjective.EducationOrganization.EducationOrganizationId": false,
@@ -4369,7 +4369,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.EducationOrganization.EducationOrganizationId": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramName": false,
-        "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramType": false,
+        "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Program.ProgramTypeDescriptor": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.GeneralStudentProgramAssociation.Student.StudentUniqueId": false,
         "StudentCompetencyObjectiveSectionOrProgramChoice.StudentSectionAssociation": true,
@@ -4391,7 +4391,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
     `);
     expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
       Object {
-        "CompetencyLevel": "CompetencyLevel",
+        "CompetencyLevelDescriptor": "CompetencyLevel",
         "CompetencyObjective": "CompetencyObjective",
         "DiagnosticStatement": "DiagnosticStatement",
         "GradingPeriod": "GradingPeriod",
