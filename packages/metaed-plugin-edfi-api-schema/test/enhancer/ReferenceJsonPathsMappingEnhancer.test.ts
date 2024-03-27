@@ -23,7 +23,7 @@ import { enhance as referenceComponentEnhancer } from '../../src/enhancer/Refere
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
-import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
+import { enhance as mergeJsonPathsMappingEnhancer } from '../../src/enhancer/MergeJsonPathsMappingEnhancer';
 import { enhance } from '../../src/enhancer/ReferenceJsonPathsMappingEnhancer';
 
 // describe('when building simple domain entity with all the simple non-collections', () => {
@@ -64,7 +64,7 @@ import { enhance } from '../../src/enhancer/ReferenceJsonPathsMappingEnhancer';
 //     apiPropertyMappingEnhancer(metaEd);
 //     propertyCollectingEnhancer(metaEd);
 //     apiEntityMappingEnhancer(metaEd);
-//     allJsonPathsMappingEnhancer(metaEd);
+//     mergeJsonPathsMappingEnhancer(metaEd);
 //     enhance(metaEd);
 //   });
 
@@ -113,7 +113,7 @@ import { enhance } from '../../src/enhancer/ReferenceJsonPathsMappingEnhancer';
 //     apiPropertyMappingEnhancer(metaEd);
 //     propertyCollectingEnhancer(metaEd);
 //     apiEntityMappingEnhancer(metaEd);
-//     allJsonPathsMappingEnhancer(metaEd);
+//     mergeJsonPathsMappingEnhancer(metaEd);
 //     enhance(metaEd);
 //   });
 
@@ -168,7 +168,7 @@ import { enhance } from '../../src/enhancer/ReferenceJsonPathsMappingEnhancer';
 //     apiPropertyMappingEnhancer(metaEd);
 //     propertyCollectingEnhancer(metaEd);
 //     apiEntityMappingEnhancer(metaEd);
-//     allJsonPathsMappingEnhancer(metaEd);
+//     mergeJsonPathsMappingEnhancer(metaEd);
 //     enhance(metaEd);
 //   });
 
@@ -247,7 +247,7 @@ import { enhance } from '../../src/enhancer/ReferenceJsonPathsMappingEnhancer';
 //     apiPropertyMappingEnhancer(metaEd);
 //     propertyCollectingEnhancer(metaEd);
 //     apiEntityMappingEnhancer(metaEd);
-//     allJsonPathsMappingEnhancer(metaEd);
+//     mergeJsonPathsMappingEnhancer(metaEd);
 //     enhance(metaEd);
 //   });
 
@@ -383,7 +383,7 @@ import { enhance } from '../../src/enhancer/ReferenceJsonPathsMappingEnhancer';
 //     apiPropertyMappingEnhancer(metaEd);
 //     propertyCollectingEnhancer(metaEd);
 //     apiEntityMappingEnhancer(metaEd);
-//     allJsonPathsMappingEnhancer(metaEd);
+//     mergeJsonPathsMappingEnhancer(metaEd);
 //     enhance(metaEd);
 //   });
 
@@ -435,7 +435,7 @@ import { enhance } from '../../src/enhancer/ReferenceJsonPathsMappingEnhancer';
 //     apiPropertyMappingEnhancer(metaEd);
 //     propertyCollectingEnhancer(metaEd);
 //     apiEntityMappingEnhancer(metaEd);
-//     allJsonPathsMappingEnhancer(metaEd);
+//     mergeJsonPathsMappingEnhancer(metaEd);
 //     enhance(metaEd);
 //   });
 
@@ -487,7 +487,7 @@ import { enhance } from '../../src/enhancer/ReferenceJsonPathsMappingEnhancer';
 //     apiPropertyMappingEnhancer(metaEd);
 //     propertyCollectingEnhancer(metaEd);
 //     apiEntityMappingEnhancer(metaEd);
-//     allJsonPathsMappingEnhancer(metaEd);
+//     mergeJsonPathsMappingEnhancer(metaEd);
 //     enhance(metaEd);
 //   });
 
@@ -537,7 +537,7 @@ import { enhance } from '../../src/enhancer/ReferenceJsonPathsMappingEnhancer';
 //     apiPropertyMappingEnhancer(metaEd);
 //     propertyCollectingEnhancer(metaEd);
 //     apiEntityMappingEnhancer(metaEd);
-//     allJsonPathsMappingEnhancer(metaEd);
+//     mergeJsonPathsMappingEnhancer(metaEd);
 //     enhance(metaEd);
 //   });
 
@@ -590,7 +590,7 @@ import { enhance } from '../../src/enhancer/ReferenceJsonPathsMappingEnhancer';
 //     apiPropertyMappingEnhancer(metaEd);
 //     propertyCollectingEnhancer(metaEd);
 //     apiEntityMappingEnhancer(metaEd);
-//     allJsonPathsMappingEnhancer(metaEd);
+//     mergeJsonPathsMappingEnhancer(metaEd);
 //     enhance(metaEd);
 //   });
 
@@ -653,7 +653,7 @@ import { enhance } from '../../src/enhancer/ReferenceJsonPathsMappingEnhancer';
 //     apiPropertyMappingEnhancer(metaEd);
 //     propertyCollectingEnhancer(metaEd);
 //     apiEntityMappingEnhancer(metaEd);
-//     allJsonPathsMappingEnhancer(metaEd);
+//     mergeJsonPathsMappingEnhancer(metaEd);
 //     enhance(metaEd);
 //   });
 
@@ -731,7 +731,7 @@ describe('when building a domain entity referencing ReportCard referencing Gradi
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    allJsonPathsMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 

@@ -19,7 +19,7 @@ import { enhance as identityFullnameEnhancer } from './IdentityFullnameEnhancer'
 import { enhance as subclassIdentityFullnameEnhancer } from './SubclassIdentityFullnameEnhancer';
 import { enhance as documentPathsMappingEnhancer } from './DocumentPathsMappingEnhancer';
 import { enhance as identityPathOrderEnhancer } from './IdentityPathOrderEnhancer';
-// import { enhance as referenceJsonPathsMappingEnhancer } from './ReferenceJsonPathsMappingEnhancer';
+import { enhance as referenceJsonPathsMappingEnhancer } from './ReferenceJsonPathsMappingEnhancer';
 import { enhance as apiSchemaBuildingEnhancer } from './ApiSchemaBuildingEnhancer';
 
 export function enhancerList(): Enhancer[] {
@@ -44,7 +44,7 @@ export function enhancerList(): Enhancer[] {
     subclassIdentityFullnameEnhancer,
     documentPathsMappingEnhancer,
     identityPathOrderEnhancer,
-    // referenceJsonPathsMappingEnhancer,
+    referenceJsonPathsMappingEnhancer,
     apiSchemaBuildingEnhancer,
   ];
 }
