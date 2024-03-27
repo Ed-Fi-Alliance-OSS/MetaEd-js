@@ -1832,7 +1832,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Assessment"
             },
-            "AssessmentItemCategory": {
+            "AssessmentItemCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2236,7 +2236,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Assessment"
             },
-            "AssessmentReportingMethod": {
+            "AssessmentReportingMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2488,7 +2488,7 @@
         "assessments": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AcademicSubject": {
+            "AcademicSubjectDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2509,7 +2509,7 @@
                 "adaptiveAssessment": "$.adaptiveAssessment"
               }
             },
-            "AssessedGradeLevel": {
+            "AssessedGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2521,7 +2521,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "GradeLevelDescriptor"
             },
-            "AssessmentCategory": {
+            "AssessmentCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2551,7 +2551,7 @@
                 "assessmentForm": "$.assessmentForm"
               }
             },
-            "AssessmentIdentificationCode.AssessmentIdentificationSystem": {
+            "AssessmentIdentificationCode.AssessmentIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2590,7 +2590,7 @@
                 "assessmentIdentifier": "$.assessmentIdentifier"
               }
             },
-            "AssessmentPerformanceLevel.AssessmentReportingMethod": {
+            "AssessmentPerformanceLevel.AssessmentReportingMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2620,7 +2620,7 @@
                 "minimumScore": "$.performanceLevels[*].minimumScore"
               }
             },
-            "AssessmentPerformanceLevel.PerformanceLevel": {
+            "AssessmentPerformanceLevel.PerformanceLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2641,7 +2641,7 @@
                 "performanceLevelIndicatorName": "$.performanceLevels[*].performanceLevelIndicatorName"
               }
             },
-            "AssessmentPerformanceLevel.ResultDatatypeType": {
+            "AssessmentPerformanceLevel.ResultDatatypeTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2653,7 +2653,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "ResultDatatypeTypeDescriptor"
             },
-            "AssessmentPeriod.AssessmentPeriod": {
+            "AssessmentPeriod.AssessmentPeriodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2683,7 +2683,7 @@
                 "endDate": "$.periods[*].endDate"
               }
             },
-            "AssessmentScore.AssessmentReportingMethod": {
+            "AssessmentScore.AssessmentReportingMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2713,7 +2713,7 @@
                 "minimumScore": "$.scores[*].minimumScore"
               }
             },
-            "AssessmentScore.ResultDatatypeType": {
+            "AssessmentScore.ResultDatatypeTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2800,7 +2800,7 @@
                 "publicationYear": "$.contentStandard.publicationYear"
               }
             },
-            "ContentStandard.PublicationStatus": {
+            "ContentStandard.PublicationStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2851,7 +2851,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganization"
             },
-            "Language": {
+            "LanguageDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -2890,7 +2890,7 @@
                 "nomenclature": "$.nomenclature"
               }
             },
-            "PlatformType": {
+            "PlatformTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -3675,7 +3675,7 @@
                 "fiscalYear": "$.fiscalYear"
               }
             },
-            "ReportingTag": {
+            "ReportingTagDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -3924,7 +3924,7 @@
                 "endTime": "$.endTime"
               }
             },
-            "GradeLevel": {
+            "GradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -4209,7 +4209,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Calendar"
             },
-            "CalendarEvent": {
+            "CalendarEventDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -4457,7 +4457,7 @@
                 "calendarCode": "$.calendarCode"
               }
             },
-            "CalendarType": {
+            "CalendarTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -4469,7 +4469,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "CalendarTypeDescriptor"
             },
-            "GradeLevel": {
+            "GradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -4682,7 +4682,7 @@
                 "accountName": "$.accountName"
               }
             },
-            "AccountType": {
+            "AccountTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -4813,7 +4813,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "ProjectDimension"
             },
-            "ReportingTag.ReportingTag": {
+            "ReportingTag.ReportingTagDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -5773,7 +5773,7 @@
         "cohorts": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AcademicSubject": {
+            "AcademicSubjectDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -5803,7 +5803,7 @@
                 "cohortIdentifier": "$.cohortIdentifier"
               }
             },
-            "CohortScope": {
+            "CohortScopeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -5815,7 +5815,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "CohortScopeDescriptor"
             },
-            "CohortType": {
+            "CohortTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -5993,7 +5993,7 @@
         "communityOrganizations": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Address.AddressType": {
+            "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -6068,7 +6068,7 @@
                 "latitude": "$.addresses[*].latitude"
               }
             },
-            "Address.Locale": {
+            "Address.LocaleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -6125,7 +6125,7 @@
                 "postalCode": "$.addresses[*].postalCode"
               }
             },
-            "Address.StateAbbreviation": {
+            "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -6155,7 +6155,7 @@
                 "communityOrganizationId": "$.communityOrganizationId"
               }
             },
-            "EducationOrganizationCategory": {
+            "EducationOrganizationCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -6167,7 +6167,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganizationCategoryDescriptor"
             },
-            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": {
+            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -6197,7 +6197,7 @@
                 "designatedBy": "$.indicators[*].designatedBy"
               }
             },
-            "EducationOrganizationIndicator.Indicator": {
+            "EducationOrganizationIndicator.IndicatorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -6209,7 +6209,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorGroup": {
+            "EducationOrganizationIndicator.IndicatorGroupDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -6221,7 +6221,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorGroupDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorLevel": {
+            "EducationOrganizationIndicator.IndicatorLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -6260,7 +6260,7 @@
                 "endDate": "$.indicators[*].periods[*].endDate"
               }
             },
-            "InstitutionTelephone.InstitutionTelephoneNumberType": {
+            "InstitutionTelephone.InstitutionTelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -6317,7 +6317,7 @@
                 "addressLine4": "$.internationalAddresses[*].addressLine4"
               }
             },
-            "InternationalAddress.AddressType": {
+            "InternationalAddress.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -6338,7 +6338,7 @@
                 "beginDate": "$.internationalAddresses[*].beginDate"
               }
             },
-            "InternationalAddress.Country": {
+            "InternationalAddress.CountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -6386,7 +6386,7 @@
                 "nameOfInstitution": "$.nameOfInstitution"
               }
             },
-            "OperationalStatus": {
+            "OperationalStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7020,7 +7020,7 @@
         "communityProviders": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Address.AddressType": {
+            "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7095,7 +7095,7 @@
                 "latitude": "$.addresses[*].latitude"
               }
             },
-            "Address.Locale": {
+            "Address.LocaleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7152,7 +7152,7 @@
                 "postalCode": "$.addresses[*].postalCode"
               }
             },
-            "Address.StateAbbreviation": {
+            "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7194,7 +7194,7 @@
                 "communityProviderId": "$.communityProviderId"
               }
             },
-            "EducationOrganizationCategory": {
+            "EducationOrganizationCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7206,7 +7206,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganizationCategoryDescriptor"
             },
-            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": {
+            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7236,7 +7236,7 @@
                 "designatedBy": "$.indicators[*].designatedBy"
               }
             },
-            "EducationOrganizationIndicator.Indicator": {
+            "EducationOrganizationIndicator.IndicatorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7248,7 +7248,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorGroup": {
+            "EducationOrganizationIndicator.IndicatorGroupDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7260,7 +7260,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorGroupDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorLevel": {
+            "EducationOrganizationIndicator.IndicatorLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7299,7 +7299,7 @@
                 "endDate": "$.indicators[*].periods[*].endDate"
               }
             },
-            "InstitutionTelephone.InstitutionTelephoneNumberType": {
+            "InstitutionTelephone.InstitutionTelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7356,7 +7356,7 @@
                 "addressLine4": "$.internationalAddresses[*].addressLine4"
               }
             },
-            "InternationalAddress.AddressType": {
+            "InternationalAddress.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7377,7 +7377,7 @@
                 "beginDate": "$.internationalAddresses[*].beginDate"
               }
             },
-            "InternationalAddress.Country": {
+            "InternationalAddress.CountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7434,7 +7434,7 @@
                 "nameOfInstitution": "$.nameOfInstitution"
               }
             },
-            "OperationalStatus": {
+            "OperationalStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7446,7 +7446,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "OperationalStatusDescriptor"
             },
-            "ProviderCategory": {
+            "ProviderCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7458,7 +7458,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "ProviderCategoryDescriptor"
             },
-            "ProviderProfitability": {
+            "ProviderProfitabilityDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -7470,7 +7470,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "ProviderProfitabilityDescriptor"
             },
-            "ProviderStatus": {
+            "ProviderStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8033,7 +8033,7 @@
                 "objective": "$.objective"
               }
             },
-            "ObjectiveGradeLevel": {
+            "ObjectiveGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8059,7 +8059,7 @@
           ],
           "identityFullnames": [
             "Objective",
-            "ObjectiveGradeLevel",
+            "ObjectiveGradeLevelDescriptor",
             "EducationOrganization"
           ],
           "identityPathOrder": [
@@ -8200,7 +8200,7 @@
         "contacts": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Address.AddressType": {
+            "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8275,7 +8275,7 @@
                 "latitude": "$.addresses[*].latitude"
               }
             },
-            "Address.Locale": {
+            "Address.LocaleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8332,7 +8332,7 @@
                 "postalCode": "$.addresses[*].postalCode"
               }
             },
-            "Address.StateAbbreviation": {
+            "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8380,7 +8380,7 @@
                 "electronicMailAddress": "$.electronicMails[*].electronicMailAddress"
               }
             },
-            "ElectronicMail.ElectronicMailType": {
+            "ElectronicMail.ElectronicMailTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8410,7 +8410,7 @@
                 "genderIdentity": "$.genderIdentity"
               }
             },
-            "HighestCompletedLevelOfEducation": {
+            "HighestCompletedLevelOfEducationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8458,7 +8458,7 @@
                 "addressLine4": "$.internationalAddresses[*].addressLine4"
               }
             },
-            "InternationalAddress.AddressType": {
+            "InternationalAddress.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8479,7 +8479,7 @@
                 "beginDate": "$.internationalAddresses[*].beginDate"
               }
             },
-            "InternationalAddress.Country": {
+            "InternationalAddress.CountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8518,7 +8518,7 @@
                 "longitude": "$.internationalAddresses[*].longitude"
               }
             },
-            "Language.Language": {
+            "Language.LanguageDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8530,7 +8530,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "LanguageDescriptor"
             },
-            "Language.LanguageUse": {
+            "Language.LanguageUseDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8614,7 +8614,7 @@
                 "documentTitle": "$.personalIdentificationDocuments[*].documentTitle"
               }
             },
-            "Name.PersonalIdentificationDocument.IdentificationDocumentUse": {
+            "Name.PersonalIdentificationDocument.IdentificationDocumentUseDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8626,7 +8626,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IdentificationDocumentUseDescriptor"
             },
-            "Name.PersonalIdentificationDocument.IssuerCountry": {
+            "Name.PersonalIdentificationDocument.IssuerCountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8656,7 +8656,7 @@
                 "issuerName": "$.personalIdentificationDocuments[*].issuerName"
               }
             },
-            "Name.PersonalIdentificationDocument.PersonalInformationVerification": {
+            "Name.PersonalIdentificationDocument.PersonalInformationVerificationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8731,7 +8731,7 @@
                 "middleName": "$.otherNames[*].middleName"
               }
             },
-            "OtherName.OtherNameType": {
+            "OtherName.OtherNameTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8766,7 +8766,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Person"
             },
-            "Sex": {
+            "SexDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -8805,7 +8805,7 @@
                 "telephoneNumber": "$.telephones[*].telephoneNumber"
               }
             },
-            "Telephone.TelephoneNumberType": {
+            "Telephone.TelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -9873,7 +9873,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Course"
             },
-            "CourseLevelCharacteristic": {
+            "CourseLevelCharacteristicDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -9885,7 +9885,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "CourseLevelCharacteristicDescriptor"
             },
-            "CurriculumUsed": {
+            "CurriculumUsedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -9924,7 +9924,7 @@
                 "localCourseTitle": "$.localCourseTitle"
               }
             },
-            "OfferedGradeLevel": {
+            "OfferedGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -10230,7 +10230,7 @@
         "courseTranscripts": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AcademicSubject": {
+            "AcademicSubjectDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -10260,7 +10260,7 @@
                 "courseCatalogURL": "$.alternativeCourseIdentificationCodes[*].courseCatalogURL"
               }
             },
-            "AlternativeCourseIdentificationCode.CourseIdentificationSystem": {
+            "AlternativeCourseIdentificationCode.CourseIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -10343,7 +10343,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Course"
             },
-            "CourseAttemptResult": {
+            "CourseAttemptResultDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -10380,7 +10380,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Program"
             },
-            "CourseRepeatCode": {
+            "CourseRepeatCodeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -10401,7 +10401,7 @@
                 "courseTitle": "$.courseTitle"
               }
             },
-            "CreditCategory": {
+            "CreditCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -10413,7 +10413,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "CreditCategoryDescriptor"
             },
-            "EarnedAdditionalCredits.AdditionalCreditType": {
+            "EarnedAdditionalCredits.AdditionalCreditTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -10503,7 +10503,7 @@
                 "finalNumericGradeEarned": "$.finalNumericGradeEarned"
               }
             },
-            "MethodCreditEarned": {
+            "MethodCreditEarnedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -10542,7 +10542,7 @@
                 "letterGradeEarned": "$.partialCourseTranscriptAwards[*].letterGradeEarned"
               }
             },
-            "PartialCourseTranscriptAwards.MethodCreditEarned": {
+            "PartialCourseTranscriptAwards.MethodCreditEarnedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -10613,7 +10613,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "StudentAcademicRecord"
             },
-            "WhenTakenGradeLevel": {
+            "WhenTakenGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -10641,7 +10641,7 @@
             }
           ],
           "identityFullnames": [
-            "CourseAttemptResult",
+            "CourseAttemptResultDescriptor",
             "Course",
             "StudentAcademicRecord"
           ],
@@ -11150,7 +11150,7 @@
         "courses": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AcademicSubject": {
+            "AcademicSubjectDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11162,7 +11162,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "AcademicSubjectDescriptor"
             },
-            "CareerPathway": {
+            "CareerPathwayDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11174,7 +11174,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "CareerPathwayDescriptor"
             },
-            "CompetencyLevel": {
+            "CompetencyLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11195,7 +11195,7 @@
                 "courseCode": "$.courseCode"
               }
             },
-            "CourseDefinedBy": {
+            "CourseDefinedByDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11216,7 +11216,7 @@
                 "courseDescription": "$.courseDescription"
               }
             },
-            "CourseGPAApplicability": {
+            "CourseGPAApplicabilityDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11246,7 +11246,7 @@
                 "courseCatalogURL": "$.identificationCodes[*].courseCatalogURL"
               }
             },
-            "CourseIdentificationCode.CourseIdentificationSystem": {
+            "CourseIdentificationCode.CourseIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11267,7 +11267,7 @@
                 "identificationCode": "$.identificationCodes[*].identificationCode"
               }
             },
-            "CourseLevelCharacteristic": {
+            "CourseLevelCharacteristicDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11408,7 +11408,7 @@
                 "numberOfParts": "$.numberOfParts"
               }
             },
-            "OfferedGradeLevel": {
+            "OfferedGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11825,7 +11825,7 @@
         "credentials": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AcademicSubject": {
+            "AcademicSubjectDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11846,7 +11846,7 @@
                 "endorsement": "$.endorsements[*].endorsement"
               }
             },
-            "CredentialField": {
+            "CredentialFieldDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11867,7 +11867,7 @@
                 "credentialIdentifier": "$.credentialIdentifier"
               }
             },
-            "CredentialType": {
+            "CredentialTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11897,7 +11897,7 @@
                 "expirationDate": "$.expirationDate"
               }
             },
-            "GradeLevel": {
+            "GradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11927,7 +11927,7 @@
                 "namespace": "$.namespace"
               }
             },
-            "StateOfIssueStateAbbreviation": {
+            "StateOfIssueStateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11939,19 +11939,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "StateAbbreviationDescriptor"
             },
-            "TeachingCredential": {
-              "isDescriptor": true,
-              "isReference": true,
-              "pathOrder": [
-                "teachingCredentialDescriptor"
-              ],
-              "paths": {
-                "teachingCredentialDescriptor": "$.teachingCredentialDescriptor"
-              },
-              "projectName": "Ed-Fi",
-              "resourceName": "TeachingCredentialDescriptor"
-            },
-            "TeachingCredentialBasis": {
+            "TeachingCredentialBasisDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -11962,13 +11950,25 @@
               },
               "projectName": "Ed-Fi",
               "resourceName": "TeachingCredentialBasisDescriptor"
+            },
+            "TeachingCredentialDescriptor": {
+              "isDescriptor": true,
+              "isReference": true,
+              "pathOrder": [
+                "teachingCredentialDescriptor"
+              ],
+              "paths": {
+                "teachingCredentialDescriptor": "$.teachingCredentialDescriptor"
+              },
+              "projectName": "Ed-Fi",
+              "resourceName": "TeachingCredentialDescriptor"
             }
           },
           "equalityConstraints": [
           ],
           "identityFullnames": [
             "CredentialIdentifier",
-            "StateOfIssueStateAbbreviation"
+            "StateOfIssueStateAbbreviationDescriptor"
           ],
           "identityPathOrder": [
             "credentialIdentifier",
@@ -12348,7 +12348,7 @@
                 "mappedValue": "$.mappedValue"
               }
             },
-            "ModelEntity": {
+            "ModelEntityDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -12873,18 +12873,6 @@
               "projectName": "Ed-Fi",
               "resourceName": "School"
             },
-            "Discipline": {
-              "isDescriptor": true,
-              "isReference": true,
-              "pathOrder": [
-                "disciplineDescriptor"
-              ],
-              "paths": {
-                "disciplineDescriptor": "$.disciplines[*].disciplineDescriptor"
-              },
-              "projectName": "Ed-Fi",
-              "resourceName": "DisciplineDescriptor"
-            },
             "DisciplineActionIdentifier": {
               "isReference": false,
               "pathOrder": [
@@ -12903,7 +12891,7 @@
                 "disciplineActionLength": "$.disciplineActionLength"
               }
             },
-            "DisciplineActionLengthDifferenceReason": {
+            "DisciplineActionLengthDifferenceReasonDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -12923,6 +12911,18 @@
               "paths": {
                 "disciplineDate": "$.disciplineDate"
               }
+            },
+            "DisciplineDescriptor": {
+              "isDescriptor": true,
+              "isReference": true,
+              "pathOrder": [
+                "disciplineDescriptor"
+              ],
+              "paths": {
+                "disciplineDescriptor": "$.disciplines[*].disciplineDescriptor"
+              },
+              "projectName": "Ed-Fi",
+              "resourceName": "DisciplineDescriptor"
             },
             "IEPPlacementMeetingIndicator": {
               "isReference": false,
@@ -13363,7 +13363,7 @@
         "disciplineIncidents": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Behavior.Behavior": {
+            "Behavior.BehaviorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -13393,7 +13393,7 @@
                 "caseNumber": "$.caseNumber"
               }
             },
-            "DisciplineIncidentExternalParticipant.DisciplineIncidentParticipationCode": {
+            "DisciplineIncidentExternalParticipant.DisciplineIncidentParticipationCodeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -13459,7 +13459,7 @@
                 "incidentIdentifier": "$.incidentIdentifier"
               }
             },
-            "IncidentLocation": {
+            "IncidentLocationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -13489,7 +13489,7 @@
                 "reportedToLawEnforcement": "$.reportedToLawEnforcement"
               }
             },
-            "ReporterDescription": {
+            "ReporterDescriptionDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -13522,7 +13522,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "School"
             },
-            "Weapon": {
+            "WeaponDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -13737,7 +13737,7 @@
                 "cost": "$.cost"
               }
             },
-            "CostRate": {
+            "CostRateDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -14683,7 +14683,7 @@
         "educationOrganizationNetworks": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Address.AddressType": {
+            "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -14758,7 +14758,7 @@
                 "latitude": "$.addresses[*].latitude"
               }
             },
-            "Address.Locale": {
+            "Address.LocaleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -14815,7 +14815,7 @@
                 "postalCode": "$.addresses[*].postalCode"
               }
             },
-            "Address.StateAbbreviation": {
+            "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -14836,7 +14836,7 @@
                 "streetNumberName": "$.addresses[*].streetNumberName"
               }
             },
-            "EducationOrganizationCategory": {
+            "EducationOrganizationCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -14848,7 +14848,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganizationCategoryDescriptor"
             },
-            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": {
+            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -14878,7 +14878,7 @@
                 "designatedBy": "$.indicators[*].designatedBy"
               }
             },
-            "EducationOrganizationIndicator.Indicator": {
+            "EducationOrganizationIndicator.IndicatorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -14890,7 +14890,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorGroup": {
+            "EducationOrganizationIndicator.IndicatorGroupDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -14902,7 +14902,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorGroupDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorLevel": {
+            "EducationOrganizationIndicator.IndicatorLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -14950,7 +14950,7 @@
                 "educationOrganizationNetworkId": "$.educationOrganizationNetworkId"
               }
             },
-            "InstitutionTelephone.InstitutionTelephoneNumberType": {
+            "InstitutionTelephone.InstitutionTelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15007,7 +15007,7 @@
                 "addressLine4": "$.internationalAddresses[*].addressLine4"
               }
             },
-            "InternationalAddress.AddressType": {
+            "InternationalAddress.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15028,7 +15028,7 @@
                 "beginDate": "$.internationalAddresses[*].beginDate"
               }
             },
-            "InternationalAddress.Country": {
+            "InternationalAddress.CountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15076,7 +15076,7 @@
                 "nameOfInstitution": "$.nameOfInstitution"
               }
             },
-            "NetworkPurpose": {
+            "NetworkPurposeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15088,7 +15088,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "NetworkPurposeDescriptor"
             },
-            "OperationalStatus": {
+            "OperationalStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15669,7 +15669,7 @@
         "educationServiceCenters": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Address.AddressType": {
+            "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15744,7 +15744,7 @@
                 "latitude": "$.addresses[*].latitude"
               }
             },
-            "Address.Locale": {
+            "Address.LocaleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15801,7 +15801,7 @@
                 "postalCode": "$.addresses[*].postalCode"
               }
             },
-            "Address.StateAbbreviation": {
+            "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15822,7 +15822,7 @@
                 "streetNumberName": "$.addresses[*].streetNumberName"
               }
             },
-            "EducationOrganizationCategory": {
+            "EducationOrganizationCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15834,7 +15834,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganizationCategoryDescriptor"
             },
-            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": {
+            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15864,7 +15864,7 @@
                 "designatedBy": "$.indicators[*].designatedBy"
               }
             },
-            "EducationOrganizationIndicator.Indicator": {
+            "EducationOrganizationIndicator.IndicatorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15876,7 +15876,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorGroup": {
+            "EducationOrganizationIndicator.IndicatorGroupDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15888,7 +15888,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorGroupDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorLevel": {
+            "EducationOrganizationIndicator.IndicatorLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15936,7 +15936,7 @@
                 "educationServiceCenterId": "$.educationServiceCenterId"
               }
             },
-            "InstitutionTelephone.InstitutionTelephoneNumberType": {
+            "InstitutionTelephone.InstitutionTelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -15993,7 +15993,7 @@
                 "addressLine4": "$.internationalAddresses[*].addressLine4"
               }
             },
-            "InternationalAddress.AddressType": {
+            "InternationalAddress.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -16014,7 +16014,7 @@
                 "beginDate": "$.internationalAddresses[*].beginDate"
               }
             },
-            "InternationalAddress.Country": {
+            "InternationalAddress.CountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -16062,7 +16062,7 @@
                 "nameOfInstitution": "$.nameOfInstitution"
               }
             },
-            "OperationalStatus": {
+            "OperationalStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -17025,7 +17025,7 @@
                 "evaluationRubricRating": "$.evaluationRubricRating"
               }
             },
-            "EvaluationRubricRatingLevel": {
+            "EvaluationRubricRatingLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -17553,7 +17553,7 @@
                 "fiscalYear": "$.fiscalYear"
               }
             },
-            "ReportingTag": {
+            "ReportingTagDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -17669,7 +17669,7 @@
                 "fiscalYear": "$.fiscalYear"
               }
             },
-            "ReportingTag": {
+            "ReportingTagDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -17968,7 +17968,7 @@
                 "gradebookEntryIdentifier": "$.gradebookEntryIdentifier"
               }
             },
-            "GradebookEntryType": {
+            "GradebookEntryTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -18409,7 +18409,7 @@
                 "gradeEarnedDescription": "$.gradeEarnedDescription"
               }
             },
-            "GradeType": {
+            "GradeTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -18478,7 +18478,7 @@
                 "numericGradeEarned": "$.learningStandardGrades[*].numericGradeEarned"
               }
             },
-            "LearningStandardGrade.PerformanceBaseConversion": {
+            "LearningStandardGrade.PerformanceBaseConversionDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -18508,7 +18508,7 @@
                 "numericGradeEarned": "$.numericGradeEarned"
               }
             },
-            "PerformanceBaseConversion": {
+            "PerformanceBaseConversionDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -18556,7 +18556,7 @@
             }
           ],
           "identityFullnames": [
-            "GradeType",
+            "GradeTypeDescriptor",
             "StudentSectionAssociation",
             "GradingPeriod"
           ],
@@ -18904,7 +18904,7 @@
                 "endDate": "$.endDate"
               }
             },
-            "GradingPeriod": {
+            "GradingPeriodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -18969,7 +18969,7 @@
           ],
           "identityFullnames": [
             "School",
-            "GradingPeriod",
+            "GradingPeriodDescriptor",
             "GradingPeriodName",
             "SchoolYear"
           ],
@@ -19185,7 +19185,7 @@
                 "credits": "$.creditsByCourses[*].credits"
               }
             },
-            "CreditsByCourse.WhenTakenGradeLevel": {
+            "CreditsByCourse.WhenTakenGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -19197,7 +19197,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "GradeLevelDescriptor"
             },
-            "CreditsByCreditCategory.CreditCategory": {
+            "CreditsByCreditCategory.CreditCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -19239,7 +19239,7 @@
                 "credits": "$.creditsByCreditCategories[*].credits"
               }
             },
-            "CreditsBySubject.AcademicSubject": {
+            "CreditsBySubject.AcademicSubjectDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -19293,7 +19293,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganization"
             },
-            "GraduationPlanType": {
+            "GraduationPlanTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -19337,7 +19337,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Assessment"
             },
-            "RequiredAssessment.RequiredAssessmentPerformanceLevel.AssessmentReportingMethod": {
+            "RequiredAssessment.RequiredAssessmentPerformanceLevel.AssessmentReportingMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -19367,7 +19367,7 @@
                 "minimumScore": "$.requiredAssessments[*].performanceLevel.minimumScore"
               }
             },
-            "RequiredAssessment.RequiredAssessmentPerformanceLevel.PerformanceLevel": {
+            "RequiredAssessment.RequiredAssessmentPerformanceLevel.PerformanceLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -19388,7 +19388,7 @@
                 "performanceLevelIndicatorName": "$.requiredAssessments[*].performanceLevel.performanceLevelIndicatorName"
               }
             },
-            "RequiredAssessment.RequiredAssessmentPerformanceLevel.ResultDatatypeType": {
+            "RequiredAssessment.RequiredAssessmentPerformanceLevel.ResultDatatypeTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -19400,7 +19400,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "ResultDatatypeTypeDescriptor"
             },
-            "RequiredAssessment.RequiredAssessmentScore.AssessmentReportingMethod": {
+            "RequiredAssessment.RequiredAssessmentScore.AssessmentReportingMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -19430,7 +19430,7 @@
                 "minimumScore": "$.requiredAssessments[*].scores[*].minimumScore"
               }
             },
-            "RequiredAssessment.RequiredAssessmentScore.ResultDatatypeType": {
+            "RequiredAssessment.RequiredAssessmentScore.ResultDatatypeTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -19476,7 +19476,7 @@
           "equalityConstraints": [
           ],
           "identityFullnames": [
-            "GraduationPlanType",
+            "GraduationPlanTypeDescriptor",
             "EducationOrganization",
             "GraduationSchoolYear"
           ],
@@ -20715,7 +20715,7 @@
         "interventionPrescriptions": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AppropriateGradeLevel": {
+            "AppropriateGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -20727,7 +20727,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "GradeLevelDescriptor"
             },
-            "AppropriateSex": {
+            "AppropriateSexDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -20739,7 +20739,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "SexDescriptor"
             },
-            "DeliveryMethod": {
+            "DeliveryMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -20751,7 +20751,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "DeliveryMethodDescriptor"
             },
-            "Diagnosis": {
+            "DiagnosisDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -20805,7 +20805,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganization"
             },
-            "InterventionClass": {
+            "InterventionClassDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -20853,7 +20853,7 @@
                 "namespace": "$.namespace"
               }
             },
-            "PopulationServed": {
+            "PopulationServedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21102,7 +21102,7 @@
         "interventionStudies": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AppropriateGradeLevel": {
+            "AppropriateGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21114,7 +21114,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "GradeLevelDescriptor"
             },
-            "AppropriateSex": {
+            "AppropriateSexDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21126,7 +21126,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "SexDescriptor"
             },
-            "DeliveryMethod": {
+            "DeliveryMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21180,7 +21180,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganization"
             },
-            "InterventionClass": {
+            "InterventionClassDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21192,7 +21192,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "InterventionClassDescriptor"
             },
-            "InterventionEffectiveness.Diagnosis": {
+            "InterventionEffectiveness.DiagnosisDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21204,7 +21204,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "DiagnosisDescriptor"
             },
-            "InterventionEffectiveness.GradeLevel": {
+            "InterventionEffectiveness.GradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21225,7 +21225,7 @@
                 "improvementIndex": "$.interventionEffectivenesses[*].improvementIndex"
               }
             },
-            "InterventionEffectiveness.InterventionEffectivenessRating": {
+            "InterventionEffectiveness.InterventionEffectivenessRatingDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21237,7 +21237,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "InterventionEffectivenessRatingDescriptor"
             },
-            "InterventionEffectiveness.PopulationServed": {
+            "InterventionEffectiveness.PopulationServedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21281,7 +21281,7 @@
                 "participants": "$.participants"
               }
             },
-            "PopulationServed": {
+            "PopulationServedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21293,7 +21293,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "PopulationServedDescriptor"
             },
-            "StateAbbreviation": {
+            "StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21598,7 +21598,7 @@
         "interventions": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AppropriateGradeLevel": {
+            "AppropriateGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21610,7 +21610,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "GradeLevelDescriptor"
             },
-            "AppropriateSex": {
+            "AppropriateSexDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21631,7 +21631,7 @@
                 "beginDate": "$.beginDate"
               }
             },
-            "DeliveryMethod": {
+            "DeliveryMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21643,7 +21643,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "DeliveryMethodDescriptor"
             },
-            "Diagnosis": {
+            "DiagnosisDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21706,7 +21706,7 @@
                 "endDate": "$.endDate"
               }
             },
-            "InterventionClass": {
+            "InterventionClassDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -21786,7 +21786,7 @@
                 "namespace": "$.namespace"
               }
             },
-            "PopulationServed": {
+            "PopulationServedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -22391,7 +22391,16 @@
                 "effectiveDate": "$.effectiveDate"
               }
             },
-            "LearningStandardEquivalenceStrength": {
+            "LearningStandardEquivalenceStrengthDescription": {
+              "isReference": false,
+              "pathOrder": [
+                "learningStandardEquivalenceStrengthDescription"
+              ],
+              "paths": {
+                "learningStandardEquivalenceStrengthDescription": "$.learningStandardEquivalenceStrengthDescription"
+              }
+            },
+            "LearningStandardEquivalenceStrengthDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -22402,15 +22411,6 @@
               },
               "projectName": "Ed-Fi",
               "resourceName": "LearningStandardEquivalenceStrengthDescriptor"
-            },
-            "LearningStandardEquivalenceStrengthDescription": {
-              "isReference": false,
-              "pathOrder": [
-                "learningStandardEquivalenceStrengthDescription"
-              ],
-              "paths": {
-                "learningStandardEquivalenceStrengthDescription": "$.learningStandardEquivalenceStrengthDescription"
-              }
             },
             "Namespace": {
               "isReference": false,
@@ -22661,7 +22661,7 @@
         "learningStandards": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AcademicSubject": {
+            "AcademicSubjectDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -22730,7 +22730,7 @@
                 "publicationYear": "$.contentStandard.publicationYear"
               }
             },
-            "ContentStandard.PublicationStatus": {
+            "ContentStandard.PublicationStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -22787,7 +22787,7 @@
                 "description": "$.description"
               }
             },
-            "GradeLevel": {
+            "GradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -22799,7 +22799,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "GradeLevelDescriptor"
             },
-            "LearningStandardCategory": {
+            "LearningStandardCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -22847,7 +22847,7 @@
                 "learningStandardItemCode": "$.learningStandardItemCode"
               }
             },
-            "LearningStandardScope": {
+            "LearningStandardScopeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -23439,7 +23439,7 @@
                 "fiscalYear": "$.fiscalYear"
               }
             },
-            "ReportingTag.ReportingTag": {
+            "ReportingTag.ReportingTagDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -23628,7 +23628,7 @@
                 "asOfDate": "$.asOfDate"
               }
             },
-            "FinancialCollection": {
+            "FinancialCollectionDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -23772,7 +23772,7 @@
                 "asOfDate": "$.asOfDate"
               }
             },
-            "FinancialCollection": {
+            "FinancialCollectionDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -23916,7 +23916,7 @@
                 "asOfDate": "$.asOfDate"
               }
             },
-            "FinancialCollection": {
+            "FinancialCollectionDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24078,7 +24078,7 @@
         "localEducationAgencies": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Address.AddressType": {
+            "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24153,7 +24153,7 @@
                 "latitude": "$.addresses[*].latitude"
               }
             },
-            "Address.Locale": {
+            "Address.LocaleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24210,7 +24210,7 @@
                 "postalCode": "$.addresses[*].postalCode"
               }
             },
-            "Address.StateAbbreviation": {
+            "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24231,7 +24231,7 @@
                 "streetNumberName": "$.addresses[*].streetNumberName"
               }
             },
-            "CharterStatus": {
+            "CharterStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24243,7 +24243,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "CharterStatusDescriptor"
             },
-            "EducationOrganizationCategory": {
+            "EducationOrganizationCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24255,7 +24255,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganizationCategoryDescriptor"
             },
-            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": {
+            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24285,7 +24285,7 @@
                 "designatedBy": "$.indicators[*].designatedBy"
               }
             },
-            "EducationOrganizationIndicator.Indicator": {
+            "EducationOrganizationIndicator.IndicatorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24297,7 +24297,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorGroup": {
+            "EducationOrganizationIndicator.IndicatorGroupDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24309,7 +24309,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorGroupDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorLevel": {
+            "EducationOrganizationIndicator.IndicatorLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24360,7 +24360,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationServiceCenter"
             },
-            "InstitutionTelephone.InstitutionTelephoneNumberType": {
+            "InstitutionTelephone.InstitutionTelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24417,7 +24417,7 @@
                 "addressLine4": "$.internationalAddresses[*].addressLine4"
               }
             },
-            "InternationalAddress.AddressType": {
+            "InternationalAddress.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24438,7 +24438,7 @@
                 "beginDate": "$.internationalAddresses[*].beginDate"
               }
             },
-            "InternationalAddress.Country": {
+            "InternationalAddress.CountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24477,7 +24477,7 @@
                 "longitude": "$.internationalAddresses[*].longitude"
               }
             },
-            "LocalEducationAgencyAccountability.GunFreeSchoolsActReportingStatus": {
+            "LocalEducationAgencyAccountability.GunFreeSchoolsActReportingStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24489,7 +24489,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "GunFreeSchoolsActReportingStatusDescriptor"
             },
-            "LocalEducationAgencyAccountability.SchoolChoiceImplementStatus": {
+            "LocalEducationAgencyAccountability.SchoolChoiceImplementStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24510,7 +24510,7 @@
                 "schoolYear": "$.accountabilities[*].schoolYearTypeReference.schoolYear"
               }
             },
-            "LocalEducationAgencyCategory": {
+            "LocalEducationAgencyCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -24621,7 +24621,7 @@
                 "nameOfInstitution": "$.nameOfInstitution"
               }
             },
-            "OperationalStatus": {
+            "OperationalStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -25290,7 +25290,7 @@
                 "asOfDate": "$.asOfDate"
               }
             },
-            "FinancialCollection": {
+            "FinancialCollectionDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -25434,7 +25434,7 @@
                 "asOfDate": "$.asOfDate"
               }
             },
-            "FinancialCollection": {
+            "FinancialCollectionDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -26286,7 +26286,7 @@
                 "fiscalYear": "$.fiscalYear"
               }
             },
-            "ReportingTag": {
+            "ReportingTagDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -26375,7 +26375,7 @@
         "objectiveAssessments": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AcademicSubject": {
+            "AcademicSubjectDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -26417,7 +26417,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "AssessmentItem"
             },
-            "AssessmentPerformanceLevel.AssessmentReportingMethod": {
+            "AssessmentPerformanceLevel.AssessmentReportingMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -26447,7 +26447,7 @@
                 "minimumScore": "$.performanceLevels[*].minimumScore"
               }
             },
-            "AssessmentPerformanceLevel.PerformanceLevel": {
+            "AssessmentPerformanceLevel.PerformanceLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -26468,7 +26468,7 @@
                 "performanceLevelIndicatorName": "$.performanceLevels[*].performanceLevelIndicatorName"
               }
             },
-            "AssessmentPerformanceLevel.ResultDatatypeType": {
+            "AssessmentPerformanceLevel.ResultDatatypeTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -26480,7 +26480,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "ResultDatatypeTypeDescriptor"
             },
-            "AssessmentScore.AssessmentReportingMethod": {
+            "AssessmentScore.AssessmentReportingMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -26510,7 +26510,7 @@
                 "minimumScore": "$.scores[*].minimumScore"
               }
             },
-            "AssessmentScore.ResultDatatypeType": {
+            "AssessmentScore.ResultDatatypeTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -26929,7 +26929,7 @@
         "openStaffPositions": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AcademicSubject": {
+            "AcademicSubjectDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -26971,7 +26971,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganization"
             },
-            "EmploymentStatus": {
+            "EmploymentStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -26983,7 +26983,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EmploymentStatusDescriptor"
             },
-            "InstructionalGradeLevel": {
+            "InstructionalGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27004,7 +27004,7 @@
                 "positionTitle": "$.positionTitle"
               }
             },
-            "PostingResult": {
+            "PostingResultDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27016,7 +27016,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "PostingResultDescriptor"
             },
-            "ProgramAssignment": {
+            "ProgramAssignmentDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27037,7 +27037,7 @@
                 "requisitionNumber": "$.requisitionNumber"
               }
             },
-            "StaffClassification": {
+            "StaffClassificationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27268,7 +27268,7 @@
                 "fiscalYear": "$.fiscalYear"
               }
             },
-            "ReportingTag": {
+            "ReportingTagDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27357,7 +27357,7 @@
         "organizationDepartments": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AcademicSubject": {
+            "AcademicSubjectDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27369,7 +27369,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "AcademicSubjectDescriptor"
             },
-            "Address.AddressType": {
+            "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27444,7 +27444,7 @@
                 "latitude": "$.addresses[*].latitude"
               }
             },
-            "Address.Locale": {
+            "Address.LocaleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27501,7 +27501,7 @@
                 "postalCode": "$.addresses[*].postalCode"
               }
             },
-            "Address.StateAbbreviation": {
+            "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27522,7 +27522,7 @@
                 "streetNumberName": "$.addresses[*].streetNumberName"
               }
             },
-            "EducationOrganizationCategory": {
+            "EducationOrganizationCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27534,7 +27534,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganizationCategoryDescriptor"
             },
-            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": {
+            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27564,7 +27564,7 @@
                 "designatedBy": "$.indicators[*].designatedBy"
               }
             },
-            "EducationOrganizationIndicator.Indicator": {
+            "EducationOrganizationIndicator.IndicatorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27576,7 +27576,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorGroup": {
+            "EducationOrganizationIndicator.IndicatorGroupDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27588,7 +27588,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorGroupDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorLevel": {
+            "EducationOrganizationIndicator.IndicatorLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27627,7 +27627,7 @@
                 "endDate": "$.indicators[*].periods[*].endDate"
               }
             },
-            "InstitutionTelephone.InstitutionTelephoneNumberType": {
+            "InstitutionTelephone.InstitutionTelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27684,7 +27684,7 @@
                 "addressLine4": "$.internationalAddresses[*].addressLine4"
               }
             },
-            "InternationalAddress.AddressType": {
+            "InternationalAddress.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27705,7 +27705,7 @@
                 "beginDate": "$.internationalAddresses[*].beginDate"
               }
             },
-            "InternationalAddress.Country": {
+            "InternationalAddress.CountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -27753,7 +27753,7 @@
                 "nameOfInstitution": "$.nameOfInstitution"
               }
             },
-            "OperationalStatus": {
+            "OperationalStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -28390,7 +28390,7 @@
                 "personId": "$.personId"
               }
             },
-            "SourceSystem": {
+            "SourceSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -28407,7 +28407,7 @@
           ],
           "identityFullnames": [
             "PersonId",
-            "SourceSystem"
+            "SourceSystemDescriptor"
           ],
           "identityPathOrder": [
             "personId",
@@ -28792,7 +28792,7 @@
                 "eventDate": "$.eventDate"
               }
             },
-            "PostSecondaryEventCategory": {
+            "PostSecondaryEventCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -28833,7 +28833,7 @@
           ],
           "identityFullnames": [
             "EventDate",
-            "PostSecondaryEventCategory",
+            "PostSecondaryEventCategoryDescriptor",
             "Student"
           ],
           "identityPathOrder": [
@@ -28976,7 +28976,7 @@
         "postSecondaryInstitutions": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Address.AddressType": {
+            "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29051,7 +29051,7 @@
                 "latitude": "$.addresses[*].latitude"
               }
             },
-            "Address.Locale": {
+            "Address.LocaleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29108,7 +29108,7 @@
                 "postalCode": "$.addresses[*].postalCode"
               }
             },
-            "Address.StateAbbreviation": {
+            "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29129,7 +29129,7 @@
                 "streetNumberName": "$.addresses[*].streetNumberName"
               }
             },
-            "AdministrativeFundingControl": {
+            "AdministrativeFundingControlDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29141,7 +29141,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "AdministrativeFundingControlDescriptor"
             },
-            "EducationOrganizationCategory": {
+            "EducationOrganizationCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29153,7 +29153,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganizationCategoryDescriptor"
             },
-            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": {
+            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29183,7 +29183,7 @@
                 "designatedBy": "$.indicators[*].designatedBy"
               }
             },
-            "EducationOrganizationIndicator.Indicator": {
+            "EducationOrganizationIndicator.IndicatorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29195,7 +29195,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorGroup": {
+            "EducationOrganizationIndicator.IndicatorGroupDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29207,7 +29207,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorGroupDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorLevel": {
+            "EducationOrganizationIndicator.IndicatorLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29246,7 +29246,7 @@
                 "endDate": "$.indicators[*].periods[*].endDate"
               }
             },
-            "InstitutionTelephone.InstitutionTelephoneNumberType": {
+            "InstitutionTelephone.InstitutionTelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29303,7 +29303,7 @@
                 "addressLine4": "$.internationalAddresses[*].addressLine4"
               }
             },
-            "InternationalAddress.AddressType": {
+            "InternationalAddress.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29324,7 +29324,7 @@
                 "beginDate": "$.internationalAddresses[*].beginDate"
               }
             },
-            "InternationalAddress.Country": {
+            "InternationalAddress.CountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29363,7 +29363,7 @@
                 "longitude": "$.internationalAddresses[*].longitude"
               }
             },
-            "MediumOfInstruction": {
+            "MediumOfInstructionDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29384,7 +29384,7 @@
                 "nameOfInstitution": "$.nameOfInstitution"
               }
             },
-            "OperationalStatus": {
+            "OperationalStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -29405,7 +29405,7 @@
                 "postSecondaryInstitutionId": "$.postSecondaryInstitutionId"
               }
             },
-            "PostSecondaryInstitutionLevel": {
+            "PostSecondaryInstitutionLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -30262,7 +30262,7 @@
                 "fiscalYear": "$.fiscalYear"
               }
             },
-            "ReportingTag": {
+            "ReportingTagDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -30387,7 +30387,7 @@
                 "minNumericRating": "$.programEvaluationLevels[*].minNumericRating"
               }
             },
-            "ElementProgramEvaluationLevel.RatingLevel": {
+            "ElementProgramEvaluationLevel.RatingLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -30770,7 +30770,7 @@
                 "minNumericRating": "$.programEvaluationLevels[*].minNumericRating"
               }
             },
-            "ObjectiveProgramEvaluationLevel.RatingLevel": {
+            "ObjectiveProgramEvaluationLevel.RatingLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -31163,7 +31163,7 @@
                 "minNumericRating": "$.levels[*].minNumericRating"
               }
             },
-            "ProgramEvaluationLevel.RatingLevel": {
+            "ProgramEvaluationLevel.RatingLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -31175,7 +31175,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "RatingLevelDescriptor"
             },
-            "ProgramEvaluationPeriod": {
+            "ProgramEvaluationPeriodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -31196,7 +31196,7 @@
                 "programEvaluationTitle": "$.programEvaluationTitle"
               }
             },
-            "ProgramEvaluationType": {
+            "ProgramEvaluationTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -31214,8 +31214,8 @@
           "identityFullnames": [
             "Program",
             "ProgramEvaluationTitle",
-            "ProgramEvaluationType",
-            "ProgramEvaluationPeriod"
+            "ProgramEvaluationTypeDescriptor",
+            "ProgramEvaluationPeriodDescriptor"
           ],
           "identityPathOrder": [
             "educationOrganizationId",
@@ -31482,7 +31482,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "LearningStandard"
             },
-            "ProgramCharacteristic": {
+            "ProgramCharacteristicDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -31512,7 +31512,7 @@
                 "programName": "$.programName"
               }
             },
-            "ProgramSponsor": {
+            "ProgramSponsorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -31524,7 +31524,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "ProgramSponsorDescriptor"
             },
-            "ProgramType": {
+            "ProgramTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -31542,7 +31542,7 @@
           "identityFullnames": [
             "EducationOrganization",
             "ProgramName",
-            "ProgramType"
+            "ProgramTypeDescriptor"
           ],
           "identityPathOrder": [
             "educationOrganizationId",
@@ -31823,7 +31823,7 @@
                 "fiscalYear": "$.fiscalYear"
               }
             },
-            "ReportingTag": {
+            "ReportingTagDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -32616,7 +32616,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Grade"
             },
-            "GradePointAverage.GradePointAverageType": {
+            "GradePointAverage.GradePointAverageTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -33515,7 +33515,7 @@
         "restraintEvents": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "EducationalEnvironment": {
+            "EducationalEnvironmentDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -33561,7 +33561,7 @@
                 "restraintEventIdentifier": "$.restraintEventIdentifier"
               }
             },
-            "RestraintEventReason": {
+            "RestraintEventReasonDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34227,7 +34227,7 @@
         "schools": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Address.AddressType": {
+            "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34302,7 +34302,7 @@
                 "latitude": "$.addresses[*].latitude"
               }
             },
-            "Address.Locale": {
+            "Address.LocaleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34359,7 +34359,7 @@
                 "postalCode": "$.addresses[*].postalCode"
               }
             },
-            "Address.StateAbbreviation": {
+            "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34380,7 +34380,7 @@
                 "streetNumberName": "$.addresses[*].streetNumberName"
               }
             },
-            "AdministrativeFundingControl": {
+            "AdministrativeFundingControlDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34392,7 +34392,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "AdministrativeFundingControlDescriptor"
             },
-            "CharterApprovalAgencyType": {
+            "CharterApprovalAgencyTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34413,7 +34413,7 @@
                 "schoolYear": "$.charterApprovalSchoolYearTypeReference.schoolYear"
               }
             },
-            "CharterStatus": {
+            "CharterStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34425,7 +34425,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "CharterStatusDescriptor"
             },
-            "EducationOrganizationCategory": {
+            "EducationOrganizationCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34437,7 +34437,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganizationCategoryDescriptor"
             },
-            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": {
+            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34467,7 +34467,7 @@
                 "designatedBy": "$.indicators[*].designatedBy"
               }
             },
-            "EducationOrganizationIndicator.Indicator": {
+            "EducationOrganizationIndicator.IndicatorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34479,7 +34479,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorGroup": {
+            "EducationOrganizationIndicator.IndicatorGroupDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34491,7 +34491,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorGroupDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorLevel": {
+            "EducationOrganizationIndicator.IndicatorLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34530,7 +34530,7 @@
                 "endDate": "$.indicators[*].periods[*].endDate"
               }
             },
-            "GradeLevel": {
+            "GradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34542,7 +34542,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "GradeLevelDescriptor"
             },
-            "InstitutionTelephone.InstitutionTelephoneNumberType": {
+            "InstitutionTelephone.InstitutionTelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34599,7 +34599,7 @@
                 "addressLine4": "$.internationalAddresses[*].addressLine4"
               }
             },
-            "InternationalAddress.AddressType": {
+            "InternationalAddress.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34620,7 +34620,7 @@
                 "beginDate": "$.internationalAddresses[*].beginDate"
               }
             },
-            "InternationalAddress.Country": {
+            "InternationalAddress.CountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34659,7 +34659,7 @@
                 "longitude": "$.internationalAddresses[*].longitude"
               }
             },
-            "InternetAccess": {
+            "InternetAccessDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34683,7 +34683,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "LocalEducationAgency"
             },
-            "MagnetSpecialProgramEmphasisSchool": {
+            "MagnetSpecialProgramEmphasisSchoolDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34704,7 +34704,7 @@
                 "nameOfInstitution": "$.nameOfInstitution"
               }
             },
-            "OperationalStatus": {
+            "OperationalStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34716,7 +34716,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "OperationalStatusDescriptor"
             },
-            "SchoolCategory": {
+            "SchoolCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34737,7 +34737,7 @@
                 "schoolId": "$.schoolId"
               }
             },
-            "SchoolType": {
+            "SchoolTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -34758,7 +34758,7 @@
                 "shortNameOfInstitution": "$.shortNameOfInstitution"
               }
             },
-            "TitleIPartASchoolDesignation": {
+            "TitleIPartASchoolDesignationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -35675,7 +35675,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "ClassPeriod"
             },
-            "CourseLevelCharacteristic": {
+            "CourseLevelCharacteristicDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -35705,7 +35705,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "CourseOffering"
             },
-            "EducationalEnvironment": {
+            "EducationalEnvironmentDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -35717,7 +35717,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationalEnvironmentDescriptor"
             },
-            "InstructionLanguage": {
+            "InstructionLanguageDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -35755,7 +35755,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "School"
             },
-            "MediumOfInstruction": {
+            "MediumOfInstructionDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -35767,7 +35767,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "MediumOfInstructionDescriptor"
             },
-            "OfferedGradeLevel": {
+            "OfferedGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -35788,7 +35788,7 @@
                 "officialAttendancePeriod": "$.officialAttendancePeriod"
               }
             },
-            "PopulationServed": {
+            "PopulationServedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -35816,7 +35816,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Program"
             },
-            "SectionCharacteristic": {
+            "SectionCharacteristicDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -35846,7 +35846,7 @@
                 "sectionName": "$.sectionName"
               }
             },
-            "SectionType": {
+            "SectionTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -36470,7 +36470,7 @@
                 "sessionName": "$.sessionName"
               }
             },
-            "Term": {
+            "TermDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -36800,7 +36800,7 @@
                 "fiscalYear": "$.fiscalYear"
               }
             },
-            "ReportingTag": {
+            "ReportingTagDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -37109,7 +37109,7 @@
         "staffAbsenceEvents": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AbsenceEventCategory": {
+            "AbsenceEventCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -37165,7 +37165,7 @@
           ],
           "identityFullnames": [
             "EventDate",
-            "AbsenceEventCategory",
+            "AbsenceEventCategoryDescriptor",
             "Staff"
           ],
           "identityPathOrder": [
@@ -37476,7 +37476,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "DisciplineIncident"
             },
-            "DisciplineIncidentParticipationCode": {
+            "DisciplineIncidentParticipationCodeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -37695,7 +37695,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Staff"
             },
-            "StaffClassification": {
+            "StaffClassificationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -37733,7 +37733,7 @@
           "identityFullnames": [
             "Staff",
             "EducationOrganization",
-            "StaffClassification",
+            "StaffClassificationDescriptor",
             "BeginDate"
           ],
           "identityPathOrder": [
@@ -37911,7 +37911,7 @@
         "staffEducationOrganizationContactAssociations": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Address.AddressType": {
+            "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -37986,7 +37986,7 @@
                 "latitude": "$.address.latitude"
               }
             },
-            "Address.Locale": {
+            "Address.LocaleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -38043,7 +38043,7 @@
                 "postalCode": "$.address.postalCode"
               }
             },
-            "Address.StateAbbreviation": {
+            "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -38073,7 +38073,7 @@
                 "contactTitle": "$.contactTitle"
               }
             },
-            "ContactType": {
+            "ContactTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -38145,7 +38145,7 @@
                 "telephoneNumber": "$.telephones[*].telephoneNumber"
               }
             },
-            "Telephone.TelephoneNumberType": {
+            "Telephone.TelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -38504,7 +38504,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "SeparationReasonDescriptor"
             },
-            "EmploymentStatus": {
+            "EmploymentStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -38561,7 +38561,7 @@
           "identityFullnames": [
             "Staff",
             "EducationOrganization",
-            "EmploymentStatus"
+            "EmploymentStatusDescriptor"
           ],
           "identityPathOrder": [
             "educationOrganizationId",
@@ -38864,7 +38864,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Staff"
             },
-            "StaffLeaveEventCategory": {
+            "StaffLeaveEventCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -38890,7 +38890,7 @@
           ],
           "identityFullnames": [
             "BeginDate",
-            "StaffLeaveEventCategory",
+            "StaffLeaveEventCategoryDescriptor",
             "Staff"
           ],
           "identityPathOrder": [
@@ -39149,7 +39149,7 @@
         "staffSchoolAssociations": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AcademicSubject": {
+            "AcademicSubjectDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -39177,7 +39177,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Calendar"
             },
-            "GradeLevel": {
+            "GradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -39189,7 +39189,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "GradeLevelDescriptor"
             },
-            "ProgramAssignment": {
+            "ProgramAssignmentDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -39248,7 +39248,7 @@
           "identityFullnames": [
             "Staff",
             "School",
-            "ProgramAssignment"
+            "ProgramAssignmentDescriptor"
           ],
           "identityPathOrder": [
             "programAssignmentDescriptor",
@@ -39431,7 +39431,7 @@
                 "beginDate": "$.beginDate"
               }
             },
-            "ClassroomPosition": {
+            "ClassroomPositionDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -39670,7 +39670,7 @@
         "staffs": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Address.AddressType": {
+            "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -39745,7 +39745,7 @@
                 "latitude": "$.addresses[*].latitude"
               }
             },
-            "Address.Locale": {
+            "Address.LocaleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -39802,7 +39802,7 @@
                 "postalCode": "$.addresses[*].postalCode"
               }
             },
-            "Address.StateAbbreviation": {
+            "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -39823,7 +39823,7 @@
                 "streetNumberName": "$.addresses[*].streetNumberName"
               }
             },
-            "AncestryEthnicOrigin": {
+            "AncestryEthnicOriginDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -39874,7 +39874,7 @@
                 "documentTitle": "$.identificationDocuments[*].documentTitle"
               }
             },
-            "Citizenship.IdentificationDocument.IdentificationDocumentUse": {
+            "Citizenship.IdentificationDocument.IdentificationDocumentUseDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -39886,7 +39886,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IdentificationDocumentUseDescriptor"
             },
-            "Citizenship.IdentificationDocument.IssuerCountry": {
+            "Citizenship.IdentificationDocument.IssuerCountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -39916,7 +39916,7 @@
                 "issuerName": "$.identificationDocuments[*].issuerName"
               }
             },
-            "Citizenship.IdentificationDocument.PersonalInformationVerification": {
+            "Citizenship.IdentificationDocument.PersonalInformationVerificationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -39972,7 +39972,7 @@
                 "electronicMailAddress": "$.electronicMails[*].electronicMailAddress"
               }
             },
-            "ElectronicMail.ElectronicMailType": {
+            "ElectronicMail.ElectronicMailTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40002,7 +40002,7 @@
                 "genderIdentity": "$.genderIdentity"
               }
             },
-            "HighestCompletedLevelOfEducation": {
+            "HighestCompletedLevelOfEducationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40068,7 +40068,7 @@
                 "addressLine4": "$.internationalAddresses[*].addressLine4"
               }
             },
-            "InternationalAddress.AddressType": {
+            "InternationalAddress.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40089,7 +40089,7 @@
                 "beginDate": "$.internationalAddresses[*].beginDate"
               }
             },
-            "InternationalAddress.Country": {
+            "InternationalAddress.CountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40128,7 +40128,7 @@
                 "longitude": "$.internationalAddresses[*].longitude"
               }
             },
-            "Language.Language": {
+            "Language.LanguageDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40140,7 +40140,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "LanguageDescriptor"
             },
-            "Language.LanguageUse": {
+            "Language.LanguageUseDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40224,7 +40224,7 @@
                 "documentTitle": "$.personalIdentificationDocuments[*].documentTitle"
               }
             },
-            "Name.PersonalIdentificationDocument.IdentificationDocumentUse": {
+            "Name.PersonalIdentificationDocument.IdentificationDocumentUseDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40236,7 +40236,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IdentificationDocumentUseDescriptor"
             },
-            "Name.PersonalIdentificationDocument.IssuerCountry": {
+            "Name.PersonalIdentificationDocument.IssuerCountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40266,7 +40266,7 @@
                 "issuerName": "$.personalIdentificationDocuments[*].issuerName"
               }
             },
-            "Name.PersonalIdentificationDocument.PersonalInformationVerification": {
+            "Name.PersonalIdentificationDocument.PersonalInformationVerificationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40341,7 +40341,7 @@
                 "middleName": "$.otherNames[*].middleName"
               }
             },
-            "OtherName.OtherNameType": {
+            "OtherName.OtherNameTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40376,7 +40376,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Person"
             },
-            "Race": {
+            "RaceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40499,7 +40499,7 @@
                 "recognitionDescription": "$.recognitions[*].recognitionDescription"
               }
             },
-            "Recognition.RecognitionType": {
+            "Recognition.RecognitionTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40511,7 +40511,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "RecognitionTypeDescriptor"
             },
-            "Sex": {
+            "SexDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40541,7 +40541,7 @@
                 "identificationCode": "$.identificationCodes[*].identificationCode"
               }
             },
-            "StaffIdentificationCode.StaffIdentificationSystem": {
+            "StaffIdentificationCode.StaffIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40589,7 +40589,7 @@
                 "telephoneNumber": "$.telephones[*].telephoneNumber"
               }
             },
-            "Telephone.TelephoneNumberType": {
+            "Telephone.TelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -40610,7 +40610,7 @@
                 "textMessageCapabilityIndicator": "$.telephones[*].textMessageCapabilityIndicator"
               }
             },
-            "TribalAffiliation": {
+            "TribalAffiliationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -41537,7 +41537,7 @@
         "stateEducationAgencies": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Address.AddressType": {
+            "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -41612,7 +41612,7 @@
                 "latitude": "$.addresses[*].latitude"
               }
             },
-            "Address.Locale": {
+            "Address.LocaleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -41669,7 +41669,7 @@
                 "postalCode": "$.addresses[*].postalCode"
               }
             },
-            "Address.StateAbbreviation": {
+            "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -41690,7 +41690,7 @@
                 "streetNumberName": "$.addresses[*].streetNumberName"
               }
             },
-            "EducationOrganizationCategory": {
+            "EducationOrganizationCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -41702,7 +41702,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganizationCategoryDescriptor"
             },
-            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystem": {
+            "EducationOrganizationIdentificationCode.EducationOrganizationIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -41732,7 +41732,7 @@
                 "designatedBy": "$.indicators[*].designatedBy"
               }
             },
-            "EducationOrganizationIndicator.Indicator": {
+            "EducationOrganizationIndicator.IndicatorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -41744,7 +41744,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorGroup": {
+            "EducationOrganizationIndicator.IndicatorGroupDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -41756,7 +41756,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IndicatorGroupDescriptor"
             },
-            "EducationOrganizationIndicator.IndicatorLevel": {
+            "EducationOrganizationIndicator.IndicatorLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -41795,7 +41795,7 @@
                 "endDate": "$.indicators[*].periods[*].endDate"
               }
             },
-            "InstitutionTelephone.InstitutionTelephoneNumberType": {
+            "InstitutionTelephone.InstitutionTelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -41852,7 +41852,7 @@
                 "addressLine4": "$.internationalAddresses[*].addressLine4"
               }
             },
-            "InternationalAddress.AddressType": {
+            "InternationalAddress.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -41873,7 +41873,7 @@
                 "beginDate": "$.internationalAddresses[*].beginDate"
               }
             },
-            "InternationalAddress.Country": {
+            "InternationalAddress.CountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -41921,7 +41921,7 @@
                 "nameOfInstitution": "$.nameOfInstitution"
               }
             },
-            "OperationalStatus": {
+            "OperationalStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -42440,7 +42440,7 @@
         "studentAcademicRecords": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AcademicHonor.AcademicHonorCategory": {
+            "AcademicHonor.AcademicHonorCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -42779,7 +42779,7 @@
                 "diplomaDescription": "$.diplomas[*].diplomaDescription"
               }
             },
-            "Diploma.DiplomaLevel": {
+            "Diploma.DiplomaLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -42791,7 +42791,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "DiplomaLevelDescriptor"
             },
-            "Diploma.DiplomaType": {
+            "Diploma.DiplomaTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -42815,7 +42815,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganization"
             },
-            "GradePointAverage.GradePointAverageType": {
+            "GradePointAverage.GradePointAverageTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -42974,7 +42974,7 @@
                 "recognitionDescription": "$.recognitions[*].recognitionDescription"
               }
             },
-            "Recognition.RecognitionType": {
+            "Recognition.RecognitionTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -43089,7 +43089,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Student"
             },
-            "Term": {
+            "TermDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -43116,7 +43116,7 @@
             "Student",
             "EducationOrganization",
             "SchoolYear",
-            "Term"
+            "TermDescriptor"
           ],
           "identityPathOrder": [
             "educationOrganizationId",
@@ -43690,7 +43690,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EducationOrganization"
             },
-            "EducationOrganizationAssociationType": {
+            "EducationOrganizationAssociationTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -43735,7 +43735,7 @@
           "identityFullnames": [
             "StudentAssessment",
             "EducationOrganization",
-            "EducationOrganizationAssociationType"
+            "EducationOrganizationAssociationTypeDescriptor"
           ],
           "identityPathOrder": [
             "assessmentIdentifier",
@@ -43868,7 +43868,7 @@
         "studentAssessments": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Accommodation": {
+            "AccommodationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -43898,7 +43898,7 @@
                 "administrationEndDate": "$.administrationEndDate"
               }
             },
-            "AdministrationEnvironment": {
+            "AdministrationEnvironmentDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -43910,7 +43910,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "AdministrationEnvironmentDescriptor"
             },
-            "AdministrationLanguage": {
+            "AdministrationLanguageDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -43945,7 +43945,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Assessment"
             },
-            "AssessmentPeriod.AssessmentPeriod": {
+            "AssessmentPeriod.AssessmentPeriodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -43975,7 +43975,7 @@
                 "endDate": "$.period.endDate"
               }
             },
-            "EventCircumstance": {
+            "EventCircumstanceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -43996,7 +43996,7 @@
                 "eventDescription": "$.eventDescription"
               }
             },
-            "PerformanceLevel.AssessmentReportingMethod": {
+            "PerformanceLevel.AssessmentReportingMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44008,7 +44008,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "AssessmentReportingMethodDescriptor"
             },
-            "PerformanceLevel.PerformanceLevel": {
+            "PerformanceLevel.PerformanceLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44029,7 +44029,7 @@
                 "performanceLevelIndicatorName": "$.performanceLevels[*].performanceLevelIndicatorName"
               }
             },
-            "PlatformType": {
+            "PlatformTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44041,7 +44041,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "PlatformTypeDescriptor"
             },
-            "ReasonNotTested": {
+            "ReasonNotTestedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44074,7 +44074,7 @@
                 "reportedSchoolIdentifier": "$.reportedSchoolIdentifier"
               }
             },
-            "RetestIndicator": {
+            "RetestIndicatorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44095,7 +44095,7 @@
                 "schoolYear": "$.schoolYearTypeReference.schoolYear"
               }
             },
-            "ScoreResult.AssessmentReportingMethod": {
+            "ScoreResult.AssessmentReportingMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44116,7 +44116,7 @@
                 "result": "$.scoreResults[*].result"
               }
             },
-            "ScoreResult.ResultDatatypeType": {
+            "ScoreResult.ResultDatatypeTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44174,7 +44174,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "AssessmentItem"
             },
-            "StudentAssessmentItem.AssessmentItemResult": {
+            "StudentAssessmentItem.AssessmentItemResultDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44222,7 +44222,7 @@
                 "rawScoreResult": "$.items[*].rawScoreResult"
               }
             },
-            "StudentAssessmentItem.ResponseIndicator": {
+            "StudentAssessmentItem.ResponseIndicatorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44286,7 +44286,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "ObjectiveAssessment"
             },
-            "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethod": {
+            "StudentObjectiveAssessment.PerformanceLevel.AssessmentReportingMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44298,7 +44298,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "AssessmentReportingMethodDescriptor"
             },
-            "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevel": {
+            "StudentObjectiveAssessment.PerformanceLevel.PerformanceLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44319,7 +44319,7 @@
                 "performanceLevelIndicatorName": "$.studentObjectiveAssessments[*].performanceLevels[*].performanceLevelIndicatorName"
               }
             },
-            "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethod": {
+            "StudentObjectiveAssessment.ScoreResult.AssessmentReportingMethodDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44340,7 +44340,7 @@
                 "result": "$.studentObjectiveAssessments[*].scoreResults[*].result"
               }
             },
-            "StudentObjectiveAssessment.ScoreResult.ResultDatatypeType": {
+            "StudentObjectiveAssessment.ScoreResult.ResultDatatypeTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44352,7 +44352,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "ResultDatatypeTypeDescriptor"
             },
-            "WhenAssessedGradeLevel": {
+            "WhenAssessedGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -44916,7 +44916,7 @@
                 "cipCode": "$.cteProgramServices[*].cipCode"
               }
             },
-            "CTEProgramService.CTEProgramService": {
+            "CTEProgramService.CTEProgramServiceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -45019,7 +45019,7 @@
                 "designatedBy": "$.programParticipationStatuses[*].designatedBy"
               }
             },
-            "ProgramParticipationStatus.ParticipationStatus": {
+            "ProgramParticipationStatus.ParticipationStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -45049,7 +45049,7 @@
                 "statusEndDate": "$.programParticipationStatuses[*].statusEndDate"
               }
             },
-            "ReasonExited": {
+            "ReasonExitedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -45082,7 +45082,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Student"
             },
-            "TechnicalSkillsAssessment": {
+            "TechnicalSkillsAssessmentDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -45629,7 +45629,7 @@
         "studentCompetencyObjectives": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "CompetencyLevel": {
+            "CompetencyLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46150,7 +46150,7 @@
                 "primaryContactStatus": "$.primaryContactStatus"
               }
             },
-            "Relation": {
+            "RelationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46287,7 +46287,7 @@
         "studentDisciplineIncidentBehaviorAssociations": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Behavior": {
+            "BehaviorDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46322,7 +46322,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "DisciplineIncident"
             },
-            "DisciplineIncidentParticipationCode": {
+            "DisciplineIncidentParticipationCodeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46352,7 +46352,7 @@
           "identityFullnames": [
             "Student",
             "DisciplineIncident",
-            "Behavior"
+            "BehaviorDescriptor"
           ],
           "identityPathOrder": [
             "behaviorDescriptor",
@@ -46484,7 +46484,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "DisciplineIncident"
             },
-            "DisciplineIncidentParticipationCode": {
+            "DisciplineIncidentParticipationCodeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46619,7 +46619,7 @@
         "studentEducationOrganizationAssociations": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "Address.AddressType": {
+            "Address.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46694,7 +46694,7 @@
                 "latitude": "$.addresses[*].latitude"
               }
             },
-            "Address.Locale": {
+            "Address.LocaleDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46751,7 +46751,7 @@
                 "postalCode": "$.addresses[*].postalCode"
               }
             },
-            "Address.StateAbbreviation": {
+            "Address.StateAbbreviationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46772,7 +46772,7 @@
                 "streetNumberName": "$.addresses[*].streetNumberName"
               }
             },
-            "AncestryEthnicOrigin": {
+            "AncestryEthnicOriginDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46784,7 +46784,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "AncestryEthnicOriginDescriptor"
             },
-            "BarrierToInternetAccessInResidence": {
+            "BarrierToInternetAccessInResidenceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46796,7 +46796,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "BarrierToInternetAccessInResidenceDescriptor"
             },
-            "CohortYear.CohortYearType": {
+            "CohortYear.CohortYearTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46817,7 +46817,7 @@
                 "schoolYear": "$.cohortYears[*].schoolYearTypeReference.schoolYear"
               }
             },
-            "CohortYear.Term": {
+            "CohortYear.TermDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46829,7 +46829,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "TermDescriptor"
             },
-            "Disability.Disability": {
+            "Disability.DisabilityDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46841,7 +46841,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "DisabilityDescriptor"
             },
-            "Disability.DisabilityDesignation": {
+            "Disability.DisabilityDesignationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46853,7 +46853,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "DisabilityDesignationDescriptor"
             },
-            "Disability.DisabilityDeterminationSourceType": {
+            "Disability.DisabilityDeterminationSourceTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46913,7 +46913,7 @@
                 "electronicMailAddress": "$.electronicMails[*].electronicMailAddress"
               }
             },
-            "ElectronicMail.ElectronicMailType": {
+            "ElectronicMail.ElectronicMailTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -46988,7 +46988,7 @@
                 "addressLine4": "$.internationalAddresses[*].addressLine4"
               }
             },
-            "InternationalAddress.AddressType": {
+            "InternationalAddress.AddressTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47009,7 +47009,7 @@
                 "beginDate": "$.internationalAddresses[*].beginDate"
               }
             },
-            "InternationalAddress.Country": {
+            "InternationalAddress.CountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47057,7 +47057,7 @@
                 "internetAccessInResidence": "$.internetAccessInResidence"
               }
             },
-            "InternetAccessTypeInResidence": {
+            "InternetAccessTypeInResidenceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47069,7 +47069,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "InternetAccessTypeInResidenceDescriptor"
             },
-            "InternetPerformanceInResidence": {
+            "InternetPerformanceInResidenceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47081,7 +47081,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "InternetPerformanceInResidenceDescriptor"
             },
-            "Language.Language": {
+            "Language.LanguageDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47093,7 +47093,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "LanguageDescriptor"
             },
-            "Language.LanguageUse": {
+            "Language.LanguageUseDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47105,7 +47105,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "LanguageUseDescriptor"
             },
-            "LimitedEnglishProficiency": {
+            "LimitedEnglishProficiencyDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47126,7 +47126,7 @@
                 "loginId": "$.loginId"
               }
             },
-            "PrimaryLearningDeviceAccess": {
+            "PrimaryLearningDeviceAccessDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47138,7 +47138,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "PrimaryLearningDeviceAccessDescriptor"
             },
-            "PrimaryLearningDeviceAwayFromSchool": {
+            "PrimaryLearningDeviceAwayFromSchoolDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47150,7 +47150,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "PrimaryLearningDeviceAwayFromSchoolDescriptor"
             },
-            "PrimaryLearningDeviceProvider": {
+            "PrimaryLearningDeviceProviderDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47171,7 +47171,7 @@
                 "profileThumbnail": "$.profileThumbnail"
               }
             },
-            "Race": {
+            "RaceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47183,7 +47183,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "RaceDescriptor"
             },
-            "Sex": {
+            "SexDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47234,7 +47234,7 @@
                 "endDate": "$.studentCharacteristics[*].periods[*].endDate"
               }
             },
-            "StudentCharacteristic.StudentCharacteristic": {
+            "StudentCharacteristic.StudentCharacteristicDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47264,7 +47264,7 @@
                 "identificationCode": "$.studentIdentificationCodes[*].identificationCode"
               }
             },
-            "StudentIdentificationCode.StudentIdentificationSystem": {
+            "StudentIdentificationCode.StudentIdentificationSystemDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47330,7 +47330,7 @@
                 "endDate": "$.studentIndicators[*].periods[*].endDate"
               }
             },
-            "SupporterMilitaryConnection": {
+            "SupporterMilitaryConnectionDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47369,7 +47369,7 @@
                 "telephoneNumber": "$.telephones[*].telephoneNumber"
               }
             },
-            "Telephone.TelephoneNumberType": {
+            "Telephone.TelephoneNumberTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -47390,7 +47390,7 @@
                 "textMessageCapabilityIndicator": "$.telephones[*].textMessageCapabilityIndicator"
               }
             },
-            "TribalAffiliation": {
+            "TribalAffiliationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -48154,7 +48154,7 @@
                 "endDate": "$.endDate"
               }
             },
-            "Responsibility": {
+            "ResponsibilityDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -48184,7 +48184,7 @@
           "identityFullnames": [
             "Student",
             "EducationOrganization",
-            "Responsibility",
+            "ResponsibilityDescriptor",
             "BeginDate"
           ],
           "identityPathOrder": [
@@ -48279,7 +48279,7 @@
         "studentGradebookEntries": {
           "allowIdentityUpdates": false,
           "documentPathsMapping": {
-            "AssignmentLateStatus": {
+            "AssignmentLateStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -48291,7 +48291,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "AssignmentLateStatusDescriptor"
             },
-            "CompetencyLevel": {
+            "CompetencyLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -48374,7 +48374,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Student"
             },
-            "SubmissionStatus": {
+            "SubmissionStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -48571,7 +48571,7 @@
                 "endDate": "$.endDate"
               }
             },
-            "HomelessPrimaryNighttimeResidence": {
+            "HomelessPrimaryNighttimeResidenceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -48583,7 +48583,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "HomelessPrimaryNighttimeResidenceDescriptor"
             },
-            "HomelessProgramService.HomelessProgramService": {
+            "HomelessProgramService.HomelessProgramServiceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -48656,7 +48656,7 @@
                 "designatedBy": "$.programParticipationStatuses[*].designatedBy"
               }
             },
-            "ProgramParticipationStatus.ParticipationStatus": {
+            "ProgramParticipationStatus.ParticipationStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -48686,7 +48686,7 @@
                 "statusEndDate": "$.programParticipationStatuses[*].statusEndDate"
               }
             },
-            "ReasonExited": {
+            "ReasonExitedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -49047,7 +49047,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Intervention"
             },
-            "InterventionEffectiveness.Diagnosis": {
+            "InterventionEffectiveness.DiagnosisDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -49059,7 +49059,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "DiagnosisDescriptor"
             },
-            "InterventionEffectiveness.GradeLevel": {
+            "InterventionEffectiveness.GradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -49080,7 +49080,7 @@
                 "improvementIndex": "$.interventionEffectivenesses[*].improvementIndex"
               }
             },
-            "InterventionEffectiveness.InterventionEffectivenessRating": {
+            "InterventionEffectiveness.InterventionEffectivenessRatingDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -49092,7 +49092,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "InterventionEffectivenessRatingDescriptor"
             },
-            "InterventionEffectiveness.PopulationServed": {
+            "InterventionEffectiveness.PopulationServedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -49535,7 +49535,7 @@
                 "endDate": "$.endDate"
               }
             },
-            "EnglishLanguageProficiencyAssessment.Monitored": {
+            "EnglishLanguageProficiencyAssessment.MonitoredDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -49547,7 +49547,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "MonitoredDescriptor"
             },
-            "EnglishLanguageProficiencyAssessment.Participation": {
+            "EnglishLanguageProficiencyAssessment.ParticipationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -49559,7 +49559,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "ParticipationDescriptor"
             },
-            "EnglishLanguageProficiencyAssessment.Proficiency": {
+            "EnglishLanguageProficiencyAssessment.ProficiencyDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -49571,7 +49571,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "ProficiencyDescriptor"
             },
-            "EnglishLanguageProficiencyAssessment.Progress": {
+            "EnglishLanguageProficiencyAssessment.ProgressDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -49601,7 +49601,7 @@
                 "englishLearnerParticipation": "$.englishLearnerParticipation"
               }
             },
-            "LanguageInstructionProgramService.LanguageInstructionProgramService": {
+            "LanguageInstructionProgramService.LanguageInstructionProgramServiceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -49665,7 +49665,7 @@
                 "designatedBy": "$.programParticipationStatuses[*].designatedBy"
               }
             },
-            "ProgramParticipationStatus.ParticipationStatus": {
+            "ProgramParticipationStatus.ParticipationStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -49695,7 +49695,7 @@
                 "statusEndDate": "$.programParticipationStatuses[*].statusEndDate"
               }
             },
-            "ReasonExited": {
+            "ReasonExitedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -50005,7 +50005,7 @@
                 "beginDate": "$.beginDate"
               }
             },
-            "ContinuationOfServicesReason": {
+            "ContinuationOfServicesReasonDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -50056,7 +50056,7 @@
                 "lastQualifyingMove": "$.lastQualifyingMove"
               }
             },
-            "MigrantEducationProgramService.MigrantEducationProgramService": {
+            "MigrantEducationProgramService.MigrantEducationProgramServiceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -50129,7 +50129,7 @@
                 "designatedBy": "$.programParticipationStatuses[*].designatedBy"
               }
             },
-            "ProgramParticipationStatus.ParticipationStatus": {
+            "ProgramParticipationStatus.ParticipationStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -50168,7 +50168,7 @@
                 "qualifyingArrivalDate": "$.qualifyingArrivalDate"
               }
             },
-            "ReasonExited": {
+            "ReasonExitedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -50506,7 +50506,7 @@
                 "beginDate": "$.beginDate"
               }
             },
-            "ELAProgressLevel": {
+            "ELAProgressLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -50539,7 +50539,7 @@
                 "endDate": "$.endDate"
               }
             },
-            "MathematicsProgressLevel": {
+            "MathematicsProgressLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -50551,7 +50551,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "ProgressLevelDescriptor"
             },
-            "NeglectedOrDelinquentProgram": {
+            "NeglectedOrDelinquentProgramDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -50563,7 +50563,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "NeglectedOrDelinquentProgramDescriptor"
             },
-            "NeglectedOrDelinquentProgramService.NeglectedOrDelinquentProgramService": {
+            "NeglectedOrDelinquentProgramService.NeglectedOrDelinquentProgramServiceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -50627,7 +50627,7 @@
                 "designatedBy": "$.programParticipationStatuses[*].designatedBy"
               }
             },
-            "ProgramParticipationStatus.ParticipationStatus": {
+            "ProgramParticipationStatus.ParticipationStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -50657,7 +50657,7 @@
                 "statusEndDate": "$.programParticipationStatuses[*].statusEndDate"
               }
             },
-            "ReasonExited": {
+            "ReasonExitedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -51027,7 +51027,7 @@
                 "designatedBy": "$.programParticipationStatuses[*].designatedBy"
               }
             },
-            "ProgramParticipationStatus.ParticipationStatus": {
+            "ProgramParticipationStatus.ParticipationStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -51057,7 +51057,7 @@
                 "statusEndDate": "$.programParticipationStatuses[*].statusEndDate"
               }
             },
-            "ReasonExited": {
+            "ReasonExitedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -51087,7 +51087,16 @@
                 "primaryIndicator": "$.services[*].primaryIndicator"
               }
             },
-            "Service.Service": {
+            "Service.ServiceBeginDate": {
+              "isReference": false,
+              "pathOrder": [
+                "serviceBeginDate"
+              ],
+              "paths": {
+                "serviceBeginDate": "$.services[*].serviceBeginDate"
+              }
+            },
+            "Service.ServiceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -51098,15 +51107,6 @@
               },
               "projectName": "Ed-Fi",
               "resourceName": "ServiceDescriptor"
-            },
-            "Service.ServiceBeginDate": {
-              "isReference": false,
-              "pathOrder": [
-                "serviceBeginDate"
-              ],
-              "paths": {
-                "serviceBeginDate": "$.services[*].serviceBeginDate"
-              }
             },
             "Service.ServiceEndDate": {
               "isReference": false,
@@ -51693,7 +51693,7 @@
                 "evaluationElementNumericRating": "$.studentEvaluationElements[*].evaluationElementNumericRating"
               }
             },
-            "StudentEvaluationElement.EvaluationElementRatingLevel": {
+            "StudentEvaluationElement.EvaluationElementRatingLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -51738,7 +51738,7 @@
                 "evaluationObjectiveNumericRating": "$.studentEvaluationObjectives[*].evaluationObjectiveNumericRating"
               }
             },
-            "StudentEvaluationObjective.EvaluationObjectiveRatingLevel": {
+            "StudentEvaluationObjective.EvaluationObjectiveRatingLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -51792,7 +51792,7 @@
                 "summaryEvaluationNumericRating": "$.summaryEvaluationNumericRating"
               }
             },
-            "SummaryEvaluationRatingLevel": {
+            "SummaryEvaluationRatingLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -52311,7 +52311,7 @@
                 "schoolYear": "$.classOfSchoolYearTypeReference.schoolYear"
               }
             },
-            "EducationPlan": {
+            "EducationPlanDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -52332,7 +52332,7 @@
                 "employedWhileEnrolled": "$.employedWhileEnrolled"
               }
             },
-            "EnrollmentType": {
+            "EnrollmentTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -52353,7 +52353,7 @@
                 "entryDate": "$.entryDate"
               }
             },
-            "EntryGradeLevel": {
+            "EntryGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -52365,7 +52365,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "GradeLevelDescriptor"
             },
-            "EntryGradeLevelReason": {
+            "EntryGradeLevelReasonDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -52377,7 +52377,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "EntryGradeLevelReasonDescriptor"
             },
-            "EntryType": {
+            "EntryTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -52398,7 +52398,7 @@
                 "exitWithdrawDate": "$.exitWithdrawDate"
               }
             },
-            "ExitWithdrawType": {
+            "ExitWithdrawTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -52435,7 +52435,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "GraduationPlan"
             },
-            "NextYearGradeLevel": {
+            "NextYearGradeLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -52477,7 +52477,7 @@
                 "repeatGradeIndicator": "$.repeatGradeIndicator"
               }
             },
-            "ResidencyStatus": {
+            "ResidencyStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -52510,7 +52510,7 @@
                 "schoolChoice": "$.schoolChoice"
               }
             },
-            "SchoolChoiceBasis": {
+            "SchoolChoiceBasisDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -53277,7 +53277,7 @@
                 "designatedBy": "$.programParticipationStatuses[*].designatedBy"
               }
             },
-            "ProgramParticipationStatus.ParticipationStatus": {
+            "ProgramParticipationStatus.ParticipationStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -53307,7 +53307,7 @@
                 "statusEndDate": "$.programParticipationStatuses[*].statusEndDate"
               }
             },
-            "ReasonExited": {
+            "ReasonExitedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -53328,7 +53328,7 @@
                 "primaryIndicator": "$.schoolFoodServiceProgramServices[*].primaryIndicator"
               }
             },
-            "SchoolFoodServiceProgramService.SchoolFoodServiceProgramService": {
+            "SchoolFoodServiceProgramService.SchoolFoodServiceProgramServiceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -53598,7 +53598,7 @@
         "studentSectionAssociations": {
           "allowIdentityUpdates": true,
           "documentPathsMapping": {
-            "AttemptStatus": {
+            "AttemptStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -53653,7 +53653,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Program"
             },
-            "RepeatIdentifier": {
+            "RepeatIdentifierDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -54268,7 +54268,7 @@
                 "beginDate": "$.beginDate"
               }
             },
-            "Disability.Disability": {
+            "Disability.DisabilityDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -54280,7 +54280,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "DisabilityDescriptor"
             },
-            "Disability.DisabilityDesignation": {
+            "Disability.DisabilityDesignationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -54292,7 +54292,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "DisabilityDesignationDescriptor"
             },
-            "Disability.DisabilityDeterminationSourceType": {
+            "Disability.DisabilityDeterminationSourceTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -54431,7 +54431,7 @@
                 "designatedBy": "$.programParticipationStatuses[*].designatedBy"
               }
             },
-            "ProgramParticipationStatus.ParticipationStatus": {
+            "ProgramParticipationStatus.ParticipationStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -54461,7 +54461,7 @@
                 "statusEndDate": "$.programParticipationStatuses[*].statusEndDate"
               }
             },
-            "ReasonExited": {
+            "ReasonExitedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -54530,7 +54530,7 @@
                 "specialEducationExitExplained": "$.specialEducationExitExplained"
               }
             },
-            "SpecialEducationExitReason": {
+            "SpecialEducationExitReasonDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -54599,7 +54599,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Staff"
             },
-            "SpecialEducationProgramService.SpecialEducationProgramService": {
+            "SpecialEducationProgramService.SpecialEducationProgramServiceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -54611,7 +54611,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "SpecialEducationProgramServiceDescriptor"
             },
-            "SpecialEducationSetting": {
+            "SpecialEducationSettingDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55075,7 +55075,7 @@
                 "eligibilityConferenceDate": "$.eligibilityConferenceDate"
               }
             },
-            "EligibilityDelayReason": {
+            "EligibilityDelayReasonDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55105,7 +55105,7 @@
                 "eligibilityEvaluationDate": "$.eligibilityEvaluationDate"
               }
             },
-            "EligibilityEvaluationType": {
+            "EligibilityEvaluationTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55135,7 +55135,7 @@
                 "evaluationDelayDays": "$.evaluationDelayDays"
               }
             },
-            "EvaluationDelayReason": {
+            "EvaluationDelayReasonDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55165,7 +55165,7 @@
                 "ideaIndicator": "$.ideaIndicator"
               }
             },
-            "IDEAPart": {
+            "IDEAPartDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55493,7 +55493,7 @@
                 "designatedBy": "$.programParticipationStatuses[*].designatedBy"
               }
             },
-            "ProgramParticipationStatus.ParticipationStatus": {
+            "ProgramParticipationStatus.ParticipationStatusDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55523,7 +55523,7 @@
                 "statusEndDate": "$.programParticipationStatuses[*].statusEndDate"
               }
             },
-            "ReasonExited": {
+            "ReasonExitedDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55556,7 +55556,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Student"
             },
-            "TitleIPartAParticipant": {
+            "TitleIPartAParticipantDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55595,7 +55595,7 @@
                 "serviceEndDate": "$.titleIPartAProgramServices[*].serviceEndDate"
               }
             },
-            "TitleIPartAProgramService.TitleIPartAProgramService": {
+            "TitleIPartAProgramService.TitleIPartAProgramServiceDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55938,7 +55938,7 @@
                 "documentTitle": "$.identificationDocuments[*].documentTitle"
               }
             },
-            "Citizenship.IdentificationDocument.IdentificationDocumentUse": {
+            "Citizenship.IdentificationDocument.IdentificationDocumentUseDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55950,7 +55950,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IdentificationDocumentUseDescriptor"
             },
-            "Citizenship.IdentificationDocument.IssuerCountry": {
+            "Citizenship.IdentificationDocument.IssuerCountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -55980,7 +55980,7 @@
                 "issuerName": "$.identificationDocuments[*].issuerName"
               }
             },
-            "Citizenship.IdentificationDocument.PersonalInformationVerification": {
+            "Citizenship.IdentificationDocument.PersonalInformationVerificationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -56067,7 +56067,7 @@
                 "documentTitle": "$.personalIdentificationDocuments[*].documentTitle"
               }
             },
-            "Name.PersonalIdentificationDocument.IdentificationDocumentUse": {
+            "Name.PersonalIdentificationDocument.IdentificationDocumentUseDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -56079,7 +56079,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "IdentificationDocumentUseDescriptor"
             },
-            "Name.PersonalIdentificationDocument.IssuerCountry": {
+            "Name.PersonalIdentificationDocument.IssuerCountryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -56109,7 +56109,7 @@
                 "issuerName": "$.personalIdentificationDocuments[*].issuerName"
               }
             },
-            "Name.PersonalIdentificationDocument.PersonalInformationVerification": {
+            "Name.PersonalIdentificationDocument.PersonalInformationVerificationDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -56184,7 +56184,7 @@
                 "middleName": "$.otherNames[*].middleName"
               }
             },
-            "OtherName.OtherNameType": {
+            "OtherName.OtherNameTypeDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -57445,7 +57445,7 @@
                 "questionCode": "$.questionCode"
               }
             },
-            "QuestionForm": {
+            "QuestionFormDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -58051,7 +58051,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Survey"
             },
-            "SurveyLevel": {
+            "SurveyLevelDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [
@@ -59098,7 +59098,7 @@
               "projectName": "Ed-Fi",
               "resourceName": "Session"
             },
-            "SurveyCategory": {
+            "SurveyCategoryDescriptor": {
               "isDescriptor": true,
               "isReference": true,
               "pathOrder": [

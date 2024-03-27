@@ -132,7 +132,9 @@ function addReferenceJsonPath(
       deepScalarPaths,
       startOfPropertyPath,
     );
-    const referencedEntityAllJsonPathsMapping: JsonPathsMapping = mergeJsonPathsMappingFor(referenceProperty.referencedEntity);
+    const referencedEntityAllJsonPathsMapping: JsonPathsMapping = mergeJsonPathsMappingFor(
+      referenceProperty.referencedEntity,
+    );
 
     const matchedReferenceJsonPathsMapping: ReferenceJsonPathsMapping = matchupJsonPaths(
       startOfPropertyPath,
