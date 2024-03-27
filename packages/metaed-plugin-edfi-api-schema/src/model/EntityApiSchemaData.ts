@@ -50,8 +50,10 @@ export type EntityApiSchemaData = {
    */
   allJsonPathsMapping: JsonPathsMapping;
 
-  /** TODO */
-  mergePathsMapping: JsonPathsMapping;
+  /**
+   * TODO
+   * */
+  mergeJsonPathsMapping: JsonPathsMapping;
 
   /**
    * A list of EqualityConstraints to be applied to an Ed-Fi API document. An EqualityConstraint
@@ -104,6 +106,7 @@ export function addEntityApiSchemaDataTo(entity: ModelBase) {
     jsonSchemaForInsert: NoSchemaRoot,
     collectedApiProperties: [],
     allJsonPathsMapping: {},
+    mergeJsonPathsMapping: {},
     equalityConstraints: [],
     endpointName: '' as EndpointName,
     resourceName: '' as MetaEdResourceName,
