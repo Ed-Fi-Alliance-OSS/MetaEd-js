@@ -17,7 +17,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
       identityFullnames.forEach((identityFullname: MetaEdPropertyFullName) => {
         const documentPaths: DocumentPaths = documentPathsMapping[identityFullname];
-        documentPaths.pathOrder.forEach((path: DocumentObjectKey) => {
+        documentPaths?.pathOrder.forEach((path: DocumentObjectKey) => {
           result.add(path);
         });
       });
