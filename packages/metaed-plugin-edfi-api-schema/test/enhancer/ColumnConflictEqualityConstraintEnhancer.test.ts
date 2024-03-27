@@ -15,7 +15,7 @@ import { enhance as referenceComponentEnhancer } from '../../src/enhancer/Refere
 import { enhance as apiPropertyMappingEnhancer } from '../../src/enhancer/ApiPropertyMappingEnhancer';
 import { enhance as propertyCollectingEnhancer } from '../../src/enhancer/PropertyCollectingEnhancer';
 import { enhance as apiEntityMappingEnhancer } from '../../src/enhancer/ApiEntityMappingEnhancer';
-import { enhance as allJsonPathsMappingEnhancer } from '../../src/enhancer/AllJsonPathsMappingEnhancer';
+import { enhance as mergeJsonPathsMappingEnhancer } from '../../src/enhancer/MergeJsonPathsMappingEnhancer';
 
 import { enhance } from '../../src/enhancer/ColumnConflictEqualityConstraintEnhancer';
 import { metaEdPluginEnhancers } from '../integration/PluginHelper';
@@ -58,7 +58,7 @@ describe('when building domain entity with DomainEntity collection with single c
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    allJsonPathsMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -110,7 +110,7 @@ describe('when building domain entity with single column conflict', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    allJsonPathsMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -173,7 +173,7 @@ describe('when building domain entity with DomainEntity collection with two colu
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    allJsonPathsMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -244,7 +244,7 @@ describe('when building domain entity with DomainEntity collection with single m
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    allJsonPathsMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -311,7 +311,7 @@ describe('when building domain entity with DomainEntity collection with single m
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    allJsonPathsMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -395,7 +395,7 @@ describe('when two domain entities with all four possible simple identities have
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    allJsonPathsMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -488,7 +488,7 @@ describe('when both a reference and a simple identity have a column conflict dow
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    allJsonPathsMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -573,7 +573,7 @@ describe('when a reference has a column conflict with multiple levels of domain 
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    allJsonPathsMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -649,7 +649,7 @@ describe('when a reference through a choice has a column conflict', () => {
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    allJsonPathsMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 
@@ -708,7 +708,7 @@ describe('when a reference through a common collection has a column conflict', (
     apiPropertyMappingEnhancer(metaEd);
     propertyCollectingEnhancer(metaEd);
     apiEntityMappingEnhancer(metaEd);
-    allJsonPathsMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
     enhance(metaEd);
   });
 

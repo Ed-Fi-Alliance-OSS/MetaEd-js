@@ -13,7 +13,7 @@ import { enhance as jsonSchemaEnhancerForInsert } from './JsonSchemaEnhancerForI
 import { enhance as allJsonPathsMappingEnhancer } from './AllJsonPathsMappingEnhancer';
 import { enhance as mergeJsonPathsMappingEnhancer } from './MergeJsonPathsMappingEnhancer';
 import { enhance as mergeDirectiveEqualityConstraintEnhancer } from './MergeDirectiveEqualityConstraintEnhancer';
-// import { enhance as columnConflictEqualityConstraintEnhancer } from './ColumnConflictEqualityConstraintEnhancer';
+import { enhance as columnConflictEqualityConstraintEnhancer } from './ColumnConflictEqualityConstraintEnhancer';
 import { enhance as resourceNameEnhancer } from './ResourceNameEnhancer';
 import { enhance as identityFullnameEnhancer } from './IdentityFullnameEnhancer';
 import { enhance as subclassIdentityFullnameEnhancer } from './SubclassIdentityFullnameEnhancer';
@@ -38,7 +38,7 @@ export function enhancerList(): Enhancer[] {
     allJsonPathsMappingEnhancer,
     mergeJsonPathsMappingEnhancer,
     mergeDirectiveEqualityConstraintEnhancer,
-    // columnConflictEqualityConstraintEnhancer,
+    columnConflictEqualityConstraintEnhancer,
     resourceNameEnhancer,
     identityFullnameEnhancer,
     subclassIdentityFullnameEnhancer,

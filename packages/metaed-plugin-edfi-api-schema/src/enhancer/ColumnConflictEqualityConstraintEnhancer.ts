@@ -51,13 +51,13 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       // Must be on same resource to be a resource equality constraint
       if (columnConflictPath.firstOriginalEntity !== columnConflictPath.secondOriginalEntity) return;
 
-      const { equalityConstraints, allJsonPathsMapping } = columnConflictPath.firstOriginalEntity.data
+      const { equalityConstraints, mergeJsonPathsMapping } = columnConflictPath.firstOriginalEntity.data
         .edfiApiSchema as EntityApiSchemaData;
 
-      const sourceJsonPaths: JsonPath[] | undefined = allJsonPathsMapping[
+      const sourceJsonPaths: JsonPath[] | undefined = mergeJsonPathsMapping[
         columnConflictPath.firstPath
       ].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
-      const targetJsonPaths: JsonPath[] | undefined = allJsonPathsMapping[
+      const targetJsonPaths: JsonPath[] | undefined = mergeJsonPathsMapping[
         columnConflictPath.secondPath
       ].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
 
