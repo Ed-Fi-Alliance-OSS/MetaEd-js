@@ -8,6 +8,6 @@
 {{/if}}{{/if}}{{#tables}}{{#if hasEducationOrganizationIdColumns}}{{#educationOrganizationIdColumns}}
 IF NOT EXISTS(SELECT * FROM sys.indexes WHERE name='IX_{{{../data.edfiOdsSqlServer.tableName}}}_{{{data.edfiOdsSqlServer.columnName}}}' AND object_id = OBJECT_ID('{{{../schema}}}.{{{../data.edfiOdsSqlServer.tableName}}}')) 
 BEGIN
-    CREATE INDEX IX_{{{../data.edfiOdsSqlServer.tableName}}}_{{{data.edfiOdsSqlServer.columnName}}} ON {{{../schema}}}.{{{../data.edfiOdsSqlServer.tableName}}}({{{data.edfiOdsSqlServer.columnName}}}) INCLUDE (Id)
+    CREATE INDEX IX_{{{../data.edfiOdsSqlServer.tableName}}}_{{{data.edfiOdsSqlServer.columnName}}} ON [{{{../schema}}}].[{{{../data.edfiOdsSqlServer.tableName}}}]({{{data.edfiOdsSqlServer.columnName}}}) INCLUDE (Id)
 END;
 {{/educationOrganizationIdColumns}}{{/if}}{{/tables}}
