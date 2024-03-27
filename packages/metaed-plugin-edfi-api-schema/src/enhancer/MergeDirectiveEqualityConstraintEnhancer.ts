@@ -24,7 +24,7 @@ function mergeDirectivePathStringsToPath(segments: string[]): MetaEdPropertyPath
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
     (entity) => {
-      const { allJsonPathsMapping, equalityConstraints } = entity.data.edfiApiSchema as EntityApiSchemaData;
+      const { mergeJsonPathsMapping, equalityConstraints } = entity.data.edfiApiSchema as EntityApiSchemaData;
 
       // find properties on entity with merge directives
       (entity as TopLevelEntity).properties.forEach((property: EntityProperty) => {
@@ -32,11 +32,11 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
           const referentialProperty: ReferentialProperty = property as ReferentialProperty;
 
           referentialProperty.mergeDirectives.forEach((mergeDirective: MergeDirective) => {
-            const sourceJsonPaths: JsonPath[] | undefined = allJsonPathsMapping[
+            const sourceJsonPaths: JsonPath[] | undefined = mergeJsonPathsMapping[
               mergeDirectivePathStringsToPath(mergeDirective.sourcePropertyPathStrings)
             ].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
 
-            const targetJsonPaths: JsonPath[] | undefined = allJsonPathsMapping[
+            const targetJsonPaths: JsonPath[] | undefined = mergeJsonPathsMapping[
               mergeDirectivePathStringsToPath(mergeDirective.targetPropertyPathStrings)
             ].jsonPathPropertyPairs.map((jppp) => jppp.jsonPath);
 
