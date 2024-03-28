@@ -17,7 +17,7 @@ export function extensionProjectsExists(metaEdConfiguration: MetaEdConfiguration
   if (projectsNames.length === 0) {
     deployResult = {
       success: false,
-      failureMessage: `There are no projects in the artifact directory: ${artifactDirectory}`,
+      failureMessage: `There are no projects in the artifact directory ${artifactDirectory}`,
     };
     Logger.error(deployResult.failureMessage);
   }
@@ -28,7 +28,7 @@ export function extensionProjectsExists(metaEdConfiguration: MetaEdConfiguration
       if (fs.pathExistsSync(resolvedPath)) return true;
       deployResult = {
         success: false,
-        failureMessage: `Expected ${projectName} project but was not at path: ${resolvedPath}`,
+        failureMessage: `The ODS/API deployment directory does not include the C# project for your extension. Expecting extension project in ${resolvedPath}`,
       };
       Logger.error(deployResult.failureMessage);
       return false;
