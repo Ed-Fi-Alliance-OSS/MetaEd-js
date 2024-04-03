@@ -48,8 +48,19 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
 
   tables.forEach((table: Table) => {
     table.columnConflictPaths.forEach((columnConflictPath: ColumnConflictPath) => {
-      // Must be on same resource to be a resource equality constraint
-      if (columnConflictPath.firstOriginalEntity !== columnConflictPath.secondOriginalEntity) return;
+      // We don't support extension tables at this time
+      if (
+        columnConflictPath.firstOriginalEntity.type === 'associationExtension' ||
+        columnConflictPath.secondOriginalEntity.type === 'associationExtension' ||
+        columnConflictPath.firstOriginalEntity.type === 'domainEntityExtension' ||
+        columnConflictPath.secondOriginalEntity.type === 'domainEntityExtension'
+      ) {
+        return;
+      }
+
+      if (columnConflictPath.firstOriginalEntity !== columnConflictPath.secondOriginalEntity)
+        // Must be on same resource to be a resource equality constraint
+        return;
 
       const { equalityConstraints, mergeJsonPathsMapping } = columnConflictPath.firstOriginalEntity.data
         .edfiApiSchema as EntityApiSchemaData;

@@ -129,6 +129,8 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
     'association',
     'domainEntitySubclass',
     'associationSubclass',
+    'domainEntityExtension',
+    'associationExtension',
     'descriptor',
     'common',
     'choice',

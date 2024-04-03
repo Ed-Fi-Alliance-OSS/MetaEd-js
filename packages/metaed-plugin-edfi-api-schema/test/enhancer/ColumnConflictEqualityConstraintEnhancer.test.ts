@@ -580,8 +580,6 @@ describe('when a reference has a column conflict with multiple levels of domain 
   it('should create the correct equality constraints', () => {
     const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('DomainEntityName');
 
-    // Note: Some of these look like duplicates, but this is actually the correct list expressing
-    // every column conflict that occurred (given there is no merge directive)
     expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`
       Array [
         Object {
@@ -722,5 +720,95 @@ describe('when a reference through a common collection has a column conflict', (
         },
       ]
     `);
+  });
+});
+
+describe('when model has a domain entity extension', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity('StudentAssessment')
+      .withDocumentation('doc')
+      .withIntegerIdentity('AssessmentId', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension')
+      .withStartDomainEntityExtension('StudentAssessment')
+      .withDocumentation('doc')
+      .withIntegerProperty('NewProperty', 'doc', false, false)
+      .withEndDomainEntity()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    metaEdPluginEnhancers().forEach((enhancer) => enhancer(metaEd));
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should not crash', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.domainEntity.get('StudentAssessment');
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
+  });
+});
+
+describe('when model has an association extension', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartAssociation('StudentSchoolAssociation')
+      .withDocumentation('doc')
+      .withAssociationDomainEntityProperty('Student', 'doc')
+      .withAssociationDomainEntityProperty('School', 'doc')
+      .withEndAssociation()
+
+      .withStartDomainEntity('Student')
+      .withDocumentation('doc')
+      .withIntegerIdentity('StudentId', 'doc')
+      .withEndDomainEntity()
+
+      .withStartDomainEntity('School')
+      .withDocumentation('doc')
+      .withIntegerIdentity('SchoolId', 'doc')
+      .withEndDomainEntity()
+      .withEndNamespace()
+
+      .withBeginNamespace('Extension')
+      .withStartAssociationExtension('StudentSchoolAssociation')
+      .withDocumentation('doc')
+      .withIntegerProperty('NewProperty', 'doc', false, false)
+      .withEndAssociationExtension()
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new AssociationBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    metaEdPluginEnhancers().forEach((enhancer) => enhancer(metaEd));
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    mergeJsonPathsMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should not crash', () => {
+    const entity = metaEd.namespace.get(namespaceName)?.entity.association.get('StudentSchoolAssociation');
+    expect(entity?.data.edfiApiSchema.equalityConstraints).toMatchInlineSnapshot(`Array []`);
   });
 });

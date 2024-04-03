@@ -7,24 +7,24 @@
       {
         "namespaceName": "EdFi",
         "projectName": "Ed-Fi",
-        "projectVersion": "5.0.0",
+        "projectVersion": "4.0.0",
         "projectExtension": "",
-        "description": "The Ed-Fi Data Model 5.0"
+        "description": "The Ed-Fi Data Model 4.0"
       },
       {
-        "namespaceName": "TPDM",
-        "projectName": "TPDM",
+        "namespaceName": "Sample",
+        "projectName": "Sample",
         "projectVersion": "1.0.0",
-        "projectExtension": "TPDM",
-        "description": "TPDM-Core"
+        "projectExtension": "Sample",
+        "description": "Sample"
       }
     ],
     "projectPaths": [
-      "C:\\work\\metaed\\MetaEd-Js\\node_modules\\@edfi\\ed-fi-model-5.0",
-      "C:\\Temp\\Ed-Fi-TPDM-Model-Data-Standard-v4.0.0\\Ed-Fi-TPDM-Model-Data-Standard-v4.0.0"
+      "C:\\work\\metaed\\MetaEd-Js\\node_modules\\@edfi\\ed-fi-model-4.0",
+      "C:\\Temp\\SampleMetaEd\\SampleMetaEd"
     ],
     "pluginConfigDirectories": [],
-    "defaultPluginTechVersion": "7.1.0",
+    "defaultPluginTechVersion": "7.2.0",
     "allianceMode": true,
     "suppressPrereleaseVersion": true
   }
