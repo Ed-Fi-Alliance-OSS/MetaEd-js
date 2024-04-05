@@ -1,5 +1,7 @@
-Coding Style Guide
-======
+# MetaEd Coding Style Guide
+
+Also see [Coding Standards - General
+Principles](https://edfi.atlassian.net/wiki/spaces/ETKB/pages/20874867/Coding+Standards+-+General+Principles)
 
 * Use ES2018 language features, anything stage 4 is also fine, discuss before introducing anything stage 3.
 * Use TypeScript.
