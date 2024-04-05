@@ -13,7 +13,8 @@ Studio Code integration](https://github.com/Ed-Fi-Alliance-OSS/vscode-metaed-ide
 information in the VS Code extension, and the Alliance benefits in that all GitHub Actions minutes in the public repository
 are free, whereas there are limits on those minutes in this private repository.
 
-A curious explorer may stumble on several archived code repositories containing the original C# IDE and its replacement Atom integration. The VS Code solution is the only one used and supported starting from spring, 2023.
+A curious explorer may stumble on several archived code repositories containing the original C# IDE and its replacement Atom
+integration. The VS Code solution is the only one used and supported starting from spring, 2023.
 
 See [docs](./docs) for more developer documents.
 
