@@ -88,7 +88,8 @@ jobs:
           commit: ${{ github.event.workflow_run.head_sha }}
           event_file: artifacts/Event File/event.json
           event_name: ${{ github.event.workflow_run.event }}
-          files: "unit-tests/*.xml"
+          files: "artifacts/**/*.xml"
+          #files: "unit-tests/*.xml"
 
   sql-server-tests:
     name: SQL Server Tests
@@ -149,7 +150,8 @@ jobs:
           commit: ${{ github.event.workflow_run.head_sha }}
           event_file: artifacts/Event File/event.json
           event_name: ${{ github.event.workflow_run.event }}
-          files: "sqlserver-tests/*.xml"
+          files: "artifacts/**/*.xml"
+          #files: "sqlserver-tests/*.xml"
 
   postgres-tests:
     name: PostgreSQL Tests
@@ -199,4 +201,5 @@ jobs:
           commit: ${{ github.event.workflow_run.head_sha }}
           event_file: artifacts/Event File/event.json
           event_name: ${{ github.event.workflow_run.event }}
-          files: "postgresql-tests/*.xml"
+          files: "artifacts/**/*.xml"
+          #files: "postgresql-tests/*.xml"
