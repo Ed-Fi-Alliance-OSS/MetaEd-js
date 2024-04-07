@@ -81,13 +81,14 @@ jobs:
         uses: mxschmitt/action-tmate@a283f9441d2d96eb62436dc46d7014f5d357ac22 # v3.17
         timeout-minutes: 10
 
-      - name: Unit Test Report
-        uses: dorny/test-reporter@eaa763f6ffc21c7a37837f56cd5f9737f27fc6c8 #v1.8.0
+      - name: Unit Test Report        
+        uses: EnricoMi/publish-unit-test-result-action@f355d34d53ad4e7f506f699478db2dd71da9de5f # v2.15.1
         if: success() || failure()
         with:
-          name: Unit Test Results
-          path: "unit-tests/*.xml"
-          reporter: jest-junit
+          commit: ${{ github.event.workflow_run.head_sha }}
+          event_file: artifacts/Event File/event.json
+          event_name: ${{ github.event.workflow_run.event }}
+          files: "unit-tests/*.xml"
 
   sql-server-tests:
     name: SQL Server Tests
@@ -142,12 +143,13 @@ jobs:
           JEST_JUNIT_OUTPUT_DIR: sqlserver-tests
 
       - name: SQLServer Test Report
-        uses: dorny/test-reporter@eaa763f6ffc21c7a37837f56cd5f9737f27fc6c8 #v1.8.0
+        uses: EnricoMi/publish-unit-test-result-action@f355d34d53ad4e7f506f699478db2dd71da9de5f # v2.15.1
         if: success() || failure()
         with:
-          name: SQLServer Test Results
-          path: "sqlserver-tests/*.xml"
-          reporter: jest-junit
+          commit: ${{ github.event.workflow_run.head_sha }}
+          event_file: artifacts/Event File/event.json
+          event_name: ${{ github.event.workflow_run.event }}
+          files: "sqlserver-tests/*.xml"
 
   postgres-tests:
     name: PostgreSQL Tests
@@ -191,9 +193,10 @@ jobs:
           JEST_JUNIT_OUTPUT_DIR: postgresql-tests
 
       - name: PostgreSQL Test Report
-        uses: dorny/test-reporter@eaa763f6ffc21c7a37837f56cd5f9737f27fc6c8 #v1.8.0
+        uses: EnricoMi/publish-unit-test-result-action@f355d34d53ad4e7f506f699478db2dd71da9de5f # v2.15.1
         if: success() || failure()
         with:
-          name: PostgreSQL Test Results
-          path: "postgresql-tests/*.xml"
-          reporter: jest-junit
+          commit: ${{ github.event.workflow_run.head_sha }}
+          event_file: artifacts/Event File/event.json
+          event_name: ${{ github.event.workflow_run.event }}
+          files: "postgresql-tests/*.xml"
