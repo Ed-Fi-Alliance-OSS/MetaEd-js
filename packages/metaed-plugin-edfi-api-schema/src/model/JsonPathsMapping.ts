@@ -29,7 +29,7 @@ type BaseJsonPathsInfo = {
  * These JsonPaths are for a property on the entity it starts from as a whole (allowing for properties that
  * are on e.g. inline commons to be functionally on the DE/A itself).
  */
-type TopLevelJsonPathsInfo = BaseJsonPathsInfo & {
+export type TopLevelJsonPathsInfo = BaseJsonPathsInfo & {
   isTopLevel: true;
 
   /**

@@ -79,6 +79,28 @@ function addJsonPathTo(
 }
 
 /**
+ * Builds new property paths from the current path and the new identities. Adjusts for descriptor suffix if needed.
+ */
+function propertyPathsFromIdentityProperty(
+  currentPropertyPath: MetaEdPropertyPath,
+  flattenedIdentityProperty: FlattenedIdentityProperty,
+): MetaEdPropertyPath[] {
+  const result: MetaEdPropertyPath[] = flattenedIdentityProperty.propertyPaths.map(
+    (propertyPath) => `${currentPropertyPath}.${propertyPath}` as MetaEdPropertyPath,
+  );
+
+  if (flattenedIdentityProperty.identityProperty.type !== 'descriptor') {
+    return result;
+  }
+
+  // Append descriptor suffix to end of last path
+  const lastPath: MetaEdPropertyPath | undefined = result.pop();
+  invariant(lastPath != null, 'The path array should not be empty');
+  result.push(`${lastPath}Descriptor` as MetaEdPropertyPath);
+  return result;
+}
+
+/**
  * Adds JSON Paths to the allJsonPathsMapping for the API body shape corresponding to the given referential property.
  */
 function jsonPathsForReferentialProperty(
@@ -95,30 +117,17 @@ function jsonPathsForReferentialProperty(
 
   referencedEntityApiMapping.flattenedIdentityPropertiesOmittingMerges.forEach(
     (flattenedIdentityProperty: FlattenedIdentityProperty) => {
-      const isDescriptor = flattenedIdentityProperty.identityProperty.type === 'descriptor';
       const identityPropertyApiMapping = (
         flattenedIdentityProperty.identityProperty.data.edfiApiSchema as EntityPropertyApiSchemaData
       ).apiMapping;
 
       const specialPrefix: string = findIdenticalRoleNamePatternPrefix(flattenedIdentityProperty);
 
-      const propertyPathsFromIdentityProperty: MetaEdPropertyPath[] = flattenedIdentityProperty.propertyPaths.map(
-        (propertyPath) => {
-          if (!isDescriptor) {
-            return `${currentPropertyPath}.${propertyPath}` as MetaEdPropertyPath;
-          }
-          if (propertyPath.endsWith(`.${flattenedIdentityProperty.identityProperty.fullPropertyName}`)) {
-            return `${currentPropertyPath}.${propertyPath}Descriptor` as MetaEdPropertyPath;
-          }
-          return `${currentPropertyPath}.${propertyPath}` as MetaEdPropertyPath;
-        },
-      );
-
       // Because these are flattened, we know they are non-reference properties
       jsonPathsForNonReference(
         flattenedIdentityProperty.identityProperty,
         jsonPathsMappingForThisProperty,
-        propertyPathsFromIdentityProperty,
+        propertyPathsFromIdentityProperty(currentPropertyPath, flattenedIdentityProperty),
         appendNextJsonPathName(
           currentJsonPath,
           identityPropertyApiMapping.fullName,

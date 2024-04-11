@@ -3,36 +3,13 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-import { DocumentObjectKey } from './DocumentObjectKey';
 import { JsonPath } from './JsonPath';
-
-type BaseDocumentPaths = {
-  /**
-   * A mapping of unique DocumentObjectKeys to JsonPaths. This is used as a building block for document identities
-   * and document references, where the JsonPaths can later be turned into the values in a document, and the keys
-   * indicate what the value represents.
-   *
-   * As an example, these are the JsonPaths for CourseOffering on Section, a reference with four fields:
-   *
-   * {
-   *   localCourseCode: '$.courseOfferingReference.localCourseCode',
-   *   schoolId: '$.courseOfferingReference.schoolId',
-   *   schoolYear: '$.courseOfferingReference.schoolYear',
-   *   sessionName: '$.courseOfferingReference.sessionName',
-   * }
-   */
-  paths: { [key: DocumentObjectKey]: JsonPath };
-
-  /**
-   * An ordering of the paths by DocumentObjectKey, used to ensure consistent ordering downstream.
-   */
-  pathOrder: DocumentObjectKey[];
-};
+import { ReferenceJsonPaths } from './ReferenceJsonPaths';
 
 /**
  * JsonPath information for a reference MetaEd property
  */
-type DocumentReferencePaths = BaseDocumentPaths & {
+export type DocumentReferencePaths = {
   /**
    * Discriminator between reference and scalar path types
    */
@@ -53,19 +30,85 @@ type DocumentReferencePaths = BaseDocumentPaths & {
    * Whether this reference is a descriptor. Descriptors are treated differently from other documents
    */
   isDescriptor: boolean;
+
+  /**
+   * JsonPath information for a document reference and it's corresponding identity in the referenced document.
+   * This information is used to ensure that construction of a DocumentReference by an API implementation
+   * can use the correct naming to match the DocumentIdentity of the document being referenced.
+   *
+   * The array is in the correct identity ordering for constructing an identity hash.
+   *
+   * For example, this is the referenceJsonPaths for CourseOffering on Section:
+   *  [
+   *    {
+   *      "identityJsonPath": "$.localCourseCode",
+   *      "referenceJsonPath": "$.courseOfferingReference.localCourseCode"
+   *    },
+   *    {
+   *      "identityJsonPath": "$.schoolReference.schoolId",
+   *      "referenceJsonPath": "$.courseOfferingReference.schoolId"
+   *    },
+   *    {
+   *      "identityJsonPath": "$.sessionReference.schoolYear",
+   *      "referenceJsonPath": "$.courseOfferingReference.schoolYear"
+   *    },
+   *    {
+   *      "identityJsonPath": "$.sessionReference.sessionName",
+   *      "referenceJsonPath": "$.courseOfferingReference.sessionName"
+   *    }
+   *  ]
+   */
+  referenceJsonPaths: ReferenceJsonPaths[];
 };
 
 /**
- * A JsonPath for a scalar MetaEd property
+ * A DocumentPaths for a descriptor MetaEd property
  */
-export type ScalarPath = BaseDocumentPaths & {
+
+export type DescriptorReferencePath = {
+  /**
+   * Discriminator between reference and scalar path types
+   */
+  isReference: true;
+
+  /**
+   * The MetaEd project name the referenced API resource is defined in e.g. "EdFi" for a data standard entity.
+   */
+  projectName: string;
+
+  /**
+   * The name of the referenced API resource. Typically, this is the same as the corresponding MetaEd entity name. However,
+   * there are exceptions, for example descriptors have a "Descriptor" suffix on their resource name.
+   */
+  resourceName: string;
+
+  /**
+   * Whether this reference is a descriptor. Descriptors are treated differently from other documents
+   */
+  isDescriptor: true;
+
+  /**
+   * The JsonPath to the document value
+   */
+  path: JsonPath;
+};
+
+/**
+ * A DocumentPaths for a scalar MetaEd property
+ */
+export type ScalarPath = {
   /**
    * Discriminator between reference and scalar path types
    */
   isReference: false;
+
+  /**
+   * The JsonPath to the scalar value
+   */
+  path: JsonPath;
 };
 
 /**
  * DocumentPaths provides JsonPaths to values corresponding to reference and scalar MetaEd properties in a resource document.
  */
-export type DocumentPaths = DocumentReferencePaths | ScalarPath;
+export type DocumentPaths = DocumentReferencePaths | DescriptorReferencePath | ScalarPath;

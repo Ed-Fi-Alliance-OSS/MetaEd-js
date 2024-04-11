@@ -38,10 +38,8 @@ function buildResourceSchema(entity: TopLevelEntity): ResourceSchema {
     allowIdentityUpdates: entity.allowPrimaryKeyUpdates,
     jsonSchemaForInsert: entityApiSchemaData.jsonSchemaForInsert,
     equalityConstraints: entityApiSchemaData.equalityConstraints,
-    identityFullnames: entityApiSchemaData.identityFullnames,
     documentPathsMapping: entityApiSchemaData.documentPathsMapping,
-    referenceJsonPathsMapping: entityApiSchemaData.referenceJsonPathsMapping,
-    identityPathOrder: entityApiSchemaData.identityPathOrder,
+    identityJsonPaths: entityApiSchemaData.identityJsonPaths,
     isSubclass: false,
   };
 }
@@ -120,7 +118,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       // Abstract entities are not resources (e.g. EducationOrganization)
       if ((domainEntity as DomainEntity).isAbstract) {
         abstractResources[domainEntity.metaEdName] = {
-          identityPathOrder: (domainEntity.data.edfiApiSchema as EntityApiSchemaData).identityPathOrder,
+          identityJsonPaths: (domainEntity.data.edfiApiSchema as EntityApiSchemaData).identityJsonPaths,
         };
         return;
       }
@@ -135,7 +133,7 @@ export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
       // be abstract although there is no MetaEd language annotation to make an Association abstract.
       if (association.metaEdName === 'GeneralStudentProgramAssociation') {
         abstractResources[association.metaEdName] = {
-          identityPathOrder: (association.data.edfiApiSchema as EntityApiSchemaData).identityPathOrder,
+          identityJsonPaths: (association.data.edfiApiSchema as EntityApiSchemaData).identityJsonPaths,
         };
         return;
       }

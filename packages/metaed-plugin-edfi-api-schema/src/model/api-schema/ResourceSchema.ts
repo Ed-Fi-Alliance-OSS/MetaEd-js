@@ -4,7 +4,7 @@ import { DocumentPaths } from './DocumentPaths';
 import { SchemaRoot } from './JsonSchema';
 import { MetaEdResourceName } from './MetaEdResourceName';
 import { DocumentObjectKey } from './DocumentObjectKey';
-import { ReferenceJsonPathsMapping } from './ReferenceJsonPathsMapping';
+import { JsonPath } from './JsonPath';
 
 /**
  * API resource schema information common between regular and subclass resources
@@ -42,28 +42,15 @@ export type BaseResourceSchema = {
   equalityConstraints: EqualityConstraint[];
 
   /**
-   * A list of the MetaEd property fullnames for each property that is part of the identity
-   * for this resource, in lexical order
+   * A list of the JsonPaths that are part of the identity for this resource, in lexical order.
    */
-  identityFullnames: MetaEdPropertyFullName[];
-
-  /**
-   * A list of the DocumentObjectKey paths that are part of the identity for this resource, in lexical order.
-   * Duplicates due to key unification are removed.
-   */
-  identityPathOrder: DocumentObjectKey[];
+  identityJsonPaths: JsonPath[];
 
   /**
    * A collection of MetaEd property fullnames mapped to DocumentPaths objects,
    * which provide JsonPaths to the corresponding values in a resource document.
    */
   documentPathsMapping: { [key: MetaEdPropertyFullName]: DocumentPaths };
-
-  /**
-   * For each reference in a document, maps from the JsonPaths of the reference to the identity JsonPaths
-   * in the document being referred to.
-   */
-  referenceJsonPathsMapping: ReferenceJsonPathsMapping;
 };
 
 /**

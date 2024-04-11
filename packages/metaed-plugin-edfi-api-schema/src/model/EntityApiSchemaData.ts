@@ -13,8 +13,7 @@ import type { JsonPathsMapping } from './JsonPathsMapping';
 import { MetaEdResourceName } from './api-schema/MetaEdResourceName';
 import { EndpointName } from './api-schema/EndpointName';
 import { DocumentPathsMapping } from './api-schema/DocumentPathsMapping';
-import { DocumentObjectKey } from './api-schema/DocumentObjectKey';
-import { ReferenceJsonPathsMapping } from './api-schema/ReferenceJsonPathsMapping';
+import { JsonPath } from './api-schema/JsonPath';
 
 export type EntityApiSchemaData = {
   /**
@@ -82,22 +81,15 @@ export type EntityApiSchemaData = {
   identityFullnames: MetaEdPropertyFullName[];
 
   /**
-   * A list of the DocumentObjectKey paths that are part of the identity for this resource, in sorted order.
-   * Duplicates due to key unification are removed.
+   * A list of the JsonPaths that are part of the identity for this resource, in lexical order.
    */
-  identityPathOrder: DocumentObjectKey[];
+  identityJsonPaths: JsonPath[];
 
   /**
    * A mapping of PropertyFullNames to DocumentPaths, which are JsonPaths in an API document for a specific MetaEd
    * property.
    */
   documentPathsMapping: DocumentPathsMapping;
-
-  /**
-   * For each reference in a document, maps from the JsonPaths of the reference to the identity JsonPaths
-   * in the document being referred to.
-   */
-  referenceJsonPathsMapping: ReferenceJsonPathsMapping;
 };
 
 /**

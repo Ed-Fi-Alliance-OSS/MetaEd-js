@@ -18,8 +18,7 @@ import { enhance as resourceNameEnhancer } from './ResourceNameEnhancer';
 import { enhance as identityFullnameEnhancer } from './IdentityFullnameEnhancer';
 import { enhance as subclassIdentityFullnameEnhancer } from './SubclassIdentityFullnameEnhancer';
 import { enhance as documentPathsMappingEnhancer } from './DocumentPathsMappingEnhancer';
-import { enhance as identityPathOrderEnhancer } from './IdentityPathOrderEnhancer';
-import { enhance as referenceJsonPathsMappingEnhancer } from './ReferenceJsonPathsMappingEnhancer';
+import { enhance as identityJsonPathsEnhancer } from './IdentityJsonPathsEnhancer';
 import { enhance as apiSchemaBuildingEnhancer } from './ApiSchemaBuildingEnhancer';
 
 export function enhancerList(): Enhancer[] {
@@ -43,8 +42,7 @@ export function enhancerList(): Enhancer[] {
     identityFullnameEnhancer,
     subclassIdentityFullnameEnhancer,
     documentPathsMappingEnhancer,
-    identityPathOrderEnhancer,
-    referenceJsonPathsMappingEnhancer,
+    identityJsonPathsEnhancer,
     apiSchemaBuildingEnhancer,
   ];
 }
