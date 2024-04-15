@@ -618,7 +618,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "GradingPeriod",
           },
         ],
-        "GradingPeriod.GradingPeriod": Array [
+        "GradingPeriod.GradingPeriodDescriptor": Array [
           Object {
             "entityName": "GradingPeriod",
             "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
@@ -706,7 +706,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
         "BeginDate": true,
         "EndDate": true,
         "GradingPeriod": true,
-        "GradingPeriod.GradingPeriod": false,
+        "GradingPeriod.GradingPeriodDescriptor": false,
         "GradingPeriod.PeriodSequence": false,
         "GradingPeriod.School": false,
         "GradingPeriod.School.SchoolId": false,
@@ -804,7 +804,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "Objective",
           },
         ],
-        "CompetencyObjective.ObjectiveGradeLevel": Array [
+        "CompetencyObjective.ObjectiveGradeLevelDescriptor": Array [
           Object {
             "entityName": "CompetencyObjective",
             "jsonPath": "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
@@ -840,7 +840,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "GradingPeriod",
           },
         ],
-        "GradingPeriod.GradingPeriod": Array [
+        "GradingPeriod.GradingPeriodDescriptor": Array [
           Object {
             "entityName": "GradingPeriod",
             "jsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
@@ -1190,10 +1190,10 @@ describe('when generating api schema targeting tech version 5.3 with data standa
         "CompetencyObjective.EducationOrganization": false,
         "CompetencyObjective.EducationOrganization.EducationOrganizationId": false,
         "CompetencyObjective.Objective": false,
-        "CompetencyObjective.ObjectiveGradeLevel": false,
+        "CompetencyObjective.ObjectiveGradeLevelDescriptor": false,
         "DiagnosticStatement": true,
         "GradingPeriod": true,
-        "GradingPeriod.GradingPeriod": false,
+        "GradingPeriod.GradingPeriodDescriptor": false,
         "GradingPeriod.PeriodSequence": false,
         "GradingPeriod.School": false,
         "GradingPeriod.School.SchoolId": false,
@@ -1297,7 +1297,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
             "propertyName": "GradingPeriod",
           },
         ],
-        "GradingPeriod.GradingPeriod": Array [
+        "GradingPeriod.GradingPeriodDescriptor": Array [
           Object {
             "entityName": "GradingPeriod",
             "jsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
@@ -1671,7 +1671,7 @@ describe('when generating api schema targeting tech version 5.3 with data standa
         "CompetencyLevelDescriptor": true,
         "DiagnosticStatement": true,
         "GradingPeriod": true,
-        "GradingPeriod.GradingPeriod": false,
+        "GradingPeriod.GradingPeriodDescriptor": false,
         "GradingPeriod.PeriodSequence": false,
         "GradingPeriod.School": false,
         "GradingPeriod.School.SchoolId": false,
@@ -2439,7 +2439,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "GradingPeriod",
           },
         ],
-        "GradingPeriod.GradingPeriod": Array [
+        "GradingPeriod.GradingPeriodDescriptor": Array [
           Object {
             "entityName": "GradingPeriod",
             "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
@@ -2527,7 +2527,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
         "BeginDate": true,
         "EndDate": true,
         "GradingPeriod": true,
-        "GradingPeriod.GradingPeriod": false,
+        "GradingPeriod.GradingPeriodDescriptor": false,
         "GradingPeriod.PeriodSequence": false,
         "GradingPeriod.School": false,
         "GradingPeriod.School.SchoolId": false,
@@ -2625,7 +2625,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "Objective",
           },
         ],
-        "CompetencyObjective.ObjectiveGradeLevel": Array [
+        "CompetencyObjective.ObjectiveGradeLevelDescriptor": Array [
           Object {
             "entityName": "CompetencyObjective",
             "jsonPath": "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
@@ -2661,7 +2661,7 @@ describe('when generating api schema targeting tech version 6.1 with data standa
             "propertyName": "GradingPeriod",
           },
         ],
-        "GradingPeriod.GradingPeriod": Array [
+        "GradingPeriod.GradingPeriodDescriptor": Array [
           Object {
             "entityName": "GradingPeriod",
             "jsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
@@ -3011,10 +3011,10 @@ describe('when generating api schema targeting tech version 6.1 with data standa
         "CompetencyObjective.EducationOrganization": false,
         "CompetencyObjective.EducationOrganization.EducationOrganizationId": false,
         "CompetencyObjective.Objective": false,
-        "CompetencyObjective.ObjectiveGradeLevel": false,
+        "CompetencyObjective.ObjectiveGradeLevelDescriptor": false,
         "DiagnosticStatement": true,
         "GradingPeriod": true,
-        "GradingPeriod.GradingPeriod": false,
+        "GradingPeriod.GradingPeriodDescriptor": false,
         "GradingPeriod.PeriodSequence": false,
         "GradingPeriod.School": false,
         "GradingPeriod.School.SchoolId": false,
@@ -3779,7 +3779,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "GradingPeriod",
           },
         ],
-        "GradingPeriod.GradingPeriod": Array [
+        "GradingPeriod.GradingPeriodDescriptor": Array [
           Object {
             "entityName": "GradingPeriod",
             "jsonPath": "$.gradingPeriods[*].gradingPeriodReference.gradingPeriodDescriptor",
@@ -3867,7 +3867,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         "BeginDate": true,
         "EndDate": true,
         "GradingPeriod": true,
-        "GradingPeriod.GradingPeriod": false,
+        "GradingPeriod.GradingPeriodDescriptor": false,
         "GradingPeriod.GradingPeriodName": false,
         "GradingPeriod.School": false,
         "GradingPeriod.School.SchoolId": false,
@@ -3965,7 +3965,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "Objective",
           },
         ],
-        "CompetencyObjective.ObjectiveGradeLevel": Array [
+        "CompetencyObjective.ObjectiveGradeLevelDescriptor": Array [
           Object {
             "entityName": "CompetencyObjective",
             "jsonPath": "$.objectiveCompetencyObjectiveReference.objectiveGradeLevelDescriptor",
@@ -4001,7 +4001,7 @@ describe('when generating api schema targeting tech version 7.0 with data standa
             "propertyName": "GradingPeriod",
           },
         ],
-        "GradingPeriod.GradingPeriod": Array [
+        "GradingPeriod.GradingPeriodDescriptor": Array [
           Object {
             "entityName": "GradingPeriod",
             "jsonPath": "$.gradingPeriodReference.gradingPeriodDescriptor",
@@ -4351,10 +4351,10 @@ describe('when generating api schema targeting tech version 7.0 with data standa
         "CompetencyObjective.EducationOrganization": false,
         "CompetencyObjective.EducationOrganization.EducationOrganizationId": false,
         "CompetencyObjective.Objective": false,
-        "CompetencyObjective.ObjectiveGradeLevel": false,
+        "CompetencyObjective.ObjectiveGradeLevelDescriptor": false,
         "DiagnosticStatement": true,
         "GradingPeriod": true,
-        "GradingPeriod.GradingPeriod": false,
+        "GradingPeriod.GradingPeriodDescriptor": false,
         "GradingPeriod.GradingPeriodName": false,
         "GradingPeriod.School": false,
         "GradingPeriod.School.SchoolId": false,

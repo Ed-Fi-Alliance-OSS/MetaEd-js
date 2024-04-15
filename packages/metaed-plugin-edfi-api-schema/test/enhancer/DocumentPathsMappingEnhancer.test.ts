@@ -589,14 +589,14 @@ describe('when building domain entity with nested choice and inline commons', ()
           "referenceJsonPaths": Array [
             Object {
               "identityJsonPath": "$.contentIdentifier",
-              "referenceJsonPath": "$.derivativeSourceEducationContent[*].derivativeSourceEducationContentReference.contentIdentifier",
+              "referenceJsonPath": "$.derivativeSourceEducationContents[*].derivativeSourceEducationContentReference.contentIdentifier",
             },
           ],
           "resourceName": "EducationContent",
         },
         "LearningResourceChoice.LearningResource.DerivativeSourceEducationContentSource.URI": Object {
           "isReference": false,
-          "path": "$.derivativeSourceURI[*].derivativeSourceURI",
+          "path": "$.derivativeSourceURIs[*].derivativeSourceURI",
         },
         "LearningResourceChoice.LearningResource.Description": Object {
           "isReference": false,

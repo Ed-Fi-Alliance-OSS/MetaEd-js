@@ -230,7 +230,7 @@ function jsonPathsForChoiceAndInlineCommonProperty(
         childPropertyApiMapping.topLevelName,
         allProperty.property,
         concatenatedPropertyModifier,
-        { singularizeName: true, specialPrefix: '' },
+        { singularizeName: false, specialPrefix: '' },
       ),
       isTopLevel,
     );
