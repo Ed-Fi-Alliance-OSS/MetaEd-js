@@ -26,7 +26,7 @@ import {
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { JsonPath } from '../model/api-schema/JsonPath';
 
-const enhancerName = 'JsonPathsMappingEnhancer';
+const enhancerName = 'MergeJsonPathsMappingEnhancer';
 
 type AppendNextJsonPathNameOptions = { singularizeName: boolean; specialPrefix: string };
 

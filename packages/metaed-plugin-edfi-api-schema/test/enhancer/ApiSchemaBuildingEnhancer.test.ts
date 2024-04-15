@@ -41,6 +41,7 @@ import { enhance as mergeDirectiveEqualityConstraintEnhancer } from '../../src/e
 import { enhance as resourceNameEnhancer } from '../../src/enhancer/ResourceNameEnhancer';
 import { enhance as identityFullnameEnhancer } from '../../src/enhancer/IdentityFullnameEnhancer';
 import { enhance as subclassIdentityFullnameEnhancer } from '../../src/enhancer/SubclassIdentityFullnameEnhancer';
+import { enhance as identityJsonPathsEnhancer } from '../../src/enhancer/IdentityJsonPathsEnhancer';
 import { enhance as documentPathsMappingEnhancer } from '../../src/enhancer/DocumentPathsMappingEnhancer';
 import { enhance } from '../../src/enhancer/ApiSchemaBuildingEnhancer';
 
@@ -64,6 +65,7 @@ function runApiSchemaEnhancers(metaEd: MetaEdEnvironment) {
   resourceNameEnhancer(metaEd);
   identityFullnameEnhancer(metaEd);
   subclassIdentityFullnameEnhancer(metaEd);
+  identityJsonPathsEnhancer(metaEd);
   documentPathsMappingEnhancer(metaEd);
   enhance(metaEd);
 }
@@ -108,13 +110,13 @@ describe('when building simple domain entity with all the simple non-collections
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for DomainEntityName', () => {
+  it('should be correct identityJsonPaths for DomainEntityName', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
-        .identityFullnames,
+        .identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "StringIdentity",
+        "$.stringIdentity",
       ]
     `);
   });
@@ -269,13 +271,13 @@ describe('when building simple domain entity with all the simple collections', (
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for DomainEntityName', () => {
+  it('should be correct identityJsonPaths for DomainEntityName', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
-        .identityFullnames,
+        .identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "StringIdentity",
+        "$.stringIdentity",
       ]
     `);
   });
@@ -611,14 +613,15 @@ describe('when building a domain entity referencing another referencing another 
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for DomainEntityName', () => {
+  it('should be correct identityJsonPaths for DomainEntityName', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
-        .identityFullnames,
+        .identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "SectionIdentifier",
-        "CourseOffering",
+        "$.courseOfferingReference.localCourseCode",
+        "$.courseOfferingReference.schoolId",
+        "$.sectionIdentifier",
       ]
     `);
   });
@@ -765,14 +768,17 @@ describe('when building a domain entity referencing CourseOffering with an impli
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for DomainEntityName', () => {
+  it('should be correct identityJsonPaths for DomainEntityName', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.domainEntityNames
-        .identityFullnames,
+        .identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "SectionIdentifier",
-        "CourseOffering",
+        "$.courseOfferingReference.localCourseCode",
+        "$.courseOfferingReference.schoolId",
+        "$.courseOfferingReference.schoolYear",
+        "$.courseOfferingReference.sessionName",
+        "$.sectionIdentifier",
       ]
     `);
   });
@@ -855,15 +861,17 @@ describe('when building a domain entity referencing CourseOffering with an impli
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for CourseOffering', () => {
+  it('should be correct identityJsonPaths for CourseOffering', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.courseOfferings
-        .identityFullnames,
+        .identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "LocalCourseCode",
-        "School",
-        "Session",
+        "$.localCourseCode",
+        "$.schoolReference.schoolId",
+        "$.sessionReference.schoolId",
+        "$.sessionReference.schoolYear",
+        "$.sessionReference.sessionName",
       ]
     `);
   });
@@ -954,13 +962,13 @@ describe('when building a domain entity referencing CourseOffering with an impli
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for Session', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sessions.identityFullnames)
+  it('should be correct identityJsonPaths for Session', () => {
+    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sessions.identityJsonPaths)
       .toMatchInlineSnapshot(`
       Array [
-        "SessionName",
-        "SchoolYear",
-        "School",
+        "$.schoolReference.schoolId",
+        "$.schoolYearTypeReference.schoolYear",
+        "$.sessionName",
       ]
     `);
   });
@@ -1038,11 +1046,11 @@ describe('when building a domain entity referencing CourseOffering with an impli
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for School', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.identityFullnames)
+  it('should be correct identityJsonPaths for School', () => {
+    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.identityJsonPaths)
       .toMatchInlineSnapshot(`
       Array [
-        "SchoolId",
+        "$.schoolId",
       ]
     `);
   });
@@ -1144,13 +1152,13 @@ describe('when building domain entity with nested choice and inline commons', ()
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for EducationContent', () => {
+  it('should be correct identityJsonPaths for EducationContent', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
-        .identityFullnames,
+        .identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "ContentIdentifier",
+        "$.contentIdentifier",
       ]
     `);
   });
@@ -1306,13 +1314,13 @@ describe('when building domain entity with scalar collection named with prefix o
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for EducationContent', () => {
+  it('should be correct identityJsonPaths for EducationContent', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
-        .identityFullnames,
+        .identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "ContentIdentifier",
+        "$.contentIdentifier",
       ]
     `);
   });
@@ -1410,13 +1418,13 @@ describe('when building domain entity with Association/DomainEntity collection n
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for EducationContent', () => {
+  it('should be correct identityJsonPaths for EducationContent', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.educationContents
-        .identityFullnames,
+        .identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "ContentIdentifier",
+        "$.contentIdentifier",
       ]
     `);
   });
@@ -1518,14 +1526,14 @@ describe('when building domain entity with acronym property name', () => {
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for StudentSpecialEducationProgramAssociation', () => {
+  it('should be correct identityJsonPaths for StudentSpecialEducationProgramAssociation', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
-        .studentSpecialEducationProgramAssociations.identityFullnames,
+        .studentSpecialEducationProgramAssociations.identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "ContentIdentifier",
-        "IEPBeginDate",
+        "$.contentIdentifier",
+        "$.iepBeginDate",
       ]
     `);
   });
@@ -1615,12 +1623,12 @@ describe('when building domain entity with a simple common collection', () => {
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for Assessment', () => {
+  it('should be correct identityJsonPaths for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "AssessmentIdentifier",
+        "$.assessmentIdentifier",
       ]
     `);
   });
@@ -1734,13 +1742,13 @@ describe('when building domain entity subclass with common collection and descri
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for CommunityOrganization', () => {
+  it('should be correct identityJsonPaths for CommunityOrganization', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.communityOrganizations
-        .identityFullnames,
+        .identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "CommunityOrganizationId",
+        "$.communityOrganizationId",
       ]
     `);
   });
@@ -1848,13 +1856,13 @@ describe('when building association with a common collection in a common collect
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for StudentEducationOrganizationAssociation', () => {
+  it('should be correct identityJsonPaths for StudentEducationOrganizationAssociation', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas
-        .studentEducationOrganizationAssociations.identityFullnames,
+        .studentEducationOrganizationAssociations.identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "StudentId",
+        "$.studentId",
       ]
     `);
   });
@@ -1971,12 +1979,12 @@ describe('when building domain entity with a descriptor with role name', () => {
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for Assessment', () => {
+  it('should be correct identityJsonPaths for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "AssessmentIdentifier",
+        "$.assessmentIdentifier",
       ]
     `);
   });
@@ -2054,12 +2062,12 @@ describe('when building domain entity with a descriptor collection with role nam
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for Assessment', () => {
+  it('should be correct identityJsonPaths for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "AssessmentIdentifier",
+        "$.assessmentIdentifier",
       ]
     `);
   });
@@ -2160,12 +2168,12 @@ describe('when building domain entity with a common with a choice', () => {
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for Assessment', () => {
+  it('should be correct identityJsonPaths for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "AssessmentIdentifier",
+        "$.assessmentIdentifier",
       ]
     `);
   });
@@ -2266,12 +2274,12 @@ describe('when building domain entity with a common and a common collection with
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for Assessment', () => {
+  it('should be correct identityJsonPaths for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "AssessmentIdentifier",
+        "$.assessmentIdentifier",
       ]
     `);
   });
@@ -2369,12 +2377,12 @@ describe('when building domain entity with an all-caps property', () => {
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for Assessment', () => {
+  it('should be correct identityJsonPaths for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "AssessmentIdentifier",
+        "$.assessmentIdentifier",
       ]
     `);
   });
@@ -2460,12 +2468,12 @@ describe('when building domain entity with a common with a domain entity referen
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for Assessment', () => {
+  it('should be correct identityJsonPaths for Assessment', () => {
     expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityFullnames,
+      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.assessments.identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "AssessmentIdentifier",
+        "$.assessmentIdentifier",
       ]
     `);
   });
@@ -2565,13 +2573,13 @@ describe('when building domain entity with two school year enumerations, one rol
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for StudentSchoolAssociation', () => {
+  it('should be correct identityJsonPaths for StudentSchoolAssociation', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
-        .identityFullnames,
+        .identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "SchoolId",
+        "$.schoolId",
       ]
     `);
   });
@@ -2679,13 +2687,13 @@ describe('when building domain entity with reference to domain entity with schoo
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for StudentSchoolAssociation', () => {
+  it('should be correct identityJsonPaths for StudentSchoolAssociation', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentSchoolAssociations
-        .identityFullnames,
+        .identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "SchoolId",
+        "$.schoolId",
       ]
     `);
   });
@@ -2797,13 +2805,13 @@ describe('when building a schema for StudentCohort', () => {
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for StudentCohort', () => {
+  it('should be correct identityJsonPaths for StudentCohort', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentCohorts
-        .identityFullnames,
+        .identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "StudentUniqueId",
+        "$.studentUniqueId",
       ]
     `);
   });
@@ -2916,11 +2924,11 @@ describe('when building a domain entity with an inline common property with a de
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for Section', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sections.identityFullnames)
+  it('should be correct identityJsonPaths for Section', () => {
+    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.sections.identityJsonPaths)
       .toMatchInlineSnapshot(`
       Array [
-        "SectionIdentifier",
+        "$.sectionIdentifier",
       ]
     `);
   });
@@ -2999,11 +3007,11 @@ describe('when building a Domain Entity subclass', () => {
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for School', () => {
-    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.identityFullnames)
+  it('should be correct identityJsonPaths for School', () => {
+    expect(metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools.identityJsonPaths)
       .toMatchInlineSnapshot(`
       Array [
-        "SchoolId",
+        "$.schoolId",
       ]
     `);
   });
@@ -3098,30 +3106,15 @@ describe('when building a Domain Entity subclass', () => {
       Object {
         "SchoolId": Object {
           "isReference": false,
-          "pathOrder": Array [
-            "schoolId",
-          ],
-          "paths": Object {
-            "schoolId": "$.schoolId",
-          },
+          "path": "$.schoolId",
         },
         "SubclassProperty": Object {
           "isReference": false,
-          "pathOrder": Array [
-            "subclassProperty",
-          ],
-          "paths": Object {
-            "subclassProperty": "$.subclassProperty",
-          },
+          "path": "$.subclassProperty",
         },
         "SuperclassProperty": Object {
           "isReference": false,
-          "pathOrder": Array [
-            "superclassProperty",
-          ],
-          "paths": Object {
-            "superclassProperty": "$.superclassProperty",
-          },
+          "path": "$.superclassProperty",
         },
       }
     `);
@@ -3185,14 +3178,16 @@ describe('when building an Association subclass', () => {
     ).toMatchInlineSnapshot(`Array []`);
   });
 
-  it('should be correct identityFullnames for StudentProgramAssociation', () => {
+  it('should be correct identityJsonPaths for StudentProgramAssociation', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.studentProgramAssociations
-        .identityFullnames,
+        .identityJsonPaths,
     ).toMatchInlineSnapshot(`
       Array [
-        "Program",
-        "School",
+        "$.programReference.programId",
+        "$.programReference.programName",
+        "$.schoolReference.schoolId",
+        "$.schoolReference.schoolName",
       ]
     `);
   });
@@ -3316,48 +3311,42 @@ describe('when building an Association subclass', () => {
         "Program": Object {
           "isDescriptor": false,
           "isReference": true,
-          "pathOrder": Array [
-            "programId",
-            "programName",
-          ],
-          "paths": Object {
-            "programId": "$.programReference.programId",
-            "programName": "$.programReference.programName",
-          },
           "projectName": "EdFi",
+          "referenceJsonPaths": Array [
+            Object {
+              "identityJsonPath": "$.programId",
+              "referenceJsonPath": "$.programReference.programId",
+            },
+            Object {
+              "identityJsonPath": "$.programName",
+              "referenceJsonPath": "$.programReference.programName",
+            },
+          ],
           "resourceName": "Program",
         },
         "School": Object {
           "isDescriptor": false,
           "isReference": true,
-          "pathOrder": Array [
-            "schoolId",
-            "schoolName",
-          ],
-          "paths": Object {
-            "schoolId": "$.schoolReference.schoolId",
-            "schoolName": "$.schoolReference.schoolName",
-          },
           "projectName": "EdFi",
+          "referenceJsonPaths": Array [
+            Object {
+              "identityJsonPath": "$.schoolId",
+              "referenceJsonPath": "$.schoolReference.schoolId",
+            },
+            Object {
+              "identityJsonPath": "$.schoolName",
+              "referenceJsonPath": "$.schoolReference.schoolName",
+            },
+          ],
           "resourceName": "School",
         },
         "SubclassProperty": Object {
           "isReference": false,
-          "pathOrder": Array [
-            "subclassProperty",
-          ],
-          "paths": Object {
-            "subclassProperty": "$.subclassProperty",
-          },
+          "path": "$.subclassProperty",
         },
         "SuperclassProperty": Object {
           "isReference": false,
-          "pathOrder": Array [
-            "superclassProperty",
-          ],
-          "paths": Object {
-            "superclassProperty": "$.superclassProperty",
-          },
+          "path": "$.superclassProperty",
         },
       }
     `);

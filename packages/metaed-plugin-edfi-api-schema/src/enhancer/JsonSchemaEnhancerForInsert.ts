@@ -33,7 +33,7 @@ import {
 } from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 
-const enhancerName = 'JsonSchemaEnhancer';
+const enhancerName = 'JsonSchemaEnhancerForInsert';
 
 type SchoolYearSchemas = { schoolYearSchema: SchemaProperty; schoolYearEnumerationSchema: SchemaRoot };
 

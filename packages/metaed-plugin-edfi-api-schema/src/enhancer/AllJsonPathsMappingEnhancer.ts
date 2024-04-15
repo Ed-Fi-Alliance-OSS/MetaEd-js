@@ -26,7 +26,7 @@ import {
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { JsonPath } from '../model/api-schema/JsonPath';
 
-const enhancerName = 'JsonPathsMappingEnhancer';
+const enhancerName = 'AllJsonPathsMappingEnhancer';
 
 type AppendNextJsonPathNameOptions = { singularizeName: boolean; specialPrefix: string };
 
@@ -230,6 +230,7 @@ function jsonPathsForChoiceAndInlineCommonProperty(
         childPropertyApiMapping.topLevelName,
         allProperty.property,
         concatenatedPropertyModifier,
+        { singularizeName: true, specialPrefix: '' },
       ),
       isTopLevel,
     );
