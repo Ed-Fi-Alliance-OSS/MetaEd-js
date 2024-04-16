@@ -5,7 +5,7 @@ import { generate as idIndexesGenerator } from './generator/IdIndexesGenerator';
 import { generate as educationOrganizationAuthorizationIndexesGenerator } from './generator/EducationOrganizationAuthorizationIndexesGenerator';
 
 import { enhance as templateSpecificTablePropertyEnhancer } from './enhancer/TemplateSpecificTablePropertyEnhancer';
-import { enhance as templateSpecificTablePropertyEnhancerV6dot1 } from './enhancer/TemplateSpecificTablePropertyEnhancerV6dot1';
+import { enhance as templateSpecificTablePropertyEnhancerV6x } from './enhancer/TemplateSpecificTablePropertyEnhancerV6x';
 import { enhance as sqlServerTableNamingEnhancer } from './enhancer/SqlServerTableNamingEnhancer';
 import { enhance as sqlServerColumnNamingEnhancer } from './enhancer/SqlServerColumnNamingEnhancer';
 import { enhance as sqlServerForeignKeyNamingEnhancer } from './enhancer/SqlServerForeignKeyNamingEnhancer';
@@ -28,7 +28,7 @@ export function initialize(): MetaEdPlugin {
       sqlServerTableNamingEnhancer,
       sqlServerColumnNamingEnhancer,
       templateSpecificTablePropertyEnhancer,
-      templateSpecificTablePropertyEnhancerV6dot1,
+      templateSpecificTablePropertyEnhancerV6x,
       sqlServerForeignKeyNamingEnhancer,
       addSchemaContainerEnhancer,
     ],

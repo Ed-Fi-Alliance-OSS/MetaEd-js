@@ -19,7 +19,7 @@ import {
   tableEntities,
   Table,
 } from '@edfi/metaed-plugin-edfi-ods-relational';
-import { enhance } from '../../src/enhancer/TemplateSpecificTablePropertyEnhancerV6dot1';
+import { enhance } from '../../src/enhancer/TemplateSpecificTablePropertyEnhancerV6x';
 import { enhance as tableSetupEnhancer } from '../../src/model/Table';
 import { enhance as sqlServerTableNamingEnhancer } from '../../src/enhancer/PostgresqlTableNamingEnhancer';
 import { enhance as sqlServerColumnNamingEnhancer } from '../../src/enhancer/PostgresqlColumnNamingEnhancer';

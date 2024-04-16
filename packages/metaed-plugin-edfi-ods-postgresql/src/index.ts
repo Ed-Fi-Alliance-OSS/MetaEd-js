@@ -5,7 +5,7 @@ import { generate as idIndexesGenerator } from './generator/IdIndexesGenerator';
 import { generate as educationOrganizationAuthorizationIndexesGenerator } from './generator/EducationOrganizationAuthorizationIndexesGenerator';
 
 import { enhance as templateSpecificTablePropertyEnhancer } from './enhancer/TemplateSpecificTablePropertyEnhancer';
-import { enhance as templateSpecificTablePropertyEnhancerV6dot1 } from './enhancer/TemplateSpecificTablePropertyEnhancerV6dot1';
+import { enhance as templateSpecificTablePropertyEnhancerV6x } from './enhancer/TemplateSpecificTablePropertyEnhancerV6x';
 import { enhance as postgreSqlTableNamingEnhancer } from './enhancer/PostgresqlTableNamingEnhancer';
 import { enhance as postgreSqlColumnNamingEnhancer } from './enhancer/PostgresqlColumnNamingEnhancer';
 import { enhance as postgreSqlForeignKeyNamingEnhancer } from './enhancer/PostgresqlForeignKeyNamingEnhancer';
@@ -32,7 +32,7 @@ export function initialize(): MetaEdPlugin {
       postgreSqlTableNamingEnhancer,
       postgreSqlColumnNamingEnhancer,
       templateSpecificTablePropertyEnhancer,
-      templateSpecificTablePropertyEnhancerV6dot1,
+      templateSpecificTablePropertyEnhancerV6x,
       postgreSqlForeignKeyNamingEnhancer,
       addSchemaContainerEnhancer,
     ],

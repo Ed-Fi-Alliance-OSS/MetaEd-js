@@ -19,13 +19,13 @@ import {
   tableEntities,
   Table,
 } from '@edfi/metaed-plugin-edfi-ods-relational';
-import { enhance } from '../../src/enhancer/TemplateSpecificTablePropertyEnhancerV6dot1';
+import { enhance } from '../../src/enhancer/TemplateSpecificTablePropertyEnhancerV6x';
 import { enhance as tableSetupEnhancer } from '../../src/model/Table';
 import { enhance as sqlServerTableNamingEnhancer } from '../../src/enhancer/SqlServerTableNamingEnhancer';
 import { enhance as sqlServerColumnNamingEnhancer } from '../../src/enhancer/SqlServerColumnNamingEnhancer';
 import { enhance as sqlServerForeignKeyNamingEnhancer } from '../../src/enhancer/SqlServerForeignKeyNamingEnhancer';
 
-describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with alternate keys', (): void => {
+describe('when TemplateSpecificTablePropertyEnhancerV6x enhances table with alternate keys', (): void => {
   const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.namespace.set(namespace.namespaceName, namespace);
@@ -78,7 +78,7 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with a
   });
 });
 
-describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with primary keys', (): void => {
+describe('when TemplateSpecificTablePropertyEnhancerV6x enhances table with primary keys', (): void => {
   const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.namespace.set(namespace.namespaceName, namespace);
@@ -127,7 +127,7 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with p
   });
 });
 
-describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with foreign keys', (): void => {
+describe('when TemplateSpecificTablePropertyEnhancerV6x enhances table with foreign keys', (): void => {
   const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.namespace.set(namespace.namespaceName, namespace);
@@ -247,7 +247,7 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with f
   });
 });
 
-describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with unique indexes', (): void => {
+describe('when TemplateSpecificTablePropertyEnhancerV6x enhances table with unique indexes', (): void => {
   const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.namespace.set(namespace.namespaceName, namespace);
@@ -296,7 +296,7 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with u
   });
 });
 
-describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with primary and non primary keys', (): void => {
+describe('when TemplateSpecificTablePropertyEnhancerV6x enhances table with primary and non primary keys', (): void => {
   const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.namespace.set(namespace.namespaceName, namespace);
@@ -361,7 +361,7 @@ describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table with p
   });
 });
 
-describe('when TemplateSpecificTablePropertyEnhancerV6dot1 enhances table and columns with sql escaped description', (): void => {
+describe('when TemplateSpecificTablePropertyEnhancerV6x enhances table and columns with sql escaped description', (): void => {
   const namespace: Namespace = { ...newNamespace(), namespaceName: 'EdFi' };
   const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
   metaEd.namespace.set(namespace.namespaceName, namespace);

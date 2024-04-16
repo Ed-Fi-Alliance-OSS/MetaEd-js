@@ -6,7 +6,7 @@ import { EntityTable } from '../../model/domainMetadata/EntityTable';
 import { NamespaceEdfiOdsApi } from '../../model/Namespace';
 import { allTablesInNamespacesBySchema, foreignKeyFor } from './EnhancerHelper';
 
-const enhancerName = 'AssociationDefinitionCardinalityEnhancerV6dot1';
+const enhancerName = 'AssociationDefinitionCardinalityEnhancerV6x';
 
 function findAggregateWithEntity(targetTechnologyVersion: string, aggregates: Aggregate[], table: Table): Aggregate | null {
   // Table name in the DomainMetadata EntityTable structure is not the non-db specific tableId, but instead the overlap-collapsed table name

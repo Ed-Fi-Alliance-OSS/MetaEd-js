@@ -1,6 +1,12 @@
-import { EnhancerResult, MetaEdEnvironment, Namespace, PluginEnvironment, versionSatisfies } from '@edfi/metaed-core';
+import {
+  defaultPluginTechVersion,
+  EnhancerResult,
+  MetaEdEnvironment,
+  Namespace,
+  versionSatisfies,
+  PluginEnvironment,
+} from '@edfi/metaed-core';
 import { tableEntities, Column, Table, escapeSqlSingleQuote } from '@edfi/metaed-plugin-edfi-ods-relational';
-import { defaultPluginTechVersion } from '@edfi/metaed-core';
 import {
   hasAlternateKeys,
   getAlternateKeys,
@@ -10,7 +16,7 @@ import {
 } from './ColumnOrdering';
 
 // Sets sorted table properties for use by the generator template
-const enhancerName = 'TemplateSpecificTablePropertyEnhancerV6dot1';
+const enhancerName = 'TemplateSpecificTablePropertyEnhancerV6x';
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;

@@ -27,7 +27,7 @@ import { enhance as associationDefinitionEnhancerV3dot2 } from './apiModel/Assoc
 import { enhance as associationDefinitionEnhancerV5dot1 } from './apiModel/AssociationDefinitionEnhancerV5dot1';
 import { enhance as associationDefinitionIsIdentifyingEnhancer } from './apiModel/AssociationDefinitionIsIdentifyingEnhancer';
 import { enhance as associationDefinitionCardinalityEnhancer } from './apiModel/AssociationDefinitionCardinalityEnhancer';
-import { enhance as associationDefinitionCardinalityEnhancerV6dot1 } from './apiModel/AssociationDefinitionCardinalityEnhancerV6dot1';
+import { enhance as associationDefinitionCardinalityEnhancerV6x } from './apiModel/AssociationDefinitionCardinalityEnhancerV6x';
 import { enhance as associationDefinitionIsRequiredEnhancer } from './apiModel/AssociationDefinitionIsRequiredEnhancer';
 import { enhance as associationDefinitionPrimaryEntityPropertyEnhancer } from './apiModel/AssociationDefinitionPrimaryEntityPropertyEnhancer';
 import { enhance as associationDefinitionPrimaryEntityPropertyEnhancerV3 } from './apiModel/AssociationDefinitionPrimaryEntityPropertyEnhancerV3dot2';
@@ -80,7 +80,7 @@ export function enhancerList(): Enhancer[] {
     associationDefinitionEnhancerV5dot1,
     associationDefinitionIsIdentifyingEnhancer,
     associationDefinitionCardinalityEnhancer,
-    associationDefinitionCardinalityEnhancerV6dot1,
+    associationDefinitionCardinalityEnhancerV6x,
     associationDefinitionIsRequiredEnhancer,
     associationDefinitionPrimaryEntityPropertyEnhancer,
     associationDefinitionPrimaryEntityPropertyEnhancerV3,
