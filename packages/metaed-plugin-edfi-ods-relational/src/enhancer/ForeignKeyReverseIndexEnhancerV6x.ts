@@ -14,14 +14,14 @@ import { ForeignKey } from '../model/database/ForeignKey';
 import { Table } from '../model/database/Table';
 
 // Calculate if a reverse foreign key index is required for each Foreign Key
-const enhancerName = 'ForeignKeyReverseIndexEnhancerV6dot1';
+const enhancerName = 'ForeignKeyReverseIndexEnhancerV6x';
 
 function fkColumnsDifferFromPkColumns(fk: ForeignKey, primaryKeyColumnIds: string[]): boolean {
   return R.not(R.equals(getParentTableColumnIds(fk), primaryKeyColumnIds));
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (versionSatisfies(targetTechnologyVersionFor('edfiOdsRelational', metaEd), '<=6.1.0')) {
+  if (versionSatisfies(targetTechnologyVersionFor('edfiOdsRelational', metaEd), '<=6.x.x')) {
     metaEd.namespace.forEach((namespace: Namespace) => {
       const tables: Map<string, Table> = tableEntities(metaEd, namespace);
       tables.forEach((table: Table) => {

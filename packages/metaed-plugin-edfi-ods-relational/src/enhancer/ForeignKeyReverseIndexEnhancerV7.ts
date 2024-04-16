@@ -21,7 +21,7 @@ function fkColumnsDifferFromPkColumns(fk: ForeignKey, primaryKeyColumnIds: strin
 }
 
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
-  if (versionSatisfies(targetTechnologyVersionFor('edfiOdsRelational', metaEd), '>6.1.0 <=7.0.0')) {
+  if (versionSatisfies(targetTechnologyVersionFor('edfiOdsRelational', metaEd), '>6.2.0 <=7.0.0')) {
     metaEd.namespace.forEach((namespace: Namespace) => {
       const tables: Map<string, Table> = tableEntities(metaEd, namespace);
       tables.forEach((table: Table) => {
