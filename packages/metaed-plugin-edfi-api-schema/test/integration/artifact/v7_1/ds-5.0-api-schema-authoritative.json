@@ -5748,9 +5748,8 @@
             "type": "object"
           },
           "resourceName": "CommunityOrganization",
-          "subclassIdentityDocumentKey": "communityOrganizationId",
           "subclassType": "domainEntity",
-          "superclassIdentityDocumentKey": "educationOrganizationId",
+          "superclassIdentityJsonPath": "$.educationOrganizationId",
           "superclassProjectName": "Ed-Fi",
           "superclassResourceName": "EducationOrganization"
         },
@@ -6570,9 +6569,8 @@
             "type": "object"
           },
           "resourceName": "CommunityProvider",
-          "subclassIdentityDocumentKey": "communityProviderId",
           "subclassType": "domainEntity",
-          "superclassIdentityDocumentKey": "educationOrganizationId",
+          "superclassIdentityJsonPath": "$.educationOrganizationId",
           "superclassProjectName": "Ed-Fi",
           "superclassResourceName": "EducationOrganization"
         },
@@ -12614,9 +12612,8 @@
             "type": "object"
           },
           "resourceName": "EducationOrganizationNetwork",
-          "subclassIdentityDocumentKey": "educationOrganizationNetworkId",
           "subclassType": "domainEntity",
-          "superclassIdentityDocumentKey": "educationOrganizationId",
+          "superclassIdentityJsonPath": "$.educationOrganizationId",
           "superclassProjectName": "Ed-Fi",
           "superclassResourceName": "EducationOrganization"
         },
@@ -13369,9 +13366,8 @@
             "type": "object"
           },
           "resourceName": "EducationServiceCenter",
-          "subclassIdentityDocumentKey": "educationServiceCenterId",
           "subclassType": "domainEntity",
-          "superclassIdentityDocumentKey": "educationOrganizationId",
+          "superclassIdentityJsonPath": "$.educationOrganizationId",
           "superclassProjectName": "Ed-Fi",
           "superclassResourceName": "EducationOrganization"
         },
@@ -20533,9 +20529,8 @@
             "type": "object"
           },
           "resourceName": "LocalEducationAgency",
-          "subclassIdentityDocumentKey": "localEducationAgencyId",
           "subclassType": "domainEntity",
-          "superclassIdentityDocumentKey": "educationOrganizationId",
+          "superclassIdentityJsonPath": "$.educationOrganizationId",
           "superclassProjectName": "Ed-Fi",
           "superclassResourceName": "EducationOrganization"
         },
@@ -22947,9 +22942,8 @@
             "type": "object"
           },
           "resourceName": "OrganizationDepartment",
-          "subclassIdentityDocumentKey": "organizationDepartmentId",
           "subclassType": "domainEntity",
-          "superclassIdentityDocumentKey": "educationOrganizationId",
+          "superclassIdentityJsonPath": "$.educationOrganizationId",
           "superclassProjectName": "Ed-Fi",
           "superclassResourceName": "EducationOrganization"
         },
@@ -24281,9 +24275,8 @@
             "type": "object"
           },
           "resourceName": "PostSecondaryInstitution",
-          "subclassIdentityDocumentKey": "postSecondaryInstitutionId",
           "subclassType": "domainEntity",
-          "superclassIdentityDocumentKey": "educationOrganizationId",
+          "superclassIdentityJsonPath": "$.educationOrganizationId",
           "superclassProjectName": "Ed-Fi",
           "superclassResourceName": "EducationOrganization"
         },
@@ -28880,9 +28873,8 @@
             "type": "object"
           },
           "resourceName": "School",
-          "subclassIdentityDocumentKey": "schoolId",
           "subclassType": "domainEntity",
-          "superclassIdentityDocumentKey": "educationOrganizationId",
+          "superclassIdentityJsonPath": "$.educationOrganizationId",
           "superclassProjectName": "Ed-Fi",
           "superclassResourceName": "EducationOrganization"
         },
@@ -34469,9 +34461,8 @@
             "type": "object"
           },
           "resourceName": "StateEducationAgency",
-          "subclassIdentityDocumentKey": "stateEducationAgencyId",
           "subclassType": "domainEntity",
-          "superclassIdentityDocumentKey": "educationOrganizationId",
+          "superclassIdentityJsonPath": "$.educationOrganizationId",
           "superclassProjectName": "Ed-Fi",
           "superclassResourceName": "EducationOrganization"
         },

@@ -20,11 +20,11 @@ import { ResourceSchema } from '../model/api-schema/ResourceSchema';
 import { ResourceSchemaMapping } from '../model/api-schema/ResourceSchemaMapping';
 import { ProjectNamespace } from '../model/api-schema/ProjectNamespace';
 import { ResourceNameMapping } from '../model/api-schema/ResourceNameMapping';
-import { DocumentObjectKey } from '../model/api-schema/DocumentObjectKey';
 import { uncapitalize } from '../Utility';
 import { AbstractResourceMapping } from '../model/api-schema/AbstractResourceMapping';
 import { CaseInsensitiveEndpointNameMapping } from '../model/api-schema/CaseInsensitiveEndpointNameMapping';
 import { buildSchoolYearResourceSchema } from './SchoolYearHardCodedSchemaBuilder';
+import { JsonPath } from '../model/api-schema/JsonPath';
 
 /**
  *
@@ -62,8 +62,7 @@ function buildDomainEntitySubclassResourceSchema(entity: DomainEntitySubclass): 
     ...baseResourceSchema,
     superclassProjectName: entity.baseEntity.namespace.projectName as MetaEdProjectName,
     superclassResourceName: superclassEntityApiSchemaData.resourceName,
-    superclassIdentityDocumentKey: uncapitalize(subclassIdentityRenameProperty.baseKeyName) as DocumentObjectKey,
-    subclassIdentityDocumentKey: uncapitalize(subclassIdentityRenameProperty.fullPropertyName) as DocumentObjectKey,
+    superclassIdentityJsonPath: `$.${uncapitalize(subclassIdentityRenameProperty.baseKeyName)}` as JsonPath,
     isSubclass: true,
     subclassType: 'domainEntity',
   };

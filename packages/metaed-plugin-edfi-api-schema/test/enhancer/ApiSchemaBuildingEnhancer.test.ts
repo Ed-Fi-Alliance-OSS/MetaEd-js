@@ -3085,18 +3085,11 @@ describe('when building a Domain Entity subclass', () => {
     ).toMatchInlineSnapshot(`"EducationOrganization"`);
   });
 
-  it('should have correct superclassIdentityFullname for School', () => {
+  it('should have correct superclassIdentityJsonPath for School', () => {
     expect(
       metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools
-        .superclassIdentityDocumentKey,
-    ).toMatchInlineSnapshot(`"educationOrganizationId"`);
-  });
-
-  it('should have correct subclassIdentityFullname for School', () => {
-    expect(
-      metaEd.plugin.get('edfiApiSchema')?.data.apiSchema.projectSchemas.edfi.resourceSchemas.schools
-        .subclassIdentityDocumentKey,
-    ).toMatchInlineSnapshot(`"schoolId"`);
+        .superclassIdentityJsonPath,
+    ).toMatchInlineSnapshot(`"$.educationOrganizationId"`);
   });
 
   it('should have correct documentPathsMapping for School', () => {

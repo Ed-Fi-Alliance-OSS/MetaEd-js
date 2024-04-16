@@ -3,7 +3,6 @@ import { EqualityConstraint } from './EqualityConstraint';
 import { DocumentPaths } from './DocumentPaths';
 import { SchemaRoot } from './JsonSchema';
 import { MetaEdResourceName } from './MetaEdResourceName';
-import { DocumentObjectKey } from './DocumentObjectKey';
 import { JsonPath } from './JsonPath';
 
 /**
@@ -69,12 +68,11 @@ export type AssociationSubclassResourceSchema = BaseResourceSchema & {
  */
 export type DomainEntitySubclassResourceSchema = AssociationSubclassResourceSchema & {
   /**
-   * The superclass identity field and the matching subclass identity field name.
-   * This is found in MetaEd as an "identity rename". MetaEd only allows the super/subclass
-   * relationship of Domain Entities to have a single common identity field.
+   * The superclass identity JsonPath, which is the superclass variation of an
+   * "identity rename". MetaEd allows a single common identity field rename for a super/subclass
+   * relationship of Domain Entities.
    */
-  superclassIdentityDocumentKey: DocumentObjectKey;
-  subclassIdentityDocumentKey: DocumentObjectKey;
+  superclassIdentityJsonPath: JsonPath;
 };
 
 /**
