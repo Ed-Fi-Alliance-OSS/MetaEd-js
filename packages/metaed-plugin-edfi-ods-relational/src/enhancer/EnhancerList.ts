@@ -25,7 +25,7 @@ import { enhance as createUsisFromUniqueIdsEnhancer } from './CreateUsisFromUniq
 import { enhance as descriptorMapTypeRowEnhancer } from './DescriptorMapTypeRowEnhancer';
 import { enhance as enumerationRowEnhancer } from './EnumerationRowEnhancer';
 import { enhance as foreignKeyCreatingTableEnhancer } from './ForeignKeyCreatingTableEnhancer';
-import { enhance as foreignKeyReverseIndexEnhancerV6 } from './ForeignKeyReverseIndexEnhancerV6x';
+import { enhance as foreignKeyReverseIndexEnhancerV6x } from './ForeignKeyReverseIndexEnhancerV6x';
 import { enhance as foreignKeyReverseIndexEnhancerV7 } from './ForeignKeyReverseIndexEnhancerV7';
 import { enhance as foreignKeyReverseIndexEnhancer } from './ForeignKeyReverseIndexEnhancer';
 import { enhance as odsTableIdEnhancer } from './OdsTableIdEnhancer';
@@ -101,7 +101,7 @@ export function enhancerList(): Enhancer[] {
     foreignKeyIsIdentifyingEnhancer,
     educationOrganizationIdColumnEnhancer,
 
-    foreignKeyReverseIndexEnhancerV6,
+    foreignKeyReverseIndexEnhancerV6x,
     foreignKeyReverseIndexEnhancerV7,
     foreignKeyReverseIndexEnhancer,
 
