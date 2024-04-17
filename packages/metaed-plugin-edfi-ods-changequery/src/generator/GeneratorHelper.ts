@@ -98,7 +98,7 @@ export function generateCreateTrackedDeleteSchemas5dot3(
   const results: GeneratedOutput[] = [];
 
   const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
-  if (versionSatisfies(targetTechnologyVersion, '<3.4.0 || >5.3.0')) {
+  if (versionSatisfies(targetTechnologyVersion, '<3.4.0 || >5.4.0')) {
     return results;
   }
   const useLicenseHeader = metaEd.allianceMode && versionSatisfies(targetTechnologyVersion, '>=5.0.0');
