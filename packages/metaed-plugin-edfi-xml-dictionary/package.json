@@ -21,7 +21,7 @@
     "@xmldom/xmldom": "^0.8.10",
     "handlebars": "^4.7.7",
     "js-beautify": "^1.14.7",
-    "xlsx": "^0.18.5"
+    "xlsx": "file:vendor/xlsx-0.20.2.tgz"
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:copy-non-ts && npm run build:dist",
