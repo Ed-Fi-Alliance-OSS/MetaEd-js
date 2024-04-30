@@ -9237,7 +9237,7 @@
             },
             "MaximumAvailableCredits.CreditConversion": {
               "isReference": false,
-              "path": "$.maximumAvailableCreditConversions"
+              "path": "$.maximumAvailableCreditConversion"
             },
             "MaximumAvailableCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
@@ -9252,7 +9252,7 @@
             },
             "MinimumAvailableCredits.CreditConversion": {
               "isReference": false,
-              "path": "$.minimumAvailableCreditConversions"
+              "path": "$.minimumAvailableCreditConversion"
             },
             "MinimumAvailableCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
@@ -9479,7 +9479,7 @@
                 "minimum": 1,
                 "type": "integer"
               },
-              "maximumAvailableCreditConversions": {
+              "maximumAvailableCreditConversion": {
                 "description": "Conversion factor that when multiplied by the number of credits is equivalent to Carnegie units.",
                 "type": "number"
               },
@@ -9491,7 +9491,7 @@
                 "description": "The value of credits or units of value awarded for the completion of a course.",
                 "type": "number"
               },
-              "minimumAvailableCreditConversions": {
+              "minimumAvailableCreditConversion": {
                 "description": "Conversion factor that when multiplied by the number of credits is equivalent to Carnegie units.",
                 "type": "number"
               },
@@ -29202,7 +29202,7 @@
           "documentPathsMapping": {
             "AvailableCredits.CreditConversion": {
               "isReference": false,
-              "path": "$.availableCreditConversions"
+              "path": "$.availableCreditConversion"
             },
             "AvailableCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
@@ -29408,7 +29408,7 @@
                 },
                 "type": "object"
               },
-              "availableCreditConversions": {
+              "availableCreditConversion": {
                 "description": "Conversion factor that when multiplied by the number of credits is equivalent to Carnegie units.",
                 "type": "number"
               },
