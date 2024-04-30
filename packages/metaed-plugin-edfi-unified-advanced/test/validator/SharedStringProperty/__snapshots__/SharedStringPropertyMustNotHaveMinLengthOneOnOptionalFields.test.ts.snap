@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`when validating shared string property with minimum length one and is optional v6 should have validation warnings 1`] = `"Shared String Property StringProperty has min length 1 on optional field. This warning will be treated as an error in API version 7.x"`;
+
+exports[`when validating shared string property with minimum length one and is optional v6 should have validation warnings 2`] = `
+Object {
+  "column": 0,
+  "line": 0,
+  "tokenText": "NoSourceMap",
+}
+`;
+
+exports[`when validating shared string property with minimum length one and is optional v7 should have validation failures 1`] = `"Shared String Property StringProperty has min length 1 on optional field."`;
+
+exports[`when validating shared string property with minimum length one and is optional v7 should have validation failures 2`] = `
+Object {
+  "column": 0,
+  "line": 0,
+  "tokenText": "NoSourceMap",
+}
+`;
