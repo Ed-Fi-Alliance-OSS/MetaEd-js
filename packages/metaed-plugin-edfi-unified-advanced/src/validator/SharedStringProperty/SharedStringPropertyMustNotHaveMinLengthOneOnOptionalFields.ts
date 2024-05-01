@@ -10,8 +10,8 @@ import { asSharedStringProperty } from '@edfi/metaed-core';
 
 export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
   const failures: ValidationFailure[] = [];
-  metaEd.propertyIndex.sharedString.forEach((string) => {
-    const sharedStringProperty: SharedStringProperty = asSharedStringProperty(string);
+  metaEd.propertyIndex.sharedString.forEach((property) => {
+    const sharedStringProperty: SharedStringProperty = asSharedStringProperty(property);
     const minLength: number = Number.parseInt(sharedStringProperty.minLength || '0', 10);
     if (minLength === 1 && sharedStringProperty.isOptional) {
       const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
@@ -19,9 +19,9 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
         validatorName: 'SharedStringPropertyMustNotHaveMinLengthOneOnOptionalFields',
         category: versionSatisfies(targetTechnologyVersion, '>=7.0.0') ? 'error' : 'warning',
         message: versionSatisfies(targetTechnologyVersion, '>=7.0.0')
-          ? `Shared String Property ${string.metaEdName} has min length 1 on optional field.`
-          : `Shared String Property ${string.metaEdName} has min length 1 on optional field. This warning will be treated as an error in API version 7.x`,
-        sourceMap: (string.sourceMap as StringPropertySourceMap).minLength,
+          ? `Shared String Property ${property.metaEdName} has min length 1 on optional field.`
+          : `Shared String Property ${property.metaEdName} has min length 1 on optional field. This warning will be treated as an error in API version 7.x`,
+        sourceMap: (property.sourceMap as StringPropertySourceMap).minLength,
         fileMap: null,
       });
     }

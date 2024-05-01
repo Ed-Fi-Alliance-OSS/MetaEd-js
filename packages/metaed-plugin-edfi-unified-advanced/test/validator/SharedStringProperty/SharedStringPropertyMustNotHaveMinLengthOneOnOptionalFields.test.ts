@@ -133,8 +133,16 @@ describe('when validating shared string property with minimum length one and is 
     expect(failures).toHaveLength(1);
     expect(failures[0].validatorName).toBe('SharedStringPropertyMustNotHaveMinLengthOneOnOptionalFields');
     expect(failures[0].category).toBe('error');
-    expect(failures[0].message).toMatchSnapshot();
-    expect(failures[0].sourceMap).toMatchSnapshot();
+    expect(failures[0].message).toMatchInlineSnapshot(
+      `"Shared String Property StringProperty has min length 1 on optional field."`,
+    );
+    expect(failures[0].sourceMap).toMatchInlineSnapshot(`
+      Object {
+        "column": 0,
+        "line": 0,
+        "tokenText": "NoSourceMap",
+      }
+    `);
   });
 });
 
@@ -178,7 +186,15 @@ describe('when validating shared string property with minimum length one and is 
     expect(failures).toHaveLength(1);
     expect(failures[0].validatorName).toBe('SharedStringPropertyMustNotHaveMinLengthOneOnOptionalFields');
     expect(failures[0].category).toBe('warning');
-    expect(failures[0].message).toMatchSnapshot();
-    expect(failures[0].sourceMap).toMatchSnapshot();
+    expect(failures[0].message).toMatchInlineSnapshot(
+      `"Shared String Property StringProperty has min length 1 on optional field. This warning will be treated as an error in API version 7.x"`,
+    );
+    expect(failures[0].sourceMap).toMatchInlineSnapshot(`
+      Object {
+        "column": 0,
+        "line": 0,
+        "tokenText": "NoSourceMap",
+      }
+    `);
   });
 });
