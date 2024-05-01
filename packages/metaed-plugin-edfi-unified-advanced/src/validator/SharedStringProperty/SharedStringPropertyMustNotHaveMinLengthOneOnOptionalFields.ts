@@ -14,7 +14,7 @@ export function validate(metaEd: MetaEdEnvironment): ValidationFailure[] {
     const sharedStringProperty: SharedStringProperty = asSharedStringProperty(property);
     const minLength: number = Number.parseInt(sharedStringProperty.minLength || '0', 10);
     if (minLength === 1 && sharedStringProperty.isOptional) {
-      const { targetTechnologyVersion } = metaEd.plugin.get('edfiOdsRelational') as PluginEnvironment;
+      const { targetTechnologyVersion } = metaEd.plugin.get('edfiUnifiedAdvanced') as PluginEnvironment;
       failures.push({
         validatorName: 'SharedStringPropertyMustNotHaveMinLengthOneOnOptionalFields',
         category: versionSatisfies(targetTechnologyVersion, '>=7.0.0') ? 'error' : 'warning',

@@ -3,10 +3,9 @@ import {
   MetaEdTextBuilder,
   DomainEntityBuilder,
   NamespaceBuilder,
-  PluginEnvironment,
   SharedStringBuilder,
+  newPluginEnvironment,
 } from '@edfi/metaed-core';
-import { initializeEdFiOdsRelationalEntityRepository } from '@edfi/metaed-plugin-edfi-ods-relational';
 import { sharedStringPropertyEnhancer, stringReferenceEnhancer } from '@edfi/metaed-plugin-edfi-unified';
 import { MetaEdEnvironment, ValidationFailure } from '@edfi/metaed-core';
 import { validate } from '../../../src/validator/SharedStringProperty/SharedStringPropertyMustNotHaveMinLengthOneOnOptionalFields';
@@ -20,9 +19,7 @@ describe('when validating shared string property with no minimum length and is o
   let failures: ValidationFailure[];
 
   beforeAll(() => {
-    initializeEdFiOdsRelationalEntityRepository(metaEd);
-    const edfiOdsRelationalPluginEnvironment: PluginEnvironment | undefined = metaEd.plugin.get('edfiOdsRelational');
-    if (edfiOdsRelationalPluginEnvironment != null) edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = '7.1.0';
+    metaEd.plugin.set('edfiUnifiedAdvanced', { ...newPluginEnvironment(), targetTechnologyVersion: '7.1.0' });
 
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
@@ -61,9 +58,7 @@ describe('when validating shared string property with minimum length one and is 
   let failures: ValidationFailure[];
 
   beforeAll(() => {
-    initializeEdFiOdsRelationalEntityRepository(metaEd);
-    const edfiOdsRelationalPluginEnvironment: PluginEnvironment | undefined = metaEd.plugin.get('edfiOdsRelational');
-    if (edfiOdsRelationalPluginEnvironment != null) edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = '7.1.0';
+    metaEd.plugin.set('edfiUnifiedAdvanced', { ...newPluginEnvironment(), targetTechnologyVersion: '7.1.0' });
 
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
@@ -102,9 +97,7 @@ describe('when validating shared string property with minimum length one and is 
   let failures: ValidationFailure[];
 
   beforeAll(() => {
-    initializeEdFiOdsRelationalEntityRepository(metaEd);
-    const edfiOdsRelationalPluginEnvironment: PluginEnvironment | undefined = metaEd.plugin.get('edfiOdsRelational');
-    if (edfiOdsRelationalPluginEnvironment != null) edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = '7.1.0';
+    metaEd.plugin.set('edfiUnifiedAdvanced', { ...newPluginEnvironment(), targetTechnologyVersion: '7.1.0' });
 
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
@@ -155,9 +148,7 @@ describe('when validating shared string property with minimum length one and is 
   let failures: ValidationFailure[];
 
   beforeAll(() => {
-    initializeEdFiOdsRelationalEntityRepository(metaEd);
-    const edfiOdsRelationalPluginEnvironment: PluginEnvironment | undefined = metaEd.plugin.get('edfiOdsRelational');
-    if (edfiOdsRelationalPluginEnvironment != null) edfiOdsRelationalPluginEnvironment.targetTechnologyVersion = '6.2.0';
+    metaEd.plugin.set('edfiUnifiedAdvanced', { ...newPluginEnvironment(), targetTechnologyVersion: '6.2.0' });
 
     MetaEdTextBuilder.build()
       .withBeginNamespace('EdFi')
