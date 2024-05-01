@@ -1,5 +1,5 @@
 import { EntityProperty } from '@edfi/metaed-core';
-import { uncapitalize, pluralize, capitalize } from '../Utility';
+import { uncapitalize, capitalize } from '../Utility';
 import { EntityPropertyApiSchemaData } from './EntityPropertyApiSchemaData';
 
 /**
@@ -38,7 +38,7 @@ export function prefixedName(apiMappingName: string, property: EntityProperty, p
   if (apiMapping.isReferenceCollection || property.type === 'descriptor')
     return `${uncapitalize(prefix)}${capitalize(apiMappingName)}`;
 
-  return `${uncapitalize(prefix)}${pluralize(property.fullPropertyName)}`;
+  return `${uncapitalize(prefix)}${property.fullPropertyName}`;
 }
 
 /**

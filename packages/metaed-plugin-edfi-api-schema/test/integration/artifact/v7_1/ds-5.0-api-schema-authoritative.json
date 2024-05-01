@@ -8454,7 +8454,7 @@
             },
             "AttemptedCredits.CreditConversion": {
               "isReference": false,
-              "path": "$.attemptedCreditConversions"
+              "path": "$.attemptedCreditConversion"
             },
             "AttemptedCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
@@ -8545,7 +8545,7 @@
             },
             "EarnedCredits.CreditConversion": {
               "isReference": false,
-              "path": "$.earnedCreditConversions"
+              "path": "$.earnedCreditConversion"
             },
             "EarnedCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
@@ -8789,7 +8789,7 @@
                 "minLength": 1,
                 "type": "string"
               },
-              "attemptedCreditConversions": {
+              "attemptedCreditConversion": {
                 "description": "Conversion factor that when multiplied by the number of credits is equivalent to Carnegie units.",
                 "type": "number"
               },
@@ -8921,7 +8921,7 @@
                 "type": "array",
                 "uniqueItems": false
               },
-              "earnedCreditConversions": {
+              "earnedCreditConversion": {
                 "description": "Conversion factor that when multiplied by the number of credits is equivalent to Carnegie units.",
                 "type": "number"
               },
@@ -15777,7 +15777,7 @@
             },
             "TotalRequiredCredits.CreditConversion": {
               "isReference": false,
-              "path": "$.totalRequiredCreditConversions"
+              "path": "$.totalRequiredCreditConversion"
             },
             "TotalRequiredCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
@@ -16093,7 +16093,7 @@
                 "type": "array",
                 "uniqueItems": false
               },
-              "totalRequiredCreditConversions": {
+              "totalRequiredCreditConversion": {
                 "description": "Conversion factor that when multiplied by the number of credits is equivalent to Carnegie units.",
                 "type": "number"
               },
@@ -34545,7 +34545,7 @@
             },
             "CumulativeAttemptedCredits.CreditConversion": {
               "isReference": false,
-              "path": "$.cumulativeAttemptedCreditConversions"
+              "path": "$.cumulativeAttemptedCreditConversion"
             },
             "CumulativeAttemptedCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
@@ -34560,7 +34560,7 @@
             },
             "CumulativeEarnedCredits.CreditConversion": {
               "isReference": false,
-              "path": "$.cumulativeEarnedCreditConversions"
+              "path": "$.cumulativeEarnedCreditConversion"
             },
             "CumulativeEarnedCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
@@ -34773,7 +34773,7 @@
             },
             "SessionAttemptedCredits.CreditConversion": {
               "isReference": false,
-              "path": "$.sessionAttemptedCreditConversions"
+              "path": "$.sessionAttemptedCreditConversion"
             },
             "SessionAttemptedCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
@@ -34788,7 +34788,7 @@
             },
             "SessionEarnedCredits.CreditConversion": {
               "isReference": false,
-              "path": "$.sessionEarnedCreditConversions"
+              "path": "$.sessionEarnedCreditConversion"
             },
             "SessionEarnedCredits.CreditTypeDescriptor": {
               "isDescriptor": true,
@@ -34966,7 +34966,7 @@
                 ],
                 "type": "object"
               },
-              "cumulativeAttemptedCreditConversions": {
+              "cumulativeAttemptedCreditConversion": {
                 "description": "Conversion factor that when multiplied by the number of credits is equivalent to Carnegie units.",
                 "type": "number"
               },
@@ -34978,7 +34978,7 @@
                 "description": "The value of credits or units of value awarded for the completion of a course.",
                 "type": "number"
               },
-              "cumulativeEarnedCreditConversions": {
+              "cumulativeEarnedCreditConversion": {
                 "description": "Conversion factor that when multiplied by the number of credits is equivalent to Carnegie units.",
                 "type": "number"
               },
@@ -35293,7 +35293,7 @@
                 "title": "EdFi.SchoolYearType",
                 "type": "object"
               },
-              "sessionAttemptedCreditConversions": {
+              "sessionAttemptedCreditConversion": {
                 "description": "Conversion factor that when multiplied by the number of credits is equivalent to Carnegie units.",
                 "type": "number"
               },
@@ -35305,7 +35305,7 @@
                 "description": "The value of credits or units of value awarded for the completion of a course.",
                 "type": "number"
               },
-              "sessionEarnedCreditConversions": {
+              "sessionEarnedCreditConversion": {
                 "description": "Conversion factor that when multiplied by the number of credits is equivalent to Carnegie units.",
                 "type": "number"
               },
