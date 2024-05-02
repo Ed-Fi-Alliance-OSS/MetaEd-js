@@ -2572,3 +2572,76 @@ describe('when building a domain entity referencing another using a shortenTo di
     `);
   });
 });
+
+describe('when building domain entity with role named and pluralized inline common', () => {
+  const metaEd: MetaEdEnvironment = newMetaEdEnvironment();
+  const namespaceName = 'EdFi';
+  const domainEntityName = 'Section';
+  let namespace: any = null;
+
+  beforeAll(() => {
+    MetaEdTextBuilder.build()
+      .withBeginNamespace(namespaceName)
+      .withStartDomainEntity(domainEntityName)
+      .withDocumentation('doc')
+      .withStringIdentity('SectionIdentifier', 'doc', '30')
+      .withInlineCommonProperty('Credits', 'doc', false, false, 'Available')
+      .withEndDomainEntity()
+
+      .withStartInlineCommon('Credits')
+      .withDocumentation('doc')
+      .withStringProperty('CreditConversion', 'doc', false, false, '30')
+      .withEndInlineCommon()
+
+      .withEndNamespace()
+      .sendToListener(new NamespaceBuilder(metaEd, []))
+      .sendToListener(new CommonBuilder(metaEd, []))
+      .sendToListener(new DomainEntityBuilder(metaEd, []));
+
+    namespace = metaEd.namespace.get(namespaceName);
+
+    inlineCommonReferenceEnhancer(metaEd);
+    entityPropertyApiSchemaDataSetupEnhancer(metaEd);
+    entityApiSchemaDataSetupEnhancer(metaEd);
+    referenceComponentEnhancer(metaEd);
+    apiPropertyMappingEnhancer(metaEd);
+    propertyCollectingEnhancer(metaEd);
+    apiEntityMappingEnhancer(metaEd);
+    enhance(metaEd);
+  });
+
+  it('should be correct allJsonPathsMapping with "availableCreditConversion" not pluralized', () => {
+    const entity = namespace.entity.domainEntity.get(domainEntityName);
+    const mappings: Snapshotable = snapshotify(entity);
+    expect(mappings.jsonPaths).toMatchInlineSnapshot(`
+      Object {
+        "AvailableCredits.CreditConversion": Array [
+          Object {
+            "entityName": "Credits",
+            "jsonPath": "$.availableCreditConversion",
+            "propertyName": "CreditConversion",
+          },
+        ],
+        "SectionIdentifier": Array [
+          Object {
+            "entityName": "Section",
+            "jsonPath": "$.sectionIdentifier",
+            "propertyName": "SectionIdentifier",
+          },
+        ],
+      }
+    `);
+    expect(mappings.isTopLevel).toMatchInlineSnapshot(`
+      Object {
+        "AvailableCredits.CreditConversion": true,
+        "SectionIdentifier": true,
+      }
+    `);
+    expect(mappings.terminalPropertyFullName).toMatchInlineSnapshot(`
+      Object {
+        "AvailableCredits.CreditConversion": "CreditConversion",
+        "SectionIdentifier": "SectionIdentifier",
+      }
+    `);
+  });
+});
