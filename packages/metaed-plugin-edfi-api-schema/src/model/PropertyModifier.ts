@@ -1,7 +1,3 @@
-import { EntityProperty } from '@edfi/metaed-core';
-import { uncapitalize, capitalize } from '../Utility';
-import { EntityPropertyApiSchemaData } from './EntityPropertyApiSchemaData';
-
 /**
  * A possible modifier to the API body element shape of a property, based on a factor external
  * to the property itself.
@@ -30,15 +26,11 @@ export const defaultPropertyModifier: PropertyModifier = {
 /**
  * Returns the property name prefixed by possible parent modifiers.
  */
-export function prefixedName(apiMappingName: string, property: EntityProperty, propertyModifier: PropertyModifier): string {
+export function prefixedName(apiMappingName: string, propertyModifier: PropertyModifier): string {
   const prefix: string = propertyModifier.parentPrefixes.join('');
   if (prefix.length === 0) return apiMappingName;
 
-  const { apiMapping } = property.data.edfiApiSchema as EntityPropertyApiSchemaData;
-  if (apiMapping.isReferenceCollection || property.type === 'descriptor')
-    return `${uncapitalize(prefix)}${capitalize(apiMappingName)}`;
-
-  return `${uncapitalize(prefix)}${property.fullPropertyName}`;
+  return `${prefix}${apiMappingName}`;
 }
 
 /**

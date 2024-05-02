@@ -2550,7 +2550,7 @@ describe('when building a domain entity with an inline common property with a de
 
   it('common descriptor decollisioned top level name should be correct', () => {
     const common = namespace.entity.common.get('Credits');
-    expect(common.properties[0].data.edfiApiSchema.apiMapping.decollisionedTopLevelName).toBe('creditTypeDescriptor');
+    expect(common.properties[0].data.edfiApiSchema.apiMapping.decollisionedTopLevelName).toBe('CreditTypeDescriptor');
   });
 
   it('should be a correct schema for section', () => {

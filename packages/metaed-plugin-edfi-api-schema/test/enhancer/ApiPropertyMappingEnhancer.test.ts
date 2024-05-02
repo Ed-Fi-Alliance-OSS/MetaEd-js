@@ -62,9 +62,9 @@ describe('when building simple domain entity referencing another referencing ano
     expect(metaEd.propertyIndex.string).toHaveLength(4);
     expect(metaEd.propertyIndex.string[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "sectionIdentifier",
+        "decollisionedTopLevelName": "SectionIdentifier",
         "descriptorCollectionName": "",
-        "fullName": "sectionIdentifier",
+        "fullName": "SectionIdentifier",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -75,14 +75,14 @@ describe('when building simple domain entity referencing another referencing ano
         "metaEdName": "SectionIdentifier",
         "metaEdType": "string",
         "referenceCollectionName": "",
-        "topLevelName": "sectionIdentifier",
+        "topLevelName": "SectionIdentifier",
       }
     `);
     expect(metaEd.propertyIndex.string[1].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "localCourseCode",
+        "decollisionedTopLevelName": "LocalCourseCode",
         "descriptorCollectionName": "",
-        "fullName": "localCourseCode",
+        "fullName": "LocalCourseCode",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -93,14 +93,14 @@ describe('when building simple domain entity referencing another referencing ano
         "metaEdName": "LocalCourseCode",
         "metaEdType": "string",
         "referenceCollectionName": "",
-        "topLevelName": "localCourseCode",
+        "topLevelName": "LocalCourseCode",
       }
     `);
     expect(metaEd.propertyIndex.string[2].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "classPeriodName",
+        "decollisionedTopLevelName": "ClassPeriodName",
         "descriptorCollectionName": "",
-        "fullName": "classPeriodName",
+        "fullName": "ClassPeriodName",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -111,14 +111,14 @@ describe('when building simple domain entity referencing another referencing ano
         "metaEdName": "ClassPeriodName",
         "metaEdType": "string",
         "referenceCollectionName": "",
-        "topLevelName": "classPeriodName",
+        "topLevelName": "ClassPeriodName",
       }
     `);
     expect(metaEd.propertyIndex.string[3].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "schoolId",
+        "decollisionedTopLevelName": "SchoolId",
         "descriptorCollectionName": "",
-        "fullName": "schoolId",
+        "fullName": "SchoolId",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -129,16 +129,16 @@ describe('when building simple domain entity referencing another referencing ano
         "metaEdName": "SchoolId",
         "metaEdType": "string",
         "referenceCollectionName": "",
-        "topLevelName": "schoolId",
+        "topLevelName": "SchoolId",
       }
     `);
 
     expect(metaEd.propertyIndex.domainEntity).toHaveLength(4);
     expect(metaEd.propertyIndex.domainEntity[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "courseOfferingReference",
+        "decollisionedTopLevelName": "CourseOfferingReference",
         "descriptorCollectionName": "",
-        "fullName": "courseOffering",
+        "fullName": "CourseOffering",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -149,14 +149,14 @@ describe('when building simple domain entity referencing another referencing ano
         "metaEdName": "CourseOffering",
         "metaEdType": "domainEntity",
         "referenceCollectionName": "",
-        "topLevelName": "courseOfferingReference",
+        "topLevelName": "CourseOfferingReference",
       }
     `);
     expect(metaEd.propertyIndex.domainEntity[1].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "classPeriods",
+        "decollisionedTopLevelName": "ClassPeriods",
         "descriptorCollectionName": "",
-        "fullName": "classPeriods",
+        "fullName": "ClassPeriod",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -166,15 +166,15 @@ describe('when building simple domain entity referencing another referencing ano
         "isScalarReference": false,
         "metaEdName": "ClassPeriod",
         "metaEdType": "domainEntity",
-        "referenceCollectionName": "classPeriodReference",
-        "topLevelName": "classPeriods",
+        "referenceCollectionName": "ClassPeriodReference",
+        "topLevelName": "ClassPeriods",
       }
     `);
     expect(metaEd.propertyIndex.domainEntity[2].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "schoolReference",
+        "decollisionedTopLevelName": "SchoolReference",
         "descriptorCollectionName": "",
-        "fullName": "school",
+        "fullName": "School",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -185,14 +185,14 @@ describe('when building simple domain entity referencing another referencing ano
         "metaEdName": "School",
         "metaEdType": "domainEntity",
         "referenceCollectionName": "",
-        "topLevelName": "schoolReference",
+        "topLevelName": "SchoolReference",
       }
     `);
     expect(metaEd.propertyIndex.domainEntity[3].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "schoolReference",
+        "decollisionedTopLevelName": "SchoolReference",
         "descriptorCollectionName": "",
-        "fullName": "school",
+        "fullName": "School",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -203,7 +203,7 @@ describe('when building simple domain entity referencing another referencing ano
         "metaEdName": "School",
         "metaEdType": "domainEntity",
         "referenceCollectionName": "",
-        "topLevelName": "schoolReference",
+        "topLevelName": "SchoolReference",
       }
     `);
   });
@@ -253,9 +253,9 @@ describe('when domain entity has a reference with same role name as entity name'
     expect(metaEd.propertyIndex.string).toHaveLength(4);
     expect(metaEd.propertyIndex.string[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "sectionIdentifier",
+        "decollisionedTopLevelName": "SectionIdentifier",
         "descriptorCollectionName": "",
-        "fullName": "sectionIdentifier",
+        "fullName": "SectionIdentifier",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -266,14 +266,14 @@ describe('when domain entity has a reference with same role name as entity name'
         "metaEdName": "SectionIdentifier",
         "metaEdType": "string",
         "referenceCollectionName": "",
-        "topLevelName": "sectionIdentifier",
+        "topLevelName": "SectionIdentifier",
       }
     `);
     expect(metaEd.propertyIndex.string[1].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "localCourseCode",
+        "decollisionedTopLevelName": "LocalCourseCode",
         "descriptorCollectionName": "",
-        "fullName": "localCourseCode",
+        "fullName": "LocalCourseCode",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -284,14 +284,14 @@ describe('when domain entity has a reference with same role name as entity name'
         "metaEdName": "LocalCourseCode",
         "metaEdType": "string",
         "referenceCollectionName": "",
-        "topLevelName": "localCourseCode",
+        "topLevelName": "LocalCourseCode",
       }
     `);
     expect(metaEd.propertyIndex.string[2].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "classPeriodName",
+        "decollisionedTopLevelName": "ClassPeriodName",
         "descriptorCollectionName": "",
-        "fullName": "classPeriodName",
+        "fullName": "ClassPeriodName",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -302,14 +302,14 @@ describe('when domain entity has a reference with same role name as entity name'
         "metaEdName": "ClassPeriodName",
         "metaEdType": "string",
         "referenceCollectionName": "",
-        "topLevelName": "classPeriodName",
+        "topLevelName": "ClassPeriodName",
       }
     `);
     expect(metaEd.propertyIndex.string[3].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "schoolId",
+        "decollisionedTopLevelName": "SchoolId",
         "descriptorCollectionName": "",
-        "fullName": "schoolId",
+        "fullName": "SchoolId",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -320,16 +320,16 @@ describe('when domain entity has a reference with same role name as entity name'
         "metaEdName": "SchoolId",
         "metaEdType": "string",
         "referenceCollectionName": "",
-        "topLevelName": "schoolId",
+        "topLevelName": "SchoolId",
       }
     `);
 
     expect(metaEd.propertyIndex.domainEntity).toHaveLength(4);
     expect(metaEd.propertyIndex.domainEntity[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "courseOfferingReference",
+        "decollisionedTopLevelName": "CourseOfferingReference",
         "descriptorCollectionName": "",
-        "fullName": "courseOffering",
+        "fullName": "CourseOffering",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -340,14 +340,14 @@ describe('when domain entity has a reference with same role name as entity name'
         "metaEdName": "CourseOffering",
         "metaEdType": "domainEntity",
         "referenceCollectionName": "",
-        "topLevelName": "courseOfferingReference",
+        "topLevelName": "CourseOfferingReference",
       }
     `);
     expect(metaEd.propertyIndex.domainEntity[1].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "classPeriods",
+        "decollisionedTopLevelName": "ClassPeriods",
         "descriptorCollectionName": "",
-        "fullName": "classPeriods",
+        "fullName": "ClassPeriod",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -357,15 +357,15 @@ describe('when domain entity has a reference with same role name as entity name'
         "isScalarReference": false,
         "metaEdName": "ClassPeriod",
         "metaEdType": "domainEntity",
-        "referenceCollectionName": "classPeriodReference",
-        "topLevelName": "classPeriods",
+        "referenceCollectionName": "ClassPeriodReference",
+        "topLevelName": "ClassPeriods",
       }
     `);
     expect(metaEd.propertyIndex.domainEntity[2].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "schoolReference",
+        "decollisionedTopLevelName": "SchoolReference",
         "descriptorCollectionName": "",
-        "fullName": "school",
+        "fullName": "School",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -376,14 +376,14 @@ describe('when domain entity has a reference with same role name as entity name'
         "metaEdName": "School",
         "metaEdType": "domainEntity",
         "referenceCollectionName": "",
-        "topLevelName": "schoolReference",
+        "topLevelName": "SchoolReference",
       }
     `);
     expect(metaEd.propertyIndex.domainEntity[3].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "schoolReference",
+        "decollisionedTopLevelName": "SchoolReference",
         "descriptorCollectionName": "",
-        "fullName": "school",
+        "fullName": "School",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -394,7 +394,7 @@ describe('when domain entity has a reference with same role name as entity name'
         "metaEdName": "School",
         "metaEdType": "domainEntity",
         "referenceCollectionName": "",
-        "topLevelName": "schoolReference",
+        "topLevelName": "SchoolReference",
       }
     `);
   });
@@ -434,12 +434,12 @@ describe('when superclass and subclass will have a naming collision issue', () =
   it('should have correct regular and collision resolved top level names', () => {
     expect(metaEd.propertyIndex.string).toHaveLength(2);
     const edOrgPropertyApiMapping = metaEd.propertyIndex.string[0].data.edfiApiSchema.apiMapping;
-    expect(edOrgPropertyApiMapping.decollisionedTopLevelName).toBe('educationOrganizationCategories');
-    expect(edOrgPropertyApiMapping.topLevelName).toBe('categories');
+    expect(edOrgPropertyApiMapping.decollisionedTopLevelName).toBe('EducationOrganizationCategories');
+    expect(edOrgPropertyApiMapping.topLevelName).toBe('Categories');
 
     const schoolPropertyApiMapping = metaEd.propertyIndex.string[1].data.edfiApiSchema.apiMapping;
-    expect(schoolPropertyApiMapping.decollisionedTopLevelName).toBe('schoolCategories');
-    expect(schoolPropertyApiMapping.topLevelName).toBe('categories');
+    expect(schoolPropertyApiMapping.decollisionedTopLevelName).toBe('SchoolCategories');
+    expect(schoolPropertyApiMapping.topLevelName).toBe('Categories');
   });
 });
 
@@ -475,9 +475,9 @@ describe('when building simple domain entity with common collection', () => {
     expect(metaEd.propertyIndex.common).toHaveLength(1);
     expect(metaEd.propertyIndex.common[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "meetingTimes",
+        "decollisionedTopLevelName": "MeetingTimes",
         "descriptorCollectionName": "",
-        "fullName": "meetingTimes",
+        "fullName": "MeetingTime",
         "isChoice": false,
         "isCommonCollection": true,
         "isDescriptorCollection": false,
@@ -488,7 +488,7 @@ describe('when building simple domain entity with common collection', () => {
         "metaEdName": "MeetingTime",
         "metaEdType": "unknown",
         "referenceCollectionName": "",
-        "topLevelName": "meetingTimes",
+        "topLevelName": "MeetingTimes",
       }
     `);
   });
@@ -504,7 +504,7 @@ describe('when building a domain entity with a descriptor collection that meets 
       .withBeginNamespace('EdFi')
       .withStartDomainEntity('LearningObjective')
       .withDocumentation('doc')
-      .withStringIdentity('LearningObjectiveId', 'doc', '0z41dmrtgsm4wqbwv3k0v5vkbdurrgeu')
+      .withStringIdentity('LearningObjectiveId', 'doc', '10')
       .withDescriptorProperty('GradeLevel', 'doc', false, true, 'Objective')
       .withEndDomainEntity()
 
@@ -523,7 +523,12 @@ describe('when building a domain entity with a descriptor collection that meets 
 
   it('should have the prefix removed from the name', () => {
     gradeLevelDescriptorApiName = meadowlarkData.apiMapping.fullName;
-    expect(gradeLevelDescriptorApiName).toEqual('gradeLevels');
+    expect(gradeLevelDescriptorApiName).toEqual('GradeLevel');
+  });
+
+  it('should have the prefix removed from the top level name', () => {
+    gradeLevelDescriptorApiName = meadowlarkData.apiMapping.topLevelName;
+    expect(gradeLevelDescriptorApiName).toEqual('GradeLevels');
   });
 });
 
@@ -555,17 +560,32 @@ describe('when building a domain entity with a optional collections with prefix 
 
   it('should have the prefix removed from AssessmentScore', () => {
     assessmentScoreApiName = metaEd.propertyIndex.common[0].data.edfiApiSchema.apiMapping.fullName;
-    expect(assessmentScoreApiName).toEqual('scores');
+    expect(assessmentScoreApiName).toEqual('Score');
+  });
+
+  it('should have the prefix removed from AssessmentScore top level name', () => {
+    assessmentScoreApiName = metaEd.propertyIndex.common[0].data.edfiApiSchema.apiMapping.topLevelName;
+    expect(assessmentScoreApiName).toEqual('Scores');
   });
 
   it('should have the prefix removed from AssessmentDescription', () => {
     assessmentScoreApiName = metaEd.propertyIndex.string[1].data.edfiApiSchema.apiMapping.fullName;
-    expect(assessmentScoreApiName).toEqual('descriptions');
+    expect(assessmentScoreApiName).toEqual('Description');
+  });
+
+  it('should have the prefix removed from AssessmentDescription top level name', () => {
+    assessmentScoreApiName = metaEd.propertyIndex.string[1].data.edfiApiSchema.apiMapping.topLevelName;
+    expect(assessmentScoreApiName).toEqual('Descriptions');
   });
 
   it('should have the prefix removed from AssessmentNumber', () => {
     assessmentScoreApiName = metaEd.propertyIndex.integer[0].data.edfiApiSchema.apiMapping.fullName;
-    expect(assessmentScoreApiName).toEqual('numbers');
+    expect(assessmentScoreApiName).toEqual('Number');
+  });
+
+  it('should have the prefix removed from AssessmentNumber top level name', () => {
+    assessmentScoreApiName = metaEd.propertyIndex.integer[0].data.edfiApiSchema.apiMapping.topLevelName;
+    expect(assessmentScoreApiName).toEqual('Numbers');
   });
 });
 
@@ -597,7 +617,12 @@ describe('when building a domain entity with a optional collection with prefix o
 
   it('should have the prefix removed from the name', () => {
     discussionTopicAWithRoleNameApiName = meadowlarkData.apiMapping.fullName;
-    expect(discussionTopicAWithRoleNameApiName).toEqual('topicWithRoleNameTopics');
+    expect(discussionTopicAWithRoleNameApiName).toEqual('TopicWithRoleNameTopic');
+  });
+
+  it('should have the prefix removed from the top level name', () => {
+    discussionTopicAWithRoleNameApiName = meadowlarkData.apiMapping.topLevelName;
+    expect(discussionTopicAWithRoleNameApiName).toEqual('TopicWithRoleNameTopics');
   });
 });
 
@@ -634,9 +659,9 @@ describe('when building simple domain entity with inline common', () => {
     expect(metaEd.propertyIndex.inlineCommon).toHaveLength(1);
     expect(metaEd.propertyIndex.inlineCommon[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "meetingTime",
+        "decollisionedTopLevelName": "MeetingTime",
         "descriptorCollectionName": "",
-        "fullName": "meetingTime",
+        "fullName": "MeetingTime",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -647,7 +672,7 @@ describe('when building simple domain entity with inline common', () => {
         "metaEdName": "MeetingTime",
         "metaEdType": "common",
         "referenceCollectionName": "",
-        "topLevelName": "meetingTime",
+        "topLevelName": "MeetingTime",
       }
     `);
   });
@@ -686,9 +711,9 @@ describe('when building simple domain entity with inline common with role name',
     expect(metaEd.propertyIndex.inlineCommon).toHaveLength(1);
     expect(metaEd.propertyIndex.inlineCommon[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "roleNameMeetingTime",
+        "decollisionedTopLevelName": "RoleNameMeetingTime",
         "descriptorCollectionName": "",
-        "fullName": "roleNameMeetingTime",
+        "fullName": "RoleNameMeetingTime",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -699,7 +724,7 @@ describe('when building simple domain entity with inline common with role name',
         "metaEdName": "MeetingTime",
         "metaEdType": "common",
         "referenceCollectionName": "",
-        "topLevelName": "roleNameMeetingTime",
+        "topLevelName": "RoleNameMeetingTime",
       }
     `);
   });
@@ -738,9 +763,9 @@ describe('when building simple domain entity with choice', () => {
     expect(metaEd.propertyIndex.choice).toHaveLength(1);
     expect(metaEd.propertyIndex.choice[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "meetingTime",
+        "decollisionedTopLevelName": "MeetingTime",
         "descriptorCollectionName": "",
-        "fullName": "meetingTime",
+        "fullName": "MeetingTime",
         "isChoice": true,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -751,7 +776,7 @@ describe('when building simple domain entity with choice', () => {
         "metaEdName": "MeetingTime",
         "metaEdType": "choice",
         "referenceCollectionName": "",
-        "topLevelName": "meetingTime",
+        "topLevelName": "MeetingTime",
       }
     `);
   });
@@ -790,9 +815,9 @@ describe('when building simple domain entity with choice with role name', () => 
     expect(metaEd.propertyIndex.choice).toHaveLength(1);
     expect(metaEd.propertyIndex.choice[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "roleNameMeetingTime",
+        "decollisionedTopLevelName": "RoleNameMeetingTime",
         "descriptorCollectionName": "",
-        "fullName": "roleNameMeetingTime",
+        "fullName": "RoleNameMeetingTime",
         "isChoice": true,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -803,7 +828,7 @@ describe('when building simple domain entity with choice with role name', () => 
         "metaEdName": "MeetingTime",
         "metaEdType": "choice",
         "referenceCollectionName": "",
-        "topLevelName": "roleNameMeetingTime",
+        "topLevelName": "RoleNameMeetingTime",
       }
     `);
   });
@@ -841,9 +866,9 @@ describe('when building domain entity with role name as prefix name of reference
     expect(metaEd.propertyIndex.domainEntity).toHaveLength(1);
     expect(metaEd.propertyIndex.domainEntity[0].data.edfiApiSchema.apiMapping).toMatchInlineSnapshot(`
       Object {
-        "decollisionedTopLevelName": "balanceSheetDimensionReference",
+        "decollisionedTopLevelName": "BalanceSheetDimensionReference",
         "descriptorCollectionName": "",
-        "fullName": "balanceSheetDimension",
+        "fullName": "BalanceSheetDimension",
         "isChoice": false,
         "isCommonCollection": false,
         "isDescriptorCollection": false,
@@ -854,7 +879,7 @@ describe('when building domain entity with role name as prefix name of reference
         "metaEdName": "BalanceSheetDimension",
         "metaEdType": "domainEntity",
         "referenceCollectionName": "",
-        "topLevelName": "balanceSheetDimensionReference",
+        "topLevelName": "BalanceSheetDimensionReference",
       }
     `);
   });

@@ -8,7 +8,7 @@ import {
   normalizeDescriptorSuffix,
   DescriptorProperty,
 } from '@edfi/metaed-core';
-import { isTopLevelReference, isDescriptor, uncapitalize, pluralize, adjustedFullPropertyName } from '../Utility';
+import { isTopLevelReference, isDescriptor, pluralize, adjustedFullPropertyName } from '../Utility';
 import { ApiPropertyMapping } from '../model/ApiPropertyMapping';
 import { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 
@@ -49,8 +49,8 @@ function parentPrefixRemovalConvention(property: EntityProperty): string {
  * API descriptor reference property names are suffixed with "Descriptor"
  */
 function apiDescriptorReferenceName(property: DescriptorProperty): string {
-  if (property.isCollection) return normalizeDescriptorSuffix(uncapitalize(property.metaEdName));
-  return normalizeDescriptorSuffix(uncapitalize(property.fullPropertyName));
+  if (property.isCollection) return normalizeDescriptorSuffix(property.metaEdName);
+  return normalizeDescriptorSuffix(property.fullPropertyName);
 }
 
 /**
@@ -58,17 +58,17 @@ function apiDescriptorReferenceName(property: DescriptorProperty): string {
  */
 function apiFullName(property: EntityProperty, { removePrefixes }: NamingOptions): string {
   if (property.isCollection && removePrefixes) {
-    return uncapitalize(parentPrefixRemovalConvention(property));
+    return parentPrefixRemovalConvention(property);
   }
   if (property.type === 'common' && removePrefixes) {
-    return uncapitalize(parentPrefixRemovalConvention(property));
+    return parentPrefixRemovalConvention(property);
   }
   if (property.isCollection && !removePrefixes) {
-    return uncapitalize(adjustedFullPropertyName(property));
+    return adjustedFullPropertyName(property);
   }
   if (isDescriptor(property)) return apiDescriptorReferenceName(property as DescriptorProperty);
 
-  return uncapitalize(adjustedFullPropertyName(property));
+  return adjustedFullPropertyName(property);
 }
 
 /**
@@ -77,31 +77,31 @@ function apiFullName(property: EntityProperty, { removePrefixes }: NamingOptions
  */
 function apiTopLevelFullName(property: EntityProperty, { removePrefixes }: NamingOptions): string {
   if (property.isCollection && removePrefixes) {
-    return uncapitalize(pluralize(parentPrefixRemovalConvention(property)));
+    return pluralize(parentPrefixRemovalConvention(property));
   }
   if (property.type === 'common' && removePrefixes) {
-    return uncapitalize(parentPrefixRemovalConvention(property));
+    return parentPrefixRemovalConvention(property);
   }
   if (property.isCollection && !removePrefixes) {
-    return uncapitalize(pluralize(adjustedFullPropertyName(property)));
+    return pluralize(adjustedFullPropertyName(property));
   }
   if (isDescriptor(property)) return apiDescriptorReferenceName(property as DescriptorProperty);
 
-  return uncapitalize(adjustedFullPropertyName(property));
+  return adjustedFullPropertyName(property);
 }
 
 /**
  * API reference property names are suffixed with "Reference"
  */
 function apiReferenceName(property: EntityProperty): string {
-  return `${uncapitalize(adjustedFullPropertyName(property))}Reference`;
+  return `${adjustedFullPropertyName(property)}Reference`;
 }
 
 /**
  * School year enumeration property names are "SchoolYearTypeReference" prefixed with role name
  */
 function apiSchoolYearEnumerationName(property: EntityProperty): string {
-  return uncapitalize(`${property.roleName}SchoolYearTypeReference`);
+  return `${property.roleName}SchoolYearTypeReference`;
 }
 
 /**
@@ -113,7 +113,9 @@ function apiSchoolYearEnumerationName(property: EntityProperty): string {
 function apiTopLevelName(property: EntityProperty, { removePrefixes }: NamingOptions): string {
   if (property.type === 'schoolYearEnumeration') return apiSchoolYearEnumerationName(property);
   if (!isTopLevelReference(property)) return apiTopLevelFullName(property, { removePrefixes });
-  if (property.isRequiredCollection || property.isOptionalCollection) return apiTopLevelFullName(property, { removePrefixes });
+  if (property.isRequiredCollection || property.isOptionalCollection) {
+    return apiTopLevelFullName(property, { removePrefixes });
+  }
   return apiReferenceName(property);
 }
 
@@ -174,7 +176,6 @@ function buildApiPropertyMapping(property: EntityProperty): ApiPropertyMapping {
     topLevelName: apiTopLevelName(property, { removePrefixes: true }),
     decollisionedTopLevelName: apiTopLevelName(property, { removePrefixes: false }),
     fullName,
-    pluralizedFullName: pluralize(fullName),
     isReferenceCollection,
     referenceCollectionName: isReferenceCollection ? apiReferenceName(property) : '',
     isDescriptorCollection,

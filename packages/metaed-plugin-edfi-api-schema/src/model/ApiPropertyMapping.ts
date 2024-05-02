@@ -27,10 +27,6 @@ export type ApiPropertyMapping = {
    */
   fullName: string;
   /**
-   * The pluralized version of the fullName
-   */
-  pluralizedFullName: string;
-  /**
    * Whether the property is a reference collection.
    */
   isReferenceCollection: boolean;
@@ -79,7 +75,6 @@ export function newApiPropertyMapping(): ApiPropertyMapping {
     topLevelName: '',
     decollisionedTopLevelName: '',
     fullName: '',
-    pluralizedFullName: '',
     isReferenceCollection: false,
     referenceCollectionName: '',
     isDescriptorCollection: false,

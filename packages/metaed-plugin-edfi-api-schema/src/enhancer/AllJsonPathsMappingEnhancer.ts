@@ -17,7 +17,12 @@ import type { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import type { JsonPathsInfo, JsonPathsMapping } from '../model/JsonPathsMapping';
 import type { EntityPropertyApiSchemaData } from '../model/EntityPropertyApiSchemaData';
 import { PropertyModifier, prefixedName, propertyModifierConcat } from '../model/PropertyModifier';
-import { prependPrefixWithCollapse, findIdenticalRoleNamePatternPrefix, topLevelApiNameOnEntity } from '../Utility';
+import {
+  prependPrefixWithCollapse,
+  findIdenticalRoleNamePatternPrefix,
+  topLevelApiNameOnEntity,
+  uncapitalize,
+} from '../Utility';
 import { FlattenedIdentityProperty } from '../model/FlattenedIdentityProperty';
 import { JsonPath } from '../model/api-schema/JsonPath';
 
@@ -34,13 +39,13 @@ function appendNextJsonPathName(
 ): JsonPath {
   if (property.type === 'inlineCommon' || property.type === 'choice') return currentJsonPath;
 
-  let nextName = prefixedName(apiMappingName, property, propertyModifier);
+  let nextName = prefixedName(apiMappingName, propertyModifier);
 
   if (specialPrefix !== '') {
     nextName = prependPrefixWithCollapse(nextName, specialPrefix);
   }
 
-  return `${currentJsonPath}.${nextName}` as JsonPath;
+  return `${currentJsonPath}.${uncapitalize(nextName)}` as JsonPath;
 }
 
 /**
