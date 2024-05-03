@@ -110,7 +110,7 @@ export function topLevelApiNameOnEntity(entity: TopLevelEntity, property: Entity
 }
 
 /**
- * Prepend a prefix to a name in lower camel case, unless the prefix already exists
+ * Prepend a prefix to a name , unless the prefix already exists
  */
 export function prependPrefixWithCollapse(name: string, prefix: string): string {
   if (name.startsWith(prefix)) return name;

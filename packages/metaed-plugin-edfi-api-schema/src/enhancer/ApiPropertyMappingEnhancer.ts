@@ -72,8 +72,7 @@ function apiFullName(property: EntityProperty, { removePrefixes }: NamingOptions
 }
 
 /**
- * The basic name of a property in the API.  Generally, the property full name with the
- * first character lower cased, and pluralized if an array.
+ * The basic name of a property in the API.  Generally, the property full name but pluralized if an array.
  */
 function apiTopLevelFullName(property: EntityProperty, { removePrefixes }: NamingOptions): string {
   if (property.isCollection && removePrefixes) {
