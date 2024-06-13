@@ -149,8 +149,16 @@ describe('when building simple domain entity with all the simple non-collections
           "path": "$.requiredTimeProperty",
         },
         "SchoolYear": Object {
-          "isReference": false,
-          "path": "$.schoolYearTypeReference.schoolYear",
+          "isDescriptor": false,
+          "isReference": true,
+          "projectName": "EdFi",
+          "referenceJsonPaths": Array [
+            Object {
+              "identityJsonPath": "$.schoolYear",
+              "referenceJsonPath": "$.schoolYearTypeReference.schoolYear",
+            },
+          ],
+          "resourceName": "SchoolYearType",
         },
         "StringIdentity": Object {
           "isReference": false,
@@ -249,8 +257,16 @@ describe('when building simple domain entity with all the simple collections', (
           "path": "$.requiredTimeProperties[*].requiredTimeProperty",
         },
         "SchoolYear": Object {
-          "isReference": false,
-          "path": "$.schoolYearTypeReference.schoolYear",
+          "isDescriptor": false,
+          "isReference": true,
+          "projectName": "EdFi",
+          "referenceJsonPaths": Array [
+            Object {
+              "identityJsonPath": "$.schoolYear",
+              "referenceJsonPath": "$.schoolYearTypeReference.schoolYear",
+            },
+          ],
+          "resourceName": "SchoolYearType",
         },
         "StringIdentity": Object {
           "isReference": false,
@@ -488,8 +504,16 @@ describe('when building a domain entity referencing CourseOffering with an impli
           "resourceName": "School",
         },
         "SchoolYear": Object {
-          "isReference": false,
-          "path": "$.schoolYearTypeReference.schoolYear",
+          "isDescriptor": false,
+          "isReference": true,
+          "projectName": "EdFi",
+          "referenceJsonPaths": Array [
+            Object {
+              "identityJsonPath": "$.schoolYear",
+              "referenceJsonPath": "$.schoolYearTypeReference.schoolYear",
+            },
+          ],
+          "resourceName": "SchoolYearType",
         },
         "SessionName": Object {
           "isReference": false,
@@ -1355,8 +1379,16 @@ describe('when building a schema for StudentCohort', () => {
     expect(documentPathsMapping).toMatchInlineSnapshot(`
       Object {
         "CohortYear.SchoolYear": Object {
-          "isReference": false,
-          "path": "$.years[*].schoolYearTypeReference.schoolYear",
+          "isDescriptor": false,
+          "isReference": true,
+          "projectName": "EdFi",
+          "referenceJsonPaths": Array [
+            Object {
+              "identityJsonPath": "$.schoolYear",
+              "referenceJsonPath": "$.years[*].schoolYearTypeReference.schoolYear",
+            },
+          ],
+          "resourceName": "SchoolYearType",
         },
         "StudentUniqueId": Object {
           "isReference": false,
