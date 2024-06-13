@@ -162,6 +162,23 @@ function buildDescriptorPath(jsonPaths: JsonPath[], property: EntityProperty): D
   };
 }
 
+function buildSchoolYearEnumerationPath(jsonPaths: JsonPath[]): DocumentReferencePaths {
+  invariant(jsonPaths.length === 1, 'SchoolYear should only have one path');
+
+  return {
+    isReference: true,
+    isDescriptor: false,
+    projectName: 'EdFi',
+    resourceName: 'SchoolYearType',
+    referenceJsonPaths: [
+      {
+        referenceJsonPath: jsonPaths[0],
+        identityJsonPath: '$.schoolYear' as JsonPath,
+      },
+    ],
+  };
+}
+
 function buildScalarPath(jsonPaths: JsonPath[]): ScalarPath {
   invariant(jsonPaths.length === 1, 'Scalar should only have one path');
   return {
@@ -191,6 +208,8 @@ function documentPathsMappingFor(entity: TopLevelEntity): DocumentPathsMapping {
       result[propertyPath] = buildDocumentReferencePaths(propertyPath, referenceProperty, allJsonPathsMapping);
     } else if (property.type === 'descriptor') {
       result[propertyPath] = buildDescriptorPath(jsonPaths, property);
+    } else if (property.type === 'schoolYearEnumeration') {
+      result[propertyPath] = buildSchoolYearEnumerationPath(jsonPaths);
     } else {
       result[propertyPath] = buildScalarPath(jsonPaths);
     }

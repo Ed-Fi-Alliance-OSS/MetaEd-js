@@ -1086,8 +1086,16 @@
               "path": "$.ratingTitle"
             },
             "SchoolYear": {
-              "isReference": false,
-              "path": "$.schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             }
           },
           "equalityConstraints": [
@@ -3886,8 +3894,16 @@
               "resourceName": "School"
             },
             "SchoolYear": {
-              "isReference": false,
-              "path": "$.schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             }
           },
           "equalityConstraints": [
@@ -15432,8 +15448,16 @@
               "resourceName": "School"
             },
             "SchoolYear": {
-              "isReference": false,
-              "path": "$.schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "TotalInstructionalDays": {
               "isReference": false,
@@ -15697,8 +15721,16 @@
               "resourceName": "GraduationPlanTypeDescriptor"
             },
             "GraduationSchoolYear": {
-              "isReference": false,
-              "path": "$.graduationSchoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.graduationSchoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "IndividualPlan": {
               "isReference": false,
@@ -19926,8 +19958,16 @@
               "resourceName": "SchoolChoiceImplementStatusDescriptor"
             },
             "LocalEducationAgencyAccountability.SchoolYear": {
-              "isReference": false,
-              "path": "$.accountabilities[*].schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.accountabilities[*].schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "LocalEducationAgencyCategoryDescriptor": {
               "isDescriptor": true,
@@ -28206,8 +28246,16 @@
               "resourceName": "CharterApprovalAgencyTypeDescriptor"
             },
             "CharterApprovalSchoolYear": {
-              "isReference": false,
-              "path": "$.charterApprovalSchoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.charterApprovalSchoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "CharterStatusDescriptor": {
               "isDescriptor": true,
@@ -29889,8 +29937,16 @@
               "resourceName": "School"
             },
             "SchoolYear": {
-              "isReference": false,
-              "path": "$.schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "SessionName": {
               "isReference": false,
@@ -32082,8 +32138,16 @@
               "resourceName": "School"
             },
             "SchoolYear": {
-              "isReference": false,
-              "path": "$.schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "Staff": {
               "isDescriptor": false,
@@ -34012,8 +34076,16 @@
               "path": "$.accountabilities[*].cteGraduationRateInclusion"
             },
             "StateEducationAgencyAccountability.SchoolYear": {
-              "isReference": false,
-              "path": "$.accountabilities[*].schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.accountabilities[*].schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "StateEducationAgencyFederalFunds.FederalProgramsFundingAllocation": {
               "isReference": false,
@@ -34768,8 +34840,16 @@
               "resourceName": "ReportCard"
             },
             "SchoolYear": {
-              "isReference": false,
-              "path": "$.schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "SessionAttemptedCredits.CreditConversion": {
               "isReference": false,
@@ -35371,8 +35451,16 @@
               "resourceName": "EducationOrganizationAssociationTypeDescriptor"
             },
             "SchoolYear": {
-              "isReference": false,
-              "path": "$.schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "StudentAssessment": {
               "isDescriptor": false,
@@ -35637,8 +35725,16 @@
               "resourceName": "RetestIndicatorDescriptor"
             },
             "SchoolYear": {
-              "isReference": false,
-              "path": "$.schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "ScoreResult.AssessmentReportingMethodDescriptor": {
               "isDescriptor": true,
@@ -37751,8 +37847,16 @@
               "resourceName": "CohortYearTypeDescriptor"
             },
             "CohortYear.SchoolYear": {
-              "isReference": false,
-              "path": "$.cohortYears[*].schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.cohortYears[*].schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "CohortYear.TermDescriptor": {
               "isDescriptor": true,
@@ -39874,8 +39978,16 @@
               "resourceName": "ProgressDescriptor"
             },
             "EnglishLanguageProficiencyAssessment.SchoolYear": {
-              "isReference": false,
-              "path": "$.englishLanguageProficiencyAssessments[*].schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.englishLanguageProficiencyAssessments[*].schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "EnglishLearnerParticipation": {
               "isReference": false,
@@ -41998,8 +42110,16 @@
               "resourceName": "Calendar"
             },
             "ClassOfSchoolYear": {
-              "isReference": false,
-              "path": "$.classOfSchoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.classOfSchoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "EducationPlanDescriptor": {
               "isDescriptor": true,
@@ -42141,8 +42261,16 @@
               "path": "$.schoolChoiceTransfer"
             },
             "SchoolYear": {
-              "isReference": false,
-              "path": "$.schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "Student": {
               "isDescriptor": false,
@@ -47244,8 +47372,16 @@
               "path": "$.numberAdministered"
             },
             "SchoolYear": {
-              "isReference": false,
-              "path": "$.schoolYearTypeReference.schoolYear"
+              "isDescriptor": false,
+              "isReference": true,
+              "projectName": "EdFi",
+              "referenceJsonPaths": [
+                {
+                  "identityJsonPath": "$.schoolYear",
+                  "referenceJsonPath": "$.schoolYearTypeReference.schoolYear"
+                }
+              ],
+              "resourceName": "SchoolYearType"
             },
             "Session": {
               "isDescriptor": false,
