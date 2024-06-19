@@ -40,6 +40,8 @@ function buildResourceSchema(entity: TopLevelEntity): ResourceSchema {
     equalityConstraints: entityApiSchemaData.equalityConstraints,
     documentPathsMapping: entityApiSchemaData.documentPathsMapping,
     identityJsonPaths: entityApiSchemaData.identityJsonPaths,
+    booleanJsonPaths: entityApiSchemaData.booleanJsonPaths,
+    numericJsonPaths: entityApiSchemaData.numericJsonPaths,
     isSubclass: false,
   };
 }

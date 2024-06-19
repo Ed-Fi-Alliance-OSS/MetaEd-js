@@ -66,6 +66,8 @@ export function buildSchoolYearResourceSchema(
     },
     equalityConstraints: [],
     identityJsonPaths: ['$.schoolYear'] as JsonPath[],
+    booleanJsonPaths: ['$.currentSchoolYear'] as JsonPath[],
+    numericJsonPaths: ['$.schoolYear'] as JsonPath[],
     isSubclass: false,
     documentPathsMapping: buildDocumentPathsMapping(documentObjectPaths),
   } as ResourceSchema;

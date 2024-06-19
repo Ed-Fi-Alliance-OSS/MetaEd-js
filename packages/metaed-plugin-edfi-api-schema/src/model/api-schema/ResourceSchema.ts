@@ -46,6 +46,16 @@ export type BaseResourceSchema = {
   identityJsonPaths: JsonPath[];
 
   /**
+   * A list of the JsonPaths that are of type boolean for use in type coercion.
+   */
+  booleanJsonPaths: JsonPath[];
+
+  /**
+   * A list of the JsonPaths that are numeric for use in type coercion.
+   */
+  numericJsonPaths: JsonPath[];
+
+  /**
    * A collection of MetaEd property fullnames mapped to DocumentPaths objects,
    * which provide JsonPaths to the corresponding values in a resource document.
    */

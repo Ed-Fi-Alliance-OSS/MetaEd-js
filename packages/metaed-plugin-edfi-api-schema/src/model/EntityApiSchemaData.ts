@@ -86,6 +86,16 @@ export type EntityApiSchemaData = {
   identityJsonPaths: JsonPath[];
 
   /**
+   * A list of the JsonPaths that are of type boolean for use in type coercion.
+   */
+  booleanJsonPaths: JsonPath[];
+
+  /**
+   * A list of the JsonPaths that are numeric for use in type coercion.
+   */
+  numericJsonPaths: JsonPath[];
+
+  /**
    * A mapping of PropertyFullNames to DocumentPaths, which are JsonPaths in an API document for a specific MetaEd
    * property.
    */

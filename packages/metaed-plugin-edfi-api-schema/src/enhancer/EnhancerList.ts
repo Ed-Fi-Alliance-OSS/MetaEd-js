@@ -19,6 +19,7 @@ import { enhance as identityFullnameEnhancer } from './IdentityFullnameEnhancer'
 import { enhance as subclassIdentityFullnameEnhancer } from './SubclassIdentityFullnameEnhancer';
 import { enhance as documentPathsMappingEnhancer } from './DocumentPathsMappingEnhancer';
 import { enhance as identityJsonPathsEnhancer } from './IdentityJsonPathsEnhancer';
+import { enhance as booleanNumericJsonPathsEnhancer } from './BooleanNumericJsonPathsEnhancer';
 import { enhance as apiSchemaBuildingEnhancer } from './ApiSchemaBuildingEnhancer';
 
 export function enhancerList(): Enhancer[] {
@@ -43,6 +44,7 @@ export function enhancerList(): Enhancer[] {
     subclassIdentityFullnameEnhancer,
     documentPathsMappingEnhancer,
     identityJsonPathsEnhancer,
+    booleanNumericJsonPathsEnhancer,
     apiSchemaBuildingEnhancer,
   ];
 }
