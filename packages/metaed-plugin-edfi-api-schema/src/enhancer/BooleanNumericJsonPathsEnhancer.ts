@@ -3,7 +3,7 @@ import { EntityApiSchemaData } from '../model/EntityApiSchemaData';
 import { JsonPath } from '../model/api-schema/JsonPath';
 
 /**
- * Accumulates the identityJsonPaths for the boolean and numeric properties of an entity
+ * Accumulates the booleanJsonPaths and numericJsonPaths for an entity for use in type coercion
  */
 export function enhance(metaEd: MetaEdEnvironment): EnhancerResult {
   getAllEntitiesOfType(metaEd, 'domainEntity', 'association', 'domainEntitySubclass', 'associationSubclass').forEach(
